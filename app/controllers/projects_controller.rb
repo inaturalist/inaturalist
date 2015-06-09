@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse ]
+  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
@@ -528,19 +528,39 @@ class ProjectsController < ApplicationController
       end
     end
   end
+
+  def calendar
+    @projects = Project.where(project_type: Project::BIOBLITZ_TYPE).order("start_time ASC, end_time ASC").
+      where("end_time > ?", Time.now).joins(:place).where("places.id IS NOT NULL")
+    unless params[:place_id].blank?
+      @place = Place.find(params[:place_id]) rescue nil
+    end
+    @projects = @projects.in_place(@place) if @place
+    respond_to do |format|
+      format.html do
+        @projects = @projects.page(params[:page]).includes(:place)
+        @finished = Project.where(project_type: Project::BIOBLITZ_TYPE).order("end_time DESC, start_time ASC").where("end_time < ?", Time.now).page(1)
+        @finished = @finished.in_place(@place) if @place
+        render layout: 'bootstrap'
+      end
+      format.ics do
+        @projects = @projects.limit(500).includes(place: :user)
+      end
+    end
+  end
   
   def stats
     @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
     @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
     @unique_observer_stats = @project.project_observations.joins(:observation).
-      select("observations.user_id").
+      select("DISTINCT observations.user_id").
       group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
       count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
     @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
     
-    @headers = ['year/month', 'new users', 'new observations', 'unique observers']
+    @headers = [t(:year_month), t(:new_members), t(:new_observations), t(:unique_observers)]
     @data = []
     (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
       display_key = key.gsub(/\-(\d)$/, "-0\\1")

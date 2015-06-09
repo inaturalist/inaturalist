@@ -1795,6 +1795,8 @@ fr:
     ici. Les cartes afficheront une plage si %{place} en a une pour cette espèce.
   maybe_your_signed_in_with: Peut-être vous êtes-vous connecté avec votre compte %{omniauth} ?
   medium: moyen
+  member_of_the_inaturalist_network_html: |
+    Membre du <a href="%{url}">Réseau iNaturalist</a>
   members: Membres
   merge: Fusionner
   merge_it_with_another_place: Le fusionner avec un autre lieu
@@ -1876,7 +1878,7 @@ fr:
   new_guide: Nouveau guide
   new_journal_posts: Nouvelle note du journal
   new_list: Nouvelle liste
-  new_members: Nouveaux membres…
+  new_members: Nouveaux membres
   new_message: Nouveau message
   new_observation_field: Nouveau champ d’observation
   new_observation_rules: Nouvelles règles d’observation
@@ -3741,7 +3743,7 @@ fr:
   your_identification: Votre Identifiant
   your_inat_account_has_been_activated: Votre compte %{inat} a été activé.
   your_life_list: votre liste de vie !
-  your_month_observations: vos observations de %{mois}
+  your_month_observations: vos observations de %{month}
   your_new_password_is: Votre nouveau mot de passe est
   your_observation_will_get_shared_html: Vos observations seront partagées sur les
     réseaux sociaux si vous laissez ces cases cochées. Vous pouvez changer vos paramètres

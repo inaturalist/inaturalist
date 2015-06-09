@@ -36,45 +36,47 @@
     <%= yield :extrajs %>
   </head>
 <body class="browser">
-  <% unless @headless -%>
-    <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
-      <%= render :partial => 'shared/header' %>
+  <div id="bodywrapper">
+    <% unless @headless -%>
+      <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
+        <%= render :partial => 'shared/header' %>
+      <% end %>
+    <% end -%>
+    
+    <% if flash[:notice] || flash[:alert] %>
+    <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
     <% end %>
-  <% end -%>
-  
-  <% if flash[:notice] || flash[:alert] %>
-  <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
-  <% end %>
-  
-  <% if flash[:error] %>
-  <p id="flash" class="error"><%= raw flash[:error] %></p>
-  <% end %>
+    
+    <% if flash[:error] %>
+    <p id="flash" class="error"><%= raw flash[:error] %></p>
+    <% end %>
 
-  <% if @feature_test -%>
-    <div class="container">
-      <div class="notice box">
-        <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
-      </div>
-    </div>
-  <% end -%>
-
-  <div id="wrapper" class="container clear">
-    <% if flash[:warning] -%>
-      <div class="notice box">
-        <% if flash[:warning_title] -%>
-          <h3><%=raw flash[:warning_title] %></h3>
-        <% end -%>
-        <p class="unstacked">
-          <%=raw flash[:warning] %>
-        </p>
+    <% if @feature_test -%>
+      <div class="container">
+        <div class="notice box">
+          <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+        </div>
       </div>
     <% end -%>
-    <%= yield %>
-  </div><!-- end wrapper -->
-  
-  <div id="modal_image_box" class="modalbox" style="display:none"></div>
-  <div id="comment_preview" class="modalbox" style="display: none"></div>
 
+    <div id="wrapper" class="container clear">
+      <% if flash[:warning] -%>
+        <div class="notice box">
+          <% if flash[:warning_title] -%>
+            <h3><%=raw flash[:warning_title] %></h3>
+          <% end -%>
+          <p class="unstacked">
+            <%=raw flash[:warning] %>
+          </p>
+        </div>
+      <% end -%>
+      <%= yield %>
+    </div><!-- end wrapper -->
+    
+    <div id="modal_image_box" class="modalbox" style="display:none"></div>
+    <div id="comment_preview" class="modalbox" style="display: none"></div>
+  </div>
+  
   <%= render :partial => 'shared/footer' unless @footless %>
   
   <% if logged_in? -%>
@@ -86,7 +88,9 @@
     </script>
   <% end -%>
   <script type="text/javascript">
-    ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
+    if (typeof(ga) != 'undefined') {
+      ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
+    }
   </script>
 </body>
 </html>

@@ -438,14 +438,10 @@ class ListedTaxon < ActiveRecord::Base
   def set_cache_columns
     return unless taxon_id
 
-    # HACK these queries are killing us for places with very complex
-    # geometries. Until I figure out a better way to do this calculation,
-    # we're using bbox area as a proxy for complexity and setting a cutoff
-    if place && place.bbox_area.to_i > 5000
-      return
+    if cc = cache_columns
+      self.first_observation_id, self.last_observation_id,
+      self.observations_count, self.observations_month_counts = cc
     end
-
-    self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
   end
   
   def update_cache_columns_for_check_list
@@ -503,34 +499,68 @@ class ListedTaxon < ActiveRecord::Base
   # people for being the first to add to the site, and the life list firsts on
   # the calendar views shows the first time you saw a taxon.
   def cache_columns
-    return unless (list && sql = list.cache_columns_query_for(self))
-    last_observations = []
-    first_observation_info = [] # array of observation_ids when checklist, otherwise array of [date, observation_id]
-    counts = {}
-    ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
-      counts[row['key']] = row['count'].to_i
-      last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
-      if list.is_a?(CheckList) # process the observation_ids representing first addition to iNat
-        first_observation_info << row['first_observation_id'] 
-      else # process arrays of [date,observation_id] where date represents first date observed
-        first_observation_info << (row['first_observation'].blank? ? nil : row['first_observation'].split(',')) 
-      end
+    return unless list
+    # get the specific options for this list type
+    options = list.cache_columns_options(self)
+    options[:search_params][:fields] = [ :id ]
+    earliest_id = nil
+    latest_id = nil
+    month_counts = nil
+    total = 0
+    # run the query for the first entry, total count, and aggregations
+    begin
+      rs = Observation.elastic_search(options[:search_params].merge(
+        size: 0,
+        aggregate: {
+          month: { terms: { field: "observed_on_details.month", size: 15 },
+            aggs: { quality: { terms: { field: "quality_grade", size: 5 } } }
+          }
+        }
+      )).results
+      rs.total_entries
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
+           Elasticsearch::Transport::Transport::Errors::BadRequest => e
+      rs = nil
+      Logstasher.write_exception(e, reference: "ListedTaxon.cache_columns failed on #{ self }")
+      Rails.logger.error "[Error] ListedTaxon::cache_columns failed: #{ e }"
+      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
     end
-    if list.is_a?(CheckList) # pull out the smallest observation_id (i.e. earliest added to iNat)
-      first_observation_id = first_observation_info.compact.sort_by(&:to_i).first
-    else # sort arrays by date and pull out observation_id from first one observed based on date observed
-      if first_observation = first_observation_info.compact.compact.sort_by(&:first).first
-        first_observation_id = first_observation[1]
-      end
+    # no need to do anything else if there are no results
+    if rs && rs.total_entries > 0
+      total = rs.total_entries
+      # loop through the months
+      month_counts = rs.response.response.aggregations.month.buckets.map do |m|
+        # and then the quality grade counts in that month
+        m.quality.buckets.map do |q|
+          "#{ m['key'] }#{ q['key'][0] }-#{ q['doc_count'] }"
+        end
+      end.flatten.sort.join(",")
+      earliest_id, latest_id = ListedTaxon.earliest_and_latest_ids(options)
     end
-    if last_observation = last_observations.compact.compact.sort_by(&:first).last
-      last_observation_id = last_observation[1]
-    end
-    total = counts.map{|k,v| v}.sum
-    month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
-    [first_observation_id, last_observation_id, total, month_counts]
+    [ earliest_id, latest_id, total, month_counts]
   end
-  
+
+  def self.earliest_and_latest_ids(options)
+    earliest_id = nil
+    latest_id = nil
+    return [ nil, nil ] unless options[:search_params]
+    options[:search_params][:size] = 1
+    if options[:range_wheres]
+      options[:search_params][:where].merge!(options[:range_wheres])
+    end
+    if r = Observation.elastic_search(options[:search_params].merge(
+      sort: [ { (options[:earliest_sort_field] || "observed_on") => "asc" },
+              { id: :asc } ] )).results.first
+      earliest_id = r.id
+    end
+    if r = Observation.elastic_search(options[:search_params].merge(
+      sort: [ { (options[:latest_sort_field] || "observed_on") => "desc" },
+              { id: :desc } ] )).results.first
+      latest_id = r.id
+    end
+    [ earliest_id, latest_id ]
+  end
+
   def self.update_cache_columns_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -859,5 +889,4 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
 
-  
 end

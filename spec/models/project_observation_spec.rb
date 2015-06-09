@@ -1,7 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectObservation, "creation" do
-  before(:each) { setup_project_and_user }
+  before(:each) do
+    enable_elastic_indexing( Observation, Place, Update )
+    setup_project_and_user
+  end
+  after(:each) { disable_elastic_indexing( Observation, Place, Update ) }
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
@@ -63,10 +67,13 @@ describe ProjectObservation, "creation" do
     expect( po.preferred_curator_coordinate_access ).to be true
   end
 
-  describe "updates" do
-    before(:each) { enable_elastic_indexing(Observation, Update) }
-    after(:each) { disable_elastic_indexing(Observation, Update) }
+  it "should be possible for any member of the project" do
+    pu = ProjectUser.make!
+    po = ProjectObservation.make(user: pu.user, project: pu.project)
+    expect( po ).to be_valid
+  end
 
+  describe "updates" do
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
@@ -102,12 +109,12 @@ end
 
 describe ProjectObservation, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, Update)
+    enable_elastic_indexing(Observation, Update, Place)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
   end
-  after(:each) { disable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update, Place) }
 
   it "should queue a DJ job for the list" do
     stamp = Time.now
@@ -139,26 +146,6 @@ describe ProjectObservation, "destruction" do
     po.destroy
     expect( Update.where(notifier: po).count ).to eq 0
   end
-end
-
-describe ProjectObservation, "observed_by_project_member?" do
-  
-  before(:each) do 
-    @project_user = ProjectUser.make!
-    @project = @project_user.project
-    @observation = Observation.make!(:user => @project_user.user)
-    @po1 = ProjectObservation.make(:project => @project, :observation => @observation)
-    @po2 = ProjectObservation.make(:observation => @observation)
-  end
-  
-  it "should be true if observed by a member of the project" do
-    expect(@po1).to be_observed_by_project_member
-  end
-  
-  it "should be false unless observed by a member of the project" do
-    expect(@po2).not_to be_observed_by_project_member
-  end
-  
 end
 
 describe ProjectObservation, "observed_in_place_bounding_box?" do

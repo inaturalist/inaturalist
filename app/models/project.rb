@@ -123,8 +123,9 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_inclusion_of :map_type, :in => MAP_TYPES
 
-  acts_as_spammable :fields => [ :title, :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :title, :description ],
+                    comment_type: "item-description",
+                    automated: false
 
   def place_with_boundary
     unless PlaceGeometry.where(:place_id => place_id).exists?
@@ -290,11 +291,22 @@ class Project < ActiveRecord::Base
       when "observed_in_place?"
         # Ignore, we already added the place_id
       when "on_list?"
-        params[:list_id] = rule.operand_id
+        params[:list_id] = project_list.id
       when "identified?"
         params[:identified] = true
-      when "georeferenced"
-        params[:has] = "geo"
+      when "georeferenced?"
+        params[:has] ||= []
+        params[:has] << "geo"
+      when "has_a_photo?"
+        params[:has] ||= []
+        params[:has] << "photos"
+      when "has_a_sound?"
+        params[:has] ||= []
+        params[:has] << "sounds"
+      when "captive?"
+        params[:captive] = true
+      when "wild?"
+        params[:captive] = false
       end
     end
     taxon_ids.compact.uniq!
@@ -332,15 +344,34 @@ class Project < ActiveRecord::Base
     new_project
   end
 
-  def generate_csv(path, columns)
+  def generate_csv(path, columns, options = {})
     project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code curator_coordinate_access)
     columns += project_columns
     ofv_columns = self.observation_fields.map{|of| "field:#{of.normalized_name}"}
     columns += ofv_columns
+    if options[:viewer]
+      options[:viewer].project_users.load
+    end
     CSV.open(path, 'w') do |csv|
       csv << columns
-      self.project_observations.includes(:observation => [:taxon, {:observation_field_values => :observation_field}]).find_each do |project_observation|
-        csv << columns.map {|column| project_observation.to_csv_column(column, :project => self)}
+      self.project_observations.find_in_batches do |batch|
+        ProjectObservation.preload_associations(batch, [
+          :stored_preferences,
+          curator_identification: [:taxon, :user],
+          observation: {
+            identifications: :taxon,
+            observation_photos: :photo,
+            taxon: {taxon_names: :place_taxon_names},
+            observation_field_values: :observation_field,
+            project_observations: :stored_preferences,
+            user: {project_users: :stored_preferences}
+          }
+        ])
+        batch.each do |project_observation|
+          csv << columns.map {|column| 
+            project_observation.to_csv_column(column, :project => self, :viewer => options[:viewer])
+          }
+        end
       end
     end
   end
@@ -589,16 +620,20 @@ class Project < ActiveRecord::Base
           raise ProjectAggregatorAlreadyRunning, msg
         end
       end
-      observations = Observation.elastic_query(params.merge(page: page), elastic_options)
+      observations = if params[:list_id]
+        Observation.query(params).page(page)
+      else
+        Observation.elastic_query(params.merge(page: page), elastic_options)
+      end
       break if observations.blank?
-      Rails.logger.info "[INFO #{Time.now}] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
+      Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
         po = ProjectObservation.new(project: self, observation: o)
         if po.save
           added += 1
         else
           fails += 1
-          logger.error "[ERROR #{Time.now}] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+          Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
         end
       end
       observations = nil

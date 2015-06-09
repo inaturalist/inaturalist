@@ -123,11 +123,11 @@
   <div id="nav" class="clear">
     <div class="breadcrumbs">
       <% if is_me?(@observation.user) %>
-      <%= link_to t(:back_to_your_observations), 
+      <%= link_to t(:your_observations), 
                   observations_by_login_path(:login => current_user.login),
                   :class => 'back crumb' %>
       <% else %>
-        <%= link_to t(:back_to_x_observations, :user => "#{@observation.user.login}"), 
+        <%= link_to t(:users_observations, :user => @observation.user.login), 
                   observations_by_login_path(:login => @observation.user.login),
                   :class => 'back crumb' %>
       <% end %>
@@ -142,41 +142,47 @@
   </div>
   
   <h2>
-    <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
-      <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
-        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
-    <%- elsif @observation.taxon -%>
-      <%= render "shared/taxon", 
-        :taxon => @observation.taxon, 
-        :link_url => @observation.taxon, 
-        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
-        :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
-    <%- elsif !@observation.species_guess.blank? -%>
-      <%= @observation.species_guess -%>
-    <%- else -%>
-      <%=t :something %>,
-    <% end -%>
-    <%= t(:observed_by).downcase %> 
-    <%= link_to observations_by_login_path(@observation.user.login) do %>
-      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">
-          <%= @observation.user.login %>
-        </span>
-      </span>
-    <% end -%>
-    <span class="meta date">
-      <%- if @observation.time_observed_at && @coordinates_viewable -%>
-        <%=l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %>
+    <span class="taxon">
+      <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
+        <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
+          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
+      <%- elsif @observation.taxon -%>
+        <%= render "shared/taxon", 
+          :taxon => @observation.taxon, 
+          :link_url => @observation.taxon, 
+          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
+          :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
+      <%- elsif !@observation.species_guess.blank? -%>
+        <%= @observation.species_guess -%>
+      <%- else -%>
+        <%=t :something %>
       <% end -%>
+    </span>
+    <span class="observedby">
+      <%= t(:observed_by) %> 
+      <%= link_to observations_by_login_path(@observation.user.login) do %>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            <%= @observation.user.login %>
+          </span>
+        </span>
+      <% end -%>
+    </span>
+    <span class="meta datetime">
       <%- if @observation.observed_on -%>
-        <%=t :on_ %>
-        <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
-          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
-        <%= link_to @observation.observed_on.day, 
-          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
-        <%= link_to @observation.observed_on.year,
-          observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+        <span class="date">
+          <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
+            observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
+          <%= link_to @observation.observed_on.day, 
+            observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
+          <%= link_to @observation.observed_on.year,
+            observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+        </span>
       <%- end -%>
+
+      <%- if @observation.time_observed_at && @coordinates_viewable -%>
+        <time><%=raw l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %></time>
+      <% end -%>
     </span>
   </h2>
   
@@ -566,7 +572,7 @@
     <% end -%>
   </div><!-- end identifications -->
   
-  <% if !@project_observations.blank? || (!@addable_projects.blank? && @project_addition_allowed) -%>
+  <% if !@project_observations.blank? || (!@projects.blank? && @project_addition_allowed) -%>
     <%= separator %>
     <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
@@ -651,12 +657,12 @@
       <% end %>
     </div>
     
-    <% if !@addable_projects.blank? && @project_addition_allowed %>
+    <% if !@projects.blank? && @project_addition_allowed %>
       <div class="clear">
         <% link_to_toggle_menu t(:add_to_project), :class => "button", 
             :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
           <ul>
-            <% for project in @addable_projects %>
+            <% for project in @projects %>
               <li class="inline buttonrow">
                 <%= link_to t(:remove),
                   remove_project_observation_path(project, :observation_id => @observation.id),

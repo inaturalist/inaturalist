@@ -1771,6 +1771,8 @@ es:
     El mapa mostrará un rango si %{place} tiene alguna de esas especies.
   maybe_your_signed_in_with: ¿Tal vez usted ingresó con su cuenta %{omniauth}?
   medium: medio
+  member_of_the_inaturalist_network_html: |
+    Miembro de la <a href="%{url}">Red iNaturalist</a>
   members: Miembros
   merge: Combinar
   merge_it_with_another_place: Combinar con otro lugar
@@ -1851,7 +1853,7 @@ es:
   new_guide: Nueva Guía
   new_journal_posts: Nuevo artículo en el diario
   new_list: Lista nueva
-  new_members: Nuevos miembros...
+  new_members: Nuevos miembros
   new_message: Nuevo mensaje
   new_observation_field: Nuevo campo de observación
   new_observation_rules: Nuevas reglas de observación
@@ -2414,8 +2416,8 @@ es:
   posted_on: Ingresado el
   posts: Ingresos
   powered_by: Desarrollado por
-  powered_by_inaturalist_open_source_software_html: Desarrollado por el software de
-    código abierto <a href="https://github.com/inaturalist/inaturalist" target="_new">iNaturalist</a>
+  powered_by_inaturalist_open_source_software_html: Desarrollado por <a href="https://github.com/inaturalist/inaturalist" target="_new">el software de
+    código abierto iNaturalist</a>
   present: nativo
   preview: Vista previa
   preview_of_synced_observation: <strong>Previo</strong> de la observación.  <a href="%{url}">¿Revertir?</a>

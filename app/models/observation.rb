@@ -28,8 +28,9 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   acts_as_taggable
-  acts_as_spammable :fields => [ :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :description ],
+                    comment_type: "item-description",
+                    automated: false
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
@@ -631,194 +632,21 @@ class Observation < ActiveRecord::Base
   end
 
   def self.elastic_query(params, options = {})
-    current_user = options[:current_user]
-    p = params[:_query_params_set] ? params : query_params(params)
-    if (Observation::NON_ELASTIC_ATTRIBUTES & p.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
-       (p[:place] && !p[:place].geom_in_elastic_index)
-      return nil
+    elastic_params = params_to_elastic_query(params, options)
+    if elastic_params.nil?
+      # a dummy WillPaginate Collection is the most compatible empty result
+      return WillPaginate::Collection.new(1, 30, 0)
     end
-    p = site_search_params(options[:site], p)
-    search_wheres = { }
-    extra_preloads = [ ]
-    q = unless p[:q].blank?
-      q = sanitize_query(p[:q])
-      q.blank? ? nil : q
-    end
-    search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
-    if q
-      fields = case search_on
-      when "names"
-        [ "taxon.names.name" ]
-      when "tags"
-        [ :tags ]
-      when "description"
-        [ :description ]
-      when "place"
-        [ :place_guess ]
-      else
-        [ "taxon.names.name", :tags, :description, :place_guess ]
-      end
-      search_wheres["multi_match"] = { query: q, operator: "and", fields: fields }
-    end
-    search_wheres["user.id"] = p[:user] if p[:user]
-    search_wheres["taxon.rank"] = p[:rank] if p[:rank]
-    # include the taxon plus all of its descendants.
-    # Every taxon has its own ID in ancestor_ids
-    if p[:observations_taxon]
-      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon]
-    elsif p[:observations_taxon_ids]
-      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon_ids]
-    end
-    search_wheres["id_please"] = true if p[:id_please]
-    search_wheres["out_of_range"] = true if p[:out_of_range]
-    search_wheres["mappable"] = true if p[:mappable] == "true"
-    search_wheres["mappable"] = false if p[:mappable] == "false"
-    search_wheres["license_code"] = p[:license] if p[:license]
-    search_wheres["photos.license_code"] = p[:photo_license] if p[:photo_license]
-    search_wheres["sounds.license_code"] = p[:sound_license] if p[:sound_license]
-    search_wheres["observed_on_details.day"] = p[:observed_on_day] if p[:observed_on_day]
-    search_wheres["observed_on_details.month"] = p[:observed_on_month] if p[:observed_on_month]
-    search_wheres["observed_on_details.year"] = p[:observed_on_year] if p[:observed_on_year]
-    if p[:site] && host = URI.parse(p[:site]).host
-      search_wheres["uri"] = host
-    end
-    if d = Observation.split_date(p[:created_on], utc: true)
-      search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
-      search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
-      search_wheres["created_at_details.year"] = d[:year] if d[:year] && d[:day] != 0
-    end
-    if p[:projects].blank? && !p[:project].blank?
-      p[:projects] = [ p[:project] ]
-    end
-    extra = p[:extra].to_s.split(',')
-    if !p[:projects].blank?
-      search_wheres["project_ids"] = p[:projects].to_a
-      extra_preloads << :projects
-    end
-    extra_preloads << {identifications: [:user, :taxon]} if extra.include?('identifications')
-    extra_preloads << {observation_photos: :photo} if extra.include?('observation_photos')
-    extra_preloads << {observation_field_values: :observation_field} if extra.include?('fields')
-    unless p[:hrank].blank? && p[:lrank].blank?
-      search_wheres["range"] = { "taxon.rank_level" => {
-        from: Taxon::RANK_LEVELS[p[:lrank]] || 0,
-        to: Taxon::RANK_LEVELS[p[:hrank]] || 100 } }
-    end
-    if p[:captive].is_a?(FalseClass) || p[:captive].is_a?(TrueClass)
-      search_wheres["captive"] = p[:captive]
-    end
-    if p[:quality_grade] && p[:quality_grade] != "any"
-      search_wheres["quality_grade"] = p[:quality_grade]
-    end
-    case p[:identifications]
-    when "most_agree"
-      search_wheres["identifications_most_agree"] = true
-    when "some_agree"
-      search_wheres["identifications_some_agree"] = true
-    when "most_disagree"
-      search_wheres["identifications_most_disagree"] = true
-    end
-
-    search_filters = []
-    unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
-      search_filters << { envelope: { geojson: {
-        nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
-        user: current_user } } }
-    end
-    if p[:lat] && p[:lng]
-      search_filters << { geo_distance: {
-        distance: "#{p["radius"] || 10}km",
-        location: {
-          lat: p[:lat], lon: p[:lng] } } }
-    end
-    search_filters << { place: p[:place] } if p[:place]
-    # make sure the photo has a URL, that will prevent images that are
-    # still processing from being returned by has[]=photos requests
-    search_filters << { exists: { field: "photos.url" } } if p[:with_photos]
-    search_filters << { exists: { field: "sounds" } } if p[:with_sounds]
-    search_filters << { exists: { field: "geojson" } } if p[:with_geo]
-    if p[:iconic_taxa] && p[:iconic_taxa].size > 0
-      # iconic_taxa will be an array which might contain a nil value
-      known_taxa = p[:iconic_taxa].compact
-      # if it is smaller after compact, then it contained nil and
-      # we will need to do a different kind of Elasticsearch query
-      allows_unknown = (known_taxa.size < p[:iconic_taxa].size)
-      if allows_unknown
-        # to allow iconic_taxon_id to be nil, I think the best way
-        # is a "should" boolean filter, which allows anyof a set of
-        # valid terms as well as missing terms (null)
-        search_filters << { bool: { should: [
-          { terms: { "taxon.iconic_taxon_id": known_taxa.map(&:id) } },
-          { missing: { field: "taxon.iconic_taxon_id" } }
-        ]}}
-      else
-        # if we don't want to include null values, a where clause is simpler
-        search_wheres["taxon.iconic_taxon_id"] = p[:iconic_taxa]
-      end
-    end
-    if p[:d1] || p[:d2]
-      p[:d2] = Time.now if p[:d2] && p[:d2] > Time.now
-      search_filters << { or: [
-        { and: [
-          { range: { observed_on: {
-            gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } },
-          { exists: { field: "time_observed_at" } }
-        ] },
-        { and: [
-          { range: { observed_on: {
-            gte: (p[:d1] || Time.new("1800")).to_date, lte: (p[:d2] || Time.now).to_date } } },
-          { missing: { field: "time_observed_at" } }
-        ] }
-      ] }
-    end
-    unless p[:updated_since].blank?
-      if timestamp = Chronic.parse(p[:updated_since])
-        search_filters << { range: { updated_at: { gte: timestamp } } }
-      else
-        # there is an expectation in a spec that when updated_since is
-        # invalid, the search will fail to return any results. A dummy
-        # WillPaginate Collection is the most compatible empty result
-        return WillPaginate::Collection.new(1, 30, 0)
-      end
-    end
-    # sort defaults to created at descending
-    sort_order = (p[:order] || "desc").downcase.to_sym
-    sort = case p[:order_by]
-    when "observed_on"
-      { observed_on: sort_order }
-    when "species_guess"
-      { species_guess: sort_order }
-    else "observations.id"
-      { created_at: sort_order }
-    end
-
-    if p[:not_in_project]
-      search_filters << {
-        'not': {
-          term: { project_ids: p[:not_in_project].id }
-        }
-      }
-    end
-
-    if p[:identified].yesish?
-      search_filters << { exists: {field: :taxon} }
-    elsif p[:identified].noish?
-      search_filters << { 'not': { exists: {field: :taxon} } }
-    end
-
-    # perform the actual query against Elasticsearch
-    observations = Observation.elastic_paginate(
-      where: search_wheres,
-      filters: search_filters,
-      per_page: p[:per_page] || 30,
-      page: p[:page],
-      sort: sort)
-    # preload the most commonly needed associations
+    observations = Observation.elastic_paginate(elastic_params)
+    # preload the most commonly needed associations,
+    # and union it with any extra_preloads
     Observation.preload_associations(observations, [
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       { iconic_taxon: :taxon_descriptions },
       { photos: [ :user, :flags ] },
-      :stored_preferences, :flags, :quality_metrics ] | extra_preloads)
+      :stored_preferences, :flags, :quality_metrics ] |
+      elastic_params[:extra_preloads])
     observations
   end
 
@@ -944,8 +772,8 @@ class Observation < ActiveRecord::Base
     end
 
     unless p[:projects].blank?
-      project_ids = p[:projects]
-      p[:projects] = Project.find([project_ids].flatten) rescue []
+      project_ids = [p[:projects]].flatten
+      p[:projects] = Project.find(project_ids) rescue []
       p[:projects] = p[:projects].compact
       if p[:projects].blank?
         project_ids.each do |project_id|
@@ -1024,6 +852,16 @@ class Observation < ActiveRecord::Base
       scope = scope.of(params[:taxon_id].to_i)
     elsif !params[:taxon_name].blank?
       scope = scope.of(Taxon.single_taxon_for_name(params[:taxon_name], :iconic_taxa => params[:iconic_taxa]))
+    elsif !params[:taxon_ids].blank?
+      taxon_ids = params[:taxon_ids].map(&:to_i)
+      if params[:taxon_ids].size == 1
+        scope = scope.of(taxon_ids.first)
+      else
+        taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id)}
+        if taxa.size == taxon_ids.size
+          scope = scope.has_iconic_taxa(taxon_ids)
+        end
+      end
     end
     if params[:on]
       scope = scope.on(params[:on])
@@ -1211,7 +1049,7 @@ class Observation < ActiveRecord::Base
     if options[:verb]
       s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
     end
-    unless self.place_guess.blank? || options[:no_place_guess]
+    unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
       s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
     end
     s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
@@ -1273,9 +1111,10 @@ class Observation < ActiveRecord::Base
       if time_observed_at
         time_observed_at.to_time
       else
-        Time.mktime(observed_on.year,
-                    observed_on.month,
-                    observed_on.day)
+        # use UTC to create the time
+        Time.utc(observed_on.year,
+                 observed_on.month,
+                 observed_on.day)
       end
     end
   end
@@ -1377,11 +1216,9 @@ class Observation < ActiveRecord::Base
       return true unless t
     
       # Re-interpret future dates as being in the past
-      if t > Time.now
-        t = Chronic.parse(date_string, :context => :past)  
-      end
+      t = Chronic.parse(date_string, :context => :past) if t > Time.now
       
-      self.observed_on = t.to_date
+      self.observed_on = t.to_date if t
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
@@ -1752,8 +1589,15 @@ class Observation < ActiveRecord::Base
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
     return true if user_id == viewer.id
-    viewer.project_users.where(project_id: project_ids, role: ProjectUser::ROLES).each do |pu|
-      return true if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+    project_ids = if projects.loaded?
+      projects.map(&:id)
+    else
+      project_observations.map(&:project_id)
+    end
+    viewer.project_users.select{|pu| project_ids.include?(pu.project_id) && ProjectUser::ROLES.include?(pu.role)}.each do |pu|
+      if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+        return true
+      end
     end
     false
   end
@@ -2660,10 +2504,16 @@ class Observation < ActiveRecord::Base
 
     # generate the csv
     if record.respond_to?(:generate_csv)
-      record.generate_csv(tmp_path, columns)
+      record.generate_csv(tmp_path, columns, viewer: options[:user])
     else
-      scope = record.observations.includes(:taxon, {:observation_field_values => :observation_field})
-      generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns)
+      scope = record.observations.
+        includes(:taxon).
+        includes(observation_field_values: :observation_field)
+      unless record.is_a?(User) && options[:user] === record
+        scope = scope.includes(project_observations: :stored_preferences).
+          includes(user: {project_users: :stored_preferences})
+      end
+      generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns, :viewer => options[:user])
     end
 
     FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
@@ -2787,10 +2637,30 @@ class Observation < ActiveRecord::Base
   end
 
   def update_observations_places
-    Observation.connection.transaction do
-      ObservationsPlace.where(observation_id: id).delete_all
-      Place.including_observation(self).each do |place|
-        ObservationsPlace.create(observation: self, place: place)
+    Observation.update_observations_places(ids: [ id ])
+  end
+
+  def self.update_observations_places(options = { })
+    filter_scope = options.delete(:scope)
+    scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
+      filter_scope : self.all
+    if filter_ids = options.delete(:ids)
+      scope = scope.where(id: filter_ids)
+    end
+    scope.select(:id).find_in_batches(options) do |batch|
+      ids = batch.map(&:id)
+      Observation.transaction do
+        connection.execute("DELETE FROM observations_places
+          WHERE observation_id IN (#{ ids.join(',') })")
+        connection.execute("INSERT INTO observations_places (observation_id, place_id)
+          SELECT o.id, pg.place_id FROM observations o
+          JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
+          WHERE o.id IN (#{ ids.join(',') })
+          AND pg.place_id IS NOT NULL
+          AND NOT EXISTS (
+            SELECT id FROM observations_places
+            WHERE place_id = pg.place_id AND observation_id = o.id
+          )")
       end
     end
   end
@@ -2798,6 +2668,35 @@ class Observation < ActiveRecord::Base
   def observation_photos_finished_processing
     observation_photos.select do |op|
       ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
+    end
+  end
+
+  def interpolate_coordinates
+    return unless time_observed_at
+    scope = user.observations.where("latitude IS NOT NULL or private_latitude IS NOT NULL")
+    prev_obs = scope.where("time_observed_at < ?", time_observed_at).order("time_observed_at DESC").first
+    next_obs = scope.where("time_observed_at > ?", time_observed_at).order("time_observed_at ASC").first
+    return unless prev_obs && next_obs
+    prev_lat = prev_obs.private_latitude || prev_obs.latitude
+    prev_lon = prev_obs.private_longitude || prev_obs.longitude
+    next_lat = next_obs.private_latitude || next_obs.latitude
+    next_lon = next_obs.private_longitude || next_obs.longitude
+
+    # time-weighted interpolation between prev and next observations
+    weight = (next_obs.time_observed_at - time_observed_at) / (next_obs.time_observed_at-prev_obs.time_observed_at)
+    new_lat = (1-weight)*next_lat + weight*prev_lat
+    new_lon = (1-weight)*next_lon + weight*prev_lon
+    self.latitude = new_lat
+    self.longitude = new_lon
+
+    # we can only set a new uncertainty if the uncertainty of the two points are known
+    if prev_obs.positional_accuracy && next_obs.positional_accuracy
+      f = RGeo::Geographic.simple_mercator_factory
+      prev_point = f.point(prev_lon, prev_lat)
+      next_point = f.point(next_lon, next_lat)
+      interpolation_uncertainty = prev_point.distance(next_point)/2.0
+      new_acc = Math.sqrt(interpolation_uncertainty**2 + prev_obs.positional_accuracy**2 + next_obs.positional_accuracy**2)
+      self.positional_accuracy = new_acc
     end
   end
 

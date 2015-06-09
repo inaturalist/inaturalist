@@ -34,7 +34,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       @project = Project.find_by_id(project_id)
       if @project.nil?
         e = BulkObservationException.new('Specified project not found')
-        Emailer.delay.bulk_observation_error(user, File.basename(observation_file), e)
+        Emailer.delay.bulk_observation_error(user, File.basename(observation_file), e).deliver_now
       end
     end
 
@@ -50,13 +50,13 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       import_file
 
       # Email uploader to say that the upload has finished.
-      Emailer.bulk_observation_success(@user, File.basename(@observation_file))
+      Emailer.bulk_observation_success(@user, File.basename(@observation_file)).deliver_now
     rescue BulkObservationException => e
       # Collate the errors into a hash for emailing
       error_details = collate_errors(e)
 
       # Email the uploader with exception details
-      Emailer.bulk_observation_error(@user, File.basename(@observation_file), error_details)
+      Emailer.bulk_observation_error(@user, File.basename(@observation_file), error_details).deliver_now
     end
   end
 

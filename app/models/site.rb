@@ -57,6 +57,8 @@ class Site < ActiveRecord::Base
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo.:extension",
       :default_url => "/assets/logo-small.gif"
   end
+  validates_attachment_content_type :logo, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    :message => "must be JPG, PNG, or GIF"
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if Rails.env.production?
@@ -74,6 +76,8 @@ class Site < ActiveRecord::Base
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo_square.:extension",
       :default_url => "/assets/bird.png"
   end
+  validates_attachment_content_type :logo_square, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    :message => "must be JPG, PNG, or GIF"
 
   # CSS file to override default styles
   if Rails.env.production?
@@ -89,6 +93,7 @@ class Site < ActiveRecord::Base
       :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
   end
+  validates_attachment_content_type :stylesheet, :content_type => "text/css", :message => "must be CSS"
 
   # URL where visitors can learn more about the site
   preference :about_url, :string
@@ -178,6 +183,7 @@ class Site < ActiveRecord::Base
   preference :name_providers, :string #: [col, ubio]
 
   preference :natureserve_key, :string
+  preference :custom_logo, :text
   preference :custom_footer, :text
 
   def to_s

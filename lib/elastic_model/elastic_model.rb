@@ -62,7 +62,7 @@ module ElasticModel
     criteria = [ ]
     options[:where] ||= { }
     options[:where].each do |key, value|
-      if value.is_a? Array
+      if value.is_a?(Array) && ![ :should, :or ].include?(key)
         criteria << { terms: { key => value.map{ |v| id_or_object(v) } } }
       elsif value.is_a? Hash
         criteria << { key => value }
@@ -107,6 +107,7 @@ module ElasticModel
     elastic_hash[:sort] = options[:sort] if options[:sort]
     elastic_hash[:fields] = options[:fields] if options[:fields]
     elastic_hash[:size] = options[:size] if options[:size]
+    elastic_hash[:from] = options[:from] if options[:from]
     if options[:aggregate]
       elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
         # some aggregations are simple like

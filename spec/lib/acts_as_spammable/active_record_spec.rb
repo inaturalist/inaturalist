@@ -22,7 +22,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
     expect(o.spam?).to be false
   end
 
-  it "knows when things been flagged as spam" do
+  it "knows when things have been flagged as spam" do
     o = Observation.make!(user: @user)
     expect(o.flagged_as_spam?).to be false
     Flag.make!(flaggable: o, flag: Flag::SPAM)
@@ -30,7 +30,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
     expect(Observation.flagged_as_spam.first.id).to be o.id
   end
 
-  it "knows when things been flagged as spam when flags have been preloaded" do
+  it "knows when things have been flagged as spam when flags have been preloaded" do
     o = Observation.make!(user: @user)
     Flag.make!(flaggable: o, flag: Flag::SPAM)
     o = Observation.where(id: o).includes(:flags).first
@@ -53,22 +53,22 @@ describe "ActsAsSpammable", "ActiveRecord" do
 
   it "does not check for spam unless a spammable field is modified" do
     expect(Rakismet).to receive(:akismet_call).and_return("true")
-    o = Observation.make!(user: @user)
-    expect(o.flagged_as_spam?).to be false
+    g = Guide.make!(user: @user, title: "   ", description: nil)
+    expect(g.flagged_as_spam?).to be false
     # we now set the user, which would normally cause an item to be flagged
     # as spam by akismet. But since user isn't one of the text fields which
     # we send to akismet, and none of those fields were changed, the spam
     # check isn't triggered yet
-    o.positional_accuracy = 1234
-    o.save
-    expect(o.flagged_as_spam?).to be false
-    o.reload
+    g.updated_at = Time.now
+    g.save
+    expect(g.flagged_as_spam?).to be false
+    g.reload
     # and now we set one of the configured fields and the spam check is
     # triggered. Since we set the spammy user above the check will fail
     # and create a spam flag
-    o.description = "anything"
-    o.save
-    expect(o.flagged_as_spam?).to be true
+    g.description = "anything"
+    g.save
+    expect(g.flagged_as_spam?).to be true
   end
 
   it "does not check for spam all fields are blank" do
@@ -81,19 +81,19 @@ describe "ActsAsSpammable", "ActiveRecord" do
 
   it "creates a spam flag when the akismet check fails" do
     expect(Rakismet).to receive(:akismet_call).once.ordered.and_return("true")
-    o = Observation.make!(user: @user)
-    expect(o.flagged_as_spam?).to be false
-    o.description = "spam"
-    o.save
-    expect(o.flagged_as_spam?).to be true
+    g = Guide.make!(user: @user, title: "   ", description: nil)
+    expect(g.flagged_as_spam?).to be false
+    g.description = "spam"
+    g.save
+    expect(g.flagged_as_spam?).to be true
   end
 
   it "ultimately updates the users spam count" do
     starting_spam_count = @user.spam_count
     expect(Rakismet).to receive(:akismet_call).once.ordered.and_return("true")
-    o = Observation.make!(user: @user, description: "something")
+    g = Guide.make!(user: @user)
     @user.reload
-    expect(@user.spam_count).to be starting_spam_count + 1
+    expect(@user.spam_count).to be (starting_spam_count + 1)
   end
 
   it "knows which models are spammable" do

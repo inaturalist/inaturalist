@@ -31,7 +31,7 @@ class Emailer < ActionMailer::Base
     @user = project_invitation.observation.user
     set_locale
     @inviter = project_invitation.user
-    mail(set_site_specific_opts(
+    mail(set_site_specific_opts.merge(
       :to => project_invitation.observation.user.email, 
       :subject => @subject
     ))

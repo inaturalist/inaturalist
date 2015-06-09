@@ -31,7 +31,9 @@ class TaxonRange < ActiveRecord::Base
     # :bucket => CONFIG.s3_bucket,
     # :path => "taxon_ranges/:id.:extension",
     # :url => ":s3_alias_url"
-  
+
+  validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
+
   def validate_geometry
     if geom && geom.num_points < 3
       errors.add(:geom, " must have more than 2 points")

@@ -6,9 +6,6 @@ class ProjectObservation < ActiveRecord::Base
   validates_presence_of :project, :observation
   validate :observer_allows_addition?
   validate :observer_invited?
-  validate :user_curates_project?, :unless => lambda {|record| 
-    record.user_id.nil? || record.user_id == record.observation.try(:user_id)
-  }
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :wild?,
@@ -124,15 +121,6 @@ class ProjectObservation < ActiveRecord::Base
   def to_s
     "<ProjectObservation project_id: #{project_id}, observation_id: #{observation_id}>"
   end
-  
-  def observed_by_project_member?
-    return false unless project
-    unless project.project_users.exists?(:user_id => observation.user_id)
-      errors.add(:observation_id, "must belong to a member of the project")
-      return false
-    end
-    true
-  end
 
   def observer_allows_addition?
     return unless observation
@@ -157,13 +145,6 @@ class ProjectObservation < ActiveRecord::Base
     return true if project.project_users.where(user_id: observation.user_id).exists?
     return true if project.project_user_invitations.where(invited_user_id: observation.user_id).exists?
     errors.add :observation_id, "must be made by a project member or an invited user"
-    false
-  end
-
-  def user_curates_project?
-    return unless project && observation
-    return true if project.curated_by?(user)
-    errors.add :user_id, "must be a project curator"
     false
   end
   
@@ -231,7 +212,13 @@ class ProjectObservation < ActiveRecord::Base
     when "curator_coordinate_access"
       preferred_curator_coordinate_access
     else
-      if observation_field = p.observation_fields.detect{|of| of.name == column}
+      if column.to_s =~ /private_/
+        if observation.coordinates_viewable_by?(options[:viewer])
+          observation.send(column)
+        else
+          nil
+        end
+      elsif observation_field = p.observation_fields.detect{|of| of.name == column}
         observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)
       else
         observation.send(column) rescue send(column) rescue nil

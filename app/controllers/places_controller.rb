@@ -257,7 +257,12 @@ class PlacesController < ApplicationController
       @places = scope.includes(:place_geometry_without_geom).limit(30).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
-      search_wheres = { display_name_autocomplete: @q }
+      # search both the autocomplete and normal field
+      # autocomplete doesn't work well with 1- or 2-letter words
+      search_wheres = { bool: { should: [
+        { match: { display_name_autocomplete: @q } },
+        { match: { display_name: { query: @q, operator: "and" } } }
+      ] } }
       if site_place
         search_wheres["ancestor_place_ids"] = site_place
       end
@@ -499,9 +504,16 @@ class PlacesController < ApplicationController
     limit = current_user && current_user.is_curator? ? 5.megabytes : 1.megabyte
     if params[:file].size > limit
       # can't really add errors to model from here, unfortunately
+      @place.add_custom_error(:base, "File was too big, must be less than #{limit / 1024 / 1024} MB")
     else
       @geometry = geometry_from_file(params[:file])
-      @place.save_geom(@geometry) if @geometry
+      if @geometry
+        @place.latitude = @geometry.envelope.center.y
+        @place.longitude = @geometry.envelope.center.x
+        @place.save_geom(@geometry)
+      else
+        @place.add_custom_error(:base, "File was invalid or did not contain any polygons")
+      end
     end
   end
 end

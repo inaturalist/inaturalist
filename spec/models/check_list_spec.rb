@@ -53,16 +53,19 @@ end
 describe CheckList, "refresh_with_observation" do
   
   before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
     @worker = Delayed::Worker.new(:quiet => true)
     @worker.work_off
   end
   
   before(:each) do
+    enable_elastic_indexing( Observation, Place )
     @place = Place.make(:name => "foo to the bar")
     @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     @check_list = @place.check_list
     @taxon = Taxon.make!(:rank => Taxon::SPECIES)
   end
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   
   it "should update last observation" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude)

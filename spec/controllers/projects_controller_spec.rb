@@ -19,6 +19,28 @@ describe ProjectsController, "spam" do
   end
 end
 
+describe ProjectsController, "add" do
+  let(:user) { User.make! }
+  let(:project_user) { ProjectUser.make!(user: user) }
+  let(:project) { project_user.project }
+  before do
+    sign_in user
+  end
+  it "should add to the project" do
+    o = Observation.make!(user: user)
+    post :add, id: project.id, observation_id: o.id
+    o.reload
+    expect( o.projects ).to include(project)
+  end
+  it "should set the project observation's user_id" do
+    o = Observation.make!(user: user)
+    post :add, id: project.id, observation_id: o.id
+    o.reload
+    expect( o.projects ).to include(project)
+    expect( o.project_observations.last.user_id ).to eq user.id
+  end
+end
+
 describe ProjectsController, "join" do
   let(:user) { User.make! }
   let(:project) { Project.make! }

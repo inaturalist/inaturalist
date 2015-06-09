@@ -4,6 +4,8 @@ describe ListedTaxaController, "create" do
   render_views
   let(:user) { User.make! }
   let(:list) { List.make!(:user => user) }
+  before(:each) { enable_elastic_indexing([ Observation, Taxon, Place ]) }
+  after(:each) { disable_elastic_indexing([ Observation, Taxon, Place ]) }
   before do
     http_login(user)
   end

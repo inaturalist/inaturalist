@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   PROJECT_ADDITION_BY_JOINED = "joined"
   PROJECT_ADDITION_BY_NONE = "none"
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
+  preference :location_details, :boolean, default: false
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -244,17 +245,8 @@ class User < ActiveRecord::Base
   # add a provider_authorization to this user.  
   # auth_info is the omniauth info from rack.
   def add_provider_auth(auth_info)
-    provider_auth_info = {
-      :provider_name => auth_info['provider'], 
-      :provider_uid => auth_info['uid']
-    }
-    unless auth_info["credentials"].blank? # open_id (google, yahoo, etc) doesn't provide a token
-      provider_auth_info.merge!(
-        :token => auth_info["credentials"]["token"],
-        :secret => auth_info["credentials"]["secret"]
-      ) 
-    end
-    pa = self.provider_authorizations.build(provider_auth_info) 
+    pa = self.provider_authorizations.build
+    pa.assign_auth_info(auth_info)
     pa.auth_info = auth_info
     pa.save
     pa
@@ -589,7 +581,7 @@ class User < ActiveRecord::Base
     true
   end
 
-  def generate_csv(path, columns)
+  def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
       select("DISTINCT observation_fields.name").
@@ -640,6 +632,18 @@ class User < ActiveRecord::Base
       :methods => [
         :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
+  end
+
+  def self.active_ids(at_time = Time.now)
+    date_range = (at_time - 30.days)..at_time
+    classes = [ Identification, Observation, Comment, Post ]
+    # get the unique user_ids that created instances of any of these
+    # classes within the last 30 days, then get the union (with .inject(:|))
+    # of the array of arrays.
+    user_ids = classes.collect{ |klass|
+      klass.select("DISTINCT(user_id)").where(created_at: date_range).
+        collect{ |i| i.user_id }
+    }.inject(:|)
   end
 
   def self.header_cache_key_for(user, options = {})

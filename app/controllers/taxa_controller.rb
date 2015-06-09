@@ -167,7 +167,9 @@ class TaxaController < ApplicationController
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
         if place
-          @listed_taxon = @taxon.listed_taxa.where(:place_id => place.id).order("establishment_means").first
+          @listed_taxon = @taxon.listed_taxa.joins(:place).includes(:place).
+            where(place_id: place.self_and_ancestor_ids).
+            order("(places.ancestry || '/' || places.id) DESC, establishment_means").first
         end
         
         @children = @taxon.children.where(:is_active => @taxon.is_active).

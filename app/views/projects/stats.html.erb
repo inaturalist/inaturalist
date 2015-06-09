@@ -21,7 +21,7 @@
     <thead>
       <tr>
         <%- @headers.each do |header| %>
-          <th><%= t(header.parameterize.underscore, :default => header).downcase %></th>
+          <th><%= header.downcase %></th>
         <% end %>
       </tr>
     </thead>

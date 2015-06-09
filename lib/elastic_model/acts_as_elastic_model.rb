@@ -87,6 +87,41 @@ module ActsAsElasticModel
         end
       end
 
+      def elastic_sync(options = {})
+        batch_size = options[:batch_size] || 1000
+        load_for_index.find_in_batches(batch_size: batch_size) do |batch|
+          prepare_for_index(batch)
+          Rails.logger.debug "[DEBUG] Processing from #{ batch.first.id }"
+          results = elastic_search(
+            sort: { id: :asc },
+            size: batch_size,
+            filters: [
+              { range: { id: { gte: batch.first.id } } },
+              { range: { id: { lte: batch.last.id } } }
+            ]
+          ).group_by{ |r| r.id.to_i }
+          batch.each do |obj|
+            if result = results[ obj.id ]
+              result = result.first._source
+              if obj.as_indexed_json.to_json == result.to_json
+                # it's OK
+              else
+                Rails.logger.debug "[DEBUG] Object #{ obj } is out of sync"
+                obj.elastic_index!
+              end
+            else
+              Rails.logger.debug "[DEBUG] Object #{ obj } is not in ES"
+              obj.elastic_index!
+            end
+          end
+          ids_only_in_es = results.keys - batch.map(&:id)
+          unless ids_only_in_es.empty?
+            Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
+            elastic_delete!(where: { id: ids_only_in_es } )
+          end
+        end
+      end
+
       def result_to_will_paginate_collection(result)
         begin
           records = result.records.to_a

@@ -982,7 +982,7 @@ es-MX:
   double_click_to_finish: (Con doble clic termina tu forma)
   download: 'Descargar:'
   download_bulk_import_template_html: |-
-    <a href="%{url}">Descarga la plantilla</a>para usarla en
+    <a href="%{url}">Descarga la plantilla</a> para usarla en
     <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
   download_csv: Descarga CSV
   download_kml: Descarga KML
@@ -1273,6 +1273,7 @@ es-MX:
   getting_started: Empezando
   give_it_some_detail: ¡Pon algunos detalles!
   global_conservation_status: Estatus global de conservación
+  global_names: Nombres globales
   globally: globalmente
   go: Busca
   good_choice_for_sharing: Buena selección para compartir con investigadores
@@ -1850,7 +1851,7 @@ es-MX:
   new_guide: Nueva Guía
   new_journal_posts: Nueva nota de Diario
   new_list: Nueva lista
-  new_members: Nuevos miembros...
+  new_members: Nuevos miembros
   new_message: Nuevo mensaje
   new_observation_field: Nuevo campo de observación
   new_observation_rules: Nuevas reglas de observación
@@ -2088,8 +2089,10 @@ es-MX:
   observed_in_place?: observaciones en
   observed_on: Observado en
   observed_one: observado una
+  observed_taxa: Especies o grupos observados
   observer: Autor
   observer_short: Autor
+  observers: Observadores
   observing: Observando
   occurence_status_describes_how: El estatus de ocurrencia describe que tan común
     o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">para
@@ -2403,7 +2406,7 @@ es-MX:
   posts: Notas
   powered_by: Propulsado por
   powered_by_inaturalist_open_source_software_html: Propulsado por <a href="https://github.com/inaturalist/inaturalist"
-    target="_new" >iNaturalist</a> programa de código abierto
+    target="_new" >iNaturalist programa de código abierto</a>
   present: nativa
   preview: Vista previa
   preview_of_synced_observation: <strong>Previo</strong> de la observación.  <a href="%{url}">¿Revertir?</a>
@@ -3239,6 +3242,7 @@ es-MX:
   total_observations: Total de observaciones
   total_unique_observers: Total de observadores únicos
   total_users: Total de usuarios,
+  totals: Totales
   tree_browser: Navegador del árbol
   tree_browser_raquo: Navegador del árbol &raquo;
   "true": Sí
@@ -3558,6 +3562,9 @@ es-MX:
     %{site_name} comparte observaciones con licencia
     a la comunidad científica, así tu información pueden estar más accesible
     a cientificos y otros inverstigadores.
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> especie o grupo observado"
+    other: "<span class='count'>%{count}</span> especies o grupos observados"
   x_wrote_a_new_post_html: '%{x} escribió una nueva noticia'
   x_wrote_y_new_posts_html: '%{x} escribió %{y} nuevas noticias'
   year: año
@@ -3713,6 +3720,7 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
+  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_new_password_is: Tu nueva contraseña es
   your_observation_will_get_shared_html: Tu observación será compartida con redes
@@ -4475,6 +4483,16 @@ es-MX:
           <p>
            Para empezar, <a href="%{url}" class="readmore">has una publicación</a>
           </p>
+        no_journal_blurb_html: |
+          <p>
+            El diario del proyecto es una forma de comunicarse entre los miembros
+            del proyecto. Puedes usarlo para hacer anuncios, establecer prioridades o
+            platicar sobre los resultados del proyecto.
+          </p>
+          <p>
+            Para empezar, <a href="%{url}" class="readmore">crea un comentario</a>
+          </p>
+        project_observations_desc: |
         project_observations_desc: |-
           Esto solo incluye observaciones explicitamente añadidas al proyecto, no todas
           las observaciones registradas en el lugar y tiempo de este evento.
