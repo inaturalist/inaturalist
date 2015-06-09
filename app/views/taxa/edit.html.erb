@@ -25,12 +25,12 @@
 
 <% if @taxon.creator -%>
   <div class="clear description">
-    <%= t(:created_by) %> <%= link_to @taxon.creator.login, @taxon.creator %> <%= t :on_day %> <%= l(@taxon.created_at.to_date, :format => :long) %>
+    <%= t(:created_by, gender: 'taxon') %> <%= link_to @taxon.creator.login, @taxon.creator %> <%= t :on_day %> <%= l(@taxon.created_at.to_date, :format => :long) %>
   </div>
 <% end -%>
 
 <% if @taxon.updater -%>
   <div class="clear description">
-    <%= t(:updated_by) %> <%= link_to @taxon.updater.login, @taxon.updater %> <%= t :on_day %> <%= l(@taxon.updated_at.to_date, :format => :long) %>
+    <%= t(:updated_by, gender: 'taxon') %> <%= link_to @taxon.updater.login, @taxon.updater %> <%= t :on_day %> <%= l(@taxon.updated_at.to_date, :format => :long) %>
   </div>
 <% end -%>

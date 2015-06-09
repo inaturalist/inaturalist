@@ -426,6 +426,7 @@ en:
   back_to_projects: Back to projects
   back_to_shared_taxon: "Back to %{sharedtaxon}"
   back_to_taxon: "Back to %{defaulttaxon}"
+  back_to_taxon_changes: "Back to taxon changes"
   back_to_this: "Back to %{place}"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
@@ -1325,6 +1326,10 @@ en:
   layout: Layout
   leaderboard_for_x: "Leaderboard for %{x}"
   leaderboards: Leaderboards
+  leaderboard_most:
+    species: Most species in %{time}
+    observations: Most observations in %{time}
+    identifications: Most identifications in %{time}
   learn!: Learn!
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -1418,6 +1423,7 @@ en:
     taxonomic: taxonomic
     photo: photo
   list_was_successfully_created: List was successfully created.
+  listed_taxa: Listed taxa
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
   listing_announcement: Listing announcement
@@ -1433,6 +1439,7 @@ en:
   loading: "Loading..."
   loading_flickr_photos: "Loading Flickr photos..."
   loading_full_description_html: "Loading full description..."
+  loading_map: Loading map...
   loading_more_photos: "Loading more photos..."
   loading_observations: "Loading observations..."
   loading_preview_and_code: Loading preview and code...
@@ -1914,6 +1921,15 @@ en:
   people_agree: people agree
   people_following_user: "People Following %{user}"
   people_user_follows: "People %{user} Follows"
+  people_added:
+    observation: added an %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
+    identification:
+      with_observation: added an <strong>ID</strong> to an %{observation_link} by %{user_link}
+      without_observation: added an <strong>ID</strong>
+    post: made a %{post_link}
+    comment:
+      with_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link} by %{by_link}
+      without_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link}
   person: person
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
@@ -2621,6 +2637,8 @@ en:
   taxon_stage: taxon stage
   taxon_subscription: taxon subscription
   taxon_swap: taxon swap
+  taxon_swap_only_has_one_input: only one input allowed for a swap
+  taxon_swap_has_inputs_and_outputs: swap must have both inputs and outputs
   taxon_to_delete: Taxon to delete
   taxon_to_keep: Taxon to keep
   taxon_name_was_deleted: Taxon name was deleted.
@@ -2999,6 +3017,7 @@ en:
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
+  view_taxonomic_changes: View taxonomic changes
   view_terms: View terms
   view_the: "View the %{action}&#59; %{link}"
   view_the_observation: View the observation
@@ -4437,3 +4456,14 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+  i18n:
+    inflections:
+      :@vow_or_con:
+        vow: vowel
+        con: consonant
+        a: :@vow
+        e: :@vow
+        i: :@vow
+        o: :@vow
+        u: :@vow
+        default: :@con

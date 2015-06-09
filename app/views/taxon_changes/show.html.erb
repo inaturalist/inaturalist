@@ -45,7 +45,7 @@
 
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to taxon changes".html_safe, taxon_changes_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{t :back_to_taxon_changes}".html_safe, taxon_changes_path, :class => 'crumb' %></strong>
   </div>
   <%= render :partial => 'show_change_taxon', :object => @taxon_change %>
 </div>
@@ -58,7 +58,7 @@
 <script type="text/javascript" charset="utf-8">
   $('#mapwrapper').shades('open', {
     css: {'background-color': 'white'}, 
-    content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading map...</span></center>'
+    content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock"><%= t :loading_map %></span></center>'
   })
   $('iframe').load(function() {
     $('#mapwrapper').shades('close')
