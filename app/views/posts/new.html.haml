@@ -7,5 +7,5 @@
     #pageheader.span12
       = render :partial => 'posts/breadcrumbs'
       %h2
-        New #{@post.class.name.humanize}
+        = t("new_#{@post.class.name.underscore}", default: "New #{@post.class.name.humanize}")
   = render "#{@post.class.name.underscore}_form"

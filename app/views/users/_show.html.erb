@@ -58,7 +58,7 @@
       </div>
     <% else %>
       <% if is_me?(@user) %>
-        <p><%= t(:youre_not_following_anyone) %> <%= link_to t(:observing), observations_path %> <%= t(:and_make_some_new) %> <%= link_to t(:acquaintances), people_path %>.</p>
+        <p><%= raw t(:youre_not_following_anyone, observations_path: observations_path, people_path: people_path ) %></p>
       <% else %>
         <p><%= @user.login %> <%= t(:is_not_following_anyone).downcase %></p>
       <% end %>
