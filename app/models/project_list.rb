@@ -130,8 +130,8 @@ class ProjectList < LifeList
   
   private
   def set_defaults
-    self.title ||= "%s's Check List" % owner_name
-    self.description ||= "The species list for #{owner_name}"
+    self.title ||= I18n.t('project_list_defaults.title', owner_name: owner_name)
+    self.description ||= I18n.t('project_list_defaults.description', owner_name: owner_name)
     true
   end
 end

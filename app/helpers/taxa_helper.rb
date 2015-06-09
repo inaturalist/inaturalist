@@ -210,7 +210,7 @@ module TaxaHelper
     if controller.fragment_exist?(key)
       return content_tag(:div, controller.read_fragment(key), :id => element_id)
     end
-    html = content_tag(:div, "Loading images...", :id => element_id, :class => "loading status")
+    html = content_tag(:div, t(:loading_images), :id => element_id, :class => "loading status")
     js = <<-JS
       $('##{element_id}').load('#{taxon_photos_path(taxon, :partial => "photo", :limit => limit)}', function() {
         $('#modal_image_box').jqmAddTrigger('##{element_id} a.modal_image_link');

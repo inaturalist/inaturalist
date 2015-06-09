@@ -108,7 +108,7 @@ fr:
   about_external_links: À propos des liens externes
   about_licenses: À propos des licences
   about_licensing: À propos de l’octroi de licences
-  about_life!: À propos des êtres vivants!
+  about_life!: à propos des êtres vivants!
   about_places: À propos des lieux
   about_the_cc_licenses: À propos des licences Creative Commons
   about_the_quality_assessment: À propos de l’évaluation de la qualité
@@ -193,7 +193,7 @@ fr:
   add_obs_from_a_link: 'Ajouter des observations à partir du lien : %{link}'
   add_obs_from_a_list: Ajouter des observations à partir d’une liste
   add_observation: Ajouter une observation
-  add_observations!: Ajouter des observations !
+  add_observations!: ajoutez des observations ! # imperative works better here because of context
   add_observations: Ajouter des observations
   add_observations_by_checking_off: Ajouter des observations en cochant les espèces
     dans une liste.
@@ -205,6 +205,7 @@ fr:
   add_one: Ajoutez-en une!
   add_photos: Ajouter des photos
   add_photos_to_this_observation: Ajouter des photos à cette observation
+  add_place: Ajouter un lieu
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_shape: Ajouter une forme
   add_some_now: Ajoutez-en maintenant
@@ -262,6 +263,7 @@ fr:
   all_names: Tous les noms
   all_observations: Toutes les observations
   all_photos: Toutes les photos
+  all_people: Tous les gens
   all_places: Tous les lieux
   all_projects: Tous les projets
   all_rights_reserved: tous droits réservés
@@ -447,7 +449,7 @@ fr:
   at: à
   at_any_time_change: n’importe quand (<span class="button">modifier</span>)
   at_time: à %{time}
-  atom: Atome
+  atom: Atom
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
   authorize_permissions_from_provider: Autoriser les permissions de %{provider}
@@ -834,7 +836,7 @@ fr:
   cover: Couverture
   create: Créer
   create_a_guide: Créer un guide
-  create_a_list: Créer une liste
+  create_a_list: Créez une liste # Context makes the imperative form more appropriate
   create_a_new_field: Créer un nouveau champ
   create_a_new_place: Créer un nouveau lieu
   create_a_new_taxon: Créer un nouveau taxon
@@ -913,6 +915,19 @@ fr:
       october: Octobre
       november: Novembre
       december: Décembre
+  # Months are also required at the top level for `calendar_for`
+  january: Janvier
+  february: Février
+  march: Mars
+  april: Avril
+  may: Mai
+  june: Juin
+  july: Juillet
+  august: Août
+  september: Septembre
+  october: Octobre
+  november: Novembre
+  december: Décembre
   date_observed: Date observée
   date_observed_on: date observée le
   date_picker:
@@ -958,6 +973,7 @@ fr:
   deleting: Suppression en cours…
   deleting_verb: Suppression
   desc: décroissant
+  dna_: ADN
   descendant_taxa: taxons descendants
   descending: descendant
   describe_purpose: Décrivez le but de ce projet.
@@ -1032,7 +1048,7 @@ fr:
   edit_selected: Modifier la sélection
   edit_source: Modifier la source
   edit_taxa: Modifier les taxons
-  edit_taxon_change: modifier la modification de taxon
+  edit_taxon_change: Modifier la modification de taxon
   edit_taxon_link: Modifier le lien relatif au taxon
   edit_taxon_range: Modifier l’aire de répartition du taxon
   edit_the_observation: Modifier l’observation
@@ -1116,7 +1132,7 @@ fr:
   exit_full_screen: Sortir du mode plein écran
   expand_days: développer les jours
   expand_updates: développer les mises à jour
-  explore!: explorez!
+  explore!: Explorez!
   explore_everyones_observations: Explorer les observations de tout le monde
   export: Exporter
   export_observations: Exporter les observations
@@ -1138,7 +1154,7 @@ fr:
     de cette photo reconfirme sa connexion à %{site_name_short}.
   facebook_options: Options de Facebook
   failed_to_repair_photo: 'Échec de réparation de la photo : %{errors}'
-  "false": Faux
+  "false": Non
   faq: Foire aux questions
   Family: Famille
   favorite_taxa: taxons favoris
@@ -1165,7 +1181,7 @@ fr:
   fill_out_your_profile: remplissez votre profil
   filling_out_checklist_for_place: Remplir des listes de contrôle pour les
     lieux que vous connaissez bien
-  filling_out_your_profile: Remplir votre profil
+  filling_out_your_profile: remplissant votre profil
   filter: Filtrer
   filter_by: Filtrer par
   filter_by_place_taxon_and_color: Filtrer par lieu, taxon et couleur au moyen des contrôles.
@@ -1184,6 +1200,7 @@ fr:
   find_places: Trouver des lieux
   find_some_people_to_follow: Trouver des personnes à suivre
   find_species: Trouver des espèces
+  find_suitable_observations: Trouver des observations pertinentes
   first_confirmed_inat_observation: Première observation %{site_name} confirmée
   first_connect_your_provider_account_to_your_site: 'D’abord, connectez votre compte
     %{provider} à %{site_name} :'
@@ -1224,7 +1241,7 @@ fr:
   flickr_photo: Photo de Flickr
   flickr_photos: Photos de Flickr
   flickr_style: Style Flickr
-  flickr_tagger: Personne qui a apposé l’étiquette Flickr
+  flickr_tagger: Étiquetter les photos Flickr
   flickr_tags: Étiquettes Flickr
   flickr_youre_all_set: Vous êtes prêt à commencer l’exploration  d’%{site_name}
   fluid: fluide
@@ -1280,6 +1297,7 @@ fr:
   getting_started: Démarrer
   give_it_some_detail: Fournissez des détails !
   global_conservation_status: 'Situation quant à la conservation à l’échelle mondiale :'
+  global_names: Noms globaux
   globally: à l’échelle mondiale
   go: Continuer
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
@@ -1493,12 +1511,11 @@ fr:
     des taxons répertoriés associés, etc. # Not really a litteral workaround but works better given the context / word reordering in taxa/edit
   its_important_that_you: Il est important que vous cliquiez
   iucn_red_list_status: Situation selon la liste rouge de l’UICN
-  january: Janvier
   join: Joignez-vous
   join_and: Joignez-vous et
   join_inat: Joignez %{site_name} !
   join_project: Joignez-vous à ce projet
-  join_some_projects_and_invite_some_observations_html: Joignez-vous à certains <a href='%{join_url}'>projets</a>
+  join_some_projects_and_invite_some_observations_html: Joignez des <a href='%{join_url}'>projets</a>
     et <a href='%{invite_url}'>invitez des gens à afficher quelques observations</a>
   join_this_project: Joignez-vous à ce projet
   joined!: Vous vous êtes joint!
@@ -1674,6 +1691,7 @@ fr:
   loading: Chargement en cours…
   loading_flickr_photos: Chargement des photos de Flickr…
   loading_full_description_html: Chargement de la description complète…
+  loading_images: Chargement des images…
   loading_map: Chargement de la carte…
   loading_more_photos: Chargement de plus de photos…
   loading_observations: Chargement des observations…
@@ -1810,6 +1828,7 @@ fr:
   more: Plus
   more_fields: Plus de champs
   more_info: Plus d’informations
+  more_info_title: Plus d’informations
   more_journal_posts: Plus de notes de journal
   more_observations: Plus d’observations
   most: Le plus
@@ -1916,6 +1935,9 @@ fr:
   no_flags: Aucun drapeau cette fois
   no_flickr_photos_tagged: Aucune photo de Flickr n’a été étiquetée!
   no_header_row: Aucune ligne d’entête
+  no_identifications_added:
+    current_user: Vous n'avez pas ajouté d'identification aux observations des autres.
+    user: L'utilisateur %{user} n'a pas ajouté d'identification aux observations des autres.
   no_journal_post_have_been: Aucune note de journal n’a encore été ajoutée à ce projet.
   no_license_all_rights_reserved: Aucune licence (tous droits réservés)
   no_link_flickr: Non, je préfère ne pas.
@@ -2435,7 +2457,7 @@ fr:
   posted_on: Publié le
   posts: Notes
   powered_by: Optimisé par
-  powered_by_inaturalist_open_source_software_html: Optimisé par le logiciel ouvert
+  powered_by_inaturalist_open_source_software_html: Propulsé par le logiciel ouvert
     <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
   present: présent
   preview: Aperçu
@@ -2474,6 +2496,9 @@ fr:
   project_invitations: Invitations à se joindre au projet
   project_journal_posts: Notes de journal du projet
   project_list: Liste du projet
+  project_list_defaults:
+    title: "List de contrôle de %{owner_name}"
+    description: Liste des spécimens de %{owner_name}
   project_members: Membres de %{project}
   project_membership_model_description: Votre projet est-il ouvert à tout le monde
     ou seulement aux personnes que vous invitez?
@@ -2562,7 +2587,7 @@ fr:
   recently_resolved: Récemment résolu
   record!: Enregistrez!
   red: rouge
-  redo_search_in_map_area: Refaites la recherche dans la région cartographique
+  redo_search_in_map_area: Refaire la recherche dans la région cartographique
   refresh: Rafraîchir
   refresh_listed_taxa: rafraîchir les taxons réprtoriés
   refreshing: rafraîchissement en cours
@@ -2581,20 +2606,21 @@ fr:
   remove_boundary: Supprimer la frontière
   remove_comma_separated_tags: Supprimer les étiquettes séparées par des virgules
   remove_conservation_status: supprimer la situation quant à la conservation
-  remove_from: Supprimer de
   remove_curator: Supprimer le responsable de l’organisation
   remove_curator_role: Supprimer le rôle du responsable de l’organisation
   remove_curator_status: Supprimer le statut du responsable de l’organisation
+  remove_from: Supprimer de
   remove_from_batch: Supprimer du lot
   remove_from_guide: Supprimer du guide
   remove_from_id_please?: Supprimer d’Identification, SVP?
   remove_from_list: Supprimer de la liste
   remove_from_project: Supprimer du projet
-  remove_this_section: Supprimer cette section
   remove_manager: Supprimer le gestionnaire
+  remove_place: Supprimer
   remove_project_user: Supprimer l’utilisateur du projet
   remove_selected: Supprimer la sélection
   remove_tags: Supprimer les étiquettes
+  remove_this_section: Supprimer cette section
   remove_your_existing_id?: Supprimer votre identification existante ?
   removed: Supprimé
   removed!: Supprimé!
@@ -2769,7 +2795,7 @@ fr:
   show_taxa_from_everywhere: Afficher les taxons de partout
   shown_publicly_as: Affiché publiquement comme
   sign_in: Connectez-vous
-  sign_in_with_provider: Connectez-vous au moyen de %{provider}
+  sign_in_with_provider: vous connecter avec %{provider}
   sign_out: Déconnectez-vous
   sign_up!: Inscrivez-vous !
   sign_up: Inscrivez-vous
@@ -2783,7 +2809,7 @@ fr:
   site_name_place: lieu d’%{site_name}
   site_observations_export_from_date: observations d’%{site_name} exportées depuis
     le %{date}
-  site_taxon_page: page de taxon d’%{site_name}
+  site_taxon_page: Page de taxon d’%{site_name}
   so_meta!: méta!
   some_agree: quelques personnes sont d’accord
   some_of_those_photos_couldnt_be_saved: 'Certaines de ces photos n’ont pas pu être
@@ -2828,6 +2854,7 @@ fr:
     propre liste des êtres vivants.
   sorry_you_need_to_be_signed_in_and: Désolé, vous devez être connecté et avoir un
     compte Flickr lié pour publier des étiquettes directement sur Flickr.
+  sort: Trier
   sort_by: Trier par
   sorting_by: Trié par
   soundcloud_needs_to_confirm: SoundCloud doit confirmer que vous voulez que votre
@@ -2913,7 +2940,7 @@ fr:
   start_adding_observations: Démarrer l’ajout d’observations
   start_new_account: Démarrer un nouveau compte
   start_new_project: Démarrer un nouveau projet
-  start_one: démarrer un
+  start_one: démarrer une
   start_one_now: Démarrez-en un maintenant!
   start_typing_field_name: Commencez à taper le nom du champ…
   start_typing_place_name: Commencez à taper le nom du lieu…
@@ -3117,8 +3144,8 @@ fr:
   there_are_x_synonyms_html:
     one: Il y a <span class='count'>1</span> synonyme</span>
     other: Il y a <span class='count'>%{count}</span> synonymes</span>
-  there_is_no_wikipedia_page_matching: Il n&y a pas de page Wikipédia correspondante
-  there_isnt_wiki_article: Il n&y a pas d’article de Wikipédia ou de page redirigée appelée
+  there_is_no_wikipedia_page_matching: Il n'y a pas de page Wikipédia correspondante
+  there_isnt_wiki_article: Il n'y a pas d’article de Wikipédia ou de page redirigée appelée
     '<i>%{taxon}</i>'.  Peut-être aimeriez-vous
   there_isnt_a_wikipedia_article_titled_x_html: Il n’y a pas d’article de Wikipédia ou de page redirigée
     appelée '%{x}'. Peut-être aimeriez-vous <a href='http://en.wikipedia.org/wiki/%{x}'>en
@@ -3248,6 +3275,7 @@ fr:
   to_include_your_picassa_with_inat: Pour inclure vos photos Picasa avec vos observations
     sur %{site_name}, cliquez sur le bouton à droite pour lier vos deux comptes. Vous
     serez redirigé vers Google, où on vous demandera d’autoriser cette connexion.
+  to_recipient: À
   to_tag_your_flickr_from_here: pour étiquetter vos photos de Flickr à partir d’ici sans
     couper/coller.
   to_the_bat_cave: vers la caverne des chauves-souris!
@@ -3264,7 +3292,7 @@ fr:
   total_users: total des utilisateurs,
   tree_browser: Explorateur d’arborescence
   tree_browser_raquo: Explorateur d’arborescence &raquo;
-  "true": Vrai
+  "true": Oui
   trusted_project?: Projet digne de confiance?
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire
     sur cette page.
@@ -3337,6 +3365,7 @@ fr:
     ressource externe
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
   US_states: États des États-Unis
+  usage_stats: Statistiques d'utilisation
   use_this_form_to_create_a_new: |-
     Utilisez ce formulaire pour créer l’ébauche d’un modification taxonomique décrivant une proposition de
     séparation, de fusion ou d'échange de taxons actifs.
@@ -3424,9 +3453,9 @@ fr:
   view_more_observations: Afficher plus d'observations
   view_more_observations_from_x: Afficher plus d'observations de %{x}
   view_more_observations_from: Afficher plus d'observations de
-  view_more_observations_near_x_place: Afficher plus d'observations près de %{lieu} sur
+  view_more_observations_near_x_place: Afficher plus d'observations près de %{place} sur
     <nobr>%{site_name} »</nobr>
-  view_more_observations_of_x_project: Afficher plus d'observations de %{projet} sur <nobr>%{site_name}
+  view_more_observations_of_x_project: Afficher plus d'observations de %{project} sur <nobr>%{site_name}
     »</nobr>
   view_more_observations_of_x_taxon: Afficher plus d’observations de %{taxon} sur
     <nobr>%{site_name} &raquo;</nobr>
@@ -3557,7 +3586,7 @@ fr:
   with_errors: Avec des erreurs
   within_inaturalist: Dans %{site_name}
   wondering_what_to_do_next: Vous vous demandez quoi faire maintenant? Pourquoi pas
-  would_you_like_to: Aimeriez-vous
+  would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: '%{user} aimerait de l’aide à identifier
     ceci'
   x_admin: '%{login} admins'
@@ -3674,6 +3703,7 @@ fr:
   you_joined_this_project: Vous avez joint ce projet!
   you_may_have: vous pourriez avoir. Ça pourrait ne fonctionner qu’avec des
     explorateurs modernes et conformes comme
+  your_membership: Votre adhésion
   you_must_be_a_member_of_this_project_to_do_that: Vous devez être membre du projet
     pour exécuter cette action
   you_must_be_project_manager_to_do_that: Vous devez être gestionnaire du projet pour
@@ -3765,9 +3795,11 @@ fr:
     cette liste?
   your_world!: votre monde!
   youre_following: vous suivez
-  youre_not_following_anyone: Vous ne suivez personne. En suivant d'autres naturalistes,
-    vous pourrez facilement voir leurs dernières observations. Trouvez
-    d'autres personnes
+  youre_not_following_anyone: |-
+    Vous ne suivez personne. En suivant d'autres naturalistes,
+    vous pourrez facilement voir leurs dernières observations. Découvrez ce que les gens
+    <a href="%{observations_path}">observent</a> et faites-vous de nouveaux
+    <a href="%{people_path}">contacts</a>.
   youre_viewing_all_observations: Vous regardez toutes les observations
   youre_viewing_site_name_observations_html: Vous regardez les observations de <strong>%{site_name}</strong>
   youve_already_added_an_identification: Vous avez déjà ajouté une identification,
@@ -4334,7 +4366,7 @@ fr:
           observations comme
         dont_forget_the_invite_link_placeholder: n’oubliez pas le signet {{INVITE_LINK}}
         invite_other_photographers_to_inat: Invitez d'autres photographes sur %{site_name}
-        invite_your_friends_description: "Vous pouvez aider les sur Facebook et Flickr à ajouter leurs\nphotos comme observations
+        invite_your_friends_description: "Vous pouvez aider les gens sur Facebook et Flickr à ajouter leurs\nphotos comme observations
           d’%{site_name}. Il suffit de laisser un commentaire contenant l'URL d'invitation
           ci-dessous. Vous pouvez aussi présélectionner un taxon et un projet pour
           la nouvelle observation."
@@ -4470,6 +4502,16 @@ fr:
             assurez-vous que vos participants se joignent au projet et ajoutent leurs
             observations comme ils le feraient pour un projet normal.
           </p>
+        no_journal_blurb_html: |
+          <p>
+            Votre journal de projet est un outil pour communiquer avec les
+            membres de votre projet. Vous pouver l'utiliser pour émettre des des
+            annonces, déterminer les priorités ou parler des découvertes de votre
+            projet.
+          </p>
+          <p>
+            Pour débuter, <a href="%{url}" class="readmore">créez une note</a>
+          </p>
         project_observations_desc: |-
           Il s’agit des observations explicitement ajoutées à ce
           projet et non de toutes les observations enregistrées dans ce lieu et au moment de
@@ -4570,7 +4612,7 @@ fr:
         this_user_was_banned: Cet utilisateur a été banni
     welcome:
       index:
-        welcome_message_html: "vers %{image}, où vous pourrez <strong>enregistrer</strong>
+        welcome_message_html: "sur %{image}, où vous pourrez <strong>enregistrer</strong>
           ce que vous avez vu dans la nature, \n<strong>rencontrer</strong> d’autres
           amoureux de la nature, \net en <strong>apprendre</strong> davantage sur le monde naturel."
     wiki_pages:
@@ -4852,6 +4894,9 @@ fr:
       guide:
         source_url: URL source
         published_at: Publication
+      post:
+        title: Titre
+        body: Corps
       project:
         title: Titre
         project_icon: Icône du projet
@@ -4868,13 +4913,16 @@ fr:
         tracking_codes: Codes de suivi
         source_url: URL source
         start_time: Heure de début
+      message:
+        subject: Objet
+        body: Corps
       place:
         code: Code
         display_name: Nom public
         latitude: Latitude
         longitude: Longitude
         name: Nom
-        parent_id: taxon de rang supérieur
+        parent_id: Parent
         place_type: Type de lieu
         prefers_check_lists: Listes de contrôle autorisées?
         woeid: WOEID
@@ -4898,6 +4946,7 @@ fr:
         source_identifier: Identifieur source
         source_url: URL source
       taxon_name:
+        name: Nom
         name_provider: Fournisseur de nom
         source_url: URL source
         source_identifier: Identifieur source
@@ -4924,4 +4973,7 @@ fr:
         observation_field: :@m
         post: :@m
         taxon: :@m
-
+  will_paginate:
+    previous_label: "&#8592; Précédent"
+    next_label: "Suivant &#8594;"
+    page_gap: "&hellip;"
