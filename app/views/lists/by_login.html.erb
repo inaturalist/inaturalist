@@ -1,10 +1,14 @@
+<%
+  observation_by_login_title = if is_me?(@selected_user)
+    t('lists_by_login.title.current_user',
+      default: t(:second_person_possessive_singular_, :noun => t(:lists).downcase))
+  else
+    t('lists_by_login.title.login', login: @login,
+      default: t(:third_person_possessive_singular, :noun => t(:lists).titleize, :object_phrase => @login))
+  end
+%>
 <% content_for(:title) do -%>
-  <%= 
-    @title ||= if is_me?(@selected_user)
-      t(:second_person_possessive_singular_, :noun => t(:lists).downcase)
-    else
-      t(:third_person_possessive_singular, :noun => t(:lists).titleize, :object_phrase => @login)
-    end %>
+  <%= @title ||= observation_by_login_title %>
 <% end -%>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>
@@ -60,7 +64,7 @@
     </div>
   <% end %>
 <% end %>
-<%= render :partial => "shared/by_login_header", :locals => { :after => tools } %>
+<%= render :partial => "shared/by_login_header", :locals => { :after => tools, title: observation_by_login_title } %>
 
 <div class="column span-24">
   <div id="lists" class="clear">
