@@ -232,7 +232,7 @@ module PlaceSources
     when 'State'
       shape.data['STATEFP']
     when 'County'
-      shape.data['COUNTYFP']
+      shape.data['GEOID']
     when 'place'
       shape.data['PLACEFP']
     end
