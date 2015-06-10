@@ -1805,6 +1805,7 @@ fr:
     ici. Les cartes afficheront une aire de répartition pour cette espèce si elle existe à %{place}.
   maybe_your_signed_in_with: Êtes-vous peut-être connecté avec votre compte %{omniauth}?
   medium: moyen
+  member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
   members: Membres
   merge: Fusionner
   merge_it_with_another_place: Fusionner avec un autre lieu
@@ -2130,7 +2131,7 @@ fr:
   observed_on: Observé le
   observed_one: observé un
   observer: Observateur
-  observer_short: Observateur
+  observer_short: Personne # Not very accurate but "observateur" doesn't fit in the allocated space
   observing: observation
   occurence_status_describes_how: L’état de la présence décrit le degré de rareté
     d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus
@@ -2729,7 +2730,7 @@ fr:
   search_ubio_raquo: Rechercher sur uBio &raquo;
   search_your_photos: Rechercher dans vos photos
   searching: Recherche en cours…
-  second_person_possessive_singular: Votre %{noun}
+  second_person_possessive_singular: Vos %{noun} # says singular but is actually plural
   second_person_possessive_singular_: Votre %{noun}
   see_something_wrong_with_taxon: Quelque chose ne va pas avec ce
     taxon? Faites-le savoir aux responsables de l’organisation.
@@ -2796,7 +2797,7 @@ fr:
   shown_publicly_as: Affiché publiquement comme
   sign_in: Connectez-vous
   sign_in_with_provider: vous connecter avec %{provider}
-  sign_out: Déconnectez-vous
+  sign_out: Déconnexion
   sign_up!: Inscrivez-vous !
   sign_up: Inscrivez-vous
   sign_up_exclamation: Inscrivez-vous!
