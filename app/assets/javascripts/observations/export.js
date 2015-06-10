@@ -69,7 +69,6 @@ $(document).ready(function() {
   $('#filters').css({position: 'absolute', top: $('#filtersplaceholder').offset().top})
   var initQuery = cleanQuery($.param($.deparam.querystring()))
   if (initQuery.length > 0) {
-    console.log('DEBUG: initQuery: ', initQuery)
     $('#query').val(initQuery)
     setFiltersFromQuery(initQuery)
     filtersToQuery()
