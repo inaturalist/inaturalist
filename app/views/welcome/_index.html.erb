@@ -80,23 +80,23 @@
   <div id="explore" class="column span-5">
     <center>
       <%= link_to image_tag("map-icon-155px.jpg"),observations_path %>
-      <h1><%= link_to t(:explore!).titleize, observations_path %></h1>
-      <p><%= link_to t(:your_world!).titleize, observations_path %></p>
+      <h1><%= link_to t(:explore!), observations_path %></h1>
+      <p><%= link_to t(:your_world!), observations_path %></p>
     </center>
   </div>
   <div id="learn" class="column span-5">
     <center>
       <%= link_to image_tag("animals.jpg", :height => 155), taxa_path %>
-      <h1><%= link_to t(:learn!).titleize, taxa_path %></h1>
-      <p><%= link_to t(:about_life!).titleize, taxa_path %></p>
+      <h1><%= link_to t(:learn!), taxa_path %></h1>
+      <p><%= link_to t(:about_life!), taxa_path %></p>
     </center>
   </div>
   <div id="record" class="column span-5 border">
     <center>
       <%= link_to image_tag("notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path, :rel => "nofollow" %>
-      <h1><%= link_to t(:record!).titleize, new_observation_path, :rel => "nofollow" %></h1>
+      <h1><%= link_to t(:record!), new_observation_path, :rel => "nofollow" %></h1>
       <p>
-        <%= link_to t(:add_observations!).titleize, new_observation_path, :rel => 'nofollow' %>
+        <%= link_to t(:add_observations!), new_observation_path, :rel => 'nofollow' %>
       </p>
     </center>
   </div>

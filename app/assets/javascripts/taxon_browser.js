@@ -28,7 +28,7 @@ var TaxonBrowser = {
 
     $('#taxon_browser #taxon_list').shades('open', {
       css: {'background-color': 'white'}, 
-      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">'+ I18n.t('loading') +'</span></center>'
     })
 
     var oldReq = $('#taxon_browser').data('lastRequest')

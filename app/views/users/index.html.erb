@@ -53,46 +53,58 @@
               <%= link_to_user update.user, :class => "userlink" %>
               <%- case update.class.name -%>
               <%- when 'Observation' %>
-                <%= t :added_an %>
-                <%= link_to t(:observation).downcase, update %> <%= t :of %>
-                <% if update.taxon -%>
-                  <%= update.species_guess =~ /^[aeiou]/i ? t(:an_) : t(:a_) %>
-                  <%= link_to update.species_guess, update.taxon %>
-                <% else %>
-                  <%= t :something_ %>
-                <% end -%>
+                <%= raw t 'people_added.observation',
+                  observation_link: link_to(t(:observation).downcase, update),
+                  taxon_link: update.taxon ? link_to(update.species_guess, update.taxon) : t(:something_),
+                  vow_or_con: (update.taxon ? update.species_guess : t(:something_)).first.downcase %>
               <%- when 'Identification' %>
-                <%= t :added_an %> <strong><%= t :id_ %></strong>
+                <%
+                  if update.observation
+                    observation_link = link_to t(:observation).downcase, update.observation
+                    user_link = link_to char_wrap(update.observation.user.login, 50), observations_by_login_path(update.observation.user.login)
+                  end
+                -%>
+
                 <% if update.observation -%>
-                  <%= t :to_an %>
-                  <%= link_to t(:observation).downcase, update.observation %>
-                  <%= t(:by).downcase %>
-                  <%= link_to char_wrap(update.observation.user.login, 50), observations_by_login_path(update.observation.user.login) %>
+                  <%= raw t 'people_added.identification.with_observation', observation_link: observation_link, user_link: user_link %>
+                <% else -%>
+                  <%= t 'people_added.identification.without_observation' %>
                 <% end -%>
               <%- when 'Post' %>
-                <%= t :made_a %>
-                <% if update.parent_type == "User" -%>
-                  <%= link_to t(:journal_post).downcase, journal_post_path(update.user.login, update) %>
-                <% else %>
-                  <%= link_to t(:project_post), project_journal_post_path(update.parent, update) %>
-                <% end -%>
+                <%-
+                  if update.parent_type == "User"
+                    post_link = link_to t(:journal_post).downcase, journal_post_path(update.user.login, update)
+                  else
+                    post_link = link_to t(:project_post), project_journal_post_path(update.parent, update)
+                  end
+                -%>
+                <%= raw t 'people_added.post', post_link: post_link -%>
               <%- when 'Comment' %>
-                <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
-                <strong><%= t :commented %></strong> <%= t :on_ %>
-                <%= class_name =~ /^[aeiou]/i ? t(:an_) : t(:a_) %>
-                <% if update.parent.is_a? Post -%>
-                  <% if update.parent.parent.is_a?(User) -%>
-                    <%= link_to t(class_name, :default => class_name).downcase, journal_post_path(update.parent.user.login, update.parent) %>
-                  <% else %>
-                    <%= link_to t(class_name, :default => class_name).downcase, project_journal_post_path(update.parent.parent, update.parent) %>
-                  <% end -%>
-                <% else %>
-                  <%= link_to t(class_name, :default => class_name).downcase, update.parent %>
-                <% end -%>
-                <% if update.parent.is_a?(Post) && update.parent.parent.is_a?(Project) %>
-                      <%= t(:by).downcase %> <%= link_to char_wrap(h(update.parent.parent.title), 50), update.parent.parent %>
-                <% elsif update.parent.user -%>
-                      <%= t(:by).downcase %> <%= link_to char_wrap(h(update.parent.user.login), 50), observations_by_login_path(update.parent.user.login) %>
+                <%-
+                  if update.parent.is_a? Post
+                    if update.parent.parent.is_a?(User)
+                      subject_path = journal_post_path(update.parent.user.login, update.parent)
+                    else
+                      subject_path = project_journal_post_path(update.parent.parent, update.parent)
+                    end
+                  else
+                    subject_path = update.parent
+                  end
+
+                  class_name = update.parent.class.name.underscore.humanize.downcase
+                  comment_subject_link = link_to t(class_name, default: class_name).downcase, subject_path
+
+                  by_link = nil
+                  if update.parent.is_a?(Post) && update.parent.parent.is_a?(Project)
+                    by_link = link_to char_wrap(h(update.parent.parent.title), 50), update.parent.parent
+                  elsif update.parent.user
+                    by_link = link_to char_wrap(h(update.parent.user.login), 50), observations_by_login_path(update.parent.user.login)
+                  end
+                -%>
+                <% if by_link -%>
+                  <%= raw t 'people_added.comment.with_by', by_link: by_link, comment_subject_link: comment_subject_link, gender: class_name, vow_or_con: class_name.first.downcase %>
+                <% else -%>
+                  <%= raw t 'people_added.comment.without_by', comment_subject_link: comment_subject_link, gender: class_name, vow_or_con: class_name.first.downcase %>
                 <% end -%>
               <% end %>
               <abbr class="date timeago" title="<%=t :n_ago, :n => time_ago_in_words(update.created_at.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(update.created_at) %></abbr>

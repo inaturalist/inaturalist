@@ -524,7 +524,7 @@ $.fn.loadingShades = function(e, options) {
   if (e && e == 'close') {
     $(this).shades(e, options)
   } else {
-    var txt = e || 'Loading...',
+    var txt = e || I18n.t('loading'),
         cssClass = options.cssClass || 'bigloading',
         msg = '<div class="loadingShadesMsg"><span class="loading '+cssClass+' status inlineblock">'+txt+'</span></div>'
     options = $.extend(true, options, {

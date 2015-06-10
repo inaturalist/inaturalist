@@ -1,7 +1,7 @@
 = content_for :title do
   =t :new_message
   - if @message.to_user
-    =t :to
+    =t :to_recipient
     = @message.to_user.login
 = content_for :extracss do
   :css
@@ -10,7 +10,7 @@
   %h2
     =t :new_message
     - if @message.to_user
-      =t :to
+      =t :to_recipient
       = link_to user_image(@message.to_user, :size => "thumb"), @message.to_user
       = link_to_user @message.to_user
   = error_messages_for @message
@@ -19,7 +19,7 @@
     - if @message.to_user
       = f.hidden_field :to_user_id
     - else
-      = f.text_field :to_user_id, :label => t(:to).capitalize, :placeholder => t(:start_typing_someones_name)
+      = f.text_field :to_user_id, :label => t(:to_recipient).capitalize, :placeholder => t(:start_typing_someones_name)
     = f.text_field :subject
     = f.text_area :body
 
