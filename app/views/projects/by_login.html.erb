@@ -37,7 +37,9 @@
   <div id="started" class="projects clear box">
     <h3> <%= t(:projects) %> <%= is_me? ? t(:you_admin) : t(:x_admin, :login => "#{@login}") %></h3>
     <% if @started.blank? -%>
-      <p class="meta noresults"><%= is_me? ? t(:you_dont) : t(:x_doesnt, :login => "#{@login}") %> <%= t(:admin_any_projects) %></p>
+      <p class="meta noresults">
+        <%= is_me? ? t(:no_project_to_admin_current_user) : t(:no_project_to_admin_login, login: @login.to_s) %>
+      </p>
     <% else %>
       <% @started.each_with_index do |project, i| %>
         <%= render :partial => 'project', :object => project, :locals => {:last => true} %>
