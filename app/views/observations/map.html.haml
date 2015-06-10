@@ -77,7 +77,7 @@
     },
     place_layers: @places.map{ |p| { place: p } },
     enable_show_all_layer: (@taxa.empty? && @places.empty? && @user.nil? && @project.nil?) ? true : false,
-    show_all_layer: (@taxa.empty? && @places.empty? && @user.nil? && @project.nil?) ? { grid_color: "#FF4500" } : true,
+    show_all_layer: (@taxa.empty? && @places.empty? && @user.nil? && @project.nil?) ? { grid_color: @default_color } : true,
     disable_fullscreen: true,
     url_coords: true,
     min_zoom: 2
@@ -86,12 +86,12 @@
     a.merge! observation_layers: [ { 
       project_id: @project.id, 
       title: "Observations from #{@project.title}",
-      grid_color: "#FF4500"
+      grid_color: @default_color
     } ]
   end
   if @user
     a[:observation_layers] ||= []
-    a[:observation_layers] << { user_id: @user.id, title: "Observations by #{@user.login}", grid_color: "#FF4500" }
+    a[:observation_layers] << { user_id: @user.id, title: "Observations by #{@user.login}", grid_color: @default_color }
   end
   if @elastic
     a[:place_layers] = [ { place: @render_place } ];
