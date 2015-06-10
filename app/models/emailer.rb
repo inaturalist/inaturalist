@@ -31,7 +31,7 @@ class Emailer < ActionMailer::Base
     @user = project_invitation.observation.user
     set_locale
     @inviter = project_invitation.user
-    mail(set_site_specific_opts(
+    mail(set_site_specific_opts.merge(
       :to => project_invitation.observation.user.email, 
       :subject => @subject
     ))
@@ -108,6 +108,7 @@ class Emailer < ActionMailer::Base
   # an error.
   def bulk_observation_error(user, filename, error_details)
     @user = user
+    set_locale
     @subject = "#{subject_prefix} #{t :were_sorry_but_your_bulk_import_of_filename_has_failed, :filename => filename}"
     @message       = error_details[:reason]
     @errors        = error_details[:errors]
@@ -115,17 +116,19 @@ class Emailer < ActionMailer::Base
     mail(set_site_specific_opts.merge(
       :to => "#{user.name} <#{user.email}>", :subject => @subject
     ))
+    reset_locale
   end
 
   # Send the user an email saying the bulk observation import was successful.
   def bulk_observation_success(user, filename)
     @user = user
-    # @subject << "The bulk import of #{filename} has been completed successfully."
+    set_locale
     @subject = "#{subject_prefix} #{t(:bulk_import_of_filename_is_complete, :filename => filename)}"
     @filename = filename
     mail(set_site_specific_opts.merge(
       :to => "#{user.name} <#{user.email}>", :subject => @subject
     ))
+    reset_locale
   end
 
   private

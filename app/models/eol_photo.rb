@@ -1,7 +1,4 @@
 class EolPhoto < Photo
-  
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
 
   validate :licensed_if_no_user
 
@@ -48,7 +45,7 @@ class EolPhoto < Photo
     if license = api_response.at('license')
       license_string = api_response.search('license').children.first.inner_text
       license_number = Photo::C
-      if license_string.include? "licenses/publicdomain/"
+      if license_string.include? "publicdomain"
         license_number = PD
       end
       [1,2,3,4,5,6].each do |num|
@@ -97,6 +94,16 @@ class EolPhoto < Photo
       :native_realname => native_username,
       :license =>  license_number
     ))
+  end
+
+  def repair
+    r = EolPhoto.get_api_response(native_photo_id)
+    p = EolPhoto.new_from_api_response(r)
+    (EolPhoto.column_names - %w(id created_at updated_at)).each do |a|
+      send("#{a}=", p.send(a))
+    end
+    save
+    [self, errors]
   end
 
   private

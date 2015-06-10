@@ -193,7 +193,11 @@ class GuidesController < ApplicationController
               break
             end
           end
+          subconsensus_taxon_ids.compact!
           @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids).includes(:taxon_names).sort_by(&:name)
+          if @nav_taxa.map(&:rank).compact.uniq.size == 1 && @nav_taxa.first.species?
+            @nav_taxa = Taxon.where(id: consensus_taxon_id)
+          end
           @nav_taxa_counts = {}
           @nav_taxa.each do |t|
             @nav_taxa_counts[t.id] = @guide.guide_taxa.joins(:taxon).where(t.descendant_conditions).count
@@ -450,17 +454,18 @@ class GuidesController < ApplicationController
 
   def guide_params
     params.require(:guide).permit(
-      :publish,
-      :title,
       :description,
-      :latitude,
-      :longitude,
-      :place_id,
-      :license,
-      :map_type,
-      :zoom_level,
-      :taxon_id,
       :downloadable,
+      :icon,
+      :latitude,
+      :license,
+      :longitude,
+      :map_type,
+      :place_id,
+      :publish,
+      :taxon_id,
+      :title,
+      :zoom_level,
       :guide_users_attributes => [:id, :user_id, :guide_id, :_destroy]
     )
   end

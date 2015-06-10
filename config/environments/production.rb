@@ -17,14 +17,11 @@ Inaturalist::Application.configure do
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
-  config.log_level = :debug
-
-  # Not sure why this is necessary, but settings the custom logger above 
-  # seems to cause ActiveRecord to log db statements
-  config.active_record.logger = nil
+  config.log_level = :info
 
   # Use a different cache store in production
-  config.cache_store = :mem_cache_store, CONFIG.memcached
+  config.cache_store = :dalli_store, CONFIG.memcached,
+    { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -75,4 +72,7 @@ Inaturalist::Application.configure do
   config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
     return env['inat_ga_trackers'] if env['inat_ga_trackers']
   }
+
+  config.log_formatter = CustomLogFormatter.new
+
 end

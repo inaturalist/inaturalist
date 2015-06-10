@@ -8,6 +8,8 @@
 //= require jquery/plugins/jquery.timeago
 //= require jquery/plugins/jquery.scrollTo-min
 //= require jquery/plugins/jquery.string.1.0
+//= require jquery/plugins/jquery.dataTables.min
+//= require i18n
 //= require i18n/translations
 //= require rails
 //= require application

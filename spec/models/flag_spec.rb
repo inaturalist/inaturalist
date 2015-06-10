@@ -41,6 +41,8 @@ describe Flag, "update" do
 end
 
 describe Flag, "destruction" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
   it "should remove the resolver's subscription" do
     t = Taxon.make!
     f = Flag.make!(:flaggable => t)

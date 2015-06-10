@@ -17,10 +17,12 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
-  
+
+  include ActsAsElasticModel
+
   acts_as_flaggable
   has_ancestry
-  
+
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
@@ -62,7 +64,8 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move
-  
+  after_commit :index_observations
+
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
@@ -116,7 +119,9 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry, iconic_taxon_id, rank_level, created_at, updated_at, is_active").all
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry,
+        iconic_taxon_id, rank_level, created_at, updated_at, is_active,
+        observations_count").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless respond_to?(rank)
@@ -251,6 +256,7 @@ class Taxon < ActiveRecord::Base
   scope :iconic_taxa, -> { where("taxa.is_iconic = true").includes(:taxon_names) }
   scope :of_rank, lambda {|rank| where("taxa.rank = ?", rank)}
   scope :of_rank_equiv, lambda {|rank_level| where("taxa.rank_level = ?", rank_level)}
+  scope :of_rank_equiv_or_lower, lambda {|rank_level| where("taxa.rank_level <= ?", rank_level)}
   scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
@@ -345,8 +351,7 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
-  
-  
+
   def self.reset_iconic_taxa_constants_for_tests
     remove_const('ICONIC_TAXA')
     remove_const('ICONIC_TAXA_BY_ID')
@@ -371,14 +376,18 @@ class Taxon < ActiveRecord::Base
     if (Observation.joins(:taxon).where(conditions).exists? || 
         Observation.joins(:taxon).where(old_conditions).exists? || 
         Identification.joins(:taxon).where(conditions).exists? || 
-        Identification.joins(:taxon).where(old_conditions).exists?
-        ) && 
-        !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
-      Observation.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_stats_for_observations_of(id)
+        Identification.joins(:taxon).where(old_conditions).exists? )
+      Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "Observation::update_stats_for_observations_of": id }).
+        update_stats_for_observations_of(id)
     end
     true
   end
-  
+
+  def index_observations
+    Observation.elastic_index!(scope: observations.select(:id), delay: true)
+  end
+
   def normalize_rank
     self.rank = Taxon.normalize_rank(self.rank)
     true
@@ -662,23 +671,19 @@ class Taxon < ActiveRecord::Base
     end
     flickr_chosen_photos = []
     if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
-      begin
-        r = flickr.photos.search(
-          :tags => name.gsub(' ', '').strip,
-          :per_page => options[:limit] - chosen_photos.size,
-          :license => '1,2,3,4,5,6', # CC licenses
-          :extras => 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
-          :sort => 'relevance'
-        )
-        r = [] if r.blank?
-        flickr_chosen_photos = if r.respond_to?(:map)
-          r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
-        else
-          []
-        end
-      rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
-        Rails.logger.error "Failed Flickr API request: #{e}"
-        Rails.logger.error e.backtrace.join("\n\t")
+      search_params = {
+        tags: name.gsub(' ', '').strip,
+        per_page: options[:limit] - chosen_photos.size,
+        license: '1,2,3,4,5,6', # CC licenses
+        extras: 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
+        sort: 'relevance'
+      }
+      r = FlickrCache.fetch(flickr, "photos", "search", search_params)
+      r = [] if r.blank?
+      flickr_chosen_photos = if r.respond_to?(:map)
+        r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+      else
+        []
       end
     end
     flickr_ids = chosen_photos.map{|p| p.native_photo_id}
@@ -775,9 +780,9 @@ class Taxon < ActiveRecord::Base
     if ListRule.exists?([
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
-      unless Delayed::Job.where("handler LIKE '%update_life_lists_for_taxon%id: ''#{id}''%'").exists?
-        LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-      end
+      LifeList.delay(priority: INTEGRITY_PRIORITY,
+        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
+        update_life_lists_for_taxon(self)
     end
     true
   end
@@ -821,8 +826,10 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    if !new_record? && options[:refresh_if_blank] && !Delayed::Job.where("handler LIKE '%set_wikipedia_summary%id: ''#{id}''%'").exists?
-      delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary(:locale => locale)
+    if !new_record? && options[:refresh_if_blank]
+      delay(priority: OPTIONAL_PRIORITY,
+        unique_hash: { "Taxon::set_wikipedia_summary": id }).
+        set_wikipedia_summary(:locale => locale)
     end
     nil
   end
@@ -1093,7 +1100,6 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
-    ThinkingSphinx::Deltas.suspend!
     Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
       batch.each do |t|
         t.without_ancestry_callbacks do
@@ -1103,7 +1109,6 @@ class Taxon < ActiveRecord::Base
         end
       end
     end
-    ThinkingSphinx::Deltas.resume!
   end
   
   def apply_orphan_strategy
@@ -1250,9 +1255,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def get_gbif_id
+    if taxon_scheme_taxa.loaded? && tst = taxon_scheme_taxa.detect{|r| r.taxon_scheme.title == 'GBIF'}
+      return tst.source_identifier
+    end
     # make sure the GBIF TaxonScheme exists
-    gbif = TaxonScheme.where(title: "GBIF").first
-    gbif ||= TaxonScheme.create(title: "GBIF")
+    gbif = TaxonScheme.find_or_create_by(title: "GBIF")
     # return their ID if we know it
     if scheme = TaxonSchemeTaxon.where(taxon_scheme: gbif, taxon_id: id).first
       return scheme.source_identifier
@@ -1261,7 +1268,14 @@ class Taxon < ActiveRecord::Base
     if ancestor = preferred_uninomial_ancestor
       params[ancestor.rank] = ancestor.name
     end
-    if json = GbifService.species_match(params: params)
+    json = begin
+      GbifService.species_match(params: params)
+    rescue Timeout::Error => e
+      # probably GBIF is down or throttling us
+      Rails.logger.error "[ERROR #{Time.now}] #{e}"
+      nil
+    end
+    if json
       if json["usageKey"]
         TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
         return json["usageKey"]
@@ -1383,7 +1397,6 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.rebuild_without_callbacks
-    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1391,14 +1404,12 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     restore_ancestry_integrity!
-    ThinkingSphinx::Deltas.resume!
   end
   
   # Do something without all the callbacks.  This disables all callbacks and
   # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
   # APP!  The process should end after this is done.
   def self.without_callbacks(&block)
-    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1454,7 +1465,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.search_query(q)
-    q = sanitize_sphinx_query(q)
+    q = sanitize_query(q)
     if q.blank?
       q = q
       return [q, :all]
@@ -1492,22 +1503,9 @@ class Taxon < ActiveRecord::Base
     taxon_names = log_timer { scope.to_a }
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
-    # TODO restore when we bring back sphinx
+    # TODO search elasticsearch?
     # if taxa.blank?
-    #   begin
-    #     q, match_mode = Taxon.search_query(name)
-    #     search_results = Taxon.search(q,
-    #       :include => [:taxon_names, :photos],
-    #       :field_weights => {:name => 2},
-    #       :match_mode => match_mode,
-    #       :order => :observations_count,
-    #       :sort_mode => :desc
-    #     ).compact
-    #     taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
-    #     taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-    #   rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
-    #     return
-    #   end
+    #   ...
     # end
     sorted = Taxon.sort_by_ancestry(taxa.compact)
     return if sorted.blank?
@@ -1584,10 +1582,12 @@ class Taxon < ActiveRecord::Base
     return if scope.count == 0
     scope = scope.select("id, ancestry")
     scope.find_each do |t|
-      Taxon.where(id: t.id).update_all(observations_count: Observation.of(t).count)
+      Taxon.where(id: t.id).update_all(observations_count:
+        Observation.elastic_search(
+          where: { "taxon.ancestor_ids" => t.id }).total_entries)
     end
   end
-  
+
   # /Static #################################################################
   
 end

@@ -38,6 +38,7 @@ class Guide < ActiveRecord::Base
 
   before_validation :set_published_at
   
+  do_not_validate_attachment_file_type :ngz
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255
@@ -318,8 +319,8 @@ class Guide < ActiveRecord::Base
   end
 
   def generate_ngz_later
-    return if Delayed::Job.where("handler LIKE '%id: ''#{id}''%generate_ngz%'").exists?
-    delay(:priority => USER_INTEGRITY_PRIORITY).generate_ngz
+    delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::generate_ngz": id }).generate_ngz
   end
 
   def generate_ngz_cache_key
@@ -383,7 +384,7 @@ class Guide < ActiveRecord::Base
                   f.write(fr.read)
                 end
               end
-            rescue OpenURI::HTTPError => e
+            rescue Exception => e
               Rails.logger.error "[ERROR #{Time.now}] Failed to download #{thread_url}: #{e}"
               next
             end

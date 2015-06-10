@@ -146,12 +146,13 @@ class TaxonChangesController < ApplicationController
     end
     return unless load_user_content_info
     @counts = {}
+    input_taxon_ids = @taxon_change.input_taxa.map(&:id)
     @reflections.each do |reflection|
       @counts[reflection.name.to_s] = current_user.send(reflection.name).
-        where("#{reflection.table_name}.taxon_id IN (?)", @taxon_change.input_taxa).
+        where("#{reflection.table_name}.taxon_id IN (?)", input_taxon_ids).
         count
     end
-    @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.taxon_id IN (?)", @taxon_change.input_taxa).page(params[:page])
+    @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.taxon_id IN (?)", input_taxon_ids).page(params[:page])
   end
 
   def commit_records
@@ -171,7 +172,7 @@ class TaxonChangesController < ApplicationController
       end
       @records = [@record]
     elsif params[:record_ids]
-      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids])
+      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids]).to_a
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
         redirect_back_or_default(@taxon_change)

@@ -22,7 +22,9 @@ class ProjectUserInvitation < ActiveRecord::Base
   end
 
   def destroy_updates
-    Update.where(:resource_type => "ProjectUserInvitation", :resource_id => id).delete_all
+    Update.delete_and_purge(
+      resource_type: "ProjectUserInvitation",
+      resource_id: id)
   end
 
   def accepted?

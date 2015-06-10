@@ -22,7 +22,7 @@
 #obsbutton {width: 290px; text-align:center;}
 .update {position:relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; overflow:hidden;}
 .updateresource {width: 48px; position: absolute; text-align:center;left: 0; top:0;}
-.updateresource img {max-width: 48px;}
+.updateresource img, .updateresource img.square.photo {max-width: 48px;}
 .updateheader {padding-top: 5px;}
 .updatebody {margin-left: 56px;}
 .updateimage { width: 100px; float:left; margin-right: 10px;}
@@ -66,6 +66,15 @@
 #explore .observations.medium.grid .icon {
   width: 153px;
   height: 153px;
+}
+
+#updates .observations.grid .observation {margin: 0 5px 5px 0;}
+#updates .observations.grid .observation, 
+#updates .observations.grid .photos, 
+#updates .observations.grid .photos a, 
+#updates .observations.grid .icon {
+  width: 128px;
+  height: 128px;
 }
 
 #comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}

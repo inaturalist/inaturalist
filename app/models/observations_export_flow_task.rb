@@ -15,7 +15,14 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def must_have_primary_filter
-    unless params[:iconic_taxa] || params[:iconic_taxon_id] || params[:taxon_id] || params[:place_id] || params[:user_id] || params[:q] || params[:projects]
+    unless params[:iconic_taxa] || 
+           params[:iconic_taxon_id] || 
+           params[:taxon_id] || 
+           params[:place_id] || 
+           params[:user_id] || 
+           params[:q] || 
+           params[:projects] ||
+           params.keys.detect{|k| k =~ /^field:/}
       errors.add(:base, "You must specify a taxon, place, user, or search query")
     end
   end
@@ -144,6 +151,7 @@ class ObservationsExportFlowTask < FlowTask
       NOTIFICATION_PRIORITY
     end
     opts[:queue] = "slow" if count > 10000
+    opts[:unique_hash] = {'ObservationsExportFlowTask': id}
     opts
   end
 end

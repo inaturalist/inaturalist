@@ -314,7 +314,8 @@ module ApplicationHelper
   def user_image(user, options = {})
     user ||= User.new
     size = options.delete(:size)
-    style = "vertical-align:middle; #{options[:style]}"
+    style = options[:style]
+    css_class = "user_image #{options[:class]}"
     options[:alt] ||= user.login
     options[:title] ||= user.login
     url = if defined? root_url
@@ -322,11 +323,11 @@ module ApplicationHelper
     else
       url_join(CONFIG.site_url, user.icon.url(size || :mini))
     end
-    image_tag(url, options.merge(:style => style))
+    image_tag(url, options.merge(:style => style, :class => css_class))
   end
   
   def observation_image(observation, options = {})
-    style = "vertical-align:middle; #{options[:style]}"
+    style = options[:style]
     url = observation_image_url(observation, options)
     url ||= iconic_taxon_image_url(observation.iconic_taxon_id)
     image_tag(url, options.merge(:style => style))
@@ -446,6 +447,7 @@ module ApplicationHelper
   rescue RuntimeError => e
     raise e unless e.message =~ /error parsing fragment/
     Airbrake.notify(e, :request => request, :session => session)
+    Logstasher.write_exception(e, request: request, session: session)
     text.html_safe
   end
   
@@ -480,6 +482,21 @@ module ApplicationHelper
     tip_id = "tip_#{serial_id}"
     html = content_tag(:span, text, :class => "#{options[:class]} #{tip_id}_target helptip helptiptext", :rel => "##{tip_id}")
     html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
+    html
+  end
+
+  def popover(text, options = {}, &block)
+    tip_id = "tip_#{serial_id}"
+    options[:class] = "#{options[:class]} #{tip_id}_target"
+    options[:data] ||= {}
+    options[:data][:popover] ||= {}
+    options[:data][:popover][:content] = "##{tip_id}"
+    options[:data][:popover][:style] ||= {}
+    options[:data][:popover][:style][:classes] ||= ""
+    options[:data][:popover][:style][:classes] += " popovertip"
+    html = content_tag(:button, text, options)
+    # html += content_tag(:div, content_tag(:div, capture(&block), 'class': 'popovertip'), id: tip_id, style: "display:none")
+    html += content_tag(:div, capture(&block), id: tip_id, style: "display:none")
     html
   end
   
@@ -578,6 +595,7 @@ module ApplicationHelper
       "map-type" => options[:map_type],
       "zoom-level" => options[:zoom_level],
       "min-zoom" => options[:min_zoom],
+      "url-coords" => options[:url_coords] ? 'true' : nil,
       "disable-fullscreen" => options[:disable_fullscreen],
       "show-range" => options[:show_range] ? "true" : nil,
       "min-x" => options[:min_x],
@@ -589,14 +607,20 @@ module ApplicationHelper
       "observations" => observations_for_map_tag_attrs(options),
       "place-layer-label" => I18n.t("maps.overlays.place_boundary"),
       "taxon-range-layer-label" => I18n.t("maps.overlays.range"),
-      "taxon-places-layer-label" => I18n.t("maps.overlays.places"),
+      "taxon-places-layer-label" => I18n.t("maps.overlays.checklist_places"),
+      "taxon-places-layer-hover" => I18n.t("maps.overlays.checklist_places_description"),
       "taxon-observations-layer-label" => I18n.t("maps.overlays.observations"),
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
+      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description"),
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
-      "featured-layer-label" => I18n.t("maps.overlays.featured_observations")
+      "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
+      "control-position" => options[:control_position],
+      "elastic" => options[:elastic] ? 'true' : nil,
+      "elastic_params" => options[:elastic_params] ?
+        options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)
@@ -728,7 +752,7 @@ module ApplicationHelper
   end
 
   def iconic_taxon_color_for(taxon)
-    iconic_taxon_colors[taxon.iconic_taxon_id]
+    iconic_taxon_colors[taxon.iconic_taxon_id] || '#333333'
   end
 
   def iconic_taxon_colors
@@ -745,8 +769,7 @@ module ApplicationHelper
       Taxon::ICONIC_TAXA_BY_NAME['Fungi'].id => '#FF1493',
       Taxon::ICONIC_TAXA_BY_NAME['Plantae'].id => '#73AC13',
       Taxon::ICONIC_TAXA_BY_NAME['Protozoa'].id => '#691776',
-      Taxon::ICONIC_TAXA_BY_NAME['Chromista'].id => '#993300',
-      nil: '#333333'
+      Taxon::ICONIC_TAXA_BY_NAME['Chromista'].id => '#993300'
     }
   end
 
@@ -830,7 +853,6 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
@@ -848,19 +870,19 @@ module ApplicationHelper
     when "AssessmentSection"
       image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"
-      image_tag(asset_url("checklist-icon-color-32px.png"), options)
+      image_tag("checklist-icon-color-32px.png", options)
     when "Post"
       image_tag(asset_url(resource.user.icon.url(:thumb)), options)
     when "Place"
-      image_tag(asset_url("icon-maps.png"), options)
+      image_tag("icon-maps.png", options)
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
       image_tag(asset_url("#{resource.class.name.underscore}-aaaaaa-48px.png"), options)
     when "ObservationField"
-      image_tag(asset_url("notebook-icon-color-155px-shadow.jpg"), options)
+      image_tag("notebook-icon-color-155px-shadow.jpg", options)
     else
-      image_tag(asset_url("logo-cccccc-20px.png"), options)
+      image_tag("logo-cccccc-20px.png", options)
     end
   end
   
@@ -948,7 +970,11 @@ module ApplicationHelper
         else
           link_to(project.title, url_for_resource_with_host(project))
         end
-        t(:curators_changed_for_x_html, :x => title)
+        if update.notification = Update::YOUR_OBSERVATIONS_ADDED
+          t(:project_curators_added_some_of_your_observations_html, url: project_url(resource), project: project.title)
+        else
+          t(:curators_changed_for_x_html, :x => title)
+        end
       end
     when "ProjectUserInvitation"
       if options[:skip_links]
@@ -1083,8 +1109,13 @@ module ApplicationHelper
     end
   end
 
-  def cite(citation = nil, &block)
+  def cite(citation = nil, options = {}, &block)
     @_citations ||= []
+    if citation.is_a?(Hash)
+      options = citation
+      citation = nil
+    end
+    cite_tag = options[:tag] || :sup
     if citation.blank? && block_given?
       citation = capture(&block)
     end
@@ -1095,7 +1126,7 @@ module ApplicationHelper
       i = @_citations.index(c) + 1
       link_to(i, "#ref#{i}", :name => "cit#{i}")
     end
-    content_tag :sup, links.uniq.sort.join(',').html_safe
+    content_tag cite_tag, links.uniq.sort.join(',').html_safe
   end
 
   def references(options = {})

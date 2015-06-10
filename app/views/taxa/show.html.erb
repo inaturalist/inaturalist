@@ -236,14 +236,13 @@
           </strong>
 
           <%- if @listed_taxon.native? %>
-                <%= t(:to_).downcase %>
-              <%- elsif @listed_taxon.introduced? %>
-                <%= t(:in).downcase %>
-              <%- else %>
-                <%= t(:in_).downcase %>
-              <%- end %>
-
-          <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
+            <%= t(:to_).downcase %>
+          <%- elsif @listed_taxon.introduced? %>
+            <%= t(:in).downcase %>
+          <%- else %>
+            <%= t(:in_).downcase %>
+          <%- end %>
+          <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.display_name), @listed_taxon.place %>
           <span class="small">
             (<%= link_to t(:view_details), @listed_taxon %>)
           </span>
@@ -392,8 +391,7 @@
     </p>
 
     <p class="ui">
-      <%= link_to t(:flickr_invite_link_raquo).html_safe,
-        url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
+      <%= link_to raw("#{t(:invite_photos_from_other_sites)} &raquo;"), photo_inviter_url(taxon_id: @taxon.id) %>
     </p>
 
     <p class="ui">

@@ -2,6 +2,7 @@ module TaxonDescribers
   class Eol < Base
     def describe(taxon)
       pages = eol_service.search(taxon.name, :exact => true)
+      return if pages.blank?
       id = pages.at('entry/id').try(:content)
       return unless id
       page = eol_service.page(id, :text => 50, :subjects => "all", :details => true)

@@ -1,6 +1,7 @@
 # Messages for Basque (euskara)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Cgalindo
 # Author: Macofe
 # Author: Subi
 ---
@@ -80,6 +81,7 @@ eu:
   about_this_project: Proiektu honi buruz
   about_x: 'Honi buruz: %{x}'
   acc: Zehaztasuna (metroak)
+  account: Kontua
   accept: onartu
   accuracy: Zehaztasuna
   accuracy_meters: Zehaztasuna (metroak)
@@ -373,7 +375,6 @@ eu:
   assessment: balorazioa
   associations: Elkarteak
   at: 'hemen:'
-  at_: 'ordu honetan:'
   at_any_time_change: edozein lekutan (<span class="button">change</span>)
   at_time: 'hemen: %{time}'
   atom: Atom-a
@@ -663,10 +664,6 @@ eu:
   contain_all_descendants?: Egiaztapen-zerrenda honek hemen sortutako taxon honen
     ondorengo guztiak al ditu?
   contest: lehiaketa
-  contest_projects_description: '''Lehiaketa'' proiektuak sailkapen-taula azalduko
-    du parte-hartzaileen sailkapenarekin, behatutako aparteko espezie kopuruaren arabera
-    eta ''Behaketa-lehiaketa'' proiektuak, berriz, parte-hartzaileen sailkapeneko
-    liderren taulak azalduko ditu, behaketa kopuruan oinarrituta'
   contributions: ekarpenak
   contributions_from: 'Hauek ekarpenak:'
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
@@ -881,6 +878,7 @@ eu:
   email_addresses_description: Posta-helbideak komarekin bereizita, muga 30 egunetik
     60.
   email_addresses_to_receive_invites: Posta-helbideak gonbidapenak jasotzeko
+  email_settings: Postaren konfigurazioa
   embed: 'Txertatu:'
   embed_a_widget_for_this_taxon_on_website: Taxon honetarako widget-a txertatu zure
     webgunean »
@@ -1112,7 +1110,6 @@ eu:
   home: Hasiera
   home_faq: Maiz egiten diren galderak
   hybrid: hibridoa
-  i_something_i: <i>Zerbait...</i>
   icon: Ikonoa
   icon_size: Ikonoaren tamaina
   iconic_taxon: Ikonoaren taxonomia
@@ -1550,7 +1547,7 @@ eu:
   new_flag_for: 'Marka berria honetarako:'
   new_journal_posts: Artikulu berria egunkarian
   new_list: Zerrenda berria
-  new_members: Kide berriak...
+  new_members: Kide berriak
   new_message: Mezu berria
   new_observation_field: Behaketa-eremu berria
   new_observation_rules: Behaketa-arau berriak
@@ -2020,11 +2017,6 @@ eu:
     honetarako.
   please_add_this_observation_to: 'Mesedez, gehitu behaketa hau honi:'
   please_add_this_to_x_html: 'Gehitu hau honi: %{x}'
-  please_be_aware_project_curators: Gogoan izan proiektuko administrariek proiektuari
-    gehitutako kokapen pribatu edo ezkutuko kokapen oro ikusi ahal izango dutela.
-  please_be_aware_that_project_curators: Gogoan izan proiektuko administrariek proiektuari
-    gehitutako behaketen kokapen pribatu edo ezkutuko kokapen oro ikusi ahal izango
-    dutela.
   please_be_careful_particulary_when: Kontuz ibili, taxonak ezabatzean bereziki. Taxonak
     behaketak, identifikadoreak, zerrendatutako taxonak edo lotutako bestelakoak baditu,
   please_check_for_you_confirmation_email: Ongi etorri %{site_name}-(e)ra!  Berrikusi
@@ -2412,7 +2404,7 @@ eu:
   source_list:
     ubio: uBio
     catalogue_of_life: Bizitzako katalogoa
-    inaturalist: iNaturalist
+    inaturalist: NaturaLista
     new_zeland_organisms_register: Zeelanda Berriko erakundeen erregistroa
     nzbrn_birds: NZBRN Hegaztiak
     nzbrn_fungi: NZBRN Onddoak
@@ -2834,6 +2826,8 @@ eu:
     %{project} proiektura gonbidatu nahi du.'
   user_invited_your_x_to_a_project_html: '%{user}-(e)k proiektu batetara gonbidatu
     zuen bere %{x}'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> orain da %{project}-(e)ko
+    %{role}
   user_is_a_naturalist: '%{user} naturalista da!'
   user_s: '%{user}-(r)en %{model_name}'
   user_s_id: '%{user}-(r)en %{id}'
@@ -3036,8 +3030,6 @@ eu:
     hilabete honetan.'
   you_are_now_following_x: 'Honi jarraitzen ari zara: %{friend_user}.'
   you_are_now_role_for_project_html: <strong>Orain</strong> %{project}-(e)ko %{role}
-  user_is_now_role_for_project_html: <strong>%{user}</strong> orain da %{project}-(e)ko
-    %{role}
   you_are_already_a_member_of_this_project: Dagoeneko proiektuko kidea zara!
   you_are_no_longer_following_x: 'Dagoeneko ez zara honi jarraitzen ari: %{friend}.'
   you_are_subscribed_to: 'Hemen harpidetuta zaude:'

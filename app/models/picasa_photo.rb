@@ -1,16 +1,12 @@
 #encoding: utf-8
 class PicasaPhoto < Photo
-  
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   validates_presence_of :native_photo_id
   validate :user_owns_photo
   validate :licensed_if_no_user
   
   def user_owns_photo
     if self.user
-      unless self.user.picasa_identity && native_username == self.user.picasa_identity.picasa_user_id
+      unless self.user.picasa_identity && native_username == self.user.picasa_identity.provider_uid
         errors.add(:user, "must own the photo on Picasa.")
       end
     end
@@ -45,14 +41,19 @@ class PicasaPhoto < Photo
       latrads = observation.latitude.to_f * (Math::PI / 180)
       lonrads = observation.longitude.to_f * (Math::PI / 180)
       begin
-        places = Place.search(:geo => [latrads,lonrads], :order => "geodist asc", :limit => 5)
-        places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
+        places = Place.elastic_paginate(
+          per_page: 5,
+          sort: {
+            _geo_distance: {
+              location: [ observation.longitude.to_f, observation.latitude.to_f ],
+              unit: "km",
+              order: "asc" } } )
+        places = places.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
         places = places.sort_by{|p| p.bbox_area || 0}
         if place = places.first
           observation.place_guess = place.display_name
         end
-      rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::Search::StaleIdsException
-        # sphinx down for some reason
+      rescue Riddle::ConnectionError, Riddle::ResponseError
       end
     end
     
@@ -129,19 +130,21 @@ class PicasaPhoto < Photo
     # a PicasaIdentity from a passed in user, then we try to parse one out of 
     # the native ID (which should be a URL)
     picasa_identity = if options[:user]
-      picasa_identity = options[:user].picasa_identity
+      options[:user].picasa_identity
     elsif native_photo_id.is_a?(String) && matches = native_photo_id.match(/user\/(.+?)\//)
-      picasa_identity = PicasaIdentity.find_by_picasa_user_id(matches[1])
+      User.find_by_id(matches[1]).try(:picasa_identity)
     else
       nil
     end
     
     if picasa_identity
       picasa = Picasa.new(picasa_identity.token)
-      return picasa.get_url(native_photo_id, :kind => "photo,user", :thumbsize => RubyPicasa::Photo::VALID.join(','))
+      PicasaPhoto.picasa_request_with_refresh(picasa_identity) do
+        picasa.get_url(native_photo_id, :kind => "photo,user", :thumbsize => RubyPicasa::Photo::VALID.join(','))
+      end
+    else
+      nil
     end
-
-    nil
   end
   
   # Create a new Photo object from an API response.
@@ -196,10 +199,12 @@ class PicasaPhoto < Photo
     picasa_album_url = if options[:picasa_user_id]  
       "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
     end
-    album_data = picasa.album((picasa_album_url || picasa_album_id.to_s), 
-      :max_results => options[:max_results], 
-      :start_index => options[:start_index],
-      :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
+    album_data = PicasaPhoto.picasa_request_with_refresh(user.picasa_identity) do
+      picasa.album((picasa_album_url || picasa_album_id.to_s), 
+        :max_results => options[:max_results], 
+        :start_index => options[:start_index],
+        :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
+    end
     photos = if album_data
       album_data.photos.map do |pp|
         PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
@@ -228,7 +233,19 @@ class PicasaPhoto < Photo
       <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#comment"/>
     </entry>
     EOF
-    picasa.post(picasa_photo_url, post_data)
+    PicasaPhoto.picasa_request_with_refresh(user.picasa_identity) do
+      picasa.post(picasa_photo_url, post_data)
+    end
+  end
+
+  def self.picasa_request_with_refresh(picasa_identity)
+    begin
+      yield
+    rescue RubyPicasa::PicasaError => e
+      raise e unless e.message =~ /authentication/i
+      picasa_identity.refresh_access_token!
+      yield
+    end
   end
 
 end

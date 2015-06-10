@@ -10,13 +10,23 @@ class EolService
     @debug = options[:debug]
   end
 
+  def api_endpoint
+    if @api_endpoint.blank? || @api_endpoint.new_record? 
+      @api_endpoint = ApiEndpoint.find_or_create_by!(
+        title: "EOL Service",
+        documentation_url: "http://eol.org/api",
+        base_url: "http://eol.org/api/",
+        cache_hours: 720)
+    end
+    @api_endpoint
+  end
+
   def request(method, *args)
     request_uri = get_uri(method, *args)
     begin
-      timed_out = Timeout::timeout(@timeout) do
-        Rails.logger.debug "[DEBUG] #{self.class.name} getting #{request_uri}"
-        Nokogiri::XML(open(request_uri))
-      end
+      MetaService.fetch_request_uri(request_uri: request_uri, timeout: @timeout,
+        api_endpoint: api_endpoint,
+        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}")
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
@@ -42,7 +52,7 @@ class EolService
   def get_uri(method, *args)
     arg = args.first unless args.first.is_a?(Hash)
     params = args.detect{|a| a.is_a?(Hash)} || {}
-    uri = "http://eol.org/api/#{method}/#{SERVICE_VERSION}"
+    uri = "#{ api_endpoint.base_url }#{ method }/#{ SERVICE_VERSION }"
     uri += "/#{arg}" if arg
     uri += ".xml"
     unless params.blank?

@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse ]
+  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
@@ -123,7 +123,8 @@ class ProjectsController < ApplicationController
                                 :quality_metrics,
                                 :stored_preferences,
                                 :taxon,
-                                { :observation_photos => :photo },
+                                :flags,
+                                { :photos => :flags },
                                 { :user => :stored_preferences } ] },
             { :curator_identification => [:user, :taxon] }
           ]).
@@ -148,12 +149,12 @@ class ProjectsController < ApplicationController
           map(&:provider_uid)
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
-        @observations_url = if @project.project_type == 'bioblitz'
-          @observations_url_params = @project.observations_url_params
-          observations_url(@observations_url_params)
+        @observations_url_params = if @project.project_type == Project::BIOBLITZ_TYPE
+          @project.observations_url_params
         else
-          project_observations_url(@project, :per_page => 24)
+          {projects: [@project.slug]}
         end
+        @observations_url = observations_url(@observations_url_params)
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
@@ -161,6 +162,8 @@ class ProjectsController < ApplicationController
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"
+        elsif params[:test]
+          render action: 'show_test', layout: 'bootstrap'
         end
       end
       
@@ -445,7 +448,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project_user = @project.project_users.create(:user => current_user)
+    @project_user = @project.project_users.create((params[:project_user] || {}).merge(user: current_user))
     unless @observation
       if @project_user.valid?
         respond_to_join(:notice => t(:welcome_to_x_project, :project => @project.title))
@@ -464,7 +467,7 @@ class ProjectsController < ApplicationController
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
     unless @project_observation.valid?
       respond_to_join(:dest => @observation,
-        :error => t(:there_were_problems_adding_your_observation_to_this_project, :project_observation => @project_observation.errors.full_messages.to_sentence))
+        :error => t(:there_were_problems_adding_that_observation_to_this_project, :project_observation => @project_observation.errors.full_messages.to_sentence))
       return
     end
     
@@ -507,7 +510,11 @@ class ProjectsController < ApplicationController
     unless @project_user.role == nil
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_remove_curator(@project.id, @project_user.user.id)
     end
-    Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    if params[:keep] == 'revoke'
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).revoke_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    elsif !params[:keep].yesish?
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    end
     @project_user.destroy
     
     respond_to do |format|
@@ -521,19 +528,39 @@ class ProjectsController < ApplicationController
       end
     end
   end
+
+  def calendar
+    @projects = Project.where(project_type: Project::BIOBLITZ_TYPE).order("start_time ASC, end_time ASC").
+      where("end_time > ?", Time.now).joins(:place).where("places.id IS NOT NULL")
+    unless params[:place_id].blank?
+      @place = Place.find(params[:place_id]) rescue nil
+    end
+    @projects = @projects.in_place(@place) if @place
+    respond_to do |format|
+      format.html do
+        @projects = @projects.page(params[:page]).includes(:place)
+        @finished = Project.where(project_type: Project::BIOBLITZ_TYPE).order("end_time DESC, start_time ASC").where("end_time < ?", Time.now).page(1)
+        @finished = @finished.in_place(@place) if @place
+        render layout: 'bootstrap'
+      end
+      format.ics do
+        @projects = @projects.limit(500).includes(place: :user)
+      end
+    end
+  end
   
   def stats
     @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
     @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
     @unique_observer_stats = @project.project_observations.joins(:observation).
-      select("observations.user_id").
+      select("DISTINCT observations.user_id").
       group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
       count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
     @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
     
-    @headers = ['year/month', 'new users', 'new observations', 'unique observers']
+    @headers = [t(:year_month), t(:new_members), t(:new_observations), t(:unique_observers)]
     @data = []
     (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
       display_key = key.gsub(/\-(\d)$/, "-0\\1")
@@ -568,37 +595,6 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def invitations
-    scope = @project.observations_matching_rules
-    if @project.place && !@project.project_observation_rules.detect{|por| por.operator == "observed_in_place?"}
-      scope = scope.in_place(@project.place)
-    end
-    existing_scope = Observation.in_projects([@project])
-    invited_scope = Observation.joins(:project_invitations).where("project_invitations.project_id = ?", @project.id)
-
-    if params[:by] == "you"
-      scope = scope.by(current_user)
-      existing_scope = existing_scope.by(current_user)
-      invited_scope = invited_scope.by(current_user)
-    end
-
-    if params[:on_list] == "yes"
-      scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
-        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
-      existing_scope = existing_scope.where("observations.taxon_id = listed_taxa.taxon_id").
-        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
-      invited_scope = invited_scope.where("observations.taxon_id = listed_taxa.taxon_id").
-        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
-    end
-    
-    scope_sql = scope.to_sql
-    existing_scope_sql = existing_scope.to_sql
-    invited_scope_sql = invited_scope.to_sql
-
-    sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
-    @observations = Observation.paginate_by_sql(sql, :page => params[:page])
-  end
-  
   def add
     error_msg = nil
     unless @observation = Observation.find_by_id(params[:observation_id])
@@ -610,10 +606,10 @@ class ProjectsController < ApplicationController
       error_msg = t(:the_observation_was_already_added_to_that_project)
     end
 
-    @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    @project_observation = ProjectObservation.create(project: @project, observation: @observation, user: current_user)
     
     unless @project_observation.valid?
-      error_msg = t(:there_were_problems_adding_your_observation_to_this_project) + 
+      error_msg = t(:there_were_problems_adding_that_observation_to_this_project) + 
         @project_observation.errors.full_messages.to_sentence
     end
 
@@ -660,8 +656,8 @@ class ProjectsController < ApplicationController
     @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
     error_msg = if @project_observation.blank?
       t(:that_observation_hasnt_been_added_this_project)
-    elsif @project_observation.observation.user_id != current_user.id && (@project_user.blank? || !@project_user.is_curator?)
-      t(:you_cant_remove_other_peoples_observations)
+    elsif !@project_observation.removable_by?(current_user)
+      "you don't have permission to remove that observation"
     end
 
     unless error_msg.blank?
@@ -697,7 +693,7 @@ class ProjectsController < ApplicationController
     @errors = {}
     @project_observations = []
     @observations.each do |observation|
-      project_observation = ProjectObservation.create(:project => @project, :observation => observation)
+      project_observation = ProjectObservation.create(project: @project, observation: observation, user: current_user)
       if project_observation.valid?
         @project_observations << project_observation
       else
@@ -736,7 +732,7 @@ class ProjectsController < ApplicationController
       includes(:observation)
     
     @project_observations.each do |project_observation|
-      next unless project_observation.observation.user_id == current_user.id
+      next unless project_observation.removable_by?(current_user)
       project_observation.destroy
     end
     
@@ -803,9 +799,12 @@ class ProjectsController < ApplicationController
       @place = @site.place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      opts = {:page => params[:page]}
-      opts[:with] = {:place_ids => [@place.id]} if @place
-      @projects = Project.search(@q, opts)
+      search_wheres = { multi_match: {
+        query: @q,
+        operator: "and",
+        fields: [ :title, :description ] } }
+      search_wheres["place_ids"] = @place if @place
+      @projects = Project.elastic_paginate(where: search_wheres, page: params[:page])
     end
     respond_to do |format|
       format.html

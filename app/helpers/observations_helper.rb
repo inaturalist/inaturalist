@@ -56,6 +56,8 @@ module ObservationsHelper
     if !observation.place_guess.blank? && coordinates_viewable
       place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
         "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
+      elsif options[:place_guess_truncation]
+        observation.place_guess.truncate(options[:place_guess_truncation])
       else
         observation.place_guess
       end
@@ -91,6 +93,9 @@ module ObservationsHelper
       s += " #{@observed_on_day ? t(:on).downcase : t(:in).downcase} #{@observed_on}"
     elsif @d1 && @d2
       s += " #{t(:between).downcase} #{@d1} #{t :and} #{@d2}"
+    end
+    if @projects
+      s += " #{ t(:in, default: "in").downcase} #{commas_and(@projects.map{|p| link_to(p.title, p)})}"
     end
     s.html_safe
   end

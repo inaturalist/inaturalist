@@ -17,10 +17,14 @@ GIT
       rails_autolink (>= 1.0)
 
 GIT
-  remote: git://github.com/dwaite/gdata.git
-  revision: fae93bd449d44044dbd0d565946b6ba0e21cb772
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 2f2c0fb7a25ece68fd3a9eec7b9026848e66fa4f
   specs:
-    gdata (1.1.2)
+    elasticsearch-model (0.1.6)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.6)
 
 GIT
   remote: git://github.com/fnando/i18n-js.git
@@ -28,6 +32,17 @@ GIT
   specs:
     i18n-js (3.0.0.rc8)
       i18n (~> 0.6)
+
+GIT
+  remote: git://github.com/inaturalist/riparian.git
+  revision: 083846b15272cb8f4979d2bd331140fe868735cb
+  specs:
+    riparian (0.4.0)
+      activesupport (> 3.0.0)
+      delayed_job
+      paperclip
+      rails (> 3.0.0)
+      rdoc
 
 GIT
   remote: git://github.com/jrgifford/delayed_paperclip.git
@@ -74,17 +89,6 @@ GIT
       activesupport
 
 GIT
-  remote: git://github.com/kueda/riparian.git
-  revision: 36eba5f4d9a96b4f0a7fc91fd9ced55213380c09
-  specs:
-    riparian (0.4.0)
-      activesupport (> 3.0.0)
-      delayed_job
-      paperclip
-      rails (> 3.0.0)
-      rdoc
-
-GIT
   remote: git://github.com/kueda/xmp.git
   revision: 3bf755b906fc6d8edbde68a29f264108c0c4a4ae
   specs:
@@ -92,18 +96,17 @@ GIT
       nokogiri (~> 1.6.0)
 
 GIT
+  remote: git://github.com/pleary/gdata.git
+  revision: 85805f4f077357ceafce89c34073fa163944d7d4
+  specs:
+    gdata (1.1.2)
+
+GIT
   remote: git://github.com/rightscale/right_aws.git
   revision: f7669e0636c12b68798de332cf92f86e5092e022
   specs:
     right_aws (3.1.0)
       right_http_connection (>= 1.2.5)
-
-GIT
-  remote: https://github.com/37signals/mail_view.git
-  revision: 50831ad31c6f9042469a33dab1394bd2a4042fd8
-  specs:
-    mail_view (2.0.4)
-      tilt
 
 GIT
   remote: https://github.com/kueda/mobile-fu.git
@@ -118,16 +121,16 @@ GEM
   specs:
     RedCloth (4.2.9)
     aasm (4.0.8)
-    actionmailer (4.2.0)
-      actionpack (= 4.2.0)
-      actionview (= 4.2.0)
-      activejob (= 4.2.0)
+    actionmailer (4.2.1)
+      actionpack (= 4.2.1)
+      actionview (= 4.2.1)
+      activejob (= 4.2.1)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.0)
-      actionview (= 4.2.0)
-      activesupport (= 4.2.0)
-      rack (~> 1.6.0)
+    actionpack (4.2.1)
+      actionview (= 4.2.1)
+      activesupport (= 4.2.1)
+      rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
@@ -135,23 +138,23 @@ GEM
       actionpack (>= 4.0.0, < 5.0)
     actionpack-page_caching (1.0.2)
       actionpack (>= 4.0.0, < 5)
-    actionview (4.2.0)
-      activesupport (= 4.2.0)
+    actionview (4.2.1)
+      activesupport (= 4.2.1)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    activejob (4.2.0)
-      activesupport (= 4.2.0)
+    activejob (4.2.1)
+      activesupport (= 4.2.1)
       globalid (>= 0.3.0)
-    activemodel (4.2.0)
-      activesupport (= 4.2.0)
+    activemodel (4.2.1)
+      activesupport (= 4.2.1)
       builder (~> 3.1)
-    activerecord (4.2.0)
-      activemodel (= 4.2.0)
-      activesupport (= 4.2.0)
+    activerecord (4.2.1)
+      activemodel (= 4.2.1)
+      activesupport (= 4.2.1)
       arel (~> 6.0)
-    activesupport (4.2.0)
+    activesupport (4.2.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -223,7 +226,7 @@ GEM
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.5)
+    cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
     coderay (1.1.0)
@@ -261,6 +264,14 @@ GEM
     doorkeeper (2.1.0)
       railties (>= 3.1)
     dynamic_form (1.1.4)
+    elasticsearch (1.0.8)
+      elasticsearch-api (= 1.0.7)
+      elasticsearch-transport (= 1.0.7)
+    elasticsearch-api (1.0.7)
+      multi_json
+    elasticsearch-transport (1.0.7)
+      faraday
+      multi_json
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.6)
@@ -278,7 +289,7 @@ GEM
     geoplanet (0.2.7)
       json (>= 1.1.3)
       rest-client (>= 0.9)
-    globalid (0.3.0)
+    globalid (0.3.5)
       activesupport (>= 4.1.0)
     google-api-client (0.8.2)
       activesupport (>= 3.2)
@@ -312,6 +323,7 @@ GEM
     httpi (2.2.7)
       rack
     i18n (0.7.0)
+    icalendar (2.3.0)
     innertube (1.1.0)
     joiner (0.3.4)
       activerecord (>= 4.1.0)
@@ -319,7 +331,7 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.2)
+    json (1.8.3)
     jwt (1.2.1)
     koala (1.11.0)
       addressable
@@ -327,7 +339,7 @@ GEM
       multi_json
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.0.1)
+    loofah (2.0.2)
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
@@ -338,13 +350,13 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     metaclass (0.0.4)
     middleware (0.1.0)
-    mime-types (2.4.3)
+    mime-types (2.6.1)
     mimemagic (0.2.1)
     mini_portile (0.6.2)
-    minitest (5.5.1)
+    minitest (5.7.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.17)
@@ -396,14 +408,13 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
-    paperclip (3.4.2)
+    paperclip (4.2.1)
       activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
+      cocaine (~> 0.5.3)
       mime-types
     pg (0.18.1)
-    rack (1.6.0)
+    rack (1.6.1)
     rack-mobile-detect (0.4.0)
       rack
     rack-openid (1.3.1)
@@ -411,32 +422,32 @@ GEM
       ruby-openid (>= 2.1.8)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.0)
-      actionmailer (= 4.2.0)
-      actionpack (= 4.2.0)
-      actionview (= 4.2.0)
-      activejob (= 4.2.0)
-      activemodel (= 4.2.0)
-      activerecord (= 4.2.0)
-      activesupport (= 4.2.0)
+    rails (4.2.1)
+      actionmailer (= 4.2.1)
+      actionpack (= 4.2.1)
+      actionview (= 4.2.1)
+      activejob (= 4.2.1)
+      activemodel (= 4.2.1)
+      activerecord (= 4.2.1)
+      activesupport (= 4.2.1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.0)
+      railties (= 4.2.1)
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.5)
+    rails-dom-testing (1.0.6)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.1)
+    rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
-    railties (4.2.0)
-      actionpack (= 4.2.0)
-      activesupport (= 4.2.0)
+    railties (4.2.1)
+      actionpack (= 4.2.1)
+      activesupport (= 4.2.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
@@ -451,6 +462,8 @@ GEM
     rgeo (0.3.20)
     rgeo-activerecord (2.0.0)
       activerecord (~> 4.2)
+      rgeo (~> 0.3)
+    rgeo-geojson (0.3.1)
       rgeo (~> 0.3)
     riddle (1.5.11)
     right_http_connection (1.5.0)
@@ -517,7 +530,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.2.4)
+    sprockets-rails (2.3.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -539,7 +552,7 @@ GEM
       middleware (>= 0.1.0)
       riddle (>= 1.5.11)
     thor (0.19.1)
-    thread_safe (0.3.4)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     trollop (2.1.1)
     ts-delayed-delta (2.0.2)
@@ -561,6 +574,7 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    useragent (0.13.3)
     utf8-cleaner (0.0.9)
     uuid (2.3.7)
       macaddr (~> 1.0)
@@ -622,6 +636,8 @@ DEPENDENCIES
   diffy
   doorkeeper
   dynamic_form
+  elasticsearch-model!
+  elasticsearch-rails!
   exifr
   faker
   flickraw (~> 0.9.8)!
@@ -634,12 +650,12 @@ DEPENDENCIES
   haml
   htmlentities
   i18n-js!
+  icalendar
   irwi!
   jquery-rails
   json
   koala
   machinist
-  mail_view!
   mobile-fu!
   mocha
   mysql2 (~> 0.3.17)
@@ -653,7 +669,7 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud
   omniauth-twitter
-  paperclip (= 3.4.2)
+  paperclip (= 4.2.1)
   pg
   preferences!
   rack-google-analytics!
@@ -662,6 +678,7 @@ DEPENDENCIES
   rakismet
   rest-client
   rgeo
+  rgeo-geojson
   right_aws!
   right_http_connection
   rinku
@@ -673,14 +690,15 @@ DEPENDENCIES
   savon
   simplecov
   soundcloud
+  sprockets (~> 2.8)
   statsd-ruby
   thin (~> 1.6.3)
-  thinking-sphinx (~> 3.1)
   translate-rails3!
   trollop
   ts-delayed-delta (~> 2.0.2)
   twitter
   uglifier
+  useragent
   utf8-cleaner
   watu_table_builder
   whenever
@@ -689,3 +707,6 @@ DEPENDENCIES
   xmp!
   ya2yaml
   yui-compressor
+
+BUNDLED WITH
+   1.10.3

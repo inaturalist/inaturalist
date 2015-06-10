@@ -4,11 +4,9 @@ class AddUniqueNameToTaxa < ActiveRecord::Migration
     add_index :taxa, :unique_name, :unique => true
     
     puts "Setting unique_name for all taxa.  This will take a while..."
-    ThinkingSphinx::Deltas.suspend!
     Taxon.find_each(:include => :taxon_names) do |taxon|
       taxon.update_unique_name(:force => true)
     end
-    ThinkingSphinx::Deltas.resume!
   end
 
   def self.down

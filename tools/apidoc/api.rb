@@ -446,7 +446,7 @@ EOT
         observation field values, 'observation_photos' returns information
         about the photos' relationship with the observation, like their order.
       EOT
-      values %w(fields projects)
+      values %w(fields identifications projects)
     end
   end
 

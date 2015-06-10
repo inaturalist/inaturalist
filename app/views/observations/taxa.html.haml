@@ -24,7 +24,13 @@
     .row-fluid
       .span12
         %ul.taxon_links.unstyled
-          - taxonomic_taxon_list(@arranged_taxa, :ul_class => "plain") do |taxon, children|
-            .taxonrow{:class => children && children.size > 0 ? "faded" : ""}
-              = render "shared/taxon", :taxon => taxon, :link_url => taxon_path(taxon)
-              = link_to t(:view_observations), observations_url(request.query_parameters.merge(:taxon_id => taxon.id)), :class => "observations_link"
+          - if params[:order]
+            - @taxa.each do |taxon|
+              .taxonrow
+                = render "shared/taxon", :taxon => taxon, :link_url => taxon_path(taxon)
+                = link_to t(:view_observations), observations_url(request.query_parameters.merge(:taxon_id => taxon.id)), :class => "observations_link"
+          - else
+            - taxonomic_taxon_list(@arranged_taxa, :ul_class => "plain") do |taxon, children|
+              .taxonrow{:class => children && children.size > 0 ? "faded" : ""}
+                = render "shared/taxon", :taxon => taxon, :link_url => taxon_path(taxon)
+                = link_to t(:view_observations), observations_url(request.query_parameters.merge(:taxon_id => taxon.id)), :class => "observations_link"

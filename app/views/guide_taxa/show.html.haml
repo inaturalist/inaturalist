@@ -30,6 +30,10 @@
     }
     .imgmodal.zoomed {overflow:hidden;}
     #reuse_guide_taxon_dialog img {max-height: 30px;}
+    #photos .guide_photo {position: relative; margin-right: 5px; display:inline-block;}
+    #photos .guide_photo img {cursor: zoom-in;}
+    #photos .lowerright a {color:#ddd; display:inline-block; width:1em; height:1em;}
+    #photos .guide_photo:hover .lowerright a {color:white;}
 = content_for :extrajs do
   :javascript
     var GUIDE_TAXON = #{@guide_taxon.to_json(:only => [:id, :guide_id])}
@@ -61,19 +65,28 @@
 
   #photos.row-fluid.stacked
     - for guide_photo in @guide_taxon.guide_photos.sort_by(&:position)
-      = image_tag guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
-      .imgmodal.modal.fade.hide{:role => "dialog", "aria-hidden" => "true", :id => dom_id(guide_photo, "modal")}
-        = image_tag image_url(guide_photo.photo.try_methods(:large_url, :original_url, :medium_url))
-        .controls
-          %button.close{:type => "button", "data-dismiss" => "modal"} ×
-        .footer
-          .caption
-            = guide_photo.description
-            %small.attribution.quiet
+      .inlineblock.guide_photo
+        = image_tag guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
+        .lowerright
+          = cite(tag: :small) do
+            - if guide_photo.native_page_url.blank?
               = guide_photo.attribution
-              - unless guide_photo.native_page_url.blank?
-                = surround '(', ')' do
-                  = link_to t(:link, :default => "link").downcase, guide_photo.native_page_url
+            - else
+              = succeed ',' do
+                = guide_photo.attribution
+              = link_to(guide_photo.native_page_url, guide_photo.native_page_url)
+        .imgmodal.modal.fade.hide{:role => "dialog", "aria-hidden" => "true", :id => dom_id(guide_photo, "modal")}
+          = image_tag image_url(guide_photo.photo.try_methods(:large_url, :original_url, :medium_url))
+          .controls
+            %button.close{:type => "button", "data-dismiss" => "modal"} ×
+          .footer
+            .caption
+              = guide_photo.description
+              .small.attribution
+                = guide_photo.attribution
+                - unless guide_photo.native_page_url.blank?
+                  = surround '(', ')' do
+                    = link_to t(:link, :default => "link").downcase, guide_photo.native_page_url
   .row-fluid
     .span8
       - for s in @guide_taxon.guide_sections.sort_by{|gt| gt.position.to_i}
@@ -86,7 +99,7 @@
               = succeed ',' do
                 = s.attribution
               = link_to(s.source_url, s.source_url)
-        = formatted_user_text s.description
+        = formatted_user_text s.description, compact: true
       - unless @guide_taxon.guide_sections.blank?
         %h3=t :sources_and_credits
         = references
@@ -116,11 +129,22 @@
         %h3
           = SITE_NAME_SHORT
           =t :map
-        .taxonmap.stacked{setup_map_tag_attrs(                                               |
-          taxon_layers: [ { taxon: @guide_taxon.taxon, ranges: true, observations: true } ], |
-          place_layers: [ { place: @guide.place } ],                                         |
-          latitude: @guide.latitude, longitude: @guide.longitude,                            |
-          map_type: @guide.map_type, zoom_level: @guide.zoom_level) }                        |
+        :ruby
+          a = {
+            taxon_layers: [ {
+              taxon: @guide_taxon.taxon, 
+              ranges: true, 
+              observations: true,
+              places: { disabled: true },
+              gbif: { disabled: true }
+            } ],
+            place_layers: [ { 
+              place: @guide.place
+            } ],
+            latitude: @guide.latitude, longitude: @guide.longitude,
+            map_type: @guide.map_type, zoom_level: @guide.zoom_level
+          }
+        .taxonmap.stacked{setup_map_tag_attrs(a)}
       - unless @machine_tags.blank?
         %table.table.table-bordered.upstacked
           %tbody

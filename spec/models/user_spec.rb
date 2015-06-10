@@ -14,6 +14,10 @@ bad_logins = [
 ]
 
 describe User do
+  before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
+  end
+
   describe 'creation' do
     before do
       @user = nil
@@ -278,6 +282,7 @@ describe User do
 
   describe "sane_destroy" do
     before(:each) do
+      enable_elastic_indexing([ Observation, Place, Update ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -287,6 +292,7 @@ describe User do
         end
       end
     end
+    after(:each) { disable_elastic_indexing([ Observation, Place, Update ]) }
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -386,7 +392,7 @@ describe User do
       m = without_delay do
         ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
       end
-      Update.delete_all
+      Update.destroy_all
       old_count = Update.count
       start = Time.now
       without_delay { @user.sane_destroy }
@@ -464,6 +470,9 @@ describe User do
   end
   
   describe "licenses" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should update existing observations if requested" do
       u = User.make!
       o = Observation.make!(:user => u)
@@ -511,8 +520,10 @@ describe User, "merge" do
   before(:each) do
     @keeper = User.make!
     @reject = User.make!
+    enable_elastic_indexing( Observation )
   end
-  
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   it "should move observations" do
     o = Observation.make!(:user => @reject)
     without_delay do
@@ -625,5 +636,31 @@ describe User, "updating" do
         expect(u).not_to be_valid
       end
     end
+  end
+end
+
+describe User, "active_ids" do
+  it "should calculate active users across several classes" do
+    User.active_ids.length.should == 0
+    Identification.count.should == 0
+    observation = Observation.make!
+    # observations are made with identifications, so we'll start fresh
+    Identification.delete_all
+    Identification.make!(observation: observation)
+    Identification.count.should == 1
+    Comment.make!(parent: observation)
+    Post.make!(parent: observation)
+    User.active_ids.length.should == 4
+  end
+
+  it "should count the same user only once" do
+    User.active_ids.length.should == 0
+    user = User.make!
+    observation = Observation.make!(user: user)
+    Identification.delete_all
+    Identification.make!(observation: observation, user: user)
+    Comment.make!(parent: observation, user: user)
+    Post.make!(parent: observation, user: user)
+    User.active_ids.length.should == 1
   end
 end

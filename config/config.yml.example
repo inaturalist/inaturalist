@@ -91,7 +91,9 @@ base: &base
     #     This is a custom footer
 
     # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
-    # home_page_wiki_path: naturalista+home
+    # home_page_wiki_path: naturewatch-home
+    # home_page_wiki_path_by_locale:
+    #   es: naturalista+home
 
     # filter observations in public places to ones contributed by this site
     # this filters by the uri column in observations, which in turns uses the
@@ -151,6 +153,7 @@ base: &base
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
         tilestache: 'http://localhost:8080'
+        windshaft: http://localhost:4000
 
     google_webmaster:
         verification: abiglongkey
@@ -222,6 +225,13 @@ base: &base
     #     username: yourusername
     #     password: yourpassword
     #     notification_address: you@you.com
+    
+    # Elastic search for search indexing, other performance improvements
+    # ES also runs a syncing service on port 9300 by default. You want to use 
+    # the API port. See 
+    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
+    # for more details
+    elasticsearch_host: 127.0.0.1:9200
 
 development:
     <<: *base

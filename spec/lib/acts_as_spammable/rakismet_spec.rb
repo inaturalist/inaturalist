@@ -22,16 +22,16 @@ describe Rakismet, "ActiveRecord" do
     @spam_user = User.make!(name: "viagra-test-123")
     # with Rakismet endabled, spam? gets called and a flag is made
     Rakismet.disabled = false
-    o = make_spammy_observation
-    expect(o.flagged_as_spam?).to be true
+    g = make_spammy_guide
+    expect(g.flagged_as_spam?).to be true
     # with Rakismet disabled, spam? won't get called and thus no flag is made
     Rakismet.disabled = true
-    o = make_spammy_observation
-    expect(o.flagged_as_spam?).to be false
+    g = make_spammy_guide
+    expect(g.flagged_as_spam?).to be false
   end
 
 end
 
-def make_spammy_observation
-  Observation.make!(description: "anything")
+def make_spammy_guide
+  Guide.make!(description: "anything")
 end

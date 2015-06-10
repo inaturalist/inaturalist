@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   id_param_pattern = %r(\d+([\w\-\%]*))
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
-  
+
+  get "/set_locale", to: "application#set_locale", as: :set_locale
+
   resources :guide_sections do
     collection do
       get :import
@@ -105,7 +107,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
-  get '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect, :method => 'delete'
+  delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'
   get "/eol/photo_fields" => "eol#photo_fields"
@@ -115,7 +117,7 @@ Rails.application.routes.draw do
   get '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
   get '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
 
-  get "/photos/inviter" => "photos#inviter", :as => :photo_inviter
+  match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
   resources :announcements
   get '/users/dashboard' => 'users#dashboard', :as => :dashboard
   get '/users/curation' => 'users#curation', :as => :curate_users
@@ -136,6 +138,7 @@ Rails.application.routes.draw do
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
+  post 'users/set_spammer' => 'users#set_spammer'
   post 'users/:id/set_spammer' => 'users#set_spammer', :as => :set_spammer, :constraints => { :id => /\d+/ }
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
@@ -146,7 +149,8 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  delete 'picasa/unlink' => 'picasa#unlink', :method => :delete
+  delete 'picasa/unlink' => 'picasa#unlink'
+  post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
@@ -165,7 +169,6 @@ Rails.application.routes.draw do
       get :accumulation
       get :phylogram
       get :export
-      post :email_export
       get :map
     end
     member do
@@ -184,6 +187,7 @@ Rails.application.routes.draw do
   get 'observations/import' => 'observations#import', :as => :import_observations
   match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos, via: [ :get, :post ]
   post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
+  post 'observations/email_export/:id' => 'observations#email_export', :as => :email_export
   get 'observations/id_please' => 'observations#id_please', :as => :id_please
   get 'observations/selector' => 'observations#selector', :as => :observation_selector
   get '/observations/curation' => 'observations#curation', :as => :curate_observations
@@ -201,8 +205,10 @@ Rails.application.routes.draw do
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
+  
+
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [ :get, :post ]
-  get 'projects/:id/leave' => 'projects#leave', :as => :leave_project
+  delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
   post 'projects/:id/add' => 'projects#add', :as => :add_project_observation
   match 'projects/:id/remove' => 'projects#remove', :as => :remove_project_observation, :via => [:post, :delete]
   post 'projects/:id/add_batch' => 'projects#add_batch', :as => :add_project_observation_batch
@@ -244,15 +250,20 @@ Rails.application.routes.draw do
       post :add_matching, :as => :add_matching_to
       get :preview_matching, :as => :preview_matching_for
       get :invite, :as => :invite_to
+      get :confirm_leave
+    end
+    collection do
+      get :calendar
     end
     resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end
 
   resources :project_assets, :except => [:index, :show]
-  resources :project_observations, :only => [:create, :destroy]
+  resources :project_observations, :only => [:create, :destroy, :update]
   resources :custom_projects, :except => [:index, :show]
   resources :project_user_invitations, :only => [:create, :destroy]
+  resources :project_users, only: [:update]
 
   get 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   get 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
@@ -283,13 +294,13 @@ Rails.application.routes.draw do
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/reload_and_refresh_now' => 'lists#reload_and_refresh_now', :as => :list_reload_and_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/refresh_now_without_reload' => 'lists#refresh_now_without_reload', :as => :list_refresh_now_without_reload, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/reload_and_refresh_now' => 'lists#reload_and_refresh_now', :as => :list_reload_and_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/refresh_now_without_reload' => 'lists#refresh_now_without_reload', :as => :list_refresh_now_without_reload, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
   resources :comments do
     resources :flags
   end
@@ -397,10 +408,16 @@ Rails.application.routes.draw do
       post :merge
     end
   end
-  
-  # get '/guide' => 'places#guide', :as => :guide
+
   resources :flags
-  get 'admin' => 'admin#index', :as => :admin
+  resource :admin, only: :index, controller: :admin do
+    resource :stats, controller: "admin/stats" do
+      collection do
+        get :index
+      end
+    end
+  end
+
   get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
   delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
@@ -434,15 +451,16 @@ Rails.application.routes.draw do
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
   resources :conservation_statuses, :only => [:autocomplete]
-  
-  if Rails.env.development?
-    mount EmailerPreview => 'mail_view'
-  end
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
 
+  # Hack to enable mail previews. You could also remove get
+  # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
+  # could also fix that other stuff, if you're weren't a horrible person, but
+  # you are.
+  get '/rails/mailers/*path' => 'rails/mailers#preview'
   get '/:controller(/:action(/:id))'
 
   match '/404', to: 'errors#error_404', via: :all

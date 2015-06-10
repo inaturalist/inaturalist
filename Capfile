@@ -9,7 +9,6 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/passenger'
 require 'whenever/capistrano'
-require 'thinking_sphinx/capistrano'
 require 'capistrano/delayed-job'
 
 # Load custom tasks from `lib/capistrano/tasks' if you have any defined

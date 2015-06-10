@@ -5,7 +5,7 @@
   end
   hide_buttons ||= false
   show_user_field ||= false
-  show_project_field ||= false
+  show_project_field ||= !@projects.blank?
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -66,7 +66,7 @@
     <nobr>
       <strong><%=t :identifications %></strong>
       <% for state in %w"any most_agree some_agree most_disagree" %>
-        <% if @identifications == state %>
+        <% if @identifications == state || (state == "any" && @identifications.nil?) %>
           <%= radio_button_tag :identifications, state, :checked => 'checked' %>
         <% else %>
           <%= radio_button_tag :identifications, state %>
@@ -77,7 +77,8 @@
     
     <nobr>
       <strong><%=t :captive_cultivated %></strong>
-      <input type="radio" name="captive" value="" id="any_captive_checkbox" <% unless @captive == nil %>checked="checked"<% end %>>
+      <input type="radio" name="captive" value="" id="any_captive_checkbox" <%
+        unless @captive === true || @captive === false %>checked="checked"<% end %>>
       <label for="any_captive_checkbox"><%= t(:any, :default => "any").downcase %></label>
       <input type="radio" name="captive" value="true" id="captive_checkbox" <% if @captive == true %>checked="checked"<% end %>>
       <label for="captive_checkbox"><%= t(:yes, :default => "yes").downcase %></label>
@@ -236,14 +237,16 @@
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">
     <div id="ofv_filters_label" class="label">
-      <strong><%=t :fields %></strong>
+      <strong><%= t(:fields, default: 'Fields').capitalize %></strong>
     </div>
     <div class="left">
       <% for k,v in @ofv_params %>
         <span class="ofv">
           <%- field, value = v[:observation_field], v[:value] -%>
-          <label><%= field.name %>=<%= value %></label>
-          <%= hidden_field_tag "field:#{field.normalized_name}", value %>
+          <label>
+            <%= field.name %>=<%= value %>
+          </label>
+          <%= hidden_field_tag "field:#{field.normalized_name(escape: true)}", value %>
           <%= link_to_function "&times;".html_safe, "$(this).parents('.ofv:first').fadeOut(function(){$(this).remove()})" %>
         </span>
       <% end %>
@@ -319,6 +322,17 @@
   </div>
 <% end -%>
 
+<% if @not_in_project -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :not_in_project %></strong></div>
+    <div class="left">
+      <input type="text" name="not_in_project" id="not_in_project_input" value="<%= @not_in_project.try(:slug) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :project_id_or_url_slug %></div>
+    </div>
+  </div>
+<% end -%>
+
 <input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="d1" id="d1" value="<%= @d1 %>"/>
@@ -341,7 +355,7 @@
 <% end -%>
 
 <% unless hide_buttons -%>
-  <div class="inline buttonrow">
+  <div class="inline buttonrow upstacked">
     <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
   </div>
 <% end -%>

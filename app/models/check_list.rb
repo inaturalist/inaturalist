@@ -129,35 +129,16 @@ class CheckList < List
     end
   end
   
-  #For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
-  def cache_columns_query_for(lt)
+  # For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
+  def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
-    sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
-    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
-    <<-SQL
-      SELECT
-        min(CASE WHEN quality_grade = 'research' THEN o.id END) AS first_observation_id,
-        max(
-          CASE WHEN quality_grade = 'research'
-          THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar)
-          END
-        ) AS last_observation,
-        count(*),
-        (#{sql_key}) AS key
-      FROM
-        observations o
-          LEFT OUTER JOIN taxa t ON t.id = o.taxon_id 
-          JOIN place_geometries pg ON pg.place_id = #{lt.place_id}
-      WHERE
-        ST_Intersects(pg.geom, o.private_geom) AND 
-        (
-          o.taxon_id = #{lt.taxon_id} OR 
-          t.ancestry = '#{ancestry_clause}' OR
-          t.ancestry LIKE '#{ancestry_clause}/%'
-        )
-      GROUP BY #{sql_key}
-    SQL
+    { search_params: {
+        where: {
+          "taxon.ancestor_ids": lt.taxon_id,
+          place_ids: lt.place } },
+      earliest_sort_field: "id",
+      range_wheres: { quality_grade: :research } }
   end
   
   # not sure why I originally added this.  Doesn't make sense for taxa on non-comprehensive list 
@@ -293,9 +274,10 @@ class CheckList < List
     unless listed_taxa.blank?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        unless Delayed::Job.where("handler LIKE '%CheckList%refresh_listed_taxon% #{lt.id}\n%'").exists?
-          CheckList.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").refresh_listed_taxon(lt.id, options)
-        end
+        CheckList.delay(priority: INTEGRITY_PRIORITY,
+          run_at: 1.hour.from_now, queue: "slow",
+          unique_hash: { "CheckList::refresh_listed_taxon": lt.id }).
+          refresh_listed_taxon(lt.id, options)
       end
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?

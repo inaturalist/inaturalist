@@ -1,9 +1,6 @@
 #encoding: utf-8
 class FacebookPhoto < Photo
   
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   validates_presence_of :native_photo_id
   validate :owned_by_user?
 

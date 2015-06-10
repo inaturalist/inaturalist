@@ -5,5 +5,5 @@
     <%= [paginator.offset + paginator.per_page, paginator.total_entries].min %> <%= t :of %>
   <% end -%>
   <span class="count"><%= number_with_delimiter paginator.total_entries %></span>
-  <%= t(:results).downcase %>
+  <%= t(:results).downcase if paginator.total_pages == 1 %>
 </span>

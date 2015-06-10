@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
   preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  PROJECT_ADDITION_BY_ANY = "any"
+  PROJECT_ADDITION_BY_JOINED = "joined"
+  PROJECT_ADDITION_BY_NONE = "none"
+  preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
+  preference :location_details, :boolean, default: false
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -55,7 +60,7 @@ class User < ActiveRecord::Base
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
-  has_one  :picasa_identity, :dependent => :delete
+  # has_one  :picasa_identity, :dependent => :delete
   has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   has_many :deleted_observations
@@ -112,6 +117,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
   has_many :flow_tasks
+  has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
   belongs_to :place, :inverse_of => :users
 
@@ -239,17 +245,8 @@ class User < ActiveRecord::Base
   # add a provider_authorization to this user.  
   # auth_info is the omniauth info from rack.
   def add_provider_auth(auth_info)
-    provider_auth_info = {
-      :provider_name => auth_info['provider'], 
-      :provider_uid => auth_info['uid']
-    }
-    unless auth_info["credentials"].blank? # open_id (google, yahoo, etc) doesn't provide a token
-      provider_auth_info.merge!(
-        :token => auth_info["credentials"]["token"],
-        :secret => auth_info["credentials"]["secret"]
-      ) 
-    end
-    pa = self.provider_authorizations.build(provider_auth_info) 
+    pa = self.provider_authorizations.build
+    pa.assign_auth_info(auth_info)
     pa.auth_info = auth_info
     pa.save
     pa
@@ -318,8 +315,8 @@ class User < ActiveRecord::Base
   end
   
   def picasa_client
-    return nil unless picasa_identity
-    @picasa_client ||= Picasa.new(self.picasa_identity.token)
+    return nil unless (pa = has_provider_auth('google'))
+    @picasa_client ||= Picasa.new(pa.token)
   end
 
   # returns a koala object to make (authenticated) facebook api calls
@@ -337,6 +334,10 @@ class User < ActiveRecord::Base
 
   def facebook_token
     facebook_identity.try(:token)
+  end
+
+  def picasa_identity
+    @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
   # returns a Twitter object to make (authenticated) api calls
@@ -580,7 +581,7 @@ class User < ActiveRecord::Base
     true
   end
 
-  def generate_csv(path, columns)
+  def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
       select("DISTINCT observation_fields.name").
@@ -608,6 +609,22 @@ class User < ActiveRecord::Base
     true
   end
 
+  def recent_notifications(options={})
+    options[:filters] ||= [ ]
+    options[:wheres] ||= { }
+    options[:per_page] ||= 10
+    if options[:unviewed]
+      options[:filters] << { not: { exists: { field: :viewed_at } } }
+    elsif options[:viewed]
+      options[:filters] << { range: { viewed_at: { gt: 1.day.ago } } }
+    end
+    Update.elastic_paginate(
+      where: options[:wheres].merge({ subscriber_id: id }),
+      filters: options[:filters],
+      per_page: options[:per_page],
+      sort: { id: :desc })
+  end
+
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
@@ -617,16 +634,35 @@ class User < ActiveRecord::Base
     }
   end
 
+  def self.active_ids(at_time = Time.now)
+    date_range = (at_time - 30.days)..at_time
+    classes = [ Identification, Observation, Comment, Post ]
+    # get the unique user_ids that created instances of any of these
+    # classes within the last 30 days, then get the union (with .inject(:|))
+    # of the array of arrays.
+    user_ids = classes.collect{ |klass|
+      klass.select("DISTINCT(user_id)").where(created_at: date_range).
+        collect{ |i| i.user_id }
+    }.inject(:|)
+  end
+
   def self.header_cache_key_for(user, options = {})
     user_id = user.is_a?(User) ? user.id : user
     user_id ||= "signed_on"
     site_name = options[:site].try(:name) || options[:site_name]
     site_name ||= user.site.try(:name) if user.is_a?(User)
-    "header_cache_key_for_#{user_id}_on_#{site_name}"
+    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}"
   end
 
   def to_plain_s
     "User #{login}"
+  end
+
+  def as_indexed_json(options={})
+    {
+      id: id,
+      login: login
+    }
   end
 
 end

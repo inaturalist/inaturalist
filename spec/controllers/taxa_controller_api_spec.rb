@@ -34,6 +34,104 @@ shared_examples_for "a TaxaController" do
     end
   end
 
+  describe "search" do
+    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+
+    it "should filter by place_id" do
+      taxon_not_in_place = Taxon.make!
+      taxon_in_place = Taxon.make!
+      p = Place.make!
+      p.check_list.add_taxon(taxon_in_place)
+      get :search, format: :json, places: p.id.to_s
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
+      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+    end
+
+    it "returns results in the configured place" do
+      taxon_not_in_place = Taxon.make!(name: "nonsense")
+      taxon_in_place = Taxon.make!(name: "nonsense")
+      p = Place.make!
+      p.check_list.add_taxon(taxon_in_place)
+      site = Site.make!(place: p)
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      get :search, format: :json, q: "nonsense"
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
+      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+    end
+
+    it "returns all results when there are none in the configured place" do
+      taxon_not_in_place = Taxon.make!(name: "nonsense")
+      taxon2_not_in_place = Taxon.make!(name: "nonsense")
+      p = Place.make!
+      site = Site.make!(place: p)
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      get :search, format: :json, q: "nonsense"
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should_not be_blank
+      json.detect{|t| t['id'] == taxon2_not_in_place.id}.should_not be_blank
+    end
+
+    it "filters by is_active=true" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "true"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq active.id
+    end
+
+    it "filters by is_active=false" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "false"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq inactive.id
+    end
+
+    it "returns all taxa when is_active=any" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "any"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 2
+    end
+  end
+
+  describe "autocomplete" do
+    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+
+    it "filters by is_active=true" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "true"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq active.id
+    end
+
+    it "filters by is_active=false" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "false"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq inactive.id
+    end
+
+    it "returns all taxa when is_active=any" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "any"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 2
+    end
+  end
+
   describe "show" do
     it "should include range kml url" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")

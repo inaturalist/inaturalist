@@ -29,7 +29,7 @@ describe ObservationsController do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
       post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
-      expect(project.users.find_by_id(user.id)).to_not be_blank
+      expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
     
@@ -37,7 +37,7 @@ describe ObservationsController do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
       post :create, :format => "json", :observation => {:species_guess => "Foo!"}, :project_id => project.id
-      expect(project.users.find_by_id(user.id)).to_not be_blank
+      expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
     
@@ -106,6 +106,24 @@ describe ObservationsController do
       end
     end
   end
+
+  describe "show" do
+    render_views
+    it "should now include the place_guess when coordinates obscured" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: "Duluth, MN")
+      get :show, id: o.id
+      expect( response.body ).not_to be =~ /#{o.place_guess}/
+    end
+  end
+
+  describe "show.mobile" do
+    render_views
+    it "should now include the place_guess when coordinates obscured" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: "Duluth, MN")
+      get :show, format: "mobile", id: o.id
+      expect( response.body ).not_to be =~ /#{o.place_guess}/
+    end
+  end
   
   describe "import_photos" do
     # to test this we need to mock a flickr response
@@ -139,24 +157,52 @@ describe ObservationsController do
   end
 
   describe "project" do
+    before(:each) { enable_elastic_indexing( Observation, Update ) }
+    after(:each) { disable_elastic_indexing( Observation, Update ) }
+
     render_views
-    it "should include private coordinates when viewed by a project curator" do
-      po = make_project_observation
-      o = po.observation
-      log_timer do
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+
+    describe "viewed by project curator" do
+      let(:p) { Project.make! }
+      let(:pu) { ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) }
+      let(:u) { pu.user }
+      before do
+        sign_in u
       end
-      o.reload
-      expect(o.private_latitude).to_not be_blank
-      p = po.project
-      pu = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
-      u = pu.user
-      sign_in u
-      get :project, :id => p.id
-      expect(response.body).to be =~ /#{o.private_latitude}/
+
+      it "should include private coordinates" do
+        po = make_project_observation(project: p, prefers_curator_coordinate_access: true)
+        expect( po ).to be_prefers_curator_coordinate_access
+        o = po.observation
+        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+        o.reload
+        expect( o.private_latitude ).to_not be_blank
+        get :project, :id => p.id
+        expect(response.body).to be =~ /#{o.private_latitude}/
+      end
+
+      it "should not include private coordinates if observer is not a member" do
+        po = ProjectObservation.make!(project: p)
+        o = po.observation
+        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+        o.reload
+        expect(o.private_latitude).to_not be_blank
+        get :project, :id => p.id
+        expect(response.body).not_to be =~ /#{o.private_latitude}/
+      end
+
+      it "should not include private coordinates if observer does not prefer it" do
+        po = make_project_observation(preferred_curator_coordinate_access: false)
+        o = po.observation
+        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+        o.reload
+        expect(o.private_latitude).to_not be_blank
+        get :project, :id => p.id
+        expect(response.body).not_to be =~ /#{o.private_latitude}/
+      end
     end
 
-    it "should not include private coordinates when viewed by a project curator" do
+    it "should not include private coordinates when viewed by a normal project member" do
       po = make_project_observation
       o = po.observation
       o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
@@ -176,7 +222,7 @@ describe ObservationsController do
       @project = Project.make!
       @user = @project.user
       @observation = Observation.make!(:user => @user)
-      @project_observation = make_project_observation(:project => @project, :observation => @observation)
+      @project_observation = make_project_observation(:project => @project, :observation => @observation, :user => @observation.user)
       @observation = @project_observation.observation
       ActionController::Base.perform_caching = true
       path = all_project_observations_path(@project, :format => 'csv')
@@ -241,13 +287,25 @@ describe ObservationsController do
       po = make_project_observation
       po.observation.update_attributes(latitude: 9.8765, longitude: 4.321, geoprivacy: Observation::PRIVATE)
       p = po.project
-      p.user.should_not be po.observation.user
+      expect(p.user).not_to be po.observation.user
       sign_in p.user
-      p.should be_curated_by p.user
+      expect(p).to be_curated_by p.user
       get :project_all, id: p.id, format: :csv
-      response.body.should be =~ /private_latitude/
-      response.body.should be =~ /#{po.observation.private_latitude}/
-      response.body.should be =~ /#{po.observation.private_longitude}/
+      expect(response.body).to be =~ /private_latitude/
+      expect(response.body).to be =~ /#{po.observation.private_latitude}/
+      expect(response.body).to be =~ /#{po.observation.private_longitude}/
+    end
+
+    it "should not have private_coordinates when curator_coordinate_access is false" do
+      o = Observation.make!(latitude: 1.2345, longitude: 1.2345, geoprivacy: Observation::OBSCURED)
+      po = ProjectObservation.make!(observation: o)
+      expect( po.observation ).to be_coordinates_obscured
+      expect( po.project.project_users.where(user_id: po.observation.user_id) ).to be_blank
+      expect( po ).not_to be_prefers_curator_coordinate_access
+      sign_in po.project.user
+      get :project_all, id: po.project_id, format: :csv
+      expect(response.body).to be =~ /private_latitude/
+      expect(response.body).not_to be =~ /#{po.observation.private_latitude}/
     end
   end
   

@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "creation" do
+  before(:each) { enable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update) }
   it "should not allow swaps without inputs" do
     output_taxon = Taxon.make!
     swap = TaxonSwap.make
@@ -19,8 +21,10 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
+    enable_elastic_indexing(Observation, Update)
     prepare_swap
   end
+  after(:each) { disable_elastic_indexing(Observation, Update) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)
@@ -123,7 +127,11 @@ describe TaxonSwap, "commit" do
 end
 
 describe TaxonSwap, "commit_records" do
-  before(:each) { prepare_swap }
+  before(:each) do
+    prepare_swap
+    enable_elastic_indexing(Observation, Taxon, Update, Place)
+  end
+  after(:each) { disable_elastic_indexing(Observation, Taxon, Update, Place) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -174,7 +182,8 @@ describe TaxonSwap, "commit_records" do
     tr = TaxonRange.make!(:taxon => @input_taxon)
     cl = CheckList.make!
     lt = ListedTaxon.make!(:list => cl, :taxon => @input_taxon, :taxon_range => tr)
-    without_delay { @swap.commit_records }
+    without_delay{ @swap.commit_records }
+    # Delayed::Worker.new.work_off
     lt.reload
     lt.taxon.should eq(@output_taxon)
   end

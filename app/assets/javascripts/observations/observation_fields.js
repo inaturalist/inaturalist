@@ -38,7 +38,7 @@ var ObservationFields = {
     $(document.body).append(dialog)
     $(dialog).dialog({
       modal:true, 
-      title: I18n.translations[I18n.currentLocale()]['new_observation_field']
+      title: I18n.t('new_observation_field')
     })
     $(dialog).load(url, "format=js", function() {
       $('form', dialog).submit(function() {

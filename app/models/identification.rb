@@ -1,7 +1,8 @@
 #encoding: utf-8
 class Identification < ActiveRecord::Base
-  acts_as_spammable :fields => [ :body ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :body ],
+                    comment_type: "item-description",
+                    automated: false
 
   belongs_to :observation
   belongs_to :user
@@ -159,7 +160,7 @@ class Identification < ActiveRecord::Base
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.blank?
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(self)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(id)
     true
   end
   
@@ -247,6 +248,8 @@ class Identification < ActiveRecord::Base
   # Static ##################################################################
   
   def self.run_update_curator_identification(ident)
+    ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
+    return unless ident
     obs = ident.observation
     current_ident = if ident.current?
       ident

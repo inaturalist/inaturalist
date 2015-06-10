@@ -81,13 +81,13 @@ class UsersController < ApplicationController
   # Don't take these out yet, useful for admin user management down the road
 
   def suspend
-     @user.suspend! 
+     @user.suspend!
      flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
      redirect_back_or_default(@user)
   end
    
   def unsuspend
-    @user.unsuspend! 
+    @user.unsuspend!
     flash[:notice] = t(:the_user_x_has_been_unsuspended, :user => @user.login)
     redirect_back_or_default(@user)
   end
@@ -141,8 +141,7 @@ class UsersController < ApplicationController
       if params[:spammer] === "false"
         @user.flags_on_spam_content.each do |flag|
           flag.resolved = true
-          flag.resolver = current_user
-          flag.save
+          flag.save!
         end
         @user.unsuspend!
       end
@@ -162,7 +161,7 @@ class UsersController < ApplicationController
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
           joins(:user).
           where("users.id IS NOT NULL").
-          includes(:user)
+          preload(:user)
         scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
         @updates += scope.all
       end
@@ -281,11 +280,21 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner)
-    @pagination_updates = @pagination_updates.where("id < ?", params[:from].to_i) if params[:from]
-    @pagination_updates = @pagination_updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
-    @pagination_updates = @pagination_updates.where(:resource_owner_id => current_user) if params[:filter] == "you"
+    filters = [ ]
+    wheres = { }
+    if params[:from]
+      filters << { range: { id: { lt: params[:from] } } }
+    end
+    unless params[:notifier_type].blank?
+      wheres[:notifier_type] = params[:notifier_type]
+    end
+    if params[:filter] == "you"
+      wheres[:resource_owner_id] = current_user.id
+    end
+    @pagination_updates = current_user.recent_notifications(
+      filters: filters, wheres: wheres, per_page: 50)
     @updates = Update.load_additional_activity_updates(@pagination_updates)
+    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
     Update.user_viewed_updates(@pagination_updates)
@@ -299,8 +308,10 @@ class UsersController < ApplicationController
           order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
-          @flags = Flag.order("id desc").where("resolved = ?", false).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5).active
+          @flags = Flag.order("id desc").where("resolved = ?", false).
+            includes(:user, :resolver, :comments).limit(5)
+          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
+            includes(:taxon_names).limit(5).active
         end
       end
       format.mobile
@@ -308,38 +319,36 @@ class UsersController < ApplicationController
   end
   
   def updates_count
-    count = current_user.updates.unviewed.activity.count
+    count = current_user.recent_notifications(unviewed: true,
+      wheres: { notification: :activity }).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
   
   def new_updates
-    @updates = current_user.updates.unviewed.activity.
-      includes(:resource, :notifier, :subscriber, :resource_owner).
-      order("id DESC").
-      limit(200)
-    unless request.format.json?
-      if @updates.count == 0
-        @updates = current_user.updates.activity.
-          includes(:resource, :notifier, :subscriber, :resource_owner).
-          order("id DESC").
-          limit(10).
-          where("viewed_at > ?", 1.day.ago)
-      end
-      if @updates.count == 0
-        @updates = current_user.updates.activity.limit(5).order("id DESC")
-      end
-    end
+    wheres = { notification: :activity }
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
-      @updates = @updates.where("notifier_type IN (?)", notifier_types)
+      wheres[:notifier_type] = notifier_types.map(&:downcase)
     end
-    @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
+    unless params[:resource_type].blank?
+      wheres[:resource_type] = params[:resource_type].downcase
+    end
+    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, wheres: wheres)
+    unless request.format.json?
+      if @updates.count == 0
+        @updates = current_user.recent_notifications(viewed: true, per_page: 10, wheres: wheres)
+      end
+      if @updates.count == 0
+        @updates = current_user.recent_notifications(per_page: 5, wheres: wheres)
+      end
+    end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
       session[:updates_count] = 0
     end
+    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
     @update_cache = Update.eager_load_associates(@updates)
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
     respond_to do |format|
@@ -382,15 +391,6 @@ class UsersController < ApplicationController
     return add_friend unless params[:friend_id].blank?
     return remove_friend unless params[:remove_friend_id].blank?
     return update_password unless (params[:password].blank? && params[:commit] !~ /password/i)
-    
-    params[:user].each do |k,v|
-      if k =~ /^prefer/
-        params[:user].delete(k)
-      else
-        next
-      end
-      @display_user.send("#{k}=", v)
-    end
     
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
@@ -548,10 +548,13 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    scope = Observation.group(:user_id).
-      where("EXTRACT(YEAR FROM observed_on) = ?", year)
+    scope = Observation.group(:user_id)
     if per == 'month'
-      scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
+      date = Date.parse("#{ year }-#{ month }-1")
+      scope = scope.where("observed_on >= ? AND observed_on < ?", date, date + 1.month)
+    else
+      date = Date.parse("#{ year }-1-1")
+      scope = scope.where("observed_on >= ? AND observed_on < ?", date, date + 1.year)
     end
     scope = scope.where("observations.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
@@ -566,8 +569,13 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
-    date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
+    if per == 'month'
+      date = Date.parse("#{ year }-#{ month }-1")
+      date_clause = "observed_on >= '#{ date }' AND observed_on < '#{ date + 1.month }'"
+    else
+      date = Date.parse("#{ year }-1-1")
+      date_clause = "observed_on >= '#{ date }' AND observed_on < '#{ date + 1.year }'"
+    end
     site_clause = if @site && @site.prefers_site_only_users?
       "AND o.site_id = #{@site.id}"
     end
@@ -605,11 +613,16 @@ protected
     scope = Identification.group("identifications.user_id").
       joins(:observation, :user).
       where("identifications.user_id != observations.user_id").
-      where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
       order('count_all desc').
       limit(5)
     if per == 'month'
-      scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
+      date = Date.parse("#{ year }-#{ month }-1")
+      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
+        date, date + 1.month)
+    else
+      date = Date.parse("#{ year }-1-1")
+      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
+        date, date + 1.year)
     end
     scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a
@@ -620,16 +633,35 @@ protected
     end
   end
 
-  # an example of custom param whitelisting
   def whitelist_params
-    unless params[:user].blank?
-      params.require(:user).permit(
-        :login, :email, :name, :password, :password_confirmation, :icon, :description,
-        :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
-        :make_observation_licenses_same, :make_photo_licenses_same, :make_sound_licenses_same,
-        :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
-        :preferred_observation_fields_by)
-    end
+    return if params[:user].blank?
+    params.require(:user).permit(
+      :description,
+      :email,
+      :icon,
+      :icon_url,
+      :lists_by_login_order,
+      :lists_by_login_sort,
+      :locale,
+      :login,
+      :make_observation_licenses_same,
+      :make_photo_licenses_same,
+      :make_sound_licenses_same,
+      :name,
+      :password,
+      :password_confirmation,
+      :per_page,
+      :place_id,
+      :preferred_observation_fields_by,
+      :preferred_observation_license,
+      :preferred_observations_view,
+      :preferred_photo_license,
+      :preferred_project_addition_by,
+      :preferred_sound_license,
+      :prefers_community_taxa,
+      :prefers_location_details,
+      :time_zone
+    )
   end
 
 end

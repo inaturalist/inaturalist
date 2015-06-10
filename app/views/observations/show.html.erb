@@ -123,11 +123,11 @@
   <div id="nav" class="clear">
     <div class="breadcrumbs">
       <% if is_me?(@observation.user) %>
-      <%= link_to t(:back_to_your_observations), 
+      <%= link_to t(:your_observations), 
                   observations_by_login_path(:login => current_user.login),
                   :class => 'back crumb' %>
       <% else %>
-        <%= link_to t(:back_to_x_observations, :user => "#{@observation.user.login}"), 
+        <%= link_to t(:users_observations, :user => @observation.user.login), 
                   observations_by_login_path(:login => @observation.user.login),
                   :class => 'back crumb' %>
       <% end %>
@@ -142,41 +142,47 @@
   </div>
   
   <h2>
-    <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
-      <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
-        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
-    <%- elsif @observation.taxon -%>
-      <%= render "shared/taxon", 
-        :taxon => @observation.taxon, 
-        :link_url => @observation.taxon, 
-        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
-        :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
-    <%- elsif !@observation.species_guess.blank? -%>
-      <%= @observation.species_guess -%>
-    <%- else -%>
-      <%=t :something %>,
-    <% end -%>
-    <%= t(:observed_by).downcase %> 
-    <%= link_to observations_by_login_path(@observation.user.login) do %>
-      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">
-          <%= @observation.user.login %>
-        </span>
-      </span>
-    <% end -%>
-    <span class="meta date">
-      <%- if @observation.time_observed_at && @coordinates_viewable -%>
-        <%=l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %>
+    <span class="taxon">
+      <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
+        <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
+          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
+      <%- elsif @observation.taxon -%>
+        <%= render "shared/taxon", 
+          :taxon => @observation.taxon, 
+          :link_url => @observation.taxon, 
+          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
+          :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
+      <%- elsif !@observation.species_guess.blank? -%>
+        <%= @observation.species_guess -%>
+      <%- else -%>
+        <%=t :something %>
       <% end -%>
+    </span>
+    <span class="observedby">
+      <%= t(:observed_by) %> 
+      <%= link_to observations_by_login_path(@observation.user.login) do %>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            <%= @observation.user.login %>
+          </span>
+        </span>
+      <% end -%>
+    </span>
+    <span class="meta datetime">
       <%- if @observation.observed_on -%>
-        <%=t :on_ %>
-        <%= link_to t("date_format.month.#{@observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B').downcase}"),
-          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
-        <%= link_to @observation.observed_on.day, 
-          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
-        <%= link_to @observation.observed_on.year,
-          observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+        <span class="date">
+          <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
+            observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
+          <%= link_to @observation.observed_on.day, 
+            observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
+          <%= link_to @observation.observed_on.year,
+            observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+        </span>
       <%- end -%>
+
+      <%- if @observation.time_observed_at && @coordinates_viewable -%>
+        <time><%=raw l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %></time>
+      <% end -%>
     </span>
   </h2>
   
@@ -185,39 +191,6 @@
     <div id="tools">
       <%= link_to "<span class='ui-icon ui-icon-pencil inlineblock'></span> #{t(:edit)}".html_safe, edit_observation_url,
         :id => "edit_list_button", :class => "button" %>
-
-      <% unless @projects.blank? %>
-        <% link_to_toggle_menu t(:add_to_project), :class => "button", 
-            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-          <ul>
-            <% for project in @projects %>
-              <li class="inline buttonrow">
-                <%= link_to t(:remove),
-                  remove_project_observation_path(project, :observation_id => @observation.id),
-                  :remote => true,
-                  :method => :delete,
-                  :data => {
-                    :type => "json",
-                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
-                  },
-                  :class => "removelink pale button",
-                  :id => dom_id(project, "removelink"),
-                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
-                <%= link_to t(:add), 
-                  add_project_observation_path(project, :observation_id => @observation.id),
-                  :remote => true,
-                  "data-type" => "json",
-                  "data-project-id" => project.id,
-                  :method => :post,
-                  :id => dom_id(project, "addlink"),
-                  :class => "addlink glaucous button",
-                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
-                <%= link_to h(project.title), project, :class => "inter" %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      <% end %>
       
       <%= link_to "<span class='ui-icon ui-icon-copy inlineblock'></span> #{t :copy}".html_safe, 
         new_observation_path(:copy => @observation.id), 
@@ -599,62 +572,118 @@
     <% end -%>
   </div><!-- end identifications -->
   
-  <% if !@project_observations.blank? || 
-        !@project_invitations.blank? || 
-        (logged_in? && is_not_me?(@observation.user) && !@projects.blank?) -%>
+  <% if !@project_observations.blank? || (!@projects.blank? && @project_addition_allowed) -%>
     <%= separator %>
     <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
       <% unless @project_observations.blank? -%>
         <% for po in @project_observations %>
           <div class="quiet box clear inline buttonrow">
+            <% if is_me?(@observation.user) || is_me?(po.user) || curator_of?(po.project) -%>
+              <%= popover content_tag(:span, '', 'class': 'ui-icon ui-icon-gear inlineblock'), 
+                  'class': 'pale button', 
+                  data: {
+                    popover: {
+                      position: {my: 'top right', at: 'bottom center'},
+                      title: t(:project_observation_settings)
+                    }
+                  } do %>
+                <% if po.project.project_observation_fields.exists? -%>
+                  <div class="clear inline smallbuttons buttonrow lined">
+                    <%= link_to t(:fill_out_project_observation_fields), 
+                      nil,
+                      onclick: "ObservationFields.showObservationFieldsDialog({url: '/observations/'+window.observation.id+'/fields?project_id=#{po.project_id}'}); $(this).parents('.qtip').qtip('hide'); return false",
+                      'class': "glaucous button" %>
+                  </div>
+                <% end -%>
+                <% if is_me? @observation.user -%>
+                  <% unless @projects.map(&:id).include?(po.project_id) -%>
+                    <div class="clear inline smallbuttons buttonrow lined">
+                      <%= link_to t(:join_this_project), join_project_url(po.project_id), 
+                        'class': "glaucous button joinlink",
+                        data: { project_id: po.project_id } %>
+                      <div class="meta upstacked">
+                        <%=t 'views.observations.show.join_project_desc_html', url: project_terms_url(po.project) %>
+                      </div>
+                    </div>
+                  <% end -%>
+                  <div class="lined">
+                    <%= form_for po, remote: true, data: {format: :json} do |f| %>
+                      <label>
+                        <%= f.check_box :prefers_curator_coordinate_access, 
+                          id: dom_id(po, 'preferred_usage'),
+                          data: {autosubmit: true} %>
+                        <%= t(:allow_curator_coordinate_access) %>
+                      </label>
+                      <div class="meta">
+                        <%=t 'views.observations.show.allow_curator_coordinate_access_desc_html', url: project_terms_url(po.project) %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end -%>
+                <div class="clear inline smallbuttons buttonrow <%= 'lined' if is_me?(@observation.user) %>">
+                  <%= link_to t(:remove_from_project), 
+                    remove_project_observation_path(po.project_id, :observation_id => @observation.id),
+                    method: :delete,
+                    data: {
+                      confirm: t(:you_sure_remove_this_observation?),
+                      loading_click: t(:removing)
+                    },
+                    'class': "glaucous button" %>
+                </div>
+                <% if is_me? @observation.user -%>
+                  <span class="button">
+                    <%= link_to t(:edit_your_settings_for_this_project), project_show_contributor_url(po.project, current_user.login) %>
+                  </span>
+                  <br/>
+                  <span class="button">
+                    <%= link_to t(:edit_your_global_project_settings), generic_edit_user_url(anchor: 'projects') %>
+                  </span>
+                <% end %>
+              <% end %>
+            <% end -%>
             <span class="inter">
-              <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
-              <%= link_to truncate(po.project.title, :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
+              <%= image_and_content image_tag(po.project.icon.url(:thumb)), image_size: 24 do %>
+                <%= link_to truncate(po.project.title, :length => 30), po.project %>
+              <% end %>
             </span>
-            <% if is_me?(@observation.user) || curator_of?(po.project) -%>
-              <%= link_to "remove", 
-                remove_project_observation_path(po.project_id, :observation_id => @observation.id),
-                :method => :delete,
-                :data => {:confirm => t(:you_sure_remove_this_observation?)},
-                :class => "pale button",
-                :style => "float: right; margin: 0" %>
+            <% if po.user_id && po.user_id != @observation.user_id -%>
+              <div class="small meta clear">
+                <%=t :added_by_user_on_date_html, user: link_to_user(po.user), date: l(po.created_at, format: :long) %>
+              </div>
             <% end -%>
           </div>
         <% end %>
       <% end %>
-      
-      <% if !@project_invitations.blank? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
-        <p class="ui description"><%=t :invited_to_the_following_projects %></p>
-        <% for pi in @project_invitations %>
-          <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {:observation => @observation} %>
-        <% end %>
-        <%= link_to t(:manage_your_project_invitations), project_invitations_path, :class => "right readmore" %>
-      <% end %>
     </div>
     
-    <% if !@projects.blank? && logged_in? && is_not_me?(@observation.user) -%>
+    <% if !@projects.blank? && @project_addition_allowed %>
       <div class="clear">
-        <% link_to_toggle_menu t(:invite_to_project), :class => "button", 
-           :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+        <% link_to_toggle_menu t(:add_to_project), :class => "button", 
+            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
           <ul>
             <% for project in @projects %>
               <li class="inline buttonrow">
-                <% if @project_observations_by_project_id[project.id] -%>
-                  <div class = "disabled pale button" ><%=t :added %></div>
-                <% elsif @project_invitations_by_project_id[project.id] -%>
-                  <div class = "disabled pale button" ><%=t :invited %></div>
-                <% else %>
-                  <%= link_to t(:invite),
-                    { :controller => 'project_invitations',
-                      :action => 'create',
-                      :project_id => project.id,
-                      :observation_id => @observation.id,
-                      :user_id => current_user.id },
-                    :method => :post,
-                    :class => "glaucous button",
-                    "data-loading-click" => t(:inviting) %>
-                <% end -%>
+                <%= link_to t(:remove),
+                  remove_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  :method => :delete,
+                  :data => {
+                    :type => "json",
+                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
+                  },
+                  :class => "removelink pale button",
+                  :id => dom_id(project, "removelink"),
+                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
+                <%= link_to t(:add), 
+                  add_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  "data-type" => "json",
+                  "data-project-id" => project.id,
+                  :method => :post,
+                  :id => dom_id(project, "addlink"),
+                  :class => "addlink glaucous button",
+                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
                 <%= link_to h(project.title), project, :class => "inter" %>
               </li>
             <% end %>
@@ -665,6 +694,7 @@
   <% end -%>
   
   <%= separator %>
+
   <% if !@day_observations.blank? && @day_observations.size > 1 -%>
       <div id="day_observations" class="clear quiet box">
         <div class="clear">

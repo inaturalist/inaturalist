@@ -76,19 +76,20 @@ module MakeHelpers
     p = options[:project] || Project.make!
     t = options.delete(:taxon)
     u = options.delete(:user) || User.make!
-    pu = ProjectUser.make!(:project => p, :user => u)
+    pu = p.project_users.where(user_id: u).first
+    pu ||= ProjectUser.make!(:project => p, :user => u)
     o = Observation.make!(:user => u, :taxon => t)
-    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+    ProjectObservation.make!({:project => pu.project, :observation => o, :user => o.user}.merge(options))
   end
   
   def make_project_observation_from_research_quality_observation(options = {})
     p = options[:project] || Project.make!
     t = options.delete(:taxon)
     u = options.delete(:user) || User.make!
-    pu = ProjectUser.make!(:project => p, :user => u)
+    pu = p.project_users.where(user_id: u).first
+    pu ||= ProjectUser.make!(:project => p, :user => u)
     o = make_research_grade_observation(:user => u, :taxon => t)
-    #o = Observation.make!(:user => u, :taxon => t)
-    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+    ProjectObservation.make!({:project => pu.project, :observation => o, :user => o.user}.merge(options))
   end
   
   def make_place_with_geom(options = {})
@@ -147,7 +148,6 @@ module MakeHelpers
   #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-    ThinkingSphinx::Deltas.suspend!
     @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life', :rank => "state of matter")
 
     unless @Animalia = Taxon.find_by_name('Animalia')
@@ -230,7 +230,6 @@ module MakeHelpers
 
     Taxon.reset_iconic_taxa_constants_for_tests
 
-    ThinkingSphinx::Deltas.resume!
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 

@@ -1,6 +1,7 @@
 # Messages for Galician (galego)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Cgalindo
 # Author: Toliño
 ---
 gl:
@@ -82,6 +83,7 @@ gl:
   about_this_project: Acerca deste Proxecto
   about_x: Acerca de %{x}
   acc: Exactitude (metros)
+  account: Conta
   accept: Aceptar
   accuracy: Exactitude
   accuracy_meters: Exactitude (metros)
@@ -234,8 +236,8 @@ gl:
     other_animals: Outros animais
     life: Vida
     x_plantae:
-      one: 1 planta
-      other: '%{count} plantas'
+      one: 1 pranta
+      other: '%{count} prantas'
     x_animalia:
       one: 1 animal
       other: '%{count} animais'
@@ -382,7 +384,6 @@ gl:
   assessment: Valoración
   associations: Asociacións
   at: En
-  at_: Ás
   at_any_time_change: en calquera lugar (<span class="button">change</span>)
   at_time: en %{time}
   atom: Atom
@@ -668,10 +669,6 @@ gl:
   contain_all_descendants?: Esta lista de verificación contén todos os descendentes
     deste taxón que se producen aquí?
   contest: Concurso
-  contest_projects_description: Proxectos 'Concurso' mostrarán un cadro clasificatorio
-    coa clasificación dos contribuíntes, polo número de especies únicas observadas,
-    mentres que os proxectos 'Concurso de Observación' mostrarán as táboas de líder
-    na clasificación dos contribuíntes polo número de observacións
   contributions: Contribucións
   contributions_from: Achegas de
   contributor_cannot_be_found: Non se puido atopar ao contribuidor do proxecto
@@ -857,6 +854,7 @@ gl:
   email_addresses_description: Enderezos de correo separados por coma, límite 60 cada
     30 días.
   email_addresses_to_receive_invites: Enderezos de correo para recibir invitacións
+  email_settings: Configuración do correo
   embed: 'Introducir:'
   embed_a_widget_for_this_taxon_on_website: Introducir un widget para este taxón no
     teu sitio web »
@@ -1082,7 +1080,6 @@ gl:
   home: Inicio
   home_faq: FAQ
   hybrid: Híbrido
-  i_something_i: <i>Algo...</i>
   icon: Icona
   icon_size: Tamaño da icona
   iconic_taxon: Taxonomía da icona
@@ -1508,7 +1505,7 @@ gl:
   new_flag_for: Nova Marca para
   new_journal_posts: Novo artigo no diario
   new_list: Lista nova
-  new_members: Novos membros...
+  new_members: Novos membros
   new_message: Nova mensaxe
   new_observation_field: Novo campo de observación
   new_observation_rules: Novas regras de observación
@@ -1871,7 +1868,7 @@ gl:
       Historical_State: Estado Histórico
       Historical_County: Condado Histórico
       Continent: Continente
-      Time_Zone: Zona horaria
+      Time_Zone: Fuso horario
       Nearby_Intersection: Intersección Próxima
       Estate: Inmobles
       Historical_Town: Pobo Histórico
@@ -1906,7 +1903,7 @@ gl:
       historical_state: estado histórico
       historical_county: condado histórico
       continent: Continente
-      time_zone: zona horaria
+      time_zone: Fuso horario
       nearby_intersection: intersección próxima
       estate: Inmobles
       historical_town: pobo histórico
@@ -1978,11 +1975,6 @@ gl:
   please_add_a_citation_for_this_change: Debes engadir unha referencia para este cambio.
   please_add_this_observation_to: 'Por favor, engade esta observación a:'
   please_add_this_to_x_html: Engade isto a %{x}
-  please_be_aware_project_curators: Ten en conta que os administradores do proxecto
-    poderán ver calquera localización privada ou oculta que se engada a este proxecto.
-  please_be_aware_that_project_curators: Ten en conta que os administradores do proxecto
-    poderán ver localizacións privadas ou ocultas das observacións que se engadan
-    a este proxecto.
   please_be_careful_particulary_when: Ten coidado, especialmente ao eliminar taxóns.
     Se un taxón ten observacións, identificadores, taxóns listados, ou outros asociados,
   please_check_for_you_confirmation_email: Benvido a %{site_name}! Revisa a confirmación
@@ -2368,7 +2360,7 @@ gl:
   source_list:
     ubio: uBio
     catalogue_of_life: Catálogo da Vida
-    inaturalist: iNaturalist
+    inaturalist: NaturaLista
     new_zeland_organisms_register: Rexistro de organismos de Nova Zelandia
     nzbrn_birds: NZBRN Aves
     nzbrn_fungi: NZBRN Fungos
@@ -2792,6 +2784,7 @@ gl:
   user_invite_observation_to_project: '%{user} desexa convidar a túa observación "%{observation}"
     ao proxecto %{project}.'
   user_invited_your_x_to_a_project_html: '%{user} convidaches ao teu %{x} a un proxecto'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} de %{project}
   user_is_a_naturalist: '%{user} es un naturalista!'
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
@@ -2990,7 +2983,6 @@ gl:
   you_are_over_your_invites_quota: '...xa enviaches máis de 60 invitacións este mes.'
   you_are_now_following_x: Estás seguindo a %{friend_user}.
   you_are_now_role_for_project_html: <strong>Agora</strong> %{role} de %{project}
-  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} de %{project}
   you_are_already_a_member_of_this_project: ¡Xa es un membro deste proxecto!
   you_are_no_longer_following_x: Xa non estás seguindo a %{friend}.
   you_are_subscribed_to: Estás subscrito a

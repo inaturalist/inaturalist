@@ -147,8 +147,9 @@ class LifeList < List
       includes(:list).find_in_batches do |batch|
       batch.each do |list_rule|
         next unless list_rule.list.is_a?(LifeList)
-        next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
-        LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+        LifeList.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "LifeList::add_taxa_from_observations": list_rule.list_id }).
+          add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
       end
     end
   end
@@ -195,31 +196,18 @@ class LifeList < List
     end
   end
 
-  def cache_columns_query_for(lt)
+  def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
     return super if lt.list.place.blank?
-    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
-    sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
-    <<-SQL
-      SELECT
-        min(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS first_observation,
-        max(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS last_observation,
-        count(*),
-        (#{sql_key}) AS key
-      FROM
-        observations o
-          LEFT OUTER JOIN taxa t ON t.id = o.taxon_id
-          JOIN place_geometries pg ON pg.place_id = #{lt.list.place_id}
-      WHERE
-        o.user_id = #{user_id} AND
-        ST_Intersects(pg.geom, o.private_geom) AND (
-          o.taxon_id = #{lt.taxon_id} OR 
-          t.ancestry = '#{ancestry_clause}' OR
-          t.ancestry LIKE '#{ancestry_clause}/%'
-        )
-      GROUP BY #{sql_key}
-    SQL
+    options = { search_params: {
+      where: {
+        "taxon.ancestor_ids": lt.taxon_id,
+        place_ids: lt.list.place } } }
+    if user_id
+      options[:search_params][:where]["user.id"] = user_id
+    end
+    options
   end
 
   def default_title

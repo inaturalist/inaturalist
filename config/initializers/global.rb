@@ -35,7 +35,7 @@ def ratatosk(options = {})
     if CONFIG.ratatosk.name_providers.include?(src.to_s.downcase)
       Ratatosk::Ratatosk.new(:name_providers => [src])
     else
-      @@ratatosk ||= Ratatosk::Ratatosk.new(:name_providers => CONFIG.ratatosk.name_providers)
+      @ratatosk ||= Ratatosk::Ratatosk.new(:name_providers => CONFIG.ratatosk.name_providers)
     end
   else
     Ratatosk
@@ -54,12 +54,12 @@ class String
   end
 end
 
-# Restrict sphinx queries to characters, numbers, and simple punctuation, as
+# Restrict some queries to characters, numbers, and simple punctuation, as
 # well as normalize Latin accented characters while leaving non-latic
 # characters alone.
 # http://www.ruby-doc.org/core-2.0.0/Regexp.html#label-Character+Properties
 # http://stackoverflow.com/a/10306827/720268
-def sanitize_sphinx_query(q)
+def sanitize_query(q)
   return q if q.blank?
   q.tr( 
     "ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž", 

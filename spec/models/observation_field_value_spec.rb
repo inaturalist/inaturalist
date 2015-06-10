@@ -41,8 +41,10 @@ describe ObservationFieldValue, "updating for subscribers" do
     @ofv = ObservationFieldValue.make!(:value => "foo", :user => User.make!)
     @o = @ofv.observation
     Update.delete_all
+    enable_elastic_indexing(Update)
   end
-  
+  after(:each) { disable_elastic_indexing(Update) }
+
   it "should create an update for the observer if user is not observer" do
     without_delay { @ofv.update_attributes(:value => "bar") }
     Update.where(:subscriber_id => @o.user_id, :resource_id => @o.id, :notifier_id => @ofv.id).count.should eq 1

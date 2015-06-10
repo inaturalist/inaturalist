@@ -56,6 +56,7 @@ class FlowTasksController < ApplicationController
     delayed_progress(request.path) do
       opts = @flow_task.enqueue_options if @flow_task.respond_to?(:enqueue_options)
       opts ||= {}
+      opts[:unique_hash] ||= {'FlowTask': @flow_task.id}
       @job = Delayed::Job.enqueue(@flow_task, opts)
     end
     respond_to do |format|

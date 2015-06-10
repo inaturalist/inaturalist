@@ -139,7 +139,7 @@ class ObservationFieldsController < ApplicationController
     if error
       respond_to do |format|
         format.html do
-          flash[:error] = t(:you_must_choose_an_observation_field)
+          flash[:error] = error
           redirect_back_or_default @observation_field
         end
       end

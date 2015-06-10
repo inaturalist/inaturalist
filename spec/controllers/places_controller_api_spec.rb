@@ -1,11 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PlacesController, "index" do
-  # let(:user) { User.make! }
-  # let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
-  # before do
-  #   controller.stub(:doorkeeper_token) { token }
-  # end
+
   it "should return places" do
     p = Place.make!
     get :index, :format => :json
@@ -66,5 +62,39 @@ describe PlacesController, "index" do
     expect(response.body).not_to be =~ /#{p2.name}/
     json = JSON.parse(response.body)
     expect(json.size).to eq 0
+  end
+end
+
+describe PlacesController, "search" do
+  before { enable_elastic_indexing(Place) }
+  after { disable_elastic_indexing(Place) }
+  it "should filter by with_geom" do
+    with_geom = make_place_with_geom
+    without_geom = Place.make!(name: with_geom.name)
+    get :search, format: :json, with_geom: true, q: with_geom.name
+    json = JSON.parse(response.body)
+    expect( json.select{|p| p['id'] == with_geom.id}.size ).to eq 1
+    expect( json.select{|p| p['id'] == without_geom.id}.size ).to eq 0
+    get :search, format: :json, with_geom: false, q: with_geom.name
+    json = JSON.parse(response.body)
+    expect( json.select{|p| p['id'] == with_geom.id}.size ).to eq 0
+    expect( json.select{|p| p['id'] == without_geom.id}.size ).to eq 1
+  end
+end
+
+
+describe PlacesController, "autocomplete" do
+  before { enable_elastic_indexing(Place) }
+  after { disable_elastic_indexing(Place) }
+  it "be able to find places with short words and diacritics" do
+    place = Place.make!(name: "Área de Protección de Flora y Fauna Laguna de Términos")
+    get :autocomplete, format: :json, q: "Área"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+    get :autocomplete, format: :json, q: "Área de"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+    get :autocomplete, format: :json, q: "Área de Protección"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+    get :autocomplete, format: :json, q: "Área de Protección de Flora y Fauna Laguna de Términos"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
   end
 end

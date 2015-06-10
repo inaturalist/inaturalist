@@ -22,7 +22,7 @@ class ObservationPhotosController < ApplicationController
         first
     end
     @observation_photo ||= ObservationPhoto.new
-    @observation_photo.assign_attributes(params[:observation_photo])
+    @observation_photo.assign_attributes(params[:observation_photo] || {})
     unless @observation_photo.observation
       respond_to do |format|
         format.json do
@@ -61,6 +61,7 @@ class ObservationPhotosController < ApplicationController
         else
           msg = "Failed to create observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
           Airbrake.notify(Exception.new(msg), :request => request, :session => session)
+          Logstasher.write_exception(Exception.new(msg), request: request, session: session, user: current_user)
           Rails.logger.error "[ERROR #{Time.now}] #{msg}"
           render :json => {:errors => @observation_photo.errors.full_messages.to_sentence}, 
             :status => :unprocessable_entity

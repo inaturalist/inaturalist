@@ -1,60 +1,13 @@
 = content_for :title do
-  - @title = title_for_observation_params(:lead => t(:observed_taxa, :default => "Observers"))
+  - @title = title_for_observation_params(:lead => t(:observers, :default => "Observers"))
   = strip_tags @title
 = content_for(:extracss) do
   :css
     #wrapper { width: auto; padding: 0 10px; position: relative;padding:10px;}
-    td.user {width:100%;}
-    #user_stats th {padding-right:20px;}
-    #user_stats tr:hover {background-color: #f6f6f6;}
-    #user_stats .numeric {text-align: right;}
-    #user_stats thead .sorting,
-    #user_stats thead .sorting_asc,
-    #user_stats thead .sorting_desc,
-    #user_stats thead .sorting_asc_disabled,
-    #user_stats thead .sorting_desc_disabled {
-        cursor: pointer;
-        *cursor: hand;
-    }
-    #user_stats thead .sorting_asc { background: url(#{ image_path('toggle_arrow_up.png') }) no-repeat center right; border-right: 10px solid transparent;}
-    #user_stats thead .sorting_desc { background: url(#{ image_path('toggle_arrow_down.png') }) no-repeat center right; border-right: 10px solid transparent;}
-    #user_stats [class*="sorting_"], #user_stats thead [class*="sorting_"] {background-color: #eee;}
-    #user_stats [class*="sorting_disabled"], #user_stats thead [class*="sorting_disabled"] {background-color: transparent;}
 = content_for :extrajs do
-  = javascript_include_tag 'jquery/plugins/jquery.dataTables.min'
   :javascript
-    // http://stackoverflow.com/questions/17732714/datatables-js-sort-columns-containing-html-links-with-integer-text
-    jQuery.fn.dataTableExt.oSort['numeric-html-asc']  = function(a,b) {
-        a = parseInt($(a).text())
-        b = parseInt($(b).text())
-        return ((a < b) ? -1 : ((a > b) ?  1 : 0))
-    }
-    jQuery.fn.dataTableExt.oSort['numeric-html-desc']  = function(a,b) {
-        a = parseInt($(a).text())
-        b = parseInt($(b).text())
-        return ((a < b) ? 1 : ((a > b) ?  -1 : 0))
-    }
-    $('#user_stats').dataTable({
-      "bPaginate": false,
-      "bLengthChange": false,
-      "bFilter": false,
-      "bInfo": false,
-      "aaSorting": [[2,'desc']],
-      "aoColumns": [
-        {"bSortable": false},
-        {"sType": "html"},
-        {"sType": "numeric-html"},
-        {"sType": "numeric-html"}
-      ],
-      fnDrawCallback: function ( oSettings ) {
-          var that = this;
-          /* Need to redo the counters if filtered or sorted */
-          if ( oSettings.bSorted || oSettings.bFiltered ) {
-            this.$('td:first-child', {"filter":"applied"}).each( function (i) {
-                that.fnUpdate( i+1, this.parentNode, 0, false, false );
-            })
-          }
-      }
+    $(document).ready(function() {
+      $('#user_stats').leaderboard($.extend({}, $.deparam.querystring(), {limit: 500}, true))
     })
 
 - unless @stats_adequately_scoped
@@ -69,22 +22,5 @@
         %p=t 'views.observations.user_stats.user_stats_desc'
     .row-fluid
       .span12
-        %table#user_stats.table
-          %thead
-            %tr
-              %th #
-              %th= t(:user)
-              %th= t(:observations)
-              %th= t(:species)
-          %tbody
-            - @users.each_with_index do |user,i|
-              %tr
-                %td= i+1
-                %td.user
-                  = user_image user
-                  = link_to_user user
-                %td.numeric
-                  = link_to @user_counts_by_user_id[user.id] || 0, observations_url(request.query_parameters.merge(:user_id => user.login))
-                %td.numeric
-                  = link_to @user_taxon_counts_by_user_id[user.id] || 0, taxa_observations_url(request.query_parameters.merge(:user_id => user.login, :hrank => Taxon::SPECIES))
+        #user_stats
 

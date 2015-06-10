@@ -20,8 +20,12 @@ module ActiveRecord
                        comment_type: options[:comment_type],
                        blog_lang: "en,fr,es,zh,gl,th,jp"
 
-        after_save :check_for_spam, unless: proc {
+        after_save :evaluate_user_spammer_status, unless: proc {
           user_responsible && user_responsible.known_non_spammer? }
+        unless options[:automated] === false
+          after_save :check_for_spam, unless: proc {
+            user_responsible && user_responsible.known_non_spammer? }
+        end
 
         scope :flagged_as_spam,
           -> { joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } }) }
@@ -48,8 +52,6 @@ module ActiveRecord
         # Flags are made with user_id = 0, representing automated flags
         define_method(:check_for_spam) do
           return if default_life_list?
-          # first make sure the user isn't a known non-spammer
-          evaluate_user_spammer_status
           # leveraging the new attribute `disabled`, which we set to
           # true if we are running tests. This can be overridden by using
           # before and after blocks and manually changing Rakismet.disabled

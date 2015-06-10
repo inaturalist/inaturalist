@@ -1,0 +1,28 @@
+:ruby
+  project = update_email_your_observations_added || resource
+  updates ||= []
+  observations = updates.map do |u|
+    o = if @update_cache && @update_cache[:observations]
+      @update_cache[:observations][u.notifier.observation_id]
+    end
+    o || u.notifier.observation
+  end
+  columns ||= @observation_columns || 6
+  user = if defined? current_user
+    current_user
+  end
+  user ||= @user
+%table
+  - for obs_group in observations[0...12].in_groups_of(columns)
+    %tr
+      - obs_group.compact.each_with_index do |o, i|
+        %td{width: "75", align: "center", valign: "top", style: "#{'padding-right: 10px;' if i < columns-1} padding-bottom: 10px; max-width:75px;"}
+          = link_to observation_image(o, :style => "max-width: 75px; max-height: 75px;"), observation_url(o), :only_path => false
+          %br
+          = link_to o.species_guess || t(:something), observation_url(o), :style => "font-size:smaller;"
+.meta
+  - notifier_users = updates.map{|u| u.notifier.user}.uniq.compact
+  - unless notifier_users.blank?
+    =t :observations_added_by_x_html, x: commas_and(notifier_users.map{|u| link_to_user(u)})
+.meta
+  = link_to t(:view_all_of_your_observations_from_x, x: project.title), observations_by_login_url(user.login, projects: project.id), 'class': 'readmore'

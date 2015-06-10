@@ -1,5 +1,5 @@
 class Sound < ActiveRecord::Base
-	belongs_to :user
+  belongs_to :user
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
 
@@ -7,7 +7,6 @@ class Sound < ActiveRecord::Base
   ############### licensing
   attr_accessor :make_license_default
   attr_accessor :make_licenses_same
-  cattr_accessor :descendent_classes
 
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
@@ -21,7 +20,8 @@ class Sound < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :index_observations
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -126,6 +126,10 @@ class Sound < ActiveRecord::Base
     true
   end
 
+  def index_observations
+    Observation.elastic_index!(scope: observations, delay: true)
+  end
+
   def editable_by?(user)
     return false if user.blank?
     user.id == user_id || observations.exists?(:user_id => user.id)
@@ -143,7 +147,7 @@ class Sound < ActiveRecord::Base
   def self.from_observation_params(params, fieldset_index, owner)
     sounds = []
     
-    (self.descendent_classes || []).each do |klass|
+    (self.subclasses || []).each do |klass|
       klass_key = klass.to_s.underscore.pluralize.to_sym
       if params[klass_key] && params[klass_key][fieldset_index.to_s]
         params[klass_key][fieldset_index.to_s].each do |sid|
@@ -175,6 +179,14 @@ class Sound < ActiveRecord::Base
 
     sound_taxa = sound_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     sound_taxa.detect(&:species_or_lower?) || sound_taxa.first
+  end
+
+  def as_indexed_json(options={})
+    {
+      id: id,
+      license_code: license_code,
+      attribution: attribution
+    }
   end
 
 end

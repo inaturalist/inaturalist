@@ -4,8 +4,9 @@
 # just lists of taxa that interest them for some reason.
 #
 class List < ActiveRecord::Base
-  acts_as_spammable :fields => [ :title, :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :title, :description ],
+                    comment_type: "item-description",
+                    automated: false
   belongs_to :user
   has_many :rules, :class_name => 'ListRule', :dependent => :destroy
   has_many :listed_taxa, :dependent => :destroy
@@ -52,7 +53,7 @@ class List < ActiveRecord::Base
   #
   def add_taxon(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    ListedTaxon.create(options.merge(:list => self, :taxon => taxon))
+    ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon.id))
   end
   
   #
@@ -109,29 +110,16 @@ class List < ActiveRecord::Base
   
   #For lists, returns first_observation (array of [date, observation_id])
   #where date represents the first date observed (e.g. not first date added to iNat)
-  def cache_columns_query_for(lt)
+  def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
-    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
-    sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
-    <<-SQL
-      SELECT
-        min(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS first_observation,
-        max(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS last_observation,
-        count(*),
-        (#{sql_key}) AS key
-      FROM
-        observations o
-          LEFT OUTER JOIN taxa t ON t.id = o.taxon_id
-      WHERE
-        o.user_id = #{user_id} AND
-        (
-          o.taxon_id = #{lt.taxon_id} OR 
-          t.ancestry = '#{ancestry_clause}' OR
-          t.ancestry LIKE '#{ancestry_clause}/%'
-        )
-      GROUP BY #{sql_key}
-    SQL
+    options = { search_params: {
+      where: { "taxon.ancestor_ids": lt.taxon_id } } }
+    if user_id
+      options[:search_params][:where]["user.id"] = user_id
+    end
+    options
+
   end
   
   def attribution

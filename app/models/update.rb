@@ -1,4 +1,7 @@
 class Update < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :subscriber, :class_name => "User"
   belongs_to :resource, :polymorphic => true
   belongs_to :notifier, :polymorphic => true
@@ -10,11 +13,11 @@ class Update < ActiveRecord::Base
   before_create :set_resource_owner
   after_create :expire_caches
   
-  NOTIFICATIONS = %w(create change activity)
+  # NOTIFICATIONS = %w(create change activity)
+  YOUR_OBSERVATIONS_ADDED = "your_observations_added"
   
   scope :unviewed, -> { where("viewed_at IS NULL") }
   scope :activity, -> { where(:notification => "activity") }
-  scope :activity_on_my_stuff, -> { where("resource_owner_id = subscriber_id AND notification = 'activity'") }
 
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
@@ -158,7 +161,9 @@ class Update < ActiveRecord::Base
   
   def self.eager_load_associates(updates, options = {})
     includes = options[:includes] || {
-      :observation => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
+      :observation => [ :user, { :taxon => { :taxon_names => :place_taxon_names } },
+        { :photos => :flags}, { :projects => :users }, :stored_preferences,
+        :quality_metrics, :flags, :iconic_taxon ],
       :observation_field => [:user],
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
       :comment => [:user, :parent],
@@ -170,17 +175,25 @@ class Update < ActiveRecord::Base
       :project_invitation => [:project, :user],
       :taxon_change => [:taxon, {:taxon_change_taxa => [:taxon]}, :user]
     }
+    if includes[:observation]
+      if includes[:identification]
+        includes[:observation] << { identifications: includes[:identification] }
+      end
+      if includes[:comment]
+        includes[:observation] << { comments: includes[:comment] }
+      end
+    end
     update_cache = {}
     klasses = [
-      Comment, 
-      Flag, 
-      Identification, 
-      ListedTaxon, 
-      Observation, 
+      Comment,
+      Flag,
+      Identification,
+      ListedTaxon,
+      Observation,
       ObservationField,
-      Post, 
-      Project, 
-      ProjectInvitation, 
+      Post,
+      Project,
+      ProjectInvitation,
       Taxon,
       TaxonChange,
       User
@@ -209,28 +222,20 @@ class Update < ActiveRecord::Base
     updates = updates.to_a.compact
     return if updates.blank?
     subscriber_id = updates.first.subscriber_id
-    
     # mark all as viewed
-    Update.where(id: updates).update_all(viewed_at: Time.now)
-    
-    # delete PAST activity updates that were not in this batch
-    clauses = []
-    update_ids = []
-    updates.each do |update|
-      next unless update.notification == 'activity'
-      Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
-        "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?", 
-        update.id, update.subscriber_id, update.resource_type, update.resource_id
-      ])
-    end
-    
-    unless Delayed::Job.where("handler LIKE '%Update%sweep_for_user% #{subscriber_id}\n%'").exists?
-      Update.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow", :run_at => 6.hours.from_now).sweep_for_user(subscriber_id)
-    end
+    updates_scope = Update.where(id: updates)
+    updates_scope.update_all(viewed_at: Time.now)
+    Update.elastic_index!(scope: updates_scope)
   end
 
-  def self.sweep_for_user(user_id)
-    return if user_id.blank?
-    Update.delete_all(["subscriber_id = ? AND created_at < ?", user_id, 6.months.ago])
+  def self.delete_and_purge(*args)
+    return if args.blank?
+    # first delete all entries from Elasticearch
+    Update.where(*args).select(:id).find_in_batches do |batch|
+      Update.elastic_delete!(where: { id: batch.map(&:id) })
+    end
+    # then delete them from Postgres
+    Update.delete_all(*args)
   end
+
 end

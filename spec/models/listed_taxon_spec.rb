@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ListedTaxon do
+  before(:each) { enable_elastic_indexing( Observation, Place ) }
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should be invalid when check list fields set on a non-check list" do
     list = List.make!
     check_list = CheckList.make!
@@ -10,28 +12,28 @@ describe ListedTaxon do
     listed_taxon.list = check_list
     expect(listed_taxon).to be_valid
   end
-  
+
   describe "creation" do
     before(:each) do
       @taxon = Taxon.make!
-      @first_observation = Observation.make!(:taxon => @taxon)
+      @first_observation = Observation.make!(taxon: @taxon, observed_on_string: 1.minute.ago.to_s)
       @user = @first_observation.user
-      @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+      @last_observation = Observation.make!(taxon: @taxon, user: @user, observed_on_string: Time.now.to_s)
       @list = @user.life_list
-      @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
+      @listed_taxon = ListedTaxon.make!(taxon: @taxon, list: @list)
       @listed_taxon.reload
     end
     
     it "should set last observation" do
-      expect(@listed_taxon.last_observation_id).to be(@last_observation.id)
+      expect(@listed_taxon.last_observation_id).to eq(@last_observation.id)
     end
     
     it "should set first observation" do
-      expect(@listed_taxon.first_observation_id).to be(@first_observation.id)
+      expect(@listed_taxon.first_observation_id).to eq(@first_observation.id)
     end
     
     it "should set observations_count" do
-      expect(@listed_taxon.observations_count).to be(2)
+      expect(@listed_taxon.observations_count).to eq(2)
     end
     
     it "should set observations_month_counts" do
@@ -296,294 +298,293 @@ describe ListedTaxon do
       expect(lt.first_observation_id).to eq o.id
     end
   end
-end
 
-describe ListedTaxon, "validation for comprehensive check lists" do
-  before(:each) do
-    @parent = Taxon.make!
-    @taxon = Taxon.make!(:parent => @parent)
-    @place = Place.make!
-    @check_list = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
-    @check_listed_taxon = @check_list.add_taxon(@taxon)
-  end
+  describe "validation for comprehensive check lists" do
+    before(:each) do
+      @parent = Taxon.make!
+      @taxon = Taxon.make!(:parent => @parent)
+      @place = Place.make!
+      @check_list = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
+      @check_listed_taxon = @check_list.add_taxon(@taxon)
+    end
   
-  it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon" do
-    t = Taxon.make!(:parent => @parent)
-    expect(@check_list.taxon_ids).not_to include(t.id)
-    lt = @place.check_list.add_taxon(t)
-    expect(lt).not_to be_valid
-    expect(lt.errors[:taxon_id]).not_to be_blank
-  end
+    it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon" do
+      t = Taxon.make!(:parent => @parent)
+      expect(@check_list.taxon_ids).not_to include(t.id)
+      lt = @place.check_list.add_taxon(t)
+      expect(lt).not_to be_valid
+      expect(lt.errors[:taxon_id]).not_to be_blank
+    end
   
-  it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon in an ancestor place" do
-    t = Taxon.make!(:parent => @parent)
-    expect(@check_list.taxon_ids).not_to include(t.id)
-    p = Place.make!(:parent => @place)
-    lt = p.check_list.add_taxon(t)
-    expect(lt).not_to be_valid
-    expect(lt.errors[:taxon_id]).not_to be_blank
-  end
+    it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon in an ancestor place" do
+      t = Taxon.make!(:parent => @parent)
+      expect(@check_list.taxon_ids).not_to include(t.id)
+      p = Place.make!(:parent => @place)
+      lt = p.check_list.add_taxon(t)
+      expect(lt).not_to be_valid
+      expect(lt.errors[:taxon_id]).not_to be_blank
+    end
   
-  it "should pass if a comprehensive check lists that does contain this taxon exists for a parent taxon" do
-    t = Taxon.make!(:parent => @parent)
-    clt = @check_list.add_taxon(t)
-    expect(@check_list.taxon_ids).to include(t.id)
-    lt = @place.check_list.add_taxon(t)
-    expect(lt).to be_valid
-  end
+    it "should pass if a comprehensive check lists that does contain this taxon exists for a parent taxon" do
+      t = Taxon.make!(:parent => @parent)
+      clt = @check_list.add_taxon(t)
+      expect(@check_list.taxon_ids).to include(t.id)
+      lt = @place.check_list.add_taxon(t)
+      expect(lt).to be_valid
+    end
   
-  it "should pass if a comprehensive check list that does't contain this taxon exists for a parent taxon and there is a confirming observation" do
-    t = Taxon.make!(:parent => @parent)
-    o = make_research_grade_observation(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
-    expect(@check_list.taxon_ids).not_to include(t.id)
-    lt = @place.check_list.add_taxon(t, :first_observation => o)
-    expect(lt).to be_valid
-  end
-end
-
-describe ListedTaxon, "establishment means propagation" do
-  let(:parent) { Place.make! }
-  let(:place) { Place.make!(:parent => parent) }
-  let(:child) { Place.make!(:parent => place) }
-  let(:taxon) { Taxon.make! }
-  let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
-  let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
-  let(:child_listed_taxon) { child.check_list.add_taxon(taxon) }
-  it "should bubble up for native" do
-    expect(parent_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
-    parent_listed_taxon.reload
-    expect(parent_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
-  end
-
-  it "should bubble up for endemic" do
-    expect(parent_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::ENDEMIC)
-    parent_listed_taxon.reload
-    expect(parent_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
-  end
-
-  it "should not trickle down for native" do
-    expect(child_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to be_blank
-  end
-
-  it "should trickle down for introduced" do
-    expect(child_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
-  end
-
-  it "should not bubble up for introduced" do
-    expect(parent_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-    parent_listed_taxon.reload
-    expect(parent_listed_taxon.establishment_means).to be_blank
-  end
-
-  it "should not alter previous settings" do
-    parent_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
-    parent_listed_taxon.reload
-    expect(parent_listed_taxon.establishment_means).to eq(ListedTaxon::INTRODUCED)
-  end
-
-  it "should not alter est means of other taxa" do
-    new_parent_listed_taxon = parent.check_list.add_taxon(Taxon.make!)
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
-    new_parent_listed_taxon.reload
-    expect(new_parent_listed_taxon.establishment_means).to be_blank
-  end
-
-  it "trickle down should be forceable" do
-    expect(child_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
-    place_listed_taxon.trickle_down_establishment_means(:force => true)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
-  end
-
-  it "trickle down should be forceable based on force_trickle_down_establishment_means" do
-    expect(child_listed_taxon.establishment_means).to be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE, :force_trickle_down_establishment_means => true)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
-  end
-
-  it "trickle should not update listed taxa for other places" do
-    sibling_place = Place.make!(:parent => parent)
-    sibling_lt = sibling_place.check_list.add_taxon(taxon, :establishment_means => ListedTaxon::NATIVE)
-    expect(sibling_lt.establishment_means).to eq ListedTaxon::NATIVE
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-    place_listed_taxon.trickle_down_establishment_means(:force => true)
-    child_listed_taxon.reload
-    expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
-    sibling_lt.reload
-    expect(sibling_lt.establishment_means).to eq ListedTaxon::NATIVE
-  end
-end
-
-
-describe ListedTaxon, "cache column setting for check lists" do
-  before do
-    without_delay do
-      @place = make_place_with_geom
-      @check_list = @place.check_list
+    it "should pass if a comprehensive check list that doesn't contain this taxon exists for a parent taxon and there is a confirming observation" do
+      t = Taxon.make!(:parent => @parent)
+      o = make_research_grade_observation(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
+      expect(@check_list.taxon_ids).not_to include(t.id)
+      lt = @place.check_list.add_taxon(t, :first_observation => o)
+      expect(lt).to be_valid
     end
   end
-  it "should be queued" do
-    lt = ListedTaxon.make!(:list => @check_list)
-    expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?).to be true
-  end
 
-  it "should not be queued if there's an existing job" do
-    lt = ListedTaxon.make!(:list => @check_list)
-    expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count).to eq(1)
-    lt.update_attributes(:establishment_means => ListedTaxon::NATIVE)
-    expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count).to eq(1)
-  end
-end
+  describe "establishment means propagation" do
+    let(:parent) { Place.make! }
+    let(:place) { Place.make!(:parent => parent) }
+    let(:child) { Place.make!(:parent => place) }
+    let(:taxon) { Taxon.make! }
+    let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
+    let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
+    let(:child_listed_taxon) { child.check_list.add_taxon(taxon) }
+    it "should bubble up for native" do
+      expect(parent_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      parent_listed_taxon.reload
+      expect(parent_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
+    end
 
-describe ListedTaxon, "parent check list syncing" do
-  before do
-    without_delay do
-      @parent = Place.make!
-      @place = make_place_with_geom(:parent => @parent)
-      @check_list = @place.check_list
+    it "should bubble up for endemic" do
+      expect(parent_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::ENDEMIC)
+      parent_listed_taxon.reload
+      expect(parent_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
+    end
+
+    it "should not trickle down for native" do
+      expect(child_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to be_blank
+    end
+
+    it "should trickle down for introduced" do
+      expect(child_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
+    end
+
+    it "should not bubble up for introduced" do
+      expect(parent_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      parent_listed_taxon.reload
+      expect(parent_listed_taxon.establishment_means).to be_blank
+    end
+
+    it "should not alter previous settings" do
+      parent_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      parent_listed_taxon.reload
+      expect(parent_listed_taxon.establishment_means).to eq(ListedTaxon::INTRODUCED)
+    end
+
+    it "should not alter est means of other taxa" do
+      new_parent_listed_taxon = parent.check_list.add_taxon(Taxon.make!)
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      new_parent_listed_taxon.reload
+      expect(new_parent_listed_taxon.establishment_means).to be_blank
+    end
+
+    it "trickle down should be forceable" do
+      expect(child_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      place_listed_taxon.trickle_down_establishment_means(:force => true)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
+    end
+
+    it "trickle down should be forceable based on force_trickle_down_establishment_means" do
+      expect(child_listed_taxon.establishment_means).to be_blank
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE, :force_trickle_down_establishment_means => true)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
+    end
+
+    it "trickle should not update listed taxa for other places" do
+      sibling_place = Place.make!(:parent => parent)
+      sibling_lt = sibling_place.check_list.add_taxon(taxon, :establishment_means => ListedTaxon::NATIVE)
+      expect(sibling_lt.establishment_means).to eq ListedTaxon::NATIVE
+      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.trickle_down_establishment_means(:force => true)
+      child_listed_taxon.reload
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
+      sibling_lt.reload
+      expect(sibling_lt.establishment_means).to eq ListedTaxon::NATIVE
     end
   end
-  it "should be queued" do
-    lt = ListedTaxon.make!(:list => @check_list)
-    expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?).to be true
+
+  describe "cache column setting for check lists" do
+    before do
+      without_delay do
+        @place = make_place_with_geom
+        @check_list = @place.check_list
+      end
+    end
+    it "should be queued" do
+      lt = ListedTaxon.make!(:list => @check_list)
+      expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?).to be true
+    end
+
+    it "should not be queued if there's an existing job" do
+      lt = ListedTaxon.make!(:list => @check_list)
+      expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count).to eq(1)
+      lt.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count).to eq(1)
+    end
   end
 
-  it "should not be queued if existing job" do
-    lt = ListedTaxon.make!(:list => @check_list)
-    expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
-    lt2 = ListedTaxon.make!(:list => @check_list)
-    expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+  describe "parent check list syncing" do
+    before do
+      without_delay do
+        @parent = Place.make!
+        @place = make_place_with_geom(:parent => @parent)
+        @check_list = @place.check_list
+      end
+    end
+    it "should be queued" do
+      lt = ListedTaxon.make!(:list => @check_list)
+      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?).to be true
+    end
+
+    it "should not be queued if existing job" do
+      lt = ListedTaxon.make!(:list => @check_list)
+      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+      lt2 = ListedTaxon.make!(:list => @check_list)
+      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+    end
   end
-end
 
-describe "a listed taxon on a non checklist" do
-  before do
-    @taxon = Taxon.make!
-    @list = List.make!
-    @first_observation = Observation.make!(:taxon => @taxon)
-    @user = @first_observation.user
-    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
-    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
-    @listed_taxon.reload
+  describe "a listed taxon on a non checklist" do
+    before do
+      @taxon = Taxon.make!
+      @list = List.make!
+      @first_observation = Observation.make!(:taxon => @taxon)
+      @user = @first_observation.user
+      @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+      @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
+      @listed_taxon.reload
+    end
+
+    it "should not be a primary listing" do
+      @listed_taxon.update_attributes(:primary_listing => true)
+      expect(@listed_taxon).not_to be_primary_listing
+    end
   end
 
-  it "should not be a primary listing" do
-    @listed_taxon.update_attributes(:primary_listing => true)
-    expect(@listed_taxon).not_to be_primary_listing
-  end
-end
+  describe "primary_listing" do
+    before(:each) do
+      @taxon = Taxon.make!
+      @check_list = CheckList.make!
+      @check_list_two = CheckList.make!
+      @check_list_two.place = @check_list.place
+      @check_list_two.save
+      @check_list_two.reload
+      @first_observation = Observation.make!(:taxon => @taxon)
+      @user = @first_observation.user
+      @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+      @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @check_list)
+      @listed_taxon.reload
 
-describe "primary_listing" do
-  before(:each) do
-    @taxon = Taxon.make!
-    @check_list = CheckList.make!
-    @check_list_two = CheckList.make!
-    @check_list_two.place = @check_list.place
-    @check_list_two.save
-    @check_list_two.reload
-    @first_observation = Observation.make!(:taxon => @taxon)
-    @user = @first_observation.user
-    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
-    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @check_list)
-    @listed_taxon.reload
-
-    @first_observation_two = Observation.make!(:taxon => @taxon)
-    @user_two = @first_observation_two.user
-    @last_observation_two = Observation.make!(:taxon => @taxon, :user => @user_two, :observed_on_string => 1.minute.ago.to_s)
-    @listed_taxon_two = ListedTaxon.make!(:taxon => @taxon, :list => @check_list_two)
-    @listed_taxon_two.reload
+      @first_observation_two = Observation.make!(:taxon => @taxon)
+      @user_two = @first_observation_two.user
+      @last_observation_two = Observation.make!(:taxon => @taxon, :user => @user_two, :observed_on_string => 1.minute.ago.to_s)
+      @listed_taxon_two = ListedTaxon.make!(:taxon => @taxon, :list => @check_list_two)
+      @listed_taxon_two.reload
     
+    end
+
+    it "should set as first as primary listing" do
+      expect(@listed_taxon.primary_listing).to be(true)
+    end
+    it "should set second lt as primary listing = false" do
+      expect(@listed_taxon_two.primary_listing).to be(false)
+    end
+    it "should override attributes (like establishment means) of the non-primary listed taxon" do
+      expect(@listed_taxon.primary_listing).to be(true)
+      @listed_taxon.update_attribute(:establishment_means, "introduced")
+      @listed_taxon_two.reload
+      expect(@listed_taxon_two.establishment_means).to eq("introduced")
+    end
+    it "should reassign the primary to the second taxon when the original primary is destroyed" do
+      expect(@listed_taxon.primary_listing).to be(true)
+      @listed_taxon.destroy
+      @listed_taxon_two.reload
+      expect(@listed_taxon_two.primary_listing).to be(true)
+      @listed_taxon_two.destroy
+    end
+    it "should set each lt appropriately on update" do
+      @listed_taxon_two.update_attribute(:primary_listing, true)
+      expect(@listed_taxon_two.primary_listing).to be(true)
+      @listed_taxon.reload
+      expect(@listed_taxon.primary_listing).to be(false)
+    end
   end
 
-  it "should set as first as primary listing" do
-    expect(@listed_taxon.primary_listing).to be(true)
-  end
-  it "should set second lt as primary listing = false" do
-    expect(@listed_taxon_two.primary_listing).to be(false)
-  end
-  it "should override attributes (like establishment means) of the non-primary listed taxon" do
-    expect(@listed_taxon.primary_listing).to be(true)
-    @listed_taxon.update_attribute(:establishment_means, "introduced")
-    @listed_taxon_two.reload
-    expect(@listed_taxon_two.establishment_means).to eq("introduced")
-  end
-  it "should reassign the primary to the second taxon when the original primary is destroyed" do
-    expect(@listed_taxon.primary_listing).to be(true)
-    @listed_taxon.destroy
-    @listed_taxon_two.reload
-    expect(@listed_taxon_two.primary_listing).to be(true)
-    @listed_taxon_two.destroy
-  end
-  it "should set each lt appropriately on update" do
-    @listed_taxon_two.update_attribute(:primary_listing, true)
-    expect(@listed_taxon_two.primary_listing).to be(true)
-    @listed_taxon.reload
-    expect(@listed_taxon.primary_listing).to be(false)
-  end
-end
+  describe "force_update_cache_columns" do
+    before do
+      @place = make_place_with_geom
+      @check_list = CheckList.make!(:place => @place)
+      @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
+      @observation = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @lt.taxon)
+      expect(Observation.in_place(@place)).to include @observation
+      ListedTaxon.where(id: @lt).update_all(
+        first_observation_id: nil,
+        last_observation_id: nil,
+        observations_count: nil,
+        observations_month_counts: nil)
+      Delayed::Job.delete_all
+      expect(Delayed::Job.count).to eq 0
+      @lt.reload
+      expect(@lt.last_observation_id).to be_nil
+    end
 
-describe ListedTaxon, "force_update_cache_columns" do
-  before do
-    @place = make_place_with_geom
-    @check_list = CheckList.make!(:place => @place)
-    @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
-    @observation = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @lt.taxon)
-    expect(Observation.in_place(@place)).to include @observation
-    ListedTaxon.where(id: @lt).update_all(
-      first_observation_id: nil,
-      last_observation_id: nil,
-      observations_count: nil,
-      observations_month_counts: nil)
-    Delayed::Job.delete_all
-    expect(Delayed::Job.count).to eq 0
-    @lt.reload
-    expect(@lt.last_observation_id).to be_nil
-  end
+    it "should queue a job to update cache columns when not set" do
+      @lt.save 
+      expect(Delayed::Job.count).to eq 1
+      @lt.reload
+      expect(@lt.last_observation_id).to be_nil
+    end
 
-  it "should queue a job to update cache columns when not set" do
-    @lt.save 
-    expect(Delayed::Job.count).to eq 1
-    @lt.reload
-    expect(@lt.last_observation_id).to be_nil
-  end
+    it "should not queue a job to update cache columns if a job already exists" do
+      @lt.save 
+      expect(Delayed::Job.count).to eq 1
+      @lt.reload
+      @lt.save
+      expect(Delayed::Job.count).to eq 1
+    end
 
-  it "should not queue a job to update cache columns if a job already exists" do
-    @lt.save 
-    expect(Delayed::Job.count).to eq 1
-    @lt.reload
-    @lt.save
-    expect(Delayed::Job.count).to eq 1
-  end
+    it "should not queue a job to update cache columns if set" do
+      Delayed::Job.delete_all
+      @lt.force_update_cache_columns = true
+      @lt.save
+      expect(Delayed::Job.count).to eq 0
+    end
 
-  it "should not queue a job to update cache columns if set" do
-    Delayed::Job.delete_all
-    @lt.force_update_cache_columns = true
-    @lt.save
-    expect(Delayed::Job.count).to eq 0
-  end
-
-  it "should force cache columns to be set" do
-    Delayed::Job.delete_all
-    @lt.force_update_cache_columns = true
-    @lt.save
-    expect(@lt.last_observation_id).to eq @observation.id
+    it "should force cache columns to be set" do
+      Delayed::Job.delete_all
+      @lt.force_update_cache_columns = true
+      @lt.save
+      expect(@lt.last_observation_id).to eq @observation.id
+    end
   end
 end

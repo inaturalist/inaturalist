@@ -46,10 +46,16 @@
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+      <%-
+        locales = I18N_SUPPORTED_LOCALES.map do |l| 
+          translated_label = t("locales.#{l}", locale: l, default: nil)
+          viewer_label = t("locales.#{l}", default: l)
+          label = [viewer_label, translated_label].compact.uniq.join(' / ')
+          [label, l]
+        end.sort_by(&:first)
+      -%>
       <%= f.select :locale, 
-        I18N_SUPPORTED_LOCALES.
-          sort_by{|l| t("locales.#{l}", :default => l)}.
-          map{|l| [t("locales.#{l}", :default => l), l]}, 
+        locales, 
         :include_blank => t(:default), :description => t(:locale_description) %>
       <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t('views.users.edit.place_help_html'), :class => "placechooser" %>
     </div>
@@ -87,6 +93,21 @@
         <%= f.check_box "prefers_no_email", 
           :label => t(:dont_send_me_email), 
           :label_after => true %>
+      </div>
+
+      <a name="projects"></a>
+      <h3><%=t :project_settings %></h3>
+      <div class="stacked">
+        <label><%=t :which_projects_can_add_your_observations? %></label>
+        <% for pref in [User::PROJECT_ADDITION_BY_ANY, User::PROJECT_ADDITION_BY_JOINED, User::PROJECT_ADDITION_BY_NONE] %>
+          <%= f.radio_button "preferred_project_addition_by", 
+            pref, 
+            label: t("views.users.edit.project_addition_preferences.#{pref}"), 
+            label_after: true %>
+        <% end %>
+        <div class="description">
+          <%=t 'views.users.edit.project_settings_desc' %>
+        </div>
       </div>
     </div>
 

@@ -1,7 +1,7 @@
 <% content_for(:title) do %>
   <%-
     if @list.title =~ /Life List$/ && @list.id == @list.user.life_list_id
-      @title = t(:life_list, :user => @list.title.split(' Life List').first[0..-3], :default => @list.title)
+      @title = t(:life_list, :user => @list.owner_name, :default => @list.title)
     else
       @title = @list.title
     end

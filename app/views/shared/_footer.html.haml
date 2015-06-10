@@ -1,41 +1,37 @@
 - site = @site || CONFIG
-#footer.clear
-  .meta.stacked
-    - if !site.twitter_url.blank? || !site.facebook_url.blank?
-      %span.meta=t :follow_us
-      :ruby
-        pieces = []
-        pieces << link_to(t(:facebook), site.facebook_url) unless site.facebook_url.blank?
-        pieces << link_to(t(:twitter), site.twitter_url) unless site.twitter_url.blank?
-        pieces << link_to(t(:our_blog), site.blog_url) unless site.blog_url.blank?
-      =raw commas_and pieces
-      |
-    - if !site.iphone_app_url.blank? || !site.android_app_url.blank?
-      :ruby
-        pieces = []
-        pieces << link_to(t(:iphone), site.iphone_app_url) unless site.iphone_app_url.blank?
-        pieces << link_to(t(:android), site.android_app_url) unless site.android_app_url.blank?
-      %span.meta
-        = pieces.size == 1 ? t(:mobile_app_for) : t(:mobile_apps_for)
-      =raw pieces.join(" &amp; ")
-      |
-    =t :powered_by_inaturalist_open_source_software_html
-  .meta
-    %a{:href => site.about_url}= t(:about_x, :x => site.try(:name) || SITE_NAME)
-    &nbsp;
-    %a{:href => site.help_url}= t :help
-    &nbsp;
-    %a{:href => site.feedback_url}= t :feedback
-    &nbsp;
-    %a{:href => site.terms_url}= t :terms_service
-    &nbsp;
-    %a{:href => site.privacy_url}= t :privacy
-    &nbsp;
-    %a{:href => site.developers_url}= t :developers
-    &nbsp;
-  - if site.custom_footer
-    .meta.upstacked
-      = raw site.custom_footer
-- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized
-  .flash.notice
-    = link_to t(:mobile_view_available), toggle_mobile_path, :id => "mobiletogglelink"
+#footer
+  .container
+    .column.span-24
+      .column.span-4
+        %p
+          %a{:href => site.about_url}= t(:about_x, :x => site.try(:name) || SITE_NAME)
+        %p
+          %a{:href => site.help_url}= t :help
+        %p
+          %a{:href => site.feedback_url}= t :feedback
+      .column.span-4
+        %p
+          %a{:href => site.developers_url}= t :developers
+        %p
+          %a{:href => site.terms_url}= t :terms_service
+        %p
+          %a{:href => site.privacy_url}= t :privacy
+      .column.span-4
+        :ruby
+          pieces = []
+          pieces << link_to(t(:facebook), site.facebook_url) unless site.facebook_url.blank?
+          pieces << link_to(t(:twitter), site.twitter_url) unless site.twitter_url.blank?
+          pieces << link_to(t(:our_blog).capitalize, site.blog_url) unless site.blog_url.blank?
+        - if pieces.blank?
+          &nbsp;
+        - else
+          - pieces.each do |link|
+            %p= link
+      .last.column.span-12
+        = raw site.custom_footer if site.custom_footer
+  #inatnotice
+    .container
+      .column-24
+        =t :member_of_the_inaturalist_network_html, url: "/pages/network"
+        |
+        =t :powered_by_inaturalist_open_source_software_html

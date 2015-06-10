@@ -30,8 +30,12 @@
     function cleanQuery(q) {
       var params = $.deparam(q), newParams = {}
       $.each(params, function(k,v) {
-        if (v.length == 1 && v[0] == '') {
-          return
+        if (v.length == 0 || (v.length == 1 && v[0] == '')) {
+          if (k.match(/^field:/)) {
+            newParams[k] = v
+          } else {
+            return
+          }
         }
         if (v.length !== 0 && v.length != 0 && REJECT_PARAMS.indexOf(k) < 0) {
           newParams[k] = v
@@ -226,7 +230,7 @@
             / = text_field_tag :ofv_chooser, "", :placeholder => "Add an observation field", :class => "text"
     %h3.inlineblock
       %span.number 4
-    = f.submit t(:create_export, :default => "Create export"), :class => "default inline button"
+    = f.submit t(:create_export, :default => "Create export"), :class => "default inline button", :data => {:loading_click => t(:loading)}
     - unless @recent_exports.blank?
       #recent_exports.meta.clear
         %strong=t :recent_exports

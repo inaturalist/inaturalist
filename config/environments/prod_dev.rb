@@ -28,7 +28,8 @@ Inaturalist::Application.configure do
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
-  config.cache_store = :mem_cache_store, CONFIG.memcached
+  config.cache_store = :dalli_store, CONFIG.memcached,
+    { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
@@ -43,7 +44,7 @@ Inaturalist::Application.configure do
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
-  config.assets.digest = true
+  config.assets.digest = false
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -52,7 +53,6 @@ Inaturalist::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.active_support.deprecation = :log
-  # config.middleware.use MailView::Mapper, [EmailerPreview] # TODO maybe include this in Gemfile
 
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true

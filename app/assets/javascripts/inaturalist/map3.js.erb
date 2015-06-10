@@ -24,6 +24,11 @@ var deselectText = function() {
   }
 };
 
+var emptyLayer = new google.maps.ImageMapType({
+  tileSize: new google.maps.Size(256, 256),
+  getTileUrl: function(tile, zoom) { }
+});
+
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;
 
@@ -59,6 +64,7 @@ google.maps.Map.prototype.removeMarker = function(marker) {
   google.maps.event.clearInstanceListeners(marker);
   
   // remove the marker from the map
+  marker.setMap(null);
   this.removeOverlay(marker);
 };
   
@@ -148,15 +154,17 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
       radius: accuracy
     })
     observation._circle = circle
-    google.maps.event.addListener(this, 'zoom_changed', function() {
+    var listener = function() {
       var mapBounds = this.getBounds(),
           circleBounds = circle.getBounds()
-      if (circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest())) {
+      if (mapBounds && circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest())) {
         circle.setVisible(false)
       } else {
         circle.setVisible(true)
       }
-    })
+    }
+    google.maps.event.addListener(this, 'zoom_changed', listener)
+    google.maps.event.addListener(this, 'bounds_changed', listener)
   }
   
   // return the observation for futher use
@@ -267,16 +275,12 @@ google.maps.Map.prototype.setPlace = function(place, options) {
     this.setCenter(new google.maps.LatLng(place.latitude, place.longitude));
   }
 }
-// 
-// google.maps.Map.prototype.addPlaces = function(places, options) {
-//   var map = this;
-//   $.each(places, function() {
-//     var success = map.addPlace(this, options);
-//   });
-// }
+
 google.maps.Map.prototype.removePlace = function(place) {
-  this.removeMarker(this.places[place.id]);
-  delete this.places[place.id];
+  if (this.places[place.id]) {
+    this.removeMarker(this.places[place.id]);
+    delete this.places[place.id];
+  }
 }
 google.maps.Map.prototype.removePlaces = function(places) {
   var map = this;
@@ -547,12 +551,21 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
-      id = "layer_" + layers[0].layerID,
       title = options.title || "Layer",
+      id = "layer_" + layers[0].layerID,
       description = options.description,
       checkbox = $("<input type='checkbox'/>"),
-      label = $("<label/>").attr("for", id).html(title),
-      li = $("<li/>");
+      li = $("<li/>"),
+      controlPosition = google.maps.ControlPosition[options.controlPosition] || google.maps.ControlPosition.TOP_RIGHT;
+  if (options.taxon) {
+    // Stopgap solution to dealing with multiple taxon maps on a single page.
+    // Will break if multiple maps have the same taxon
+    id += '-' + options.taxon.id;
+  }
+  var label = $("<label/>").attr("for", id).html(title)
+  if (options.hover) {
+    label.attr('title', options.hover)
+  }
   checkbox
     .attr("id", id)
     .attr("name", title)
@@ -568,7 +581,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   checkbox.change( function( ) {
     var checked = this.checked;
     _.each( layers, function( layerData ) {
-      map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : null);
+      map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : emptyLayer);
     });
     // if this checkbox belongs to a taxon, make sure that if this is the
     // last in the set unchecked, the taxon is also unchecked. And as soon
@@ -583,7 +596,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   ul.append( li );
   updateCheckboxInteractions( ul );
   if( ! map._overlayControlDisplayed ) {
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(map._overlayControl.div);
+    map.controls[controlPosition].push(map._overlayControl.div);
     map._overlayControlDisplayed = true;
   }
 };
@@ -738,16 +751,48 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
+google.maps.Map.prototype.addElasticLayer = function( options ) {
+  this.setTilt(0);
+  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
+  if( tileservers[0].match(/{n}/) ) {
+    var pattern = tileservers[0];
+    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
+      return pattern.replace( "{n}", n );
+    });
+  }
+  if( options["elastic_params"].match(/heatmap/) ) {
+    this.addLayerAndControl( {
+      tiles: _.map( tileservers , function( base ) {
+        return base + "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"];
+      })
+    }, options );
+  } else {
+    options.interactivity = true;
+    var tileLayers = _.map( tileservers, function( base ) {
+      return base + "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
+    });
+    var tilejson = {
+      tiles: tileLayers,
+      // wax needs template or it won't fire on events
+      "template": "this_is_silly",
+      grids: _.map( tileLayers, function( l ) {
+        return google.maps.Map.prototype.interactivityURL( l, "id" );
+      })
+    };
+    this.addLayerAndControl( tilejson, options );
+  }
+};
+
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
-  var colors = [ { range: ",10", color: "#FFFF00" },
-                 { range: "10,100", color: "#FFCC00" },
-                 { range: "100,1000", color: "#FF9900" },
-                 { range: "1000,10000", color: "#FF6600" },
-                 { range: "10000,100000", color: "#FF3300" },
-                 { range: "100000,", color: "#CC0000" } ];
-  var opacity = 0.75;
+  var colors = [ { range: ",10", color: "#F7005A" },
+                 { range: "10,100", color: "#D50067" },
+                 { range: "100,1000", color: "#B5006C" },
+                 { range: "1000,10000", color: "#94006A" },
+                 { range: "10000,100000", color: "#72005F" },
+                 { range: "100000,", color: "#52034E" } ];
+  var opacity = 0.9;
   // turn the decimal 0 - 1 opacity into 0 - 255 alpha hex value
   var alphaOpacity = parseFloat(Math.ceil(opacity * 255)).toString(16);
   cachedGBIFColors = _.map( colors, function( c ) {
@@ -780,12 +825,15 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
   var layer = new wax.g.connector( tilejson );
   var layerID = this.overlayMapTypes.push( layer );
+  if( options.interactivity ) {
+    this.addTileInteractivity( tilejson, layerID );
+  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper
     // places when the user selects it. That is why the layer is added
     // above and immediately set to null here.
-    this.overlayMapTypes.setAt( layerID - 1, null);
+    this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
@@ -858,7 +906,7 @@ google.maps.Map.prototype.addTileLayer = function(tileURL, options) {
   var layer = new wax.g.connector( tilejson );
   var layerID =  this.overlayMapTypes.push( layer );
   if( options.disabled ) {
-    this.overlayMapTypes.setAt( layerID - 1, null);
+    this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
@@ -884,7 +932,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
     .on({
       on: function(o) {
         // check to see if the layer with the interaction is enabled
-        if( map.overlayMapTypes.getAt( layerID - 1 ) === null ) {
+        if( map.overlayMapTypes.getAt( layerID - 1 ) === emptyLayer ) {
           return null;
         }
         interactionOn = true;

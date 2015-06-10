@@ -1,0 +1,73 @@
+- content_for :title do
+  =t :upcoming_bioblitzes
+- content_for :extracss do
+  :css
+    tr.finished { text-decoration: line-through; }
+    #calendar-buttons { margin-top: 15px; }
+    #calendar-buttons .btn { margin-right: 10px; }
+    th.title { width: 40%; }
+    th.start_time, th.end_time { width: 10%; }
+    td.start_time, td.end_time { white-space: nowrap; }
+- content_for :extrajs do
+  :javascript
+    var PLACE = #{@place.to_json.html_safe}
+    $('.placechooser').chooser({
+      collectionUrl: '/places/autocomplete.json',
+      resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+      chosen: PLACE,
+      afterSelect: function(item) { $(this.markup.input).parents('form').submit() },
+      afterClear: function(item) { $(this.markup.input).parents('form').submit() }
+    })
+.container
+  #calendar-buttons.right
+    = form_tag url_for, method: :get do |f|
+      = link_to calendar_projects_url(format: 'ics'), :class => "btn" do
+        %i.fa.fa-calendar
+        =t :add_to_calendar
+      = text_field_tag :place_id, '', :placeholder => t(:filter_by_place), :description => t('views.users.edit.place_help_html'), :class => "placechooser", :data => {:place_id => @place.try(:id)}
+  %h2=t :upcoming_bioblitzes
+
+  %table.table.stacked
+    %thead
+      %tr
+        %th.start_time=t :start_time
+        %th.end_time=t :end_time
+        %th.title=t :title
+        %th.place=t :place
+    %tbody
+      - for project in @projects
+        - css_class = ''
+        - css_class += ' meta' if project.start_time > Time.now 
+        - css_class += ' meta finished' if project.event_ended?
+        %tr{:class => css_class}
+          %td.start_time=l project.start_time
+          %td.end_time=l project.end_time
+          %td
+            = link_to project.title, project
+          %td
+            = link_to(project.place.display_name, project.place) if project.place
+  = will_paginate @projects
+
+  = separator
+
+  %h3=t :recently_finished
+
+  %table.table
+    %thead
+      %tr
+        %th.start_time=t :start_time
+        %th.end_time=t :end_time
+        %th.title=t :title
+        %th.place=t :place
+    %tbody
+      - for project in @finished
+        - css_class = ''
+        - css_class += ' success' if project.event_in_progress?
+        - css_class += ' meta finished' if project.event_ended?
+        %tr{:class => css_class}
+          %td.start_time=l project.start_time
+          %td.end_time=l project.end_time
+          %td
+            = link_to project.title, project
+          %td
+            = link_to(project.place.display_name, project.place) if project.place

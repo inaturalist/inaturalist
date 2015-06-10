@@ -25,31 +25,36 @@ function blurTip(obj, txt) {
 }
 
 function toggleHeaderSubnav(link) {
-  if ($(link).parents('.subnavtab').hasClass('open')) {
+  if ($(link).parents('.navtab').hasClass('open')) {
     closeHeaderSubnav(link);
   } else {
     openHeaderSubnav(link);
   }
+  return false;
 }
 
 function openHeaderSubnav(link) {
-  $('.subnav').hide();
-  $('.subnavtab').removeClass('open');
-  $(link).parents('.subnavtab').addClass('open');
-  $(link).parents('li').find('.subnav').show();
+  var navtab = $(link).parents('.navtab').get(0)
+  $('#header .navtab').removeClass('open')
+  $('#header .subnav').hide()
+  $(navtab).addClass('open')
+  $('.subnav', navtab).show()
   $(document).click(subnavClickOff);
+  return false;
 }
 
 function closeHeaderSubnav(link) {
-  $(link).parents('.subnavtab').removeClass('open');
-  $(link).parents('li').find('.subnav').hide();
+  var navtab = $(link).parents('.navtab').get(0)
+  $(navtab).removeClass('open');
+  $('.subnav', navtab).hide()
   $(document).unbind('click', subnavClickOff);
+  return false;
 }
 
 function subnavClickOff(e) {
-  if ($(e.target).parents('.subnavwrapper').length == 0) {
+  if ($(e.target).parents('.navtab').length == 0) {
     $('.subnav').hide();
-    $('.subnavtab').removeClass('open');
+    $('.navtab').removeClass('open');
   }
 }
 var QTIP_DEFAULTS = {
@@ -170,29 +175,6 @@ function buildHelpTips() {
 }
 
 $(document).ready(function() {
-  function makeHeaderLinkCurrent(li) {
-    $(li).addClass('current').append(
-      $('<img src="<%= image_path('active_tab_bottom.gif') %>">').css({
-        position: "absolute",
-        left: '50%',
-        bottom: '-6px',
-        marginLeft: '-5px'
-      })
-    )
-  }
-  if (window.location.pathname.match(/^\/observations/)) {
-    makeHeaderLinkCurrent('#mainnav .observationstab')
-  } else if (window.location.pathname.match(/^\/taxa/)) {
-    makeHeaderLinkCurrent('#mainnav .taxatab')
-  } else if (window.location.pathname.match(/^\/projects/)) {
-    makeHeaderLinkCurrent('#mainnav .projectstab')
-  } else if (window.location.pathname.match(/^\/places/)) {
-    makeHeaderLinkCurrent('#mainnav .placestab')
-  } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
-    makeHeaderLinkCurrent('#mainnav .peopletab')
-  } else if (window.location.pathname.match(/^\/guides/) || window.location.pathname.match(/^\/guides/)) {
-    makeHeaderLinkCurrent('#mainnav .guidestab')
-  }
   
   buildHelpTips()
   
@@ -211,6 +193,7 @@ $(document).ready(function() {
   ]).preload()
   
   $('[data-tip]').each(autoTip)
+  $('[data-popover]').each(autoPopover)
   
   $('.source_nested_form_fields input.existing').chooser({
     collectionUrl: '/sources.json',
@@ -367,6 +350,13 @@ $(document).ready(function() {
 
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
+
+  $('#header .menutab').mouseover(function() {
+    openHeaderSubnav($('a:first', this))
+  })
+  $('#header .menutab').mouseout(function() {
+    closeHeaderSubnav($('a:first', this))
+  })
 })
 
 function checkFormForRequiredFields(e) {
@@ -414,6 +404,27 @@ function checkDelayedLink(url) {
       }
     }
   })
+}
+
+function autoPopover() {
+  var options = $(this).data('popover')
+  if (options.content && options.content.match(/^#/)) {
+    content = $(options.content).html()
+  } else {
+    content = options.content
+  }
+  if (options.style && options.style.classes) {
+    options.style.classes = QTIP_DEFAULTS.style.classes + " " + options.style.classes
+  }
+  var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, options, {
+    show: {event: 'click'},
+    hide: {event: 'unfocus'},
+    content: { 
+      text: content,
+      title: options.title
+    }
+  })
+  $(this).qtip(tipOptions)
 }
 
 function autoTip() {
@@ -839,16 +850,16 @@ function setUpdatesCount(count, options) {
   options = options || {}
   if (count > 0) {
     if (options.skipAnimation) {
-      $('#header .updates').addClass('alert')
+      $('#header .updates').addClass('hasupdates')
     } else {
-      $('#header .updates').switchClass('', 'alert')
+      $('#header .updates').switchClass('', 'hasupdates')
     }
     $('#header .updates .count').html(count)
   } else {
     if (options.skipAnimation) {
-      $('#header .updates').removeClass('alert')
+      $('#header .updates').removeClass('hasupdates')
     } else {
-      $('#header .updates').switchClass('alert', '')
+      $('#header .updates').switchClass('hasupdates', '')
     }
     $('#header .updates .count').html(0)
   }
@@ -864,16 +875,16 @@ function setMessagesCount(count, options) {
   options = options || {}
   if (count > 0) {
     if (options.skipAnimation) {
-      $('#header .messages').addClass('alert')
+      $('#header .messages').addClass('hasupdates')
     } else {
-      $('#header .messages').switchClass('', 'alert')
+      $('#header .messages').switchClass('', 'hasupdates')
     }
     $('#header .messages .count').html(count)
   } else {
     if (options.skipAnimation) {
-      $('#header .messages').removeClass('alert')
+      $('#header .messages').removeClass('hasupdates')
     } else {
-      $('#header .messages').switchClass('alert', '')
+      $('#header .messages').switchClass('hasupdates', '')
     }
     $('#header .messages .count').html(0)
   }
@@ -1077,6 +1088,26 @@ $('.add_matching_link').live('click', function(e) {
   return false  
 })
 
+function remoteDialog(url, options) {
+  var options = options || {},
+      dialogId = url.replace(/[^A-z0-9]+/g, '-').replace(/^\W+/, ''),
+      dialog = $('#'+dialogId)
+  if (dialog.length == 0) {
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
+    dialog.attr('id', dialogId)
+    dialog.load(url)
+    dialog.dialog({
+      modal: true,
+      title: options.title,
+      width: 760,
+      minHeight: 300
+    })
+  } else {
+    $(dialog).dialog('open')
+  }
+  return false
+}
+
 function showJoinProjectDialog(projectId, options) {
   options = options || {}
   var url = options.url || '/projects/'+projectId+'/join?partial=join',
@@ -1184,7 +1215,7 @@ $.fn.observationTaxonStats = function(options) {
         (json.rank_counts['form'] || 0) +
         (json.rank_counts.hybrid || 0)
     }
-    var speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&rank=species')
+    var speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&hrank=species')
     $('.species .count', container).html(speciesCountLink)
     if (json.species_counts.length > 0) {
       var most
@@ -1272,7 +1303,7 @@ $.fn.observationUserStats = function(options) {
             addClass('meta').
             html(I18n.t('x_species_link_html', {
               count: row.count, 
-              url: '/observations/taxa'+baseSearch+'&user_id='+row.user.login
+              url: '/observations/taxa'+baseSearch+'&user_id='+row.user.login+'&hrank=species'
             }))
         )
         tr.append(imageTD, userTD)
@@ -1370,6 +1401,100 @@ $.fn.boldId = function() {
     })
     $(this).after(boldWrapper)
     var url = "/identifications/bold.xml?db="+bolddb+"&sequence="+$(this).text()
+  })
+}
+
+$.fn.leaderboard = function(options) {
+  $(this).addClass('leaderboard-container')
+  var htmltable = $(this).html(
+    $('<table>').append(
+      $('<thead>').append(
+        $('<tr>').append(
+          $('<th>').append('#'),
+          $('<th class="user">').append(I18n.t('user')),
+          $('<th class="numeric">').append(I18n.t('observations')),
+          $('<th class="numeric">').append(I18n.t('species'))
+        )
+      ),
+      $('<tbody>')
+    )
+  )
+  // http://stackoverflow.com/questions/17732714/datatables-js-sort-columns-containing-html-links-with-integer-text
+  jQuery.fn.dataTableExt.oSort['numeric-html-asc'] = jQuery.fn.dataTableExt.oSort['numeric-html-asc'] || function(a,b) {
+    if (!a.toString().match(/^\d+$/)) {
+      a = parseInt($(a).text())
+      b = parseInt($(b).text())
+    }
+    return ((a < b) ? -1 : ((a > b) ?  1 : 0))
+  }
+  jQuery.fn.dataTableExt.oSort['numeric-html-desc'] = jQuery.fn.dataTableExt.oSort['numeric-html-desc'] || function(a,b) {
+    if (!a.toString().match(/^\d+$/)) {
+      a = parseInt($(a).text())
+      b = parseInt($(b).text())
+    }
+  return ((a < b) ? 1 : ((a > b) ?  -1 : 0))
+  }
+  var table = $('table', this).DataTable({
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": false,
+    "bInfo": false,
+    "aaSorting": [[2,'desc']],
+    "aoColumns": [
+      {"bSortable": false},
+      {"sType": "html", "sClass": "user"},
+      {"sType": "numeric-html", "sClass": "numeric", "orderSequence": ["desc", "asc"]},
+      {"sType": "numeric-html", "sClass": "numeric", "orderSequence": ["desc", "asc"]}
+    ],
+    fnDrawCallback: function ( oSettings ) {
+        var that = this;
+        /* Need to redo the counters if filtered or sorted */
+        if ( oSettings.bSorted || oSettings.bFiltered ) {
+          this.$('td:first-child', {"filter":"applied"}).each( function (i) {
+              that.fnUpdate( i+1, this.parentNode, 0, false, false );
+          })
+        }
+    }
+  })
+  htmltable.loadingShades()
+  $.getJSON('/observations/user_stats?'+$.param(options), function(data) {
+    htmltable.shades('close')
+    var users = {}
+    $.each(data.most_observations, function() {
+      users[this.user.id] = {user: this.user, observations: this.count}
+    })
+    $.each(data.most_species, function() {
+      users[this.user.id] = users[this.user.id] || {user: this.user}
+      users[this.user.id].species = this.count
+    })
+    $.each(users, function(i) {
+      var linkOptions = $.extend({}, options, true)
+      delete linkOptions.limit
+      var userLink = $('<a>')
+          .attr('href', '/people/'+this.user.login)
+          .html(
+            $('<img>').attr('src', this.user.user_icon_url || '<%= image_path(User.new.icon.url(:thumb)) %>')
+          ).prop('outerHTML') +
+        $('<a>')
+          .attr('href', '/people/'+this.user.login)
+          .html(this.user.login).prop('outerHTML')
+      var obsLink = $('<a>')
+        .attr('href', '/observations/'+this.user.login+'?'+$.param(linkOptions))
+        .html(this.observations || '*')
+        .prop('outerHTML')
+      var sppLink = $('<a>')
+        .attr('href', '/observations/taxa?'+$.param($.extend({}, linkOptions, {user_id: this.user.login, hrank: 'species'}, true)))
+        .html(this.species || '*')
+        .prop('outerHTML')
+      var row = [
+        i,
+        userLink,
+        obsLink,
+        sppLink
+      ]
+      table.row.add(row)
+    })
+    table.draw()
   })
 }
 

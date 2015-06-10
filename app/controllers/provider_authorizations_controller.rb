@@ -14,8 +14,12 @@ class ProviderAuthorizationsController < ApplicationController
 
   def destroy
     if request.delete?
-      provider = current_user.has_provider_auth(params[:provider])
-      provider.destroy unless provider.nil?
+      provider_authorization = current_user.has_provider_auth(params[:provider])
+      provider_authorization.destroy if provider_authorization
+      flash[:notice] = t(:you_unlinked_your_provider_account, provider: provider_authorization.provider.to_s.capitalize)
+    else
+      flash[:notice] = "Failed to unlinked your #{params[:provider]} account"
+      t(:failed_to_unlink_your_provider_account, provider: params[:provider])
     end
     redirect_to edit_person_url(current_user)
   end
@@ -106,7 +110,7 @@ class ProviderAuthorizationsController < ApplicationController
       sign_in(existing_user) unless logged_in?
       @provider_authorization = current_user.add_provider_auth(auth_info)
       if @provider_authorization && @provider_authorization.valid?
-        flash[:notice] = "You've successfully linked your #{@provider_authorization.provider.to_s.capitalize} account."
+        flash[:notice] = t(:youve_successfully_linked_your_provider_account, provider: @provider_authorization.provider.to_s.capitalize)
       else
         msg = "There were problems linking your account"
         msg += ": #{@provider_authorization.errors.full_messages.to_sentence}" if @provider_authorization
@@ -138,7 +142,7 @@ class ProviderAuthorizationsController < ApplicationController
     flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
       flash[:notice] = "You just authorized #{CONFIG.site_name_short} to write to your account " +
-        "on #{@provider_authorization.provider_name}. Thanks! Please try " +
+        "on #{@provider_authorization.provider}. Thanks! Please try " +
         "what you were doing again.  We promise to be careful!"
     end
     @landing_path = session[:return_to] || home_path

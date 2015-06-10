@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
@@ -17,7 +20,7 @@ class Project < ActiveRecord::Base
   has_many :posts, :as => :parent, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent
   has_many :assessments, :dependent => :destroy
-    
+  
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
   after_create :create_the_project_list
@@ -37,6 +40,8 @@ class Project < ActiveRecord::Base
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+  preference :range_by_date, :boolean, :default => false
+  preference :aggregation, :boolean, default: false
 
   MEMBERSHIP_OPEN = 'open'
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
@@ -54,6 +59,14 @@ class Project < ActiveRecord::Base
   validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
   validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
   validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
+  validate :aggregation_preference_allowed?
+
+  def aggregation_preference_allowed?
+    return true unless prefers_aggregation?
+    return true if aggregation_allowed?
+    errors.add(:base, "cannot enable automatic observation aggregation with inadequate filters")
+    true
+  end
   
   scope :featured, -> { where("featured_at IS NOT NULL") }
   scope :in_group, lambda {|name| where(:group => name) }
@@ -101,19 +114,18 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
   validate :cover_dimensions, :unless => "errors.any?"
   
-  CONTEST_TYPE = 'contest'
-  OBS_CONTEST_TYPE = 'observation contest'
   ASSESSMENT_TYPE = 'assessment'
   BIOBLITZ_TYPE = 'bioblitz'
-  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE, BIOBLITZ_TYPE]
+  PROJECT_TYPES = [ASSESSMENT_TYPE, BIOBLITZ_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
   validates_inclusion_of :map_type, :in => MAP_TYPES
 
-  acts_as_spammable :fields => [ :title, :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :title, :description ],
+                    comment_type: "item-description",
+                    automated: false
 
   def place_with_boundary
     unless PlaceGeometry.where(:place_id => place_id).exists?
@@ -129,6 +141,22 @@ class Project < ActiveRecord::Base
   
   def to_s
     "<Project #{id} #{title}>"
+  end
+
+  def start_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
+  end
+
+  def end_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
   end
   
   def strip_title
@@ -164,10 +192,6 @@ class Project < ActiveRecord::Base
     true
   end
   
-  def contest?
-     [CONTEST_TYPE, OBS_CONTEST_TYPE].include?(project_type)
-  end
-  
   def editable_by?(user)
     return false if user.blank?
     return true if user.id == user_id || user.is_admin?
@@ -186,7 +210,11 @@ class Project < ActiveRecord::Base
   end
 
   def rule_taxon
-    @rule_taxon ||= project_observation_rules.where(:operator => "in_taxon?").first.try(:operand)
+    @rule_taxon ||= rule_taxa.first
+  end
+
+  def rule_taxa
+    @rule_taxa ||= project_observation_rules.where(:operator => "in_taxon?").map(&:operand).compact
   end
   
   def icon_url
@@ -244,9 +272,46 @@ class Project < ActiveRecord::Base
   end
 
   def observations_url_params
-    observations_url_params = {:place_id => place_id, :d1 => start_time.iso8601, :d2 => end_time.iso8601, :per_page => 24}
-    observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
-    observations_url_params
+    params = {:place_id => place_id}
+    if start_time && end_time
+      if prefers_range_by_date?
+        params.merge!(
+          d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
+          d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
+        )
+      else
+        params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+      end
+    end
+    taxon_ids = []
+    project_observation_rules.each do |rule|
+      case rule.operator
+      when "in_taxon?"
+        taxon_ids << rule.operand_id
+      when "observed_in_place?"
+        # Ignore, we already added the place_id
+      when "on_list?"
+        params[:list_id] = project_list.id
+      when "identified?"
+        params[:identified] = true
+      when "georeferenced?"
+        params[:has] ||= []
+        params[:has] << "geo"
+      when "has_a_photo?"
+        params[:has] ||= []
+        params[:has] << "photos"
+      when "has_a_sound?"
+        params[:has] ||= []
+        params[:has] << "sounds"
+      when "captive?"
+        params[:captive] = true
+      when "wild?"
+        params[:captive] = false
+      end
+    end
+    taxon_ids.compact.uniq!
+    params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
+    params
   end
 
   def cached_slug
@@ -279,15 +344,34 @@ class Project < ActiveRecord::Base
     new_project
   end
 
-  def generate_csv(path, columns)
-    project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code)
+  def generate_csv(path, columns, options = {})
+    project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code curator_coordinate_access)
     columns += project_columns
     ofv_columns = self.observation_fields.map{|of| "field:#{of.normalized_name}"}
     columns += ofv_columns
+    if options[:viewer]
+      options[:viewer].project_users.load
+    end
     CSV.open(path, 'w') do |csv|
       csv << columns
-      self.project_observations.includes(:observation => [:taxon, {:observation_field_values => :observation_field}]).find_each do |project_observation|
-        csv << columns.map {|column| project_observation.to_csv_column(column, :project => self)}
+      self.project_observations.find_in_batches do |batch|
+        ProjectObservation.preload_associations(batch, [
+          :stored_preferences,
+          curator_identification: [:taxon, :user],
+          observation: {
+            identifications: :taxon,
+            observation_photos: :photo,
+            taxon: {taxon_names: :place_taxon_names},
+            observation_field_values: :observation_field,
+            project_observations: :stored_preferences,
+            user: {project_users: :stored_preferences}
+          }
+        ])
+        batch.each do |project_observation|
+          csv << columns.map {|column| 
+            project_observation.to_csv_column(column, :project => self, :viewer => options[:viewer])
+          }
+        end
       end
     end
   end
@@ -295,7 +379,7 @@ class Project < ActiveRecord::Base
   def eventbrite_id
     return if event_url.blank?
     return unless event_url =~ /eventbrite\.com/
-    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.scan(/\d+/).last
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.to_s.scan(/\d+/).last
   end
 
   def event_started?
@@ -385,15 +469,18 @@ class Project < ActiveRecord::Base
     project.update_attributes(:observed_taxa_count => observed_taxa_count)
   end
   
-  
+  def self.revoke_project_observations_on_leave_project(project_id, user_id)
+    return unless proj = Project.find_by_id(project_id)
+    return unless usr = User.find_by_id(user_id)
+    proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
+      po.update_attributes(prefers_curator_coordinate_access: false)
+    end
+  end
+
   def self.delete_project_observations_on_leave_project(project_id, user_id)
-    unless proj = Project.find_by_id(project_id)
-      return
-    end
-    unless usr = User.find_by_id(user_id)
-      return
-    end
-    proj.project_observations.find_each(:include => :observation, :conditions => ["observations.user_id = ?", usr]) do |po|
+    return unless proj = Project.find_by_id(project_id)
+    return unless usr = User.find_by_id(user_id)
+    proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
       po.destroy
     end
   end
@@ -497,5 +584,106 @@ class Project < ActiveRecord::Base
 
   def invite_only?
     preferred_membership_model == MEMBERSHIP_INVITE_ONLY
+  end
+
+  def aggregation_allowed?
+    return false unless trusted?
+    return true if place && place.bbox_area < 141
+    return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
+    false
+  end
+
+  class ProjectAggregatorAlreadyRunning < StandardError; end
+
+  def aggregate_observations(options = {})
+    return false unless aggregation_allowed?
+    logger = options[:logger] || Rails.logger
+    start_time = Time.now
+    added = 0
+    fails = 0
+    logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
+    elastic_options = {}
+    elastic_options[:filters] = [{ range: { updated_at: { gt: last_aggregated_at } } }] unless last_aggregated_at.nil?
+    params = observations_url_params.merge(per_page: 200, not_in_project: id)
+    page = 1
+    while true
+      if options[:pidfile]
+        unless File.exists?(options[:pidfile])
+          msg = "Project aggregator running without a PID file at #{options[:pidfile]}"
+          logger.error "[ERROR #{Time.now}] #{msg}"
+          raise ProjectAggregatorAlreadyRunning, msg
+        end
+        pid = open(options[:pidfile]).read.to_s.strip.to_i
+        unless pid == Process.pid
+          msg = "Another project aggregator (#{pid}) is already running (this pid: #{Process.id})"
+          logger.error "[ERROR #{Time.now}] #{msg}"
+          raise ProjectAggregatorAlreadyRunning, msg
+        end
+      end
+      observations = if params[:list_id]
+        Observation.query(params).page(page)
+      else
+        Observation.elastic_query(params.merge(page: page), elastic_options)
+      end
+      break if observations.blank?
+      Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
+      observations.each do |o|
+        po = ProjectObservation.new(project: self, observation: o)
+        if po.save
+          added += 1
+        else
+          fails += 1
+          Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+        end
+      end
+      observations = nil
+      page += 1
+    end
+    update_attributes(last_aggregated_at: Time.now)
+    logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
+  end
+
+  def self.aggregate_observations(options = {})
+    # PID file stuff inspired by 
+    # http://stackoverflow.com/questions/3983883/how-to-ensure-a-rake-task-only-running-a-process-at-a-time and 
+    # http://codeincomplete.com/posts/2014/9/15/ruby_daemons/#separation-of-concerns
+    pidfile = File.join(Rails.root, "tmp", "pids", "project_aggregator.pid")
+    if File.exists? pidfile
+      f = File.open(pidfile, 'r')
+      pid = f.read.to_s.strip.to_i
+      f.close
+      begin
+        # send signal 0 to check process status
+        Process.kill(0, pid)
+        msg = "Project aggegator #{pid} is already running, quitting (this pid: #{Process.pid})"
+        Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+        raise ProjectAggregatorAlreadyRunning, msg
+      rescue Errno::EPERM
+        msg = "Project aggegator #{pid} is already running but not owned, quitting (this pid: #{Process.pid})"
+        Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+        raise ProjectAggregatorAlreadyRunning, msg
+      rescue Errno::ESRCH
+        # Process is not running even though pidfile is there, so delete it
+        Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} b/c process #{pid} is not running"
+        File.delete pidfile
+      end
+    end
+    File.open(pidfile, 'w') {|f| f.puts Process.pid}
+    logger = options[:logger] || Rails.logger
+    start_time = Time.now
+    num_projects = 0
+    logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
+    Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
+      next unless p.aggregation_allowed? && p.prefers_aggregation?
+      p.aggregate_observations(logger: logger, pidfile: pidfile)
+      num_projects += 1
+    end
+    logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
+    Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} after complete aggregation"
+    File.delete(pidfile) if File.exists?(pidfile)
+  rescue => e
+    File.delete(pidfile) if File.exists?(pidfile) && !e.is_a?(ProjectAggregatorAlreadyRunning)
+    Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
+    raise e
   end
 end

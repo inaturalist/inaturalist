@@ -10,30 +10,30 @@ describe ObservationsExportFlowTask, "run" do
   end
   it "should generate a zipped csv archive by default" do
     output = @ft.outputs.first
-    output.should_not be_blank
-    output.file.path.should =~ /csv.zip$/
+    expect(output).not_to be_blank
+    expect(output.file.path).to be =~ /csv.zip$/
   end
 
   it "should filter by user_id" do
     csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
-    csv.size.should eq 2
-    csv[1].should include @o.id.to_s
+    expect(csv.size).to eq 2
+    expect(csv[1]).to include @o.id.to_s
   end
 
   it "should filter by year" do
     u = User.make!
     o2004 = Observation.make!(:observed_on_string => "2004-05-02", :user => u)
-    o2004.observed_on.year.should eq 2004
+    expect(o2004.observed_on.year).to eq 2004
     o2010 = Observation.make!(:observed_on_string => "2010-05-02", :user => u)
-    o2010.observed_on.year.should eq 2010
-    Observation.by(u).on("2010").should_not be_blank
+    expect(o2010.observed_on.year).to eq 2010
+    expect(Observation.by(u).on("2010")).not_to be_blank
     ft = ObservationsExportFlowTask.make
     ft.inputs.build(:extra => {:query => "user_id=#{u.id}&year=2010"})
     ft.save!
     ft.run
     csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-    csv.size.should eq 2
-    csv[1].should include o2010.id.to_s
+    expect(csv.size).to eq 2
+    expect(csv[1]).to include o2010.id.to_s
   end
 
   it "should allow JSON output" do
@@ -43,15 +43,33 @@ describe ObservationsExportFlowTask, "run" do
     ft.save!
     ft.run
     output = ft.outputs.first
-    output.should_not be_blank
-    output.file.path.should =~ /json.zip$/
-    lambda {
+    expect(output).not_to be_blank
+    expect(output.file.path).to be =~ /json.zip$/
+    expect {
       JSON.parse(open(File.join(ft.work_path, "#{ft.basename}.json")).read)
-    }.should_not raise_error
+    }.not_to raise_error
+  end
+
+  it "should filter by project" do
+    u = User.make!
+    po = make_project_observation
+    in_project = po.observation
+    not_in_project = Observation.make!
+    ft = ObservationsExportFlowTask.make
+    ft.inputs.build(:extra => {:query => "projects%5B%5D=#{po.project.slug}"})
+    ft.save!
+    ft.run
+    csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+    expect(csv.size).to eq 2
+    expect( csv.detect{|row| row.detect{|v| v == in_project.id.to_s}} ).not_to be_blank
+    expect( csv.detect{|row| row.detect{|v| v == not_in_project.id.to_s}} ).to be_blank
   end
 end
 
 describe ObservationsExportFlowTask, "geoprivacy" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
+
   it "should not include private coordinates you can't see" do
     o = make_private_observation(:taxon => Taxon.make!)
     viewer = User.make!
@@ -60,8 +78,8 @@ describe ObservationsExportFlowTask, "geoprivacy" do
     ft.save!
     ft.run 
     csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-    csv.size.should eq 2
-    csv[1].should_not include o.private_latitude.to_s
+    expect(csv.size).to eq 2
+    expect(csv[1]).not_to include o.private_latitude.to_s
   end
 
   it "should include private coordinates if viewing your own observations" do
@@ -72,8 +90,8 @@ describe ObservationsExportFlowTask, "geoprivacy" do
     ft.save!
     ft.run 
     csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-    csv.size.should eq 2
-    csv[1].should include o.private_latitude.to_s
+    expect(csv.size).to eq 2
+    expect(csv[1]).to include o.private_latitude.to_s
   end
 
   it "should include private coordinates if viewing a project you curate" do
@@ -89,8 +107,27 @@ describe ObservationsExportFlowTask, "geoprivacy" do
     ft.save!
     ft.run 
     csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-    csv.size.should eq 2
-    csv[1].should include o.private_latitude.to_s
+    expect(csv.size).to eq 2
+    expect(csv[1]).to include o.private_latitude.to_s
+  end
+
+  it "should not include private coordinates if viewing a project you curate but don't have curator_coordinate_access" do
+    o = make_private_observation(:taxon => Taxon.make!)
+    po = ProjectObservation.make!(:observation => o)
+    p = po.project
+    pu = without_delay do
+      ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
+    end
+    viewer = pu.user
+    expect( po ).not_to be_prefers_curator_coordinate_access
+    expect( o ).not_to be_coordinates_viewable_by(viewer)
+    ft = ObservationsExportFlowTask.make(:user => viewer)
+    ft.inputs.build(:extra => {:query => "projects[]=#{p.id}"})
+    ft.save!
+    ft.run 
+    csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+    expect(csv.size).to eq 2
+    expect(csv[1]).to include o.private_latitude.to_s
   end
 end
 
@@ -102,13 +139,13 @@ describe ObservationsExportFlowTask, "columns" do
     ft.save!
     ft.run 
     csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-    csv[0].size.should eq 1
+    expect(csv[0].size).to eq 1
   end
 
   it "should never include anything but allowed columns" do
     ft = ObservationsExportFlowTask.make(:options => {:columns => %w(delete destroy badness)})
     ft.inputs.build(:extra => {:query => "user_id=1"})
     ft.save!
-    ft.export_columns.should be_blank
+    expect(ft.export_columns).to be_blank
   end
 end

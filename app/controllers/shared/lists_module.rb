@@ -457,13 +457,14 @@ private
 
   def set_search_taxon_ids(q)
     return [] if q.blank?
-    Taxon.search_for_ids(q, :per_page => 1000)
+    @search_taxon_ids = Taxon.elastic_search(
+      where: { "names.name": @q }, fields: :id).per_page(1000).map(&:id)
   end
 
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     return [ ] if listed_taxa.nil?
     iconic_taxa = Taxon::ICONIC_TAXA
-    counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
+    counts = ListedTaxon.from("(#{listed_taxa.to_sql}) AS listed_taxa").joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|
       [iconic_taxon, counts[iconic_taxon.id] || 0]
     end

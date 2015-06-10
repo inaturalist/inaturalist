@@ -9,7 +9,9 @@ describe Emailer, "updates_notification" do
     @comment = without_delay { Comment.make!(:parent => @observation) }
     @user = @observation.user
     Inaturalist::Application.config.action_mailer.default_url_options[:host] = "localhost:3000"
+    enable_elastic_indexing(Update)
   end
+  after(:each) { disable_elastic_indexing(Update) }
   
   it "should work when recipient has a blank locale" do
     @user.update_attributes(:locale => "")

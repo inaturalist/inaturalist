@@ -44,54 +44,107 @@ SET search_path = public, pg_catalog;
 
 CREATE FUNCTION cleangeometry(geom geometry) RETURNS geometry
     LANGUAGE plpgsql
-    AS $_$DECLARE
-  inGeom ALIAS for $1;
-  outGeom geometry;
-  tmpLinestring geometry;
+    AS $_$
+          DECLARE
+          inGeom ALIAS for $1;
+          outGeom geometry;
+          tmpLinestring geometry;
+          sqlString text;
 
-Begin
-  
-  outGeom := NULL;
-  
--- Clean Process for Polygon 
-  IF (GeometryType(inGeom) = 'POLYGON' OR GeometryType(inGeom) = 'MULTIPOLYGON') THEN
+      BEGIN
 
--- Only process if geometry is not valid, 
--- otherwise put out without change
-    if not st_isValid(inGeom) THEN
-    
--- create nodes at all self-intersecting lines by union the polygon boundaries
--- with the startingpoint of the boundary.  
-      tmpLinestring := st_union(st_multi(st_boundary(inGeom)),st_pointn(st_boundary(inGeom),1));
-      outGeom = st_buildarea(tmpLinestring);      
-      IF (GeometryType(inGeom) = 'MULTIPOLYGON') THEN      
-        RETURN st_multi(outGeom);
-      ELSE
-        RETURN outGeom;
-      END IF;
-    else    
-      RETURN inGeom;
-    END IF;
+          outGeom := NULL;
 
+          -- Clean Polygons --
+          IF (ST_GeometryType(inGeom) = 'ST_Polygon' OR ST_GeometryType(inGeom) = 'ST_MultiPolygon') THEN
 
-------------------------------------------------------------------------------
--- Clean Process for LINESTRINGS, self-intersecting parts of linestrings 
--- will be divided into multiparts of the mentioned linestring 
-------------------------------------------------------------------------------
-  ELSIF (GeometryType(inGeom) = 'LINESTRING') THEN
-    
--- create nodes at all self-intersecting lines by union the linestrings
--- with the startingpoint of the linestring.  
-    outGeom := st_union(st_multi(inGeom),st_pointn(inGeom,1));
-    RETURN outGeom;
-  ELSIF (GeometryType(inGeom) = 'MULTILINESTRING') THEN 
-    outGeom := st_multi(st_union(st_multi(inGeom),st_pointn(inGeom,1)));
-    RETURN outGeom;
-  ELSE 
-    RAISE NOTICE 'The input type % is not supported',GeometryType(inGeom);
-    RETURN inGeom;
-  END IF;	  
-End;$_$;
+              -- Check if it needs fixing
+              IF NOT ST_IsValid(inGeom) THEN
+
+                  sqlString := '
+                      -- separate multipolygon into 1 polygon per row
+                      WITH split_multi (geom, poly) AS (
+                          SELECT
+                              (ST_Dump($1)).geom,
+                              (ST_Dump($1)).path[1] -- polygon number
+                      ),
+                      -- break each polygon into linestrings
+                      split_line (geom, poly, line) AS (
+                          SELECT
+                              ST_Boundary((ST_DumpRings(geom)).geom),
+                              poly,
+                              (ST_DumpRings(geom)).path[1] -- line number
+                          FROM split_multi
+                      ),
+                      -- get the linestrings that make up the exterior of each polygon
+                      line_exterior (geom, poly) AS (
+                          SELECT
+                              geom,
+                              poly
+                          FROM split_line
+                          WHERE line = 0
+                      ),
+                      -- get an array of all the linestrings that make up the interior of each polygon
+                      line_interior (geom, poly) AS (
+                          SELECT
+                              array_agg(geom ORDER BY line),
+                              poly
+                          FROM split_line
+                          WHERE line > 0
+                          GROUP BY poly
+                      ),
+                      -- use MakePolygon to rebuild the polygons
+                      poly_geom (geom, poly) AS (
+                          SELECT
+                              CASE WHEN line_interior.geom IS NULL
+                                  THEN ST_Buffer(ST_MakePolygon(line_exterior.geom), 0)
+                                  ELSE ST_Buffer(ST_MakePolygon(line_exterior.geom, line_interior.geom), 0)
+                              END,
+                              line_exterior.poly
+                          FROM line_exterior
+                          LEFT JOIN line_interior USING (poly)
+                      )
+                  ';
+
+                  IF (ST_GeometryType(inGeom) = 'ST_Polygon') THEN
+                      sqlString := sqlString || '
+                          SELECT geom
+                          FROM poly_geom
+                      ';
+                  ELSE
+                      sqlString := sqlString || '
+                          , -- if its a multipolygon combine the polygons back together
+                          multi_geom (geom) AS (
+                              SELECT
+                                  ST_Multi(ST_Collect(geom ORDER BY poly))
+                              FROM poly_geom
+                          )
+                          SELECT geom
+                          FROM multi_geom
+                      ';
+                  END IF;
+
+                  EXECUTE sqlString INTO outGeom USING inGeom;
+
+                  RETURN outGeom;
+              ELSE
+                  RETURN inGeom;
+              END IF;
+
+          -- Clean Lines --
+          ELSIF (ST_GeometryType(inGeom) = 'ST_Linestring') THEN
+
+              outGeom := ST_Union(ST_Multi(inGeom), ST_PointN(inGeom, 1));
+              RETURN outGeom;
+          ELSIF (ST_GeometryType(inGeom) = 'ST_MultiLinestring') THEN
+              outGeom := ST_Multi(ST_Union(ST_Multi(inGeom), ST_PointN(inGeom, 1)));
+              RETURN outGeom;
+          ELSE
+              RAISE NOTICE 'The input type % is not supported',ST_GeometryType(inGeom);
+              RETURN inGeom;
+          END IF;
+      END;
+      $_$;
 
 
 --
@@ -171,6 +224,77 @@ CREATE SEQUENCE announcements_id_seq
 --
 
 ALTER SEQUENCE announcements_id_seq OWNED BY announcements.id;
+
+
+--
+-- Name: api_endpoint_caches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_endpoint_caches (
+    id integer NOT NULL,
+    api_endpoint_id integer,
+    request_url character varying,
+    request_began_at timestamp without time zone,
+    request_completed_at timestamp without time zone,
+    success boolean,
+    response text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_endpoint_caches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_endpoint_caches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_endpoint_caches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_endpoint_caches_id_seq OWNED BY api_endpoint_caches.id;
+
+
+--
+-- Name: api_endpoints; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_endpoints (
+    id integer NOT NULL,
+    title character varying NOT NULL,
+    description text,
+    documentation_url character varying,
+    base_url character varying,
+    cache_hours integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_endpoints_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_endpoints_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_endpoints_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_endpoints_id_seq OWNED BY api_endpoints.id;
 
 
 --
@@ -468,7 +592,8 @@ CREATE TABLE delayed_jobs (
     locked_by character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    queue character varying(255)
+    queue character varying(255),
+    unique_hash character varying
 );
 
 
@@ -2407,7 +2532,8 @@ CREATE TABLE project_observations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     curator_identification_id integer,
-    tracking_code character varying(255)
+    tracking_code character varying(255),
+    user_id integer
 );
 
 
@@ -2535,7 +2661,8 @@ CREATE TABLE projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    show_from_place boolean
+    show_from_place boolean,
+    last_aggregated_at timestamp without time zone
 );
 
 
@@ -2571,7 +2698,8 @@ CREATE TABLE provider_authorizations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     scope character varying(255),
-    secret character varying(255)
+    secret character varying(255),
+    refresh_token character varying
 );
 
 
@@ -2742,6 +2870,36 @@ CREATE SEQUENCE site_admins_id_seq
 --
 
 ALTER SEQUENCE site_admins_id_seq OWNED BY site_admins.id;
+
+
+--
+-- Name: site_statistics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE site_statistics (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    data json
+);
+
+
+--
+-- Name: site_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE site_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: site_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE site_statistics_id_seq OWNED BY site_statistics.id;
 
 
 --
@@ -3643,6 +3801,43 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: votes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE votes (
+    id integer NOT NULL,
+    votable_id integer,
+    votable_type character varying,
+    voter_id integer,
+    voter_type character varying,
+    vote_flag boolean,
+    vote_scope character varying,
+    vote_weight integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE votes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE votes_id_seq OWNED BY votes.id;
+
+
+--
 -- Name: wiki_page_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3752,6 +3947,20 @@ ALTER SEQUENCE wiki_pages_id_seq OWNED BY wiki_pages.id;
 --
 
 ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY api_endpoint_caches ALTER COLUMN id SET DEFAULT nextval('api_endpoint_caches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY api_endpoints ALTER COLUMN id SET DEFAULT nextval('api_endpoints_id_seq'::regclass);
 
 
 --
@@ -4199,6 +4408,13 @@ ALTER TABLE ONLY site_admins ALTER COLUMN id SET DEFAULT nextval('site_admins_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY site_statistics ALTER COLUMN id SET DEFAULT nextval('site_statistics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY sites ALTER COLUMN id SET DEFAULT nextval('sites_id_seq'::regclass);
 
 
@@ -4360,6 +4576,13 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY wiki_page_attachments ALTER COLUMN id SET DEFAULT nextval('wiki_page_attachments_id_seq'::regclass);
 
 
@@ -4383,6 +4606,22 @@ ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_s
 
 ALTER TABLE ONLY announcements
     ADD CONSTRAINT announcements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_endpoint_caches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_endpoint_caches
+    ADD CONSTRAINT api_endpoint_caches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_endpoints_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_endpoints
+    ADD CONSTRAINT api_endpoints_pkey PRIMARY KEY (id);
 
 
 --
@@ -4890,6 +5129,14 @@ ALTER TABLE ONLY site_admins
 
 
 --
+-- Name: site_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY site_statistics
+    ADD CONSTRAINT site_statistics_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5074,6 +5321,14 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY votes
+    ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: wiki_page_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5102,6 +5357,27 @@ ALTER TABLE ONLY wiki_pages
 --
 
 CREATE INDEX fk_flags_user ON flags USING btree (user_id);
+
+
+--
+-- Name: index_api_endpoint_caches_on_api_endpoint_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoint_caches_on_api_endpoint_id ON api_endpoint_caches USING btree (api_endpoint_id);
+
+
+--
+-- Name: index_api_endpoint_caches_on_request_url; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoint_caches_on_request_url ON api_endpoint_caches USING btree (request_url);
+
+
+--
+-- Name: index_api_endpoints_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoints_on_title ON api_endpoints USING btree (title);
 
 
 --
@@ -5235,6 +5511,13 @@ CREATE INDEX index_countries_simplified_1_on_place_id ON countries_simplified_1 
 --
 
 CREATE INDEX index_custom_projects_on_project_id ON custom_projects USING btree (project_id);
+
+
+--
+-- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_delayed_jobs_on_unique_hash ON delayed_jobs USING btree (unique_hash);
 
 
 --
@@ -5399,10 +5682,10 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 
 --
--- Name: index_identifications_on_current; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_identifications_on_current ON identifications USING btree (user_id, observation_id) WHERE current;
+CREATE INDEX index_identifications_on_created_at ON identifications USING btree (created_at);
 
 
 --
@@ -5826,6 +6109,13 @@ CREATE INDEX index_observations_on_community_taxon_id ON observations USING btre
 
 
 --
+-- Name: index_observations_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_created_at ON observations USING btree (created_at);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5844,6 +6134,13 @@ CREATE INDEX index_observations_on_mappable ON observations USING btree (mappabl
 --
 
 CREATE INDEX index_observations_on_oauth_application_id ON observations USING btree (oauth_application_id);
+
+
+--
+-- Name: index_observations_on_observed_on; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_observed_on ON observations USING btree (observed_on);
 
 
 --
@@ -6159,6 +6456,13 @@ CREATE INDEX index_project_observations_on_observation_id ON project_observation
 --
 
 CREATE INDEX index_project_observations_on_project_id ON project_observations USING btree (project_id);
+
+
+--
+-- Name: index_project_observations_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_observations_on_user_id ON project_observations USING btree (user_id);
 
 
 --
@@ -6638,24 +6942,17 @@ CREATE INDEX index_trip_taxa_on_trip_id ON trip_taxa USING btree (trip_id);
 
 
 --
+-- Name: index_updates_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_updates_on_created_at ON updates USING btree (created_at);
+
+
+--
 -- Name: index_updates_on_notifier_type_and_notifier_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_updates_on_notifier_type_and_notifier_id ON updates USING btree (notifier_type, notifier_id);
-
-
---
--- Name: index_updates_on_resource_owner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_resource_owner_id ON updates USING btree (resource_owner_id);
-
-
---
--- Name: index_updates_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_resource_type_and_resource_id ON updates USING btree (resource_type, resource_id);
 
 
 --
@@ -6733,6 +7030,20 @@ CREATE INDEX index_users_on_state ON users USING btree (state);
 --
 
 CREATE INDEX index_users_on_uri ON users USING btree (uri);
+
+
+--
+-- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_votes_on_votable_id_and_votable_type_and_vote_scope ON votes USING btree (votable_id, votable_type, vote_scope);
+
+
+--
+-- Name: index_votes_on_voter_id_and_voter_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_votes_on_voter_id_and_voter_type_and_vote_scope ON votes USING btree (voter_id, voter_type, vote_scope);
 
 
 --
@@ -7315,6 +7626,8 @@ INSERT INTO schema_migrations (version) VALUES ('20141213001622');
 
 INSERT INTO schema_migrations (version) VALUES ('20141213195804');
 
+INSERT INTO schema_migrations (version) VALUES ('20141229185357');
+
 INSERT INTO schema_migrations (version) VALUES ('20141231210447');
 
 INSERT INTO schema_migrations (version) VALUES ('20150104021132');
@@ -7330,4 +7643,32 @@ INSERT INTO schema_migrations (version) VALUES ('20150203174741');
 INSERT INTO schema_migrations (version) VALUES ('20150226010539');
 
 INSERT INTO schema_migrations (version) VALUES ('20150304201738');
+
+INSERT INTO schema_migrations (version) VALUES ('20150313171312');
+
+INSERT INTO schema_migrations (version) VALUES ('20150319205049');
+
+INSERT INTO schema_migrations (version) VALUES ('20150324004401');
+
+INSERT INTO schema_migrations (version) VALUES ('20150404012836');
+
+INSERT INTO schema_migrations (version) VALUES ('20150406181841');
+
+INSERT INTO schema_migrations (version) VALUES ('20150409021334');
+
+INSERT INTO schema_migrations (version) VALUES ('20150409031504');
+
+INSERT INTO schema_migrations (version) VALUES ('20150412200608');
+
+INSERT INTO schema_migrations (version) VALUES ('20150413222254');
+
+INSERT INTO schema_migrations (version) VALUES ('20150421155510');
+
+INSERT INTO schema_migrations (version) VALUES ('20150504184529');
+
+INSERT INTO schema_migrations (version) VALUES ('20150509225733');
+
+INSERT INTO schema_migrations (version) VALUES ('20150512222753');
+
+INSERT INTO schema_migrations (version) VALUES ('20150524000620');
 

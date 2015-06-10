@@ -1,8 +1,5 @@
 #encoding: utf-8
 class LocalPhoto < Photo
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
   
@@ -157,7 +154,7 @@ class LocalPhoto < Photo
         o.taxon = candidate
       end
       if o.taxon
-        tags = to_tags.map(&:downcase)
+        tags = to_tags(with_title: true).map(&:downcase)
         o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
         o.species_guess ||= o.taxon.default_name.try(:name)
       elsif !metadata[:dc][:title].blank?
@@ -167,18 +164,29 @@ class LocalPhoto < Photo
         o.species_guess = nil
       end
       o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      if o.description.blank? && metadata[:image_description]
+        if metadata[:image_description].is_a?(Array)
+          o.description = metadata[:image_description].to_sentence
+        elsif metadata[:image_description].is_a?(String)
+          o.description = metadata[:image_description]
+        end
+      end
       o.build_observation_fields_from_tags(to_tags)
+      o.tag_list = to_tags
     end
     o
   end
 
-  def to_tags
+  def to_tags(options = {})
     return [] if metadata.blank? || metadata[:dc].blank?
-    [metadata[:dc][:title], metadata[:dc][:subject]].flatten.compact.map(&:strip)
+    @tags ||= [metadata[:dc][:subject]].flatten.reject(&:blank?).map(&:strip)
+    tags = @tags
+    tags += [metadata[:dc][:title]].flatten.reject(&:blank?).map(&:strip) if options[:with_title] && !metadata[:dc][:title].blank?
+    tags
   end
 
   def to_taxa(options = {})
-    tags = to_tags
+    tags = to_tags(with_title: true)
     return [] if tags.blank?
     Taxon.tags_to_taxa(tags, options).compact
   end
@@ -191,5 +199,9 @@ class LocalPhoto < Photo
     self.file.reprocess!
     self.save
   end
-  
+
+  def processing?
+    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
+  end
+
 end

@@ -12,15 +12,15 @@ Usage:
 where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
-  opt :username, "GBIF username", :type => :string, :short => "-u", :default => CONFIG.gbif.try(:username)
-  opt :password, "GBIF password", :type => :string, :short => "-p", :default => CONFIG.gbif.try(:password)
-  opt :notification_address, "Email address to receive GBIF notification", :type => :string, :short => "-e", :default => CONFIG.gbif.try(:notification_address)
+  opt :username, "GBIF username", :type => :string, :short => "-u", :default => CONFIG.gbif.username
+  opt :password, "GBIF password", :type => :string, :short => "-p", :default => CONFIG.gbif.password
+  opt :notification_address, "Email address to receive GBIF notification", :type => :string, :short => "-e", :default => CONFIG.gbif.notification_address
   opt :request_key, "GBIF download request key", :type => :string, :short => "-k"
-  # opt :last_interpreted, "Filter results"
 end
 
-Trollop::die "You must specify a GBIF username" if @opts.username.blank?
-Trollop::die "You must specify a GBIF password" if @opts.password.blank?
+Trollop::die "You must specify a GBIF username as an argument or in config.yml" if @opts.username.blank?
+Trollop::die "You must specify a GBIF password as an argument or in config.yml" if @opts.password.blank?
+Trollop::die "You must specify a GBIF notification email address as an argument or in config.yml" if @opts.notification_address.blank?
 
 start_time = Time.now
 new_count = 0
@@ -105,7 +105,8 @@ end
 puts
 puts "Downloading archive..."
 download
-CSV.foreach(File.join(@tmp_path, "occurrence.txt"), :col_sep => "\t", :headers => true) do |row|
+# "\x00" is an unprintable character that I hope we can assume will never appear in the data. If it does, CSV will choke
+CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true, quote_char: "\x00") do |row|
   # puts "row['gbifID']: #{row['gbifID']}\t\trow['catalogNumber']: #{row['catalogNumber']}"
   observation_id = row['catalogNumber']
   gbif_id = row['gbifID']

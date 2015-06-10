@@ -9,6 +9,14 @@ require 'faker'
 # Sham.body  { Faker::Lorem.paragraph }
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
+ApiEndpoint.blueprint do
+  title { Faker::Lorem.sentence }
+end
+
+ApiEndpointCache.blueprint do
+  api_endpoint { ApiEndpoint.make! }
+end
+
 Assessment.blueprint do
   taxon { Taxon.make! }
   user { User.make! }
@@ -202,7 +210,7 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
@@ -216,30 +224,30 @@ ProjectList.blueprint do
   project { Project.make }
 end
 
+ProjectObservation.blueprint do
+  observation { Observation.make! }
+  project { Project.make! } 
+end
+
 ProjectObservationField.blueprint do
   project { Project.make! }
   observation_field { ObservationField.make! }
 end
 
+ProjectObservationRule.blueprint do
+  ruler { Project.make! }
+  operator { "identified?" }
+end
+
 ProjectUser.blueprint do
-  user { User.make }
-  project { Project.make }
+  user { User.make! }
+  project { Project.make! }
 end
 
 ProjectUserInvitation.blueprint do
   user { User.make! }
   invited_user { User.make! }
   project { Project.make! }
-end
-
-ProjectObservation.blueprint do
-  observation { Observation.make }
-  project { Project.make }
-end
-
-ProjectObservationRule.blueprint do
-  ruler { Project.make }
-  operator { "identified?" }
 end
 
 ProviderAuthorization.blueprint do
@@ -266,6 +274,15 @@ end
 Site.blueprint do
   name { Faker::Name.name }
   url { "http://#{Faker::Internet.domain_name}" }
+end
+
+SiteStatistic.blueprint do
+  data { {
+    observations: { },
+    users: { },
+    projects: { },
+    taxa: { }
+  }}
 end
 
 Sound.blueprint do
@@ -394,4 +411,7 @@ User.blueprint do
   created_at { 5.days.ago.to_s(:db) }
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
+end
+
+WikiPage.blueprint do
 end

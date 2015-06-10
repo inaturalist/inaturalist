@@ -1,6 +1,10 @@
 #encoding: utf-8
 class Place < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   has_ancestry
+
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   belongs_to :source
@@ -15,7 +19,7 @@ class Place < ActiveRecord::Base
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
-  has_many :observations_places, :dependent => :destroy
+  has_many :observations_places, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
@@ -36,6 +40,7 @@ class Place < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
   validate :validate_parent_is_not_self
   validate :validate_name_does_not_start_with_a_number
+  validate :custom_errors
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -210,7 +215,7 @@ class Place < ActiveRecord::Base
 
   scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
-  
+
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
@@ -397,7 +402,7 @@ class Place < ActiveRecord::Base
     if too_big_for_check_list? && !prefers_check_lists && check_list
       delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
     end
-    if place_type == PLACE_TYPE_CODES['Continent'] || too_big_for_check_list?
+    if too_big_for_check_list?
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -413,7 +418,9 @@ class Place < ActiveRecord::Base
   end
 
   def too_big_for_check_list?
-    bbox_area.to_f > 100 && !user_id.blank?
+    # 9000 is about the size of Africa, debeatable if checklists for places
+    # bigger than that are actually useful
+    bbox_area.to_f > 9000 && !user_id.blank?
   end
 
   def remove_default_check_list
@@ -443,7 +450,7 @@ class Place < ActiveRecord::Base
   def append_geom(geom, other_attrs = {})
     new_geom = geom
     self.place_geometry.reload
-    if place_geometry
+    if place_geometry && !place_geometry.geom.nil?
       f = place_geometry.geom.factory
       new_geom = f.multi_polygon([place_geometry.geom.union(geom)])
     end
@@ -660,13 +667,13 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
-    ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
-      update_all(place_id: self, list_id: self.check_list.id)
+    if check_list
+      ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
+        update_all(place_id: self, list_id: self.check_list.id)
+    end
     
-    # Merge the geometries
-    if self.place_geometry && mergee.place_geometry
-      append_geom(mergee.place_geometry.geom)
-    elsif mergee.place_geometry
+    # Keep reject geometry if keeper doesn't have one
+    if place_geometry_without_geom.nil? && !mergee.place_geometry_without_geom.nil?
       save_geom(mergee.place_geometry.geom)
     end
 
@@ -678,6 +685,27 @@ class Place < ActiveRecord::Base
         child.update_attributes(:parent => nil)
       end
     end
+
+    # delete extra ObservationsPlaces for observations that are in both
+    # places. Doesn't matter which potential duplicate we delete b/c foreign
+    # keys will be updated to match the keeper with
+    # merge_has_many_associations
+    Place.connection.execute <<-SQL
+      DELETE FROM observations_places
+      USING (
+        SELECT
+          MAX(id) AS id
+        FROM
+          observations_places
+        WHERE
+          place_id IN (#{id},#{mergee.id})
+        GROUP BY observation_id
+        HAVING count(*) > 1
+      ) AS dupes
+      WHERE observations_places.id = dupes.id
+    SQL
+
+    merge_has_many_associations(mergee)
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload
@@ -765,6 +793,11 @@ class Place < ActiveRecord::Base
     super(options)
   end
 
+  def ancestor_place_ids
+    return unless ancestry
+    ancestry.split("/").map(&:to_i) << id
+  end
+
   def self_and_ancestors
     [ancestors, self].flatten
   end
@@ -784,4 +817,27 @@ class Place < ActiveRecord::Base
     center_point = f.point(longitude, latitude)
     center_point.distance(ne_point)
   end
+
+  def add_custom_error(scope, error)
+    @custom_errors ||= []
+    @custom_errors << [scope, error]
+  end
+
+  def custom_errors
+    return if @custom_errors.blank?
+    @custom_errors.each do |scope, error|
+      errors.add(scope, error)
+    end
+  end
+
+  def clean_geometry
+    begin
+      Place.connection.execute(
+        "UPDATE place_geometries SET geom=cleangeometry(geom) WHERE place_id=#{ id }")
+    rescue PG::Error => e
+      Rails.logger.error "[ERROR #{Time.now}] #{e}"
+      Logstasher.write_exception(e)
+    end
+  end
+
 end
