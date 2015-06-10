@@ -1937,14 +1937,10 @@ class ObservationsController < ApplicationController
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
     end
-    possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
-    if params[:elastic] || !possible_elastic_params.empty?
-      @elastic = true
-      @elastic_params = params.select{ |k,v|
-        [ :heatmap, :place_id, :user_id, :project_id,
-          :taxon_id, :d1, :d2 ].include?( k.to_sym ) }
-    end
-    @default_color = params[:color] || "#FF4500"
+    @elastic_params = params.select{ |k,v|
+      [ :place_id, :user_id, :project_id,
+        :taxon_id, :d1, :d2, :color ].include?( k.to_sym ) }
+    @default_color = params[:color] || "heatmap"
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end

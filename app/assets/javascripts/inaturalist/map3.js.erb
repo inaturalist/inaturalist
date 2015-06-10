@@ -751,38 +751,6 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
-google.maps.Map.prototype.addElasticLayer = function( options ) {
-  this.setTilt(0);
-  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
-  if( tileservers[0].match(/{n}/) ) {
-    var pattern = tileservers[0];
-    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
-      return pattern.replace( "{n}", n );
-    });
-  }
-  if( options["elastic_params"].match(/heatmap/) ) {
-    this.addLayerAndControl( {
-      tiles: _.map( tileservers , function( base ) {
-        return base + "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"];
-      })
-    }, options );
-  } else {
-    options.interactivity = true;
-    var tileLayers = _.map( tileservers, function( base ) {
-      return base + "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
-    });
-    var tilejson = {
-      tiles: tileLayers,
-      // wax needs template or it won't fire on events
-      "template": "this_is_silly",
-      grids: _.map( tileLayers, function( l ) {
-        return google.maps.Map.prototype.interactivityURL( l, "id" );
-      })
-    };
-    this.addLayerAndControl( tilejson, options );
-  }
-};
-
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
@@ -845,29 +813,39 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
+  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
+  if( tileservers[0].match(/{n}/) ) {
+    var pattern = tileservers[0];
+    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
+      return pattern.replace( "{n}", n );
+    });
+  }
   var options = options || { },
-      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.elasticsearch.inspect %>,
-      gridTileURL = tiles_url + "/heatmap/{z}/{x}/{y}.png",
-      pointTileURL = tiles_url + "/geohash/{z}/{x}/{y}.png",
+      gridTileSuffix = "/heatmap/{z}/{x}/{y}.png",
+      pointTileSuffix = "/geohash/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 5;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
   var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id', 'observation_id',
-    'project_id', 'ttl', 'color', 'opacity', 'border_opacity' ];
+    'project_id', 'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2' ];
   var pointParamKeys = gridParamKeys.concat([ 'observation_id' ]);
-  gridTileURL = appendValidParamsToURL( gridTileURL, _.extend(
+  gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: gridParamKeys, endpoint: "grid" } ));
-  pointTileURL = appendValidParamsToURL( pointTileURL, _.extend(
+  pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
     options, { validParams: gridParamKeys, endpoint: "points" } ));
   // add a layer to the map for the grid
-  gridLayer = this.addTileLayer( gridTileURL, {
+  gridLayer = this.addTileLayer( _.map( tileservers , function( base ) {
+      return base + gridTileSuffix;
+    }), {
     maxzoom: gridmaxzoom,
     gridmaxzoom: gridmaxzoom,
     interactivity: options.interactivity === false ? false :
       'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
     disabled: options.disabled
   });
-  pointLayer = this.addTileLayer( pointTileURL, {
+  pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
+      return base + pointTileSuffix;
+    }), {
     interactivity: options.interactivity === false ? false :
       'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
     minzoom: gridmaxzoom + 1,
@@ -892,16 +870,19 @@ google.maps.Map.prototype.getInfoWindow = function() {
   return this.infoWindow
 }
 
-google.maps.Map.prototype.addTileLayer = function(tileURL, options) {
+google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   var options = options || {},
       interactivity = options.interactivity;
   if( options.interactivity ) {
     // windshaft needs the interactivity param to know what data to render
-    options.grids = [ this.interactivityURL( tileURL, options.interactivity ) ];
+    // options.grids = [ this.interactivityURL( tileURL, options.interactivity ) ];
+    options.grids = _.map( tileURLs, function( l ) {
+      return google.maps.Map.prototype.interactivityURL( l, options.interactivity );
+    })
   }
   // finish preparing the tile options hash
   var tilejson = $.extend(true, { }, {
-    tiles: [ tileURL ],
+    tiles: tileURLs,
     // wax needs template or it won't fire on events
     "template": "{{species_guess}}"
   }, options);
