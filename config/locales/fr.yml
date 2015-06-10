@@ -467,7 +467,7 @@ fr:
   back_to_editing_observation: Retourner à la modification des observations
   back_to_help: Retourner à l’aide
   back_to_import: Retourner à l’importation
-  back_to_lists: Retourner aux listes %{name}
+  back_to_lists: Retourner aux listes de %{name}
   back_to_observation: Retourner à l’observation
   back_to_observation_fields: Retourner aux champs de l’observation
   back_to_people: Retourner aux personnes
@@ -1686,6 +1686,10 @@ fr:
   lists_are_lists_of_species: Les listes sont des listes d’espèces (ou d’autres taxons),
     comme une liste des êtres vivants de la catégorie oiseaux que vous avez vus ou une liste de vos
     salamandres préférées. Ce ne sont <em>pas</em> pas des listes d’observations.
+  lists_by_login:
+    title:
+      current_user: Vos listes d'observations
+      login: Listes d'observations de %{login}
   lists_come_in_three: 'Les listes se présentes sous trois formes :'
   load: Charger
   loading: Chargement en cours…
@@ -1887,7 +1891,7 @@ fr:
   new_flag_for: Nouveau drapeau pour
   new_guide: Nouveau guide
   new_journal_posts: Nouvelle note du journal
-  new_list: Nouvelle liste
+  new_list: Nouvelle liste d'observations
   new_members: Nouveaux membres…
   new_message: Nouveau message
   new_observation_field: Nouveau champ de l’observation
@@ -1976,6 +1980,8 @@ fr:
   no_places_selected: Aucun lieu sélectionné.
   no_post_yet: Aucune note jusqu’à présent!
   no_project_selected: Aucun projet n’a été sélectionné
+  no_project_to_admin_current_user: Vous n’administrez aucun projet
+  no_project_to_admin_login: "%{login} n’administre aucun projet"
   no_projects_yet: Aucun projet jusqu’à présent
   no_range_data_available: Aucune donnée disponible sur l’aire de répartition.
   no_recent_activity: Aucune activité récente
@@ -2033,6 +2039,7 @@ fr:
   noun_by_you: '%{noun} de vous'
   obs: Obs
   obscured: Masqué
+  obscured_or_private: caché ou privé
   obscured_description: Les coordonnées qui sont visibles pour tout le monde sont montrées comme point au hasard dans les 10 km
     des vraies coordonnées. Vous êtes la seule personne à voir les vraies coordonnées, ainsi que
     les responsables de l’organisation de projets pour lesquels vous ajoutez l’observation.
@@ -2131,7 +2138,7 @@ fr:
   observed_on: Observé le
   observed_one: observé un
   observer: Observateur
-  observer_short: Personne # Not very accurate but "observateur" doesn't fit in the allocated space
+  observer_short: Obs.
   observing: observation
   occurence_status_describes_how: L’état de la présence décrit le degré de rareté
     d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus
@@ -2924,6 +2931,7 @@ fr:
   sourcing: Source
   spam: pourriel
   spanish: Espagnol
+  species_header: Espèces
   species: Espèce
   species_from_around_the_world: Espèces du monde entier
   species_guess: devinez l’espèce
@@ -3567,6 +3575,7 @@ fr:
   what_do_you_think: Que pensez-vous?
   what_to_keep: Ce qu’il faut conserver
   what_want_to_list?: Que voulez-vous répertorier?
+  what_do_you_want_to_list?: Que voulez-vous répertorier?
   when: Quand
   when_did_you_see_it?: Quand l’avez-vous vu?
   when_did_you_see_them?: <em>Quand</em> les avez-vous vus?
@@ -3590,7 +3599,7 @@ fr:
   would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: '%{user} aimerait de l’aide à identifier
     ceci'
-  x_admin: '%{login} admins'
+  x_admin: 'que %{login} administre'
   x_deleted: '%{x} supprimé'
   x_does_not_exist: « %{x} » n’existe pas
   x_doesnt: '%{login} ne fait pas'
@@ -3624,7 +3633,7 @@ fr:
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday_at: ', hier à 16 h'
   you: vous
-  you_admin: votre administrateur
+  you_admin: que vous administrez
   youre_a_site_curator_which_means: |-
     Vous êtes un responsable de l’organisation du site, ce qui veut dire que vous vous êtes porté volontaire pour aider
     à organiser nos données et à contrôler le contenu. Ne vous sentez pas obligé

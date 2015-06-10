@@ -28,7 +28,7 @@
           %li= link_to t(:id_please), id_please_path
     %li.navtab.menutab
       .innertab
-        = link_to t(:species).capitalize, taxa_path
+        = link_to t(:species_header, default: t(:species).capitalize), taxa_path
         = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
           %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
