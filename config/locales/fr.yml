@@ -1887,7 +1887,7 @@ fr:
   new_flag_for: Nouveau drapeau pour
   new_guide: Nouveau guide
   new_journal_posts: Nouvelle note du journal
-  new_list: Nouvelle liste
+  new_list: Nouvelle liste d'observations
   new_members: Nouveaux membres…
   new_message: Nouveau message
   new_observation_field: Nouveau champ de l’observation
@@ -2033,6 +2033,7 @@ fr:
   noun_by_you: '%{noun} de vous'
   obs: Obs
   obscured: Masqué
+  obscured_or_private: caché ou privé
   obscured_description: Les coordonnées qui sont visibles pour tout le monde sont montrées comme point au hasard dans les 10 km
     des vraies coordonnées. Vous êtes la seule personne à voir les vraies coordonnées, ainsi que
     les responsables de l’organisation de projets pour lesquels vous ajoutez l’observation.
@@ -2131,7 +2132,7 @@ fr:
   observed_on: Observé le
   observed_one: observé un
   observer: Observateur
-  observer_short: Personne # Not very accurate but "observateur" doesn't fit in the allocated space
+  observer_short: Obs.
   observing: observation
   occurence_status_describes_how: L’état de la présence décrit le degré de rareté
     d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus
@@ -3591,7 +3592,7 @@ fr:
   would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: '%{user} aimerait de l’aide à identifier
     ceci'
-  x_admin: '%{login} admins'
+  x_admin: 'que %{login} administre'
   x_deleted: '%{x} supprimé'
   x_does_not_exist: « %{x} » n’existe pas
   x_doesnt: '%{login} ne fait pas'
@@ -3625,7 +3626,7 @@ fr:
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday_at: ', hier à 16 h'
   you: vous
-  you_admin: votre administrateur
+  you_admin: que vous administrez
   youre_a_site_curator_which_means: |-
     Vous êtes un responsable de l’organisation du site, ce qui veut dire que vous vous êtes porté volontaire pour aider
     à organiser nos données et à contrôler le contenu. Ne vous sentez pas obligé
