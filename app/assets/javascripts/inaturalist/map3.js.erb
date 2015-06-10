@@ -849,7 +849,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.elasticsearch.inspect %>,
       gridTileURL = tiles_url + "/heatmap/{z}/{x}/{y}.png",
       pointTileURL = tiles_url + "/geohash/{z}/{x}/{y}.png",
-      gridmaxzoom = options.gridmaxzoom || 6;
+      gridmaxzoom = options.gridmaxzoom || 5;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
   var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id', 'observation_id',
@@ -862,7 +862,9 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   // add a layer to the map for the grid
   gridLayer = this.addTileLayer( gridTileURL, {
     maxzoom: gridmaxzoom,
-    interactivity: false,
+    gridmaxzoom: gridmaxzoom,
+    interactivity: options.interactivity === false ? false :
+      'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
     disabled: options.disabled
   });
   pointLayer = this.addTileLayer( pointTileURL, {
