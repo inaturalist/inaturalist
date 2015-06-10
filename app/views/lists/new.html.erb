@@ -8,8 +8,8 @@
   <%= javascript_include_tag 'lists/form' %>
 <% end -%>
 <div id="pageheader" class="column span-24 last">
-  <span class="breadcrumbs">    
-    <%= link_to raw(t(:back_to_lists, :name => possessive(@list.user).downcase)),
+  <span class="breadcrumbs">
+    <%= link_to raw(is_me?(@list.user) ? t(:back_to_your_lists) : t(:back_to_lists, name: possessive(@list.user).downcase)),
                 lists_by_login_path(:login => @list.user.login),
                 :class => 'back crumb' %>
   </span>
