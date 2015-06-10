@@ -963,8 +963,8 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if params[:pcid] && params[:pcid] != "any"
-      scope = if [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid])
+    if !params[:pcid].nil? && params[:pcid] != "any"
+      scope = if params[:pcid].yesish?
         scope.joins(:project_observations).where("project_observations.curator_identification_id IS NOT NULL")
       else
         scope.joins(:project_observations).where("project_observations.curator_identification_id IS NULL")
@@ -2638,10 +2638,32 @@ class Observation < ActiveRecord::Base
   end
 
   def update_observations_places
-    Observation.connection.transaction do
-      ObservationsPlace.where(observation_id: id).delete_all
-      Place.including_observation(self).each do |place|
-        ObservationsPlace.create(observation: self, place: place)
+    Observation.update_observations_places(ids: [ id ])
+    # reload the association since we added the records using SQL
+    observations_places(true)
+  end
+
+  def self.update_observations_places(options = { })
+    filter_scope = options.delete(:scope)
+    scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
+      filter_scope : self.all
+    if filter_ids = options.delete(:ids)
+      scope = scope.where(id: filter_ids)
+    end
+    scope.select(:id).find_in_batches(options) do |batch|
+      ids = batch.map(&:id)
+      Observation.transaction do
+        connection.execute("DELETE FROM observations_places
+          WHERE observation_id IN (#{ ids.join(',') })")
+        connection.execute("INSERT INTO observations_places (observation_id, place_id)
+          SELECT o.id, pg.place_id FROM observations o
+          JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
+          WHERE o.id IN (#{ ids.join(',') })
+          AND pg.place_id IS NOT NULL
+          AND NOT EXISTS (
+            SELECT id FROM observations_places
+            WHERE place_id = pg.place_id AND observation_id = o.id
+          )")
       end
     end
   end
@@ -2649,6 +2671,35 @@ class Observation < ActiveRecord::Base
   def observation_photos_finished_processing
     observation_photos.select do |op|
       ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
+    end
+  end
+
+  def interpolate_coordinates
+    return unless time_observed_at
+    scope = user.observations.where("latitude IS NOT NULL or private_latitude IS NOT NULL")
+    prev_obs = scope.where("time_observed_at < ?", time_observed_at).order("time_observed_at DESC").first
+    next_obs = scope.where("time_observed_at > ?", time_observed_at).order("time_observed_at ASC").first
+    return unless prev_obs && next_obs
+    prev_lat = prev_obs.private_latitude || prev_obs.latitude
+    prev_lon = prev_obs.private_longitude || prev_obs.longitude
+    next_lat = next_obs.private_latitude || next_obs.latitude
+    next_lon = next_obs.private_longitude || next_obs.longitude
+
+    # time-weighted interpolation between prev and next observations
+    weight = (next_obs.time_observed_at - time_observed_at) / (next_obs.time_observed_at-prev_obs.time_observed_at)
+    new_lat = (1-weight)*next_lat + weight*prev_lat
+    new_lon = (1-weight)*next_lon + weight*prev_lon
+    self.latitude = new_lat
+    self.longitude = new_lon
+
+    # we can only set a new uncertainty if the uncertainty of the two points are known
+    if prev_obs.positional_accuracy && next_obs.positional_accuracy
+      f = RGeo::Geographic.simple_mercator_factory
+      prev_point = f.point(prev_lon, prev_lat)
+      next_point = f.point(next_lon, next_lat)
+      interpolation_uncertainty = prev_point.distance(next_point)/2.0
+      new_acc = Math.sqrt(interpolation_uncertainty**2 + prev_obs.positional_accuracy**2 + next_obs.positional_accuracy**2)
+      self.positional_accuracy = new_acc
     end
   end
 

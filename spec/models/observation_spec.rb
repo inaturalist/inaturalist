@@ -2,6 +2,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation do
+  before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
+  end
 
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
@@ -2621,6 +2624,28 @@ describe Observation do
       expect(subject.longitude).to be_within(0.0000001).of(172.1464131267)
     end
 
+  end
+
+  describe "interpolate_coordinates" do
+    it "should use means" do
+      u = User.make!
+      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:00")
+      o.interpolate_coordinates
+      expect( o.latitude ).to eq 0.5
+      expect( o.longitude ).to eq 0.5
+    end
+
+    it "should use weight by time" do
+      u = User.make!
+      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:59")
+      o.interpolate_coordinates
+      expect( o.latitude.to_f ).to be > 0.5
+      expect( o.longitude.to_f ).to be > 0.5
+    end
   end
 
 end

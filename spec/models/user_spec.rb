@@ -14,7 +14,9 @@ bad_logins = [
 ]
 
 describe User do
-  before(:all) { User.destroy_all }
+  before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
+  end
 
   describe 'creation' do
     before do

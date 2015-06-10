@@ -19,7 +19,7 @@
   </div>
 <%- end -%>
 <%= render :partial => 'map_header', :locals => {
-  :title => "#{t(:observations_for)} #{link_to h(@project.title), @project}".html_safe,
+  :title => "#{t(:observations_for)} #{link_to truncate(@project.title, length: 23), @project}".html_safe,
   :before => before,
   :title_span => 15
 } %>

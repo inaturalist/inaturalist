@@ -1,6 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe LifeList do
+  before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
+  end
+
   before(:each) { enable_elastic_indexing( Observation, Place ) }
   after(:each) { disable_elastic_indexing( Observation, Place ) }
   describe "reload_from_observations" do

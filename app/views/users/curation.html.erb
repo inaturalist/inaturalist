@@ -99,7 +99,7 @@
           <li>
             <%= pa.provider_name %>
             (<%= pa.provider_uid %>)
-            <div class="small meta"> <%= t(:created) %> <%=l pa.created_at %></div>
+            <div class="small meta"> <%= t(:created_on) %> <%=l pa.created_at %></div>
           </li>
         <% end %>
       </ul>
@@ -109,7 +109,7 @@
       <h3><%= t(:flickr_identity) %></h3>
       <%= link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}" %>
       <%= link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}" %>
-      <div class="small meta"><%= t(:created) %> <%=l fi.created_at %></div>
+      <div class="small meta"><%= t(:created_on) %> <%=l fi.created_at %></div>
     <% end -%>
   </div>
 <% end -%>

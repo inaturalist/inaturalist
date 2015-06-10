@@ -344,7 +344,7 @@ module ApplicationHelper
   end
   
   def observation_image(observation, options = {})
-    style = "vertical-align:middle; #{options[:style]}"
+    style = options[:style]
     url = observation_image_url(observation, options)
     url ||= iconic_taxon_image_url(observation.iconic_taxon_id)
     image_tag(url, options.merge(:style => style))
@@ -399,7 +399,7 @@ module ApplicationHelper
       txt += if o.observed_on.blank?
         t(:in_the_past).downcase
       else
-        "#{t(:on_day, :default => "on")} #{o.observed_on.strftime("%d %b %Y")} "
+        "#{t(:on_day, :default => "on")} #{l o.observed_on, format: :long} "
       end
     end
     unless skip.include?(:place_guess)
@@ -1276,5 +1276,8 @@ module ApplicationHelper
     result = s.to_s.gsub('/', '\/')
     s.html_safe? ? result.html_safe : result
   end
-  
+
+  def has_t?(*args)
+    I18n.has_t?(*args)
+  end
 end

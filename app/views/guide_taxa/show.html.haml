@@ -103,7 +103,7 @@
       - unless @guide_taxon.guide_sections.blank?
         %h3=t :sources_and_credits
         = references
-      %h3= t(:more_info, :default => "More Info").titleize
+      %h3= t(:more_info_title, default: t(:more_info))
       %ul
         - if @guide_taxon.taxon
           %li= link_to t(:site_taxon_page, :site_name => SITE_NAME_SHORT), @guide_taxon.taxon

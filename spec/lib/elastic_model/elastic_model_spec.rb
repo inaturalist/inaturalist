@@ -66,28 +66,6 @@ describe ElasticModel do
     end
   end
 
-  describe "place_filter" do
-    it "returns nil unless given an options has with a place filter" do
-      expect( ElasticModel.place_filter(@place) ).to be nil
-      expect( ElasticModel.place_filter({ }) ).to be nil
-      expect( ElasticModel.place_filter(
-        { place: @place } ) ).to be_a Hash
-    end
-
-    it "returns a proper geo_shape filter hash" do
-      expect( ElasticModel.place_filter(
-        { place: @place } ) ).to eq({
-          geo_shape: {
-            _cache: true,
-            private_geojson: {
-              indexed_shape: {
-                id: @place.id,
-                type: "place",
-                index: "test_places",
-                path: "geometry_geojson" }}}})
-    end
-  end
-
   describe "envelope_filter" do
     it "returns nil unless given an options has with some bounds" do
       expect( ElasticModel.envelope_filter({ }) ).to be nil

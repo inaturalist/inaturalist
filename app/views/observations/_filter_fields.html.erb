@@ -237,13 +237,15 @@
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">
     <div id="ofv_filters_label" class="label">
-      <strong><%=t :fields %></strong>
+      <strong><%= t(:fields, default: 'Fields').capitalize %></strong>
     </div>
     <div class="left">
       <% for k,v in @ofv_params %>
         <span class="ofv">
           <%- field, value = v[:observation_field], v[:value] -%>
-          <label><%= field.name %>=<%= value %></label>
+          <label>
+            <%= field.name %>=<%= value %>
+          </label>
           <%= hidden_field_tag "field:#{field.normalized_name(escape: true)}", value %>
           <%= link_to_function "&times;".html_safe, "$(this).parents('.ofv:first').fadeOut(function(){$(this).remove()})" %>
         </span>

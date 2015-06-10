@@ -37,8 +37,11 @@
 <div id="identifications" class="column span-18">
   <% if @identifications.empty? -%>
     <div id="no_content" class="readable description">
-      <%= (logged_in? && @selected_user.id == current_user.id) ? t(:you_havent) : t(:user_hasnt, :user=>"#{@login}") %>
-      <%=t :added_identifications_to %> 
+      <% if logged_in? && @selected_user.id == current_user.id %>
+        <%= t 'no_identifications_added.current_user' %>
+      <% else %>
+        <%= t 'no_identifications_added.user', user: @login.to_s %>
+      <% end %>
     </div>
   <% end -%>
   <% for identification in @identifications %>

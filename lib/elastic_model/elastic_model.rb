@@ -78,9 +78,7 @@ module ElasticModel
       options[:filters] && options[:filters].is_a?(Array)
     options[:filters].map do |f|
       next unless f.is_a?(Hash) && f.count == 1
-      if f[:place]
-        ElasticModel.place_filter(f)
-      elsif f[:envelope]
+      if f[:envelope]
         ElasticModel.envelope_filter(f)
       else
         f
@@ -129,19 +127,6 @@ module ElasticModel
     else
       obj
     end
-  end
-
-  def self.place_filter(options={})
-    return unless options && options.is_a?(Hash)
-    return unless place = options[:place]
-    { geo_shape: {
-        _cache: true,
-        private_geojson: {
-          indexed_shape: {
-            id: id_or_object(place),
-            type: "place",
-            index: Place.index_name,
-            path: "geometry_geojson" } } } }
   end
 
   def self.envelope_filter(options={})

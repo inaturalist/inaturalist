@@ -53,6 +53,7 @@ end
 describe CheckList, "refresh_with_observation" do
   
   before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
     @worker = Delayed::Worker.new(:quiet => true)
     @worker.work_off
   end

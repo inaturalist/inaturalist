@@ -570,6 +570,10 @@ class ObservationsController < ApplicationController
       @observation.captive_flag = true
     end
 
+    if params[:interpolate_coordinates].yesish?
+      @observation.interpolate_coordinates
+    end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
@@ -1551,32 +1555,43 @@ class ObservationsController < ApplicationController
   def taxa
     can_view_leaves = logged_in? && current_user.is_curator?
     params[:rank] = nil unless can_view_leaves
-    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
+    search_params, find_options = get_search_params(params,
+      skip_order: true, skip_pagination: true)
     oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
-    sql = if params[:rank] == "leaves" && can_view_leaves
-      ancestor_ids_sql = <<-SQL
-        SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
-        FROM taxa
-          JOIN (
-            #{oscope.to_sql}
-          ) AS observations ON observations.taxon_id = taxa.id
-      SQL
-      <<-SQL
-        SELECT DISTINCT ON (taxa.id) taxa.*
-        FROM taxa
-          LEFT OUTER JOIN (
-            #{ancestor_ids_sql}
-          ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
-          JOIN (
-            #{oscope.to_sql}
-          ) AS observations ON observations.taxon_id = taxa.id
-        WHERE ancestor_ids.ancestor_id IS NULL
-      SQL
+    if params[:rank] != "leaves"
+      search_params.merge!(find_options)
+      elastic_params = prepare_counts_elastic_query(search_params)
+      # using 0 for the aggregation count to get all results
+      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+      @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
     else
-      "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
+      sql = if params[:rank] == "leaves" && can_view_leaves
+        ancestor_ids_sql = <<-SQL
+          SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
+          FROM taxa
+            JOIN (
+              #{oscope.to_sql}
+            ) AS observations ON observations.taxon_id = taxa.id
+        SQL
+        <<-SQL
+          SELECT DISTINCT ON (taxa.id) taxa.*
+          FROM taxa
+            LEFT OUTER JOIN (
+              #{ancestor_ids_sql}
+            ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
+            JOIN (
+              #{oscope.to_sql}
+            ) AS observations ON observations.taxon_id = taxa.id
+          WHERE ancestor_ids.ancestor_id IS NULL
+        SQL
+      else
+        "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
+      end
+      debugger
+      @taxa = Taxon.find_by_sql(sql)
     end
-    @taxa = Taxon.find_by_sql(sql)
     # hack to test what this would look like
     @taxa = case params[:order]
     when "observations_count"
@@ -2664,8 +2679,7 @@ class ObservationsController < ApplicationController
     # because it would be more work to maintain than it would save
     # when searching. Remove empty values before checking
     ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
-      search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
-      (@place && !@place.geom_in_elastic_index))
+      search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
   end
 
   def non_elastic_taxon_stats(search_params)
@@ -2745,7 +2759,8 @@ class ObservationsController < ApplicationController
             order: { "distinct_taxa": :desc } },
           aggs: {
             distinct_taxa: {
-              cardinality: { field: "taxon.id" }}}}})).response.aggregations
+              cardinality: { field: "taxon.id", precision_threshold: 10000 } } } }
+      })).response.aggregations
     @total = taxon_counts.distinct_taxa.value
     @rank_counts = Hash[ taxon_counts.rank.buckets.
       map{ |b| [ b["key"], b["distinct_taxa"]["value"] ] } ]

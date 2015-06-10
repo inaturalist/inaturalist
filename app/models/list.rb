@@ -53,7 +53,7 @@ class List < ActiveRecord::Base
   #
   def add_taxon(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    ListedTaxon.create(options.merge(:list => self, :taxon => taxon))
+    ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon.id))
   end
   
   #

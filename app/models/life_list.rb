@@ -201,8 +201,9 @@ class LifeList < List
     return nil unless lt
     return super if lt.list.place.blank?
     options = { search_params: {
-      where: { "taxon.ancestor_ids": lt.taxon_id },
-      filters: [ { place: lt.list.place } ] } }
+      where: {
+        "taxon.ancestor_ids": lt.taxon_id,
+        place_ids: lt.list.place } } }
     if user_id
       options[:search_params][:where]["user.id"] = user_id
     end

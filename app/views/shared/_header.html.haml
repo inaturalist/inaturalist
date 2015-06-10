@@ -2,8 +2,11 @@
 #header.clear
   %ul#logonav
     %li.navtab
-      %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
-        = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
+      - if @site && !@site.custom_logo.blank?
+        =raw @site.custom_logo
+      - else
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
+          = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
   %ul#mainnav.navtabs
     %li.navtab.observationstab.menutab
       .innertab
@@ -12,32 +15,34 @@
           %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
-          - if logged_in?
-            %li= link_to t(:by_you), observations_by_login_path(current_user.login)
-          %li= link_to t(:id_please), id_please_path
           %li
             = form_tag(observations_path, :method => :get) do
               .clear.inline.buttonrow
                 = text_field_tag 'q', params[:q],                   |
                   :id => 'header_observations_q', :class => 'text', |
                   :placeholder => t(:search_obs)                    |
-                %input.button{:type => "submit", :value => "\u00A0"}/
+                %button.default.button
+                  %i.fa.fa-search
+          - if logged_in?
+            %li= link_to t(:by_you), observations_by_login_path(current_user.login)
+          %li= link_to t(:id_please), id_please_path
     %li.navtab.menutab
       .innertab
-        = link_to t(:species).capitalize, taxa_path
+        = link_to t(:species_header, default: t(:species).capitalize), taxa_path
         = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
           %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul.taxon_links
-          - for taxon in Taxon::ICONIC_TAXA
-            %li
-              = link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon_path(taxon), :class => "taxon #{taxon.name}"
           %li
             = form_tag({:controller => 'taxa', :action => 'search'}, :method => :get) do
               .clear.inline.buttonrow
                 = text_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '', |
                   :placeholder => t(:search_taxa)                                                         |
-                %input.button{:type => "submit", :value => "\u00A0"}/
+                %button.default.button
+                  %i.fa.fa-search
+          - for taxon in Taxon::ICONIC_TAXA
+            %li
+              = link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon_path(taxon), :class => "taxon #{taxon.name}"
     %li.navtab.projectstab.menutab
       .innertab
         = link_to t(:projects), projects_path
@@ -45,18 +50,19 @@
           %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
+          %li.formwrapper
+            = form_tag({:controller => 'projects', :action => 'search'}, :method => :get) do
+              .clear.inline.buttonrow
+                = text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '', |
+                  :placeholder => t(:search_projects)                                                         |
+                %button.default.button
+                  %i.fa.fa-search
           - if logged_in?
             - for project in current_user.project_users.joins(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
               %li
                 = link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil
             %li
               = link_to t(:all_your_projects), projects_by_login_url(current_user.login)
-          %li.formwrapper
-            = form_tag({:controller => 'projects', :action => 'search'}, :method => :get) do
-              .clear.inline.buttonrow
-                = text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '', |
-                  :placeholder => t(:search_projects)                                                         |
-                %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab
       .innertab
         = link_to t(:places), places_path
