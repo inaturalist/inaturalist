@@ -73,7 +73,7 @@ class ObservationsController < ApplicationController
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
-    %w"order order_by taxon_id taxon_name projects user_id utf8"
+    %w"order order_by taxon_id taxon_name projects user_id place_id utf8"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -142,6 +142,7 @@ class ObservationsController < ApplicationController
           valid_map_params = {
             taxon: @observations_taxon.blank? ? nil : @observations_taxon,
             user_id: @user.blank? ? nil : @user.id,
+            place_id: @place.blank? ? nil : @place.id,
             project_id: @projects.blank? ? nil: @projects.first.id
           }.delete_if{ |k,v| v.nil? }
           if valid_map_params.empty?
