@@ -386,6 +386,7 @@ class User < ActiveRecord::Base
 
   def update_observation_sites
     observations.update_all(site_id: site_id)
+    Observation.elastic_index!(scope: Observation.by(self))
   end
   
   def merge(reject)

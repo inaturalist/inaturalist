@@ -95,6 +95,9 @@ describe User do
   end
 
   describe "update" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+    
     it "should update the site_id on the user's observations" do
       s1 = Site.make!
       s2 = Site.make!
@@ -103,6 +106,17 @@ describe User do
       without_delay { u.update_attributes(site: s2) }
       o.reload
       expect( o.site ).to eq s2
+    end
+
+    it "should update the site_id in the elastic index" do
+      s1 = Site.make!
+      s2 = Site.make!
+      u = User.make!(site: s1)
+      o = Observation.make!(user: u, site: s1)
+      without_delay { u.update_attributes(site: s2) }
+      o.reload
+      es_o = Observation.elastic_paginate(where: {site_id: s2.id}).first
+      expect( es_o ).to eq o
     end
   end
 
