@@ -381,11 +381,11 @@ class User < ActiveRecord::Base
   end
 
   def update_observation_sites_later
-    delay(priority: USER_INTEGRITY_PRIORITY).update_observation_sites
+    delay(priority: USER_INTEGRITY_PRIORITY).update_observation_sites if site_id_changed?
   end
 
   def update_observation_sites
-    observations.update_all(site_id: site_id) if site_id_changed?
+    observations.update_all(site_id: site_id)
   end
   
   def merge(reject)
