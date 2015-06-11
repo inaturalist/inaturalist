@@ -1,7 +1,8 @@
 class VotesController < ApplicationController
   before_action :doorkeeper_authorize!, :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_votable
+  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }, except: [:by_login]
+  before_filter :load_votable, except: [:by_login]
+  before_filter :load_user_by_login, only: :by_login
 
   def vote
     @record.vote_by voter: current_user, vote: params[:vote], vote_scope: params[:scope]
@@ -35,6 +36,24 @@ class VotesController < ApplicationController
       format.html do
         render partial: 'for'
       end
+    end
+  end
+
+  def by_login
+    @votes = @selected_user.votes.order("votes.id DESC").page(params[:page]).per_page(100)
+    ActsAsVotable::Vote.preload_associations(@votes, votable: [ 
+        :sounds,
+        :stored_preferences,
+        :quality_metrics,
+        :projects,
+        :flags,
+        { :photos => :flags },
+        { :user => :stored_preferences },
+        { :taxon => [:taxon_names, :taxon_descriptions] },
+        { :iconic_taxon => :taxon_descriptions }
+      ])
+    respond_to do |format|
+      format.html
     end
   end
 

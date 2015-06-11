@@ -1661,7 +1661,10 @@ en:
   no_header_row: No header row
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
-    user: User %{user} hasnt added identifications to anyone's observations.
+    user: "%{user} hasn't added identifications to anyone's observations."
+  no_favorites_added:
+    current_user: You haven't added favorites yet.
+    user: "%{user} hasn't added favorites."
   no_journal_post_have_been: No journal posts have been added to this project yet.
   no_license_all_rights_reserved: No license (all rights reserved)
   no_link_flickr: "No, I'd rather not."

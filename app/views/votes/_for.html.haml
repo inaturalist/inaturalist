@@ -2,7 +2,7 @@
   %ul.plain
     - @users.each do |user|
       %li.fadednowrap
-        = link_to user_image(user, size: :thumb), user
-        = link_to_user user
+        = link_to user_image(user, size: :thumb), votes_by_login_path(user.login)
+        = link_to_user user, url: votes_by_login_path(user.login)
   - if @users.total_entries > @users.size
     .stacked.upstacked.meta=t :and_x_more_people!, count: @users.total_entries - @users.size
