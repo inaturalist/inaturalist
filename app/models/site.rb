@@ -55,7 +55,7 @@ class Site < ActiveRecord::Base
     has_attached_file :logo,
       :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo.:extension",
-      :default_url => "/assets/logo-small.gif"
+      :default_url => FakeView.image_url("logo-small.gif")
   end
   validates_attachment_content_type :logo, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -69,12 +69,12 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
-      :default_url => "/assets/bird.png"
+      :default_url => FakeView.image_url("bird.png")
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo_square.:extension",
-      :default_url => "/assets/bird.png"
+      :default_url => FakeView.image_url("bird.png")
   end
   validates_attachment_content_type :logo_square, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"

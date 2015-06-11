@@ -1511,7 +1511,7 @@ fr:
     des taxons répertoriés associés, etc. # Not really a litteral workaround but works better given the context / word reordering in taxa/edit
   its_important_that_you: Il est important que vous cliquiez
   iucn_red_list_status: Situation selon la liste rouge de l’UICN
-  join: Joignez-vous
+  join: Joignez-vous à
   join_and: Joignez-vous et
   join_inat: Joignez %{site_name} !
   join_project: Joignez-vous à ce projet
@@ -2578,6 +2578,7 @@ fr:
   receive_email_notifications_when_people_leave_you: Recevoir des avis par
     courriel sur
   received: reçu
+  receive_updates_from_this_project: Recevoir des avis pour ce projet
   recent_additions: Ajouts récents
   recent_comments_on_your_stuff: Commentaires récents sur vos trucs
   recent_observations: Observations récentes
@@ -2651,9 +2652,8 @@ fr:
   required_columns_in_order: Colonnes obligatoires dans l’ordre
   research: recherche
   research_grade: calibre recherche
-  research_grade_expandable_html: R<span class='full'>calibre </span> N<span
-    class='full'>rechreche</span>
-  research_grade_short_html: R<span class='full'>calibre </span> N<span class='full'>recherche </span>
+  research_grade_expandable_html: C<span class='full'>alibre </span> R<span class='full'>echerche</span>
+  research_grade_short_html: C<span class='full'>alibre </span> R<span class='full'>echerche</span>
   research_grade_observations_have: Les observations de « calibre recherche » ont
     une date, une photo, des coordonnées et une identification reconnue par la communauté.
     Cliquer dessus pour voir l’évaluation de la garantie des données.
@@ -4530,6 +4530,22 @@ fr:
           Il s’agit de la liste de contrôle organisée et du nombre de taxons des observations explicitement ajoutées à ce
           projet, et non de toutes les observations enregistrées dans ce lieu et au moment de
           l’activité.
+      updates_desc: Recevoir des notifications pour ce projet sur votre tableau de bord et dans le courriel quotidien
+      curator_coordinate_access_label: Permettre au responsable du projet de voir les coordonnées privées
+        de vos observations lorsqu'elles sont ajoutées par
+      project_user_curator_coordinate_access_labels:
+        observer: Vous
+        any: Responsables du projet
+        none: Personne
+      project_user_curator_coordinate_access_descriptions:
+        observer: Permettre aux responsables du projet de voir uniquement les coordonnées
+          privées des observations que vous ajoutez au projet
+        any: Permettre aux responsables du projet de voir les coordonnées privées de vos observations
+          si vous ou un responsable du projet les avez ajoutées
+        none: Ne pas partager les coordonnées privées de vos observations avec les responsables du projet
+      curator_coordinate_access_note: |-
+        Vous pouvez configurer individuellement les avis de chaque observations.
+        Cette option sera appliquée automatiquement sur toutes les autres.
     shared:
       spam:
         message_for_owner_and_curators_html: |-
