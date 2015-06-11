@@ -94,6 +94,18 @@ describe User do
     end
   end
 
+  describe "update" do
+    it "should update the site_id on the user's observations" do
+      s1 = Site.make!
+      s2 = Site.make!
+      u = User.make!(site: s1)
+      o = Observation.make!(user: u, site: s1)
+      without_delay { u.update_attributes(site: s2) }
+      o.reload
+      expect( o.site ).to eq s2
+    end
+  end
+
   #
   # Validations
   #

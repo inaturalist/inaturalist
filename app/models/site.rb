@@ -4,6 +4,9 @@ class Site < ActiveRecord::Base
   has_many :users, :inverse_of => :site
   has_many :site_admins, :inverse_of => :site
 
+  scope :live, -> { where(draft: false) }
+  scope :drafts, -> { where(draft: true) }
+
   # shortened version of the name
   preference :site_name_short, :string
 

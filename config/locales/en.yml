@@ -1232,6 +1232,7 @@ en:
   importing: "Importing..."
   in: in
   in_: in
+  inaturalist_network_affiliation: iNaturalist Network Affiliation
   inbox: inbox
   including: including
   in_order_to_login_and_using_site_visit_url: "In order to login and start using the site you must visit this url to activate your account:"
@@ -4112,6 +4113,14 @@ en:
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.
       edit:
+        inaturalist_network_affiliation_desc_html: |
+          The iNaturalist Network is a collection of localized websites
+          connected to the global iNaturalist community. You can change your
+          primary site affiliation, which means that your content will have
+          some priority on that site, but also means that the owners of that
+          site have the right to download and view all your data just like the
+          iNaturalist site admins can. If that site leaves the network, all
+          your account and data will go with that site.
         project_addition_preferences:
           any: Any
           joined: Projects you've joined

@@ -128,6 +128,7 @@ class User < ActiveRecord::Base
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
+  after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
@@ -377,6 +378,14 @@ class User < ActiveRecord::Base
     return true unless number
     Sound.where(user_id: id).update_all(license: number)
     true
+  end
+
+  def update_observation_sites_later
+    delay(priority: USER_INTEGRITY_PRIORITY).update_observation_sites
+  end
+
+  def update_observation_sites
+    observations.update_all(site_id: site_id) if site_id_changed?
   end
   
   def merge(reject)
