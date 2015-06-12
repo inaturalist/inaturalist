@@ -176,6 +176,16 @@ $(document).ready(function() {
     $(this).hide()
     $(this).siblings('.favebutton').show()
   })
+  $('#favebutton').bind('ajax:before', function() {
+    var s = $('#fave .votes_for_button').html(),
+        count = parseInt(s.match(/(\d+)\s/)[1]) + 1
+    $('#fave .votes_for_button').html(I18n.t('x_faves', {count: count}))
+  })
+  $('#unfavebutton').bind('ajax:before', function() {
+    var s = $('#fave .votes_for_button').html(),
+        count = parseInt(s.match(/(\d+)\s/)[1]) - 1
+    $('#fave .votes_for_button').html(I18n.t('x_faves', {count: count}))
+  })
   $('.votes_for_button').qtip($.extend(true, {}, QTIP_DEFAULTS, {
     content: {
       text: function(event, api) {

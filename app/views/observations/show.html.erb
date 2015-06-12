@@ -203,7 +203,7 @@
             :style => current_user.voted_up_on?(@observation) ? '' : 'display:none' do %>
           <i class="fa fa-star"></i>
           <% unless @observation.votes_for.count > 0 -%>
-            <%=t :added! %>
+            <%=t(:x_faves, count: 1) %>
           <% end -%>
         <% end %>
         <% if @observation.votes_for.count > 0 -%>
@@ -610,7 +610,7 @@
     <% end -%>
   </div><!-- end identifications -->
   
-  <% if !@project_observations.blank? || (!@projects.blank? && @project_addition_allowed) -%>
+  <% unless @project_observations.blank? -%>
     <%= separator %>
     <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
