@@ -213,7 +213,7 @@
         <%= separator %>
         <h3><%= t :inaturalist_network_affiliation %></h3>
         <p>
-          <%=t 'views.users.edit.inaturalist_network_affiliation_desc_html' %>
+          <%=t 'views.users.edit.inaturalist_network_affiliation_desc_html', url: '/pages/network' %>
         </p>
         <div class="verticalmiddle">
           <%- @sites.each do |site| %>
