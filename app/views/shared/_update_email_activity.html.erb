@@ -65,7 +65,7 @@
           <% elsif notifier.is_a? ActsAsVotable::Vote %>
             <div style="margin-bottom:10px;">
               <em class="meta nocontent">
-                <%=t :added_to_favorites_html, url: votes_by_login_url(user.login) %>
+                <%=t :added_to_favorites_html, url: faves_by_login_url(user.login) %>
               </em>
             </div>
           <% end -%>

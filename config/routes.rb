@@ -51,8 +51,8 @@ Rails.application.routes.draw do
   
   post 'votes/vote/:resource_type/:resource_id(.:format)' => 'votes#vote', as: :vote
   post 'votes/unvote/:resource_type/:resource_id(.:format)' => 'votes#unvote', as: :unvote
-  get 'votes/for/:resource_type/:resource_id(.:format)' => 'votes#for', as: :votes_for
-  get 'votes/:login(.:format)' => 'votes#by_login', as: :votes_by_login, constraints: { login: simplified_login_regex }
+  get  'votes/for/:resource_type/:resource_id(.:format)' => 'votes#for', as: :votes_for
+  get  'faves/:login(.:format)' => 'votes#by_login', as: :faves_by_login, constraints: { login: simplified_login_regex }
 
   resources :messages, :except => [:edit, :update] do
     collection do

@@ -1,9 +1,9 @@
 :ruby
   observation_by_login_title = if is_me?(@selected_user)
-    t('votes_by_login.title.current_user',
+    t('faves_by_login.title.current_user',
       default: t(:second_person_possessive_singular_, :noun => t(:favorites).downcase))
   else
-    t('votes_by_login.title.login', login: @login,
+    t('faves_by_login.title.login', login: @login,
       default: t(:third_person_possessive_singular, :noun => t(:favorites).titleize, :object_phrase => @login))
   end
 
