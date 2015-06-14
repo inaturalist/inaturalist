@@ -1,4 +1,14 @@
+require 'has_subscribers'
 module ActsAsVotable
+  class Vote
+    include HasSubscribers
+    notifies_owner_of :votable, notification: "activity"
+    alias_method :user, :voter
+    def user_id
+      voter_id
+    end
+  end
+
   module Votable
     def votes
       votes_for.inject({}) do |memo, vote|

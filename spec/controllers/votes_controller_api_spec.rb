@@ -25,6 +25,14 @@ shared_examples_for "a VotesController" do
       expect( o.get_upvotes(vote_scope: 'beautiful').size ).to eq 1
       expect( o.votes_for.size ).to eq 2
     end
+
+    it "should generate an update for the owner of the votable resource" do
+      expect( Update.where(subscriber: o.user).count ).to eq 0
+      without_delay do
+        post :vote, format: 'json', resource_type: 'observation', resource_id: o.id
+      end
+      expect( Update.where(subscriber: o.user).count ).to eq 1
+    end
   end
   
   describe "unvote" do

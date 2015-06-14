@@ -184,7 +184,7 @@
 
     <% if logged_in? -%>
       <div id="fave">
-        <%= link_to vote_path('observation', @observation.id), 
+        <%= link_to vote_path('observation', @observation.id, format: 'json'), 
             :method => :post, 
             :remote => true, 
             :id => "favebutton", 
@@ -195,7 +195,7 @@
             <%=t :add_to_favorites %>
           <% end -%>
         <% end %>
-        <%= link_to unvote_path('observation', @observation.id), 
+        <%= link_to unvote_path('observation', @observation.id, format: 'json'), 
             :method => :post, 
             :remote => true, 
             :id => "unfavebutton", 

@@ -212,6 +212,9 @@ en:
   added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
   added_to: Added to
+  added_to_favorites: Added to favorites
+  added_to_favorites_html: |
+    Added to <a href="%{url}">favorites</a>
   adding: "Adding..."
   adding_observations: Adding observations
   adding_to_your_life_list: "Adding to your life list..."
@@ -2951,6 +2954,7 @@ en:
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_commented_on: "%{user} commented on your %{title} %{time}"
+  user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"

@@ -934,6 +934,15 @@ module ApplicationHelper
       return s.html_safe
     end
 
+    if notifier.is_a?(ActsAsVotable::Vote)
+      noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      s = t(:user_faved_a_noun_by_owner, 
+        user: notifier_user.login, 
+        noun: noun, 
+        owner: you_or_login(update.resource_owner, :capitalize_it => false))
+      return s.html_safe
+    end
+
     case update.resource_type
     when "User"
       if update.notifier_type == "Post"

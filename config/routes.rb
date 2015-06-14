@@ -49,10 +49,10 @@ Rails.application.routes.draw do
   get '/guides/:id.:layout.pdf' => 'guides#show', :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
   get 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
   
-  post 'votes/vote/:resource_type/:resource_id' => 'votes#vote', as: :vote
-  post 'votes/unvote/:resource_type/:resource_id' => 'votes#unvote', as: :unvote
-  get 'votes/for/:resource_type/:resource_id' => 'votes#for', as: :votes_for
-  get 'votes/:login' => 'votes#by_login', as: :votes_by_login, constraints: { login: simplified_login_regex }
+  post 'votes/vote/:resource_type/:resource_id(.:format)' => 'votes#vote', as: :vote
+  post 'votes/unvote/:resource_type/:resource_id(.:format)' => 'votes#unvote', as: :unvote
+  get 'votes/for/:resource_type/:resource_id(.:format)' => 'votes#for', as: :votes_for
+  get 'votes/:login(.:format)' => 'votes#by_login', as: :votes_by_login, constraints: { login: simplified_login_regex }
 
   resources :messages, :except => [:edit, :update] do
     collection do
