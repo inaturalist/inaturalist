@@ -131,8 +131,7 @@
       .readable.nocontent
         = t :this_place_has_no_check_list
         - if @place_geometry
-          , but you can still
-          \#{render :partial => 'subscriptions/subscription', :locals => {:resource => @place }}
+          = render :partial => 'subscriptions/subscription', :locals => {:resource => @place }
   / end guidetab
   #observationstab
     .stacked.observationcontrols

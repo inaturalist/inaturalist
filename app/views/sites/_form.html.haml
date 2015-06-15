@@ -13,6 +13,7 @@
   .row
     .span4= f.text_field :name, :required => true
     .span4= f.text_field :url, :required => true
+    .span4= f.check_box :draft
   %fieldset
     %legend=t :images
     .row

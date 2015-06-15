@@ -21,7 +21,7 @@
   <div id="nav" class="clear">
     <div class="breadcrumbs">
       <%= link_to t(:back_to_your_profile), 
-                  person_by_login_path(:login => current_user.login),
+                  person_by_login_path(:login => @user.login),
                   :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   </div>
@@ -30,10 +30,10 @@
 </div>
 
 <div class="column span-18">
-  <%= form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
-    <%= error_messages_for :current_user %>
+  <%= form_for(@user, :url => person_path(@user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+    <%= error_messages_for :user %>
     <div class="column span-18 stacked">
-      <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon left') %>
+      <%= image_tag(@user.icon.url(:thumb), :class => 'usericon left') %>
       <%= f.file_field(:icon, :label => t(:icon_slash_photo), :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
       <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
     </div>
@@ -44,7 +44,7 @@
     </div>
     <div class="last column span-9">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
-        {:selected => current_user.time_zone}, 
+        {:selected => @user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
       <%-
         locales = I18N_SUPPORTED_LOCALES.map do |l| 
@@ -63,14 +63,14 @@
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <%- provider_names = current_user.provider_authorizations.map{|pa| pa.provider_name.downcase} %>
+      <%- provider_names = @user.provider_authorizations.map{|pa| pa.provider_name.downcase} %>
       <%- if (%w(twitter facebook) & provider_names).size > 0 %>
         <h3><%=t :sharing_settings %></h3>
         <div id="observationsharingpreferences" class="stacked">
           <label><%=t :automatically_share_your_observations_on %></label>
           <% for attr_name in User::SHARING_PREFERENCES %>
             <%- service = attr_name.gsub(/share_observations_on_/, '') %>
-            <%- if current_user.has_provider_auth(service) %>
+            <%- if @user.has_provider_auth(service) %>
               <%= f.check_box "prefers_#{attr_name}", 
                 :label => service.capitalize, 
                 :label_after => true %>
@@ -133,6 +133,7 @@
     </div>
     
     <div class="column span-18">
+      <%= separator %>
       <div id="licenses" class="stacked">
         <h3><%= t(:licensing) %></h3>
         <p class="ui description">
@@ -206,6 +207,24 @@
         </div>
       </div>
     </div>
+
+    <%- if @sites.size > 1 %>
+      <div class="column span-18 stacked">
+        <%= separator %>
+        <h3><%= t :inaturalist_network_affiliation %></h3>
+        <p>
+          <%=t 'views.users.edit.inaturalist_network_affiliation_desc_html', url: '/pages/network' %>
+        </p>
+        <div class="verticalmiddle">
+          <%- @sites.each do |site| %>
+            <%= f.radio_button :site_id, site.id, 
+              label: image_tag(site.logo.url), 
+              label_after: true, 
+              checked: site.id == @user.site_id %>
+          <% end -%>
+        </div>
+      </div>
+    <% end -%>
     
     <div class="column span-18">
       <%= f.submit(t(:save), :class => 'default button', "data-loading-click" => t(:saving)) %>
@@ -219,7 +238,7 @@
     <h3><%= t(:connected_accounts) %></h3>
     <ul>
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
-        <% if current_user.has_provider_auth(provider) %>
+        <% if @user.has_provider_auth(provider) %>
           <li class="clear">
             <%= button_to t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
               omniauth_disconnect_path(provider),
@@ -249,8 +268,8 @@
   <%= separator %>
   
   <div class="clear box">
-    <%= link_to_toggle current_user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
-    <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
+    <%= link_to_toggle @user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
+    <%= form_for(@user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
         <%= label(:password, t(:new_password)) %>
         <%= password_field_tag(:password, '', :class => 'text') %>
@@ -265,7 +284,7 @@
       </div>
     <% end %>
   </div>
-  <%= button_to t(:delete_your_account), current_user, :method => :delete, 
+  <%= button_to t(:delete_your_account), @user, :method => :delete, 
     :data => {:confirm => t(:are_you_sure_want_delete_account)}, 
     :class => "minor delete button" %>
 </div><!-- end side col -->

@@ -40,7 +40,7 @@
             %li= link_to_function "View all", "$('#allowed_values .extra').show(); $(this).parents('li:first').hide()"
   .meta.ui
     %b
-      = t :created_by
+      = t :created_by, gender: 'observation_field'
       \:
     = link_to user_image(@observation_field.user), @observation_field.user
     = link_to_user @observation_field.user

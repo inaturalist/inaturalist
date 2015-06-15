@@ -117,7 +117,8 @@ class Place < ActiveRecord::Base
   INAT_PLACE_TYPES = {
     100 => 'Open Space',
     101 => 'Territory',
-    102 => 'District'
+    102 => 'District',
+    103 => 'Province'
   }
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
@@ -528,12 +529,12 @@ class Place < ActiveRecord::Base
       
       # Try to find an existing place
       existing = nil
-      existing = Place.find_by_woeid(new_place.woeid) if new_place.woeid
-      if new_place.source_filename && new_place.source_identifier
+      existing = Place.find_by_woeid(new_place.woeid) unless new_place.woeid.blank?
+      if !new_place.source_filename.blank? && !new_place.source_identifier.blank?
         existing ||= Place.where(source_filename: new_place.source_filename,
           source_identifier: new_place.source_identifier).first
       end
-      if new_place.source_filename && new_place.source_name
+      if !new_place.source_filename.blank? && !new_place.source_name.blank?
         existing ||= Place.where(source_filename: new_place.source_filename,
           source_name: new_place.source_name).first
       end

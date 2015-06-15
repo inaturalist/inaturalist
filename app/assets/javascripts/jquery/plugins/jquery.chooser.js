@@ -217,8 +217,8 @@
 
     open: function(opts) {
       var options = this.options || {},
-          clearOpts = clearOpts || {},
-          bubble = clearOpts.bubble == false ? false : true
+          opts = opts || {},
+          bubble = opts.bubble == false ? false : true
       $(this).data('selected', null)
       $(this.markup.originalInput).val('')
       if (!$(this).data('previous') && bubble) {

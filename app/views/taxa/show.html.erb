@@ -174,7 +174,7 @@
         <% when 'TaxonStage' %>
           <%= t('change_types.activated_soon') %>.
         <% end -%>
-        <%= link_to "View taxonomic changes", taxon_changes_path(:taxon_id => @taxon), :class => "readmore" -%>
+        <%= link_to t(:view_taxonomic_changes), taxon_changes_path(:taxon_id => @taxon), :class => "readmore" -%>
       <% end -%>
     </div>
   </div>
