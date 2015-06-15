@@ -18,6 +18,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = options.mapType || $(elt).data('map-type');
+  options.gridmaxzoom = options.gridmaxzoom || $(elt).data('gridmaxzoom');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
   options.minZoom = parseInt( $(elt).data('min-zoom') );
   options.urlCoords = $(elt).data('url-coords');
@@ -122,6 +123,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       description: options.allLayerDescription,
       disabled: options.enableShowAllLayer === false,
       controlPosition: options.controlPosition,
+      gridmaxzoom: options.gridmaxzoom,
       ttl: 60 * 60 * 24  // 24 hours
     }));
   }
@@ -176,7 +178,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           title: options.taxonPlacesLayerLabel,
           description: options.taxonPlacesLayerDescription,
           hover: options.taxonPlacesLayerHover,
-          controlPosition: options.controlPosition
+          controlPosition: options.controlPosition,
+          gridmaxzoom: options.gridmaxzoom
         }));
       }
       if( layer.ranges ) {
@@ -187,7 +190,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           title: options.taxonRangeLayerLabel,
           description: options.taxonRangeLayerDescription,
           hover: options.taxonRangeLayerHover,
-          controlPosition: options.controlPosition
+          controlPosition: options.controlPosition,
+          gridmaxzoom: options.gridmaxzoom
         }));
       }
       if( layer.observations ) {
@@ -198,7 +202,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           title: options.taxonObservationsLayerLabel,
           description: options.taxonObservationsLayerDescription,
           hover: options.taxonObservationsLayerHover,
-          controlPosition: options.controlPosition
+          controlPosition: options.controlPosition,
+          gridmaxzoom: options.gridmaxzoom
         }));
       }
       if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {

@@ -1941,7 +1941,8 @@ class ObservationsController < ApplicationController
     @elastic_params = params.select{ |k,v|
       [ :place_id, :user_id, :project_id,
         :taxon_id, :d1, :d2, :color ].include?( k.to_sym ) }
-    @default_color = params[:color] || "heatmap"
+    @default_color = params[:color] || (@taxa.empty? ? "heatmap" : "default")
+    @gridmaxzoom = params[:gridmaxzoom]
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end

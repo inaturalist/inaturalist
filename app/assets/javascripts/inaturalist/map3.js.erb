@@ -823,7 +823,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   var options = options || { },
       gridTileSuffix = "/heatmap/{z}/{x}/{y}.png",
       pointTileSuffix = "/geohash/{z}/{x}/{y}.png",
-      gridmaxzoom = options.gridmaxzoom || 5;
+      gridmaxzoom = options.gridmaxzoom || 9;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
   var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id', 'observation_id',
@@ -839,15 +839,13 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     }), {
     maxzoom: gridmaxzoom,
     gridmaxzoom: gridmaxzoom,
-    interactivity: options.interactivity === false ? false :
-      'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
+    interactivity: options.interactivity === false ? false : 'id',
     disabled: options.disabled
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + pointTileSuffix;
     }), {
-    interactivity: options.interactivity === false ? false :
-      'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
+    interactivity: options.interactivity === false ? false : 'id',
     minzoom: gridmaxzoom + 1,
     gridminzoom: gridmaxzoom + 1,
     disabled: options.disabled
@@ -875,7 +873,6 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
       interactivity = options.interactivity;
   if( options.interactivity ) {
     // windshaft needs the interactivity param to know what data to render
-    // options.grids = [ this.interactivityURL( tileURL, options.interactivity ) ];
     options.grids = _.map( tileURLs, function( l ) {
       return google.maps.Map.prototype.interactivityURL( l, options.interactivity );
     })
