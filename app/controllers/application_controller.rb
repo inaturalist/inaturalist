@@ -566,6 +566,14 @@ class ApplicationController < ActionController::Base
     response.headers["X-Frame-Options"] = "ALLOWALL"
   end
 
+  def allow_cors
+    headers["Access-Control-Allow-Origin"] = "*"
+    headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
+    headers["Access-Control-Allow-Headers"] =
+      %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
+    head(:ok) if request.request_method == "OPTIONS"
+  end
+
   # adding extra info to the payload sent to ActiveSupport::Notifications
   # used in metrics collecting libraries like the Logstasher
   def append_info_to_payload(payload)

@@ -474,6 +474,8 @@ class Observation < ActiveRecord::Base
       order "observations.id #{order} #{extra}"
     when 'project'
       order("project_observations.id #{order} #{extra}").joins(:project_observations)
+    when 'votes'
+      order("cached_votes_total #{order} #{extra}")
     else
       order "#{order_by} #{order} #{extra}"
     end

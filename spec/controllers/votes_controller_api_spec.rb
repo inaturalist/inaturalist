@@ -33,6 +33,13 @@ shared_examples_for "a VotesController" do
       end
       expect( Update.where(subscriber: o.user).count ).to eq 1
     end
+
+    it "should increment cached_votes_total" do
+      expect( o.cached_votes_total ).to eq 0
+      post :vote, format: 'json', resource_type: 'observation', resource_id: o.id
+      o.reload
+      expect( o.cached_votes_total ).to eq 1
+    end
   end
   
   describe "unvote" do
@@ -43,6 +50,12 @@ shared_examples_for "a VotesController" do
     it "should remove the vote" do
       post :unvote, format: :json, resource_type: 'observation', resource_id: o.id
       expect( o.votes_for.size ).to eq 0
+    end
+    it "should decrement cached_votes_total" do
+      expect( o.cached_votes_total ).to eq 1
+      post :unvote, format: :json, resource_type: 'observation', resource_id: o.id
+      o.reload
+      expect( o.cached_votes_total ).to eq 0
     end
   end
 end
