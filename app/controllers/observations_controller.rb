@@ -1944,6 +1944,7 @@ class ObservationsController < ApplicationController
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : "default")
     @map_style = ( params[:color] || @taxa.any? ) ? "colored" : "heatmap"
     @map_style = "points" if params[:color] == "default"
+    @default_color = params[:heatmap_colors] if @map_style == "heatmap"
     @gridmaxzoom = params[:gridmaxzoom]
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
