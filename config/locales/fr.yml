@@ -1436,6 +1436,7 @@ fr:
   importing: Importation en cours…
   in: dans
   in_: dans
+  inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
   inbox: boîte de réception
   including: y compris
   in_order_to_login_and_using_site_visit_url: 'Pour pouvoir vous connecter et commencer
@@ -4603,6 +4604,15 @@ fr:
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
       edit:
+        inaturalist_network_affiliation_desc_html: |
+          Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
+          sites Web localisés liés à la communauté mondiale de iNaturalist.
+          Vous pouvez modifier votre affiliation de site principal, ce qui
+          signifie que votre contenu aura une certaine priorité sur ce site,
+          mais cela signifie également que les propriétaires de ce site ont le
+          droit de télécharger et visualiser toutes vos données, tout comme
+          les administrateurs du site peuvent iNaturalist. Si ce site quitte
+          le réseau, toute votre compte et les données vont avec ce site.
         taxon_change_desc: |-
           Quand des taxons sont fusionnés ou renommés sur %{site_name}, vos
           observations, taxons répertoriés, identifications, etc., seront

@@ -359,6 +359,8 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
+    @sites = Site.live.limit(100)
+    @user.site_id ||= Site.first.try(:id) unless @sites.blank?
     respond_to do |format|
       format.html
       format.json do
@@ -660,6 +662,7 @@ protected
       :preferred_sound_license,
       :prefers_community_taxa,
       :prefers_location_details,
+      :site_id,
       :time_zone
     )
   end
