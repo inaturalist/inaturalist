@@ -36,10 +36,19 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :open_id, :name => 'yahoo', :identifier => 'https://me.yahoo.com'
 
   if CONFIG.google
-    provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, {
+    opts = {
       :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/",
       :prompt => "consent",
       :access_type => "offline"
     }
+    if CONFIG.ca_path || CONFIG.ca_file
+      opts[:client_options] = {
+        ssl: {
+          ca_file: CONFIG.ca_file,
+          ca_path: CONFIG.ca_path
+        }
+      }
+    end
+    provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
   end
 end
