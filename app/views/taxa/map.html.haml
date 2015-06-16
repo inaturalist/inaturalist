@@ -19,6 +19,7 @@
 :ruby
   colors = colors_for_taxa(@taxa)
   a = setup_map_tag_attrs(
+    map_style: "colored",
     taxon_layers: @taxa.map{ |t|
       {
         taxon: t, 

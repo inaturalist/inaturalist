@@ -78,23 +78,23 @@
     place_layers: @places.map{ |p| { place: p } },
     enable_show_all_layer: (@taxa.empty? && @user.nil? && @project.nil?) ? true : false,
     show_all_layer: (@taxa.empty? && @user.nil? && @project.nil?) ?
-      @elastic_params.merge(grid_color: @default_color) : { grid_color: @default_color },
+      @elastic_params.merge(grid_color: @default_color) :
+      { grid_color: @default_color },
     disable_fullscreen: true,
     url_coords: true,
     gridmaxzoom: @gridmaxzoom,
+    map_style: @map_style,
     min_zoom: 2
   }
   if @project
     a.merge! observation_layers: [ @elastic_params.merge(
       project_id: @project.id, 
-      title: "Observations from #{@project.title}",
-      grid_color: @default_color
+      title: "Observations from #{@project.title}"
     ) ]
   end
   if @user
     a[:observation_layers] ||= []
     a[:observation_layers] << @elastic_params.merge(
-      user_id: @user.id, title: "Observations by #{@user.login}",
-      grid_color: @default_color )
+      user_id: @user.id, title: "Observations by #{@user.login}")
   end
 #map.fullscreen{ setup_map_tag_attrs(a) }

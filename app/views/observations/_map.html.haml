@@ -37,7 +37,8 @@
 .column.span-24
   .observations.map{ style: (@view && @view == "map") ? nil : "display: none" }
     - map_options = { observations: observations,
-      min_x: @swlng, min_y: @swlat, max_x: @nelng, max_y: @nelat}
+      min_x: @swlng, min_y: @swlat, max_x: @nelng, max_y: @nelat,
+      style: "summary" }
     - if @display_map_tiles
       - if @enable_show_all_layer
         - map_options.merge!(enable_show_all_layer: true)

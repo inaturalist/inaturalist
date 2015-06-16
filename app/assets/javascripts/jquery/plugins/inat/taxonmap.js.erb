@@ -54,6 +54,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
+  options.mapStyle = $(elt).data('map-style');
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -77,19 +78,19 @@ inatTaxonMap.fit = function( elt ) {
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
   var map = iNaturalist.Map.createMap( _.extend( options, {
-        div: elt,
-        mapTypeControl: (options.mapTypeControl !== false),
-        minZoom: options.minZoom,
-        disableFullscreen: options.disableFullscreen,
-        styles: [
-          {
-            stylers: [
-              {lightness: 50},
-              {saturation: -50}
-            ]
-          }
+    div: elt,
+    mapTypeControl: (options.mapTypeControl !== false),
+    minZoom: options.minZoom,
+    disableFullscreen: options.disableFullscreen,
+    styles: [
+      {
+        stylers: [
+          {lightness: 50},
+          {saturation: -50}
         ]
-      }));
+      }
+    ]
+  }));
   var preserveViewport = options.preserveViewport
   if (options.minX) {
     map.fitBounds(
@@ -124,6 +125,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       disabled: options.enableShowAllLayer === false,
       controlPosition: options.controlPosition,
       gridmaxzoom: options.gridmaxzoom,
+      mapStyle: options.mapStyle,
       ttl: 60 * 60 * 24  // 24 hours
     }));
   }
@@ -178,8 +180,7 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           title: options.taxonPlacesLayerLabel,
           description: options.taxonPlacesLayerDescription,
           hover: options.taxonPlacesLayerHover,
-          controlPosition: options.controlPosition,
-          gridmaxzoom: options.gridmaxzoom
+          controlPosition: options.controlPosition
         }));
       }
       if( layer.ranges ) {
@@ -190,8 +191,7 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           title: options.taxonRangeLayerLabel,
           description: options.taxonRangeLayerDescription,
           hover: options.taxonRangeLayerHover,
-          controlPosition: options.controlPosition,
-          gridmaxzoom: options.gridmaxzoom
+          controlPosition: options.controlPosition
         }));
       }
       if( layer.observations ) {
@@ -203,7 +203,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           description: options.taxonObservationsLayerDescription,
           hover: options.taxonObservationsLayerHover,
           controlPosition: options.controlPosition,
-          gridmaxzoom: options.gridmaxzoom
+          gridmaxzoom: options.gridmaxzoom,
+          mapStyle: options.mapStyle
         }));
       }
       if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {
