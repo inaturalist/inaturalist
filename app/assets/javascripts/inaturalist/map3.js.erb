@@ -117,7 +117,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   // store the marker for later use, or for easy removing
   this.observations[observation.id] = marker;
   
-  // build a generic marker infowwindow
+  // build a generic marker infowindow
   if (typeof(options.clickable) == 'undefined' || options.clickable != false) {
     marker.message = this.buildObservationInfoWindow(observation);
     
@@ -308,13 +308,21 @@ google.maps.Map.prototype.getPlaceBounds = function() {
 google.maps.Map.prototype.setPlaceBounds = function(bounds) {
   this.placeBounds = bounds;
 }
-  
+
+// infoWindowOpenTime will be set to prevent native Google Maps events to
+// conflict with wax.g / utfGrid interactions. We'll make sure no wax.g
+// interactions fire shortly after a native event is initiated. We had a bug
+// where markers on top of utfGrid zones were opening two windows
+var infoWindowOpenTime;
 google.maps.Map.prototype.openInfoWindow = function(e) {
-  iNaturalist.Map.infowWindow = iNaturalist.Map.infowWindow || new google.maps.InfoWindow()
-  iNaturalist.Map.infowWindow.setContent(this.message)
-  iNaturalist.Map.infowWindow.open(this.map, this)
+  infoWindowOpenTime = new Date( );
+  // close any infowindows opened by wax.g
+  if( window.map.infoWindow ) { window.map.infoWindow.close( ); }
+  iNaturalist.Map.infoWindow = iNaturalist.Map.infoWindow || new google.maps.InfoWindow()
+  iNaturalist.Map.infoWindow.setContent(this.message)
+  iNaturalist.Map.infoWindow.open(this.map, this)
 };
-  
+
 google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {  
   // First see if we can find an observation component for this observation
   var existing = document.getElementById('observation-'+observation.id);
@@ -918,8 +926,14 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
         interactionOn = true;
         document.body.style.cursor = 'pointer';
         if (o.e.type == 'click') {
+          // if a native infoWindow was just opened, don't let another one open
+          if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
+            return false;
+          }
           // if the click is anywhere within the InfoWindow, don't act on it
           if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
+          // if a native infoWindow is still open, close it
+          if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           if(o.data['latitude']){
             var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
             $.ajax({
@@ -927,10 +941,12 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
               type: 'GET',
               dataType: 'html',
               beforeSend: function() {
-                var iw = map.getInfoWindow()
-                iw.position = latLng
+                var iw = map.getInfoWindow( );
+                iw.position = latLng;
                 iw.setContent($('<div class="loading status">'+I18n.t('loading')+'</div>').get(0));
-                iw.open(map)
+                iw.open( map );
+                // setting infoWindowOpenTime to prevent rapid window toggling
+                infoWindowOpenTime = new Date( );
                 // remove any text highlighting, which happens when the user clicks around
                 deselectText();
               },
