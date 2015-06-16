@@ -1315,10 +1315,8 @@ class ObservationsController < ApplicationController
       return
     end
     
-    unless request.format == :mobile
-      params[:projects] = @project.id
-      @observations = get_elastic_paginated_observations(params)
-    end
+    params[:projects] = @project.id
+    @observations = get_elastic_paginated_observations(params)
     
     @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])

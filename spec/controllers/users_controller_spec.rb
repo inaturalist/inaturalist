@@ -40,8 +40,8 @@ describe UsersController, "set_spammer" do
   describe "non-curators" do
     it "cannot access it" do
       post :set_spammer
-      response.should be_redirect
-      flash[:alert].should eq "You need to sign in or sign up before continuing."
+      expect(response).to be_redirect
+      expect(flash[:alert]).to eq "You need to sign in or sign up before continuing."
     end
   end
 
@@ -54,27 +54,27 @@ describe UsersController, "set_spammer" do
 
     it "can access it" do
       post :set_spammer
-      response.should_not be_redirect
-      flash[:alert].should be_blank
+      expect(response).not_to be_redirect
+      expect(flash[:alert]).to be_blank
     end
 
     it "can set spammer to true" do
       @user = User.make!(spammer: nil)
       post :set_spammer, id: @user.id, spammer: "true"
       @user.reload
-      @user.spammer.should be true
+      expect(@user.spammer).to be true
     end
 
     it "removes spam flags when setting to non-spammer" do
       @user = User.make!(spammer: true)
       obs = Observation.make!(user: @user)
       Flag.make!(flaggable: obs, flag: Flag::SPAM)
-      @user.spammer.should be true
-      @user.flags_on_spam_content.count.should == 1
+      expect(@user.spammer).to be true
+      expect(@user.flags_on_spam_content.count).to eq 1
       post :set_spammer, id: @user.id, spammer: "false"
       @user.reload
-      @user.spammer.should be false
-      @user.flags_on_spam_content.count.should == 0
+      expect(@user.spammer).to be false
+      expect(@user.flags_on_spam_content.count).to eq 0
     end
 
     it "resolves spam flags when setting to non-spammer" do
