@@ -110,7 +110,6 @@ class MetaService
       http.get("#{options[:request_uri].path}?#{options[:request_uri].query}",
         "User-Agent" => options[:user_agent])
     end
-    debugger
     if response.is_a?(Net::HTTPRedirection) && attempts > 0
       options[:request_uri] = response["location"]
       return fetch_with_redirects(options, attempts - 1)
