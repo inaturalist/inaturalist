@@ -94,7 +94,7 @@
                         :method => :delete, 
                         :id => "delete_comment_#{item.id}_button")
           end
-          unless item.is_a?(Flag)
+          if !item.is_a?(Flag) && FlagsController::FLAG_MODELS.include?(item.class.name)
             pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
           end
         -%>

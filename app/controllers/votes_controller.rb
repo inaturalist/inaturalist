@@ -1,8 +1,22 @@
 class VotesController < ApplicationController
   before_action :doorkeeper_authorize!, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }, except: [:by_login]
-  before_filter :load_votable, except: [:by_login]
+  before_filter :load_votable, except: [:by_login, :destroy]
   before_filter :load_user_by_login, only: :by_login
+  before_filter :load_vote, only: [:destroy]
+  before_filter :require_owner, only: [:destroy]
+
+  def destroy
+    votable = @vote.votable
+    @vote.destroy
+    respond_to do |format|
+      format.html do
+        flash[:notice] = I18n.t(:deleted_vote)
+        redirect_back_or_default votable
+      end
+      format.json { head :no_content }
+    end
+  end
 
   def vote
     @record.vote_by voter: current_user, vote: params[:vote], vote_scope: params[:scope]
@@ -64,5 +78,9 @@ class VotesController < ApplicationController
       render_404
       return false
     end
+  end
+
+  def load_vote
+    load_record klass: ActsAsVotable::Vote
   end
 end

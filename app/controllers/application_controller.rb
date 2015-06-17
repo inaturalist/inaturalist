@@ -242,9 +242,14 @@ class ApplicationController < ActionController::Base
   end
 
   def load_record(options = {})
-    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
-    class_name = class_name.to_s.underscore.camelcase
-    klass = Object.const_get(class_name)
+    if options[:klass].is_a?(Class)
+      klass = options[:klass]
+      class_name = klass.name.split('::').last
+    else
+      class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+      class_name = class_name.to_s.underscore.camelcase
+      klass = Object.const_get(class_name)
+    end
     record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record

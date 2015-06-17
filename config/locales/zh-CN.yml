@@ -9,46 +9,58 @@
 # Author: 아라
 ---
 zh-CN:
-  licensing_your_content: 授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name}使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a
+  licensing_your_content: |
+    授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name}使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a
     href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
   you_think_observation_inacurate: 如果您认为此观察不准确，请添加一个ID、在上方参与质量评估、或订阅评论中的错误。
-  we_also_support: 我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://picasaweb.google.com">Picasa</a>和<a
+  we_also_support: |
+    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://picasaweb.google.com">Picasa</a>和<a
     href="http://facebook.com">Facebook</a>用于图片存储。
   a_default_taxon_name_will_automatically_created: |-
     一个来自归属于此分类的学名的默认分类名称将被创建。
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
   x_followers:
-    other: '%{count}位关注者'
+    one: '%{count} 位关注者'
+    other: '%{count} 位关注者'
   x_identifications:
-    other: '%{count}次鉴定'
+    one: '%{count} 次鉴定'
+    other: '%{count} 次鉴定'
   x_lists:
+    one: '%{count} 个列表'
     other: '%{count} 个列表'
   x_journal_posts:
-    other: '%{count}篇日记文章'
+    one: '%{count} 篇日记文章'
+    other: '%{count} 篇日记文章'
   x_matching_taxa:
-    other: '%{count}个匹配的分类'
+    one: '%{count} 个匹配的分类'
+    other: '%{count} 个匹配的分类'
   x_matching_taxa_html:
-    other: o<span class="count">%{count}</span>个匹配的分类群
+    one: o<span class="count">%{count}</span> 个匹配的分类群
+    other: o<span class="count">%{count}</span> 个匹配的分类群
   x_observations:
-    other: '%{count}次观察'
+    one: '%{count} 次观察'
+    other: '%{count} 次观察'
   x_observations_html:
-    one: <span class='count'>1</span>次观察
-    other: <span class='count'>%{count}</span>次观察
+    one: <span class='count'>1</span> 次观察
+    other: <span class='count'>%{count}</span> 次观察
   x_observations_link_html:
-    one: <a href='%{url}'>1</a>次观察
-    other: <a href='%{url}'>%{count}</a>次观察
+    one: "<a href='%{url}'>1</a> 次观察"
+    other: "<a href='%{url}'>%{count}</a> 次观察"
   x_people:
-    other: '%{count}个人'
+    one: '%{count} 个人'
+    other: '%{count} 个人'
   x_people_agree_html:
-    other: <span class="count">%{count}</span>人同意
+    one: <span class="count">%{count}</span> 人同意
+    other: <span class="count">%{count}</span> 人同意
   x_species:
+    one: '%{count}种物种'
     other: '%{count}种物种'
   x_species_html:
     one: <span class='count'>1</span>种物种
     other: <span class='count'>%{count}</span>种物种
   x_species_link_html:
-    one: <a href='%{url}'>1</a>种物种
-    other: <a href='%{url}'>%{count}</a>种物种
+    one: "<a href='%{url}'>1</a>种物种"
+    other: "<a href='%{url}'>%{count}</a>种物种"
   a: 一个
   a_: 一个
   a_community_for_naturalist: 自然主义者的社区
