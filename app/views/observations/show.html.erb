@@ -212,7 +212,7 @@
       </div>
 
       <% if !@projects.blank? && @project_addition_allowed %>
-        <%= link_to_tip "<i class='fa fa-plus'></i> #{t(:add_to_project)}".html_safe, :tip_options => {
+        <%= link_to_tip "<i class='fa fa-plus'></i> #{t(:add_to_project)}".html_safe, id: "add-to-project-button", tip_options: {
           position: {
             my: 'top center',
             at: 'bottom center'

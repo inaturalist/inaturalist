@@ -100,35 +100,41 @@ $(document).ready(function() {
       $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
     })
 
-  $('#project_menu .addlink').bind('ajax:before', function() {
-    var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-    loading.width($(this).width())
-    loading.height($(this).height())
-    loading.css({backgroundPosition: 'center center'})
-    $(this).hide()
-    $(this).after(loading)
-  }).bind('ajax:success', function(e, json, status) {
-    var projectId = $(this).data('project-id') || json.project_id
-    $(this).siblings('.loadingclick').remove()
-    $(this).siblings('.removelink').show()
-    $(this).hide()
-  }).bind('ajax:error', function(e, xhr, error, status) {
-    $(this).siblings('.loadingclick').remove()
-    $(this).show()
-  })
-  $('#project_menu .removelink').bind('ajax:before', function() {
-    var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-    loading.width($(this).width())
-    loading.height($(this).height())
-    loading.css({backgroundPosition: 'center center'})
-    $(this).hide()
-    $(this).after(loading)
-  }).bind('ajax:success', function(e, json, status) {
-    $(this).siblings('.loadingclick').remove()
-    $(this).siblings('.addlink').show()
-    $(this).hide()
-  }).bind('ajax:error', function(e, xhr, error, status) {
-    // alert(xhr.responseText)
+  $('#add-to-project-button').qtip('api').set({
+    events: {
+      render: function(event, api) {
+        $('#projectschooser .addlink').bind('ajax:before', function() {
+          var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+          loading.width($(this).width())
+          loading.height($(this).height())
+          loading.css({backgroundPosition: 'center center'})
+          $(this).hide()
+          $(this).after(loading)
+        }).bind('ajax:success', function(e, json, status) {
+          var projectId = $(this).data('project-id') || json.project_id
+          $(this).siblings('.loadingclick').remove()
+          $(this).siblings('.removelink').show()
+          $(this).hide()
+        }).bind('ajax:error', function(e, xhr, error, status) {
+          $(this).siblings('.loadingclick').remove()
+          $(this).show()
+        })
+        $('#projectschooser .removelink').bind('ajax:before', function() {
+          var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+          loading.width($(this).width())
+          loading.height($(this).height())
+          loading.css({backgroundPosition: 'center center'})
+          $(this).hide()
+          $(this).after(loading)
+        }).bind('ajax:success', function(e, json, status) {
+          $(this).siblings('.loadingclick').remove()
+          $(this).siblings('.addlink').show()
+          $(this).hide()
+        }).bind('ajax:error', function(e, xhr, error, status) {
+          // alert(xhr.responseText)
+        })
+      }
+    }
   })
 
   $('.identification').each(function() {
