@@ -47,6 +47,12 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_faves:
+    one: '1 Fave'
+    other: '%{count} Faves'
+  x_people_like_this:
+    one: '1 person likes this'
+    other: '%{count} people like this'
   x_people_agree_html:
     one: '<span class="count">1</span> person agrees'
     other: '<span class="count">%{count}</span> people agree'
@@ -184,7 +190,8 @@ en:
   add_to: Add to
   add_to_a_scheme: Add to a scheme
   add_to_calendar: Add to calendar
-  add_to_checklist: add to checklist
+  add_to_checklist: Add to checklist
+  add_to_favorites: Add to favorites
   add_to_id_please: Add to ID Please
   add_to_list: Add to list
   add_to_project: Add to project
@@ -205,6 +212,9 @@ en:
   added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
   added_to: Added to
+  added_to_favorites: Added to favorites
+  added_to_favorites_html: |
+    Added to <a href="%{url}">favorites</a>
   adding: "Adding..."
   adding_observations: Adding observations
   adding_to_your_life_list: "Adding to your life list..."
@@ -320,6 +330,9 @@ en:
   and_other_taxa: "&amp; Other Taxa"
   and_un_license_all_your_observations: and un-license all your observations
   and_you_havent_linked: "...and you haven't linked one of these external accounts, you should sign in through %{site_name} first, then edit your profile and link your account from there. Otherwise %{site_name} may not be able to tell that the two accounts are connected and try to create a new account for you instead!"
+  and_x_more_people!: 
+    one: "and 1 more person!"
+    other: "and %{count} more people!"
   android: Android
   animals: Animals
   announcement_was_successfully_created: Announcement was successfully created.
@@ -1652,7 +1665,10 @@ en:
   no_header_row: No header row
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
-    user: User %{user} hasnt added identifications to anyone's observations.
+    user: "%{user} hasn't added identifications to anyone's observations."
+  no_favorites_added:
+    current_user: You haven't added favorites yet.
+    user: "%{user} hasn't added favorites."
   no_journal_post_have_been: No journal posts have been added to this project yet.
   no_license_all_rights_reserved: No license (all rights reserved)
   no_link_flickr: "No, I'd rather not."
@@ -2939,6 +2955,7 @@ en:
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_commented_on: "%{user} commented on your %{title} %{time}"
+  user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"

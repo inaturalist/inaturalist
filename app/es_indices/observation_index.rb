@@ -66,6 +66,7 @@ class Observation < ActiveRecord::Base
       captive: captive,
       license_code: license,
       geoprivacy: geoprivacy,
+      cached_votes_total: cached_votes_total,
       num_identification_agreements: num_identification_agreements,
       num_identification_disagreements: num_identification_disagreements,
       identifications_most_agree:
@@ -285,6 +286,8 @@ class Observation < ActiveRecord::Base
       { observed_on: sort_order }
     when "species_guess"
       { species_guess: sort_order }
+    when "votes"
+      { cached_votes_total: sort_order }
     else "observations.id"
       { created_at: sort_order }
     end

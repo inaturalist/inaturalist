@@ -1270,7 +1270,7 @@ class Taxon < ActiveRecord::Base
     end
     json = begin
       GbifService.species_match(params: params)
-    rescue Timeout::Error => e
+    rescue Timeout::Error, SocketError => e
       # probably GBIF is down or throttling us
       Rails.logger.error "[ERROR #{Time.now}] #{e}"
       nil

@@ -28,6 +28,7 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   acts_as_taggable
+  acts_as_votable
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
@@ -473,6 +474,8 @@ class Observation < ActiveRecord::Base
       order "observations.id #{order} #{extra}"
     when 'project'
       order("project_observations.id #{order} #{extra}").joins(:project_observations)
+    when 'votes'
+      order("cached_votes_total #{order} #{extra}")
     else
       order "#{order_by} #{order} #{extra}"
     end

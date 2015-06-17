@@ -3,6 +3,7 @@ class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
+  before_filter :allow_cors, only: [:index]
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
@@ -69,7 +70,7 @@ class ObservationsController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
-  ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
+  ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
@@ -80,7 +81,8 @@ class ObservationsController < ApplicationController
     'id' => 'date added',
     'observed_on' => 'date observed',
     'species_guess' => 'species name',
-    'project' => "date added to project"
+    'project' => "date added to project",
+    'votes' => 'votes'
   }
   PARTIALS = %w(cached_component observation_component observation mini project_observation)
   EDIT_PARTIALS = %w(add_photos)
@@ -2508,7 +2510,7 @@ class ObservationsController < ApplicationController
         :methods => [:common_name]
       }
       opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
-      opts[:include][:user] ||= {:only => :login}
+      opts[:include][:user] ||= {:only => :login, :methods => [:user_icon_url]}
       opts[:include][:photos] ||= {
         :methods => [:license_code, :attribution],
         :except => [:original_url, :file_processing, :file_file_size, 

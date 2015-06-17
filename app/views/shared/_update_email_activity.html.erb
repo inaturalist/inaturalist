@@ -59,8 +59,14 @@
               <% end -%>
             </div>
           <% elsif notifier.is_a? ObservationFieldValue %>
-            <div class="stacked body">
+            <div style="margin-bottom:10px;">
               <%= render "observation_fields/observation_field_value", :observation_field_value => notifier, :hide_extra => true %>
+            </div>
+          <% elsif notifier.is_a? ActsAsVotable::Vote %>
+            <div style="margin-bottom:10px;">
+              <em class="meta nocontent">
+                <%=t :added_to_favorites_html, url: faves_by_login_url(user.login) %>
+              </em>
             </div>
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
