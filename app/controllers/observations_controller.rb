@@ -1942,7 +1942,7 @@ class ObservationsController < ApplicationController
       [ :place_id, :user_id, :project_id,
         :taxon_id, :d1, :d2, :color ].include?( k.to_sym ) }
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : "default")
-    @map_style = ( params[:color] || @taxa.any? ) ? "colored" : "heatmap"
+    @map_style = ( params[:color] || @taxa.any? ) ? "colored_heatmap" : "heatmap"
     @map_style = "points" if params[:color] == "default"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
     @gridmaxzoom = params[:gridmaxzoom]
