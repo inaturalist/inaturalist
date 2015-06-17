@@ -7,7 +7,6 @@
       gbif: { disabled: true },
     } ],
     observations: [ @observation ],
-    zoom_level: @observation.map_scale || 8,
-    map_style: "points"
+    zoom_level: @observation.map_scale || 8
   }
 #map.stacked{ setup_map_tag_attrs(a) }

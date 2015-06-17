@@ -829,10 +829,9 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     });
   }
   var options = options || { },
-      gridTileSuffix = "/" + (options.mapStyle || "summary" ) +
+      gridTileSuffix = "/" + (options.mapStyle || "colored_heatmap" ) +
         "/{z}/{x}/{y}.png",
-      pointTileSuffix = "/" + (options.mapStyle === "colored" ?
-        "colored" : "points" ) + "/{z}/{x}/{y}.png",
+      pointTileSuffix = "/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
