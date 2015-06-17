@@ -105,13 +105,15 @@ class MetaService
     Nokogiri::XML(response.body)
   end
 
-  def self.fetch_with_redirects(options, attempts = 1)
-    response = Net::HTTP.start(options[:request_uri].host) do |http|
-      http.get("#{options[:request_uri].path}?#{options[:request_uri].query}",
-        "User-Agent" => options[:user_agent])
-    end
+  def self.fetch_with_redirects(options, attempts = 3)
+    http = Net::HTTP.new(options[:request_uri].host, options[:request_uri].port)
+    # using SSL if we have an https URL
+    http.use_ssl = (options[:request_uri].scheme == "https")
+    response = http.get("#{options[:request_uri].path}?#{options[:request_uri].query}",
+      "User-Agent" => options[:user_agent])
+    # following redirects if we haven't followed too many already
     if response.is_a?(Net::HTTPRedirection) && attempts > 0
-      options[:request_uri] = response["location"]
+      options[:request_uri] = URI.parse(response["location"])
       return fetch_with_redirects(options, attempts - 1)
     end
     response
