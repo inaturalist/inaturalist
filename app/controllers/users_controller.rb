@@ -395,10 +395,15 @@ class UsersController < ApplicationController
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
+    locale_was = @display_user.locale
     if whitelist_params && @display_user.update_attributes(whitelist_params)
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do
+          if locale_was != @display_user.locale
+            session[:locale] = @display_user.locale
+          end
+
           if params[:from_edit_after_auth].blank?
             flash[:notice] = t(:your_profile_was_successfully_updated)
             redirect_back_or_default(person_by_login_path(:login => current_user.login))
@@ -659,6 +664,13 @@ protected
       :preferred_photo_license,
       :preferred_project_addition_by,
       :preferred_sound_license,
+      :prefers_comment_email_notification,
+      :prefers_identification_email_notification,
+      :prefers_message_email_notification,
+      :prefers_project_invitation_email_notification,
+      :prefers_project_journal_post_email_notification,
+      :prefers_no_email,
+      :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
       :prefers_location_details,
       :site_id,
