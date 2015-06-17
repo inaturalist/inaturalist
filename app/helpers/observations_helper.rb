@@ -14,7 +14,8 @@ module ObservationsHelper
   
   def observations_order_by_options(order_by = nil)
     order_by ||= @order_by
-    pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
+    fields = ObservationsController::ORDER_BY_FIELDS - %w(species_guess)
+    pairs = fields.map do |f|
       next if f == "project" && @project.blank?
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
       default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
