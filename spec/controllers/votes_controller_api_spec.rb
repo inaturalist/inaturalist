@@ -34,6 +34,14 @@ shared_examples_for "a VotesController" do
       expect( Update.where(subscriber: o.user).count ).to eq 1
     end
 
+    it "should subscribe the voter to updates on the votable" do
+      expect( Subscription.where(user: user, resource: o).count ).to eq 0
+      without_delay do
+        post :vote, format: 'json', resource_type: 'observation', resource_id: o.id
+      end
+      expect( Subscription.where(user: user, resource: o).count ).to eq 1
+    end
+
     it "should increment cached_votes_total" do
       expect( o.cached_votes_total ).to eq 0
       post :vote, format: 'json', resource_type: 'observation', resource_id: o.id

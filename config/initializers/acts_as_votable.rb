@@ -3,6 +3,7 @@ module ActsAsVotable
   class Vote
     include HasSubscribers
     notifies_owner_of :votable, notification: "activity"
+    auto_subscribes :user, :to => :votable
     alias_method :user, :voter
     def user_id
       voter_id
