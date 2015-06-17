@@ -1,16 +1,20 @@
 #encoding: utf-8
 class PicasaPhoto < Photo
   validates_presence_of :native_photo_id
-  validate :user_owns_photo
   validate :licensed_if_no_user
   
-  def user_owns_photo
-    if self.user
-      unless self.user.picasa_identity && native_username == self.user.picasa_identity.provider_uid
-        errors.add(:user, "must own the photo on Picasa.")
-      end
-    end
-  end
+  # I don't think we can reliably perform this validation, b/c older picasa
+  # photos seem to have a native_username that looks like a username, and not
+  # a numerical ID. Leaving this in here in case someone has a better idea of
+  # how to validate that the photo belongs to the user.
+  # validate :user_owns_photo
+  # def user_owns_photo
+  #   if self.user
+  #     unless self.user.picasa_identity && native_username == self.user.picasa_identity.provider_uid
+  #       errors.add(:user, "must own the photo on Picasa.")
+  #     end
+  #   end
+  # end
   
   # TODO Sync photo object with its native source.
   def sync
