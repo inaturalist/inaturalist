@@ -106,18 +106,9 @@ Some notes:
   </div>
   <div class="readable species_guess attribute">
     <h4 class="label"><%=t :what %></h4>
-    <% if observation.taxon && observation.taxon_id == observation.community_taxon_id %>
+    <% if observation.taxon %>
       <%= render :partial => 'shared/taxon', 
                  :locals => {
-                   :taxon => observation.taxon,
-                   :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
-                   :link_url => observation_path(observation),
-                   :include_parens => false} %>
-    <% elsif observation.taxon %>
-      <%= render :partial => 'shared/taxon', 
-                 :locals => {
-                    :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
-                    :no_common => !observation.species_guess.blank? && observation.species_guess.downcase == observation.taxon.name.downcase,
                     :taxon => observation.taxon,
                     :link_url => observation_path(observation),
                     :include_parens => false} %>

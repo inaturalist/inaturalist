@@ -82,7 +82,7 @@ class ObservationsController < ApplicationController
     'observed_on' => 'date observed',
     'species_guess' => 'species name',
     'project' => "date added to project",
-    'votes' => 'votes'
+    'votes' => 'faves'
   }
   PARTIALS = %w(cached_component observation_component observation mini project_observation)
   EDIT_PARTIALS = %w(add_photos)

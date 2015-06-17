@@ -1,6 +1,8 @@
 <% content_for(:title) do %>
-  <%- unless @observation.species_guess.blank? -%>
-    <%= @observation.species_guess -%>,
+  <% if @observation.taxon %>
+    <%= [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?} %>
+  <% elsif @observation.species_guess.blank? %>
+    <%= @observation.species_guess %>
   <%- else -%>
     <%=t :something %>
   <% end %>
@@ -113,14 +115,11 @@
   <h2>
     <span class="taxon">
       <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
-        <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
-          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
+        <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon %>
       <%- elsif @observation.taxon -%>
         <%= render "shared/taxon", 
           :taxon => @observation.taxon, 
-          :link_url => @observation.taxon, 
-          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
-          :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
+          :link_url => @observation.taxon %>
       <%- elsif !@observation.species_guess.blank? -%>
         <%= @observation.species_guess -%>
       <%- else -%>
