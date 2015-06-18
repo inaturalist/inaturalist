@@ -119,6 +119,19 @@ describe TaxonName, "choose_common_name" do
     tn_es = TaxonName.make!(:name => "caracol", :lexicon => "Spanish", :taxon => t)
     expect(TaxonName.choose_common_name([tn_en, tn_es], :locale => :es)).to eq tn_es
   end
+
+  it "should choose a locale=specific name for traditional Chinese" do
+    tn_en = TaxonName.make!(:name => "Queen's Wreath", :lexicon => "English", :taxon => t)
+    tn_zh_tw = TaxonName.make!(:name => "藍花藤", :lexicon => "Chinese (traditional)", :taxon => t)
+    expect(TaxonName.choose_common_name([tn_en, tn_zh_tw], :locale => "zh-TW")).to eq tn_zh_tw
+  end
+
+  it "should choose a locale=specific name for simplified Chinese" do
+    tn_en = TaxonName.make!(:name => "Queen's Wreath", :lexicon => "English", :taxon => t)
+    tn_zh_cn = TaxonName.make!(:name => "藍花藤", :lexicon => "Chinese (simplified)", :taxon => t)
+    expect(TaxonName.choose_common_name([tn_en, tn_zh_cn], :locale => "zh-CN")).to eq tn_zh_cn
+  end
+
   it "should choose a place-specific name" do
     california = Place.make!
     oregon = Place.make!
