@@ -347,7 +347,7 @@ class CheckList < List
 
   def find_listed_taxa_and_ancestry_as_hashes
     listed_taxa_on_this_list_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id = #{id};")
-    listed_taxa_on_this_list_with_ancestry_string.map{|row| row['ancestry'] = row['ancestry'].split("/"); row }
+    listed_taxa_on_this_list_with_ancestry_string.map{|row| row['ancestry'] = row['ancestry'].to_s.split("/"); row }
   end
 
   def find_listed_taxa_and_ancestry_on_other_lists_as_hashes(list_ids)

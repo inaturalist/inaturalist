@@ -421,6 +421,33 @@ describe Observation do
       expect(obs.iconic_taxon).to be_blank
     end
 
+    it "should add a new taxon to the user's life list" do
+      o = without_delay { Observation.make!(taxon: Taxon.make!) }
+      expect( o.user.life_list.taxa ).to include o.taxon
+      without_delay { o.update_attributes(taxon: Taxon.make!) }
+      o.reload
+      expect( o.user.life_list.taxa ).to include o.taxon
+    end
+
+    it "should remove an old taxon from the user's life list if that was the only obs" do
+      o = without_delay { Observation.make!(taxon: Taxon.make!) }
+      old_taxon = o.taxon
+      expect( o.user.life_list.taxa ).to include o.taxon
+      without_delay { o.update_attributes(taxon: Taxon.make!) }
+      o.reload
+      expect( o.user.life_list.taxa ).not_to include old_taxon
+    end
+
+    it "should not remove an old taxon from the user's life list if that was not the only obs" do
+      o = without_delay { Observation.make!(taxon: Taxon.make!) }
+      o1 = without_delay { Observation.make!(taxon: o.taxon, user: o.user) }
+      old_taxon = o.taxon
+      expect( o.user.life_list.taxa ).to include o.taxon
+      without_delay { o.update_attributes(taxon: Taxon.make!) }
+      o.reload
+      expect( o.user.life_list.taxa ).to include old_taxon
+    end
+
     it "should queue refresh jobs for associated project lists if the taxon changed" do
       o = Observation.make!(:taxon => Taxon.make!)
       pu = ProjectUser.make!(:user => o.user)
@@ -681,7 +708,7 @@ describe Observation do
       expect(p.observations_count).to eq(0)
     end
 
-    it "should update a life listed taxon accordingly" do
+    it "should update a life listed taxon stats" do
       t = Taxon.make!
       u = User.make!
       without_delay do
