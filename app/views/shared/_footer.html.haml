@@ -1,4 +1,7 @@
 - site = @site || CONFIG
+- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized
+  .box.notice.centered
+    = link_to t(:mobile_view_available), toggle_mobile_path, :id => "mobiletogglelink"
 #footer
   .container
     .column.span-24

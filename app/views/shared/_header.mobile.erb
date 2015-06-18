@@ -5,11 +5,11 @@
     <%= link_to(t(:sign_in), new_user_session_path, :id => "usernav") %>
   <% end -%>
   <div id="logonav">
-    <% if @site && @site.custom_logo -%>
+    <% if @site && !@site.custom_logo.blank? -%>
       <%=raw @site.custom_logo %>
     <% else %>
       <a href="/" title="<%= CONFIG.site_name %>" class="logolink">
-        <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
+        <%= image_tag @site ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
       </a>
     <% end -%>
   </div>

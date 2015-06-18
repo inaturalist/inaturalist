@@ -1,23 +1,25 @@
 <%- content_for(:title) do -%>
   <%= t(:log_in) %>
 <%- end -%>
-<%= form_tag user_session_path do %>
+<%= form_for(resource, as: resource_name, url: session_path) do |f| %>
   <p class="ui">
-    <%= label_tag 'login', t(:username_or_email) %><br/>
-    <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
+    <%= f.label :email, t(:username_or_email) %><br/>
+    <%= f.text_field :email, :class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off" %>
   </p>
 
   <p class="ui">
-    <%= label_tag 'password', t(:password) %><br/>
-    <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
+    <%= f.label :password, t(:password) %><br/>
+    <%= f.password_field :password, :class => "text", tabindex: 2 %>
   </p>
 
-  <p class="ui">
-    <%= check_box_tag 'remember_me', '1', t(:remember_me) %>
-    <%= label_tag 'remember_me', t(:remember_me) %>
-  </p>
+  <% if devise_mapping.rememberable? -%>
+    <p class="ui">
+      <%= f.label :remember_me, t(:remember_me) %>
+      <%= f.check_box :remember_me, :label_after => true, :label => t(:remember_me) %>
+    </p>
+  <% end -%>
 
-  <p><%= submit_tag t(:sing_in_exclamation), :class => "default button", :style => "float: none;" %></p>
+  <p><%= submit_tag t(:sign_in_exclamation), :class => "default button", :style => "float: none;" %></p>
 
 <% end -%>
 
