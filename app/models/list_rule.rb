@@ -39,6 +39,6 @@ class ListRule < ActiveRecord::Base
   end
 
   def refresh_list
-    list.delay(priority: USER_INTEGRITY_PRIORITY).refresh
+    list.delay(priority: USER_INTEGRITY_PRIORITY).refresh if list && list.persisted?
   end
 end
