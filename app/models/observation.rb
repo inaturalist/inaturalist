@@ -1334,7 +1334,6 @@ class Observation < ActiveRecord::Base
       taxon, 
       Taxon.find_by_id(@old_observation_taxon_id)
     ].compact.uniq
-    
     # Don't refresh all the lists if nothing changed
     return true if target_taxa.empty?
     
