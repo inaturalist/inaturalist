@@ -246,10 +246,10 @@ es:
   all_names: Todos los nombres
   all_observations: Todas las observaciones
   all_photos: Todas las fotos
-  all_places: Todos los Lugares
-  all_projects: Todos los Proyectos
+  all_places: Todos los lugares
+  all_projects: Todos los proyectos
   all_rights_reserved: todos los derechos reservados
-  all_species: Todas las Especies
+  all_species: Todas las especies
   all_taxa:
     rank:
       kingdom: Reino
@@ -531,11 +531,11 @@ es:
   browse: Navegar
   browse_all_projects: Examinar todos los proyectos
   browse_all_species: Examinar todas las especies
-  browse_projects: Explorar proyectos
-  browse_species_that_occur_near_this_observation: Busca especies que ocurran cerca
+  browse_projects: Examinar proyectos
+  browse_species_that_occur_near_this_observation: Examinar especies que existan cerca
     de esta observación.
-  browse_your_observations: Examina tus observaciones
-  built_with_site_guides_html: Construido con las <a href='%{url}'>%{site_name} Guías</a>
+  browse_your_observations: Examinar tus observaciones
+  built_with_site_guides_html: Construido con las <a href='%{url}'>guías de %{site_name}</a>
   bulk_import_of_filename_is_complete: La importación masiva de %{filename} está completa
   but_we_didnt_add_this_observation_to_the_x_project: Esta observación no se añadió
     al proyecto %{project}, porque no aceptaste los términos del proyecto.
@@ -1773,8 +1773,7 @@ es:
     El mapa mostrará un rango si %{place} tiene alguna de esas especies.
   maybe_your_signed_in_with: ¿Tal vez usted ingresó con su cuenta %{omniauth}?
   medium: medio
-  member_of_the_inaturalist_network_html: |
-    Miembro de la <a href="%{url}">Red iNaturalist</a>
+  member_of_the_inaturalist_network_html: Miembro de la <a href="%{url}">Red iNaturalist</a>
   members: Miembros
   merge: Combinar
   merge_it_with_another_place: Combinar con otro lugar
@@ -2418,8 +2417,8 @@ es:
   posted_on: Ingresado el
   posts: Ingresos
   powered_by: Desarrollado por
-  powered_by_inaturalist_open_source_software_html: Desarrollado por <a href="https://github.com/inaturalist/inaturalist" target="_new">el software de
-    código abierto iNaturalist</a>
+  powered_by_inaturalist_open_source_software_html: Desarrollado por <a href="https://github.com/inaturalist/inaturalist"
+    target="_new">el software de código abierto iNaturalist</a>
   present: nativo
   preview: Vista previa
   preview_of_synced_observation: <strong>Previo</strong> de la observación.  <a href="%{url}">¿Revertir?</a>
@@ -2733,7 +2732,6 @@ es:
     parte del mundo.
   set_license: Fijar licencia
   settings: Propiedades
-  share: Comparte
   share_on: Compartir por
   share_your_observation_with_researchers_by: Comparta su observación con investigadores
     por
@@ -4575,7 +4573,7 @@ es:
           ver la privada y oculta \ncoordenadas de las observaciones que se agregan
           a este proyecto."
       edit:
-        inaturalist_network_affiliation_desc_html: |
+        inaturalist_network_affiliation_desc_html: |-
           La <a href="%{url}" target="_blank">Red iNaturalist</a> es una
           colección de sitios web localizados conectados a la comunidad
           iNaturalist global. Usted puede cambiar su afiliación sitio
