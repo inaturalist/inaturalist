@@ -82,7 +82,7 @@
 
       <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
         <div class="timespan">
-          <% if @project.start_time.in_time_zone(@project.user.time_zone).to_date == @project.end_time.in_time_zone(@project.user.time_zone).to_date -%>
+          <% if @project.start_time.in_time_zone(@project.user.time_zone).to_date != @project.end_time.in_time_zone(@project.user.time_zone).to_date -%>
             <%=l @project.start_time.in_time_zone(@project.user.time_zone).to_date, :format => :long %>,
             <%=l @project.start_time.in_time_zone(@project.user.time_zone), :format => :hours %>
             -
