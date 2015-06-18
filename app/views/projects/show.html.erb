@@ -82,16 +82,25 @@
 
       <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
         <div class="timespan">
-          <% if @project.end_time - @project.start_time <= 1.day -%>
+          <% if @project.start_time.in_time_zone(@project.user.time_zone).to_date != @project.end_time.in_time_zone(@project.user.time_zone).to_date -%>
             <%=l @project.start_time.in_time_zone(@project.user.time_zone).to_date, :format => :long %>,
             <%=l @project.start_time.in_time_zone(@project.user.time_zone), :format => :hours %>
             -
             <%=l @project.end_time.in_time_zone(@project.user.time_zone), :format => :hours %>
             <%= @project.end_time.in_time_zone(@project.user.time_zone).strftime("%Z") %>
           <% else %>
-            <%= @project.start_time.in_time_zone(@project.user.time_zone).to_date.to_s(:long) %>
-            to
-            <%= @project.end_time.in_time_zone(@project.user.time_zone).to_date.to_s(:long) %>
+            <% if @project.end_time - @project.start_time <= 1.day %>
+              <%=l @project.start_time.in_time_zone(@project.user.time_zone).to_date, :format => :long %>,
+              <%=l @project.start_time.in_time_zone(@project.user.time_zone), :format => :hours %>
+              -
+              <%=l @project.end_time.in_time_zone(@project.user.time_zone).to_date, :format => :long %>,
+              <%=l @project.end_time.in_time_zone(@project.user.time_zone), :format => :hours %>
+              <%= @project.end_time.in_time_zone(@project.user.time_zone).strftime("%Z") %>
+            <% else %> 
+              <%= @project.start_time.in_time_zone(@project.user.time_zone).to_date.to_s(:long) %>
+              to
+              <%= @project.end_time.in_time_zone(@project.user.time_zone).to_date.to_s(:long) %>
+            <% end -%>
           <% end -%>
         </div>
       <% end -%>
