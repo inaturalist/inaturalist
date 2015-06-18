@@ -6,6 +6,7 @@ module TaxonDescribers
       id = pages.at('entry/id').try(:content)
       return unless id
       page = eol_service.page(id, :text => 50, :subjects => "all", :details => true)
+      return unless page
       page.remove_namespaces!
       data_objects = data_objects_from_page(page).to_a.uniq do |data_object|
         data_object.at('subject').content

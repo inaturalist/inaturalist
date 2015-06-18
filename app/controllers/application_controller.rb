@@ -242,9 +242,14 @@ class ApplicationController < ActionController::Base
   end
 
   def load_record(options = {})
-    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
-    class_name = class_name.to_s.underscore.camelcase
-    klass = Object.const_get(class_name)
+    if options[:klass].is_a?(Class)
+      klass = options[:klass]
+      class_name = klass.name.split('::').last
+    else
+      class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+      class_name = class_name.to_s.underscore.camelcase
+      klass = Object.const_get(class_name)
+    end
     record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
@@ -564,6 +569,14 @@ class ApplicationController < ActionController::Base
 
   def allow_external_iframes
     response.headers["X-Frame-Options"] = "ALLOWALL"
+  end
+
+  def allow_cors
+    headers["Access-Control-Allow-Origin"] = "*"
+    headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
+    headers["Access-Control-Allow-Headers"] =
+      %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
+    head(:ok) if request.request_method == "OPTIONS"
   end
 
   # adding extra info to the payload sent to ActiveSupport::Notifications

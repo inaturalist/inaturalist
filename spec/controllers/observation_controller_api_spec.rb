@@ -858,6 +858,27 @@ shared_examples_for "an ObservationsController" do
         expect( ids ).to include o2.id
       end
     end
+
+    it "should sort by votes asc" do
+      obs_with_votes = Observation.make!
+      obs_without_votes = Observation.make!
+      obs_with_votes.like_by User.make!
+      expect( obs_with_votes.cached_votes_total ).to eq 1
+      expect( obs_without_votes.cached_votes_total ).to eq 0
+      get :index, format: :json, order_by: 'votes', order: 'asc'
+      ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+      expect( ids.first ).to eq obs_without_votes.id
+      expect( ids.last ).to eq obs_with_votes.id
+    end
+    it "should sort by votes asc" do
+      obs_with_votes = Observation.make!
+      obs_without_votes = Observation.make!
+      obs_with_votes.like_by User.make!
+      get :index, format: :json, order_by: 'votes', order: 'desc'
+      ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+      expect( ids.last ).to eq obs_without_votes.id
+      expect( ids.first ).to eq obs_with_votes.id
+    end
   end
 
   describe "taxon_stats" do

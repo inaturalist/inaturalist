@@ -434,6 +434,9 @@ function autoTip() {
     content = $(this).attr('data-tip')
   }
   var tipOptions = $.extend(true, {}, QTIP_DEFAULTS)
+  if ($(this).data('tip-options')) {
+    tipOptions = $.extend(true, {}, tipOptions, $(this).data('tip-options'))
+  }
   if ($(this).attr('data-tip-title')) {
     tipOptions.content = {
       text: content, 
@@ -468,7 +471,7 @@ function autoTip() {
     tipOptions.hide.delay = $(this).attr('data-tip-hide-delay')
   }
   
-  $(this).qtip(tipOptions)
+  $(this).qtip($.extend(true, {}, tipOptions))
 
   // remove multiple file inputs for Windows Safari
   if (navigator.platform.match(/^Win/) && $.browser.webkit && !navigator.userAgent.match(/Chrome/i)) {

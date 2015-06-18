@@ -45,6 +45,7 @@ module UsersHelper
   #
   def link_to_user(user, options = {}, &block)
     return "deleted user" unless user
+    url = options.delete(:url) || person_url(user.login)
     options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
     if block_given?
       content_text = capture(&block)
@@ -53,7 +54,7 @@ module UsersHelper
       content_text    ||= user.send(options.delete(:content_method))
     end
     options[:title] ||= user.send(options.delete(:title_method))
-    link_to content_text, person_url(user.login), options
+    link_to content_text, url, options
   end
 
   # Below here, added for iNaturalist

@@ -61,6 +61,13 @@
       <div class="stacked body">
         <%= render "observation_fields/observation_field_value", :observation_field_value => item %>
       </div>
+    <% elsif item.is_a? ActsAsVotable::Vote %>
+      <div class="stacked body">
+        <em class="meta nocontent">
+          <i class="fa fa-star"></i>
+          <%=t :added_to_favorites_html, url: faves_by_login_url(user.login) %>
+        </em>
+      </div>
     <%- end -%>
     
     <% if item.respond_to?(:body) && !item.body.blank? -%>
@@ -87,7 +94,7 @@
                         :method => :delete, 
                         :id => "delete_comment_#{item.id}_button")
           end
-          unless item.is_a?(Flag)
+          if !item.is_a?(Flag) && FlagsController::FLAG_MODELS.include?(item.class.name)
             pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
           end
         -%>

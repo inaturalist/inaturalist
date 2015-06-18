@@ -9764,7 +9764,8 @@ CREATE TABLE observations (
     site_id integer,
     uuid character varying(255),
     public_positional_accuracy integer,
-    mappable boolean DEFAULT false
+    mappable boolean DEFAULT false,
+    cached_votes_total integer DEFAULT 0
 );
 
 
@@ -13835,6 +13836,13 @@ CREATE INDEX index_observation_zooms_9_on_taxon_id ON observation_zooms_9 USING 
 
 
 --
+-- Name: index_observations_on_cached_votes_total; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_cached_votes_total ON observations USING btree (cached_votes_total);
+
+
+--
 -- Name: index_observations_on_captive; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15423,4 +15431,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150512222753');
 INSERT INTO schema_migrations (version) VALUES ('20150524000620');
 
 INSERT INTO schema_migrations (version) VALUES ('20150611215738');
+
+INSERT INTO schema_migrations (version) VALUES ('20150614212053');
 

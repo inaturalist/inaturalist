@@ -40,6 +40,25 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 #community_taxon_summary td.score {white-space: nowrap;}
 .observations.infowindow .observation {width:auto; min-width: 200px;}
 .buttonrow.inline #added_to_id_please .inter {float: left;}
+#pageheader #tools {margin: 10px 0 5px;}
+#tools div {display: inline-block;}
+#tools a {min-height: 17px; display: inline-block; margin-right: 20px; font-size: 110%;}
+#tools .fa { font-size: 110%; margin-right: 5px;}
+#tools .favebutton.hasfaves {margin-right: 0;padding-right:0;}
+#tools .favebutton .fa {margin-top: 3px;}
+#sharing {min-width:200px;}
+.votes_for { font-size: 120%; min-width: 150px; max-width: 200px; }
+.votes_for li {margin-bottom: 5px; white-space: nowrap; overflow: hidden;}
+.votes_for img {
+  border-radius: 100px;
+  width: 29px;
+}
+.tools-dropdown .ui-tooltip-content {max-height: 400px;overflow-y: auto;}
+#projectschooser li {margin-top: 5px; white-space: nowrap;}
+#projectschooser li:first-child {margin-top: 0;}
+#projectschooser .button {width: 45px;}
+#projectschooser .buttonrow .inter {font-size: 120%;}
+
 #projects .inter img {max-width: 28px;}
 #projects .inter {padding: 0 5px 0 0;}
 #projects button { float: right; margin-right: 0;}
@@ -56,3 +75,32 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 #projects .qtip .button { width: 50px; }
 .popovertip {max-width: 300px;}
 .popovertip input[type=checkbox] {margin-left: 0;}
+
+
+.identification_form_wrapper{background-color:#eee;padding:10px;}
+.identification_form_wrapper input.text{width:236px;margin-top:0;}
+.identification_form_wrapper .button.default{margin:0 auto;float:none;}
+.identification_form_wrapper label{display:none;}
+.comment{padding:0;}
+.comment .meta{float:none;width:auto;}
+.comment .body{padding-left:0;}
+#forms h3{margin:0;}
+.ui-tabs .ui-tabs-nav li{border-color:transparent;background-color:white;}
+.ui-tabs .ui-tabs-nav,
+.ui-tabs .ui-tabs-nav .ui-tabs-active{border-color:#eee;}
+.ui-tabs .ui-tabs-nav li a{padding:0.25em 0.5em;}
+#new_identification_form .species_guess{width:538px;}
+#new_identification_form textarea{width:538px;height:150px;}
+#identifications .agreers{padding-left:60px;}
+#identifications .identification_image{width:40px;text-align:center;}
+#identifications .identification_image img{max-width:40px;}
+#identifications .identification_body{float:left;width:200px;}
+.identification_group{margin-bottom:10px;}
+#projects .box{padding:5px;}
+.id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
+#day_observations img {width: 32px; margin-bottom: 5px;}
+.quality_assessment {width:100%;}
+.photoSelectorSelected {float: right; width: 175px;}
+.photoSelectorResults {float: left; width: 525px; padding-right: 10px; margin-right: 10px; border-right: 1px solid #eee;}
+.photo .synclink { float: right; }
+.photoSelector {border: 0 transparent; padding:0; min-width: 725px;}

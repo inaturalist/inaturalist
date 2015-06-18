@@ -18,6 +18,9 @@ es-MX:
   a_default_taxon_name_will_automatically_created: |-
     Del nombre científico atribuido a esta especie o grupo automáticamente se creará un nombre de especie o grupo predeterminado.
     Cuando hayas salvado la nueva especie o grupo, podrás añadir otros nombres (nombres comunes, nombres científicos desactualizados, etc.).
+  x_faves:
+    one: '1 Favorito'
+    other: '%{count} Favoritos'
   x_followers:
     one: Un seguidor
     other: '%{count} seguidores'
@@ -1288,7 +1291,7 @@ es-MX:
   gray: Gris
   green: Verde
   grey: Gris
-  grid: cuadrícula
+  grid: Cuadrícula
   grid_tooltip: Muestra la vista de cuadrícula
   group: Grupo
   guess_description: Sugerencia / descripción
@@ -1899,6 +1902,12 @@ es-MX:
   no_flags: No hay advertencias esta vez
   no_flickr_photos_tagged: ¡No hay fotos etiquetadas con Flickr!
   no_header_row: No hay título de fila
+  no_identifications_added:
+    current_user: Aún no has identificado las observaciones de alguien más.
+    user: "%{user}, aún no has identificado las observaciones de alguien más."
+  no_favorites_added:
+    current_user: Aún no has añadido ningún favorito.
+    user: "%{user}, aún no has añadido ningún favorito."
   no_journal_post_have_been: Ninguna nota de diario ha sido añadida a este proyecto.
   no_license_all_rights_reserved: Sin licencia (todos los derechos reservados)
   no_link_flickr: No, mejor no.
@@ -2724,6 +2733,7 @@ es-MX:
     cualquier parte del mundo.
   set_license: Escoge la licencia
   settings: Propiedades
+  share: Comparte
   share_on: Comparte por
   share_your_observation_with_researchers_by: Comparte tu observación con investigadores
     de

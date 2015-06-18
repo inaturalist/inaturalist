@@ -100,35 +100,41 @@ $(document).ready(function() {
       $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
     })
 
-  $('#project_menu .addlink').bind('ajax:before', function() {
-    var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-    loading.width($(this).width())
-    loading.height($(this).height())
-    loading.css({backgroundPosition: 'center center'})
-    $(this).hide()
-    $(this).after(loading)
-  }).bind('ajax:success', function(e, json, status) {
-    var projectId = $(this).data('project-id') || json.project_id
-    $(this).siblings('.loadingclick').remove()
-    $(this).siblings('.removelink').show()
-    $(this).hide()
-  }).bind('ajax:error', function(e, xhr, error, status) {
-    $(this).siblings('.loadingclick').remove()
-    $(this).show()
-  })
-  $('#project_menu .removelink').bind('ajax:before', function() {
-    var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-    loading.width($(this).width())
-    loading.height($(this).height())
-    loading.css({backgroundPosition: 'center center'})
-    $(this).hide()
-    $(this).after(loading)
-  }).bind('ajax:success', function(e, json, status) {
-    $(this).siblings('.loadingclick').remove()
-    $(this).siblings('.addlink').show()
-    $(this).hide()
-  }).bind('ajax:error', function(e, xhr, error, status) {
-    // alert(xhr.responseText)
+  $('#add-to-project-button').qtip('api').set({
+    events: {
+      render: function(event, api) {
+        $('#projectschooser .addlink').bind('ajax:before', function() {
+          var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+          loading.width($(this).width())
+          loading.height($(this).height())
+          loading.css({backgroundPosition: 'center center'})
+          $(this).hide()
+          $(this).after(loading)
+        }).bind('ajax:success', function(e, json, status) {
+          var projectId = $(this).data('project-id') || json.project_id
+          $(this).siblings('.loadingclick').remove()
+          $(this).siblings('.removelink').show()
+          $(this).hide()
+        }).bind('ajax:error', function(e, xhr, error, status) {
+          $(this).siblings('.loadingclick').remove()
+          $(this).show()
+        })
+        $('#projectschooser .removelink').bind('ajax:before', function() {
+          var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+          loading.width($(this).width())
+          loading.height($(this).height())
+          loading.css({backgroundPosition: 'center center'})
+          $(this).hide()
+          $(this).after(loading)
+        }).bind('ajax:success', function(e, json, status) {
+          $(this).siblings('.loadingclick').remove()
+          $(this).siblings('.addlink').show()
+          $(this).hide()
+        }).bind('ajax:error', function(e, xhr, error, status) {
+          // alert(xhr.responseText)
+        })
+      }
+    }
   })
 
   $('.identification').each(function() {
@@ -158,6 +164,60 @@ $(document).ready(function() {
   })
 
   $('[class*=bold-]').boldId()
+
+  $('#sharebutton').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+    content: {
+      text: $('#sharing')
+    },
+    position: {
+      my: 'top center',
+      at: 'bottom center',
+      target: $('#sharebutton')
+    },
+    show: {event: 'click'},
+    hide: {event: 'click unfocus'}
+  }))
+  $('#sharing').hide()
+  $('.favebutton').bind('ajax:before', function() {
+    $(this).hide()
+    $(this).siblings('.favebutton').show()
+  })
+  $('#favebutton').bind('ajax:before', function() {
+    var s = $('#fave .votes_for_button').html()
+    if (!s) { return }
+    var count = parseInt(s.match(/(\d+)\s/)[1]) + 1
+    $('#fave .votes_for_button').html(I18n.t('x_faves', {count: count}))
+  })
+  $('#unfavebutton').bind('ajax:before', function() {
+    var s = $('#fave .votes_for_button').html()
+    if (!s) { return }
+    var count = parseInt(s.match(/(\d+)\s/)[1]) - 1
+    $('#fave .votes_for_button').html(I18n.t('x_faves', {count: count}))
+  })
+  $('.votes_for_button').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+    content: {
+      text: function(event, api) {
+        $.ajax({ url: '/votes/for/observation/'+OBSERVATION.id })
+            .done(function(html) {
+                api.set('content.text', html)
+            })
+            .fail(function(xhr, status, error) {
+                api.set('content.text', status + ': ' + error)
+            })
+        return '<span class="loading status">' + I18n.t('loading') + '</span>';
+      }
+    },
+    show: {event: 'click'},
+    hide: {event: 'click unfocus'},
+    style: {
+      classes: 'ui-tooltip-light ui-tooltip-shadow votes_for_tip tools-dropdown'
+    },
+    position: {
+      my: 'top center',
+      at: 'bottom center',
+      target: $('#fave')
+    }
+  }))
 })
 
 $('#add_more_photos_link').live('click', function() {

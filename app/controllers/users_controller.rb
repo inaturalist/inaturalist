@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   before_filter :admin_required, :only => [:curation]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
+  before_filter :before_edit, only: [:edit, :edit_after_auth]
   
   MOBILIZED = [:show, :dashboard, :new, :create]
   before_filter :unmobilized, :except => MOBILIZED
@@ -358,9 +359,6 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
-    @sites = Site.live.limit(100)
-    @user.site_id ||= Site.first.try(:id) unless @sites.blank?
     respond_to do |format|
       format.html
       format.json do
@@ -397,10 +395,15 @@ class UsersController < ApplicationController
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
+    locale_was = @display_user.locale
     if whitelist_params && @display_user.update_attributes(whitelist_params)
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do
+          if locale_was != @display_user.locale
+            session[:locale] = @display_user.locale
+          end
+
           if params[:from_edit_after_auth].blank?
             flash[:notice] = t(:your_profile_was_successfully_updated)
             redirect_back_or_default(person_by_login_path(:login => current_user.login))
@@ -416,6 +419,7 @@ class UsersController < ApplicationController
       @display_user.login = @display_user.login_was unless @display_user.errors[:login].blank?
       respond_to do |format|
         format.html do
+          before_edit
           if request.env['HTTP_REFERER'] =~ /edit_after_auth/
             render :action => 'edit_after_auth', :login => @original_user.login
           else
@@ -660,11 +664,24 @@ protected
       :preferred_photo_license,
       :preferred_project_addition_by,
       :preferred_sound_license,
+      :prefers_comment_email_notification,
+      :prefers_identification_email_notification,
+      :prefers_message_email_notification,
+      :prefers_project_invitation_email_notification,
+      :prefers_project_journal_post_email_notification,
+      :prefers_no_email,
+      :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
       :prefers_location_details,
       :site_id,
       :time_zone
     )
+  end
+
+  def before_edit
+    @user = current_user
+    @sites = Site.live.limit(100)
+    @user.site_id ||= Site.first.try(:id) unless @sites.blank?
   end
 
 end

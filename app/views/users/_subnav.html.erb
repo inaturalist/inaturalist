@@ -15,6 +15,10 @@
       :class => "#{'active' if controller.is_a?(CalendarsController)}" %>
   </li>
   <li>
+    <%= link_to t(:favorites), faves_by_login_path(user.login), :id => "votes_link",
+      :class => "#{'active' if current_page?(:controller => :votes, :action => :by_login)}" %>
+  </li>
+  <li>
     <%= link_to t(:lists), lists_by_login_path(user.login), :id => "lists_link",
       :class => "#{'active' if current_page?(:controller => :lists, :action => :by_login)}" %>
   </li>
@@ -24,7 +28,7 @@
       :class => "#{'active' if request.fullpath =~ /\/journal\//}" %>
   </li>
   <li>
-    <%= link_to t(:identifications), identifications_by_login_path(:login => user.login), 
+    <%= link_to t(:ids), identifications_by_login_path(:login => user.login), 
       :id => "identifications_link",
       :class => "#{'active' if current_page?(:controller => :identifications, :action => :by_login)}" %>
   </li>

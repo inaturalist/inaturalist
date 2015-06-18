@@ -582,3 +582,5 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 
 .notice .status .ui-icon {background-image: image-url('jquery-ui/ui-icons_454545_256x240.png'); }
+
+.button.glaucous .ui-icon, .button.pale .ui-icon {background-image: image-url('jquery-ui/ui-icons_ffffff_256x240.png'); }

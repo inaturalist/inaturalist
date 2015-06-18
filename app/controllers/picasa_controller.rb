@@ -128,9 +128,15 @@ class PicasaController < ApplicationController
   def picasa_albums(options = {})
     return [] unless current_user.has_provider_auth('google')
     PicasaPhoto.picasa_request_with_refresh(current_user.picasa_identity) do
-      picasa = current_user.picasa_client
       picasa_user_id = options[:picasa_user_id] || current_user.picasa_identity.provider_uid
-      user_data = picasa.user(picasa_user_id) if picasa_user_id
+      picasa_identity = current_user.picasa_identity
+      user_data = if picasa_user_id && picasa_identity
+        PicasaPhoto.picasa_request_with_refresh(picasa_identity) do
+          picasa_identity.reload
+          picasa = Picasa.new(picasa_identity.token)
+          picasa.user(picasa_user_id)
+        end
+      end
       albums = []
       unless user_data.nil?
         user_data.albums.select{|a| a.numphotos.to_i > 0}.each do |a|

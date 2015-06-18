@@ -265,9 +265,7 @@
     <%= render 'names' %>
     <% if logged_in? -%>
       <%= link_to t(:add_a_name), new_taxon_taxon_name_path(@taxon), :class => 'readmore' %>
-      <% if is_curator? -%>
-        <%= link_to t(:manage_names), names_taxon_path(@taxon), :class => 'readmore' %>
-      <% end -%>
+      <%= link_to t(:manage_names), names_taxon_path(@taxon), :class => 'readmore' %>
     <% end -%>
   </div>
 

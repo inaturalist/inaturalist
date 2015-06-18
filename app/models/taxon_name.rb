@@ -174,7 +174,7 @@ class TaxonName < ActiveRecord::Base
       place_names = []
     end
     language_name = language_for_locale(options[:locale]) || 'english'
-    locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
+    locale_names = common_names.select {|n| n.localizable_lexicon == language_name}
     engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
     
@@ -235,12 +235,15 @@ class TaxonName < ActiveRecord::Base
 
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
-    lang_code = locale.to_s.split('-').first.to_s.downcase
-    case lang_code
-    when 'es' then return 'spanish'
-    when 'fr' then return 'french'
+    case locale.to_s
+    when /^es/    then 'spanish'
+    when /^fr/    then 'french'
+    when /zh.CN/i  then 'chinese_simplified'
+    when /^zh/    then 'chinese_traditional'
+    when /^pt/    then 'portuguese'
+    when /^ja/    then 'japanese'
     else
-      return 'english'
+      'english'
     end
   end
 

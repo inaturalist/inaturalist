@@ -183,6 +183,23 @@ module ApplicationHelper
     link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})", link_options)
     dialog + link
   end
+
+  def link_to_tip(title, options = {}, &block)
+    id = title.gsub(/\W/, '').underscore
+    dialog = content_tag(:div, capture(&block), :class => "tip", :style => "display:none", :id => "#{id}_tip")
+    link_options = options.delete(:link) || {}
+    data = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
+    data['tip-options'] = {
+      content: {
+        text: "##{id}_tip"
+      },
+      show: {event: 'click'},
+      hide: {event: 'click unfocus'}
+    }.merge(options[:tip_options] || {}).to_json
+    options = options.merge(data: data)
+    link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
+    dialog + link
+  end
   
   # Generate a URL based on the current params hash, overriding existing values
   # with the hash passed in.  To remove existing values, specify them with
@@ -915,6 +932,15 @@ module ApplicationHelper
       s = activity_snippet(update, notifier, notifier_user, options.merge(
         :noun => noun
       ))
+      return s.html_safe
+    end
+
+    if notifier.is_a?(ActsAsVotable::Vote)
+      noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      s = t(:user_faved_a_noun_by_owner, 
+        user: notifier_user.login, 
+        noun: noun, 
+        owner: you_or_login(update.resource_owner, :capitalize_it => false))
       return s.html_safe
     end
 
