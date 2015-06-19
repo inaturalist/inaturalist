@@ -50,13 +50,13 @@ shared_examples_for "a TaxaController" do
     end
 
     it "returns results in the configured place" do
-      taxon_not_in_place = Taxon.make!(name: "nonsense")
-      taxon_in_place = Taxon.make!(name: "nonsense")
+      taxon_not_in_place = Taxon.make!(name: "Disco stu")
+      taxon_in_place = Taxon.make!(name: "Disco stu")
       p = Place.make!
       p.check_list.add_taxon(taxon_in_place)
       site = Site.make!(place: p)
       expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
-      get :search, format: :json, q: "nonsense"
+      get :search, format: :json, q: "disco"
       json = JSON.parse(response.body)
       json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
       json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
@@ -99,6 +99,28 @@ shared_examples_for "a TaxaController" do
       json = JSON.parse(response.body)
       expect(json.length).to eq 2
     end
+
+    it "should place an exact match first" do
+      [
+        ["Octopus rubescens", "Eastern Pacific Red Octopus octopus octopus octopus"],
+        ["Octopus bimaculatus", "Two-spot Octopus"],
+        ["Octopus cyanea", "Day Octopus"],
+        ["Schefflera actinophylla", "octopus there"],
+        ["Octopus vulgaris", "Day Octopus"],
+        ["Enteroctopus dofleini", "Giant Pacific Octopus"]
+      ].each do |sciname, comname|
+        t = Taxon.make!(name: sciname, rank: 'species')
+        TaxonName.make!(taxon: t, name: comname)
+      end
+      t = Taxon.make!(name: "Octopus", rank: "genus")
+      get :search, format: :json, q: 'octopus'
+      names = JSON.parse(response.body).map{|jt| jt['name']}
+      expect( names.first ).to eq t.name
+    end
+
+    # unfortunately i don't really know how to test this b/c it's not clear
+    # how elasticsearch sorts its results
+    it "should place an exact match first even if it's not on the first page of results"
   end
 
   describe "autocomplete" do
