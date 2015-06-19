@@ -1110,21 +1110,20 @@ class Observation < ActiveRecord::Base
   # Return a time from observed_on and time_observed_at
   #
   def datetime
-    if observed_on && errors[:observed_on].blank?
-      if time_observed_at
-        time_observed_at.to_time
-      else
-        # use UTC to create the time
-        Time.utc(observed_on.year,
-                 observed_on.month,
-                 observed_on.day)
-      end
+    @datetime ||= if observed_on && errors[:observed_on].blank?
+      time_observed_at_in_zone ||
+      Time.new(observed_on.year,
+               observed_on.month,
+               observed_on.day, 0, 0, 0,
+               ActiveSupport::TimeZone.new(time_zone || "UTC").formatted_offset)
     end
   end
   
   # Return time_observed_at in the observation's time zone
   def time_observed_at_in_zone
-    self.time_observed_at.in_time_zone(self.time_zone)
+    if self.time_observed_at
+      self.time_observed_at.in_time_zone(self.time_zone)
+    end
   end
   
   #

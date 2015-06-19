@@ -815,12 +815,12 @@ shared_examples_for "an ObservationsController" do
       expect( JSON.parse(response.body).size ).to eq 1
     end
 
-    it "filters created_on based on utc" do
+    it "filters created_on based on timezone in which it was created" do
       Observation.make!(created_at: "2014-12-31 20:00:00 -0800")
       Observation.make!(created_at: "2015-1-1 4:00:00")
       Observation.make!(created_at: "2015-1-2 4:00:00 +0800")
       get :index, format: :json, created_on: "2015-1-1"
-      expect( JSON.parse(response.body).size ).to eq 3
+      expect( JSON.parse(response.body).size ).to eq 1
     end
 
     it "observations with no time_observed_at ignore time part of date filters" do
