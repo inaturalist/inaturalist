@@ -317,7 +317,9 @@ var infoWindowOpenTime;
 google.maps.Map.prototype.openInfoWindow = function(e) {
   infoWindowOpenTime = new Date( );
   // close any infowindows opened by wax.g
-  if( window.map.infoWindow ) { window.map.infoWindow.close( ); }
+  if( window.map && window.map.infoWindow ) {
+    window.map.infoWindow.close( );
+  }
   iNaturalist.Map.infoWindow = iNaturalist.Map.infoWindow || new google.maps.InfoWindow()
   iNaturalist.Map.infoWindow.setContent(this.message)
   iNaturalist.Map.infoWindow.open(this.map, this)
