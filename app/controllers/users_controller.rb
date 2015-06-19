@@ -189,7 +189,7 @@ class UsersController < ApplicationController
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500).includes(:roles)
-      @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
+      @curators = @curators.where("users.site_id = ?", @site) if @site && @site.preferred_observations_filter == Site::OBSERVATIONS_FILTERS_SITE
       @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count

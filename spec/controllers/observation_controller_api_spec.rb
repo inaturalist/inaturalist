@@ -659,7 +659,7 @@ shared_examples_for "an ObservationsController" do
       rgo = make_research_grade_observation
       get :index, :format => :json, :extra => "identifications"
       obs = JSON.parse(response.body).detect{|o| o['id'] == rgo.id}
-      obs['identifications'].should_not be_nil
+      expect(obs['identifications']).not_to be_nil
     end
 
     it "should filter by list_id" do
@@ -878,6 +878,62 @@ shared_examples_for "an ObservationsController" do
       ids = JSON.parse(response.body).map{|r| r['id'].to_i}
       expect( ids.last ).to eq obs_without_votes.id
       expect( ids.first ).to eq obs_with_votes.id
+    end
+
+    describe "with site" do
+      let(:site) { Site.make! }
+      before { stub_config site_id: site.id }
+      it "should filter by place" do
+        p = make_place_with_geom
+        site.update_attributes(place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE)
+        o_inside = Observation.make!(latitude: p.latitude, longitude: p.longitude)
+        o_outside = Observation.make!(latitude: -1*p.latitude, longitude: -1*p.longitude)
+        get :index, format: :json
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include o_inside.id
+        expect( ids ).not_to include o_outside.id
+      end
+      it "should filter by site_only_observations" do
+        site.update_attributes(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE)
+        o_inside = Observation.make!(site: site)
+        o_outside = Observation.make!
+        get :index, format: :json
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include o_inside.id
+        expect( ids ).not_to include o_outside.id
+      end
+      it "should filter by bounding box" do
+        site.update_attributes(
+          preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_BOUNDING_BOX,
+          preferred_geo_swlat: 0, 
+          preferred_geo_swlng: 0, 
+          preferred_geo_nelat: 1, 
+          preferred_geo_nelng: 1
+        )
+        o_inside = Observation.make!(latitude: 0.5, longitude: 0.5)
+        o_outside = Observation.make!(latitude: 2, longitude: 2)
+        get :index, format: :json
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include o_inside.id
+        expect( ids ).not_to include o_outside.id
+      end
+
+      it "should filter by bounding box if place_id set" do
+        site.update_attributes(
+          place: make_place_with_geom,
+          preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_BOUNDING_BOX,
+          preferred_geo_swlat: 10, 
+          preferred_geo_swlng: 10, 
+          preferred_geo_nelat: 11, 
+          preferred_geo_nelng: 11
+        )
+        o_inside = Observation.make!(latitude: 10.5, longitude: 10.5)
+        o_outside = Observation.make!(latitude: 20, longitude: 20)
+        get :index, format: :json
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include o_inside.id
+        expect( ids ).not_to include o_outside.id
+      end
     end
   end
 

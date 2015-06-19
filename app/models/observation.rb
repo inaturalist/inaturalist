@@ -617,18 +617,20 @@ class Observation < ActiveRecord::Base
   def self.site_search_params(site, params = {})
     search_params = params.dup
     return search_params unless site && site.is_a?(Site)
-    if CONFIG.site_only_observations && search_params[:site].blank?
-      search_params[:site] ||= FakeView.root_url
-    end
-    if !search_params[:swlat] &&
-      !search_params[:place_id] && search_params[:bbox].blank?
-      if site.place
-        search_params[:place] = site.place
-      elsif CONFIG.bounds
-        search_params[:nelat] ||= CONFIG.bounds["nelat"]
-        search_params[:nelng] ||= CONFIG.bounds["nelng"]
-        search_params[:swlat] ||= CONFIG.bounds["swlat"]
-        search_params[:swlng] ||= CONFIG.bounds["swlng"]
+    case site.preferred_site_observations_filter
+    when Site::OBSERVATIONS_FILTERS_SITE
+      search_params[:site_id] = site.id if search_params[:site_id].blank?
+    when Site::OBSERVATIONS_FILTERS_PLACE
+      search_params[:place] = site.place if search_params[:place_id].blank?
+    when Site::OBSERVATIONS_FILTERS_BOUNDING_BOX
+      if search_params[:nelat].blank? &&
+          search_params[:nelng].blank? &&
+          search_params[:swlat].blank? &&
+          search_params[:swlng].blank?
+        search_params[:nelat] = site.preferred_geo_nelat
+        search_params[:nelng] = site.preferred_geo_nelng
+        search_params[:swlat] = site.preferred_geo_swlat
+        search_params[:swlng] = site.preferred_geo_swlng
       end
     end
     search_params

@@ -176,6 +176,7 @@ class Observation < ActiveRecord::Base
     elsif p[:observations_taxon_ids]
       search_wheres["taxon.ancestor_ids"] = p[:observations_taxon_ids]
     end
+    search_wheres["site_id"] = p[:site_id] if p[:site_id]
     search_wheres["id_please"] = true if p[:id_please]
     search_wheres["out_of_range"] = true if p[:out_of_range]
     search_wheres["mappable"] = true if p[:mappable] == "true"
