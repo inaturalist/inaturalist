@@ -72,7 +72,7 @@ class WikimediaCommonsPhoto < Photo
   end
   
   def self.get_api_response(file_name)
-    url = "http://commons.wikimedia.org/w/index.php?title=File:#{file_name}"
+    url = "https://commons.wikimedia.org/w/index.php?title=File:#{file_name}"
     Nokogiri::HTML(open(url, 'User-Agent' => "iNaturalist"))
   rescue OpenURI::HTTPError => e
     Rails.logger.error "[ERROR #{Time.now}] Failed to retrieve #{url}: #{e}"

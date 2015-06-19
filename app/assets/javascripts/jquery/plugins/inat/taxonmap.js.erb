@@ -17,7 +17,8 @@ inatTaxonMap.setup = function ( elt, options ) {
   var options = $.extend( { }, options );
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
-  options.mapType = $(elt).data('map-type');
+  options.mapType = options.mapType || $(elt).data('map-type');
+  options.mapStyle = options.mapStyle || $(elt).data('map-style');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
   options.minZoom = parseInt( $(elt).data('min-zoom') );
   options.urlCoords = $(elt).data('url-coords');
@@ -52,7 +53,6 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
-  options.elastic = options.elastic || $(elt).data('elastic');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
@@ -77,19 +77,19 @@ inatTaxonMap.fit = function( elt ) {
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
   var map = iNaturalist.Map.createMap( _.extend( options, {
-        div: elt,
-        mapTypeControl: (options.mapTypeControl !== false),
-        minZoom: options.minZoom,
-        disableFullscreen: options.disableFullscreen,
-        styles: [
-          {
-            stylers: [
-              {lightness: 50},
-              {saturation: -50}
-            ]
-          }
+    div: elt,
+    mapTypeControl: (options.mapTypeControl !== false),
+    minZoom: options.minZoom,
+    disableFullscreen: options.disableFullscreen,
+    styles: [
+      {
+        stylers: [
+          {lightness: 50},
+          {saturation: -50}
         ]
-      }));
+      }
+    ]
+  }));
   var preserveViewport = options.preserveViewport
   if (options.minX) {
     map.fitBounds(
@@ -123,6 +123,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       description: options.allLayerDescription,
       disabled: options.enableShowAllLayer === false,
       controlPosition: options.controlPosition,
+      mapStyle: options.mapStyle || "summary",
       ttl: 60 * 60 * 24  // 24 hours
     }));
   }
@@ -134,8 +135,6 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   inatTaxonMap.addObservationLayers( map, options );
   // these are the observations that need Google Maps-style flags
   inatTaxonMap.addObservationsToMap( map, options, preserveViewport);
-  // testing elasticsearch based maps
-  inatTaxonMap.addElasticLayer( map, options );
   var coord;
   if ( options.urlCoords ) {
     function setUrlHashCoord() {
@@ -201,7 +200,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           title: options.taxonObservationsLayerLabel,
           description: options.taxonObservationsLayerDescription,
           hover: options.taxonObservationsLayerHover,
-          controlPosition: options.controlPosition
+          controlPosition: options.controlPosition,
+          mapStyle: options.mapStyle
         }));
       }
       if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {
@@ -236,18 +236,9 @@ inatTaxonMap.addObservationLayers = function( map, options ) {
     _.each( options.observationLayers, function( layer ) {
       map.addObservationsLayer( _.defaults( _.clone( layer ), {
         title: options.featuredLayerLabel,
-        controlPosition: options.controlPosition
+        controlPosition: options.controlPosition,
+        mapStyle: options.mapStyle
       }));
-    });
-  }
-};
-
-inatTaxonMap.addElasticLayer = function( map, options ) {
-  if( options.elastic ) {
-    map.addElasticLayer({
-      elastic_params: options.elastic_params,
-      title: options.allLayerLabel,
-      description: options.allLayerDescription
     });
   }
 };
