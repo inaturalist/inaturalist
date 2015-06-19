@@ -818,9 +818,7 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   return layerID;
 };
 
-google.maps.Map.prototype.addObservationsLayer = function(options) {
-  // prevent the tilt feature, which cannot overlay tiles at higher zooms
-  this.setTilt( 0 );
+function elasticsearchTileservers( ) {
   var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
   if( tileservers[0].match(/{n}/) ) {
     var pattern = tileservers[0];
@@ -828,6 +826,13 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
       return pattern.replace( "{n}", n );
     });
   }
+  return tileservers;
+}
+
+google.maps.Map.prototype.addObservationsLayer = function(options) {
+  // prevent the tilt feature, which cannot overlay tiles at higher zooms
+  this.setTilt( 0 );
+  var tileservers = elasticsearchTileservers( );
   var options = options || { },
       gridTileSuffix = "/" + (options.mapStyle || "colored_heatmap" ) +
         "/{z}/{x}/{y}.png",
@@ -835,19 +840,17 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
       gridmaxzoom = options.gridmaxzoom || 9;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
-  var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id', 'observation_id',
-    'project_id', 'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2' ];
-  var pointParamKeys = gridParamKeys.concat([ 'observation_id' ]);
+  var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
+    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
-    options, { validParams: gridParamKeys, endpoint: "grid" } ));
+    options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
-    options, { validParams: gridParamKeys, endpoint: "points" } ));
+    options, { validParams: paramKeys, endpoint: "points" } ));
   // add a layer to the map for the grid
   gridLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + gridTileSuffix;
     }), {
     maxzoom: gridmaxzoom,
-    gridmaxzoom: gridmaxzoom,
     interactivity: options.interactivity === false ? false : 'id',
     disabled: options.disabled
   });

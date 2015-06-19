@@ -6,7 +6,7 @@
   = javascript_include_tag "map_bundle"
   :javascript
     $(document).ready(function() {
-      $("#map").taxonMap( { urlCoords: true, mapType: google.maps.MapTypeId.SATELLITE } );
+      $("#map").taxonMap( { urlCoords: true, mapType: google.maps.MapTypeId.#{ @map_type } } );
       window.map = $("#map").data("taxonMap");
 
       // getting the coordinates from the URL and the site default BOUNDS
@@ -82,7 +82,6 @@
       { grid_color: @default_color },
     disable_fullscreen: true,
     url_coords: true,
-    gridmaxzoom: @gridmaxzoom,
     map_style: @map_style,
     min_zoom: 2
   }

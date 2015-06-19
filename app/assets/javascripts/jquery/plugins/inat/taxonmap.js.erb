@@ -18,7 +18,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = options.mapType || $(elt).data('map-type');
-  options.gridmaxzoom = options.gridmaxzoom || $(elt).data('gridmaxzoom');
+  options.mapStyle = options.mapStyle || $(elt).data('map-style');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
   options.minZoom = parseInt( $(elt).data('min-zoom') );
   options.urlCoords = $(elt).data('url-coords');
@@ -54,7 +54,6 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
-  options.mapStyle = $(elt).data('map-style');
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -124,8 +123,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       description: options.allLayerDescription,
       disabled: options.enableShowAllLayer === false,
       controlPosition: options.controlPosition,
-      gridmaxzoom: options.gridmaxzoom,
-      mapStyle: options.mapStyle,
+      mapStyle: options.mapStyle || "summary",
       ttl: 60 * 60 * 24  // 24 hours
     }));
   }
@@ -203,7 +201,6 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           description: options.taxonObservationsLayerDescription,
           hover: options.taxonObservationsLayerHover,
           controlPosition: options.controlPosition,
-          gridmaxzoom: options.gridmaxzoom,
           mapStyle: options.mapStyle
         }));
       }
@@ -239,7 +236,8 @@ inatTaxonMap.addObservationLayers = function( map, options ) {
     _.each( options.observationLayers, function( layer ) {
       map.addObservationsLayer( _.defaults( _.clone( layer ), {
         title: options.featuredLayerLabel,
-        controlPosition: options.controlPosition
+        controlPosition: options.controlPosition,
+        mapStyle: options.mapStyle
       }));
     });
   }

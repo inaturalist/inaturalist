@@ -635,7 +635,6 @@ module ApplicationHelper
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
       "control-position" => options[:control_position],
-      "gridmaxzoom" => options[:gridmaxzoom],
       "map-style" => options[:map_style],
       "elastic_params" => options[:elastic_params] ?
         options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil

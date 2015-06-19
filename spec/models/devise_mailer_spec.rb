@@ -27,7 +27,7 @@ describe DeviseMailer, "reset_password_instructions" do
     u = User.make!(:locale => "es-MX")
     mail = DeviseMailer.reset_password_instructions(u, u.confirmation_token)
     expect( mail.subject.downcase ).to_not include "reset"
-    expect( mail.subject.downcase ).to include "reinicio"
+    expect( mail.subject.downcase ).to include "recuperación"
   end
 
   it "should appear to come from the user's site" do

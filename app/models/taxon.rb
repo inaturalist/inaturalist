@@ -515,7 +515,11 @@ class Taxon < ActiveRecord::Base
   def observations_count_with_descendents
     Observation.of(self).count
   end
-  
+
+  def descendants_count
+    taxon_ancestors_as_ancestor.count
+  end
+
   #
   # Test whether this taxon's range overlaps a place
   #

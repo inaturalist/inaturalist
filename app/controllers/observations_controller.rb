@@ -74,7 +74,8 @@ class ObservationsController < ApplicationController
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
-    %w"order order_by taxon_id taxon_name projects user_id place_id utf8"
+    %w( order order_by taxon_id taxon_name projects user_id place_id utf8
+        d1 d2 )
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -145,7 +146,9 @@ class ObservationsController < ApplicationController
             taxon: @observations_taxon.blank? ? nil : @observations_taxon,
             user_id: @user.blank? ? nil : @user.id,
             place_id: @place.blank? ? nil : @place.id,
-            project_id: @projects.blank? ? nil: @projects.first.id
+            project_id: @projects.blank? ? nil: @projects.first.id,
+            d1: params[:d1],
+            d2: params[:d2]
           }.delete_if{ |k,v| v.nil? }
           if valid_map_params.empty?
             # there are no options, so show all observations by default
@@ -1941,11 +1944,11 @@ class ObservationsController < ApplicationController
     @elastic_params = params.select{ |k,v|
       [ :place_id, :user_id, :project_id,
         :taxon_id, :d1, :d2, :color ].include?( k.to_sym ) }
-    @default_color = params[:color] || (@taxa.empty? ? "heatmap" : "default")
-    @map_style = ( params[:color] || @taxa.any? ) ? "colored_heatmap" : "heatmap"
-    @map_style = "points" if params[:color] == "default"
+    @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
+    @map_style = (( params[:color] || @taxa.any? ) &&
+                    params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
+    @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
-    @gridmaxzoom = params[:gridmaxzoom]
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end
