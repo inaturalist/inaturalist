@@ -1113,11 +1113,14 @@ class Observation < ActiveRecord::Base
   #
   def datetime
     @datetime ||= if observed_on && errors[:observed_on].blank?
-      time_observed_at_in_zone ||
+      z = ActiveSupport::TimeZone.new(time_zone || "UTC")
+      z ||= ActiveSupport::TimeZone.new(zic_time_zone || "UTC")
+      z ||= ActiveSupport::TimeZone.new("UTC")
+      time_observed_at_in_zone || 
       Time.new(observed_on.year,
                observed_on.month,
                observed_on.day, 0, 0, 0,
-               ActiveSupport::TimeZone.new(time_zone || "UTC").formatted_offset)
+               z.formatted_offset)
     end
   end
   
