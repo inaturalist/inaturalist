@@ -25,13 +25,13 @@ describe BulkObservationFile, "import_file" do
   it "should create an observation with the right species_guess" do
     bof = BulkObservationFile.new(@work_path, nil, nil, user)
     bof.perform
-    user.observations.last.species_guess.should eq @Calypte_anna.name
+    expect(user.observations.last.species_guess).to eq @Calypte_anna.name
   end
 
   it "should create an observation with a geom" do
     bof = BulkObservationFile.new(@work_path, nil, nil, user)
     bof.perform
-    user.observations.last.geom.should_not be_blank
+    expect(user.observations.last.geom).not_to be_blank
   end
 
   it "should still validate coordinates" do
@@ -52,7 +52,32 @@ describe BulkObservationFile, "import_file" do
     bof = BulkObservationFile.new(@work_path, nil, nil, user)
     user.observations.destroy_all
     bof.perform
-    user.observations.should be_blank
+    expect(user.observations).to be_blank
+  end
+
+  it "should allow blank rows" do
+    work_path = File.join(Dir::tmpdir, "import_file_test-#{Time.now.to_i}.csv")
+    CSV.open(@work_path, 'w') do |csv|
+      csv << @headers
+      csv << [
+        @Calypte_anna.name,
+        "2007-08-20",
+        "Beautiful little creature",
+        "Leona Canyon Regional Park, Oakland, CA, USA",
+        1,
+        2,
+        "cute, snakes",
+        "open"
+      ]
+      csv << ['','','','','','','']
+      csv << ['','','','','','','']
+      csv << ['','','','','','','']
+    end
+    bof = BulkObservationFile.new(@work_path, nil, nil, user)
+    user.observations.destroy_all
+    bof.perform
+    user.reload
+    expect( user.observations.count ).to eq 1
   end
   
   describe "with project" do
@@ -63,12 +88,12 @@ describe BulkObservationFile, "import_file" do
     it "should add to project" do
       bof = BulkObservationFile.new(@work_path, @project.id, nil, @project_user.user)
       bof.perform
-      @project_user.user.observations.last.projects.should include(@project)
+      expect(@project_user.user.observations.last.projects).to include(@project)
     end
     it "should not add an extra identification" do
       bof = BulkObservationFile.new(@work_path, @project.id, nil, @project_user.user)
       bof.perform
-      @project_user.user.observations.last.identifications.count.should eq 1
+      expect(@project_user.user.observations.last.identifications.count).to eq 1
     end
   end
 
@@ -84,7 +109,7 @@ describe BulkObservationFile, "import_file" do
           :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
         }
       }
-      CONFIG.coordinate_systems.should_not be_blank
+      expect(CONFIG.coordinate_systems).not_to be_blank
       @work_path = File.join(Dir::tmpdir, "import_file_test-#{Time.now.to_i}.csv")
       @headers = [:name, :date, :description, :place, :latitude, :longitude, :tags, :geoprivacy]
       CSV.open(@work_path, 'w') do |csv|
@@ -105,7 +130,7 @@ describe BulkObservationFile, "import_file" do
     it "should create an observation with a geom" do
       bof = BulkObservationFile.new(@work_path, nil, "nzmg", user)
       bof.perform
-      user.observations.last.geom.should_not be_blank
+      expect(user.observations.last.geom).not_to be_blank
     end
 
     it "should validate coordinates" do
@@ -126,7 +151,7 @@ describe BulkObservationFile, "import_file" do
       bof = BulkObservationFile.new(work_path, nil, "nzmg", user)
       user.observations.destroy_all
       bof.perform
-      user.observations.should be_blank
+      expect(user.observations).to be_blank
     end
   end
 end
