@@ -79,10 +79,25 @@ class Emailer < ActionMailer::Base
     @file_url = FakeView.uri_join(root_url, fto.file.url)
     attachments[fto.file_file_name] = File.read(fto.file.path)
     mail(set_site_specific_opts.merge(
-      :to => @user.email, 
-      :subject => t(:site_observations_export_from_date, 
-        :site_name => SITE_NAME, 
-        :date => l(@flow_task.created_at.in_time_zone(@user.time_zone), :format => :long))
+      to: @user.email,
+      subject: t(:site_observations_export_from_date,
+        site_name: SITE_NAME,
+        date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
+    ))
+    reset_locale
+  end
+
+  def observations_export_failed_notification(flow_task)
+    @flow_task = flow_task
+    @user = @flow_task.user
+    set_locale
+    return if @user.email.blank?
+    @exports_url = FakeView.export_observations_url
+    mail(set_site_specific_opts.merge(
+      to: @user.email,
+      subject: t(:site_observations_export_from_date,
+        site_name: SITE_NAME,
+        date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
     ))
     reset_locale
   end

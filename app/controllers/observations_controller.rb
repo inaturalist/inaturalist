@@ -1089,10 +1089,12 @@ class ObservationsController < ApplicationController
     search_params = Observation.site_search_params(@site, search_params)
     if params[:flow_task_id]
       if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
-        @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
+        output = @flow_task.outputs.first
+        @export_url = output ? FakeView.uri_join(root_url, output.file.url).to_s : nil
       end
     end
-    @recent_exports = ObservationsExportFlowTask.where(:user_id => current_user).where("finished_at is not null").order("id desc").limit(10)
+    @recent_exports = ObservationsExportFlowTask.
+      where(user_id: current_user).order(id: :desc).limit(20)
     @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
     respond_to do |format|
       format.html
@@ -1593,7 +1595,6 @@ class ObservationsController < ApplicationController
       else
         "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
       end
-      debugger
       @taxa = Taxon.find_by_sql(sql)
     end
     # hack to test what this would look like
@@ -1886,23 +1887,27 @@ class ObservationsController < ApplicationController
 
   def email_export
     unless flow_task = current_user.flow_tasks.find_by_id(params[:id])
-      render :status => :unprocessable_entity, :text => "Flow task doesn't exist"
+      render status: :unprocessable_entity, text: "Flow task doesn't exist"
       return
     end
     if flow_task.user_id != current_user.id
-      render :status => :unprocessable_entity, :text => "You don't have permission to do that"
+      render status: :unprocessable_entity, text: "You don't have permission to do that"
       return
     end
     if flow_task.outputs.exists?
       Emailer.observations_export_notification(flow_task).deliver_now
-      render :status => :ok, :text => ""
-      return 
+      render status: :ok, text: ""
+      return
+    elsif flow_task.error
+      Emailer.observations_export_failed_notification(flow_task).deliver_now
+      render status: :ok, text: ""
+      return
     end
     flow_task.options = flow_task.options.merge(:email => true)
     if flow_task.save
-      render :status => :ok, :text => ""
+      render status: :ok, text: ""
     else
-      render :status => :unprocessable_entity, :text => flow_task.errors.full_messages.to_sentence
+      render status: :unprocessable_entity, text: flow_task.errors.full_messages.to_sentence
     end
   end
 

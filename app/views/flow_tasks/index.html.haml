@@ -29,18 +29,21 @@
                 of
                 = inputs.total_entries 
         %td
-          %ul
-            - outputs = flow_task.outputs.page(1)
-            - for output in outputs
-              %li
-                - if output.resource
-                  = link_to "#{output.resource_type}: #{output.resource.to_param}", input.resource
-                - else
-                  = link_to output.file_file_name, output.file.url
-            - if outputs.total_pages > 1
-              .meta
-                = outputs.per_page
-                of
-                = outputs.total_entries
+          - if flow_task.error
+            = flow_task.error
+          - else
+            %ul
+              - outputs = flow_task.outputs.page(1)
+              - for output in outputs
+                %li
+                  - if output.resource
+                    = link_to "#{output.resource_type}: #{output.resource.to_param}", input.resource
+                  - else
+                    = link_to output.file_file_name, output.file.url
+              - if outputs.total_pages > 1
+                .meta
+                  = outputs.per_page
+                  of
+                  = outputs.total_entries
 
 = will_paginate @flow_tasks

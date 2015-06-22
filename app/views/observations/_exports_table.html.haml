@@ -1,12 +1,20 @@
 %table
   - for ft in flow_tasks
-    - next unless ft.export_output
     %tr
       %td.inline.buttonrow.smallbuttons
-        = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
-      %td= number_to_human_size ft.export_output.file.size, precision: 3
-      - unless ft.finished_at.blank?
-        %td=l ft.finished_at, :format => :long
+        - if ft.export_output
+          = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
+        - elsif ft.error
+          = t(:failed)
+        - else
+          = ft.started_at ? t(:processing) : t(:queued)
+      %td
+        = ft.export_output ? number_to_human_size(ft.export_output.file.size, precision: 3) : nil
+      %td
+        - if ft.finished_at
+          = l ft.finished_at, :format => :long
+        - elsif ft.started_at
+          = l ft.started_at, :format => :long
       %td
         %div
           %strong=t :query

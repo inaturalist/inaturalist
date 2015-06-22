@@ -614,6 +614,7 @@ en:
                 use flower color.  Please leave blank for colors that wouldn't be
                 useful in categorization, like brown mammals and green ferns.
   colors: Colors
+  columns: Columns
   comma_separated_list_of_tracking_codes: |
               Comma-separated list of tracking codes. Add these if you want to append a tracking code when sending
               people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
@@ -1017,6 +1018,7 @@ en:
   feedback_group: Feedback Group
   feeds: 'Feeds'
   feeds_for_current_filters: Feeds for Current Filters
+  failed: Failed
   field_note: |
     <strong>Note:</strong> If you'd like to create a field, check to see if
     someone else has already made it to avoid duplication.
@@ -2159,6 +2161,7 @@ en:
   privacy_policy: Privacy Policy
   private: private
   private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  processing: Processing
   processing3p: "Processing..."
   profile: Profile
   project: Project
@@ -2216,6 +2219,8 @@ en:
   purple: purple
   quality_grade: Quality grade
   quality_grade_colon: "Quality grade:"
+  queued: Queued
+  query: Query
   range: Range
   range_from: 'Range from '
   rank: Rank
@@ -3825,6 +3830,9 @@ en:
         your_observations_export_is_ready_html: |
           Your observations export is ready. There's a copy attached to this email, or you can
           <a href="%{url}">download your export</a>.
+        your_observations_export_failed_html: |
+          Your observations export failed. Visit the
+          <a href="%{url}">observations export page</a> for a list of your exports.
       bulk_import_success:
         success_message: |
           Your bulk import of %{filename} was successful. Your observations

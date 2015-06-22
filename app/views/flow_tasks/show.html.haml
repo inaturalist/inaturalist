@@ -34,7 +34,7 @@
     %tr
       %th Error
       %td.error.status
-        = @flow_task.error
+        = raw @flow_task.exception.gsub("\n", "<br>")
   %tr
     %th Inputs
     %td

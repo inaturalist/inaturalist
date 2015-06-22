@@ -2483,6 +2483,12 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def self.observations_batches(scope, options={}, &block)
+    scope.find_in_batches(options) do |batch|
+      block.call(batch)
+    end
+  end
+
   # 2014-01 I tried improving performance by loading ancestor taxa for each
   # batch, but it didn't really speed things up much
   def self.generate_csv(scope, options = {})
@@ -2492,10 +2498,12 @@ class Observation < ActiveRecord::Base
     columns = options[:columns] || CSV_COLUMNS
     CSV.open(fpath, 'w') do |csv|
       csv << columns
-      scope.find_each(:batch_size => 500) do |observation|
-        csv << columns.map do |c| 
-          c = "cached_tag_list" if c == "tag_list"
-          observation.send(c) rescue nil
+      Observation.observations_batches(scope, batch_size: 500) do |batch|
+        batch.each do |observation|
+          csv << columns.map do |c|
+            c = "cached_tag_list" if c == "tag_list"
+            observation.send(c) rescue nil
+          end
         end
       end
     end

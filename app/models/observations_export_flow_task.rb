@@ -32,24 +32,36 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def run
-    outputs.each(&:destroy)
-    query = inputs.first.extra[:query]
-    format = options[:format]
-    @observations = observations_scope
-    archive_path = case format
-    when 'json'
-      json_archive
-    else
-      csv_archive
+    begin
+      update_attributes(finished_at: nil, error: nil, exception: nil)
+      outputs.each(&:destroy)
+      query = inputs.first.extra[:query]
+      format = options[:format]
+      @observations = observations_scope
+      # format = "json"
+      archive_path = case format
+      when 'json'
+        json_archive
+      else
+        csv_archive
+      end
+      open(archive_path) do |f|
+        self.outputs.create!(:file => f)
+      end
+      if options[:email]
+        Emailer.observations_export_notification(self).deliver_now
+      end
+      true
+    rescue Exception => e
+      exception_string = [ e.class, e.message ].join(" :: ")
+      update_attributes(finished_at: Time.now,
+        error: exception_string,
+        exception: [ exception_string, e.backtrace ].join("\n"))
+      if options[:email]
+        Emailer.observations_export_failed_notification(self).deliver_now
+      end
+      false
     end
-    open(archive_path) do |f|
-      self.outputs.create!(:file => f)
-    end
-
-    if options[:email]
-      Emailer.observations_export_notification(self).deliver_now
-    end
-    true
   end
 
   def observations_scope
@@ -58,28 +70,38 @@ class ObservationsExportFlowTask < FlowTask
     else
       # remove order, b/c it won't work with find_each and seems to cause errors in DJ
       scope = Observation.query(params).includes(:user).reorder(nil)
-      scope = scope.includes(:taxon => :taxon_names) if export_columns.detect{|c| c == "common_name"}
-      scope = scope.includes(:observation_field_values => :observation_field) if export_columns.detect{|c| c =~ /field\:/}
-      scope = scope.includes(:observation_photos => :photo) if export_columns.detect{|c| c == 'image_url'}
-      scope = scope.includes(:quality_metrics) if export_columns.detect{|c| c == 'captive_cultivated'}
+      includes = [ ]
+      if export_columns.detect{|c| c == "common_name"}
+        includes << { taxon: { taxon_names: :place_taxon_names } }
+      end
+      includes << { observation_field_values: :observation_field }
+      includes << :photos if export_columns.detect{ |c| c == 'image_url' }
+      includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
+      scope = scope.includes(includes)
       scope
     end
   end
 
+  def observations_count
+    observations_scope.count
+  end
+
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
-    json_opts = {:only => export_columns, :include => [:observation_field_values, :photos]}
-    FileUtils.mkdir_p File.dirname(json_path), :mode => 0755
-    open(json_path, 'w') do |f|
-      f << '['
+    json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
+    FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
+    open(json_path, "w") do |f|
+      f << "["
       first = true
-      @observations.find_in_batches do |b|
-        f << ',' unless first
-        first = false
-        json = b.to_json(json_opts).sub(/^\[/, '').sub(/\]$/, '')
-        f << json
+      Observation.observations_batches(observations_scope) do |batch|
+        batch.each do |observation|
+          f << ',' unless first
+          first = false
+          json = observation.to_json(json_opts).sub(/^\[/, "").sub(/\]$/, "")
+          f << json
+        end
       end
-      f << ']'
+      f << "]"
     end
     zip_path = File.join(work_path, "#{basename}.json.zip")
     system "cd #{work_path} && zip -qr #{basename}.json.zip *"
@@ -88,7 +110,8 @@ class ObservationsExportFlowTask < FlowTask
 
   def csv_archive
     csv_path = File.join(work_path, "#{basename}.csv")
-    path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path, :columns => export_columns)
+    path = Observation.generate_csv(observations_scope,
+      fname: "#{basename}.csv", path: csv_path, columns: export_columns)
     zip_path = File.join(work_path, "#{basename}.csv.zip")
     system "cd #{work_path} && zip -qr #{basename}.csv.zip *"
     zip_path
@@ -144,7 +167,7 @@ class ObservationsExportFlowTask < FlowTask
   def enqueue_options
     opts = {}
     # Giant exports can really bog things down, so manage queue and priority
-    count = observations_scope.count
+    count = observations_count
     opts[:priority] = if count > 1000
       USER_INTEGRITY_PRIORITY
     else
