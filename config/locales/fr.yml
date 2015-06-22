@@ -68,6 +68,12 @@ fr:
   x_people:
     one: 1 personne
     other: '%{count} personnes'
+  x_faves:
+    one: 1 Favori
+    other: '%{count} Favoris'
+  x_people_like_this:
+    one: 1 personne aime cela
+    other: '%{count} personnes aiment cela'
   x_people_agree_html:
     one: <span class="count">1</span> personne est d’accord
     other: <span class="count">%{count}</span> personnes sont d’accord
@@ -222,7 +228,9 @@ fr:
     photos Flickr associées aux observations sélectionnées.
   add_to: Ajouter à
   add_to_a_scheme: Ajouter à un programme
+  add_to_calendar: Ajouter au calendrier
   add_to_checklist: Ajouter à la liste de contrôle
+  add_to_favorites: Ajouter aux favoris
   add_to_id_please: Ajouter à Identification, SVP
   add_to_list: Ajouter à la liste
   add_to_project: Ajouter au projet
@@ -244,6 +252,8 @@ fr:
     quelle personne.
   added_on: Ajouté le
   added_to: Ajouté à
+  added_to_favorites: Ajouté aux favoris
+  added_to_favorites_html: Ajouté aux <a href="%{url}">favoris</a>
   adding: Ajout en cours…
   adding_observations: Ajout d’observations en cours…
   adding_to_your_life_list: Ajout à votre liste des êtres vivants…
@@ -371,6 +381,9 @@ fr:
     connecter par l’entremise d’%{site_name}, puis modifier votre profil et
     lier votre compte. Sinon, %{site_name} ne saura pas que les deux comptes
     sont liés et essayera de créer un nouveau compte!
+  and_x_more_people!:
+    one: et une personne de plus !
+    other: et %{count} personnes de plus !
   android: Androïde
   animals: Animaux
   announcement_was_successfully_created: L’annonce a bien été créée.
@@ -1232,6 +1245,7 @@ fr:
   filling_out_your_profile: remplissant votre profil
   filter: Filtrer
   filter_by: Filtrer par
+  filter_by_place: Filtrer par lieu
   filter_by_place_taxon_and_color: Filtrer par lieu, taxon et couleur au moyen des
     contrôles.
   filter_list_by_this_taxon: Filtrer la liste par ce taxon
@@ -2015,6 +2029,9 @@ fr:
     current_user: Vous n'avez pas ajouté d'identification aux observations des autres.
     user: L'utilisateur %{user} n'a pas ajouté d'identification aux observations des
       autres.
+  no_favorites_added:
+    current_user: Vous n’avez pas encore ajouté de favori.
+    user: '%{user} n’a pas ajouté de favoris.'
   no_journal_post_have_been: Aucune note de journal n’a encore été ajoutée à ce projet.
   no_license_all_rights_reserved: Aucune licence (tous droits réservés)
   no_link_flickr: Non, je préfère ne pas.
@@ -2081,7 +2098,7 @@ fr:
   no_taxonomic_changes_match_those_criteria: Aucune modification taxonomique ne correspond
     à ces critères
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
-  no_x_this_y: '@{m:Aucun|f:Aucune|Aucun} %{x}'
+  no_x_this_y: Aucun %{x} durant %{y}
   noble_curators: Responsables éminents de l’organisation d’%{site}
   none: Aucun
   none_of_the_people_you_follow_have_updates: Aucune des personnes que vous suivez
@@ -2387,7 +2404,7 @@ fr:
       Street: Rue
       Intersection: Croisement
       Town: Ville
-      State: État
+      State: Province
       Country: Pays
       Local_Administrative_Area: Unité administrative locale
       Postal_Code: Code postal
@@ -2601,6 +2618,11 @@ fr:
   project_rules: Règles du projet
   project_settings: Paramètres du projet
   project_terms_and_rules: conditions &amp; règles du projet
+  project_type_description: Les évaluations et les bioblitz sont des types de projet
+    spéciaux. Les évaluations servent à collaborer sur un ensemble d’évaluations d’espèces,
+    en général pour estimer l’importance de leur conservation. Les bioblitz sont des
+    événements pendant lesquels des gens essayent d’observer autant d’espèces que
+    possible dans un lieu donné pendant une période donnée.
   project_user_cannot_be_found: L’utilisateur du projet ne peut pas être trouvé
   project_user_was_invalid: 'L’utilisateur du projet n’est pas valide : %{project_user}'
   project_was_successfully_created: Le projet a bien été créé.
@@ -2650,6 +2672,7 @@ fr:
     subspecies: sous-espèce
     variety: variété
     form: forme
+    leaves: feuilles
   ray_finned_fishes: poissons à nageoires rayonnées
   re_apply_list_rules: Réappliquer les règles de la liste
   re_order_photos: Réorganiser l’ordre des photos &raquo;
@@ -2675,6 +2698,7 @@ fr:
   recently_created: Récemment créé
   recently_created_projects_from_everywhere: Projets récemment créés de partout
   recently_created_projects_from_place: Projets récemment créés de %{place}
+  recently_finished: Récemment terminé
   recently_observed: Récemment observé
   recently_resolved: Récemment résolu
   record!: Enregistrez!
@@ -3256,6 +3280,8 @@ fr:
     taxons : %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Il y a eu des problèmes
     durant l’ajout de votre observation à ce projet :'
+  there_were_problems_adding_that_observation_to_this_project: 'Il y a eu des problèmes
+    lors de l’ajout de cette observation à ce projet :'
   there_were_problems_importing_that_place: 'Il y a eu des problèmes durant l’importation
     de ce lieu : %{place_error}'
   there_were_some_problems_saving_this_observation: Il y a eu des problèmes durant
