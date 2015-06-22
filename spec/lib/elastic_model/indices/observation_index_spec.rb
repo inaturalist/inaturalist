@@ -26,17 +26,19 @@ describe "Observation Index" do
     expect( json[:location] ).to eq "3.0,4.0"
   end
 
-  it "indexes created_at based on UTC" do
+  it "indexes created_at based on observation time zone" do
     o = Observation.make!(created_at: "2014-12-31 20:00:00 -0800")
     json = o.as_indexed_json
-    expect( json[:created_at].year ).to eq 2015
+    expect( json[:created_at].day ).to eq 31
+    expect( json[:created_at].month ).to eq 12
+    expect( json[:created_at].year ).to eq 2014
   end
 
-  it "indexes created_at_details based on UTC" do
+  it "indexes created_at_details based on observation time zone" do
     o = Observation.make!(created_at: "2014-12-31 20:00:00 -0800")
     json = o.as_indexed_json
-    expect( json[:created_at_details][:day] ).to eq 1
-    expect( json[:created_at_details][:month] ).to eq 1
-    expect( json[:created_at_details][:year] ).to eq 2015
+    expect( json[:created_at_details][:day] ).to eq 31
+    expect( json[:created_at_details][:month] ).to eq 12
+    expect( json[:created_at_details][:year] ).to eq 2014
   end
 end

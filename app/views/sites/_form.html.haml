@@ -33,7 +33,9 @@
         .row
           - for pref in pair.compact
             .span4
-              - if pref.type == :boolean
+              - if pref.name == "site_observations_filter"
+                = f.select "preferred_#{pref.name}", Site::OBSERVATIONS_FILTERS, :label => t("site_preferences.#{pref.name}"), :class => "span4"
+              - elsif pref.type == :boolean
                 = f.label "preferred_#{pref.name}", :class => "checkbox" do
                   = f.check_box "preferred_#{pref.name}", :label => false
                   = t("site_preferences.#{pref.name}")

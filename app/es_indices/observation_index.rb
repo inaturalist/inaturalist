@@ -45,14 +45,18 @@ class Observation < ActiveRecord::Base
 
   def as_indexed_json(options={})
     preload_for_elastic_index
+    # some timezones are invalid
+    created = created_at.in_time_zone(timezone_object || "UTC")
     {
       id: id,
-      created_at: created_at ? created_at.utc : nil,
-      created_at_details: created_at ? ElasticModel.date_details(created_at.utc) : nil,
-      updated_at: updated_at ? updated_at.utc : nil,
-      observed_on: datetime ? datetime.utc : nil,
-      observed_on_details: datetime ? ElasticModel.date_details(datetime.utc) : nil,
-      time_observed_at: time_observed_at ? time_observed_at.utc : nil,
+      created_at: created,
+      created_at_details: ElasticModel.date_details(created),
+      updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
+      observed_on: datetime,
+      observed_on_details: ElasticModel.date_details(datetime),
+      time_observed_at: time_observed_at_in_zone,
+      time_zone: time_zone,
+      time_zone_offset: timezone_offset,
       site_id: site_id,
       uri: uri,
       description: description,
@@ -172,6 +176,7 @@ class Observation < ActiveRecord::Base
     elsif p[:observations_taxon_ids]
       search_wheres["taxon.ancestor_ids"] = p[:observations_taxon_ids]
     end
+    search_wheres["site_id"] = p[:site_id] if p[:site_id]
     search_wheres["id_please"] = true if p[:id_please]
     search_wheres["out_of_range"] = true if p[:out_of_range]
     search_wheres["mappable"] = true if p[:mappable] == "true"

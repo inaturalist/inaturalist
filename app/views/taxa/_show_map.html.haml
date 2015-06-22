@@ -1,13 +1,13 @@
 #taxon_range
   :ruby
     map_attributes = setup_map_tag_attrs(
-      min_zoom: 1, 
+      min_zoom: 1,
       taxon_layers: [ {
-        taxon: @taxon, 
+        taxon: @taxon,
         places: true,
-        ranges: true, 
-        observations: true, 
-        gbif: { disabled: true }
+        ranges: true,
+        observations: true,
+        gbif: { disabled: true },
       } ]
     )
   #taxon_range_map{ map_attributes.merge({ style: "width: 790px; height: 488px" }) }

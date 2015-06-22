@@ -116,12 +116,14 @@ class Site < ActiveRecord::Base
   # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
   preference :home_page_wiki_path, :string
 
-  # filter observations in public places to ones contributed by this site
-  # this filters by the uri column in observations, which in turns uses the
-  # URL of the observation, which should be unique to each site instance. If
-  # your URL is foo.inaturalist.org, then your observations will be fitlered
-  # to URIs like http://foo.inaturalist.org/%
-  preference :site_only_observations, :boolean, :default => false
+  # site: only show obs added through this site
+  # place: only show obs within the specified place's boundary
+  # bounding_box: only show obs within the bounding box
+  OBSERVATIONS_FILTERS = %w(site place bounding_box)
+  OBSERVATIONS_FILTERS.each do |f|
+    const_set "OBSERVATIONS_FILTERS_#{f.upcase.gsub(/\-/, '_')}", f
+  end
+  preference :site_observations_filter, :string, default: OBSERVATIONS_FILTERS_PLACE
 
   # Like site_only_observations except for users. Used in places like /people
   preference :site_only_users, :boolean, :default => false

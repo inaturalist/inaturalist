@@ -1,10 +1,10 @@
 <span class="feeds">
   <%=t :feeds %>:
   <%- 
-    feed_params = params.reject do |key,value|
+    feed_params = request.query_parameters.reject do |key,value|
       ObservationsController::REJECTED_FEED_PARAMS.include?(key)
     end
-    kml_feed_params = params.reject do |key,value|
+    kml_feed_params = request.query_parameters.reject do |key,value|
       ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
     end
     kml_feed_params[:kml_type] = "network_link"

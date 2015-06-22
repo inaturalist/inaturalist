@@ -617,18 +617,20 @@ class Observation < ActiveRecord::Base
   def self.site_search_params(site, params = {})
     search_params = params.dup
     return search_params unless site && site.is_a?(Site)
-    if CONFIG.site_only_observations && search_params[:site].blank?
-      search_params[:site] ||= FakeView.root_url
-    end
-    if !search_params[:swlat] &&
-      !search_params[:place_id] && search_params[:bbox].blank?
-      if site.place
-        search_params[:place] = site.place
-      elsif CONFIG.bounds
-        search_params[:nelat] ||= CONFIG.bounds["nelat"]
-        search_params[:nelng] ||= CONFIG.bounds["nelng"]
-        search_params[:swlat] ||= CONFIG.bounds["swlat"]
-        search_params[:swlng] ||= CONFIG.bounds["swlng"]
+    case site.preferred_site_observations_filter
+    when Site::OBSERVATIONS_FILTERS_SITE
+      search_params[:site_id] = site.id if search_params[:site_id].blank?
+    when Site::OBSERVATIONS_FILTERS_PLACE
+      search_params[:place] = site.place if search_params[:place_id].blank?
+    when Site::OBSERVATIONS_FILTERS_BOUNDING_BOX
+      if search_params[:nelat].blank? &&
+          search_params[:nelng].blank? &&
+          search_params[:swlat].blank? &&
+          search_params[:swlng].blank?
+        search_params[:nelat] = site.preferred_geo_nelat
+        search_params[:nelng] = site.preferred_geo_nelng
+        search_params[:swlat] = site.preferred_geo_swlat
+        search_params[:swlng] = site.preferred_geo_swlng
       end
     end
     search_params
@@ -1103,28 +1105,38 @@ class Observation < ActiveRecord::Base
     h.each do |k,v|
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
     end
-    h
+    h.force_utf8
   end
   
   #
   # Return a time from observed_on and time_observed_at
   #
   def datetime
-    if observed_on && errors[:observed_on].blank?
-      if time_observed_at
-        time_observed_at.to_time
-      else
-        # use UTC to create the time
-        Time.utc(observed_on.year,
-                 observed_on.month,
-                 observed_on.day)
-      end
+    @datetime ||= if observed_on && errors[:observed_on].blank?
+      time_observed_at_in_zone ||
+      Time.new(observed_on.year,
+               observed_on.month,
+               observed_on.day, 0, 0, 0,
+               timezone_offset)
     end
   end
-  
+
+  def timezone_object
+    # returns nil if the time_zone has an invalid value
+    ActiveSupport::TimeZone.new(time_zone) ||
+      ActiveSupport::TimeZone.new(zic_time_zone)
+  end
+
+  def timezone_offset
+    # returns nil if the time_zone has an invalid value
+    (timezone_object || ActiveSupport::TimeZone.new("UTC")).formatted_offset
+  end
+
   # Return time_observed_at in the observation's time zone
   def time_observed_at_in_zone
-    self.time_observed_at.in_time_zone(self.time_zone)
+    if self.time_observed_at
+      self.time_observed_at.in_time_zone(self.time_zone)
+    end
   end
   
   #

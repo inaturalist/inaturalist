@@ -50,7 +50,7 @@ class GuidePhoto < ActiveRecord::Base
     end
   rescue => e
     Rails.logger.debug "[DEBUG] Error assigning GuidePhoto photo attributes: #{e}"
-    assign_nested_attributes_for_one_to_one_association(:photo, attributes, mass_assignment_options)
+    assign_nested_attributes_for_one_to_one_association(:photo, attributes)
   end
 
   def reusable?(options = {})

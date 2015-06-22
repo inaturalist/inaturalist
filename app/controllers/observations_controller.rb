@@ -74,7 +74,8 @@ class ObservationsController < ApplicationController
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
-    %w"order order_by taxon_id taxon_name projects user_id utf8"
+    %w( order order_by taxon_id taxon_name projects user_id place_id utf8
+        d1 d2 )
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -144,7 +145,10 @@ class ObservationsController < ApplicationController
           valid_map_params = {
             taxon: @observations_taxon.blank? ? nil : @observations_taxon,
             user_id: @user.blank? ? nil : @user.id,
-            project_id: @projects.blank? ? nil: @projects.first.id
+            place_id: @place.blank? ? nil : @place.id,
+            project_id: @projects.blank? ? nil: @projects.first.id,
+            d1: params[:d1],
+            d2: params[:d2]
           }.delete_if{ |k,v| v.nil? }
           if valid_map_params.empty?
             # there are no options, so show all observations by default
@@ -1937,13 +1941,14 @@ class ObservationsController < ApplicationController
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
     end
-    possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
-    if params[:elastic] || !possible_elastic_params.empty?
-      @elastic = true
-      @elastic_params = params.select{ |k,v|
-        [ :heatmap, :place_id, :user_id, :project_id,
-          :taxon_id, :d1, :d2 ].include?( k.to_sym ) }
-    end
+    @elastic_params = params.select{ |k,v|
+      [ :place_id, :user_id, :project_id,
+        :taxon_id, :d1, :d2, :color ].include?( k.to_sym ) }
+    @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
+    @map_style = (( params[:color] || @taxa.any? ) &&
+                    params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
+    @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
+    @default_color = params[:heatmap_colors] if @map_style == "heatmap"
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end

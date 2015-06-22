@@ -117,7 +117,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   // store the marker for later use, or for easy removing
   this.observations[observation.id] = marker;
   
-  // build a generic marker infowwindow
+  // build a generic marker infowindow
   if (typeof(options.clickable) == 'undefined' || options.clickable != false) {
     marker.message = this.buildObservationInfoWindow(observation);
     
@@ -308,13 +308,23 @@ google.maps.Map.prototype.getPlaceBounds = function() {
 google.maps.Map.prototype.setPlaceBounds = function(bounds) {
   this.placeBounds = bounds;
 }
-  
+
+// infoWindowOpenTime will be set to prevent native Google Maps events to
+// conflict with wax.g / utfGrid interactions. We'll make sure no wax.g
+// interactions fire shortly after a native event is initiated. We had a bug
+// where markers on top of utfGrid zones were opening two windows
+var infoWindowOpenTime;
 google.maps.Map.prototype.openInfoWindow = function(e) {
-  iNaturalist.Map.infowWindow = iNaturalist.Map.infowWindow || new google.maps.InfoWindow()
-  iNaturalist.Map.infowWindow.setContent(this.message)
-  iNaturalist.Map.infowWindow.open(this.map, this)
+  infoWindowOpenTime = new Date( );
+  // close any infowindows opened by wax.g
+  if( window.map && window.map.infoWindow ) {
+    window.map.infoWindow.close( );
+  }
+  iNaturalist.Map.infoWindow = iNaturalist.Map.infoWindow || new google.maps.InfoWindow()
+  iNaturalist.Map.infoWindow.setContent(this.message)
+  iNaturalist.Map.infoWindow.open(this.map, this)
 };
-  
+
 google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {  
   // First see if we can find an observation component for this observation
   var existing = document.getElementById('observation-'+observation.id);
@@ -751,38 +761,6 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
-google.maps.Map.prototype.addElasticLayer = function( options ) {
-  this.setTilt(0);
-  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
-  if( tileservers[0].match(/{n}/) ) {
-    var pattern = tileservers[0];
-    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
-      return pattern.replace( "{n}", n );
-    });
-  }
-  if( options["elastic_params"].match(/heatmap/) ) {
-    this.addLayerAndControl( {
-      tiles: _.map( tileservers , function( base ) {
-        return base + "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"];
-      })
-    }, options );
-  } else {
-    options.interactivity = true;
-    var tileLayers = _.map( tileservers, function( base ) {
-      return base + "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
-    });
-    var tilejson = {
-      tiles: tileLayers,
-      // wax needs template or it won't fire on events
-      "template": "this_is_silly",
-      grids: _.map( tileLayers, function( l ) {
-        return google.maps.Map.prototype.interactivityURL( l, "id" );
-      })
-    };
-    this.addLayerAndControl( tilejson, options );
-  }
-};
-
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
@@ -842,32 +820,46 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   return layerID;
 };
 
+function elasticsearchTileservers( ) {
+  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
+  if( tileservers[0].match(/{n}/) ) {
+    var pattern = tileservers[0];
+    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
+      return pattern.replace( "{n}", n );
+    });
+  }
+  return tileservers;
+}
+
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
+  var tileservers = elasticsearchTileservers( );
   var options = options || { },
-      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
-      gridTileURL = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
-      pointTileURL = tiles_url + "/observations/points/{z}/{x}/{y}.png",
+      gridTileSuffix = "/" + (options.mapStyle || "colored_heatmap" ) +
+        "/{z}/{x}/{y}.png",
+      pointTileSuffix = "/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
-  var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id', 'observation_id',
-    'project_id', 'ttl', 'color', 'opacity', 'border_opacity' ];
-  var pointParamKeys = gridParamKeys.concat([ 'observation_id' ]);
-  gridTileURL = appendValidParamsToURL( gridTileURL, _.extend(
-    options, { validParams: gridParamKeys, endpoint: "grid" } ));
-  pointTileURL = appendValidParamsToURL( pointTileURL, _.extend(
-    options, { validParams: gridParamKeys, endpoint: "points" } ));
+  var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
+    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2' ];
+  gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
+    options, { validParams: paramKeys, endpoint: "grid" } ));
+  pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
+    options, { validParams: paramKeys, endpoint: "points" } ));
   // add a layer to the map for the grid
-  gridLayer = this.addTileLayer( gridTileURL, {
+  gridLayer = this.addTileLayer( _.map( tileservers , function( base ) {
+      return base + gridTileSuffix;
+    }), {
     maxzoom: gridmaxzoom,
-    interactivity: false,
+    interactivity: options.interactivity === false ? false : 'id',
     disabled: options.disabled
   });
-  pointLayer = this.addTileLayer( pointTileURL, {
-    interactivity: options.interactivity === false ? false :
-      'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
+  pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
+      return base + pointTileSuffix;
+    }), {
+    interactivity: options.interactivity === false ? false : 'id',
     minzoom: gridmaxzoom + 1,
     gridminzoom: gridmaxzoom + 1,
     disabled: options.disabled
@@ -890,16 +882,18 @@ google.maps.Map.prototype.getInfoWindow = function() {
   return this.infoWindow
 }
 
-google.maps.Map.prototype.addTileLayer = function(tileURL, options) {
+google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   var options = options || {},
       interactivity = options.interactivity;
   if( options.interactivity ) {
     // windshaft needs the interactivity param to know what data to render
-    options.grids = [ this.interactivityURL( tileURL, options.interactivity ) ];
+    options.grids = _.map( tileURLs, function( l ) {
+      return google.maps.Map.prototype.interactivityURL( l, options.interactivity );
+    })
   }
   // finish preparing the tile options hash
   var tilejson = $.extend(true, { }, {
-    tiles: [ tileURL ],
+    tiles: tileURLs,
     // wax needs template or it won't fire on events
     "template": "{{species_guess}}"
   }, options);
@@ -938,8 +932,14 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
         interactionOn = true;
         document.body.style.cursor = 'pointer';
         if (o.e.type == 'click') {
+          // if a native infoWindow was just opened, don't let another one open
+          if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
+            return false;
+          }
           // if the click is anywhere within the InfoWindow, don't act on it
           if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
+          // if a native infoWindow is still open, close it
+          if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           if(o.data['latitude']){
             var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
             $.ajax({
@@ -947,10 +947,12 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
               type: 'GET',
               dataType: 'html',
               beforeSend: function() {
-                var iw = map.getInfoWindow()
-                iw.position = latLng
+                var iw = map.getInfoWindow( );
+                iw.position = latLng;
                 iw.setContent($('<div class="loading status">'+I18n.t('loading')+'</div>').get(0));
-                iw.open(map)
+                iw.open( map );
+                // setting infoWindowOpenTime to prevent rapid window toggling
+                infoWindowOpenTime = new Date( );
                 // remove any text highlighting, which happens when the user clicks around
                 deselectText();
               },
