@@ -176,6 +176,7 @@ en:
   add_one: Add one!
   add_photos: Add photos
   add_photos_to_this_observation: Add photos to this observation
+  add_place: Add place
   add_several_observations_at_once: Add several observations at once.
   add_shape: Add shape
   add_some_now: Add some now
@@ -837,6 +838,7 @@ en:
   deleting: Deleting...
   deleting_verb: Deleting
   desc: desc
+  dna_: DNA
   descendant_taxa:  descendant taxa
   descending: descending
   describe_purpose: Describe the purpose of this project.
@@ -1134,6 +1136,7 @@ en:
   getting_started: Getting Started
   give_it_some_detail: Give it some detail!
   global_conservation_status: "Global conservation status:"
+  global_names: Global names
   globally: globally
   go: Go
   good_choice_for_sharing: Good choice for sharing with scientists
@@ -1449,6 +1452,10 @@ en:
   listing_taxon_names: Listing Taxon Names
   lists: Lists
   lists_are_lists_of_species: "Lists are lists of species (or other taxa), like a life list of all the birds you've seen or a list of your favorite salamanders.  They are <em>not</em> lists of observations."
+  lists_by_login:
+    title:
+      current_user: Your lists
+      login: Lists by %{login}
   lists_come_in_three: "Lists come in three varieties:"
   load: Load
   loading: "Loading..."
@@ -1758,6 +1765,7 @@ en:
   noun_by_you: "%{noun} by you"
   obs: Obs
   obscured: Obscured
+  obscured_or_private: obscured or private
   obscured_description: "Public coordinates shown as a random point within 10KM of the true coordinates. True coordinates are only visible to you and the curators of projects to which you add the observation."
   observation: Observation
   observation_added: Observation added.
@@ -2301,6 +2309,7 @@ en:
   remove_from_project: Remove from project
   remove_this_section: Remove this section
   remove_manager: Remove manager
+  remove_place: Remove place
   remove_project_user: Remove project user
   remove_selected: Remove selected
   remove_tags: Remove tags
@@ -2503,6 +2512,7 @@ en:
   sorry_you_can_only_add_1000_at_a_time: "Sorry, you can only add 1000 at a time."
   sorry_you_cant_delete_your_own_life_list: "Sorry, you can't delete your own life list."
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
+  sort: Sort
   sort_by: Sort by
   sorting_by: Sorting by
   soundcloud_needs_to_confirm: "SoundCloud needs to confirm that you want your account connected to %{site_name}."
@@ -2564,6 +2574,7 @@ en:
   species_from_around_the_world: Species from around the world
   species_guess: species guess
   species_guide: Species Guide
+  species_header: Species
   species_name: species names
   species_or_lower: species or lower
   species_search: Species Search
@@ -3106,6 +3117,7 @@ en:
   what_did_you_see: What did you see?
   what_did_you_see?: <em>What</em> did you see?
   what_do_you_think: What do you think?
+  what_do_you_want_to_list: What do you want to list?
   what_to_keep: What to keep
   what_want_to_list?: What do you want to list? 
   when: When
@@ -4513,3 +4525,20 @@ en:
         o: :@vow
         u: :@vow
         default: :@con
+      gender:
+        m: male
+        f: female
+        observation: :@f
+        note: :@f
+        place: :@m
+        identification: :@f
+        species: :@f
+        application: :@f
+        check_list: :@f
+        observation_field: :@m
+        post: :@m
+        taxon: :@m            
+  will_paginate:
+    previous_label: "&#8592; Prev"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"

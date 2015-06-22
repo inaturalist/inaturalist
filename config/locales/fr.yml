@@ -206,6 +206,7 @@ fr:
   add_one: Ajoutez-en une!
   add_photos: Ajouter des photos
   add_photos_to_this_observation: Ajouter des photos à cette observation
+  add_place: Ajouter un lieu
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_shape: Ajouter une forme
   add_some_now: Ajoutez-en maintenant
@@ -1010,6 +1011,7 @@ fr:
   deleting: Suppression en cours…
   deleting_verb: Suppression
   desc: décroissant
+  dna_: ADN
   descendant_taxa: taxons descendants
   descending: descendant
   describe_purpose: Décrivez le but de ce projet.
@@ -1345,8 +1347,9 @@ fr:
   get_started_raquo: Démarrer &raquo;
   getting_started: Démarrer
   give_it_some_detail: Fournissez des détails !
-  global_conservation_status: 'Situation quant à la conservation à l’échelle mondiale
-    :'
+  global_conservation_status: |
+    Situation quant à la conservation à l’échelle mondiale:
+  global_names: Noms globaux
   globally: à l’échelle mondiale
   go: Continuer
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
@@ -1747,6 +1750,10 @@ fr:
     comme une liste des êtres vivants de la catégorie oiseaux que vous avez vus ou
     une liste de vos salamandres préférées. Ce ne sont <em>pas</em> pas des listes
     d’observations.
+  lists_by_login:
+    title:
+      current_user: Vos listes
+      login: Listes de %{login}
   lists_come_in_three: 'Les listes se présentes sous trois formes :'
   load: Charger
   loading: Chargement en cours…
@@ -2097,13 +2104,15 @@ fr:
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
   not_yet: Pas encore
   note: Note
-  note_you_can_modify_the_height_attribute: 'Remarque : Vous pouvez modifier l’attribut
-    ''height'' pour l’adapter à l’espace disponible sur votre page web.'
+  note_you_can_modify_the_height_attribute: |
+    Remarque : Vous pouvez modifier l’attribut
+    height' pour l’adapter à l’espace disponible sur votre page web.
   number_of_observations: Nombre d’observations
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
   obs: Obs
   obscured: Masqué
+  obscured_or_private: masqué ou privé
   obscured_description: Les coordonnées qui sont visibles pour tout le monde sont
     montrées comme point au hasard dans les 10 km des vraies coordonnées. Vous êtes
     la seule personne à voir les vraies coordonnées, ainsi que les responsables de
@@ -2577,7 +2586,8 @@ fr:
   project_list_defaults:
     title: List de contrôle de %{owner_name}
     description: Liste des spécimens de %{owner_name}
-  project_curators_added_some_of_your_observations_html: les superviseurs de <a href="%{url}">%{project}</a>
+  project_curators_added_some_of_your_observations_html: |
+    les superviseurs de <a href="%{url}">%{project}</a>
     ont ajouté certaines de vos observations
   project_members: Membres de %{project}
   project_membership_model_description: Votre projet est-il ouvert à tout le monde
@@ -2700,6 +2710,7 @@ fr:
   remove_from_project: Supprimer du projet
   remove_this_section: Supprimer cette section
   remove_manager: Supprimer le gestionnaire
+  remove_place: Supprimer lieu
   remove_project_user: Supprimer l’utilisateur du projet
   remove_selected: Supprimer la sélection
   remove_tags: Supprimer les étiquettes
@@ -2936,6 +2947,7 @@ fr:
     propre liste des êtres vivants.
   sorry_you_need_to_be_signed_in_and: Désolé, vous devez être connecté et avoir un
     compte Flickr lié pour publier des étiquettes directement sur Flickr.
+  sort: Trier
   sort_by: Trier par
   sorting_by: Trié par
   soundcloud_needs_to_confirm: SoundCloud doit confirmer que vous voulez que votre
@@ -3008,6 +3020,7 @@ fr:
   species_from_around_the_world: Espèces du monde entier
   species_guess: devinez l’espèce
   species_guide: Guide des espèces
+  species_header: Espèce
   species_name: noms des espèces
   species_or_lower: espèces ou rang inférieur
   species_search: Recherche d’espèces
@@ -3588,7 +3601,8 @@ fr:
   view_x_from_x: Afficher %{day_observations} du %{observed_on}
   view_xs_journal: Afficher le journal de %{x}
   view_your_dashboard: Afficher votre tableau de bord
-  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Afficher votre tableau
+  view_your_dashboard_for_more_updates_html: |
+    <a href='%{url}'>Afficher votre tableau
     de bord</a> pour plus de mises à jour
   view_your_inbox: Afficher votre boîte de réception
   view_your_life_list: Afficher votre liste des êtres vivantes
@@ -3616,10 +3630,11 @@ fr:
     pour l’hébergement d’images.
   we_didnt_find_any_photos: Nous n’avons trouvé aucune photo en utilisant les critères
     de recherche que vous avez fournis.
-  we_had_a_problem_flagging_that_item: 'Nous avons eu un problème en signalant cet
-    élément : %{flag_error}'
-  we_had_trouble_saving_comment: 'Nous avons eu des problèmes en enregistrant ce commentaire
-    :'
+  we_had_a_problem_flagging_that_item: |
+    Nous avons eu un problème en signalant cet
+    élément : %{flag_error}
+  we_had_trouble_saving_comment: |
+    Nous avons eu des problèmes en enregistrant ce commentaire:
   we_import_our_taxonomic_data: Nous importons nos données taxonomiques de certaines
     bases de données taxonomiques externes, y compris le Catalogue of Life et uBio.
     Quelques-uns de nos taxons ont aussi été saisis manuellement, et n’importe quel
@@ -3656,6 +3671,7 @@ fr:
   what_do_you_think: Que pensez-vous?
   what_to_keep: Ce qu’il faut conserver
   what_want_to_list?: Que voulez-vous répertorier?
+  what_do_you_want_to_list?: Que voulez-vous répertorier?
   when: Quand
   when_did_you_see_it?: Quand l’avez-vous vu?
   when_did_you_see_them?: <em>Quand</em> les avez-vous vus?
@@ -3677,8 +3693,7 @@ fr:
   within_inaturalist: Dans %{site_name}
   wondering_what_to_do_next: Vous vous demandez quoi faire maintenant? Pourquoi pas
   would_you_like_to: Aimeriez-vous en
-  would_like_some_help_identifying_this: '%{user} aimerait de l’aide à identifier
-    ceci'
+  would_like_some_help_identifying_this: "%{user} aimerait de l’aide à identifier ceci"
   x_admin: que %{login} administre
   x_deleted: '%{x} supprimé'
   x_does_not_exist: « %{x} » n’existe pas
@@ -3691,8 +3706,7 @@ fr:
   x_journal_new_post: Journal de %{user} &middot; Nouvelle note
   x_project_journal: '%{name} de %{project}'
   x_project_stats: Stats de %{project}
-  x_sent_you_a_new_message_on_y_html: '%{x} vous a envoyé un nouveau message sur %{y}
-    :'
+  x_sent_you_a_new_message_on_y_html: "%{x} vous a envoyé un nouveau message sur %{y}:"
   x_site_is_a_social_network_for_naturalist: |-
     %{site} est un réseau social pour les naturalistes! Enregistrez vos observations de plantes et d’animaux,
     échangez-les avec des amis et des chercheurs et apprenez-en davantage sur le monde naturel.
@@ -5074,4 +5088,22 @@ fr:
       listed_taxon:
         occurrence_status_level: Niveau d’état de la présence
         establishment_means: Moyens d’établissement
-...
+  i18n:
+    inflections:
+      gender:
+        m: masculin
+        f: f<C3><A9>minin
+        observation: :@f
+        note: :@f
+        place: :@m
+        identification: :@f
+        species: :@f
+        application: :@f
+        check_list: :@f
+        observation_field: :@m
+        post: :@m
+        taxon: :@m
+  will_paginate:
+    previous_label: "&#8592; Pr<C3><A9>c<C3><A9>dent"
+    next_label: "Suivant &#8594;"
+    page_gap: "&hellip;"
