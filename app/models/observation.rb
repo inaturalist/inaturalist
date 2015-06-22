@@ -1105,7 +1105,7 @@ class Observation < ActiveRecord::Base
     h.each do |k,v|
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
     end
-    h
+    h.force_utf8
   end
   
   #
