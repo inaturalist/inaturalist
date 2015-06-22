@@ -45,18 +45,18 @@ class Observation < ActiveRecord::Base
 
   def as_indexed_json(options={})
     preload_for_elastic_index
-    created = created_at.in_time_zone(time_zone || "UTC")
+    # some timezones are invalid
+    created = created_at.in_time_zone(timezone_object || "UTC")
     {
       id: id,
       created_at: created,
       created_at_details: ElasticModel.date_details(created),
-      updated_at: updated_at.in_time_zone(time_zone || "UTC"),
+      updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
       observed_on: datetime,
       observed_on_details: ElasticModel.date_details(datetime),
       time_observed_at: time_observed_at_in_zone,
       time_zone: time_zone,
-      time_zone_offset: datetime ? datetime.formatted_offset :
-        ActiveSupport::TimeZone.new(time_zone || "UTC").formatted_offset,
+      time_zone_offset: timezone_offset,
       site_id: site_id,
       uri: uri,
       description: description,

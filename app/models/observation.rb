@@ -1113,17 +1113,25 @@ class Observation < ActiveRecord::Base
   #
   def datetime
     @datetime ||= if observed_on && errors[:observed_on].blank?
-      z = ActiveSupport::TimeZone.new(time_zone || "UTC")
-      z ||= ActiveSupport::TimeZone.new(zic_time_zone || "UTC")
-      z ||= ActiveSupport::TimeZone.new("UTC")
-      time_observed_at_in_zone || 
+      time_observed_at_in_zone ||
       Time.new(observed_on.year,
                observed_on.month,
                observed_on.day, 0, 0, 0,
-               z.formatted_offset)
+               timezone_offset)
     end
   end
-  
+
+  def timezone_object
+    # returns nil if the time_zone has an invalid value
+    ActiveSupport::TimeZone.new(time_zone) ||
+      ActiveSupport::TimeZone.new(zic_time_zone)
+  end
+
+  def timezone_offset
+    # returns nil if the time_zone has an invalid value
+    (timezone_object || ActiveSupport::TimeZone.new("UTC")).formatted_offset
+  end
+
   # Return time_observed_at in the observation's time zone
   def time_observed_at_in_zone
     if self.time_observed_at
