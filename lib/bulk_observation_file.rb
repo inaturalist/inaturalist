@@ -55,6 +55,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       # Collate the errors into a hash for emailing
       error_details = collate_errors(e)
 
+      # puts "error_details: #{error_details.inspect}"
       # Email the uploader with exception details
       Emailer.bulk_observation_error(@user, File.basename(@observation_file), error_details).deliver_now
     end
@@ -185,7 +186,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
   end
 
   def skip_row?(row)
-    row.blank? || !(row.first =~ /\A\s*#/).nil? || row.reject{|s| s.blank?}.blank?
+    row.blank? || row[0].to_s =~ /^\s*\#/ || row.fields.reject{|s| s.blank?}.blank?
   end
 
   def collate_errors(exception)
