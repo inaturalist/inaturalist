@@ -109,7 +109,7 @@ class GuideTaxon < ActiveRecord::Base
       self.guide_sections[guide_sections.index(gs)].description = taxon.wikipedia_summary
     else
       self.guide_sections.build(
-        :title => "Summary", 
+        :title => I18n.t(:summary, default: "Summary"), 
         :description => taxon.wikipedia_summary,
         :rights_holder => "Wikipedia",
         :license => Observation::CC_BY_SA,
