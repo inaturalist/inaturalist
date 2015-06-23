@@ -67,6 +67,13 @@ describe Taxon, "creation" do
     taxon.save
     expect(taxon.name).to eq 'Balderdash'
   end
+
+  it "should capitalize hybrid genera correclty" do
+    taxon = Taxon.make!(name: "× chitalpa", rank: "genus")
+    expect( taxon.name ).to eq "× Chitalpa"
+    taxon = Taxon.make!(name: "× Chitalpa", rank: "genus")
+    expect( taxon.name ).to eq "× Chitalpa"
+  end
   
   it "should set the rank_level based on the rank" do
     expect(@taxon.rank_level).to eq Taxon::RANK_LEVELS[@taxon.rank]

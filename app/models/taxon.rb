@@ -438,7 +438,12 @@ class Taxon < ActiveRecord::Base
   end
   
   def capitalize_name
-    self.name = name.capitalize
+    self.name = if genus? && name =~ /^(x|×)\s+?(.+)/
+      match, x, genus_name = name.match(/^(x|×)\s+?(.+)/).to_a
+      "#{x} #{genus_name.capitalize}"
+    else
+      name.capitalize
+    end
     true
   end
   
