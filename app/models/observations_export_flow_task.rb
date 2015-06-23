@@ -68,8 +68,9 @@ class ObservationsExportFlowTask < FlowTask
     if params.blank?
       Observation.where("1 = 2")
     else
+      query_params = Observation.query_params(params)
       # remove order, b/c it won't work with find_each and seems to cause errors in DJ
-      scope = Observation.query(params).includes(:user).reorder(nil)
+      scope = Observation.query(query_params).includes(:user).reorder(nil)
       includes = [ ]
       if export_columns.detect{|c| c == "common_name"}
         includes << { taxon: { taxon_names: :place_taxon_names } }
