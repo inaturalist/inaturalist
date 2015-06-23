@@ -65,15 +65,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     errors = []
 
     # Parse the entire observation file looking for possible errors.
-    rows = CSV.parse(open(@observation_file, 'r:iso-8859-1:utf-8').read)
-
-    # Skip the header row - this is very clumsy, but using the built in
-    # header skipping doesn't allow the use of Array.in_groups_of below
-    # and causes issues with the field UTF-8 encoding above.
-    rows.shift
-
-    # Iterate over each row
-    rows.each do |row|
+    CSV.foreach(@observation_file, encoding: 'iso-8859-1:utf-8', headers: true) do |row|
       unless skip_row?(row)
         # Look for the species and flag it if it's not found.
         taxon = Taxon.single_taxon_for_name(row[0])
@@ -103,38 +95,29 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
 
   # Import the observations in the file, and add to the specified project.
   def import_file
-    row_count = 2
+    row_count = 1
+    observations = []
+    ActiveRecord::Base.transaction do
+      CSV.foreach(@observation_file, encoding: 'iso-8859-1:utf-8', headers: true) do |row|
+        next if skip_row?(row)
 
-    # Load the entire file and skip the header row
-    csv = CSV.parse(open(@observation_file, 'r:iso-8859-1:utf-8').read)
-    csv.shift
+        # Add the observation file name as a tag for identification purposes.
+        tags = row[6].blank? ? [] : row[6].split(',')
+        tags << File.basename(@observation_file)
+        row[6] = tags.join(',')
 
-    # Split the rows into groups of the IMPORT_BATCH_FILE to
-    # minimize wasted time in the case of errors.
-    csv.in_groups_of(IMPORT_BATCH_SIZE).each do |rows|
-      observations = []
-      ActiveRecord::Base.transaction do
-        rows.each do |row|
-          next if skip_row?(row)
+        obs = new_observation(row)
+        begin
+          # Try to save the observation
+          obs.save!
 
-          # Add the observation file name as a tag for identification purposes.
-          tags = row[6].blank? ? [] : row[6].split(',')
-          tags << File.basename(@observation_file)
-          row[6] = tags.join(',')
+          # Add this observation to a list for later importing to the project.
+          observations << obs
 
-          obs = new_observation(row)
-          begin
-            # Try to save the observation
-            obs.save!
-
-            # Add this observation to a list for later importing to the project.
-            observations << obs
-
-            # Increment the row count so we can tell them where any errors are.
-            row_count = row_count + 1
-          rescue ActiveRecord::RecordInvalid
-            raise BulkObservationException.new('Invalid record encountered', row_count)
-          end
+          # Increment the row count so we can tell them where any errors are.
+          row_count = row_count + 1
+        rescue ActiveRecord::RecordInvalid
+          raise BulkObservationException.new('Invalid record encountered', row_count)
         end
       end
 
@@ -180,18 +163,16 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
 
     # Are we adding to a specific project?
     unless @project.nil?
-      # Add the per-project fields if applicable.
-      field_count = BASE_COLUMN_COUNT
-      ProjectObservationField.where(:project_id => @project).order(:position).each do |field|
-        if row[field_count].blank?
-          if field.required
+      @project.project_observation_fields.each do |pof|
+        value = row[pof.observation_field.name]
+        if value.blank?
+          if pof.required
             obs.custom_field_errors ||= []
-            obs.custom_field_errors << "#{field.observation_field.name} is required"
+            obs.custom_field_errors << "#{pof.observation_field.name} is required"
           end
         else
-          obs.observation_field_values.build(:observation_field_id => field.observation_field_id, :value => row[field_count])
+          obs.observation_field_values.build(:observation_field_id => pof.observation_field_id, :value => value)
         end
-        field_count += 1
       end
     end
 

@@ -95,6 +95,39 @@ describe BulkObservationFile, "import_file" do
       bof.perform
       expect(@project_user.user.observations.last.identifications.count).to eq 1
     end
+    it "should add project observation fields" do
+      of1 = ObservationField.make!
+      of2 = ObservationField.make!
+      @project.project_observation_fields.create(observation_field: of1)
+      @project.project_observation_fields.create(observation_field: of2)
+      of1_value = "barf"
+      of2_value = "12345"
+      work_path = File.join(Dir::tmpdir, "import_file_test-#{Time.now.to_i}.csv")
+      CSV.open(@work_path, 'w') do |csv|
+        csv << @headers + [of1.name, of2.name]
+        csv << [
+          @Calypte_anna.name,
+          "2007-08-20",
+          "Beautiful little creature",
+          "Leona Canyon Regional Park, Oakland, CA, USA",
+          37.7454,
+          -122.111,
+          "cute, snakes",
+          "open",
+          of1_value,
+          of2_value,
+          ''
+        ]
+      end
+      bof = BulkObservationFile.new(@work_path, @project.id, nil, user)
+      user.observations.destroy_all
+      bof.perform
+      user.reload
+      expect( user.observations.count ).to eq 1
+      expect( user.observations.last.observation_field_values ).not_to be_blank
+      expect( user.observations.last.observation_field_values.first.value ).to eq of1_value
+      expect( user.observations.last.observation_field_values.last.value ).to eq of2_value
+    end
   end
 
   describe "with coordinate system" do
