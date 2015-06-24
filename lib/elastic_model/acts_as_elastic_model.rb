@@ -130,7 +130,7 @@ module ActsAsElasticModel
           elastic_delete!(where: { id: elastic_ids_to_delete })
           WillPaginate::Collection.create(result.current_page, result.per_page,
             result.total_entries - elastic_ids_to_delete.count) do |pager|
-            pager.replace(result.records.to_a)
+            pager.replace(records)
           end
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)

@@ -636,6 +636,56 @@ class Observation < ActiveRecord::Base
     search_params
   end
 
+  def self.search_in_batches(raw_params, options={}, &block)
+    search_params = Observation.get_search_params(raw_params, options)
+    search_params.merge!({ page: 1, per_page: 500, preload: [ ],
+      order_by: "id", order: "asc" })
+    scope = Observation.get_search_scope_or_elastic_results(search_params)
+    if scope.is_a?(ActiveRecord::Relation)
+      scope.find_in_batches(batch_size: search_params[:per_page]) do |batch|
+        block.call(batch)
+      end
+    elsif scope.is_a?(WillPaginate::Collection)
+      block.call(scope)
+      total_pages = (scope.total_entries / search_params[:per_page].to_f).ceil
+      while search_params[:page] < total_pages
+        search_params[:page] += 1
+        block.call(Observation.get_search_scope_or_elastic_results(search_params))
+      end
+    end
+  end
+
+  def self.get_search_params(raw_params, options={})
+    if options[:site] && options[:site].is_a?(Site)
+      raw_params = Observation.site_search_params(options[:site], raw_params)
+    end
+    if options[:current_user] && options[:current_user].is_a?(User)
+      raw_params[:viewer] = options[:current_user]
+    end
+    search_params = Observation.query_params(raw_params)
+    search_params[:viewer] = options[:current_user] if options[:current_user]
+    return search_params
+  end
+
+  def self.get_search_scope_or_elastic_results(search_params)
+    unless Observation.able_to_use_elasticsearch?(search_params)
+      # if we have one of these non-elastic attributes,
+      # then default to searching PostgreSQL via ActiveRecord
+      return Observation.query(search_params)
+    end
+    Observation.elastic_query(search_params)
+  end
+
+  def self.able_to_use_elasticsearch?(search_params)
+    # there are some attributes which have not yet been added to the
+    # elasticsearch index, or we have decided not to put in the index
+    # because it would be more work to maintain than it would save
+    # when searching. Remove empty values before checking
+    return false if search_params[:rank] == "leaves"
+    ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
+      search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
+  end
+
   def self.elastic_query(params, options = {})
     elastic_params = params_to_elastic_query(params, options)
     if elastic_params.nil?
@@ -645,13 +695,14 @@ class Observation < ActiveRecord::Base
     observations = Observation.elastic_paginate(elastic_params)
     # preload the most commonly needed associations,
     # and union it with any extra_preloads
-    Observation.preload_associations(observations, [
+    preloads = params[:preload] || [
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       { iconic_taxon: :taxon_descriptions },
       { photos: [ :user, :flags ] },
-      :stored_preferences, :flags, :quality_metrics ] |
-      elastic_params[:extra_preloads])
+      :stored_preferences, :flags, :quality_metrics ]
+    Observation.preload_associations(observations,
+      preloads | elastic_params[:extra_preloads])
     observations
   end
 
@@ -845,7 +896,9 @@ class Observation < ActiveRecord::Base
         end
       end
     end
-    scope = scope.identifications(params[:identifications]) if params[:identifications]
+    if params[:identifications] && params[:identifications] != "any"
+      scope = scope.identifications(params[:identifications])
+    end
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by]
     
@@ -2483,12 +2536,6 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.observations_batches(scope, options={}, &block)
-    scope.find_in_batches(options) do |batch|
-      block.call(batch)
-    end
-  end
-
   # 2014-01 I tried improving performance by loading ancestor taxa for each
   # batch, but it didn't really speed things up much
   def self.generate_csv(scope, options = {})
@@ -2498,12 +2545,10 @@ class Observation < ActiveRecord::Base
     columns = options[:columns] || CSV_COLUMNS
     CSV.open(fpath, 'w') do |csv|
       csv << columns
-      Observation.observations_batches(scope, batch_size: 500) do |batch|
-        batch.each do |observation|
-          csv << columns.map do |c|
-            c = "cached_tag_list" if c == "tag_list"
-            observation.send(c) rescue nil
-          end
+      scope.find_each(batch_size: 500) do |observation|
+        csv << columns.map do |c|
+          c = "cached_tag_list" if c == "tag_list"
+          observation.send(c) rescue nil
         end
       end
     end

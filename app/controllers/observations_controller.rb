@@ -119,7 +119,6 @@ class ObservationsController < ApplicationController
       @observations = Rails.cache.fetch(search_cache_key, expires_in: 5.minutes, compress: true) do
         get_elastic_paginated_observations(search_params)
       end
-      get_search_params(search_params) # this sets a bunch of instance variables for the UI
     else
       @observations = get_elastic_paginated_observations(search_params)
     end
@@ -1657,7 +1656,7 @@ class ObservationsController < ApplicationController
       skip_order: true, skip_pagination: true)
     search_params.merge!(find_options)
     # currently we can't search ES for leaf nodes
-    if able_to_use_elasticsearch?(search_params) && search_params[:rank] != "leaves"
+    if Observation.able_to_use_elasticsearch?(search_params)
       elastic_taxon_stats(search_params)
     else
       non_elastic_taxon_stats(search_params)
@@ -1693,7 +1692,7 @@ class ObservationsController < ApplicationController
     search_params.merge!(find_options)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    if able_to_use_elasticsearch?(search_params)
+    if Observation.able_to_use_elasticsearch?(search_params)
       elastic_user_stats(search_params, limit)
     else
       non_elastic_user_stats(search_params, limit)
@@ -2165,8 +2164,9 @@ class ObservationsController < ApplicationController
   end
 
   def get_elastic_paginated_observations(params)
+    # get_search_params also sets a bunch of instance variables for the UI
     search_params, find_options = get_search_params(params)
-    unless able_to_use_elasticsearch?(search_params)
+    unless Observation.able_to_use_elasticsearch?(search_params)
       # if we have one of these non-elastic attributes,
       # then default to searching PostgreSQL via ActiveRecord
       return get_paginated_observations(search_params, find_options)
@@ -2681,15 +2681,6 @@ class ObservationsController < ApplicationController
       prevent_caching
       render :status => :accepted, :text => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
     end
-  end
-
-  def able_to_use_elasticsearch?(search_params)
-    # there are some attributes which have not yet been added to the
-    # elasticsearch index, or we have decided not to put in the index
-    # because it would be more work to maintain than it would save
-    # when searching. Remove empty values before checking
-    ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
-      search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
   end
 
   def non_elastic_taxon_stats(search_params)

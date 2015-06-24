@@ -141,9 +141,7 @@ class Observation < ActiveRecord::Base
   def self.params_to_elastic_query(params, options = {})
     current_user = options[:current_user]
     p = params[:_query_params_set] ? params : query_params(params)
-    if (Observation::NON_ELASTIC_ATTRIBUTES & p.reject{ |k,v| v.blank? || v == "any" }.keys).any?
-      return nil
-    end
+    return nil unless Observation.able_to_use_elasticsearch?(p)
     p = site_search_params(options[:site], p)
     search_wheres = { }
     extra_preloads = [ ]
@@ -293,6 +291,8 @@ class Observation < ActiveRecord::Base
       { species_guess: sort_order }
     when "votes"
       { cached_votes_total: sort_order }
+    when "id"
+      { id: sort_order }
     else "observations.id"
       { created_at: sort_order }
     end

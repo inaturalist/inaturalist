@@ -71,16 +71,19 @@ class ObservationsExportFlowTask < FlowTask
       query_params = Observation.query_params(params)
       # remove order, b/c it won't work with find_each and seems to cause errors in DJ
       scope = Observation.query(query_params).includes(:user).reorder(nil)
-      includes = [ ]
-      if export_columns.detect{|c| c == "common_name"}
-        includes << { taxon: { taxon_names: :place_taxon_names } }
-      end
-      includes << { observation_field_values: :observation_field }
-      includes << :photos if export_columns.detect{ |c| c == 'image_url' }
-      includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
-      scope = scope.includes(includes)
       scope
     end
+  end
+
+  def preloads
+    includes = [ :user ]
+    if export_columns.detect{|c| c == "common_name"}
+      includes << { taxon: { taxon_names: :place_taxon_names } }
+    end
+    includes << { observation_field_values: :observation_field }
+    includes << :photos if export_columns.detect{ |c| c == 'image_url' }
+    includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
+    return includes
   end
 
   def observations_count
@@ -94,7 +97,8 @@ class ObservationsExportFlowTask < FlowTask
     open(json_path, "w") do |f|
       f << "["
       first = true
-      Observation.observations_batches(observations_scope) do |batch|
+      Observation.search_in_batches(params) do |batch|
+        Observation.preload_associations(batch, preloads)
         batch.each do |observation|
           f << ',' unless first
           first = false
@@ -111,8 +115,22 @@ class ObservationsExportFlowTask < FlowTask
 
   def csv_archive
     csv_path = File.join(work_path, "#{basename}.csv")
-    path = Observation.generate_csv(observations_scope,
-      fname: "#{basename}.csv", path: csv_path, columns: export_columns)
+    fname = "#{basename}.csv"
+    fpath = csv_path
+    FileUtils.mkdir_p(File.dirname(fpath), mode: 0755)
+    columns = export_columns
+    CSV.open(fpath, "w") do |csv|
+      csv << columns
+      Observation.search_in_batches(params) do |batch|
+        Observation.preload_associations(batch, preloads)
+        batch.each do |observation|
+          csv << columns.map do |c|
+            c = "cached_tag_list" if c == "tag_list"
+            observation.send(c) rescue nil
+          end
+        end
+      end
+    end
     zip_path = File.join(work_path, "#{basename}.csv.zip")
     system "cd #{work_path} && zip -qr #{basename}.csv.zip *"
     zip_path
