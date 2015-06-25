@@ -67,15 +67,15 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
 
     # Parse the entire observation file looking for possible errors.
     CSV.foreach(@observation_file, encoding: 'iso-8859-1:utf-8', headers: true) do |row|
-      unless skip_row?(row)
-        # Look for the species and flag it if it's not found.
-        taxon = Taxon.single_taxon_for_name(row[0])
-        errors << BulkObservationException.new("Species not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
+      next if skip_row?(row)
+      
+      # Look for the species and flag it if it's not found.
+      taxon = Taxon.single_taxon_for_name(row[0])
+      errors << BulkObservationException.new("Species not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
 
-        # Check the validity of the observation
-        obs = new_observation(row)
-        errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors) unless obs.valid?
-      end
+      # Check the validity of the observation
+      obs = new_observation(row)
+      errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors) unless obs.valid?
 
       # Increment the row count.
       row_count = row_count + 1

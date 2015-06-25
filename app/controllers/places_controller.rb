@@ -165,7 +165,7 @@ class PlacesController < ApplicationController
       end
     end
     
-    if @place.valid?
+    if @place.save
       notice ||= t(:place_imported)
       flash[:notice] = notice
       return redirect_to @place

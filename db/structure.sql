@@ -8500,7 +8500,8 @@ CREATE TABLE flow_tasks (
     user_id integer,
     redirect_url character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    exception text
 );
 
 
@@ -15435,4 +15436,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150611215738');
 INSERT INTO schema_migrations (version) VALUES ('20150614212053');
 
 INSERT INTO schema_migrations (version) VALUES ('20150619231829');
+
+INSERT INTO schema_migrations (version) VALUES ('20150622201252');
 
