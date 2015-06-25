@@ -116,8 +116,13 @@ Stats.yearAgoDate = function( ) {
     (date.getMonth( ) + 1) + "-" + date.getDate( );
 };
 
+Stats.monthAgoDate = function( ) {
+  var date = new Date( );
+  return date.getFullYear( ) + "-" + date.getMonth( ) + "-" + date.getDate( );
+};
+
 Stats.simpleChart = function( options ) {
-  options.chartType = options.chartType || google.visualization.AreaChart;
+  options.chartType = options.chartType || google.visualization.AnnotationChart;
   var chartOptions = options.chartOptions || { };
   var data = new google.visualization.DataTable( );
   if( options.chartType === google.visualization.AreaChart ) {
@@ -130,6 +135,10 @@ Stats.simpleChart = function( options ) {
     data.addColumn( 'string', 'Key' );
     data.addColumn( 'number', 'Value' );
     chartOptions.height = 600;
+  } else if (options.chartType = google.visualization.AnnotationChart) {
+    data.addColumn( 'date', 'Date' );
+    chartOptions.min = 0
+    chartOptions.zoomStartTime = new Date(Stats.monthAgoDate())
   }
   _.each( options.series, function( s ) {
     data.addColumn( 'number', s.label );
