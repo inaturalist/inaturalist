@@ -46,9 +46,10 @@ Stats.loadObservations = function( json ) {
 Stats.loadObservations7Days = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
     element_id: "obs_7",
+    chartType: google.visualization.AnnotationChart,
     series: [
-      { label: "Identifications" },
       { label: "Observations" },
+      { label: "Identifications" },
       { label: "Active Users" }
     ],
     data: _.map( json, function( stat ) {
@@ -122,7 +123,7 @@ Stats.monthAgoDate = function( ) {
 };
 
 Stats.simpleChart = function( options ) {
-  options.chartType = options.chartType || google.visualization.AnnotationChart;
+  options.chartType = options.chartType || google.visualization.AreaChart;
   var chartOptions = options.chartOptions || { };
   var data = new google.visualization.DataTable( );
   if( options.chartType === google.visualization.AreaChart ) {

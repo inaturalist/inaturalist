@@ -34,14 +34,16 @@ class SiteStatistic < ActiveRecord::Base
     { count: Observation.where("created_at <= ?", at_time).count,
       research_grade: Observation.where("created_at <= ?", at_time).
         has_quality_grade(Observation::RESEARCH_GRADE).count,
-      last_7_days: Observation.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count
+      last_7_days: Observation.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      today: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
     }
   end
 
   def self.identifications_stats(at_time = Time.now)
     at_time = at_time.utc
     { count: Identification.where("created_at <= ?", at_time).count,
-      last_7_days: Identification.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count
+      last_7_days: Identification.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      today: Identification.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
     }
   end
 
@@ -51,13 +53,17 @@ class SiteStatistic < ActiveRecord::Base
       curators: User.where("created_at <= ?", at_time).curators.count,
       admins: User.where("created_at <= ?", at_time).admins.count,
       active: User.active_ids(at_time).count,
-      last_7_days: User.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count }
+      last_7_days: User.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      today: User.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
+    }
   end
 
   def self.projects_stats(at_time = Time.now)
     at_time = at_time.utc
     { count: Project.where("created_at <= ?", at_time).count,
-      last_7_days: Project.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count }
+      last_7_days: Project.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      today: Project.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
+    }
   end
 
   def self.taxa_stats(at_time = Time.now)

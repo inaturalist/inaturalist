@@ -20,9 +20,9 @@ describe SiteStatistic do
     before :all do
       User.destroy_all
       Observation.destroy_all
-      @user = make_curator
-      make_user_with_role(:admin)
-      Project.make!
+      @user = make_curator(created_at: Time.now)
+      make_user_with_role(:admin, created_at: Time.now)
+      Project.make!(user: User.make!(created_at: Time.now))
       @site = Site.make!
       observation = Observation.make!(
         taxon: Taxon.make!(rank: "species"), user: @user, site: @site)
@@ -34,12 +34,13 @@ describe SiteStatistic do
       SiteStatistic.generate_stats_for_day
       @stat = SiteStatistic.last.data
       expect( @stat ).to eq({
-        "identifications" => { "count"=> 3, "last_7_days" => 3 },
+        "identifications" => { "count"=> 3, "last_7_days" => 3, "today" => 3 },
         "observations" => { "count" => 2, "research_grade" => 1,
-          "last_7_days" => 2 },
+          "last_7_days" => 2, "today" => 2 },
         "users" => { "count" => 4, "curators" => 2, "admins" => 1,
-          "active" => 2, "last_7_days" => 4 },
-        "projects" => { "count" => 1, "last_7_days" => 1 },
+          # users are made 5 days ago by default, the extra one comes from the identification on the RG obserbation
+          "active" => 2, "last_7_days" => 4, "today" => 3 }, 
+        "projects" => { "count" => 1, "last_7_days" => 1, "today" => 1 },
         "taxa" => {
           "species_counts" => 1,
           "species_counts_by_site" => { @site.name => 1 },
@@ -54,12 +55,12 @@ describe SiteStatistic do
       # For earlier dates we will limit queries by created_at date
       # When looking one year in the past, there should be no data
       expect( @stat ).to eq({
-        "identifications" => { "count"=> 0, "last_7_days" => 0 },
+        "identifications" => { "count"=> 0, "last_7_days" => 0, "today" => 0 },
         "observations" => { "count" => 0, "research_grade" => 0,
-          "last_7_days" => 0 },
+          "last_7_days" => 0, "today" => 0 },
         "users" => { "count" => 0, "curators" => 0, "admins" => 0,
-          "active" => 0, "last_7_days" => 0 },
-        "projects" => { "count" => 0, "last_7_days" => 0 },
+          "active" => 0, "last_7_days" => 0, "today" => 0 },
+        "projects" => { "count" => 0, "last_7_days" => 0, "today" => 0 },
         "taxa" => {
           "species_counts" => 0,
           "species_counts_by_site" => { },
