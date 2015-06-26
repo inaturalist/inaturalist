@@ -6,11 +6,12 @@
   <%= google_maps_js %>
   <%= javascript_include_tag 'map_bundle', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
+    var PRESERVE_VIEWPORT = <%= !!(@project.latitude && @project.zoom_level).to_s %>,
+        PROJECT = <%=json_escape @project.to_json(:only => [:id, :slug, :title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
         PLACE = <%=json_escape @place.to_json.html_safe %>,
         SHOW_PLACE_GEOMETRY = true,
         OBSERVATIONS = <%=json_escape @observations.to_json(:include => :iconic_taxon).html_safe %>,
-        OBSERVATIONS_URL = "",
+        OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
     $(document).ready(function() {
       $('a').attr('target', '_blank')

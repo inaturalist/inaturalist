@@ -15,6 +15,8 @@ class PlacesController < ApplicationController
   caches_page :geometry
   caches_page :cached_guide
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
+
+  before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
   
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
   

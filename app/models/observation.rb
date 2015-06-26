@@ -427,7 +427,7 @@ class Observation < ActiveRecord::Base
   scope :has_photos, -> { where("observation_photos_count > 0") }
   scope :has_sounds, -> { where("observation_sounds_count > 0") }
   scope :has_quality_grade, lambda {|quality_grade|
-    quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
+    quality_grade = '' unless QUALITY_GRADES.include?(quality_grade.to_s)
     where("quality_grade = ?", quality_grade)
   }
   
