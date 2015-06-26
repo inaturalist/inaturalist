@@ -1,7 +1,7 @@
 class SiteStatistic < ActiveRecord::Base
 
   STAT_TYPES = [ :observations, :users, :projects,
-    :taxa, :identifications ]
+    :taxa, :identifications, :identifier ]
 
   def self.generate_stats_for_day(at_time = Time.now)
     at_time = at_time.utc.end_of_day
@@ -92,6 +92,62 @@ class SiteStatistic < ActiveRecord::Base
         }
       ]
     }
+  end
+
+  def self.identifier_stats(at_time = Time.now)
+    at_time = at_time.utc
+    sql = <<-SQL
+    SELECT 
+      AVG(ttid)::numeric AS avg_ttid,
+      MEDIAN(ttid)::numeric AS med_ttid,
+      MIN(ttid)::numeric AS min_ttid,
+      MAX(ttid)::numeric AS max_ttid,
+      AVG(ttcid)::numeric AS avg_ttcid,
+      MEDIAN(ttcid)::numeric AS med_ttcid,
+      MIN(ttcid)::numeric AS min_ttcid,
+      MAX(ttcid)::numeric AS max_ttcid,
+      count(first_identification_id) / GREATEST(count(*),1)::float AS percent_id,
+      count(community_taxon_id) / GREATEST(count(*),1)::float AS percent_cid,
+      count(CASE WHEN community_taxon_rank_level <= 20 THEN 1 ELSE NULL END) / GREATEST(count(*),1)::float AS percent_cid_to_genus,
+      count(first_identification_id) AS total_id,
+      count(community_taxon_id) AS total_cid,
+      count(CASE WHEN community_taxon_rank_level <= 20 THEN 1 ELSE NULL END) AS total_cid_to_genus,
+      count(*) AS total_observations
+    FROM (
+      SELECT
+        o.id,
+        o.created_at,
+        count(i.id) AS identifications_count,
+        o.community_taxon_id,
+        MIN(t.rank_level) AS community_taxon_rank_level,
+        MIN(i.id) AS first_identification_id,
+        (EXTRACT(EPOCH FROM MIN(i.created_at)) - EXTRACT(EPOCH FROM o.created_at)) AS ttid,
+        (EXTRACT(EPOCH FROM MIN(ci.created_at)) - EXTRACT(EPOCH FROM o.created_at)) AS ttcid
+      FROM observations o
+        LEFT OUTER JOIN (
+          SELECT identifications.* 
+          FROM identifications JOIN observations ON identifications.observation_id = observations.id
+          WHERE identifications.user_id != observations.user_id
+        ) i ON i.observation_id = o.id
+        LEFT OUTER JOIN (
+          SELECT identifications.* 
+          FROM identifications JOIN observations ON identifications.observation_id = observations.id
+          WHERE 
+            identifications.user_id != observations.user_id AND
+            identifications.taxon_id = observations.community_taxon_id
+        ) ci ON ci.observation_id = o.id
+        LEFT OUTER JOIN taxa t ON t.id = o.community_taxon_id
+      WHERE
+        o.observation_photos_count > 0
+      GROUP BY o.id
+    ) AS obs_id_stats
+    WHERE
+      obs_id_stats.created_at BETWEEN '#{(at_time - 1.week).to_s(:db)}' AND '#{at_time.to_s(:db)}'
+    SQL
+    Site.connection.execute(sql)[0].inject({}) do |memo,pair|
+      memo[pair[0]] = pair[1].to_numeric
+      memo
+    end
   end
 
 end

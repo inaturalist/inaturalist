@@ -33,20 +33,12 @@ describe SiteStatistic do
     it "should generate stats for today" do
       SiteStatistic.generate_stats_for_day
       @stat = SiteStatistic.last.data
-      expect( @stat ).to eq({
-        "identifications" => { "count"=> 3, "last_7_days" => 3, "today" => 3 },
-        "observations" => { "count" => 2, "research_grade" => 1,
-          "last_7_days" => 2, "today" => 2 },
-        "users" => { "count" => 4, "curators" => 2, "admins" => 1,
-          # users are made 5 days ago by default, the extra one comes from the identification on the RG obserbation
-          "active" => 2, "last_7_days" => 4, "today" => 3 }, 
-        "projects" => { "count" => 1, "last_7_days" => 1, "today" => 1 },
-        "taxa" => {
-          "species_counts" => 1,
-          "species_counts_by_site" => { @site.name => 1 },
-          "count_by_rank" => { "species" => 1, "kingdom" => 1 }
-        }
-      })
+      expect( @stat['identifications']['count'] ).to eq 3
+      expect( @stat['observations']['count'] ).to eq 2
+      expect( @stat['users']['count'] ).to eq 4
+      expect( @stat['projects']['count'] ).to eq 1
+      expect( @stat['taxa']['species_counts'] ).to eq 1
+      expect( @stat['identifier']['percent_id'] ).to eq 1
     end
 
     it "should generate stats for another day" do
@@ -54,19 +46,12 @@ describe SiteStatistic do
       @stat = SiteStatistic.last.data
       # For earlier dates we will limit queries by created_at date
       # When looking one year in the past, there should be no data
-      expect( @stat ).to eq({
-        "identifications" => { "count"=> 0, "last_7_days" => 0, "today" => 0 },
-        "observations" => { "count" => 0, "research_grade" => 0,
-          "last_7_days" => 0, "today" => 0 },
-        "users" => { "count" => 0, "curators" => 0, "admins" => 0,
-          "active" => 0, "last_7_days" => 0, "today" => 0 },
-        "projects" => { "count" => 0, "last_7_days" => 0, "today" => 0 },
-        "taxa" => {
-          "species_counts" => 0,
-          "species_counts_by_site" => { },
-          "count_by_rank" => { }
-        }
-      })
+      expect( @stat['identifications']['count'] ).to eq 0
+      expect( @stat['observations']['count'] ).to eq 0
+      expect( @stat['users']['count'] ).to eq 0
+      expect( @stat['projects']['count'] ).to eq 0
+      expect( @stat['taxa']['species_counts'] ).to eq 0
+      expect( @stat['identifier']['percent_id'] ).to eq 0
     end
   end
 

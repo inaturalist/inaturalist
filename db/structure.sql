@@ -453,6 +453,52 @@ CREATE TYPE valid_detail AS (
 
 
 --
+-- Name: _final_median(numeric[]); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _final_median(numeric[]) RETURNS numeric
+    LANGUAGE sql IMMUTABLE
+    AS $_$
+   SELECT AVG(val)
+   FROM (
+     SELECT val
+     FROM unnest($1) val
+     ORDER BY 1
+     LIMIT  2 - MOD(array_upper($1, 1), 2)
+     OFFSET CEIL(array_upper($1, 1) / 2.0) - 1
+   ) sub;
+$_$;
+
+
+--
+-- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _final_median(anyarray) RETURNS double precision
+    LANGUAGE sql IMMUTABLE
+    AS $_$ 
+        WITH q AS
+        (
+           SELECT val
+           FROM unnest($1) val
+           WHERE VAL IS NOT NULL
+           ORDER BY 1
+        ),
+        cnt AS
+        (
+          SELECT COUNT(*) AS c FROM q
+        )
+        SELECT AVG(val)::float8
+        FROM 
+        (
+          SELECT val FROM q
+          LIMIT  2 - MOD((SELECT c FROM cnt), 2)
+          OFFSET GREATEST(CEIL((SELECT c FROM cnt) / 2.0) - 1,0)  
+        ) q2;
+      $_$;
+
+
+--
 -- Name: _postgis_deprecate(text, text, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -7144,6 +7190,30 @@ BEGIN
 
 END;
 $$;
+
+
+--
+-- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
+--
+
+CREATE AGGREGATE median(anyelement) (
+    SFUNC = array_append,
+    STYPE = anyarray,
+    INITCOND = '{}',
+    FINALFUNC = public._final_median
+);
+
+
+--
+-- Name: median(numeric); Type: AGGREGATE; Schema: public; Owner: -
+--
+
+CREATE AGGREGATE median(numeric) (
+    SFUNC = array_append,
+    STYPE = numeric[],
+    INITCOND = '{}',
+    FINALFUNC = public._final_median
+);
 
 
 --
@@ -15438,4 +15508,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150614212053');
 INSERT INTO schema_migrations (version) VALUES ('20150619231829');
 
 INSERT INTO schema_migrations (version) VALUES ('20150622201252');
+
+INSERT INTO schema_migrations (version) VALUES ('20150625230227');
 
