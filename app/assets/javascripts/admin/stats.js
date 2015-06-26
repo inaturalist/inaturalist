@@ -83,8 +83,7 @@ Stats.loadTTID = function( json ) {
       { label: "Med TTID" },
       { label: "Avg TTID" },
       { label: "Med TTCID" },
-      { label: "Avg TTCID" },
-      { label: "Obs" }
+      { label: "Avg TTCID" }
     ],
     data: _.map( json, function( stat ) {
       if (stat.data.identifier) {
@@ -93,22 +92,19 @@ Stats.loadTTID = function( json ) {
           stat.data.identifier.med_ttid / 60, 
           stat.data.identifier.avg_ttid / 60, 
           stat.data.identifier.med_ttcid / 60,
-          stat.data.identifier.avg_ttcid / 60,
-          stat.data.observations.last_7_days
+          stat.data.identifier.avg_ttcid / 60
         ];
       } else {
         return [ new Date(stat.created_at), 0, 0, 0, 0, 0];
       }
     }),
     chartOptions: {
-      scaleColumns: [0,4],
       scaleType: 'allfixed',
       colors: [
         dodgerblue.toString(), 
         ldodgerblue.toString(),
         pink.toString(), 
-        lpink.toString(),
-        'DarkOrange'
+        lpink.toString()
       ]
     }
   }));
