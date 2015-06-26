@@ -55,7 +55,6 @@ Stats.loadObservations7Days = function( json ) {
       { label: "Obs CID'd" },
       { label: "Obs CID'd to genus" },
       { label: "Obs (1 day)" },
-      { label: "IDs" },
       { label: "Active Users" }
     ],
     data: _.map( json, function( stat ) {
@@ -66,7 +65,6 @@ Stats.loadObservations7Days = function( json ) {
         stat.data.observations.community_identified, 
         stat.data.observations.community_identified_to_genus, 
         stat.data.observations.today, 
-        stat.data.identifications.last_7_days, 
         stat.data.users.active
       ];
     })
@@ -96,7 +94,7 @@ Stats.loadTTID = function( json ) {
           stat.data.identifier.avg_ttid / 60, 
           stat.data.identifier.med_ttcid / 60,
           stat.data.identifier.avg_ttcid / 60,
-          stat.data.identifier.total_observations
+          stat.data.observations.last_7_days
         ];
       } else {
         return [ new Date(stat.created_at), 0, 0, 0, 0, 0];
@@ -159,7 +157,7 @@ Stats.loadUsers = function( json ) {
         stat.data.users.active, 
         stat.data.users.today, 
         stat.data.users.identifiers,
-        stat.data.users.count,
+        stat.data.users.last_7_days,
         stat.data.users.recent_7_obs,
         stat.data.users.recent_0_obs
       ];
