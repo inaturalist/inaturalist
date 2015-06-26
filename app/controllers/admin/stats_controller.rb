@@ -17,7 +17,7 @@ class Admin::StatsController < ApplicationController
           @start_date = @end_date - 1.year
         end
         fetch_statistics
-        render :index
+        render layout: 'bootstrap'
       }
     end
   end

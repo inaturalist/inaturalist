@@ -35,7 +35,10 @@ class SiteStatistic < ActiveRecord::Base
       research_grade: Observation.where("created_at <= ?", at_time).
         has_quality_grade(Observation::RESEARCH_GRADE).count,
       last_7_days: Observation.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
-      today: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
+      today: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count,
+      identified: Observation.where("taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      community_identified: Observation.where("community_taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      community_identified_to_genus: Observation.joins(:community_taxon).where("taxa.rank_level <= 20 AND observations.created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count
     }
   end
 
@@ -54,7 +57,19 @@ class SiteStatistic < ActiveRecord::Base
       admins: User.where("created_at <= ?", at_time).admins.count,
       active: User.active_ids(at_time).count,
       last_7_days: User.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
-      today: User.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
+      today: User.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count,
+      identifiers: Identification.joins(:observation).
+        where("identifications.created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
+        where("identifications.user_id != observations.user_id").
+        count("DISTINCT identifications.user_id"),
+      recent_7_obs: User.
+        where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
+        where("observations_count >= 7").
+        count,
+      recent_0_obs: User.
+        where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
+        where("observations_count = 0").
+        count
     }
   end
 
@@ -108,11 +123,7 @@ class SiteStatistic < ActiveRecord::Base
       MAX(ttcid)::numeric AS max_ttcid,
       count(first_identification_id) / GREATEST(count(*),1)::float AS percent_id,
       count(community_taxon_id) / GREATEST(count(*),1)::float AS percent_cid,
-      count(CASE WHEN community_taxon_rank_level <= 20 THEN 1 ELSE NULL END) / GREATEST(count(*),1)::float AS percent_cid_to_genus,
-      count(first_identification_id) AS total_id,
-      count(community_taxon_id) AS total_cid,
-      count(CASE WHEN community_taxon_rank_level <= 20 THEN 1 ELSE NULL END) AS total_cid_to_genus,
-      count(*) AS total_observations
+      count(CASE WHEN community_taxon_rank_level <= 20 THEN 1 ELSE NULL END) / GREATEST(count(*),1)::float AS percent_cid_to_genus
     FROM (
       SELECT
         o.id,

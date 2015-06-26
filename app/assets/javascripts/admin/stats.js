@@ -22,12 +22,14 @@ Stats.loadAjaxCharts = function( ) {
 };
 
 Stats.loadChartsFromJSON = function( json ) {
-  Stats.loadObservations( json );
+  Stats.loadObservations7Days( json );
+  Stats.loadTTID( json );
   Stats.loadUsers( json );
+  Stats.loadObservations( json );
+  Stats.loadCumulativeUsers( json );
   Stats.loadProjects( json );
   Stats.loadRanks( json );
   Stats.loadRanksPie( json );
-  Stats.loadObservations7Days( json );
 };
 
 Stats.loadObservations = function( json ) {
@@ -48,13 +50,69 @@ Stats.loadObservations7Days = function( json ) {
     element_id: "obs_7",
     chartType: google.visualization.AnnotationChart,
     series: [
-      { label: "Observations" },
-      { label: "Identifications" },
+      { label: "Obs" },
+      { label: "Obs ID'd" },
+      { label: "Obs CID'd" },
+      { label: "Obs CID'd to genus" },
+      { label: "Obs (1 day)" },
+      { label: "IDs" },
       { label: "Active Users" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.identifications.last_7_days, stat.data.observations.last_7_days, stat.data.users.active ];
+      return [ 
+        new Date(stat.created_at), 
+        stat.data.observations.last_7_days, 
+        stat.data.observations.identified, 
+        stat.data.observations.community_identified, 
+        stat.data.observations.community_identified_to_genus, 
+        stat.data.observations.today, 
+        stat.data.identifications.last_7_days, 
+        stat.data.users.active
+      ];
     })
+  }));
+};
+
+Stats.loadTTID = function( json ) {
+  var dodgerblue = d3.rgb('dodgerblue'),
+      ldodgerblue = d3.rgb(dodgerblue.r + 75, dodgerblue.g + 75, dodgerblue.b + 75),
+      pink = d3.rgb('deeppink'),
+      lpink = d3.rgb(pink.r + 100, pink.g + 100, pink.b + 100)
+  google.setOnLoadCallback(Stats.simpleChart({
+    element_id: "ttid",
+    chartType: google.visualization.AnnotationChart,
+    series: [
+      { label: "Med TTID" },
+      { label: "Avg TTID" },
+      { label: "Med TTCID" },
+      { label: "Avg TTCID" },
+      { label: "Obs" }
+    ],
+    data: _.map( json, function( stat ) {
+      if (stat.data.identifier) {
+        return [ 
+          new Date(stat.created_at), 
+          stat.data.identifier.med_ttid / 60, 
+          stat.data.identifier.avg_ttid / 60, 
+          stat.data.identifier.med_ttcid / 60,
+          stat.data.identifier.avg_ttcid / 60,
+          stat.data.identifier.total_observations
+        ];
+      } else {
+        return [ new Date(stat.created_at), 0, 0, 0, 0, 0];
+      }
+    }),
+    chartOptions: {
+      scaleColumns: [0,4],
+      scaleType: 'allfixed',
+      colors: [
+        dodgerblue.toString(), 
+        ldodgerblue.toString(),
+        pink.toString(), 
+        lpink.toString(),
+        'DarkOrange'
+      ]
+    }
   }));
 };
 
@@ -68,9 +126,9 @@ Stats.loadProjects = function( json ) {
   }));
 };
 
-Stats.loadUsers = function( json ) {
+Stats.loadCumulativeUsers = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
-    element_id: "users",
+    element_id: "cumulative-users",
     series: [
       { label: "Total" },
       { label: "Active" },
@@ -79,6 +137,32 @@ Stats.loadUsers = function( json ) {
     ],
     data: _.map( json, function( stat ) {
       return [ new Date(stat.created_at), stat.data.users.count, stat.data.users.active, stat.data.users.curators, stat.data.users.admins ];
+    })
+  }));
+};
+
+Stats.loadUsers = function( json ) {
+  google.setOnLoadCallback(Stats.simpleChart({
+    element_id: "users",
+    chartType: google.visualization.AnnotationChart,
+    series: [
+      { label: "Active" },
+      { label: "New" },
+      { label: "Identifiers" },
+      { label: "Recent" },
+      { label: "Recent w/ >= 7 obs" },
+      { label: "Recent w/ 0 obs" },
+    ],
+    data: _.map( json, function( stat ) {
+      return [ 
+        new Date(stat.created_at), 
+        stat.data.users.active, 
+        stat.data.users.today, 
+        stat.data.users.identifiers,
+        stat.data.users.count,
+        stat.data.users.recent_7_obs,
+        stat.data.users.recent_0_obs
+      ];
     })
   }));
 };
@@ -130,8 +214,12 @@ Stats.simpleChart = function( options ) {
     data.addColumn( 'date', 'Date' );
     chartOptions.vAxis = { minValue: 0 };
     chartOptions.height = 300;
-    chartOptions.chartArea = { width: "70%", height: "80%" };
-    chartOptions.explorer = { axis: "horizontal", keepInBounds: true, zoomDelta: 1.05 };
+    chartOptions.chartArea = { height: "80%" };
+    chartOptions.explorer = { 
+      axis: "horizontal", 
+      keepInBounds: false, 
+      zoomDelta: 1.05
+    };
   } else if( options.chartType === google.visualization.PieChart ) {
     data.addColumn( 'string', 'Key' );
     data.addColumn( 'number', 'Value' );
