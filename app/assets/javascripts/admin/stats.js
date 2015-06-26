@@ -95,7 +95,7 @@ Stats.loadTTID = function( json ) {
           stat.data.identifier.avg_ttcid / 60
         ];
       } else {
-        return [ new Date(stat.created_at), 0, 0, 0, 0, 0];
+        return [ new Date(stat.created_at), null, null, null, null];
       }
     }),
     chartOptions: {
