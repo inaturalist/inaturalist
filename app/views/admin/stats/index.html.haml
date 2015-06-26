@@ -31,12 +31,14 @@
       %h3 Time to ID (hours, 1 week moving window)
       #ttid.stacked.vis
         .loading.status=t :loading
-      .meta
+      %p.meta
         %strong TTID
         is time to receive an identification from someone else, and 
         %strong TTCID
         is time to receive an identification from someone else that matches the community taxon.
         These stats are made for observations created for a week prior, which means it will miss identifications added to observations after more than a week, and thus make the stats look lower than they would if you computed them again in the present, but they should still provide a decent measure for how fast the community is at identifying within 1 week windows.
+      %p.meta
+        Note that these stats are only for observations with photos.
   .row
     .span12
       %h3=t :users
@@ -53,7 +55,7 @@
     .span6
       %dl.meta
         %dt Recent
-        %dd Signed up in prev 7
+        %dd Signed up in prev 7 days
         %dt Recent w/ >= 5 obs
         %dd Signed up in prev 7 days and added >= 7 obs
         %dt Recent w/ 0 obs
