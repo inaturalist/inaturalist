@@ -507,10 +507,9 @@ class Observation < ActiveRecord::Base
   scope :week, lambda {|week| where("EXTRACT(WEEK FROM observed_on) = ?", week)}
   
   scope :in_projects, lambda { |projects|
-    projects = projects.split(',').map(&:to_i) if projects.is_a?(String)
+    projects = projects.split(',') if projects.is_a?(String)
     projects = [projects].flatten.compact
     projects = projects.map do |p|
-      # p.to_i == 0 ? Project.find(p).try(:id) : p rescue nil
       if p.is_a?(Project)
         p.id
       elsif p.to_i == 0
