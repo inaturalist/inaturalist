@@ -510,13 +510,10 @@ class Observation < ActiveRecord::Base
     projects = projects.split(',') if projects.is_a?(String)
     projects = [projects].flatten.compact
     projects = projects.map do |p|
-      if p.is_a?(Project)
-        p.id
-      elsif p.to_i == 0
-        Project.find(p).try(:id) rescue nil
-      else
-        p
-      end
+      project_id = p if p.is_a? Fixnum
+      project_id ||= p.id if p.is_a? Project
+      project_id ||= Project.find(p).try(:id) rescue nil
+      project_id
     end.compact
     # NOTE using :include seems to trigger an erroneous eager load of 
     # observations that screws up sorting kueda 2011-07-22
