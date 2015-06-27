@@ -97,74 +97,34 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-    search_params = Observation.site_search_params(@site, params)
     # making `page` default to a string because HTTP params are
     # usually strings and we want to keep the cache_key consistent
-    search_params[:page] ||= "1"
+    params[:page] ||= "1"
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, site: @site)
+    search_params = Observation.apply_pagination_options(search_params,
+      user_preferences: @prefs)
     if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
-      search_cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
-      search_cache_params[:locale] ||= I18n.locale
-      search_cache_params[:per_page] ||= search_params[:per_page]
-      search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-      search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
-      search_cache_key = "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
-      # setting a unique key to be used to cache view partials
-      view_cache_params = search_cache_params.merge({
-        partial: params[:partial],
-        view: (@view || params[:view]),
-        ssl: request.ssl? })
-      @observation_partial_cache_key =
-        "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
+      search_key = search_cache_key(search_params)
+      @observation_partial_cache_key = view_cache_key(search_params)
       # Get the cached filtered observations
-      @observations = Rails.cache.fetch(search_cache_key, expires_in: 5.minutes, compress: true) do
-        get_elastic_paginated_observations(search_params)
+      @observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
+        obs = Observation.page_of_results(search_params)
+        Observation.preload_for_component(obs, logged_in: !!current_user)
+        obs
       end
     else
-      @observations = get_elastic_paginated_observations(search_params)
+      @observations = Observation.page_of_results(search_params)
     end
+    set_up_instance_variables(search_params)
 
     respond_to do |format|
       
       format.html do
         @iconic_taxa ||= []
-        grid_affecting_params = request.query_parameters.reject{ |k,v|
-          MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
-        # there are no parameters at all, so we can show the grid for all taxa
-        if grid_affecting_params.blank?
-          @display_map_tiles = true
-        # we can only show grids when quality_grade = 'any',
-        # and all other parameters are empty
-        elsif grid_affecting_params.delete("quality_grade") == "any" &&
-          grid_affecting_params.delete("identifications") == "any" &&
-          grid_affecting_params.detect{ |k,v| v != "" }.nil?
-          @display_map_tiles = true
-        end
-        # if we are showing a grid
-        if @display_map_tiles
-          valid_map_params = {
-            taxon: @observations_taxon.blank? ? nil : @observations_taxon,
-            user_id: @user.blank? ? nil : @user.id,
-            place_id: @place.blank? ? nil : @place.id,
-            project_id: @projects.blank? ? nil: @projects.first.id,
-            d1: params[:d1],
-            d2: params[:d2]
-          }.delete_if{ |k,v| v.nil? }
-          if valid_map_params.empty?
-            # there are no options, so show all observations by default
-            @enable_show_all_layer = true
-          elsif valid_map_params.length == 1 && valid_map_params[:taxon]
-            # there is just a taxon, so show the taxon observations lyers
-            @map_params = { taxon_layers: [ { taxon: valid_map_params[:taxon],
-              observations: true, ranges: { disabled: true }, places: { disabled: true },
-              gbif: { disabled: true } } ], focus: :observations }
-          else
-            # otherwise show our catch-all "Featured Observations" custom layer
-            # this layer should have have taxon_id, not taxon
-            valid_map_params[:taxon_id] = valid_map_params[:taxon].id if valid_map_params[:taxon]
-            valid_map_params.delete(:taxon)
-            @map_params = { observation_layers: [ valid_map_params.merge(observations: @observations) ] }
-          end
-        end
+        determine_if_map_should_be_shown
+        prepare_map_params
+        Observation.preload_for_component(@observations, logged_in: !!current_user)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
           return render_observations_partial(partial)
@@ -1084,8 +1044,6 @@ class ObservationsController < ApplicationController
   end
 
   def export
-    search_params, find_options = get_search_params(params)
-    search_params = Observation.site_search_params(@site, search_params)
     if params[:flow_task_id]
       if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
         output = @flow_task.outputs.first
@@ -1152,8 +1110,13 @@ class ObservationsController < ApplicationController
       :viewer => current_user, 
       :filter_spam => (current_user.blank? || current_user != @selected_user)
     )
-    @observations = get_elastic_paginated_observations(params)
-    
+    search_params = Observation.get_search_params(params,
+      current_user: current_user)
+    search_params = Observation.apply_pagination_options(search_params,
+      user_preferences: @prefs)
+    @observations = Observation.page_of_results(search_params)
+    set_up_instance_variables(search_params)
+    Observation.preload_for_component(@observations, logged_in: !!current_user)
     respond_to do |format|
       format.html do
         @observer_provider_authorizations = @selected_user.provider_authorizations
@@ -1227,11 +1190,15 @@ class ObservationsController < ApplicationController
     else
       params[:has] = 'id_please'
     end
-    search_params = Observation.site_search_params(@site, params)
-    @observations = get_elastic_paginated_observations(search_params)
-    Observation.preload_associations(@observations, [ :projects,
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, site: @site)
+    search_params = Observation.apply_pagination_options(search_params)
+    @observations = Observation.page_of_results(search_params)
+    Observation.preload_for_component(@observations, logged_in: !!current_user)
+    Observation.preload_associations(@observations, [
       { identifications: [ :taxon, :user ] } ])
     @top_identifiers = User.order("identifications_count DESC").limit(5)
+    set_up_instance_variables(search_params)
     if @site && @site.site_only_users
       @top_identifiers = @top_identifiers.where(:site_id => @site)
     end
@@ -1240,10 +1207,12 @@ class ObservationsController < ApplicationController
   # Renders observation components as form fields for inclusion in 
   # observation-picking form widgets
   def selector
-    search_params, find_options = get_search_params(params)
+    search_params = Observation.get_search_params(params,
+      current_user: current_user)
+    search_params = Observation.apply_pagination_options(search_params)
     @observations = Observation.latest.query(search_params).paginate(
-      page: find_options[:page], per_page: find_options[:per_page])
-      
+      page: search_params[:page], per_page: search_params[:per_page])
+    Observation.preload_for_component(@observations, logged_in: !!current_user)
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}
       # format.js
@@ -1323,7 +1292,14 @@ class ObservationsController < ApplicationController
     end
     
     params[:projects] = @project.id
-    @observations = get_elastic_paginated_observations(params)
+
+    search_params = Observation.get_search_params(params,
+      current_user: current_user)
+    search_params = Observation.apply_pagination_options(search_params,
+      user_preferences: @prefs)
+    @observations = Observation.page_of_results(search_params)
+    set_up_instance_variables(search_params)
+    Observation.preload_for_component(@observations, logged_in: !!current_user)
     
     @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
@@ -1550,7 +1526,6 @@ class ObservationsController < ApplicationController
 
   def stats
     @headless = @footless = true
-    search_params, find_options = get_search_params(params)
     stats_adequately_scoped?
     respond_to do |format|
       format.html
@@ -1560,12 +1535,12 @@ class ObservationsController < ApplicationController
   def taxa
     can_view_leaves = logged_in? && current_user.is_curator?
     params[:rank] = nil unless can_view_leaves
-    search_params, find_options = get_search_params(params,
-      skip_order: true, skip_pagination: true)
+    params[:skip_order] = true
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, skip_pagination: true)
     oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     if params[:rank] != "leaves"
-      search_params.merge!(find_options)
       elastic_params = prepare_counts_elastic_query(search_params)
       # using 0 for the aggregation count to get all results
       distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
@@ -1652,9 +1627,9 @@ class ObservationsController < ApplicationController
   end
 
   def taxon_stats
-    search_params, find_options = get_search_params(params,
-      skip_order: true, skip_pagination: true)
-    search_params.merge!(find_options)
+    params[:skip_order] = true
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, skip_pagination: true)
     # currently we can't search ES for leaf nodes
     if Observation.able_to_use_elasticsearch?(search_params)
       elastic_taxon_stats(search_params)
@@ -1687,9 +1662,9 @@ class ObservationsController < ApplicationController
   end
 
   def user_stats
-    search_params, find_options = get_search_params(params,
-      skip_order: true, skip_pagination: true)
-    search_params.merge!(find_options)
+    params[:skip_order] = true
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, skip_pagination: true)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
     if Observation.able_to_use_elasticsearch?(search_params)
@@ -1806,7 +1781,9 @@ class ObservationsController < ApplicationController
   def accumulation
     params[:order_by] = "observed_on"
     params[:order] = "asc"
-    search_params, find_options = get_search_params(params, :skip_pagination => true)
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, skip_pagination: true)
+    set_up_instance_variables(search_params)
     scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     scope = scope.joins(:taxon).
@@ -1840,8 +1817,9 @@ class ObservationsController < ApplicationController
   end
 
   def phylogram
-    search_params, find_options = get_search_params(params,
-      skip_order: true, skip_pagination: true)
+    params[:skip_order] = true
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, skip_pagination: true)
     scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     ancestor_ids_sql = <<-SQL
@@ -2055,40 +2033,8 @@ class ObservationsController < ApplicationController
     end
     photos
   end
-  
-  # Processes params for observation requests.  Designed for use with 
-  # will_paginate and standard observations query API
-  def get_search_params(params, options = {})
-    search_params = Observation.query_params(params.merge(skip_order: options[:skip_order]))
 
-    find_options = {
-      :include => [:user, {:taxon => [:taxon_names]}, :taggings, {:observation_photos => :photo}],
-      :page => search_params[:page]
-    }
-    unless options[:skip_pagination]
-      find_options[:page] = find_options[:page].to_i
-      find_options[:page] = 1 if find_options[:page] <= 0
-      find_options[:per_page] = @prefs["per_page"] if @prefs
-      if !search_params[:per_page].blank?
-        find_options.update(:per_page => search_params[:per_page])
-      elsif !search_params[:limit].blank?
-        find_options.update(:per_page => search_params[:limit])
-      end
-      
-      if find_options[:per_page] && find_options[:per_page].to_i > 200
-        find_options[:per_page] = 200
-      end
-      find_options[:per_page] = 30 if find_options[:per_page].to_i <= 0
-    end
-    
-    if find_options[:limit] && find_options[:limit].to_i > 200
-      find_options[:limit] = 200
-    end
-    
-    unless request && request.format && request.format.html?
-      find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
-    end
-    
+  def set_up_instance_variables(search_params)
     @swlat = search_params[:swlat] unless search_params[:swlat].blank?
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
@@ -2159,61 +2105,8 @@ class ObservationsController < ApplicationController
       !@lrank.blank? ||
       !@hrank.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
-    
-    [search_params, find_options]
   end
 
-  def get_elastic_paginated_observations(params)
-    # get_search_params also sets a bunch of instance variables for the UI
-    search_params, find_options = get_search_params(params)
-    unless Observation.able_to_use_elasticsearch?(search_params)
-      # if we have one of these non-elastic attributes,
-      # then default to searching PostgreSQL via ActiveRecord
-      return get_paginated_observations(search_params, find_options)
-    end
-    Observation.elastic_query(search_params.merge(find_options), current_user: current_user)
-  end
-
-  # Make a plain db query and return a WillPaginate collection.
-  # Normally called if get_paginated_observations cannot be used,
-  # for example when searching on attributes not in ES
-  def get_paginated_observations(search_params, find_options)
-    query_scope = Observation.query(search_params)
-    if search_params[:filter_spam]
-      query_scope = query_scope.not_flagged_as_spam
-    end
-    # COUNT( ) OVER( ) works great with smaller result sets, so here
-    # we are choosing to use it when there are some decent filters
-    # to work with, otherwise we'll use standard paginate which will
-    # initiate two separate queries
-    if search_params[:place_id] || search_params[:taxon_id] ||
-      search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
-      @observations = query_scope.paginate_with_count_over(find_options)
-    else
-      @observations = query_scope.where(find_options[:conditions]).
-        includes(find_options[:include]).
-        paginate(page: find_options[:page], per_page: find_options[:per_page]).
-        order(find_options[:order])
-    end
-    unless request.format && request.format.json?
-      Observation.preload_associations(@observations,
-        [ :sounds,
-          :stored_preferences,
-          :quality_metrics,
-          :projects,
-          :flags,
-          { :photos => :flags },
-          { :user => :stored_preferences },
-          { :taxon => :taxon_descriptions },
-          { :iconic_taxon => :taxon_descriptions }
-        ])
-    end
-    # make sure we return the paginate collection
-    @observations
-  rescue Exception => e
-    Rails.logger.error "[ERROR] Observations::get_paginated_observations failed: #{ e }"
-  end
-  
   # Refresh lists affected by taxon changes in a batch of new/edited
   # observations.  Note that if you don't set @skip_refresh_lists on the records
   # in @observations before this is called, this won't do anything
@@ -2820,6 +2713,72 @@ class ObservationsController < ApplicationController
     elastic_params = Observation.params_to_elastic_query(
       search_params, current_user: current_user).
       select{ |k,v| [ :where, :filters ].include?(k) }
+  end
+
+  def search_cache_key(search_params)
+    search_cache_params = search_params.reject{|k,v|
+      %w(controller action format partial).include?(k.to_s)}
+    # models to IDs - classes are inconsistently represented as strings
+    search_cache_params.each{ |k,v|
+      search_cache_params[k] = ElasticModel.id_or_object(v) }
+    search_cache_params[:locale] ||= I18n.locale
+    search_cache_params[:per_page] ||= search_params[:per_page]
+    search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
+    search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+    "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
+  end
+
+  def view_cache_key(search_params)
+    # setting a unique key to be used to cache view partials
+    view_cache_params = {
+      search_key: search_cache_key(search_params),
+      partial: params[:partial],
+      view: (@view || params[:view]),
+      ssl: request.ssl? }
+    "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
+  end
+
+  def prepare_map_params
+    if @display_map_tiles
+      valid_map_params = {
+        taxon: @observations_taxon.blank? ? nil : @observations_taxon,
+        user_id: @user.blank? ? nil : @user.id,
+        place_id: @place.blank? ? nil : @place.id,
+        project_id: @projects.blank? ? nil: @projects.first.id,
+        d1: params[:d1],
+        d2: params[:d2]
+      }.delete_if{ |k,v| v.nil? }
+      if valid_map_params.empty?
+        # there are no options, so show all observations by default
+        @enable_show_all_layer = true
+      elsif valid_map_params.length == 1 && valid_map_params[:taxon]
+        # there is just a taxon, so show the taxon observations lyers
+        @map_params = { taxon_layers: [ { taxon: valid_map_params[:taxon],
+          observations: true, ranges: { disabled: true }, places: { disabled: true },
+          gbif: { disabled: true } } ], focus: :observations }
+      else
+        # otherwise show our catch-all "Featured Observations" custom layer
+        # this layer should have have taxon_id, not taxon
+        valid_map_params[:taxon_id] = valid_map_params[:taxon].id if valid_map_params[:taxon]
+        valid_map_params.delete(:taxon)
+        @map_params = { observation_layers: [ valid_map_params.merge(observations: @observations) ] }
+      end
+    end
+  end
+
+  def determine_if_map_should_be_shown
+    grid_affecting_params = request.query_parameters.reject{ |k,v|
+      MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
+    # there are no parameters at all, so we can show the grid for all taxa
+    if grid_affecting_params.blank?
+      @display_map_tiles = true
+    # we can only show grids when quality_grade = 'any',
+    # and all other parameters are empty
+    elsif grid_affecting_params.delete("quality_grade") == "any" &&
+      grid_affecting_params.delete("identifications") == "any" &&
+      grid_affecting_params.detect{ |k,v| v != "" }.nil?
+      @display_map_tiles = true
+    end
   end
 
 end
