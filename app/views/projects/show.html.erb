@@ -22,7 +22,7 @@
   <%= google_maps_js %>
   <%= javascript_include_tag 'map_bundle', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PRESERVE_VIEWPORT = <%= !!(@project.latitude && @project.zoom_level).to_s %>,
+    var PRESERVE_VIEWPORT = <%= (@project.latitude && @project.zoom_level ? true : false).to_s %>,
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
         KML_ASSET_URLS = <%= @kml_assets.map{|a| a.asset.url}.inspect.html_safe %>
   </script>
