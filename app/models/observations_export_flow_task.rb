@@ -55,7 +55,7 @@ class ObservationsExportFlowTask < FlowTask
     rescue Exception => e
       exception_string = [ e.class, e.message ].join(" :: ")
       update_attributes(finished_at: Time.now,
-        error: exception_string,
+        error: "Error",
         exception: [ exception_string, e.backtrace ].join("\n"))
       if options[:email]
         Emailer.observations_export_failed_notification(self).deliver_now
