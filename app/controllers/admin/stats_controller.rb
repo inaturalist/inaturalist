@@ -34,7 +34,7 @@ class Admin::StatsController < ApplicationController
     @start_date = Time.now if @start_date > Time.now
     @end_date = Time.now if @end_date > Time.now
     if first_stat = SiteStatistic.order("created_at asc").first
-      @start_date = first_stat.created_at if @start_date > first_stat.created_at
+      @start_date = first_stat.created_at if @start_date < first_stat.created_at
     end
   end
 
