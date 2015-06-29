@@ -139,7 +139,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.params_to_elastic_query(params, options = {})
-    current_user = options[:current_user]
+    current_user = options[:current_user] || params[:viewer]
     p = params[:_query_params_set] ? params : query_params(params)
     return nil unless Observation.able_to_use_elasticsearch?(p)
     p = site_search_params(options[:site], p)
