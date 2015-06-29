@@ -507,6 +507,16 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.slugs_to_ids(slugs)
+    slugs = slugs.split(',') if slugs.is_a?(String)
+    [slugs].flatten.compact.map do |p|
+      project_id = p if p.is_a? Fixnum
+      project_id ||= p.id if p.is_a? Project
+      project_id ||= Project.find(p).try(:id) rescue nil
+      project_id
+    end.compact
+  end
+
   def find_observed_and_total_for_project_from_place
     list = project_list
     observable_list = place.check_list

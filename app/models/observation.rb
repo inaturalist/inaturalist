@@ -508,20 +508,9 @@ class Observation < ActiveRecord::Base
   scope :week, lambda {|week| where("EXTRACT(WEEK FROM observed_on) = ?", week)}
   
   scope :in_projects, lambda { |projects|
-    projects = projects.split(',') if projects.is_a?(String)
-    projects = [projects].flatten.compact
-    projects = projects.map do |p|
-      if p.is_a?(Project)
-        p.id
-      elsif p.to_i == 0
-        Project.find(p).try(:id) rescue nil
-      else
-        p
-      end
-    end.compact
     # NOTE using :include seems to trigger an erroneous eager load of 
     # observations that screws up sorting kueda 2011-07-22
-    joins(:project_observations).where("project_observations.project_id IN (?)", projects)
+    joins(:project_observations).where("project_observations.project_id IN (?)", Project.slugs_to_ids(projects))
   }
   
   scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date)) }

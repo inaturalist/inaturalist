@@ -774,6 +774,15 @@ shared_examples_for "an ObservationsController" do
       expect( json.detect{|obs| obs['id'] == po.observation_id} ).not_to be_blank
     end
 
+    it "should filter by project slug if it begins with a number" do
+      po1 = make_project_observation(project: Project.make!(title: '7eves'))
+      po2 = make_project_observation(project: Project.make!(id: 7))
+      get :index, format: :json, projects: po1.project.slug
+      json = JSON.parse(response.body)
+      expect( json.detect{|obs| obs['id'] == po1.observation_id} ).not_to be_blank
+      expect( json.detect{|obs| obs['id'] == po2.observation_id} ).to be_blank
+    end
+
     it "should filter by observations not in a project" do
       po1 = ProjectObservation.make!
       po2 = ProjectObservation.make!
