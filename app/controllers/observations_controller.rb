@@ -1537,7 +1537,7 @@ class ObservationsController < ApplicationController
     params[:rank] = nil unless can_view_leaves
     params[:skip_order] = true
     search_params = Observation.get_search_params(params,
-      current_user: current_user, skip_pagination: true)
+      current_user: current_user)
     oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     if params[:rank] != "leaves"
@@ -1629,7 +1629,7 @@ class ObservationsController < ApplicationController
   def taxon_stats
     params[:skip_order] = true
     search_params = Observation.get_search_params(params,
-      current_user: current_user, skip_pagination: true)
+      current_user: current_user)
     # currently we can't search ES for leaf nodes
     if Observation.able_to_use_elasticsearch?(search_params)
       elastic_taxon_stats(search_params)
@@ -1664,7 +1664,7 @@ class ObservationsController < ApplicationController
   def user_stats
     params[:skip_order] = true
     search_params = Observation.get_search_params(params,
-      current_user: current_user, skip_pagination: true)
+      current_user: current_user)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
     if Observation.able_to_use_elasticsearch?(search_params)
@@ -1782,7 +1782,7 @@ class ObservationsController < ApplicationController
     params[:order_by] = "observed_on"
     params[:order] = "asc"
     search_params = Observation.get_search_params(params,
-      current_user: current_user, skip_pagination: true)
+      current_user: current_user)
     set_up_instance_variables(search_params)
     scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
@@ -1819,7 +1819,7 @@ class ObservationsController < ApplicationController
   def phylogram
     params[:skip_order] = true
     search_params = Observation.get_search_params(params,
-      current_user: current_user, skip_pagination: true)
+      current_user: current_user)
     scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     ancestor_ids_sql = <<-SQL

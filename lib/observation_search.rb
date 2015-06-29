@@ -66,33 +66,31 @@ module ObservationSearch
       end
       search_params = Observation.query_params(raw_params)
       search_params[:viewer] = options[:current_user] if options[:current_user]
+      # max 200 limit
+      if search_params[:limit] && search_params[:limit].to_i > 200
+        search_params[:limit] = 200
+      end
       return search_params
     end
 
     def apply_pagination_options(params, options={})
       search_params = params.clone.symbolize_keys
-      unless options[:skip_pagination]
-        search_params[:page] = search_params[:page].to_i
-        # don't allow sub 0 page
-        search_params[:page] = 1 if search_params[:page] <= 0
-        if options[:user_preferences]
-          search_params[:per_page] = options[:user_preferences]["per_page"]
-        end
-        # per_page defaults to limit
-        if !search_params[:limit].blank?
-          search_params[:per_page] = search_params[:limit]
-        end
-        # max 200 per_page
-        if search_params[:per_page] && search_params[:per_page].to_i > 200
-          search_params[:per_page] = 200
-        end
-        # don't allow sub 0 per_page
-        search_params[:per_page] = 30 if search_params[:per_page].to_i <= 0
+      search_params[:page] = search_params[:page].to_i
+      # don't allow sub 0 page
+      search_params[:page] = 1 if search_params[:page] <= 0
+      if options[:user_preferences]
+        search_params[:per_page] = options[:user_preferences]["per_page"]
       end
-      # max 200 limit
-      if search_params[:limit] && search_params[:limit].to_i > 200
-        search_params[:limit] = 200
+      # per_page defaults to limit
+      if !search_params[:limit].blank?
+        search_params[:per_page] = search_params[:limit]
       end
+      # max 200 per_page
+      if search_params[:per_page] && search_params[:per_page].to_i > 200
+        search_params[:per_page] = 200
+      end
+      # don't allow sub 0 per_page
+      search_params[:per_page] = 30 if search_params[:per_page].to_i <= 0
       search_params
     end
 
