@@ -9,22 +9,20 @@
 # Author: 아라
 ---
 zh-CN:
-  licensing_your_content: |
+  licensing_your_content: |-
     授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name}使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a
     href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
   you_think_observation_inacurate: 如果您认为此观察不准确，请添加一个ID、在上方参与质量评估、或订阅评论中的错误。
-  we_also_support: |
+  we_also_support: |-
     我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://picasaweb.google.com">Picasa</a>和<a
     href="http://facebook.com">Facebook</a>用于图片存储。
   a_default_taxon_name_will_automatically_created: |-
     一个来自归属于此分类的学名的默认分类名称将被创建。
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
   x_followers:
-    one: '%{count} 位关注者'
-    other: '%{count} 位关注者'
+    other: '%{count}位关注者'
   x_identifications:
-    one: '%{count} 次鉴定'
-    other: '%{count} 次鉴定'
+    other: '%{count}次鉴定'
   x_lists:
     one: '%{count} 个列表'
     other: '%{count} 个列表'
@@ -44,8 +42,8 @@ zh-CN:
     one: <span class='count'>1</span> 次观察
     other: <span class='count'>%{count}</span> 次观察
   x_observations_link_html:
-    one: "<a href='%{url}'>1</a> 次观察"
-    other: "<a href='%{url}'>%{count}</a> 次观察"
+    one: <a href='%{url}'>1</a> 次观察
+    other: <a href='%{url}'>%{count}</a> 次观察
   x_people:
     one: '%{count} 个人'
     other: '%{count} 个人'
@@ -59,8 +57,10 @@ zh-CN:
     one: <span class='count'>1</span>种物种
     other: <span class='count'>%{count}</span>种物种
   x_species_link_html:
-    one: "<a href='%{url}'>1</a>种物种"
-    other: "<a href='%{url}'>%{count}</a>种物种"
+    one: <a href='%{url}'>1</a>种物种
+    other: <a href='%{url}'>%{count}</a>种物种
+  x_research_grade_observations_html:
+    other: <span class='count'>%{count}</span>个研究级观察</span>
   a: 一个
   a_: 一个
   a_community_for_naturalist: 自然主义者的社区
@@ -158,6 +158,7 @@ zh-CN:
   add_taxon_range: 添加分类范围
   add_to: 添加至
   add_to_checklist: 添加至检查表
+  add_to_favorites: 添加至收藏夹
   add_to_id_please: 请添加至ID
   add_to_list: 添加至列表
   add_to_project: 添加至项目
@@ -177,6 +178,8 @@ zh-CN:
   added_by_user_on_date_html: 由%{user}加入于%{date}
   added_on: 添加在
   added_to: 添加至
+  added_to_favorites: 已添加至收藏夹
+  added_to_favorites_html: 已添加至<a href="%{url}">收藏夹</a>
   adding: 正在添加……
   adding_observations: 添加新的观察
   adding_to_your_life_list: 正在加入您的生命清单……
@@ -435,8 +438,8 @@ zh-CN:
   check_out_your_life_list: 检查您的生命清单
   check_this_box_if: 如果您希望同意为您的照片使用<a href='http://creativecommons.org/licenses/by-nc/3.0/deed.zh'
     target='_blank'>知识共享 署名-非商业性使用</a>许可协议，请点选此框。您可以另选许可协议或稍后移除协议，但这是与研究人员分享时最好的协议。
-  checklist: 监视列表
-  checklist_places: 清单地点
+  checklist: 检查表
+  checklist_places: 检查表地点
   child_taxa: 子分类
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
@@ -546,6 +549,7 @@ zh-CN:
   csv: CSV
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
   curated: 当馆长
+  curated_checklist: 被馆长巡视过的检查表
   curated_count: 策划次数
   curating: 助理
   curation: 管理
@@ -838,6 +842,7 @@ zh-CN:
   import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
   in: 于
   in_: 于
+  inaturalist_network_affiliation: iNaturalist网络关系
   including: 包括
   internal_server_error: 内部服务器错误
   invite_more: 邀请更多
@@ -855,6 +860,7 @@ zh-CN:
   last_inat_observation: 最近 %{site_name} 观察
   last_observation: 最近观察
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
+  learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
   learn_more_raquo: 了解更多 &raquo;
   leave_a_comment: 留下评论
@@ -904,6 +910,9 @@ zh-CN:
   linked_flickr_photo_copy_html: <strong>我们将不会存储您照片的拷贝，或更改您的Flickr数据（除非您要求我们去做）等。</strong>我们太过于在乎有关鸟、小虫和鼻涕虫，以避免接触您的信息！
   list_deleted: 列表已删除。
   list_was_successfully_created: 已成功创建列表。
+  listed_taxon_updated: 列举的分类已更新
+  loading_images: 正在加载图片...
+  loading_map: 正在加载地图...
   loading_more_photos: 正在加载更多照片……
   loading_wikipedia_description: 正在载入维基百科描述……
   locale_description: 区域设置您的语言和日期格式选项。
@@ -925,6 +934,7 @@ zh-CN:
   location: 位置
   location_: 位置
   location_is_exact: 位置是精确的
+  log_in: 登录
   longitude_in_decimal: 十进制角度经度，例如：-122.123
   longitude_slash_x_coord_slash_easting: 精度/x轴坐标/东向
   look_up_name: 查阅名称
@@ -938,19 +948,22 @@ zh-CN:
       gbif_network: GBIF 网络
       observations: 观察
       place_boundary: 地区边界
-      checklist_places: 清单地点
+      checklist_places: 检查表地点
       range: 范围
   months_ago: '%{text}前'
   more: 更多
   more_fields: 更多字段
   more_info: 更多信息
+  more_info_title: 更多信息
   more_journal_posts: 更多日志发布
   more_observations: 更多观察
   n_ago: '%{n}前'
   name: 名称
   name_llaves: '[名称]'
   name_provider: 名称提供方
+  names: 名称
   new_flag_for: 新标记用于
+  new_members: 新成员
   new_post: 新贴子
   new_project: 新项目
   new_taxon_link: 新分类链接
@@ -960,6 +973,8 @@ zh-CN:
   no_countries_added_yet: 尚未添加国家
   no_flags: 目前没有标记
   no_header_row: 没有标题行
+  no_favorites_added:
+    current_user: 您尚未添加收藏夹。
   no_link_flickr: 不，我宁愿不那样。
   no_matching_article_from_x: 没有来自%{x}的匹配的条目
   no_more_mail_from_site: 不希望接受任何来自 %{site_name} 的邮件么？请在此编辑您的邮件设置
@@ -997,6 +1012,9 @@ zh-CN:
   original: 原文
   owner: 所有人
   parent_name: 父名称
+  people_added:
+    identification:
+      without_observation: 添加了一个<strong>ID</strong>
   photo_attribution: 照片 %{attribution}
   photo_by_id_attribution: 照片 %{id}，%{attribution}
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
@@ -1072,6 +1090,8 @@ zh-CN:
   post: 帖子
   post_published: 贴子已发布！
   posts: 帖子
+  powered_by_inaturalist_open_source_software_html: 由<a href="https://github.com/inaturalist/inaturalist"
+    target="_new" >iNaturalist开源软件</a>驱动
   previous: 上一步
   previous_page: 上一页
   privacy: 隐私政策
@@ -1079,6 +1099,8 @@ zh-CN:
   project: 项目
   project_created_on: 于%{date}创建此项目
   project_group_label: 组
+  project_list_defaults:
+    title: '%{owner_name}的清单'
   project_post: 项目贴子
   project_settings: 项目设置
   project_was_successfully_created: 已成功创建项目。
@@ -1173,6 +1195,7 @@ zh-CN:
     ubio: uBio
     inaturalist: NaturaLista
     nzbrn_fungi: NZBRN真菌
+    catalogue_of_life_2012_annual_checklist: 生命目录：2012年度检查表
   source_eg:
     title: '例如：Snakes: The Evolution of Mystery in Nature'
     in_text: 例如：Greene, 2000
@@ -1280,6 +1303,7 @@ zh-CN:
   to_add_comments: 要添加评论
   to_add_identifications: 要添加鉴定
   to_add_ids: 要添加ID
+  to_recipient: 至
   today: 今天
   tools: 工具
   top_5_identifiers: 前5个标识符
@@ -1332,6 +1356,8 @@ zh-CN:
   url_identifier_of_a_project_derived_from: 由同一外部资源衍生出来的URL/项目标识符
   US_states: 美国州
   usage_stats: 用法状态
+  use_this_form_to_create_a_new: 使用此表单以创建一个新的草稿分类学更改，它正在描述一次在稍后委托某人在活跃的分类中进行拆分、合并或交换的提议。
+  use_unique_file_names_for_separate_uploads: 为各自上传使用唯一的文件名
   user: 用户
   user_follows: '%{user}关注'
   user_hasnt: '%{user}没有'
@@ -1779,7 +1805,7 @@ zh-CN:
       default: '%Y年%b%d日 %H:%M:%S %z'
       long: '%Y年%d%B日 %I:%M %p'
       short: '%b%d日 %H:%M'
-      observed_at: 在%I:%M %p %Z
+      observed_at: '%I:%M %p %Z'
       rfc: '%Y年%B%d日'
       day_month_year: '%Y年%B%d日'
       hours: '%I:%M %p'
@@ -1824,4 +1850,15 @@ zh-CN:
         source_identifier: 来源标识符
       taxon_name:
         source_identifier: 来源标识符
+  i18n:
+    inflections:
+      :@vow_or_con:
+        vow: 元音
+        con: 辅音
+        a: :@vow
+        e: :@vow
+        i: :@vow
+        o: :@vow
+        u: :@vow
+        default: :@con
 ...
