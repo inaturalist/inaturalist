@@ -58,7 +58,11 @@ Stats.loadPercentIdSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.identifier.percent_id]
+      if (stat.data.identifier) {
+        return [ new Date(stat.created_at), stat.data.identifier.percent_id]
+      } else {
+        return [ new Date(stat.created_at), 0]
+      }
     })
   }));
 }
@@ -70,7 +74,11 @@ Stats.loadPercentCIDToGenusSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.identifier.percent_cid_to_genus ]
+      if (stat.data.identifier) {
+        return [ new Date(stat.created_at), stat.data.identifier.percent_cid_to_genus ]
+      } else {
+        return [ new Date(stat.created_at), 0 ]
+      }
     })
   }));
 }
