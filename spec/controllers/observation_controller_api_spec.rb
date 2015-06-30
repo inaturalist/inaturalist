@@ -562,6 +562,16 @@ shared_examples_for "an ObservationsController" do
       expect(response.headers["X-Per-Page"].to_i).to eq(30)
     end
 
+    it "should paginate" do
+      5.times { Observation.make! }
+      total_entries = Observation.count
+      get :index, format: :json, page: 1, per_page: 2
+      expect(response.headers["X-Total-Entries"].to_i).to eq(total_entries)
+      expect(response.headers["X-Page"].to_i).to eq(1)
+      expect(response.headers["X-Per-Page"].to_i).to eq(2)
+      expect(JSON.parse(response.body).length).to eq(2)
+    end
+
     it "should not include photo metadata" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank

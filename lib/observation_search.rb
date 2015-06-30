@@ -79,7 +79,7 @@ module ObservationSearch
       # don't allow sub 0 page
       search_params[:page] = 1 if search_params[:page] <= 0
       if options[:user_preferences]
-        search_params[:per_page] = options[:user_preferences]["per_page"]
+        search_params[:per_page] ||= options[:user_preferences]["per_page"]
       end
       # per_page defaults to limit
       if !search_params[:limit].blank?
