@@ -3,10 +3,15 @@
   :css
     .spark { width: 100%; height: 40px;}
     .spark path {
-        stroke: deeppink;
-        stroke-width: 1;
-        fill: none;
-      }
+      stroke: deeppink;
+      stroke-width: 1;
+      fill: none;
+    }
+    .sparks label {
+      text-align: center;
+      font-size: smaller;
+      color: #777;
+    }
 - content_for(:extrajs) do
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
   = javascript_include_tag "admin/stats", "d3.min"
@@ -14,33 +19,27 @@
     var STATS_JSON = #{ @stats };
 .container
   %h2 Stats
-  .row
+  .row.sparks
     .span12
       %h3 100 Day Trends
-    .span1
-      Observations
-    .span1
+    .span2
       #obsspark.spark
-    .span1
-      \% ID'd
-    .span1
+      %label Observations
+    .span2
       #percentidspark.spark
-    .span1
-      \% CID'd to genus
-    .span1
+      %label % ID'd
+    .span2
       #percentcidtogenusspark.spark
-    .span1
-      Active users
-    .span1
+      %label CID'd to genus
+    .span2
       #activeusersspark.spark
-    .span1
-      New users
-    .span1
+      %label Active users
+    .span2
       #newusersspark.spark
-    .span1
-      New users w/ 7 obs
-    .span1
+      %label New users
+    .span2
       #new7obsusersspark.spark
+      %label New users w/ 7 obs
   .row
     .span12
       %h3 Observations (1 week moving window)

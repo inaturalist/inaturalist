@@ -5,7 +5,11 @@ class SiteStatistic < ActiveRecord::Base
 
   def self.generate_stats_for_day(at_time = Time.now, options = {})
     at_time = at_time.utc.end_of_day
-    return unless options[:force] || !stats_generated_for_day?(at_time)
+    if options[:force]
+      SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).delete_all
+    elsif stats_generated_for_day?(at_time)
+      return
+    end
     SiteStatistic.create({
       data: Hash[
         STAT_TYPES.map{ |st| [ st, send("#{ st }_stats", at_time) ] }

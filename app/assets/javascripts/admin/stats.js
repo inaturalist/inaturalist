@@ -332,7 +332,6 @@ Stats.sparkline = function( options ) {
       return x(i); 
     })
     .y(function(d) { 
-      console.log("[DEBUG] scaling ", d, " to ", y(d))
       return y(d); 
     });
   graph.append("svg:path").attr("d", line(data));
