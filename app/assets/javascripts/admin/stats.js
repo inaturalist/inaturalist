@@ -22,6 +22,13 @@ Stats.loadAjaxCharts = function( ) {
 };
 
 Stats.loadChartsFromJSON = function( json ) {
+  Stats.loadObsSpark( json );
+  Stats.loadPercentIdSpark( json );
+  Stats.loadPercentCIDToGenusSpark( json );
+  Stats.loadActiveUsersSpark( json );
+  Stats.loadNewUsersSpark( json );
+  Stats.load7ObsUsersSpark( json );
+
   Stats.loadObservations7Days( json );
   Stats.loadTTID( json );
   Stats.loadUsers( json );
@@ -31,6 +38,75 @@ Stats.loadChartsFromJSON = function( json ) {
   Stats.loadRanks( json );
   Stats.loadRanksPie( json );
 };
+
+Stats.loadObsSpark = function ( json ) {
+  google.setOnLoadCallback(Stats.sparkline({
+    element_id: "obsspark",
+    series: [
+      { label: "Today" }
+    ],
+    data: _.map( json, function( stat ) {
+      return [ new Date(stat.created_at), stat.data.observations.today ]
+    })
+  }));
+}
+
+Stats.loadPercentIdSpark = function ( json ) {
+  google.setOnLoadCallback(Stats.sparkline({
+    element_id: "percentidspark",
+    series: [
+      { label: "% ID" }
+    ],
+    data: _.map( json, function( stat ) {
+      return [ new Date(stat.created_at), stat.data.identifier.percent_id]
+    })
+  }));
+}
+
+Stats.loadPercentCIDToGenusSpark = function ( json ) {
+  google.setOnLoadCallback(Stats.sparkline({
+    element_id: "percentcidtogenusspark",
+    series: [
+      { label: "% ID" }
+    ],
+    data: _.map( json, function( stat ) {
+      return [ new Date(stat.created_at), stat.data.identifier.percent_cid_to_genus ]
+    })
+  }));
+}
+Stats.loadActiveUsersSpark = function ( json ) {
+  google.setOnLoadCallback(Stats.sparkline({
+    element_id: "activeusersspark",
+    series: [
+      { label: "% ID" }
+    ],
+    data: _.map( json, function( stat ) {
+      return [ new Date(stat.created_at), stat.data.users.active ]
+    })
+  }));
+}
+Stats.loadNewUsersSpark = function ( json ) {
+  google.setOnLoadCallback(Stats.sparkline({
+    element_id: "newusersspark",
+    series: [
+      { label: "% ID" }
+    ],
+    data: _.map( json, function( stat ) {
+      return [ new Date(stat.created_at), stat.data.users.last_7_days ]
+    })
+  }));
+}
+Stats.load7ObsUsersSpark = function ( json ) {
+  google.setOnLoadCallback(Stats.sparkline({
+    element_id: "new7obsusersspark",
+    series: [
+      { label: "% ID" }
+    ],
+    data: _.map( json, function( stat ) {
+      return [ new Date(stat.created_at), stat.data.users.recent_7_obs ]
+    })
+  }));
+}
 
 Stats.loadObservations = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
@@ -231,3 +307,26 @@ Stats.simpleChart = function( options ) {
     document.getElementById( options.element_id ));
   chart.draw( data, chartOptions );
 };
+
+Stats.sparkline = function( options ) {
+  var element = options.element_id,
+      series = options.series,
+      data = options.data,
+      graph = d3.select("#"+element).append("svg:svg").attr("width", "100%").attr("height", "100%"),
+      numDays = 100;
+  data = _.map( data.slice(0, numDays).reverse(), function( stat ) {
+    return stat[1] || 0
+  })
+  var x = d3.scale.linear().domain([0, data.length]).range([0, $('#'+element).width()]);
+  var y = d3.scale.linear().domain([0, _.max(data)]).range([$('#'+element).height(), 0]);
+  var line = d3.svg.line()
+    .x(function(d,i) { 
+      return x(i); 
+    })
+    .y(function(d) { 
+      console.log("[DEBUG] scaling ", d, " to ", y(d))
+      return y(d); 
+    });
+  graph.append("svg:path").attr("d", line(data));
+}
+

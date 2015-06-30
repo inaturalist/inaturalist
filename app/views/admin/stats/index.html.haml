@@ -1,5 +1,12 @@
 - content_for(:extracss) do
   = stylesheet_link_tag "admin/stats"
+  :css
+    .spark { width: 100%; height: 40px;}
+    .spark path {
+        stroke: deeppink;
+        stroke-width: 1;
+        fill: none;
+      }
 - content_for(:extrajs) do
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
   = javascript_include_tag "admin/stats", "d3.min"
@@ -7,6 +14,33 @@
     var STATS_JSON = #{ @stats };
 .container
   %h2 Stats
+  .row
+    .span12
+      %h3 100 Day Trends
+    .span1
+      Observations
+    .span1
+      #obsspark.spark
+    .span1
+      \% ID'd
+    .span1
+      #percentidspark.spark
+    .span1
+      \% CID'd to genus
+    .span1
+      #percentcidtogenusspark.spark
+    .span1
+      Active users
+    .span1
+      #activeusersspark.spark
+    .span1
+      New users
+    .span1
+      #newusersspark.spark
+    .span1
+      New users w/ 7 obs
+    .span1
+      #new7obsusersspark.spark
   .row
     .span12
       %h3 Observations (1 week moving window)
