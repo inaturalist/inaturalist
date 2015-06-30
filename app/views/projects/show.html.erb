@@ -132,11 +132,11 @@
       <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
         <% if @project.eventbrite_id -%>
           <iframe src="http://www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="300" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
-        <% else %>
+        <% elsif (uri = URI.parse(@project.event_url) rescue nil) %>
           <div class="inline buttonrow centered quiet box unstacked">
             <%= link_to t(:register), @project.event_url, :class => "default button" %>
             <span class="inter">
-              <%=t :register_for_this_event_at_x_html, :x => link_to(URI.parse(@project.event_url).host, @project.event_url) %>
+              <%=t :register_for_this_event_at_x_html, :x => link_to(uri.host, @project.event_url) %>
             </span>
           </div>
         <% end -%>
