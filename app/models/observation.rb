@@ -708,8 +708,8 @@ class Observation < ActiveRecord::Base
 
   def timezone_object
     # returns nil if the time_zone has an invalid value
-    ActiveSupport::TimeZone.new(time_zone) ||
-      ActiveSupport::TimeZone.new(zic_time_zone)
+    (time_zone && ActiveSupport::TimeZone.new(time_zone)) ||
+      (zic_time_zone && ActiveSupport::TimeZone.new(zic_time_zone))
   end
 
   def timezone_offset

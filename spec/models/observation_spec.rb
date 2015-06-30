@@ -2708,4 +2708,14 @@ describe Observation do
     end
   end
 
+  describe "timezone_object" do
+    it "returns nil when given nil" do
+      o = Observation.make!( )
+      o.update_column(:time_zone, nil)
+      o.update_column(:zic_time_zone, nil)
+      expect( o.time_zone ).to be nil
+      expect( o.timezone_object ).to be nil
+    end
+  end
+
 end
