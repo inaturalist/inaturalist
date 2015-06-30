@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#map").taxonMap({ preserveViewport: true });
+  $("#map").taxonMap({ preserveViewport: PRESERVE_VIEWPORT });
   window.map = $("#map").data("taxonMap");
   for (var i=0; i < KML_ASSET_URLS.length; i++) {
     lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: PRESERVE_VIEWPORT});
