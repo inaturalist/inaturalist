@@ -361,6 +361,18 @@ describe ObservationsController do
     end
   end
 
+  describe "index" do
+
+    before(:each) { enable_elastic_indexing( Observation, Update ) }
+    after(:each) { disable_elastic_indexing( Observation, Update ) }
+    
+    it "should just ignore project slugs for projects that don't exist" do
+      expect {
+        get :index, projects: 'imaginary-project'
+      }.not_to raise_error
+    end
+  end
+
 end
 
 describe ObservationsController, "spam" do

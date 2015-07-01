@@ -249,9 +249,9 @@ module ObservationSearch
         p[:projects] = p[:projects].compact
         if p[:projects].blank?
           project_ids.each do |project_id|
-            p[:projects] << Project.find(Project.slugs_to_ids(project_id))
+            p[:projects] += Project.find(Project.slugs_to_ids(project_id))
           end
-          p[:projects] = p[:projects].compact
+          p[:projects] = p[:projects].flatten.compact
         end
       end
 
