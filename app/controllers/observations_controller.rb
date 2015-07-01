@@ -1667,6 +1667,7 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
+    stats_adequately_scoped?
     if Observation.able_to_use_elasticsearch?(search_params)
       elastic_user_stats(search_params, limit)
     else
