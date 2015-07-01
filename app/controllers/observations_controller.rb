@@ -1923,7 +1923,7 @@ class ObservationsController < ApplicationController
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
     end
-    @elastic_params = params.dup
+    @elastic_params = valid_map_params
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
     @map_style = (( params[:color] || @taxa.any? ) &&
                     params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
@@ -2738,10 +2738,6 @@ class ObservationsController < ApplicationController
 
   def prepare_map_params
     if @display_map_tiles
-      valid_map_params = params.select{ |k,v|
-        ! [ :utf8, :controller, :action, :page, :per_page,
-            :preferences ].include?( k.to_sym )
-      }
       if valid_map_params.empty?
         # there are no options, so show all observations by default
         @enable_show_all_layer = true
@@ -2762,6 +2758,13 @@ class ObservationsController < ApplicationController
 
   def determine_if_map_should_be_shown( search_params )
     @display_map_tiles = Observation.able_to_use_elasticsearch?( search_params )
+  end
+
+  def valid_map_params
+    @valid_map_params ||= valid_map_params = params.select do |k,v|
+      ! [ :utf8, :controller, :action, :page, :per_page,
+          :preferences, :color ].include?( k.to_sym )
+    end
   end
 
 end
