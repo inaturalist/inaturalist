@@ -195,7 +195,7 @@ module ApplicationHelper
       },
       show: {event: 'click'},
       hide: {event: 'click unfocus'}
-    }.merge(options[:tip_options] || {}).to_json
+    }.merge(options.delete(:tip_options) || {}).to_json
     options = options.merge(data: data)
     link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
     dialog + link

@@ -118,6 +118,7 @@ $(document).ready(function() {
         }).bind('ajax:error', function(e, xhr, error, status) {
           $(this).siblings('.loadingclick').remove()
           $(this).show()
+          // eror handling is done in observation_fields.js
         })
         $('#projectschooser .removelink').bind('ajax:before', function() {
           var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
