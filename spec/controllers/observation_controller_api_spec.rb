@@ -1209,4 +1209,10 @@ describe ObservationsController, "without authentication" do
       expect(response.status).to eq 401
     end
   end
+  describe "create" do
+    it "should be impossible" do
+      post :create, format: :json, observation: {species_guess: 'foo'}
+      expect( response.status ).to eq 401
+    end
+  end
 end
