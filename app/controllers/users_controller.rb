@@ -211,7 +211,7 @@ class UsersController < ApplicationController
 
   def leaderboard
     @year = (params[:year] || Time.now.year).to_i
-    @month = (params[:month] || Time.now.month).to_i
+    @month = params[:month].to_i unless params[:month].blank?
     @date = Date.parse("#{@year}-#{@month}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
     @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"

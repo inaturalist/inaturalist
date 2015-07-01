@@ -1,6 +1,6 @@
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
-    <%= link_to t(:back_to_this, :place => "#{@object.to_plain_s}"), @object, :class => 'back crumb' %>
+    <%= link_to t(:back_to_this, :place => @object.try_methods(:to_plain_s, :to_s)), @object, :class => 'back crumb' %>
   </span>
   <h2><%=t :new_flag_for %> <%= link_to @object.to_plain_s, @object %></h2>
 </div>
@@ -14,9 +14,9 @@
     <%= f.label :reason, raw(t(:flag_reason, :record => @model.name.downcase)) %>
     <%= f.text_field :flag, :class => 'text' %>
     <label>&rdquo;</label>
-    <%= f.hidden_field :user_id, :value=>current_user.id %>    
-    <%= f.hidden_field :flaggable_id, :value=>@object.id %>
-    <%= f.hidden_field :flaggable_type, :value=>@model.name %>
+    <%= f.hidden_field :user_id, value: current_user.id %>    
+    <%= f.hidden_field :flaggable_id, value: @object.id %>
+    <%= f.hidden_field :flaggable_type, value: @model.name %>
     <%= f.submit t(:flag_it!), :class => 'default button' %>
   <% end %>
 </div>
