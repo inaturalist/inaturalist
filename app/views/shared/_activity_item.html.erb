@@ -14,6 +14,7 @@
   when "Comment" then edit_comment_path(item)
   when "Identification" then edit_identification_path(item)
   end
+  hide_agree ||= false
 -%>
 <div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
   <div class="item_user column">
@@ -27,7 +28,8 @@
         :identification => item,
         :taxon => taxon,
         :observation => observation,
-        :user => user
+        :user => user,
+        :hide_agree => hide_agree
       } %>
     <% elsif item.is_a? ProjectInvitation %>
       <p><%= t :please_add_this_observation_to %></p>

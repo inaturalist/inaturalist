@@ -419,7 +419,15 @@
   
   <div id="comments_and_identifications" class="column span-16">
     <h3><%=t :comments_and_identifications %></h3>
-    <%= render :partial => 'shared/activity_item', :collection => @comments_and_identifications %>
+    <%- taxon_ids = {} -%>
+    <% for item in @comments_and_identifications %>
+      <% if item.is_a? Comment %>
+        <%= render 'shared/activity_item', activity_item: item %>
+      <% else %>
+        <%= render "shared/activity_item", activity_item: item, hide_agree: !taxon_ids[item.taxon_id].nil? %>
+        <%- taxon_ids[item.taxon_id] = taxon_ids[item.taxon_id].to_i + 1 %>
+      <% end %>
+    <% end -%>
     
     <div id="forms" class="ui-tabs">
       <ul class="clear">
@@ -463,7 +471,7 @@
 <div class="column span-7 last">
 
   <div id="identifications" class="identifications clear">
-    
+    <%- taxon_ids = {} -%>
     <% if @owners_identification %>
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
         <%= render :partial => 'identifications/identification',
@@ -472,6 +480,7 @@
           <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
         <% end -%>
       </div>
+      <%- taxon_ids[@owners_identification.taxon_id] = 1 %>
     <% end %>
 
     <% if @community_identification && !@observation.community_taxon_rejected? -%>
@@ -480,8 +489,10 @@
           <%= render :partial => 'identifications/identification',
                      :locals => {
                       :identification => @community_identification,
-                      :usertext => t(:community_id).html_safe
+                      :usertext => t(:community_id).html_safe,
+                      :hide_agree => !taxon_ids[@community_identification.taxon_id].nil?
                     } %>
+          <%- taxon_ids[@community_identification.taxon_id] = taxon_ids[@community_identification.taxon_id].to_i + 1 -%>
           <% if @listed_taxon || @conservation_status -%>
             <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
           <% end -%>
@@ -513,7 +524,11 @@
       <% for taxon, identifications in @sorted_current_identifications_by_taxon %>
         <%- next if !@observation.community_taxon_rejected? && @community_identification && @community_identification.taxon === taxon -%>
         <div class="identification_group">
-          <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
+          <%= render "identifications/identification", 
+            identification: identifications.first, 
+            hide_agree: !taxon_ids[identifications.first.taxon_id].nil?
+          %>
+          <%- taxon_ids[identifications.first.taxon_id] = taxon_ids[identifications.first.taxon_id].to_i + 1 -%>
           <% if identifications.size > 1 -%>
             <div class="agreers description">
               <% for agreement in identifications[1..-1] %>
