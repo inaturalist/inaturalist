@@ -843,7 +843,10 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
   var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
-    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2' ];
+    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',
+    'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
+    'rank', 'hrank', 'lrank', 'quality_grade', 'identifications', 'captive',
+    'iconic_taxa', 'q', 'search_on', 'out_of_range', 'has', 'iconic_taxa' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(

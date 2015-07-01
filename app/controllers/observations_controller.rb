@@ -122,7 +122,7 @@ class ObservationsController < ApplicationController
       
       format.html do
         @iconic_taxa ||= []
-        determine_if_map_should_be_shown
+        determine_if_map_should_be_shown(search_params)
         prepare_map_params
         Observation.preload_for_component(@observations, logged_in: !!current_user)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
@@ -1923,9 +1923,7 @@ class ObservationsController < ApplicationController
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
     end
-    @elastic_params = params.select{ |k,v|
-      [ :place_id, :user_id, :project_id,
-        :taxon_id, :d1, :d2, :color ].include?( k.to_sym ) }
+    @elastic_params = params.dup
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
     @map_style = (( params[:color] || @taxa.any? ) &&
                     params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
@@ -2740,14 +2738,10 @@ class ObservationsController < ApplicationController
 
   def prepare_map_params
     if @display_map_tiles
-      valid_map_params = {
-        taxon: @observations_taxon.blank? ? nil : @observations_taxon,
-        user_id: @user.blank? ? nil : @user.id,
-        place_id: @place.blank? ? nil : @place.id,
-        project_id: @projects.blank? ? nil: @projects.first.id,
-        d1: params[:d1],
-        d2: params[:d2]
-      }.delete_if{ |k,v| v.nil? }
+      valid_map_params = params.select{ |k,v|
+        ! [ :utf8, :controller, :action, :page, :per_page,
+            :preferences ].include?( k.to_sym )
+      }
       if valid_map_params.empty?
         # there are no options, so show all observations by default
         @enable_show_all_layer = true
@@ -2766,19 +2760,8 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def determine_if_map_should_be_shown
-    grid_affecting_params = request.query_parameters.reject{ |k,v|
-      MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
-    # there are no parameters at all, so we can show the grid for all taxa
-    if grid_affecting_params.blank?
-      @display_map_tiles = true
-    # we can only show grids when quality_grade = 'any',
-    # and all other parameters are empty
-    elsif grid_affecting_params.delete("quality_grade") == "any" &&
-      grid_affecting_params.delete("identifications") == "any" &&
-      grid_affecting_params.detect{ |k,v| v != "" }.nil?
-      @display_map_tiles = true
-    end
+  def determine_if_map_should_be_shown( search_params )
+    @display_map_tiles = Observation.able_to_use_elasticsearch?( search_params )
   end
 
 end
