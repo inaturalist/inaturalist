@@ -18,12 +18,25 @@ describe PlacesController do
   describe "destroy" do
     let(:user) { User.make! }
     let(:place) { Place.make!(:user => user) }
-    it "should delete the place" do
+    before do
       sign_in user
+    end
+    it "should delete the place" do
       expect(place).not_to be_blank
       expect {
         delete :destroy, :id => place.id
       }.to change(Place, :count).by(-1)
+    end
+    it "should fail if projects are using the place" do
+      p = Project.make!(place: place)
+      delete :destroy, id: place.id
+      expect( Place.find_by_id(place.id) ).not_to be_blank
+    end
+    it "should fail if projects are using the place in rules" do
+      p = Project.make!
+      p.project_observation_rules.create(operand: place, operator: 'observed_in_place?')
+      delete :destroy, id: place.id
+      expect( Place.find_by_id(place.id) ).not_to be_blank
     end
   end
 
