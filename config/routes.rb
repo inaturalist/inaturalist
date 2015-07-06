@@ -179,6 +179,7 @@ Rails.application.routes.draw do
     member do
       put :viewed_updates
       patch :update_fields
+      post :review
     end
   end
 

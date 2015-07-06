@@ -6,7 +6,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_project_ids
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:user,
+  scope :load_for_index, -> { includes(:user, :confirmed_reviews,
     { sounds: :user },
     { photos: :user },
     { taxon: [ :taxon_names ] },
@@ -81,6 +81,7 @@ class Observation < ActiveRecord::Base
         (num_identification_agreements < num_identification_disagreements),
       place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
       project_ids: (indexed_project_ids || project_observations.map(&:project_id)).compact.uniq,
+      reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
       taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,

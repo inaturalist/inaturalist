@@ -242,6 +242,9 @@ class Observation < ActiveRecord::Base
   has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
   has_many :sounds, :through => :observation_sounds
   has_many :observations_places, :dependent => :destroy
+  has_many :observation_reviews, :dependent => :destroy
+  has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
+    class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
   NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
@@ -608,7 +611,7 @@ class Observation < ActiveRecord::Base
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
-      { photos: [ :flags ] },
+      { photos: [ :flags, :user ] },
       :stored_preferences, :flags, :quality_metrics ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
@@ -1293,6 +1296,13 @@ class Observation < ActiveRecord::Base
 
   def captive_cultivated
     !passes_quality_metric?(QualityMetric::WILD)
+  end
+
+  def reviewed_by?(viewer)
+    viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
+    return false unless viewer
+    ObservationReview.where(observation_id: id,
+      user_id: viewer.id, reviewed: true).exists?
   end
 
   ##### Community Taxon #########################################################

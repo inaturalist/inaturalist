@@ -2718,4 +2718,20 @@ describe Observation do
     end
   end
 
+  describe "reviewed_by?" do
+    it "knows who it was reviewed by" do
+      o = Observation.make!
+      expect( o.reviewed_by?( o.user ) ).to be false
+      r = ObservationReview.make!(observation: o, user: o.user)
+      expect( o.reviewed_by?( o.user ) ).to be true
+    end
+
+    it "doesn't count unreviews" do
+      o = Observation.make!
+      expect( o.reviewed_by?( o.user ) ).to be false
+      r = ObservationReview.make!(observation: o, user: o.user, reviewed: false)
+      expect( o.reviewed_by?( o.user ) ).to be false
+    end
+  end
+
 end

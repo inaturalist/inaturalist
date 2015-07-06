@@ -29,10 +29,10 @@ class Admin::StatsController < ApplicationController
   end
 
   def load_params
-    @end_date = Time.strptime(params[:end_date], "%Y-%m-%d") rescue Time.now
-    @start_date = Time.strptime(params[:start_date], "%Y-%m-%d") rescue 1.day.ago
-    @start_date = Time.now if @start_date > Time.now
-    @end_date = Time.now if @end_date > Time.now
+    @end_date = Time.zone.parse(params[:end_date]).beginning_of_day rescue Time.now
+    @start_date = Time.zone.parse(params[:start_date]).beginning_of_day rescue 1.day.ago
+    @start_date = Time.zone.now if @start_date > Time.zone.now
+    @end_date = Time.zone.now if @end_date > Time.zone.now
     if first_stat = SiteStatistic.order("created_at asc").first
       @start_date = first_stat.created_at if @start_date < first_stat.created_at
     end

@@ -15,8 +15,13 @@ module ActiveRecord
         else
           ["#{reflection.foreign_key} = ?", reject.id]
         end
-Rails.logger.debug "[DEBUG] merging associates for #{k}"
-        reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
+        Rails.logger.debug "[DEBUG] merging associates for #{k}"
+        begin
+          self.class.connection.transaction do
+            reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
+          end
+        rescue ActiveRecord::RecordNotUnique => e
+        end
 
         if reflection.klass.respond_to?(:merge_duplicates)
           reflection.klass.merge_duplicates(reflection.foreign_key => id)

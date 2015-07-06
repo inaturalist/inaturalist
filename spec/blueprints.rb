@@ -172,6 +172,11 @@ ObservationPhoto.blueprint do
   photo { Photo.make }
 end
 
+ObservationReview.blueprint do
+  observation { Observation.make }
+  user { User.make! }
+end
+
 ObservationSound.blueprint do
   observation { Observation.make }
   sound { Sound.make }

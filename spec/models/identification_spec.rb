@@ -207,6 +207,23 @@ describe Identification, "creation" do
     o.reload
     updated_at_was.should < o.updated_at
   end
+
+  it "creates observation reviews if they dont exist" do
+    o = Observation.make!
+    expect(o.observation_reviews.count).to eq 0
+    Identification.make!(observation: o, user: o.user)
+    o.reload
+    expect(o.observation_reviews.count).to eq 1
+  end
+
+  it "updates existing reviews" do
+    o = Observation.make!
+    r = ObservationReview.make!(observation: o, user: o.user, updated_at: 1.day.ago)
+    Identification.make!(observation: o, user: o.user)
+    o.reload
+    expect(o.observation_reviews.first).to eq r
+    expect(o.observation_reviews.first.updated_at).to be > r.updated_at
+  end
 end
 
 describe Identification, "updating" do
@@ -438,6 +455,26 @@ describe Identification, "deletion" do
     i.destroy
     o.reload
     o.community_taxon.should be_blank
+  end
+
+  it "destroys automatically created reviews" do
+    o = Observation.make!
+    i = Identification.make!(observation: o, user: o.user)
+    expect(o.observation_reviews.count).to eq 1
+    i.destroy
+    o.reload
+    expect(o.observation_reviews.count).to eq 0
+  end
+
+  it "does not destroy user created reviews" do
+    o = Observation.make!
+    i = Identification.make!(observation: o, user: o.user)
+    o.observation_reviews.destroy_all
+    r = ObservationReview.make!(observation: o, user: o.user, user_added: true)
+    expect(o.observation_reviews.count).to eq 1
+    i.destroy
+    o.reload
+    expect(o.observation_reviews.count).to eq 1
   end
 end
 
