@@ -1759,6 +1759,7 @@ class ObservationsController < ApplicationController
     SQL
     ActiveRecord::Base.connection.execute(user_counts_sql)
   end
+
   def user_taxon_counts(scope, limit = 500)
     unique_taxon_users_scope = scope.
       select("DISTINCT observations.taxon_id, observations.user_id").
@@ -2679,22 +2680,38 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
-    @user_counts = @user_counts[0...limit]
-    @user_taxon_counts = @user_taxon_counts[0...limit]
     @total = scope.select("DISTINCT observations.user_id").count
   end
 
   def elastic_user_stats(search_params, limit)
     elastic_params = prepare_counts_elastic_query(search_params)
+    @user_counts = elastic_user_obs_counts(elastic_params, limit)
+    @user_taxon_counts = elastic_user_taxon_counts(elastic_params, limit)
+
+    # the list of top users is probably different for obs and taxa, so grab the leftovers from each
+    obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
+    tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
+    leftover_obs_user_ids = tax_user_ids - obs_user_ids
+    leftover_tax_user_ids = obs_user_ids - tax_user_ids
+    leftover_obs_user_elastic_params = elastic_params.marshal_copy
+    leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
+    leftover_tax_user_elastic_params = elastic_params.marshal_copy
+    leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
+    @user_counts        += elastic_user_obs_counts(leftover_obs_user_elastic_params).to_a
+    @user_taxon_counts  += elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
+    @total = (obs_user_ids + tax_user_ids).uniq.size
+  end
+
+  def elastic_user_obs_counts(elastic_params, limit = 500)
     user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
       distinct_users: { cardinality: { field: "user.id" } },
       user_observations: { "user.id": limit }
     })).response.aggregations
-    @total = user_counts.distinct_users.value
-    @user_counts = user_counts.user_observations.buckets.
+    user_counts.user_observations.buckets.
       map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } }
-    @user_taxon_counts = user_counts.user_observations.buckets.
-      map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } }
+  end
+
+  def elastic_user_taxon_counts(elastic_params, limit = 500)
     elastic_params[:filters] << { range: {
       "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
     species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
@@ -2704,7 +2721,7 @@ class ObservationsController < ApplicationController
         aggs: {
           distinct_taxa: {
             cardinality: { field: "taxon.id" }}}}})).response.aggregations
-    @user_taxon_counts = species_counts.user_taxa.buckets.
+    species_counts.user_taxa.buckets.
       map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
   end
 
