@@ -1541,11 +1541,15 @@ class ObservationsController < ApplicationController
     oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     if params[:rank] != "leaves"
-      elastic_params = prepare_counts_elastic_query(search_params)
-      # using 0 for the aggregation count to get all results
-      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-        aggregate: { species: { "taxon.id": 0 } })).response.aggregations
-      @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
+      if elastic_params = Observation.params_to_elastic_query(search_params, current_user: current_user)
+        elastic_params = prepare_counts_elastic_query(elastic_params)
+        # using 0 for the aggregation count to get all results
+        distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+          aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+        @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
+      else
+        @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
+      end
     else
       sql = if params[:rank] == "leaves" && can_view_leaves
         ancestor_ids_sql = <<-SQL
