@@ -7,18 +7,18 @@ describe ListsController, "show" do
   it "should include a list" do
     get :show, :format => :json, :id => lt.list_id
     json = JSON.parse(response.body)
-    json['list'].should_not be_blank
+    expect(json['list']).not_to be_blank
   end
 
   it "should filter by taxon" do
     parent = Taxon.make!
     lt1 = ListedTaxon.make!(:taxon => Taxon.make!(:parent => parent))
-    parent.children.size.should eq 1
+    expect(parent.children.size).to eq 1
     lt2 = ListedTaxon.make!(:list => lt1.list)
     get :show, :format => :json, :id => lt1.list_id, :taxon => parent.id
     json = JSON.parse(response.body)
-    json['listed_taxa'].size.should eq 1
-    json['listed_taxa'][0]['id'].should eq lt1.id
+    expect(json['listed_taxa'].size).to eq 1
+    expect(json['listed_taxa'][0]['id']).to eq lt1.id
   end
 
   it "should default to ordering by observations_count desc" do
@@ -31,13 +31,13 @@ describe ListsController, "show" do
       2.times { Observation.make!(:taxon => lt2.taxon, :user => lt2.list.user) }
     end
     lt1.reload
-    lt1.observations_count.should eq 1
+    expect(lt1.observations_count).to eq 1
     lt2.reload
-    lt2.observations_count.should eq 2
+    expect(lt2.observations_count).to eq 2
     get :show, :format => :json, :id => lt1.list_id
     json = JSON.parse(response.body)
-    json['listed_taxa'].size.should eq 2
-    json['listed_taxa'][0]['id'].should eq lt2.id
+    expect(json['listed_taxa'].size).to eq 2
+    expect(json['listed_taxa'][0]['id']).to eq lt2.id
   end
 
   it "should allow sort by name" do
@@ -50,8 +50,8 @@ describe ListsController, "show" do
     end
     get :show, :format => :json, :id => lt1.list_id, :order_by => "name"
     json = JSON.parse(response.body)
-    json['listed_taxa'].size.should eq 3
-    json['listed_taxa'][0]['id'].should eq lt1.id
+    expect(json['listed_taxa'].size).to eq 3
+    expect(json['listed_taxa'][0]['id']).to eq lt1.id
   end
 
   it "per_page should work" do
@@ -60,6 +60,6 @@ describe ListsController, "show" do
     lt2 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Bothrops"), :list => lt0.list)
     get :show, :format => :json, :id => lt1.list_id, :order_by => "name", :per_page => 1
     json = JSON.parse(response.body)
-    json['listed_taxa'].size.should eq 1
+    expect(json['listed_taxa'].size).to eq 1
   end
 end
