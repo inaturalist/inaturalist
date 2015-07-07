@@ -1503,7 +1503,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.json do
         unless @errors.blank?
-          render :status => :unprocessable_entity, :json => @errors.map{|e| e.full_messages.to_sentence}
+          render :status => :unprocessable_entity, json: {errors: @errors.map{|e| e.full_messages.to_sentence}}
           return
         end
         render_observations_to_json(:include => {
