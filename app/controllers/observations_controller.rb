@@ -1541,8 +1541,8 @@ class ObservationsController < ApplicationController
     oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     if params[:rank] != "leaves"
-      if elastic_params = Observation.params_to_elastic_query(search_params, current_user: current_user)
-        elastic_params = prepare_counts_elastic_query(elastic_params)
+      if Observation.able_to_use_elasticsearch?(search_params)
+        elastic_params = prepare_counts_elastic_query(search_params)
         # using 0 for the aggregation count to get all results
         distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
           aggregate: { species: { "taxon.id": 0 } })).response.aggregations
