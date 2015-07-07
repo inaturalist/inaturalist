@@ -596,6 +596,22 @@ class ObservationsController < ApplicationController
           end
         end
       end
+      photo = o.photos.to_a.compact.last
+      if o.new_record? && photo && photo.respond_to?(:to_observation) && 
+          (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
+        photo_o = photo.to_observation
+        if o.observed_on_string.blank?
+          o.observed_on_string = photo_o.observed_on_string
+          o.observed_on = photo_o.observed_on
+          o.time_observed_at = photo_o.time_observed_at
+        end
+        if o.latitude.blank?
+          o.latitude = photo_o.latitude
+          o.longitude = photo_o.longitude
+        end
+        o.taxon = photo_o.taxon if o.taxon.blank?
+        o.species_guess = photo_o.species_guess if o.species_guess.blank?
+      end
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       o
     end
