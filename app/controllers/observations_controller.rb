@@ -1555,65 +1555,68 @@ class ObservationsController < ApplicationController
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     oscope = Observation.query(search_params)
-    oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
-    if params[:rank] != "leaves"
-      if Observation.able_to_use_elasticsearch?(search_params)
-        elastic_params = prepare_counts_elastic_query(search_params)
-        # using 0 for the aggregation count to get all results
-        distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-          aggregate: { species: { "taxon.id": 0 } })).response.aggregations
-        @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
-      else
-        @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
-      end
-    else
-      sql = if params[:rank] == "leaves" && can_view_leaves
-        ancestor_ids_sql = <<-SQL
-          SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
-          FROM taxa
-            JOIN (
-              #{oscope.to_sql}
-            ) AS observations ON observations.taxon_id = taxa.id
-        SQL
-        <<-SQL
-          SELECT DISTINCT ON (taxa.id) taxa.*
-          FROM taxa
-            LEFT OUTER JOIN (
-              #{ancestor_ids_sql}
-            ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
-            JOIN (
-              #{oscope.to_sql}
-            ) AS observations ON observations.taxon_id = taxa.id
-          WHERE ancestor_ids.ancestor_id IS NULL
-        SQL
-      else
-        "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
-      end
-      @taxa = Taxon.find_by_sql(sql)
-    end
-    # hack to test what this would look like
-    @taxa = case params[:order]
-    when "observations_count"
-      @taxa.sort_by do |t|
-        c = if search_params[:place]
-          # this is a dumb hack. if i was smarter, i would have tried tp pull
-          # this out of the sql with GROUP and COUNT, but I couldn't figure it
-          # out --kueda 20150430
-          if lt = search_params[:place].listed_taxa.where(primary_listing: true, taxon_id: t.id).first
-            lt.observations_count
-          else
-            # if there's no listed taxon assume it's been observed once
-            1
-          end
+    if stats_adequately_scoped?
+      if params[:rank] != "leaves"
+        if Observation.able_to_use_elasticsearch?(search_params)
+          elastic_params = prepare_counts_elastic_query(search_params)
+          # using 0 for the aggregation count to get all results
+          distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+            aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+          @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
         else
-          t.observations_count
+          @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
         end
-        c.to_i * -1
+      else
+        sql = if params[:rank] == "leaves" && can_view_leaves
+          ancestor_ids_sql = <<-SQL
+            SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
+            FROM taxa
+              JOIN (
+                #{oscope.to_sql}
+              ) AS observations ON observations.taxon_id = taxa.id
+          SQL
+          <<-SQL
+            SELECT DISTINCT ON (taxa.id) taxa.*
+            FROM taxa
+              LEFT OUTER JOIN (
+                #{ancestor_ids_sql}
+              ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
+              JOIN (
+                #{oscope.to_sql}
+              ) AS observations ON observations.taxon_id = taxa.id
+            WHERE ancestor_ids.ancestor_id IS NULL
+          SQL
+        else
+          "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
+        end
+        @taxa = Taxon.find_by_sql(sql)
       end
-    when "name"
-      @taxa.sort_by(&:name)
+      # hack to test what this would look like
+      @taxa = case params[:order]
+      when "observations_count"
+        @taxa.sort_by do |t|
+          c = if search_params[:place]
+            # this is a dumb hack. if i was smarter, i would have tried tp pull
+            # this out of the sql with GROUP and COUNT, but I couldn't figure it
+            # out --kueda 20150430
+            if lt = search_params[:place].listed_taxa.where(primary_listing: true, taxon_id: t.id).first
+              lt.observations_count
+            else
+              # if there's no listed taxon assume it's been observed once
+              1
+            end
+          else
+            t.observations_count
+          end
+          c.to_i * -1
+        end
+      when "name"
+        @taxa.sort_by(&:name)
+      else
+        @taxa
+      end
     else
-      @taxa
+      @taxa = [ ]
     end
     respond_to do |format|
       format.html do
@@ -1687,17 +1690,21 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    stats_adequately_scoped?
-    if Observation.able_to_use_elasticsearch?(search_params)
-      elastic_user_stats(search_params, limit)
+    if stats_adequately_scoped? || params[:format] == "json"
+      if Observation.able_to_use_elasticsearch?(search_params)
+        elastic_user_stats(search_params, limit)
+      else
+        non_elastic_user_stats(search_params, limit)
+      end
+      @user_ids = @user_counts.map{ |c| c["user_id"] } |
+        @user_taxon_counts.map{ |c| c["user_id"] }
+      @users = User.where(id: @user_ids).
+        select("id, login, icon_file_name, icon_updated_at, icon_content_type")
+      @users_by_id = @users.index_by(&:id)
     else
-      non_elastic_user_stats(search_params, limit)
+      @user_counts = [ ]
+      @user_taxon_counts = [ ]
     end
-    @user_ids = @user_counts.map{ |c| c["user_id"] } |
-      @user_taxon_counts.map{ |c| c["user_id"] }
-    @users = User.where(id: @user_ids).
-      select("id, login, icon_file_name, icon_updated_at, icon_content_type")
-    @users_by_id = @users.index_by(&:id)
     respond_to do |format|
       format.html do
         @headless = true
