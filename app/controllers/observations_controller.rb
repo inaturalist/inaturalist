@@ -1690,7 +1690,9 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    if stats_adequately_scoped? || params[:format] == "json"
+    stats_adequately_scoped?
+    # all the HTML view needs to know is stats_adequately_scoped?
+    if request.format.json?
       if Observation.able_to_use_elasticsearch?(search_params)
         elastic_user_stats(search_params, limit)
       else
@@ -1708,9 +1710,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         @headless = true
-        @user_counts_by_user_id = @user_counts.inject({}) {|memo,r| memo[r['user_id'].to_i] = r['count_all'].to_i; memo}
-        @user_taxon_counts_by_user_id = @user_taxon_counts.inject({}) {|memo,r| memo[r['user_id'].to_i] = r['count_all'].to_i; memo}
-        render :layout => "bootstrap"
+        render layout: "bootstrap"
       end
       format.json do
         render :json => {
@@ -2712,7 +2712,9 @@ class ObservationsController < ApplicationController
 
   def elastic_user_stats(search_params, limit)
     elastic_params = prepare_counts_elastic_query(search_params)
-    @user_counts = elastic_user_obs_counts(elastic_params, limit)
+    user_obs = elastic_user_obs(elastic_params, limit)
+    @user_counts = user_obs[:counts]
+    @total = user_obs[:total]
     @user_taxon_counts = elastic_user_taxon_counts(elastic_params, limit)
 
     # the list of top users is probably different for obs and taxa, so grab the leftovers from each
@@ -2724,18 +2726,18 @@ class ObservationsController < ApplicationController
     leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
     leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
-    @user_counts        += elastic_user_obs_counts(leftover_obs_user_elastic_params).to_a
+    @user_counts        += elastic_user_obs(leftover_obs_user_elastic_params)[:counts].to_a
     @user_taxon_counts  += elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
-    @total = (obs_user_ids + tax_user_ids).uniq.size
   end
 
-  def elastic_user_obs_counts(elastic_params, limit = 500)
+  def elastic_user_obs(elastic_params, limit = 500)
     user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
       distinct_users: { cardinality: { field: "user.id" } },
       user_observations: { "user.id": limit }
     })).response.aggregations
-    user_counts.user_observations.buckets.
-      map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } }
+    { counts: user_counts.user_observations.buckets.
+        map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } },
+      total: user_counts.distinct_users.value }
   end
 
   def elastic_user_taxon_counts(elastic_params, limit = 500)
