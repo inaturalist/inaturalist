@@ -6,6 +6,7 @@
 # Author: Fitoschido
 # Author: Loarie
 # Author: Macofe
+# Author: Ncontinanza
 ---
 es:
   licensing_your_content: |-
@@ -190,6 +191,7 @@ es:
   add_one: ¡Añade una!
   add_photos: Añade fotos
   add_photos_to_this_observation: Añade fotos a esta observación
+  add_place: Añadir lugar
   add_several_observations_at_once: Añade varias observaciones de una sola vez
   add_shape: Añade un límite
   add_some_now: Añade algunas ahora
@@ -721,6 +723,7 @@ es:
     usa el color de su flor.  Profavor no pongas colores que no ayuden a la categorización,
     por ejemplo: evita usar el color café para los mamíferos y verde para las plantas.
   colors: Colores
+  columns: Columnas
   comma_separated_list_of_tracking_codes: |-
     Separa los códigos de rastreo con comas. Añade esto si quieres poner un código de rastreo cuando las personas hagan
     observaciones en tu proyecto, ej. %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
@@ -954,9 +957,11 @@ es:
   delete_your_account: Eliminar su cuenta
   deleted_synonyms: Eliminado sinónimos
   deleted_user: usuario eliminado
+  deleted_vote: Voto eliminado
   deleting: Borrando...
   deleting_verb: Eliminando
   desc: desc
+  dna_: ADN
   descendant_taxa: taxones descendientes
   descending: descendente
   describe_purpose: Describa el propósito de este proyecto
@@ -1153,6 +1158,7 @@ es:
   feedback_group: Grupo de retroalimentación
   feeds: Feeds
   feeds_for_current_filters: Fuentes para los filtros actuales
+  failed: Fallido
   field_note: |-
     <strong>Nota:</strong> Si vas a crear un campo
     checa si alguien mas ya lo creo, para
@@ -1286,6 +1292,7 @@ es:
   getting_started: Cómo Empezar
   give_it_some_detail: ¡Colóquele algún detalle!
   global_conservation_status: Estado de conservación global
+  global_names: Nombres globales
   globally: globalmente
   go: Busca
   good_choice_for_sharing: Buena alternativa para compartir con los científicos
@@ -1671,6 +1678,10 @@ es:
   lists_are_lists_of_species: Las listas son listas de especies (u otros taxones),
     como una lista de vida de todas las aves que ha visto o una lista de sus salamandras
     favoritas. Esas <em>no</em> son listas de observaciones.
+  lists_by_login:
+    title:
+      current_user: Tus listas
+      login: Listas de %{login}
   lists_come_in_three: Las listas vienen en tres variedades
   load: Cargar
   loading: Cargando...
@@ -1700,7 +1711,8 @@ es:
     pt: Portugués
     pt-BR: Portugués (Brasil)
     ja: Japonés
-    zh-CN: Chino (tradicional)
+    zh-CN: Chino (simplificado)
+    zh-TW: Chino (tradicional)
   localized_species_accounts: Cuentas de especies localizadas
   location: Ubicación
   location_: Ubicación
@@ -1873,7 +1885,7 @@ es:
   new_guide: Nueva Guía
   new_journal_posts: Nuevo artículo en el diario
   new_list: Lista nueva
-  new_members: Nuevos miembros
+  new_members: Miembros nuevos
   new_message: Nuevo mensaje
   new_observation_field: Nuevo campo de observación
   new_observation_rules: Nuevas reglas de observación
@@ -2026,6 +2038,7 @@ es:
   noun_by_you: '%{noun} por usted'
   obs: Obs
   obscured: Difusa
+  obscured_or_private: oculta o privada
   obscured_description: Coordenadas públicas se muestran como un punto al azar dentro
     de un radio de 10Km de las coordenadas verdaderas . Las coordenadas reales sólo
     son visibles para usted y los curadores de los proyectos a la que se agrega la
@@ -2125,7 +2138,7 @@ es:
     si no se cumplen las condiciones anteriores o
   observationcounts_refreshed: Condes de observación refrescados
   observed: Observado el
-  observed_by: observado por
+  observed_by: Observado por
   observed_in_place?: observaciones en
   observed_on: Observado el
   observed_one: observado una
@@ -2360,6 +2373,8 @@ es:
       open_space: espacio abierto
       territory: territorio
       county: condado
+      Province: Provincia
+      province: Provincia
   place_guess: Estimación de lugar
   place_imported: ¡Lugar importado!
   place_must_have_a_boundary_defined: El lugar debe tener límites definidos.
@@ -2471,6 +2486,7 @@ es:
     las verdaderas coordenadas sólo son visibles para usted y los curadores de los
     proyectos a los que se agrega la observación. Las observaciones con coordenadas
     privadas todavía se utiliza para verificar las listas de lugar de verificación.
+  processing: Procesando
   processing3p: Procesando...
   profile: Perfil
   project: Proyecto
@@ -2533,6 +2549,8 @@ es:
   purple: púrpura
   quality_grade: Grado de calidad
   quality_grade_colon: 'Grado de calidad:'
+  queued: En espera
+  query: Consulta
   range: Intervalo
   range_from: Distribución de
   rank: rango
@@ -2624,6 +2642,7 @@ es:
   remove_from_project: Quitar del proyecto
   remove_this_section: Eliminar esta sección
   remove_manager: Quitar gerente
+  remove_place: Quitar lugar
   remove_project_user: Quitar usuario de proyecto
   remove_selected: Eliminar los elementos seleccionados
   remove_tags: Quite las etiquetas
@@ -2769,7 +2788,6 @@ es:
     parte del mundo.
   set_license: Fijar licencia
   settings: Propiedades
-  share: Comparte
   share_on: Compartir por
   share_your_observation_with_researchers_by: Comparta su observación con investigadores
     por
@@ -2805,7 +2823,7 @@ es:
   sign_up: Regístrese
   sign_up_exclamation: ¡Regístrese!
   similar_species: Especies similares
-  sign_in_exclamation: ¡Ingresar!
+  sign_in_exclamation: Iniciar sesión
   single_observation: Observación sencilla
   single_taxon: Una especie o grupo (entrada de datos para separar/eliminar/etapa,
     salida de datos para mezclar/intercambiar)
@@ -2857,6 +2875,7 @@ es:
   sorry_you_need_to_be_signed_in_and: Lo sentimos, necesitas ingresar al sistema y
     tener una cuenta enlazada de Flickr para poder publicar etiquetas directamente
     desde Flickr.
+  sort: Ordenar
   sort_by: Ordenar por
   sorting_by: Ordenando por
   soundcloud_needs_to_confirm: SoundCloud necesita confirmar que quieres que su cuenta
@@ -2927,6 +2946,7 @@ es:
   species_from_around_the_world: Especies de todo el mundo
   species_guess: Estimación especial
   species_guide: Guía de especies
+  species_header: Especies
   species_name: Nombres de la especie
   species_or_lower: especies o grupos subordinados
   species_search: Búsqueda de especies
@@ -3218,7 +3238,7 @@ es:
     equivocado, la identificación está equivocada, una ocurrencia errante o una expansión
     del rango.
   this_photo_is_already_associated: Esta foto ya está asociada con una de sus observaciones.
-  this_place_has_no_check_list: Éste lugar no tiene lista de comprobación. Por ende,
+  this_place_has_no_check_list: Este lugar no tiene lista de comprobación. Por ende,
     no hay guía.
   this_species: esta especie
   this_species_has_no_colors: ¡Esta especie no tiene colores¡Ayude a mejorar las búsquedas
@@ -3334,6 +3354,7 @@ es:
   unsubscribe: Quitar suscripción
   unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: Reactivar usuario
+  upcoming_bioblitzes: Próximos bioblitzes
   update: Actualizar
   update_existing_observations_with_new_license: Actualizar las observaciones existentes
     con la licencia que escogí
@@ -3565,6 +3586,7 @@ es:
   what_did_you_see: ¿Qué viste?
   what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: ¿Qué le parece?
+  what_do_you_want_to_list: ¿Qué quieres listar?
   what_to_keep: Qué mantener
   what_want_to_list?: ¿Qué desea colocar en la lista?
   when: Cuando
@@ -4340,6 +4362,9 @@ es:
         your_observations_export_is_ready_html: Tus observaciones de exportación están
           listas. Hay una copia  adjunta a este correo, o puedes <a href="%{url}">descargar
           tu exportación</a>.
+        your_observations_export_failed_html: |-
+          Error al exportar tus observaciones. Visita la
+          <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
       bulk_import_success:
         success_message: Tu importación masiva de %{filename} fue exitosa. Tus observaciones
           están siendo procesadas y pronto estarán en el sitio web.
@@ -4995,4 +5020,20 @@ es:
       :@vow_or_con:
         vow: vocal
         con: consonante
+      gender:
+        m: masculino
+        f: femenino
+        observation: :@f
+        note: :@f
+        place: :@m
+        identification: :@f
+        species: :@f
+        application: :@f
+        check_list: :@f
+        post: :@m
+        taxon: :@m
+  will_paginate:
+    previous_label: '&#8592; Previa'
+    next_label: Siguiente &#8594;
+    page_gap: '&hellip;'
 ...

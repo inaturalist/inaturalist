@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Cgalindo
+# Author: Macofe
 ---
 es-MX:
   licensing_your_content: "Si das licencia de tus contenidos le permites a otros el
@@ -1276,6 +1277,7 @@ es-MX:
   getting_started: Empezando
   give_it_some_detail: ¡Pon algunos detalles!
   global_conservation_status: Estatus global de conservación
+  global_names: Nombres globales
   globally: globalmente
   go: Busca
   good_choice_for_sharing: Buena selección para compartir con investigadores
@@ -1682,7 +1684,7 @@ es-MX:
     pt: Portugués
     pt-BR: Portugués (Brasil)
     ja: Japonés
-    zh-CN: Chino (tradicional)
+    zh-CN: Chino (simplificado)
   localized_species_accounts: Contenidos de especies
   location: Ubicación
   location_: Ubicación
@@ -4729,7 +4731,7 @@ es-MX:
       default: '%b. %d, %A %H:%M:%S %z'
       long: '%B %d, %A %H:%M'
       short: '%d %b %H:%M'
-      observed_at: a las %I:%M %p %Z
+      observed_at: '%I:%M %p %Z'
       rfc: '%d %B %Y'
       day_month_year: '%d %b. %Y'
     pm: pm
@@ -4836,4 +4838,8 @@ es-MX:
       listed_taxon:
         occurrence_status_level: Estatus de ocurrencia
         establishment_means: Medio de establecimiento
+  will_paginate:
+    previous_label: '&#8592; Previo'
+    next_label: Siguiente &#8594;
+    page_gap: '&hellip;'
 ...

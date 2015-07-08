@@ -1,6 +1,7 @@
 # Messages for Japanese (日本語)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Otokoume
 # Author: Sudachi
 # Author: 아라
 ---
@@ -27,6 +28,7 @@ ja:
   about_external_links: 外部リンクについて
   about_licenses: ライセンスについて
   about_licensing: ライセンスについて
+  about_life!: 生き物について学ぼう！
   about_places: 場所について
   about_the_cc_licenses: クリエイティブ・コモンズ・ライセンスについて
   about_the_quality_assessment: 品質評価について
@@ -88,6 +90,7 @@ ja:
   add_one: 一つを追加しよう！
   add_photos: 写真を追加
   add_photos_to_this_observation: この観測記録に写真を追加
+  add_place: 場所を追加
   add_several_observations_at_once: 同時に複数の観察記録を追加する。
   add_shape: 形を追加
   add_some_now: 今すぐ追加する
@@ -97,7 +100,9 @@ ja:
   add_taxa_to_places: 場所に分類群を追加
   add_taxon_range: 分類群の分布・生息区域を追加
   add_to: 次の場所に追加：
+  add_to_calendar: カレンダーに追加
   add_to_checklist: チェックリストに追加
+  add_to_favorites: お気に入りに追加
   add_to_id_please: 同定依頼に追加
   add_to_list: リストに追加
   add_to_project: プロジェクトに追加
@@ -110,6 +115,7 @@ ja:
   added_by: 追加者
   added_on: 追加日付
   added_to: 完了しました。追加先：
+  added_to_favorites: お気に入りに追加しました
   adding: 追加しています...
   adding_observations: 観察記録を追加しています
   adding_to_your_life_list: ライフリストに追加中...
@@ -155,6 +161,7 @@ ja:
     x_aves:
       one: 1羽の鳥
       other: '%{count}羽の鳥'
+  all_your_projects: あなたのすべてのプロジェクト
   allowed_html: 使用可能なHTML
   alphabetical: アルファベット順
   alphabetical_order: アルファベット順
@@ -204,6 +211,7 @@ ja:
   automatically_add_to_project: プロジェクトに自動的に追加
   automatically_share_your_observations_on: 観測記録を自動的にシェアー
   back: 戻る
+  back_to_albums: アルバムに戻る
   back_to_all_species: すべての種に戻る
   back_to_calendar: '%{user}カレンダーに戻る'
   back_to_editing_observation: 観測記録の編集に戻る
@@ -280,7 +288,7 @@ ja:
   checklist: チェックリスト
   checklist_places: チェックリスト場所
   choose_a_list_above: 上記からリストを選択してください。
-  choose_a_place: 場所を選ぶ�
+  choose_a_place: 場所を選ぶ
   choose_files_from_your_computer: パソコンからファイルを選択
   choose_from_your_lists: 自分のリストから選択
   choose_photos_to_tag_from_photostream: フォトストリームの中からタグする写真を選択
@@ -501,6 +509,7 @@ ja:
   everyone: 全てのユーザー
   everywhere: すべての場所
   exit_full_screen: 全画面表示を終了
+  explore!: 探検
   export: エクスポート
   export_observations: 観測記録をエクスポート
   exporting: エクスポート中...
@@ -674,7 +683,7 @@ ja:
   latitude: 緯度
   layout: レイアウト
   leaderboards: リーダーボード
-  learn!: 学ぼう！
+  learn!: 学習
   least_concern: 軽度懸念
   leave_a_comment: コメントする
   leave_this_project: このプロジェクトを退会
@@ -751,6 +760,8 @@ ja:
     eu: バスク語
     gl: ガリシア語
     mk: マケドニア語
+    zh-CN: 中国語 (簡体字)
+    zh-TW: 中国語 (繁体字)
   location: 場所
   location_: 場所
   log_in: ログイン
@@ -991,7 +1002,7 @@ ja:
   place_name: 地名
   place_notes: 場所メモ
   place_updated: 場所が更新されました！
-  places: 場所�
+  places: 場所
   places_name:
     afghanistan: アフガニスタン
     africa: アフリカ
@@ -1043,7 +1054,7 @@ ja:
   possessive_user: '%{user}の'
   post: 投稿
   post_published: 投稿されました！
-  posted_by: 投稿者�
+  posted_by: 投稿者
   posted_on: 投稿日�
   posts: 投稿
   preview: プレビュー
@@ -1110,7 +1121,7 @@ ja:
   reason_you_are_flagging_this_item: フラグ付けの理由
   recent_observations: 最新の観察記録
   recently_observed: 最近観測された
-  record!: 記録しよう！
+  record!: 記録
   red: 赤
   refresh: 更新
   refreshing: 更新中...
@@ -1168,6 +1179,7 @@ ja:
   search_taxa: 分類群検索...
   search_the_map: 地図を検索
   searching: 検索中...
+  second_person_possessive_singular_: あなたの%{noun}
   seen_it?: 見た？
   select_all: すべて選択
   selected_photos: 選択された写真
@@ -1339,12 +1351,14 @@ ja:
   you_must_select_a_csv_file_to_upload: アップロードするCSVファイルを選択する必要があります。
   you_sure_delete_comment?: このコメントを削除して本当によろしいですか？
   you_sure_delete_flag?: このフラグを削除して本当によろしいですか？
+  your: あなたの
   your_drafts: 下書き
   your_email_address: あなたのメールアドレス
   your_hard_drive: マイパソコンから
   your_id: あなたのID
   your_identification: あなたのID
   your_observations: あなたの観察記録
+  your_world!: あなたの世界を！
   youre_viewing_all_observations: すべての観測記録を表示中
   views:
     views: 閲覧回数
