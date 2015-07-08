@@ -177,7 +177,7 @@
     <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
       <%= link_to t(:edit_flagged_observation), edit_observation_url, 
                   :id => "edit_list_button" %>
-      <%= link_to t(:to_the_bat_cave!), admin_index_url, 
+      <%= link_to t(:to_the_bat_cave!), admin_url,
                   :id => "admin_button" %>
     <% end %>
 
