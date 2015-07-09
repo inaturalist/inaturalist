@@ -123,7 +123,6 @@ class ObservationsController < ApplicationController
       format.html do
         @iconic_taxa ||= []
         determine_if_map_should_be_shown(search_params)
-        prepare_map_params
         Observation.preload_for_component(@observations, logged_in: !!current_user)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
@@ -1135,6 +1134,7 @@ class ObservationsController < ApplicationController
     Observation.preload_for_component(@observations, logged_in: !!current_user)
     respond_to do |format|
       format.html do
+        determine_if_map_should_be_shown(search_params)
         @observer_provider_authorizations = @selected_user.provider_authorizations
         if logged_in? && @selected_user.id == current_user.id
           @project_users = current_user.project_users.joins(:project).order("projects.title")
@@ -1325,6 +1325,7 @@ class ObservationsController < ApplicationController
     
     respond_to do |format|
       format.html do
+        determine_if_map_should_be_shown(search_params)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           return render_observations_partial(partial)
         end
@@ -2783,34 +2784,53 @@ class ObservationsController < ApplicationController
     "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
   end
 
-  def prepare_map_params
+  def prepare_map_params(search_params = {})
+    map_params = valid_map_params(search_params)
     if @display_map_tiles
-      if valid_map_params.empty?
+      if map_params.empty?
         # there are no options, so show all observations by default
         @enable_show_all_layer = true
-      elsif valid_map_params.length == 1 && valid_map_params[:taxon]
+      elsif map_params.length == 1 && map_params[:taxon]
         # there is just a taxon, so show the taxon observations lyers
-        @map_params = { taxon_layers: [ { taxon: valid_map_params[:taxon],
+        @map_params = { taxon_layers: [ { taxon: map_params[:taxon],
           observations: true, ranges: { disabled: true }, places: { disabled: true },
           gbif: { disabled: true } } ], focus: :observations }
       else
         # otherwise show our catch-all "Featured Observations" custom layer
-        # this layer should have have taxon_id, not taxon
-        valid_map_params[:taxon_id] = valid_map_params[:taxon].id if valid_map_params[:taxon]
-        valid_map_params.delete(:taxon)
-        @map_params = { observation_layers: [ valid_map_params.merge(observations: @observations) ] }
+        @map_params = { observation_layers: [ map_params.merge(observations: @observations) ] }
       end
     end
   end
 
   def determine_if_map_should_be_shown( search_params )
-    @display_map_tiles = Observation.able_to_use_elasticsearch?( search_params )
+    if @display_map_tiles = Observation.able_to_use_elasticsearch?( search_params )
+      prepare_map_params(search_params)
+    end
   end
 
-  def valid_map_params
-    @valid_map_params ||= valid_map_params = params.select do |k,v|
+  def valid_map_params(search_params = {})
+    # make sure we have the params as processed by Observation.query_params
+    map_params = (search_params && search_params[:_query_params_set]) ?
+      search_params.clone : Observation.query_params(params)
+    map_params = map_params.map{ |k,v|
+      if v.is_a?(Array)
+        [ k, v.map{ |vv| ElasticModel.id_or_object(vv) } ]
+      else
+        [ k, ElasticModel.id_or_object(v) ]
+      end
+    }.to_h
+    if map_params[:observations_taxon]
+      map_params[:taxon_id] = map_params.delete(:observations_taxon)
+    end
+    if map_params[:projects]
+      map_params[:project_ids] = map_params.delete(:projects)
+    end
+    if map_params[:user]
+      map_params[:user_id] = map_params.delete(:user)
+    end
+    @valid_map_params ||= map_params.select do |k,v|
       ! [ :utf8, :controller, :action, :page, :per_page,
-          :preferences, :color ].include?( k.to_sym )
+          :preferences, :color, :_query_params_set ].include?( k.to_sym )
     end
   end
 
