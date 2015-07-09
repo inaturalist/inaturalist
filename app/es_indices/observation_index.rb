@@ -166,7 +166,11 @@ class Observation < ActiveRecord::Base
       end
       search_wheres["multi_match"] = { query: q, operator: "and", fields: fields }
     end
-    search_wheres["user.id"] = p[:user] if p[:user]
+    if p[:user]
+      search_wheres["user.id"] = p[:user]
+    elsif p[:user_id]
+      search_wheres["user.id"] = p[:user_id]
+    end
     search_wheres["taxon.rank"] = p[:rank] if p[:rank]
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids

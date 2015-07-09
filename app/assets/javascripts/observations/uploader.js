@@ -31,7 +31,17 @@ $(document).ready(function() {
         $(data.context).loadingShades('Uploading')
       },
       fail: function(e, data) {
-        alert('Upload failed: ' + data.errorThrown)
+        var msg;
+        if (data.jqXHR.responseText) {
+          var json = $.parseJSON(data.jqXHR.responseText)
+          if (json.errors && json.errors.length > 0) {
+            msg = 'Upload failed: ' + json.errors.join(', ')
+          }
+        }
+        if (!msg) {
+          msg = 'Upload failed: ' + data.errorThrown
+        }
+        alert(msg)
       },
       always: function(e, data) {
         $(data.context).shades('close')

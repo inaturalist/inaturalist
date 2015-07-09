@@ -416,7 +416,10 @@ Rails.application.routes.draw do
   end
 
   resources :flags
-  resources :admin, only: :index, controller: :admin do
+  resource :admin, only: :index, controller: :admin do
+    collection do
+      get :index
+    end
     resource :stats, controller: "admin/stats" do
       collection do
         get :index

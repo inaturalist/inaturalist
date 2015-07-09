@@ -7,7 +7,12 @@
 = content_for :extrajs do
   :javascript
     $(document).ready(function() {
-      $('#user_stats').leaderboard($.extend({}, $.deparam.querystring(), {limit: 500}, true))
+      var queryParams = $.deparam.querystring(),
+          limit = queryParams.limit || 500
+      if (limit > 500 || limit < 1) {
+        limit = 500
+      }
+      $('#user_stats').leaderboard($.extend({}, queryParams, {limit: limit}, true))
     })
 
 - unless @stats_adequately_scoped

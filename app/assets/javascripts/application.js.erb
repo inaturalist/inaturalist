@@ -1425,17 +1425,18 @@ $.fn.leaderboard = function(options) {
   // http://stackoverflow.com/questions/17732714/datatables-js-sort-columns-containing-html-links-with-integer-text
   jQuery.fn.dataTableExt.oSort['numeric-html-asc'] = jQuery.fn.dataTableExt.oSort['numeric-html-asc'] || function(a,b) {
     if (!a.toString().match(/^\d+$/)) {
-      a = parseInt($(a).text())
-      b = parseInt($(b).text())
+      a = parseInt($(a).text()) || 0
+      b = parseInt($(b).text()) || 0
     }
     return ((a < b) ? -1 : ((a > b) ?  1 : 0))
   }
   jQuery.fn.dataTableExt.oSort['numeric-html-desc'] = jQuery.fn.dataTableExt.oSort['numeric-html-desc'] || function(a,b) {
     if (!a.toString().match(/^\d+$/)) {
-      a = parseInt($(a).text())
-      b = parseInt($(b).text())
+      a = parseInt($(a).text()) || 0
+      b = parseInt($(b).text()) || 0
     }
-  return ((a < b) ? 1 : ((a > b) ?  -1 : 0))
+
+    return ((a < b) ? 1 : ((a > b) ?  -1 : 0))
   }
   var table = $('table', this).DataTable({
     "bPaginate": false,

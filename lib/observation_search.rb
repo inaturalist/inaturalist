@@ -493,8 +493,8 @@ module ObservationSearch
 
       if list = List.find_by_id(params[:list_id])
         if list.listed_taxa.count <= 2000
-          scope = scope.joins("JOIN listed_taxa ON listed_taxa.list_id = #{list.id}").
-            where("listed_taxa.taxon_id = observations.taxon_id", list)
+          scope = scope.joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
+            where("listed_taxa.list_id = #{list.id}")
         end
       end
 
