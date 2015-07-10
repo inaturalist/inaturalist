@@ -2792,11 +2792,12 @@ class ObservationsController < ApplicationController
 
   def prepare_map_params(search_params = {})
     map_params = valid_map_params(search_params)
+    non_viewer_params = map_params.reject{ |k,v| k == :viewer }
     if @display_map_tiles
-      if map_params.empty?
+      if non_viewer_params.empty?
         # there are no options, so show all observations by default
         @enable_show_all_layer = true
-      elsif map_params.length == 1 && map_params[:taxon]
+      elsif non_viewer_params.length == 1 && map_params[:taxon]
         # there is just a taxon, so show the taxon observations lyers
         @map_params = { taxon_layers: [ { taxon: map_params[:taxon],
           observations: true, ranges: { disabled: true }, places: { disabled: true },
@@ -2834,7 +2835,7 @@ class ObservationsController < ApplicationController
     if map_params[:user]
       map_params[:user_id] = map_params.delete(:user)
     end
-    @valid_map_params ||= map_params.select do |k,v|
+    map_params.select do |k,v|
       ! [ :utf8, :controller, :action, :page, :per_page,
           :preferences, :color, :_query_params_set,
           :order_by, :order ].include?( k.to_sym )
