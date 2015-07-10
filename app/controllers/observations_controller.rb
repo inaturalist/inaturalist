@@ -2817,6 +2817,7 @@ class ObservationsController < ApplicationController
           gbif: { disabled: true } } ], focus: :observations }
       else
         # otherwise show our catch-all "Featured Observations" custom layer
+        map_params[:viewer_id] = current_user.id if logged_in?
         @map_params = { observation_layers: [ map_params.merge(observations: @observations) ] }
       end
     end

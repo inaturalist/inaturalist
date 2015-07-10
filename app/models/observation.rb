@@ -596,7 +596,17 @@ class Observation < ActiveRecord::Base
         "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
     end
   }
-  
+  scope :reviewed_by, lambda { |users|
+    joins(:observation_reviews).where("observation_reviews.user_id IN (?)", users)
+  }
+  scope :not_reviewed_by, lambda { |users|
+    users = [ users ] unless users.is_a?(Array)
+    user_ids = users.map{ |u| ElasticModel.id_or_object(u) }
+    joins("LEFT JOIN observation_reviews ON (observations.id=observation_reviews.observation_id)
+      AND observation_reviews.user_id IN (#{ user_ids.join(',') })").
+      where("observation_reviews.id IS NULL")
+  }
+
   def self.near_place(place)
     place = (Place.find(place) rescue nil) unless place.is_a?(Place)
     if place.swlat

@@ -1124,6 +1124,19 @@ describe Observation do
       }.not_to raise_error
     end
 
+    it "scopes by reviewed_by" do
+      o = Observation.make!
+      u = User.make!
+      ObservationReview.make!(observation: o, user: u)
+      expect( Observation.reviewed_by(u).first ).to eq o
+    end
+
+    it "scopes by not_reviewed_by" do
+      o = Observation.make!
+      u = User.make!
+      expect( Observation.not_reviewed_by(u).count ).to eq Observation.count
+    end
+
     describe :in_projects do
       it "should find observations in a project by id" do
         po = make_project_observation

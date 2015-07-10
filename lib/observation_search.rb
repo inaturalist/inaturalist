@@ -281,6 +281,7 @@ module ObservationSearch
     #
     def query(params = {})
       scope = self
+      viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
 
       place_id = if params[:place_id].to_i > 0
         params[:place_id]
@@ -290,8 +291,7 @@ module ObservationSearch
 
       # support bounding box queries
       if (!params[:swlat].blank? && !params[:swlng].blank? &&
-           !params[:nelat].blank? && !params[:nelng].blank?)
-        viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
+          !params[:nelat].blank? && !params[:nelng].blank?)
         scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng],
           :private => (viewer && viewer == params[:user_id]))
       elsif !params[:BBOX].blank?
@@ -502,6 +502,14 @@ module ObservationSearch
         scope = scope.has_taxon
       elsif params[:identified].noish?
         scope = scope.where("taxon_id IS NULL")
+      end
+
+      if viewer
+        if params[:reviewed] === "true"
+          scope = scope.reviewed_by(viewer)
+        elsif params[:reviewed] === "false"
+          scope = scope.not_reviewed_by(viewer)
+        end
       end
 
       scope = scope.not_flagged_as_spam if params[:filter_spam]
