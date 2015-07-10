@@ -2836,8 +2836,9 @@ class ObservationsController < ApplicationController
     end
     @valid_map_params ||= map_params.select do |k,v|
       ! [ :utf8, :controller, :action, :page, :per_page,
-          :preferences, :color, :_query_params_set ].include?( k.to_sym )
-    end
+          :preferences, :color, :_query_params_set,
+          :order_by, :order ].include?( k.to_sym )
+    end.compact
   end
 
 end
