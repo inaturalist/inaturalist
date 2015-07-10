@@ -25,7 +25,7 @@ module ActsAsElasticModel
     class << self
       def elastic_search(options = {})
         begin
-          __elasticsearch__.search(ElasticModel.search_hash(options))
+          __elasticsearch__.search(ElasticModel.search_hash(options), preference: "_local")
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_search failed: #{ e }"
