@@ -9836,7 +9836,8 @@ CREATE TABLE observations (
     uuid character varying(255),
     public_positional_accuracy integer,
     mappable boolean DEFAULT false,
-    cached_votes_total integer DEFAULT 0
+    cached_votes_total integer DEFAULT 0,
+    id_status character varying
 );
 
 
@@ -13949,6 +13950,13 @@ CREATE INDEX index_observations_on_geom ON observations USING gist (geom);
 
 
 --
+-- Name: index_observations_on_id_status; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_id_status ON observations USING btree (id_status);
+
+
+--
 -- Name: index_observations_on_mappable; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15510,4 +15518,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150619231829');
 INSERT INTO schema_migrations (version) VALUES ('20150622201252');
 
 INSERT INTO schema_migrations (version) VALUES ('20150625230227');
+
+INSERT INTO schema_migrations (version) VALUES ('20150702213215');
 

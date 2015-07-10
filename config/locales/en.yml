@@ -637,6 +637,7 @@ en:
   committed: Committed
   committing: Committing...
   community_id: '<strong>Community</strong> ID: '
+  community_id_at_species_or_lower?: Community ID at species or lower?
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported ID?
   compare_with: Compare with
@@ -1205,6 +1206,11 @@ en:
   id_please!: ID Please!
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
+  id_status: ID Status
+  id_statuses:
+    needs_id: Needs ID
+    verified: Verified
+    unverifiable: Unverifiable
   identification: identification
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
@@ -2604,6 +2610,7 @@ en:
   stats_title: Site Stats
   status: Status
   still_no_luck?: Still no luck?
+  still_needs_id?: Still needs ID?
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"

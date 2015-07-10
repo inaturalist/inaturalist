@@ -2718,4 +2718,51 @@ describe Observation do
     end
   end
 
+  describe "id_status" do
+    before(:all) do
+      DatabaseCleaner.strategy = :truncation
+    end
+    after(:all) do
+      DatabaseCleaner.strategy = :transaction
+    end
+    it "should be verified if community ID at species or lower" do
+      o = Observation.make!
+      t = Taxon.make!(rank: Taxon::SPECIES)
+      2.times { Identification.make!(observation: o, taxon: t)}
+      expect( o.community_taxon.rank ).to eq Taxon::SPECIES
+      expect( o.id_status ).to eq Observation::VERIFIED
+    end
+    it "should be needs if elligible" do
+      o = make_research_grade_observation
+      o.identifications.each(&:destroy)
+      o.reload
+      expect( o.id_status ).to eq Observation::NEEDS_ID
+    end
+    it "should be unverifiable if voted down" do
+      o = Observation.make!
+      o.downvote_from User.make!, vote_scope: 'needs_id'
+      o.reload
+      expect( o.id_status ).to eq Observation::UNVERIFIABLE
+    end
+    it "should be unverifiable by default" do
+      o = Observation.make!
+      expect( o.id_status ).to eq Observation::UNVERIFIABLE
+    end
+    it "should be unverifiable if verifiable but voted down" do
+      o = make_research_grade_observation
+      o.identifications.each(&:destroy)
+      o.downvote_from User.make!, vote_scope: 'needs_id'
+      o.reload
+      expect( o.id_status ).to eq Observation::UNVERIFIABLE
+    end
+    it "should be needs if verifiable and voted back up" do
+      o = make_research_grade_observation
+      o.identifications.each(&:destroy)
+      o.downvote_from User.make!, vote_scope: 'needs_id'
+      o.upvote_from User.make!, vote_scope: 'needs_id'
+      o.reload
+      expect( o.id_status ).to eq Observation::NEEDS_ID
+    end
+  end
+
 end

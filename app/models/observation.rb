@@ -209,9 +209,14 @@ class Observation < ActiveRecord::Base
     form
   ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
+  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+  
+  NEEDS_ID = 'needs_id'
+  VERIFIED = 'verified'
+  UNVERIFIABLE = 'unverifiable'
+  ID_STATUSES = [NEEDS_ID, VERIFIED, UNVERIFIABLE]
 
   preference :community_taxon, :boolean, :default => nil
-  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
@@ -307,7 +312,8 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :set_id_status
   
   before_update :set_quality_grade
                  
@@ -1113,10 +1119,9 @@ class Observation < ActiveRecord::Base
     score = quality_metric_score(metric)
     score.blank? || score >= 0.5
   end
-  
-  def research_grade?
+
+  def research_grade_candidate?
     return false unless georeferenced?
-    return false unless community_supported_id?
     return false unless quality_metrics_pass?
     return false unless observed_on?
     return false unless (photos? || sounds?)
@@ -1125,6 +1130,10 @@ class Observation < ActiveRecord::Base
       return false if community_taxon_id == root.id
     end
     true
+  end
+  
+  def research_grade?
+    community_supported_id? && research_grade_candidate?
   end
   
   def photos?
@@ -2308,6 +2317,59 @@ class Observation < ActiveRecord::Base
         csv << methods.map{ |m| item.send(m) }
       end
     end
+  end
+
+  def community_taxon_at_species_or_lower?
+    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
+  end
+
+  def set_id_status
+    self.id_status = if voted_in_to_needs_id?
+      NEEDS_ID
+    elsif community_taxon_at_species_or_lower?
+      VERIFIED
+    elsif voted_out_of_needs_id?
+      UNVERIFIABLE
+    elsif research_grade_candidate?
+      NEEDS_ID
+    else
+      UNVERIFIABLE
+    end
+    true
+  end
+
+  def needs_id_vote_score
+    uvotes = get_upvotes(vote_scope: 'needs_id').size
+    dvotes = get_downvotes(vote_scope: 'needs_id').size
+    if uvotes == 0 && dvotes == 0
+      nil
+    elsif uvotes == 0
+      0
+    elsif dvotes == 0
+      1
+    else
+      uvotes.to_f / dvotes
+    end
+  end
+
+  def voted_out_of_needs_id?
+    get_downvotes(vote_scope: 'needs_id').size > get_upvotes(vote_scope: 'needs_id').size
+  end
+
+  def voted_in_to_needs_id?
+    get_upvotes(vote_scope: 'needs_id').size > get_downvotes(vote_scope: 'needs_id').size
+  end
+
+  def needs_id?
+    id_status == NEEDS_ID
+  end
+
+  def verified?
+    id_status == VERIFIED
+  end
+
+  def unverifiable?
+    id_status == UNVERIFIABLE
   end
 
 end

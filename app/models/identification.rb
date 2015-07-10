@@ -136,7 +136,6 @@ class Identification < ActiveRecord::Base
       end
       attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
       ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
-    else
     end
     observation.skip_identifications = true
     observation.identifications.reload

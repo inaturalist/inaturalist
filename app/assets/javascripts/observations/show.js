@@ -64,7 +64,7 @@ $(document).ready(function() {
   
   $('#forms').tabs();
   
-  $('.quality_assessment .quality_metric_vote_link').live('click', function(e) {
+  $('#data_quality_assessment .quality_metric_vote_link').live('click', function(e) {
     e.preventDefault()
     var tr = $(this).parents('tr.quality_metric')
     $.ajax({
