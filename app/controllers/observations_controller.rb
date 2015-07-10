@@ -1556,7 +1556,7 @@ class ObservationsController < ApplicationController
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     oscope = Observation.query(search_params)
-    if stats_adequately_scoped?
+    if stats_adequately_scoped?(search_params)
       if params[:rank] != "leaves"
         if Observation.able_to_use_elasticsearch?(search_params)
           elastic_params = prepare_counts_elastic_query(search_params)
@@ -1654,11 +1654,14 @@ class ObservationsController < ApplicationController
     params[:skip_order] = true
     search_params = Observation.get_search_params(params,
       current_user: current_user)
-    # currently we can't search ES for leaf nodes
-    if Observation.able_to_use_elasticsearch?(search_params)
-      elastic_taxon_stats(search_params)
+    if stats_adequately_scoped?(search_params) && request.format.json?
+      if Observation.able_to_use_elasticsearch?(search_params)
+        elastic_taxon_stats(search_params)
+      else
+        non_elastic_taxon_stats(search_params)
+      end
     else
-      non_elastic_taxon_stats(search_params)
+      @species_counts = [ ]
     end
     @taxa = Taxon.where(id: @species_counts.map{ |r| r["taxon_id"] }).
       includes({ taxon_photos: :photo }, :taxon_names)
@@ -1691,7 +1694,7 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    stats_adequately_scoped?
+    stats_adequately_scoped?(search_params)
     # all the HTML view needs to know is stats_adequately_scoped?
     if request.format.json?
       if Observation.able_to_use_elasticsearch?(search_params)
@@ -1815,7 +1818,7 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     set_up_instance_variables(search_params)
     scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
     scope = scope.joins(:taxon).
       select("observations.id, observations.user_id, observations.created_at, observations.observed_on, observations.time_observed_at, observations.time_zone, taxa.ancestry, taxon_id").
       where("time_observed_at IS NOT NULL")
@@ -1851,7 +1854,7 @@ class ObservationsController < ApplicationController
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
     ancestor_ids_sql = <<-SQL
       SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
       FROM taxa
@@ -1975,19 +1978,22 @@ class ObservationsController < ApplicationController
     Update.elastic_index!(scope: updates_scope, delay: true)
   end
 
-  def stats_adequately_scoped?
+  def stats_adequately_scoped?(search_params = { })
+    # use the supplied search_params if available. Those will already have
+    # tried to resolve and instances referred to by ID
+    stats_params = search_params.blank? ? params : search_params
     if params[:d1] && params[:d2]
-      d1 = (Date.parse(params[:d1]) rescue Date.today)
-      d2 = (Date.parse(params[:d2]) rescue Date.today)
+      d1 = (Date.parse(stats_params[:d1]) rescue Date.today)
+      d2 = (Date.parse(stats_params[:d2]) rescue Date.today)
       return false if d2 - d1 > 366
     end
     @stats_adequately_scoped = !(
-      params[:d1].blank? && 
-      params[:projects].blank? && 
-      params[:place_id].blank? && 
-      params[:user_id].blank? && 
-      params[:on].blank? &&
-      params[:created_on].blank?
+      stats_params[:d1].blank? &&
+      stats_params[:projects].blank? &&
+      stats_params[:place_id].blank? &&
+      stats_params[:user_id].blank? &&
+      stats_params[:on].blank? &&
+      stats_params[:created_on].blank?
     )
   end
   
@@ -2104,7 +2110,7 @@ class ObservationsController < ApplicationController
     @rank = search_params[:rank]
     @hrank = search_params[:hrank]
     @lrank = search_params[:lrank]
-    if stats_adequately_scoped?
+    if stats_adequately_scoped?(search_params)
       @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
       @d2 = search_params[:d2].blank? ? nil : search_params[:d2]
     else
@@ -2606,7 +2612,7 @@ class ObservationsController < ApplicationController
 
   def non_elastic_taxon_stats(search_params)
     scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
     species_counts_scope = scope.joins(:taxon)
     unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
       species_counts_scope = species_counts_scope.where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
@@ -2697,7 +2703,7 @@ class ObservationsController < ApplicationController
 
   def non_elastic_user_stats(search_params, limit)
     scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
     @user_counts = user_obs_counts(scope, limit).to_a
     @user_taxon_counts = user_taxon_counts(scope, limit).to_a
     obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
