@@ -600,6 +600,8 @@ class Observation < ActiveRecord::Base
         "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
     end
   }
+
+  scope :id_status, ->(id_status) { where("id_status = ?", id_status) }
   
   def self.near_place(place)
     place = (Place.find(place) rescue nil) unless place.is_a?(Place)
@@ -1769,17 +1771,20 @@ class Observation < ActiveRecord::Base
     self.identifications_count = idents.size
     new_quality_grade = get_quality_grade
     self.quality_grade = new_quality_grade
+    set_id_status
     
     if !options[:skip_save] && (
         num_identification_agreements_changed? ||
         num_identification_disagreements_changed? ||
         quality_grade_changed? ||
+        id_status_changed? ||
         identifications_count_changed?)
       Observation.where(id: id).update_all(
         num_identification_agreements: num_agreements,
         num_identification_disagreements: num_disagreements,
         quality_grade: new_quality_grade,
-        identifications_count: identifications_count)
+        identifications_count: identifications_count,
+        id_status: id_status)
       refresh_check_lists
       refresh_lists
     end
@@ -2329,7 +2334,9 @@ class Observation < ActiveRecord::Base
   end
 
   def set_id_status
-    self.id_status = if voted_in_to_needs_id?
+    self.id_status = if !research_grade_candidate?
+      UNVERIFIABLE
+    elsif voted_in_to_needs_id?
       NEEDS_ID
     elsif community_taxon_at_species_or_lower?
       VERIFIED
@@ -2339,10 +2346,8 @@ class Observation < ActiveRecord::Base
       else
         UNVERIFIABLE
       end
-    elsif research_grade_candidate?
-      NEEDS_ID
     else
-      UNVERIFIABLE
+      NEEDS_ID
     end
     true
   end

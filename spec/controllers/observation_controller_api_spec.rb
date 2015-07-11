@@ -899,6 +899,42 @@ shared_examples_for "an ObservationsController" do
       expect( ids.first ).to eq obs_with_votes.id
     end
 
+    describe "should filter by id_status" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      before do
+        @o_needs_id = make_research_grade_observation
+        @o_needs_id.identifications.each(&:destroy)
+        @o_needs_id.reload
+        @o_verified = make_research_grade_observation
+        @o_unverifiable = Observation.make!
+        expect( @o_needs_id.id_status ).to eq Observation::NEEDS_ID
+        expect( @o_verified.id_status ).to eq Observation::VERIFIED
+        expect( @o_unverifiable.id_status ).to eq Observation::UNVERIFIABLE
+      end
+      it "equals needs_id" do
+        get :index, format: :json, id_status: Observation::NEEDS_ID
+        json = JSON.parse(response.body)
+        expect( json.detect{|o| o['id'] == @o_needs_id.id} ).not_to be_blank
+        expect( json.detect{|o| o['id'] == @o_verified.id} ).to be_blank
+        expect( json.detect{|o| o['id'] == @o_unverifiable.id} ).to be_blank
+      end
+      it "equals verified" do
+        get :index, format: :json, id_status: Observation::VERIFIED
+        json = JSON.parse(response.body)
+        expect( json.detect{|o| o['id'] == @o_needs_id.id} ).to be_blank
+        expect( json.detect{|o| o['id'] == @o_verified.id} ).not_to be_blank
+        expect( json.detect{|o| o['id'] == @o_unverifiable.id} ).to be_blank
+      end
+      it "equals unverifiable" do
+        get :index, format: :json, id_status: Observation::UNVERIFIABLE
+        json = JSON.parse(response.body)
+        expect( json.detect{|o| o['id'] == @o_needs_id.id} ).to be_blank
+        expect( json.detect{|o| o['id'] == @o_verified.id} ).to be_blank
+        expect( json.detect{|o| o['id'] == @o_unverifiable.id} ).not_to be_blank
+      end
+    end
+
     describe "with site" do
       let(:site) { Site.make! }
       before { stub_config site_id: site.id }

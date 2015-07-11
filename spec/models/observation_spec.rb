@@ -2719,23 +2719,25 @@ describe Observation do
   end
 
   describe "id_status" do
-    before(:all) do
-      DatabaseCleaner.strategy = :truncation
-    end
-    after(:all) do
-      DatabaseCleaner.strategy = :transaction
-    end
-    it "should be verified if community ID at species or lower" do
-      o = Observation.make!
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+    it "should be verified if community ID at species or lower and research grade candidate" do
+      o = make_research_grade_candidate_observation
       t = Taxon.make!(rank: Taxon::SPECIES)
       2.times { Identification.make!(observation: o, taxon: t)}
       expect( o.community_taxon.rank ).to eq Taxon::SPECIES
       expect( o.id_status ).to eq Observation::VERIFIED
     end
+    it "should be unverifiable if community ID at species or lower and not research grade candidate" do
+      o = Observation.make!
+      t = Taxon.make!(rank: Taxon::SPECIES)
+      2.times { Identification.make!(observation: o, taxon: t)}
+      expect( o.community_taxon.rank ).to eq Taxon::SPECIES
+      expect( o.id_status ).to eq Observation::UNVERIFIABLE
+    end
+
     it "should be needs if elligible" do
-      o = make_research_grade_observation
-      o.identifications.each(&:destroy)
-      o.reload
+      o = make_research_grade_candidate_observation
       expect( o.id_status ).to eq Observation::NEEDS_ID
     end
     it "should be unverifiable if voted out" do
@@ -2749,8 +2751,10 @@ describe Observation do
       expect( o.id_status ).to eq Observation::UNVERIFIABLE
     end
     it "should be unverifiable if verifiable but voted out and community taxon above family" do
-      o = make_research_grade_observation(taxon: Taxon.make!(rank: Taxon::ORDER))
-      o.identifications.each(&:destroy)
+      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::ORDER))
+      Identification.make!(observation: o, taxon: o.taxon)
+      o.reload
+      expect( o.community_taxon.rank ).to eq Taxon::ORDER
       o.downvote_from User.make!, vote_scope: 'needs_id'
       o.reload
       expect( o.id_status ).to eq Observation::UNVERIFIABLE
@@ -2778,8 +2782,6 @@ describe Observation do
     end
 
     describe "with id_please" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
       it "should be needs_id if user checked id_please on update" do
         o = make_research_grade_observation
         expect( o.id_status ).to eq Observation::VERIFIED
@@ -2799,6 +2801,19 @@ describe Observation do
         expect( o.id_status ).to eq Observation::VERIFIED
         expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
       end
+    end
+
+    it "should work with query" do
+      o_needs_id = make_research_grade_observation
+      o_needs_id.identifications.each(&:destroy)
+      o_needs_id.reload
+      o_verified = make_research_grade_observation
+      o_unverifiable = Observation.make!
+      expect( Observation.query(id_status: Observation::NEEDS_ID) ).to include o_needs_id
+      expect( Observation.query(id_status: Observation::NEEDS_ID) ).not_to include o_verified
+      expect( Observation.query(id_status: Observation::NEEDS_ID) ).not_to include o_unverifiable
+      expect( Observation.query(id_status: Observation::VERIFIED) ).to include o_verified
+      expect( Observation.query(id_status: Observation::UNVERIFIABLE) ).to include o_unverifiable
     end
   end
 

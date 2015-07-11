@@ -168,6 +168,14 @@ describe Identification, "creation" do
     o.quality_grade.should == Observation::RESEARCH_GRADE
   end
 
+  it "should update observation id_status" do
+    o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'species'))
+    expect( o.id_status ).to eq Observation::NEEDS_ID
+    i = Identification.make!(taxon: o.taxon, observation: o)
+    o.reload
+    expect( o.id_status ).to eq Observation::VERIFIED
+  end
+
   it "should update observation quality grade after disagreement" do
     o = make_research_grade_observation(:prefers_community_taxon => false)
     o.should be_research_grade
@@ -311,6 +319,16 @@ describe Identification, "deletion" do
     o.identifications.each {|ident| ident.destroy if ident.user_id != o.user_id}
     o.reload
     o.quality_grade.should == Observation::CASUAL_GRADE
+  end
+
+  it "should update observation id_status" do
+    o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'species'))
+    i = Identification.make!(taxon: o.taxon, observation: o)
+    o.reload
+    expect( o.id_status ).to eq Observation::VERIFIED
+    i.destroy
+    o.reload
+    expect( o.id_status ).to eq Observation::NEEDS_ID
   end
   
   it "should queue a job to update project lists if owners ident" do
