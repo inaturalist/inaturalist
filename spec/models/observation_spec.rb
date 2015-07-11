@@ -1124,6 +1124,19 @@ describe Observation do
       }.not_to raise_error
     end
 
+    it "scopes by reviewed_by" do
+      o = Observation.make!
+      u = User.make!
+      ObservationReview.make!(observation: o, user: u)
+      expect( Observation.reviewed_by(u).first ).to eq o
+    end
+
+    it "scopes by not_reviewed_by" do
+      o = Observation.make!
+      u = User.make!
+      expect( Observation.not_reviewed_by(u).count ).to eq Observation.count
+    end
+
     describe :in_projects do
       it "should find observations in a project by id" do
         po = make_project_observation
@@ -2814,6 +2827,22 @@ describe Observation do
       expect( Observation.query(id_status: Observation::NEEDS_ID) ).not_to include o_unverifiable
       expect( Observation.query(id_status: Observation::VERIFIED) ).to include o_verified
       expect( Observation.query(id_status: Observation::UNVERIFIABLE) ).to include o_unverifiable
+    end
+  end
+
+  describe "reviewed_by?" do
+    it "knows who it was reviewed by" do
+      o = Observation.make!
+      expect( o.reviewed_by?( o.user ) ).to be false
+      r = ObservationReview.make!(observation: o, user: o.user)
+      expect( o.reviewed_by?( o.user ) ).to be true
+    end
+
+    it "doesn't count unreviews" do
+      o = Observation.make!
+      expect( o.reviewed_by?( o.user ) ).to be false
+      r = ObservationReview.make!(observation: o, user: o.user, reviewed: false)
+      expect( o.reviewed_by?( o.user ) ).to be false
     end
   end
 

@@ -218,7 +218,19 @@ $(document).ready(function() {
       at: 'bottom center',
       target: $('#fave')
     }
-  }))
+  }));
+  // toggle users' reviewed status for observations
+  $( "#reviewbutton" ).bind( "ajax:before", function( ) {
+    // each click sets the opposite value for reviewed
+    var currentReviewState = !$(this).data( "reviewed" );
+    $(this).data( "reviewed", currentReviewState );
+    // set the new label
+    if( currentReviewState === true ) { $(this).text( $(this).data( "unreview-label" ) ); }
+    else { $(this).text( $(this).data( "review-label" ) ); }
+    // update the link to allow toggling reviewed back and forth
+    $(this).attr( "href", $(this).attr( "href" ).
+      replace( /reviewed=.*$/, "reviewed=" +  currentReviewState ));
+  });
 })
 
 $('#add_more_photos_link').live('click', function() {

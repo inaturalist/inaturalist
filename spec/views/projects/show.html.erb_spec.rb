@@ -12,6 +12,7 @@ describe "projects/show" do
       assign(:kml_assets, [ ])
       assign(:project_users, [ ])
       assign(:project, @project)
+      assign(:observations_url_params, { })
     end
 
     it "shows the right range intraday bioblitzes" do

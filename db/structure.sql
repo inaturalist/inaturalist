@@ -9555,6 +9555,40 @@ ALTER SEQUENCE observation_photos_id_seq OWNED BY observation_photos.id;
 
 
 --
+-- Name: observation_reviews; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_reviews (
+    id integer NOT NULL,
+    user_id integer,
+    observation_id integer,
+    reviewed boolean DEFAULT true,
+    user_added boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: observation_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE observation_reviews_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE observation_reviews_id_seq OWNED BY observation_reviews.id;
+
+
+--
 -- Name: observation_sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12059,6 +12093,13 @@ ALTER TABLE ONLY observation_photos ALTER COLUMN id SET DEFAULT nextval('observa
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY observation_reviews ALTER COLUMN id SET DEFAULT nextval('observation_reviews_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY observation_sounds ALTER COLUMN id SET DEFAULT nextval('observation_sounds_id_seq'::regclass);
 
 
@@ -12754,6 +12795,14 @@ ALTER TABLE ONLY observation_links
 
 ALTER TABLE ONLY observation_photos
     ADD CONSTRAINT observation_photos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY observation_reviews
+    ADD CONSTRAINT observation_reviews_pkey PRIMARY KEY (id);
 
 
 --
@@ -13779,6 +13828,20 @@ CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING bt
 --
 
 CREATE INDEX index_observation_photos_on_uuid ON observation_photos USING btree (uuid);
+
+
+--
+-- Name: index_observation_reviews_on_observation_id_and_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_observation_reviews_on_observation_id_and_user_id ON observation_reviews USING btree (observation_id, user_id);
+
+
+--
+-- Name: index_observation_reviews_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_reviews_on_user_id ON observation_reviews USING btree (user_id);
 
 
 --
@@ -15518,6 +15581,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150619231829');
 INSERT INTO schema_migrations (version) VALUES ('20150622201252');
 
 INSERT INTO schema_migrations (version) VALUES ('20150625230227');
+
+INSERT INTO schema_migrations (version) VALUES ('20150701222736');
 
 INSERT INTO schema_migrations (version) VALUES ('20150702213215');
 

@@ -373,6 +373,59 @@ describe ObservationsController do
     end
   end
 
+  describe "review" do
+    let(:obs_to_review) { Observation.make! }
+    it "forces users to log in when requesting HTML" do
+      post :review, id: obs_to_review, format: :html
+      expect(response.response_code).to eq 302
+      expect(response).to be_redirect
+      expect(response).to redirect_to(new_user_session_url)
+    end
+    it "denies non-logged-in users when requesting JSON" do
+      post :review, id: obs_to_review, format: :json
+      expect(response.response_code).to eq 401
+      json = JSON.parse(response.body.to_s)
+      expect(json["error"]).to eq "You need to sign in or sign up before continuing."
+    end
+    it "allows logged-in requests" do
+      sign_in obs_to_review.user
+      post :review, id: obs_to_review, format: :json
+      expect(response.response_code).to eq 204
+      expect(response.body).to be_blank
+    end
+    it "redirects HTML requests to the observations page" do
+      sign_in obs_to_review.user
+      post :review, id: obs_to_review, format: :html
+      expect(response.response_code).to eq 302
+      expect(response).to redirect_to(observation_url(obs_to_review))
+    end
+    it "creates an observation review if one does not exist" do
+      obs_to_review.observation_reviews.destroy_all
+      reviewer = User.make!
+      expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 0
+      sign_in reviewer
+      post :review, id: obs_to_review
+      obs_to_review.reload
+      expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
+      expect(obs_to_review.observation_reviews.first.reviewed).to eq true
+      expect(obs_to_review.observation_reviews.first.user_added).to eq true
+    end
+    it "updates an existing observation review" do
+      obs_to_review.observation_reviews.destroy_all
+      reviewer = User.make!
+      expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 0
+      sign_in reviewer
+      post :review, id: obs_to_review
+      obs_to_review.reload
+      expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
+      expect(obs_to_review.observation_reviews.first.reviewed).to eq true
+      post :review, id: obs_to_review, reviewed: "false"
+      obs_to_review.reload
+      expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
+      expect(obs_to_review.observation_reviews.first.reviewed).to eq false
+    end
+  end
+
 end
 
 describe ObservationsController, "spam" do

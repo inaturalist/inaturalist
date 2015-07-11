@@ -153,10 +153,10 @@ def work_on_uid(uid, options = {})
   taxon ||= Taxon.active.find_by_name(name)
   if OPTS[:create_taxa]
     taxon ||= Taxon.new(
-      :name => name, :rank => Taxon::SPECIES, :source => SOURCE,
+      :name => name, :rank => Taxon::SPECIES, 
+      :source => SOURCE,
       :source_url => url,
-      :source_identifier => uid,
-      :source => SOURCE
+      :source_identifier => uid
     )
     unless OPTS[:debug]
       if taxon.save

@@ -507,7 +507,9 @@ private
     page = params[:page].to_i
     page = 1 if page == 0
     per_page = params[:per_page].to_i
-    per_page = 45 if per_page <= 0
+    if per_page <= 0
+      per_page = request.format.json? ? 200 : 45
+    end
     per_page = 200 if per_page > 200
     find_options = {
       :page => page,

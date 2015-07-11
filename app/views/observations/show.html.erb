@@ -177,7 +177,7 @@
     <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
       <%= link_to t(:edit_flagged_observation), edit_observation_url, 
                   :id => "edit_list_button" %>
-      <%= link_to t(:to_the_bat_cave!), admin_index_url, 
+      <%= link_to t(:to_the_bat_cave!), admin_url,
                   :id => "admin_button" %>
     <% end %>
 
@@ -249,6 +249,20 @@
           </ul>
         <% end %>
       <% end %>
+
+      <div id="review">
+        <%= link_to review_observation_path( @observation.id,
+            reviewed: !(@observation.reviewed_by?( current_user )), format: :json),
+            method: :post,
+            remote: true,
+            id: "reviewbutton",
+            data: {
+              reviewed: @observation.reviewed_by?( current_user ),
+              review_label: "Review",
+              unreview_label: "Unreview" } do %>
+          <%= @observation.reviewed_by?( current_user ) ? "Unreview" : "Review" %>
+        <% end %>
+      </div>
 
       <%= link_to "<i class='fa fa-share'></i> #{t :share}".html_safe, "#", :id => 'sharebutton', :class => 'sharebutton', :onclick => "javascript:return false;" %>
     <% end -%>
