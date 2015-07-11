@@ -316,6 +316,7 @@ class Observation < ActiveRecord::Base
               :set_id_status
   
   before_update :set_quality_grade
+  after_update :handle_id_please_on_update
                  
   after_save :refresh_lists,
              :refresh_check_lists,
@@ -2323,13 +2324,21 @@ class Observation < ActiveRecord::Base
     community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
   end
 
+  def community_taxon_at_family_or_lower?
+    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
+  end
+
   def set_id_status
     self.id_status = if voted_in_to_needs_id?
       NEEDS_ID
     elsif community_taxon_at_species_or_lower?
       VERIFIED
     elsif voted_out_of_needs_id?
-      UNVERIFIABLE
+      if community_taxon_at_family_or_lower?
+        VERIFIED
+      else
+        UNVERIFIABLE
+      end
     elsif research_grade_candidate?
       NEEDS_ID
     else
@@ -2370,6 +2379,16 @@ class Observation < ActiveRecord::Base
 
   def unverifiable?
     id_status == UNVERIFIABLE
+  end
+
+  def handle_id_please_on_update
+    return true unless id_please_changed? && !@id_please_handled
+    @id_please_handled = true
+    if id_please?
+      vote_by voter: user, vote: true, vote_scope: :needs_id
+    else
+      unvote voter: user, vote: true, vote_scope: :needs_id
+    end
   end
 
 end

@@ -2738,7 +2738,7 @@ describe Observation do
       o.reload
       expect( o.id_status ).to eq Observation::NEEDS_ID
     end
-    it "should be unverifiable if voted down" do
+    it "should be unverifiable if voted out" do
       o = Observation.make!
       o.downvote_from User.make!, vote_scope: 'needs_id'
       o.reload
@@ -2748,20 +2748,57 @@ describe Observation do
       o = Observation.make!
       expect( o.id_status ).to eq Observation::UNVERIFIABLE
     end
-    it "should be unverifiable if verifiable but voted down" do
-      o = make_research_grade_observation
+    it "should be unverifiable if verifiable but voted out and community taxon above family" do
+      o = make_research_grade_observation(taxon: Taxon.make!(rank: Taxon::ORDER))
       o.identifications.each(&:destroy)
       o.downvote_from User.make!, vote_scope: 'needs_id'
       o.reload
       expect( o.id_status ).to eq Observation::UNVERIFIABLE
     end
-    it "should be needs if verifiable and voted back up" do
+    it "should be verified if verifiable but voted out and community taxon below family" do
+      o = make_research_grade_observation
+      t = Taxon.make!(rank: Taxon::GENUS)
+      o.identifications.each(&:destroy)
+      2.times do
+        Identification.make!(taxon: t, observation: o)
+      end
+      o.reload
+      expect( o.community_taxon ).to eq t
+      o.downvote_from User.make!, vote_scope: 'needs_id'
+      o.reload
+      expect( o.id_status ).to eq Observation::VERIFIED
+    end
+    it "should be needs if verifiable and voted back in" do
       o = make_research_grade_observation
       o.identifications.each(&:destroy)
       o.downvote_from User.make!, vote_scope: 'needs_id'
       o.upvote_from User.make!, vote_scope: 'needs_id'
       o.reload
       expect( o.id_status ).to eq Observation::NEEDS_ID
+    end
+
+    describe "with id_please" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      it "should be needs_id if user checked id_please on update" do
+        o = make_research_grade_observation
+        expect( o.id_status ).to eq Observation::VERIFIED
+        o.update_attributes(id_please: true)
+        o.reload
+        expect( o.id_status ).to eq Observation::NEEDS_ID
+      end
+      it "should add vote for needs_id if user checks id_please on update" do
+        o = make_research_grade_observation
+        expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
+        o.update_attributes(id_please: true)
+        o.reload
+        expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 1
+      end
+      it "should not add vote for needs_id if user checks id_please on create" do
+        o = make_research_grade_observation(id_please: true)
+        expect( o.id_status ).to eq Observation::VERIFIED
+        expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
+      end
     end
   end
 
