@@ -63,8 +63,9 @@ module ActsAsElasticModel
           # the resulting IDs instead of scopes for DelayedJobs.
           # For example, delayed calls this like are very efficient:
           #   Observation.elastic_index!(scope: User.find(1).observations, delay: true)
-          return self.delay.elastic_index!(
-            options.merge(ids: scope.select(:id).order(:id).map(&:id)))
+          result_ids = scope.select(:id).order(:id).map(&:id)
+          return unless result_ids.any?
+          return self.delay.elastic_index!(options.merge(ids: result_ids))
         end
         # now we can preload all associations needed for efficient indexing
         if self.respond_to?(:load_for_index)
