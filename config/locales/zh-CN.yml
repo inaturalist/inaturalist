@@ -925,6 +925,7 @@ zh-CN:
   lists_by_login:
     title:
       current_user: 您的列表
+      login: 由%{login}列举
   loading_images: 正在加载图片...
   loading_map: 正在加载地图...
   loading_more_photos: 正在加载更多照片……
@@ -1732,6 +1733,8 @@ zh-CN:
           <li>不要翻译现有字段名称至不同语言。英语是此网站的通用语。如果您真希望添加一个描述相同概念，但语言不同的字段，请新建一个观察字段。</li>
         </ol>
     emailer:
+      observations_export_notification:
+        your_observations_export_failed_html: 您的观察导出失败。请访问<a href="%{url}">观察导出页面</a>以查看您导出的观察列表。
       bulk_import_error:
         taxon_spelling_notice_html: 请检查每条记录的拼写。如果您的拼写正确，请在 %{search_taxa_url} 搜索物种。如果名称尚未存在于
           %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。
