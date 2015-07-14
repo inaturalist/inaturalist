@@ -64,7 +64,7 @@ class Project < ActiveRecord::Base
   def aggregation_preference_allowed?
     return true unless prefers_aggregation?
     return true if aggregation_allowed?
-    errors.add(:base, "cannot enable automatic observation aggregation with inadequate filters")
+    errors.add(:base, I18n.t(:project_aggregator_filter_error))
     true
   end
   
@@ -597,7 +597,6 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
-    return false unless trusted?
     return true if place && place.bbox_area < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
     false

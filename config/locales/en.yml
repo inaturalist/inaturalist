@@ -1902,6 +1902,7 @@ en:
   only_show_for_species_subspecies_varieties_etc: Only show for species, subspecies, varieties, etc.
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
+  only_site_curators_can_turn_on_observation_aggregation: Only site curators can turn on project aggregation
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
   only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
@@ -2173,6 +2174,10 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_aggregator_filter_error: |
+    Projects cannot enable automatic observation aggregation unless the
+    project is associated with a place of moderate size or it only allows
+    observations of specific taxa or taxa on a list
   project_assessments: Project Assessments
   project_assets: Project Assets
   project_cover: Project cover
@@ -3958,12 +3963,11 @@ en:
           </p>
           <ol>
             <li class="readable description">
-              Your project is trusted (if you can see this it is)
+              Your project is associated with a small-to-mid-sized place (about
+              the size of Texas or Ukraine)
             </li>
             <li class="readable description">
-              Your project is associated with a small-to-mid-sized place (about
-              the size of Texas or Ukraine) OR your project only accepts
-              observations of certain taxa
+              OR your project only accepts observations of certain taxa
             </li>
           </ol>
         project_assets_desc_html: |

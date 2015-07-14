@@ -118,7 +118,7 @@
     </fieldset>
   </div>
 
-  <% if @project.trusted? -%>
+  <% if is_curator? -%>
     <fieldset class="observationrules">
       <legend><%= t(:observation_aggregation).titleize %></legend>
       <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
