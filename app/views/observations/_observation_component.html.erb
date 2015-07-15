@@ -37,12 +37,11 @@ Some notes:
   top ||= false
   css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
-  if observation.quality_grade == Observation::RESEARCH_GRADE
-    css_class += ' research_grade'
-  end
   if observation.needs_id?
     css_class += ' id_please'
     css_class += ' idandrg' if observation.research_grade?
+  elsif observation.quality_grade == Observation::RESEARCH_GRADE
+    css_class += ' research_grade'
   end
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
@@ -209,8 +208,7 @@ Some notes:
               "data-tip" => t(:needs_to_be_identified),
               "data-tip-show-delay" => 1000 %>
           </li>
-        <% end -%>
-        <%- if observation.quality_grade == Observation::RESEARCH_GRADE %>
+        <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
           <li class="last">
             <%= link_to t(:research_grade_short_html), observation_url(observation, :anchor => "data_quality_assessment"),
               :class => "research_grade_notice", 
