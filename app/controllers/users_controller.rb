@@ -458,7 +458,7 @@ class UsersController < ApplicationController
   end
 
   def update_session
-    allowed_keys = %w(hide_quality_metrics hide_id_status)
+    allowed_keys = %w(show_quality_metrics)
     updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
     updates.each do |k,v|
       v = true if %w(yes y true t).include?(v)

@@ -149,7 +149,10 @@ function buildHelpTips() {
   if (typeof($().qtip) == "undefined") { return; }
   var options = $.extend(true, {}, QTIP_DEFAULTS, {
     show: {event: 'click'},
-    hide: {event: 'unfocus'}
+    hide: {event: 'unfocus'},
+    position: {
+      at: 'bottom center'
+    }
   })
   $('.helptip').not('.helptipified').each(function() {
     $(this).addClass('helptipified')
@@ -166,6 +169,9 @@ function buildHelpTips() {
         title: $(this).attr('data-helptip-title')
       }
     })
+    if ($(this).data('tip-options')) {
+      tipOptions = $.extend(true, {}, tipOptions, $(this).data('tip-options'))
+    }
     if ($(this).attr('data-helptip-width')) {
       tipOptions.style = tipOptions.style || {}
       tipOptions.style.width = $(this).attr('data-helptip-width')
