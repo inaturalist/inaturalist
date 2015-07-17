@@ -108,7 +108,7 @@ class Project < ActiveRecord::Base
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
-      :url => "#{ CONFIG.s3_host }/:class/:id-cover.:extension",
+      :url => "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
