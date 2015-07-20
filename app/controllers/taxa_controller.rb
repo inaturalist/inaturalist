@@ -448,9 +448,11 @@ class TaxaController < ApplicationController
       end
     end
 
-    if page == 1 && 
+    if page == 1 &&
         !@taxa.detect{|t| t.name.downcase == params[:q].to_s.downcase} && 
-        (exact_taxon = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first)
+        (exact_taxon =
+          Taxon.where("lower(name) = ?", params[:q].to_s.downcase).
+            where(is_active: true).first)
       @taxa.unshift exact_taxon
     end
 
