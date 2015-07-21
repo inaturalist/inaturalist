@@ -2724,18 +2724,20 @@ class ObservationsController < ApplicationController
     @total = user_obs[:total]
     @user_taxon_counts = elastic_user_taxon_counts(elastic_params, limit)
 
-    # 2015-06-21: pleary commenting out due to https://groups.google.com/forum/#!topic/inaturalist/02Yo-w3kT_c
     # # the list of top users is probably different for obs and taxa, so grab the leftovers from each
-    # obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
-    # tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
-    # leftover_obs_user_ids = tax_user_ids - obs_user_ids
-    # leftover_tax_user_ids = obs_user_ids - tax_user_ids
-    # leftover_obs_user_elastic_params = elastic_params.marshal_copy
-    # leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
-    # leftover_tax_user_elastic_params = elastic_params.marshal_copy
-    # leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
-    # @user_counts        += elastic_user_obs(leftover_obs_user_elastic_params)[:counts].to_a
-    # @user_taxon_counts  += elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
+    obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
+    tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
+    leftover_obs_user_ids = tax_user_ids - obs_user_ids
+    leftover_tax_user_ids = obs_user_ids - tax_user_ids
+    leftover_obs_user_elastic_params = elastic_params.marshal_copy
+    leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
+    leftover_tax_user_elastic_params = elastic_params.marshal_copy
+    leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
+    @user_counts        += elastic_user_obs(leftover_obs_user_elastic_params)[:counts].to_a
+    @user_taxon_counts  += elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
+    # don't want to return more than were asked for
+    @user_counts = @user_counts[0..limit]
+    @user_taxon_counts = @user_taxon_counts[0..limit]
   end
 
   def elastic_user_obs(elastic_params, limit = 500)
