@@ -2736,8 +2736,8 @@ class ObservationsController < ApplicationController
     @user_counts        += elastic_user_obs(leftover_obs_user_elastic_params)[:counts].to_a
     @user_taxon_counts  += elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
     # don't want to return more than were asked for
-    @user_counts = @user_counts[0..limit]
-    @user_taxon_counts = @user_taxon_counts[0..limit]
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
   end
 
   def elastic_user_obs(elastic_params, limit = 500)
