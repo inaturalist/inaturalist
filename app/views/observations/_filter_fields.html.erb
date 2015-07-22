@@ -188,7 +188,7 @@
     <div class="left">
       <div class="buttons">
         <%= search_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
-          :placeholder => t(:type_taxon_name_and_click_lookup),
+          :placeholder => t(:start_typing_taxon_name),
           "data-iconic-taxon-id" => @observations_taxon ? @observations_taxon.iconic_taxon_id : nil,
           "data-default-photo-url" => ( @observations_taxon && @observations_taxon.default_photo ) ?
             @observations_taxon.default_photo.best_url(:square) : nil %>

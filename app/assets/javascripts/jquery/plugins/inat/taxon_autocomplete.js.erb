@@ -1,140 +1,163 @@
-var ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
+var inaturalist = inaturalist || { };
+inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
   [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ] }].to_json %>;
-var UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
+inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
+inaturalist.TAXON_ROOT_URL = "<%= FakeView.taxon_url(1)[0..-2] %>";
 
-function capitalize( s ) {
+var autocompleter = { };
+
+autocompleter.capitalize = function( s ) {
   return s[0].toUpperCase( ) + s.slice( 1 );
-}
-
-function autocompleteTemplate( result ) {
-  var template = "<div class='ac' data-taxon-id='"+ result.id +"'><div class='ac-thumb'>";
-  result.default_photo_url = result.default_photo_url;
-  if( !result.default_photo_url ) {
-    if( ICONIC_TAXA[ result.iconic_taxon_id ] ) {
-      result.default_photo_url = ICONIC_TAXA[ result.iconic_taxon_id ].icon;
-    } else {
-      result.default_photo_url = UNKNOWN_TAXON_ICON;
-    }
-  }
-  template += "<img src='"+ result.default_photo_url +"'>";
-  template += "</div><div class='ac-label'><span class='title'>";
-  var name;
-  var subtitle;
-  _.each( result.names, function( n ) {
-    if( n.locale === I18n.locale ) {
-      if( name ) { return; }
-      name = n.name;
-    }
-  });
-  if( !name ) {
-    _.each( result.names, function( n ) {
-      if( n.locale === "en" ) {
-        if( name ) { return; }
-        name = n.name;
-      }
-    });
-  }
-  if( name && result.rank_level <= 10 ) {
-    subtitle = "<i>" + result.name + "</i>";
-  } else if( result.ancestor_name && result.rank_level < 70) {
-    subtitle = capitalize(result.ancestor_rank) + " " + result.ancestor_name;
-  }
-  result.best_name = name || result.name;
-  template += result.best_name;
-  template += "</span><span class='subtitle'>";
-  template += subtitle || capitalize(result.rank);
-  template += "</span></div>";
-  template += "<a href='http://www.inaturalist.org/taxa/"+ result.id +"' target='_blank'><div class='ac-view'>View</div></a></div>";
-  return template;
 };
 
-$.fn.taxonAutocomplete = function() {
-  var field = this;
-  var photo_url = field.data("default-photo-url");
-  if( !photo_url ) {
-    if( ICONIC_TAXA[ field.data("iconic-taxon-id") ] ) {
-      photo_url = ICONIC_TAXA[ field.data("iconic-taxon-id") ].icon;
-    } else {
-      photo_url = UNKNOWN_TAXON_ICON;
-    }
+// return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
+autocompleter.defaultPhotoForResult = function( result ) {
+  if( result.default_photo_url ) { return result.default_photo_url; }
+  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
+    return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
+  } else {
+    return inaturalist.UNKNOWN_TAXON_ICON;
   }
-  field.parent().prepend($("<div class='ac-select-thumb'></div>").
-    append("<img src='"+ photo_url +"'></img>"));
-  field.on('search', function () {
+};
+
+// return the first (preferred) name in a locale
+autocompleter.preferredNameInLocale = function( result, locale ) {
+  var nameInLocale;
+  _.each( result.names, function( n ) {
+    if( nameInLocale ) { return; }
+    if( n.locale === locale ) { nameInLocale = n.name; }
+  });
+  return nameInLocale;
+};
+
+// return the best name in the locale, or defaulting to EN
+autocompleter.setBestName = function( result ) {
+  var name = autocompleter.preferredNameInLocale( result, I18n.locale );
+  if( !name && I18n.locale !== "en" ) {
+    name = autocompleter.preferredNameInLocale( result, "en" );
+  }
+  result.best_name = name || result.name;
+};
+
+autocompleter.taxonTemplate = function( result ) {
+  autocompleter.setBestName( result );
+  var subtitle;
+  if( result.best_name && result.rank_level <= 10 ) {
+    subtitle = "<i>" + result.name + "</i>";
+  } else if( result.ancestor_name && result.rank_level < 70) {
+    subtitle = autocompleter.capitalize(result.ancestor_rank) + " " + result.ancestor_name;
+  }
+
+  result.default_photo_url = autocompleter.defaultPhotoForResult( result );
+  var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "data-taxon-id", result.id );
+  var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
+  var thumbImage = $( "<img/>" ).attr( "src", result.default_photo_url ).appendTo( thumbDiv );
+  var labelDiv = $( "<div/>" ).addClass( "ac-label" );
+  labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.best_name ));
+  labelDiv.append( $( "<span/>" ).addClass( "subtitle" ).
+    append( subtitle || autocompleter.capitalize( result.rank ) ));
+  var viewLink = $( "<a/>" ).attr( "target", "_blank" ).
+    attr( "href", inaturalist.TAXON_ROOT_URL + result.id );
+  var viewDiv = $( "<div/>" ).addClass( "ac-view" ).append( "View" ).appendTo( viewLink );
+  wrapperDiv.append( thumbDiv );
+  wrapperDiv.append( labelDiv );
+  wrapperDiv.append( viewLink );
+  return wrapperDiv;
+};
+
+autocompleter.resetTaxonSelection = function( ) {
+  $("#taxon_id").val( null );
+  $(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
+};
+
+$.fn.taxonAutocomplete = function( ) {
+  var field = this;
+  // render the initial thumbnail of existing result, or the unknown icon
+  var photo_url = autocompleter.defaultPhotoForResult({
+    default_photo_url: field.data( "default-photo-url" ),
+    iconic_taxon_id: field.data( "iconic-taxon-id" ) });
+  var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" ).
+    append( $( "<img/>" ).attr( "src", photo_url ) );
+  field.parent( ).prepend( thumbDiv );
+  // search is strangely the event when the (x) is clicked in the
+  // text field search box. We want to restore all defaults
+  field.on( "search", function ( ) {
     $(this).val( "" );
-    $("#taxon_id").val( null );
-    $(".ac-select-thumb img").attr( "src", UNKNOWN_TAXON_ICON );
+    autocompleter.resetTaxonSelection( );
     return false;
   });
   var ac = field.autocomplete({
+    minLength: 2,
+    delay: 50,
     source: function( request, response ) {
       $.ajax({
         url: "<%= CONFIG.node_api_host %>/taxa/autocomplete?per_page=10",
         dataType: "jsonp",
-        data: {
-          q: request.term
-        },
-        success: function( data ) {
-          response( data.results );
-        }
+        data: { q: request.term },
+        success: function( data ) { response( data.results ); }
       });
     },
-    minLength: 2,
-    delay: 50,
-    select: function( event, ui ) {
-      if( event.toElement && $(event.toElement).hasClass( "ac-view" ) ) {
+    select: function( e, ui ) {
+      // clicks on the View link should not count as selection
+      if( e.toElement && $(e.toElement).hasClass( "ac-view" ) ) {
         return false;
       }
+      // show the best name in the search field
       field.val( ui.item.best_name || ui.item.name );
+      // blur to hide the autocomplete menu
       field.blur( );
+      // set the hidden taxon_id
       $("#taxon_id").val( ui.item.id );
+      // set the selection's thumbnail image
       $(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
       return false;
     },
-    focus: function( event, ui ) {
+    focus: function( e, ui ) {
       var li = $("ul").find("[data-taxon-id='"+ ui.item.id +"']").closest("li");
       li.parent( ).find( "li" ).removeClass( "active" );
       li.addClass( "active" );
       return false;
     }
   }).data( "autocomplete" );
-  // mostly standard _move
-  ac._move = function( direction, event ) {
-    if ( !this.menu.element.is( ":visible" ) ) {
-      this.search( null, event );
+  // modifying _move slightly to prevent scrolling with arrow
+  // keys past the top or bottom of the autocomplete menu
+  ac._move = function( direction, e ) {
+    if( !this.menu.element.is( ":visible" ) ) {
+      this.search( null, e );
       return;
     }
     // preventing scrolling past top or bottom
-    if ( this.menu.isFirstItem() && /^previous/.test( direction ) ||
-        this.menu.isLastItem() && /^next/.test( direction ) ) {
+    if( this.menu.isFirstItem( ) && /^previous/.test( direction ) ||
+        this.menu.isLastItem( ) && /^next/.test( direction ) ) {
       return;
     }
-    this.menu[ direction ]( event );
+    this.menu[ direction ]( e );
   };
+  // custom simple _renderItem that gives the LI's class ac-result
   ac._renderItem = function( ul, item ) {
-    return $( "<li class='ac-result'></li>" ).data("item.autocomplete", item).
-      append( autocompleteTemplate( item )).
+    return $( "<li class='ac-result'></li>" ).data( "item.autocomplete", item ).
+      append( autocompleter.taxonTemplate( item )).
       appendTo( ul );
   };
+  // custom simple _renderMenu that removes the ac-menu class
   ac._renderMenu = function( ul, items ) {
     var that = this;
-    ul.removeClass("ui-corner-all").removeClass("ui-menu");
-    ul.addClass("ac-menu");
+    ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
+    ul.addClass( "ac-menu" );
     $.each( items, function( index, item ) {
       that._renderItemData( ul, item );
     });
   };
-  field.keydown(function(e) {
+  field.keydown( function( e ) {
     var key = e.keyCode || e.which;
     // cancel any return key action in the text field
     if(key === 13) { return false; }
     // the arrow keys are harmless
     if(key === 37 || key === 38 || key === 39 || key === 40) { return; }
-    $("#taxon_id").val( null );
-    $(".ac-select-thumb img").attr( "src", UNKNOWN_TAXON_ICON );
+    autocompleter.resetTaxonSelection( );
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
-    $(this).autocomplete('search', $(this).val( ));
+    $(this).autocomplete( "search", $(this).val( ));
   });
 };
