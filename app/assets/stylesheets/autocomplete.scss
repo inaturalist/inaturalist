@@ -1,0 +1,55 @@
+.ui-autocomplete .ac {
+  height: 46px;
+  width: 370px;
+  display: block;
+}
+.ui-autocomplete .ac-thumb {
+  float: left;
+  width: 44px;
+}
+.ui-autocomplete .ac-view {
+  float: right;
+  width: 44px;
+  line-height: 46px;
+  text-align: center;
+  background: white;
+}
+.ui-autocomplete .ac-thumb img {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+}
+.ui-autocomplete .ac-result {
+  list-style: none;
+}
+.ui-autocomplete .ac-result.active {
+  background: #F2F2F2;
+}
+
+.ui-autocomplete .ac-label {
+  padding: 7px 0 0 50px;
+  position: absolute;
+  line-height: 16px;
+}
+.ui-autocomplete .ac-label .title {
+  font-size: 1.1em;
+  display: block;
+  white-space: nowrap;
+}
+.ui-autocomplete .ac-label .subtitle {
+  font-size: 0.9em;
+  display: block;
+  color: #727272;
+}
+.ui-autocomplete li.ac-result:not(:first-child) {
+  border-top: 1px solid #D8D8D8;
+}
+#taxon_filter .ac-select-thumb {
+  width: 25px;
+  float: left;
+  margin-right: 5px;
+}
+#taxon_filter .ac-select-thumb img {
+  width: 25px;
+  height: 25px;
+}

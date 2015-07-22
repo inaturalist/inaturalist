@@ -5,7 +5,8 @@ class Taxon < ActiveRecord::Base
   # used to cache place_ids when bulk indexing
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:colors, :taxon_names, :taxon_descriptions) }
+  scope :load_for_index, -> { includes(:colors, :taxon_names, :taxon_descriptions,
+    { taxon_photos: :photo }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :names do
@@ -47,6 +48,7 @@ class Taxon < ActiveRecord::Base
     unless options[:basic]
       json.merge!({
         created_at: created_at,
+        default_photo_url: default_photo ? default_photo.best_url(:square) : nil,
         colors: colors.map(&:as_indexed_json),
         is_active: is_active,
         ancestry: ancestry,
@@ -55,6 +57,26 @@ class Taxon < ActiveRecord::Base
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq
       })
+      if parent
+        json.merge!({ parent_id: parent.id })
+        if species_or_lower?
+          (0..Taxon::PREFERRED_RANKS.index("family")).to_a.reverse.each do |i|
+            rank = Taxon::PREFERRED_RANKS[i]
+            if ancestor = send("find_#{ rank }")
+              json.merge!({
+                ancestor_name: ancestor.name,
+                ancestor_rank: ancestor.rank
+              })
+              break
+            end
+          end
+        else
+          json.merge!({
+            ancestor_name: parent.name,
+            ancestor_rank: parent.rank
+          })
+        end
+      end
     end
     json
   end
