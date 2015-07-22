@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.species_guess').simpleTaxonSelector();
+  $('.species_guess').taxonAutocomplete({ taxon_id_el: $("#observation_taxon_id")});
   $('.observed_on_string').iNatDatepicker();
   var map = iNaturalist.Map.createMap({
     div: $('#map').get(0),
@@ -47,27 +47,6 @@ $(document).ready(function() {
   
   $('#mapcontainer').hover(function() {
     $('#mapcontainer .description').fadeOut()
-  })
-  
-  // Setup taxon browser
-  $('body').append(
-    $('<div id="taxonchooser" class="clear dialog"></div>').append(
-      $('<div id="taxon_browser" class="clear"></div>').append(
-        $('<div class="loading status">' + I18n.t('loading') + '</div>')
-      )
-    ).hide()
-  )
-  
-  $('#taxonchooser').dialog({
-    autoOpen: false,
-    width: $(window).width() * 0.8,
-    height: $(window).height() * 0.8,
-    title: I18n.t('browse_all_species'),
-    modal:true,
-    minWidth:1000,
-    open: function(event, ui) {
-      $('#taxon_browser').load('/taxa/search?partial=browse&js_link=true', function() {TaxonBrowser.ajaxify()})
-    }
   })
 
   $('.observation_fields_form_fields').observationFieldsForm()
@@ -122,11 +101,6 @@ $(document).ready(function() {
     })
   }
 })
-
-function handleTaxonClick(e, taxon) {
-  $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon)
-  $('#taxonchooser').dialog('close')
-}
 
 function afterFindPlaces() {
   TaxonBrowser.ajaxify('#find_places')

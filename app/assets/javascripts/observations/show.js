@@ -49,9 +49,9 @@ $(document).ready(function() {
   // Disable the submit button by default
   $('.identification_form_wrapper .default.button').addClass('disabled').attr('disabled', 'disabled');
   $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
-  
-  $('#new_identification_form .species_guess').simpleTaxonSelector({
-    buttonText: I18n.t('find'),
+
+  $('#new_identification_form .species_guess').taxonAutocomplete({
+    taxon_id_el: $("input.ac_hidden_taxon_id"),
     afterSelect: function(wrapper) {
       var button = $('#new_identification_form').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);
@@ -61,9 +61,9 @@ $(document).ready(function() {
       $(button).addClass('disabled').attr('disabled', 'disabled');
     }
   });
-  
+
   $('#forms').tabs();
-  
+
   $('.quality_assessment .quality_metric_vote_link').live('click', function(e) {
     e.preventDefault()
     var tr = $(this).parents('tr.quality_metric')

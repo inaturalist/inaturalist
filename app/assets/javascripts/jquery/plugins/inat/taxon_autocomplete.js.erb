@@ -65,25 +65,40 @@ autocompleter.taxonTemplate = function( result ) {
   return wrapperDiv;
 };
 
-autocompleter.resetTaxonSelection = function( ) {
-  $("#taxon_id").val( null );
+autocompleter.resetTaxonSelection = function( options ) {
+  options = options || { };
+  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
+  options.taxon_id_el.val( null );
   $(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
+  if( options.afterUnselect ) { options.afterUnselect( ); }
 };
 
-$.fn.taxonAutocomplete = function( ) {
+autocompleter.createWrappingDiv = function( field, options ) {
+  if( !field.parent().hasClass( "ac-chooser" ) ) {
+    var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );
+    field.wrap( wrappingDiv );
+    if( options.thumbnail !== false ) {
+      // render the initial thumbnail of existing result, or the unknown icon
+      var photo_url = autocompleter.defaultPhotoForResult({
+        default_photo_url: field.data( "default-photo-url" ),
+        iconic_taxon_id: field.data( "iconic-taxon-id" ) });
+      var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" ).
+        append( $( "<img/>" ).attr( "src", photo_url ) );
+      field.parent( ).prepend( thumbDiv );
+    }
+  }
+};
+
+$.fn.taxonAutocomplete = function( options ) {
+  options = options || { };
+  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
   var field = this;
-  // render the initial thumbnail of existing result, or the unknown icon
-  var photo_url = autocompleter.defaultPhotoForResult({
-    default_photo_url: field.data( "default-photo-url" ),
-    iconic_taxon_id: field.data( "iconic-taxon-id" ) });
-  var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" ).
-    append( $( "<img/>" ).attr( "src", photo_url ) );
-  field.parent( ).prepend( thumbDiv );
+  autocompleter.createWrappingDiv( field, options );
   // search is strangely the event when the (x) is clicked in the
   // text field search box. We want to restore all defaults
   field.on( "search", function ( ) {
     $(this).val( "" );
-    autocompleter.resetTaxonSelection( );
+    autocompleter.resetTaxonSelection( options );
     return false;
   });
   var ac = field.autocomplete({
@@ -107,9 +122,10 @@ $.fn.taxonAutocomplete = function( ) {
       // blur to hide the autocomplete menu
       field.blur( );
       // set the hidden taxon_id
-      $("#taxon_id").val( ui.item.id );
+      options.taxon_id_el.val( ui.item.id );
       // set the selection's thumbnail image
       $(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
+      if( options.afterSelect ) { options.afterSelect( ui ); }
       return false;
     },
     focus: function( e, ui ) {
@@ -154,7 +170,7 @@ $.fn.taxonAutocomplete = function( ) {
     if(key === 13) { return false; }
     // the arrow keys are harmless
     if(key === 37 || key === 38 || key === 39 || key === 40) { return; }
-    autocompleter.resetTaxonSelection( );
+    autocompleter.resetTaxonSelection( options );
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {

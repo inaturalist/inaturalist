@@ -44,12 +44,18 @@
 .ui-autocomplete li.ac-result:not(:first-child) {
   border-top: 1px solid #D8D8D8;
 }
-#taxon_filter .ac-select-thumb {
-  width: 25px;
+.buttonrow .ac-chooser {
+  display: inline-block;
+}
+.ac-chooser .species_guess.ui-autocomplete-input {
+  width: 190px;
+}
+.ac-select-thumb {
+  width: 31px;
   float: left;
   margin-right: 5px;
 }
-#taxon_filter .ac-select-thumb img {
-  width: 25px;
-  height: 25px;
+.ac-select-thumb img {
+  width: 31px;
+  height: 31px;
 }

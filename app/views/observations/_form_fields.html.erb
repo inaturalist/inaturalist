@@ -7,7 +7,10 @@
     <div class="column span-7">
       <div class="field species_guess_field">
         <%= o.label :species_guess, t(:what_did_you_see) %>
-        <%= o.text_field(:species_guess, :class => 'species_guess text') %>
+        <%= o.search_field(:species_guess, :class => 'species_guess text',
+          "data-iconic-taxon-id" => @observation.taxon ? @observation.taxon.iconic_taxon_id : nil,
+          "data-default-photo-url" => ( @observation.taxon && @observation.taxon.default_photo ) ?
+            @observation.taxon.default_photo.best_url(:square) : nil) %>
         <%-
           taxon = if o.object.taxon_id_changed?
             # assume this means the taxon has been set upstream somewhere without saving
