@@ -12,9 +12,9 @@ es:
   licensing_your_content: |-
     Licenciar tu contenido le da a otros el derecho legal de utilizarlo si se apegan a los términos de la licencia. Utilizamos contenido licenciado bajo Creative Commons para compartir con asociados como <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
     (GBIF).
-  you_think_observation_inacurate: Si piensas que esta observación no es exacta, por
-    favor, agregua una identificación, participa en la sección de calidad de datos,
-    o describe la inexactitud en un comentario.
+  you_think_observation_inacurate: Si piensas que esta observación no es exacta, agrega
+    un identificador, participa en la sección de calidad de datos, o describe la inexactitud
+    en un comentario.
   we_also_support: |-
     Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>,
     <a href="http://picasaweb.google.com">Picasa</a>, y
@@ -2496,7 +2496,7 @@ es:
   project_created_on: creó este proyecto el %{date}
   project_curator_id: Identificación del curador del proyecto
   project_curators: Curadores del Proyecto
-  project_group_label: Groupo
+  project_group_label: Grupo
   project_group_description: El grupo al que pertenece el proyecto
   project_home: Inicio del proyecto
   project_icon: Ícono de proyecto
@@ -3193,11 +3193,11 @@ es:
   theres_also: también hay
   these_are_items_people_on: Son contenidos que la gente a puesto como advertencia
     para curación. Contenidos de spam serán borrados y el usuario que lo puso debería
-    ser suspendido (ve a la pagina de su perfil y en la parte inferior izquierda selecciona
+    ser suspendido (ve a la página de su perfil y en la parte inferior izquierda selecciona
     el enlace "suspender usuario" para que ya no pueda entrar al sitio). Otro tipo
     de contenidos como que sea ilegal, engañoso, racial, étnico, etc, deberán ser
     borrados y respondidos con un comentario de una manera atenta. Gente que repita
-    estos comentarios deberán ser reportados a
+    estos comentarios deberán ser reportados a un administrador del sitio o
   these_are_taxa_that: |-
     Son especies o grupos que %{site} no pudo añadir automáticamente
     al árbol taxonómico. Tu puedes añadirlos al árbol seleccionando el
@@ -3684,7 +3684,7 @@ es:
     y no se puede destruir taxones que se está utilizando en los cambios de taxones.
   you_can_see_these_coordinates_because: Usted puede ver estas coordenadas porque
     usted cura uno de los proyectos a los cuales se agregó esta observación.
-  you_can_show_the_boundary_of: Puedes mostrar los límetes del lugar en la pagina
+  you_can_show_the_boundary_of: Puedes mostrar los límites del lugar en la página
     de tu proyecto solo si el lugar tiene límites.
   you_can_sign_free_at: Usted puede registrar una cuenta gratis con %{site_name} en
   you_cant_compare_a_list_with_nothing: ¡No puedes comparar una lista con nada!
@@ -3766,7 +3766,7 @@ es:
     observaciones fueron añadidas
   you_would_get_the: usted obtendrá las siguientes etiquetas
   youll_need_to_link: Deberá vincular
-  your: Usted
+  your: Tu
   your_: Usted
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor
     ingresa al sistema para continuar.
@@ -4117,14 +4117,14 @@ es:
           por lo que si\nte preocupas por quién tiene tus coordenadas, debes asegurarte
           de confiar \nen los curadores con los que participas en los proyectos."
         what_is_does_it_mean_for: ¿Qué significa que una observación sea obscura?
-        when_coordinates_are_obscured_it_means_that: "Cuando las coordinadas son obscuras
-          significa que un punto al azar dentro de \n10mk a la redonda de tus coordenadas
+        when_coordinates_are_obscured_it_means_that: "Cuando las coordenadas son obscuras
+          significa que un punto al azar dentro de \n%{km}KM a la redonda de tus coordenadas
           reales es mostrado públicamente\n(por ejemplo, en la página de inicio, la
-          pagina de observaciones, y páginas\nde proyectos), mientras tus coordenadas
-          reales solamente son visibles cuand\no estás viendo tus propias observaciones
-          (por ejemplo, en el proyecto \nindividual y la lista de tus propias observaciones).
+          página de observaciones, y páginas\nde proyectos), mientras tus coordenadas
+          reales solamente son visibles cuando estás viendo tus propias observaciones
+          (por ejemplo, en el proyecto individual y la lista de tus propias observaciones).
           Toma en cuenta que los\ncuradores que has agregado a tus observaciones también
-          pueden ver tus \ncoordenadas verdaderas.  Las coordenadas obscuras siempre
+          pueden ver tus \ncoordenadas verdaderas. Las coordenadas obscuras siempre
           serán mostradas\ncon una marca circular sin raíces en mapas y retroalimentación
           geoespacial."
         coordinates_are_obscured_for_all_taxa: "Las coordinadas son obscurecidas automáticamente
@@ -4531,7 +4531,7 @@ es:
          a menos que confíes en los curadores de proyectos.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: ' Tú'
+        observer: Tú
         any: Curadores del proyecto
         none: Nadie
       curator_coordinate_access_label: |-

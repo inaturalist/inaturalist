@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Cgalindo
+# Author: Macofe
 # Author: Toliño
 ---
 gl:
@@ -308,6 +309,7 @@ gl:
     primeiro deberías ingresar a través de %{site_name}, despois modificar o teu perfil
     e vincular a túa conta dende aí. Doutra forma %{site_name} non se decata de que
     ambas contas están conectadas e en lugar diso tenta crear unha conta para ti!'
+  android: Android
   animals: Animais
   announcements: Anuncios
   any: Calquera
@@ -617,6 +619,7 @@ gl:
     só a cor da súa flor. Por favor, non poñas cores que non axuden á clasificación,
     por exemplo: evita empregar a cor café para os mamíferos e a cor verde para as plantas.
   colors: Cores
+  columns: Columnas
   comma_separated_list_of_tracking_codes: |-
     Separa os códigos de rastreo con comas. Engade isto se queres poñer un código de rastreo cando as persoas fagan
     observacións no teu proxecto, ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
@@ -642,6 +645,7 @@ gl:
   comparing: Comparando
   comparing_list_to_list: Comparando %{list1} con %{list2}
   comparing_observations_from: Comparación das observacións de %{user} en %{dates}
+  completed: Completado
   comprehensive: Completa
   comprehensive?: ¿Completa?
   comprehensive_list: Lista completa
@@ -674,6 +678,7 @@ gl:
   contributor_cannot_be_found: Non se puido atopar ao contribuidor do proxecto
   contributors_to_project: 'Contribuíntes a %{project}: Contribuíntes ao proxecto'
   controls: Controis
+  coordinates: Coordenadas
   coordinates_private: (coordenadas privadas)
   copy: Copiar
   copy_and_paste_this_into_your_own_html: Copiar e pegar no teu propio HTML.
@@ -741,10 +746,39 @@ gl:
   data_deficient: datos insuficientes
   data_quality_assessment: Avaliación da calidade de datos
   datatype: Tipo de datos
+  date_: Data
   date_added: Data engadida
   date_created: data de creación
+  date_format:
+    month:
+      january: xaneiro
+      february: febreiro
+      march: marzo
+      april: abril
+      may: maio
+      june: xuño
+      july: xullo
+      august: agosto
+      september: setembro
+      october: outubro
+      november: novembro
+      december: decembro
   date_observed: Data observada
   date_observed_on: data que se observou
+  date_picker:
+    closeText: Pechar
+    currentText: Hoxe
+    prevText: Anterior
+    nextText: Seguinte
+    monthNames: '[''xaneiro'', ''febreiro'', ''marzo'', ''abril'', ''maio'', ''xuño'',
+      ''xullo'', ''agosto'', ''setembro'', ''outubro'', ''novembro'', ''decembro'']'
+    monthNamesShort: '[''xan'',''feb'',''mar'',''abr'',''mai'',''xuñ'',''xul'',''ago'',''set'',''out'',''nov'',''dec'']'
+    dayNames: '[''Domingo'', ''Luns'', ''Martes'', ''Mércores'', ''Xoves'', ''Venres'',
+      ''Sábado'']'
+    dayNamesShort: '[''Dom'',''Lun'',''Mar'',''Mér'',''Xov'',''Ven'',''Sáb'']'
+    dayNamesMin: '[''Do'',''Lu'',''Ma'',''Mé'',''Xo'',''Ve'',''Sá'']'
+  date_time: Data/Hora
+  datetime_: Data/Hora
   day: Día
   default: Predeterminada
   default_invite_comment: 'A gran foto! Debes enviar a %{site_name}: {{INVITE_LINK}}'
@@ -752,6 +786,7 @@ gl:
   default_photo_license: 'Licenza para as túas fotos:'
   default_sound_license: Licenzas de son predeterminadas
   delete: Eliminar
+  delete_all: Borrar todo
   delete_conversation: Eliminar conversación
   delete_icon?: Eliminar icona?
   delete_photo: Eliminar foto
@@ -773,6 +808,7 @@ gl:
   description: Descrición
   description_from: Descrición de
   description_tags_more: Descrición, Etiquetas, & Máis
+  desription: Descrición
   destroy: Destruír
   details: Detalles
   developers: Programadores
@@ -893,11 +929,13 @@ gl:
   expand_updates: expandir actualizacións
   explore!: ¡Descobre!
   explore_everyones_observations: Explora as observacións de todos.
+  export: Exportar
   external_links: Enlaces externos
   extinct: Extinto
   extinct_in_the_wild: Extinguido en estado silvestre
   extra_properties: Propiedades extra
   extras: Extras
+  facebook: Facebook
   facebook_account_information: Información da túa conta de Facebook
   facebook_confirmation: Facebook solicita a túa confirmación para conectar a túa
     conta a %{site_name}.
@@ -1190,6 +1228,7 @@ gl:
   invited: Convidado
   invited_to_the_following_projects: 'Estás convidado aos seguintes proxectos:'
   inviting: convidando...
+  iphone: iPhone
   is_a: es un convidado
   is_an: es un convidado
   is_not_following_anyone: Non estás seguindo a ninguén
@@ -1369,6 +1408,7 @@ gl:
     de data.
   localized_species_accounts: Contas de especies localizadas
   location: Localidade
+  location_: Localización
   location_is_exact: a localización é exacta
   locked_taxa_will_not_allow_new: Os taxóns bloqueados non permitirán que se agreguen
     novos taxóns descendentes. Por exemplo, se bloqueaches Amphibia e alguén tratou
@@ -1533,6 +1573,7 @@ gl:
   new_users_week: Usuarios novos / Semana
   next: Seguinte
   next_page: Páxina seguinte
+  "no": Non
   no_activity_in_the_past_week: Non houbo actividade na semana anterior. É hora de
     participar
   no_administrator_knows_your_password: Ningún administrador de %{sitename} coñece
@@ -1809,6 +1850,7 @@ gl:
   paste: Pegar
   paste_in_a_bunch_of_names: Pega un grupo de nomes, 1 por liña e preme o botón!
   paste_in_a_comma_separated_list: Pega a lista de países separados por comas
+  pdf: PDF
   people: Persoas
   people_agree: persoas están de acordo
   people_following_user: Persoas que seguen a %{user}
@@ -2027,6 +2069,7 @@ gl:
   project_created_on: creaches este proxecto o %{date}
   project_curator_id: Identificación do administrador do proxecto
   project_curators: Administradores do Proxecto
+  project_group_label: Grupo
   project_home: Inicio do proxecto
   project_icon: Icona de proxecto
   project_id_or_url_slug: Identificador ou enlace do proxecto, ex. 333 ou o-meu-proxecto
@@ -2330,6 +2373,8 @@ gl:
   sorry_you_need_to_be_signed_in_and: Sentímolo, necesitas entrar ao sistema e ter
     unha conta enlazada de Flickr para poder publicar etiquetas directamente desde
     Flickr.
+  sort: Ordenar
+  sort_by: Ordenar por
   sounds:
     add_media: Engade contido dixital
     add_sounds: Engade un son
@@ -2441,6 +2486,7 @@ gl:
   suggest_an_id: Suxerir un identificador
   suggest_or_require_that: Suxírese ou solicítase que os contribuíntes enchan estes
     campos para as observacións que engadan ao teu proxecto.
+  summary: Resumo
   siutable_observations: observacións que podes convidar
   sun: Dom
   suspend_user: Suspender usuario
@@ -2449,6 +2495,7 @@ gl:
   sync: ¿Sincronizar?
   synonyms: Sinónimos
   table: Táboa
+  table_of_contents: Táboa de contidos
   tags: Etiquetas
   tags_are_a_way: As etiquetas son palabras clave que podes engadir ás túas observacións
     para facelas máis fáciles de atopar.
@@ -2501,7 +2548,7 @@ gl:
   taxonomic: Taxonomía
   taxonomic_changes: Cambios taxonómicos
   taxonomic_changes_raquo_html: Cambios<nobr>taxonómicos&raquo;</nobr>
-  taxonomic_groups: Grupos Taxonómicos
+  taxonomic_groups: Grupos taxonómicos
   taxonomic_order: Orde taxonómico
   taxonomic_tags_for_flickr: Etiquetas Taxonómicas para Flickr
   taxonomic_tree_browser: Explorador da Árbore Taxonómica
@@ -2514,6 +2561,7 @@ gl:
   terms_of_service: Termos do servizo
   terms_service: Termos do servizo
   terrain: Terreo
+  text_: texto
   thanks_for_signing_up: Grazas por rexistrarte!
   thanks_for_using: Grazas por empregar o noso servizo
   that_photo_doesnt_exist: Esa foto non existe.
@@ -2711,6 +2759,7 @@ gl:
     páxina.
   try_wikipedia: Tentar con Wikipedia?
   tue: Mar
+  twitter: Twitter
   type: Tipo
   type_a_name_and_click: Teclea o nome da especie
   type_a_place_name_and_click_search: Pon o nome dun lugar
@@ -2965,6 +3014,7 @@ gl:
   year: Ano
   year_month: ano/mes
   yellow: Amarelo
+  "yes": Si
   yes_find_them!: Si, atópaas!
   yes_i_want_to_join: Si, desexo unirme
   yes_license_my_observations_so_scientists_can_use: Si, crear unha licenza das miñas
@@ -3628,6 +3678,16 @@ gl:
     pm: Tarde
   activerecord:
     attributes:
+      assessment:
+        description: Descrición
+      assessment_section:
+        title: Título
+        body: Corpo
+      conservation_status:
+        status: Estado
+        description: Descrición
+        place_id: Lugar
+        url: URL
       project:
         title: Título
         project_icon: Icona de proxecto
@@ -3653,6 +3713,8 @@ gl:
       flag:
         reason: Razón
         flag: Marca
+      observation_field_value:
+        value: valor
       taxon:
         name: Nome
         rank: Clasificación

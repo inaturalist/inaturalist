@@ -18,13 +18,11 @@
 # Author: Wladek92
 ---
 fr:
-  licensing_your_content: |-
-    En ajoutant une licence à votre contenu, vous donnez aux autres le droit
-    légal de l’utiliser s’ils se conforment aux conditions de la licence.
-    %{site_name} utilise votre contenu sous la licence Creative Commons pour
-    l’échanger avec des partenaires d’échange de données comme le
-    <a href="http://www.gbif.org/"> Système mondial d’informations sur
-    la biodiversité</a> (SMIB).
+  licensing_your_content: "En ajoutant une licence à votre contenu, vous donnez aux
+    autres le droit\nd’utiliser ce contenu s’ils se conforment aux conditions de la
+    licence.\n%{site_name} utilise votre contenu sous licence Creative Commons pour\nl’échanger
+    avec des partenaires comme \n<a href=\"http://www.gbif.org/\">Global Biodiversity
+    Information Facility</a> (GBIF)."
   you_think_observation_inacurate: |-
     Si vous pensez que cette observation est inexacte, veuillez ajouter une
     identification, participez à l’évaluation de la qualité ci-dessous ou
@@ -41,7 +39,7 @@ fr:
     noms scientifiques obsolètes, etc.).
   x_followers:
     one: 1 abonné
-    other: '%{count} abonné'
+    other: '%{count} abonnés'
   x_identifications:
     one: 1 identification
     other: '%{count} identifications'
@@ -108,14 +106,14 @@ fr:
   a_flag_for_x: un drapeau pour %{x}
   a_greasemonkey_script: un script Greasemonkey
   a_member_of_taxon_html: un membre de %{taxon}
-  able_to_connect_flickr: Super! Nous avons pu nous connecter à votre compte Flickr.
+  able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
   about: À propos
   about_bioblitz_results: À propos des résultats de bioblitz
   about_community_taxa: À propos des taxons de la communauté
   about_external_links: À propos des liens externes
   about_licenses: À propos des licences
   about_licensing: À propos de l’octroi de licences
-  about_life!: à propos des êtres vivants!
+  about_life!: À propos des êtres vivants !
   about_places: À propos des lieux
   about_the_cc_licenses: À propos des licences Creative Commons
   about_the_quality_assessment: À propos de l’évaluation de la qualité
@@ -128,13 +126,13 @@ fr:
   account: Compte
   accept: accepter
   accept_community_identifications: Accepter les identifications de la communauté
-  accuracy: Exactitude
-  accuracy_meters: Exactitude (mètres)
+  accuracy: Précision
+  accuracy_meters: Précision (mètres)
   accuracy_of_the_coordinates: |-
-    Exactitude des coordonnées en mètres. Vous pouvez modifier les coordonnées
-    en cliquant sur le lien « modifiez » ci-dessus ou en cliquant sur le
-    marqueur de la carte et en le glissant au bon endroit. Assurez-vous que le
-    cercle soit assez grand pour que vous soyez certain que vous vous trouviez
+    Précision des coordonnées en mètres. Vous pouvez modifier les coordonnées
+    en cliquant sur le lien «  modifiez  » ci-dessus ou en cliquant sur le
+    marqueur de la carte et en le déplacant au bon endroit. Assurez-vous que le
+    cercle soit assez grand pour être certain que vous vous trouviez
     à l’intérieur.
   acquaintances: connaissances
   actions: Actions
@@ -145,7 +143,7 @@ fr:
   add: Ajouter
   add_a: Ajouter un
   add_a_batch_of_observations: Ajouter un lot d’observations
-  add_a_batch_of_observations_by_csv: Ajouter un lot d’observations en format CSV
+  add_a_batch_of_observations_by_csv: Ajouter un lot d’observations au format CSV
   add_a_batch_of_taxa: Ajouter un lot de taxons
   add_a_comment: Ajouter un commentaire
   add_a_field: Ajouter un champ
@@ -177,7 +175,7 @@ fr:
   add_colors: Ajouter des couleurs
   add_comma_separated_tags: Ajouter des étiquettes séparées par des virgules
   add_comment: Ajouter un commentaire
-  add_common_names_for: Ajouter des noms communs à des taxons existants
+  add_common_names_for: ajouter des noms communs à des taxons existants
   add_conservation_status: Ajouter la situation quant à la conservation
   add_countries: Ajouter des pays
   add_custom_project_fields: Ajouter des champs de projet personnalisés

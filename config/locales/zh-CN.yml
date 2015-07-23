@@ -322,7 +322,7 @@ zh-CN:
   assessments: 评定
   associations: 关联
   at: 在
-  at_any_time_change: 任何时间（<span class="button">change</span>）
+  at_any_time_change: 任何时间（<span class="button">更改</span>）
   at_time: 在 %{time}
   atom: 原子
   authority_list:
@@ -676,8 +676,10 @@ zh-CN:
   draft_saved: 草稿已保存！
   drafts: 草稿
   edit: 编辑
+  edit_body: 编辑正文
   edit_colors: 编辑颜色
   edit_comment: 编辑您的评论
+  edit_custom_project_fields: 添加自定义项目字段
   edit_field: 编辑字段
   edit_flagged_observation: 编辑已被标记的观察
   edit_license: 编辑许可协议
@@ -759,6 +761,7 @@ zh-CN:
   fields_merged: 字段已合并
   filter: 过滤器
   filter_by: 过滤方式
+  filter_by_place: 按地点筛选
   filtering: 过滤中
   filters: 过滤器
   find: 查找
@@ -782,12 +785,17 @@ zh-CN:
   flickr_invite_link_raquo: Flickr邀请链接&raquo;
   flickr_style: Flickr样式
   fluid: 液体
+  follow_user: 关注%{user}
+  follower: 关注者
+  following: 关注中
   for: 用于
   for_a_taxon: 用于一个分类
   for_more_information: 获取更多信息。
+  forgot_your_password: 忘记密码？
   fri: 五
   from: 来自
   from_a_place: 来自一个地方
+  from_anywhere_change: 任何地点（<span class="button">更改</span>）
   from_list: 来自列表
   from_this: 来自此
   full_id_please: ID请！
@@ -946,7 +954,7 @@ zh-CN:
     pt-BR: 葡萄牙语（巴西）
     ja: 日语
     zh-CN: 简体中文
-    zh-TW: 繁體中文
+    zh-TW: 繁体中文
   location: 位置
   location_: 位置
   location_is_exact: 位置是精确的
@@ -998,6 +1006,7 @@ zh-CN:
   no_more_updates: 没有更多更新！
   no_observations_submitted: 没有提交观察！
   no_project_to_admin_current_user: 您不管理任何项目
+  no_project_to_admin_login: '%{login}不管理任何项目'
   no_range_data_available: 没有范围数据可用。
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
@@ -1031,6 +1040,7 @@ zh-CN:
   original: 原文
   owner: 所有人
   parent_name: 父名称
+  password: 密码
   people_added:
     identification:
       with_observation: 已由%{user_link}将<strong>ID</strong>加入至一个%{observation_link}
@@ -1122,6 +1132,7 @@ zh-CN:
   privacy: 隐私政策
   privacy_policy: 隐私政策
   processing: 处理中
+  profile: 个人信息
   project: 项目
   project_created_on: 于%{date}创建此项目
   project_group_label: 组
@@ -1287,6 +1298,7 @@ zh-CN:
   taxon_name: 类群名称
   taxon_search: 类群搜索
   taxon_search_results_for: 类群搜索结果：
+  taxon_swap_only_has_one_input: 只允许一次输入为一次交换
   taxon_to_delete: 要删除的分类
   taxon_name_was_deleted: 类群名称已删除。
   taxon_was_successfully_created: 已成功创建分类。
