@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('.species_guess').taxonAutocomplete({ taxon_id_el: $("#observation_taxon_id")});
+  $('.species_guess').taxonAutocomplete({
+    taxon_id_el: $("#observation_taxon_id"), show_placeholder: true });
   $('.observed_on_string').iNatDatepicker();
   var map = iNaturalist.Map.createMap({
     div: $('#map').get(0),
