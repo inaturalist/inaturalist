@@ -935,8 +935,19 @@ google.maps.Map.prototype.interactivityURL = function( tileURL, interactivity ) 
 google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
   var map = this;
   var interactionOn = false;
-  wax.g
-    .interaction()
+  var waxInteraction = wax.g.interaction( );
+  var oldFeature = waxInteraction.screen_feature;
+  waxInteraction.screen_feature = function(pos, callback) {
+    oldFeature( { x: pos.x, y: pos.y + 13 }, function( f ) {
+      if( f && f.mappable === "true" && !f.private_location ) { return callback( f ); }
+      oldFeature( pos, function( f ) {
+        if( f && f.mappable === "true" && !f.private_location ) { return callback( ); }
+        callback( f );
+      });
+    });
+  };
+
+  waxInteraction
     .map(map)
     .tilejson(tilejson)
     .on({
