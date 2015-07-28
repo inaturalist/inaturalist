@@ -137,6 +137,7 @@ class TaxonName < ActiveRecord::Base
     }
     if options[:autocomplete]
       json[:name_autocomplete] = name
+      json[:exact] = name
     end
     json
   end

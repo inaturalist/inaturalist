@@ -63,15 +63,15 @@ autocompleter.taxonTemplate = function( result ) {
   labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.best_name ));
   labelDiv.append( $( "<span/>" ).addClass( "subtitle" ).
     append( subtitle ));
-  var rightElement;
+  if( !result.id) {
+    wrapperDiv.addClass( "ac-unknown" );
+    labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
+  }
   if( result.id ) {
-    rightElement = $( "<a/>" ).attr( "target", "_blank" ).
+    var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
       attr( "href", inaturalist.TAXON_ROOT_URL + result.id );
     var viewDiv = $( "<div/>" ).addClass( "ac-view" ).append( "View" ).appendTo( rightElement );
-  } else {
-    wrapperDiv.addClass( "ac-unknown" );
-    rightElement = $( "<a/>" ).attr( "href", "#" );
-    var viewDiv = $( "<div/>" ).addClass( "ac-view" ).append( "placeholder" ).appendTo( rightElement );
+    wrapperDiv.append( rightElement );
   }
   wrapperDiv.append( thumbDiv );
   wrapperDiv.append( labelDiv );
@@ -124,9 +124,10 @@ $.fn.taxonAutocomplete = function( options ) {
         dataType: "jsonp",
         data: { q: request.term },
         success: function( data ) {
-          var results = data.results;
+          var results = data.results || [ ];
           if( options.show_placeholder && !options.taxon_id_el.val( ) && field.val( ) ) {
-            results.unshift({ type: "placeholder", best_name: field.val( ) });
+            results.unshift({ type: "placeholder",
+              best_name: "Use <span class='ac-placeholder'>\"" + field.val( ) + "\"</span> as a placeholder" });
           }
           response( results );
         }
@@ -138,7 +139,9 @@ $.fn.taxonAutocomplete = function( options ) {
         return false;
       }
       // show the best name in the search field
-      field.val( ui.item.best_name || ui.item.name );
+      if( ui.item.id ) {
+        field.val( ui.item.best_name || ui.item.name );
+      }
       // blur to hide the autocomplete menu
       field.blur( );
       // set the hidden taxon_id

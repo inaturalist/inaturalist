@@ -1,5 +1,6 @@
 .ui-autocomplete {
   cursor: pointer;
+  z-index: 1001 !important;
 }
 .ui-autocomplete .ac {
   height: 46px;
@@ -25,14 +26,6 @@
   text-align: right;
   background: white;
 }
-.ui-autocomplete .ac-unknown .ac-view {
-  line-height: 36px;
-  background: none;
-}
-.ui-autocomplete .ac-unknown a {
-  text-decoration: none;
-  color: #BABABA;
-}
 .ui-autocomplete .ac-thumb img {
   width: 40px;
   height: 40px;
@@ -48,7 +41,6 @@
 .ui-autocomplete .ac-result.active {
   background: #F2F2F2;
 }
-
 .ui-autocomplete .ac-label {
   padding: 7px 0 0 50px;
   position: absolute;
@@ -57,6 +49,9 @@
 .ui-autocomplete .ac-unknown .ac-label {
   padding: 0 0 0 50px;
   line-height: 36px;
+}
+.ui-autocomplete .ac-placeholder {
+  font-weight: bold;
 }
 .ui-autocomplete .ac-label .title {
   font-size: 1.1em;

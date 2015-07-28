@@ -13,6 +13,7 @@ class Taxon < ActiveRecord::Base
         indexes :name, analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, index_analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
+        indexes :exact, analyzer: "keyword_analyzer"
       end
     end
   end
