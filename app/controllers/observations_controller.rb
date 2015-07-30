@@ -1555,20 +1555,22 @@ class ObservationsController < ApplicationController
     params[:skip_order] = true
     search_params = Observation.get_search_params(params,
       current_user: current_user)
-    oscope = Observation.query(search_params)
     if stats_adequately_scoped?(search_params)
-      if params[:rank] != "leaves"
-        if Observation.able_to_use_elasticsearch?(search_params)
+      if Observation.able_to_use_elasticsearch?(search_params)
+        if params[:rank] == "leaves"
+          search_params.delete(:rank)
+          leaf_ids = Observation.elastic_taxon_leaf_ids(prepare_counts_elastic_query(search_params))
+          @taxa = Taxon.where(id: leaf_ids)
+        else
           elastic_params = prepare_counts_elastic_query(search_params)
           # using 0 for the aggregation count to get all results
           distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
             aggregate: { species: { "taxon.id": 0 } })).response.aggregations
           @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
-        else
-          @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
         end
       else
-        sql = if params[:rank] == "leaves" && can_view_leaves
+        oscope = Observation.query(search_params)
+        if params[:rank] == "leaves" && can_view_leaves
           ancestor_ids_sql = <<-SQL
             SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
             FROM taxa
@@ -1576,7 +1578,7 @@ class ObservationsController < ApplicationController
                 #{oscope.to_sql}
               ) AS observations ON observations.taxon_id = taxa.id
           SQL
-          <<-SQL
+          sql = <<-SQL
             SELECT DISTINCT ON (taxa.id) taxa.*
             FROM taxa
               LEFT OUTER JOIN (
@@ -1587,10 +1589,10 @@ class ObservationsController < ApplicationController
               ) AS observations ON observations.taxon_id = taxa.id
             WHERE ancestor_ids.ancestor_id IS NULL
           SQL
+          @taxa = Taxon.find_by_sql(sql)
         else
-          "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
+          @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
         end
-        @taxa = Taxon.find_by_sql(sql)
       end
       # hack to test what this would look like
       @taxa = case params[:order]
@@ -1662,6 +1664,7 @@ class ObservationsController < ApplicationController
       end
     else
       @species_counts = [ ]
+      @rank_counts = { }
     end
     @taxa = Taxon.where(id: @species_counts.map{ |r| r["taxon_id"] }).
       includes({ taxon_photos: :photo }, :taxon_names)
@@ -2673,10 +2676,14 @@ class ObservationsController < ApplicationController
       @total += row['count_all'].to_i
       @rank_counts[row['rank_name']] = row['count_all'].to_i
     end
-    @rank_counts[:leaves] = species_counts_json.size if search_params[:rank] == "leaves"
+    # TODO: we should set a proper value for @rank_counts[:leaves]
   end
 
   def elastic_taxon_stats(search_params)
+    if search_params[:rank] == "leaves"
+      search_params.delete(:rank)
+      showing_leaves = true
+    end
     elastic_params = prepare_counts_elastic_query(search_params)
     taxon_counts = Observation.elastic_search(elastic_params.merge(size: 0,
       aggregate: {
@@ -2695,10 +2702,19 @@ class ObservationsController < ApplicationController
     elastic_params[:filters] << { range: {
       "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
     species_counts = Observation.elastic_search(elastic_params.merge(size: 0,
-      aggregate: { species: { "taxon.id": 5 } })).response.aggregations
+      aggregate: { species: { "taxon.id": 100 } })).response.aggregations
     # the count is a string to maintain backward compatibility
     @species_counts = species_counts.species.buckets.
       map{ |b| { "taxon_id" => b["key"], "count_all" => b["doc_count"].to_s } }
+    if showing_leaves
+      leaf_ids = Observation.elastic_taxon_leaf_ids(prepare_counts_elastic_query(search_params))
+      @rank_counts[:leaves] = leaf_ids.count
+      # we fetch extra extra taxa above so we can safely filter
+      # out the non-leaf taxa from the result
+      @species_counts.delete_if{ |s| !leaf_ids.include?(s["taxon_id"]) }
+    end
+    # limit the species_counts to 5
+    @species_counts = @species_counts[0...5]
   end
 
   def non_elastic_user_stats(search_params, limit)
