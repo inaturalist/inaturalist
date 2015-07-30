@@ -1184,7 +1184,7 @@ class Taxon < ActiveRecord::Base
     rescue Timeout::Error => e
       []
     end
-    unless external_names.blank?
+    if external_names.blank?
       external_names = begin
         Ratatosk.find(name)
       rescue Timeout::Error => e
