@@ -1184,6 +1184,13 @@ class Taxon < ActiveRecord::Base
     rescue Timeout::Error => e
       []
     end
+    unless external_names.blank?
+      external_names = begin
+        Ratatosk.find(name)
+      rescue Timeout::Error => e
+        []
+      end
+    end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
@@ -1509,7 +1516,7 @@ class Taxon < ActiveRecord::Base
       end.compact
       scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
     end
-    taxon_names = log_timer { scope.to_a }
+    taxon_names = scope.to_a
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     # TODO search elasticsearch?
