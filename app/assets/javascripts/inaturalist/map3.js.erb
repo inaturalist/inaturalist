@@ -455,11 +455,16 @@ iNaturalist.Map.createObservationIcon = function(options) {
     var iconicTaxonName = options.observation.iconic_taxon_name
     if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
     if (iconicTaxonName) {
-      iconPath = iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName];
+      iconPath = _.clone( iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName] );
+      if( options.observation.quality_grade != "research" ) {
+        iconPath.url = iconPath.url.replace( /\.png$/, "NoDot.png" );
+      }
     } else {
       iconPath = iNaturalist.Map[iconSet]['unknown34'];
     }
-
+    if( options.observation.coordinates_obscured ) {
+      iconPath.anchor = new google.maps.Point(10, 10);
+    }
     return iconPath
   }
   
@@ -467,6 +472,9 @@ iNaturalist.Map.createObservationIcon = function(options) {
   iconPath += options.stemless ? "stemless_" : ""
   iconPath += options.color || "HotPink"
   iconPath += options.character ? ('_'+options.character) : ""
+  if( !options.character && options.quality_grade != "research" ) {
+    iconPath += "NoDot";
+  }
   iconPath += '.png'
   return iconPath
 };
