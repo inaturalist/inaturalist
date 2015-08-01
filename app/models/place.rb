@@ -546,7 +546,7 @@ class Place < ActiveRecord::Base
         existing ||= Place.where(source_filename: new_place.source_filename,
           source_name: new_place.source_name).first
       end
-      if !new_place.source_filename.blank?
+      if !new_place.source_filename.blank? && !new_place.name.blank?
         existing ||= Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
       end
       if options[:ancestor_place]
