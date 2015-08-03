@@ -2102,7 +2102,6 @@ class ObservationsController < ApplicationController
       @with_sounds = true if search_params[:has].include?('sounds')
       @with_geo = true if search_params[:has].include?('geo')
     end
-    @id_status = search_params[:id_status]
     @quality_grade = search_params[:quality_grade]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
@@ -2152,8 +2151,7 @@ class ObservationsController < ApplicationController
       !@geoprivacy.blank? ||
       !@rank.blank? ||
       !@lrank.blank? ||
-      !@hrank.blank? ||
-      @id_status == Observation::NEEDS_ID
+      !@hrank.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
   end
 

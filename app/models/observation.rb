@@ -82,9 +82,10 @@ class Observation < ActiveRecord::Base
     OBSCURED => :obscured_description, 
     PRIVATE => :private_description
   }
-  CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
-  QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
+  UNVERIFIABLE = "unverifiable"
+  NEEDS_ID = "needs_id"
+  QUALITY_GRADES = [UNVERIFIABLE, NEEDS_ID, RESEARCH_GRADE]
 
   COMMUNITY_TAXON_SCORE_CUTOFF = (2.0 / 3)
   
@@ -210,11 +211,6 @@ class Observation < ActiveRecord::Base
   ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
   WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
-  
-  NEEDS_ID = 'needs_id'
-  VERIFIED = 'verified'
-  UNVERIFIABLE = 'unverifiable'
-  ID_STATUSES = [NEEDS_ID, VERIFIED, UNVERIFIABLE]
 
   preference :community_taxon, :boolean, :default => nil
   
@@ -315,11 +311,9 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
-              :set_iconic_taxon,
-              :set_id_status
+              :set_iconic_taxon
   
-  before_update :set_quality_grade
-  after_update :handle_id_please_on_update
+  before_update :handle_id_please_on_update, :set_quality_grade
                  
   after_save :refresh_lists,
              :refresh_check_lists,
@@ -603,8 +597,6 @@ class Observation < ActiveRecord::Base
         "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
     end
   }
-
-  scope :id_status, ->(id_status) { where("id_status = ?", id_status) }
   
   scope :reviewed_by, lambda { |users|
     joins(:observation_reviews).where("observation_reviews.user_id IN (?)", users)
@@ -1143,14 +1135,12 @@ class Observation < ActiveRecord::Base
     return false unless observed_on?
     return false unless (photos? || sounds?)
     return false unless appropriate?
-    if root = (Taxon::LIFE || Taxon.roots.select("id, name, rank").find_by_name('Life'))
-      return false if community_taxon_id == root.id
-    end
     true
   end
   
   def research_grade?
-    community_supported_id? && research_grade_candidate?
+    # community_supported_id? && research_grade_candidate?
+    quality_grade == RESEARCH_GRADE
   end
   
   def photos?
@@ -1161,14 +1151,8 @@ class Observation < ActiveRecord::Base
     sounds.exists?
   end
   
-  def casual_grade?
-    !research_grade?
-  end
-  
   def set_quality_grade(options = {})
-    if options[:force] || quality_grade_changed? || latitude_changed? || longitude_changed? || observed_on_changed? || taxon_id_changed?
-      self.quality_grade = get_quality_grade
-    end
+    self.quality_grade = get_quality_grade
     true
   end
   
@@ -1185,7 +1169,21 @@ class Observation < ActiveRecord::Base
   end
   
   def get_quality_grade
-    research_grade? ? RESEARCH_GRADE : CASUAL_GRADE
+    if !research_grade_candidate?
+      UNVERIFIABLE
+    elsif voted_in_to_needs_id?
+      NEEDS_ID
+    elsif community_taxon_at_species_or_lower?
+      RESEARCH_GRADE
+    elsif voted_out_of_needs_id?
+      if community_taxon_at_family_or_lower?
+        RESEARCH_GRADE
+      else
+        UNVERIFIABLE
+      end
+    else
+      NEEDS_ID
+    end
   end
   
   def coordinates_obscured?
@@ -1792,20 +1790,17 @@ class Observation < ActiveRecord::Base
     self.identifications_count = idents.size
     new_quality_grade = get_quality_grade
     self.quality_grade = new_quality_grade
-    set_id_status
     
     if !options[:skip_save] && (
         num_identification_agreements_changed? ||
         num_identification_disagreements_changed? ||
         quality_grade_changed? ||
-        id_status_changed? ||
         identifications_count_changed?)
       Observation.where(id: id).update_all(
         num_identification_agreements: num_agreements,
         num_identification_disagreements: num_disagreements,
         quality_grade: new_quality_grade,
-        identifications_count: identifications_count,
-        id_status: id_status)
+        identifications_count: identifications_count)
       refresh_check_lists
       refresh_lists
     end
@@ -2354,25 +2349,6 @@ class Observation < ActiveRecord::Base
     community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
   end
 
-  def set_id_status
-    self.id_status = if !research_grade_candidate?
-      UNVERIFIABLE
-    elsif voted_in_to_needs_id?
-      NEEDS_ID
-    elsif community_taxon_at_species_or_lower?
-      VERIFIED
-    elsif voted_out_of_needs_id?
-      if community_taxon_at_family_or_lower?
-        VERIFIED
-      else
-        UNVERIFIABLE
-      end
-    else
-      NEEDS_ID
-    end
-    true
-  end
-
   def needs_id_vote_score
     uvotes = get_upvotes(vote_scope: 'needs_id').size
     dvotes = get_downvotes(vote_scope: 'needs_id').size
@@ -2396,15 +2372,11 @@ class Observation < ActiveRecord::Base
   end
 
   def needs_id?
-    id_status == NEEDS_ID
-  end
-
-  def verified?
-    id_status == VERIFIED
+    quality_grade == NEEDS_ID
   end
 
   def unverifiable?
-    id_status == UNVERIFIABLE
+    quality_grade == UNVERIFIABLE
   end
 
   def handle_id_please_on_update
@@ -2415,6 +2387,12 @@ class Observation < ActiveRecord::Base
     else
       unvote voter: user, vote: true, vote_scope: :needs_id
     end
+    quality_grade_will_change!
+  end
+
+  def flagged_with(flag, options)
+    quality_grade_will_change!
+    save
   end
 
 end

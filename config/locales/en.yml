@@ -88,7 +88,6 @@ en:
   about: About
   about_bioblitz_results: About bioblitz results
   about_community_taxa: About community taxa
-  about_data_quality_and_id_status: About Data Quality and ID Status
   about_external_links: About External Links
   about_licenses: About licenses
   about_licensing: About licensing
@@ -764,7 +763,6 @@ en:
   dashboard: Dashboard
   data_deficient: data deficient
   data_quality_assessment: Data Quality Assessment
-  data_quality_and_id_status: "Data Quality & ID Status"
   datatype: Datatype
   date_: Date
   date?: Date?
@@ -1207,11 +1205,6 @@ en:
   id_please!: ID Please!
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
-  id_status: ID Status
-  id_statuses:
-    needs_id: Needs ID
-    verified: Verified
-    unverifiable: Unverifiable
   identification: identification
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
@@ -2935,6 +2928,7 @@ en:
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
+  unverifiable: Unverifiable
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
@@ -3819,10 +3813,18 @@ en:
         quality_assessment_help_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
-            observations start as <strong>"casual"</strong> grade, and achieve
-            <strong>"research"</strong> grade when
+            observations start as <strong>"unverifiable"</strong> grade, and become
+            <strong>"needs ID"</strong> when
           </p>
           
+          <ul>
+            <li>the observation <strong>has a date</strong></li>
+            <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
+            <li>the observation <strong>has photos or sounds</strong></li>
+          </ul>
+          <p>
+            Observations become <strong>"research grade"</strong> when
+          </p>
           <ul>
             <li>
               the %{site_name} <strong>community agrees with the observer's ID</strong>, where an "agreeing"
@@ -3830,12 +3832,9 @@ en:
               observer's ID. For example, if Scott says it's a mammal and Ken-ichi
               says it's <em>Homo sapiens</em>, then Ken-ichi agrees with Scott.
             </li>
-            <li>the observation <strong>has a date</strong></li>
-            <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
-            <li>the observation <strong>has photos or sounds</strong></li>
           </ul>
           <p>
-            Observations will revert to "casual" grade if the above conditions aren't met or
+            Observations will revert to <strong>"unverifiable"</strong> if the above conditions aren't met or
           </p>
           <ul>
             <li>
@@ -3848,29 +3847,10 @@ en:
               wild/naturalized</strong> (e.g. captive or cultivated by humans
               or intelligent space aliens)
             </li>
-          </ul>
-          <p>
-            The ID Status states whether or not an observation needs more
-            identifications. There are three states:
-          </p>
-          <ul>
             <li>
-              <strong>Needs ID: </strong> needs more identifications, i.e. it could become research 
-              grade but it needs more confirmation or identifications at a lower taxonomic level.
-            </li>
-            <li>
-              <strong>Verified: </strong> has a community identification that is adequately specific.
-            </li>
-            <li>
-              <strong>Unverifiable: </strong> cannot be identfified based on the evidence presented.
+              the community agrees the observation no longer needs an ID <em>and</em> the community ID is above family
             </li>
           </ul>
-          <p>
-            The only quirk with ID Status is that the community can vote on whether or
-            not an observation still needs IDs. If the community votes an observation
-            out of "needs ID" and it has a community ID of family or lower, we still
-            consider that "verified."
-          </p>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
       user_stats:
         user_stats_desc: |

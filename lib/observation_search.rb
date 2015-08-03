@@ -267,8 +267,6 @@ module ObservationSearch
       p[:hrank] = p[:hrank] if Taxon::VISIBLE_RANKS.include?(p[:hrank])
       p[:lrank] = p[:lrank] if Taxon::VISIBLE_RANKS.include?(p[:lrank])
 
-      p[:id_status] = p[:id_status] if Observation::ID_STATUSES.include?(p[:id_status])
-
       p.each do |k,v|
         p[k] = nil if v.is_a?(String) && v.blank?
       end
@@ -505,8 +503,6 @@ module ObservationSearch
       elsif params[:identified].noish?
         scope = scope.where("taxon_id IS NULL")
       end
-
-      scope = scope.id_status(params[:id_status]) unless params[:id_status].blank?
 
       if viewer
         if params[:reviewed] === "true"

@@ -66,7 +66,6 @@ class Observation < ActiveRecord::Base
       observed_on_string: observed_on_string,
       quality_grade: quality_grade,
       id_please: id_please,
-      id_status: id_status,
       out_of_range: out_of_range,
       captive: captive,
       license_code: license,
@@ -182,7 +181,6 @@ class Observation < ActiveRecord::Base
     end
     search_wheres["site_id"] = p[:site_id] if p[:site_id]
     search_wheres["id_please"] = true if p[:id_please]
-    search_wheres["id_status"] = p[:id_status] if p[:id_status]
     search_wheres["out_of_range"] = true if p[:out_of_range]
     search_wheres["mappable"] = true if p[:mappable] == "true"
     search_wheres["mappable"] = false if p[:mappable] == "false"

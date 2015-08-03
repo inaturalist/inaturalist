@@ -291,9 +291,9 @@ describe Observation do
     end
   
     describe "quality_grade" do
-      it "should default to casual" do
+      it "should default to unverifiable" do
         o = Observation.make!
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::UNVERIFIABLE
       end
     end
 
@@ -549,38 +549,48 @@ describe Observation do
     end
   
     describe "quality_grade" do
-      before(:all) do
-        # some identification deletion callbacks need to happen after the transaction is complete
-        DatabaseCleaner.strategy = :truncation
-      end
 
-      after(:all) do
-        DatabaseCleaner.strategy = :transaction
-      end
+      # some identification deletion callbacks need to happen after the transaction is complete
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
     
       it "should become research when it qualifies" do
-        o = Observation.make!(:taxon => Taxon.make!, :latitude => 1, :longitude => 1)
+        o = Observation.make!(:taxon => Taxon.make!(rank: 'species'), latitude: 1, longitude: 1)
         i = Identification.make!(:observation => o, :taxon => o.taxon)
         o.photos << LocalPhoto.make!(:user => o.user)
         o.reload
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::UNVERIFIABLE
         o.update_attributes(:observed_on_string => "yesterday")
+        o.reload
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
       end
+
+      it "should be research grade if community taxon at family or lower" do
+        o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'species'))
+        Identification.make!(observation: o, taxon: o.taxon)
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+      it "should not be research grade if community taxon above family" do
+        o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'order'))
+        Identification.make!(observation: o, taxon: o.taxon)
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
     
-      it "should become casual when taxon changes" do
+      it "should become needs ID when taxon changes" do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         new_taxon = Taxon.make!
         o.update_attributes(:taxon => new_taxon)
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
     
-      it "should become casual when date removed" do
+      it "should become unverifiable when date removed" do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         o.update_attributes(:observed_on_string => "")
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::UNVERIFIABLE
       end
 
       it "should be research when community taxon is obs taxon and owner agrees" do
@@ -599,11 +609,11 @@ describe Observation do
         expect(o).to be_research_grade
       end
 
-      it "should be casual if no identifications" do
+      it "should be needs ID if no identifications" do
         o = make_research_grade_observation
         o.identifications.destroy_all
         o.reload
-        expect(o).to be_casual_grade
+        expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
 
       it "should not be research if the community taxon is Life" do
@@ -614,21 +624,123 @@ describe Observation do
         i2 = Identification.make!(:observation => o, :taxon => @Plantae)
         o.reload
         expect(o.community_taxon).to eq @Life
-        expect(o).to be_casual_grade
+        expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
 
-      it "should not be research if flagged" do
+      it "should be unverifiable if flagged" do
         o = make_research_grade_observation
         Flag.make!(:flaggable => o, :flag => Flag::SPAM)
         o.reload
-        expect(o).to be_casual_grade
+        expect( o ).not_to be_appropriate
+        expect( o.quality_grade ).to eq Observation::UNVERIFIABLE
       end
 
-      it "should not be research if photos flagged" do
+      it "should be unverifiable if photos flagged" do
         o = make_research_grade_observation
         Flag.make!(:flaggable => o.photos.first, :flag => Flag::COPYRIGHT_INFRINGEMENT)
         o.reload
-        expect(o).to be_casual_grade
+        expect(o.quality_grade).to eq Observation::UNVERIFIABLE
+      end
+
+      # needs ID
+      it "should be research grade if community ID at species or lower and research grade candidate" do
+        o = make_research_grade_candidate_observation
+        t = Taxon.make!(rank: Taxon::SPECIES)
+        2.times { Identification.make!(observation: o, taxon: t)}
+        expect( o.community_taxon.rank ).to eq Taxon::SPECIES
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      it "should be unverifiable if community ID at species or lower and not research grade candidate" do
+        o = Observation.make!
+        t = Taxon.make!(rank: Taxon::SPECIES)
+        2.times { Identification.make!(observation: o, taxon: t)}
+        expect( o.community_taxon.rank ).to eq Taxon::SPECIES
+        expect( o.quality_grade ).to eq Observation::UNVERIFIABLE
+      end
+
+      it "should be needs ID if elligible" do
+        o = make_research_grade_candidate_observation
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      it "should be unverifiable if voted out" do
+        o = Observation.make!
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::UNVERIFIABLE
+      end
+
+      it "should be unverifiable by default" do
+        o = Observation.make!
+        expect( o.quality_grade ).to eq Observation::UNVERIFIABLE
+      end
+
+      it "should be unverifiable if verifiable but voted out and community taxon above family" do
+        o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::ORDER))
+        Identification.make!(observation: o, taxon: o.taxon)
+        o.reload
+        expect( o.community_taxon.rank ).to eq Taxon::ORDER
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::UNVERIFIABLE
+      end
+
+      it "should be research grade if verifiable but voted out and community taxon below family" do
+        o = make_research_grade_candidate_observation
+        t = Taxon.make!(rank: Taxon::GENUS)
+        2.times do
+          Identification.make!(taxon: t, observation: o)
+        end
+        o.reload
+        expect( o.community_taxon ).to eq t
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      it "should be needs ID if verifiable and voted back in" do
+        o = make_research_grade_candidate_observation
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.upvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      describe "with id_please" do
+        it "should be needs_id if user checked id_please on update" do
+          o = make_research_grade_observation
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          o.update_attributes(id_please: true)
+          o.reload
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        
+        it "should add vote for needs_id if user checks id_please on update" do
+          o = make_research_grade_observation
+          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
+          o.update_attributes(id_please: true)
+          o.reload
+          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 1
+        end
+
+        it "should not add vote for needs_id if user checks id_please on create" do
+          o = make_research_grade_observation(id_please: true)
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
+        end
+      end
+
+      it "should work with query" do
+        o_needs_id = make_research_grade_candidate_observation
+        o_needs_id.reload
+        o_verified = make_research_grade_observation
+        o_unverifiable = Observation.make!
+        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).to include o_needs_id
+        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_verified
+        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_unverifiable
+        expect( Observation.query(quality_grade: Observation::RESEARCH_GRADE) ).to include o_verified
+        expect( Observation.query(quality_grade: Observation::UNVERIFIABLE) ).to include o_unverifiable
       end
     end
   
@@ -2728,105 +2840,6 @@ describe Observation do
       o.update_column(:zic_time_zone, nil)
       expect( o.time_zone ).to be nil
       expect( o.timezone_object ).to be nil
-    end
-  end
-
-  describe "id_status" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-    it "should be verified if community ID at species or lower and research grade candidate" do
-      o = make_research_grade_candidate_observation
-      t = Taxon.make!(rank: Taxon::SPECIES)
-      2.times { Identification.make!(observation: o, taxon: t)}
-      expect( o.community_taxon.rank ).to eq Taxon::SPECIES
-      expect( o.id_status ).to eq Observation::VERIFIED
-    end
-    it "should be unverifiable if community ID at species or lower and not research grade candidate" do
-      o = Observation.make!
-      t = Taxon.make!(rank: Taxon::SPECIES)
-      2.times { Identification.make!(observation: o, taxon: t)}
-      expect( o.community_taxon.rank ).to eq Taxon::SPECIES
-      expect( o.id_status ).to eq Observation::UNVERIFIABLE
-    end
-
-    it "should be needs if elligible" do
-      o = make_research_grade_candidate_observation
-      expect( o.id_status ).to eq Observation::NEEDS_ID
-    end
-    it "should be unverifiable if voted out" do
-      o = Observation.make!
-      o.downvote_from User.make!, vote_scope: 'needs_id'
-      o.reload
-      expect( o.id_status ).to eq Observation::UNVERIFIABLE
-    end
-    it "should be unverifiable by default" do
-      o = Observation.make!
-      expect( o.id_status ).to eq Observation::UNVERIFIABLE
-    end
-    it "should be unverifiable if verifiable but voted out and community taxon above family" do
-      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::ORDER))
-      Identification.make!(observation: o, taxon: o.taxon)
-      o.reload
-      expect( o.community_taxon.rank ).to eq Taxon::ORDER
-      o.downvote_from User.make!, vote_scope: 'needs_id'
-      o.reload
-      expect( o.id_status ).to eq Observation::UNVERIFIABLE
-    end
-    it "should be verified if verifiable but voted out and community taxon below family" do
-      o = make_research_grade_observation
-      t = Taxon.make!(rank: Taxon::GENUS)
-      o.identifications.each(&:destroy)
-      2.times do
-        Identification.make!(taxon: t, observation: o)
-      end
-      o.reload
-      expect( o.community_taxon ).to eq t
-      o.downvote_from User.make!, vote_scope: 'needs_id'
-      o.reload
-      expect( o.id_status ).to eq Observation::VERIFIED
-    end
-    it "should be needs if verifiable and voted back in" do
-      o = make_research_grade_observation
-      o.identifications.each(&:destroy)
-      o.downvote_from User.make!, vote_scope: 'needs_id'
-      o.upvote_from User.make!, vote_scope: 'needs_id'
-      o.reload
-      expect( o.id_status ).to eq Observation::NEEDS_ID
-    end
-
-    describe "with id_please" do
-      it "should be needs_id if user checked id_please on update" do
-        o = make_research_grade_observation
-        expect( o.id_status ).to eq Observation::VERIFIED
-        o.update_attributes(id_please: true)
-        o.reload
-        expect( o.id_status ).to eq Observation::NEEDS_ID
-      end
-      it "should add vote for needs_id if user checks id_please on update" do
-        o = make_research_grade_observation
-        expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
-        o.update_attributes(id_please: true)
-        o.reload
-        expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 1
-      end
-      it "should not add vote for needs_id if user checks id_please on create" do
-        o = make_research_grade_observation(id_please: true)
-        expect( o.id_status ).to eq Observation::VERIFIED
-        expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
-      end
-    end
-
-    it "should work with query" do
-      o_needs_id = make_research_grade_observation
-      o_needs_id.identifications.each(&:destroy)
-      o_needs_id.reload
-      o_verified = make_research_grade_observation
-      o_unverifiable = Observation.make!
-      expect( Observation.query(id_status: Observation::NEEDS_ID) ).to include o_needs_id
-      expect( Observation.query(id_status: Observation::NEEDS_ID) ).not_to include o_verified
-      expect( Observation.query(id_status: Observation::NEEDS_ID) ).not_to include o_unverifiable
-      expect( Observation.query(id_status: Observation::VERIFIED) ).to include o_verified
-      expect( Observation.query(id_status: Observation::UNVERIFIABLE) ).to include o_unverifiable
     end
   end
 

@@ -33,11 +33,6 @@
       <input type="checkbox" name="has[]" id="with_sounds_checkbox" 
              value="sounds" <% if @with_sounds %>checked="checked"<% end %>/>
       <label for="with_sounds_checkbox"><%=t :w_sounds %></label>
-      <!-- <input type="checkbox" name="has[]" id="id_please_checkbox" 
-             value="id_please" <% if @id_please %>checked="checked"<% end %>/> -->
-      <!-- <label for="id_please_checkbox"><%=t :id_please %></label> -->
-      <input type="checkbox" name="id_status" id="needs_id_checkbox" 
-             value="<%= Observation::NEEDS_ID %>" <% if @id_status == Observation::NEEDS_ID %>checked="checked"<% end %>/>
       <label for="needs_id_checkbox"><%=t :needs_id %></label>
       <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
       <label for="out_of_range_checkbox"><%= t(:out_of_range, :default => "out of range").downcase %></label>
@@ -48,9 +43,11 @@
       <input type="radio" name="quality_grade" value="any" id="any_grade_checkbox" <% unless Observation::QUALITY_GRADES.include?(@quality_grade) %>checked="checked"<% end %>>
       <label for="any_grade_checkbox"><%= t(:any, :default => "any").downcase %></label>
       <input type="radio" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
-      <label for="research_grade_checkbox"><%= t(:research, :default => "research").downcase %></label>
-      <input type="radio" name="quality_grade" value="<%= Observation::CASUAL_GRADE %>" id="casual_grade_checkbox" <% if @quality_grade == Observation::CASUAL_GRADE %>checked="checked"<% end %>>
-      <label for="casual_grade_checkbox"><%= t(:casual, :default => "casual").downcase %></label>
+      <label for="research_grade_checkbox"><%= t(:research, :default => "research") %></label>
+      <input type="radio" name="quality_grade" value="<%= Observation::NEEDS_ID %>" id="needs_id_checkbox" <% if @quality_grade == Observation::NEEDS_ID %>checked="checked"<% end %>>
+      <label for="needs_id_checkbox"><%= t(:needs_id, :default => "Needs ID") %></label>
+<!--       <input type="radio" name="quality_grade" value="<%= Observation::UNVERIFIABLE %>" id="unverifiable_checkbox" <% if @quality_grade == Observation::UNVERIFIABLE %>checked="checked"<% end %>>
+      <label for="unverifiable_checkbox"><%= t(:unverifiable, :default => "Unverifiable").downcase %></label> -->
     </nobr>
     <% if is_me?(@selected_user) -%>
       <nobr>

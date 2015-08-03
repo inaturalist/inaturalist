@@ -161,18 +161,6 @@
     </tbody>
     <tfoot>
       <tr>
-        <td> <%= t(:id_status) %></td>
-        <td>
-          <% if o.needs_id? %>
-            <span class="id_please_notice"><%= t("id_statuses.#{o.id_status}", default: o.id_status) %></span>
-          <% elsif o.verified? %>
-            <span class="research_grade_notice"><%= t("id_statuses.#{o.id_status}", default: o.id_status) %></span>
-          <% else %>
-            <span><%= t("id_statuses.#{o.id_status}", default: o.id_status) %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
         <td><%= t(:quality_grade) %></td>
         <td>
           <% if o.research_grade? -%>

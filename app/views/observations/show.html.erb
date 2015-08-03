@@ -579,55 +579,11 @@
       </div>
     <% end -%>
     
-<!--     <% if is_me?(@observation.user) -%>
-      <div id="idplease" class="clear inline buttonrow">
-        <div id="added_to_id_please" class="box id_please_notice clear" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
-          <span class="inter">
-            <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
-          </span>
-          <%= link_to t(:remove), @observation,
-            :remote => true,
-            "data-params" => "ignore_photos=true&observation[id_please]=false",
-            :method => :put,
-            :class => "pale button",
-            :style => "float: right; margin: 0" %>
-        </div>
-        
-        <div id="need_id_help" class="quiet stacked box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
-          <%= link_to t(:add_to_id_please), @observation,
-            :remote => true,
-            "data-params" => "ignore_photos=true&observation[id_please]=true",
-            "data-type" => "json",
-            :method => :put,
-            :class => "glaucous button",
-            :style => "float: right; margin: 0;" %>
-          <span class="inter"><%=t :need_id_help? %></span>
-        </div>
-      </div>
-    <% end %>
-    <% if @observation.needs_id? %>
-      <div id="id_status" class="box id_please_notice clear inline buttonrow">
-        <span class="inter">Needs ID</span>
-      </div>
-    <% end %> -->
-    
     <% user_identified = false %>
     <% if logged_in? %>
       <% identifying_user_ids =  @observation.identifications.map { |ident| ident.user_id } -%>
       <% user_identified = identifying_user_ids.include?(current_user.id) -%>
     <% end %>
-<!--     <div id="identification_form_wrapper-<%= @observation.id %>" class="identification_form_wrapper stacked">
-      <h4><%=t :suggest_an_id %></h4>
-      <%= render :partial => 'identifications/identification_form',
-                 :locals => { :observation => @observation }%>
-    </div>
-    <% if user_identified %>
-      <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
-          $('#identification_form_wrapper-<%= @observation.id %>').hide();
-        });
-      </script>
-    <% end %> -->
     
     <% if logged_in? -%>
       <%= link_to t(:identotron), identotron_path(:observation_id => @observation), 
@@ -753,8 +709,8 @@
   
   <div id="data_quality_assessment">
     <h3>
-      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="<%= t :about_data_quality_and_id_status %>" data-tip-options='{"position": {"my": "right center", "at": "left center"}, "style": {"width": 500}}' style="margin-top:4px"></span>
-      <%=t :data_quality_and_id_status %>
+      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="<%= t :data_quality_assessment %>" data-tip-options='{"position": {"my": "right center", "at": "left center"}, "style": {"width": 500}}' style="margin-top:4px"></span>
+      <%=t :data_quality_assessment %>
     </h3>
     <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
     <%= separator %>
