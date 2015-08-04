@@ -133,8 +133,11 @@ $.fn.taxonAutocomplete = function( options ) {
         success: function( data ) {
           var results = data.results || [ ];
           if( options.show_placeholder && !options.taxon_id_el.val( ) && field.val( ) ) {
-            results.unshift({ type: "placeholder",
-              best_name: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })});
+            results.unshift({
+              type: "placeholder",
+              best_name: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
+            });
+          }
           response( results );
         }
       });
