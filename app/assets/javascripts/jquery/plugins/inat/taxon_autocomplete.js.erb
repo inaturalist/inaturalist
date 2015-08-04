@@ -70,7 +70,7 @@ autocompleter.taxonTemplate = function( result ) {
   if( result.id ) {
     var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
       attr( "href", inaturalist.TAXON_ROOT_URL + result.id );
-    var viewDiv = $( "<div/>" ).addClass( "ac-view" ).append( "View" ).appendTo( rightElement );
+    var viewDiv = $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
     wrapperDiv.append( rightElement );
   }
   wrapperDiv.append( thumbDiv );
@@ -85,6 +85,12 @@ autocompleter.resetTaxonSelection = function( options ) {
   options.taxon_id_el.val( null );
   $(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
   if( options.afterUnselect ) { options.afterUnselect( ); }
+};
+
+autocompleter.selectedTaxonID = function( options ) {
+  options = options || { };
+  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
+  return options.taxon_id_el.val( );
 };
 
 autocompleter.createWrappingDiv = function( field, options ) {
@@ -107,11 +113,12 @@ $.fn.taxonAutocomplete = function( options ) {
   options = options || { };
   options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
   var field = this;
+  if( !field || this.length < 1 ) { return; }
   autocompleter.createWrappingDiv( field, options );
   // search is strangely the event when the (x) is clicked in the
   // text field search box. We want to restore all defaults
   field.on( "search", function ( ) {
-    $(this).val( "" );
+    field.val( "" );
     autocompleter.resetTaxonSelection( options );
     return false;
   });
@@ -127,8 +134,7 @@ $.fn.taxonAutocomplete = function( options ) {
           var results = data.results || [ ];
           if( options.show_placeholder && !options.taxon_id_el.val( ) && field.val( ) ) {
             results.unshift({ type: "placeholder",
-              best_name: "Use <span class='ac-placeholder'>\"" + field.val( ) + "\"</span> as a placeholder" });
-          }
+              best_name: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })});
           response( results );
         }
       });
@@ -192,13 +198,30 @@ $.fn.taxonAutocomplete = function( options ) {
   field.keydown( function( e ) {
     var key = e.keyCode || e.which;
     // cancel any return key action in the text field
-    if(key === 13) { return false; }
+    if( key === 13 ) {
+      if( options.allow_enter_submit ) {
+        field.closest( "form" ).submit( );
+      }
+      return false;
+    }
     // the arrow keys are harmless
-    if(key === 37 || key === 38 || key === 39 || key === 40) { return; }
+    if( key === 37 || key === 38 || key === 39 || key === 40 ) { return; }
     autocompleter.resetTaxonSelection( options );
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
     $(this).autocomplete( "search", $(this).val( ));
   });
+  if( options.allow_placeholders !== true ) {
+    field.blur( function( ) {
+      // adding a small timeout to allow the autocomplete JS to make
+      // a selection or not before deciding if we need to clear the field
+      setTimeout( function( ) {
+        if( !autocompleter.selectedTaxonID( options ) ) {
+          field.val( "" );
+          autocompleter.resetTaxonSelection( options );
+        }
+      }, 10);
+    });
+  }
 };

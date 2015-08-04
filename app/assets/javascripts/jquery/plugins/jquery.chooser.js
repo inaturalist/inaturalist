@@ -247,7 +247,10 @@
         wrapper: $('<div class="inlineblock ui-chooser"></div>').attr('id', originalInput.attr('id') + '_chooser'),
         input: $('<input type="text"/>')
           .addClass(this.options.inputClass)
-          .attr('placeholder', originalInput.attr('placeholder')),
+          .attr('placeholder', originalInput.attr('placeholder'))
+          .blur( function( ) {
+            $(this).val( "" );
+          }),
         choice: $('<div></div>')
           .addClass(this.options.choiceClass)
           .hide(),

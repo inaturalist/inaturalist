@@ -4,7 +4,7 @@
 }
 .ui-autocomplete .ac {
   height: 46px;
-  width: 370px;
+  min-width: 370px;
   display: block;
   cursor: pointer;
 }
