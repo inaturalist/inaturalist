@@ -1219,10 +1219,10 @@ class Observation < ActiveRecord::Base
     return true if geoprivacy.blank? && !geoprivacy_changed?
     case geoprivacy
     when PRIVATE
-      obscure_coordinates unless coordinates_obscured?
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
       self.latitude, self.longitude = [nil, nil]
     when OBSCURED
-      obscure_coordinates unless coordinates_obscured?
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
     else
       unobscure_coordinates
     end
@@ -1236,10 +1236,10 @@ class Observation < ActiveRecord::Base
     taxon_geoprivacy = t ? t.geoprivacy(:latitude => lat, :longitude => lon) : nil
     case taxon_geoprivacy
     when OBSCURED
-      obscure_coordinates unless coordinates_obscured?
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
     when PRIVATE
       unless coordinates_private?
-        obscure_coordinates
+        obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
         self.latitude, self.longitude = [nil, nil]
       end
     else
@@ -1248,7 +1248,7 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def obscure_coordinates
+  def obscure_coordinates(distance = M_TO_OBSCURE_THREATENED_TAXA)
     self.place_guess = obscured_place_guess
     return if latitude.blank? || longitude.blank?
     if latitude_changed? || longitude_changed?
@@ -1258,7 +1258,7 @@ class Observation < ActiveRecord::Base
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
     end
-    self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude)
+    self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
     set_geom_from_latlon
   end
   
@@ -1794,9 +1794,22 @@ class Observation < ActiveRecord::Base
     Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
   
-  def random_neighbor_lat_lon(lat, lon)
-    [ lat.round(1) + (rand(-1000000..1000000) / 10000000.0),
-      lon.round(1) + (rand(-1000000..1000000) / 10000000.0) ]
+  def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)
+    latrads = lat.to_f / DEGREES_PER_RADIAN
+    lonrads = lon.to_f / DEGREES_PER_RADIAN
+    max_distance = max_distance / radius
+    random_distance = Math.acos(rand * (Math.cos(max_distance) - 1) + 1)
+    random_bearing = 2 * Math::PI * rand
+    new_latrads = Math.asin(
+      Math.sin(latrads)*Math.cos(random_distance) + 
+      Math.cos(latrads)*Math.sin(random_distance)*Math.cos(random_bearing)
+    )
+    new_lonrads = lonrads + 
+      Math.atan2(
+        Math.sin(random_bearing)*Math.sin(random_distance)*Math.cos(latrads), 
+        Math.cos(random_distance)-Math.sin(latrads)*Math.sin(latrads)
+      )
+    [new_latrads * DEGREES_PER_RADIAN, new_lonrads * DEGREES_PER_RADIAN]
   end
   
   def places
