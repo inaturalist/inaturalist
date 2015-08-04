@@ -408,7 +408,7 @@ class GuidesController < ApplicationController
   end
 
   def add_color_tags
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL")
+    @guide_taxa = @guide.guide_taxa.joins(taxon: :colors).where("colors.id IS NOT NULL")
     @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
     @guide_taxa.each do |gt|
       gt.add_color_tags

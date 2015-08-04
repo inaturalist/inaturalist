@@ -29,11 +29,8 @@
         <% if @listed_taxa_by_taxon_id -%>
           <%-
             next unless listed_taxon = @listed_taxa_by_taxon_id[taxon.id]
-            cache_key = listed_taxon.guide_taxon_cache_key
           -%>
-          <%- cache cache_key do %>
             <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => listed_taxon, :taxon => taxon } %>
-          <% end -%>
         <% else %>
           <%= render :partial => "taxa/guide_taxon", :locals => { :taxon => taxon } %>
         <% end -%>

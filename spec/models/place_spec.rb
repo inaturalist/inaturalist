@@ -235,3 +235,27 @@ describe Place, "display_name" do
     expect(place.display_name(:reload => true)).to be =~ /, #{state.code}, #{country.code}$/
   end
 end
+
+describe Place, "append_geom" do
+  let(:place) { make_place_with_geom }
+  it "should result in a multipolygon with multiple polygons" do
+    geom = RGeo::Geos.factory(:srid => 4326).parse_wkt("MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))")
+    expect( place.place_geometry.geom.size ).to eq 1
+    place.append_geom(geom)
+    expect( place.place_geometry.geom.geometry_type ).to eq ::RGeo::Feature::MultiPolygon
+    expect( place.place_geometry.geom.size ).to eq 2
+  end
+
+  it "should dissolve overlapping polygons" do
+    old_geom = place.place_geometry.geom
+    geom = RGeo::Geos.factory(:srid => 4326).parse_wkt("MULTIPOLYGON(
+      ((0.5 0.5,0.5 1.5,1.5 1.5,1.5 0.5,0.5 0.5)),
+      ((2 2,2 3,3 3,3 2,2 2))
+    )")
+    expect( place.place_geometry.geom.size ).to eq 1
+    place.append_geom(geom)
+    place.reload
+    expect( place.place_geometry.geom.size ).to eq 2
+    expect( old_geom ).not_to eq place.place_geometry.geom
+  end
+end

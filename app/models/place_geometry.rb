@@ -107,6 +107,9 @@ class PlaceGeometry < ActiveRecord::Base
 
   def self.update_observations_places(place_geometry_id)
     if pg = PlaceGeometry.where(id: place_geometry_id).first
+      old_scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", pg.place_id)
+      Observation.update_observations_places(scope: old_scope)
+      Observation.elastic_index!(scope: old_scope)
       scope = Observation.in_place(pg.place_id)
       Observation.update_observations_places(scope: scope)
       Observation.elastic_index!(scope: scope)

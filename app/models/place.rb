@@ -449,11 +449,17 @@ class Place < ActiveRecord::Base
   
   # Appends a geom instead of replacing it
   def append_geom(geom, other_attrs = {})
+    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
     new_geom = geom
     self.place_geometry.reload
     if place_geometry && !place_geometry.geom.nil?
-      f = place_geometry.geom.factory
-      new_geom = f.multi_polygon([place_geometry.geom.union(geom)])
+      union = place_geometry.geom.union(new_geom)
+      new_geom = if union.geometry_type == ::RGeo::Feature::MultiPolygon
+        union
+      else
+        f = place_geometry.geom.factory
+        f.multi_polygon([union])
+      end
     end
     self.save_geom(new_geom, other_attrs)
   end
@@ -487,6 +493,8 @@ class Place < ActiveRecord::Base
   #   <tt>skip_woeid</tt>: (boolean) Whether or not to require that the shape matches a unique WOEID.  This is based querying GeoPlanet for the name of the shape.
   #   <tt>test</tt>: (boolean) setting this to +true+ will do everything other than saving places and geometries.
   #   <tt>ancestor_place</tt>: (Place) scope searches for exissting records to descendents of this place. Matching will be based on name and place_type
+  #   <tt>name_column</tt>: column in shapefile attributes that holds the name of the place
+  #   <tt>source_identifier_column</tt>: column in shapefile attributes that holds a unique identifier
   #
   # Examples:
   #   Census:
@@ -537,6 +545,9 @@ class Place < ActiveRecord::Base
       if !new_place.source_filename.blank? && !new_place.source_name.blank?
         existing ||= Place.where(source_filename: new_place.source_filename,
           source_name: new_place.source_name).first
+      end
+      if !new_place.source_filename.blank? && !new_place.name.blank?
+        existing ||= Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
       end
       if options[:ancestor_place]
         existing ||= options[:ancestor_place].descendants.
@@ -612,6 +623,7 @@ class Place < ActiveRecord::Base
   #
   def self.new_from_shape(shape, options = {})
     name_column = options[:name_column] || 'name'
+    source_identifier_column = options[:source_identifier_column]
     skip_woeid = options[:skip_woeid]
     geoplanet_query = options[:geoplanet_query]
     geoplanet_options = options[:geoplanet_options] || {}
@@ -620,8 +632,10 @@ class Place < ActiveRecord::Base
       shape.data[name_column.upcase] || 
       shape.data[name_column.capitalize] || 
       shape.data[name_column.downcase]
+    source_identifier = shape.data[source_identifier_column] if source_identifier_column
     place = Place.new(options.select{|k,v| Place.instance_methods.include?("#{k}=".to_sym)}.merge(
       :name => name,
+      :source_identifier => source_identifier,
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
