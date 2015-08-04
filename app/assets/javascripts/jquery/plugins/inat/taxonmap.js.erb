@@ -248,10 +248,7 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
     return;
   }
   var letter_counter = 0,
-      letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"}),
-      newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"}),
-      numObservations = options.observations.length
+      letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   _.each(options.observations, function( o ) {
     var icon_div = $('#observation-'+ o.id +' .icon').get(0);
@@ -267,7 +264,8 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
       observationOptions.icon = iNaturalist.Map.createObservationIcon({
         color: "HotPink",
         character: letters[ letter_counter ],
-        stemless: o.coordinates_obscured
+        stemless: o.coordinates_obscured,
+        quality_grade: o.quality_grade
       });
     }
     map.addObservation(o, observationOptions);
@@ -284,7 +282,7 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
     letter_counter++;
   });
   if ( preserveViewport ) { return }
-  if( numObservations !== 1 ) {
+  if( options.observations.length !== 1 ) {
     map.zoomToObservations();
     return
   }

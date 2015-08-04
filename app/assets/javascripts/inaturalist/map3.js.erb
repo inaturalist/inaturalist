@@ -455,11 +455,16 @@ iNaturalist.Map.createObservationIcon = function(options) {
     var iconicTaxonName = options.observation.iconic_taxon_name
     if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
     if (iconicTaxonName) {
-      iconPath = iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName];
+      iconPath = _.clone( iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName] );
+      if( options.observation.quality_grade != "research" ) {
+        iconPath.url = iconPath.url.replace( /\.png$/, "NoDot.png" );
+      }
     } else {
       iconPath = iNaturalist.Map[iconSet]['unknown34'];
     }
-
+    if( options.observation.coordinates_obscured ) {
+      iconPath.anchor = new google.maps.Point(10, 10);
+    }
     return iconPath
   }
   
@@ -467,6 +472,9 @@ iNaturalist.Map.createObservationIcon = function(options) {
   iconPath += options.stemless ? "stemless_" : ""
   iconPath += options.color || "HotPink"
   iconPath += options.character ? ('_'+options.character) : ""
+  if( !options.character && options.quality_grade != "research" ) {
+    iconPath += "NoDot";
+  }
   iconPath += '.png'
   return iconPath
 };
@@ -798,16 +806,6 @@ google.maps.Map.prototype.addElasticLayerByEndpoint = function( endpoint, endpoi
   return this.addLayerAndControl( { tiles: tileURLs }, options );
 };
 
-google.maps.Map.prototype.addLayerByEndpoint = function( endpoint, endpointID, options ) {
-  // prevent the tilt feature, which cannot overlay tiles at higher zooms
-  this.setTilt(0);
-  var options = options || { },
-      layerTileURL = <%= CONFIG.tile_servers.windshaft.inspect %> +
-        "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png";
-  layerTileURL = appendValidParamsToURL( layerTileURL, options );
-  return this.addLayerAndControl( { tiles: [ layerTileURL ] }, options );
-};
-
 // Convenience method that likely isn't called outside this file.
 // Will add a layer and send that layer's data to addWindshaftOverlayControl
 // to add a checkbox toggle for this new layer
@@ -902,9 +900,8 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   var options = options || {},
       interactivity = options.interactivity;
   if( options.interactivity ) {
-    // windshaft needs the interactivity param to know what data to render
     options.grids = _.map( tileURLs, function( l ) {
-      return google.maps.Map.prototype.interactivityURL( l, options.interactivity );
+      return google.maps.Map.prototype.utfgridURL( l );
     })
   }
   // finish preparing the tile options hash
@@ -920,23 +917,38 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
-    this.addTileInteractivity( tilejson, layerID );
+    this.addTileInteractivity( tilejson, layerID, options );
   }
   // return the layer and index of this layer in the current stack
   return { layer: layer, layerID: layerID };
 }
 
-google.maps.Map.prototype.interactivityURL = function( tileURL, interactivity ) {
-  utfgridURL = tileURL.replace( /\.png/, ".grid.json" );
-  utfgridURL += ( utfgridURL.indexOf("?") < 0 ) ? "?" : "&";
-  return utfgridURL + "interactivity=" + interactivity;
+google.maps.Map.prototype.utfgridURL = function( tileURL ) {
+  url = tileURL.replace( /\.png/, ".grid.json" );
+  url += ( url.indexOf("?") < 0 ) ? "?" : "&";
+  return url;
 };
 
-google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
+google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, options ) {
   var map = this;
   var interactionOn = false;
-  wax.g
-    .interaction()
+  var waxInteraction = wax.g.interaction( );
+  var oldFeature = waxInteraction.screen_feature;
+  waxInteraction.screen_feature = function( pos, callback ) {
+    // making sure the colored heatmap doesn't have offset interactions
+    if( options.maxzoom && map.getZoom( ) <= options.maxzoom ) {
+      return oldFeature( pos, callback );
+    }
+    oldFeature( { x: pos.x, y: pos.y + 13 }, function( f ) {
+      if( f && f.mappable === "true" && !f.private_location ) { return callback( f ); }
+      oldFeature( pos, function( f ) {
+        if( f && f.mappable === "true" && !f.private_location ) { return callback( ); }
+        callback( f );
+      });
+    });
+  };
+
+  waxInteraction
     .map(map)
     .tilejson(tilejson)
     .on({
