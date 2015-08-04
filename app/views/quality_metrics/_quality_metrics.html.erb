@@ -164,9 +164,11 @@
         <td><%= t(:quality_grade) %></td>
         <td>
           <% if o.research_grade? -%>
-            <span class="research_grade_notice"><%=t o.quality_grade.capitalize %></span>
+            <span class="research_grade_notice"><%=t :research_grade_expandable_html %></span>
+          <% elsif o.needs_id? %>
+            <span class="id_please_notice"><%=t :needs_id_expandable_html %></span>
           <% else %>
-            <%=t o.quality_grade.capitalize %>
+            <%= t(o.quality_grade, default: o.quality_grade).capitalize %>
           <% end -%>
         </td>
       </tr>
@@ -177,9 +179,11 @@
 <div class="summary inlineblock" style="<%= session[:show_quality_metrics] ? 'display:none' : nil %>">
   <label><%= t(:quality_grade_colon) %></label>
   <% if o.research_grade? -%>
-    <span class="research_grade_notice"><%=t o.quality_grade.capitalize %></span>
+    <span class="research_grade_notice"><%=t :research_grade_expandable_html %></span>
+  <% elsif o.needs_id? %>
+    <span class="id_please_notice"><%=t :needs_id_expandable_html %></span>
   <% else %>
-    <%=t o.quality_grade.capitalize %>
+    <%= t(o.quality_grade, default: o.quality_grade).capitalize %>
   <% end -%>
 </div>
 

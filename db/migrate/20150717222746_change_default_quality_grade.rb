@@ -1,15 +1,27 @@
 class ChangeDefaultQualityGrade < ActiveRecord::Migration
   def up
     change_column :observations, :quality_grade, :string, default: 'unverifiable', limit: 128
-    execute <<-SQL
-      UPDATE observations SET quality_grade = 'unverifiable' WHERE quality_grade != 'research'
-    SQL
+    say <<-TXT
+      You'll want to run something like 
+        Observation.find_each{|o|
+          o.set_quality_grade
+          Observation.where(id: o.id).update_all(quality_grade: o.quality_grade)
+          o.elastic_index!
+        }
+      to reset the quality grade on all obs.
+    TXT
   end
 
   def down
     change_column :observations, :quality_grade, :string, default: 'casual'
-    execute <<-SQL
-      UPDATE observations SET quality_grade = 'casual' WHERE quality_grade != 'research'
-    SQL
+    say <<-TXT
+      You'll want to run something like 
+        Observation.find_each{|o|
+          o.set_quality_grade
+          Observation.where(id: o.id).update_all(quality_grade: o.quality_grade) 
+          o.elastic_index!
+        }
+      to reset the quality grade on all obs.
+    TXT
   end
 end
