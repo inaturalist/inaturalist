@@ -232,7 +232,7 @@ module Shared::ListsModule
           else
             lt.occurrence_status_level
           end
-          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(lt.primary_establishment_means.to_s.downcase)
+          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means.to_s.downcase)
             establishment_means.downcase
           else
             lt.establishment_means
