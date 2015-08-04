@@ -432,8 +432,9 @@ class Observation < ActiveRecord::Base
   scope :has_photos, -> { where("observation_photos_count > 0") }
   scope :has_sounds, -> { where("observation_sounds_count > 0") }
   scope :has_quality_grade, lambda {|quality_grade|
-    quality_grade = '' unless QUALITY_GRADES.include?(quality_grade.to_s)
-    where("quality_grade = ?", quality_grade)
+    quality_grades = quality_grade.to_s.split(',') & Observation::QUALITY_GRADES
+    quality_grade = '' if quality_grades.size == 0
+    where("quality_grade IN (?)", quality_grades)
   }
   
   # Find observations by a taxon object.  Querying on taxa columns forces 

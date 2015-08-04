@@ -215,7 +215,8 @@ class Observation < ActiveRecord::Base
       search_wheres["captive"] = p[:captive]
     end
     if p[:quality_grade] && p[:quality_grade] != "any"
-      search_wheres["quality_grade"] = p[:quality_grade]
+      quality_grades = p[:quality_grade].to_s.split(',') & Observation::QUALITY_GRADES
+      search_wheres["quality_grade"] = quality_grades
     end
     case p[:identifications]
     when "most_agree"

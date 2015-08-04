@@ -319,8 +319,10 @@ module ObservationSearch
       scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
       scope = scope.order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by]
 
-      if Observation::QUALITY_GRADES.include?(params[:quality_grade])
-        scope = scope.has_quality_grade( params[:quality_grade])
+      quality_grades = params[:quality_grade].to_s.split(',')
+      # if Observation::QUALITY_GRADES.include?(params[:quality_grade])
+      if (quality_grades & Observation::QUALITY_GRADES).size > 0
+        scope = scope.has_quality_grade( params[:quality_grade] )
       end
 
       if taxon = params[:taxon]

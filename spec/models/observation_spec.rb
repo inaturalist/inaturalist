@@ -1757,6 +1757,19 @@ describe Observation do
       expect(observations).not_to include(c)
     end
 
+    it "should filter by comma-separated quality grades" do
+      r = make_research_grade_observation
+      expect( r ).to be_research_grade
+      n = make_research_grade_candidate_observation
+      expect( n ).to be_needs_id
+      u = Observation.make!(:user => r.user)
+      expect( u ).to be_unverifiable
+      observations = Observation.query(:user => r.user, :quality_grade => "#{Observation::RESEARCH_GRADE},#{Observation::NEEDS_ID}").all
+      expect(observations).to include(r)
+      expect(observations).to include(n)
+      expect(observations).not_to include(u)
+    end
+
     it "should filter by taxon_ids[]" # except that it won't b/c multiple descendant taxon clauses is going to get rough fast
     it "should filter by taxon_ids[] if there's only one taxon" do
       taxon = Taxon.make!
