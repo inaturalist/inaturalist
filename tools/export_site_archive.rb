@@ -16,13 +16,21 @@ where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :file, "Where to write the archive. Default will be tmp path.", :type => :string, :short => "-f"
+  opt :site_name, "Site name", type: :string, short: "-s"
+  opt :site_id, "Site ID", type: :string, short: "-i"
 end
 
 start_time = Time.now
-@site_name = ARGV[0]
-unless @site = Site.find_by_name(@site_name)
+@site_name = OPTS.site_name || ARGV[0]
+puts "@site_name: #{@site_name}"
+puts "ARGV: #{ARGV.inspect}"
+puts "OPTS: #{OPTS.inspect}"
+@site = Site.find_by_name(@site_name)
+@site ||= Site.find_by_id(OPTS.site_id)
+unless @site
   Trollop::die "No site with name '#{@site_name}'"
 end
+@site_name = @site.name
 
 @work_path = Dir.mktmpdir
 FileUtils.mkdir_p @work_path, :mode => 0755
@@ -109,9 +117,10 @@ def export_model(klass)
   table_export_path = File.join(@work_path, "#{klass.table_name}.csv")
   sql = "COPY (#{scope.to_sql}) TO STDOUT WITH CSV HEADER"
   connection = ActiveRecord::Base.connection
-  db_config = Rails.configuration.database_configuration
+  db_config = Rails.configuration.database_configuration[Rails.env]
   cmd = "psql #{connection.current_database}"
-  cmd += " -h #{db_config['login']['host']}" if db_config['login'] && db_config['login']['host']
+  cmd += " -h #{db_config['host']}" if db_config['host']
+  cmd += " -U #{db_config['username']}" if db_config['username']
   cmd += " -c \"#{sql}\" > #{table_export_path}"
   system_call cmd.gsub(/\s+/m, ' ')
   table_export_path
