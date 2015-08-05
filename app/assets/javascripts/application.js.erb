@@ -351,12 +351,23 @@ $(document).ready(function() {
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
 
-  $('#header .menutab').mouseover(function() {
-    openHeaderSubnav($('a:first', this))
-  })
-  $('#header .menutab').mouseout(function() {
-    closeHeaderSubnav($('a:first', this))
-  })
+  $('#header .menutab').mouseover( function( ) {
+    openHeaderSubnav( $('a:first', this) );
+  }).mouseout( function( ) {
+    // it is OK if the mouse has entered the autocomplete results
+    if( ! $(".ui-autocomplete" ).is(":hover") ) {
+      closeHeaderSubnav( $('a:first', this) );
+    }
+  });
+
+  $("#header_taxa_q").taxonAutocomplete({
+    thumbnail: false,
+    allow_placeholders: true,
+    allow_enter_submit: true,
+    afterSelect: function( ui ) {
+      window.location.href = inaturalist.TAXON_ROOT_URL + ui.item.id;
+    }
+  });
 })
 
 function checkFormForRequiredFields(e) {

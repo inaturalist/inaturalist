@@ -179,6 +179,10 @@ input.file,
 .select { padding: 0; }
 select { width: auto; max-width: 200px; }
 
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+
 textarea:focus,
 input.text:focus,
 input.file:focus,

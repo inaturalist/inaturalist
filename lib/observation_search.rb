@@ -189,6 +189,9 @@ module ObservationSearch
           taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
           p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
         end
+        if !p[:observations_taxon]
+          p.delete(:taxon_name)
+        end
       end
       if !p[:observations_taxon] && !p[:taxon_ids].blank?
         p[:observations_taxon_ids] = p[:taxon_ids]

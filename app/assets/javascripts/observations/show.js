@@ -49,9 +49,10 @@ $(document).ready(function() {
   // Disable the submit button by default
   $('.identification_form_wrapper .default.button').addClass('disabled').attr('disabled', 'disabled');
   $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
-  
-  $('#new_identification_form .species_guess').simpleTaxonSelector({
-    buttonText: I18n.t('find'),
+
+  $('#new_identification_form .species_guess').taxonAutocomplete({
+    taxon_id_el: $("input.ac_hidden_taxon_id"),
+    extra_class: "identification",
     afterSelect: function(wrapper) {
       var button = $('#new_identification_form').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);
@@ -61,9 +62,9 @@ $(document).ready(function() {
       $(button).addClass('disabled').attr('disabled', 'disabled');
     }
   });
-  
+
   $('#forms').tabs();
-  
+
   $('.quality_assessment .quality_metric_vote_link').live('click', function(e) {
     e.preventDefault()
     var tr = $(this).parents('tr.quality_metric')
@@ -100,43 +101,46 @@ $(document).ready(function() {
       $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
     })
 
-  $('#add-to-project-button').qtip('api').set({
-    events: {
-      render: function(event, api) {
-        $('#projectschooser .addlink').bind('ajax:before', function() {
-          var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-          loading.width($(this).width())
-          loading.height($(this).height())
-          loading.css({backgroundPosition: 'center center'})
-          $(this).hide()
-          $(this).after(loading)
-        }).bind('ajax:success', function(e, json, status) {
-          var projectId = $(this).data('project-id') || json.project_id
-          $(this).siblings('.loadingclick').remove()
-          $(this).siblings('.removelink').show()
-          $(this).hide()
-        }).bind('ajax:error', function(e, xhr, error, status) {
-          $(this).siblings('.loadingclick').remove()
-          $(this).show()
-          // eror handling is done in observation_fields.js
-        })
-        $('#projectschooser .removelink').bind('ajax:before', function() {
-          var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-          loading.width($(this).width())
-          loading.height($(this).height())
-          loading.css({backgroundPosition: 'center center'})
-          $(this).hide()
-          $(this).after(loading)
-        }).bind('ajax:success', function(e, json, status) {
-          $(this).siblings('.loadingclick').remove()
-          $(this).siblings('.addlink').show()
-          $(this).hide()
-        }).bind('ajax:error', function(e, xhr, error, status) {
-          // alert(xhr.responseText)
-        })
+  var qtip = $('#add-to-project-button').qtip('api');
+  if( qtip ) {
+    qtip.set({
+      events: {
+        render: function(event, api) {
+          $('#projectschooser .addlink').bind('ajax:before', function() {
+            var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+            loading.width($(this).width())
+            loading.height($(this).height())
+            loading.css({backgroundPosition: 'center center'})
+            $(this).hide()
+            $(this).after(loading)
+          }).bind('ajax:success', function(e, json, status) {
+            var projectId = $(this).data('project-id') || json.project_id
+            $(this).siblings('.loadingclick').remove()
+            $(this).siblings('.removelink').show()
+            $(this).hide()
+          }).bind('ajax:error', function(e, xhr, error, status) {
+            $(this).siblings('.loadingclick').remove()
+            $(this).show()
+            // eror handling is done in observation_fields.js
+          })
+          $('#projectschooser .removelink').bind('ajax:before', function() {
+            var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+            loading.width($(this).width())
+            loading.height($(this).height())
+            loading.css({backgroundPosition: 'center center'})
+            $(this).hide()
+            $(this).after(loading)
+          }).bind('ajax:success', function(e, json, status) {
+            $(this).siblings('.loadingclick').remove()
+            $(this).siblings('.addlink').show()
+            $(this).hide()
+          }).bind('ajax:error', function(e, xhr, error, status) {
+            // alert(xhr.responseText)
+          })
+        }
       }
-    }
-  })
+    });
+  }
 
   $('.identification').each(function() {
     var taxonId = $(this).data('taxon-id')

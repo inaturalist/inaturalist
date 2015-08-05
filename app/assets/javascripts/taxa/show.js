@@ -180,6 +180,16 @@ $(document).ready(function(){
   $('#place_selector_paste form').live('ajax:success', function(event, json, status) {
     $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
   })
+
+  $("#q").taxonAutocomplete({
+    thumbnail: false,
+    allow_placeholders: true,
+    allow_enter_submit: true,
+    afterSelect: function( ui ) {
+      window.location.href = inaturalist.TAXON_ROOT_URL + ui.item.id;
+    }
+  });
+
 })
 
 function getDescription(url) {
