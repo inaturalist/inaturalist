@@ -41,4 +41,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural 'amanita', 'amanitas'
   inflect.singular 'amanita', 'amanita'
   inflect.singular 'amanitas', 'amanita'
+
+  inflect.plural /^(.*)([Cc])ache$/i, '\1\2aches'
+  inflect.singular /^(.*)([Cc])aches$/i, '\1\2ache'
+  inflect.singular /^(.*)([Cc])ache$/i, '\1\2ache'
 end
