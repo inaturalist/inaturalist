@@ -21,7 +21,7 @@ end
 start_time = Time.now
 @site_name = ARGV[0]
 unless @site = Site.find_by_name(@site_name)
-  Trollop::die "Note site with name '#{@site_name}'"
+  Trollop::die "No site with name '#{@site_name}'"
 end
 
 @work_path = Dir.mktmpdir
@@ -110,12 +110,9 @@ def export_model(klass)
   sql = "COPY (#{scope.to_sql}) TO STDOUT WITH CSV HEADER"
   connection = ActiveRecord::Base.connection
   db_config = Rails.configuration.database_configuration
-  cmd = <<-BASH
-    psql #{connection.current_database} \
-      -h #{db_config['login']['host']} \
-      -c \"#{sql}\" \
-      > #{table_export_path}
-  BASH
+  cmd = "psql #{connection.current_database}"
+  cmd += " -h #{db_config['login']['host']}" if db_config['login'] && db_config['login']['host']
+  cmd += " -c \"#{sql}\" > #{table_export_path}"
   system_call cmd.gsub(/\s+/m, ' ')
   table_export_path
 end
