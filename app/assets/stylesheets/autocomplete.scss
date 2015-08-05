@@ -3,8 +3,12 @@
   z-index: 1001 !important;
 }
 .ac-chooser .ui-autocomplete-input {
-  margin: 0.3em;
   padding: 0.4em 0.2em;
+}
+@-moz-document url-prefix() {
+  .ac-chooser .ui-autocomplete-input {
+    padding: 0.4em 0.6em;
+  }
 }
 .ui-autocomplete .ac {
   height: 46px;
