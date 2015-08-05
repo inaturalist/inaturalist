@@ -185,9 +185,13 @@ $.fn.taxonAutocomplete = function( options ) {
   };
   // custom simple _renderItem that gives the LI's class ac-result
   ac._renderItem = function( ul, item ) {
-    return $( "<li class='ac-result'></li>" ).data( "item.autocomplete", item ).
+    var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
       append( autocompleter.taxonTemplate( item )).
       appendTo( ul );
+    if( options.extra_class ) {
+      li.addClass( options.extra_class );
+    }
+    return li;
   };
   // custom simple _renderMenu that removes the ac-menu class
   ac._renderMenu = function( ul, items ) {

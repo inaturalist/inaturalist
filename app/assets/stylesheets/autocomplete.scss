@@ -2,6 +2,10 @@
   cursor: pointer;
   z-index: 1001 !important;
 }
+.ac-chooser .ui-autocomplete-input {
+  margin: 0.3em;
+  padding: 0.4em 0.2em;
+}
 .ui-autocomplete .ac {
   height: 46px;
   min-width: 370px;
@@ -45,6 +49,12 @@
   padding: 7px 0 0 50px;
   position: absolute;
   line-height: 16px;
+  width: 258px;
+  max-height: 31px;
+  overflow: hidden;
+}
+.ui-autocomplete .identification .ac-label {
+  width: 420px;
 }
 .ui-autocomplete .ac-unknown .ac-label {
   padding: 0 0 0 50px;
@@ -57,6 +67,35 @@
   font-size: 1.1em;
   display: block;
   white-space: nowrap;
+  overflow: hidden;
+}
+.ui-autocomplete .ac-label:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+.ac-result.active .ac-label:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-image: -webkit-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: -moz-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: -ms-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: -o-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: linear-gradient(to left, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
 }
 .ui-autocomplete .ac-label .subtitle {
   font-size: 0.9em;
