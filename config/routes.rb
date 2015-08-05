@@ -123,6 +123,8 @@ Rails.application.routes.draw do
   get '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
 
   match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
+  post '/facebook' => 'facebook#index'
+  
   resources :announcements
   get '/users/dashboard' => 'users#dashboard', :as => :dashboard
   get '/users/curation' => 'users#curation', :as => :curate_users
