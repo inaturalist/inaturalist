@@ -58,29 +58,6 @@ class Taxon < ActiveRecord::Base
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq
       })
-      # we have some parents that are missing and these throw
-      # record not found errors. Bug in the ancestry gem maybe?
-      p = parent rescue nil
-      if p
-        json.merge!({ parent_id: p.id })
-        if species_or_lower?
-          (0..Taxon::PREFERRED_RANKS.index("family")).to_a.reverse.each do |i|
-            rank = Taxon::PREFERRED_RANKS[i]
-            if ancestor = send("find_#{ rank }")
-              json.merge!({
-                ancestor_name: ancestor.name,
-                ancestor_rank: ancestor.rank
-              })
-              break
-            end
-          end
-        else
-          json.merge!({
-            ancestor_name: p.name,
-            ancestor_rank: p.rank
-          })
-        end
-      end
     end
     json
   end
