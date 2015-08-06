@@ -16,17 +16,22 @@ where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :file, "Where to write the archive. Default will be tmp path.", :type => :string, :short => "-f"
+  opt :site_name, "Site name", type: :string, short: "-s"
+  opt :site_id, "Site ID", type: :string, short: "-i"
 end
 
 start_time = Time.now
-@site_name = ARGV[0]
-unless @site = Site.find_by_name(@site_name)
-  Trollop::die "Note site with name '#{@site_name}'"
+@site_name = OPTS.site_name || ARGV[0]
+@site = Site.find_by_name(@site_name)
+@site ||= Site.find_by_id(OPTS.site_id)
+unless @site
+  Trollop::die "No site with name '#{@site_name}'"
 end
+@site_name = @site.name
 
 @work_path = Dir.mktmpdir
 FileUtils.mkdir_p @work_path, :mode => 0755
-@basename = "#{@site_name}-#{Time.now.to_i}"
+@basename = "#{@site_name.parameterize}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
 
 def system_call(cmd)
   puts "Running #{cmd}" if OPTS[:debug]
@@ -43,7 +48,8 @@ end
 
 def export_model(klass)
   # sort the column names to prevent conflict btwn databases with different column orders
-  select = "DISTINCT ON (#{klass.table_name}.id) " + klass.column_names.sort.map{|c| "#{klass.table_name}.#{c}"}.join(',')
+  select = klass.column_names.sort.map{|c| "#{klass.table_name}.#{c}"}.join(',')
+  select = "DISTINCT ON (#{klass.table_name}.id) #{select}" if klass.column_names.include?('id')
   scope = klass.select(select)
   if klass.column_names.include?('site_id')
     puts "Exporting #{@site_name} #{klass.name.underscore.pluralize}" if OPTS[:debug]
@@ -105,16 +111,14 @@ def export_model(klass)
   else
     # dump everything for the rest
   end
-  table_export_path = File.join(@work_path, "#{klass.table_name}.txt")
-  sql = "COPY (#{scope.to_sql}) TO STDOUT"
+  table_export_path = File.join(@work_path, "#{klass.table_name}.csv")
+  sql = "COPY (#{scope.to_sql}) TO STDOUT WITH CSV HEADER"
   connection = ActiveRecord::Base.connection
-  db_config = Rails.configuration.database_configuration
-  cmd = <<-BASH
-    psql #{connection.current_database} \
-      -h #{db_config['login']['host']} \
-      -c \"#{sql}\" \
-      > #{table_export_path}
-  BASH
+  db_config = Rails.configuration.database_configuration[Rails.env]
+  cmd = "psql #{connection.current_database}"
+  cmd += " -h #{db_config['host']}" if db_config['host']
+  cmd += " -U #{db_config['username']}" if db_config['username']
+  cmd += " -c \"#{sql}\" > #{table_export_path}"
   system_call cmd.gsub(/\s+/m, ' ')
   table_export_path
 end
@@ -124,6 +128,11 @@ Rails.application.eager_load!
 ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
   # try to ignore 3rd party stuff
   next if klass.name =~ /(Doorkeeper|Delayed|Thinking|\:\:|DeletedUser|DeletedObservation)/
+
+  # ignore weird HABTM stuff
+  next if klass.name =~ /HABTM_/i
+
+  next if klass.name =~ /ApiEndpoint/
 
   # ignore STI descendants
   next if klass != List && klass.ancestors.include?(List)

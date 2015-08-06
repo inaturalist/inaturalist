@@ -327,6 +327,17 @@ class Observation < ActiveRecord::Base
       search_filters << { 'not': { exists: {field: :taxon} } }
     end
 
+    unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
+      case p[:geoprivacy]
+      when Observation::OPEN
+        search_filters << { not: { exists: { field: :geoprivacy } } }
+      when "obscured_private"
+        search_wheres["geoprivacy"] = Observation::GEOPRIVACIES
+      else
+        search_wheres["geoprivacy"] = p[:geoprivacy]
+      end
+    end
+
     { where: search_wheres,
       filters: search_filters,
       per_page: p[:per_page] || 30,

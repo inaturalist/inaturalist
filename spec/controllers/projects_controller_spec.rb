@@ -104,3 +104,34 @@ describe ProjectsController, "search" do
     end
   end
 end
+
+describe ProjectsController, "update" do
+  let(:project) { Project.make! }
+  let(:user) { project.user }
+  before { sign_in user }
+  it "should work for the owner" do
+    put :update, id: project.id, project: {title: "the new title"}
+    project.reload
+    expect( project.title ).to eq "the new title"
+  end
+  it "should allow a curator to turn on observation aggregation" do
+    user.roles << (Role.where(name: Role::CURATOR).first || Role.create(name: Role::CURATOR))
+    expect( user ).to be_is_curator
+    sign_out user
+    sign_in user
+    project.update_attributes(place: make_place_with_geom)
+    expect( project ).to be_aggregation_allowed
+    expect( project ).not_to be_prefers_aggregation
+    put :update, id: project.id, project: {prefers_aggregation: true}
+    project.reload
+    expect( project ).to be_prefers_aggregation
+  end
+  it "should not allow a non-curator to turn on observation aggregation" do
+    project.update_attributes(place: make_place_with_geom)
+    expect( project ).to be_aggregation_allowed
+    expect( project ).not_to be_prefers_aggregation
+    put :update, id: project.id, project: {prefers_aggregation: true}
+    project.reload
+    expect( project ).not_to be_prefers_aggregation
+  end
+end

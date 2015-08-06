@@ -108,7 +108,6 @@ module ObservationSearch
       # elasticsearch index, or we have decided not to put in the index
       # because it would be more work to maintain than it would save
       # when searching. Remove empty values before checking
-      return false if search_params[:rank] == "leaves"
       ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
         search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
     end
@@ -120,6 +119,28 @@ module ObservationSearch
         return WillPaginate::Collection.new(1, 30, 0)
       end
       Observation.elastic_paginate(elastic_params)
+    end
+
+    def elastic_taxon_leaf_ids(elastic_params = {})
+      results = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: {
+          ancestors: {
+            terms: {
+              field: "taxon.ancestor_ids", size: 0 } },
+          taxa: {
+            terms: {
+              field: "taxon.id", size: 0 } }
+        })).response.aggregations
+      # make a hash of all ancestors and how many times they
+      # are used. This will include the observations' direct taxa
+      ancestors = Hash[ results.ancestors.buckets.map{ |b| [ b["key"], b["doc_count"] ] } ]
+      # remove the number of times they were direct taxa for an observation
+      results.taxa.buckets.each do |b|
+        ancestors[ b["key"] ] -= b["doc_count"]
+      end
+      # any 'ancestor' now with a count of 0 has only ever been used directly,
+      # not as an ancestor of another observation, i.e. leaf node
+      leaf_ids = ancestors.select{ |k,v| v == 0 }.keys
     end
 
     def query_params(params)
@@ -167,6 +188,9 @@ module ObservationSearch
           raise e unless e.message =~ /invalid byte sequence/
           taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
           p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
+        end
+        if !p[:observations_taxon]
+          p.delete(:taxon_name)
         end
       end
       if !p[:observations_taxon] && !p[:taxon_ids].blank?

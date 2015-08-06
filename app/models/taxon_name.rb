@@ -132,11 +132,12 @@ class TaxonName < ActiveRecord::Base
 
   def as_indexed_json(options={})
     json = {
-      name: name,
+      name: name.slice(0,1).capitalize + name.slice(1..-1),
       locale: locale_for_lexicon
     }
     if options[:autocomplete]
       json[:name_autocomplete] = name
+      json[:exact] = name
     end
     json
   end

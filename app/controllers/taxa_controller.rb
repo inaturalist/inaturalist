@@ -448,9 +448,11 @@ class TaxaController < ApplicationController
       end
     end
 
-    if page == 1 && 
+    if page == 1 &&
         !@taxa.detect{|t| t.name.downcase == params[:q].to_s.downcase} && 
-        (exact_taxon = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first)
+        (exact_taxon =
+          Taxon.where("lower(name) = ?", params[:q].to_s.downcase).
+            where(is_active: true).first)
       @taxa.unshift exact_taxon
     end
 
@@ -531,6 +533,18 @@ class TaxaController < ApplicationController
       per_page: 30,
       page: 1
     )
+    # attempt to fetch the best exact match, which will go first
+    exact_results = Taxon.elastic_paginate(
+      where: search_wheres.merge(match: { "names.exact" => @q }),
+      sort: { observations_count: "desc" },
+      per_page: 1,
+      page: 1
+    )
+    if exact_results && exact_results.length > 0
+      exact_result = exact_results.first
+      @taxa.delete_if{ |t| t == exact_result }
+      @taxa.unshift(exact_result)
+    end
     Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
       :taxon_descriptions ] )
     @taxa.each do |t|

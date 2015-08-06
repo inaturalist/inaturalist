@@ -277,7 +277,7 @@
       <p>
         <%= t(:sorry_how_about_we_try_repeat) %>
       </p>
-      <% Ratatosk.name_providers.each_with_index do |np,i| %>
+      <% ratatosk.name_providers.each_with_index do |np,i| %>
         <div class="column span-7 <%= 'last' if i % 3 == 2 %>">
           <%-
             name = np.class.source.try(:title) || nil

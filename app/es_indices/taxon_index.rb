@@ -5,13 +5,15 @@ class Taxon < ActiveRecord::Base
   # used to cache place_ids when bulk indexing
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:colors, :taxon_names, :taxon_descriptions) }
+  scope :load_for_index, -> { includes(:colors, :taxon_names, :taxon_descriptions,
+    { taxon_photos: :photo }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :names do
         indexes :name, analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, index_analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
+        indexes :exact, analyzer: "keyword_analyzer"
       end
     end
   end
@@ -47,6 +49,7 @@ class Taxon < ActiveRecord::Base
     unless options[:basic]
       json.merge!({
         created_at: created_at,
+        default_photo_url: default_photo ? default_photo.best_url(:square) : nil,
         colors: colors.map(&:as_indexed_json),
         is_active: is_active,
         ancestry: ancestry,

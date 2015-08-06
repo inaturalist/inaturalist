@@ -56,7 +56,7 @@
     %span.small.description
       = t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if @place.place_type_name
   #placephotos
-#maintabs
+#maintabs.clear.stacked
   #metalinks.meta.right
     :ruby
       pieces = []
@@ -93,7 +93,7 @@
     %li
       %a{:href => "#abouttab"}
         %span= t :about_x, :x => t(@place.name, :default => @place.name)
-  #guidetab
+  #guidetab.stacked
     - if @place.check_list
       - extra = capture do
         %p.ui
@@ -166,7 +166,8 @@
             = link_to t(:start_one).downcase, wikipedia_url
             ?
 / end maintabs
-.meta.right
+.clear
+.meta.stacked
   - if @place.user
     = t(:place_added_to_inat_by, :site_name => SITE_NAME_SHORT)
     = link_to user_image(@place.user), @place.user
@@ -176,3 +177,12 @@
     = t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last)
     |
   = link_to t(:add_new_place), new_place_path, :class => "readmore"
+
+- if @place.source
+  .meta
+    Source:
+    = citation_for @place.source
+- if @place.place_geometry_without_geom && @place.place_geometry_without_geom.source
+  .meta
+    Boundary source:
+    = citation_for @place.place_geometry_without_geom.source

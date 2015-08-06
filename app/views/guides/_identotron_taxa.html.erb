@@ -17,7 +17,6 @@
     <% for taxon in @taxa %>
       <%-
         listed_taxon = @listed_taxa_by_taxon_id[taxon.id] if @listed_taxa_by_taxon_id
-        # cache_key = listed_taxon.guide_taxon_cache_key
       -%>
       <%= render :partial => "places/identotron", :locals => { :listed_taxon => listed_taxon, :taxon => taxon } %>
     <% end %>

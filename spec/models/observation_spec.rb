@@ -2872,4 +2872,26 @@ describe Observation do
     end
   end
 
+  describe "random_neighbor_lat_lon" do
+    it "randomizes values within a 0.2 degree square" do
+      lat_lons = [ [ 0, 0 ], [ 0.001, 0.001 ], [ 0.199, 0.199 ] ]
+      values = [ ]
+      100.times do
+        lat_lons.each do |ll|
+          rand_ll = Observation.random_neighbor_lat_lon( ll[0], ll[1] )
+          # random values should be in range
+          expect(rand_ll[0]).to be_between(0, 0.2)
+          expect(rand_ll[1]).to be_between(0, 0.2)
+          # values should be different from their original
+          expect(rand_ll[0]).not_to be(ll[0])
+          expect(rand_ll[1]).not_to be(ll[1])
+          values += rand_ll
+        end
+      end
+      average = values.inject(:+) / values.size.to_f
+      # we expect the center of the cluster to be around 0.1, 0.1
+      expect(average).to be_between(0.095, 0.105)
+    end
+  end
+
 end

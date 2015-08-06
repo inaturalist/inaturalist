@@ -39,16 +39,16 @@ end
 
 system_call "cp #{@archive_path} #{@work_path}/"
 system_call "cd #{@work_path} && unzip #{File.basename(@archive_path)}"
-Dir.glob(File.join(@work_path, '*.txt')).each do |path|
+Dir.glob(File.join(@work_path, '*.csv')).each do |path|
   table_name = File.basename(path).split('.')[0]
   puts
   puts table_name.humanize.upcase
-  unless klass = Object.const_get(table_name.classify)
+  unless klass = Object.const_get(table_name.singularize.classify)
     puts "ERROR: couldn't load model for #{table_name}"
     next
   end
   columns = klass.column_names.sort.map{|c| "\\\"#{c}\\\""}.join(',')
-  system_call "psql #{ActiveRecord::Base.connection.current_database} -c \"\\copy #{table_name} (#{columns}) FROM '#{path}'\""
+  system_call "psql #{ActiveRecord::Base.connection.current_database} -c \"\\copy #{table_name} (#{columns}) FROM '#{path}' CSV HEADER\""
 end
 
 puts "Imported #{@archive_path} in #{Time.now - start_time} s"

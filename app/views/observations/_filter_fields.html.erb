@@ -187,8 +187,11 @@
     </div>
     <div class="left">
       <div class="buttons">
-        <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
-          :placeholder => t(:type_taxon_name_and_click_lookup) %>
+        <%= search_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
+          :placeholder => t(:start_typing_taxon_name),
+          "data-iconic-taxon-id" => @observations_taxon ? @observations_taxon.iconic_taxon_id : nil,
+          "data-default-photo-url" => ( @observations_taxon && @observations_taxon.default_photo ) ?
+            @observations_taxon.default_photo.best_url(:square) : nil %>
         <%-
           alt_attr = if @observations_taxon
             css_class =  [
@@ -208,7 +211,7 @@
   </div>
   <% if @filters_open -%>
     <script type="text/javascript" charset="utf-8">
-      $('#filters input[name=taxon_name]').simpleTaxonSelector()
+      $('#filters input[name=taxon_name]').taxonAutocomplete()
     </script>
   <% end -%>
   

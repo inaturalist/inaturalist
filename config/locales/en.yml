@@ -1905,6 +1905,7 @@ en:
   only_show_for_species_subspecies_varieties_etc: Only show for species, subspecies, varieties, etc.
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
+  only_site_curators_can_turn_on_observation_aggregation: Only site curators can turn on project aggregation
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
   only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
@@ -2003,78 +2004,80 @@ en:
   place_deleted: Place deleted.
   place_geo:
           geo_planet_place_types:
-            Undefined: Undefined
-            Building: Building
-            Street_Segment: Street Segment
-            Nearby_Building: Nearby Building
-            Street: Street
-            Intersection: Intersection
-            Town: Town
-            State: State
-            Country: Country
-            Local_Administrative_Area: Local Administrative Area
-            Postal_Code: Postal Code
-            Island: Island
-            Airport: Airport
-            Drainage: Drainage
-            Land_Feature: Land Feature
-            Miscellaneous: Miscellaneous
-            Nationality: Nationality
-            Supername: Supername
-            Point_of_Interest: Point of Interest
-            Region: Region
-            Suburb: Suburb
-            Sports_Team: Sports Team
-            Colloquial: Colloquial
-            Zone: Zone
-            Historical_State: Historical State
-            Historical_County: Historical County
-            Continent: Continent
-            Time_Zone: Time Zone
-            Nearby_Intersection: Nearby Intersection
-            Estate: Estate
-            Historical_Town: Historical Town
             Aggregate: Aggregate
-            Open_Space: Open Space
-            Territory: Territory
-            County: County
-            undefined: undefined
-            building: building
-            street_segment: street segment
-            nearby_building: nearby building
-            street: street
-            intersection: intersection
-            town: town
-            state: state
-            country: country
-            local_administrative_area: local administrative area
-            postal_code: postal code
-            island: island
-            airport: airport
-            drainage: drainage
-            land_feature: land feature
-            miscellaneous: miscellaneous
-            nationality: nationality
-            supername: supername
-            point_of_interest: point of interest
-            region: region
-            suburb: suburb
-            sports_team: sports team
-            colloquial: colloquial
-            zone: zone
-            historical_state: historical state
-            historical_county: historical county
-            continent: continent
-            time_zone: time zone
-            nearby_intersection: nearby intersection
-            estate: estate
-            historical_town: historical town
             aggregate: aggregate
-            open_space: open_space
-            territory: territory
+            Airport: Airport
+            airport: airport
+            Building: Building
+            building: building
+            Colloquial: Colloquial
+            colloquial: colloquial
+            Continent: Continent
+            continent: continent
+            Country: Country
+            country: country
+            County: County
             county: county
+            District: District
+            district: district
+            Drainage: Drainage
+            drainage: drainage
+            Estate: Estate
+            estate: estate
+            Historical_County: Historical County
+            historical_county: historical county
+            Historical_State: Historical State
+            historical_state: historical state
+            Historical_Town: Historical Town
+            historical_town: historical town
+            Intersection: Intersection
+            intersection: intersection
+            Island: Island
+            island: island
+            Land_Feature: Land Feature
+            land_feature: land feature
+            Local_Administrative_Area: Local Administrative Area
+            local_administrative_area: local administrative area
+            Miscellaneous: Miscellaneous
+            miscellaneous: miscellaneous
+            Nationality: Nationality
+            nationality: nationality
+            Nearby_Building: Nearby Building
+            nearby_building: nearby building
+            Nearby_Intersection: Nearby Intersection
+            nearby_intersection: nearby intersection
+            Open_Space: Open Space
+            open_space: open_space
+            Point_of_Interest: Point of Interest
+            point_of_interest: point of interest
+            Postal_Code: Postal Code
+            postal_code: postal code
             Province: Province
             province: province
+            Region: Region
+            region: region
+            Sports_Team: Sports Team
+            sports_team: sports team
+            State: State
+            state: state
+            Street: Street
+            street: street
+            Street_Segment: Street Segment
+            street_segment: street segment
+            Suburb: Suburb
+            suburb: suburb
+            Supername: Supername
+            supername: supername
+            Territory: Territory
+            territory: territory
+            Time_Zone: Time Zone
+            time_zone: time zone
+            Town: Town
+            town: town
+            Undefined: Undefined
+            undefined: undefined
+            Zone: Zone
+            zone: zone
   place_guess: place guess
   place_imported: Place imported!
   place_must_have_a_boundary_defined: Place Must Have A Boundary Defined.
@@ -2176,6 +2179,10 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_aggregator_filter_error: |
+    Projects cannot enable automatic observation aggregation unless the
+    project is associated with a place of moderate size or it only allows
+    observations of specific taxa or taxa on a list
   project_assessments: Project Assessments
   project_assets: Project Assets
   project_cover: Project cover
@@ -2958,6 +2965,8 @@ en:
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   US_states: US States
   usage_stats: Usage stats
+  use_name_as_a_placeholder: |
+    Use <span class='ac-placeholder'>"%{name}"</span> as a placeholder
   use_this_form_to_create_a_new: |
     Use this form to create a new draft taxonomic change describing a proposed
     split, merge or swap on active taxa to be later committed.
@@ -3997,12 +4006,11 @@ en:
           </p>
           <ol>
             <li class="readable description">
-              Your project is trusted (if you can see this it is)
+              Your project is associated with a small-to-mid-sized place (about
+              the size of Texas or Ukraine)
             </li>
             <li class="readable description">
-              Your project is associated with a small-to-mid-sized place (about
-              the size of Texas or Ukraine) OR your project only accepts
-              observations of certain taxa
+              OR your project only accepts observations of certain taxa
             </li>
           </ol>
         project_assets_desc_html: |

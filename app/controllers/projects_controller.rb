@@ -910,6 +910,12 @@ class ProjectsController < ApplicationController
     else
       params[:project].delete(:featured_at)
     end
+
+    if !current_user.is_curator? && params[:project][:prefers_aggregation].yesish? && (@project.blank? || !@project.prefers_aggregation?)
+      flash[:error] = I18n.t(:only_site_curators_can_turn_on_observation_aggregation)
+      redirect_back_or_default @project
+      return false
+    end
     true
   end
 end

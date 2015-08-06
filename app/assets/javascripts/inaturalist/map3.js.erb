@@ -748,17 +748,17 @@ var appendValidParamsToURL = function( url, options ) {
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
   _.defaults( options, { validParams: [ 'color' ] });
-  return this.addLayerByEndpoint( "places", options.place.id, options );
+  return this.addElasticLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
   _.defaults( options, { validParams: [ 'color' ] });
-  return this.addLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
+  return this.addElasticLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
-  return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
+  return this.addElasticLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
 var cachedGBIFColors;
@@ -784,6 +784,18 @@ google.maps.Map.prototype.addGBIFLayer = function( options ) {
   var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
     options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
   return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
+};
+
+google.maps.Map.prototype.addElasticLayerByEndpoint = function( endpoint, endpointID, options ) {
+  // prevent the tilt feature, which cannot overlay tiles at higher zooms
+  this.setTilt(0);
+  var tileservers = elasticsearchTileservers( );
+  var options = options || { };
+  var tileURLs = _.map( tileservers , function( base ) {
+    return appendValidParamsToURL(
+      base + "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png", options );
+  });
+  return this.addLayerAndControl( { tiles: tileURLs }, options );
 };
 
 google.maps.Map.prototype.addLayerByEndpoint = function( endpoint, endpointID, options ) {
@@ -847,7 +859,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
     'rank', 'hrank', 'lrank', 'quality_grade', 'identifications', 'captive',
     'iconic_taxa', 'q', 'search_on', 'out_of_range', 'has', 'iconic_taxa',
-    'project_ids', 'viewer_id', 'reviewed' ];
+    'project_ids', 'geoprivacy', 'on', 'viewer_id', 'reviewed' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(

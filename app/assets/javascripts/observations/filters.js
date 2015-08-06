@@ -39,7 +39,7 @@ function showFilters(link, options) {
   }
   $('#filters input[name=filters_open]').val(true)
   if ($('#filters .simpleTaxonSelector').length == 0) {
-    $('#filters input[name=taxon_name]').simpleTaxonSelector()
+    $('#filters input[name=taxon_name]').taxonAutocomplete()
   }
   if ($('#place_filter .ui-widget').length == 0) {
     $('#filters input[name=place_id]').chooser({

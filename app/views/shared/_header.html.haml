@@ -36,7 +36,7 @@
           %li
             = form_tag({:controller => 'taxa', :action => 'search'}, :method => :get) do
               .clear.inline.buttonrow
-                = text_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '', |
+                = search_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '', |
                   :placeholder => t(:search_taxa)                                                         |
                 %button.default.button
                   %i.fa.fa-search

@@ -1,0 +1,125 @@
+.ui-autocomplete {
+  cursor: pointer;
+}
+// .ac-chooser .ui-autocomplete-input {
+//   padding: 0.4em 0.2em;
+// }
+// @-moz-document url-prefix() {
+//   .ac-chooser .ui-autocomplete-input {
+//     padding: 0.4em 0.6em;
+//   }
+// }
+.ui-autocomplete .ac {
+  height: 46px;
+  min-width: 370px;
+  display: block;
+  cursor: pointer;
+}
+.ui-autocomplete .ac.ac-unknown {
+  height: 36px;
+}
+.ui-autocomplete .ac-thumb {
+  float: left;
+  width: 44px;
+}
+.ui-autocomplete .ac-unknown .ac-thumb {
+  width: 34px;
+  padding-left: 5px;
+}
+.ui-autocomplete .ac-view {
+  float: right;
+  padding: 0 10px;
+  line-height: 46px;
+  text-align: right;
+  background: white;
+}
+.ui-autocomplete .ac-thumb img {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+}
+.ui-autocomplete .ac-unknown .ac-thumb img {
+  width: 30px;
+  height: 30px;
+}
+.ui-autocomplete .ac-result {
+  list-style: none;
+}
+.ui-autocomplete .ac-result.active {
+  background: #F2F2F2;
+}
+.ui-autocomplete .ac-label {
+  padding: 7px 0 0 50px;
+  position: absolute;
+  line-height: 16px;
+  width: 258px;
+  max-height: 31px;
+  overflow: hidden;
+}
+.ui-autocomplete .identification .ac-label {
+  width: 420px;
+}
+.ui-autocomplete .ac-unknown .ac-label {
+  padding: 0 0 0 50px;
+  line-height: 36px;
+}
+.ui-autocomplete .ac-placeholder {
+  font-weight: bold;
+}
+.ui-autocomplete .ac-label .title {
+  font-size: 1.1em;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ui-autocomplete .ac-label:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+.ac-result.active .ac-label:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-image: -webkit-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: -moz-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: -ms-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: -o-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  background-image: linear-gradient(to left, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+}
+.ui-autocomplete .ac-label .subtitle {
+  font-size: 0.9em;
+  display: block;
+  color: #727272;
+}
+.ui-autocomplete li.ac-result:not(:first-child) {
+  border-top: 1px solid #D8D8D8;
+}
+.buttonrow .ac-chooser {
+  display: inline-block;
+}
+.ac-chooser .species_guess.ui-autocomplete-input {
+  width: 190px;
+}
+.ac-select-thumb {
+  width: 31px;
+  float: left;
+  margin-right: 5px;
+}
+.ac-select-thumb img {
+  width: 31px;
+  height: 31px;
+}
