@@ -355,8 +355,9 @@ $(document).ready(function() {
     openHeaderSubnav( $('a:first', this) );
   }).mouseout( function( ) {
     // it is OK if the mouse has entered the autocomplete results
-    if( ! $(".ui-autocomplete" ).is(":hover") ) {
+    if( $(".ui-autocomplete:hover").length == 0) {
       closeHeaderSubnav( $('a:first', this) );
+      $(".ui-autocomplete").hide( );
     }
   });
 
