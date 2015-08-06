@@ -23,7 +23,7 @@ input.place_guess { width: 336px; }
 
 #map { height: 433px; }
 
-#mapcontainer .description {position:absolute; top: 50%; left: 50%; margin-left: -100px; margin-top: -10px; width: 200px; z-index:1000; background-color:black; color: #eee; padding: 5px; border-radius: 10px; text-align:center;}
+#mapcontainer .description {position:absolute; top: 50%; left: 50%; margin-left: -100px; margin-top: -10px; width: 200px; background-color:black; color: #eee; padding: 5px; border-radius: 10px; text-align:center;}
 
 .latlonfields {
   position: relative;
