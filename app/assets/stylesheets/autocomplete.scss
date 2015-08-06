@@ -2,14 +2,14 @@
   cursor: pointer;
   z-index: 1001 !important;
 }
-.ac-chooser .ui-autocomplete-input {
-  padding: 0.4em 0.2em;
-}
-@-moz-document url-prefix() {
-  .ac-chooser .ui-autocomplete-input {
-    padding: 0.4em 0.6em;
-  }
-}
+// .ac-chooser .ui-autocomplete-input {
+//   padding: 0.4em 0.2em;
+// }
+// @-moz-document url-prefix() {
+//   .ac-chooser .ui-autocomplete-input {
+//     padding: 0.4em 0.6em;
+//   }
+// }
 .ui-autocomplete .ac {
   height: 46px;
   min-width: 370px;

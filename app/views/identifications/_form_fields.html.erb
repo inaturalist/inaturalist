@@ -2,7 +2,8 @@
 <%- body_label ||= t(:remarks_optional).html_safe -%>
   <div class="field species_guess_field">
     <label for="identification_species_guess-<%= identification.observation_id %>"><%=t :species%></label>
-    <%= search_field_tag(:species_guess, '',
+    <%= text_field_tag(:species_guess, '',
+      :placeholder => t(:type_species_name),
       :size => '', 
       :class => 'text species_guess',
       :id => "identification_species_guess-#{identification.observation_id}") %>
