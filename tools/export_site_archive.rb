@@ -22,9 +22,6 @@ end
 
 start_time = Time.now
 @site_name = OPTS.site_name || ARGV[0]
-puts "@site_name: #{@site_name}"
-puts "ARGV: #{ARGV.inspect}"
-puts "OPTS: #{OPTS.inspect}"
 @site = Site.find_by_name(@site_name)
 @site ||= Site.find_by_id(OPTS.site_id)
 unless @site
@@ -34,7 +31,7 @@ end
 
 @work_path = Dir.mktmpdir
 FileUtils.mkdir_p @work_path, :mode => 0755
-@basename = "#{@site_name}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
+@basename = "#{@site_name.parameterize}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
 
 def system_call(cmd)
   puts "Running #{cmd}" if OPTS[:debug]
@@ -134,6 +131,8 @@ ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
 
   # ignore weird HABTM stuff
   next if klass.name =~ /HABTM_/i
+
+  next if klass.name =~ /ApiEndpoint/
 
   # ignore STI descendants
   next if klass != List && klass.ancestors.include?(List)
