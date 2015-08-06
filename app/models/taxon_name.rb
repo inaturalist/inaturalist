@@ -136,6 +136,7 @@ class TaxonName < ActiveRecord::Base
       locale: locale_for_lexicon
     }
     if options[:autocomplete]
+      json[:is_valid] = is_valid
       json[:name_autocomplete] = name
       json[:exact] = name
     end

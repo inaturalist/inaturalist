@@ -40,7 +40,10 @@ class Taxon < ActiveRecord::Base
     json = {
       id: id,
       name: name,
-      names: taxon_names.sort_by(&:position).map{ |tn| tn.as_indexed_json(autocomplete: !options[:basic]) },
+      names: taxon_names.
+        reject{ |tn| !tn.is_valid? }.
+        sort_by{ |tn| [ tn.position, tn.id ] }.
+        map{ |tn| tn.as_indexed_json(autocomplete: !options[:basic]) },
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
