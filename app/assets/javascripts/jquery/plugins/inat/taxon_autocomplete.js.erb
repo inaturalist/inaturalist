@@ -24,6 +24,7 @@ autocompleter.defaultPhotoForResult = function( result ) {
 // return the first (preferred) name in a locale
 autocompleter.preferredNameInLocale = function( result, locale ) {
   var nameInLocale;
+  if( locale ) { locale = locale.split('-')[0]; }
   _.each( result.names, function( n ) {
     if( nameInLocale ) { return; }
     if( n.locale === locale ) { nameInLocale = n.name; }
