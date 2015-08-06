@@ -53,7 +53,7 @@ autocompleter.taxonTemplate = function( result ) {
     }
   }
   if( result.rank && ( result.rank_level > 10 || !subtitle )) {
-    subtitle = autocompleter.capitalize( result.rank ) + ( subtitle ? " " + subtitle : "" );
+    subtitle = autocompleter.capitalize( I18n.t('ranks.'+result.rank, {defaultValue: result.rank} ) ) + ( subtitle ? " " + subtitle : "" );
   }
 
   result.default_photo_url = autocompleter.defaultPhotoForResult( result );
