@@ -186,6 +186,22 @@ describe Place, "merging" do
     }.not_to raise_error
     expect( keeper.observations_places.where(observation_id: o) ).not_to be_blank
   end
+
+  it "should not result in multiple primary listed taxa for the same taxon" do
+    keeper = Place.make!
+    reject = Place.make!
+    t = Taxon.make!
+    klt = keeper.check_list.add_taxon(t, user: User.make!)
+    rl = reject.check_lists.create(title: "foo")
+    rlt = rl.add_taxon(t, user: User.make!)
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+    without_delay { keeper.merge(reject) }
+    klt.reload
+    rlt.reload
+    expect( klt.primary_listing? || rlt.primary_listing? ).to eq true
+    expect( klt.primary_listing? && rlt.primary_listing? ).to eq false
+  end
 end
 
 describe Place, "bbox_contains_lat_lng?" do

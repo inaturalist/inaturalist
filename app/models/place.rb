@@ -726,6 +726,10 @@ class Place < ActiveRecord::Base
     mergee.reload
     mergee.destroy
     self.save
+    CheckList.where(place_id: id).each do |cl|
+      cl.delay(priority: USER_INTEGRITY_PRIORITY).refresh
+    end
+    self.check_list.delay(priority: USER_INTEGRITY_PRIORITY).refresh
     self
   end
   
