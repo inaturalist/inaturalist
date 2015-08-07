@@ -56,27 +56,24 @@ def export_model(klass)
     scope = scope.where("#{klass.table_name}.site_id = ?", @site)
 
   # model-specific stuff
-  elsif klass == ListedTaxon
-    puts "Exporting listed_taxa on lists belonging to users of #{@site_name}" if OPTS[:debug]
-    scope = scope.joins(:list => :user).where("users.site_id = ?", @site)
   elsif klass == ObservationField
     puts "Exporting observation_fields used in observations of #{@site_name}" if OPTS[:debug]
     scope = scope.joins(:observation_field_values => :observation).where("observations.site_id = ?", @site)
-  elsif klass.reflections.detect{|k,v| k == :guide}
-    puts "Exporting #{klass.name.underscore.pluralize} belonging to users of #{@site_name}" if OPTS[:debug]
-    klass.joins(:guide => :user).where("users.site_id = ?", @site)
   elsif klass == Photo
-    puts "Exporting #{klass.name.underscore.pluralize} belonging to observations of #{@site_name} or taxa" if OPTS[:debug]
-    # klass.joins({:observation_photos => :observation}, :taxon_photos).where("observations.site_id = ? OR taxon_photos.id IS NOT NULL", @site)
+    puts "Exporting #{klass.name.underscore.pluralize} belonging to observations or guides by users of #{@site_name} or taxa" if OPTS[:debug]
     scope = scope.
       joins("LEFT OUTER JOIN observation_photos op ON op.photo_id = photos.id").
       joins("LEFT OUTER JOIN observations o ON op.observation_id = o.id").
       joins("LEFT OUTER JOIN taxon_photos tp ON tp.photo_id = photos.id").
-      where("o.site_id = ? OR tp.id IS NOT NULL", @site)
+      joins("LEFT OUTER JOIN guide_photos gp ON gp.photo_id = photos.id").
+      joins("LEFT OUTER JOIN guide_taxa gt ON gt.id = gp.guide_taxon_id").
+      joins("LEFT OUTER JOIN guides g ON g.id = gt.guide_id").
+      where("o.site_id = ? OR tp.id IS NOT NULL OR g.user_id = ?", @site, @site)
   elsif klass == Project
+    puts "Exporting projects with participants from #{@site_name}" if OPTS[:DEBUG]
     scope = scope.joins(:project_users => :user).where("users.site_id = ?", @site)
   elsif klass == Place
-    puts "Exporting places created by, subscribed to by, and user in projects by users of #{@site_name}" if OPTS[:debug]
+    puts "Exporting places created by, subscribed to by, and used in projects by users of #{@site_name}" if OPTS[:debug]
     scope = scope.
       joins(:user).
       joins("LEFT OUTER JOIN projects ON projects.place_id = places.id").
@@ -99,15 +96,36 @@ def export_model(klass)
       joins("LEFT OUTER JOIN projects rule_projects ON rules.ruler_type = 'Project' AND rules.ruler_id = projects.id").
       joins("LEFT OUTER JOIN users rule_project_users ON rule_projects.user_id = rule_project_users.id").
       where("users.site_id = ? OR pusers.site_id = ? OR subscription_users.site_id = ? OR rule_project_users.id = ?", @site, @site, @site, @site)
+  elsif klass == Preference
+    puts "Exporting preferences for users of #{@site_name}" if OPTS[:debug]
+    scope = scope.
+      joins("JOIN users ON users.id = preferences.owner_id").
+      where("preferences.owner_type = 'User' AND users.site_id = ?", @site)
+  elsif klass == Site
+    puts "Exporting #{@site_name}"
+    scope = scope.where("sites.id = ?", @site)
+
+  # for models associated with certain models
+  elsif klass.reflections.detect{|k,v| k == 'guide'}
+    puts "Exporting #{klass.name.underscore.pluralize} belonging to users of #{@site_name}" if OPTS[:debug]
+    klass.joins(:guide => :user).where("users.site_id = ?", @site)
+  elsif klass.reflections.detect{|k,v| k == 'project'} && ![ProjectUser].include?(klass)
+    puts "Exporting #{klass.name.underscore.pluralize} for projects with users from #{@site_name}" if OPTS[:debug]
+    klass.joins(project: {project_users: :user}).where("users.site_id = ?", @site)
+  elsif klass.reflections.detect{|k,v| k == 'observation'}
+    puts "Exporting #{klass.name.underscore.pluralize} connected to observations by users of #{@site_name}" if OPTS[:debug]
+    klass.joins(observation: :user).where("users.site_id = ?", @site)
+  elsif klass.reflections.detect{|k,v| k == 'list'}
+    puts "Exporting #{klass.name.underscore.pluralize} connected to lists by users of #{@site_name}" if OPTS[:debug]
+    klass.joins(list: :user).where("users.site_id = ?", @site)
 
   # anything else including a user_id or observation_id
-  elsif klass.column_names.include?('user_id')
+  elsif klass.column_names.include?('user_id') && ![ConservationStatus, Source, TaxonChange].include?(klass)
     puts "Exporting #{klass.name.underscore.pluralize} belonging to users of #{@site_name}" if OPTS[:debug]
     scope = scope.joins(:user).where("users.site_id = ?", @site)
   elsif klass.column_names.include?('observation_id')
     puts "Exporting #{klass.name.underscore.pluralize} belonging to observations of #{@site_name}" if OPTS[:debug]
     scope = scope.joins(:observation).where("observations.site_id = ?", @site)
-
   else
     # dump everything for the rest
   end
@@ -142,6 +160,7 @@ ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
   next if klass != TaxonChange && klass.ancestors.include?(TaxonChange)
   next if klass != FlowTask && klass.ancestors.include?(FlowTask)
   next if klass != Rule && klass.ancestors.include?(Rule)
+  next if klass.name =~ /^Goal/
   next if [
     DeletedObservation, # irrelevant
     Update, # massive
