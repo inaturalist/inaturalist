@@ -13,7 +13,7 @@ autocompleter.capitalize = function( s ) {
 
 // return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
 autocompleter.defaultPhotoForResult = function( result ) {
-  if( result.type == "search_external" || result.type == "message" ) { return; }
+  if( result.type === "search_external" || result.type === "message" ) { return; }
   if( result.default_photo_url ) { return result.default_photo_url; }
   if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
     return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
@@ -63,7 +63,7 @@ autocompleter.taxonTemplate = function( result ) {
     attr( "data-type", result.type );
   var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
   if( result.default_photo_url ) {
-    var thumbImage = $( "<img/>" ).attr( "src", result.default_photo_url ).appendTo( thumbDiv );
+    $( "<img/>" ).attr( "src", result.default_photo_url ).appendTo( thumbDiv );
   }
   var labelDiv = $( "<div/>" ).addClass( "ac-label" );
   labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
@@ -79,7 +79,7 @@ autocompleter.taxonTemplate = function( result ) {
   if( result.id ) {
     var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
       attr( "href", inaturalist.TAXON_ROOT_URL + result.id );
-    var viewDiv = $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
+    $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
     wrapperDiv.append( rightElement );
   }
   wrapperDiv.append( thumbDiv );
