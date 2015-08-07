@@ -198,6 +198,7 @@ class Observation < ActiveRecord::Base
     if p[:projects].blank? && !p[:project].blank?
       p[:projects] = [ p[:project] ]
     end
+    p[:projects] = [p[:projects]].flatten if p[:projects]
     extra = p[:extra].to_s.split(',')
     if !p[:projects].blank?
       search_wheres["project_ids"] = p[:projects].to_a

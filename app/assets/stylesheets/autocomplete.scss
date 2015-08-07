@@ -1,28 +1,23 @@
 .ui-autocomplete {
   cursor: pointer;
 }
-// .ac-chooser .ui-autocomplete-input {
-//   padding: 0.4em 0.2em;
-// }
-// @-moz-document url-prefix() {
-//   .ac-chooser .ui-autocomplete-input {
-//     padding: 0.4em 0.6em;
-//   }
-// }
 .ui-autocomplete .ac {
   height: 46px;
   min-width: 370px;
   display: block;
   cursor: pointer;
 }
-.ui-autocomplete .ac.ac-unknown {
+.ac-message[data-type='message'] {
+  cursor: default;
+}
+.ui-autocomplete .ac.ac-message {
   height: 36px;
 }
 .ui-autocomplete .ac-thumb {
   float: left;
   width: 44px;
 }
-.ui-autocomplete .ac-unknown .ac-thumb {
+.ui-autocomplete .ac-message .ac-thumb {
   width: 34px;
   padding-left: 5px;
 }
@@ -38,7 +33,7 @@
   height: 40px;
   margin: 3px;
 }
-.ui-autocomplete .ac-unknown .ac-thumb img {
+.ui-autocomplete .ac-message .ac-thumb img {
   width: 30px;
   height: 30px;
 }
@@ -59,7 +54,7 @@
 .ui-autocomplete .identification .ac-label {
   width: 420px;
 }
-.ui-autocomplete .ac-unknown .ac-label {
+.ui-autocomplete .ac-message .ac-label {
   padding: 0 0 0 50px;
   line-height: 36px;
 }
