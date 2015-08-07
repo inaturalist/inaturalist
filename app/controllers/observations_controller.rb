@@ -1202,13 +1202,8 @@ class ObservationsController < ApplicationController
   
   # shows observations in need of an ID
   def id_please
-    params[:order_by] ||= "created_at"
-    params[:order] ||= "desc"
-    if params[:has]
-      params[:has] = (params[:has].split(',') + ['id_please']).flatten.uniq
-    else
-      params[:has] = 'id_please'
-    end
+    params[:quality_grade] = Observation::NEEDS_ID
+    params[:reviewed] = 'false'
     search_params = Observation.get_search_params(params,
       current_user: current_user, site: @site)
     search_params = Observation.apply_pagination_options(search_params)

@@ -1553,6 +1553,7 @@ en:
   map_tooltip: Show map view
   map_for: Map for
   maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
+  mark_as_reviewed: Mark as reviewed
   matched_several_different_taxa: matched several different taxa
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
@@ -2360,6 +2361,8 @@ en:
   resolved_by: Resolved by
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   results: results
+  review_verb: Review
+  reviewed: Reviewed
   roadmap: roadmap
   role: Role
   rotate_left: Rotate left
@@ -2931,6 +2934,7 @@ en:
   updating: Updating...
   unprocessable: Unprocessable
   unpublish: Unpublish
+  unreview: Unreview
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user

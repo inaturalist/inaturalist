@@ -188,6 +188,26 @@
       $('.removeform').bind('ajax:before', function() {
         $(this).parents('.observation:first').slideUp('normal', function() {$(this).remove();})
       })
+
+      $( ".reviewbutton" ).bind( "ajax:before", function( ) {
+        // each click sets the opposite value for reviewed
+        var currentReviewState = !$(this).data( "reviewed" );
+        $(this).data( "reviewed", currentReviewState );
+        // set the new label
+        if( currentReviewState === true ) { $(this).text( $(this).data( "unreview-label" ) ); }
+        else { $(this).text( $(this).data( "review-label" ) ); }
+        // update the link to allow toggling reviewed back and forth
+        $(this).attr( "href", $(this).attr( "href" ).
+          replace( /reviewed=.*$/, "reviewed=" +  currentReviewState ));
+      });
+      $(".captivebutton").bind("ajax:before", function() {
+        $(this).hide()
+        $(this).siblings('.wildbutton').show()
+      })
+      $(".wildbutton").bind("ajax:before", function() {
+        $(this).hide()
+        $(this).siblings('.captivebutton').show()
+      })
     })
   </script>
 
@@ -366,16 +386,35 @@
       </div>
       
       <% if logged_in? && current_user == observation.user -%>
-        <%= form_for(observation, :remote => true, :html => {:class => "removeform"}) do |f| -%>
-          <input type="hidden" name="observation[id_please]" value="false"/>
-          <input type="hidden" name="ignore_photos" value="true"/>
-          <%= f.submit t(:remove_from_id_please?), :class => 'minor button remove' %>
-        <%- end -%>
+        <div class="clear">
+          <%= form_for(observation, :remote => true, :html => {:class => "removeform"}) do |f| -%>
+            <input type="hidden" name="observation[id_please]" value="false"/>
+            <input type="hidden" name="ignore_photos" value="true"/>
+            <%= f.submit t(:remove_from_id_please?), :class => 'minor button remove' %>
+          <%- end -%>
+        </div>
       <% end -%>
+
+      <div class="inline buttonrow stacked">
+        <label><%=t :mark_as %></label>
+        <%= link_to review_observation_path( observation.id,
+            reviewed: !(observation.reviewed_by?( current_user )), format: :json),
+            method: :post,
+            remote: true,
+            class: 'reviewbutton button',
+            data: {
+              reviewed: observation.reviewed_by?( current_user ),
+              review_label: t(:reviewed),
+              unreview_label: t(:unreview) } do %>
+          <%= observation.reviewed_by?( current_user ) ? t(:unreview) : t(:reviewed) %>
+        <% end %>
+        <%= link_to t(:captive), observation_quality_path(observation, :wild, agree: false, format: :json), remote: true, method: 'post', :class => "captivebutton button" %>
+        <%= link_to t(:wild), observation_quality_path(observation, :wild, agree: true, format: :json), remote: true, method: 'post', :class => "wildbutton button", :style => "display: none;" %>
+      </div>
       
       <div class="comments_wrapper">
         <% if observation.comments.empty? %>
-          <p id="no_comments-<%= observation.id %>" class="description"><%=t :no_comments_yet %>.</p>
+          <p id="no_comments-<%= observation.id %>" class="description"><%=t :no_comments_yet %></p>
           <div class="comments" style="display: none"></div>
         <% else %>
           <%= link_to_function("Show #{pluralize(observation.comments.size, 'comment')}", 

@@ -33,7 +33,6 @@
       <input type="checkbox" name="has[]" id="with_sounds_checkbox" 
              value="sounds" <% if @with_sounds %>checked="checked"<% end %>/>
       <label for="with_sounds_checkbox"><%=t :w_sounds %></label>
-      <label for="needs_id_checkbox"><%=t :needs_id %></label>
       <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
       <label for="out_of_range_checkbox"><%= t(:out_of_range, :default => "out of range").downcase %></label>
     </nobr>

@@ -258,9 +258,9 @@
             id: "reviewbutton",
             data: {
               reviewed: @observation.reviewed_by?( current_user ),
-              review_label: "Review",
-              unreview_label: "Unreview" } do %>
-          <%= @observation.reviewed_by?( current_user ) ? "Unreview" : "Review" %>
+              review_label: t(:mark_as_reviewed),
+              unreview_label: t(:unreview) } do %>
+          <%= @observation.reviewed_by?( current_user ) ? t(:unreview) : t(:mark_as_reviewed) %>
         <% end %>
       </div>
 
