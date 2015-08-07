@@ -25,7 +25,7 @@
                   %i.fa.fa-search
           - if logged_in?
             %li= link_to t(:by_you), observations_by_login_path(current_user.login)
-          %li= link_to t(:id_please), id_please_path
+          %li= link_to t(:Needs_ID!), id_please_path
     %li.navtab.menutab
       .innertab
         = link_to t(:species_header, default: t(:species).capitalize), taxa_path

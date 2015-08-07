@@ -1,4 +1,4 @@
-<% content_for(:title) do %><%= t :full_id_please %> <% end %>
+<% content_for(:title) do %><%= t :Needs_id! %> <% end %>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'identifications',
                           'observations/filters',
@@ -215,10 +215,10 @@
 
 <div id="pageheader" class="column span-24">
   <h2>
-    <%=t :id_please! %>
+    <%=t :Needs_ID! %>
   </h2>
   
-  <div id="intro" class="column span-13">
+  <div id="intro" class="column span-24">
     <p class="description">
       <%=raw t(:inspired_by_the_flickr_group) %>
     </p>
@@ -227,34 +227,18 @@
       <div class="column" style="width: 100px; margin-right: 0">
         <strong><%=t :top_5_identifiers %>:</strong>
       </div>
-      <div class="last column" style="width: 410px">
-        <% @top_identifiers.each_with_index do |user, i| %>
-          <span style="white-space: nowrap">
-            <%= link_to(image_tag(user.icon.url(:mini), :class => 'usericon'), 
-              identifications_by_login_path(user.login)) %>
-            <strong><%= link_to you_or_login(user, :capitalize => true), identifications_by_login_path(user.login) %></strong>
-            <span class="count">(<%= number_with_delimiter(user.identifications_count) %>)</span><%= ',' unless i == @top_identifiers.size - 1 %>
-          </span>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="column span-11 last">
-    <div class="box">
-      <%=raw t(:remember_its_a_lot_easier_to_id) %>
+      <% @top_identifiers.each_with_index do |user, i| %>
+        <span style="white-space: nowrap">
+          <%= link_to(image_tag(user.icon.url(:mini), :class => 'usericon'), 
+            identifications_by_login_path(user.login)) %>
+          <strong><%= link_to you_or_login(user, :capitalize => true), identifications_by_login_path(user.login) %></strong>
+          <span class="count">(<%= number_with_delimiter(user.identifications_count) %>)</span><%= ',' unless i == @top_identifiers.size - 1 %>
+        </span>
+      <% end %>
     </div>
   </div>
   
-  <div class="column span-24">
-    <div class="buttonrow">
-      <%= link_to t(:add_a_new_observation_to_id_please!),
-        new_observation_path(:id_please => true), :class => "default button", 
-        :rel => 'nofollow' %>
-      <%= link_to_function(t(:filters),
-        "toggleFilters(this)",
-        :id => 'filters_button', 
-        :class => "inter#{' open' if @filters_open}") %>
-    </div>
+  <div class="column span-24 upstacked">
     <div id="filters" class="clear"<% unless @filters_open %> style="display: none"<% end %>>
       <%= form_tag id_please_path, :method => :get do -%>
         <%= render :partial => 'filter_fields', :locals => {
