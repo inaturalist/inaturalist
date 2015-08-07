@@ -138,7 +138,7 @@ $.fn.taxonAutocomplete = function( options ) {
     delay: 50,
     source: function( request, response ) {
       $.ajax({
-        url: "<%= CONFIG.node_api_host %>/taxa/autocomplete?per_page=10",
+        url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete?per_page=10",
         dataType: "jsonp",
         data: { q: request.term },
         success: function( data ) {
@@ -291,8 +291,12 @@ $.fn.taxonAutocomplete = function( options ) {
       }
       return false;
     }
-    // the arrow and tab keys are harmless
-    if( key === 37 || key === 38 || key === 39 || key === 40 || key === 9 ) { return; }
+    // keys like arrows, tab, shift, caps-lock, etc. won't change
+    // the value of the field so we don't need to reset the selection
+    console.log(key);
+    nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
+      34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
+    if( _.contains( nonCharacters, key ) ) { return; }
     autocompleter.resetTaxonSelection( options );
   });
   // show the results anytime the text field gains focus
