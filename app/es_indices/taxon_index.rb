@@ -41,8 +41,7 @@ class Taxon < ActiveRecord::Base
       id: id,
       name: name,
       names: taxon_names.
-        reject{ |tn| !tn.is_valid? }.
-        sort_by{ |tn| [ tn.position, tn.id ] }.
+        sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:basic]) },
       rank: rank,
       rank_level: rank_level,
