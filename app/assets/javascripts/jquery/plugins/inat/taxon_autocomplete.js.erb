@@ -2,7 +2,7 @@ var inaturalist = inaturalist || { };
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
   [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ] }].to_json %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
-inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('assets/external_search.png') %>";
+inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
 inaturalist.TAXON_ROOT_URL = "<%= FakeView.taxon_url(1)[0..-2] %>";
 
 var autocompleter = { };
