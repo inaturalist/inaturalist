@@ -2,6 +2,7 @@ var inaturalist = inaturalist || { };
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
   [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ] }].to_json %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
+inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('assets/external_search.png') %>";
 inaturalist.TAXON_ROOT_URL = "<%= FakeView.taxon_url(1)[0..-2] %>";
 
 var autocompleter = { };
@@ -13,7 +14,9 @@ autocompleter.capitalize = function( s ) {
 
 // return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
 autocompleter.defaultPhotoForResult = function( result ) {
-  if( result.type === "search_external" || result.type === "message" ) { return; }
+  if( result.type === "search_external" || result.type === "message" ) {
+    return inaturalist.EXTERNAL_SEARCH_ICON;
+  }
   if( result.default_photo_url ) { return result.default_photo_url; }
   if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
     return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
@@ -43,7 +46,21 @@ autocompleter.setTitle = function( result ) {
   result.title = name || result.name;
 };
 
-autocompleter.taxonTemplate = function( result ) {
+autocompleter.stringIncludes = function( string, test ) {
+  if( !string || !test ) { return false; }
+  return (string.toLowerCase().indexOf( test.toLowerCase() ) != -1 );
+};
+
+autocompleter.appendMatchedTerm = function( result, fieldValue ) {
+  if( !result.matched_term ) { return; }
+  if( autocompleter.stringIncludes( result.title, fieldValue ) ||
+      autocompleter.stringIncludes( result.subtitle, fieldValue )) { return; }
+  if( autocompleter.stringIncludes( result.title, result.matched_term ) ||
+      autocompleter.stringIncludes( result.subtitle, result.matched_term )) { return; }
+  result.title += " (" + autocompleter.capitalize( result.matched_term ) + ")";
+};
+
+autocompleter.taxonTemplate = function( result, fieldValue ) {
   autocompleter.setTitle( result );
   if( result.title && result.name != result.title ) {
     if( result.rank_level <= 10 ) {
@@ -52,6 +69,7 @@ autocompleter.taxonTemplate = function( result ) {
       result.subtitle = result.name;
     }
   }
+  autocompleter.appendMatchedTerm( result, fieldValue );
   if( result.rank && ( result.rank_level > 10 || !result.subtitle )) {
     result.subtitle =
       autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
@@ -72,6 +90,9 @@ autocompleter.taxonTemplate = function( result ) {
   // anything w/o an ID is some kind of message or non-result UI
   if( !result.id) {
     wrapperDiv.addClass( "ac-message" );
+    if( result.type == "search_external" ) {
+      labelDiv.find( ".title" ).addClass( "linky" );
+    }
     // JQuery autocomplete need an <a> tag in order to
     // consider the row active and clickable.
     labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
@@ -176,6 +197,7 @@ $.fn.taxonAutocomplete = function( options ) {
           beforeSend: function(XMLHttpRequest) {
             // replace 'search external' with a loading indicator
             var externalItem = $(".ac[data-type='search_external']");
+            externalItem.find(".title").removeClass( "linky" );
             externalItem.find(".title").text( I18n.t("loading") );
             externalItem.closest( "li" ).removeClass( "active" );
             externalItem.attr( "data-type", "message" );
@@ -250,7 +272,7 @@ $.fn.taxonAutocomplete = function( options ) {
   // custom simple _renderItem that gives the LI's class ac-result
   ac._renderItem = function( ul, item ) {
     var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
-      append( autocompleter.taxonTemplate( item )).
+      append( autocompleter.taxonTemplate( item, field.val( ))).
       appendTo( ul );
     if( options.extra_class ) {
       li.addClass( options.extra_class );
@@ -293,7 +315,6 @@ $.fn.taxonAutocomplete = function( options ) {
     }
     // keys like arrows, tab, shift, caps-lock, etc. won't change
     // the value of the field so we don't need to reset the selection
-    console.log(key);
     nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
       34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
     if( _.contains( nonCharacters, key ) ) { return; }

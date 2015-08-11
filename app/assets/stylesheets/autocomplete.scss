@@ -1,11 +1,14 @@
+.linky {
+  color: #36C;
+}
 .ui-autocomplete {
   cursor: pointer;
 }
 .ui-autocomplete .ac {
-  height: 46px;
   min-width: 370px;
-  display: block;
+  display: inline-block;
   cursor: pointer;
+  width: 100%;
 }
 .ac-message[data-type='message'] {
   cursor: default;
@@ -16,6 +19,7 @@
 .ui-autocomplete .ac-thumb {
   float: left;
   width: 44px;
+  display: inline-block;
 }
 .ui-autocomplete .ac-message .ac-thumb {
   width: 34px;
@@ -27,6 +31,7 @@
   line-height: 46px;
   text-align: right;
   background: white;
+  display: inline-block;
 }
 .ui-autocomplete .ac-thumb img {
   width: 40px;
@@ -44,19 +49,18 @@
   background: #F2F2F2;
 }
 .ui-autocomplete .ac-label {
-  padding: 7px 0 0 50px;
-  position: absolute;
+  padding: 7px;
   line-height: 16px;
+  display: inline-block;
   width: 258px;
-  max-height: 31px;
-  overflow: hidden;
 }
 .ui-autocomplete .identification .ac-label {
-  width: 420px;
+  width: 450px;
 }
 .ui-autocomplete .ac-message .ac-label {
-  padding: 0 0 0 50px;
+  padding: 0 0 0 12px;
   line-height: 36px;
+  width: 300px;
 }
 .ui-autocomplete .ac-placeholder {
   font-weight: bold;
@@ -64,36 +68,6 @@
 .ui-autocomplete .ac-label .title {
   font-size: 1.1em;
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.ui-autocomplete .ac-label:after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  width: 20px;
-  height: 100%;
-  top: 0;
-  right: 0;
-  background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  background-image: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-}
-.ac-result.active .ac-label:after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  width: 20px;
-  height: 100%;
-  top: 0;
-  right: 0;
-  background-image: -webkit-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
-  background-image: -moz-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
-  background-image: -ms-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
-  background-image: -o-linear-gradient(right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
-  background-image: linear-gradient(to left, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
 }
 .ui-autocomplete .ac-label .subtitle {
   font-size: 0.9em;
