@@ -48,6 +48,17 @@
 <!--       <input type="radio" name="quality_grade" value="<%= Observation::UNVERIFIABLE %>" id="unverifiable_checkbox" <% if @quality_grade == Observation::UNVERIFIABLE %>checked="checked"<% end %>>
       <label for="unverifiable_checkbox"><%= t(:unverifiable, :default => "Unverifiable").downcase %></label> -->
     </nobr>
+
+    <nobr>
+      <strong><%=t :reviewed %></strong>
+      <input type="radio" name="reviewed" value="" id="any_reviewed_checkbox" <% unless @reviewed %>checked="checked"<% end %>>
+      <label for="any_reviewed_checkbox"><%= t(:any, :default => "any").downcase %></label>
+      <input type="radio" name="reviewed" value="true" id="reviewed_checkbox" <% if @reviewed.yesish? %>checked="checked"<% end %>>
+      <label for="reviewed_checkbox"><%= t(:yes).downcase %></label>
+      <input type="radio" name="reviewed" value="false" id="unreviewed_checkbox" <% if !@reviewed.nil? && @reviewed.noish? %>checked="checked"<% end %>>
+      <label for="unreviewed_checkbox"><%= t(:no).downcase %></label>
+    </nobr>
+
     <% if is_me?(@selected_user) -%>
       <nobr>
         <strong><%=t :geoprivacy %></strong>

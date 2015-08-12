@@ -2107,6 +2107,7 @@ class ObservationsController < ApplicationController
       @with_geo = true if search_params[:has].include?('geo')
     end
     @quality_grade = search_params[:quality_grade]
+    @reviewed = search_params[:reviewed]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
