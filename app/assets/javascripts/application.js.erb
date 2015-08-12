@@ -40,6 +40,7 @@ function openHeaderSubnav(link) {
   $(navtab).addClass('open')
   $('.subnav', navtab).show()
   $(document).click(subnavClickOff);
+  $(".ui-autocomplete").hide( );
   return false;
 }
 
@@ -357,23 +358,13 @@ $(document).ready(function() {
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
 
-  $('#header .menutab').mouseover( function( ) {
+  $('#header .menutab').mouseenter( function( ) {
     openHeaderSubnav( $('a:first', this) );
-  }).mouseout( function( ) {
+  }).mouseleave( function( e ) {
     // it is OK if the mouse has entered the autocomplete results
-    if( $(".ui-autocomplete:hover").length == 0) {
+    if( e.relatedTarget && e.relatedTarget.closest(".ac-result") == 0) {
       closeHeaderSubnav( $('a:first', this) );
       $(".ui-autocomplete").hide( );
-    }
-  });
-
-  $("#header_taxa_q").taxonAutocomplete({
-    thumbnail: false,
-    allow_placeholders: true,
-    allow_enter_submit: true,
-    search_external: false,
-    afterSelect: function( ui ) {
-      window.location.href = inaturalist.TAXON_ROOT_URL + ui.item.id;
     }
   });
 })
