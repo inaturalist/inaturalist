@@ -1177,7 +1177,7 @@ class Observation < ActiveRecord::Base
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
     elsif voted_out_of_needs_id?
-      if community_taxon_at_family_or_lower?
+      if community_taxon_below_family?
         RESEARCH_GRADE
       else
         UNVERIFIABLE
@@ -2344,6 +2344,10 @@ class Observation < ActiveRecord::Base
 
   def community_taxon_at_family_or_lower?
     community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
+  end
+
+  def community_taxon_below_family?
+    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
   end
 
   def needs_id_vote_score

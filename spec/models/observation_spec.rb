@@ -699,6 +699,19 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
 
+      it "should be research grade if verifiable but voted out and community taxon below family but above genus" do
+        o = make_research_grade_candidate_observation
+        t = Taxon.make!(rank: Taxon::SUBFAMILY)
+        2.times do
+          Identification.make!(taxon: t, observation: o)
+        end
+        o.reload
+        expect( o.community_taxon ).to eq t
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
       it "should be needs ID if verifiable and voted back in" do
         o = make_research_grade_candidate_observation
         o.downvote_from User.make!, vote_scope: 'needs_id'
