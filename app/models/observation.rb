@@ -2356,7 +2356,7 @@ class Observation < ActiveRecord::Base
     elsif dvotes == 0
       1
     else
-      uvotes.to_f / dvotes
+      uvotes.to_f / (uvotes + dvotes)
     end
   end
 
