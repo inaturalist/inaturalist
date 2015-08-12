@@ -138,7 +138,7 @@ class TaxonName < ActiveRecord::Base
     if options[:autocomplete]
       json[:is_valid] = is_valid
       json[:name_autocomplete] = name
-      if locale_for_lexicon == "ja"
+      if name.is_ja?
         json[:name_ja] = name
         json[:name_autocomplete_ja] = name
       end
