@@ -444,6 +444,7 @@ Rails.application.routes.draw do
   resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
   delete 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription
   get 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
+  post 'subscriptions/:resource_type/:resource_id/subscribe' => 'subscriptions#subscribe', as: :subscribe
 
   resources :taxon_changes, :constraints => { :id => id_param_pattern } do
     resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true

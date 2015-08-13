@@ -1786,6 +1786,7 @@ es:
   map_tooltip: Muestra la vista de mapa
   map_for: Mapa para
   maptype_for_places: google.maps.MapTypeId.TERRAIN
+  mark_as_reviewed: Marcar como revisado
   matched_several_different_taxa: varios taxa distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
     El mapa mostrará un rango si %{place} tiene alguna de esas especies.
@@ -1862,6 +1863,10 @@ es:
   near_threatened: casi amenazado
   nearby_observations: Observaciones cercanas
   need_id_help?: ¿Necesita ayuda?
+  needs_id: necesidades ID
+  Needs_ID!: ¡Necesidades ID!
+  needs_id_expandable_html: "<span class='full'>Necesidades </span>ID"
+  needs_to_be_identified: Necesita ser identificado
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de verificación
@@ -2973,6 +2978,7 @@ es:
     también si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
     quieras tener en tus preferencias.
   subscribe_to_this: Suscribir a este
+  subscribe_to_this_observation: Suscribirse a esta observación
   subscribe_to_x_from_this_y_html: <a href="#" onclick="$(this).parents('form:first').submit();
     return false;">Suscribirse</a> a %{x} de estas %{y}.
   subscriptions_arent_available_for: Las suscripciones no están disponibles para lugares
@@ -3335,6 +3341,7 @@ es:
   unsubscribe: Quitar suscripción
   unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: Reactivar usuario
+  unverifiable: Inverificable
   update: Actualizar
   update_existing_observations_with_new_license: Actualizar las observaciones existentes
     con la licencia que escogí
