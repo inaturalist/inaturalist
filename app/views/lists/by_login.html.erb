@@ -83,7 +83,14 @@
             </a>
           <% end %>
           <div class="last column span-8">
-            <div class="readable title attr"><%= link_to h(list.title =~ /Life List$/ && list.id == @selected_user.life_list_id ? t(:life_list, :user => list.title.split(' Life List').first[0..-3], :default => list.title) : list.title), list_path(list) %></div>
+            <%-
+              list_title = if list.title =~ /Life List$/ && list.id == @selected_user.life_list_id
+                t(:life_list, :user => list.user.login, :default => list.title)
+              else
+                list.title
+              end
+            -%>
+            <div class="readable title attr"><%= link_to list_title, list_path(list) %></div>
 
             <div class="attr readable description">
               <%= truncate(strip_tags(list.description =~ /^Every species seen by / ? list.description.gsub('Every species seen by', t(:every_species_seen_by)) : list.description), :length => 75) %>
