@@ -1,0 +1,38 @@
+.tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
+#actions {margin-top:15px;}
+#actions .pull-right {margin-left: 5px;}
+.taxonmap {height: 200px;}
+.bootstrap .thumbnails > li, .thumbnails h5 {margin-bottom:0;}
+.thumbnails .small {line-height:1;}
+#attribution ul {margin-left:0;}
+#attribution li {display:inline; font-size:90%;}
+#attribution li:after {content: ', ';}
+#attribution li:last-child:after {content: '';}
+.bootstrap .nav-list {padding-left: 0;}
+.bootstrap .nav > li {position:relative;}
+#nav li {padding-right:27px;}
+#nav li li {padding-right:0;}
+#nav .badge.modtag {
+  display:none; 
+  position:absolute; 
+  right: 5px; 
+  top:6px; 
+  padding-left: 5px; 
+  padding-right: 5px;
+}
+#nav .badge.modtag a {color:white; text-decoration: none;}
+#nav li:hover .badge.modtag {display:block;}
+#nav .addtag {background-color: #73AC13;}
+#nav .badge {position:relative; top:-2px;}
+#nav .taxon .othernames {display:block; color:#aaa;}
+#nav a .taxon:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.modal form {margin-bottom:0;}
+#new_guide_pdf_flow_task .img {height: 170px;}
+#new_guide_pdf_flow_task .img img {opacity:0.5; max-width: auto;}
+label.disabled {opacity:0.5;}
+#guide-navbar.navbar .btn, #guide-navbar.navbar .btn-group {margin-top: 0;}
+#photo-tag-form select {margin-bottom: 0;}
+/*.card img.iconic {margin: auto;}*/

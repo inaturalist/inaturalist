@@ -216,3 +216,19 @@ function addTag(tag) {
     $('#guide_taxon_tag_list').val(tags.join(', '))
   }
 }
+
+function addPhotoTag(btn, tag) {
+  var tag = $.trim(tag),
+      tags,
+      input = $(btn).parents('[class*="span"]:first').find('.tag_list')
+  if ($.trim(input.val()) == '') {
+    tags = []
+  } else {
+    tags = input.val().split(',').map($.trim)
+  }
+  if (tags.indexOf(tag) < 0) {
+    tags.push(tag)
+    input.val(tags.join(', '))
+  }
+}
+

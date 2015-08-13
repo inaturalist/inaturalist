@@ -183,6 +183,7 @@ class GuideTaxaController < ApplicationController
     @guide_photos = @guide_taxon.guide_photos.sort_by(&:position)
     @guide_sections = @guide_taxon.guide_sections.sort_by(&:position)
     @recent_tags = @guide.recent_tags
+    @recent_photo_tags = @guide.recent_photo_tags
   end
 
 end
