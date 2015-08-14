@@ -154,7 +154,6 @@ function addRange(range) {
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)
   $selection.each(function() {
-    console.log("[DEBUG] this: ", this)
     $('input[name*="position"]', this).val($selection.index(this) + 1)
   })
 }
