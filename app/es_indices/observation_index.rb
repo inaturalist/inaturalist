@@ -85,14 +85,17 @@ class Observation < ActiveRecord::Base
       user: user ? user.as_indexed_json : nil,
       taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,
       field_values: observation_field_values.uniq.map(&:as_indexed_json),
-      photos: photos.map(&:as_indexed_json),
+      photos: observation_photos.sort_by{ |op| op.position || op.id }.
+        map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
         ElasticModel.point_latlon(private_latitude, private_longitude) : nil,
-      geojson: ElasticModel.geom_geojson(geom),
-      private_geojson: ElasticModel.geom_geojson(private_geom)
+      geojson: (latitude && longitude) ?
+        ElasticModel.point_geojson(latitude, longitude) : nil,
+      private_geojson: (private_latitude && private_longitude) ?
+        ElasticModel.point_geojson(private_latitude, private_longitude) : nil
     }
   end
 

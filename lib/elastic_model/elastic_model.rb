@@ -191,7 +191,7 @@ module ElasticModel
   def self.point_geojson(lat, lon)
     return unless valid_latlon?(lat, lon)
     # notice the order of lon, lat which is standard for GeoJSON
-    { type: "point", coordinates: [ lon, lat ] }
+    { type: "Point", coordinates: [ lon, lat ] }
   end
 
   def self.point_latlon(lat, lon)
