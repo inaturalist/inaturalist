@@ -2940,7 +2940,6 @@ en:
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
-  unverifiable: Unverifiable
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
@@ -3827,7 +3826,7 @@ en:
         quality_assessment_help_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
-            observations start as <strong>"unverifiable"</strong> grade, and become
+            observations start as <strong>"casual"</strong> grade, and become
             <strong>"needs ID"</strong> when
           </p>
           
@@ -3848,7 +3847,7 @@ en:
             </li>
           </ul>
           <p>
-            Observations will revert to <strong>"unverifiable"</strong> if the above conditions aren't met or
+            Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or
           </p>
           <ul>
             <li>

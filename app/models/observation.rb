@@ -83,9 +83,9 @@ class Observation < ActiveRecord::Base
     PRIVATE => :private_description
   }
   RESEARCH_GRADE = "research"
-  UNVERIFIABLE = "unverifiable"
+  CASUAL = "casual"
   NEEDS_ID = "needs_id"
-  QUALITY_GRADES = [UNVERIFIABLE, NEEDS_ID, RESEARCH_GRADE]
+  QUALITY_GRADES = [CASUAL, NEEDS_ID, RESEARCH_GRADE]
 
   COMMUNITY_TAXON_SCORE_CUTOFF = (2.0 / 3)
   
@@ -1171,7 +1171,7 @@ class Observation < ActiveRecord::Base
   
   def get_quality_grade
     if !research_grade_candidate?
-      UNVERIFIABLE
+      CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
     elsif community_taxon_at_species_or_lower?
@@ -1180,7 +1180,7 @@ class Observation < ActiveRecord::Base
       if community_taxon_below_family?
         RESEARCH_GRADE
       else
-        UNVERIFIABLE
+        CASUAL
       end
     else
       NEEDS_ID
@@ -2376,8 +2376,8 @@ class Observation < ActiveRecord::Base
     quality_grade == NEEDS_ID
   end
 
-  def unverifiable?
-    quality_grade == UNVERIFIABLE
+  def casual?
+    quality_grade == CASUAL
   end
 
   def handle_id_please_on_update

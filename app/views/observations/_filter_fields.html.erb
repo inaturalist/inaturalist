@@ -45,8 +45,6 @@
       <label for="research_grade_checkbox"><%= t(:research, :default => "research") %></label>
       <input type="radio" name="quality_grade" value="<%= Observation::NEEDS_ID %>" id="needs_id_checkbox" <% if @quality_grade == Observation::NEEDS_ID %>checked="checked"<% end %>>
       <label for="needs_id_checkbox"><%= t(:needs_id, :default => "Needs ID") %></label>
-<!--       <input type="radio" name="quality_grade" value="<%= Observation::UNVERIFIABLE %>" id="unverifiable_checkbox" <% if @quality_grade == Observation::UNVERIFIABLE %>checked="checked"<% end %>>
-      <label for="unverifiable_checkbox"><%= t(:unverifiable, :default => "Unverifiable").downcase %></label> -->
     </nobr>
 
     <nobr>

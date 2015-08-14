@@ -6,7 +6,7 @@ describe QualityMetric, "creation" do
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
     qc = QualityMetric.make!(:observation => o, :metric => QualityMetric::METRICS.first, :agree => false)
     o.reload
-    expect(o.quality_grade).to eq Observation::UNVERIFIABLE
+    expect(o.quality_grade).to eq Observation::CASUAL
   end
 end
 
@@ -16,7 +16,7 @@ describe QualityMetric, "destruction" do
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
     qc = QualityMetric.make!(:observation => o, :metric => QualityMetric::METRICS.first, :agree => false)
     o.reload
-    expect(o.quality_grade).to eq Observation::UNVERIFIABLE
+    expect(o.quality_grade).to eq Observation::CASUAL
     qc.destroy
     o.reload
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE

@@ -9848,7 +9848,7 @@ CREATE TABLE observations (
     private_longitude numeric(15,10),
     private_positional_accuracy integer,
     geoprivacy character varying(255),
-    quality_grade character varying(128) DEFAULT 'unverifiable'::character varying,
+    quality_grade character varying DEFAULT 'casual'::character varying,
     user_agent character varying(255),
     positioning_method character varying(255),
     positioning_device character varying(255),
@@ -15575,6 +15575,4 @@ INSERT INTO schema_migrations (version) VALUES ('20150622201252');
 INSERT INTO schema_migrations (version) VALUES ('20150625230227');
 
 INSERT INTO schema_migrations (version) VALUES ('20150701222736');
-
-INSERT INTO schema_migrations (version) VALUES ('20150717222746');
 
