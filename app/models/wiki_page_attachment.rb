@@ -10,6 +10,14 @@ class WikiPageAttachment < ActiveRecord::Base
       :path => "wiki_page_attachments/:id-:style.:extension",
       :url => ":s3_alias_url"
     validates_attachment_presence :wiki_page_attachment, :message => " is missing."
-    validates_attachment_content_type :wiki_page_attachment, :content_type => ['image/jpeg','image/jpg','image/png','image/x-png','image/gif','image/pjpeg'], :message => ' must be a JPEG, PNG or GIF.'
+    validates_attachment_content_type :wiki_page_attachment, :content_type => [
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'image/x-png',
+      'image/gif',
+      'image/pjpeg',
+      'application/pdf'
+    ], :message => ' must be a JPEG, PNG , GIF, or PDF.'
   end
 end

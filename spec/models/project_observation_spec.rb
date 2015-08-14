@@ -351,6 +351,40 @@ describe ProjectObservation, "to_csv" do
   end
 end
 
+describe ProjectObservation, "elastic indexing" do
+  #
+  # To test the touch_observation callback correctly, we need to enable full
+  # db commits (e.g. no transations) and manually create indices
+  #
+  before(:all) do
+    DatabaseCleaner.strategy = :truncation
+    Observation.__elasticsearch__.create_index!
+  end
+  after(:all) do
+    DatabaseCleaner.strategy = :transaction
+    Observation.__elasticsearch__.delete_index!
+  end
+
+  it "should update projects for observations" do
+    p = Project.make!
+    expect( Observation.elastic_query(projects: [p.id]) ).to be_blank
+    po = ProjectObservation.make!(project: p)
+    expect( Observation.elastic_query(project: [p.id]) ).not_to be_blank
+  end
+
+  it "should not remove other project IDs from the observation" do
+    p = Project.make!
+    o = Observation.make!
+    po = ProjectObservation.make!(project: p, observation: o)
+    expect( Observation.elastic_query(project: [p.id]) ).not_to be_blank
+    o.reload
+    p2 = Project.make!
+    po2 = ProjectObservation.make!(project: p2, observation: o)
+    expect( Observation.elastic_query(project: [p.id]) ).not_to be_blank
+    expect( Observation.elastic_query(project: [p2.id]) ).not_to be_blank
+  end
+end
+
 def setup_project_and_user
   @project_user = ProjectUser.make!
   @project = @project_user.project
