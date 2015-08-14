@@ -154,6 +154,7 @@ function addRange(range) {
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)
   $selection.each(function() {
+    console.log("[DEBUG] this: ", this)
     $('input[name*="position"]', this).val($selection.index(this) + 1)
   })
 }
@@ -162,7 +163,7 @@ $('#guide_photos').sortable({
   cursor: "move",
   placeholder: 'row-fluid stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_photos", ".row-fluid")  
+    updatePositions("#guide_photos", ".guide-photo-fields")  
   }
 })
 $('#guide_photos').bind('cocoon:before-remove', function(e, item) {

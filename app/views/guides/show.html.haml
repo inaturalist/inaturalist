@@ -71,11 +71,12 @@
               = link_to url_for_params(:tags => [tag], :without => [:page]) do
                 = value
                 %span.badge.pull-right= count
-              %span.badge.modtag{:class => @tags.include?(tag) ? "removetag" : "addtag"}
-                - if @tags.include?(tag)
-                  = link_to "x", url_for_params(:tags => (@tags - [tag]).flatten.uniq)
-                - else
-                  = link_to "+", url_for_params(:tags => [@tags, tag].flatten.uniq)
+              - unless @tags.blank?
+                %span.badge.modtag{:class => @tags.include?(tag) ? "removetag" : "addtag"}
+                  - if @tags.include?(tag)
+                    = link_to "x", url_for_params(:tags => (@tags - [tag]).flatten.uniq)
+                  - else
+                    = link_to "+", url_for_params(:tags => [@tags, tag].flatten.uniq)
       %ul#taxonomy.nav.nav-stacked.nav-pills
         %li.nav-header=t :taxonomy
         - nav_taxa = capture do
@@ -119,7 +120,7 @@
                 %form.inline{method: :get, id: 'photo-tag-form'}
                   = hidden_fields_for_params(without: ['photo-tag'])
                   %select{name: 'photo-tag', data: {autosubmit:true}}
-                    %option{value:''}=t :photos_type
+                    %option{value:''}=t :photo_type
                     - for tag in @photo_tags
                       %option{selected: tag == @photo_tag}= tag
               %span.dropdown.inlineblock
