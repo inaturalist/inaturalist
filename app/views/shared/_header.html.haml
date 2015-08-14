@@ -17,7 +17,7 @@
         %ul
           - if logged_in?
             %li= link_to t(:by_you), observations_by_login_path(current_user.login)
-          %li= link_to t(:id_please), id_please_path
+          %li= link_to t(:Needs_ID!), id_please_path
           %li
             = form_tag(observations_path, :method => :get) do
               .clear.inline.buttonrow

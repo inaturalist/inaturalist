@@ -50,7 +50,8 @@ class ObservationsController < ApplicationController
                             :community_taxon_summary,
                             :map]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
-    :fields, :viewed_updates, :community_taxon_summary, :update_fields ]
+    :fields, :viewed_updates, :community_taxon_summary, :update_fields,
+    :review ]
   before_filter :load_observation, :only => load_only
   blocks_spam :only => load_only, :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
@@ -123,7 +124,8 @@ class ObservationsController < ApplicationController
       format.html do
         @iconic_taxa ||= []
         determine_if_map_should_be_shown(search_params)
-        Observation.preload_for_component(@observations, logged_in: !!current_user)
+        prepare_map_params
+        Observation.preload_for_component(@observations, logged_in: logged_in?)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
           return render_observations_partial(partial)
@@ -131,6 +133,7 @@ class ObservationsController < ApplicationController
       end
 
       format.json do
+        Observation.preload_for_component(@observations, logged_in: logged_in?)
         render_observations_to_json
       end
       
@@ -1199,13 +1202,8 @@ class ObservationsController < ApplicationController
   
   # shows observations in need of an ID
   def id_please
-    params[:order_by] ||= "created_at"
-    params[:order] ||= "desc"
-    if params[:has]
-      params[:has] = (params[:has].split(',') + ['id_please']).flatten.uniq
-    else
-      params[:has] = 'id_please'
-    end
+    params[:quality_grade] = Observation::NEEDS_ID
+    params[:reviewed] = 'false'
     search_params = Observation.get_search_params(params,
       current_user: current_user, site: @site)
     search_params = Observation.apply_pagination_options(search_params)
@@ -1898,6 +1896,14 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def review
+    user_reviewed
+    respond_to do |format|
+      format.html { redirect_to @observation }
+      format.json { head :no_content }
+    end
+  end
+
   def email_export
     unless flow_task = current_user.flow_tasks.find_by_id(params[:id])
       render status: :unprocessable_entity, text: "Flow task doesn't exist"
@@ -1979,6 +1985,15 @@ class ObservationsController < ApplicationController
       @observation.id, current_user.id])
     updates_scope.update_all(viewed_at: Time.now)
     Update.elastic_index!(scope: updates_scope, delay: true)
+  end
+
+  def user_reviewed
+    return unless logged_in?
+    review = ObservationReview.where(observation_id: @observation.id,
+      user_id: current_user.id).first_or_create
+    review.update_attributes({ user_added: true,
+      reviewed: (params[:reviewed] === "false") ? false : true })
+    review.observation.elastic_index!
   end
 
   def stats_adequately_scoped?(search_params = { })
@@ -2092,6 +2107,7 @@ class ObservationsController < ApplicationController
       @with_geo = true if search_params[:has].include?('geo')
     end
     @quality_grade = search_params[:quality_grade]
+    @reviewed = search_params[:reviewed]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
@@ -2823,6 +2839,7 @@ class ObservationsController < ApplicationController
           gbif: { disabled: true } } ], focus: :observations }
       else
         # otherwise show our catch-all "Featured Observations" custom layer
+        map_params[:viewer_id] = current_user.id if logged_in?
         @map_params = { observation_layers: [ map_params.merge(observations: @observations) ] }
       end
     end

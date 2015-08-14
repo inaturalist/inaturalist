@@ -222,6 +222,7 @@ class Photo < ActiveRecord::Base
       elsif %w(resolved destroyed).include?(options[:action])
         repair if respond_to?(:repair)
       end
+      observations.each(&:update_stats)
     end
   end
 

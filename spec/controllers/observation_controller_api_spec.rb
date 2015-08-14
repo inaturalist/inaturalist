@@ -954,6 +954,42 @@ shared_examples_for "an ObservationsController" do
         expect( ids ).not_to include o_outside.id
       end
     end
+
+    describe "should filter when quality_grade" do
+      before do
+        @research_grade = make_research_grade_observation
+        @needs_id = make_research_grade_candidate_observation
+        @casual = Observation.make!
+      end
+      it "research" do
+        get :index, format: :json, quality_grade: Observation::RESEARCH_GRADE
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).to include @research_grade.id
+        expect( ids ).not_to include @needs_id.id
+        expect( ids ).not_to include @casual.id
+      end
+      it "needs_id" do
+        get :index, format: :json, quality_grade: Observation::NEEDS_ID
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).not_to include @research_grade.id
+        expect( ids ).to include @needs_id.id
+        expect( ids ).not_to include @casual.id
+      end
+      it "casual" do
+        get :index, format: :json, quality_grade: Observation::CASUAL
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).not_to include @research_grade.id
+        expect( ids ).not_to include @needs_id.id
+        expect( ids ).to include @casual.id
+      end
+      it "research,needs_id" do
+        get :index, format: :json, quality_grade: "#{Observation::RESEARCH_GRADE},#{Observation::NEEDS_ID}"
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).to include @research_grade.id
+        expect( ids ).to include @needs_id.id
+        expect( ids ).not_to include @casual.id
+      end
+    end
   end
 
   describe "taxon_stats" do

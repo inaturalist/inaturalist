@@ -30,7 +30,7 @@ describe Place, "creation" do
   end
 
   it "should add observed taxa to the checklist if geom set" do
-    t = Taxon.make!
+    t = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
     Delayed::Worker.new.work_off

@@ -40,9 +40,9 @@ input.button:active {
 }
 
 
-.buttonrow label,
-.buttonrow .inter,
-.buttonrow input.text {
+.buttonrow > label,
+.buttonrow > .inter,
+.buttonrow > input.text {
   display: block;
   float: left;
   width: auto;

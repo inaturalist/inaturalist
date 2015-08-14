@@ -1885,6 +1885,7 @@ fr:
   map_tooltip: Afficher la vue de la carte
   map_for: Carte de
   maptype_for_places: google.maps.MapTypeId.TERRAIN
+  mark_as_reviewed: Mark tel que révisé
   matched_several_different_taxa: correspond à plusieurs taxons différents
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées
     ici. Les cartes afficheront une aire de répartition pour cette espèce si elle
@@ -1963,6 +1964,10 @@ fr:
   near_threatened: quasi-menacée
   nearby_observations: Observations à proximité
   need_id_help?: Besoin d’aide avec l’identification ?
+  needs_id: besoin ID
+  Needs_ID!: Besoin ID!
+  needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
+  needs_to_be_identified: Doit être identifié
   new_announcement: Nouvelle annonce
   new_assessment: Nouvelle évaluation
   new_check_list: Nouvelle liste de contrôle
@@ -3090,6 +3095,7 @@ fr:
     abonnements » ci-dessous. Vous devriez aussi pouvoir vous désabonner de n’importe
     quoi sur le site en consultant sa page.
   subscribe_to_this: Abonnez-vous
+  subscribe_to_this_observation: Abonnez-vous à cette observation
   subscribe_to_x_from_this_y_html: |-
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonnez-vous</a>
     à %{x} à partir de %{y}.
