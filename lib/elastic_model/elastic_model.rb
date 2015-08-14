@@ -13,7 +13,16 @@ module ElasticModel
   AUTOCOMPLETE_ANALYZER = {
     autocomplete_analyzer: {
       tokenizer: "standard",
-      filter: [ "standard", "lowercase", "asciifolding", "stop", "edge_ngram_filter" ]
+      filter: [ "standard", "lowercase", "asciifolding", "edge_ngram_filter" ]
+    }
+  }
+  # autocomplete analyzer for Japanese strings
+  # NOTE: don't forget to install the proper analyzers in Elasticsearch
+  # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
+  AUTOCOMPLETE_ANALYZER_JA = {
+    autocomplete_analyzer_ja: {
+      tokenizer: "kuromoji_tokenizer",
+      filter: [ "lowercase", "cjk_width", "kuromoji_readingform" ]
     }
   }
   # autocomplete with no sub-matches (e.g. `Park` doesn't find `National Park`)
@@ -45,11 +54,13 @@ module ElasticModel
       max_gram: 15
     }
   }
+
   # store all of the above in a constant, used when defining indices in models
   ANALYSIS = {
     analyzer: [
       ASCII_SNOWBALL_ANALYZER,
       AUTOCOMPLETE_ANALYZER,
+      AUTOCOMPLETE_ANALYZER_JA,
       KEYWORD_AUTOCOMPLETE_ANALYZER,
       STANDARD_ANALYZER,
       KEYWORD_ANALYZER
