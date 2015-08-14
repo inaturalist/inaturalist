@@ -78,6 +78,18 @@ class GuideTaxon < ActiveRecord::Base
     guide_photos.sort_by(&:position).first
   end
 
+  def guide_photo_for_tag(tag=nil)
+    return default_guide_photo if tag.blank?
+    gp = if guide_photos.loaded?
+      guide_photos.sort_by(&:position).detect do |gp|
+        gp.taggings.any? {|tagging| tagging.tag.name == tag}
+      end
+    else
+      guide_photos.tagged_with(tag).order("position ASC").first
+    end
+    gp || default_guide_photo
+  end
+
   def set_names_from_taxon
     return true unless taxon
     self.name = taxon.name if name.blank?

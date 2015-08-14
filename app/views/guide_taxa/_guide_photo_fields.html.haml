@@ -7,7 +7,15 @@
     = f.hidden_field :guide_taxon_id
   .span7
     .stacked
-      = f.text_area :description, :placeholder => t(:brief_caption), :class => "span12"
+      .row-fluid
+        .span12.stacked
+          = f.text_area :description, :placeholder => t(:brief_caption), :class => "span12"
+      .row-fluid
+        .span12
+          = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: t(:add_comma_separated_tags), :class => "span12 tag_list"
+          .recent_tags.quiet
+            - for tag in @recent_photo_tags
+              = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addPhotoTag(this, '#{tag}')", :class => "btn btn-mini"
     - if f.object.blank? || f.object.new_record?
       .local_photo_fields.row-fluid
         = f.fields_for :photo, f.object.photo || f.object.build_photo(:type => "LocalPhoto"), :builder => DefaultFormBuilder do |p|

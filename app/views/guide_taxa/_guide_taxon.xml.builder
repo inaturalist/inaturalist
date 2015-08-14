@@ -19,6 +19,9 @@ xml.GuideTaxon :position => gt.position do
       xml.attribution gp.attribution
       xml.dcterms :rightsHolder, gp.attribution_name
       xml.dc :license, url_for_license(gp.license_code) unless gp.license_code.blank?
+      gp.tags.map(&:name).each do |tag|
+        tag_to_xml(tag, xml)
+      end
     end
   end
   gt.guide_ranges.sort_by(&:position).each do |gr|

@@ -400,7 +400,8 @@ class Observation < ActiveRecord::Base
   }
   
   # Has_property scopes
-  scope :has_taxon, lambda { |taxon_id|
+  scope :has_taxon, lambda { |*args|
+    taxon_id = args.first
     if taxon_id.nil?
       where("taxon_id IS NOT NULL")
     else

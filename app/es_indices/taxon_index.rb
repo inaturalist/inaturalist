@@ -11,8 +11,12 @@ class Taxon < ActiveRecord::Base
     mappings(dynamic: true) do
       indexes :names do
         indexes :name, analyzer: "ascii_snowball_analyzer"
+        # NOTE: don't forget to install the proper analyzers in Elasticsearch
+        # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
+        indexes :name_ja, analyzer: "kuromoji"
         indexes :name_autocomplete, index_analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
+        indexes :name_autocomplete_ja, analyzer: "autocomplete_analyzer_ja"
         indexes :exact, analyzer: "keyword_analyzer"
       end
     end
@@ -46,14 +50,14 @@ class Taxon < ActiveRecord::Base
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
-      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id )
+      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
+      is_active: is_active
     }
     unless options[:basic]
       json.merge!({
         created_at: created_at,
         default_photo_url: default_photo ? default_photo.best_url(:square) : nil,
         colors: colors.map(&:as_indexed_json),
-        is_active: is_active,
         ancestry: ancestry,
         observations_count: observations_count,
         # see prepare_for_index. Basicaly indexed_place_ids may be set

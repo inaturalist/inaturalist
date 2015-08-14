@@ -109,7 +109,10 @@ class MetaService
     http = Net::HTTP.new(options[:request_uri].host, options[:request_uri].port)
     # using SSL if we have an https URL
     http.use_ssl = (options[:request_uri].scheme == "https")
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE # if http.use_ssl? && Rails.env.test?
+    if CONFIG.ca_path || CONFIG.ca_file
+      http.ca_file = CONFIG.ca_file
+      http.ca_path = CONFIG.ca_path
+    end
     response = http.get("#{options[:request_uri].path}?#{options[:request_uri].query}",
       "User-Agent" => options[:user_agent])
     # following redirects if we haven't followed too many already

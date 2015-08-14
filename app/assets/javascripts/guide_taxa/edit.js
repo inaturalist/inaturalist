@@ -162,7 +162,7 @@ $('#guide_photos').sortable({
   cursor: "move",
   placeholder: 'row-fluid stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_photos", ".row-fluid")  
+    updatePositions("#guide_photos", ".guide-photo-fields")  
   }
 })
 $('#guide_photos').bind('cocoon:before-remove', function(e, item) {
@@ -216,3 +216,19 @@ function addTag(tag) {
     $('#guide_taxon_tag_list').val(tags.join(', '))
   }
 }
+
+function addPhotoTag(btn, tag) {
+  var tag = $.trim(tag),
+      tags,
+      input = $(btn).parents('[class*="span"]:first').find('.tag_list')
+  if ($.trim(input.val()) == '') {
+    tags = []
+  } else {
+    tags = input.val().split(',').map($.trim)
+  }
+  if (tags.indexOf(tag) < 0) {
+    tags.push(tag)
+    input.val(tags.join(', '))
+  }
+}
+
