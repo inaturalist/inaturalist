@@ -531,8 +531,17 @@ class ListedTaxon < ActiveRecord::Base
       # loop through the months
       month_counts = rs.response.response.aggregations.month.buckets.map do |m|
         # and then the quality grade counts in that month
-        m.quality.buckets.map do |q|
-          "#{ m['key'] }#{ q['key'][0] }-#{ q['doc_count'] }"
+        month_qualities = Hash[ m.quality.buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
+        if month_qualities["needs_id"]
+          if month_qualities["casual"]
+            month_qualities["casual"] += month_qualities["needs_id"]
+          else
+            month_qualities["casual"] = month_qualities["needs_id"]
+          end
+          month_qualities.delete("needs_id")
+        end
+        month_qualities.map do |k,v|
+          "#{ m['key'] }#{ k[0] }-#{ v }"
         end
       end.flatten.sort.join(",")
       earliest_id, latest_id = ListedTaxon.earliest_and_latest_ids(options)
