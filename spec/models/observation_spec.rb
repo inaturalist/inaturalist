@@ -671,6 +671,18 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::CASUAL
       end
 
+      it "should not notify the observer if voted out" do
+        # ,queue_if: lambda { |record| record.vote_scope.blank? }
+        o = Observation.make!
+        without_delay do
+          expect {
+            o.downvote_from User.make!, vote_scope: 'needs_id'
+          }.not_to change(Update, :count)
+        end
+        o.reload
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
       it "should be casual by default" do
         o = Observation.make!
         expect( o.quality_grade ).to eq Observation::CASUAL
