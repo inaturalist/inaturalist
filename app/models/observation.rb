@@ -1317,9 +1317,10 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def captive_cultivated
+  def captive_cultivated?
     !passes_quality_metric?(QualityMetric::WILD)
   end
+  alias :captive_cultivated :captive_cultivated?
 
   def reviewed_by?(viewer)
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)

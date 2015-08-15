@@ -250,8 +250,6 @@ class Identification < ActiveRecord::Base
   def update_quality_metrics
     if captive_flag == "1"
       QualityMetric.vote(user, observation, QualityMetric::WILD, false)
-    elsif captive_flag == "0" && (qm = observation.quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
-      qm.update_attributes(:agree => true)
     end
     true
   end
