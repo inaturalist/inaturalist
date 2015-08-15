@@ -12,14 +12,23 @@
     %h2
       = @title
   .column.span-24.stacked
-    = render 'leaderboard_column', :noun => 'observation', :noun_plural => 'observations', :time_unit => @time_unit, :data => @most_observations, :extra => "<div class='meta'>#{t :observations_observed_this_month}</div>".html_safe
-    = render 'leaderboard_column', :noun => 'species', :noun_plural => 'species', :time_unit => @time_unit, :data => @most_species
+    = render 'leaderboard_column', 
+      noun: 'observation', 
+      noun_plural: 'observations', 
+      time_unit: @time_unit,
+      data: @most_observations, 
+      extra: "<div class='meta'>#{t :observations_observed_this_month}</div>".html_safe
+    = render 'leaderboard_column', 
+      noun: 'species', 
+      noun_plural: 'species', 
+      time_unit: @time_unit, 
+      data: @most_species
     = render 'leaderboard_column', :noun => 'identification',
-      :noun_plural => 'identification',
-      :time_unit => @time_unit,
-      :data => @most_identifications,
-      :last => true,
-      :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? 'identification' : 'identifications'}".html_safe, identifications_by_login_path(user.login, :on => @time_unit == 'year' ? @year : "#{@year}-#{@month}"))}
+      noun_plural: 'identification',
+      time_unit: @time_unit,
+      data: @most_identifications,
+      last: true,
+      sub: Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? 'identification' : 'identifications'}".html_safe, identifications_by_login_path(user.login, :on => @time_unit == 'year' ? @year : "#{@year}-#{@month}"))}
 .column.span-24
   - if @time_unit == 'year'
     %strong.left= link_to "‹ #{@year - 1}".html_safe, :year => @year - 1

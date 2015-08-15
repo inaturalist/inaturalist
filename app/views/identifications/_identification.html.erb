@@ -14,6 +14,7 @@
   end
   identification_classes += " #{identification.current? ? 'current' : 'outdated'}"
   hide_actions ||= false
+  hide_agree ||= false
   extra ||= nil
 -%>
 <div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>" data-taxon-id="<%= taxon.id if taxon %>">
@@ -39,7 +40,10 @@
                               :named_ancestor => true } %>
     </span>
     <% unless hide_actions -%>
-      <% if logged_in? && identification.user_id != current_user.id && (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
+      <% if logged_in? && 
+          !hide_agree &&
+          identification.user_id != current_user.id && 
+          (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
         <span class="agree button">
           <%= link_to t(:agree?), {
                :controller => 'identifications',

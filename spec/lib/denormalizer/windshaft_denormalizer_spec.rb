@@ -23,8 +23,8 @@ describe 'WindshaftDenormalizer' do
     Taxon.connection.execute('TRUNCATE TABLE taxa RESTART IDENTITY')
   end
 
-  it 'should have 11 zoom levels' do
-    expect(WindshaftDenormalizer.zooms.count).to be 11
+  it 'should have 1 zoom levels' do
+    expect(WindshaftDenormalizer.zooms.count).to be 1
   end
 
   it 'should create_all_tables' do

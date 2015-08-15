@@ -3,6 +3,7 @@ class FacebookController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
 
   def index
+    response.headers.delete "X-Frame-Options"
     @headless = @footless = true
     unless params[:by].blank?
       @selected_user = User.find_by_id(params[:by])

@@ -3,9 +3,13 @@ class SiteStatistic < ActiveRecord::Base
   STAT_TYPES = [ :observations, :users, :projects,
     :taxa, :identifications, :identifier ]
 
-  def self.generate_stats_for_day(at_time = Time.now)
+  def self.generate_stats_for_day(at_time = Time.now, options = {})
     at_time = at_time.utc.end_of_day
-    return if stats_generated_for_day?(at_time)
+    if options[:force]
+      SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).delete_all
+    elsif stats_generated_for_day?(at_time)
+      return
+    end
     SiteStatistic.create({
       data: Hash[
         STAT_TYPES.map{ |st| [ st, send("#{ st }_stats", at_time) ] }
@@ -14,11 +18,11 @@ class SiteStatistic < ActiveRecord::Base
     })
   end
 
-  def self.generate_stats_for_date_range(start_time, end_time = Time.now)
+  def self.generate_stats_for_date_range(start_time, end_time = Time.now, options = {})
     start_time = start_time.utc.end_of_day
     end_time = end_time.utc.end_of_day
     until end_time < start_time
-      generate_stats_for_day(end_time)
+      generate_stats_for_day(end_time, options)
       end_time -= 1.day
     end
   end
@@ -138,14 +142,17 @@ class SiteStatistic < ActiveRecord::Base
         LEFT OUTER JOIN (
           SELECT identifications.* 
           FROM identifications JOIN observations ON identifications.observation_id = observations.id
-          WHERE identifications.user_id != observations.user_id
+          WHERE 
+            identifications.user_id != observations.user_id AND
+            identifications.created_at BETWEEN '#{(at_time - 1.week).to_s(:db)}' AND '#{at_time.to_s(:db)}'
         ) i ON i.observation_id = o.id
         LEFT OUTER JOIN (
           SELECT identifications.* 
           FROM identifications JOIN observations ON identifications.observation_id = observations.id
           WHERE 
             identifications.user_id != observations.user_id AND
-            identifications.taxon_id = observations.community_taxon_id
+            identifications.taxon_id = observations.community_taxon_id AND
+            identifications.created_at BETWEEN '#{(at_time - 1.week).to_s(:db)}' AND '#{at_time.to_s(:db)}'
         ) ci ON ci.observation_id = o.id
         LEFT OUTER JOIN taxa t ON t.id = o.community_taxon_id
       WHERE

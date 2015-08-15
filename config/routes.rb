@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   
   resources :acts_as_votable_votes, controller: :votes, constraints: { id: id_param_pattern }, only: [:destroy]
   post 'votes/vote/:resource_type/:resource_id(.:format)' => 'votes#vote', as: :vote
-  post 'votes/unvote/:resource_type/:resource_id(.:format)' => 'votes#unvote', as: :unvote
+  delete 'votes/unvote/:resource_type/:resource_id(.:format)' => 'votes#unvote', as: :unvote
   get  'votes/for/:resource_type/:resource_id(.:format)' => 'votes#for', as: :votes_for
   get  'faves/:login(.:format)' => 'votes#by_login', as: :faves_by_login, constraints: { login: simplified_login_regex }
 
@@ -123,6 +123,8 @@ Rails.application.routes.draw do
   get '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
 
   match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
+  post '/facebook' => 'facebook#index'
+  
   resources :announcements
   get '/users/dashboard' => 'users#dashboard', :as => :dashboard
   get '/users/curation' => 'users#curation', :as => :curate_users
@@ -179,6 +181,7 @@ Rails.application.routes.draw do
     member do
       put :viewed_updates
       patch :update_fields
+      post :review
     end
   end
 
@@ -416,6 +419,9 @@ Rails.application.routes.draw do
 
   resources :flags
   resource :admin, only: :index, controller: :admin do
+    collection do
+      get :index
+    end
     resource :stats, controller: "admin/stats" do
       collection do
         get :index
@@ -438,6 +444,7 @@ Rails.application.routes.draw do
   resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
   delete 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription
   get 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
+  post 'subscriptions/:resource_type/:resource_id/subscribe' => 'subscriptions#subscribe', as: :subscribe
 
   resources :taxon_changes, :constraints => { :id => id_param_pattern } do
     resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true

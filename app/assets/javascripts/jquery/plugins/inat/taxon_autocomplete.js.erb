@@ -1,0 +1,348 @@
+var inaturalist = inaturalist || { };
+inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
+  [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ] }].to_json %>;
+inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
+inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
+inaturalist.TAXON_ROOT_URL = "<%= FakeView.taxon_url(1)[0..-2] %>";
+
+var autocompleter = { };
+
+autocompleter.capitalize = function( s ) {
+  if( !s ) { return; }
+  return s[0].toUpperCase( ) + s.slice( 1 );
+};
+
+// return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
+autocompleter.defaultPhotoForResult = function( result ) {
+  if( result.type === "search_external" || result.type === "message" ) {
+    return inaturalist.EXTERNAL_SEARCH_ICON;
+  }
+  if( result.default_photo_url ) { return result.default_photo_url; }
+  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
+    return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
+  } else {
+    return inaturalist.UNKNOWN_TAXON_ICON;
+  }
+};
+
+// return the first (preferred) name in a locale
+autocompleter.preferredNameInLocale = function( result, locale ) {
+  var nameInLocale;
+  if( locale ) { locale = locale.split('-')[0]; }
+  _.each( result.names, function( n ) {
+    if( nameInLocale ) { return; }
+    if( n.locale === locale ) { nameInLocale = n.name; }
+  });
+  return nameInLocale;
+};
+
+// return the best name in the locale, or defaulting to EN
+autocompleter.setTitle = function( result ) {
+  if( result.title ) { return; }
+  var name = autocompleter.preferredNameInLocale( result, I18n.locale );
+  if( !name && I18n.locale !== "en" ) {
+    name = autocompleter.preferredNameInLocale( result, "en" );
+  }
+  result.title = name || result.name;
+};
+
+autocompleter.stringIncludes = function( string, test ) {
+  if( !string || !test ) { return false; }
+  return (string.toLowerCase().indexOf( test.toLowerCase() ) != -1 );
+};
+
+autocompleter.appendMatchedTerm = function( result, fieldValue ) {
+  if( !result.matched_term ) { return; }
+  if( autocompleter.stringIncludes( result.title, fieldValue ) ||
+      autocompleter.stringIncludes( result.subtitle, fieldValue )) { return; }
+  if( autocompleter.stringIncludes( result.title, result.matched_term ) ||
+      autocompleter.stringIncludes( result.subtitle, result.matched_term )) { return; }
+  result.title += " (" + autocompleter.capitalize( result.matched_term ) + ")";
+};
+
+autocompleter.taxonTemplate = function( result, fieldValue ) {
+  autocompleter.setTitle( result );
+  if( result.title && result.name != result.title ) {
+    if( result.rank_level <= 10 ) {
+      result.subtitle = "<i>" + result.name + "</i>";
+    } else {
+      result.subtitle = result.name;
+    }
+  }
+  autocompleter.appendMatchedTerm( result, fieldValue );
+  if( result.rank && ( result.rank_level > 10 || !result.subtitle )) {
+    result.subtitle =
+      autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
+      ( result.subtitle ? " " + result.subtitle : "" );
+  }
+
+  result.default_photo_url = autocompleter.defaultPhotoForResult( result );
+  var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "data-taxon-id", result.id ).
+    attr( "data-type", result.type );
+  var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
+  if( result.default_photo_url ) {
+    $( "<img/>" ).attr( "src", result.default_photo_url ).appendTo( thumbDiv );
+  }
+  var labelDiv = $( "<div/>" ).addClass( "ac-label" );
+  labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
+  labelDiv.append( $( "<span/>" ).addClass( "subtitle" ).
+    append( result.subtitle ));
+  // anything w/o an ID is some kind of message or non-result UI
+  if( !result.id) {
+    wrapperDiv.addClass( "ac-message" );
+    if( result.type == "search_external" ) {
+      labelDiv.find( ".title" ).addClass( "linky" );
+    }
+    // JQuery autocomplete need an <a> tag in order to
+    // consider the row active and clickable.
+    labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
+  }
+  if( result.id ) {
+    var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
+      attr( "href", inaturalist.TAXON_ROOT_URL + result.id );
+    $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
+    wrapperDiv.append( rightElement );
+  }
+  wrapperDiv.append( thumbDiv );
+  wrapperDiv.append( labelDiv );
+  wrapperDiv.append( rightElement );
+  return wrapperDiv;
+};
+
+autocompleter.resetTaxonSelection = function( options ) {
+  options = options || { };
+  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
+  options.taxon_id_el.val( null );
+  $(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
+  if( options.afterUnselect ) { options.afterUnselect( ); }
+};
+
+autocompleter.selectedTaxonID = function( options ) {
+  options = options || { };
+  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
+  return options.taxon_id_el.val( );
+};
+
+autocompleter.createWrappingDiv = function( field, options ) {
+  if( !field.parent().hasClass( "ac-chooser" ) ) {
+    var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );
+    field.wrap( wrappingDiv );
+    if( options.thumbnail !== false ) {
+      // render the initial thumbnail of existing result, or the unknown icon
+      var photo_url = autocompleter.defaultPhotoForResult({
+        default_photo_url: field.data( "default-photo-url" ),
+        iconic_taxon_id: field.data( "iconic-taxon-id" ) });
+      var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" );
+      if( photo_url ) {
+        thumbDiv.append( $( "<img/>" ).attr( "src", photo_url ) );
+      }
+      field.parent( ).prepend( thumbDiv );
+    }
+  }
+};
+
+$.fn.taxonAutocomplete = function( options ) {
+  options = options || { };
+  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
+  var field = this;
+  if( !field || this.length < 1 ) { return; }
+  autocompleter.createWrappingDiv( field, options );
+  // search is strangely the event when the (x) is clicked in the
+  // text field search box. We want to restore all defaults
+  field.on( "search", function ( ) {
+    field.val( "" );
+    autocompleter.resetTaxonSelection( options );
+    return false;
+  });
+  var ac = field.autocomplete({
+    minLength: 1,
+    delay: 50,
+    source: function( request, response ) {
+      $.ajax({
+        url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete?per_page=10",
+        dataType: "jsonp",
+        data: { q: request.term },
+        success: function( data ) {
+          var results = data.results || [ ];
+          // show as the last item an option to search external name providers
+          if( options.search_external !== false ) {
+            results.push({
+              type: "search_external",
+              title: I18n.t("search_external_name_providers")
+            });
+          }
+          if( options.show_placeholder && !options.taxon_id_el.val( ) && field.val( ) ) {
+            results.unshift({
+              type: "placeholder",
+              title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
+            });
+          }
+          response( results );
+        }
+      });
+    },
+    select: function( e, ui ) {
+      // clicks on the View link should not count as selection
+      if( e.toElement && $(e.toElement).hasClass( "ac-view" ) ) {
+        return false;
+      }
+      // they selected the search external name provider option
+      if( ui.item.type === "search_external" && field.val( ) ) {
+        // set up an unique ID for this AJAX call to prevent conflicts
+        var thisSearch = Math.random();
+        ac.searchInProgress = thisSearch;
+        $.ajax({
+          url: "/taxa/search.json?per_page=10&include_external=1&partial=elastic&q=" + field.val( ),
+          dataType: "json",
+          beforeSend: function(XMLHttpRequest) {
+            // replace 'search external' with a loading indicator
+            var externalItem = $(".ac[data-type='search_external']");
+            externalItem.find(".title").removeClass( "linky" );
+            externalItem.find(".title").text( I18n.t("loading") );
+            externalItem.closest( "li" ).removeClass( "active" );
+            externalItem.attr( "data-type", "message" );
+          },
+          success: function(data) {
+            // if we just returned from the most recent external search
+            if( ac.searchInProgress === thisSearch ) {
+              ac.searchInProgress = false;
+              var ul = ac.menu.element.empty()
+              if( data.length == 0 ) {
+                data.push({
+                  type: "message",
+                  title: I18n.t("no_results_found")
+                });
+              }
+              if( options.show_placeholder && field.val( ) ) {
+                data.unshift({
+                  type: "placeholder",
+                  title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
+                });
+              }
+              ac._suggest( data );
+            }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            ac.searchInProgress = false;
+          }
+        });
+        // this is the hacky way I'm preventing autocomplete from closing
+        // the result list while the external search is happening
+        ac.keepOpen = true;
+        e.preventDefault( );
+        return false;
+      }
+      // show the best name in the search field
+      if( ui.item.id ) {
+        field.val( ui.item.title || ui.item.name );
+      }
+      // set the hidden taxon_id
+      options.taxon_id_el.val( ui.item.id );
+      // set the selection's thumbnail image
+      $(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
+      if( options.afterSelect ) { options.afterSelect( ui ); }
+      return false;
+    },
+    focus: function( e, ui ) {
+      if( ui.item.type === "message" ) {
+        return;
+      }
+      var li = ui.item.id ?
+        $("ul.ui-autocomplete").find("[data-taxon-id='"+ ui.item.id +"']").closest("li") :
+        $("ul.ui-autocomplete").find("[data-type='"+ ui.item.type +"']").closest("li")
+      li.parent( ).find( "li" ).removeClass( "active" );
+      li.addClass( "active" );
+      return false;
+    }
+  }).data( "autocomplete" );
+  // modifying _move slightly to prevent scrolling with arrow
+  // keys past the top or bottom of the autocomplete menu
+  ac._move = function( direction, e ) {
+    if( !this.menu.element.is( ":visible" ) ) {
+      this.search( null, e );
+      return;
+    }
+    // preventing scrolling past top or bottom
+    if( this.menu.isFirstItem( ) && /^previous/.test( direction ) ||
+        this.menu.isLastItem( ) && /^next/.test( direction ) ) {
+      return;
+    }
+    this.menu[ direction ]( e );
+  };
+  // custom simple _renderItem that gives the LI's class ac-result
+  ac._renderItem = function( ul, item ) {
+    var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
+      append( autocompleter.taxonTemplate( item, field.val( ))).
+      appendTo( ul );
+    if( options.extra_class ) {
+      li.addClass( options.extra_class );
+    }
+    return li;
+  };
+  // custom simple _renderMenu that removes the ac-menu class
+  ac._renderMenu = function( ul, items ) {
+    this.keepOpen = false;
+    this.searchInProgress = false;
+    var that = this;
+    ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
+    ul.addClass( "ac-menu" );
+    $.each( items, function( index, item ) {
+      that._renderItemData( ul, item );
+    });
+  };
+  ac._close = function( event ) {
+    if( this.keepOpen ) {
+      // we wanted to keep the menu open and we have, but reset that
+      // option to it's default state of false very soon
+      setTimeout( function( ){ this.keepOpen = false; }, 10 );
+      return;
+    }
+    if( this.menu.element.is( ":visible" ) ) {
+      this.menu.element.hide();
+      this.menu.blur();
+      this.isNewMenu = true;
+      this._trigger( "close", event );
+    }
+  };
+  field.keydown( function( e ) {
+    var key = e.keyCode || e.which;
+    // cancel any return key action in the text field
+    if( key === 13 ) {
+      if( options.allow_enter_submit ) {
+        field.closest( "form" ).submit( );
+      }
+      return false;
+    }
+    // keys like arrows, tab, shift, caps-lock, etc. won't change
+    // the value of the field so we don't need to reset the selection
+    nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
+      34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
+    if( _.contains( nonCharacters, key ) ) { return; }
+    autocompleter.resetTaxonSelection( options );
+  });
+  // show the results anytime the text field gains focus
+  field.bind( "focus", function( ) {
+    // don't redo the search if there are results being shown
+    if( $("ul.ac-menu:visible").length == 0 ) {
+      $(this).autocomplete( "search", $(this).val( ));
+    }
+  });
+  field.bind( "click", function( ) {
+    // don't redo the search if there are results being shown
+    if( $("ul.ac-menu:visible").length == 0 ) {
+      $(this).autocomplete( "search", $(this).val( ));
+    }
+  });
+  if( options.allow_placeholders !== true ) {
+    field.blur( function( ) {
+      // adding a small timeout to allow the autocomplete JS to make
+      // a selection or not before deciding if we need to clear the field
+      setTimeout( function( ) {
+        if( !autocompleter.selectedTaxonID( options ) && $("ul.ac-menu:visible").length == 0) {
+          field.val( "" );
+          autocompleter.resetTaxonSelection( options );
+        }
+      }, 10);
+    });
+  }
+};

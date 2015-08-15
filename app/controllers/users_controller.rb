@@ -22,8 +22,16 @@ class UsersController < ApplicationController
   
   caches_action :dashboard,
     :expires_in => 1.hour,
-    :cache_path => Proc.new {|c| c.send(:home_url, :user_id => c.instance_variable_get("@current_user").id)},
-    :if => Proc.new {|c| (c.params.keys - %w(action controller)).blank? }
+    :cache_path => Proc.new {|c| 
+      c.send(
+        :home_url, 
+        :user_id => c.instance_variable_get("@current_user").id,
+        :mobile => c.request.format.mobile?
+      )
+    },
+    :if => Proc.new {|c| 
+      (c.params.keys - %w(action controller format)).blank?
+    }
   cache_sweeper :user_sweeper, :only => [:update]
   
   def new
@@ -203,8 +211,8 @@ class UsersController < ApplicationController
 
   def leaderboard
     @year = (params[:year] || Time.now.year).to_i
-    @month = (params[:month] || Time.now.month).to_i
-    @date = Date.parse("#{@year}-#{@month}-01")
+    @month = params[:month].to_i unless params[:month].blank?
+    @date = Date.parse("#{@year}-#{@month || '01'}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
     @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"
     unless fragment_exist?(@leaderboard_key)
@@ -450,7 +458,7 @@ class UsersController < ApplicationController
   end
 
   def update_session
-    allowed_keys = %w(hide_quality_metrics)
+    allowed_keys = %w(show_quality_metrics)
     updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
     updates.each do |k,v|
       v = true if %w(yes y true t).include?(v)

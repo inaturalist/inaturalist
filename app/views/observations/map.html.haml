@@ -96,4 +96,7 @@
     a[:observation_layers] << @elastic_params.merge(
       user_id: @user.id, title: "Observations by #{@user.login}")
   end
+  if @render_place
+    a[:place_layers] = [ { place: @render_place } ];
+  end
 #map.fullscreen{ setup_map_tag_attrs(a) }

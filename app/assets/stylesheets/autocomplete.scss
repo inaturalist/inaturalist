@@ -1,0 +1,94 @@
+.linky {
+  color: #36C;
+}
+.ui-autocomplete {
+  cursor: pointer;
+}
+.ui-autocomplete .ac {
+  min-width: 370px;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+}
+.ac-message[data-type='message'] {
+  cursor: default;
+}
+.ui-autocomplete .ac.ac-message {
+  height: 36px;
+}
+.ui-autocomplete .ac-thumb {
+  float: left;
+  width: 44px;
+  display: inline-block;
+}
+.ui-autocomplete .ac-message .ac-thumb {
+  width: 34px;
+  padding-left: 5px;
+}
+.ui-autocomplete .ac-view {
+  float: right;
+  padding: 0 10px;
+  line-height: 46px;
+  text-align: right;
+  background: white;
+  display: inline-block;
+}
+.ui-autocomplete .ac-thumb img {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+}
+.ui-autocomplete .ac-message .ac-thumb img {
+  width: 30px;
+  height: 30px;
+}
+.ui-autocomplete .ac-result {
+  list-style: none;
+}
+.ui-autocomplete .ac-result.active {
+  background: #F2F2F2;
+}
+.ui-autocomplete .ac-label {
+  padding: 7px;
+  line-height: 16px;
+  display: inline-block;
+  width: 258px;
+}
+.ui-autocomplete .identification .ac-label {
+  width: 450px;
+}
+.ui-autocomplete .ac-message .ac-label {
+  padding: 0 0 0 12px;
+  line-height: 36px;
+  width: 300px;
+}
+.ui-autocomplete .ac-placeholder {
+  font-weight: bold;
+}
+.ui-autocomplete .ac-label .title {
+  font-size: 1.1em;
+  display: block;
+}
+.ui-autocomplete .ac-label .subtitle {
+  font-size: 0.9em;
+  display: block;
+  color: #727272;
+}
+.ui-autocomplete li.ac-result:not(:first-child) {
+  border-top: 1px solid #D8D8D8;
+}
+.buttonrow .ac-chooser {
+  display: inline-block;
+}
+.ac-chooser .species_guess.ui-autocomplete-input {
+  width: 190px;
+}
+.ac-select-thumb {
+  width: 31px;
+  float: left;
+  margin-right: 5px;
+}
+.ac-select-thumb img {
+  width: 31px;
+  height: 31px;
+}

@@ -30,7 +30,7 @@ describe Place, "creation" do
   end
 
   it "should add observed taxa to the checklist if geom set" do
-    t = Taxon.make!
+    t = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
     Delayed::Worker.new.work_off
@@ -186,6 +186,22 @@ describe Place, "merging" do
     }.not_to raise_error
     expect( keeper.observations_places.where(observation_id: o) ).not_to be_blank
   end
+
+  it "should not result in multiple primary listed taxa for the same taxon" do
+    keeper = Place.make!
+    reject = Place.make!
+    t = Taxon.make!
+    klt = keeper.check_list.add_taxon(t, user: User.make!)
+    rl = reject.check_lists.create(title: "foo")
+    rlt = rl.add_taxon(t, user: User.make!)
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+    without_delay { keeper.merge(reject) }
+    klt.reload
+    rlt.reload
+    expect( klt.primary_listing? || rlt.primary_listing? ).to eq true
+    expect( klt.primary_listing? && rlt.primary_listing? ).to eq false
+  end
 end
 
 describe Place, "bbox_contains_lat_lng?" do
@@ -233,5 +249,29 @@ describe Place, "display_name" do
     place = Place.make!(:parent => state)
     expect(place.parent).to eq(state)
     expect(place.display_name(:reload => true)).to be =~ /, #{state.code}, #{country.code}$/
+  end
+end
+
+describe Place, "append_geom" do
+  let(:place) { make_place_with_geom }
+  it "should result in a multipolygon with multiple polygons" do
+    geom = RGeo::Geos.factory(:srid => 4326).parse_wkt("MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))")
+    expect( place.place_geometry.geom.size ).to eq 1
+    place.append_geom(geom)
+    expect( place.place_geometry.geom.geometry_type ).to eq ::RGeo::Feature::MultiPolygon
+    expect( place.place_geometry.geom.size ).to eq 2
+  end
+
+  it "should dissolve overlapping polygons" do
+    old_geom = place.place_geometry.geom
+    geom = RGeo::Geos.factory(:srid => 4326).parse_wkt("MULTIPOLYGON(
+      ((0.5 0.5,0.5 1.5,1.5 1.5,1.5 0.5,0.5 0.5)),
+      ((2 2,2 3,3 3,3 2,2 2))
+    )")
+    expect( place.place_geometry.geom.size ).to eq 1
+    place.append_geom(geom)
+    place.reload
+    expect( place.place_geometry.geom.size ).to eq 2
+    expect( old_geom ).not_to eq place.place_geometry.geom
   end
 end

@@ -284,6 +284,20 @@ class Guide < ActiveRecord::Base
     ActsAsTaggableOn::Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
   end
 
+  def recent_photo_tags
+    tag_sql = <<-SQL
+      SELECT DISTINCT ON (tags.name) tags.*, taggings.id AS taggings_id
+      FROM tags
+        JOIN taggings ON taggings.tag_id = tags.id
+        JOIN guide_photos ON guide_photos.id = taggings.taggable_id
+        JOIN guide_taxa ON guide_taxa.id = guide_photos.guide_taxon_id
+      WHERE
+        taggable_type = 'GuidePhoto' AND
+        guide_taxa.guide_id = #{id}
+    SQL
+    ActsAsTaggableOn::Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
+  end
+
   def tags
     tag_sql = <<-SQL
       SELECT DISTINCT ON (tags.name) tags.*, taggings.id AS taggings_id

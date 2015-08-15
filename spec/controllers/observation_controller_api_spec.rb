@@ -562,6 +562,16 @@ shared_examples_for "an ObservationsController" do
       expect(response.headers["X-Per-Page"].to_i).to eq(30)
     end
 
+    it "should paginate" do
+      5.times { Observation.make! }
+      total_entries = Observation.count
+      get :index, format: :json, page: 1, per_page: 2
+      expect(response.headers["X-Total-Entries"].to_i).to eq(total_entries)
+      expect(response.headers["X-Page"].to_i).to eq(1)
+      expect(response.headers["X-Per-Page"].to_i).to eq(2)
+      expect(JSON.parse(response.body).length).to eq(2)
+    end
+
     it "should not include photo metadata" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank
@@ -944,6 +954,42 @@ shared_examples_for "an ObservationsController" do
         expect( ids ).not_to include o_outside.id
       end
     end
+
+    describe "should filter when quality_grade" do
+      before do
+        @research_grade = make_research_grade_observation
+        @needs_id = make_research_grade_candidate_observation
+        @casual = Observation.make!
+      end
+      it "research" do
+        get :index, format: :json, quality_grade: Observation::RESEARCH_GRADE
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).to include @research_grade.id
+        expect( ids ).not_to include @needs_id.id
+        expect( ids ).not_to include @casual.id
+      end
+      it "needs_id" do
+        get :index, format: :json, quality_grade: Observation::NEEDS_ID
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).not_to include @research_grade.id
+        expect( ids ).to include @needs_id.id
+        expect( ids ).not_to include @casual.id
+      end
+      it "casual" do
+        get :index, format: :json, quality_grade: Observation::CASUAL
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).not_to include @research_grade.id
+        expect( ids ).not_to include @needs_id.id
+        expect( ids ).to include @casual.id
+      end
+      it "research,needs_id" do
+        get :index, format: :json, quality_grade: "#{Observation::RESEARCH_GRADE},#{Observation::NEEDS_ID}"
+        ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+        expect( ids ).to include @research_grade.id
+        expect( ids ).to include @needs_id.id
+        expect( ids ).not_to include @casual.id
+      end
+    end
   end
 
   describe "taxon_stats" do
@@ -1197,6 +1243,12 @@ describe ObservationsController, "without authentication" do
       expect(response).to be_success
       get :index, :format => :json, :page => 101
       expect(response.status).to eq 401
+    end
+  end
+  describe "create" do
+    it "should be impossible" do
+      post :create, format: :json, observation: {species_guess: 'foo'}
+      expect( response.status ).to eq 401
     end
   end
 end

@@ -9,13 +9,23 @@ describe PostsController, "spam" do
     p
   }
 
-  it "should render 403 when the owner is a spammer" do
-    get :show, id: spammer_content.id
-    response.response_code.should == 403
+  describe "show" do
+    it "should render 403 when the owner is a spammer" do
+      get :show, id: spammer_content.id
+      expect( response.response_code ).to eq 403
+    end
+
+    it "should render 403 when content is flagged as spam" do
+      get :show, id: spammer_content.id
+      expect( response.response_code ).to eq 403
+    end
   end
 
-  it "should render 403 when content is flagged as spam" do
-    get :show, id: spammer_content.id
-    response.response_code.should == 403
+  describe "index" do
+    it "should render atom" do
+      expect {
+        get :index, login: spammer_content.user.login, format: :atom
+      }.not_to raise_error
+    end
   end
 end

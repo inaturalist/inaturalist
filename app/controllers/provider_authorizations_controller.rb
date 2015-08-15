@@ -102,7 +102,7 @@ class ProviderAuthorizationsController < ApplicationController
     existing_user = current_user
     existing_user ||= User.where("lower(email) = ?", email.downcase).first unless email.blank?
     if auth_info['provider'] == 'flickr' && !auth_info['uid'].blank?
-      existing_user ||= User.includes(:flickr_identity).where("flickr_identities.flickr_user_id = ?", auth_info['uid']).first
+      existing_user ||= User.joins(:flickr_identity).where("flickr_identities.flickr_user_id = ?", auth_info['uid']).first
     end
     
     # if logged in or user with this email exists, link provider to existing inat user

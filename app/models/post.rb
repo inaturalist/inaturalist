@@ -63,12 +63,12 @@ class Post < ActiveRecord::Base
   
   # Update the counter cache in users.
   def increment_user_counter_cache
-    self.user.increment!(:journal_posts_count)
+    self.user.increment!(:journal_posts_count) if parent_type == 'User' && published?
     true
   end
   
   def decrement_user_counter_cache
-    user.decrement!(:journal_posts_count) if user
+    user.decrement!(:journal_posts_count) if parent_type == 'User' && published?
     true
   end
   

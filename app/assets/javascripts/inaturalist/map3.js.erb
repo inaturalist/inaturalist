@@ -748,17 +748,17 @@ var appendValidParamsToURL = function( url, options ) {
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
   _.defaults( options, { validParams: [ 'color' ] });
-  return this.addLayerByEndpoint( "places", options.place.id, options );
+  return this.addElasticLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
   _.defaults( options, { validParams: [ 'color' ] });
-  return this.addLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
+  return this.addElasticLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
-  return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
+  return this.addElasticLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
 var cachedGBIFColors;
@@ -784,6 +784,18 @@ google.maps.Map.prototype.addGBIFLayer = function( options ) {
   var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
     options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
   return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
+};
+
+google.maps.Map.prototype.addElasticLayerByEndpoint = function( endpoint, endpointID, options ) {
+  // prevent the tilt feature, which cannot overlay tiles at higher zooms
+  this.setTilt(0);
+  var tileservers = elasticsearchTileservers( );
+  var options = options || { };
+  var tileURLs = _.map( tileservers , function( base ) {
+    return appendValidParamsToURL(
+      base + "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png", options );
+  });
+  return this.addLayerAndControl( { tiles: tileURLs }, options );
 };
 
 google.maps.Map.prototype.addLayerByEndpoint = function( endpoint, endpointID, options ) {
@@ -831,6 +843,12 @@ function elasticsearchTileservers( ) {
   return tileservers;
 }
 
+function intereactionsServer( ) {
+  var interactionTileURL = "<%= CONFIG.tile_servers.interactions %>";
+  if( interactionTileURL ) { return "//" + interactionTileURL; }
+  return elasticsearchTileservers()[0];
+}
+
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
@@ -843,7 +861,11 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
   var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
-    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2' ];
+    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',
+    'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
+    'rank', 'hrank', 'lrank', 'quality_grade', 'identifications', 'captive',
+    'iconic_taxa', 'q', 'search_on', 'out_of_range', 'has', 'iconic_taxa',
+    'project_ids', 'geoprivacy', 'on', 'created_on', 'viewer_id', 'reviewed' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -854,6 +876,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     }), {
     maxzoom: gridmaxzoom,
     interactivity: options.interactivity === false ? false : 'id',
+    interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
@@ -862,6 +885,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     interactivity: options.interactivity === false ? false : 'id',
     minzoom: gridmaxzoom + 1,
     gridminzoom: gridmaxzoom + 1,
+    interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled
   })
   // add a toggle for this layer to the overlay control, if it exists
@@ -887,7 +911,9 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
       interactivity = options.interactivity;
   if( options.interactivity ) {
     // windshaft needs the interactivity param to know what data to render
-    options.grids = _.map( tileURLs, function( l ) {
+    var interactionsURLs = options.interactionsURL ?
+      [ options.interactionsURL ] : tileURLs;
+    options.grids = _.map( interactionsURLs, function( l ) {
       return google.maps.Map.prototype.interactivityURL( l, options.interactivity );
     })
   }

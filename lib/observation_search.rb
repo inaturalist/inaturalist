@@ -79,7 +79,7 @@ module ObservationSearch
       # don't allow sub 0 page
       search_params[:page] = 1 if search_params[:page] <= 0
       if options[:user_preferences]
-        search_params[:per_page] = options[:user_preferences]["per_page"]
+        search_params[:per_page] ||= options[:user_preferences]["per_page"]
       end
       # per_page defaults to limit
       if !search_params[:limit].blank?
@@ -108,7 +108,6 @@ module ObservationSearch
       # elasticsearch index, or we have decided not to put in the index
       # because it would be more work to maintain than it would save
       # when searching. Remove empty values before checking
-      return false if search_params[:rank] == "leaves"
       ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
         search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
     end
@@ -120,6 +119,28 @@ module ObservationSearch
         return WillPaginate::Collection.new(1, 30, 0)
       end
       Observation.elastic_paginate(elastic_params)
+    end
+
+    def elastic_taxon_leaf_ids(elastic_params = {})
+      results = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: {
+          ancestors: {
+            terms: {
+              field: "taxon.ancestor_ids", size: 0 } },
+          taxa: {
+            terms: {
+              field: "taxon.id", size: 0 } }
+        })).response.aggregations
+      # make a hash of all ancestors and how many times they
+      # are used. This will include the observations' direct taxa
+      ancestors = Hash[ results.ancestors.buckets.map{ |b| [ b["key"], b["doc_count"] ] } ]
+      # remove the number of times they were direct taxa for an observation
+      results.taxa.buckets.each do |b|
+        ancestors[ b["key"] ] -= b["doc_count"]
+      end
+      # any 'ancestor' now with a count of 0 has only ever been used directly,
+      # not as an ancestor of another observation, i.e. leaf node
+      leaf_ids = ancestors.select{ |k,v| v == 0 }.keys
     end
 
     def query_params(params)
@@ -167,6 +188,9 @@ module ObservationSearch
           raise e unless e.message =~ /invalid byte sequence/
           taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
           p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
+        end
+        if !p[:observations_taxon]
+          p.delete(:taxon_name)
         end
       end
       if !p[:observations_taxon] && !p[:taxon_ids].blank?
@@ -249,9 +273,9 @@ module ObservationSearch
         p[:projects] = p[:projects].compact
         if p[:projects].blank?
           project_ids.each do |project_id|
-            p[:projects] << Project.find(Project.slugs_to_ids(project_id))
+            p[:projects] += Project.find(Project.slugs_to_ids(project_id))
           end
-          p[:projects] = p[:projects].compact
+          p[:projects] = p[:projects].flatten.compact
         end
       end
 
@@ -281,6 +305,7 @@ module ObservationSearch
     #
     def query(params = {})
       scope = self
+      viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
 
       place_id = if params[:place_id].to_i > 0
         params[:place_id]
@@ -290,8 +315,7 @@ module ObservationSearch
 
       # support bounding box queries
       if (!params[:swlat].blank? && !params[:swlng].blank? &&
-           !params[:nelat].blank? && !params[:nelng].blank?)
-        viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
+          !params[:nelat].blank? && !params[:nelng].blank?)
         scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng],
           :private => (viewer && viewer == params[:user_id]))
       elsif !params[:BBOX].blank?
@@ -319,8 +343,10 @@ module ObservationSearch
       scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
       scope = scope.order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by]
 
-      if Observation::QUALITY_GRADES.include?(params[:quality_grade])
-        scope = scope.has_quality_grade( params[:quality_grade])
+      quality_grades = params[:quality_grade].to_s.split(',')
+      # if Observation::QUALITY_GRADES.include?(params[:quality_grade])
+      if (quality_grades & Observation::QUALITY_GRADES).size > 0
+        scope = scope.has_quality_grade( params[:quality_grade] )
       end
 
       if taxon = params[:taxon]
@@ -493,8 +519,8 @@ module ObservationSearch
 
       if list = List.find_by_id(params[:list_id])
         if list.listed_taxa.count <= 2000
-          scope = scope.joins("JOIN listed_taxa ON listed_taxa.list_id = #{list.id}").
-            where("listed_taxa.taxon_id = observations.taxon_id", list)
+          scope = scope.joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
+            where("listed_taxa.list_id = #{list.id}")
         end
       end
 
@@ -502,6 +528,14 @@ module ObservationSearch
         scope = scope.has_taxon
       elsif params[:identified].noish?
         scope = scope.where("taxon_id IS NULL")
+      end
+
+      if viewer
+        if params[:reviewed] === "true"
+          scope = scope.reviewed_by(viewer)
+        elsif params[:reviewed] === "false"
+          scope = scope.not_reviewed_by(viewer)
+        end
       end
 
       scope = scope.not_flagged_as_spam if params[:filter_spam]

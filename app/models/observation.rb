@@ -82,9 +82,10 @@ class Observation < ActiveRecord::Base
     OBSCURED => :obscured_description, 
     PRIVATE => :private_description
   }
-  CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
-  QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
+  CASUAL = "casual"
+  NEEDS_ID = "needs_id"
+  QUALITY_GRADES = [CASUAL, NEEDS_ID, RESEARCH_GRADE]
 
   COMMUNITY_TAXON_SCORE_CUTOFF = (2.0 / 3)
   
@@ -209,9 +210,9 @@ class Observation < ActiveRecord::Base
     form
   ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
+  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 
   preference :community_taxon, :boolean, :default => nil
-  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
@@ -242,6 +243,9 @@ class Observation < ActiveRecord::Base
   has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
   has_many :sounds, :through => :observation_sounds
   has_many :observations_places, :dependent => :destroy
+  has_many :observation_reviews, :dependent => :destroy
+  has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
+    class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
   NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
@@ -309,7 +313,7 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_iconic_taxon
   
-  before_update :set_quality_grade
+  before_update :handle_id_please_on_update, :set_quality_grade
                  
   after_save :refresh_lists,
              :refresh_check_lists,
@@ -396,7 +400,8 @@ class Observation < ActiveRecord::Base
   }
   
   # Has_property scopes
-  scope :has_taxon, lambda { |taxon_id|
+  scope :has_taxon, lambda { |*args|
+    taxon_id = args.first
     if taxon_id.nil?
       where("taxon_id IS NOT NULL")
     else
@@ -428,8 +433,9 @@ class Observation < ActiveRecord::Base
   scope :has_photos, -> { where("observation_photos_count > 0") }
   scope :has_sounds, -> { where("observation_sounds_count > 0") }
   scope :has_quality_grade, lambda {|quality_grade|
-    quality_grade = '' unless QUALITY_GRADES.include?(quality_grade.to_s)
-    where("quality_grade = ?", quality_grade)
+    quality_grades = quality_grade.to_s.split(',') & Observation::QUALITY_GRADES
+    quality_grade = '' if quality_grades.size == 0
+    where("quality_grade IN (?)", quality_grades)
   }
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
@@ -594,6 +600,17 @@ class Observation < ActiveRecord::Base
     end
   }
   
+  scope :reviewed_by, lambda { |users|
+    joins(:observation_reviews).where("observation_reviews.user_id IN (?)", users)
+  }
+  scope :not_reviewed_by, lambda { |users|
+    users = [ users ] unless users.is_a?(Array)
+    user_ids = users.map{ |u| ElasticModel.id_or_object(u) }
+    joins("LEFT JOIN observation_reviews ON (observations.id=observation_reviews.observation_id)
+      AND observation_reviews.user_id IN (#{ user_ids.join(',') })").
+      where("observation_reviews.id IS NULL")
+  }
+
   def self.near_place(place)
     place = (Place.find(place) rescue nil) unless place.is_a?(Place)
     if place.swlat
@@ -608,7 +625,7 @@ class Observation < ActiveRecord::Base
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
-      { photos: [ :flags ] },
+      { photos: [ :flags, :user ] },
       :stored_preferences, :flags, :quality_metrics ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
@@ -708,8 +725,8 @@ class Observation < ActiveRecord::Base
 
   def timezone_object
     # returns nil if the time_zone has an invalid value
-    ActiveSupport::TimeZone.new(time_zone) ||
-      ActiveSupport::TimeZone.new(zic_time_zone)
+    (time_zone && ActiveSupport::TimeZone.new(time_zone)) ||
+      (zic_time_zone && ActiveSupport::TimeZone.new(zic_time_zone))
   end
 
   def timezone_offset
@@ -1113,18 +1130,19 @@ class Observation < ActiveRecord::Base
     score = quality_metric_score(metric)
     score.blank? || score >= 0.5
   end
-  
-  def research_grade?
+
+  def research_grade_candidate?
     return false unless georeferenced?
-    return false unless community_supported_id?
     return false unless quality_metrics_pass?
     return false unless observed_on?
     return false unless (photos? || sounds?)
     return false unless appropriate?
-    if root = (Taxon::LIFE || Taxon.roots.select("id, name, rank").find_by_name('Life'))
-      return false if community_taxon_id == root.id
-    end
     true
+  end
+  
+  def research_grade?
+    # community_supported_id? && research_grade_candidate?
+    quality_grade == RESEARCH_GRADE
   end
   
   def photos?
@@ -1135,14 +1153,8 @@ class Observation < ActiveRecord::Base
     sounds.exists?
   end
   
-  def casual_grade?
-    !research_grade?
-  end
-  
   def set_quality_grade(options = {})
-    if options[:force] || quality_grade_changed? || latitude_changed? || longitude_changed? || observed_on_changed? || taxon_id_changed?
-      self.quality_grade = get_quality_grade
-    end
+    self.quality_grade = get_quality_grade
     true
   end
   
@@ -1159,7 +1171,21 @@ class Observation < ActiveRecord::Base
   end
   
   def get_quality_grade
-    research_grade? ? RESEARCH_GRADE : CASUAL_GRADE
+    if !research_grade_candidate?
+      CASUAL
+    elsif voted_in_to_needs_id?
+      NEEDS_ID
+    elsif community_taxon_at_species_or_lower?
+      RESEARCH_GRADE
+    elsif voted_out_of_needs_id?
+      if community_taxon_below_family?
+        RESEARCH_GRADE
+      else
+        CASUAL
+      end
+    else
+      NEEDS_ID
+    end
   end
   
   def coordinates_obscured?
@@ -1219,10 +1245,10 @@ class Observation < ActiveRecord::Base
     return true if geoprivacy.blank? && !geoprivacy_changed?
     case geoprivacy
     when PRIVATE
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
+      obscure_coordinates unless coordinates_obscured?
       self.latitude, self.longitude = [nil, nil]
     when OBSCURED
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
+      obscure_coordinates unless coordinates_obscured?
     else
       unobscure_coordinates
     end
@@ -1236,10 +1262,10 @@ class Observation < ActiveRecord::Base
     taxon_geoprivacy = t ? t.geoprivacy(:latitude => lat, :longitude => lon) : nil
     case taxon_geoprivacy
     when OBSCURED
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
+      obscure_coordinates unless coordinates_obscured?
     when PRIVATE
       unless coordinates_private?
-        obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+        obscure_coordinates
         self.latitude, self.longitude = [nil, nil]
       end
     else
@@ -1248,7 +1274,7 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def obscure_coordinates(distance = M_TO_OBSCURE_THREATENED_TAXA)
+  def obscure_coordinates
     self.place_guess = obscured_place_guess
     return if latitude.blank? || longitude.blank?
     if latitude_changed? || longitude_changed?
@@ -1258,7 +1284,7 @@ class Observation < ActiveRecord::Base
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
     end
-    self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
+    self.latitude, self.longitude = Observation.random_neighbor_lat_lon(private_latitude, private_longitude)
     set_geom_from_latlon
   end
   
@@ -1293,6 +1319,13 @@ class Observation < ActiveRecord::Base
 
   def captive_cultivated
     !passes_quality_metric?(QualityMetric::WILD)
+  end
+
+  def reviewed_by?(viewer)
+    viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
+    return false unless viewer
+    ObservationReview.where(observation_id: id,
+      user_id: viewer.id, reviewed: true).exists?
   end
 
   ##### Community Taxon #########################################################
@@ -1794,22 +1827,18 @@ class Observation < ActiveRecord::Base
     Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
   
-  def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)
-    latrads = lat.to_f / DEGREES_PER_RADIAN
-    lonrads = lon.to_f / DEGREES_PER_RADIAN
-    max_distance = max_distance / radius
-    random_distance = Math.acos(rand * (Math.cos(max_distance) - 1) + 1)
-    random_bearing = 2 * Math::PI * rand
-    new_latrads = Math.asin(
-      Math.sin(latrads)*Math.cos(random_distance) + 
-      Math.cos(latrads)*Math.sin(random_distance)*Math.cos(random_bearing)
-    )
-    new_lonrads = lonrads + 
-      Math.atan2(
-        Math.sin(random_bearing)*Math.sin(random_distance)*Math.cos(latrads), 
-        Math.cos(random_distance)-Math.sin(latrads)*Math.sin(latrads)
-      )
-    [new_latrads * DEGREES_PER_RADIAN, new_lonrads * DEGREES_PER_RADIAN]
+  def self.random_neighbor_lat_lon(lat, lon)
+    cell_size = 0.2
+    half_cell = cell_size / 2
+    # how many significant digits in the obscured coordinates (e.g. 5)
+    precision = 10**5.0
+    range = ((-1 * precision)..precision)
+    # doing a floor with intervals of 0.2, then adding 0.1
+    # so our origin is the center of a 0.2 square
+    base_lat = lat - (lat % cell_size) + half_cell
+    base_lon = lon - (lon % cell_size) + half_cell
+    [ base_lat + ((rand(range) / precision) * half_cell),
+      base_lon + ((rand(range) / precision) * half_cell)]
   end
   
   def places
@@ -2308,6 +2337,64 @@ class Observation < ActiveRecord::Base
         csv << methods.map{ |m| item.send(m) }
       end
     end
+  end
+
+  def community_taxon_at_species_or_lower?
+    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
+  end
+
+  def community_taxon_at_family_or_lower?
+    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
+  end
+
+  def community_taxon_below_family?
+    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
+  end
+
+  def needs_id_vote_score
+    uvotes = get_upvotes(vote_scope: 'needs_id').size
+    dvotes = get_downvotes(vote_scope: 'needs_id').size
+    if uvotes == 0 && dvotes == 0
+      nil
+    elsif uvotes == 0
+      0
+    elsif dvotes == 0
+      1
+    else
+      uvotes.to_f / (uvotes + dvotes)
+    end
+  end
+
+  def voted_out_of_needs_id?
+    get_downvotes(vote_scope: 'needs_id').size > get_upvotes(vote_scope: 'needs_id').size
+  end
+
+  def voted_in_to_needs_id?
+    get_upvotes(vote_scope: 'needs_id').size > get_downvotes(vote_scope: 'needs_id').size
+  end
+
+  def needs_id?
+    quality_grade == NEEDS_ID
+  end
+
+  def casual?
+    quality_grade == CASUAL
+  end
+
+  def handle_id_please_on_update
+    return true unless id_please_changed? && !@id_please_handled
+    @id_please_handled = true
+    if id_please?
+      vote_by voter: user, vote: true, vote_scope: :needs_id
+    else
+      unvote voter: user, vote: true, vote_scope: :needs_id
+    end
+    quality_grade_will_change!
+  end
+
+  def flagged_with(flag, options)
+    quality_grade_will_change!
+    save
   end
 
 end

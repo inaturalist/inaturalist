@@ -147,10 +147,13 @@ class GuidesController < ApplicationController
       return
     end
     guide_taxa_from_params
+    @photo_tag = params['photo-tag']
 
     respond_to do |format|
       format.html do
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
+        GuideTaxon.preload_associations(@guide_taxa, [
+          { guide_photos: [ :photo, {taggings: :tag} ] } ])
         @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND taggings.context = 'tags' AND gt.guide_id = ?", @guide).
@@ -169,6 +172,14 @@ class GuidesController < ApplicationController
           @nav_tags[predicate] ||= []
           @nav_tags[predicate] << [tag, value, count]
         end
+
+        photo_tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
+          joins("JOIN guide_photos gp ON gp.id = taggings.taggable_id").
+          joins("JOIN guide_taxa gt ON gt.id = gp.guide_taxon_id").
+          where("taggings.taggable_type = 'GuidePhoto' AND taggings.context = 'tags' AND gt.guide_id = ?", @guide).
+          group("tags.name").
+          count
+        @photo_tags = photo_tag_counts.keys.sort
         
         ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide)
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
@@ -408,7 +419,7 @@ class GuidesController < ApplicationController
   end
 
   def add_color_tags
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL")
+    @guide_taxa = @guide.guide_taxa.joins(taxon: :colors).where("colors.id IS NOT NULL")
     @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
     @guide_taxa.each do |gt|
       gt.add_color_tags

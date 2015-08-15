@@ -94,7 +94,6 @@ en:
   about_life!: About Life!
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
-  about_the_quality_assessment: About the Quality Assessment
   about_the_taxobox_raquo: "About the taxobox &raquo;"
   about_these_licenses: About these licenses
   about_this_map: About This Map
@@ -637,6 +636,7 @@ en:
   committed: Committed
   committing: Committing...
   community_id: '<strong>Community</strong> ID: '
+  community_id_at_species_or_lower?: Community ID at species or lower?
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported ID?
   compare_with: Compare with
@@ -1553,6 +1553,7 @@ en:
   map_tooltip: Show map view
   map_for: Map for
   maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
+  mark_as_reviewed: Mark as reviewed
   matched_several_different_taxa: matched several different taxa
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
@@ -1621,6 +1622,10 @@ en:
   near_threatened: near threatened
   nearby_observations: Nearby Observations
   need_id_help?: Need ID help?
+  needs_id: needs ID
+  Needs_ID!: Needs ID!
+  needs_id_expandable_html: "<span class='full'>Needs </span>ID"
+  needs_to_be_identified: Needs to be identified
   new_announcement: New announcement
   new_assessment: New assessment
   new_check_list: New check list
@@ -1902,6 +1907,7 @@ en:
   only_show_for_species_subspecies_varieties_etc: Only show for species, subspecies, varieties, etc.
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
+  only_site_curators_can_turn_on_observation_aggregation: Only site curators can turn on project aggregation
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
   only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
@@ -1980,6 +1986,7 @@ en:
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
   photo_hosting_accounts: Photo hosting accounts
   photo_integration: Photo Integration
+  photo_type: Photo type
   photo_urls_repaired: Photo URLs repaired
   photos: Photos
   photos_or_sounds?: Photos or sounds?
@@ -2000,78 +2007,80 @@ en:
   place_deleted: Place deleted.
   place_geo:
           geo_planet_place_types:
-            Undefined: Undefined
-            Building: Building
-            Street_Segment: Street Segment
-            Nearby_Building: Nearby Building
-            Street: Street
-            Intersection: Intersection
-            Town: Town
-            State: State
-            Country: Country
-            Local_Administrative_Area: Local Administrative Area
-            Postal_Code: Postal Code
-            Island: Island
-            Airport: Airport
-            Drainage: Drainage
-            Land_Feature: Land Feature
-            Miscellaneous: Miscellaneous
-            Nationality: Nationality
-            Supername: Supername
-            Point_of_Interest: Point of Interest
-            Region: Region
-            Suburb: Suburb
-            Sports_Team: Sports Team
-            Colloquial: Colloquial
-            Zone: Zone
-            Historical_State: Historical State
-            Historical_County: Historical County
-            Continent: Continent
-            Time_Zone: Time Zone
-            Nearby_Intersection: Nearby Intersection
-            Estate: Estate
-            Historical_Town: Historical Town
             Aggregate: Aggregate
-            Open_Space: Open Space
-            Territory: Territory
-            County: County
-            undefined: undefined
-            building: building
-            street_segment: street segment
-            nearby_building: nearby building
-            street: street
-            intersection: intersection
-            town: town
-            state: state
-            country: country
-            local_administrative_area: local administrative area
-            postal_code: postal code
-            island: island
-            airport: airport
-            drainage: drainage
-            land_feature: land feature
-            miscellaneous: miscellaneous
-            nationality: nationality
-            supername: supername
-            point_of_interest: point of interest
-            region: region
-            suburb: suburb
-            sports_team: sports team
-            colloquial: colloquial
-            zone: zone
-            historical_state: historical state
-            historical_county: historical county
-            continent: continent
-            time_zone: time zone
-            nearby_intersection: nearby intersection
-            estate: estate
-            historical_town: historical town
             aggregate: aggregate
-            open_space: open_space
-            territory: territory
+            Airport: Airport
+            airport: airport
+            Building: Building
+            building: building
+            Colloquial: Colloquial
+            colloquial: colloquial
+            Continent: Continent
+            continent: continent
+            Country: Country
+            country: country
+            County: County
             county: county
+            District: District
+            district: district
+            Drainage: Drainage
+            drainage: drainage
+            Estate: Estate
+            estate: estate
+            Historical_County: Historical County
+            historical_county: historical county
+            Historical_State: Historical State
+            historical_state: historical state
+            Historical_Town: Historical Town
+            historical_town: historical town
+            Intersection: Intersection
+            intersection: intersection
+            Island: Island
+            island: island
+            Land_Feature: Land Feature
+            land_feature: land feature
+            Local_Administrative_Area: Local Administrative Area
+            local_administrative_area: local administrative area
+            Miscellaneous: Miscellaneous
+            miscellaneous: miscellaneous
+            Nationality: Nationality
+            nationality: nationality
+            Nearby_Building: Nearby Building
+            nearby_building: nearby building
+            Nearby_Intersection: Nearby Intersection
+            nearby_intersection: nearby intersection
+            Open_Space: Open Space
+            open_space: open_space
+            Point_of_Interest: Point of Interest
+            point_of_interest: point of interest
+            Postal_Code: Postal Code
+            postal_code: postal code
             Province: Province
             province: province
+            Region: Region
+            region: region
+            Sports_Team: Sports Team
+            sports_team: sports team
+            State: State
+            state: state
+            Street: Street
+            street: street
+            Street_Segment: Street Segment
+            street_segment: street segment
+            Suburb: Suburb
+            suburb: suburb
+            Supername: Supername
+            supername: supername
+            Territory: Territory
+            territory: territory
+            Time_Zone: Time Zone
+            time_zone: time zone
+            Town: Town
+            town: town
+            Undefined: Undefined
+            undefined: undefined
+            Zone: Zone
+            zone: zone
   place_guess: place guess
   place_imported: Place imported!
   place_must_have_a_boundary_defined: Place Must Have A Boundary Defined.
@@ -2173,6 +2182,10 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_aggregator_filter_error: |
+    Projects cannot enable automatic observation aggregation unless the
+    project is associated with a place of moderate size or it only allows
+    observations of specific taxa or taxa on a list
   project_assessments: Project Assessments
   project_assets: Project Assets
   project_cover: Project cover
@@ -2343,7 +2356,6 @@ en:
   research_grade_short_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_quality: Research quality
-  reserach_grade: Research Grade
   reset_your_password: Reset your password
   resolve: Resolve
   resolve_this_flag: Resolve this flag
@@ -2351,6 +2363,8 @@ en:
   resolved_by: Resolved by
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   results: results
+  review_verb: Review
+  reviewed: Reviewed
   roadmap: roadmap
   role: Role
   rotate_left: Rotate left
@@ -2604,6 +2618,7 @@ en:
   stats_title: Site Stats
   status: Status
   still_no_luck?: Still no luck?
+  still_needs_id?: Still needs ID?
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
@@ -2624,6 +2639,7 @@ en:
                             be able to unsubscribe from anything on the site by viewing it's
                             page.
   subscribe_to_this: Subscribe to this
+  subscribe_to_this_observation: Subscribe to this observation
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
     to %{x} from this %{y}.
@@ -2921,6 +2937,7 @@ en:
   updating: Updating...
   unprocessable: Unprocessable
   unpublish: Unpublish
+  unreview: Unreview
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
@@ -2954,6 +2971,8 @@ en:
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   US_states: US States
   usage_stats: Usage stats
+  use_name_as_a_placeholder: |
+    Use <span class='ac-placeholder'>"%{name}"</span> as a placeholder
   use_this_form_to_create_a_new: |
     Use this form to create a new draft taxonomic change describing a proposed
     split, merge or swap on active taxa to be later committed.
@@ -3460,12 +3479,6 @@ en:
         what_is_inaturalist?: What is %{site_name}?
         who_is_behind_inaturalist?: Who is behind %{site_name}?
         what_technologies_does_the_project_use?: What technologies and data sources does the project use?
-        welcome_message_help: |
-          Howdy. If you're just getting started with %{site_name}, check out
-          <%= link_to "Getting Started", :action => "getting_started" %> guide to tour some of the site's features. If you have a
-          question about the site, please peruse the FAQ below. If you're still
-          looking for answers, please 
-          <a href="http://groups.google.com/group/inaturalist" title="%{site_name} | Google Groups">post your question to our Google Group</a>.
         inaturalist_provides_a_place_to: |
           %{site_name} provides a place to record and organize nature findings,
           meet other nature enthusiasts, and learn about the natural world. It
@@ -3811,6 +3824,47 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help_html: |
+          <p>
+            The data quality assessment is a summary of an observation's accuracy. All
+            observations start as <strong>"casual"</strong> grade, and become
+            <strong>"needs ID"</strong> when
+          </p>
+          
+          <ul>
+            <li>the observation <strong>has a date</strong></li>
+            <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
+            <li>the observation <strong>has photos or sounds</strong></li>
+          </ul>
+          <p>
+            Observations become <strong>"research grade"</strong> when
+          </p>
+          <ul>
+            <li>
+              the %{site_name} <strong>community agrees with the observer's ID</strong>, where an "agreeing"
+              identification is one that matches exactly or is of a child taxon of the
+              observer's ID. For example, if Scott says it's a mammal and Ken-ichi
+              says it's <em>Homo sapiens</em>, then Ken-ichi agrees with Scott.
+            </li>
+          </ul>
+          <p>
+            Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or
+          </p>
+          <ul>
+            <li>
+              the community agrees the <strong>location doesn't looks
+              accurate</strong> (e.g. monkeys in the middle of the ocean,
+              hippos in office buildings, etc.)
+            </li>
+            <li>
+              the community agrees the <strong>organism isn't
+              wild/naturalized</strong> (e.g. captive or cultivated by humans
+              or intelligent space aliens)
+            </li>
+            <li>
+              the community agrees the observation no longer needs an ID <em>and</em> the community ID is above family
+            </li>
+          </ul>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
       user_stats:
         user_stats_desc: |
@@ -3958,12 +4012,11 @@ en:
           </p>
           <ol>
             <li class="readable description">
-              Your project is trusted (if you can see this it is)
+              Your project is associated with a small-to-mid-sized place (about
+              the size of Texas or Ukraine)
             </li>
             <li class="readable description">
-              Your project is associated with a small-to-mid-sized place (about
-              the size of Texas or Ukraine) OR your project only accepts
-              observations of certain taxa
+              OR your project only accepts observations of certain taxa
             </li>
           </ol>
         project_assets_desc_html: |

@@ -216,7 +216,10 @@ class PlacesController < ApplicationController
   
   def destroy
     errors = []
-    errors << "there are people using this place in their projects" if @place.projects.exists?
+    if @place.projects.exists? || 
+        ProjectObservationRule.where(ruler_type: 'Project', operand: @place, operator: "observed_in_place?").exists?
+      errors << "there are people using this place in their projects"
+    end
     errors << "there are people using this place in their guides" if @place.guides.exists?
     if errors.blank?
       @place.destroy

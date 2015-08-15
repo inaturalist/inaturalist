@@ -89,8 +89,8 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 .ui-tabs .ui-tabs-nav,
 .ui-tabs .ui-tabs-nav .ui-tabs-active{border-color:#eee;}
 .ui-tabs .ui-tabs-nav li a{padding:0.25em 0.5em;}
-#new_identification_form .species_guess{width:538px;}
-#new_identification_form textarea{width:538px;height:150px;}
+#new_identification_form .species_guess{width:580px;}
+#new_identification_form textarea, #new_comment #comment_body {width:615px;height:150px;}
 #identifications .agreers{padding-left:60px;}
 #identifications .identification_image{width:40px;text-align:center;}
 #identifications .identification_image img{max-width:40px;}
@@ -104,3 +104,6 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 .photoSelectorResults {float: left; width: 525px; padding-right: 10px; margin-right: 10px; border-right: 1px solid #eee;}
 .photo .synclink { float: right; }
 .photoSelector {border: 0 transparent; padding:0; min-width: 725px;}
+#comments_and_identifications { position: relative;}
+#marks { position: absolute; right: 0px; bottom: 8px;}
+#marks .button, #marks .inter {margin: 0 0 0 10px;}

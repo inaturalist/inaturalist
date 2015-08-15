@@ -58,5 +58,14 @@ describe PlaceGeometry, "validation" do
       p.place_geometry.destroy
       expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
     end
+
+    it "should remove observations_places inside old boundary but outside a new boundary" do
+      p = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+      o = Observation.make!(latitude: p.latitude, longitude: p.longitude)
+      expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
+      p.save_geom(GeoRuby::SimpleFeatures::Geometry.from_ewkt("MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))"))
+      Delayed::Worker.new.work_off
+      expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
+    end
   end
 end

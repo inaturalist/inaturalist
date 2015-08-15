@@ -705,14 +705,9 @@ class ListedTaxon < ActiveRecord::Base
     Rails.logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
       "(#{Time.now - start_time}s)"
   end
-  
-  def guide_taxon_cache_key
-    "guide_taxon_#{id}_#{taxon_id}"
-  end
-  
+
   def expire_caches
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_fragment(FakeView.listed_taxon_path(id))
     ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
@@ -722,7 +717,6 @@ class ListedTaxon < ActiveRecord::Base
     unless place_id.blank?
       ctrl.expire_page("/places/cached_guide/#{place_id}.html")
       ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
-      ctrl.expire_fragment(guide_taxon_cache_key)
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
     end

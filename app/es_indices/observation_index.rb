@@ -6,7 +6,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_project_ids
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:user,
+  scope :load_for_index, -> { includes(:user, :confirmed_reviews,
     { sounds: :user },
     { photos: :user },
     { taxon: [ :taxon_names ] },
@@ -81,18 +81,22 @@ class Observation < ActiveRecord::Base
         (num_identification_agreements < num_identification_disagreements),
       place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
       project_ids: (indexed_project_ids || project_observations.map(&:project_id)).compact.uniq,
+      reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
       taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,
       field_values: observation_field_values.uniq.map(&:as_indexed_json),
-      photos: photos.map(&:as_indexed_json),
+      photos: observation_photos.sort_by{ |op| op.position || op.id }.
+        map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
         ElasticModel.point_latlon(private_latitude, private_longitude) : nil,
-      geojson: ElasticModel.geom_geojson(geom),
-      private_geojson: ElasticModel.geom_geojson(private_geom)
+      geojson: (latitude && longitude) ?
+        ElasticModel.point_geojson(latitude, longitude) : nil,
+      private_geojson: (private_latitude && private_longitude) ?
+        ElasticModel.point_geojson(private_latitude, private_longitude) : nil
     }
   end
 
@@ -165,7 +169,11 @@ class Observation < ActiveRecord::Base
       end
       search_wheres["multi_match"] = { query: q, operator: "and", fields: fields }
     end
-    search_wheres["user.id"] = p[:user] if p[:user]
+    if p[:user]
+      search_wheres["user.id"] = p[:user]
+    elsif p[:user_id]
+      search_wheres["user.id"] = p[:user_id]
+    end
     search_wheres["taxon.rank"] = p[:rank] if p[:rank]
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
@@ -193,6 +201,7 @@ class Observation < ActiveRecord::Base
     if p[:projects].blank? && !p[:project].blank?
       p[:projects] = [ p[:project] ]
     end
+    p[:projects] = [p[:projects]].flatten if p[:projects]
     extra = p[:extra].to_s.split(',')
     if !p[:projects].blank?
       search_wheres["project_ids"] = p[:projects].to_a
@@ -210,7 +219,8 @@ class Observation < ActiveRecord::Base
       search_wheres["captive"] = p[:captive]
     end
     if p[:quality_grade] && p[:quality_grade] != "any"
-      search_wheres["quality_grade"] = p[:quality_grade]
+      quality_grades = p[:quality_grade].to_s.split(',') & Observation::QUALITY_GRADES
+      search_wheres["quality_grade"] = quality_grades
     end
     case p[:identifications]
     when "most_agree"
@@ -233,7 +243,7 @@ class Observation < ActiveRecord::Base
         location: {
           lat: p[:lat], lon: p[:lng] } } }
     end
-    search_wheres[:place_ids] = p[:place] if p[:place]
+    search_wheres["place_ids"] = p[:place] if p[:place]
     # make sure the photo has a URL, that will prevent images that are
     # still processing from being returned by has[]=photos requests
     search_filters << { exists: { field: "photos.url" } } if p[:with_photos]
@@ -258,6 +268,15 @@ class Observation < ActiveRecord::Base
         search_wheres["taxon.iconic_taxon_id"] = p[:iconic_taxa]
       end
     end
+
+    if current_user
+      if p[:reviewed] === "true"
+        search_wheres["reviewed_by"] = current_user.id
+      elsif p[:reviewed] === "false"
+        search_filters << { not: { term: { reviewed_by: current_user.id } } }
+      end
+    end
+
     if p[:d1] || p[:d2]
       p[:d2] = Time.now if p[:d2] && p[:d2] > Time.now
       search_filters << { or: [
@@ -310,6 +329,17 @@ class Observation < ActiveRecord::Base
       search_filters << { exists: {field: :taxon} }
     elsif p[:identified].noish?
       search_filters << { 'not': { exists: {field: :taxon} } }
+    end
+
+    unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
+      case p[:geoprivacy]
+      when Observation::OPEN
+        search_filters << { not: { exists: { field: :geoprivacy } } }
+      when "obscured_private"
+        search_wheres["geoprivacy"] = Observation::GEOPRIVACIES
+      else
+        search_wheres["geoprivacy"] = p[:geoprivacy]
+      end
     end
 
     { where: search_wheres,

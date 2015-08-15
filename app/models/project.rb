@@ -64,7 +64,7 @@ class Project < ActiveRecord::Base
   def aggregation_preference_allowed?
     return true unless prefers_aggregation?
     return true if aggregation_allowed?
-    errors.add(:base, "cannot enable automatic observation aggregation with inadequate filters")
+    errors.add(:base, I18n.t(:project_aggregator_filter_error))
     true
   end
   
@@ -108,7 +108,7 @@ class Project < ActiveRecord::Base
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
-      :url => "#{ CONFIG.s3_host }/:class/:id-cover.:extension",
+      :url => "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
@@ -597,7 +597,6 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
-    return false unless trusted?
     return true if place && place.bbox_area < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
     false
@@ -612,10 +611,12 @@ class Project < ActiveRecord::Base
     added = 0
     fails = 0
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
-    elastic_options = {}
-    elastic_options[:filters] = [{ range: { updated_at: { gt: last_aggregated_at } } }] unless last_aggregated_at.nil?
     params = observations_url_params.merge(per_page: 200, not_in_project: id)
+    # making sure we only look observations opdated since the last aggregation
+    params[:updated_since] = last_aggregated_at.to_s unless last_aggregated_at.nil?
+    list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
+    total_entries = nil
     while true
       if options[:pidfile]
         unless File.exists?(options[:pidfile])
@@ -630,16 +631,24 @@ class Project < ActiveRecord::Base
           raise ProjectAggregatorAlreadyRunning, msg
         end
       end
-      observations = if params[:list_id]
-        Observation.query(params).page(page)
+      # the list filter will be ignored if the count is over 2000,
+      # so we might as well use the faster ES search in that case
+      observations = if list && list.listed_taxa.count <= 2000
+        # using cached total_entries to avoid many COUNT(*)s on slow queries
+        Observation.query(params).paginate(page: page, total_entries: total_entries,
+          per_page: observations_url_params[:per_page])
       else
-        Observation.elastic_query(params.merge(page: page), elastic_options)
+        # setting list_id to nil because we would have used the DB above
+        # if we could have, and ES can't handle list_ids
+        Observation.elastic_query(params.merge(page: page, list_id: nil))
       end
       break if observations.blank?
+      # caching total entries since it should be the same for each page
+      total_entries = observations.total_entries if page === 1
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
-        po = ProjectObservation.new(project: self, observation: o)
-        if po.save
+        po = ProjectObservation.where(project: self, observation: o).first_or_create
+        if po && !po.errors.any?
           added += 1
         else
           fails += 1

@@ -142,6 +142,7 @@ module Logstasher
         controller_action: payload[:controller] + "::" + payload[:action],
         method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
         params: saved_params,
+        param_keys: saved_params.keys,
         format: format,
         view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : 0.0,
         db_runtime: payload[:db_runtime] ? payload[:db_runtime].round(4) : 0.0,

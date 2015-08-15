@@ -414,3 +414,8 @@ h3 .externallink { font-size: 70%; }
 }
 #observations {max-height: 251px; overflow-y: auto;overflow-x: hidden;}
 h2 .named_ancestor {font-size: 80%;}
+
+#pageheader .ac-chooser {
+  display: block;
+  float: left;
+}

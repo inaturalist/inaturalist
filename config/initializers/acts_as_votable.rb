@@ -2,7 +2,8 @@ require 'has_subscribers'
 module ActsAsVotable
   class Vote
     include HasSubscribers
-    notifies_owner_of :votable, notification: "activity"
+    notifies_owner_of :votable, notification: "activity", 
+      queue_if: lambda { |record| record.vote_scope.blank? }
     auto_subscribes :user, :to => :votable
     alias_method :user, :voter
     def user_id

@@ -118,6 +118,15 @@ shared_examples_for "a TaxaController" do
       expect( names.first ).to eq t.name
     end
 
+    it "should not return exact results of inactive taxa" do
+      t = Taxon.make!(name: "Octopus", rank: "genus", is_active: true)
+      get :search, format: :json, q: "octopus"
+      expect( JSON.parse(response.body).first["name"] ).to eq t.name
+      t.update_attribute(:is_active, false)
+      get :search, format: :json, q: "octopus"
+      expect( JSON.parse(response.body) ).to be_empty
+    end
+
     # unfortunately i don't really know how to test this b/c it's not clear
     # how elasticsearch sorts its results
     it "should place an exact match first even if it's not on the first page of results"

@@ -63,7 +63,31 @@ namespace :inaturalist do
                  "colors", "maptype_for_places", "edit_license",
                  "kml_file_size_error", "input_taxon", "output_taxon",
                  "date_added", "observation_date", "date_picker",
-                 "views.observations.export.taking_a_while" ]
+                 "views.observations.export.taking_a_while",
+                 'ranks.kingdom',
+                 'ranks.phylum',
+                 'ranks.subphylum',
+                 'ranks.superclass',
+                 'ranks.class',
+                 'ranks.subclass',
+                 'ranks.superorder',
+                 'ranks.order',
+                 'ranks.suborder',
+                 'ranks.superfamily',
+                 'ranks.family',
+                 'ranks.subfamily',
+                 'ranks.supertribe',
+                 'ranks.tribe',
+                 'ranks.subtribe',
+                 'ranks.genus',
+                 'ranks.genushybrid: Géner',
+                 'ranks.species',
+                 'ranks.hybrid',
+                 'ranks.subspecies',
+                 'ranks.variety',
+                 'ranks.form',
+                 'ranks.leaves'
+                ]
     # look for other keys in all javascript files
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
       next unless File.file?( f )

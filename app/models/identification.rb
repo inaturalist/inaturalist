@@ -16,7 +16,8 @@ class Identification < ActiveRecord::Base
   
   before_create :update_other_identifications
   after_create  :update_observation, 
-                :increment_user_counter_cache
+                :increment_user_counter_cache,
+                :create_observation_review
                 
   after_save    :update_obs_stats, 
                 :update_curator_identification,
@@ -32,6 +33,7 @@ class Identification < ActiveRecord::Base
                  :decrement_user_counter_cache, 
                  :revisit_curator_identification, 
                  :set_last_identification_as_current,
+                 :remove_automated_observation_reviews,
                :on => :destroy
   
   include Shared::TouchesObservationModule
@@ -136,7 +138,6 @@ class Identification < ActiveRecord::Base
       end
       attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
       ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
-    else
     end
     observation.skip_identifications = true
     observation.identifications.reload
@@ -201,7 +202,17 @@ class Identification < ActiveRecord::Base
     Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
     true
   end
-  
+
+  def create_observation_review
+    ObservationReview.where(observation_id: observation_id,
+      user_id: user_id).first_or_create.touch
+  end
+
+  def remove_automated_observation_reviews
+    ObservationReview.where(observation_id: observation_id,
+      user_id: user_id, user_added: false).destroy_all
+  end
+
   # /Callbacks ##############################################################
   
   #

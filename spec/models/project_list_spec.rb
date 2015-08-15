@@ -43,7 +43,7 @@ describe ProjectList, "refresh_with_observation" do
   it "should add taxa from research grade observations added to the project" do
     p = Project.make!
     pl = p.project_list
-    t1 = Taxon.make!
+    t1 = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t1)
     pu = ProjectUser.make!(:user => o.user, :project => p)
     po = ProjectObservation.make!(:project => p, :observation => o)

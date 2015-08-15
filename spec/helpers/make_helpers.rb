@@ -52,6 +52,17 @@ module MakeHelpers
     o
   end
 
+  def make_research_grade_candidate_observation(options = {})
+    options = {
+      :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
+    }.merge(options)
+    o = Observation.make!(options)
+    o.photos << LocalPhoto.make!(:user => o.user)
+    Observation.set_quality_grade(o.id)
+    o.reload
+    o
+  end
+
   def make_mobile_observation(options = {})
     options = {
       :user_agent => "iNaturalist/2.3.0 (iOS iPhone OS 7.0.4 iPhone)"

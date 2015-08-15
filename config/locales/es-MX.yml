@@ -3697,7 +3697,7 @@ es-MX:
   you_tried_to_do_something_you_shouldnt: |-
     Intentaste hacer algo que no deberías, como editar
     la información de alguien más sin permiso. No seas malvado.
-  you_unlinked_your_provider_account: Desvinculaste tu cuenta de tu %{proveedor}
+  you_unlinked_your_provider_account: Desvinculaste tu cuenta de tu %{provider}
   youve_been_invited_to_join_this_project_html: Has sido invitado a unirte a este
     <a href="%{url}" class="readmore">proyecto </a>
   youve_joined_the_x_project: Te has unido al proyecto %{project_invitation} y tus
@@ -3910,7 +3910,7 @@ es-MX:
     help:
       index:
         welcome_message_html: Hola, si eres nuevo en %{site_name}, revisa la página
-          <%= link_to "empezando ", :action => "empezando " %>para que conozcas algunas
+          empezando para que conozcas algunas
           de las características del sitio. Si tienes alguna pregunta sobre el sitio,
           échale un ojo a las preguntas frecuentes descritas abajo. Si no encuentras
           la respuesta a tus preguntas, incluye tu consulta en nuestro <a href="http://groups.google.com/group/inaturalist"
@@ -3919,12 +3919,6 @@ es-MX:
         who_is_behind_inaturalist?: ¿Quién está detrás de %{site_name}?
         what_technologies_does_the_project_use?: ¿Qué tecnologías y fuentes de datos
           utiliza este proyecto?
-        welcome_message_help: Hola, si eres nuevo en %{site_name}, revisa la página
-          <%= link_to "empezando ", :action => "empezando " %>para que conozcas algunas
-          de las características del sitio. Si tienes alguna pregunta sobre el sitio,
-          échale un ojo a las preguntas frecuentes descritas abajo. Si no encuentras
-          la respuesta a tus preguntas, incluye tu consulta en nuestro <a href="http://groups.google.com/group/inaturalist"
-          title="%{site_name} | Google Groups">Grupo Google</a>.
         inaturalist_provides_a_place_to: '%{site_name} es un espacio para registrar
           y organizar observaciones de la naturaleza, para conocer a otros entusiastas
           y para aprender sobre la naturaleza de México y el mundo. Este espacio promueve
@@ -4239,6 +4233,38 @@ es-MX:
           podrán ver las coordenadas oscurecidas de cualquier observación en el proyecto
           y esto implica que tu estás de acuerdo a los <a href="%{url}" target="_blank">términos</a>
           del proyecto.
+        quality_assessment_help_html: |
+          <p>
+            La evaluación de la calidad de los datos es un resumen de la presición de
+            una observación. Todas las observaciones comienzan con el grado de
+            <strong>"casual"</strong> y alcanzan el grado de
+            <strong>"investigación"</strong> cuando:
+          </p>
+          <ul>
+            <li>
+              La comunidad de %{site_name} <strong> está de acuerdo con la
+              identificación de un observador</strong>, toda vez que una identificación
+              "en acuerdo" concuerde exactamente o es un clase o especie hijo de la
+              identificación del observador. Por ejemplo, si Scott dice que es un
+              mamífero y Ken-ichi dice que es un <em>Homo sapiens</em>, entonces Ken-
+              ichi está de acuerdo con Scott.
+            </li>
+            <li>La observación <strong>tiene una fecha</strong></li>
+            <li>La observación <strong>está georeferenciada</strong> (es decir, tiene coordenadas de latitud y longitud)</li>
+            <li>La observación <strong>tiene una foto</strong></li>
+          </ul>
+          <p>Las observaciones volverán al grado "casual" si las anteriores condiciones no se cunplen o:</p>
+          <ul>
+            <li>
+              La comunidad de %{site_name} acuerda que la <strong>ubicación no parece ser acertada</strong> (es decir, monos en medio del océano, hipopótamos en edificios, etc.)
+            </li>
+            <li>
+              La comunidad de %{site_name} acuerda que el
+              <strong>organismo no estaba en cautiverio o fue cultivado(a) </strong> (no
+              estaba en un jardín, zoológico, acuario o alguna otra situación en la que
+              sólo estaba presente porque los seres humanos la destinarón a estar allí)
+            </li>
+          </ul>
         score_desc: puntuación = número acumulado / (conteo acumulado + conteo de
           desacuerdos  + desacuerdos de ancestros)
       user_stats:

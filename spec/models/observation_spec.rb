@@ -293,7 +293,7 @@ describe Observation do
     describe "quality_grade" do
       it "should default to casual" do
         o = Observation.make!
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::CASUAL
       end
     end
 
@@ -549,38 +549,48 @@ describe Observation do
     end
   
     describe "quality_grade" do
-      before(:all) do
-        # some identification deletion callbacks need to happen after the transaction is complete
-        DatabaseCleaner.strategy = :truncation
-      end
 
-      after(:all) do
-        DatabaseCleaner.strategy = :transaction
-      end
+      # some identification deletion callbacks need to happen after the transaction is complete
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
     
       it "should become research when it qualifies" do
-        o = Observation.make!(:taxon => Taxon.make!, :latitude => 1, :longitude => 1)
+        o = Observation.make!(:taxon => Taxon.make!(rank: 'species'), latitude: 1, longitude: 1)
         i = Identification.make!(:observation => o, :taxon => o.taxon)
         o.photos << LocalPhoto.make!(:user => o.user)
         o.reload
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::CASUAL
         o.update_attributes(:observed_on_string => "yesterday")
+        o.reload
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
       end
+
+      it "should be research grade if community taxon at family or lower" do
+        o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'species'))
+        Identification.make!(observation: o, taxon: o.taxon)
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+      it "should not be research grade if community taxon above family" do
+        o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'order'))
+        Identification.make!(observation: o, taxon: o.taxon)
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
     
-      it "should become casual when taxon changes" do
+      it "should become needs ID when taxon changes" do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         new_taxon = Taxon.make!
         o.update_attributes(:taxon => new_taxon)
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
     
       it "should become casual when date removed" do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         o.update_attributes(:observed_on_string => "")
-        expect(o.quality_grade).to eq Observation::CASUAL_GRADE
+        expect(o.quality_grade).to eq Observation::CASUAL
       end
 
       it "should be research when community taxon is obs taxon and owner agrees" do
@@ -599,11 +609,11 @@ describe Observation do
         expect(o).to be_research_grade
       end
 
-      it "should be casual if no identifications" do
+      it "should be needs ID if no identifications" do
         o = make_research_grade_observation
         o.identifications.destroy_all
         o.reload
-        expect(o).to be_casual_grade
+        expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
 
       it "should not be research if the community taxon is Life" do
@@ -614,21 +624,148 @@ describe Observation do
         i2 = Identification.make!(:observation => o, :taxon => @Plantae)
         o.reload
         expect(o.community_taxon).to eq @Life
-        expect(o).to be_casual_grade
+        expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
 
-      it "should not be research if flagged" do
+      it "should be casual if flagged" do
         o = make_research_grade_observation
         Flag.make!(:flaggable => o, :flag => Flag::SPAM)
         o.reload
-        expect(o).to be_casual_grade
+        expect( o ).not_to be_appropriate
+        expect( o.quality_grade ).to eq Observation::CASUAL
       end
 
-      it "should not be research if photos flagged" do
+      it "should be casual if photos flagged" do
         o = make_research_grade_observation
         Flag.make!(:flaggable => o.photos.first, :flag => Flag::COPYRIGHT_INFRINGEMENT)
         o.reload
-        expect(o).to be_casual_grade
+        expect(o.quality_grade).to eq Observation::CASUAL
+      end
+
+      # needs ID
+      it "should be research grade if community ID at species or lower and research grade candidate" do
+        o = make_research_grade_candidate_observation
+        t = Taxon.make!(rank: Taxon::SPECIES)
+        2.times { Identification.make!(observation: o, taxon: t)}
+        expect( o.community_taxon.rank ).to eq Taxon::SPECIES
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      it "should be casual if community ID at species or lower and not research grade candidate" do
+        o = Observation.make!
+        t = Taxon.make!(rank: Taxon::SPECIES)
+        2.times { Identification.make!(observation: o, taxon: t)}
+        expect( o.community_taxon.rank ).to eq Taxon::SPECIES
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be needs ID if elligible" do
+        o = make_research_grade_candidate_observation
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      it "should be casual if voted out" do
+        o = Observation.make!
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should not notify the observer if voted out" do
+        # ,queue_if: lambda { |record| record.vote_scope.blank? }
+        o = Observation.make!
+        without_delay do
+          expect {
+            o.downvote_from User.make!, vote_scope: 'needs_id'
+          }.not_to change(Update, :count)
+        end
+        o.reload
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be casual by default" do
+        o = Observation.make!
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be casual if verifiable but voted out and community taxon above family" do
+        o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::ORDER))
+        Identification.make!(observation: o, taxon: o.taxon)
+        o.reload
+        expect( o.community_taxon.rank ).to eq Taxon::ORDER
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be research grade if verifiable but voted out and community taxon below family" do
+        o = make_research_grade_candidate_observation
+        t = Taxon.make!(rank: Taxon::GENUS)
+        2.times do
+          Identification.make!(taxon: t, observation: o)
+        end
+        o.reload
+        expect( o.community_taxon ).to eq t
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      it "should be research grade if verifiable but voted out and community taxon below family but above genus" do
+        o = make_research_grade_candidate_observation
+        t = Taxon.make!(rank: Taxon::SUBFAMILY)
+        2.times do
+          Identification.make!(taxon: t, observation: o)
+        end
+        o.reload
+        expect( o.community_taxon ).to eq t
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      it "should be needs ID if verifiable and voted back in" do
+        o = make_research_grade_candidate_observation
+        o.downvote_from User.make!, vote_scope: 'needs_id'
+        o.upvote_from User.make!, vote_scope: 'needs_id'
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      describe "with id_please" do
+        it "should be needs_id if user checked id_please on update" do
+          o = make_research_grade_observation
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          o.update_attributes(id_please: true)
+          o.reload
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        
+        it "should add vote for needs_id if user checks id_please on update" do
+          o = make_research_grade_observation
+          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
+          o.update_attributes(id_please: true)
+          o.reload
+          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 1
+        end
+
+        it "should not add vote for needs_id if user checks id_please on create" do
+          o = make_research_grade_observation(id_please: true)
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
+        end
+      end
+
+      it "should work with query" do
+        o_needs_id = make_research_grade_candidate_observation
+        o_needs_id.reload
+        o_verified = make_research_grade_observation
+        o_casual = Observation.make!
+        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).to include o_needs_id
+        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_verified
+        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_casual
+        expect( Observation.query(quality_grade: Observation::RESEARCH_GRADE) ).to include o_verified
+        expect( Observation.query(quality_grade: Observation::CASUAL) ).to include o_casual
       end
     end
   
@@ -1122,6 +1259,19 @@ describe Observation do
       expect {
         o = Observation.on("2013-02-30").all
       }.not_to raise_error
+    end
+
+    it "scopes by reviewed_by" do
+      o = Observation.make!
+      u = User.make!
+      ObservationReview.make!(observation: o, user: u)
+      expect( Observation.reviewed_by(u).first ).to eq o
+    end
+
+    it "scopes by not_reviewed_by" do
+      o = Observation.make!
+      u = User.make!
+      expect( Observation.not_reviewed_by(u).count ).to eq Observation.count
     end
 
     describe :in_projects do
@@ -1630,6 +1780,19 @@ describe Observation do
       observations = Observation.query(:user => r.user, :quality_grade => Observation::RESEARCH_GRADE).all
       expect(observations).to include(r)
       expect(observations).not_to include(c)
+    end
+
+    it "should filter by comma-separated quality grades" do
+      r = make_research_grade_observation
+      expect( r ).to be_research_grade
+      n = make_research_grade_candidate_observation
+      expect( n ).to be_needs_id
+      u = Observation.make!(:user => r.user)
+      expect( u.quality_grade ).to eq Observation::CASUAL
+      observations = Observation.query(:user => r.user, :quality_grade => "#{Observation::RESEARCH_GRADE},#{Observation::NEEDS_ID}").all
+      expect(observations).to include(r)
+      expect(observations).to include(n)
+      expect(observations).not_to include(u)
     end
 
     it "should filter by taxon_ids[]" # except that it won't b/c multiple descendant taxon clauses is going to get rough fast
@@ -2705,6 +2868,54 @@ describe Observation do
       o.interpolate_coordinates
       expect( o.latitude.to_f ).to be > 0.5
       expect( o.longitude.to_f ).to be > 0.5
+    end
+  end
+
+  describe "timezone_object" do
+    it "returns nil when given nil" do
+      o = Observation.make!( )
+      o.update_column(:time_zone, nil)
+      o.update_column(:zic_time_zone, nil)
+      expect( o.time_zone ).to be nil
+      expect( o.timezone_object ).to be nil
+    end
+  end
+
+  describe "reviewed_by?" do
+    it "knows who it was reviewed by" do
+      o = Observation.make!
+      expect( o.reviewed_by?( o.user ) ).to be false
+      r = ObservationReview.make!(observation: o, user: o.user)
+      expect( o.reviewed_by?( o.user ) ).to be true
+    end
+
+    it "doesn't count unreviews" do
+      o = Observation.make!
+      expect( o.reviewed_by?( o.user ) ).to be false
+      r = ObservationReview.make!(observation: o, user: o.user, reviewed: false)
+      expect( o.reviewed_by?( o.user ) ).to be false
+    end
+  end
+
+  describe "random_neighbor_lat_lon" do
+    it "randomizes values within a 0.2 degree square" do
+      lat_lons = [ [ 0, 0 ], [ 0.001, 0.001 ], [ 0.199, 0.199 ] ]
+      values = [ ]
+      100.times do
+        lat_lons.each do |ll|
+          rand_ll = Observation.random_neighbor_lat_lon( ll[0], ll[1] )
+          # random values should be in range
+          expect(rand_ll[0]).to be_between(0, 0.2)
+          expect(rand_ll[1]).to be_between(0, 0.2)
+          # values should be different from their original
+          expect(rand_ll[0]).not_to be(ll[0])
+          expect(rand_ll[1]).not_to be(ll[1])
+          values += rand_ll
+        end
+      end
+      average = values.inject(:+) / values.size.to_f
+      # we expect the center of the cluster to be around 0.1, 0.1
+      expect(average).to be_between(0.095, 0.105)
     end
   end
 

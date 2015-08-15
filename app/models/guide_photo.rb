@@ -11,6 +11,8 @@ class GuidePhoto < ActiveRecord::Base
 
   accepts_nested_attributes_for :photo
 
+  acts_as_taggable
+
   def to_s
     "<GuidePhoto #{id}>"
   end

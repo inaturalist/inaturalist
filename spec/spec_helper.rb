@@ -127,6 +127,8 @@ def stub_config(options = {})
   end
 end
 
+# Turn on elastic indexing for certain models. We do this selectively b/c
+# updating ES slows down the specs.
 def enable_elastic_indexing(*args)
   classes = [args].flatten
   classes.each do |klass|
@@ -137,6 +139,8 @@ def enable_elastic_indexing(*args)
   end
 end
 
+# Turn off elastic indexing for certain models. Make sure to do this after
+# specs if you used enable_elastic_indexing
 def disable_elastic_indexing(*args)
   classes = [args].flatten
   classes.each do |klass|

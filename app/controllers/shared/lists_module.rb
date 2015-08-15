@@ -232,7 +232,7 @@ module Shared::ListsModule
           else
             lt.occurrence_status_level
           end
-          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(lt.primary_establishment_means.to_s.downcase)
+          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means.to_s.downcase)
             establishment_means.downcase
           else
             lt.establishment_means
@@ -507,7 +507,9 @@ private
     page = params[:page].to_i
     page = 1 if page == 0
     per_page = params[:per_page].to_i
-    per_page = 45 if per_page <= 0
+    if per_page <= 0
+      per_page = request.format.json? ? 200 : 45
+    end
     per_page = 200 if per_page > 200
     find_options = {
       :page => page,
