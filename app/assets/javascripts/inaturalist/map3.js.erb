@@ -951,9 +951,9 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
       return oldFeature( pos, callback );
     }
     oldFeature( { x: pos.x, y: pos.y + 13 }, function( f ) {
-      if( f && f.mappable === "true" && !f.private_location ) { return callback( f ); }
+      if( f && f.geoprivacy != "obscured" ) { return callback( f ); }
       oldFeature( pos, function( f ) {
-        if( f && f.mappable === "true" && !f.private_location ) { return callback( ); }
+        if( f && f.geoprivacy != "obscured" ) { return callback( ); }
         callback( f );
       });
     });
