@@ -2,6 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
+  before_filter :decide_if_skipping_preloading, only: [ :index ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
@@ -111,7 +112,9 @@ class ObservationsController < ApplicationController
       # Get the cached filtered observations
       @observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
         obs = Observation.page_of_results(search_params)
-        Observation.preload_for_component(obs, logged_in: !!current_user)
+        unless @skipping_preloading
+          Observation.preload_for_component(obs, logged_in: !!current_user)
+        end
         obs
       end
     else
@@ -125,7 +128,9 @@ class ObservationsController < ApplicationController
         @iconic_taxa ||= []
         determine_if_map_should_be_shown(search_params)
         prepare_map_params
-        Observation.preload_for_component(@observations, logged_in: logged_in?)
+        unless @skipping_preloading
+          Observation.preload_for_component(@observations, logged_in: logged_in?)
+        end
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
           return render_observations_partial(partial)
@@ -212,22 +217,28 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
-    @prev = @previous
-    @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
-    @quality_metrics = @observation.quality_metrics.includes(:user)
-    if logged_in?
-      @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
-      @project_invitations = @observation.project_invitations.limit(100).to_a
-      @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
+    unless @skipping_preloading
+      @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
+      @prev = @previous
+      @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
+      @quality_metrics = @observation.quality_metrics.includes(:user)
+      if logged_in?
+        @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
+        @project_invitations = @observation.project_invitations.limit(100).to_a
+        @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
+      end
+      @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
     end
-    @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
-    
     respond_to do |format|
       format.html do
+        if params[:partial] == "cached_component"
+          return render(partial: "cached_component",
+            object: @observation, layout: false)
+        end
+
         # always display the time in the zone in which is was observed
         Time.zone = @observation.user.time_zone
-                
+
         @identifications = @observation.identifications.includes(:user, :taxon => :photos)
         @current_identifications = @identifications.select{|o| o.current?}
         @owners_identification = @current_identifications.detect do |ident|
@@ -242,7 +253,7 @@ class ObservationsController < ApplicationController
             ident.user_id == current_user.id
           end
         end
-        
+
         @current_identifications_by_taxon = @current_identifications.select do |ident|
           ident.user_id != ident.observation.user_id
         end.group_by{|i| i.taxon}
@@ -2321,6 +2332,7 @@ class ObservationsController < ApplicationController
   end
   
   def load_photo_identities
+    return if @skipping_preloading
     unless logged_in?
       @photo_identity_urls = []
       @photo_identities = []
@@ -2403,6 +2415,7 @@ class ObservationsController < ApplicationController
   end
 
   def load_sound_identities
+    return if @skipping_preloading
     unless logged_in?
       logger.info "not logged in"
       @sound_identities = []
@@ -2413,12 +2426,16 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    render_404 unless @observation = Observation.where(id: params[:id] || params[:observation_id]).
-      includes([ :quality_metrics,
-                 :photos,
-                 :identifications,
-                 :projects,
-                 { :taxon => :taxon_names }]).first
+    scope = Observation.where(id: params[:id] || params[:observation_id])
+    unless @skipping_preloading
+      scope = scope.includes([ :quality_metrics,
+       :photos,
+       :identifications,
+       :projects,
+       { taxon: :taxon_names }])
+    end
+    @observation = scope.first
+    render_404 unless @observation
   end
   
   def require_owner
@@ -2876,6 +2893,10 @@ class ObservationsController < ApplicationController
           :preferences, :color, :_query_params_set,
           :order_by, :order ].include?( k.to_sym )
     end.compact
+  end
+
+  def decide_if_skipping_preloading
+    @skipping_preloading = (params[:partial] == "cached_component")
   end
 
 end

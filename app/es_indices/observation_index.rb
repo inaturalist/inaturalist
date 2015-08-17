@@ -87,6 +87,7 @@ class Observation < ActiveRecord::Base
       taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,
       field_values: observation_field_values.uniq.map(&:as_indexed_json),
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
+        reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
       location: (latitude && longitude) ?
