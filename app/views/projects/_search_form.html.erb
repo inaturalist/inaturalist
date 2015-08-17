@@ -1,5 +1,5 @@
 <%- q ||= @q -%>
-<%= form_tag(project_search_path, :method => :get) do %>
+<%= form_tag(project_search_path, :method => :get, :class => "buttoncontainer") do %>
   <%= text_field_tag :q, q, :class => 'text' %>
   <%= hidden_fields_for_params :without => :q %>
   <%= submit_tag t(:search), :class => 'last default button' %>

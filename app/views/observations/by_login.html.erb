@@ -138,10 +138,10 @@
       <%= link_to t(:add_observations), new_observation_path,
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
-      <div id="batchcontrols" style="display: none">
+      <div id="batchcontrols" class="buttoncontainer" style="display: none">
         <%= link_to_function(t(:stop_editing), "batchEdit()", :id => "stop_batch_edit_button", :class => 'button') %>
         <%= link_to_function(t(:edit_selected), "editSelected()", :id => "edit_selected_button", :class => 'button') %>
-        <span class="inter">
+        <span class="inter selectlinks">
           <%= t :select %>
           <%= link_to_function(t(:all), "$('.observation .control input:checkbox').check()", :id => "select_all_button") %>
           |
