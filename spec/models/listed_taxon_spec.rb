@@ -544,7 +544,7 @@ describe ListedTaxon do
     before do
       @place = make_place_with_geom
       @check_list = CheckList.make!(:place => @place)
-      @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
+      @lt = ListedTaxon.make!(list: @check_list, place: @place, primary_listing: true, taxon: Taxon.make!(rank: Taxon::SPECIES))
       @observation = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @lt.taxon)
       expect(Observation.in_place(@place)).to include @observation
       ListedTaxon.where(id: @lt).update_all(

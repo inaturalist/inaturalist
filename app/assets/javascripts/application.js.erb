@@ -40,6 +40,7 @@ function openHeaderSubnav(link) {
   $(navtab).addClass('open')
   $('.subnav', navtab).show()
   $(document).click(subnavClickOff);
+  $(".ui-autocomplete").hide( );
   return false;
 }
 
@@ -149,7 +150,10 @@ function buildHelpTips() {
   if (typeof($().qtip) == "undefined") { return; }
   var options = $.extend(true, {}, QTIP_DEFAULTS, {
     show: {event: 'click'},
-    hide: {event: 'unfocus'}
+    hide: {event: 'unfocus'},
+    position: {
+      at: 'bottom center'
+    }
   })
   $('.helptip').not('.helptipified').each(function() {
     $(this).addClass('helptipified')
@@ -166,6 +170,9 @@ function buildHelpTips() {
         title: $(this).attr('data-helptip-title')
       }
     })
+    if ($(this).data('tip-options')) {
+      tipOptions = $.extend(true, {}, tipOptions, $(this).data('tip-options'))
+    }
     if ($(this).attr('data-helptip-width')) {
       tipOptions.style = tipOptions.style || {}
       tipOptions.style.width = $(this).attr('data-helptip-width')
@@ -351,12 +358,22 @@ $(document).ready(function() {
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
 
-  $('#header .menutab').mouseover(function() {
-    openHeaderSubnav($('a:first', this))
-  })
-  $('#header .menutab').mouseout(function() {
-    closeHeaderSubnav($('a:first', this))
-  })
+  var menuCloseInitiated;
+  $('#header .menutab').mouseenter( function( ) {
+    openHeaderSubnav( $('a:first', this) );
+    // openHeaderSubnav automatically closes all other menus,
+    // so prevent any existing delayed close calls from running
+    menuCloseInitiated = null;
+  }).mouseleave( function( e ) {
+    var item = this;
+    menuCloseInitiated = Date.now( );
+    setTimeout( function( checkTime ) {
+      // double check that we still want to close this same menu
+      if( checkTime != menuCloseInitiated ) return;
+      closeHeaderSubnav( $('a:first', item) );
+      $(".ui-autocomplete").hide( );
+    }, 400, menuCloseInitiated );
+  });
 })
 
 function checkFormForRequiredFields(e) {

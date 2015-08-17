@@ -83,6 +83,10 @@ module ActiveRecord
         # instance as its subject (flaggable). We're using it to keep
         # the creator's spam_count up-to-date
         define_method(:flagged_with) do |flag, options|
+          evaluate_new_flag_for_spam(flag)
+        end
+
+        define_method(:evaluate_new_flag_for_spam) do |flag|
           if flag.flag == Flag::SPAM
             if user_responsible
               user_responsible.update_spam_count

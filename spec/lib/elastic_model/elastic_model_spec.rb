@@ -9,7 +9,7 @@ describe ElasticModel do
 
   it "has a hash of analyzers and filters" do
     expect( ElasticModel::ANALYSIS ).to be_a Hash
-    expect( ElasticModel::ANALYSIS[:analyzer].count ).to be 5
+    expect( ElasticModel::ANALYSIS[:analyzer].count ).to be 6
     expect( ElasticModel::ANALYSIS[:filter].count ).to be 1
   end
 
@@ -128,7 +128,7 @@ describe ElasticModel do
   describe "point_geojson" do
     it "returns a valid geojson hash given lat/lon" do
       expect( ElasticModel.point_geojson(1, 2) ).to eq({
-        type: "point", coordinates: [2, 1] })
+        type: "Point", coordinates: [2, 1] })
     end
   end
 

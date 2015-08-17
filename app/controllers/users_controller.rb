@@ -212,7 +212,7 @@ class UsersController < ApplicationController
   def leaderboard
     @year = (params[:year] || Time.now.year).to_i
     @month = params[:month].to_i unless params[:month].blank?
-    @date = Date.parse("#{@year}-#{@month}-01")
+    @date = Date.parse("#{@year}-#{@month || '01'}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
     @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"
     unless fragment_exist?(@leaderboard_key)
@@ -458,7 +458,7 @@ class UsersController < ApplicationController
   end
 
   def update_session
-    allowed_keys = %w(hide_quality_metrics)
+    allowed_keys = %w(show_quality_metrics)
     updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
     updates.each do |k,v|
       v = true if %w(yes y true t).include?(v)

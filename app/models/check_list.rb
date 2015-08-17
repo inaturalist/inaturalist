@@ -172,6 +172,7 @@ class CheckList < List
         listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
         # re-apply list rules to the listed taxa
         listed_taxon.force_update_cache_columns = true
+        listed_taxon.check_primary_listing
         listed_taxon.save
         # make sure we don't force update yet again when just validating
         listed_taxon.force_update_cache_columns = false

@@ -3,6 +3,7 @@
  * iNaturalist fork, adding
  * 2014-04-28 kueda - Support for minZoom and maxZoom in layer specification
  * 2014-10-29 pleary - Support for minZoom and maxZoom for grid interactions
+ * 2015-08-05 pleary - Specify jsonpCallbackName so varnish can cache responses
  */
 
 !function (name, context, definition) {
@@ -2936,6 +2937,7 @@ wax.request = {
             reqwest({
                 url: url + (~url.indexOf('?') ? '&' : '?') + 'callback=?',
                 type: 'jsonp',
+                jsonpCallbackName: 'utfgridCallback',
                 success: function(data) {
                     that.locks[url] = false;
                     that.cache[url] = [null, data];

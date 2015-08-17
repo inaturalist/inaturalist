@@ -2,11 +2,12 @@
 <%- body_label ||= t(:remarks_optional).html_safe -%>
   <div class="field species_guess_field">
     <label for="identification_species_guess-<%= identification.observation_id %>"><%=t :species%></label>
-    <%= text_field_tag(:species_guess, '', 
+    <%= text_field_tag(:species_guess, '',
+      :placeholder => t(:type_species_name),
       :size => '', 
       :class => 'text species_guess',
       :id => "identification_species_guess-#{identification.observation_id}") %>
-    <%= f.hidden_field :taxon_id, 
+    <%= f.hidden_field :taxon_id, class: "ac_hidden_taxon_id",
                        :id => "identification_taxon_id-#{identification.observation_id}" -%>
   </div>
   <% if show_body -%>

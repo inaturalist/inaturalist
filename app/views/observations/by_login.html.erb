@@ -223,7 +223,7 @@
   <%- map_attributes = setup_map_tag_attrs({
     observations: @observations, focus: "observations", flag_letters: true,
     min_y: params[:swlat], min_x: params[:swlng],
-    max_y: params[:nelat], max_x: params[:nelng] }.merge(@map_params)) %>
+    max_y: params[:nelat], max_x: params[:nelng] }.merge(@map_params || {})) %>
   <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 

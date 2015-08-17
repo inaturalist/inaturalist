@@ -841,6 +841,12 @@ function elasticsearchTileservers( ) {
   return tileservers;
 }
 
+function intereactionsServer( ) {
+  var interactionTileURL = "<%= CONFIG.tile_servers.interactions %>";
+  if( interactionTileURL ) { return "//" + interactionTileURL; }
+  return elasticsearchTileservers()[0];
+}
+
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
@@ -857,7 +863,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
     'rank', 'hrank', 'lrank', 'quality_grade', 'identifications', 'captive',
     'iconic_taxa', 'q', 'search_on', 'out_of_range', 'has', 'iconic_taxa',
-    'project_ids', 'geoprivacy', 'on' ];
+    'project_ids', 'geoprivacy', 'on', 'created_on', 'viewer_id', 'reviewed' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -868,6 +874,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     }), {
     maxzoom: gridmaxzoom,
     interactivity: options.interactivity === false ? false : 'id',
+    interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
@@ -876,6 +883,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     interactivity: options.interactivity === false ? false : 'id',
     minzoom: gridmaxzoom + 1,
     gridminzoom: gridmaxzoom + 1,
+    interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled
   })
   // add a toggle for this layer to the overlay control, if it exists
@@ -900,7 +908,10 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   var options = options || {},
       interactivity = options.interactivity;
   if( options.interactivity ) {
-    options.grids = _.map( tileURLs, function( l ) {
+    // windshaft needs the interactivity param to know what data to render
+    var interactionsURLs = options.interactionsURL ?
+      [ options.interactionsURL ] : tileURLs;
+    options.grids = _.map( interactionsURLs, function( l ) {
       return google.maps.Map.prototype.utfgridURL( l );
     })
   }

@@ -18,6 +18,31 @@ shared_examples_for "an IdentificationsController" do
       expect(observation.identifications.count).to eq 1
     end
 
+    it "should mark the observation as captive if requested" do
+      expect( observation ).not_to be_captive_cultivated
+      post :create, format: :json, identification: {
+        observation_id: observation.id, 
+        taxon_id: Taxon.make!.id,
+        captive_flag: '1'
+      }
+      observation.reload
+      expect( observation ).to be_captive_cultivated
+    end
+
+    it "should not mark the observation as wild if there's an existing contradictory quality metric" do
+      QualityMetric.make!(metric: QualityMetric::WILD, observation: observation, user: user, agree: false)
+      observation.reload
+      expect( observation ).to be_captive_cultivated
+      post :create, format: :json, identification: {
+        observation_id: observation.id, 
+        taxon_id: Taxon.make!.id,
+        captive_flag: '0'
+      }
+      expect( response ).to be_success
+      observation.reload
+      expect( observation ).to be_captive_cultivated
+    end
+
     it "should include the observation in the response" do
       t = Taxon.make!
       post :create, :format => :json, :identification => {

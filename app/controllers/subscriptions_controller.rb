@@ -1,7 +1,8 @@
 class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_subscription, :except => [:new, :create, :index, :edit]
-  before_filter :require_owner, :except => [:new, :create, :index, :edit]
+  before_filter :load_subscription, :except => [:new, :create, :index, :edit, :subscribe]
+  before_filter :load_resource, only: [:subscribe]
+  before_filter :require_owner, :except => [:new, :create, :index, :edit, :subscribe]
   before_filter :return_here, :only => [:index]
   
   def index
@@ -97,6 +98,19 @@ class SubscriptionsController < ApplicationController
       end
     end
   end
+
+  def subscribe
+    @subscription = current_user.subscriptions.where(resource: @resource).first
+    if !@subscription && (params[:subscribe].nil? || params[:subscribe].yesish?)
+      @subscription = Subscription.create(resource: @resource, user: current_user)
+    elsif @subscription
+      @subscription.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to @resource }
+      format.json { head :no_content }
+    end
+  end
   
   private
   def load_subscription
@@ -107,6 +121,12 @@ class SubscriptionsController < ApplicationController
         resource_type: params[:resource_type], resource_id: params[:resource_id]).first
     end
     render_404 unless @subscription
+  end
+
+  def load_resource
+    unless @resource = Object.const_get(params[:resource_type]).find_by_id(params[:resource_id]) rescue nil
+      render_404
+    end
   end
   
   def require_owner

@@ -187,10 +187,10 @@
             :method => :post, 
             :remote => true, 
             :id => "favebutton", 
-            :class => "favebutton #{@observation.votes_for.count == 0 ? 'nofaves' : 'hasfaves'}", 
+            :class => "favebutton #{@observation.votes[nil].try(:[], :up).to_i == 0 ? 'nofaves' : 'hasfaves'}", 
             :style => current_user.voted_up_on?(@observation) ? 'display:none' : '' do %>
           <i class="fa fa-star-o"></i>
-          <% unless @observation.votes_for.count > 0 -%>
+          <% unless @observation.votes[nil].try(:[], :up).to_i > 0 -%>
             <%=t :add_to_favorites %>
           <% end -%>
         <% end %>
@@ -198,15 +198,15 @@
             :method => :post, 
             :remote => true, 
             :id => "unfavebutton", 
-            :class => "favebutton #{@observation.votes_for.count == 0 ? 'nofaves' : 'hasfaves'}", 
+            :class => "favebutton #{@observation.votes[nil].try(:[], :up).to_i == 0 ? 'nofaves' : 'hasfaves'}", 
             :style => current_user.voted_up_on?(@observation) ? '' : 'display:none' do %>
           <i class="fa fa-star"></i>
-          <% unless @observation.votes_for.count > 0 -%>
+          <% unless @observation.votes[nil].try(:[], :up).to_i > 0 -%>
             <%=t(:x_faves, count: 1) %>
           <% end -%>
         <% end %>
-        <% if @observation.votes_for.count > 0 -%>
-          <%= link_to t(:x_faves, count: @observation.votes_for.count), "#", :class => "votes_for_button", :onclick => "javascript:return false;" %>
+        <% if @observation.votes[nil].try(:[], :up).to_i > 0 -%>
+          <%= link_to t(:x_faves, count: @observation.votes[nil].try(:[], :up).to_i), "#", :class => "votes_for_button", :onclick => "javascript:return false;" %>
         <% end -%>
       </div>
 
@@ -460,11 +460,32 @@
         <% end -%>
       </div>
     </div><!-- end new comment -->
+
+    <% if logged_in? %>
+      <div id="marks" class="buttonrow">
+        <div class="inter">
+          <%= form_tag subscribe_path( resource_type: 'Observation', resource_id: @observation.id, format: :json ), 
+              remote: true do %>
+            <%= hidden_field_tag :subscribed, false, id: 'hidden_subscribed' %>
+            <%= check_box_tag :subscribed, true, 
+              current_user.subscribed_to?(@observation), 
+              id: 'subscribe_to_this_observation', 
+              data: {autosubmit: true} %>
+            <label for="subscribe_to_this_observation"><%=t :subscribe_to_this_observation %></label>
+          <% end %>
+        </div>
+        <div class="inter">
+          <%= form_tag review_observation_path( @observation.id, format: :json ), 
+              remote: true do %>
+            <%= hidden_field_tag :reviewed, false, id: 'hidden_reviewed' %>
+            <%= check_box_tag :reviewed, true, @observation.reviewed_by?( current_user ), data: {autosubmit: true} %>
+            <label for="reviewed"><%=t :mark_as_reviewed %></label>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
   </div><!-- end comments -->
-  
-  <% if logged_in? -%>
-    <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @observation } %>
-  <% end -%>
   
 </div><!-- end singleobs -->
 
@@ -565,54 +586,10 @@
       </div>
     <% end -%>
     
-    <% if is_me?(@observation.user) -%>
-      <div id="idplease" class="clear inline buttonrow">
-        <div id="added_to_id_please" class="box id_please_notice clear" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
-          <span class="inter">
-            <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
-          </span>
-          <%= link_to t(:remove), @observation,
-            :remote => true,
-            "data-params" => "ignore_photos=true&observation[id_please]=false",
-            :method => :put,
-            :class => "pale button",
-            :style => "float: right; margin: 0" %>
-        </div>
-        
-        <div id="need_id_help" class="quiet stacked box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
-          <%= link_to t(:add_to_id_please), @observation,
-            :remote => true,
-            "data-params" => "ignore_photos=true&observation[id_please]=true",
-            "data-type" => "json",
-            :method => :put,
-            :class => "glaucous button",
-            :style => "float: right; margin: 0;" %>
-          <span class="inter"><%=t :need_id_help? %></span>
-        </div>
-      </div>
-    <% elsif @observation.id_please? %>
-      <div id="idplease" class="box stacked">
-        <%= link_to @observation.user.login, @observation.user %>
-        <%=t :would_like_some_help_identifying_this %>
-      </div>
-    <% end -%>
-    
     <% user_identified = false %>
     <% if logged_in? %>
       <% identifying_user_ids =  @observation.identifications.map { |ident| ident.user_id } -%>
       <% user_identified = identifying_user_ids.include?(current_user.id) -%>
-    <% end %>
-    <div id="identification_form_wrapper-<%= @observation.id %>" class="identification_form_wrapper stacked">
-      <h4><%=t :suggest_an_id %></h4>
-      <%= render :partial => 'identifications/identification_form',
-                 :locals => { :observation => @observation }%>
-    </div>
-    <% if user_identified %>
-      <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
-          $('#identification_form_wrapper-<%= @observation.id %>').hide();
-        });
-      </script>
     <% end %>
     
     <% if logged_in? -%>
@@ -622,10 +599,11 @@
         :style => "float: none; margin: 0 auto; width: 80px;",
         "data-loading-click" => true %>
     <% end -%>
-  </div><!-- end identifications -->
+  </div>
+  <%= separator %>
+  <!-- end identifications -->
   
   <% unless @project_observations.blank? -%>
-    <%= separator %>
     <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
       <% unless @project_observations.blank? -%>
@@ -708,9 +686,8 @@
         <% end %>
       <% end %>
     </div>
+    <%= separator %>
   <% end -%>
-  
-  <%= separator %>
 
   <% if !@day_observations.blank? && @day_observations.size > 1 -%>
       <div id="day_observations" class="clear quiet box">
@@ -739,7 +716,7 @@
   
   <div id="data_quality_assessment">
     <h3>
-      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="<%= t :about_the_quality_assessment %>" data-helptip-width="500" style="margin-top:4px"></span>
+      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="<%= t :data_quality_assessment %>" data-tip-options='{"position": {"my": "right center", "at": "left center"}, "style": {"width": 500}}' style="margin-top:4px"></span>
       <%=t :data_quality_assessment %>
     </h3>
     <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>

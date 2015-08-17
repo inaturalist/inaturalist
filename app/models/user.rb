@@ -676,4 +676,8 @@ class User < ActiveRecord::Base
     }
   end
 
+  def subscribed_to?(resource)
+    subscriptions.where(resource: resource).exists?
+  end
+
 end

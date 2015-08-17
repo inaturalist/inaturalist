@@ -488,29 +488,33 @@ class TaxaController < ApplicationController
       end
       format.json do
         pagination_headers_for(@taxa)
-        options = Taxon.default_json_options
-        options[:include].merge!(
-          :iconic_taxon => {:only => [:id, :name]}, 
-          :taxon_names => {
-            :only => [:id, :name, :lexicon, :is_valid, :position]
-          }
-        )
-        options[:methods] += [:common_name, :image_url, :default_name]
-        if params[:partial]
-          partial_path = if params[:partial] == "taxon"
-            "shared/#{params[:partial]}.html.erb"
-          else
-            "taxa/#{params[:partial]}.html.erb"
-          end
-        end
-        @taxa.each_with_index do |t,i|
+        if params[:partial] == "elastic"
+          render :json => Taxon.where(id: @taxa).load_for_index.map(&:as_indexed_json)
+        else
+          options = Taxon.default_json_options
+          options[:include].merge!(
+            :iconic_taxon => {:only => [:id, :name]},
+            :taxon_names => {
+              :only => [:id, :name, :lexicon, :is_valid, :position]
+            }
+          )
+          options[:methods] += [:common_name, :image_url, :default_name]
           if params[:partial]
-            @taxa[i].html = render_to_string(:partial => partial_path, :locals => {:taxon => t})
-            options[:methods] << :html
+            partial_path = if params[:partial] == "taxon"
+              "shared/#{params[:partial]}.html.erb"
+            else
+              "taxa/#{params[:partial]}.html.erb"
+            end
           end
-          @taxa[i].current_user = current_user
+          @taxa.each_with_index do |t,i|
+            if params[:partial]
+              @taxa[i].html = render_to_string(:partial => partial_path, :locals => {:taxon => t})
+              options[:methods] << :html
+            end
+            @taxa[i].current_user = current_user
+          end
+          render :json => @taxa.to_json(options)
         end
-        render :json => @taxa.to_json(options)
       end
     end
   end
@@ -533,6 +537,18 @@ class TaxaController < ApplicationController
       per_page: 30,
       page: 1
     )
+    # attempt to fetch the best exact match, which will go first
+    exact_results = Taxon.elastic_paginate(
+      where: search_wheres.merge(match: { "names.exact" => @q }),
+      sort: { observations_count: "desc" },
+      per_page: 1,
+      page: 1
+    )
+    if exact_results && exact_results.length > 0
+      exact_result = exact_results.first
+      @taxa.delete_if{ |t| t == exact_result }
+      @taxa.unshift(exact_result)
+    end
     Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
       :taxon_descriptions ] )
     @taxa.each do |t|

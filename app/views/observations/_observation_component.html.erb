@@ -35,14 +35,14 @@ Some notes:
   check_box_name ||= false
   check_box_checked ||= false
   top ||= false
+  obs_url = observation_path(observation)
   css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
-  if observation.quality_grade == Observation::RESEARCH_GRADE
-    css_class += ' research_grade'
-  end
-  if observation.id_please
+  if observation.needs_id?
     css_class += ' id_please'
     css_class += ' idandrg' if observation.research_grade?
+  elsif observation.quality_grade == Observation::RESEARCH_GRADE
+    css_class += ' research_grade'
   end
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
@@ -86,20 +86,20 @@ Some notes:
               "data-square-url" => photo.square_url,
               "data-small-url" => photo.small_url,
               "data-medium-url" => photo.medium_url
-            ), observation_url(observation), :class => 'flickr photo'%>
+            ), obs_url, :class => 'flickr photo'%>
             <% if photo_count > 1 -%>
               <% link_text << t(:photos_size_photos, :photos_size => photos.size).downcase %>
             <% end -%>
           <% end %>
         <% end -%>
         <% if sound_count > 0 %>
-          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation_path(observation), :class => "sound-icon#{' with-photo' if photo}" %>
+          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, obs_url, :class => "sound-icon#{' with-photo' if photo}" %>
           <% if sound_count > 1 %>
             <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
           <% end -%>
         <% end %>
         <% unless link_text.blank? -%>
-          <%= link_to link_text.join(',<br/>').html_safe, observation_path(observation), :class => 'readmore' %>
+          <%= link_to link_text.join(',<br/>').html_safe, obs_url, :class => 'readmore' %>
         <% end -%>
       <% end -%>
     </div>
@@ -110,15 +110,15 @@ Some notes:
       <%= render :partial => 'shared/taxon', 
                  :locals => {
                     :taxon => observation.taxon,
-                    :link_url => observation_path(observation),
+                    :link_url => obs_url,
                     :include_parens => false} %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
-        <%= link_to observation.species_guess, observation_path(observation) %>
+        <%= link_to observation.species_guess, obs_url %>
       </span>
     <% else %>
       <span class="taxon">
-        <%= link_to "#{t(:something)}...", observation_path(observation) %>
+        <%= link_to "#{t(:something)}...", obs_url %>
       </span>
     <% end %>
     <!-- <span class="button detailsctrl">Show Details</span> -->
@@ -184,7 +184,7 @@ Some notes:
       <ul class="counts">
         <% if observation.comments_count > 0 -%>
           <li class="comments_count">
-            <a href="<%= observation_path(observation) %>">
+            <a href="<%= obs_url %>">
               <span class="count"><%= observation.comments_count %></span>
               <span class="ui-icon ui-icon-comment inlineblock">comment<%= 's' if observation.comments_count != 1 %></span>
             </a>
@@ -192,7 +192,7 @@ Some notes:
         <% end -%>
         <% if observation.num_identifications_by_others > 0 -%>
           <li class="identifications_count">
-            <a href="<%= observation_path(observation) %>">
+            <a href="<%= obs_url %>">
               <span class="count"><%= observation.num_identifications_by_others %></span>
               <%= t(:id) if observation.num_identifications_by_others == 1 %>
               <%= t(:ids) if observation.num_identifications_by_others != 1 %>
@@ -201,16 +201,15 @@ Some notes:
         <% end -%>
       </ul>
     <% end -%>
-    <%- if observation.id_please? || observation.research_grade? %>
+    <%- if observation.needs_id? || observation.research_grade? %>
       <ul class="bubbles">
-        <% if observation.id_please? -%>
+        <% if observation.needs_id? -%>
           <li class="last">
-            <%= link_to t(:id_please_expandable_html), observation_path(observation), :class => "id_please_notice",
-              "data-tip" => t(:observation_would_like_some_help, :user => observation.user.login),
+            <%= link_to t(:needs_id_expandable_html), obs_url, :class => "id_please_notice",
+              "data-tip" => t(:needs_to_be_identified),
               "data-tip-show-delay" => 1000 %>
           </li>
-        <% end -%>
-        <%- if observation.quality_grade == Observation::RESEARCH_GRADE %>
+        <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
           <li class="last">
             <%= link_to t(:research_grade_short_html), observation_url(observation, :anchor => "data_quality_assessment"),
               :class => "research_grade_notice", 
@@ -225,7 +224,7 @@ Some notes:
         <li class="editlink"><%= link_to t(:edit), edit_observation_path(observation) %></li>
       <% end -%>
       <li class="last viewlink">
-        <%= link_to t(:view), observation_path(observation), :class => 'readmore' %>
+        <%= link_to t(:view), obs_url, :class => 'readmore' %>
       </li>
     </ul>
   </div>
