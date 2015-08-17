@@ -358,14 +358,21 @@ $(document).ready(function() {
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
 
+  var menuCloseInitiated;
   $('#header .menutab').mouseenter( function( ) {
     openHeaderSubnav( $('a:first', this) );
+    // openHeaderSubnav automatically closes all other menus,
+    // so prevent any existing delayed close calls from running
+    menuCloseInitiated = null;
   }).mouseleave( function( e ) {
-    // it is OK if the mouse has entered the autocomplete results
-    if( e.relatedTarget && e.relatedTarget.closest(".ac-result") == 0) {
-      closeHeaderSubnav( $('a:first', this) );
+    var item = this;
+    menuCloseInitiated = Date.now( );
+    setTimeout( function( checkTime ) {
+      // double check that we still want to close this same menu
+      if( checkTime != menuCloseInitiated ) return;
+      closeHeaderSubnav( $('a:first', item) );
       $(".ui-autocomplete").hide( );
-    }
+    }, 400, menuCloseInitiated );
   });
 })
 
