@@ -2396,6 +2396,7 @@ class Observation < ActiveRecord::Base
   def flagged_with(flag, options)
     quality_grade_will_change!
     save
+    evaluate_new_flag_for_spam(flag)
   end
 
 end
