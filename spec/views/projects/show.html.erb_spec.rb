@@ -18,16 +18,18 @@ describe "projects/show" do
     it "shows the right range intraday bioblitzes" do
       render
       rendered.gsub!(/(\s+|\n)/, " ")
-      expect(rendered).to have_selector(".timespan",
-        text: "June 30, 2015, 9:00 AM - 10:00 AM PDT")
+      expect(rendered).to have_selector(".timespan") do |content|
+        expect(content).to have_content "June 30, 2015, 9:00 AM - 10:00 AM PDT"
+      end
     end
 
     it "shows the right range for bioblitzes ending the day after starting" do
       @project.update_column(:end_time, @project.start_time + 25.hours)
       render
       rendered.gsub!(/(\s+|\n)/, " ")
-      expect(rendered).to have_selector(".timespan",
-        text: "June 30, 2015, 9:00 AM - July 01, 2015, 10:00 AM PDT")
+      expect(rendered).to have_selector(".timespan") do |content|
+        expect(content).to have_content "June 30, 2015, 9:00 AM - July 01, 2015, 10:00 AM PDT"
+      end
     end
 
     it "shows the right range for bioblitzes ending the day after starting" do
