@@ -677,6 +677,8 @@ class Observation < ActiveRecord::Base
   end
   
   def serializable_hash(options = {})
+    # for some reason, in some cases options was still nil
+    options ||= { }
     # making a deep copy of the options so they don't get modified
     # This was more effective than options.deep_dup
     if options[:include] && (options[:include].is_a?(Hash) || options[:include].is_a?(Array))

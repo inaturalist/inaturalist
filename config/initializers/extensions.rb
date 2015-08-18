@@ -13,7 +13,7 @@ class Hash
         elsif (v.respond_to?(:encoding))
           v.force_encoding("UTF-8")
           # remove any invalid characters
-          [ k, v.encode("UTF-8", "binary", invalid: :replace, undef: :replace, replace: "") ]
+          [ k, v.encode("UTF-8", invalid: :replace, undef: :replace, replace: "") ]
         else
           [ k, v ]
         end
@@ -34,7 +34,7 @@ class Array
       elsif (v.respond_to?(:encoding))
         v.force_encoding("UTF-8")
         # remove any invalid characters
-        v.encode("UTF-8", "binary", invalid: :replace, undef: :replace, replace: "")
+        v.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
       else
         v
       end
