@@ -98,24 +98,8 @@ describe GuidesController, "import_tags_from_csv" do
   before do
     sign_in guide.user
   end
-  it "should work" do
-    work_path = File.join(Dir::tmpdir, "import_tags_from_csv-#{Time.now.to_i}.csv")
-    CSV.open(work_path, 'w') do |csv|
-      csv << ['name',         'color', 'size']
-      csv << [taxon_names[0], 'red',   'big',  'shifty']
-      csv << [taxon_names[1], 'green', 'small', 'forthright']
-      csv << [taxon_names[2], 'blue',  'small']
-      csv
-    end
-    put :import_tags_from_csv, id: guide.id, file: work_path
-    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
-    expect( guide_taxa.first.tag_list ).to include 'color=red'
-    expect( guide_taxa.last.tag_list ).to include 'color=blue'
-    expect( guide_taxa.first.tag_list ).to include 'size=big'
-    expect( guide_taxa.first.tag_list ).to include 'shifty'
-  end
   
-  it "should work plain tags when no predicate listed" do
+  it "should add plain tags when no predicate listed" do
     CSV.open(work_path, 'w') do |csv|
       csv << ['name']
       csv << [taxon_names[0], 'shifty']
@@ -142,6 +126,21 @@ describe GuidesController, "import_tags_from_csv" do
     expect( guide_taxa.first.tag_list ).to include 'color=red'
     expect( guide_taxa.last.tag_list ).to include 'color=blue'
     expect( guide_taxa.first.tag_list ).to include 'size=big'
+  end
+
+  it "should add tags with namespaces and predicates" do
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name',         'taxonomy:family']
+      csv << [taxon_names[0], 'Ranidae']
+      csv << [taxon_names[1], 'Lycaenidae']
+      csv << [taxon_names[2], 'Pompilidae']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    expect( guide_taxa[0].tag_list ).to include 'taxonomy:family=Ranidae'
+    expect( guide_taxa[1].tag_list ).to include 'taxonomy:family=Lycaenidae'
+    expect( guide_taxa[2].tag_list ).to include 'taxonomy:family=Pompilidae'
   end
 
   it "should add multiple tags per cell separated by pipes" do

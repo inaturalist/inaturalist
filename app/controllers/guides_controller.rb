@@ -481,22 +481,24 @@ class GuidesController < ApplicationController
 
   def import_tags_from_csv_template
     tags = {}
-    predicates = Set.new
+    headers = Set.new
     @guide.guide_taxa.order(:position).includes(taggings: :tag).each_with_index do |gt,i|
       gt.tags.each do |tag|
         namespace, predicate, value = FakeView.machine_tag_pieces(tag.name)
-        predicates << predicate.to_s
+        # predicates << predicate.to_s
+        header = [namespace, predicate].compact.join(':')
+        headers << header
         tags[gt.name] ||= {}
-        tags[gt.name][predicate.to_s] = [tags[gt.name][predicate.to_s].to_s.split('|'), value].flatten.join('|')
+        tags[gt.name][header] = [tags[gt.name][header].to_s.split('|'), value].flatten.join('|')
       end
     end
-    predicates = predicates.to_a.sort
+    headers = headers.to_a.sort
     csvdata = CSV.generate do |csv|
-      csv << ['Name', predicates].flatten
-      tags.each do |name, values_by_predicate|
+      csv << ['Name', headers].flatten
+      tags.each do |name, values_by_headers|
         line = [name]
-        predicates.each do |predicate|
-          line << values_by_predicate[predicate]
+        headers.each do |header|
+          line << values_by_headers[header]
         end
         csv << line
       end

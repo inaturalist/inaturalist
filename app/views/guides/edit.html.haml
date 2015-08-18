@@ -251,7 +251,7 @@
     .modal-footer
       %button.btn{"data-dismiss" => "modal"}=t :close
       = link_to t(:download_csv_template), import_tags_from_csv_template_guide_path(@guide, format: :csv), :class => "btn"
-      = submit_tag t(:import_tags_from_csv), :class => "btn btn-primary"
+      = submit_tag t(:import_tags_from_csv), :class => "btn btn-primary", data: {loading_click: true}
 #removetags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
   .modal-header
     %button.close{:type => "button", "data-dismiss" => "modal"} x
