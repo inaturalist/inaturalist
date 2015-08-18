@@ -108,7 +108,7 @@
         return false
       })
       
-      $('#placechooser, #taxonchooser, #colorchooser, #establishmentchooser').change(function() {
+      $('#placechooser, #taxonchooser, #colorchooser, #establishmentchooser, #orderchooser').change(function() {
         $(this).parents('form:first').submit()
       })
       $('#guidesearch').keypress(function(e) {
@@ -282,10 +282,10 @@
       <%= link_to_function t(:hide).humanize, "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
       <h3><%= t :controls %></h3>
       <%= form_tag url_for, :method => :get, :id => "controls" do %>
-        <div class="field">
+        <!-- <div class="field">
           <label><%= t :search %></label><br/>
           <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => t(:search_species) %>
-        </div>
+        </div> -->
         <div class="field">
           <label><%= t :place %></label><br/>
           <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => t(:type_place_name) %>
@@ -310,6 +310,17 @@
                 -%>
                 <%= select_tag "establishment_means", options_for_select(options, @establishment_means), :id => "establishmentchooser", :class => "inlineblock" %>
               </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="field">
+                <label><%= t :order %></label><br/>
+                <%- options = [[t(:taxonomy, default: 'taxonomy').capitalize, nil], [t(:frequency, default: 'frequency').capitalize, 'frequency']] -%>
+                <%= select_tag "order", options_for_select(options, @order), :id => "orderchooser", :class => "inlineblock" %>
+              </div>
+            </td>
+            <td>
             </td>
           </tr>
         </table>
