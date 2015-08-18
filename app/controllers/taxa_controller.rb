@@ -3,7 +3,7 @@ class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
   caches_action :show, :expires_in => 1.day, :cache_path => {:locale => I18n.locale},
     :if => Proc.new {|c|
-      c.session.blank? || c.session['warden.user.user.key'].blank?
+      !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
     }
   caches_action :describe, :expires_in => 1.day,
     :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
@@ -255,8 +255,8 @@ class TaxaController < ApplicationController
         end
 
         opts = Taxon.default_json_options
-        opts[:include].merge!({:taxon_names => {}, :iconic_taxon => {}})
         opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
+        Taxon.preload_associations(@taxon, { taxon_photos: :photo })
         render :json => @taxon.to_json(opts)
       end
       format.node { render :json => jit_taxon_node(@taxon) }

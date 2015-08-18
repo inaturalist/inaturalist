@@ -141,6 +141,10 @@ autocompleter.createWrappingDiv = function( field, options ) {
   }
 };
 
+autocompleter.menuClosed = function( ) {
+  return ($("ul.ac-menu:visible").length == 0);
+}
+
 $.fn.taxonAutocomplete = function( options ) {
   options = options || { };
   options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
@@ -206,7 +210,7 @@ $.fn.taxonAutocomplete = function( options ) {
             // if we just returned from the most recent external search
             if( ac.searchInProgress === thisSearch ) {
               ac.searchInProgress = false;
-              var ul = ac.menu.element.empty()
+              ac.menu.element.empty( );
               if( data.length == 0 ) {
                 data.push({
                   type: "message",
@@ -298,17 +302,23 @@ $.fn.taxonAutocomplete = function( options ) {
       return;
     }
     if( this.menu.element.is( ":visible" ) ) {
-      this.menu.element.hide();
-      this.menu.blur();
-      this.isNewMenu = true;
-      this._trigger( "close", event );
+      var that = this;
+      // delaying the close slightly so that the keydown callback below
+      // happens before the menu has disappeared
+      setTimeout( function( ){
+        that.menu.element.hide();
+        that.menu.blur();
+        that.isNewMenu = true;
+        that._trigger( "close", event );
+      }, 50 );
     }
   };
   field.keydown( function( e ) {
     var key = e.keyCode || e.which;
-    // cancel any return key action in the text field
+    // return key
     if( key === 13 ) {
-      if( options.allow_enter_submit ) {
+      // allow submit when AC menu is closed, or always if allow_enter_submit
+      if( options.allow_enter_submit || autocompleter.menuClosed( )) {
         field.closest( "form" ).submit( );
       }
       return false;
@@ -323,13 +333,13 @@ $.fn.taxonAutocomplete = function( options ) {
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
     // don't redo the search if there are results being shown
-    if( $("ul.ac-menu:visible").length == 0 ) {
+    if( autocompleter.menuClosed( ) ) {
       $(this).autocomplete( "search", $(this).val( ));
     }
   });
   field.bind( "click", function( ) {
     // don't redo the search if there are results being shown
-    if( $("ul.ac-menu:visible").length == 0 ) {
+    if( autocompleter.menuClosed( ) ) {
       $(this).autocomplete( "search", $(this).val( ));
     }
   });
@@ -338,7 +348,7 @@ $.fn.taxonAutocomplete = function( options ) {
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field
       setTimeout( function( ) {
-        if( !autocompleter.selectedTaxonID( options ) && $("ul.ac-menu:visible").length == 0) {
+        if( !autocompleter.selectedTaxonID( options ) && autocompleter.menuClosed( )) {
           field.val( "" );
           autocompleter.resetTaxonSelection( options );
         }
