@@ -99,13 +99,12 @@ describe GuidesController, "import_tags_from_csv" do
     sign_in guide.user
   end
   it "should work" do
-    taxon_names = guide.guide_taxa.sort_by(&:name).map(&:name)
     work_path = File.join(Dir::tmpdir, "import_tags_from_csv-#{Time.now.to_i}.csv")
     CSV.open(work_path, 'w') do |csv|
-      csv << ['predicate', taxon_names].flatten
-      csv << ['color',  'red',    'green',      'blue']
-      csv << ['size',   'big',    'small',      'small']
-      csv << ['',       'shifty', 'forthright', '']
+      csv << ['name',         'color', 'size']
+      csv << [taxon_names[0], 'red',   'big',  'shifty']
+      csv << [taxon_names[1], 'green', 'small', 'forthright']
+      csv << [taxon_names[2], 'blue',  'small']
       csv
     end
     put :import_tags_from_csv, id: guide.id, file: work_path
@@ -118,8 +117,10 @@ describe GuidesController, "import_tags_from_csv" do
   
   it "should work plain tags when no predicate listed" do
     CSV.open(work_path, 'w') do |csv|
-      csv << ['predicate', taxon_names].flatten
-      csv << ['',       'shifty', 'forthright', '']
+      csv << ['name']
+      csv << [taxon_names[0], 'shifty']
+      csv << [taxon_names[1], 'forthright']
+      csv << [taxon_names[2], '']
       csv
     end
     put :import_tags_from_csv, id: guide.id, file: work_path
@@ -130,9 +131,10 @@ describe GuidesController, "import_tags_from_csv" do
   
   it "should add tags with predicates" do
     CSV.open(work_path, 'w') do |csv|
-      csv << ['predicate', taxon_names].flatten
-      csv << ['color',  'red',    'green',      'blue']
-      csv << ['size',   'big',    'small',      'small']
+      csv << ['name',         'color', 'size']
+      csv << [taxon_names[0], 'red',   'big']
+      csv << [taxon_names[1], 'green', 'small']
+      csv << [taxon_names[2], 'blue',  'small']
       csv
     end
     put :import_tags_from_csv, id: guide.id, file: work_path
@@ -144,9 +146,10 @@ describe GuidesController, "import_tags_from_csv" do
 
   it "should add multiple tags per cell separated by pipes" do
     CSV.open(work_path, 'w') do |csv|
-      csv << ['predicate', taxon_names].flatten
-      csv << ['color',  'red|green',  'green',  'blue']
-      csv << ['',       'big',        'small',  'small|medium']
+      csv << ['name',         'color']
+      csv << [taxon_names[0], 'red|green',   'big']
+      csv << [taxon_names[1], 'green', 'small']
+      csv << [taxon_names[2], 'blue',  'small|medium']
       csv
     end
     put :import_tags_from_csv, id: guide.id, file: work_path
@@ -159,8 +162,10 @@ describe GuidesController, "import_tags_from_csv" do
 
   it "should not add tags for blanks" do
     CSV.open(work_path, 'w') do |csv|
-      csv << ['predicate', taxon_names].flatten
-      csv << ['color',  '',    'green',      'blue']
+      csv << ['name',         'color']
+      csv << [taxon_names[0], '']
+      csv << [taxon_names[1], 'green']
+      csv << [taxon_names[2], 'blue']
       csv
     end
     put :import_tags_from_csv, id: guide.id, file: work_path
@@ -173,8 +178,10 @@ describe GuidesController, "import_tags_from_csv" do
     gt = guide.guide_taxa.sort_by(&:name).first
     gt.update_attributes(tag_list: %w(foo bar))
     CSV.open(work_path, 'w') do |csv|
-      csv << ['predicate', taxon_names].flatten
-      csv << ['',       'shifty', 'forthright', '']
+      csv << ['name']
+      csv << [taxon_names[0], 'shifty']
+      csv << [taxon_names[1], 'forthright']
+      csv << [taxon_names[2], '']
       csv
     end
     put :import_tags_from_csv, id: guide.id, file: work_path

@@ -456,16 +456,16 @@ class GuidesController < ApplicationController
   def import_tags_from_csv
     tags = {}
     CSV.foreach(open(params[:file]), headers: true) do |row|
-      predicate = row[0]
-      row.each do |header, value|
+      tags[row[0]] ||= []
+      row.each_with_index do |pair,i|
+        next if i == 0
+        header, value = pair
         next if value.blank?
-        next if header == 'predicate'
-        tags[header] ||= []
         value.split('|').each do |v|
-          if predicate.blank?
-            tags[header] << v
+          if header.blank?
+            tags[row[0]] << v
           else
-            tags[header] << "#{predicate}=#{v}"
+            tags[row[0]] << "#{header}=#{v}"
           end
         end
       end
@@ -481,21 +481,22 @@ class GuidesController < ApplicationController
 
   def import_tags_from_csv_template
     tags = {}
-    names = []
+    predicates = Set.new
     @guide.guide_taxa.order(:position).includes(taggings: :tag).each_with_index do |gt,i|
-      names << gt.name
       gt.tags.each do |tag|
         namespace, predicate, value = FakeView.machine_tag_pieces(tag.name)
-        tags[predicate.to_s] ||= {}
-        tags[predicate.to_s][gt.name] = [tags[predicate.to_s][gt.name].to_s.split('|'), value].flatten.join('|')
+        predicates << predicate.to_s
+        tags[gt.name] ||= {}
+        tags[gt.name][predicate.to_s] = [tags[gt.name][predicate.to_s].to_s.split('|'), value].flatten.join('|')
       end
     end
+    predicates = predicates.to_a.sort
     csvdata = CSV.generate do |csv|
-      csv << ['Predicate', names].flatten
-      tags.each do |predicate, name_hash|
-        line = [predicate]
-        names.each do |name|
-          line << name_hash[name]
+      csv << ['Name', predicates].flatten
+      tags.each do |name, values_by_predicate|
+        line = [name]
+        predicates.each do |predicate|
+          line << values_by_predicate[predicate]
         end
         csv << line
       end

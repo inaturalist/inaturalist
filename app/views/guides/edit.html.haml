@@ -247,27 +247,7 @@
         .row-fluid
           %label{:for => 'csv-tag-file'}=t :csv_file
           = file_field_tag :file, accept: "text/csv", id: 'csv-tag-file', :class => "span12"
-      %p
-        Upload a CSV file containing tags for taxa in this guide. Your CSV file should look like this:
-      %table.table
-        %tr
-          %th Predicate
-          %th Homo sapiens
-          %th Vulpes vulpes
-        %tr
-          %td
-          %td bipedal
-          %td quadripedal
-        %tr
-          %td color
-          %td
-          %td red|gray
-        %tr
-          %td Number of hands
-          %td 2
-          %td 0
-      %p
-        The first row starts with "Predicate" followed by the taxon name from your guide taxon records (not the display name). Then each following row starts with the name of a predicate (optional), followed by tags corresponding with the taxon at the top of the column. In this example, <i>Homo sapiens</i> gets the tags <code>bipedal</code> and <code>Number of hands=2</code>, and <i>Vulpes vulpes</i> gets <code>quadripedal</code>, <code>color=red</code>, <code>color=gray</code>, and <code>Number of hands=0</code>. Blanks will be ignored, and you can add multiple lines per predicate. You can also add multiple values per cell separated by the pipe character.
+      =t 'views.guides.edit.import_tags_from_csv_help_html'
     .modal-footer
       %button.btn{"data-dismiss" => "modal"}=t :close
       = link_to t(:download_csv_template), import_tags_from_csv_template_guide_path(@guide, format: :csv), :class => "btn"
