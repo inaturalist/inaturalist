@@ -1,69 +1,7 @@
 - content_for :title do
   = @title = t(:editing_this, :elem => @guide.title)
 - content_for :extracss do
-  = stylesheet_link_tag "guides"
-  :css
-    input.position {width:1em;}
-    .more {display:none;}
-    .guide_taxon .names {margin-top:3px;}
-    .guide_taxon .tag {margin-right: 5px;}
-    .guide_taxon .img-circle {max-width:30px; height:30px; width:100%;}
-    .names .display_name {font-size:140%;}
-    .bootstrap .row-fluid .microspan {width:4%; margin-left:0.5%;text-align: center;}
-    .guide_taxon .check {margin-top:3px;}
-    .bootstrap .guide_taxon .input-prepend {margin-bottom: 0;}
-    .bootstrap .input-prepend input[name*=tag_list] {
-      padding: 0px 5px;
-      font-size: 10px;
-      box-shadow: none;
-      min-height:22px;
-      border-color: #efefef;
-    }
-    .bootstrap .input-prepend .add-on:first-child {
-      font-size: 10px;
-      padding: 0 3px;
-      min-height:20px;
-      background-color: #efefef;
-      border-color: #efefef;
-    }
-    .bootstrap .input-prepend input[name*=tag_list],
-    .bootstrap .input-prepend .add-on:first-child {
-      color: #666;
-    }
-    .grip {
-      width:10px;
-      height:2.5em;
-      background: url(#{image_path('dotted.gif')});
-      vertical-align: middle;
-      cursor: move;
-    }
-    .bootstrap form.edit_guide_taxon {margin-bottom:0;}
-    .bootstrap .ctrl input {margin-bottom:0;}
-    #addtaxa input {width:400px;}
-    #addtaxa-single .ui-chooser {margin-bottom: 10px;}
-    #controls .navbar .btn,
-    #controls .navbar .navbar-search,
-    #controls .navbar .btn-group {margin-top:0;}
-    #controls .navbar .navbar-search input {margin-bottom:0;}
-    #controls.affix {top:0px; z-index: 1;}
-    #controls.affix .navbar {box-shadow: #777 7px 0 10px; padding:10px 0 10px 0; background-color:white;}
-    #controls .pull-left {margin-right:10px;}
-    .guide_taxon.warning { background-color: #fcf8e3;}
-    .guide_taxon {margin-bottom:0; padding: 7px 0;}
-    .sorttarget { height: 50px;}
-    #map { height: 200px;}
-    .bootstrap select, .bootstrap input[type="file"] {line-height: 0;}
-    #guide_description {height:300px;}
-    #new_guide_eol_update_flow_task {margin-bottom:0;}
-    .fa-tag.strike{position:relative;}
-    .fa-tag.strike:after {
-      content: ' '; width:100%; height:0.5em; border-bottom: 3px solid white; position: absolute; display: block; top:0; left:-0.25em; 
-      -webkit-transform: rotate(-45deg);
-      -moz-transform: rotate(-45deg);
-    }
-    .bootstrap .accordion-inner {min-width: 220px;}
-    #addtaxa-paste textarea {height:200px;}
-    .actions .btn {margin-bottom:5px;}
+  = stylesheet_link_tag "guides", "guides/edit"
 - content_for :extrajs do
   :javascript
     var GUIDE = #{json_escape @guide.to_json.html_safe},
@@ -73,7 +11,6 @@
   %ul.breadcrumb
     %li
       = link_to t(:back_to_x, :noun => @guide.title), @guide, :class => "back"
-
   = error_messages_for @guide
   %h1= @title
   .row-fluid
@@ -177,6 +114,10 @@
                   = link_to "#addtags", "data-toggle" => "modal" do
                     %i.fa.fa-tag
                     = t(:add_tags)
+                %li
+                  = link_to "#importtags", "data-toggle" => "modal" do
+                    %i.fa.fa-tag
+                    = t(:import_tags_from_csv)
                 %li
                   = link_to "#removetags", "data-toggle" => "modal" do
                     %i.fa.fa-tag.strike
@@ -296,6 +237,41 @@
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :add_tags_to_selected_taxa
+#importtags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
+  = form_tag import_tags_from_csv_guide_path(@guide), method: :put, multipart: true, :class => "unstacked" do
+    .modal-header
+      %button.close{:type => "button", "data-dismiss" => "modal"} x
+      %h3=t :import_tags_from_csv
+    .modal-body
+      .quiet.box
+        .row-fluid
+          %label{:for => 'csv-tag-file'}=t :csv_file
+          = file_field_tag :file, accept: "text/csv", id: 'csv-tag-file', :class => "span12"
+      %p
+        Upload a CSV file containing tags for taxa in this guide. Your CSV file should look like this:
+      %table.table
+        %tr
+          %th Predicate
+          %th Homo sapiens
+          %th Vulpes vulpes
+        %tr
+          %td
+          %td bipedal
+          %td quadripedal
+        %tr
+          %td color
+          %td
+          %td red|gray
+        %tr
+          %td Number of hands
+          %td 2
+          %td 0
+      %p
+        The first row starts with "Predicate" followed by the taxon name from your guide taxon records (not the display name). Then each following row starts with the name of a predicate (optional), followed by tags corresponding with the taxon at the top of the column. In this example, <i>Homo sapiens</i> gets the tags <code>bipedal</code> and <code>Number of hands=2</code>, and <i>Vulpes vulpes</i> gets <code>quadripedal</code>, <code>color=red</code>, <code>color=gray</code>, and <code>Number of hands=0</code>. Blanks will be ignored, and you can add multiple lines per predicate. You can also add multiple values per cell separated by the pipe character.
+    .modal-footer
+      %button.btn{"data-dismiss" => "modal"}=t :close
+      = link_to t(:download_csv_template), import_tags_from_csv_template_guide_path(@guide, format: :csv), :class => "btn"
+      = submit_tag t(:import_tags_from_csv), :class => "btn btn-primary"
 #removetags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
   .modal-header
     %button.close{:type => "button", "data-dismiss" => "modal"} x

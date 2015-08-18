@@ -6,11 +6,14 @@ class GuidesController < ApplicationController
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy, :import_taxa,
-    :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags ]
+    :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv,
+    :import_tags_from_csv_template ]
   before_filter :load_record, :only => load_only
   blocks_spam :only => load_only, :instance => :guide
   before_filter :require_owner, :only => [:destroy]
-  before_filter :require_guide_user, :only => [:edit, :update, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
+  before_filter :require_guide_user, :only => [
+    :edit, :update, :import_taxa, :reorder, :add_color_tags,
+    :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv]
 
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
@@ -449,6 +452,61 @@ class GuidesController < ApplicationController
       format.json { render :json => @guide_taxa.as_json(:methods => [:tag_list])}
     end
   end
+
+  def import_tags_from_csv
+    tags = {}
+    CSV.foreach(open(params[:file]), headers: true) do |row|
+      predicate = row[0]
+      row.each do |header, value|
+        next if value.blank?
+        next if header == 'predicate'
+        tags[header] ||= []
+        value.split('|').each do |v|
+          if predicate.blank?
+            tags[header] << v
+          else
+            tags[header] << "#{predicate}=#{v}"
+          end
+        end
+      end
+    end
+    @guide.guide_taxa.find_each do |gt|
+      next unless tags[gt.name]
+      gt.update_attributes(tag_list: gt.tag_list + tags[gt.name])
+    end
+    respond_to do |format|
+      format.html { redirect_back_or_default(@guide) }
+    end
+  end
+
+  def import_tags_from_csv_template
+    tags = {}
+    names = []
+    @guide.guide_taxa.order(:position).includes(taggings: :tag).each_with_index do |gt,i|
+      names << gt.name
+      gt.tags.each do |tag|
+        namespace, predicate, value = FakeView.machine_tag_pieces(tag.name)
+        tags[predicate.to_s] ||= {}
+        tags[predicate.to_s][gt.name] = [tags[predicate.to_s][gt.name].to_s.split('|'), value].flatten.join('|')
+      end
+    end
+    csvdata = CSV.generate do |csv|
+      csv << ['Predicate', names].flatten
+      tags.each do |predicate, name_hash|
+        line = [predicate]
+        names.each do |name|
+          line << name_hash[name]
+        end
+        csv << line
+      end
+    end
+    respond_to do |format|
+      format.csv do
+        send_data(csvdata, { :filename => "#{@guide.title.parameterize}.csv", :type => :csv })
+      end
+    end
+  end
+
 
   private
 
