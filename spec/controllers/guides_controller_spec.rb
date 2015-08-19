@@ -90,3 +90,104 @@ describe GuidesController, "import_taxa" do
     end
   end
 end
+
+describe GuidesController, "import_tags_from_csv" do
+  let(:guide) { make_published_guide }
+  let(:taxon_names) { guide.guide_taxa.sort_by(&:name).map(&:name) }
+  let(:work_path) { File.join(Dir::tmpdir, "import_tags_from_csv-#{Time.now.to_i}.csv") }
+  before do
+    sign_in guide.user
+  end
+  
+  it "should add plain tags when no predicate listed" do
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name']
+      csv << [taxon_names[0], 'shifty']
+      csv << [taxon_names[1], 'forthright']
+      csv << [taxon_names[2], '']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    expect( guide_taxa[0].tag_list ).to include 'shifty'
+    expect( guide_taxa[1].tag_list ).to include 'forthright'
+  end
+  
+  it "should add tags with predicates" do
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name',         'color', 'size']
+      csv << [taxon_names[0], 'red',   'big']
+      csv << [taxon_names[1], 'green', 'small']
+      csv << [taxon_names[2], 'blue',  'small']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    expect( guide_taxa.first.tag_list ).to include 'color=red'
+    expect( guide_taxa.last.tag_list ).to include 'color=blue'
+    expect( guide_taxa.first.tag_list ).to include 'size=big'
+  end
+
+  it "should add tags with namespaces and predicates" do
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name',         'taxonomy:family']
+      csv << [taxon_names[0], 'Ranidae']
+      csv << [taxon_names[1], 'Lycaenidae']
+      csv << [taxon_names[2], 'Pompilidae']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    expect( guide_taxa[0].tag_list ).to include 'taxonomy:family=Ranidae'
+    expect( guide_taxa[1].tag_list ).to include 'taxonomy:family=Lycaenidae'
+    expect( guide_taxa[2].tag_list ).to include 'taxonomy:family=Pompilidae'
+  end
+
+  it "should add multiple tags per cell separated by pipes" do
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name',         'color']
+      csv << [taxon_names[0], 'red|green',   'big']
+      csv << [taxon_names[1], 'green', 'small']
+      csv << [taxon_names[2], 'blue',  'small|medium']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    expect( guide_taxa.first.tag_list ).to include 'color=red'
+    expect( guide_taxa.first.tag_list ).to include 'color=green'
+    expect( guide_taxa.last.tag_list ).to include 'small'
+    expect( guide_taxa.last.tag_list ).to include 'medium'
+  end
+
+  it "should not add tags for blanks" do
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name',         'color']
+      csv << [taxon_names[0], '']
+      csv << [taxon_names[1], 'green']
+      csv << [taxon_names[2], 'blue']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    expect( guide_taxa.first.tag_list ).to be_blank
+    expect( guide_taxa.last.tag_list ).to include 'color=blue'
+  end
+
+  it "should leave existing tags intact" do
+    gt = guide.guide_taxa.sort_by(&:name).first
+    gt.update_attributes(tag_list: %w(foo bar))
+    CSV.open(work_path, 'w') do |csv|
+      csv << ['name']
+      csv << [taxon_names[0], 'shifty']
+      csv << [taxon_names[1], 'forthright']
+      csv << [taxon_names[2], '']
+      csv
+    end
+    put :import_tags_from_csv, id: guide.id, file: work_path
+    guide_taxa = guide.guide_taxa(reload: true).sort_by(&:name)
+    gt.reload
+    expect( gt.tag_list ).to include 'shifty'
+    expect( gt.tag_list ).to include 'foo'
+    expect( gt.tag_list ).to include 'bar'
+  end
+end

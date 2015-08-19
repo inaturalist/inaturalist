@@ -329,11 +329,6 @@ describe Project, "aggregation_allowed?" do
     expect( p ).to be_aggregation_allowed
   end
 
-  it "is always false unless the project is trusted" do
-    p = Project.make!(place: make_place_with_geom, trusted: false)
-    expect( p ).not_to be_aggregation_allowed
-  end
-
   it "is false if place bigger than Texas" do
     envelope_ewkt = "MULTIPOLYGON(((0 0,0 15,15 15,15 0,0 0)))"
     p = Project.make!(place: make_place_with_geom(ewkt: envelope_ewkt), trusted: true)

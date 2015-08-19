@@ -377,6 +377,23 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.identifications.count ).to eq 3
     end
+
+    it "should mark as captive in response to captive_flag" do
+      o = Observation.make!(user: user)
+      expect( o ).not_to be_captive_cultivated
+      put :update, format: :json, id: o.id, observation: {captive_flag: "1", force_quality_metrics: true}
+      o.reload
+      expect( o ).to be_captive_cultivated
+    end
+    
+    it "should wild as captive in response to captive_flag" do
+      o = Observation.make!(user: user)
+      expect( o ).not_to be_captive_cultivated
+      put :update, format: :json, id: o.id, observation: {captive_flag: "0", force_quality_metrics: true}
+      o.reload
+      qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
+      expect( qm ).to be_agree
+    end
   end
 
   describe "by_login" do

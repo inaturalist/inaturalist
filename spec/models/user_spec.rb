@@ -308,7 +308,7 @@ describe User do
 
   describe "sane_destroy" do
     before(:each) do
-      enable_elastic_indexing([ Observation, Place, Update ])
+      enable_elastic_indexing([ Observation, Taxon, Place, Update ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -349,14 +349,14 @@ describe User do
 
     it "should refresh check lists" do
       t = Taxon.make!(rank: "species")
-      without_delay do
+      o = without_delay do
         make_research_grade_observation(taxon: t , user: @user,
           latitude: @place.latitude, longitude: @place.longitude)
       end
       expect(@place.check_list.listed_taxa.find_by_taxon_id(t.id)).not_to be_blank
-      without_delay do
-        @user.sane_destroy
-      end
+      @user.sane_destroy
+      Delayed::Worker.new.work_off
+      expect( Observation.find_by_id(o.id) ).to be_blank
       expect(@place.check_list.listed_taxa.find_by_taxon_id(t.id)).to be_blank
     end
 
@@ -376,7 +376,8 @@ describe User do
       end
       t = o.taxon
       expect(ListedTaxon.where(:place_id => @place, :taxon_id => t)).not_to be_blank
-      without_delay { @user.sane_destroy }
+      @user.sane_destroy
+      Delayed::Worker.new.work_off
       expect(ListedTaxon.where(:place_id => @place, :taxon_id => t)).to be_blank
     end
 

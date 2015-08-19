@@ -39,10 +39,12 @@ input.button:active {
   color:#fff;
 }
 
-
 .buttonrow > label,
 .buttonrow > .inter,
-.buttonrow > input.text {
+.buttonrow > input.text,
+.buttonrow > .buttoncontainer label,
+.buttonrow > .buttoncontainer .inter,
+.buttonrow > .buttoncontainer input.text {
   display: block;
   float: left;
   width: auto;
@@ -58,7 +60,8 @@ input.button:active {
 }
 
 
-.buttonrow input.text {
+.buttonrow input.text,
+.buttonrow > .buttoncontainer input.text {
  padding: 6px 0.4em; 
 }
 

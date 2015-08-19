@@ -169,14 +169,14 @@ describe Identification, "creation" do
   it "should update observation quality grade after disagreement" do
     o = make_research_grade_observation(:prefers_community_taxon => false)
     expect(o).to be_research_grade
-    i = Identification.make!(:observation => o)
-    Identification.make!(:observation => o, :taxon => i.taxon)
+    i = Identification.make!(observation: o, taxon: Taxon.make!(:species))
+    Identification.make!(observation: o, taxon: i.taxon)
     o.reload
     expect(o).not_to be_research_grade
     o.owners_identification.destroy
     o.reload
     expect(o.owners_identification).to be_blank
-    Identification.make!(:user => o.user, :observation => o, :taxon => i.taxon)
+    Identification.make!(user: o.user, observation: o, taxon: i.taxon)
     o.reload
     expect(o).to be_research_grade
   end
@@ -491,7 +491,7 @@ describe Identification, "captive" do
     expect(o.quality_metrics).not_to be_blank
     i.update_attributes(:captive_flag => "0")
     o.reload
-    expect(o.quality_metrics.first).to be_agree
+    expect(o.quality_metrics.first).not_to be_agree
   end
 
   it "should not alter quality metrics if nil" do

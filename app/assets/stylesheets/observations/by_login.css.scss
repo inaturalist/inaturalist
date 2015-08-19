@@ -52,7 +52,7 @@
   margin: 0pt 0.583em 0.667em 0pt;
 }
 
-#filters_button {
+#tools #filters_button.button {
   padding-left: 17px;
   padding-right: 10px;
   background: 7px 10px url(image_path('toggle_arrow_right.png')) no-repeat;
@@ -65,7 +65,7 @@
   -webkit-border-bottom-right-radius: 0;
 }
 
-#filters_button.open {
+#tools #filters_button.open.button {
   background: 5px 12px url(image_path('toggle_arrow_down.png')) no-repeat;
   border: 1px solid #eee;
   border-bottom: 1px solid white;
@@ -73,3 +73,5 @@
   margin-bottom: -1px;
 }
 #map { margin-bottom: 5px; }
+#tools .button, #tools .inter  {margin-bottom: 0;}
+#tools .selectlinks, #filters_button {font-size: 110%; border: 1px solid transparent;}

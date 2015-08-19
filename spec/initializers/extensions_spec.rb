@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require "spec_helper"
 
 describe "Extensions" do
@@ -29,6 +30,12 @@ describe "Extensions" do
         arr = arr.force_utf8
         expect( arr.first).to be nil
       end
+
+      it "doesn't remove Hebrew characters" do
+        arr = [ "בדיקה" ]
+        arr = arr.force_utf8
+        expect( arr.first).to eq "בדיקה"
+      end
     end
 
     describe Hash do
@@ -52,6 +59,12 @@ describe "Extensions" do
         expect( h[:value] ).to_not be nil
         h = h.force_utf8
         expect( h[:value] ).to be nil
+      end
+
+      it "doesn't remove Hebrew characters" do
+        h = { value: "בדיקה" }
+        h = h.force_utf8
+        expect( h[:value] ).to eq "בדיקה"
       end
     end
   end

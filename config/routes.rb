@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       put :reorder
       put :add_color_tags
       put "add_tags_for_rank/:rank" => "guides#add_tags_for_rank"
+      put :import_tags_from_csv
+      get :import_tags_from_csv_template
       put :remove_all_tags
     end
     resources :flags

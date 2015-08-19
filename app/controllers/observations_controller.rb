@@ -1761,6 +1761,7 @@ class ObservationsController < ApplicationController
     p.permit(
       :captive_flag,
       :description,
+      :force_quality_metrics,
       :geoprivacy,
       :iconic_taxon_id,
       :id_please,
@@ -1778,10 +1779,10 @@ class ObservationsController < ApplicationController
       :prefers_community_taxon,
       :quality_grade,
       :species_guess,
+      :tag_list,
       :taxon_id,
       :taxon_name,
       :time_zone,
-      :tag_list,
       :uuid,
       :zic_time_zone,
       observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
@@ -2720,7 +2721,7 @@ class ObservationsController < ApplicationController
     elastic_params = prepare_counts_elastic_query(search_params)
     taxon_counts = Observation.elastic_search(elastic_params.merge(size: 0,
       aggregate: {
-        distinct_taxa: { cardinality: { field: "taxon.id" } },
+        distinct_taxa: { cardinality: { field: "taxon.id", precision_threshold: 10000 } },
         rank: {
           terms: {
             field: "taxon.rank", size: 30,
@@ -2791,7 +2792,7 @@ class ObservationsController < ApplicationController
 
   def elastic_user_obs(elastic_params, limit = 500)
     user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
-      distinct_users: { cardinality: { field: "user.id" } },
+      distinct_users: { cardinality: { field: "user.id", precision_threshold: 10000 } },
       user_observations: { "user.id": limit }
     })).response.aggregations
     { counts: user_counts.user_observations.buckets.
@@ -2808,7 +2809,7 @@ class ObservationsController < ApplicationController
           field: "user.id", size: limit, order: { "distinct_taxa": :desc } },
         aggs: {
           distinct_taxa: {
-            cardinality: { field: "taxon.id" }}}}})).response.aggregations
+            cardinality: { field: "taxon.id", precision_threshold: 10000 }}}}})).response.aggregations
     species_counts.user_taxa.buckets.
       map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
   end
