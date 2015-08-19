@@ -3418,8 +3418,8 @@ en:
               </tr>
               <tr>
                 <td>Vulpes vulpes</td>
-                <td>red|gray</td>
-                <td>2</td>
+                <td>red|black</td>
+                <td>0</td>
                 <td>quadripedal</td>
               </tr>
             </tbody>
@@ -3431,7 +3431,7 @@ en:
             of the column. In this example, <i>Homo sapiens</i> gets the
             tags <code>bipedal</code> and <code>Number of hands=2</code>,
             and <i>Vulpes vulpes</i> gets <code>quadripedal</code>,
-            <code>color=red</code>, <code>color=gray</code>, and
+            <code>color=red</code>, <code>color=black</code>, and
             <code>Number of hands=0</code>. Blanks will be ignored, and you
             can add multiple lines per taxon. You can also add multiple
             values per cell separated by the pipe character.
