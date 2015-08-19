@@ -71,6 +71,85 @@ html, body {height: 100%;}
   padding-left: 18px;
 }
 
+.gmapv3legend {
+  font-size: 11px;
+  line-height: 20px;
+  max-width: 401px;
+  border: 1px solid rgba(0, 0, 0, 0.14902);
+  background: #FFFFFF;
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+  margin: 5px;
+}
+
+.gmapv3legend .gmap-label {
+  font-family: Roboto, Arial, sans-serif !important;
+}
+
+.gmapv3legend .title {
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  padding: 4px;
+}
+
+.gmapv3legend .ul-container {
+  display: inline-block;
+  width: 401px;
+}
+
+.gmapv3legend .ul-container ul.inat-overlay {
+  width: 200px;
+  margin: 0px;
+}
+
+.gmapv3legend .ul-container ul.inat-overlay.left {
+  float: left;
+}
+
+.gmapv3legend .ul-container ul.inat-overlay.right {
+  float: right;
+  border-left: 1px solid #d8d8d8;
+}
+
+.gmapv3legend ul.inat-overlay li {
+  padding: 4px;
+  list-style: none;
+}
+
+.gmapv3legend ul.inat-overlay li.header {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-top: 1px solid #d8d8d8;
+  padding: 4px 0px 0px 8px;
+}
+
+.gmapv3legend ul.inat-overlay li div {
+  padding: 0px;
+}
+
+.gmapv3legend ul.inat-overlay .icon {
+  float: left;
+  display: inline-block;
+}
+
+.gmapv3legend ul.inat-overlay .icon.color-box {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+}
+
+.gmapv3legend ul.inat-overlay .label {
+  display: inline-block;
+  max-width: 170px;
+}
+
+.gmapv3legend img {
+  width: 20px;
+  height: 20px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Trebuchet MS", Arial, sans-serif;
   margin-bottom: 0.5em;
