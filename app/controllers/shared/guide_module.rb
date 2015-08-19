@@ -42,8 +42,8 @@ module Shared::GuideModule
       else
         @scope.descendants_of(@taxon)
       end
-      @order = "listed_taxa.observations_count DESC, taxa.observations_count DESC" if params[:order] == 'frequency'
-      @order ||= "taxa.ancestry, taxa.id, taxa.name"
+      @order = "taxa.ancestry, taxa.id, taxa.name" if params[:order] == 'taxonomy'
+      @order ||= "listed_taxa.observations_count DESC, taxa.observations_count DESC"
     end
     
     if @colors = @filter_params[:colors]
