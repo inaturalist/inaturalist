@@ -1761,6 +1761,7 @@ class ObservationsController < ApplicationController
     p.permit(
       :captive_flag,
       :description,
+      :force_quality_metrics,
       :geoprivacy,
       :iconic_taxon_id,
       :id_please,
@@ -1778,10 +1779,10 @@ class ObservationsController < ApplicationController
       :prefers_community_taxon,
       :quality_grade,
       :species_guess,
+      :tag_list,
       :taxon_id,
       :taxon_name,
       :time_zone,
-      :tag_list,
       :uuid,
       :zic_time_zone,
       observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
