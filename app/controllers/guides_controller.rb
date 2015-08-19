@@ -483,12 +483,11 @@ class GuidesController < ApplicationController
     tags = {}
     headers = Set.new
     @guide.guide_taxa.order(:position).includes(taggings: :tag).each_with_index do |gt,i|
+      tags[gt.name] ||= {}
       gt.tags.each do |tag|
         namespace, predicate, value = FakeView.machine_tag_pieces(tag.name)
-        # predicates << predicate.to_s
         header = [namespace, predicate].compact.join(':')
         headers << header
-        tags[gt.name] ||= {}
         tags[gt.name][header] = [tags[gt.name][header].to_s.split('|'), value].flatten.join('|')
       end
     end
