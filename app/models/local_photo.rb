@@ -79,6 +79,9 @@ class LocalPhoto < Photo
     rescue NoMethodError => e
       raise e unless e.message =~ /path.*StringIO/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
+    rescue TypeError => e
+      raise e unless e.message =~ /no implicit conversion of Fixnum into String/
+      Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
   end
   
