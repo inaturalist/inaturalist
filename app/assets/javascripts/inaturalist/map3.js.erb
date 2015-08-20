@@ -532,83 +532,110 @@ iNaturalist.FullScreenControl = function(map) {
   return controlDiv;
 }
 
-iNaturalist.legendItem = function( img, color, label ) {
+iNaturalist.legendItem = function( options ) {
   var li = $( "<li/>" );
   var iconDiv = $( "<div/>" ).addClass( "icon" );
-  if( img ) {
-    if( !_.isArray( img ) ) { img = [ img ]; }
-    _.each( img, function( i ) {
+  if( options.images ) {
+    _.each( options.images, function( i ) {
       var icon = $( "<img/>" ).attr( "src", i );
+      if( options.imageClasses ) {
+        icon.addClass( options.imageClasses );
+      }
       iconDiv.append( icon );
     });
-  } else if( color ) {
-    iconDiv.addClass( "color-box" ).css( "background", color );
+  } else if( options.color ) {
+    iconDiv.addClass( "color-box" ).css( "background", options.color );
+  } else if( options.unknown === true ) {
+    iconDiv.addClass( "color-box unknown" );
   }
-  var labelDiv = $( "<div/>" ).addClass( "label" ).text( label );
+  if( options.classes ) {
+    li.addClass( options.classes );
+  }
+  var labelDiv = $( "<div/>" ).addClass( "label" ).text( options.label );
   return li.append( iconDiv ).append( labelDiv );
+};
+
+iNaturalist.LegendControl = function( controlDiv, map ) {
+  var controlUI = $( "<div><div id='map-legend-label' class='gmap-label'>" + I18n.t( "map_legend" ) +"</div></div>" ).
+    addClass( "gmapv3legend" );
+  controlUI.click( function( ) {
+    $( "#map-legend" ).toggle( );
+    $( "#map-legend" ).focus( );
+  });
+  controlDiv.appendChild( controlUI.get(0) );
 }
 
 
-iNaturalist.CenterControl = function( controlDiv, map ) {
-  var controlUI = $( "<div><span id='map-legend-label' class='gmap-label'>Map Legend</span></div>" ).
-    addClass( "gmapv3legend" );
-  var ulDiv = $( "<div></div>" ).addClass( "ul-container" ).hide( );
+iNaturalist.Legend = function( controlDiv, map ) {
+  var controlUI = $( "<div id='map-legend'><div class='title'>" + I18n.t( "map_legend" ) +"</div></div>" ).
+    addClass( "gmapv3legend" ).hide( );
+  var ulDiv = $( "<div></div>" ).addClass( "ul-container" );
   var ul1 = $( "<ul></ul>" ).addClass( "inat-overlay left" );
-  ul1.append( $( "<li class='header'>Research Quality:</li>") );
-  ul1.append( iNaturalist.legendItem(
-    [ "<%= asset_path('map_legend/red_marker_dot.png') %>",
-      "<%= asset_path('map_legend/red_circle_dot.png') %>" ], null, "Research Grade" ) );
-  ul1.append( iNaturalist.legendItem(
-    [ "<%= asset_path('map_legend/red_marker.png') %>",
-      "<%= asset_path('map_legend/red_circle.png') %>" ], null, "Needs ID, Casual" ) );
-  ul1.append( $( "<li class='header'>Geoprivacy:</li>") );
-  ul1.append( iNaturalist.legendItem(
-    "<%= asset_path('map_legend/red_marker.png') %>", null, "Open" ) );
-  ul1.append( iNaturalist.legendItem(
-    "<%= asset_path('map_legend/red_circle.png') %>", null, "Obscured" ) );
-  ul1.append( $( "<li class='header'>Map Marker Size:</li>") );
-  ul1.append( iNaturalist.legendItem(
-    [ "<%= asset_path('map_legend/red_marker_dot.png') %>",
-      "<%= asset_path('map_legend/red_marker.png') %>",
-      "<%= asset_path('map_legend/red_circle_dot.png') %>",
-      "<%= asset_path('map_legend/red_circle.png') %>" ], null, "Features" ) );
-  ul1.append( iNaturalist.legendItem(
-    [ "<%= asset_path('map_legend/red_marker_dot.png') %>",
-      "<%= asset_path('map_legend/red_marker.png') %>",
-      "<%= asset_path('map_legend/red_circle_dot.png') %>",
-      "<%= asset_path('map_legend/red_circle.png') %>" ], null, "All" ) );
+  ul1.append( $( "<li class='header'>" + I18n.t( "quality_grade" ) +"</li>") );
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>" ],
+    label: I18n.t( "research_grade" ) }));
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    label: [ I18n.t( "needs_id" ), I18n.t( "casual" ) ].join( ", " ),
+    classes: "last" }));
+  ul1.append( $( "<li class='header'>" + I18n.t( "geoprivacy" ) +"</li>") );
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>" ],
+    label: I18n.t( "open" ) }));
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    label: I18n.t( "obscured" ),
+    classes: "last" }));
+  ul1.append( $( "<li class='header'>" + I18n.t( "map_marker_size" ) +"</li>") );
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    imageClasses: "large",
+    label: I18n.t( "featured" ),
+    classes: "tall" }));
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    imageClasses: "wide",
+    label: I18n.t( "all" ),
+    classes: "last" }));
   ulDiv.append( ul1 );
 
   var ul2 = $( "<ul></ul>" ).addClass( "inat-overlay right" );
-  ul2.append( $( "<li class='header'>Taxonomic Groups:</li>") );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Animalia" ],
-    "Amphibians, Birds, Fishes, Mammals, Reptiles, other Animals" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Mollusca" ], "Mollusks, Arachnids, Insects" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Plantae" ], "Plants" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Fungi" ], "Fungi" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Chromista" ], "Chromista" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Protozoa" ], "Protozoans" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    iNaturalist.Map.ICONIC_TAXON_COLORS[ "Animalia" ], "Mollusks, Arachnids, Insects" ) );
-  ul2.append( iNaturalist.legendItem( null,
-    "#ffffff", "Unknown" ) );
+  ul2.append( $( "<li class='header'>" + I18n.t( "taxonomic_groups" ) +"</li>") );
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Animalia" ],
+    label: [ I18n.t( "all_taxa.amphibians" ), I18n.t( "all_taxa.birds" ),
+             I18n.t( "all_taxa.ray_finned_fishes" ), I18n.t( "all_taxa.mammals" ),
+             I18n.t( "all_taxa.reptiles" ), I18n.t( "all_taxa.other_animals" ) ].join( ", " ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Mollusca" ],
+    label: [ I18n.t( "all_taxa.mollusks" ), I18n.t( "all_taxa.arachnids" ),
+             I18n.t( "all_taxa.insects" ) ].join( ", " ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Plantae" ],
+    label: I18n.t( "all_taxa.plants" ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Fungi" ],
+    label: I18n.t( "all_taxa.fungi" ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Chromista" ],
+    label: I18n.t( "all_taxa.chromista" ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Protozoa" ],
+    label: I18n.t( "all_taxa.protozoans" ) }));
+  ul2.append( iNaturalist.legendItem({
+    unknown: true,
+    label: I18n.t( "unknown" ) }));
   ulDiv.append( ul2 );
   controlUI.append( ulDiv );
-
-  // Setup the click event listeners: simply set the map to Chicago.
-  controlUI.hover( function( ) {
-    ulDiv.show( );
-    $( "#map-legend-label" ).removeClass( "gmap-label" ).addClass( "title" );
-  }, function( ) {
-    ulDiv.hide( );
-    $( "#map-legend-label" ).removeClass( "title" ).addClass( "gmap-label" );
-  });
   controlDiv.appendChild( controlUI.get(0) );
 }
 

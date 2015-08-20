@@ -114,15 +114,19 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   // Create the custom control (but don't show it yet)
   map._overlayControl = new iNaturalist.OverlayControl(map);
 
+  if( options.showLegend ) {
+    // Create the DIV to hold the control and call the CenterControl() constructor
+    // passing in this DIV.
+    var legendControlDiv = document.createElement('div');
+    var legendControl = new iNaturalist.LegendControl(legendControlDiv, map);
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControlDiv);
 
-  // Create the DIV to hold the control and call the CenterControl() constructor
-  // passing in this DIV.
-  var centerControlDiv = document.createElement('div');
-  var centerControl = new iNaturalist.CenterControl(centerControlDiv, map);
-
-  centerControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
-
+    // Create the DIV to hold the control and call the CenterControl() constructor
+    // passing in this DIV.
+    var legendDiv = document.createElement('div');
+    var legend = new iNaturalist.Legend(legendDiv, map);
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+  }
 
   // All Observations layer
   if( options.showAllLayer ) {

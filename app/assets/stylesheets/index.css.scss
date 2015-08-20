@@ -72,7 +72,7 @@ html, body {height: 100%;}
 }
 
 .gmapv3legend {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 20px;
   max-width: 401px;
   border: 1px solid rgba(0, 0, 0, 0.14902);
@@ -81,17 +81,20 @@ html, body {height: 100%;}
   border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
   margin: 5px;
+  text-transform: capitalize;
 }
 
 .gmapv3legend .gmap-label {
   font-family: Roboto, Arial, sans-serif !important;
+  cursor: pointer;
 }
 
 .gmapv3legend .title {
-  font-size: 1.2em;
+  font-size: 15px;
+  line-height: 32px;
   font-weight: bold;
   font-family: "Trebuchet MS", Arial, sans-serif;
-  padding: 4px;
+  padding: 0px 8px;
 }
 
 .gmapv3legend .ul-container {
@@ -114,15 +117,30 @@ html, body {height: 100%;}
 }
 
 .gmapv3legend ul.inat-overlay li {
-  padding: 4px;
+  padding: 5px;
   list-style: none;
+  text-transform: capitalize;
 }
 
 .gmapv3legend ul.inat-overlay li.header {
   text-transform: uppercase;
   font-weight: bold;
+  text-size: 14px;
+  line-height: 22px;
   border-top: 1px solid #d8d8d8;
-  padding: 4px 0px 0px 8px;
+  padding: 6px 0px 0px 7px;
+}
+
+.gmapv3legend ul.inat-overlay li.header::after {
+    content: ":";
+}
+
+.gmapv3legend ul.inat-overlay li.last {
+  margin-bottom: 3px;
+}
+
+.gmapv3legend ul.inat-overlay li.tall {
+  line-height: 26px;
 }
 
 .gmapv3legend ul.inat-overlay li div {
@@ -134,20 +152,34 @@ html, body {height: 100%;}
   display: inline-block;
 }
 
+.gmapv3legend ul.inat-overlay .icon img {
+  width: 16px;
+  height: 16px;
+  padding: 0px 4px;
+}
+
+.gmapv3legend ul.inat-overlay .icon img.large {
+  width: 24px;
+  height: 24px;
+  padding: 0px;
+}
+
 .gmapv3legend ul.inat-overlay .icon.color-box {
-  margin-right: 4px;
+  margin: 0px 4px 0px 3px;
   width: 16px;
   height: 16px;
 }
 
-.gmapv3legend ul.inat-overlay .label {
-  display: inline-block;
-  max-width: 170px;
+.gmapv3legend ul.inat-overlay .icon.color-box.unknown {
+  width: 14px;
+  height: 14px;
+  border: 2px dotted black;
 }
 
-.gmapv3legend img {
-  width: 20px;
-  height: 20px;
+.gmapv3legend ul.inat-overlay .label {
+  display: inline-block;
+  max-width: 160px;
+  margin-left: 4px;
 }
 
 h1, h2, h3, h4, h5, h6 {

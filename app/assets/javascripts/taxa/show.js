@@ -12,7 +12,7 @@ $(document).ready(function(){
     }
   })
   
-  $('#taxon_range_map').taxonMap()
+  $('#taxon_range_map').taxonMap({ showLegend: true })
   window.map = $('#taxon_range_map').data('taxonMap')
   if (ADDITIONAL_RANGES && ADDITIONAL_RANGES.length > 0) {
     $.each(ADDITIONAL_RANGES, function() {

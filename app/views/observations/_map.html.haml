@@ -7,7 +7,7 @@
 = javascript_include_tag 'map_bundle', 'wax.g'
 :javascript
   $(document).ready(function() {
-    $("#map").taxonMap( );
+    $("#map").taxonMap({ showLegend: true });
     window.map = $("#map").data("taxonMap");
     // Bind the divider toggle
     $('#mapdivider').click(function(){

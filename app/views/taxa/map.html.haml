@@ -6,7 +6,7 @@
   = javascript_include_tag "map_bundle"
   :javascript
     $(document).ready(function() {
-      $("#map").taxonMap( );
+      $("#map").taxonMap({ showLegend: true });
       window.map = $("#map").data("taxonMap");
       $(window.map._overlayControl.div).find(".overlaycontrol").addClass("open").find("ul").show();
     });
