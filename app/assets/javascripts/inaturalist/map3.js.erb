@@ -390,6 +390,9 @@ if (typeof iNaturalist === 'undefined') this.iNaturalist = {};
 
 if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
 
+iNaturalist.Map.MAP_BACKGROUND_COLOR = '#B3D1FF'
+iNaturalist.Map.SATELLITE_BACKGROUND_COLOR = '#2A4280'
+
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
@@ -397,9 +400,9 @@ iNaturalist.Map.createMap = function(options) {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
     zoom: 1,
-    minZoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
-    streetViewControl: false
+    streetViewControl: false,
+    backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR
   }, options);
   
   var map;
@@ -410,6 +413,17 @@ iNaturalist.Map.createMap = function(options) {
   else {
     map = new google.maps.Map(options.div, options);
   }
+
+  map.addListener('maptypeid_changed', function() {
+    var mapTypeId = map.getMapTypeId()
+    if (mapTypeId == google.maps.MapTypeId.SATELLITE || mapTypeId == google.maps.MapTypeId.HYBRID) {
+      $(map.getDiv()).css({'backgroundColor': iNaturalist.Map.SATELLITE_BACKGROUND_COLOR})
+    } else {
+      $(map.getDiv()).css({'backgroundColor': map._inatMapBackgroundColor})
+    }
+  })
+  map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
+
   if( ! _.has( options, "disableFullscreen" ) ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   }

@@ -81,6 +81,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     mapTypeControl: (options.mapTypeControl !== false),
     minZoom: options.minZoom,
     disableFullscreen: options.disableFullscreen,
+    backgroundColor: '#E3EAF6',
     styles: [
       {
         stylers: [
@@ -90,6 +91,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       }
     ]
   }));
+
   var preserveViewport = options.preserveViewport
   if (options.minX) {
     map.fitBounds(
