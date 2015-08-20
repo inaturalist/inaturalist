@@ -191,3 +191,29 @@ describe GuidesController, "import_tags_from_csv" do
     expect( gt.tag_list ).to include 'bar'
   end
 end
+
+describe GuidesController, "import_tags_from_csv_template" do
+  let(:guide) { make_published_guide }
+  before do
+    sign_in guide.user
+  end
+  it "should include columns for predicates of all tags in the guide" do
+    guide.guide_taxa.each do |gt|
+      gt.update_attributes(tag_list: "size=small,color=red")
+    end
+    get :import_tags_from_csv_template, format: :csv, id: guide.id
+    csv = CSV.parse(response.body, headers: true)
+    expect( csv.headers ).to include 'size'
+    expect( csv.headers ).to include 'color'
+  end
+  it "should include rows for all taxa in the guide" do
+    get :import_tags_from_csv_template, format: :csv, id: guide.id
+    names = []
+    CSV.parse(response.body, headers: true).each do |row|
+      names << row[0]
+    end
+    guide.guide_taxa.each do |gt|
+      expect( names ).to include gt.name
+    end
+  end
+end

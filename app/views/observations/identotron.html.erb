@@ -316,7 +316,10 @@
             <td>
               <div class="field">
                 <label><%= t :order %></label><br/>
-                <%- options = [[t(:taxonomy, default: 'taxonomy').capitalize, nil], [t(:frequency, default: 'frequency').capitalize, 'frequency']] -%>
+                <%- options = [
+                  [t(:frequency, default: 'frequency').capitalize, nil],
+                  [t(:taxonomy, default: 'taxonomy').capitalize, 'taxonomy']
+                ] -%>
                 <%= select_tag "order", options_for_select(options, @order), :id => "orderchooser", :class => "inlineblock" %>
               </div>
             </td>
