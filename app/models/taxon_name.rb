@@ -149,6 +149,7 @@ class TaxonName < ActiveRecord::Base
 
   def set_is_valid
     self.is_valid = true unless self.is_valid == false || lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    self.is_valid = true if taxon.taxon_names.size <= 1
     true
   end
   
