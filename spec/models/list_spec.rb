@@ -8,8 +8,8 @@ describe List do
     it "should not be allowed anyone other than the owner" do
       list = LifeList.make!
       other_user = User.make!
-      list.should be_editable_by list.user
-      list.should_not be_editable_by other_user
+      expect(list).to be_editable_by list.user
+      expect(list).not_to be_editable_by other_user
     end
   end
 
@@ -27,7 +27,7 @@ describe List do
     it "should return a ListedTaxon" do
       list = List.make!
       taxon = Taxon.make!
-      list.add_taxon(taxon).should be_a(ListedTaxon)
+      expect(list.add_taxon(taxon)).to be_a(ListedTaxon)
     end
   
     it "should not create a new ListedTaxon if the taxon is already in the list" do
@@ -35,7 +35,7 @@ describe List do
       list = listed_taxon.list
       taxon = listed_taxon.taxon
       new_listed_taxon = list.add_taxon(taxon)
-      new_listed_taxon.should_not be_valid
+      expect(new_listed_taxon).not_to be_valid
     end
   
   end
@@ -43,11 +43,11 @@ describe List do
   describe "refresh_with_observation" do
     it "should update stats" do
       listed_taxon = ListedTaxon.make!
-      listed_taxon.last_observation_id.should be_blank
+      expect(listed_taxon.last_observation_id).to be_blank
       o = Observation.make!(:user => listed_taxon.list.user, :taxon => listed_taxon.taxon)
       List.refresh_with_observation(o, :skip_subclasses => true)
       listed_taxon.reload
-      listed_taxon.last_observation_id.should == o.id
+      expect(listed_taxon.last_observation_id).to eq o.id
     end
   end
 
