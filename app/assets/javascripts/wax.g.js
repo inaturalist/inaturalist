@@ -4,6 +4,7 @@
  * 2014-04-28 kueda - Support for minZoom and maxZoom in layer specification
  * 2014-10-29 pleary - Support for minZoom and maxZoom for grid interactions
  * 2015-08-05 pleary - Specify jsonpCallbackName so varnish can cache responses
+ * 2015-08-19 pleary - Remove click timeout to avoid delay in popups
  */
 
 !function (name, context, definition) {
@@ -2614,11 +2615,12 @@ wax.interaction = function() {
             // Contain the event data in a closure.
             // Ignore double-clicks by ignoring clicks within 300ms of
             // each other.
+            // 2015-08-19 pleary - we have a different solution in map3.js
             if(!_clickTimeout) {
               _clickTimeout = window.setTimeout(function() {
                   _clickTimeout = null;
                   interaction.click(evt, pos);
-              }, 300);
+              }, 0);
             } else {
               killTimeout();
             }

@@ -469,11 +469,16 @@ iNaturalist.Map.createObservationIcon = function(options) {
     var iconicTaxonName = options.observation.iconic_taxon_name
     if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
     if (iconicTaxonName) {
-      iconPath = iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName];
+      iconPath = _.clone( iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName] );
+      if( options.observation.quality_grade != "research" ) {
+        iconPath.url = iconPath.url.replace( /\.png$/, "NoDot.png" );
+      }
     } else {
       iconPath = iNaturalist.Map[iconSet]['unknown34'];
     }
-
+    if( options.observation.coordinates_obscured ) {
+      iconPath.anchor = new google.maps.Point(10, 10);
+    }
     return iconPath
   }
   
@@ -481,6 +486,9 @@ iNaturalist.Map.createObservationIcon = function(options) {
   iconPath += options.stemless ? "stemless_" : ""
   iconPath += options.color || "HotPink"
   iconPath += options.character ? ('_'+options.character) : ""
+  if( !options.character && options.quality_grade != "research" ) {
+    iconPath += "NoDot";
+  }
   iconPath += '.png'
   return iconPath
 };
@@ -538,11 +546,119 @@ iNaturalist.FullScreenControl = function(map) {
   return controlDiv;
 }
 
+iNaturalist.legendItem = function( options ) {
+  var li = $( "<li/>" );
+  var iconDiv = $( "<div/>" ).addClass( "icon" );
+  if( options.images ) {
+    _.each( options.images, function( i ) {
+      var icon = $( "<img/>" ).attr( "src", i );
+      if( options.imageClasses ) {
+        icon.addClass( options.imageClasses );
+      }
+      iconDiv.append( icon );
+    });
+  } else if( options.color ) {
+    iconDiv.addClass( "color-box" ).css( "background", options.color );
+  } else if( options.unknown === true ) {
+    iconDiv.addClass( "color-box unknown" );
+  }
+  if( options.classes ) {
+    li.addClass( options.classes );
+  }
+  var labelDiv = $( "<div/>" ).addClass( "label" ).text( options.label );
+  return li.append( iconDiv ).append( labelDiv );
+};
+
+iNaturalist.LegendControl = function( controlDiv, map ) {
+  var controlUI = $( "<div><div id='map-legend-label' class='gmap-label'>" + I18n.t( "map_legend" ) +"</div></div>" ).
+    addClass( "gmapv3legend" );
+  controlUI.click( function( ) {
+    $( "#map-legend" ).toggle( );
+    $( "#map-legend" ).focus( );
+  });
+  controlDiv.appendChild( controlUI.get(0) );
+}
+
+
+iNaturalist.Legend = function( controlDiv, map ) {
+  var controlUI = $( "<div id='map-legend'><div class='title'>" + I18n.t( "map_legend" ) +"</div></div>" ).
+    addClass( "gmapv3legend" ).hide( );
+  var ulDiv = $( "<div></div>" ).addClass( "ul-container" );
+  var ul1 = $( "<ul></ul>" ).addClass( "inat-overlay left" );
+  ul1.append( $( "<li class='header'>" + I18n.t( "quality_grade" ) +"</li>") );
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>" ],
+    label: I18n.t( "research_grade" ) }));
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    label: [ I18n.t( "needs_id" ), I18n.t( "casual" ) ].join( ", " ),
+    classes: "last" }));
+  ul1.append( $( "<li class='header'>" + I18n.t( "geoprivacy" ) +"</li>") );
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>" ],
+    label: I18n.t( "open" ) }));
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    label: I18n.t( "obscured" ),
+    classes: "last" }));
+  ul1.append( $( "<li class='header'>" + I18n.t( "map_marker_size" ) +"</li>") );
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    imageClasses: "large",
+    label: I18n.t( "featured" ),
+    classes: "tall" }));
+  ul1.append( iNaturalist.legendItem({
+    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
+              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+    imageClasses: "wide",
+    label: I18n.t( "all" ),
+    classes: "last" }));
+  ulDiv.append( ul1 );
+
+  var ul2 = $( "<ul></ul>" ).addClass( "inat-overlay right" );
+  ul2.append( $( "<li class='header'>" + I18n.t( "taxonomic_groups" ) +"</li>") );
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Animalia" ],
+    label: [ I18n.t( "all_taxa.amphibians" ), I18n.t( "all_taxa.birds" ),
+             I18n.t( "all_taxa.ray_finned_fishes" ), I18n.t( "all_taxa.mammals" ),
+             I18n.t( "all_taxa.reptiles" ), I18n.t( "all_taxa.other_animals" ) ].join( ", " ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Mollusca" ],
+    label: [ I18n.t( "all_taxa.mollusks" ), I18n.t( "all_taxa.arachnids" ),
+             I18n.t( "all_taxa.insects" ) ].join( ", " ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Plantae" ],
+    label: I18n.t( "all_taxa.plants" ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Fungi" ],
+    label: I18n.t( "all_taxa.fungi" ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Chromista" ],
+    label: I18n.t( "all_taxa.chromista" ) }));
+  ul2.append( iNaturalist.legendItem({
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS[ "Protozoa" ],
+    label: I18n.t( "all_taxa.protozoans" ) }));
+  ul2.append( iNaturalist.legendItem({
+    unknown: true,
+    label: I18n.t( "unknown" ) }));
+  ulDiv.append( ul2 );
+  controlUI.append( ulDiv );
+  controlDiv.appendChild( controlUI.get(0) );
+}
+
+
+
 iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
-  var controlUI = $('<div>' + I18n.t('taxon_map.overlays') + '</div>').addClass('gmapv3control overlaycontrol')
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)
@@ -812,16 +928,6 @@ google.maps.Map.prototype.addElasticLayerByEndpoint = function( endpoint, endpoi
   return this.addLayerAndControl( { tiles: tileURLs }, options );
 };
 
-google.maps.Map.prototype.addLayerByEndpoint = function( endpoint, endpointID, options ) {
-  // prevent the tilt feature, which cannot overlay tiles at higher zooms
-  this.setTilt(0);
-  var options = options || { },
-      layerTileURL = <%= CONFIG.tile_servers.windshaft.inspect %> +
-        "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png";
-  layerTileURL = appendValidParamsToURL( layerTileURL, options );
-  return this.addLayerAndControl( { tiles: [ layerTileURL ] }, options );
-};
-
 // Convenience method that likely isn't called outside this file.
 // Will add a layer and send that layer's data to addWindshaftOverlayControl
 // to add a checkbox toggle for this new layer
@@ -889,6 +995,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
       return base + gridTileSuffix;
     }), {
     maxzoom: gridmaxzoom,
+    gridmaxzoom: gridmaxzoom,
     interactivity: options.interactivity === false ? false : 'id',
     interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled
@@ -928,7 +1035,7 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
     var interactionsURLs = options.interactionsURL ?
       [ options.interactionsURL ] : tileURLs;
     options.grids = _.map( interactionsURLs, function( l ) {
-      return google.maps.Map.prototype.interactivityURL( l, options.interactivity );
+      return google.maps.Map.prototype.utfgridURL( l );
     })
   }
   // finish preparing the tile options hash
@@ -944,23 +1051,38 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
-    this.addTileInteractivity( tilejson, layerID );
+    this.addTileInteractivity( tilejson, layerID, options );
   }
   // return the layer and index of this layer in the current stack
   return { layer: layer, layerID: layerID };
 }
 
-google.maps.Map.prototype.interactivityURL = function( tileURL, interactivity ) {
-  utfgridURL = tileURL.replace( /\.png/, ".grid.json" );
-  utfgridURL += ( utfgridURL.indexOf("?") < 0 ) ? "?" : "&";
-  return utfgridURL + "interactivity=" + interactivity;
+google.maps.Map.prototype.utfgridURL = function( tileURL ) {
+  url = tileURL.replace( /\.png/, ".grid.json" );
+  url += ( url.indexOf("?") < 0 ) ? "?" : "&";
+  return url;
 };
 
-google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
+google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, options ) {
   var map = this;
   var interactionOn = false;
-  wax.g
-    .interaction()
+  var waxInteraction = wax.g.interaction( );
+  var oldFeature = waxInteraction.screen_feature;
+  waxInteraction.screen_feature = function( pos, callback ) {
+    // making sure the colored heatmap doesn't have offset interactions
+    if( options.maxzoom && map.getZoom( ) <= options.maxzoom ) {
+      return oldFeature( pos, callback );
+    }
+    oldFeature( { x: pos.x, y: pos.y + 13 }, function( f ) {
+      if( f && f.geoprivacy != "obscured" ) { return callback( f ); }
+      oldFeature( pos, function( f ) {
+        if( f && f.geoprivacy != "obscured" ) { return callback( ); }
+        callback( f );
+      });
+    });
+  };
+
+  waxInteraction
     .map(map)
     .tilejson(tilejson)
     .on({
@@ -970,7 +1092,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
           return null;
         }
         interactionOn = true;
-        document.body.style.cursor = 'pointer';
+        map.setOptions({ draggableCursor: 'pointer' });
         if (o.e.type == 'click') {
           // if a native infoWindow was just opened, don't let another one open
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
@@ -1011,11 +1133,13 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
               }
             });
           }
-        } else if (o.e.type == 'mousemove') {
-          map.setOptions({ draggableCursor: 'pointer' });
         }
       },
       off: function(o) {
+        // check to see if the layer with the interaction is enabled
+        if( map.overlayMapTypes.getAt( layerID - 1 ) === emptyLayer ) {
+          return null;
+        }
         // no need to keep setting the option while the mouse
         // is outside any interactive point
         if( interactionOn ) {

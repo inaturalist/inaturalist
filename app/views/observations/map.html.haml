@@ -6,7 +6,8 @@
   = javascript_include_tag "map_bundle"
   :javascript
     $(document).ready(function() {
-      $("#map").taxonMap( { urlCoords: true, mapType: google.maps.MapTypeId.#{ @map_type } } );
+      $("#map").taxonMap({ urlCoords: true, mapType: google.maps.MapTypeId.#{ @map_type },
+        showLegend: true });
       window.map = $("#map").data("taxonMap");
 
       // getting the coordinates from the URL and the site default BOUNDS

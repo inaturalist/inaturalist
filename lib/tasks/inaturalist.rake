@@ -94,7 +94,7 @@ namespace :inaturalist do
       next if f =~ /\.(gif|png|php)$/
       next if f == output_path
       contents = IO.read( f )
-      results = contents.scan(/I18n.t\((.)(.*?)\1/i)
+      results = contents.scan(/I18n.t\( ?(.)(.*?)\1/i)
       unless results.empty?
         all_keys += results.map{ |r| r[1].chomp(".") }
       end
