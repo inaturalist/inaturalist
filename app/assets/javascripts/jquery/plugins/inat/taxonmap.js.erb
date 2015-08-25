@@ -14,7 +14,7 @@ var inatTaxonMap = { };
 }(jQuery))
 
 inatTaxonMap.setup = function ( elt, options ) {
-  var options = $.extend( { }, options );
+  var options = $.extend( true, { }, options );
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = options.mapType || $(elt).data('map-type');
@@ -66,7 +66,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   if( !options.showAllLayer && options.showAllLayer !== false ) {
     options.showAllLayer = true;
   }
-  $(elt).data('taxonMapOptions', options)
+  $(elt).data('taxonMapOptions', $.extend( true, { }, options ) );
   inatTaxonMap.setupGoogleMap( elt );
 };
 
@@ -76,7 +76,7 @@ inatTaxonMap.fit = function( elt ) {
 
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
-  var map = iNaturalist.Map.createMap( _.extend( options, {
+  var map = iNaturalist.Map.createMap( $.extend( true, { }, options, {
     div: elt,
     mapTypeControl: (options.mapTypeControl !== false),
     minZoom: options.minZoom,
