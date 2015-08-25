@@ -190,6 +190,11 @@ describe GuidesController, "import_tags_from_csv" do
     expect( gt.tag_list ).to include 'foo'
     expect( gt.tag_list ).to include 'bar'
   end
+
+  it "should fail gracefully without a file" do
+    put :import_tags_from_csv, id: guide.id
+    expect( response ).not_to be_server_error
+  end
 end
 
 describe GuidesController, "import_tags_from_csv_template" do

@@ -454,6 +454,15 @@ class GuidesController < ApplicationController
   end
 
   def import_tags_from_csv
+    unless params[:file]
+      respond_to do |format|
+        format.html do
+          flash[:error] = "You must choose a CSV file."
+          redirect_back_or_default(@guide)
+          return
+        end
+      end
+    end
     tags = {}
     CSV.foreach(open(params[:file]), headers: true) do |row|
       tags[row[0]] ||= []
