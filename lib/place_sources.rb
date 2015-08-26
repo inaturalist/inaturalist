@@ -199,12 +199,14 @@ module PlaceSources
       end
       geoplanet_type = "State"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['State']
+      options[:admin_level] = Place::STATE_LEVEL
       options[:parent] ||= Place.place_type('Country').where("name LIKE 'United States%'").first
     when 'County'
       state = FIPS_STATE_CODES[shape.data['STATEFP'] || shape.data['STATE']]
-      geoplanet_query = "#{name}, #{state}, US"
+      geoplanet_query = "#{name} County, #{state}, US"
       geoplanet_type = "County"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['County']
+      options[:admin_level] = Place::COUNTY_LEVEL
       options[:code] ||= shape.data['COUNTY']
       options[:parent] ||= Place.place_type('State').where(:code => state, :name => FIPS_STATES[shape.data['STATEFP'] || shape.data['STATE']]).first
     when 'place'

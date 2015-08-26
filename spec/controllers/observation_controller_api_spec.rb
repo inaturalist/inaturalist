@@ -906,6 +906,7 @@ shared_examples_for "an ObservationsController" do
       expect( ids.first ).to eq obs_without_votes.id
       expect( ids.last ).to eq obs_with_votes.id
     end
+
     it "should sort by votes asc" do
       obs_with_votes = Observation.make!
       obs_without_votes = Observation.make!
@@ -914,6 +915,61 @@ shared_examples_for "an ObservationsController" do
       ids = JSON.parse(response.body).map{|r| r['id'].to_i}
       expect( ids.last ).to eq obs_without_votes.id
       expect( ids.first ).to eq obs_with_votes.id
+    end
+
+    describe "filtration by license" do
+      before do
+        @all_rights = Observation.make!(license: nil)
+        expect( @all_rights.license ).to be_nil
+        @cc_by = Observation.make!(license: Observation::CC_BY)
+      end
+      it "should work for any" do
+        get :index, format: :json, license: 'any'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).not_to include @all_rights.id
+        expect( ids ).to include @cc_by.id
+      end
+      it "should work for none" do
+        get :index, format: :json, license: 'none'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include @all_rights.id
+        expect( ids ).not_to include @cc_by.id
+      end
+      it "should work for CC-BY" do
+        get :index, format: :json, license: 'CC-BY'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).not_to include @all_rights.id
+        expect( ids ).to include @cc_by.id
+      end
+    end
+
+    describe "filtration by photo_license" do
+      before do
+        @all_rights = Observation.make!
+        photo = LocalPhoto.make!
+        ObservationPhoto.make!(photo: photo, observation: @all_rights)
+        @cc_by = Observation.make!(license: Observation::CC_BY)
+        photo = LocalPhoto.make!(license: Photo::CC_BY)
+        ObservationPhoto.make!(photo: photo, observation: @cc_by)
+      end
+      it "should work for any" do
+        get :index, format: :json, photo_license: 'any'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).not_to include @all_rights.id
+        expect( ids ).to include @cc_by.id
+      end
+      it "should work for none" do
+        get :index, format: :json, photo_license: 'none'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include @all_rights.id
+        expect( ids ).not_to include @cc_by.id
+      end
+      it "should work for CC-BY" do
+        get :index, format: :json, photo_license: 'CC-BY'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).not_to include @all_rights.id
+        expect( ids ).to include @cc_by.id
+      end
     end
 
     describe "with site" do
@@ -1005,6 +1061,16 @@ shared_examples_for "an ObservationsController" do
         expect( ids ).to include @research_grade.id
         expect( ids ).to include @needs_id.id
         expect( ids ).not_to include @casual.id
+      end
+    end
+
+    describe "Simple DarwinCore format" do
+      render_views
+      it "should render results" do
+        o = make_research_grade_observation
+        get :index, format: :dwc
+        xml = Nokogiri::XML(response.body)
+        expect( xml.at_xpath('//dwr:SimpleDarwinRecordSet').children.size ).not_to be_blank
       end
     end
   end

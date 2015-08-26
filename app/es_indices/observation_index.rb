@@ -149,6 +149,7 @@ class Observation < ActiveRecord::Base
     return nil unless Observation.able_to_use_elasticsearch?(p)
     p = site_search_params(options[:site], p)
     search_wheres = { }
+    search_filters = []
     extra_preloads = [ ]
     q = unless p[:q].blank?
       q = sanitize_query(p[:q])
@@ -188,8 +189,20 @@ class Observation < ActiveRecord::Base
     search_wheres["out_of_range"] = true if p[:out_of_range]
     search_wheres["mappable"] = true if p[:mappable] == "true"
     search_wheres["mappable"] = false if p[:mappable] == "false"
-    search_wheres["license_code"] = p[:license] if p[:license]
-    search_wheres["photos.license_code"] = p[:photo_license] if p[:photo_license]
+    if p[:license] == 'any'
+      search_filters << { exists: { field: "license_code" } }
+    elsif p[:license] == 'none'
+      search_filters << { missing: { field: "license_code" } }
+    elsif p[:license]
+      search_wheres["license_code"] = p[:license]
+    end
+    if p[:photo_license] == 'any'
+      search_filters << { exists: { field: "photos.license_code" } }
+    elsif p[:photo_license] == 'none'
+      search_filters << { missing: { field: "photos.license_code" } }
+    elsif p[:photo_license]
+      search_wheres["photos.license_code"] = p[:photo_license]
+    end
     search_wheres["sounds.license_code"] = p[:sound_license] if p[:sound_license]
     search_wheres["observed_on_details.day"] = p[:observed_on_day] if p[:observed_on_day]
     search_wheres["observed_on_details.month"] = p[:observed_on_month] if p[:observed_on_month]
@@ -232,7 +245,7 @@ class Observation < ActiveRecord::Base
       search_wheres["identifications_most_disagree"] = true
     end
 
-    search_filters = []
+    
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
       search_filters << { envelope: { geojson: {
         nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],

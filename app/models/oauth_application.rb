@@ -9,4 +9,6 @@ class OauthApplication < Doorkeeper::Application
     :bucket => CONFIG.s3_bucket,
     :path => "oauth_applications/:id-:style.:extension",
     :url => ":s3_alias_url"
+  validates_attachment_content_type :image, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    :message => "must be JPG, PNG, or GIF"
 end

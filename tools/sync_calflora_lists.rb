@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'rubygems'
 require 'trollop'
 
@@ -19,7 +20,7 @@ EOS
 end
 
 OPTS = opts
-puts "[DEBUG] OPTS: #{OPTS.inspect}"
+puts "[DEBUG] OPTS: #{OPTS.inspect}" if OPTS.debug
 
 # taxon_source = Source.find_by_title("Jepson Manual II")
 taxon_source = Source.find_by_title("Calflora")
@@ -53,10 +54,16 @@ def work_on_place(place)
   # puts "Created list of #{taxon.name} for #{place.display_name} #{check_list}"
 
   place_name = place.name.gsub(/\s*county\s+/i, '').titleize
-  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&output=text"
-  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&output=text&where-native=f"
+  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&format=text"
+  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&format=text&where-native=f"
+  puts "Requesting #{url}" if OPTS.debug
   page = RestClient.get(url)
-  names = page.body.split("\n")[1..-1]
+  names = begin 
+    page.body.split("\n")[1..-1]
+  rescue ArgumentError => e
+    raise e unless e.message =~ /invalid byte sequence in UTF-8/
+    page.body.force_encoding('ISO-8859-1').encode('UTF-8').split("\n")[1..-1]
+  end
   page_introduced = RestClient.get(url_introduced)
   names_introduced = page_introduced.body.split("\n")[1..-1]
   puts "\t#{names.size} names, #{names_introduced.size} introduced"
@@ -225,8 +232,10 @@ def make_list_comprehensive(list)
   list.update_attributes(:comprehensive => true) unless OPTS[:test]
 end
 
-california = Place.where(:name => "California", :place_type => Place::PLACE_TYPE_CODES["State"]).first
-california.children.where(:place_type => Place::PLACE_TYPE_CODES["County"]).find_each do |county|
+california = Place.where(name: "California", admin_level: Place::STATE_LEVEL).first
+puts "Found state: #{california}" if OPTS.debug
+california.children.where(admin_level: Place::COUNTY_LEVEL).find_each do |county|
+  puts "Found county: #{county}" if OPTS.debug
   if OPTS.county
     next unless county.name.downcase == OPTS.county.downcase
   end

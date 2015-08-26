@@ -74,14 +74,16 @@
     <%= formatted_user_text(@list.description =~ /^Every species seen by / ? @list.description.gsub('Every species seen by', t(:every_species_seen_by)) : @list.description) %>
   </div>
 
-  <% if @taxon_rule -%>
+  <% if @list.is_a?(LifeList) -%>
     <div id="life_list_taxon" class="life_list_taxon description">
-      <%= taxon_image(@taxon_rule.operand) %>
-      <% if @list.place -%>
+      <%= taxon_image(@taxon_rule.operand) if @taxon_rule %>
+      <% if @list.place && @taxon_rule -%>
         <%=raw t :this_is_a_life_list_of_taxon_in_place,
           :taxon => render('shared/taxon', :taxon => @taxon_rule.operand, :link_url => @taxon_rule.operand),
           :place => link_to(@list.place.display_name, @list.place) %>
-      <% else %>
+      <% elsif @list.place %>
+        <%=t :this_is_a_life_list_from_place_html, place: link_to(@list.place.display_name, @list.place) %>
+      <% elsif @taxon_rule %>
         <%=t :this_is_a_life_list_of %>
         <%= render :partial => 'shared/taxon',
                    :locals => { :taxon => @taxon_rule.operand, :link_url => url_for(@taxon_rule.operand) } %>

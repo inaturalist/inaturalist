@@ -547,7 +547,12 @@ class Place < ActiveRecord::Base
           source_name: new_place.source_name).first
       end
       if !new_place.source_filename.blank? && !new_place.name.blank?
-        existing ||= Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
+        existing ||= begin
+          Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
+        rescue
+          new_place.name = new_place.name.force_encoding('ISO-8859-1').encode('UTF-8')
+          Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
+        end
       end
       if options[:ancestor_place]
         existing ||= options[:ancestor_place].descendants.

@@ -878,7 +878,7 @@ class ProjectsController < ApplicationController
   def respond_to_join(options = {})
     error = options[:error]
     notice = options[:notice]
-    dest = options[:dest] || session[:return_to] || @project
+    dest = options[:dest] || @project || session[:return_to]
     respond_to do |format|
       if error
         format.any(:html, :mobile) do

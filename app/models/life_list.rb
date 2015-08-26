@@ -129,9 +129,6 @@ class LifeList < List
     else
       'taxon_id IS NOT NULL'
     end
-    # Note: this should use find_each, but due to a bug in rails < 3,
-    # conditions in find_each get applied to scopes utilized by anything
-    # further up the call stack, causing bugs.
     scope = list.owner.observations
     scope = scope.of(list.rule_taxon) if list.rule_taxon
     scope = scope.in_place(list.place) if list.place
