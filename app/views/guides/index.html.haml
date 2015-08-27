@@ -3,7 +3,7 @@
 = content_for :extracss do
   = stylesheet_link_tag "guides"
   :css
-    .hero-unit .or {margin: 0 1em;}
+    .jumbotron .or {margin: 0 1em;}
     .bootstrap .nav-pills > .active.back > a, .bootstrap .nav-pills > .active.back > a:hover, .bootstrap .nav-pills > .active.back > a:focus {
       background-color: #eee;
       color:#333;
@@ -25,10 +25,17 @@
     #guidesheader .nav-tabs {margin-bottom:0; position:relative;top:1px; border-bottom:1px solid white;}
     #guidesheader .nav-tabs a {color:white;}
     #guidesheader .nav-tabs .active a {color:#08c;}
-    #guidesheader h1 {font-size:250%;text-shadow: 0px 1px 10px black;}
+    #guidesheader h1 {
+      font-size:400%;
+      font-weight: bold;
+      text-shadow: 0px 1px 10px black;
+    }
     #guidesheader h1 a { color: white; text-decoration: none;}
-    #guidesheader p {font-size:100%; text-shadow: 0px 1px 5px black; }
-    #guidesheader .nav-tabs a, #guidesheader .nav-tabs a:hover, #guidesheader .nav-tabs a:focus {border: 0 transparent;}
+    #guidesheader p {
+      font-size:155%; 
+      text-shadow: 0px 1px 5px black;
+    }
+    #guidesheader .nav-tabs a, #guidesheader .nav-tabs a:hover, #guidesheader .nav-tabs a:focus {border: 0 transparent; font-size: 120%;}
     #guidesheader .nav > li.inactive > a:hover,
     #guidesheader .nav > li.inactive > a:focus {
       text-decoration: none;
@@ -42,25 +49,26 @@
       resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
     })
 .container-fluid
-  #guidesheader.hero-unit.clear{:class => logged_in? ? 'logged_in' : nil}
+  #guidesheader.jumbotron.clear{:class => logged_in? ? 'logged_in' : nil}
     %h1= link_to t(:welcome_to_guides, :site_name => SITE_NAME), guides_path
     %p
       =t 'views.guides.index.welcome_message_html'
     .text
       = form_tag search_guides_path, :method => :get, :class => "form-search form-inline" do
-        .input-append
-          = text_field_tag :q, nil, :placeholder => t(:find_a_guide), :class => "search-query input-xlarge"
-          = submit_tag t(:search), :class => "btn btn-primary"
+        .input-group
+          = text_field_tag :q, nil, :placeholder => t(:find_a_guide), :class => "form-control input-xlarge"
+          .input-group-btn
+            = submit_tag t(:search), :class => "btn btn-primary"
         %nobr
           %span.or
             =t :or
-          = link_to t(:create_a_guide), new_guide_path, :class => "btn"
+          = link_to t(:create_a_guide), new_guide_path, :class => "btn btn-default"
     - if logged_in?
       %ul.nav.nav-tabs.pull-right
-        %li{:class => params[:by] == "you" ? "inactive" : "active"}= link_to t(:by_everyone), url_for_params(:without => [:by, :page])
-        %li{:class => params[:by] != "you" ? "inactive" : "active"}= link_to t(:by_you), url_for_params(:by => "you", :without => [:page])
-  .row-fluid
-    .span3
+        %li{role: 'presentation', :class => params[:by] == "you" ? "inactive" : "active"}= link_to t(:by_everyone), url_for_params(:without => [:by, :page])
+        %li{role: 'presentation', :class => params[:by] != "you" ? "inactive" : "active"}= link_to t(:by_you), url_for_params(:by => "you", :without => [:page])
+  .row
+    .col-md-3
       %ul#places.nav.nav-stacked.nav-pills
         %li.nav-header
           - if @place
@@ -73,7 +81,7 @@
                 %span.badge.right= @nav_places_counts[place.id]
                 =t 'places_name.'+place.name.downcase.gsub(' ','_'), :default => place.name
                 - if place.place_type_name
-                  .muted
+                  .text-muted
                     %small= t("place_geo.geo_planet_place_types.#{place.place_type_name.to_s.gsub(' ','_')}", :default => place.place_type_name)
         - if @place
           - subnav_places = capture do
@@ -128,11 +136,11 @@
               = subnav_taxa
         - else
           = nav_taxa
-    .span9
+    .col-md-9
       - for row in @guides.in_groups_of(2)
-        .row-fluid.stacked
+        .row.stacked
           - for guide in row.compact
-            .span6
-              = render 'media_object', :guide => guide, :img_class => "span4"
+            .col-md-6
+              = render 'media_object', :guide => guide, :img_class => "col-md-4"
   .quiet.box.text-center.upstacked
     =t 'views.guides.index.funding_html'

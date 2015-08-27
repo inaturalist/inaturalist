@@ -2,7 +2,7 @@
   = @title = t(:editing_x_in_y, :x => @guide_taxon.name, :y => @guide.title)
 - content_for :extracss do
   :css
-    .dropdown-menu .muted {max-width: 500px; white-space:normal;font-size:90%;}
+    .dropdown-menu .text-muted {max-width: 500px; white-space:normal;font-size:90%;}
 - content_for :extrajs do
   :javascript
     $('#updatewitheol, #updatewithsite').on('shown', function () {
@@ -13,7 +13,7 @@
     %li
       = link_to t(:back_to_x, :noun => @guide.title), edit_guide_path(@guide), :class => "back"
   .btn-group.pull-right
-    %button#toolsbutton.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
+    %button#toolsbutton.btn.btn-default.warning.dropdown-toggle{"data-toggle" => "dropdown"}
       =t :tools
       %span.caret
     %ul.dropdown-menu
@@ -35,7 +35,7 @@
   .modal-body
     %p=t 'views.guide_taxa.edit.eol_explanation'
   .modal-footer
-    %button.btn{"data-dismiss" => "modal"}=t :close
+    %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
     = link_to t(:update_with_eol_content), sync_guide_taxon_path(@guide_taxon, :provider => "eol"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
 #updatewithsite.modal.fade.hide{:role => "dialog", "aria-hidden" => "true"}
   .modal-header
@@ -44,5 +44,5 @@
   .modal-body
     %p=t 'views.guide_taxa.edit.site_explanation', :site_name => SITE_NAME
   .modal-footer
-    %button.btn{"data-dismiss" => "modal"}=t :close
+    %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
     = link_to t(:update_with_site_content, :site_name => SITE_NAME_SHORT), sync_guide_taxon_path(@guide_taxon, :provider => "site"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}

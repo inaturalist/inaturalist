@@ -1,4 +1,4 @@
-.nested-fields.guide-section-fields.stacked.row-fluid.clearfix.lined
+.nested-fields.guide-section-fields.stacked.row.clearfix.lined
   = f.hidden_field :guide_taxon_id
   = f.hidden_field :modified_on_create
   = f.hidden_field :creator_id, :value => f.object.new_record? ? current_user.id : f.object.creator_id
@@ -23,4 +23,4 @@
         = f.label :license, t(:license)
         = f.hidden_field :license
         %span.mirror= f.object.license || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
-  = link_to_remove_association t(:remove_section), f, :class => "pull-right btn btn-mini"
+  = link_to_remove_association t(:remove_section), f, :class => "pull-right btn btn-xs"

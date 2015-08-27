@@ -12,10 +12,10 @@
     .morecol p:first-child:before {content: '\201C \0020';font-size: 160%;visibility: hidden;}
 .container
   .row
-    #pageheader.span12
+    #pageheader.col-md-12
       %h2= t(:everyone_journal_posts)
   .row
-    .span12
+    .col-md-12
       - if !@posts.blank?
         - for post in @posts
           .media

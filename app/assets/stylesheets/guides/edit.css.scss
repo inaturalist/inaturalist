@@ -4,7 +4,7 @@ input.position {width:1em;}
 .guide_taxon .tag {margin-right: 5px;}
 .guide_taxon .img-circle {max-width:30px; height:30px; width:100%;}
 .names .display_name {font-size:140%;}
-.bootstrap .row-fluid .microspan {width:4%; margin-left:0.5%;text-align: center;}
+.bootstrap .row .microspan {width:4%; margin-left:0.5%;text-align: center;}
 .guide_taxon .check {margin-top:3px;}
 .bootstrap .guide_taxon .input-prepend {margin-bottom: 0;}
 .bootstrap .input-prepend input[name*=tag_list] {
@@ -14,7 +14,7 @@ input.position {width:1em;}
   min-height:22px;
   border-color: #efefef;
 }
-.bootstrap .input-prepend .add-on:first-child {
+.bootstrap .input-prepend .input-group-addon:first-child {
   font-size: 10px;
   padding: 0 3px;
   min-height:20px;
@@ -22,7 +22,7 @@ input.position {width:1em;}
   border-color: #efefef;
 }
 .bootstrap .input-prepend input[name*=tag_list],
-.bootstrap .input-prepend .add-on:first-child {
+.bootstrap .input-prepend .input-group-addon:first-child {
   color: #666;
 }
 .grip {
@@ -56,6 +56,6 @@ input.position {width:1em;}
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
 }
-.bootstrap .accordion-inner {min-width: 220px;}
+.bootstrap .panel-body {min-width: 220px;}
 #addtaxa-paste textarea {height:200px;}
 .actions .btn {margin-bottom:5px;}

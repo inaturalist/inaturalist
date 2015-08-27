@@ -2,7 +2,7 @@
   = javascript_include_tag "taxon_names/form"
 .row.stacked
   = form_for(@taxon_name, :builder => BootstrapFormBuilder, :url => @taxon_name.new_record? ? taxon_taxon_names_path(@taxon || @taxon_name.taxon) : @taxon_name) do |n|
-    .span6
+    .col-md-6
       = error_messages_for :taxon_name
       = n.hidden_field :taxon_id
       - if @taxon_name.new_record? || is_curator? || is_me?(@taxon_name.creator)
@@ -49,7 +49,7 @@
               = render "place_taxon_name_fields", :f => ptn
           .stacked
             = fields_for @taxon_name do |tn|
-              = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-small"
+              = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-sm"
       .clear.buttonrow.upstacked
         = n.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)
         = link_to t(:cancel), @taxon || @taxon_name.taxon, :class => 'button'
@@ -58,7 +58,7 @@
             :method => :delete,
             :data => {:confirm => t(:are_you_sure_want_delete_this_name)},
             :class => 'minor delete button'
-    .span6
+    .col-md-6
       - if @taxon_name.new_record?
         .box
           %h3= t :guidelines

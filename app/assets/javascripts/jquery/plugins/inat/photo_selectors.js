@@ -93,10 +93,10 @@
       var $searchInput = $('<input type="text" placeholder="'+I18n.t('search')+'" />').css(
         $.fn.photoSelector.defaults.formInputCSS
       )
-      var $searchButton = $('<a href="#" class="btn findbutton">'+I18n.t('find_photos')+'</a>').css(
+      var $searchButton = $('<a href="#" class="btn btn-default findbutton">'+I18n.t('find_photos')+'</a>').css(
         $.fn.photoSelector.defaults.formInputCSS
       )
-      var $searchWrapper = $("<div class='photoSelectorSearch input-append pull-left'></div>")
+      var $searchWrapper = $("<div class='photoSelectorSearch input-group pull-left'></div>")
       $searchWrapper.append($searchInput).append($searchButton)
       var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
     } else {
@@ -251,7 +251,7 @@
 
     }
 
-    $(".picasaAlbums .album", wrapper).live('click', function() {
+    $(".picasaAlbums .album", wrapper).on('click', function() {
       var aid = $(this).attr('data-aid'); // $(this).data('aid') doesn't work because of ridiculous type conversion
       try {
         updateSource({
@@ -268,7 +268,7 @@
       return false;
     });
 
-    $(".facebookAlbums .album", wrapper).live('click', function() {
+    $(".facebookAlbums .album", wrapper).on('click', function() {
       try {
         updateSource({
           url: '/facebook/album/'+$(this).attr('data-aid'),
@@ -284,7 +284,7 @@
       return false;
     });
 
-    $(".facebookGroups .group", wrapper).live('click', function() {
+    $(".facebookGroups .group", wrapper).on('click', function() {
       try {
         updateSource({
           url: '/facebook/group/',
@@ -300,7 +300,7 @@
       return false;
     })
   
-    $('.back_to_albums').live('click', function(){
+    $('.back_to_albums').on('click', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -312,13 +312,13 @@
       return false;
     });
 
-    $('.back_to_friends').live('click', function(){
+    $('.back_to_friends').on('click', function(){
       try { updateSource(); } 
       catch(e) { $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); }
       return false;
     });
 
-    $('.back_to_groups').live('click', function(){
+    $('.back_to_groups').on('click', function(){
       try { updateSource({ object_id: $(this).attr('data-group_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -331,7 +331,7 @@
     });
 
     // friend selector
-    $('.friendSelector .friend').live('click', function(){
+    $('.friendSelector .friend').on('click', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -347,8 +347,8 @@
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>')
     if (options.bootstrap) {
-      var prev = $('<button type="button" class="prevlink btn">&laquo; '+I18n.t('prev')+'</button>')
-      var next = $('<button type="button" class="nextlink btn">'+I18n.t('next')+' &raquo;</button>')
+      var prev = $('<button type="button" class="prevlink btn btn-default">&laquo; '+I18n.t('prev')+'</button>')
+      var next = $('<button type="button" class="nextlink btn btn-default">'+I18n.t('next')+' &raquo;</button>')
     } else {
       var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>')
       var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>')
@@ -381,8 +381,8 @@
 
     if (options.bootstrap) {
       var allNoneLabel = $('<label>'+I18n.t('select')+'</label>')
-      var selectAll = $('<button type="button" class="btn">'+I18n.t('all')+'</button>')
-      var selectNone = $('<button type="button" class="btn">'+I18n.t('none')+'</button>')
+      var selectAll = $('<button type="button" class="btn btn-default">'+I18n.t('all')+'</button>')
+      var selectNone = $('<button type="button" class="btn btn-default">'+I18n.t('none')+'</button>')
     } else {
       var allNoneLabel = $('<label class="inter">'+I18n.t('select')+'</label>')
       var selectAll = $('<a href="#" class="inter">'+I18n.t('all')+'</a>')
@@ -519,7 +519,7 @@
           var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>'),
               header = "<h4>"+I18n.t('selected_photos')+"</h4>"
           if (options.bootstrap) {
-            var row = $('<div class="row-fluid"></div>')
+            var row = $('<div class="row"></div>')
             row.append(existing)
             selectedPhotosWrapper.append(header, row)
           } else {

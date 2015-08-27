@@ -274,7 +274,7 @@ function updatePositions(container, sortable) {
 $('#guide_taxa').sortable({
   items: "> form",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
     updatePositions("#guide_taxa", "form")  
     if (!window.updateGuideTaxaTimeout) {
@@ -503,12 +503,12 @@ function removeAllTags() {
   })
 }
 
-$('.guide_taxon input[name*=tag_list]').live('change', function() {
+$('.guide_taxon input[name*=tag_list]').on('change', function() {
   saveGuideTaxon.apply($(this).parents('form:first').get(0))
 })
 
 $('#guide_taxa .guide_taxon').labelize()
-$('input[name="guide_eol_update_flow_task[options][sections]"]').live('change', function() {
+$('input[name="guide_eol_update_flow_task[options][sections]"]').on('change', function() {
   if ($(this).is(':checked')) {
     $('input[name="guide_eol_update_flow_task[options][overview]"]').enable()
     $('#eol_subjects :input').enable()
@@ -517,7 +517,7 @@ $('input[name="guide_eol_update_flow_task[options][sections]"]').live('change', 
     $('#eol_subjects :input').disable()
   }
 })
-$('input[name="guide_eol_update_flow_task[options][overview]"]').live('change', function() {
+$('input[name="guide_eol_update_flow_task[options][overview]"]').on('change', function() {
   if ($(this).val() == "true") {
     $('#eol_subjects').hide()
   } else {

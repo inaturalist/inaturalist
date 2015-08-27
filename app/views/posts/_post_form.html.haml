@@ -21,7 +21,7 @@
     a.button.nextlink {float: right;}
 = form_for(post, :builder => DefaultFormBuilder, :html => {:class => 'post_form'}) do |f|
   .row
-    .span7
+    .col-md-7
       = error_messages_for :post
       = f.text_field :title
       = f.text_area :body
@@ -36,21 +36,21 @@
       .actions
         - if post.published_at
           = f.submit t(:save), :id => 'post_save', :class => 'btn btn-primary'
-          = f.submit t(:unpublish), :class => 'btn'
+          = f.submit t(:unpublish), :class => 'btn btn-default'
         - else
-          = f.submit t(:save_draft), :id => 'post_save', :class => 'btn'
+          = f.submit t(:save_draft), :id => 'post_save', :class => 'btn btn-default'
           = f.submit t(:publish), :class => 'btn btn-primary'
         - if post.new_record?
           = link_to t(:cancel), journal_by_login_path(post.user.login), :class => 'btn btn-link'
         - else
-          = f.submit t(:preview), :id => 'post_preview', :class => 'btn' unless post.new_record?
+          = f.submit t(:preview), :id => 'post_preview', :class => 'btn btn-default' unless post.new_record?
           = link_to t(:delete), post_path(post), 
             :data => {:confirm => t(:are_you_sure_delete_post)}, 
             :method => :delete, 
             :id => "delete_post_button", 
-            :class => "minor delete btn"
+            :class => "minor delete btn btn-default"
     - unless post.parent_type == 'Project'
-      .span5
+      .col-md-5
         .field
           %label= t(:observations)
           .description

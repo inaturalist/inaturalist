@@ -53,20 +53,20 @@
     })
 
     $('table .actions form')
-      .live('ajax:success', function(event, json, status, request) {
+      .on('ajax:success', function(event, json, status, request) {
         $(this).parents('tr:first').replaceWith(json.html)
       })
-      .live('ajax:error', function(event, request, settings) {
+      .on('ajax:error', function(event, request, settings) {
         var json = eval('(' + request.responseText + ')')
         alert(json.full_messages)
       })
     $('.listed_taxon .removelink')
-      .live('ajax:success', function(event, json, status, request) {
+      .on('ajax:success', function(event, json, status, request) {
         $(this).parents('tr:first').removeClass('added').addClass('removed')
         $(this).parents('tr:first').find('td.ltstatus').html('removed')
         $(this).hide()
       })
-      .live('ajax:error', function(event, request, settings) {
+      .on('ajax:error', function(event, request, settings) {
         var json = eval('(' + request.responseText + ')')
         alert(json.full_messages || json.error)
       })

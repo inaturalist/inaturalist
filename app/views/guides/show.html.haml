@@ -3,7 +3,6 @@
 = content_for :extracss do
   = stylesheet_link_tag "guides/show"
 = content_for :extrajs do
-  = google_maps_js
   :javascript
     var GUIDE = #{json_escape @guide.to_json.html_safe}
   = javascript_include_tag "underscore.min", "map_bundle", "guides/show"
@@ -11,14 +10,14 @@
   %ul.breadcrumb
     %li
       = link_to t(:guides), guides_path
-      %span.divider /
       %li.active= @guide.title
   - unless @guide.published?
     .alert.text-center
-      %strong= t(:draft, :default => "draft").upcase
-      =t 'views.guides.show.draft_desc' 
-  .row-fluid
-    .span12
+      .alert-warning
+        %strong= t(:draft, :default => "draft").upcase
+        =t 'views.guides.show.draft_desc' 
+  .row
+    .col-md-12
       #actions.right
         - if @guide.downloadable?
           - if @guide.ngz.file?
@@ -36,15 +35,15 @@
                 = link_to "(#{t(:stop)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
         - if @guide.editable_by?(current_user)
           - if !@guide.ngz_url && !@guide.downloadable?
-            %button.btn.pull-left{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#mobile_dialog"}
+            %button.btn.btn-default.pull-left{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#mobile_dialog"}
               %i.fa-mobile.fa
               =t :enable_offline_access
         .btn-group.pull-right
-          %button.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}
+          %button.btn.btn-default{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}
             %i.fa.fa-print
             =t :pdf_slash_print
           - if @guide.editable_by?(current_user)
-            = link_to edit_guide_path(@guide), :class => "btn" do
+            = link_to edit_guide_path(@guide), :class => "btn btn-default" do
               %i.fa.fa-edit
               = t(:edit)
             - unless @guide.published?
@@ -53,12 +52,12 @@
         - if @guide.icon.file?
           = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"
         = @guide.title
-  .row-fluid
-    .span12
+  .row
+    .col-md-12
       = truncate_with_more formatted_user_text(@guide.description), :length => 300
-  .row-fluid
-    #nav.span3
-      %ul#tags.nav.nav-stacked.nav-pills
+  .row
+    #nav.col-md-3
+      %ul#tags.nav.nav-stacked.nav-pills.stacked
         %li{:class => @tags.blank? && @taxon.blank? ? "active" : nil}
           = link_to url_for_params(:without => [:page, :taxon, :tag, :tags]) do
             = t(:all)
@@ -77,7 +76,7 @@
                     = link_to "x", url_for_params(:tags => (@tags - [tag]).flatten.uniq)
                   - else
                     = link_to "+", url_for_params(:tags => [@tags, tag].flatten.uniq)
-      %ul#taxonomy.nav.nav-stacked.nav-pills
+      %ul#taxonomy.nav.nav-stacked.nav-pills.stacked
         %li.nav-header=t :taxonomy
         - nav_taxa = capture do
           - for taxon in @nav_taxa
@@ -105,16 +104,17 @@
             = subnav_taxa
         - else
           = nav_taxa
-    .span9
-      .row-fluid.stacked
+    .col-md-9
+      .stacked
         #guide-navbar.navbar
           .nabar-inner
-            %form.navbar-search.pull-left
-              .input-append
-                %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
-                - unless @q.blank?
-                  %button.btn.clearbtn= t(:clear).capitalize
-                %button.btn=t :search
+            %form.navbar-search.pull-left.form-inline
+              .input-group
+                %input.form-control{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
+                .input-group-btn
+                  %button.btn=t :search
+              - unless @q.blank?
+                = link_to t(:clear).capitalize, url_for_params(without: [:q]), :class => "btn btn-default clearbtn"
             .pull-right
               - unless @photo_tags.blank?
                 %form.inline{method: :get, id: 'photo-tag-form'}
@@ -124,52 +124,52 @@
                     - for tag in @photo_tags
                       %option{selected: tag == @photo_tag}= tag
               %span.dropdown.inlineblock
-                %button.btn{:data => {:toggle => "dropdown"}}
+                %button.btn.btn-default{:data => {:toggle => "dropdown"}}
                   =t :sort
                   %b.caret
                 %ul.dropdown-menu.pull-right{:role => "menu"}
                   - for sort in GuideTaxon::SORTS
                     %li= link_to t("views.guides.sorts.#{sort}"), url_for_params(:sort => sort), :tabindex => -1, :class => "#{'active' if @sort == sort}"
-              .btn-group{"data-toggle" => "buttons-radio"}
-                = link_to t(:grid).capitalize, url_for_params(:view => "grid"), :class => "btn #{'active' if @view == "grid"}"
-                = link_to t(:card).capitalize, url_for_params(:view => "card"), :class => "btn #{'active' if @view == "card"}"
-      - if @guide_taxa.blank?
-        .nocontent.meta
-          =t :no_matching_species
-      - elsif @view == "card"
-        - for guide_taxon in @guide_taxa
-          .card.row-fluid.stacked
-            .span3
-              = link_to guide_taxon, :class => "borderless thumbnail img" do
-                - if gp = guide_taxon.guide_photo_for_tag(@photo_tag)
-                  = image_tag gp.photo.small_url
-                - elsif guide_taxon.taxon
-                  = iconic_taxon_image guide_taxon.taxon
-            .span6
-              %h4.name
-                = link_to guide_taxon.display_name, guide_taxon
-              - if gs = guide_taxon.guide_sections.order("COALESCE(position, id)").first
-                = truncate_with_more formatted_user_text(gs.description), :length => 400
-            .span3
-              .map
-                - if guide_taxon.guide_ranges.blank? && guide_taxon.taxon
-                  .taxonmap{setup_map_tag_attrs(                                                      |
-                    taxon_layers: [ { taxon: guide_taxon.taxon, ranges: true, observations: true } ], |
-                    place_layers: [ { place: @guide.place } ],                                        |
-                    latitude: @guide.latitude, longitude: @guide.longitude,                           |
-                    map_type: @guide.map_type, zoom_level: @guide.zoom_level) }                       |
-                - elsif gr = guide_taxon.guide_ranges.first
-                  = image_tag gr.original_url
-      - else
-        - for row in @guide_taxa.in_groups_of(4)
-          .row-fluid.stacked
-            %ul.thumbnails
-              - for guide_taxon in row.compact
-                %li.span3
+              .btn-group
+                = link_to t(:grid).capitalize, url_for_params(:view => "grid"), :class => "btn btn-default #{'active' if @view == "grid"}"
+                = link_to t(:card).capitalize, url_for_params(:view => "card"), :class => "btn btn-default #{'active' if @view == "card"}"
+      #guide-taxa
+        - if @guide_taxa.blank?
+          .nocontent.meta
+            =t :no_matching_species
+        - elsif @view == "card"
+          - for guide_taxon in @guide_taxa
+            .card.row.stacked
+              .col-md-3
+                = link_to guide_taxon, :class => "borderless thumbnail img" do
                   - if gp = guide_taxon.guide_photo_for_tag(@photo_tag)
-                    = link_to image_tag(gp.photo.small_url), guide_taxon, :class => "thumbnail borderless"
+                    = image_tag gp.photo.small_url
                   - elsif guide_taxon.taxon
-                    = link_to iconic_taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
+                    = iconic_taxon_image guide_taxon.taxon
+              .col-md-6
+                %h4.name
+                  = link_to guide_taxon.display_name, guide_taxon
+                - if gs = guide_taxon.guide_sections.order("COALESCE(position, id)").first
+                  = truncate_with_more formatted_user_text(gs.description), :length => 400
+              .col-md-3
+                .map
+                  - if guide_taxon.guide_ranges.blank? && guide_taxon.taxon
+                    .taxonmap{setup_map_tag_attrs(                                                      |
+                      taxon_layers: [ { taxon: guide_taxon.taxon, ranges: true, observations: true } ], |
+                      place_layers: [ { place: @guide.place } ],                                        |
+                      latitude: @guide.latitude, longitude: @guide.longitude,                           |
+                      map_type: @guide.map_type, zoom_level: @guide.zoom_level) }                       |
+                  - elsif gr = guide_taxon.guide_ranges.first
+                    = image_tag gr.original_url
+        - else
+          - for row in @guide_taxa.in_groups_of(4)
+            .row.stacked
+              - for guide_taxon in row.compact
+                .col-md-3
+                  - if gp = guide_taxon.guide_photo_for_tag(@photo_tag)
+                    = link_to image_tag(gp.photo.small_url, :class => 'img-responsive'), guide_taxon, :class => "thumbnail borderless"
+                  - elsif guide_taxon.taxon
+                    = link_to iconic_taxon_image(guide_taxon.taxon, :class => 'img-responsive'), guide_taxon, :class => "thumbnail"
                   %h5
                     - if guide_taxon.display_name == guide_taxon.name
                       = link_to guide_taxon do
@@ -187,72 +187,87 @@
                         %small
                           %i= guide_taxon.name
         = will_paginate @guide_taxa
-  #attribution.meta.upstacked
-    %p
-      =t :edited_by
-      - attribution_links = commas_and(@guide.guide_users.map{|gu| link_to_user(gu.user, :content_text => gu.user.name.blank? ? gu.user.login : gu.user.name)})
-      - if @guide.license.blank?
-        = attribution_links
-      - else
-        = succeed ',' do
-          = attribution_links
-        = t(:some_rights_reserved).downcase
-        = surround '(', ')' do
-          = link_to @guide.license.gsub(/CC-/, 'CC '), url_for_license(@guide.license)
-    - unless @guide.source_url.blank?
-      %p=t :originally_imported_from_url_html, :url => @guide.source_url
-    - unless @_citations.blank?
+  #attribution.meta.upstacked.row
+    .col-md-12
       %p
-        =t :photo_credits
-        = references(:linked => true)
-    = render :partial => "shared/flagging", :locals => { :instance => @guide }
+        =t :edited_by
+        - attribution_links = commas_and(@guide.guide_users.map{|gu| link_to_user(gu.user, :content_text => gu.user.name.blank? ? gu.user.login : gu.user.name)})
+        - if @guide.license.blank?
+          = attribution_links
+        - else
+          = succeed ',' do
+            = attribution_links
+          = t(:some_rights_reserved).downcase
+          = surround '(', ')' do
+            = link_to @guide.license.gsub(/CC-/, 'CC '), url_for_license(@guide.license)
+      - unless @guide.source_url.blank?
+        %p=t :originally_imported_from_url_html, :url => @guide.source_url
+      - unless @_citations.blank?
+        %p
+          =t :photo_credits
+          = references(:linked => true)
+      = render :partial => "shared/flagging", :locals => { :instance => @guide }
 
-#pdf_dialog.modal.fade.hide
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :generate_pdf
-  = form_for GuidePdfFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
-    .modal-body
-      = f.fields_for :inputs, f.object.inputs.build(:resource => @guide) do |fi|
-        = fi.hidden_field :resource_type
-        = fi.hidden_field :resource_id
-      %label=t :layout
-      .row-fluid
-        - GuidePdfFlowTask::LAYOUTS.each do |l|
-          %div{:class => "span#{12 / GuidePdfFlowTask::LAYOUTS.size}"}
-            = f.label :options, :value => l, :class => "radio" do
-              .img= image_tag "guide-#{l}-icon.png"
-              = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
-              = t "views.guides.pdf_layouts.#{l}", :default => l
-              .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
-      .row-fluid=t :taxa_to_include
-      #pdf_taxa.row-fluid
-        = f.fields_for :options do |fo|
-          = fo.label :query, :value => "all", :class => "span6 radio" do
-            = fo.radio_button :query, "all", :checked => true
-            =t :all_taxa_in_this_guide
-          - filter_match_enabled = [@tags, @q, @taxon].map(&:blank?).include?(false)
-          = fo.label :query, :value => request.query_string, :class => "span6 radio #{'disabled' unless filter_match_enabled}" do
-            = fo.radio_button :query, request.query_string, :checked => false, :disabled => !filter_match_enabled
-            =t :x_taxa_matching_current_filters, :count => @guide_taxa.total_entries
-    .modal-footer
-      = f.submit t(:generate_pdf), :class => "btn btn-primary", :data => {'loading-click' => t(:generating)}
-      = link_to "#{t :preview} / #{t(:print_in_browser)}", guide_pdf_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn", :target => "_blank"
-      .meta.patience.hide=t 'views.guides.pdf_generation_notice'
+#pdf_dialog.modal.fade{tabindex: -1, role: 'dialog', 'aria-labelledby' => t(:generate_pdf) }
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"}
+          .span{'aria-hidden' => "true"} &times;
+        %h4.modal-title=t :generate_pdf
+      = form_for GuidePdfFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
+        .modal-body
+          .container-fluid
+            = f.fields_for :inputs, f.object.inputs.build(:resource => @guide) do |fi|
+              = fi.hidden_field :resource_type
+              = fi.hidden_field :resource_id
+            %h5=t :layout
+            .row
+              - GuidePdfFlowTask::LAYOUTS.each do |l|
+                %div{:class => "col-md-#{12 / GuidePdfFlowTask::LAYOUTS.size}"}
+                  .radio
+                    %label
+                      .img= image_tag "guide-#{l}-icon.png", :class => "img-responsive"
+                      = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
+                      = t "views.guides.pdf_layouts.#{l}", :default => l
+                      .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
+            .row
+              .col-md-12
+                %h5=t :taxa_to_include
+            #pdf_taxa.row
+              = f.fields_for :options do |fo|
+                .col-md-6
+                  .radio
+                    %label
+                      = fo.radio_button :query, "all", :checked => true
+                      =t :all_taxa_in_this_guide
+                - filter_match_enabled = [@tags, @q, @taxon].map(&:blank?).include?(false)
+                .col-md-6
+                  .radio
+                    %label
+                      = fo.radio_button :query, request.query_string, :checked => false, :disabled => !filter_match_enabled
+                      =t :x_taxa_matching_current_filters, :count => @guide_taxa.total_entries
+        .modal-footer
+          = link_to "#{t :preview} / #{t(:print_in_browser)}", guide_pdf_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-default", :target => "_blank"
+          .meta.patience.hide=t 'views.guides.pdf_generation_notice'
+          = f.submit t(:generate_pdf), :class => "btn btn-primary", :data => {'loading-click' => t(:generating)}
 
 - if @guide.editable_by?(current_user)
-  #mobile_dialog.modal.fade.hide
-    .modal-header
-      %button.close{:type => "button", "data-dismiss" => "modal"} x
-      %h3=t :enable_offline_access_for_iphone
-    = form_for @guide do |f|
-      .modal-body
-        = f.hidden_field :downloadable, :value => true
-        .row-fluid
-          .span3.text-center
-            %i.fa.fa-mobile.fa-6{:style => "font-size:200px;width:100px;line-height:1;"}
-          .span9
-            %p=t 'views.guides.mobile_downloads_help_html'
-      .modal-footer
-        %button.btn{"data-dismiss" => "modal"}=t :cancel
-        = f.submit t(:enable_offline_access), :class => "btn btn-primary", :data => {'loading-click' => true}
+  #mobile_dialog.modal.fade
+    .modal-dialog{role: 'document'}
+      .modal-content
+        .modal-header
+          %button.close{:type => "button", "data-dismiss" => "modal"} x
+          %h4=t :enable_offline_access_for_iphone
+        = form_for @guide do |f|
+          .modal-body
+            .container-fluid
+              = f.hidden_field :downloadable, :value => true
+              .row
+                .col-md-3.text-center
+                  %i.fa.fa-mobile.fa-6{:style => "font-size:200px;width:100px;line-height:1;"}
+                .col-md-9
+                  %p=t 'views.guides.mobile_downloads_help_html'
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal"}=t :cancel
+            = f.submit t(:enable_offline_access), :class => "btn btn-primary", :data => {'loading-click' => true}

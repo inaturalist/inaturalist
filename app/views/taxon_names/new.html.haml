@@ -3,7 +3,7 @@
   = default_taxon_name @taxon
 .container
   .row
-    .span12
+    .col-md-12
       %h2
         = t(:new_taxon_name_for)
         = render :partial => "shared/taxon", :object => @taxon, :locals => { :link_url => url_for(@taxon) }

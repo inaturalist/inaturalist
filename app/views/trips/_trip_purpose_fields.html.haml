@@ -2,15 +2,15 @@
   css_class = f.object.resource && f.object.resource.is_a?(Taxon) && f.object.resource.is_iconic? ? 'hide' : nil
   html_data = {}
   html_data[:taxon_id] = f.object.resource_id if f.object && f.object.resource_type == 'Taxon'
-.nested-fields.trip-purpose-fields.lined.stacked.row-fluid{:class => css_class, :data => html_data}
-  .span10.taxonwrapper
+.nested-fields.trip-purpose-fields.lined.stacked.row{:class => css_class, :data => html_data}
+  .col-md-10.taxonwrapper
     - if f.object.resource_type == "Taxon" && f.object.resource
       = render "shared/taxon", :taxon => f.object.resource
     - else
       =t :unknown
-  .span2
+  .col-md-2
     = f.hidden_field :trip_id
     = f.hidden_field :resource_type
     = f.hidden_field :resource_id
     = f.text_field :complete
-    = link_to_remove_association t(:remove), f, :class => "btn btn-mini"
+    = link_to_remove_association t(:remove), f, :class => "btn btn-xs"

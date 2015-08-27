@@ -99,12 +99,12 @@
     })
 - unless @stats_adequately_scoped
   .container-fluid
-    .row-fluid
-      .span12= render 'stats_inadequately_scoped'
+    .row
+      .col-md-12= render 'stats_inadequately_scoped'
 - else
   .container-fluid
-    .row-fluid
-      .span12
+    .row
+      .col-md-12
         %h4= @title
-    .row-fluid
+    .row
       #vis

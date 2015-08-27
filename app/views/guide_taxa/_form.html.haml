@@ -6,9 +6,9 @@
     #guide_photos textarea {height:65px;margin-bottom: 0;}
     #guide_photos .pull-left,
     #guide_sections .pull-left {margin-right: 10px;}
-    #guide_photos .row-fluid,
-    #guide_sections .row-fluid,
-    #guide_ranges .row-fluid {cursor: move;}
+    #guide_photos .row,
+    #guide_sections .row,
+    #guide_ranges .row {cursor: move;}
     .photoSelector {margin-bottom:10px;}
     #guide_photos input.sortable-position { background-color: orange; }
     #guide_sections input.sortable-position { background-color: DodgerBlue; }
@@ -32,52 +32,52 @@
 = form_for(@guide_taxon) do |f|
   = f.hidden_field :guide_id
   = error_messages_for @guide_taxon
-  .row-fluid
-    .span4
+  .row
+    .col-md-4
       = f.label :display_name, t(:display_name)
       = f.text_field :display_name
-    .span4
+    .col-md-4
       = f.label :name, t(:name)
       = f.text_field :name
-    .span4
+    .col-md-4
       = f.label :taxon_id, t(:taxon)
       = f.text_field :taxon_id, :placeholder => t(:start_typing_taxon_name)
       - unless f.object.taxon_id.blank?
         .upstacked
           = link_to t(:view_taxon), taxon_path(f.object.taxon_id), :target => "_blank", :class => "readmore"
-  #guide_photos_row.row-fluid.stacked
+  #guide_photos_row.row.stacked
     %h3=t :photos
     #guide_photos.clearfix
       = f.fields_for :guide_photos, @guide_photos, :builder => ActionView::Helpers::FormBuilder do |gp|
         = render "guide_photo_fields", :f => gp
-    = link_to_add_association t(:upload_photo), f, :guide_photos, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_photos", :class => "btn btn-small btn-success btn-add-photo"
-    %button.btn-small.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_photos_dialog"}=t :import_photos
-  #guide_sections_row.row-fluid.stacked
+    = link_to_add_association t(:upload_photo), f, :guide_photos, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_photos", :class => "btn btn-sm btn-success btn-add-photo"
+    %button.btn-sm.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_photos_dialog"}=t :import_photos
+  #guide_sections_row.row.stacked
     %h3=t :description_sections
     #guide_sections.clearfix
       = f.fields_for :guide_sections, @guide_sections, :builder => ActionView::Helpers::FormBuilder do |gs|
         = render "guide_section_fields", :f => gs
-    = link_to_add_association t(:add_section), f, :guide_sections, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_sections", :class => "btn btn-small btn-success btn-add-section"
-    %button.btn-small.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_sections_dialog"}=t :import_sections
-  #guide_ranges_row.row-fluid.stacked
+    = link_to_add_association t(:add_section), f, :guide_sections, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_sections", :class => "btn btn-sm btn-success btn-add-section"
+    %button.btn-sm.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_sections_dialog"}=t :import_sections
+  #guide_ranges_row.row.stacked
     %h3=t :ranges
     #guide_ranges.stacked.clearfix
       = f.fields_for :guide_ranges do |gs|
         = render "guide_range_fields", :f => gs
-    = link_to_add_association t(:upload_range), f, :guide_ranges, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_ranges", :class => "btn btn-small btn-success btn-add-range"
-    %button.btn-small.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_ranges_dialog"}=t :import_ranges
+    = link_to_add_association t(:upload_range), f, :guide_ranges, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_ranges", :class => "btn btn-sm btn-success btn-add-range"
+    %button.btn-sm.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_ranges_dialog"}=t :import_ranges
 
-  .row-fluid.stacked
+  .row.stacked
     %h3=t :tags
     %p=t 'views.guides.tags_help_html'
     %p
     = f.text_field :tag_list, :value => @guide_taxon.tag_list.to_s, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
     .recent_tags.quiet
       - for tag in @recent_tags
-        = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
+        = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-xs"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
-    = link_to t(:cancel), :back, :class => "btn"
+    = link_to t(:cancel), :back, :class => "btn btn-default"
     = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, 
       :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
 

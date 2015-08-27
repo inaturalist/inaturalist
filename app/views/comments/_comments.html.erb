@@ -8,7 +8,7 @@
   <%=t :comments %>
 <% end -%>
 <% if parent.comments.empty? %>
-  <div class="muted noresults"><%=t :no_comments_yet %></div>
+  <div class="text-muted noresults"><%=t :no_comments_yet %></div>
 <% end %>
 <% for comment in parent.comments.sort {|a,b| a.created_at <=> b.created_at } %>
   <div class="<%= cycle('odd', 'even') %>">

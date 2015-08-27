@@ -61,7 +61,7 @@ $('#import_photos_dialog .modal-footer .btn-primary').click(function() {
     $('.guide-photo-fields:last .photo_id_input').val(data.id)
     $('.guide-photo-fields:last .local_photo_fields').hide()
   })
-  updatePositions("#guide_photos", ".row-fluid")
+  updatePositions("#guide_photos", ".row")
   $('#import_photos_dialog').modal('hide')
 })
 $('#import_sections_dialog').on('shown', function() {
@@ -85,7 +85,7 @@ $('#import_sections_dialog').on('shown', function() {
 function sectionToHtml(section) {
   var div = $('<div></div>').addClass('lined stacked')
   div.append(
-    $('<a class="right btn">'+I18n.t('import')+'</a>').click(function() {addSection(section)})
+    $('<a class="right btn btn-default">'+I18n.t('import')+'</a>').click(function() {addSection(section)})
   )
   var attribution = $('<div class="small meta"></div>').html(section.attribution)
   if (section.source_url) {
@@ -128,10 +128,10 @@ $('#import_ranges_dialog').on('shown', function() {
   current.addClass('loaded')
 })
 function rangeToHtml(range) {
-  var div = $('<div></div>').addClass('thumbnail span2 text-center')
+  var div = $('<div></div>').addClass('thumbnail md-col-2 text-center')
   div.append($('<img/>').attr('src', range.thumb_url).addClass('stacked'))
   div.append(
-    $('<a class="btn">'+I18n.t('import')+'</a>').click(function() {addRange(range)})
+    $('<a class="btn btn-default">'+I18n.t('import')+'</a>').click(function() {addRange(range)})
   )
   var attribution = $('<div class="small meta"></div>').html(range.attribution)
   if (range.source_url) {
@@ -149,7 +149,7 @@ function addRange(range) {
     $('.guide-range-fields:last .'+this+'_field :input').val(range[this])
     $('.guide-range-fields:last .'+this+'_field .mirror').html(range[this])
   })
-  $('.guide-range-fields:last .control-group :input').lock()
+  $('.guide-range-fields:last .form-group :input').lock()
 }
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)
@@ -158,9 +158,9 @@ function updatePositions(container, sortable) {
   })
 }
 $('#guide_photos').sortable({
-  items: "> .row-fluid",
+  items: "> .row",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
     updatePositions("#guide_photos", ".guide-photo-fields")  
   }
@@ -168,39 +168,39 @@ $('#guide_photos').sortable({
 $('#guide_photos').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp(function() {
-    updatePositions("#guide_photos", ".row-fluid")  
+    updatePositions("#guide_photos", ".row")  
   })
 })
 $('#guide_sections').sortable({
-  items: "> .row-fluid",
+  items: "> .row",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_sections", ".row-fluid")  
+    updatePositions("#guide_sections", ".row")  
   }
 })
 $('#guide_ranges').sortable({
-  items: "> .row-fluid",
+  items: "> .row",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_ranges", ".row-fluid")  
+    updatePositions("#guide_ranges", ".row")  
   }
 })
 $('#guide_sections').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp(function() {
-    updatePositions("#guide_sections", ".row-fluid")  
+    updatePositions("#guide_sections", ".row")  
   })
 })
 $('#guide_photos, #guide_sections, #guide_ranges').bind('cocoon:after-insert', function(e, item) {
-  updatePositions(this, ".row-fluid")  
+  updatePositions(this, ".row")  
 })
 $('#guide_ranges').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp()
 })
-$('#guide_sections input[type=text]').live('change', function() {
+$('#guide_sections input[type=text]').on('change', function() {
   $(this).parents('.nested-fields:first').find('input[name*=modified_on_create]').val(true)
 })
 function addTag(tag) {

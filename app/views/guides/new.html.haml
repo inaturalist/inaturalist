@@ -4,9 +4,9 @@
   :css
     .bootstrap input, .bootstrap textarea {width:100%;}
 .container-fluid
-  .row-fluid
-    .span3
-    .span6
+  .row
+    .col-md-3
+    .col-md-6
       %h2=t :new_guide
       = form_for @guide, :builder => DefaultFormBuilder do |f|
         = error_messages_for @guide
@@ -17,5 +17,5 @@
           = f.form_field :source_url do
             = link_to @guide.source_url, @guide.source_url, :target => "_blank"
         = f.submit t(:save_and_add_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:saving)}
-        = link_to t(:cancel), guides_path, :class => "btn"
-    .span3
+        = link_to t(:cancel), guides_path, :class => "btn btn-default"
+    .col-md-3

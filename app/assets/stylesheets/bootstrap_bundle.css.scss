@@ -1,0 +1,7 @@
+.bootstrap {
+  @import "bootstrap";
+}
+@import 'bootstrap-inat';
+#footer {
+  @import 'blueprint/lib/grid';
+}

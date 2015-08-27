@@ -4,7 +4,7 @@
   = stylesheet_link_tag "posts"
 .container
   .row
-    #pageheader.span12
+    #pageheader.col-md-12
       = render :partial => 'posts/breadcrumbs'
       %h2
         = t("new_#{@post.class.name.underscore}", default: "New #{@post.class.name.humanize}")

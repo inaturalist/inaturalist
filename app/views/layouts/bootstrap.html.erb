@@ -8,11 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
-    <%= stylesheet_link_tag 'bootstrap', 'bootstrap-inat' %>
-    <style type="text/css">
-      body { font-size: 75%; }
-      .bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-    </style>
+    <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
@@ -44,19 +40,23 @@
         <% if @feature_test -%>
           <div class="container">
             <div class="alert">
-              <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+              <div class="alert-warning">
+                <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+              </div>
             </div>
           </div>
         <% end -%>
         <% if flash[:warning] -%>
           <div class="container">
             <div class="alert">
-              <% if flash[:warning_title] -%>
-                <h3><%=raw flash[:warning_title] %></h3>
-              <% end -%>
-              <p class="unstacked">
-                <%=raw flash[:warning] %>
-              </p>
+              <div class="alert-warning">
+                <% if flash[:warning_title] -%>
+                  <h3><%=raw flash[:warning_title] %></h3>
+                <% end -%>
+                <p class="unstacked">
+                  <%=raw flash[:warning] %>
+                </p>
+              </div>
             </div>
           </div>
         <% end -%>
@@ -66,8 +66,8 @@
 
     <%= render :partial => 'shared/footer' unless @footless %>
 
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js' %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' %>
     <script type="text/javascript">
       I18n = { }
       I18n.defaultLocale = "en"
@@ -77,7 +77,10 @@
         var SITE_PLACE = <%=json_escape @site.place.to_json(:only => [:id, :name]).html_safe %>
       <% end -%>
     </script>
-    <%= javascript_include_tag 'bootstrap_bundle' %>
+    <%= javascript_include_tag 'application_bundle' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <%#= javascript_include_tag 'bootstrap_bundle' %>
     <%= google_maps_js %>
     <%= javascript_include_tag "map_bundle" %>
     <%= yield :extrajs %>

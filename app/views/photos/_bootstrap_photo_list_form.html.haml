@@ -22,16 +22,18 @@
     =t :back_to_groups
 - if @reauthorization_needed
   .alert
-    = t(:flickr_needs_to_confirm, :site_name => SITE_NAME_SHORT)
-    = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore"
+    .alert-warning
+      = t(:flickr_needs_to_confirm, :site_name => SITE_NAME_SHORT)
+      = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore"
 - elsif @timeout
   .alert
-    Request to the photo provider timed out.  Please try again later.
+    .alert-warning
+      Request to the photo provider timed out.  Please try again later.
 - elsif photos.blank? && !local_photos
   .description.clear= t(:we_didnt_find_any_photos)
 - else
   - photos.in_groups_of(4) do |row|
-    .row-fluid
+    .row
       - row.compact.each do |photo|
         :ruby
           native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
@@ -49,7 +51,7 @@
           data = photo.attributes.merge(:photo_class => photo.class.name).select do |k,v|
             %w(id user_id native_photo_id small_url square_url medium_url large_url type).include?(k)
           end.to_hash
-        .span3.photo{:data => data}
+        .col-md-3.photo{:data => data}
           = check_box_tag input_name, native_photo_id, checked, {:id => input_id, :class => "checkbox"}
           - if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil)
             :ruby

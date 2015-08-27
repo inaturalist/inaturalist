@@ -44,7 +44,6 @@
         = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
       - else
         = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
-      %span.divider /
     %li.active
       = link_to @trip.title, @trip
       - if @trip.is_a?(Trip)
@@ -61,7 +60,7 @@
           = truncate @next.title
           %i.fa.fa-chevron-right
   .row
-    .span3
+    .col-md-3
       %ul#sidenav.sidenav.nav.nav-list{:data => {:spy => "affix"}}
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
@@ -71,16 +70,16 @@
         - if @trip.is_a?(Trip)
           %li= link_to t(:check_list), "#check_list"
         %li= link_to t(:comments), "#comments"
-    .span9
+    .col-md-9
       %section{:id => "summary"}
         - if @trip.editable_by?(current_user)
           .btn-group.pull-right
-            = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn" do
+            = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn btn-default" do
               %i.fa.fa-edit
               = t(:edit)
         %h1= @title
         - if @trip.is_a?(Trip)
-          .subtitle.muted.lead
+          .subtitle.text-muted.lead
             = l(@trip.start_time, :format => :long) if @trip.start_time
             \-
             = l(@trip.stop_time, :format => :long) if @trip.start_time
@@ -88,7 +87,7 @@
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
-          .small.muted.stacked
+          .small.text-muted.stacked
             =t :posted_by
             = succeed ',' do
               = user_image @trip.user, :size => "mini", :class => "img-rounded"
@@ -102,7 +101,7 @@
             - compact do
               = render :partial => "observations/cached_component", :collection => @trip.observations
           - if @trip.is_a?(Trip)
-            .muted
+            .text-muted
               :ruby
                 obs_params = {
                   :d1 => @trip.start_time.iso8601,
@@ -119,7 +118,7 @@
         %section{:id => "check_list"}
           %h2=t :check_list
           - if @trip.trip_taxa.blank?
-            .muted.nocontent=t :no_taxa_listed
+            .text-muted.nocontent=t :no_taxa_listed
           - else
             %ul.taxon_links.plain
               - for trip_taxon in @trip.trip_taxa

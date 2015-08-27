@@ -5,7 +5,7 @@
 -%>
 <div class="stacked column span-8 project<%= ' last' if last %>">
   <div class="column span-2 iconcol">
-    <%= link_to image_tag(project.icon.url(:span2), :alt => "#{h(project.title)} icon", 
+    <%= link_to image_tag(project.icon.url(:col-md-2), :alt => "#{h(project.title)} icon", 
       :width => 70, :height => 70), project %>
   </div>
   <div class="last column span-6">

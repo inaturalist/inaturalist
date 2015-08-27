@@ -5,7 +5,7 @@
   = stylesheet_link_tag "observations", "posts"
 .container
   .row
-    #pageheader.span12
+    #pageheader.col-md-12
       .breadcrumbs
         %strong= link_to t(:back_to_post).html_safe, @post, :class => 'crumb'
       / /#breadcrumbs
@@ -20,7 +20,7 @@
         - else
           = link_to t(:your).downcase.singularize + ' ' + t(:journal).downcase, journal_by_login_path(current_user.login)
   .row
-    .span12
+    .col-md-12
       - if @preview
         #preview.box
           %h3= t :preview

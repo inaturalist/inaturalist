@@ -409,7 +409,7 @@ function loadLayers() {
   
   // open links in the parent window if this is an iframe
   if (self != top) {
-    $('a').live('click', function() {
+    $('a').on('click', function() {
       if ($(this).attr('href') == '#') {
         return
       }

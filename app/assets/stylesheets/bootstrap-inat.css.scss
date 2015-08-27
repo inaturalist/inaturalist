@@ -6,6 +6,10 @@ body {
   background-color: #ffffff;
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
+
+body { font-size: 75%; }
+.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 100%;}
+
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
 .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
@@ -78,5 +82,38 @@ body {
 }
 .bootstrap ul.plain {list-style:none;}
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
+.bootstrap .stacked {margin-bottom: 10px;}
 .bootstrap .unstacked {margin-bottom: 0px;}
 .bootstrap .overlaycontrol .ui-icon-layers {height: 22px; }
+
+.bootstrap ul, .bootstrap ol {margin: inherit;}
+
+// http://stackoverflow.com/questions/18329010/what-happened-to-nav-header-class
+.bootstrap .nav > li.nav-header {
+    cursor: default;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #999;
+}
+img.borderless, .thumbnail.borderless { border: 0; }
+
+// The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
+// of our namespace div, so we need to re-apply these styles. Ugh.
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}

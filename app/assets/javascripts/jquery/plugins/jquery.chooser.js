@@ -12,12 +12,12 @@
           source = this.options.source,
           collectionUrl = this.options.collectionUrl,
           cache = {},
-          defaultSources = this.options.defaultSources || $.parseJSON($(this.element).attr('data-chooser-default-sources'))
+          defaultSources = this.options.defaultSources || $.parseJSON($(this.element).attr('data-chooser-default-sources') || null)
       if (!collectionUrl && typeof(this.options.source) == 'string') {
         collectionUrl = this.options.collectionUrl = this.options.source
       }
       this.defaultSources = defaultSources = this.recordsToItems(defaultSources)
-      this.options.chosen = this.options.chosen || $.parseJSON($(this.element).attr('data-chooser-chosen')),
+      this.options.chosen = this.options.chosen || $.parseJSON($(this.element).attr('data-chooser-chosen') || null)
       this.options.source = this.options.source || defaultSources
       var markup = this.setupMarkup()
       this.selectDefault()
@@ -29,7 +29,6 @@
           }
         })
       }
-      
       markup.input.autocomplete({
         html: true,
         minLength: 0,

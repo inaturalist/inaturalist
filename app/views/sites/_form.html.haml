@@ -4,26 +4,26 @@
 = form_for @record, :builder => DefaultFormBuilder do |f|
   - if @record.errors.any?
     .row
-      .span12
+      .col-md-12
         #error_explanation
           %h2= "#{pluralize(@record.errors.count, "error")} prohibited this site from being saved:"
           %ul
             - @record.errors.full_messages.each do |msg|
               %li= msg
   .row
-    .span4= f.text_field :name, :required => true
-    .span4= f.text_field :url, :required => true
-    .span4= f.check_box :draft
+    .col-md-4= f.text_field :name, :required => true
+    .col-md-4= f.text_field :url, :required => true
+    .col-md-4= f.check_box :draft
   %fieldset
     %legend=t :images
     .row
-      .span4
+      .col-md-4
         = f.file_field :logo
         = image_tag @record.logo.url
-      .span4
+      .col-md-4
         = f.file_field :logo_square
         = image_tag @record.logo_square.url
-      .span4
+      .col-md-4
         = f.file_field :stylesheet
         = link_to @record.stylesheet.url, @record.stylesheet.url if @record.stylesheet?
   - for grp, prefs in @pref_groups
@@ -32,21 +32,21 @@
       - for pair in prefs.in_groups_of(3)
         .row
           - for pref in pair.compact
-            .span4
+            .col-md-4
               - if pref.name == "site_observations_filter"
-                = f.select "preferred_#{pref.name}", Site::OBSERVATIONS_FILTERS, :label => t("site_preferences.#{pref.name}"), :class => "span4"
+                = f.select "preferred_#{pref.name}", Site::OBSERVATIONS_FILTERS, :label => t("site_preferences.#{pref.name}"), :class => "col-md-4"
               - elsif pref.type == :boolean
                 = f.label "preferred_#{pref.name}", :class => "checkbox" do
                   = f.check_box "preferred_#{pref.name}", :label => false
                   = t("site_preferences.#{pref.name}")
               - elsif pref.type == :text
-                = f.text_area "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}"), :class => "span4"
+                = f.text_area "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}"), :class => "col-md-4"
               - else
-                = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}"), :class => "span4"
+                = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}"), :class => "col-md-4"
       - if grp == 'geo'
         = f.text_field :place_id
   .row
-    .span12
+    .col-md-12
       = f.submit t(:save), :class => 'btn btn-primary'
       = link_to t(:cancel), :back, :class => 'btn btn-link'
       = link_to t(:destroy), @record, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger pull-right'

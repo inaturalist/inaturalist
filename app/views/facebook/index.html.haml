@@ -64,7 +64,7 @@
   } else {
     loadObservations()
   }
-  $('a').live('click', function() {
+  $('a').on('click', function() {
     if ($(this).attr('href') && !$(this).attr('href').match(/^\#/)) {
       $(this).attr('href', $(this).attr('href').replace('https', 'http'))
       $(this).attr('target', '_blank')

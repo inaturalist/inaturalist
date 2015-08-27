@@ -6,14 +6,13 @@
   %ul.breadcrumb
     %li
       = link_to t(:guides), guides_path
-      %span.divider /
       %li.active=t :search
   %h1= @title
   = form_tag search_guides_path, :method => :get, :class => "form-search form-inline" do
-    .input-append
+    .input-group
       = text_field_tag :q, params[:q], :placeholder => t(:find_a_guide), :class => "search-query input-xlarge"
       = submit_tag t(:search), :class => "btn btn-primary"
   %ul.media-list
     - for g in @guides
-      = render 'media_object', :guide => g, :tag => :li, :img_class => "span2"
+      = render 'media_object', :guide => g, :tag => :li, :img_class => "col-md-2"
   = will_paginate @guides

@@ -1,29 +1,29 @@
-.nested-fields.guide-range-fields.lined.stacked.row-fluid
-  .span1
+.nested-fields.guide-range-fields.lined.stacked.row
+  .col-md-1
     = f.text_field :position, :class => "sortable-position"
-  .span2
+  .col-md-2
     = f.hidden_field :guide_taxon_id
     = image_tag f.object.medium_url || "iconic_taxa/unknown-200px.png", :class => "media-object"
-  .span7
+  .col-md-7
     - if f.object.new_record?
-      .control-group.local_fields.file_field
+      .form-group.local_fields.file_field
         = f.label :file, t(:file), :class => "control-label"
         .controls
           = f.file_field :file, :accept => "image/jpg,image/jpeg,image/png,image/gif"
-    .control-group.rights_holder_field
+    .form-group.rights_holder_field
       = f.label :rights_holder, t(:copyright_holder, :default => "Copyright holder"), :class => "control-label"
-      .controls= f.text_field :rights_holder, :data => {:locked => f.object.persisted?}, :class => "span12"
-    .control-group.license_field
+      .controls= f.text_field :rights_holder, :data => {:locked => f.object.persisted?}, :class => "col-md-12"
+    .form-group.license_field
       = f.label :license, t(:license), :class => "control-label"
       .controls= f.select :license, Observation::LICENSE_CODES, {:include_blank => t(:no_license_all_rights_reserved)}, {:data => {:locked => f.object.persisted?}}
-    .control-group.source_url_field
+    .form-group.source_url_field
       = f.label :source_url, t(:source_url), :class => "control-label"
       .controls
-        = f.text_field :source_url, :data => {:locked => f.object.persisted?}, :placeholder => t(:original_url_for_this_map), :class => "span12"
+        = f.text_field :source_url, :data => {:locked => f.object.persisted?}, :placeholder => t(:original_url_for_this_map), :class => "col-md-12"
     - %w(thumb_url medium_url original_url).each do |a|
       .readonly_field{:class => "#{a}_field"}
         = f.label t(a, :default => a)
         = f.hidden_field a, :class => "input-xxlarge"
         %span.mirror= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
-  .controls.span2
-    = link_to_remove_association t(:remove_range), f, :class => "btn btn-small btn-mini pull-right"
+  .controls.col-md-2
+    = link_to_remove_association t(:remove_range), f, :class => "btn btn-sm btn-xs pull-right"

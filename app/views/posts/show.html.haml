@@ -39,7 +39,7 @@
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
   .row
-    #pageheader.span12
+    #pageheader.col-md-12
       = render :partial => 'posts/breadcrumbs'
       - if @parent.is_a?(Project)
         = render :partial => 'shared/prevnext', :locals => {                                  |
@@ -80,7 +80,7 @@
             :id => "delete_post_button",                               |
             :class => "minor delete button"                            |
   .row
-    .span8
+    .col-md-8
       .post
         = formatted_user_text(@post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
       #postmeta.description
@@ -94,7 +94,7 @@
           = render :partial => 'comments/comments', :locals => { :parent => @post }
         - else
           = render :partial => 'comments/comments', :locals => { :parent => @post, :hide_form => true }
-    #sidecol.span4
+    #sidecol.col-md-4
       - if !@observations.blank?
         %h3= t(:observations)
         .tabs

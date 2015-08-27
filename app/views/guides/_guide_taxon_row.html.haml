@@ -1,5 +1,5 @@
 = form_for guide_taxon, :remote => true do |f|
-  .row-fluid.guide_taxon.lined{"data-search-name" => (guide_taxon.display_name.to_s + guide_taxon.name.to_s).gsub(/\W/, '').downcase}
+  .row.guide_taxon.lined{"data-search-name" => (guide_taxon.display_name.to_s + guide_taxon.name.to_s).gsub(/\W/, '').downcase}
     .check.microspan
       = check_box_tag "guide_taxon_ids[]", guide_taxon.id
     .microspan
@@ -8,15 +8,15 @@
       = link_to edit_guide_taxon_path(guide_taxon) do
         - gp = guide_taxon.default_guide_photo
         = image_tag gp ? gp.square_url : iconic_taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle"
-    .span9.guide_taxon_content
+    .col-md-9.guide_taxon_content
       = link_to edit_guide_taxon_path(guide_taxon), :class => "names" do
         %span.display_name= guide_taxon.display_name
         %i.name= guide_taxon.name
 
-      .input-prepend.row-fluid
-        %span.add-on=t :tags
-        = f.text_field :tag_list, :value => guide_taxon.tag_list.to_s, :placeholder => t(:add_comma_separated_tags), :class => "span10 input-small"
-    .span1
+      .input-group.row
+        %span.input-group-addon=t :tags
+        = f.text_field :tag_list, :value => guide_taxon.tag_list.to_s, :placeholder => t(:add_comma_separated_tags), :class => "col-md-10 input-small"
+    .col-md-1
       .ctrl.pull-right.nobr
         = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", 
           :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)}, :remote => true, "data-type" => :json

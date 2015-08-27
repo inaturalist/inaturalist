@@ -5,7 +5,7 @@
   after ||= nil
   after_title ||= nil
   @display_project ||= project
-#pageheader.span12
+#pageheader.col-md-12
   = before
   = link_to image_tag(project.icon.url(:thumb), :alt => "#{h(project.title)} icon", :class => 'projecticon'), project
   %h2
