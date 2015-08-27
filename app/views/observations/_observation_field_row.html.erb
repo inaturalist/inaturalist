@@ -25,12 +25,16 @@
     <% end -%>
   </div>
   <div class="ofv_input stacked">
-    <%= ofv.text_field :value, 
-      :class => "text ofv_value_field",
-      :label => h(ofv.object.observation_field.try(:name).try(:capitalize)), 
-      :description => h(ofv.object.observation_field.try(:description)),
-      :required => required,
-      "data-json" => ofv.object.observation_field.to_json %>
+    <%- ofv_taxon = ofv.object.observation_field ? ofv.object.taxon : nil %>
+    <%= ofv.search_field(:value, :class => 'text ofv_value_field',
+      label: h(ofv.object.observation_field.try(:name).try(:capitalize)),
+      description: h(ofv.object.observation_field.try(:description)),
+      required: required,
+      "data-iconic-taxon-id" => ofv_taxon ? ofv_taxon.iconic_taxon_id : nil,
+      "data-default-photo-url" => ( ofv_taxon && ofv_taxon.default_photo ) ?
+        ofv_taxon.default_photo.best_url(:square) : nil,
+      "data-json" => ofv.object.observation_field.to_json,
+      "data-taxon" => ofv_taxon ? ofv_taxon.to_json(methods: [ :leading_name ]) : nil ) %>
   </div>
   <div class="description"><%= h(ofv.object.observation_field.try(:description)) %></div>
 <% end -%>

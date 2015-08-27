@@ -995,3 +995,16 @@ describe Taxon, "to_styled_s" do
     expect(taxon.to_styled_s).to eq "Common (Genus <i>Tom</i>)"
   end
 end
+
+describe Taxon, "leading_name" do
+  it "returns the scientific name if that's all there is" do
+    expect(Taxon.make!(name: "Tom").leading_name).to eq "Tom"
+  end
+
+  it "returns the common name when available" do
+    taxon = Taxon.make!(name: "Tom")
+    TaxonName.make!(name: "Common",
+      taxon: taxon, lexicon: TaxonName::LEXICONS[:ENGLISH])
+    expect(taxon.leading_name).to eq "Common"
+  end
+end

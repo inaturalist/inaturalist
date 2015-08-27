@@ -109,11 +109,11 @@ autocompleter.taxonTemplate = function( result, fieldValue ) {
   return wrapperDiv;
 };
 
-autocompleter.resetTaxonSelection = function( options ) {
+autocompleter.resetTaxonSelection = function( wrappingDiv, options ) {
   options = options || { };
   options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
   options.taxon_id_el.val( null );
-  $(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
+  wrappingDiv.find(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
   if( options.afterUnselect ) { options.afterUnselect( ); }
 };
 
@@ -151,11 +151,12 @@ $.fn.taxonAutocomplete = function( options ) {
   var field = this;
   if( !field || this.length < 1 ) { return; }
   autocompleter.createWrappingDiv( field, options );
+  var wrappingDiv = field.closest( ".ac-chooser" );
   // search is strangely the event when the (x) is clicked in the
   // text field search box. We want to restore all defaults
   field.on( "search", function ( ) {
     field.val( "" );
-    autocompleter.resetTaxonSelection( options );
+    autocompleter.resetTaxonSelection( wrappingDiv, options );
     return false;
   });
   var ac = field.autocomplete({
@@ -243,7 +244,7 @@ $.fn.taxonAutocomplete = function( options ) {
       // set the hidden taxon_id
       options.taxon_id_el.val( ui.item.id );
       // set the selection's thumbnail image
-      $(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
+      wrappingDiv.find(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
       if( options.afterSelect ) { options.afterSelect( ui ); }
       return false;
     },
@@ -252,8 +253,8 @@ $.fn.taxonAutocomplete = function( options ) {
         return;
       }
       var li = ui.item.id ?
-        $("ul.ui-autocomplete").find("[data-taxon-id='"+ ui.item.id +"']").closest("li") :
-        $("ul.ui-autocomplete").find("[data-type='"+ ui.item.type +"']").closest("li")
+        ac.menu.element.find("[data-taxon-id='"+ ui.item.id +"']").closest("li") :
+        ac.menu.element.find("[data-type='"+ ui.item.type +"']").closest("li")
       li.parent( ).find( "li" ).removeClass( "active" );
       li.addClass( "active" );
       return false;
@@ -303,11 +304,11 @@ $.fn.taxonAutocomplete = function( options ) {
     }
     if( this.menu.element.is( ":visible" ) ) {
       var that = this;
+      that.menu.blur( );
       // delaying the close slightly so that the keydown callback below
       // happens before the menu has disappeared
       setTimeout( function( ){
-        that.menu.element.hide();
-        that.menu.blur();
+        that.menu.element.hide( );
         that.isNewMenu = true;
         that._trigger( "close", event );
       }, 50 );
@@ -328,7 +329,7 @@ $.fn.taxonAutocomplete = function( options ) {
     nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
       34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
     if( _.contains( nonCharacters, key ) ) { return; }
-    autocompleter.resetTaxonSelection( options );
+    autocompleter.resetTaxonSelection( wrappingDiv, options );
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
@@ -350,7 +351,7 @@ $.fn.taxonAutocomplete = function( options ) {
       setTimeout( function( ) {
         if( !autocompleter.selectedTaxonID( options ) && autocompleter.menuClosed( )) {
           field.val( "" );
-          autocompleter.resetTaxonSelection( options );
+          autocompleter.resetTaxonSelection( wrappingDiv, options );
         }
       }, 10);
     });

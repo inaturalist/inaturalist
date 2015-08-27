@@ -131,9 +131,16 @@ var ObservationFields = {
         input.after(newInput)
         input.hide()
         $(newInput).removeClass('ofv_value_field')
-        $(newInput).simpleTaxonSelector({
-          taxonIDField: input
-        })
+        var taxon = input.data( "taxon" );
+        if( taxon ) {
+          newInput.val( taxon.leading_name );
+        }
+        $(newInput).taxonAutocomplete({
+          taxon_id_el: input,
+          allow_placeholders: true });
+        if( options.focus ) {
+          newInput.focus( );
+        }
       } else if (options.focus) {
         input.focus()
       }

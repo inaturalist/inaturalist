@@ -517,6 +517,13 @@ class Taxon < ActiveRecord::Base
     "#{comname.name} (#{sciname})"
   end
 
+  def leading_name(options = {})
+    if c = common_name(options)
+      return c.name
+    end
+    return name
+  end
+
   def observations_count_with_descendents
     Observation.of(self).count
   end
