@@ -2,7 +2,7 @@
   .pull-left
     = f.hidden_field :guide_id
     - if f.object.new_record?
-      = f.text_field :user_id, :class => "chooser guide-user-chooser", :placeholder => t(:start_typing_someones_name), :label => false
+      = f.text_field :user_id, :class => "chooser guide-user-chooser form-control", :placeholder => t(:start_typing_someones_name), :label => false
     - else
       = link_to user_image(f.object.user), f.object.user
       = link_to_user f.object.user

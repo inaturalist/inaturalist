@@ -288,8 +288,8 @@
         this.markup.chooseButton, 
         this.markup.loadingButton, 
         this.markup.clearButton)
-      this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 20)
-      this.markup.choice.width(this.markup.input.width())
+      this.markup.input.width(originalInput.outerWidth - this.markup.chooseButton.width() - 20)
+      this.markup.choice.width(originalInput.outerWidth)
       return this.markup
     },
     destroy: function() {

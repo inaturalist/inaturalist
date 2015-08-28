@@ -1,14 +1,11 @@
 - content_for :title do
   =t :new_guide
-- content_for :extracss do
-  :css
-    .bootstrap input, .bootstrap textarea {width:100%;}
 .container-fluid
   .row
     .col-md-3
     .col-md-6
       %h2=t :new_guide
-      = form_for @guide, :builder => DefaultFormBuilder do |f|
+      = form_for @guide, :builder => BootstrapFormBuilder do |f|
         = error_messages_for @guide
         = f.text_field :title, :label => t(:title).capitalize
         = f.text_area :description, :label => t(:description), :style => "height:200px;"

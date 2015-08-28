@@ -12,10 +12,9 @@
       = link_to t(:guides), guides_path
       %li.active= @guide.title
   - unless @guide.published?
-    .alert.text-center
-      .alert-warning
-        %strong= t(:draft, :default => "draft").upcase
-        =t 'views.guides.show.draft_desc' 
+    .box.bg-warning.text-center.upstacked
+      %strong= t(:draft, :default => "draft").upcase
+      =t 'views.guides.show.draft_desc' 
   .row
     .col-md-12
       #actions.right

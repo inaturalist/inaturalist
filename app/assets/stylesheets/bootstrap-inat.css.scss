@@ -11,7 +11,7 @@ body { font-size: 75%; }
 .bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
 
 .readable, p {line-height: 1.6em;}
-.bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+.bootstrap .ui-chooser input.ui-chooser-input {padding:3px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
 .bootstrap input.chooser {width: auto;}
 .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
 .bootstrap .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
@@ -85,7 +85,9 @@ body { font-size: 75%; }
 }
 .bootstrap ul.plain {list-style:none;}
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
-.bootstrap .stacked, .bootstrap .nav.nav-tabs {margin-bottom: 10px;}
+.bootstrap .stacked, 
+.bootstrap .nav.nav-tabs,
+.bootstrap .nav.nav-pills {margin-bottom: 10px;}
 .bootstrap .unstacked {margin-bottom: 0px;}
 .bootstrap .overlaycontrol .ui-icon-layers {height: 22px; }
 
@@ -124,3 +126,16 @@ img.borderless, .thumbnail.borderless { border: 0; }
 }
 .bootstrap .breadcrumb {margin-bottom: 0;}
 .title-controls {margin-top: 20px;}
+.bootstrap .modal .container-fluid {padding-left: 0; padding-right: 0;}
+
+.ui-front {z-index: 1051;}
+.bootstrap .accordion .panel-heading { padding: 0; }
+.bootstrap .accordion .panel-heading a { display: block; padding: 10px 15px; }
+.errorExplanation {margin-top: 20px; }
+// http://stackoverflow.com/questions/18730116/twitter-bootstrap-3-0-how-do-i-badge-badge-important-now
+.bootstrap .label-as-badge {
+  border-radius: 1em;
+  font-size: 100%;
+  padding: 3px 8px;
+  display: inline-block;
+}

@@ -13,11 +13,13 @@
         %span.display_name= guide_taxon.display_name
         %i.name= guide_taxon.name
 
-      .input-group.row
-        %span.input-group-addon=t :tags
-        = f.text_field :tag_list, :value => guide_taxon.tag_list.to_s, :placeholder => t(:add_comma_separated_tags), :class => "col-md-10 input-small"
+      .row
+        .col-xs-12
+          .input-group
+            %span.input-group-addon=t :tags
+            = f.text_field :tag_list, :value => guide_taxon.tag_list.to_s, :placeholder => t(:add_comma_separated_tags), :class => "form-control input-sm"
     .col-md-1
       .ctrl.pull-right.nobr
-        = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", 
+        = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-sm btn-danger delete", 
           :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)}, :remote => true, "data-type" => :json
         %span.inlineblock.grip{:data => {:tip => "Drag and drop to re-order", :tip_show_delay => 1000}}

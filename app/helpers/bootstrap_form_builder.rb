@@ -44,7 +44,7 @@ class BootstrapFormBuilder < DefaultFormBuilder
       label_content += content_tag(:span, " *", :class => 'required')
     end
     @template.content_tag(:div, wrapper_options) do
-      @template.content_tag(:label, field_content + label_content)
+      @template.content_tag(:label, [field_content, label_content].join(' ').html_safe)
     end
   end
 end

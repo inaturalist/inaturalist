@@ -337,27 +337,29 @@ if (iNaturalist && iNaturalist.Map) {
   })
 }
 window.firstRun = true
-$('#guide_place_id').chooser({
-  collectionUrl: '/places/autocomplete.json',
-  resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
-  chosen: PLACE,
-  afterSelect: function(item) {
-    $('#guide_place_id').data('json', item)
-    if (window.firstRun && PLACE) {
-      window.firstRun = false
-    } else {
-      $("#guide_latitude").val(item.latitude)
-      $("#guide_longitude").val(item.longitude)
-      if (item.swlat) {
-        var bounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(item.swlat, item.swlng),
-          new google.maps.LatLng(item.nelat, item.nelng)
-        )
-        map.fitBounds(bounds)
+$('#location').on('shown.bs.collapse', function() {
+  $('#guide_place_id').chooser({
+    collectionUrl: '/places/autocomplete.json',
+    resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+    chosen: PLACE,
+    afterSelect: function(item) {
+      $('#guide_place_id').data('json', item)
+      if (window.firstRun && PLACE) {
+        window.firstRun = false
+      } else {
+        $("#guide_latitude").val(item.latitude)
+        $("#guide_longitude").val(item.longitude)
+        if (item.swlat) {
+          var bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(item.swlat, item.swlng),
+            new google.maps.LatLng(item.nelat, item.nelng)
+          )
+          map.fitBounds(bounds)
+        }
+        $("#guide_latitude").val(item.latitude).change()
       }
-      $("#guide_latitude").val(item.latitude).change()
     }
-  }
+  })
 })
 
 $('#addtags .modal-footer .btn-primary').click(function() {
@@ -518,7 +520,7 @@ $('input[name="guide_eol_update_flow_task[options][sections]"]').on('change', fu
   }
 })
 $('input[name="guide_eol_update_flow_task[options][overview]"]').on('change', function() {
-  if ($(this).val() == "true") {
+  if ($(this).val() == "true" || $(this).val() == true) {
     $('#eol_subjects').hide()
   } else {
     $('#eol_subjects').show()
