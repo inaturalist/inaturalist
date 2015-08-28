@@ -1,17 +1,4 @@
 $('.taxonmap').taxonMap()
-$('.imgmodal').on('shown.bs.modal', function() {
-  $selection = $('img', this).not('.imagesloaded')
-  $selection.hide()
-  var newHeight = $(window).height() * 0.8
-  $(this).height(newHeight)
-  $('img', this).css({'height': newHeight+'px'})
-  $(this).css('margin-left', $('img', this).width() / -2 + 'px')
-  $(this).width($('img', this).width())
-  $('img:hidden', this).fadeIn()
-})
-$('.imgmodal').imagesLoaded(function() {
-  $('img', this).addClass('imagesloaded')
-})
 $('#reuse_guide_taxon_dialog').on('shown.bs.modal', function() {
   var current = $('.modal-body', this)
   if (current.hasClass('loaded')) {
@@ -59,3 +46,14 @@ function reuseGuideTaxon(btn, srcGuideTaxon, targetGuide) {
       alert(I18n.t('there_were_problems_adding_taxa', {errors: errors.join(', ')}))
     })
 }
+$('#photos').click(function(event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event, useBootstrapModal: false},
+        links = $.makeArray($('[data-gallery]', this));
+    if (link && $(link).data('gallery')) {
+      console.log('starting gallery with', links)
+      blueimp.Gallery(links, options);
+    }
+});

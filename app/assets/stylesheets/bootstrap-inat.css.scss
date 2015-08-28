@@ -8,7 +8,7 @@ body {
 }
 
 body { font-size: 75%; }
-.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 100%;}
+.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
 
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
@@ -122,3 +122,5 @@ img.borderless, .thumbnail.borderless { border: 0; }
   filter: alpha(opacity=50);
   opacity: .5;
 }
+.bootstrap .breadcrumb {margin-bottom: 0;}
+.title-controls {margin-top: 20px;}

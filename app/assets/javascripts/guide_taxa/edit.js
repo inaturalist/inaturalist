@@ -61,7 +61,7 @@ $('#import_photos_dialog .modal-footer .btn-primary').click(function() {
     $('.guide-photo-fields:last .photo_id_input').val(data.id)
     $('.guide-photo-fields:last .local_photo_fields').hide()
   })
-  updatePositions("#guide_photos", ".row")
+  updatePositions("#guide_photos", ".nested-fields")
   $('#import_photos_dialog').modal('hide')
 })
 $('#import_sections_dialog').on('shown.bs.modal', function(e) {
@@ -163,43 +163,49 @@ function updatePositions(container, sortable) {
   })
 }
 $('#guide_photos').sortable({
-  items: "> .row",
+  items: ".nested-fields",
   cursor: "move",
   placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_photos", ".guide-photo-fields")  
+    updatePositions("#guide_photos", ".nested-fields")  
   }
 })
 $('#guide_photos').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp(function() {
-    updatePositions("#guide_photos", ".row")  
+    updatePositions("#guide_photos", ".nested-fields")
   })
 })
 $('#guide_sections').sortable({
-  items: "> .row",
+  items: ".nested-fields",
   cursor: "move",
   placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_sections", ".row")  
+    updatePositions("#guide_sections", ".nested-fields")  
   }
 })
 $('#guide_ranges').sortable({
-  items: "> .row",
+  items: ".nested-fields",
   cursor: "move",
   placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_ranges", ".row")  
+    updatePositions("#guide_ranges", ".nested-fields")  
   }
 })
 $('#guide_sections').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp(function() {
-    updatePositions("#guide_sections", ".row")  
+    updatePositions("#guide_sections", ".nested-fields")  
   })
 })
-$('#guide_photos, #guide_sections, #guide_ranges').bind('cocoon:after-insert', function(e, item) {
-  updatePositions(this, ".row")  
+$('#guide_photos').bind('cocoon:after-insert', function(e, item) {
+  updatePositions("#guide_photos", ".nested-fields")
+})
+$('#guide_sections').bind('cocoon:after-insert', function(e, item) {
+  updatePositions("#guide_sections", ".nested-fields")
+})
+$('#guide_ranges').bind('cocoon:after-insert', function(e, item) {
+  updatePositions("#guide_ranges", ".nested-fields")
 })
 $('#guide_ranges').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
@@ -225,7 +231,7 @@ function addTag(tag) {
 function addPhotoTag(btn, tag) {
   var tag = $.trim(tag),
       tags,
-      input = $(btn).parents('[class*="span"]:first').find('.tag_list')
+      input = $(btn).parents('.photo-tags:first').find('.tag_list')
   if ($.trim(input.val()) == '') {
     tags = []
   } else {

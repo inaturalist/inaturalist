@@ -9,7 +9,7 @@
   %ul.breadcrumb
     %li
       = link_to t(:back_to_x, :noun => @guide.title), edit_guide_path(@guide), :class => "back"
-  .btn-group.pull-right
+  .title-controls.btn-group.pull-right
     %button#toolsbutton.btn.btn-default.warning.dropdown-toggle{"data-toggle" => "dropdown"}
       =t :tools
       %span.caret

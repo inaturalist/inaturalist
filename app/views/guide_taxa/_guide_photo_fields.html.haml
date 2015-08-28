@@ -11,7 +11,7 @@
         .col-xs-12.stacked
           = f.text_area :description, :placeholder => t(:brief_caption), :class => "form-control"
       .row
-        .col-xs-12
+        .col-xs-12.photo-tags
           = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: t(:add_comma_separated_tags), :class => "tag_list form-control"
           .recent_tags.quiet
             - for tag in @recent_photo_tags

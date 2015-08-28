@@ -42,6 +42,8 @@ class GuideTaxaController < ApplicationController
           memo[predicate] = memo[predicate].sort.uniq
           memo
         end
+        @next = @guide.guide_taxa.order("position ASC, id ASC").where("(position > 0 AND position > ?) OR id > ?", @guide_taxon.position, @guide_taxon.id).first
+        @prev = @guide.guide_taxa.order("position ASC, id ASC").where("(position > 0 AND position < ?) OR id < ?", @guide_taxon.position, @guide_taxon.id).last
       end
       format.json { render json: @guide_taxon.as_json(:root => true,
         :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]) }

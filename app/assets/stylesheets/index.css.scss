@@ -854,18 +854,6 @@ ul.leafylist li li:first-child {
   content: '\0020 \00BB';
 }
 
-.next, .prev {
-  font-weight: bold;
-  white-space: nowrap;
-}
-.next:after {
-  content: '\0020 \00BB';
-}
-
-.prev:before {
-  content: '\00AB \0020';
-}
-
 #version_info {
   margin-left: 1em;
   margin-bottom: 1em;
