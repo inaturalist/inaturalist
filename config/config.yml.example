@@ -153,7 +153,7 @@ base: &base
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
         tilestache: 'http://localhost:8080'
-        windshaft: http://localhost:4000
+        elasticsearch: http://localhost:4000
 
     google_webmaster:
         verification: abiglongkey
@@ -232,6 +232,10 @@ base: &base
     # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
     # for more details
     elasticsearch_host: 127.0.0.1:9200
+
+    # An instance of https://github.com/inaturalist/iNaturalistAPI, the
+    # same code running at CONFIG.tile_servers.elasticsearch
+    node_api_host: localhost:4000
 
 development:
     <<: *base

@@ -878,17 +878,17 @@ var appendValidParamsToURL = function( url, options ) {
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
   _.defaults( options, { validParams: [ 'color' ] });
-  return this.addElasticLayerByEndpoint( "places", options.place.id, options );
+  return this.addPostgisLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
   _.defaults( options, { validParams: [ 'color' ] });
-  return this.addElasticLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
+  return this.addPostgisLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
-  return this.addElasticLayerByEndpoint( "taxon_places", options.taxon.id, options );
+  return this.addPostgisLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
 var cachedGBIFColors;
@@ -916,10 +916,10 @@ google.maps.Map.prototype.addGBIFLayer = function( options ) {
   return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
 };
 
-google.maps.Map.prototype.addElasticLayerByEndpoint = function( endpoint, endpointID, options ) {
+google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpointID, options ) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt(0);
-  var tileservers = elasticsearchTileservers( );
+  var tileservers = postgisTileservers( );
   var options = options || { };
   var tileURLs = _.map( tileservers , function( base ) {
     return appendValidParamsToURL(
@@ -966,7 +966,16 @@ function elasticsearchTileservers( ) {
 function intereactionsServer( ) {
   var interactionTileURL = "<%= CONFIG.tile_servers.interactions %>";
   if( interactionTileURL ) { return "//" + interactionTileURL; }
-  return elasticsearchTileservers()[0];
+  return elasticsearchTileservers( )[0];
+}
+
+// node_api_host and tile_servers.elasticsearch refer to two
+// different clusters running the same code. node_api_host will
+// be faster for DB/postgis queries
+function postgisTileservers( ) {
+  var nodeApiHost = "<%= CONFIG.node_api_host %>";
+  if( nodeApiHost ) { return [ "//" + nodeApiHost ]; }
+  return elasticsearchTileservers( );
 }
 
 google.maps.Map.prototype.addObservationsLayer = function(options) {
