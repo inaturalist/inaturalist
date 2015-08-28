@@ -136,8 +136,8 @@ var ObservationFields = {
           newInput.val( taxon.leading_name );
         }
         $(newInput).taxonAutocomplete({
-          taxon_id_el: input,
-          allow_placeholders: true });
+          taxon_id_el: input
+        });
         if( options.focus ) {
           newInput.focus( );
         }

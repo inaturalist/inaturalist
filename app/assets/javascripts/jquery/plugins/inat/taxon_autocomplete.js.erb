@@ -311,7 +311,7 @@ $.fn.taxonAutocomplete = function( options ) {
         that.menu.element.hide( );
         that.isNewMenu = true;
         that._trigger( "close", event );
-      }, 50 );
+      }, 10 );
     }
   };
   field.keydown( function( e ) {
@@ -353,7 +353,7 @@ $.fn.taxonAutocomplete = function( options ) {
           field.val( "" );
           autocompleter.resetTaxonSelection( wrappingDiv, options );
         }
-      }, 10);
+      }, 20);
     });
   }
 };
