@@ -253,7 +253,7 @@
         choice: $('<div></div>')
           .addClass(this.options.choiceClass)
           .hide(),
-        chooseButton: $('<button type="button">&nbsp;</button>')
+        chooseButton: $('<button type="button" class="choosebutton">&nbsp;</button>')
           .button({
             icons: {
               primary: "ui-icon-triangle-1-s"
@@ -288,7 +288,7 @@
         this.markup.chooseButton, 
         this.markup.loadingButton, 
         this.markup.clearButton)
-      this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 3)
+      this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 20)
       this.markup.choice.width(this.markup.input.width())
       return this.markup
     },

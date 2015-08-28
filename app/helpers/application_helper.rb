@@ -155,8 +155,11 @@ module ApplicationHelper
   def link_to_toggle_box(txt, options = {}, &block)
     options[:class] ||= ''
     options[:class] += ' togglelink'
+    if open = options.delete(:open)
+      options[:class] += ' open'
+    end
     link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
-    hidden = content_tag(:div, capture(&block), :style => "display:none", :class => "togglebox")
+    hidden = content_tag(:div, capture(&block), :style => open ? nil : "display:none", :class => "togglebox")
     content_tag :div, link + hidden
   end
   

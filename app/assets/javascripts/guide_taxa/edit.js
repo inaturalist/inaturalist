@@ -2,7 +2,7 @@ $('#guide_taxon_taxon_id:visible').chooser({
   collectionUrl: '/taxa/autocomplete.json',
   resourceUrl: '/taxa/{{id}}.json?partial=chooser',
 })
-$('#import_photos_dialog').on('shown', function() {
+$('#import_photos_dialog').on('shown.bs.modal', function() {
   $content = $('#flickr_photos')
   if ($content.hasClass('loaded')) {
     return
@@ -18,11 +18,11 @@ var photoSelectorOptions = {
   bootstrap: true,
   urlParams: {
     authenticity_token: $('meta[name=csrf-token]').attr('content'),
-    limit: 32,
+    limit: 42,
     partial: 'bootstrap_photo_list_form'
   }
 }
-$('#import_photos_dialog [data-toggle="tab"]').on('show', function(e) {
+$('#import_photos_dialog [data-toggle="tab"]').on('show.bs.tab', function(e) {
   var $tab = $(e.target),
       provider = $tab.data('provider'),
       $content = $($tab.attr('href'))
@@ -64,8 +64,13 @@ $('#import_photos_dialog .modal-footer .btn-primary').click(function() {
   updatePositions("#guide_photos", ".row")
   $('#import_photos_dialog').modal('hide')
 })
-$('#import_sections_dialog').on('shown', function() {
-  var current = $('.tab-pane:visible', this)
+$('#import_sections_dialog').on('shown.bs.modal', function(e) {
+  sectionsForTab($('.tab-pane:visible', this))
+})
+$('#import_sections_dialog [data-toggle="tab"]').on('shown.bs.tab', function(e) {
+  sectionsForTab($($(e.target).attr('href')))
+})
+function sectionsForTab(current) {
   if (current.hasClass('loaded')) {
     return
   }
@@ -81,7 +86,7 @@ $('#import_sections_dialog').on('shown', function() {
     }
   })
   current.addClass('loaded')
-})
+}
 function sectionToHtml(section) {
   var div = $('<div></div>').addClass('lined stacked')
   div.append(
@@ -106,7 +111,7 @@ function addSection(section) {
     $('.guide-section-fields:last .'+this+'_field .mirror').html(section[this])
   })
 }
-$('#import_ranges_dialog').on('shown', function() {
+$('#import_ranges_dialog').on('shown.bs.modal', function() {
   var current = $('.tab-pane:visible', this)
   if (current.hasClass('loaded')) {
     return
@@ -117,7 +122,7 @@ $('#import_ranges_dialog').on('shown', function() {
     if (!json || json.length == 0) {
       current.html("<p>"+I18n.t('no_range_data_available')+"</p>")
     } else {
-      var ul = $('<ul class="thumbnails"></ul>')
+      var ul = $('<div class="row"></div>')
       $.each(json, function() {
         ul.append(rangeToHtml(this))
       })
@@ -128,18 +133,18 @@ $('#import_ranges_dialog').on('shown', function() {
   current.addClass('loaded')
 })
 function rangeToHtml(range) {
-  var div = $('<div></div>').addClass('thumbnail md-col-2 text-center')
+  var div = $('<div></div>').addClass('thumbnail text-center')
   div.append($('<img/>').attr('src', range.thumb_url).addClass('stacked'))
   div.append(
     $('<a class="btn btn-default">'+I18n.t('import')+'</a>').click(function() {addRange(range)})
   )
-  var attribution = $('<div class="small meta"></div>').html(range.attribution)
+  var attribution = $('<div class="small meta upstacked"></div>').html(range.attribution)
   if (range.source_url) {
-    var link = $('<a></a>').attr('href', range.source_url).attr('target', '_blank')
+    var link = $('<a></a>') .attr('href', range.source_url).attr('target', '_blank')
     attribution = attribution.wrap(link)
   }
   div.append(attribution)
-  return div
+  return $('<div class="col-xs-3"></div>').html(div)
 }
 function addRange(range) {
   $('#guide_ranges_row .btn-add-range').click()

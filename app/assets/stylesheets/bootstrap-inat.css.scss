@@ -12,6 +12,7 @@ body { font-size: 75%; }
 
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+.bootstrap input.chooser {width: auto;}
 .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
 .bootstrap .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
 .bootstrap .overlaycontrol li { line-height: 1; }
@@ -45,6 +46,7 @@ body { font-size: 75%; }
 .bootstrap .photoSelector {padding: 0; border: 0 transparent;margin:0;}
 .bootstrap .photoSelector .view_photo {text-align: left;}
 .bootstrap .photoSelectorPhotos .photo img {width:100%;}
+.bootstrap .photoSelectorPhotos .photo label {margin-bottom: 0;}
 .bootstrap .photoSelectorSelected {
   background-color: #eee; 
   padding:10px; 
@@ -74,15 +76,16 @@ body { font-size: 75%; }
   padding:5px;
   line-height:0;
   display:inline-block;
-  width:auto;
   border: 0 transparent;
-  width:1.5em;text-align:center;
+  width:2em;
+  height:2em;
+  text-align:center;
   background-color: #ccc;
   margin-bottom:0;
 }
 .bootstrap ul.plain {list-style:none;}
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
-.bootstrap .stacked {margin-bottom: 10px;}
+.bootstrap .stacked, .bootstrap .nav.nav-tabs {margin-bottom: 10px;}
 .bootstrap .unstacked {margin-bottom: 0px;}
 .bootstrap .overlaycontrol .ui-icon-layers {height: 22px; }
 
@@ -97,6 +100,8 @@ body { font-size: 75%; }
     color: #999;
 }
 img.borderless, .thumbnail.borderless { border: 0; }
+
+.bootstrap .modal-body {max-height: 400px; overflow-x: hidden; overflow-y: auto; }
 
 // The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
 // of our namespace div, so we need to re-apply these styles. Ugh.

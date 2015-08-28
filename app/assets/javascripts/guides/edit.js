@@ -2,7 +2,7 @@ $('#addtaxa').modal({
   backdrop: true,
   show: false
 }).on('hidden', completeAddTaxa)
-$('#addtaxa').on('shown', function() { $('input:visible:first', this).focus() })
+$('#addtaxa').on('shown.bs.modal', function() { $('input:visible:first', this).focus() })
 $('#addtaxa-place .taxonchooser').chooser({
   collectionUrl: '/taxa/autocomplete.json',
   resourceUrl: '/taxa/{{id}}.json?partial=chooser'
@@ -580,7 +580,7 @@ window.runFlowTask = function(runUrl) {
   })
 }
 $('#guide_eol_update_flow_task_options_subjects').multiselect()
-$('#eolupdate').on('shown', function () {
+$('#eolupdate').on('shown.bs.modal', function () {
   $('body').css({height: '100%', overflow:'hidden'})
   var count = $('.guide_taxon input[type=checkbox]:checked').length,
       val = I18n.t('update_x_selected_taxa', {count: count})

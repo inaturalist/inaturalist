@@ -90,14 +90,11 @@
       var controls = $('<div class="photoSelectorControls"></div>').css(
         $.fn.photoSelector.defaults.controlsCSS
       )
-      var $searchInput = $('<input type="text" placeholder="'+I18n.t('search')+'" />').css(
-        $.fn.photoSelector.defaults.formInputCSS
-      )
-      var $searchButton = $('<a href="#" class="btn btn-default findbutton">'+I18n.t('find_photos')+'</a>').css(
-        $.fn.photoSelector.defaults.formInputCSS
-      )
-      var $searchWrapper = $("<div class='photoSelectorSearch input-group pull-left'></div>")
-      $searchWrapper.append($searchInput).append($searchButton)
+      var $searchInput = $('<input type="text" class="form-control" placeholder="'+I18n.t('search')+'" />')
+      var $searchButton = $('<a href="#" class="btn btn-default findbutton">'+I18n.t('find_photos')+'</a>')
+      var searchButtonWrapper = $('<span class="input-group-btn"></span>').html($searchButton)
+      var $searchWrapper = $("<div class='photoSelectorSearch input-group'></div>")
+      $searchWrapper.append($searchInput).append(searchButtonWrapper)
       var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
     } else {
       // Insert a search field and button.  No forms, please
@@ -402,14 +399,20 @@
       $sourceWrapper.hide()
     }
     if (options.bootstrap) {
-      var prevnext = $('<div class="btn-group pull-right"></div>')
+      var prevnext = $('<div class="btn-group"></div>')
       prevnext.append(prev,next)
-      var allNone = $('<div class="allNone form-inline pull-right"></div>'),
+      var allNone = $('<div class="allNone form-inline"></div>'),
           allNoneButtons = $('<div class="btn-group"></div>')
       allNoneLabel.addClass('checkbox')
       allNoneButtons.append(selectAll, selectNone)
       allNone.append(allNoneLabel, allNoneButtons)
-      $(controls).append($searchWrapper, prevnext, allNone, page)
+      prevnext.addClass('pull-right')
+      allNone.addClass('pull-right')
+
+      controls.addClass('row stacked')
+      controls.append($('<div class="col-xs-6"></div>').append($searchWrapper))
+      controls.append($('<div class="col-xs-6"></div>').append(prevnext, allNone))
+      controls.append(page)
     } else {
       var allNone = $('<span class="allNone nobr inlineblock buttoncontainer"></span>')
       allNone.append(allNoneLabel, selectAll, selectNone)

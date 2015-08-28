@@ -1,11 +1,8 @@
 - content_for :title do
   = @title = t(:editing_x_in_y, :x => @guide_taxon.name, :y => @guide.title)
-- content_for :extracss do
-  :css
-    .dropdown-menu .text-muted {max-width: 500px; white-space:normal;font-size:90%;}
 - content_for :extrajs do
   :javascript
-    $('#updatewitheol, #updatewithsite').on('shown', function () {
+    $('#updatewitheol, #updatewithsite').on('shown.bs.modal', function () {
       $('.modal-footer .btn-primary', this).focus()
     })
 .container-fluid
@@ -28,21 +25,25 @@
   %h2= @title
   = render 'form'
 
-#updatewitheol.modal.fade.hide{:role => "dialog", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :update_with_eol_content
-  .modal-body
-    %p=t 'views.guide_taxa.edit.eol_explanation'
-  .modal-footer
-    %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
-    = link_to t(:update_with_eol_content), sync_guide_taxon_path(@guide_taxon, :provider => "eol"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
-#updatewithsite.modal.fade.hide{:role => "dialog", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :update_with_site_content, :site_name => SITE_NAME_SHORT
-  .modal-body
-    %p=t 'views.guide_taxa.edit.site_explanation', :site_name => SITE_NAME
-  .modal-footer
-    %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
-    = link_to t(:update_with_site_content, :site_name => SITE_NAME_SHORT), sync_guide_taxon_path(@guide_taxon, :provider => "site"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
+#updatewitheol.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :update_with_eol_content
+      .modal-body
+        %p=t 'views.guide_taxa.edit.eol_explanation'
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+        = link_to t(:update_with_eol_content), sync_guide_taxon_path(@guide_taxon, :provider => "eol"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
+#updatewithsite.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :update_with_site_content, :site_name => SITE_NAME_SHORT
+      .modal-body
+        %p=t 'views.guide_taxa.edit.site_explanation', :site_name => SITE_NAME
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+        = link_to t(:update_with_site_content, :site_name => SITE_NAME_SHORT), sync_guide_taxon_path(@guide_taxon, :provider => "site"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}

@@ -1,28 +1,7 @@
 - content_for :extrajs do
   = javascript_include_tag "jquery/plugins/inat/photo_selectors.js"
 - content_for :extracss do
-  = stylesheet_link_tag "guides"
-  :css
-    #guide_photos textarea {height:65px;margin-bottom: 0;}
-    #guide_photos .pull-left,
-    #guide_sections .pull-left {margin-right: 10px;}
-    #guide_photos .row,
-    #guide_sections .row,
-    #guide_ranges .row {cursor: move;}
-    .photoSelector {margin-bottom:10px;}
-    #guide_photos input.sortable-position { background-color: orange; }
-    #guide_sections input.sortable-position { background-color: DodgerBlue; }
-    #guide_ranges input.sortable-position { background-color: DeepPink; }
-    .readonly_field, .readonly_field label {font-size: 12px;}
-    .readonly_field label { display: inline; font-weight:bold;}
-    .readonly_field label:after { content: ':';}
-    #actions {margin-top:50px;}
-    .bootstrap .tab-content {overflow: visible;}
-    #import_photos_dialog {
-      width:80%;
-      margin-left: -40%;
-    }
-    .bootstrap input[type=file] {line-height: 1;margin-bottom:10px;}
+  = stylesheet_link_tag "guides", "guide_taxa/form"
 - content_for :extrajs do
   :javascript
     var GUIDE_TAXON = #{json_escape @guide_taxon.to_json(:methods => [:eol_page_id]).html_safe},
@@ -33,100 +12,113 @@
   = f.hidden_field :guide_id
   = error_messages_for @guide_taxon
   .row
-    .col-md-4
-      = f.label :display_name, t(:display_name)
-      = f.text_field :display_name
-    .col-md-4
-      = f.label :name, t(:name)
-      = f.text_field :name
-    .col-md-4
-      = f.label :taxon_id, t(:taxon)
-      = f.text_field :taxon_id, :placeholder => t(:start_typing_taxon_name)
-      - unless f.object.taxon_id.blank?
-        .upstacked
-          = link_to t(:view_taxon), taxon_path(f.object.taxon_id), :target => "_blank", :class => "readmore"
+    .col-xs-4
+      .form-group
+        = f.label :display_name, t(:display_name)
+        = f.text_field :display_name, :class => "form-control"
+    .col-xs-4
+      .form-group
+        = f.label :name, t(:name)
+        = f.text_field :name, :class => "form-control"
+    .col-xs-4
+      .form-group
+        = f.label :taxon_id, t(:taxon)
+        = f.text_field :taxon_id, :placeholder => t(:start_typing_taxon_name), :class => "form-control"
+        - unless f.object.taxon_id.blank?
+          .upstacked
+            = link_to t(:view_taxon), taxon_path(f.object.taxon_id), :target => "_blank", :class => "readmore"
   #guide_photos_row.row.stacked
-    %h3=t :photos
-    #guide_photos.clearfix
-      = f.fields_for :guide_photos, @guide_photos, :builder => ActionView::Helpers::FormBuilder do |gp|
-        = render "guide_photo_fields", :f => gp
-    = link_to_add_association t(:upload_photo), f, :guide_photos, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_photos", :class => "btn btn-sm btn-success btn-add-photo"
-    %button.btn-sm.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_photos_dialog"}=t :import_photos
+    .col-xs-12
+      %h3=t :photos
+      #guide_photos.clearfix
+        = f.fields_for :guide_photos, @guide_photos do |gp|
+          = render "guide_photo_fields", :f => gp
+      = link_to_add_association t(:upload_photo), f, :guide_photos, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_photos", :class => "btn btn-sm btn-success btn-add-photo"
+      %button.btn-sm.btn-default.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_photos_dialog"}=t :import_photos
   #guide_sections_row.row.stacked
-    %h3=t :description_sections
-    #guide_sections.clearfix
-      = f.fields_for :guide_sections, @guide_sections, :builder => ActionView::Helpers::FormBuilder do |gs|
-        = render "guide_section_fields", :f => gs
-    = link_to_add_association t(:add_section), f, :guide_sections, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_sections", :class => "btn btn-sm btn-success btn-add-section"
-    %button.btn-sm.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_sections_dialog"}=t :import_sections
+    .col-xs-12
+      %h3=t :description_sections
+      #guide_sections.clearfix
+        = f.fields_for :guide_sections, @guide_sections, :builder => ActionView::Helpers::FormBuilder do |gs|
+          = render "guide_section_fields", :f => gs
+      = link_to_add_association t(:add_section), f, :guide_sections, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_sections", :class => "btn btn-sm btn-success btn-add-section"
+      %button.btn-sm.btn-default.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_sections_dialog"}=t :import_sections
   #guide_ranges_row.row.stacked
-    %h3=t :ranges
-    #guide_ranges.stacked.clearfix
-      = f.fields_for :guide_ranges do |gs|
-        = render "guide_range_fields", :f => gs
-    = link_to_add_association t(:upload_range), f, :guide_ranges, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_ranges", :class => "btn btn-sm btn-success btn-add-range"
-    %button.btn-sm.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_ranges_dialog"}=t :import_ranges
+    .col-xs-12
+      %h3=t :ranges
+      #guide_ranges.stacked.clearfix
+        = f.fields_for :guide_ranges do |gs|
+          = render "guide_range_fields", :f => gs
+      = link_to_add_association t(:upload_range), f, :guide_ranges, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_ranges", :class => "btn btn-sm btn-success btn-add-range"
+      %button.btn-sm.btn-default.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_ranges_dialog"}=t :import_ranges
 
   .row.stacked
-    %h3=t :tags
-    %p=t 'views.guides.tags_help_html'
-    %p
-    = f.text_field :tag_list, :value => @guide_taxon.tag_list.to_s, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
-    .recent_tags.quiet
-      - for tag in @recent_tags
-        = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-xs"
+    .col-xs-12
+      %h3=t :tags
+      %p=t 'views.guides.tags_help_html'
+      = f.text_field :tag_list, :value => @guide_taxon.tag_list.to_s, :class => "form-control", :placeholder => t(:add_comma_separated_tags)
+      .recent_tags.quiet
+        - for tag in @recent_tags
+          = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-default btn-xs"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:cancel), :back, :class => "btn btn-default"
     = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, 
       :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
 
-#import_sections_dialog.modal.fade.hide
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :import_sections
-  .modal-body
-    %ul.nav.nav-tabs
-      %li.active= link_to t(:eol), "#eol_sections", "data-toggle" => "tab"
-      %li= link_to t(:wikipedia), "#wikipedia_sections", "data-toggle" => "tab"
-      %li= link_to SITE_NAME, "#inat_sections", "data-toggle" => "tab"
-    .tab-content
-      #eol_sections.tab-pane.active.fade.in
-        = loading
-      #wikipedia_sections.tab-pane.fade
-        = loading
-      #inat_sections.tab-pane.fade
-        = loading
-#import_ranges_dialog.modal.fade.hide
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :import_ranges
-  .modal-body
-    %ul.nav.nav-tabs
-      %li.active= link_to "EOL", "#eol_ranges", "data-toggle" => "tab"
-      / %li= link_to "Wikipedia", "#wikipedia_ranges", "data-toggle" => "tab"
-      / %li= link_to "iNaturalist", "#inat_ranges", "data-toggle" => "tab"
-    .tab-content
-      #eol_ranges.tab-pane.active.fade.in
-        = loading
-      / #wikipedia_ranges.tab-pane.fade
-      /   = loading
-      / #inaturalist_ranges.tab-pane.fade
-      /   = loading
-#import_photos_dialog.modal.fade.hide
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :import_photos
-  .modal-body
-    %ul.nav.nav-tabs
-      %li.active= link_to t(:flickr), "#flickr_photos", :data => {:toggle => "tab", :provider => "flickr"}
-      %li= link_to t(:licensed_site_photos, :site_name => SITE_NAME_SHORT), "#site_photos", :data => {:toggle => "tab", :provider => "site"}
-      %li= link_to t(:eol), "#eol_photos", :data => {:toggle => "tab", :provider => "eol"}
-      %li= link_to t(:wikimedia_commons), "#wikimedia_commons_photos", :data => {:toggle => "tab", :provider => "wikimedia_commons"}
-    .tab-content
-      #flickr_photos.tab-pane.active.fade.in
-      #site_photos.tab-pane.fade
-      #eol_photos.tab-pane.fade
-      #wikimedia_commons_photos.tab-pane.fade
-  .modal-footer
-    %button.btn.btn-primary{:data => {:loading_click => t(:importing)}}=t :import_selected_photos
+#import_sections_dialog.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :import_sections
+      .modal-body
+        %ul.nav.nav-tabs.stacked
+          %li.active= link_to t(:eol), "#eol_sections", "data-toggle" => "tab"
+          %li= link_to t(:wikipedia), "#wikipedia_sections", "data-toggle" => "tab"
+          %li= link_to SITE_NAME, "#inat_sections", "data-toggle" => "tab"
+        .tab-content
+          #eol_sections.tab-pane.active.fade.in
+            = loading
+          #wikipedia_sections.tab-pane.fade
+            = loading
+          #inat_sections.tab-pane.fade
+            = loading
+#import_ranges_dialog.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :import_ranges
+      .modal-body
+        %ul.nav.nav-tabs
+          %li.active= link_to "EOL", "#eol_ranges", "data-toggle" => "tab"
+          / %li= link_to "Wikipedia", "#wikipedia_ranges", "data-toggle" => "tab"
+          / %li= link_to "iNaturalist", "#inat_ranges", "data-toggle" => "tab"
+        .tab-content
+          #eol_ranges.tab-pane.active.fade.in
+            = loading
+          / #wikipedia_ranges.tab-pane.fade
+          /   = loading
+          / #inaturalist_ranges.tab-pane.fade
+          /   = loading
+#import_photos_dialog.modal.fade
+  .modal-dialog.modal-lg{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :import_photos
+      .modal-body
+        .container-fluid
+          %ul.nav.nav-tabs
+            %li.active= link_to t(:flickr), "#flickr_photos", :data => {:toggle => "tab", :provider => "flickr"}
+            %li= link_to t(:licensed_site_photos, :site_name => SITE_NAME_SHORT), "#site_photos", :data => {:toggle => "tab", :provider => "site"}
+            %li= link_to t(:eol), "#eol_photos", :data => {:toggle => "tab", :provider => "eol"}
+            %li= link_to t(:wikimedia_commons), "#wikimedia_commons_photos", :data => {:toggle => "tab", :provider => "wikimedia_commons"}
+          .tab-content
+            #flickr_photos.tab-pane.active.fade.in
+            #site_photos.tab-pane.fade
+            #eol_photos.tab-pane.fade
+            #wikimedia_commons_photos.tab-pane.fade
+      .modal-footer
+        %button.btn.btn-primary{:data => {:loading_click => t(:importing)}}=t :import_selected_photos

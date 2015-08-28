@@ -79,8 +79,11 @@
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
-    <%#= javascript_include_tag 'bootstrap_bundle' %>
+    <script type="text/javascript">
+      // stop conflict btwn jqueryui button and bootstrap button
+      var btn = $.fn.button.noConflict()
+      $.fn.btn = btn
+    </script>
     <%= google_maps_js %>
     <%= javascript_include_tag "map_bundle" %>
     <%= yield :extrajs %>

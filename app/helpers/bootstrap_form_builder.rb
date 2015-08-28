@@ -14,9 +14,6 @@ class BootstrapFormBuilder < DefaultFormBuilder
     
     if options[:label] != false
       label_field = field
-      # if options[:field_name] == 'radio_button'
-      #   label_field = [label_field, options[:field_value]].compact.join('_').gsub(/\W/, '').downcase
-      # end
       label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class], :for => options[:id])
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
@@ -26,13 +23,18 @@ class BootstrapFormBuilder < DefaultFormBuilder
     
     content = if options[:label_after]
       "#{content} #{label_content} #{description}"
-    elsif options[:description_after]
-      "#{label_content} #{content} #{description}"
     else
-      "#{label_content} #{description} #{content}"
+      "#{label_content} #{content} #{description}"
     end
-    
     @template.content_tag(:div, content.html_safe, wrapper_options)
+  end
+
+  %w(text_field text_area).each do |name|
+    define_method(name) do |field, *args, &block|
+      args << {} unless args.last.is_a?(Hash)
+      args.last[:class] = [args.last[:class], 'form-control'].flatten.join(' ')
+      super(field, *args, &block)
+    end
   end
 
   def check_radio_field(field, field_content = nil, options = {}, wrapper_options = {}, description = nil)

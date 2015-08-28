@@ -564,14 +564,7 @@ $.fn.loadingShades = function(e, options) {
 }
 
 $.fn.showInlineBlock = function() {
-  var opts = {}
-  if ($.browser.msie && $.browser.version < 8) {
-    opts.zoom = 1
-    opts.display = 'inline'
-    opts['*display'] = 'inline'
-  } else {
-    opts.display = 'inline-block'
-  }
+  var opts = {display: 'inline-block'}
   $(this).css(opts)
   return this
 }
@@ -730,9 +723,7 @@ $.fn.observationsGrid = function(size) {
         $(this).unbind('load')
       })      
       $(this).attr('src', $(this).attr('data-small-url'))
-      if (!$.browser.msie) {
-        $(this).hide()
-      }
+      $(this).hide()
     })
     $('.icon img[data-small-url]', this).each(function() {
       $(this).attr('src', $(this).attr('data-small-url')) 

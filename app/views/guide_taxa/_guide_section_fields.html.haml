@@ -1,15 +1,16 @@
 .nested-fields.guide-section-fields.stacked.row.clearfix.lined
-  = f.hidden_field :guide_taxon_id
-  = f.hidden_field :modified_on_create
-  = f.hidden_field :creator_id, :value => f.object.new_record? ? current_user.id : f.object.creator_id
-  = f.hidden_field :updater_id, :value => current_user.id
-  = f.text_field :position, :class => "sortable-position pull-left"
-  .pull-left
-    .title_field
-      = f.text_field :title, :class => "input-xxlarge", :disabled => !f.object.editable?, :placeholder => t(:title).capitalize
-    = link_to_toggle_box t(:edit_body) do
-      .description_field
-        = f.text_area :description, :class => "input-xxlarge"
+  .col-xs-1
+    = f.hidden_field :guide_taxon_id
+    = f.hidden_field :modified_on_create
+    = f.hidden_field :creator_id, :value => f.object.new_record? ? current_user.id : f.object.creator_id
+    = f.hidden_field :updater_id, :value => current_user.id
+    = f.text_field :position, :class => "sortable-position"
+  .col-xs-9
+    .title_field.form-group
+      = f.text_field :title, :class => "form-control", :disabled => !f.object.editable?, :placeholder => t(:title).capitalize
+    = link_to_toggle_box t(:edit_body), open: f.object.new_record? do
+      .description_field.form-group
+        = f.text_area :description, :class => "form-control"
       .source_id_field= f.hidden_field :source_id
       .source_url_field.readonly_field
         = f.label :source_url, t(:source_url)
@@ -23,4 +24,5 @@
         = f.label :license, t(:license)
         = f.hidden_field :license
         %span.mirror= f.object.license || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
-  = link_to_remove_association t(:remove_section), f, :class => "pull-right btn btn-xs"
+  .col-xs-2
+    = link_to_remove_association t(:remove_section), f, :class => "btn btn-default pull-right"

@@ -1,38 +1,42 @@
 .nested-fields.guide-photo-fields.row.lined.clearfix{:id => dom_id(f.object, "nested_field")}
-  .col-md-1
+  .col-xs-1
     = f.text_field :position, :class => "sortable-position"
-  .col-md-2
-    = image_tag f.object.photo.try(:small_url) || "iconic_taxa/unknown-200px.png", :class => "img-rounded"
+  .col-xs-2
+    = image_tag f.object.photo.try(:small_url) || "iconic_taxa/unknown-200px.png", :class => "img-rounded img-responsive"
     = f.hidden_field :photo_id, :class => 'photo_id_input'
     = f.hidden_field :guide_taxon_id
-  .col-md-7
+  .col-xs-7
     .stacked
       .row
-        .col-md-12.stacked
-          = f.text_area :description, :placeholder => t(:brief_caption), :class => "col-md-12"
+        .col-xs-12.stacked
+          = f.text_area :description, :placeholder => t(:brief_caption), :class => "form-control"
       .row
-        .col-md-12
-          = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: t(:add_comma_separated_tags), :class => "col-md-12 tag_list"
+        .col-xs-12
+          = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: t(:add_comma_separated_tags), :class => "tag_list form-control"
           .recent_tags.quiet
             - for tag in @recent_photo_tags
-              = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addPhotoTag(this, '#{tag}')", :class => "btn btn-xs"
+              = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addPhotoTag(this, '#{tag}')", :class => "btn btn-default btn-xs"
     - if f.object.blank? || f.object.new_record?
       .local_photo_fields.row
-        = f.fields_for :photo, f.object.photo || f.object.build_photo(:type => "LocalPhoto"), :builder => DefaultFormBuilder do |p|
-          .col-md-6
+      = f.fields_for :photo, f.object.photo || f.object.build_photo(:type => "LocalPhoto"), :builder => BootstrapFormBuilder do |p|
+        .local_photo_fields.row
+          .col-xs-6
             = p.hidden_field :user_id, value: current_user.id
             = p.hidden_field :type
             = p.hidden_field :native_photo_id
             = p.hidden_field :id
-            = p.file_field :file, :label => t(:file), :accept => "image/jpg,image/jpeg,image/png,image/gif", :description => t(:jpg_png_or_gif), :class => "col-md-12"
-            = p.select :license, Photo::LICENSE_INFO.map{|k,v| [k == 0 ? t(:no_license_all_rights_reserved) : v[:name], k]}, {}, {:description => t(:creative_commons_unless_otherwise_noted), :class => "col-md-12", :label => t(:license)}
-          .col-md-6
-            = p.text_field :native_realname, :label => t(:copyright_holder), :description => t(:defaults_to_your_name_or_username), :class => "col-md-12"
-            = p.text_field :native_page_url, :label => t(:native_page_url), :description => t(:original_page_url_for_this_photo), :class => "col-md-12"
+            = p.file_field :file, :label => t(:file), :accept => "image/jpg,image/jpeg,image/png,image/gif", :description => t(:jpg_png_or_gif)
+          .col-xs-6
+            = p.text_field :native_realname, :label => t(:copyright_holder), :description => t(:defaults_to_your_name_or_username)
+        .local_photo_fields.row
+          .col-xs-6
+            = p.select :license, Photo::LICENSE_INFO.map{|k,v| [k == 0 ? t(:no_license_all_rights_reserved) : v[:name], k]}, {}, {:description => t(:creative_commons_unless_otherwise_noted), :label => t(:license)}
+          .col-xs-6
+            = p.text_field :native_page_url, :label => t(:native_page_url), :description => t(:original_page_url_for_this_photo)
     - else
       - %w(attribution).each do |a|
         .readonly_field{:class => "#{a}_field"}
           = f.label t(a, :default => a)
         %span.mirror= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
-  .col-md-2.actions.text-right
-    = link_to_remove_association t(:remove_photo), f, :class => "btn btn-xs"
+  .col-xs-2.actions.text-right
+    = link_to_remove_association t(:remove_photo), f, :class => "btn btn-default pull-right"

@@ -1,5 +1,5 @@
 $('.taxonmap').taxonMap()
-$('.imgmodal').on('shown', function() {
+$('.imgmodal').on('shown.bs.modal', function() {
   $selection = $('img', this).not('.imagesloaded')
   $selection.hide()
   var newHeight = $(window).height() * 0.8
@@ -12,7 +12,7 @@ $('.imgmodal').on('shown', function() {
 $('.imgmodal').imagesLoaded(function() {
   $('img', this).addClass('imagesloaded')
 })
-$('#reuse_guide_taxon_dialog').on('shown', function() {
+$('#reuse_guide_taxon_dialog').on('shown.bs.modal', function() {
   var current = $('.modal-body', this)
   if (current.hasClass('loaded')) {
     return

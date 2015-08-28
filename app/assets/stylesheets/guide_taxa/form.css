@@ -1,0 +1,19 @@
+#guide_photos textarea {height:65px;margin-bottom: 0;}
+#guide_photos .pull-left,
+#guide_sections .pull-left {margin-right: 10px;}
+#guide_photos .row,
+#guide_sections .row,
+#guide_ranges .row {cursor: move;}
+.photoSelector {margin-bottom:10px;}
+#guide_photos input.sortable-position { background-color: orange; }
+#guide_sections input.sortable-position { background-color: DodgerBlue; }
+#guide_ranges input.sortable-position { background-color: DeepPink; }
+.readonly_field .mirror {padding-top: 7px;margin-bottom: 0;}
+#actions {margin-top:50px;}
+.bootstrap .tab-content {overflow: visible;}
+/*#import_photos_dialog {
+  width:80%;
+  margin-left: -40%;
+}*/
+.dropdown-menu .text-muted {max-width: 500px; white-space:normal;font-size:90%;}
+.edit_guide_taxon textarea {min-height: 10em;}

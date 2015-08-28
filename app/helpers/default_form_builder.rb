@@ -36,6 +36,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
           args[i].delete(p.to_sym) if a.is_a?(Hash)
         end
       end
+      Rails.logger.debug "[DEBUG] called #{name} from DefaultFormBuilder"
       content = super(field, *args, &block)
       form_field(field, content, options)
     end
