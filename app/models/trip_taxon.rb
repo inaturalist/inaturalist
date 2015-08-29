@@ -1,8 +1,10 @@
 class TripTaxon < ActiveRecord::Base
-  belongs_to :trip, :inverse_of => :trip_taxa #, :class_name => "Post"
+  belongs_to :trip, :inverse_of => :trip_taxa
   belongs_to :taxon
   validates_uniqueness_of :taxon_id, :scope => :trip_id
   validates_presence_of :taxon
+
+  delegate :ancestry, :ancestor_ids, to: :taxon
 
   def serializable_hash(options = {})
     # don't use delete here, it will just remove the option for all 
@@ -16,4 +18,5 @@ class TripTaxon < ActiveRecord::Base
     h = super(options)
     h
   end
+
 end

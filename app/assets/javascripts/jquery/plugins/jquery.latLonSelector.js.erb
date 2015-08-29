@@ -242,7 +242,7 @@
           }
           var point = new google.maps.LatLng($(latitudeField).val(), $(longitudeField).val())
           if (accuracyField) {
-            accuracyField.change()
+            $(accuracyField).change()
           }
           getMarker().setPosition(point);
           $.fn.latLonSelector._map.setCenter(point)

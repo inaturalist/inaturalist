@@ -12,6 +12,6 @@
     = f.hidden_field :trip_id
     = f.hidden_field :resource_type
     = f.hidden_field :resource_id
-    = f.hidden_field :complete
+    = f.text_field :complete
   .col-xs-2
     = link_to_remove_association t(:remove), f, :class => "btn btn-default btn-xs"

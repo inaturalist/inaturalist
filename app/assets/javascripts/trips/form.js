@@ -132,7 +132,7 @@ $(document).ready(function() {
     }
   })
 
-  $('#complete_taxa :checkbox').on('click', function() {
+  $('#complete_taxa').on('click', ':checkbox', function() {
     var taxonId = $(this).parents('li:first').data('taxon-id')
     if ($(this).prop('checked')) {
       console.log("[DEBUG] $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]'): ", $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]'))
