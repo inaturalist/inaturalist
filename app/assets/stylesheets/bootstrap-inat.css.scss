@@ -91,7 +91,8 @@ body { font-size: 75%; }
 .bootstrap .unstacked {margin-bottom: 0px;}
 .bootstrap .overlaycontrol .ui-icon-layers {height: 22px; }
 
-.bootstrap ul, .bootstrap ol {margin: inherit;}
+// .bootstrap ul, .bootstrap ol {margin: inherit;}
+// .bootstrap ul.plain, .bootstrap ol.plain {margin-left: 10px;}
 
 // http://stackoverflow.com/questions/18329010/what-happened-to-nav-header-class
 .bootstrap .nav > li.nav-header {
@@ -139,3 +140,8 @@ img.borderless, .thumbnail.borderless { border: 0; }
   padding: 3px 8px;
   display: inline-block;
 }
+.bootstrap .form-control.hasDatepicker,
+.bootstrap .form-control.latLonSelectorInput {display:inline-block;}
+.bootstrap .breadcrumb > li.prevnext:before { display: none; }
+.bootstrap .leaderboard-container thead .sorting_desc,
+.bootstrap .leaderboard-container thead .sorting_asc {padding-right: 20px; }

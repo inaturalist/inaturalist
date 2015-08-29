@@ -18,14 +18,14 @@
 - unless @stats_adequately_scoped
   .container-fluid
     .row
-      .col-md-12= render 'stats_inadequately_scoped'
+      .col-xs-12= render 'stats_inadequately_scoped'
 - else
   .container-fluid
     .row
-      .col-md-12
+      .col-xs-12
         %h4= @title
         %p=t 'views.observations.user_stats.user_stats_desc'
     .row
-      .col-md-12
+      .col-xs-12
         #user_stats
 

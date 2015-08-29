@@ -137,7 +137,7 @@ var TaxonGuide = {
       $('#controls form.searchfilter input[type=text]').val($.bbq.getState('q'))
       $('#controls form.colorfilter select').val($.bbq.getState('colors'))
       $('#controls form.establishmentfilter select').val($.bbq.getState('establishment_means'))
-      $('#controls form.threatenedfilter input:checkbox').attr('checked', $.bbq.getState('threatened') == '1')
+      $('#controls form.threatenedfilter input:checkbox'). prop('checked', $.bbq.getState('threatened') == '1')
       $('#controls select:hidden').multiselect('refresh')
       if ($.bbq.getState('colors')) {
         $('#controls form.colorfilter .pale.button').show()

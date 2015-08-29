@@ -1,7 +1,6 @@
 %tr.nested-fields.trip-taxa-fields
   %td.observed
-    = f.label :observed do
-      = f.check_box :observed, :label => false
+    = f.check_box :observed, label: false
     = f.hidden_field :taxon_id
     = f.hidden_field :id
   %td.name

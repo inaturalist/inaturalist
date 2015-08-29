@@ -3,14 +3,15 @@
   html_data = {}
   html_data[:taxon_id] = f.object.resource_id if f.object && f.object.resource_type == 'Taxon'
 .nested-fields.trip-purpose-fields.lined.stacked.row{:class => css_class, :data => html_data}
-  .col-md-10.taxonwrapper
+  .col-xs-6.taxonwrapper
     - if f.object.resource_type == "Taxon" && f.object.resource
       = render "shared/taxon", :taxon => f.object.resource
     - else
       =t :unknown
-  .col-md-2
+  .col-xs-4
     = f.hidden_field :trip_id
     = f.hidden_field :resource_type
     = f.hidden_field :resource_id
-    = f.text_field :complete
-    = link_to_remove_association t(:remove), f, :class => "btn btn-xs"
+    = f.hidden_field :complete
+  .col-xs-2
+    = link_to_remove_association t(:remove), f, :class => "btn btn-default btn-xs"

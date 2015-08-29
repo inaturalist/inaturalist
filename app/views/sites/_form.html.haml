@@ -1,7 +1,7 @@
 - content_for :extracss do
   :css
     .edit_site textarea {height: 300px;}
-= form_for @record, :builder => DefaultFormBuilder do |f|
+= form_for @record, :builder => BootstrapFormBuilder do |f|
   - if @record.errors.any?
     .row
       .col-md-12

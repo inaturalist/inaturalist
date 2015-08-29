@@ -49,7 +49,7 @@
       - if @trip.is_a?(Trip)
         = surround '(', ')' do
           =t :trip
-    %li.pull-right
+    %li.pull-right.prevnext
       - if @prev
         = link_to @prev do
           %i.fa.fa-chevron-left
@@ -59,7 +59,7 @@
         = link_to @next do
           = truncate @next.title
           %i.fa.fa-chevron-right
-  .row
+  .row.upstacked
     .col-md-3
       %ul#sidenav.sidenav.nav.nav-list{:data => {:spy => "affix"}}
         %li= link_to t(:summary), "#summary"
@@ -120,13 +120,34 @@
           - if @trip.trip_taxa.blank?
             .text-muted.nocontent=t :no_taxa_listed
           - else
-            %ul.taxon_links.plain
-              - for trip_taxon in @trip.trip_taxa
-                %li
-                  = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+            .row
+              .col-xs-6
+                %h4 Observed
+                - if @trip.trip_purposes.blank?
+                  %ul.taxon_links.plain
+                    - for trip_taxon in @trip.trip_taxa.select(&:observed)
+                      %li
+                        = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+                - else
+                  - for trip_purpose in @trip.trip_purposes
+                    %h5
+                      = trip_purpose.resource.default_name.name
+                      - if trip_purpose.complete?
+                        .label.label-success=t :complete
+                    %ul.taxon_links.plain
+                      - for trip_taxon in @trip.trip_taxa.select{|tt| tt.observed? && tt.taxon.ancestor_ids.include?(trip_purpose.resource_id)}
+                        %li
+                          = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+              .col-xs-6
+                %h4 Sought but not found
+                %ul.taxon_links.plain
+                  - for trip_taxon in @trip.trip_taxa.reject(&:observed)
+                    %li
+                      = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
       %section{:id => "comments"}
         - if @trip.published_at
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
         - else
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
-        = render :partial => "shared/flagging", :locals => { :instance => @post }
+        .upstacked
+          = render :partial => "shared/flagging", :locals => { :instance => @post }

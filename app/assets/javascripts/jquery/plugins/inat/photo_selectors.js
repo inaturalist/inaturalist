@@ -386,11 +386,11 @@
       var selectNone = $('<a href="#" class="inter">'+I18n.t('none')+'</a>')
     }
     selectAll.click(function() {
-      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').attr('checked', true)
+      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input'). prop('checked', true)
       return false
     })
     selectNone.click(function() {
-      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').attr('checked', false)
+      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input'). prop('checked', false)
       return false
     })
     

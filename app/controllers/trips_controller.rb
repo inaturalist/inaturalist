@@ -165,6 +165,7 @@ class TripsController < ApplicationController
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render json: @trip.as_json(:root => true), status: :created, location: @trip }
       else
+        load_form_data
         format.html { render action: "new" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end

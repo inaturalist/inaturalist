@@ -3,9 +3,6 @@
   = strip_tags @title
 = content_for :extracss do
   :css
-    body {
-      font: 10px sans-serif;
-    }
     .axis path,
     .axis line {
       fill: none;
@@ -100,11 +97,11 @@
 - unless @stats_adequately_scoped
   .container-fluid
     .row
-      .col-md-12= render 'stats_inadequately_scoped'
+      .col-xs-12= render 'stats_inadequately_scoped'
 - else
   .container-fluid
     .row
-      .col-md-12
+      .col-xs-12
         %h4= @title
     .row
       #vis

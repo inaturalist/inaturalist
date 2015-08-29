@@ -19,12 +19,12 @@
 - content_for(:extracss) do
   :css
     a.button.nextlink {float: right;}
-= form_for(post, :builder => DefaultFormBuilder, :html => {:class => 'post_form'}) do |f|
+= form_for(post, :builder => BootstrapFormBuilder, :html => {:class => 'post_form'}) do |f|
   .row
     .col-md-7
       = error_messages_for :post
       = f.text_field :title
-      = f.text_area :body
+      = f.text_area :body, rows: 20
       .stacked.small.meta
         %strong
           = t :allowed_html
@@ -44,11 +44,12 @@
           = link_to t(:cancel), journal_by_login_path(post.user.login), :class => 'btn btn-link'
         - else
           = f.submit t(:preview), :id => 'post_preview', :class => 'btn btn-default' unless post.new_record?
-          = link_to t(:delete), post_path(post), 
-            :data => {:confirm => t(:are_you_sure_delete_post)}, 
-            :method => :delete, 
-            :id => "delete_post_button", 
-            :class => "minor delete btn btn-default"
+          .pull-right
+            = link_to t(:delete), post_path(post), 
+              :data => {:confirm => t(:are_you_sure_delete_post)}, 
+              :method => :delete, 
+              :id => "delete_post_button", 
+              :class => "minor delete btn btn-default"
     - unless post.parent_type == 'Project'
       .col-md-5
         .field

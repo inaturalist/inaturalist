@@ -220,7 +220,7 @@ function onZoom() {
 function showPlacesByZoom(options) {
   options = options || {}
   if (!options.force) {
-    if (!$('#places_check').attr('checked')) {
+    if (!$('#places_check'). prop('checked')) {
       return
     }
   }
@@ -231,28 +231,28 @@ function showPlacesByZoom(options) {
       case 'countries_simple':
         if (map.zoom() < 4) { 
           lyr.visible(true)
-          $('#place_type_countries').attr('checked', true)
+          $('#place_type_countries'). prop('checked', true)
         }
         else { lyr.visible(false) }
         break;
       case 'states_simple':
         if (map.zoom() >= 4 && map.zoom() < 7) { 
           lyr.visible(true)
-          $('#place_type_states').attr('checked', true)
+          $('#place_type_states'). prop('checked', true)
         }
         else { lyr.visible(false) }
         break;
       case 'counties_simple':
         if (map.zoom() >= 7 && map.zoom() < 12) { 
           lyr.visible(true)
-          $('#place_type_counties').attr('checked', true)
+          $('#place_type_counties'). prop('checked', true)
         }
         else { lyr.visible(false) }
         break;
       case 'counties':
         if (map.zoom() >= 12) { 
           lyr.visible(true)
-          $('#place_type_counties').attr('checked', true)
+          $('#place_type_counties'). prop('checked', true)
         }
         else { lyr.visible(false) }
         break;
@@ -446,7 +446,7 @@ function loadLayersForTaxa(taxa) {
     var inputId = 'taxon_check_' + taxon.id
     var input = $('<input type="checkbox">')
       .attr('id', inputId)
-      .attr('checked', 'checked')
+      . prop('checked', 'checked')
       .click(function() { 
         if (layers[rangeId]) { layers[rangeId].visible(this.checked); }
         layers[observationsId].visible(this.checked)

@@ -211,7 +211,7 @@
       };
     })
     
-    var accuracyField = findFormField(input, 'positional_accuracy')
+    var accuracyField = findFormField(input, 'positional_accuracy').get(0) || findFormField(input, 'radius').get(0)
     if (accuracyField) {
       $(accuracyField).change(function() {
         var acc = parseInt($(this).val())
@@ -395,7 +395,7 @@
     options = options || {}
     accuracy = parseInt(accuracy) || 0
     var input = $.fn.latLonSelector._currentInput,
-        accuracyField = findFormField(input, 'positional_accuracy'),
+        accuracyField = findFormField(input, 'positional_accuracy').get(0) || findFormField(input, 'radius').get(0),
         methodField = findFormField(input, 'positioning_method'),
         deviceField = findFormField(input, 'positioning_device'),
         positioningMethod = options.positioningMethod || $(methodField).val(),
@@ -411,7 +411,7 @@
         lonField = findFormField(input, 'longitude'),
         scaleField = findFormField(input, 'map_scale'),
         exactField = findFormField(input, 'location_is_exact'),
-        accuracyField = findFormField(input, 'positional_accuracy'),
+        accuracyField = findFormField(input, 'positional_accuracy').get(0) || findFormField(input, 'radius').get(0),
         mapDiv = $('.latLonSelectorMap:first')
     $.fn.latLonSelector._currentInput = input
     

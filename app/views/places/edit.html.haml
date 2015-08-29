@@ -62,7 +62,7 @@
     })
     function saveGeom() {
       $(':input[name=geojson]').val(JSON.stringify(drawnItems.toGeoJSON()))
-      $(':input[name=remove_geom]').attr('checked', drawnItems.getLayers().length == 0)
+      $(':input[name=remove_geom]'). prop('checked', drawnItems.getLayers().length == 0)
     }
     function addDrawControls() {
       var drawControl = new L.Control.Draw({

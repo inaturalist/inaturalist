@@ -119,7 +119,7 @@
   
   function makeTagField(tag) {
     var checkbox = $('<input type="checkbox"/>').val(tag);
-    $(checkbox).attr('checked', 'checked');
+    $(checkbox). prop('checked', 'checked');
     var checkboxID = tag.replace(/[^\w]/g, '');
     $(checkbox).attr('id', checkboxID);
     var label = $('<label for="'+checkboxID+'"></label>').append(tag);
