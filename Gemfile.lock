@@ -28,9 +28,10 @@ GIT
 
 GIT
   remote: git://github.com/fnando/i18n-js.git
-  revision: 968837d676e23a8d630a866f925e09b3a0f8fba6
+  revision: 2d29bb6301ba494569fa9ec01eca9ce36b7e7fc0
+  ref: 2d29bb6301ba494569fa9ec01eca9ce36b7e7fc0
   specs:
-    i18n-js (3.0.0.rc11)
+    i18n-js (3.0.0.rc8)
       i18n (~> 0.6)
 
 GIT
@@ -202,7 +203,8 @@ GEM
     buftok (0.2.0)
     builder (3.2.2)
     byebug (6.0.2)
-    capistrano (3.4.0)
+    capistrano (3.3.5)
+      capistrano-stats (~> 1.1.0)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
@@ -217,6 +219,7 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-stats (1.1.1)
     capistrano3-delayed-job (1.4.0)
       capistrano (>= 3.0.0)
     capybara (2.5.0)
@@ -621,7 +624,7 @@ DEPENDENCIES
   bluecloth
   bootstrap-sass (~> 3.3.5)
   byebug
-  capistrano (~> 3.3)
+  capistrano (= 3.3.5)
   capistrano-passenger (~> 0.0)
   capistrano-rails (~> 1.1)
   capistrano-rvm (~> 0.1)
