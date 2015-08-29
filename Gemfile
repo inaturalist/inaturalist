@@ -13,7 +13,6 @@ gem 'airbrake'
 gem 'ancestry'
 gem 'aws-sdk'
 gem 'bluecloth'
-gem 'bootstrap-sass', '~> 3.3.5'
 gem 'capistrano3-delayed-job', '~> 1.0'
 gem 'capistrano', "3.3.5"
 gem 'capistrano-rvm', '~> 0.1'

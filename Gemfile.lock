@@ -180,9 +180,6 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (5.2.1.2)
-      execjs
-      json
     aws-sdk (2.1.16)
       aws-sdk-resources (= 2.1.16)
     aws-sdk-core (2.1.16)
@@ -197,9 +194,6 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bluecloth (2.2.0)
-    bootstrap-sass (3.3.5.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.3.0)
     buftok (0.2.0)
     builder (3.2.2)
     byebug (6.0.2)
@@ -622,7 +616,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bluecloth
-  bootstrap-sass (~> 3.3.5)
   byebug
   capistrano (= 3.3.5)
   capistrano-passenger (~> 0.0)
