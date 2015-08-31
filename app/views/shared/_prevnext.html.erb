@@ -4,7 +4,7 @@
   prev_url ||= url_for(prev_item)
   next_url ||= url_for(next_item)
 -%>
-<div id="prevnext" class="column <% if next_item %>span-6<% else %>span-3<% end %> clear">
+<div id="prevnext" class="column span-6 clear">
   <div class="column span-3">
     <% if prev_item %>
       <a id="prevlink" href="<%= prev_url %>">
@@ -21,13 +21,13 @@
 
   <div class="last column span-3">        
     <% if next_item %>
-    <a id="nextlink" href="<%= next_url %>">
-      <span class="arrow">&rsaquo;</span>
-      <%= t(:next) %>
-      <div class="title">
-        <div><%= next_title %></div>
-      </div>
-    </a>
+      <a id="nextlink" href="<%= next_url %>">
+        <span class="arrow">&rsaquo;</span>
+        <%= t(:next) %>
+        <div class="title">
+          <div><%= next_title %></div>
+        </div>
+      </a>
     <% end %>
   </div>
 </div><!-- /#prevnext -->
