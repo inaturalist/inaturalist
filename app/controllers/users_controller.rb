@@ -649,6 +649,8 @@ protected
       :prefers_message_email_notification,
       :prefers_project_invitation_email_notification,
       :prefers_project_journal_post_email_notification,
+      :prefers_share_observations_on_facebook,
+      :prefers_share_observations_on_twitter,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
