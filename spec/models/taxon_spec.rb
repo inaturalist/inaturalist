@@ -923,11 +923,13 @@ describe Taxon, "single_taxon_for_name" do
   end
 
   it "should find a single valid name among invalid synonyms" do
-    name = "Foo bar"
-    valid = Taxon.make!(:name => name, :parent => Taxon.make!)
+    valid = Taxon.make!(:parent => Taxon.make!)
     invalid = Taxon.make!(:parent => Taxon.make!)
-    invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
-    expect(Taxon.single_taxon_for_name(name)).to eq(valid)
+    tn = TaxonName.create!(taxon: invalid, name: valid.name, is_valid: false, lexicon: TaxonName::SCIENTIFIC_NAMES)
+    all_names = [valid.taxon_names.map(&:name), invalid.reload.taxon_names.map(&:name)].flatten.uniq
+    expect( all_names.size ).to eq 2
+    expect( tn.is_valid? ).to eq false
+    expect(Taxon.single_taxon_for_name(valid.name)).to eq(valid)
   end
 end
 
@@ -965,8 +967,15 @@ describe Taxon, "geoprivacy" do
     p = make_place_with_geom
     cs_place = ConservationStatus.make!(:taxon => t, :place => p, :geoprivacy => Observation::PRIVATE)
     cs_global = ConservationStatus.make!(:taxon => t)
-    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => t)
-    expect(o).to be_coordinates_private
+    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::PRIVATE
+  end
+
+  it "should be blank if conservation statuses exist but all are open" do
+    t = Taxon.make!(rank: Taxon::SPECIES)
+    p = make_place_with_geom
+    cs_place = ConservationStatus.make!(taxon: t, place: p, geoprivacy: Observation::OPEN)
+    cs_global = ConservationStatus.make!(taxon: t, geoprivacy: Observation::OPEN)
+    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to be_blank
   end
 end
 
