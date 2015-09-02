@@ -13,20 +13,20 @@ describe Ratatosk::NameProviders::ColNameProvider do
     results = @np.find('Hyla crucifer')
     tn = results.first
     t = tn.taxon
-    tn.should_not be_is_valid
-    t.taxon.name.should == 'Pseudacris crucifer'
+    expect(tn).not_to be_is_valid
+    expect(t.taxon.name).to eq 'Pseudacris crucifer'
   end
 
   it "should set the phylum for Periploca ceanothiella to Animalia" do
-    Taxon.find_by_name('Periploca ceanothiella').should be_blank
+    expect(Taxon.find_by_name('Periploca ceanothiella')).to be_blank
     results = @np.find('Periploca ceanothiella')
     tn = results.first
     without_delay { tn.save! }
     tn.taxon.graft
     t = tn.taxon
-    t.should be_grafted
-    t.phylum.should_not be_blank
-    t.phylum.name.should eq 'Arthropoda'
+    expect(t).to be_grafted
+    expect(t.phylum).not_to be_blank
+    expect(t.phylum.name).to eq 'Arthropoda'
   end
 end
 
@@ -41,8 +41,8 @@ describe Ratatosk::NameProviders::ColNameProvider, "get_phylum_for" do
     tn = results.first
     t = tn.taxon
     phylum = @np.get_phylum_for(t)
-    phylum.should_not be_blank
-    phylum.name.should eq 'Arthropoda'
+    expect(phylum).not_to be_blank
+    expect(phylum.name).to eq 'Arthropoda'
   end
 end
 
@@ -68,15 +68,15 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
     name = "Gerres"
     a = @np.find(name).detect{|n| n.lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES] && n.name == name}
     return unless a
-    a.is_valid.should be(true)
-    a.taxon.name.should == name
+    expect(a.is_valid).to be(true)
+    expect(a.taxon.name).to eq name
   end
 
   it "should set the lexicon correctly for iiwi" do
     name = "'i'iwi"
     results = @np.find(name)
     results.select{|tn| tn.name.downcase == name.downcase}.each do |tn|
-      tn.lexicon.should_not == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+      expect(tn.lexicon).not_to eq TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     end
   end
 
@@ -91,15 +91,8 @@ describe Ratatosk::NameProviders::ColTaxonAdapter do
 
   before(:each) do
     # make absolutely sure the db is empty
-    [TaxonName.find(:all, :conditions => "name like 'Homo sapiens%'")].flatten.compact.each do |tn|
-      # tn.taxon.destroy
-      tn.destroy
-    end
-
-    [Taxon.find(:all, :conditions => "name like 'Homo sapiens%'")].flatten.compact.each do |t|
-      t.destroy
-    end
-
+    TaxonName.where("name like 'Homo sapiens%'").destroy_all
+    Taxon.where("name like 'Homo sapiens%'").destroy_all
     @adapter = Ratatosk::NameProviders::ColTaxonAdapter.new(@hxml)
   end
 end

@@ -189,7 +189,7 @@ module Ratatosk
           raise RatatoskGraftError, msg
         end
         new_taxon.set_scientific_taxon_name
-        new_taxon.move_to_child_of(graft_point)
+        new_taxon.move_to_child_of(graft_point) if new_taxon.persisted? && graft_point.persisted?
         unless new_taxon.valid?
           if new_taxon.errors[:ancestry].to_s =~ /locked/
             msg = "it failed to graft to #{graft_point.name}, which "
