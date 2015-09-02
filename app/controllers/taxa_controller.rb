@@ -256,6 +256,8 @@ class TaxaController < ApplicationController
         end
 
         opts = Taxon.default_json_options
+        opts[:include][:taxon_names] = {}
+        opts[:include][:iconic_taxon] = {only: [:id, :name]}
         opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
         Taxon.preload_associations(@taxon, { taxon_photos: :photo })
         render :json => @taxon.to_json(opts)

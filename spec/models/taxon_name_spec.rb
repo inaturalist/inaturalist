@@ -120,6 +120,11 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name([tn_en, tn_es], :locale => :es)).to eq tn_es
   end
 
+  it "should not choose a non-locale-specific name" do
+    tn_en = TaxonName.make!(name: "snail", lexicon: "English", taxon: t)
+    expect( TaxonName.choose_common_name(tn_en.taxon.taxon_names, locale: :es) ).to be_blank
+  end
+
   it "should choose a locale=specific name for traditional Chinese" do
     tn_en = TaxonName.make!(:name => "Queen's Wreath", :lexicon => "English", :taxon => t)
     tn_zh_tw = TaxonName.make!(:name => "藍花藤", :lexicon => "Chinese (traditional)", :taxon => t)
