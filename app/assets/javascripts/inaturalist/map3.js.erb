@@ -1107,14 +1107,22 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
         interactionOn = true;
         map.setOptions({ draggableCursor: 'pointer' });
         if (o.e.type == 'click') {
+          // this is ugly but it works. The main map div contains a single div. That
+          // div's first element contains the main map stuff. The second element in that
+          // div (with z-index: 2) is a div 100% wide and high representing the map panel.
+          var clickableDiv = $($($(map.div).children()[0]).children()[0]).children()[1];
           // if a native infoWindow was just opened, don't let another one open
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
             return false;
           }
-          // if the click is anywhere within the InfoWindow, don't act on it
-          if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
+          // require the the click was to the map itself and not any other
+          // div on top of the map, including Google Maps UI and custom
+          // overlays, or observation infowindows
+          if(clickableDiv !== o.e.target) { return false; }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
+          // hide the legend if it is open so the infoWindow has room
+          $( "#map-legend" ).hide( );
           if(o.data['latitude']){
             var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
             $.ajax({
