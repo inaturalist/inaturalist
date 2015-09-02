@@ -1115,9 +1115,9 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
             return false;
           }
-          // require the the click was to the map itself and not any other
-          // div on top of the map, including Google Maps UI and custom
-          // overlays, or observation infowindows
+          // require the click to be on the map itself and not any other
+          // element on top of the map, including Google Maps UI, custom
+          // overlays, or observation infoWindows
           if(clickableDiv !== o.e.target) { return false; }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
