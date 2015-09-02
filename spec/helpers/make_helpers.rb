@@ -25,7 +25,7 @@ module MakeHelpers
   def make_observation_of_threatened(options = {})
     Observation.make!(options.merge(
       :latitude => 38.333, :longitude => -122.111,
-      :taxon => Taxon.make!(:threatened),
+      :taxon => make_threatened_taxon,
       :created_at => Time.now.to_date
     ))
   end
@@ -138,6 +138,13 @@ module MakeHelpers
     3.times { GuideTaxon.make!(:guide => g) }
     g.update_attributes(:published_at => Time.now)
     g
+  end
+
+  def make_threatened_taxon(options = {})
+    t = Taxon.make!(options)
+    without_delay { ConservationStatus.make!(taxon: t, iucn: Taxon::IUCN_ENDANGERED) }
+    t.reload
+    t
   end
   
   # creating the tree is a bit tricky
