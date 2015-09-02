@@ -5,11 +5,11 @@ class ConservationStatus < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
 
+  before_save :set_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
     record.id_changed? || record.geoprivacy_changed?
   }
   after_save :update_taxon_conservation_status
-
   after_destroy :update_observation_geoprivacies
   after_destroy :update_taxon_conservation_status
 
@@ -94,6 +94,11 @@ class ConservationStatus < ActiveRecord::Base
     when "Ex" then "probablemente extinta en el medio silvestre"
     else status
     end
+  end
+
+  def set_geoprivacy
+    self.geoprivacy = nil if geoprivacy.blank?
+    true
   end
 
   def update_observation_geoprivacies

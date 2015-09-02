@@ -351,7 +351,7 @@ shared_examples_for "an ObservationsController" do
 
     it "should not change the true coordinates when switching to a threatened taxon and back" do
       normal = Taxon.make!
-      threatened = Taxon.make!(:threatened)
+      threatened = make_threatened_taxon
       o = Observation.make!(:user => user, :taxon => normal, :latitude => 1, :longitude => 1)
       expect(o.latitude.to_f).to eq 1.0
       put :update, :format => :json, :id => o.id, :observation => {:taxon_id => threatened.id}
