@@ -235,6 +235,15 @@ $(document).ready(function() {
     $(this).attr( "href", $(this).attr( "href" ).
       replace( /reviewed=.*$/, "reviewed=" +  currentReviewState ));
   });
+
+  $(document).bind('keyup', 'i', window.showIdentificationForm);
+  $(document).bind('keyup', 'f', function() {
+    $('.favebutton:visible').click()
+  });
+  $(document).bind('keyup', 'c', function() {
+    $('#new-comment-form-tab').click()
+    $('#comment_body').focus()
+  });
 })
 
 $('#add_more_photos_link').live('click', function() {
@@ -343,4 +352,9 @@ function hideLocationDetails(link, options) {
   $('#location_details').slideUp()
   $(link).hide()
   $(link).siblings().show()
+}
+
+function showIdentificationForm() {
+  $('#new-identification-form-tab').click()
+  $('#new_identification input:visible:first').focus()
 }
