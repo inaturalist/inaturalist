@@ -149,7 +149,7 @@ class TaxonName < ActiveRecord::Base
 
   def set_is_valid
     self.is_valid = true unless self.is_valid == false || lexicon == LEXICONS[:SCIENTIFIC_NAMES]
-    self.is_valid = true if taxon.taxon_names.size <= 1
+    self.is_valid = true if taxon.taxon_names.size < (persisted? ? 2 : 1)
     true
   end
   
@@ -183,18 +183,14 @@ class TaxonName < ActiveRecord::Base
     language_name = language_for_locale(options[:locale]) || 'english'
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name}
     engnames = common_names.select {|n| n.is_english?}
-    unknames = common_names.select {|n| n.lexicon == 'unspecified'}
+    unknames = common_names.select {|n| n.lexicon == 'unspecified' || n.lexicon.blank?}
     
     if place_names.length > 0
       place_names.first
     elsif locale_names.length > 0
       locale_names.first
-    elsif engnames.length > 0
-      engnames.first
     elsif unknames.length > 0
       unknames.first
-    else
-      common_names.first
     end
   end
 

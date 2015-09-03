@@ -50,8 +50,8 @@ module ElasticModel
   EDGE_NGRAM_FILTER =  {
     edge_ngram_filter: {
       type: "edgeNGram",
-      min_gram: 2,
-      max_gram: 15
+      min_gram: 1,
+      max_gram: 20
     }
   }
 

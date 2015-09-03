@@ -803,6 +803,17 @@ describe Observation do
         o.update_attributes(:taxon => t)
         expect(o).to be_coordinates_obscured
       end
+
+      it "should not obscure coordinates if conservation statuses exist but all are open" do
+        p = make_place_with_geom
+        t = Taxon.make!(:rank => Taxon::SPECIES)
+        cs = ConservationStatus.make!(:place => p, :taxon => t, :geoprivacy => Observation::OPEN)
+        cs_global = ConservationStatus.make!(:taxon => t, :geoprivacy => Observation::OPEN)
+        o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
+        expect(o).not_to be_coordinates_obscured
+        o.update_attributes(:taxon => t)
+        expect(o).not_to be_coordinates_obscured
+      end
     end
 
     it "should increment the taxon's counter cache" do

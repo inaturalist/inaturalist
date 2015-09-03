@@ -1,7 +1,8 @@
 #encoding: utf-8
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
-  caches_action :show, :expires_in => 1.day, :cache_path => {:locale => I18n.locale},
+  caches_action :show, :expires_in => 1.day,
+    :cache_path => Proc.new{ |c| { locale: I18n.locale, mobile: c.request.format.mobile? } },
     :if => Proc.new {|c|
       !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
     }
@@ -255,6 +256,8 @@ class TaxaController < ApplicationController
         end
 
         opts = Taxon.default_json_options
+        opts[:include][:taxon_names] = {}
+        opts[:include][:iconic_taxon] = {only: [:id, :name]}
         opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
         Taxon.preload_associations(@taxon, { taxon_photos: :photo })
         render :json => @taxon.to_json(opts)

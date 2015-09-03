@@ -227,10 +227,10 @@ class PostsController < ApplicationController
   
   def load_post
     @post = Post.find_by_id(params[:id])
+    render_404 and return unless @post
     if request.fullpath =~ /\/trips/
       @post.becomes(Trip)
     end
-    render_404 and return unless @post
     true
   end
   

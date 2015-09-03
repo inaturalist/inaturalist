@@ -33,6 +33,13 @@ describe ConservationStatus, "creation" do
     o.reload
     o.should_not be_coordinates_obscured
   end
+
+  it "should have geoprivacy obscured by default" do
+    expect( ConservationStatus.make!.geoprivacy ).to eq Observation::OBSCURED
+  end
+  it "should not allow blank string geoprivacy" do
+    expect( ConservationStatus.make!(geoprivacy: '').geoprivacy ).to be_nil
+  end
 end
 
 describe ConservationStatus, "saving" do
@@ -106,10 +113,12 @@ describe ConservationStatus, "updating geoprivacy" do
   it "should unobscure observations of taxon" do
     o = Observation.make!(:taxon => @taxon, :latitude => 1, :longitude => 1)
     o.should be_coordinates_obscured
-    without_delay {@cs.update_attributes(:geoprivacy => Observation::PRIVATE)}
+    @cs.update_attributes(:geoprivacy => Observation::PRIVATE)
+    Delayed::Worker.new.work_off
     o.reload
     o.latitude.should be_blank
-    without_delay {@cs.update_attributes(:geoprivacy => Observation::OPEN)}
+    @cs.update_attributes(:geoprivacy => Observation::OPEN)
+    Delayed::Worker.new.work_off
     o.reload
     o.latitude.should_not be_blank
     o.private_latitude.should be_blank
