@@ -176,7 +176,7 @@
       })
       
       $('.identification .removelink').data('remote', true)
-      $('.identification .removelink').on('ajax:before', function() {
+      $(document).on('ajax:before', '.identification .removelink', function() {
         var ident = $(this).parents('.identification:first')
         var identifications = $(this).parents('.identifications:first')
         ident.fadeOut(function() {

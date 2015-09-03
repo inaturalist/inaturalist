@@ -151,14 +151,14 @@ $(document).ready(function(){
     .bind('ajax:error', function() {
       alert('Error updating colors')
     })
-  $('#place_selector_search form, #place_selector_paste form')
-    .on('ajax:before', function() {
+  $(document)
+    .on('ajax:before', '#place_selector_search form, #place_selector_paste form', function() {
       $('.loading', this).show()
     })
-    .on('ajax:complete', function() {
+    .on('ajax:complete', '#place_selector_search form, #place_selector_paste form', function() {
       $('.loading', this).hide()
     })
-    .on('ajax:success', function(event, json, status) {
+    .on('ajax:success', '#place_selector_search form, #place_selector_paste form', function(event, json, status) {
       $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
     })
   $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
@@ -169,15 +169,15 @@ $(document).ready(function(){
     .on('ajax:error', function(event, request, settings) {
       $(this).hide()
     })
-  $('.add_to_place_link .add_link')
-    .on('ajax:success', function(event, json, status) {
+  $(document)
+    .on('ajax:success', '.add_to_place_link .add_link', function(event, json, status) {
       $(this).siblings('.status').html(I18n.t('added!')).removeClass('loading').addClass('success')
     })
   $('.add_to_place_link .remove_link')
-    .on('ajax:success', function(event, json, status) {
+    .on('ajax:success', '.add_to_place_link .add_link', function(event, json, status) {
       $(this).siblings('.status').html(I18n.t('removed!')).removeClass('loading')
     })
-  $('#place_selector_paste form').on('ajax:success', function(event, json, status) {
+  $(document).on('ajax:success', '#place_selector_paste form', function(event, json, status) {
     $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
   })
 

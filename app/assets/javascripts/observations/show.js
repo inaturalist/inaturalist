@@ -65,7 +65,7 @@ $(document).ready(function() {
 
   $('#forms').tabs();
   
-  $('#data_quality_assessment .quality_metric_vote_link').on('click', function(e) {
+  $('#data_quality_assessment').on('click', '.quality_metric_vote_link', function(e) {
     e.preventDefault()
     var tr = $(this).parents('tr.quality_metric')
     $.ajax({
@@ -237,7 +237,7 @@ $(document).ready(function() {
   });
 })
 
-$('#add_more_photos_link').on('click', function() {
+$(document).on('click', '#add_more_photos_link', function() {
   var dialogId = "add_more_photos_dialog",
       dialog = $('#'+dialogId)
   if (dialog.length == 0) {
@@ -279,7 +279,7 @@ $('#add_more_photos_link').on('click', function() {
   return false
 })
 
-$('.joinlink').on('click', function(e) {
+$(document).on('click', '.joinlink', function(e) {
   $(this).parents('.qtip').qtip('hide')
   var dialogId = "join_project_modal",
       dialog = $('#'+dialogId),

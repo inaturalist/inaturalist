@@ -505,12 +505,12 @@ function removeAllTags() {
   })
 }
 
-$('.guide_taxon input[name*=tag_list]').on('change', function() {
+$(document).on('change', '.guide_taxon input[name*=tag_list]', function() {
   saveGuideTaxon.apply($(this).parents('form:first').get(0))
 })
 
 $('#guide_taxa .guide_taxon').labelize()
-$('input[name="guide_eol_update_flow_task[options][sections]"]').on('change', function() {
+$(document).on('change', 'input[name="guide_eol_update_flow_task[options][sections]"]', function() {
   if ($(this).is(':checked')) {
     $('input[name="guide_eol_update_flow_task[options][overview]"]').enable()
     $('#eol_subjects :input').enable()
@@ -519,7 +519,7 @@ $('input[name="guide_eol_update_flow_task[options][sections]"]').on('change', fu
     $('#eol_subjects :input').disable()
   }
 })
-$('input[name="guide_eol_update_flow_task[options][overview]"]').on('change', function() {
+$(document).on('change', 'input[name="guide_eol_update_flow_task[options][overview]"]', function() {
   if ($(this).val() == "true" || $(this).val() == true) {
     $('#eol_subjects').hide()
   } else {

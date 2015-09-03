@@ -248,7 +248,7 @@
 
     }
 
-    $(".picasaAlbums .album", wrapper).on('click', function() {
+    $(wrapper).on('click', ".picasaAlbums .album", function() {
       var aid = $(this).attr('data-aid'); // $(this).data('aid') doesn't work because of ridiculous type conversion
       try {
         updateSource({
@@ -265,7 +265,7 @@
       return false;
     });
 
-    $(".facebookAlbums .album", wrapper).on('click', function() {
+    $(wrapper).on('click', ".facebookAlbums .album", function() {
       try {
         updateSource({
           url: '/facebook/album/'+$(this).attr('data-aid'),
@@ -281,7 +281,7 @@
       return false;
     });
 
-    $(".facebookGroups .group", wrapper).on('click', function() {
+    $(wrapper).on('click', ".facebookGroups .group", function() {
       try {
         updateSource({
           url: '/facebook/group/',
@@ -297,7 +297,7 @@
       return false;
     })
   
-    $('.back_to_albums').on('click', function(){
+    $(wrapper).on('click', '.back_to_albums', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -309,13 +309,13 @@
       return false;
     });
 
-    $('.back_to_friends').on('click', function(){
+    $(wrapper).on('click', '.back_to_friends', function(){
       try { updateSource(); } 
       catch(e) { $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); }
       return false;
     });
 
-    $('.back_to_groups').on('click', function(){
+    $(wrapper).on('click', '.back_to_groups', function(){
       try { updateSource({ object_id: $(this).attr('data-group_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -328,7 +328,7 @@
     });
 
     // friend selector
-    $('.friendSelector .friend').on('click', function(){
+    $(wrapper).on('click', '.friendSelector .friend', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(

@@ -47,7 +47,7 @@
     })
   }
   if (self != top) {
-    $('a').on('click', function() {
+    $(document).on('click', 'a', function() {
       if ($(this).attr('href') == '#') {
         return
       }

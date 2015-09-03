@@ -113,7 +113,7 @@ function addFile(data) {
   })
 }
 
-$('.observation .savebutton').on('click', function() {
+$(document).on('click', '.observation .savebutton', function() {
   var container = $(this).parents('.observation:first'),
       observation = container.data('observation')
   if ($('.id_please_field input:checked', container).length == 0) {
@@ -142,7 +142,7 @@ $('.observation .savebutton').on('click', function() {
   })
   return false
 })
-$('.observation .deletebutton').on('click', function() {
+$(document).on('click', '.observation .deletebutton', function() {
   if (!confirm('Are you sure you want to delete this observation?')) {
     return false
   }

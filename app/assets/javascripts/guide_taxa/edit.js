@@ -211,7 +211,7 @@ $('#guide_ranges').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp()
 })
-$('#guide_sections input[type=text]').on('change', function() {
+$('#guide_sections').on('change', 'input[type=text]', function() {
   $(this).parents('.nested-fields:first').find('input[name*=modified_on_create]').val(true)
 })
 function addTag(tag) {

@@ -5,7 +5,7 @@
   <% content_for(:extrajs) do %>
     <script>
       $(document).ready(function(){
-        $('a').on('click', function() {
+        $(document).on('click', 'a', function() {
           if ($(this).attr('href') && !$(this).attr('href').match(/^\#/)) {
             $(this).attr('target', '_blank')
           }
