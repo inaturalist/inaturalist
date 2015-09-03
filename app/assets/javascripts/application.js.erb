@@ -1049,7 +1049,7 @@ function setPreference(pref, value) {
   })
 }
 
-$(document).on('ajax:success', '.project_user_invitation .acceptlink' function() {
+$(document).on('ajax:success', '.project_user_invitation .acceptlink', function() {
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('joined!')).show().addClass('success').removeClass('loading')
 })

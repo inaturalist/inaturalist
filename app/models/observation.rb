@@ -574,8 +574,8 @@ class Observation < ActiveRecord::Base
   }
 
   scope :between_dates, lambda{|d1, d2|
-    t1 = (Time.parse(URI.unescape(d1)) rescue Time.now)
-    t2 = (Time.parse(URI.unescape(d2)) rescue Time.now)
+    t1 = (Time.parse(URI.unescape(d1.to_s)) rescue Time.now)
+    t2 = (Time.parse(URI.unescape(d2.to_s)) rescue Time.now)
     if d1.to_s.index(':')
       where("time_observed_at BETWEEN ? AND ? OR (time_observed_at IS NULL AND observed_on BETWEEN ? AND ?)", t1, t2, t1.to_date, t2.to_date)
     else
