@@ -4,7 +4,7 @@
 .taxonmap {height: 200px;}
 .bootstrap .thumbnail, #guide-taxa h5, #guide-navbar {margin-bottom:0; min-height: auto;}
 .thumbnails .small {line-height:1;}
-#attribution ul {margin-left:0;}
+#attribution ul {padding-left:0;}
 #attribution li {display:inline; font-size:90%;}
 #attribution li:after {content: ', ';}
 #attribution li:last-child:after {content: '';}

@@ -7,8 +7,7 @@ body {
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
 
-body { font-size: 75%; }
-.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 100%;}
 
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:3px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}

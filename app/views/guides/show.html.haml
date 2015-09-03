@@ -16,7 +16,7 @@
       %strong= t(:draft, :default => "draft").upcase
       =t 'views.guides.show.draft_desc' 
   .row
-    .col-md-12
+    .col-xs-12
       #actions.right
         - if @guide.downloadable?
           - if @guide.ngz.file?
@@ -52,10 +52,10 @@
           = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"
         = @guide.title
   .row
-    .col-md-12
+    .col-xs-12
       = truncate_with_more formatted_user_text(@guide.description), :length => 300
   .row
-    #nav.col-md-3
+    #nav.col-xs-3
       %ul#tags.nav.nav-stacked.nav-pills.stacked
         %li{:class => @tags.blank? && @taxon.blank? ? "active" : nil}
           = link_to url_for_params(:without => [:page, :taxon, :tag, :tags]) do
@@ -103,7 +103,7 @@
             = subnav_taxa
         - else
           = nav_taxa
-    .col-md-9
+    .col-xs-9
       .stacked
         #guide-navbar.navbar
           .nabar-inner
@@ -118,7 +118,7 @@
               - unless @photo_tags.blank?
                 %form.inline{method: :get, id: 'photo-tag-form'}
                   = hidden_fields_for_params(without: ['photo-tag'])
-                  %select{name: 'photo-tag', data: {autosubmit:true}}
+                  %select.form-control{name: 'photo-tag', data: {autosubmit:true}}
                     %option{value:''}=t :photo_type
                     - for tag in @photo_tags
                       %option{selected: tag == @photo_tag}= tag
@@ -139,18 +139,18 @@
         - elsif @view == "card"
           - for guide_taxon in @guide_taxa
             .card.row.stacked
-              .col-md-3
+              .col-xs-3
                 = link_to guide_taxon, :class => "borderless thumbnail img" do
                   - if gp = guide_taxon.guide_photo_for_tag(@photo_tag)
                     = image_tag gp.photo.small_url
                   - elsif guide_taxon.taxon
                     = iconic_taxon_image guide_taxon.taxon
-              .col-md-6
+              .col-xs-6
                 %h4.name
                   = link_to guide_taxon.display_name, guide_taxon
                 - if gs = guide_taxon.guide_sections.order("COALESCE(position, id)").first
                   = truncate_with_more formatted_user_text(gs.description), :length => 400
-              .col-md-3
+              .col-xs-3
                 .map
                   - if guide_taxon.guide_ranges.blank? && guide_taxon.taxon
                     .taxonmap{setup_map_tag_attrs(                                                      |
@@ -164,7 +164,7 @@
           - for row in @guide_taxa.in_groups_of(4)
             .row.stacked
               - for guide_taxon in row.compact
-                .col-md-3
+                .col-xs-3
                   - if gp = guide_taxon.guide_photo_for_tag(@photo_tag)
                     = link_to image_tag(gp.photo.small_url, :class => 'img-responsive'), guide_taxon, :class => "thumbnail borderless"
                   - elsif guide_taxon.taxon
@@ -187,7 +187,7 @@
                           %i= guide_taxon.name
         = will_paginate @guide_taxa
   #attribution.meta.upstacked.row
-    .col-md-12
+    .col-xs-12
       %p
         =t :edited_by
         - attribution_links = commas_and(@guide.guide_users.map{|gu| link_to_user(gu.user, :content_text => gu.user.name.blank? ? gu.user.login : gu.user.name)})
@@ -231,17 +231,17 @@
                       = t "views.guides.pdf_layouts.#{l}", :default => l
                       .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
             .row
-              .col-md-12
+              .col-xs-12
                 %h5=t :taxa_to_include
             #pdf_taxa.row
               = f.fields_for :options do |fo|
-                .col-md-6
+                .col-xs-6
                   .radio
                     %label
                       = fo.radio_button :query, "all", :checked => true
                       =t :all_taxa_in_this_guide
                 - filter_match_enabled = [@tags, @q, @taxon].map(&:blank?).include?(false)
-                .col-md-6
+                .col-xs-6
                   .radio
                     %label
                       = fo.radio_button :query, request.query_string, :checked => false, :disabled => !filter_match_enabled
@@ -263,9 +263,9 @@
             .container-fluid
               = f.hidden_field :downloadable, :value => true
               .row
-                .col-md-3.text-center
+                .col-xs-3.text-center
                   %i.fa.fa-mobile.fa-6{:style => "font-size:200px;width:100px;line-height:1;"}
-                .col-md-9
+                .col-xs-9
                   %p=t 'views.guides.mobile_downloads_help_html'
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal"}=t :cancel

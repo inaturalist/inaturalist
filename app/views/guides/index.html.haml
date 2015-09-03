@@ -16,7 +16,7 @@
     .text
       = form_tag search_guides_path, :method => :get, :class => "form-search form-inline" do
         .input-group
-          = text_field_tag :q, nil, :placeholder => t(:find_a_guide), :class => "form-control input-xlarge"
+          = text_field_tag :q, nil, :placeholder => t(:find_a_guide), :class => "form-control"
           .input-group-btn
             = submit_tag t(:search), :class => "btn btn-primary"
         %nobr
@@ -28,7 +28,7 @@
         %li{role: 'presentation', :class => params[:by] == "you" ? "inactive" : "active"}= link_to t(:by_everyone), url_for_params(:without => [:by, :page])
         %li{role: 'presentation', :class => params[:by] != "you" ? "inactive" : "active"}= link_to t(:by_you), url_for_params(:by => "you", :without => [:page])
   .row
-    .col-md-3
+    .col-xs-3
       %ul#places.nav.nav-stacked.nav-pills
         %li.nav-header
           - if @place
@@ -96,11 +96,11 @@
               = subnav_taxa
         - else
           = nav_taxa
-    .col-md-9
+    .col-xs-9
       - for row in @guides.in_groups_of(2)
         .row.stacked
           - for guide in row.compact
-            .col-md-6
-              = render 'media_object', :guide => guide, :img_class => "col-md-4"
+            .col-xs-6
+              = render 'media_object', :guide => guide, :img_class => "col-xs-4"
   .quiet.box.text-center.upstacked
     =t 'views.guides.index.funding_html'

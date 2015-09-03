@@ -3,9 +3,10 @@
     .guide_taxon_header, .page {page-break-inside: avoid;}
     #attribution {page-break-inside: avoid;}
     #attribution ul {list-style:none;}
-    .guide_taxon {page-break-after: always; height: 700px; overflow:hidden;position:relative;}
+    .guide_taxon {page-break-after: always; height: 550px; overflow:hidden;position:relative;}
     #abstract {padding: 0 20%;}
-    .col-xs-6 #title, .col-xs-6 #abstract {display: table-cell; vertical-align: middle; height: 700px; overflow:hidden; padding:0;}
+    .col-xs-6 #title, 
+    .col-xs-6 #abstract {display: table-cell; vertical-align: middle; height: 700px; overflow:hidden; padding:0;}
     .guide_taxon:after{
       content:' ';
       display:block;
@@ -17,6 +18,7 @@
       background: -webkit-gradient(linear, 50% 0%, 50% 100%, from(rgba(255, 255, 255, 0)), to(white));
       background: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0), red);
     }
+    h3.display-name { margin-bottom: 0;}
     .guide_photos img {display:inline-block; margin: 0 0.5em 0.5em 0;}
     .guide_sections {text-align:justify;}
     .table th {width:auto; text-transform: capitalize;}
@@ -25,7 +27,7 @@
     .guide_range {margin-left: 1em;}
     .journal {border-left: 1px dashed #ccc;padding-left:2em; height:100%; position:relative; height:650px;}
     .notes, .drawings {position:relative;}
-    .journal h3 {
+    .bootstrap .journal h3 {
       text-transform: uppercase; 
       -webkit-transform-origin: 0% 50%; 
       -webkit-transform: rotate(-90deg); 
@@ -72,7 +74,7 @@
   - @guide_taxa.each_with_index do |gt, i|
     .guide_taxon
       .row
-        .col-xs-12.text-muted.meta
+        .col-xs-12.text-muted.meta.stacked
           = @guide.title
           &mdash;
           =t :journal
@@ -90,20 +92,21 @@
             = "#{i+1}/#{num_guide_taxa}"
       .row
         .col-xs-6
-          .stacked
-            - if gt.display_name == gt.name
-              %h2
-                %em= gt.display_name
-            - else
-              %h2= gt.display_name
-              %em.text-muted= gt.name
+          .row.stacked
+            .col-xs-12
+              - if gt.display_name == gt.name
+                %h3.display-name
+                  %em= gt.display_name
+              - else
+                %h3.display-name= gt.display_name
+                %em.text-muted= gt.name
           - unless gt.guide_photos.blank?
             .row.stacked
               .col-xs-12
                 .row.thumbnails.guide_photos.stacked
                   - for gp in gt.guide_photos.sort_by(&:position)[0..2]
                     .col-xs-4
-                      = image_tag(gp.small_url, :class => "borderless thumbnail")
+                      = image_tag(gp.small_url, :class => "borderless thumbnail img-responsive")
                 %p.attribution
                   %small.text-muted.meta
                     = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
