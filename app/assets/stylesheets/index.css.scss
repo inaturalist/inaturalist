@@ -234,6 +234,9 @@ a:hover {
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
 .ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: "Trebuchet MS", Arial, sans-serif; }
+.ui-tooltip {
+  padding: 0px;
+}
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -1826,3 +1829,12 @@ p.spam {
 .leaderboard-container thead [class*="sorting_"] {background-color: #eee;}
 .leaderboard-container [class*="sorting_disabled"], 
 .leaderboard-container thead [class*="sorting_disabled"] {background-color: transparent;}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 0 transparent;
+}
