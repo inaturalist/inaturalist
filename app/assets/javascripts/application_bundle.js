@@ -17,4 +17,3 @@
 //= require jquery/plugins/inat/taxon_selectors
 //= require jquery/plugins/inat/taxon_autocomplete
 //= require underscore.min
-//= require jquery/plugins/jqModal.min
