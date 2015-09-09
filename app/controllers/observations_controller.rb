@@ -1082,6 +1082,7 @@ class ObservationsController < ApplicationController
     @recent_exports = ObservationsExportFlowTask.
       where(user_id: current_user).order(id: :desc).limit(20)
     @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     respond_to do |format|
       format.html
     end
@@ -2110,7 +2111,7 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
-    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')

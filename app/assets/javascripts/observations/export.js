@@ -74,6 +74,7 @@ $(document).ready(function() {
     filtersToQuery()
     reloadPreview()
   }
+
   $('#new_observations_export_flow_task').bind('ajax:success', function(e, json) {
     window.flowTask = json
     var runUrl = '/flow_tasks/'+json.id+'/run.json'
