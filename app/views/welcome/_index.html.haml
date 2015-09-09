@@ -1,0 +1,89 @@
+- content_for :extracss do
+  :css
+    .imgtxt .img {background-color: black; color:white; padding:0;overflow:hidden; height: 400px;}
+    .imgtxt .txt {background-color: #74ac00; color:white; height: 400px;padding:2em;}
+.container
+  #leader.row.imgtxt
+    .col-xs-8.img
+      %img{src: 'http://static.inaturalist.org/photos/2257355/large.jpg?1439407371'}
+    .col-xs-4.txt
+      %h1{style: 'font-weight: bold;'} Connect with Nature
+      %p
+        Explore and share your observations from the natural world
+      = link_to t(:explore), observations_path, :class => "btn btn-primary"
+      = link_to t(:sign_up), signup_path, :class => "btn btn-default"
+  #how
+    .row
+      .col-xs-12
+        %h2 How It Works
+    .row
+      .col-xs-4
+        [image]
+        %p Record your observations
+      .col-xs-4
+        [image]
+        %p Share with fellow naturalists
+      .col-xs-4
+        [image]
+        %p Get identifications from the community
+  #science.row
+    .col-xs-6
+      %h2 Contribute to Science
+      %p
+        Every observation can contribute to biodiversity science, from the rarest butterfly to the most common backyard weed. You could find a new invasive plant, rediscover a lost population of lizards, or discover a new species of fly! We share your findings with scientific data repositories like the Global Biodiversity Information Facility to help scientists find and use your data. All you have to do is observe.
+    .col-xs-6
+      [image]
+  #value
+    .row
+      .col-xs-12
+        %h2 Nature At Your Fingertips
+    .row
+      .col-xs-6
+        %h4 Keep Track
+        %p Record your encounters with other organisms and maintain life lists, all in the cloud.
+      .col-xs-6
+        %h4 Create Useful Data
+        %p Help scientists and resource managers understand when and where organisms occur.
+    .row
+      .col-xs-6
+        %h4 Crowdsource Species Identification
+        %p Connect with experts who can identify the organisms you observe and collaborate to refine identifications.
+      .col-xs-6
+        %h4 Become a Citizen Scientist
+        %p Find a project with a mission that interests you, or start your own.
+    .row
+      .col-xs-6
+        %h4 Learn About Nature
+        %p Build your knowledge by talking with other naturalists and helping others.
+      .col-xs-6
+        %h4 Run a Bioblitz
+        %p Hold an event where people try to find as many species as possible.
+  #mobile.row
+    .col-xs-6
+      [image]
+    .col-xs-6
+      %h2 Works On All Your Devices
+      %p
+        Install our mobile apps so you can always observe, even without cell reception.
+  #who
+    .row
+      .col-xs-12
+        %h2 Who Uses iNaturalist?
+    .row
+      .col-xs-6
+        %p
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        %p
+          Carrie Selzter
+          %br
+          Program Manager, National Geographic
+          %br
+          %i.fa.fa-map-marker
+          Washington, D.C., USA
+      .col-xs-6
+        [image]

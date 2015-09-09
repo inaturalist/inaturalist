@@ -1,3 +1,12 @@
+@font-face { 
+  font-family: Whitney; 
+  src: asset-url('Whitney-Light-Pro.otf');
+}
+@font-face { 
+  font-family: Whitney; 
+  font-weight: bold;
+  src: asset-url('Whitney-Medium-Pro.otf');
+} 
 body {font-size: 75%;}
 body .bootstrap {
   margin: 0;
@@ -5,10 +14,13 @@ body .bootstrap {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney;
 }
 
-.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 100%;}
+.bootstrap .readable, .bootstrap p { 
+  font-size: 100%;
+  font-family: Whitney;
+}
 
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:3px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
