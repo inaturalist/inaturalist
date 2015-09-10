@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
   }
 
   extend FriendlyId
-  friendly_id :title, :use => [ :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
+  friendly_id :title, :use => [ :slugged, :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -316,6 +316,17 @@ class Project < ActiveRecord::Base
 
   def cached_slug
     slug
+  end
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
   end
 
   def curators
