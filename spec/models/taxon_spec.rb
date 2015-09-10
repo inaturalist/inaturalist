@@ -359,10 +359,10 @@ describe Taxon, "common_name" do
     tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
     expect(t.common_name).to eq(tn_un)
   end
-  it "should default to first common if no English or unknown" do
+  it "should not default to first common if no English or unknown" do
     t = Taxon.make!
     tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
-    expect(t.common_name).to eq(tn_es)
+    expect(t.common_name).to be_blank
   end
 end
 
