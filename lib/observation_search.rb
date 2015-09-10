@@ -571,6 +571,21 @@ module ObservationSearch
         map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
     end
 
+    def elastic_user_identification_counts(elastic_params, limit = 500)
+      id_result = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: {
+          identifier_count: {
+            cardinality: {
+              field: "identifications.user.id", precision_threshold: 10000 } },
+          top_identifiers: {
+            terms: {
+              field: "identifications.user.id", size: limit } } } ) ).response
+      { total: id_result.aggregations.identifier_count.value,
+        counts: Hash[ id_result.aggregations.top_identifiers.buckets.
+          map{ |b| [ b["key"], b["doc_count"] ] } ],
+      }
+    end
+
   end
 
 end

@@ -5,12 +5,15 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_tag_names
   attr_accessor :indexed_project_ids
   attr_accessor :indexed_place_ids
+  attr_accessor :indexed_places
 
   scope :load_for_index, -> { includes(:user, :confirmed_reviews,
     { sounds: :user },
     { photos: :user },
-    { taxon: [ :taxon_names ] },
-    { observation_field_values: :observation_field } ) }
+    { taxon: [ :taxon_names, :conservation_statuses,
+      :listed_taxa_with_establishment_means ] },
+    { observation_field_values: :observation_field },
+    { identifications: [ :user ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -47,7 +50,8 @@ class Observation < ActiveRecord::Base
     preload_for_elastic_index
     # some timezones are invalid
     created = created_at.in_time_zone(timezone_object || "UTC")
-    {
+    t = taxon || community_taxon
+    json = {
       id: id,
       created_at: created,
       created_at_details: ElasticModel.date_details(created),
@@ -84,12 +88,13 @@ class Observation < ActiveRecord::Base
       reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
-      taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,
+      taxon: t ? t.as_indexed_json(basic: true) : nil,
       field_values: observation_field_values.uniq.map(&:as_indexed_json),
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
+      identifications: identifications.map(&:as_indexed_json),
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
@@ -99,6 +104,13 @@ class Observation < ActiveRecord::Base
       private_geojson: (private_latitude && private_longitude) ?
         ElasticModel.point_geojson(private_latitude, private_longitude) : nil
     }
+    if t && json[:taxon] && !json[:place_ids].empty?
+      places = indexed_places ||
+        Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
+      json[:taxon][:threatened] = t.threatened?(place: places)
+      json[:taxon][:introduced] = t.introduced_in_place?(places)
+    end
+    json
   end
 
   # to quickly fetch tag names and project_ids when bulk indexing
@@ -109,6 +121,7 @@ class Observation < ActiveRecord::Base
       o.indexed_tag_names ||= [ ]
       o.indexed_project_ids ||= [ ]
       o.indexed_place_ids ||= [ ]
+      o.indexed_places ||= [ ]
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
@@ -139,6 +152,13 @@ class Observation < ActiveRecord::Base
       WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
       if o = observations_by_id[ r["observation_id"].to_i ]
         o.indexed_place_ids << r["place_id"].to_i
+      end
+    end
+    place_ids = observations.map(&:indexed_place_ids).flatten.uniq.compact
+    places_by_id = Hash[ Place.where(id: place_ids).map{ |p| [ p.id, p ] } ]
+    observations.each do |o|
+      unless o.indexed_place_ids.blank?
+        o.indexed_places = places_by_id.values_at(*o.indexed_place_ids).compact
       end
     end
   end

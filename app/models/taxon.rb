@@ -29,6 +29,9 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_change_taxa
   has_many :observations, :dependent => :nullify
   has_many :listed_taxa, :dependent => :destroy
+  has_many :listed_taxa_with_establishment_means,
+    -> { where("establishment_means IS NOT NULL") },
+    class_name: "ListedTaxon"
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :taxon_schemes, :through => :taxon_scheme_taxa
   has_many :lists, :through => :listed_taxa
@@ -1011,6 +1014,20 @@ class Taxon < ActiveRecord::Base
     false
   end
 
+  def introduced_in_place?(place)
+    places = Place.param_to_array(place)
+    return false if places.blank?
+    if association(:listed_taxa_with_establishment_means).loaded? || association(:listed_taxa).loaded?
+      lt = association(:listed_taxa_with_establishment_means).loaded? ?
+        listed_taxa_with_establishment_means : listed_taxa
+      place_ancestor_ids = (places.map(&:id) +
+        places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
+      !!lt.detect{ |lt| place_ancestor_ids.include?(lt.place_id) }
+    else
+      listed_taxa.with_establishment_means("introduced").where(place_id: places).exists?
+    end
+  end
+
   def globally_threatened?
     return conservation_status >= IUCN_NEAR_THREATENED unless conservation_status.blank?
     if association(:conservation_statuses).loaded?
@@ -1021,13 +1038,15 @@ class Taxon < ActiveRecord::Base
   end
 
   def threatened_in_place?(place)
-    return false if place.blank?
-    place_id = place.is_a?(Place) ? place.id : place
-    place = Place.find_by_id(place_id) unless place.is_a?(Place)
+    places = Place.param_to_array(place)
+    return false if places.blank?
     cs = if association(:conservation_statuses).loaded?
-      conservation_statuses.detect{|cs| ([nil, place.ancestry.to_s.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
+      place_ancestor_ids = (places.map(&:id) +
+        places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
+      place_ancestor_ids << nil
+      conservation_statuses.detect{|cs| place_ancestor_ids.include?(cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
     else
-      conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place_id)}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
+      conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(places.map(&:id))}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
     end
     return !cs.nil?
   end
@@ -1074,7 +1093,7 @@ class Taxon < ActiveRecord::Base
     return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
     ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end
-  
+
   def add_to_intersecting_places
     Place.
         where("places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTRY_LEVEL]).
@@ -1613,5 +1632,5 @@ class Taxon < ActiveRecord::Base
   end
 
   # /Static #################################################################
-  
+
 end
