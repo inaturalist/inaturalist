@@ -193,8 +193,11 @@ module ObservationSearch
           p.delete(:taxon_name)
         end
       end
+      if p[:taxon_ids] == [""]
+        p[:taxon_ids] = nil
+      end
       if !p[:observations_taxon] && !p[:taxon_ids].blank?
-        p[:observations_taxon_ids] = p[:taxon_ids]
+        p[:observations_taxon_ids] = [p[:taxon_ids]].flatten.join(',').split(',')
         p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
       end
 

@@ -74,7 +74,12 @@ function setFiltersFromQuery(query) {
     if (k != 'iconic_taxa' && k != 'has') {
       $('#filters :input:radio[name="'+k+'"][value="'+v+'"]').attr('checked', true)
     }
-    $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v)
+    if ($.isArray(v)) {
+      v = v.join(',')
+      $('#filters :input[name="'+k+'[]"]').not(':checkbox, :radio').val(v)
+    } else {
+      $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v)
+    }
     if (k == 'place_id') {
       $('#filters input[name=place_id]').chooser('selectId', v)
     } else if (k == 'taxon_id') {
