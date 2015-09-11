@@ -72,6 +72,84 @@ describe "Observation Index" do
     expect( json[:private_geojson][:coordinates] ).to eq [4.0, 3.0]
   end
 
+  it "sets taxon globally threatened" do
+    o = Observation.make!(taxon: Taxon.make!)
+    expect( o.as_indexed_json[:taxon][:threatened] ).to be false
+    ConservationStatus.make!(place: nil, taxon: o.taxon,
+      status: Taxon::IUCN_NEAR_THREATENED)
+    o.reload
+    expect( o.as_indexed_json[:taxon][:threatened] ).to be true
+  end
+
+  it "sets taxon threatened in a place" do
+    present_place = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    absent_place = make_place_with_geom(wkt: "MULTIPOLYGON(((2 2,2 3,3 3,3 2,2 2)))")
+    o = Observation.make!(taxon: Taxon.make!, latitude: present_place.latitude,
+      longitude: present_place.longitude)
+    expect( o.as_indexed_json[:taxon][:threatened] ).to be false
+    cs = ConservationStatus.make!(place: absent_place, taxon: o.taxon,
+      status: Taxon::IUCN_NEAR_THREATENED)
+    o.reload
+    expect( o.as_indexed_json[:taxon][:threatened] ).to be false
+    cs.update_attributes(place: present_place)
+    o.reload
+    expect( o.as_indexed_json[:taxon][:threatened] ).to be true
+  end
+
+  it "sets taxon introduced" do
+    place = make_place_with_geom
+    o = Observation.make!(taxon: Taxon.make!, latitude: place.latitude,
+      longitude: place.longitude)
+    expect( o.as_indexed_json[:taxon][:introduced] ).to be false
+    expect( o.as_indexed_json[:taxon][:native] ).to be false
+    expect( o.as_indexed_json[:taxon][:endemic] ).to be false
+    cs = ListedTaxon.make!(place: place, taxon: o.taxon, list: place.check_list,
+      establishment_means: "introduced")
+    o.reload
+    expect( o.as_indexed_json[:taxon][:introduced] ).to be true
+    expect( o.as_indexed_json[:taxon][:native] ).to be false
+    expect( o.as_indexed_json[:taxon][:endemic] ).to be false
+  end
+
+  it "sets taxon native" do
+    place = make_place_with_geom
+    o = Observation.make!(taxon: Taxon.make!, latitude: place.latitude,
+      longitude: place.longitude)
+    expect( o.as_indexed_json[:taxon][:introduced] ).to be false
+    expect( o.as_indexed_json[:taxon][:native] ).to be false
+    expect( o.as_indexed_json[:taxon][:endemic] ).to be false
+    cs = ListedTaxon.make!(place: place, taxon: o.taxon, list: place.check_list,
+      establishment_means: "native")
+    o.reload
+    expect( o.as_indexed_json[:taxon][:introduced] ).to be false
+    expect( o.as_indexed_json[:taxon][:native] ).to be true
+    expect( o.as_indexed_json[:taxon][:endemic] ).to be false
+  end
+
+  it "sets taxon endemic" do
+    place = make_place_with_geom
+    o = Observation.make!(taxon: Taxon.make!, latitude: place.latitude,
+      longitude: place.longitude)
+    expect( o.as_indexed_json[:taxon][:introduced] ).to be false
+    expect( o.as_indexed_json[:taxon][:native] ).to be false
+    expect( o.as_indexed_json[:taxon][:endemic] ).to be false
+    cs = ListedTaxon.make!(place: place, taxon: o.taxon, list: place.check_list,
+      establishment_means: "endemic")
+    o.reload
+    expect( o.as_indexed_json[:taxon][:introduced] ).to be false
+    expect( o.as_indexed_json[:taxon][:native] ).to be true
+    expect( o.as_indexed_json[:taxon][:endemic] ).to be true
+  end
+
+  it "indexes identifications" do
+    o = Observation.make!
+    Identification.where(observation_id: o.id).destroy_all
+    5.times{ Identification.make!(observation: o) }
+    json = o.as_indexed_json
+    expect( json[:identifications].length ).to eq 5
+    expect( json[:identifications].first ).to eq o.identifications.first.as_indexed_json
+  end
+
   describe "params_to_elastic_query" do
     it "returns nil when ES can't handle the params" do
       expect( Observation.params_to_elastic_query(

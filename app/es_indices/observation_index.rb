@@ -11,7 +11,7 @@ class Observation < ActiveRecord::Base
     { sounds: :user },
     { photos: :user },
     { taxon: [ :taxon_names, :conservation_statuses,
-      :listed_taxa_with_establishment_means ] },
+      { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
     { identifications: [ :user ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -104,12 +104,7 @@ class Observation < ActiveRecord::Base
       private_geojson: (private_latitude && private_longitude) ?
         ElasticModel.point_geojson(private_latitude, private_longitude) : nil
     }
-    if t && json[:taxon] && !json[:place_ids].empty?
-      places = indexed_places ||
-        Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
-      json[:taxon][:threatened] = t.threatened?(place: places)
-      json[:taxon][:introduced] = t.introduced_in_place?(places)
-    end
+    add_taxon_statuses(json, t) if t && json[:taxon]
     json
   end
 
@@ -382,6 +377,34 @@ class Observation < ActiveRecord::Base
       page: p[:page],
       sort: sort,
       extra_preloads: extra_preloads }
+  end
+
+  private
+
+  def add_taxon_statuses(json, t)
+    # taxa can be globally threatened, but need context for the rest
+    if json[:place_ids].empty?
+      json[:taxon][:threatened] = t.threatened?
+      json[:taxon][:introduced] = false
+      json[:taxon][:native] = false
+      json[:taxon][:endemic] = false
+      return
+    end
+    places = indexed_places ||
+      Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
+    json[:taxon][:threatened] = t.threatened?(place: places)
+    json[:taxon][:introduced] = t.establishment_means_in_place?(
+      ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true)
+    # if the taxon is introduced it cannot be native or endemic
+    if json[:taxon][:introduced]
+      json[:taxon][:native] = false
+      json[:taxon][:endemic] = false
+      return
+    end
+    json[:taxon][:native] = t.establishment_means_in_place?(
+      ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
+    json[:taxon][:endemic] = t.establishment_means_in_place?(
+      "endemic", places)
   end
 
 end

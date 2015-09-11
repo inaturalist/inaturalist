@@ -1014,7 +1014,8 @@ class Taxon < ActiveRecord::Base
     false
   end
 
-  def introduced_in_place?(place)
+  def establishment_means_in_place?(means, place, options = {})
+    means = [ means ] unless means.is_a?(Array)
     places = Place.param_to_array(place)
     return false if places.blank?
     if association(:listed_taxa_with_establishment_means).loaded? || association(:listed_taxa).loaded?
@@ -1022,9 +1023,19 @@ class Taxon < ActiveRecord::Base
         listed_taxa_with_establishment_means : listed_taxa
       place_ancestor_ids = (places.map(&:id) +
         places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
-      !!lt.detect{ |lt| place_ancestor_ids.include?(lt.place_id) }
+      if options[:closest]
+        most_specific_lt = lt.
+          select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
+          sort_by{ |l| l.place.bbox_area }.first
+        return false if most_specific_lt.blank?
+        means.include?( most_specific_lt.establishment_means)
+      else
+        !!lt.
+          select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
+          detect{ |l| means.include?( l.establishment_means) }
+      end
     else
-      listed_taxa.with_establishment_means("introduced").where(place_id: places).exists?
+      listed_taxa.with_establishment_means(means).where(place_id: places).exists?
     end
   end
 
@@ -1044,9 +1055,12 @@ class Taxon < ActiveRecord::Base
       place_ancestor_ids = (places.map(&:id) +
         places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
       place_ancestor_ids << nil
-      conservation_statuses.detect{|cs| place_ancestor_ids.include?(cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
+      conservation_statuses.detect{ |c|
+        place_ancestor_ids.include?(c.place_id) && c.iucn.to_i > IUCN_LEAST_CONCERN }
     else
-      conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(places.map(&:id))}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
+      conservation_statuses.where("place_id IN (#{ places.map(&:id).join(',') }) OR
+        place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(places.map(&:id))})
+        OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
     end
     return !cs.nil?
   end

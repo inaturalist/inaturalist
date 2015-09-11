@@ -82,7 +82,7 @@ class ListedTaxon < ActiveRecord::Base
       NATIVE_EQUIVALENTS
     elsif establishment_means == "introduced"
       INTRODUCED_EQUIVALENTS
-    else
+    elsif !establishment_means.is_a?(Array)
       [establishment_means]
     end
     where("establishment_means IN (?)", means)
