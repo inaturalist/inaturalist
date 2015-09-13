@@ -231,7 +231,7 @@ class Place < ActiveRecord::Base
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
 
   def to_s
-    "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
+    "<Place id: #{id}, name: #{name}, admin_level: #{admin_level}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
     "lng: #{longitude}, parent_id: #{parent_id}>"
   end

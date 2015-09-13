@@ -7,4 +7,38 @@ class PlaceTaxonName < ActiveRecord::Base
   def to_s
     "<PlaceTaxonName #{id}, place_id: #{place_id}, taxon_name_id: #{taxon_name_id}>"
   end
+
+  #
+  # Create PlaceTaxonNames for matching countries. This helps people who
+  # cannot choose a locale that matches a lexicon but can choose a place.
+  #
+  def self.create_country_records_from_lexicons(options = {})
+    start = Time.now
+    logger = options[:logger] || Rails.logger
+    created = 0
+    errors = 0
+    mapping = options[:mapping] || {
+      Japanese: [:Japan],
+      German: [:Germany, :Austria],
+      chinese_traditional: ['Hong Kong', :Taiwan],
+      chinese_simplified: [:China]
+    }
+    mapping.each do |lexicon, country_names|
+      countries = Place.where(admin_level: Place::COUNTRY_LEVEL, name: country_names)
+      TaxonName.joins("LEFT OUTER JOIN place_taxon_names ptn ON ptn.taxon_name_id = taxon_names.id").
+          where("ptn.id IS NULL AND taxon_names.lexicon = ?", lexicon).find_each do |tn|
+        countries.each do |country|
+          ptn = PlaceTaxonName.new(taxon_name: tn, place: country)
+          if ptn.save
+            logger.info "Added #{tn} to #{country}"
+            created += 1
+          else
+            logger.error "[ERROR] Failed to save #{ptn}: #{ptn.errors.full_messages.to_sentence}"
+            errors += 1
+          end
+        end
+      end
+    end
+    logger.info "Created #{created} PlaceTaxonName records, failed on #{errors} (#{Time.now - start}s)"
+  end
 end
