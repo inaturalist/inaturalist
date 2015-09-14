@@ -189,7 +189,7 @@ def make_eol_media_data
   end
   
   scope = Photo.
-    includes(:user, {:observation_photos => {:observation => :taxon}}).
+    joins(:user, {observation_photos: {observation: :taxon}}).
     where("photos.license IN (?) AND taxa.rank_level <= ? AND taxa.id IS NOT NULL", licenses, Taxon::SPECIES_LEVEL)
   
   if @opts[:quality] == "research"
