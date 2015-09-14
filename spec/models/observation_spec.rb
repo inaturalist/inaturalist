@@ -1299,19 +1299,17 @@ describe Observation do
         expect( Observation.in_projects(po.project.slug) ).not_to include other_o
       end
       it "should find observations in a project that begins with a number" do
-        po = make_project_observation(project: Project.make!(title: "5MBC: Five Minute Bird Counts New Zealand"))
-        other_p = Project.make!(id: 5)
-        expect( other_p.id ).to eq 5
-        expect( po.project.slug.to_i ).to eq 5
+        other_p = Project.make!
+        po = make_project_observation(project: Project.make!(title: "#{other_p.id}MBC: Five Minute Bird Counts New Zealand"))
+        expect( po.project.slug.to_i ).to eq other_p.id
         other_o = Observation.make!
         expect( Observation.in_projects(po.project_id) ).to include po.observation
         expect( Observation.in_projects(po.project_id) ).not_to include other_o
       end
       it "should find observations in a project that begins with a number by slug" do
-        po = make_project_observation(project: Project.make!(title: "5MBC: Five Minute Bird Counts New Zealand"))
-        other_p = Project.make!(id: 5)
-        expect( other_p.id ).to eq 5
-        expect( po.project.slug.to_i ).to eq 5
+        other_p = Project.make!
+        po = make_project_observation(project: Project.make!(title: "#{other_p.id}MBC: Five Minute Bird Counts New Zealand"))
+        expect( po.project.slug.to_i ).to eq other_p.id
         other_o = Observation.make!
         expect( Observation.in_projects(po.project.slug) ).to include po.observation
         expect( Observation.in_projects(po.project.slug) ).not_to include other_o
