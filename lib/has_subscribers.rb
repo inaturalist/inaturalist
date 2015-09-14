@@ -114,7 +114,26 @@ module HasSubscribers
         Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
       end
     end
-    
+
+    # Generates one-time update for the user returned by the supplied method
+    def notifies_users(method, options = {})
+      unless self.included_modules.include?(HasSubscribers::InstanceMethods)
+        include HasSubscribers::InstanceMethods
+      end
+
+      options[:with] ||= :notify_users
+      options[:notification] ||= to_s.underscore
+      options[:priority] ||= 1
+
+      cattr_accessor :notifies_users_options
+      self.notifies_users_options ||= options
+
+      create_callback(method, options)
+      after_destroy do |record|
+        Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+      end
+    end
+
     #
     # Subscribe an associated user to an associated object when this record is
     # created. For example, you might auto-subscribe a comment user to the
@@ -249,12 +268,33 @@ module HasSubscribers
     def notify_owner_of(association)
       options = self.class.notifies_owner_of_options[association.to_sym]
       Update.create(
-        :subscriber => send(association).user,
-        :resource => send(association),
-        :notifier => self,
-        :notification => options[:notification]
+        subscriber: send(association).user,
+        resource: send(association),
+        notifier: self,
+        notification: options[:notification]
       )
       true
     end
+
+    def notify_users(method)
+      options = self.class.notifies_users_options
+      users = send(method)
+      return if users.blank?
+      users.each do |u|
+        next unless u.prefers_receive_mentions?
+        next if Update.where(
+            subscriber: u,
+            resource: self,
+            notification: options[:notification]
+          ).exists?
+        Update.create(
+          subscriber: u,
+          resource: self,
+          notifier: self,
+          notification: options[:notification]
+        )
+      end
+    end
+
   end
 end

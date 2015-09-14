@@ -329,13 +329,13 @@ class UsersController < ApplicationController
   
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
-      wheres: { notification: :activity }).total_entries
+      wheres: { notification: [ :activity, :mention ] }).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
   
   def new_updates
-    wheres = { notification: :activity }
+    wheres = { notification: [ :activity, :mention ] }
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
@@ -649,12 +649,14 @@ protected
       :prefers_message_email_notification,
       :prefers_project_invitation_email_notification,
       :prefers_project_journal_post_email_notification,
+      :prefers_mention_email_notification,
       :prefers_share_observations_on_facebook,
       :prefers_share_observations_on_twitter,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
       :prefers_location_details,
+      :prefers_receive_mentions,
       :site_id,
       :time_zone
     )

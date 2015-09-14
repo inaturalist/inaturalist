@@ -56,6 +56,11 @@ class String
   def is_ja?
     !! (self =~ /[ぁ-ゖァ-ヺー一-龯々]/)
   end
+
+  def mentioned_users
+    User.where(login: scan(/@(#{ User::LOGIN_PATTERN })/).flatten)
+  end
+
 end
 
 # Restrict some queries to characters, numbers, and simple punctuation, as

@@ -15,10 +15,11 @@
   when "Identification" then edit_identification_path(item)
   end
   hide_agree ||= false
+  no_thumb ||= false
 -%>
 <div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
   <div class="item_user column">
-    <% if user -%>
+    <% if user && !no_thumb -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>
     <% end -%>
   </div>

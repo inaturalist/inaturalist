@@ -290,6 +290,7 @@ module ApplicationHelper
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
@@ -875,6 +876,9 @@ module ApplicationHelper
     end
     resource ||= update.resource
     resource = update.resource.flaggable if update.resource_type == "Flag"
+    if update.notification == "mention"
+      return image_tag(asset_url(update.notifier.user.icon.url(:thumb)), options.merge(alt: "#{update.notifier.user.login} icon"))
+    end
     case resource.class.name
     when "User"
       image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon"))
@@ -923,7 +927,7 @@ module ApplicationHelper
       link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
     end
 
-    if notifier.is_a?(Comment) || notifier.is_a?(Identification)
+    if notifier.is_a?(Comment) || notifier.is_a?(Identification) || update.notification == "mention"
       noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
       if resource_name = resource.try_methods(:name, :title)
         noun += " (\"#{truncate(resource_name, :length => 30)}\")".html_safe
@@ -1048,26 +1052,32 @@ module ApplicationHelper
   end
 
   def activity_snippet(update, notifier, notifier_user, options = {})
+    opts = {}
     if update.notification == "activity" && notifier_user
       notifier_class_name_key = notifier.class.to_s.underscore
       notifier_class_name = t(notifier_class_name_key).downcase
       key = "user_added_"
       opts = {
-        :user => options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        :x => notifier_class_name
+        user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
+        x: notifier_class_name
       }
       key += notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
       key += '_x_to'
+    elsif update.notification == "mention" && notifier_user
+      key = "mentioned_you_in"
+      opts = {
+        user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
+        x: notifier_class_name
+      }
     else
       key = "new_activity_on"
-      opts = {}
     end
 
     if options[:noun]
       key += '_noun'
       opts[:noun] = options[:noun]
     end
-    if update.resource_owner
+    if update.resource_owner && update.resource_owner != notifier_user
       key += '_by'
       opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
     end
@@ -1289,4 +1299,13 @@ module ApplicationHelper
   def has_t?(*args)
     I18n.has_t?(*args)
   end
+
+  def hyperlink_mentions(text)
+    linked_text = text.dup
+    linked_text.mentioned_users.each do |u|
+      linked_text.gsub!(/@#{ u.login }/, link_to("@#{ u.login }", u))
+    end
+    linked_text
+  end
+
 end

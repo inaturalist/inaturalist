@@ -11,6 +11,7 @@ class Comment < ActiveRecord::Base
   after_destroy :update_parent_counter_cache
   
   notifies_subscribers_of :parent, :notification => "activity", :include_owner => true
+  notifies_users :mentioned_users, notification: "mention"
   auto_subscribes :user, :to => :parent
   
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
@@ -54,4 +55,10 @@ class Comment < ActiveRecord::Base
     return true if deleting_user.is_curator? || deleting_user.is_admin?
     false
   end
+
+  def mentioned_users
+    return [ ] unless parent_type == "Observation"
+    body.mentioned_users
+  end
+
 end

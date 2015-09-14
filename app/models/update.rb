@@ -153,6 +153,7 @@ class Update < ActiveRecord::Base
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
+      !user.prefers_mention_email_notification? && u.notification == "mention"
     end.compact
     return if updates.blank?
     Emailer.updates_notification(user, updates).deliver_now
