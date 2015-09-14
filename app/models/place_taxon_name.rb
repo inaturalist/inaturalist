@@ -29,8 +29,9 @@ class PlaceTaxonName < ActiveRecord::Base
           includes(:place_taxon_names).
           where("taxon_names.lexicon = ?", lexicon).find_each do |tn|
         # not a fan of the overselection and filter approach here, since we have a lot of names. Is there a way to do this in the db?
-        next if (tn.place_ids & countries.map(&:id)).size == countries.size
-        countries.each do |country|
+        candidate_countries = countries.select{|c| !tn.place_ids.include?(c.id)}
+        next if candidate_countries.blank?
+        candidate_countries.each do |country|
           ptn = PlaceTaxonName.new(taxon_name: tn, place: country)
           if ptn.save
             logger.info "Added #{tn} to #{country}"
