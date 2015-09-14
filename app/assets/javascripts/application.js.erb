@@ -1365,6 +1365,32 @@ $.fn.dnaHighlight = function() {
   })
 }
 
+$.fn.textcompleteUsers = function( ) {
+  this.textcomplete([{
+    index: 1,
+    match: /\B@([\\\w][\\\w\\\-_]*)$/,
+    search: function( term, callback ) {
+      $.getJSON( "/people/search.json", { q: term, order: "activity" } ).
+        done(function( data ) {
+          callback( $.map( data, function( user ) {
+            return user.html;
+          }));
+        }
+      );
+    },
+    replace: function( html ) {
+      var login, matches;
+      // extract the username from the HTML
+      if( matches = html.match( /\(([^ ]+)\)<\/div>/ )) {
+        login = matches[1];
+      } else if( matches = html.match( / ([^ ]+)<\/div>/ )) {
+        login = matches[1];
+      }
+      return "@" + login + " ";
+    }
+  }]);
+}
+
 $.fn.boldId = function() {
   $(this).each(function() {
     if ($('.boldid', this).length > 0) return

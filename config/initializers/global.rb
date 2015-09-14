@@ -58,7 +58,7 @@ class String
   end
 
   def mentioned_users
-    User.where(login: scan(/@(#{ User::LOGIN_PATTERN })/).flatten)
+    User.where(login: scan(/@([\\\w][\\\w\\\-_]*)/).flatten)
   end
 
 end

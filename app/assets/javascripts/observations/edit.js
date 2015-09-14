@@ -103,6 +103,8 @@ $(document).ready(function() {
       }
     })
   }
+
+  $("#observation_description").textcompleteUsers( );
 })
 
 function afterFindPlaces() {

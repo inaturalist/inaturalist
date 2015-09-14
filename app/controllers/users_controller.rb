@@ -229,7 +229,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    scope = User.active.order('login')
+    scope = User.active
     @q = params[:q].to_s
     unless @q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
@@ -241,6 +241,11 @@ class UsersController < ApplicationController
         ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
       end
       scope = scope.where(conditions)
+    end
+    if params[:order] == "activity"
+      scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
+    else
+      scope = scope.order("login")
     end
     @users = scope.page(params[:page])
     respond_to do |format|
