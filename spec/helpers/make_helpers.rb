@@ -141,6 +141,7 @@ module MakeHelpers
   end
 
   def make_threatened_taxon(options = {})
+    options[:rank] ||= Taxon::SPECIES
     t = Taxon.make!(options)
     without_delay { ConservationStatus.make!(taxon: t, iucn: Taxon::IUCN_ENDANGERED) }
     t.reload

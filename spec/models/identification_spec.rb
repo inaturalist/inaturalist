@@ -184,7 +184,7 @@ describe Identification, "creation" do
   it "should obscure the observation's coordinates if the taxon is threatened" do
     o = Observation.make!(:latitude => 1, :longitude => 1)
     expect(o).not_to be_coordinates_obscured
-    i = Identification.make!(:taxon => Taxon.make!(:threatened), :observation => o, :user => o.user)
+    i = Identification.make!(:taxon => make_threatened_taxon, :observation => o, :user => o.user)
     o.reload
     expect(o).to be_coordinates_obscured
   end
