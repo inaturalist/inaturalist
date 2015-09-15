@@ -213,20 +213,21 @@ class TaxonName < ActiveRecord::Base
 
   def locale_for_lexicon
     case localizable_lexicon
-    when "scientific_names" then "sci"
-    when "english" then "en"
-    when "spanish" then "es"
-    when "german" then "de"
-    when "portuguese" then "pt"
-    when "french" then "fr"
+    when "catalan" then "ca"
     when "chinese_traditional" then "zh"
-    when "japanese" then "ja"
-    when "maya" then "myn"
     when "dutch" then "nl"
-    when "indonesian" then "id"
+    when "english" then "en"
+    when "french" then "fr"
+    when "german" then "de"
     when "hawaiian" then "haw"
-    when "maori" then "mi"
+    when "indonesian" then "id"
     when "italian" then "it"
+    when "japanese" then "ja"
+    when "maori" then "mi"
+    when "maya" then "myn"
+    when "portuguese" then "pt"
+    when "scientific_names" then "sci"
+    when "spanish" then "es"
     else
       "und"
     end
