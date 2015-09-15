@@ -282,17 +282,19 @@ module HasSubscribers
       return if users.blank?
       users.each do |u|
         next unless u.prefers_receive_mentions?
-        next if Update.where(
-            subscriber: u,
-            resource: self,
-            notification: options[:notification]
-          ).exists?
-        Update.create(
+        notifier = if respond_to?(:parent)
+          parent
+        elsif respond_to?(:observatoin)
+          observation
+        else
+          self
+        end
+        Update.where(
           subscriber: u,
           resource: self,
-          notifier: self,
+          notifier: notifier,
           notification: options[:notification]
-        )
+        ).first_or_create
       end
     end
 

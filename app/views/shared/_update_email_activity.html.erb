@@ -3,6 +3,7 @@
   updates ||= []
   class_name = resource.class.to_s.underscore
   viewing_user = current_user rescue @user
+  no_thumb ||= false
 -%>
 
 <div class="updatecontent">
@@ -23,12 +24,12 @@
       -%>
       <tr>
         <td valign="top" style="padding-right:10px;">
-          <%= user_image(notifier.user, :size => "thumb", :width => 32, :height => 32) %>
+          <%- if notifier.user && !no_thumb %>
+            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32) %>
+          <%- end %>
         </td>
         <td valign="top">
-          <% if notifier.is_a?(Comment) -%>
-            <%= formatted_user_text(notifier.body) %>
-          <% elsif notifier.is_a?(Identification) %>
+          <%- if notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
               <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
@@ -68,6 +69,19 @@
                 <%=t :added_to_favorites_html, url: faves_by_login_url(user.login) %>
               </em>
             </div>
+          <% else -%>
+            <% text = if notifier.respond_to?(:body)
+                notifier.body
+              elsif notifier.respond_to?(:description)
+                notifier.description
+              end -%>
+            <% if text -%>
+              <% if context = text.context_of_pattern("@#{ viewing_user.login }") -%>
+                <%= formatted_user_text(context) %>
+              <% else -%>
+                <%= formatted_user_text(text) %>
+              <% end -%>
+            <% end -%>
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
             <%=t :posted_by %>

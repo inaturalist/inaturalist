@@ -12,6 +12,7 @@
       else
         updates.last.notifier
       end
+      is_update = notification == "mention"
     -%>
     <tr>
       <td valign="top" align="center" style="border-bottom:1px solid #ccc;padding: 10px 10px 10px 0;">
@@ -29,8 +30,8 @@
             <%= update_tagline_for(updates.last, :count => updates.size) %>
           </div>
           <%= 
-            if notification == "activity"
-              render_in_format :html, :partial => "shared/update_email_activity", :object => resource, :locals => {:updates => updates}
+            if notification == "activity" || is_update
+              render_in_format :html, partial: "shared/update_email_activity", object: resource, locals: { updates: updates, no_thumb: is_update }
             else
               begin
                 render_in_format :html, :partial => "#{resource_type.underscore.pluralize}/update_email_#{notification}", 

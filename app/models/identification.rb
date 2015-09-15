@@ -47,7 +47,7 @@ class Identification < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
-  notifies_users :mentioned_users, notification: "mention"
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)

@@ -16,6 +16,7 @@
   end
   hide_agree ||= false
   no_thumb ||= false
+  context_around ||= nil
 -%>
 <div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
   <div class="item_user column">
@@ -74,7 +75,13 @@
     <%- end -%>
     
     <% if item.respond_to?(:body) && !item.body.blank? -%>
-      <div class="readable body"><%= formatted_user_text(item.body) %></div>
+      <div class="readable body">
+        <%- if context_around && context = item.body.context_of_pattern(context_around) %>
+          <%= formatted_user_text(context) %>
+        <% else -%>
+          <%= formatted_user_text(item.body) %>
+        <% end -%>
+      </div>
     <% end -%>
     
     <div class="meta">

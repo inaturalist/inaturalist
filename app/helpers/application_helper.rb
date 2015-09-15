@@ -1303,7 +1303,7 @@ module ApplicationHelper
   def hyperlink_mentions(text)
     linked_text = text.dup
     linked_text.mentioned_users.each do |u|
-      linked_text.gsub!(/@#{ u.login }/, link_to("@#{ u.login }", u))
+      linked_text.gsub!(/@#{ u.login }/, link_to("@#{ u.login }", person_by_login_url(u.login)))
     end
     linked_text
   end

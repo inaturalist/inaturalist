@@ -28,7 +28,7 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
-  notifies_users :mentioned_users, notification: "mention"
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],

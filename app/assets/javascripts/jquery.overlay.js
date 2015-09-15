@@ -113,7 +113,7 @@
       'background-color'
     ];
 
-    function Overlay($textarea) {
+    function Overlay($textarea, strategies) {
       var $wrapper, position;
 
       // Setup wrapper element
@@ -124,6 +124,9 @@
           position: position
         })
       );
+      if( strategies.length == 1 && strategies[0].wrapper_css ) {
+        $wrapper.css(strategies[0].wrapper_css);
+      }
 
       // Setup overlay
       this.textareaTop = parseInt($textarea.css('border-top-width'));
@@ -253,7 +256,7 @@
       $this = $(this);
       overlay = $this.data(dataKey);
       if (!overlay) {
-        overlay = new Overlay($this);
+        overlay = new Overlay($this, strategies);
         $this.data(dataKey, overlay);
       }
       overlay.register(strategies);
