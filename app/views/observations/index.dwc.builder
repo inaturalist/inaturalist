@@ -14,9 +14,9 @@ for observation in @observations
     
     unless observation.photos.blank?
       observation.photos.each do |photo|
-        adapted_photo = EolMedia.adapt(photo, :observation => observation)
+        adapted_photo = DarwinCore::EolMedia.adapt(photo, :observation => observation)
         xml.eol :dataObject do
-          EolMedia::TERMS.each do |term, uri, default, method|
+          DarwinCore::EolMedia::TERMS.each do |term, uri, default, method|
             next if %w(taxonID spatial lat long referenceID).include?(term)
             value = adapted_photo.send(method || term)
             next if value.blank?
