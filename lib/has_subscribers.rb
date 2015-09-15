@@ -282,7 +282,7 @@ module HasSubscribers
       return if users.blank?
       users.each do |u|
         next unless u.prefers_receive_mentions?
-        notifier = if respond_to?(:parent)
+        notifier = if respond_to?(:parent) && !parent.is_a?(User)
           parent
         elsif respond_to?(:observatoin)
           observation

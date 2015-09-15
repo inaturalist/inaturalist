@@ -189,7 +189,7 @@
                       if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
                         notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
                       end
-                      notifier ||= u.notifier
+                      notifier = is_mention ? resource : (notifier || u.notifier)
                     -%>
                     <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
                       <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>

@@ -1366,7 +1366,8 @@ $.fn.dnaHighlight = function() {
 }
 
 $.fn.textcompleteUsers = function( ) {
-  this.textcomplete([{
+  var field = this;
+  field.textcomplete([{
     index: 1,
     match: /\B@([\\\w][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
@@ -1386,19 +1387,15 @@ $.fn.textcompleteUsers = function( ) {
       } else if( matches = html.match( / ([^ ]+)<\/div>/ )) {
         login = matches[1];
       }
+      setTimeout(function(){ field.data("highlighter").highlight() }, 10);
       return "@" + login + " ";
     }
-  }]);
-  // .overlay([{
-  //   match: /\B@\w+/g,
-  //   css: {
-  //     "background-color": "#c7d1e1"
-  //   },
-  //   wrapper_css: {
-  //     "display": "block",
-  //     "overflow": "hidden"
-  //   }
-  // }]);
+  }]).highlightTextarea({
+    words: [{
+      color: "#ADF0FF",
+      words: ["\\\B(@[\\\w][\\\w\\\-_]*)"]
+    }]
+  });
 }
 
 $.fn.boldId = function() {
