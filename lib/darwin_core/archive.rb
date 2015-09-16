@@ -91,24 +91,26 @@ module DarwinCore
       paths
     end
 
+    def observations_scope
+      scope = Observation.where("observations.license IS NOT NULL")
+      if @opts[:quality] == "research"
+        scope = scope.where("quality_grade = ?", Observation::RESEARCH_GRADE)
+      elsif @opts[:quality] == "casual"
+        scope = scope.where("quality_grade = ?", Observation::CASUAL_GRADE)
+      end
+      scope = scope.of(@taxon) if @taxon
+      scope = scope.in_place(@place) if @place
+      scope
+    end
+
     def make_occurrence_data
       headers = DarwinCore::Occurrence::TERM_NAMES
       fname = "observations.csv"
       tmp_path = File.join(@work_path, fname)
       fake_view = FakeView.new
       
-      scope = Observation.
-        includes(:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications).
-        where("observations.license IS NOT NULL")
-      
-      if @opts[:quality] == "research"
-        scope = scope.where("quality_grade = ?", Observation::RESEARCH_GRADE)
-      elsif @opts[:quality] == "casual"
-        scope = scope.where("quality_grade = ?", Observation::CASUAL_GRADE)
-      end
-      
-      scope = scope.of(@taxon) if @taxon
-      scope = scope.in_place(@place) if @place
+      scope = observations_scope.
+        includes(:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications)
       
       start = Time.now
       CSV.open(tmp_path, 'w') do |csv|
@@ -200,21 +202,10 @@ module DarwinCore
         Photo.license_number_for_code(license_code)
       end
       
-      scope = Observation.
+      scope = observations_scope.
         joins(:taxon, {observation_photos: {photo: :user}}).
         includes(observation_photos: {photo: :user}).
         where("photos.license IN (?)", licenses)
-      
-      if @opts[:quality] == "research"
-        scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
-      end
-      
-      scope = scope.where(@taxon.descendant_conditions) if @taxon
-
-      if @place
-        scope = scope.joins("JOIN place_geometries ON place_geometries.place_id = #{@place.id}")
-        scope = scope.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
-      end
       
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
