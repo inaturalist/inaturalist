@@ -307,6 +307,9 @@ describe User do
   end
 
   describe "sane_destroy" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+
     before(:each) do
       enable_elastic_indexing([ Observation, Taxon, Place, Update ])
       without_delay do
@@ -457,6 +460,28 @@ describe User do
       pjp = Post.make!(:parent => p, :user => @user)
       @user.sane_destroy
       expect(Post.find_by_id(pjp.id)).not_to be_blank
+    end
+
+    it "should reassess the community taxon of observations the user has identified" do
+      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::SPECIES))
+      expect( o.community_taxon ).to be_blank
+      i = Identification.make!(observation: o, taxon: o.taxon, user: @user)
+      o.reload
+      expect( o.community_taxon ).to eq i.taxon
+      @user.sane_destroy
+      o.reload
+      expect( o.community_taxon ).to be_blank
+    end
+
+    it "should reassess the quality grade of observations the user has identified" do
+      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::SPECIES))
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      i = Identification.make!(observation: o, taxon: o.taxon, user: @user)
+      o.reload
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      without_delay { @user.sane_destroy }
+      o.reload
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
     end
   end
 
@@ -668,26 +693,26 @@ end
 
 describe User, "active_ids" do
   it "should calculate active users across several classes" do
-    User.active_ids.length.should == 0
-    Identification.count.should == 0
+    expect(User.active_ids.length).to eq 0
+    expect(Identification.count).to eq 0
     observation = Observation.make!
     # observations are made with identifications, so we'll start fresh
     Identification.delete_all
     Identification.make!(observation: observation)
-    Identification.count.should == 1
+    expect(Identification.count).to eq 1
     Comment.make!(parent: observation)
     Post.make!(parent: observation)
-    User.active_ids.length.should == 4
+    expect(User.active_ids.length).to eq 4
   end
 
   it "should count the same user only once" do
-    User.active_ids.length.should == 0
+    expect(User.active_ids.length).to eq 0
     user = User.make!
     observation = Observation.make!(user: user)
     Identification.delete_all
     Identification.make!(observation: observation, user: user)
     Comment.make!(parent: observation, user: user)
     Post.make!(parent: observation, user: user)
-    User.active_ids.length.should == 1
+    expect(User.active_ids.length).to eq 1
   end
 end
