@@ -38,6 +38,7 @@ EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
 end
 
-@opts = opts
-
+if opts.debug
+  opts[:logger] = Logger.new(STDOUT, level: Logger::DEBUG)
+end
 DarwinCore::Archive.generate(opts)

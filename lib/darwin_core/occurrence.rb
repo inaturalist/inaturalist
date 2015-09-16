@@ -16,7 +16,6 @@ module DarwinCore
       %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
-      %w(associatedMedia http://rs.tdwg.org/dwc/terms/associatedMedia),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
       %w(verbatimEventDate http://rs.tdwg.org/dwc/terms/verbatimEventDate),
@@ -123,11 +122,6 @@ module DarwinCore
       def establishmentMeans
         score = quality_metric_score(QualityMetric::WILD)
         score && score < 0.5 ? "cultivated" : "wild"
-      end
-
-      def associatedMedia
-        photo_urls = photos.map{|p| [p.medium_url, p.native_page_url]}.flatten.compact
-        photo_urls.join(', ')
       end
 
       def eventDate

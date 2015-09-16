@@ -13,36 +13,42 @@ module DarwinCore
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
       @opts[:quality] ||= "research"
       @opts[:photo_licenses] ||= ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
+      @logger = @opts[:logger] || Rails.logger
+      @logger.level = Logger::DEBUG if @opts[:debug]
 
       # Make a unique dir to put our files
       @work_path = Dir.mktmpdir
       FileUtils.mkdir_p @work_path, :mode => 0755
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
-      puts "Found place: #{@place}" if @opts[:debug]
+      logger.debug "Found place: #{@place}"
       @taxon = if @opts[:taxon].is_a?(::Taxon)
         @opts[:taxon]
       else
         ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.find_by_name(@opts[:taxon])
       end
-      puts "Found taxon: #{@taxon}" if @opts[:debug]
-      puts "Photo licenses: #{@opts[:photo_licenses].inspect}" if @opts[:debug]
+      logger.debug "Found taxon: #{@taxon}"
+      logger.debug "Photo licenses: #{@opts[:photo_licenses].inspect}"
+    end
+
+    def logger
+      @logger || Rails.logger
     end
 
     def generate
       unless @opts[:metadata].to_s.downcase == "skip"
         metadata_path = make_metadata
-        puts "Metadata: #{metadata_path}" if @opts[:debug]
+        logger.debug "Metadata: #{metadata_path}"
       end
       descriptor_path = make_descriptor
-      puts "Descriptor: #{descriptor_path}" if @opts[:debug]
+      logger.debug "Descriptor: #{descriptor_path}"
       data_paths = make_data
-      puts "Data: #{data_paths.inspect}" if @opts[:debug]
+      logger.debug "Data: #{data_paths.inspect}"
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
       archive_path = make_archive(*paths)
-      puts "Archive: #{archive_path}" if @opts[:debug]
+      logger.debug "Archive: #{archive_path}"
       FileUtils.mv(archive_path, @opts[:path])
-      puts "Archive generated: #{@opts[:path]}"
+      logger.info "Archive generated: #{@opts[:path]}"
       @opts[:path]
     end
 
@@ -85,6 +91,7 @@ module DarwinCore
       if @opts[:extensions]
         @opts[:extensions].each do |ext|
           ext = ext.underscore.downcase
+          logger.info "Making #{ext} extension..."
           paths << send("make_#{ext}_data")
         end
       end
@@ -110,7 +117,7 @@ module DarwinCore
       fake_view = FakeView.new
       
       scope = observations_scope.
-        includes(:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications)
+        includes(:taxon, {:user => :stored_preferences}, :quality_metrics, :identifications)
       
       start = Time.now
       CSV.open(tmp_path, 'w') do |csv|
