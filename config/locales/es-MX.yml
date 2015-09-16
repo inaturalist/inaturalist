@@ -95,7 +95,6 @@ es-MX:
   about_life!: ¡Acerca de la vida!
   about_places: Acerca de Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
-  about_the_quality_assessment: Acerca de la calidad de los datos
   about_the_taxobox_raquo: Acerca dela ficha de especies &raquo;
   about_these_licenses: Acerca de estas licencias
   about_this_map: Acerca de este mapa
@@ -1808,7 +1807,7 @@ es-MX:
   most_observations: La mayoría de las observaciones
   most_species: La mayoría de las especies
   most_observed_species: Especies más observadas
-  multiple_taxa: Más de una especie o grupo (entrada de datos para intercambiar/mezclar,
+  multiple_taxa_for_taxon_change: Más de una especie o grupo (entrada de datos para intercambiar/mezclar,
     salida de datos para separar)
   must_be_observed_in: deben ser observaciones en
   must_be_less_than_x_MB: Debe pesar menos de %{x}MB
@@ -2256,76 +2255,76 @@ es-MX:
   place_deleted: Lugar eliminado.
   place_geo:
     geo_planet_place_types:
-      Undefined: Indefinido
-      Building: Construcción
-      Street_Segment: Segmento de Calle
-      Nearby_Building: Cerca de una Construcción
-      Street: Calle
-      Intersection: Intersección
-      Town: Ciudad
-      State: Estado
-      Country: País
-      Local_Administrative_Area: Área Administrativa Local
-      Postal_Code: Código Postal
-      Island: Isla
-      Airport: Aeropuerto
-      Drainage: Drenaje
-      Land_Feature: Tierra Característica
-      Miscellaneous: Diverso
-      Nationality: Nacionalidad
-      Supername: Gran Usuario
-      Point_of_Interest: Punto de Interes
-      Region: Región
-      Suburb: Suburbio
-      Sports_Team: Equipo Deportivo
-      Colloquial: Coloquial
-      Zone: Zona
-      Historical_State: Estado Histórico
-      Historical_County: Municipio Histórico
-      Continent: Continente
-      Time_Zone: Zona de Tiempo
-      Nearby_Intersection: Intersección Cercana
-      Estate: Inmuebles
-      Historical_Town: Ciudad Histórica
       Aggregate: Añadido
-      Open_Space: Espacio Abierto
-      Territory: Territorio
-      County: Municipio
-      undefined: indefinido
-      building: construcción
-      street_segment: segmento de calle
-      nearby_building: cerca de una construcción
-      street: calle
-      intersection: intersección
-      town: ciudad
-      state: estado
-      country: país
-      local_administrative_area: área administrativa local
-      postal_code: código postal
-      island: isla
-      airport: aeropuerto
-      drainage: drenaje
-      land_feature: tierra característica
-      miscellaneous: diverso
-      nationality: nacionalidad
-      supername: gran usuario
-      point_of_interest: punto de interes
-      region: región
-      suburb: suburbio
-      sports_team: equipo deportivo
-      colloquial: coloquial
-      zone: zona
-      historical_state: estado histórico
-      historical_county: municipio histórico
-      continent: continente
-      time_zone: zona de tiempo
-      nearby_intersection: intersección cercana
-      estate: inmuebles
-      historical_town: ciudad histórica
       aggregate: añadido
-      open_space: espacio abierto
-      territory: territorio
+      Airport: Aeropuerto
+      airport: aeropuerto
+      Building: Construcción
+      building: construcción
+      Colloquial: Coloquial
+      colloquial: coloquial
+      Continent: Continente
+      continent: continente
+      Country: País
+      country: país
+      County: Municipio
       county: municipio
+      Drainage: Drenaje
+      drainage: drenaje
+      Estate: Inmuebles
+      estate: inmuebles
+      Historical_County: Municipio Histórico
+      historical_county: municipio histórico
+      Historical_State: Estado Histórico
+      historical_state: estado histórico
+      Historical_Town: Ciudad Histórica
+      historical_town: ciudad histórica
+      Intersection: Intersección
+      intersection: intersección
+      Island: Isla
+      island: isla
+      Land_Feature: Tierra Característica
+      land_feature: tierra característica
+      Local_Administrative_Area: Área Administrativa Local
+      local_administrative_area: área administrativa local
+      Miscellaneous: Diverso
+      miscellaneous: diverso
+      Nationality: Nacionalidad
+      nationality: nacionalidad
+      Nearby_Building: Cerca de una Construcción
+      nearby_building: cerca de una construcción
+      Nearby_Intersection: Intersección Cercana
+      nearby_intersection: intersección cercana
+      Open_Space: Espacio Abierto
+      open_space: espacio abierto
+      Point_of_Interest: Punto de Interes
+      point_of_interest: punto de interes
+      Postal_Code: Código Postal
+      postal_code: código postal
+      Region: Región
+      region: región
+      Sports_Team: Equipo Deportivo
+      sports_team: equipo deportivo
+      State: Estado
+      state: estado
+      Street: Calle
+      street: calle
+      Street_Segment: Segmento de Calle
+      street_segment: segmento de calle
+      Suburb: Suburbio
+      suburb: suburbio
+      Supername: Gran Usuario
+      supername: gran usuario
+      Territory: Territorio
+      territory: territorio
+      Time_Zone: Zona de Tiempo
+      time_zone: zona de tiempo
+      Town: Ciudad
+      town: ciudad
+      Undefined: Indefinido
+      undefined: indefinido
+      Zone: Zona
+      zone: zona
   place_guess: Lugar sugerido
   place_imported: ¡Lugar importado!
   place_must_have_a_boundary_defined: El lugar debe tener límites definidos.
@@ -2620,7 +2619,6 @@ es-MX:
     tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale
     para ver la evaluación de calidad de los datos.
   research_quality: Calidad de investigación
-  reserach_grade: Grado de investigación
   reset_your_password: Cambia tu contraseña
   resolve: Resolver
   resolve_this_flag: Resolver esta advertencia
@@ -3913,10 +3911,10 @@ es-MX:
     help:
       index:
         welcome_message_html: Hola, si eres nuevo en %{site_name}, revisa la página
-          empezando para que conozcas algunas
-          de las características del sitio. Si tienes alguna pregunta sobre el sitio,
-          échale un ojo a las preguntas frecuentes descritas abajo. Si no encuentras
-          la respuesta a tus preguntas, incluye tu consulta en nuestro <a href="http://groups.google.com/group/inaturalist"
+          empezando para que conozcas algunas de las características del sitio. Si
+          tienes alguna pregunta sobre el sitio, échale un ojo a las preguntas frecuentes
+          descritas abajo. Si no encuentras la respuesta a tus preguntas, incluye
+          tu consulta en nuestro <a href="http://groups.google.com/group/inaturalist"
           title="%{site_name} | Google Groups">Grupo Google</a>.
         what_is_inaturalist?: ¿Qué es %{site_name}?
         who_is_behind_inaturalist?: ¿Quién está detrás de %{site_name}?
@@ -4236,7 +4234,7 @@ es-MX:
           podrán ver las coordenadas oscurecidas de cualquier observación en el proyecto
           y esto implica que tu estás de acuerdo a los <a href="%{url}" target="_blank">términos</a>
           del proyecto.
-        quality_assessment_help_html: |
+        quality_assessment_help_html: |-
           <p>
             La evaluación de la calidad de los datos es un resumen de la presición de
             una observación. Todas las observaciones comienzan con el grado de

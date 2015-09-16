@@ -1299,19 +1299,17 @@ describe Observation do
         expect( Observation.in_projects(po.project.slug) ).not_to include other_o
       end
       it "should find observations in a project that begins with a number" do
-        po = make_project_observation(project: Project.make!(title: "5MBC: Five Minute Bird Counts New Zealand"))
-        other_p = Project.make!(id: 5)
-        expect( other_p.id ).to eq 5
-        expect( po.project.slug.to_i ).to eq 5
+        other_p = Project.make!
+        po = make_project_observation(project: Project.make!(title: "#{other_p.id}MBC: Five Minute Bird Counts New Zealand"))
+        expect( po.project.slug.to_i ).to eq other_p.id
         other_o = Observation.make!
         expect( Observation.in_projects(po.project_id) ).to include po.observation
         expect( Observation.in_projects(po.project_id) ).not_to include other_o
       end
       it "should find observations in a project that begins with a number by slug" do
-        po = make_project_observation(project: Project.make!(title: "5MBC: Five Minute Bird Counts New Zealand"))
-        other_p = Project.make!(id: 5)
-        expect( other_p.id ).to eq 5
-        expect( po.project.slug.to_i ).to eq 5
+        other_p = Project.make!
+        po = make_project_observation(project: Project.make!(title: "#{other_p.id}MBC: Five Minute Bird Counts New Zealand"))
+        expect( po.project.slug.to_i ).to eq other_p.id
         other_o = Observation.make!
         expect( Observation.in_projects(po.project.slug) ).to include po.observation
         expect( Observation.in_projects(po.project.slug) ).not_to include other_o
@@ -1335,7 +1333,8 @@ describe Observation do
 
   describe "private coordinates" do
     before(:each) do
-      @taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      @taxon = Taxon.make!(rank: "species")
+      @conservation_status = ConservationStatus.make!(taxon: @taxon)
     end
   
     it "should be set automatically if the taxon is threatened" do
@@ -1499,7 +1498,7 @@ describe Observation do
 
   describe "unobscure_coordinates" do
     it "should work" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       true_lat = 38.0
       true_lon = -122.0
       o = Observation.make!(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
@@ -1523,14 +1522,14 @@ describe Observation do
     end
   
     it "should not obscure observations with obscured geoprivacy" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
       o.unobscure_coordinates
       expect(o).to be_coordinates_obscured
     end
   
     it "should not obscure observations with private geoprivacy" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
       o.unobscure_coordinates
       expect(o).to be_coordinates_obscured
@@ -1591,7 +1590,7 @@ describe Observation do
 
   describe "unobscure_coordinates_for_observations_of" do
     it "should work" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       true_lat = 38.0
       true_lon = -122.0
       obs = []
@@ -1619,7 +1618,7 @@ describe Observation do
     end
   
     it "should not obscure observations with obscured geoprivacy" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
       Observation.unobscure_coordinates_for_observations_of(taxon)
       o.reload
@@ -1627,7 +1626,7 @@ describe Observation do
     end
   
     it "should not obscure observations with private geoprivacy" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
       Observation.unobscure_coordinates_for_observations_of(taxon)
       o.reload
@@ -1641,7 +1640,7 @@ describe Observation do
 
   describe "obscure_coordinates_for_threatened_taxa" do
     it "should not unobscure previously obscured observations of threatened taxa" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:latitude => 38, :longitude => -122, :taxon => taxon)
       expect(o).to be_coordinates_obscured
       o.obscure_coordinates_for_threatened_taxa
@@ -1678,7 +1677,7 @@ describe Observation do
     end
   
     it "should not unobscure observations of threatened taxa" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:taxon => taxon, :latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
       expect(o).to be_coordinates_obscured
       o.update_attributes(:geoprivacy => nil)
@@ -1687,7 +1686,7 @@ describe Observation do
     end
   
     it "should remove public coordinates when private even if taxon threatened" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      taxon = make_threatened_taxon
       o = Observation.make!(:latitude => 37, :longitude => -122, :taxon => taxon)
       expect(o).to be_coordinates_obscured
       expect(o.latitude).not_to be_blank
@@ -1970,12 +1969,12 @@ describe Observation do
     end
     it "should include places that do contain the public_positional_accuracy circle" do
       p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => Taxon.make!(:threatened))
+      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => make_threatened_taxon)
       expect(o.places).to include p
     end
     it "should not include places that don't contain public_positional_accuracy circle" do
       p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))")
-      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => Taxon.make!(:threatened))
+      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => make_threatened_taxon)
       expect(o.places).not_to include p
     end
   end

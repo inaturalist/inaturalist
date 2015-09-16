@@ -6,6 +6,8 @@
   hide_buttons ||= false
   show_user_field ||= false
   show_project_field ||= !@projects.blank?
+  show_multiple_taxa_field ||= !@observations_taxon_ids.blank?
+  show_extra_date_fields ||= false
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -339,15 +341,51 @@
     <div class="left">
       <input type="text" name="not_in_project" id="not_in_project_input" value="<%= @not_in_project.try(:slug) %>" class="smalltext text"/>
       <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
-      <div class="small"><%= t :project_id_or_url_slug %></div>
+      <div class="small"><%= t :project_that_does_not_contain_these_observations %></div>
     </div>
   </div>
 <% end -%>
 
+<% if show_multiple_taxa_field %>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :taxon_ids %></strong></div>
+    <div class="left">
+      <input type="text" name="taxon_ids[]" id="taxon_ids_input" value="<%= [@observations_taxon_ids].flatten.compact.join(',') %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :multiple_taxon_ids_separated_by_commas %></div>
+    </div>
+  </div>
+<% else %>
+  <input type="hidden" name="taxon_ids[]" id="taxon_ids_input" value="<%= [@observations_taxon_ids].flatten.compact.join(',') %>"/>
+<% end %>
+
+<% if show_extra_date_fields %>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :date_range %></strong></div>
+    <div class="left">
+      <input type="text" name="d1" id="d1" value="<%= @d1 %>" class="smalltext text" placeholder="<%=t :start, default: 'start' %>"/>
+      <input type="text" name="d2" id="d2" value="<%= @d2 %>" class="smalltext text" placeholder="<%=t :end, default: 'stop' %>"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t 'views.observations.export.date_range_help' %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :created_on %></strong></div>
+    <div class="left">
+      <input type="text" name="created_on" id="created_on" value="<%= @created_on %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t 'views.observations.export.created_on_help' %></div>
+    </div>
+  </div>
+<% else %>
+  <input type="hidden" name="d1" id="d1" value="<%= @d1 %>"/>
+  <input type="hidden" name="d2" id="d2" value="<%= @d2 %>"/>
+  <input type="hidden" name="created_on" id="created_on" value="<%= @created_on %>"/>
+<% end %>
+
 <input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>
-<input type="hidden" name="d1" id="d1" value="<%= @d1 %>"/>
-<input type="hidden" name="d2" id="d2" value="<%= @d2 %>"/>
+<input type="hidden" name="list_id" id="list_id" value="<%= @list.try(:id) %>"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
 

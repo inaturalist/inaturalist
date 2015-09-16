@@ -1071,7 +1071,6 @@ class Taxon < ActiveRecord::Base
     return geoprivacies.first if geoprivacies.size == 1
     return Observation::PRIVATE if geoprivacies.include?(Observation::PRIVATE)
     return Observation::OBSCURED unless geoprivacies.blank?
-    return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
     ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end
   

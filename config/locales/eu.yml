@@ -74,7 +74,6 @@ eu:
   about_life!: Bizitzari buruz!
   about_places: Tokiei buruz
   about_the_cc_licenses: Creative Commons-eko lizentziei buruz
-  about_the_quality_assessment: Datuen kalitateari buruz
   about_the_taxobox_raquo: '&raquo; taxonaren fitxari buruz'
   about_these_licenses: Lizentzia hauei buruz
   about_this_map: Mapa honi buruz
@@ -1503,7 +1502,7 @@ eu:
   most: Gehiago
   most_agree: Gehiengoak babesten du
   most_disagree: Gehiengoak ez du babesten
-  multiple_taxa: Espezie edo talde bat baino gehiago (datu-sarrera trukatzeko/nahasteko,
+  multiple_taxa_for_taxon_change: Espezie edo talde bat baino gehiago (datu-sarrera trukatzeko/nahasteko,
     datu-irteera bereizteko)
   must_be_observed_in: 'hemengo behaketak izan behar dute:'
   must_have_observation_field: '''%{operand}'' eremua bete behar duzu oharrean'
@@ -1883,76 +1882,76 @@ eu:
   place_deleted: Tokia ezabatuta.
   place_geo:
     geo_planet_place_types:
-      Undefined: Zehaztugabea
-      Building: Eraikuntza
-      Street_Segment: Kale-segmentua
-      Nearby_Building: Eraikuntza batetik gertu
-      Street: Kalea
-      Intersection: Bidegurutzea
-      Town: Herria
-      State: Estatua
-      Country: Herrialdea
-      Local_Administrative_Area: Tokiko Administrazio Alorra
-      Postal_Code: Posta-kodea
-      Island: Uhartea
-      Airport: Aireportua
-      Drainage: Drainatzea
-      Land_Feature: Lur bereizgarria
-      Miscellaneous: Askotarikoa
-      Nationality: Herritartasuna
-      Supername: Super izena
-      Point_of_Interest: Interes-puntua
-      Region: Eskualdea
-      Suburb: Auzo pobrea
-      Sports_Team: Kirol taldea
-      Colloquial: Lagunartekoa
-      Zone: Eremua
-      Historical_State: Estatu historikoa
-      Historical_County: Konderri historikoa
-      Continent: Kontinentea
-      Time_Zone: Ordu-zona
-      Nearby_Intersection: Hurbileko bidegurutzea
-      Estate: Higiezinak
-      Historical_Town: Herri historikoa
       Aggregate: Gehituta
-      Open_Space: Esparru irekia
-      Territory: Lurraldea
-      County: Konderria
-      undefined: zehaztugabea
-      building: eraikuntza
-      street_segment: kale-segmentua
-      nearby_building: eraikuntza batetik gertu
-      street: kalea
-      intersection: bidegurutzea
-      town: herria
-      state: estatua
-      country: herrialdea
-      local_administrative_area: tokiko administrazio alorra
-      postal_code: posta-kodea
-      island: uhartea
-      airport: aireportua
-      drainage: drainatzea
-      land_feature: lur bereizgarria
-      miscellaneous: askotarikoa
-      nationality: herritartasuna
-      supername: super izena
-      point_of_interest: interes-puntua
-      region: eskualdea
-      suburb: auzo pobrea
-      sports_team: kirol taldea
-      colloquial: lagunartekoa
-      zone: eremua
-      historical_state: estatu historikoa
-      historical_county: konderri historikoa
-      continent: kontinentea
-      time_zone: ordu-zona
-      nearby_intersection: hurbileko bidegurutzea
-      estate: higiezinak
-      historical_town: herri historikoa
       aggregate: gehituta
-      open_space: esparru irekia
-      territory: lurraldea
+      Airport: Aireportua
+      airport: aireportua
+      Building: Eraikuntza
+      building: eraikuntza
+      Colloquial: Lagunartekoa
+      colloquial: lagunartekoa
+      Continent: Kontinentea
+      continent: kontinentea
+      Country: Herrialdea
+      country: herrialdea
+      County: Konderria
       county: konderria
+      Drainage: Drainatzea
+      drainage: drainatzea
+      Estate: Higiezinak
+      estate: higiezinak
+      Historical_County: Konderri historikoa
+      historical_county: konderri historikoa
+      Historical_State: Estatu historikoa
+      historical_state: estatu historikoa
+      Historical_Town: Herri historikoa
+      historical_town: herri historikoa
+      Intersection: Bidegurutzea
+      intersection: bidegurutzea
+      Island: Uhartea
+      island: uhartea
+      Land_Feature: Lur bereizgarria
+      land_feature: lur bereizgarria
+      Local_Administrative_Area: Tokiko Administrazio Alorra
+      local_administrative_area: tokiko administrazio alorra
+      Miscellaneous: Askotarikoa
+      miscellaneous: askotarikoa
+      Nationality: Herritartasuna
+      nationality: herritartasuna
+      Nearby_Building: Eraikuntza batetik gertu
+      nearby_building: eraikuntza batetik gertu
+      Nearby_Intersection: Hurbileko bidegurutzea
+      nearby_intersection: hurbileko bidegurutzea
+      Open_Space: Esparru irekia
+      open_space: esparru irekia
+      Point_of_Interest: Interes-puntua
+      point_of_interest: interes-puntua
+      Postal_Code: Posta-kodea
+      postal_code: posta-kodea
+      Region: Eskualdea
+      region: eskualdea
+      Sports_Team: Kirol taldea
+      sports_team: kirol taldea
+      State: Estatua
+      state: estatua
+      Street: Kalea
+      street: kalea
+      Street_Segment: Kale-segmentua
+      street_segment: kale-segmentua
+      Suburb: Auzo pobrea
+      suburb: auzo pobrea
+      Supername: Super izena
+      supername: super izena
+      Territory: Lurraldea
+      territory: lurraldea
+      Time_Zone: Ordu-zona
+      time_zone: ordu-zona
+      Town: Herria
+      town: herria
+      Undefined: Zehaztugabea
+      undefined: zehaztugabea
+      Zone: Eremua
+      zone: eremua
   place_guess: Lekuaren estimazioa
   place_imported: Tokia inportatuta!
   place_must_have_a_boundary_defined: Tokiak definitutako mugak izan behar ditu.

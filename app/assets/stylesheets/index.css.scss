@@ -1560,8 +1560,21 @@ table .numeric { text-align: center; }
 .admin:before {
   content: 'Admin only';
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+}
+
+.curatorsonly {
+  border-width: 2px;
+  border-style: dotted;
+  position: relative;
+}
+.curatorsonly:before {
+  content: 'Curators only';
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-weight: bold;
 }
 

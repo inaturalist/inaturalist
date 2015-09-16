@@ -5,7 +5,7 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.rotation.blank? && record.mobile? ? "-auto-orient -strip" : "-strip"
+    record.rotation.blank? ? "-auto-orient -strip" : "-strip"
   }
   
   has_attached_file :file, 

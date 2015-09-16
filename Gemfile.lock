@@ -174,7 +174,7 @@ GEM
       activerecord (>= 3.0.0)
     apipie-rails (0.3.1)
       json
-    arel (6.0.0)
+    arel (6.0.3)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
@@ -285,7 +285,7 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
-    friendly_id (5.0.5)
+    friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.7)
     geoplanet (0.2.7)
@@ -357,7 +357,7 @@ GEM
     mime-types (2.6.1)
     mimemagic (0.2.1)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.11.0)
@@ -635,7 +635,7 @@ DEPENDENCIES
   exifr
   faker
   flickraw (~> 0.9.8)!
-  friendly_id (~> 5.0.1)
+  friendly_id (~> 5.1.0)
   gdata!
   geocoder
   geoplanet

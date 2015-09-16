@@ -50,6 +50,7 @@ class Place < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
+  
   def normalize_friendly_id(string)
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
@@ -58,6 +59,18 @@ class Place < ActiveRecord::Base
       candidate = display_name.parameterize
     end
     candidate
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
+
+  def slug_candidates
+    [
+      :name,
+      :display_name,
+      [:name, :id]
+    ]
   end
   
   # Place to put a GeoPlanet response to avoid re-querying
@@ -218,7 +231,7 @@ class Place < ActiveRecord::Base
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
 
   def to_s
-    "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
+    "<Place id: #{id}, name: #{name}, admin_level: #{admin_level}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
     "lng: #{longitude}, parent_id: #{parent_id}>"
   end

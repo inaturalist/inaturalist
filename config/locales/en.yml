@@ -1597,7 +1597,8 @@ en:
   most_observations: Most observations
   most_species: Most species
   most_observed_species: Most observed species
-  multiple_taxa: "Multiple taxa (input for swap/merge, output for split)"
+  multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
+  multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
@@ -2212,6 +2213,7 @@ en:
     description: The species list for %{owner_name}
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> curators added some of your observations
+  project_id: Project ID
   project_members: "%{project} Members"
   project_membership_model_description: Is your project open to everyone or only to people you invite?
   project_observation_settings: Project observation settings
@@ -2223,6 +2225,7 @@ en:
   project_rules: Project Rules
   project_settings: Project settings
   project_terms_and_rules: project terms &amp; rules
+  project_that_does_not_contain_these_observations: Project that does not contain these observations
   project_type_description: |
     Assessments and bioblitzes are special types of projects. Assessments are
     for collaborating on a set of species assesssments, usually to guage
@@ -2688,6 +2691,7 @@ en:
   taxon_doesnt_have_a_range: Taxon doesn't have a range
   taxon_drop: taxon drop
   taxon_id: Taxon ID
+  taxon_ids: Taxon IDs
   taxon_map:
       gbif_occurrences: GBIF Occurrences
       it_may_take_google_a_while_to: It may take Google a while to load these data, assuming GBIF has any.
@@ -3772,6 +3776,8 @@ en:
         receive_an_email_with_your_data_help: You'll receive an email with your export as an attachment.
         well_email_you: "Ok, we'll email you when it's ready."
         taking_a_while: "This is taking a while. Please try one of the options below."
+        date_range_help: "Max and min dates observed in YYYY-MM-DD format, e.g. 2015-01-17"
+        created_on_help: "Date observations were created, not observed, e.g. 2015-01-17, 2015-01, 2015"
       field_descriptions:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"
