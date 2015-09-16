@@ -159,7 +159,7 @@
                       latitude: @guide.latitude, longitude: @guide.longitude,                           |
                       map_type: @guide.map_type, zoom_level: @guide.zoom_level) }                       |
                   - elsif gr = guide_taxon.guide_ranges.first
-                    = image_tag gr.original_url
+                    = image_tag gr.original_url, :class => "img-responsive"
         - else
           - for row in @guide_taxa.in_groups_of(4)
             .row.stacked
