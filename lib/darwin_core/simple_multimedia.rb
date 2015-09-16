@@ -52,12 +52,17 @@ module DarwinCore
 
       def created
         if metadata && metadata[:date_time_original]
-          metadata[:date_time_original].iso8601
-        elsif observation.time_observed_at
-          observation.time_observed_at.iso8601
-        elsif observation.observed_on
-          observation.observed_on.to_s
+          t = begin
+            Time.parse(metadata[:date_time_original]).iso8601
+          rescue
+            metadata[:date_time_original].iso8601
+          rescue
+            nil
+          end
         end
+        t ||= observation.time_observed_at.iso8601 if observation.time_observed_at
+        t ||= observation.observed_on.to_s if observation.observed_on
+        t
       end
 
       def creator
