@@ -915,7 +915,7 @@ module ApplicationHelper
     notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
       @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
     end
-    notifier = (update.notification == "mention") ? update.resource : (notifier || update.notifier)
+    notifier ||= update.notifier
     if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end

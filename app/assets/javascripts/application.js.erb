@@ -973,8 +973,23 @@ $.fn.subscriptionSettings = function() {
     }
   }, QTIP_DEFAULTS)
   $(this).each(function() {
-    options.content.ajax.url = $(this).attr('href')
-    $(this).qtip(options)
+    var thisOptions = $.extend({}, options);
+    if( thisOptions.content.ajax ) {
+      thisOptions.content.ajax.url = $(this).attr('href');
+    }
+    // custom text for qtip popup
+    if( $(this).data("gear-text") ) {
+      var text = $(this).data("gear-text");
+      // custom URL to make the text a link
+      if( $(this).data("gear-url") ) {
+        text = "<a href='"+ $(this).data("gear-url") +"'>"+ text +"</a>";
+      }
+      thisOptions.content = {
+        text: "<div class='meta'>"+ text +"</div>"
+      };
+      thisOptions.ajax = null;
+    }
+    $(this).qtip(thisOptions)
     $(this).click(function() {return false})
   })
 }
@@ -1392,7 +1407,7 @@ $.fn.textcompleteUsers = function( ) {
     }
   }]).highlightTextarea({
     words: [{
-      color: "#ADF0FF",
+      color: "#ffee91",
       words: ["\\\B(@[\\\w][\\\w\\\-_]*)"]
     }]
   });

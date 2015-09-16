@@ -279,23 +279,26 @@ module HasSubscribers
     def notify_users(method)
       options = self.class.notifies_users_options
       users = send(method)
-      return if users.blank?
-      users.each do |u|
-        next unless u.prefers_receive_mentions?
-        notifier = if respond_to?(:parent) && !parent.is_a?(User)
-          parent
-        elsif respond_to?(:observatoin)
-          observation
-        else
-          self
-        end
-        Update.where(
-          subscriber: u,
-          resource: self,
-          notifier: notifier,
-          notification: options[:notification]
-        ).first_or_create
+      resource = if respond_to?(:parent) && !parent.is_a?(User)
+        parent
+      elsif respond_to?(:observation)
+        observation
       end
+      resource ||= self
+      base_scope = Update.where(
+        resource: resource,
+        notifier: self,
+        notification: options[:notification])
+      destroy_scope = base_scope
+      unless users.blank?
+        users.each do |u|
+          next unless u.prefers_receive_mentions?
+          base_scope.where(subscriber: u).first_or_create
+        end
+        destroy_scope = destroy_scope.
+          where("subscriber_id NOT IN (#{ users.map(&:id).join(',') })")
+      end
+      destroy_scope.destroy_all
     end
 
   end

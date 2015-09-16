@@ -160,8 +160,11 @@
               <div class="updateheader meta stacked">
                 <div class="right small">
                   <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
-                  <%- # TODO: what to do w/ mentions here? %>
-                  <%- unless is_mention %>
+                  <%- if is_mention %>
+                    <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
+                      "#", class: "subscriptionsettings", "data-gear-text" => I18n.t("edit_your_default_settings"),
+                      "data-gear-url" => generic_edit_user_url %>
+                  <%- else %>
                     <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
                       edit_subscription_by_resource_path(resource_type, resource_id),
                       class: "subscriptionsettings" %>
@@ -189,7 +192,7 @@
                       if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
                         notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
                       end
-                      notifier = is_mention ? resource : (notifier || u.notifier)
+                      notifier ||= u.notifier
                     -%>
                     <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
                       <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>

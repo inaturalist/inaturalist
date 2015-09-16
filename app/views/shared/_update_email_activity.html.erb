@@ -69,7 +69,8 @@
                 <%=t :added_to_favorites_html, url: faves_by_login_url(user.login) %>
               </em>
             </div>
-          <% else -%>
+          <% end -%>
+          <% unless notifier.is_a?(Identification) && update.notification != "mention" -%>
             <% text = if notifier.respond_to?(:body)
                 notifier.body
               elsif notifier.respond_to?(:description)
