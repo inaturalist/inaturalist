@@ -10,12 +10,47 @@ describe DarwinCore::Archive, "make_descriptor" do
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
+  let(:o) { make_research_grade_observation }
+  let(:p) { 
+    photo = o.photos.first
+    photo.update_attributes(license: Photo::CC_BY)
+    DarwinCore::SimpleMultimedia.adapt(photo, observation: o)
+  }
+
   it "should not choke if a taxon was specified" do
-    o = make_research_grade_observation
     archive = DarwinCore::Archive.new(taxon: o.taxon_id, extensions: %w(SimpleMultimedia))
     expect {
       archive.make_simple_multimedia_data
     }.not_to raise_exception
+  end
+  
+  it "should set the license to a URI" do
+    expect( p.license ).to eq Photo::CC_BY
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    expect( CSV.read(archive.make_simple_multimedia_data).size ).to be > 1
+    CSV.foreach(archive.make_simple_multimedia_data, headers: true) do |row|
+      expect( row['license'] ).to match /creativecommons.org/
+    end
+  end
+
+  it "should set the core ID in the first column to the observation ID by default" do
+    expect( p.license ).to eq Photo::CC_BY
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    expect( CSV.read(archive.make_simple_multimedia_data).size ).to be > 1
+    CSV.foreach(archive.make_simple_multimedia_data, headers: true) do |row|
+      expect( row['id'].to_i ).to eq o.id
+    end
+  end
+
+  it "should set the core ID in the first column to the taxon ID if the core is taxon" do
+    3.times { Taxon.make! }
+    expect( o.id ).not_to eq o.taxon_id
+    expect( p.license ).to eq Photo::CC_BY
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia), core: 'taxon')
+    expect( CSV.read(archive.make_simple_multimedia_data).size ).to be > 1
+    CSV.foreach(archive.make_simple_multimedia_data, headers: true) do |row|
+      expect( row['id'].to_i ).to eq o.taxon_id
+    end
   end
 end
 

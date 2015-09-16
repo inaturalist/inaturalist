@@ -200,9 +200,9 @@ module DarwinCore
         Photo.license_number_for_code(license_code)
       end
       
-      scope = Photo.
-        joins(:user, {observation_photos: {observation: :taxon}}).
-        includes(observation_photos: :observation).
+      scope = Observation.
+        joins(:taxon, {observation_photos: {photo: :user}}).
+        includes(observation_photos: {photo: :user}).
         where("photos.license IN (?)", licenses)
       
       if @opts[:quality] == "research"
@@ -218,10 +218,10 @@ module DarwinCore
       
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |photo|
-          photo.observation_photos.each do |op|
-            DarwinCore::SimpleMultimedia.adapt(photo, observation: op.observation)
-            csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| photo.send(method || field)}
+        scope.find_each do |observation|
+          observation.observation_photos.each do |op|
+            DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
+            csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
           end
         end
       end

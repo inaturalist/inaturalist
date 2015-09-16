@@ -2,8 +2,7 @@ module DarwinCore
   class SimpleMultimedia
 
     TERMS = [
-      %w(occurrenceID http://rs.tdwg.org/dwc/terms/occurrenceID),
-      %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
+      ['id', 'id', nil, 'core_id'],
       ['type', 'http://purl.org/dc/terms/type', nil, 'dwc_type'],
       %w(format http://purl.org/dc/terms/format),
       %w(identifier http://purl.org/dc/terms/identifier),
@@ -11,7 +10,7 @@ module DarwinCore
       %w(created http://purl.org/dc/terms/created),
       %w(creator http://purl.org/dc/terms/creator),
       %w(publisher http://purl.org/dc/terms/publisher),
-      %w(license http://purl.org/dc/terms/license),
+      ['license', 'http://purl.org/dc/terms/license', nil, 'dwc_license'],
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
     ]
     TERM_NAMES = TERMS.map{|name, uri| name}
@@ -19,18 +18,20 @@ module DarwinCore
     def self.adapt(record, options = {})
       record.extend(InstanceMethods)
       record.observation = options[:observation]
+      record.core = options[:core]
       record
     end
     
     module InstanceMethods
       attr_accessor :observation
+      attr_accessor :core
 
-      def occurrenceID
-        observation.id
-      end
-
-      def taxonID
-        observation.taxon_id
+      def core_id
+        if core == 'taxon'
+          observation.taxon_id
+        else
+          observation.id
+        end
       end
 
       def dwc_type

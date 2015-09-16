@@ -7,12 +7,6 @@ describe DarwinCore::SimpleMultimedia do
     photo.update_attributes(license: Photo::CC_BY)
     DarwinCore::SimpleMultimedia.adapt(photo, observation: o)
   }
-  it "should return observation ID for occurrenceID" do
-    expect( p.occurrenceID ).to eq o.id
-  end
-  it "should return taxon ID for taxonID" do
-    expect( p.taxonID ).to eq o.taxon_id
-  end
   it "should return StillImage for dwc_type" do
     expect( p.dwc_type ).to eq "StillImage"
   end
