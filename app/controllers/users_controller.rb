@@ -229,7 +229,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    scope = User.active.order('login')
+    scope = User.active
     @q = params[:q].to_s
     unless @q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
@@ -241,6 +241,11 @@ class UsersController < ApplicationController
         ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
       end
       scope = scope.where(conditions)
+    end
+    if params[:order] == "activity"
+      scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
+    else
+      scope = scope.order("login")
     end
     @users = scope.page(params[:page])
     respond_to do |format|
@@ -329,13 +334,13 @@ class UsersController < ApplicationController
   
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
-      wheres: { notification: :activity }).total_entries
+      wheres: { notification: [ :activity, :mention ] }).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
   
   def new_updates
-    wheres = { notification: :activity }
+    wheres = { notification: [ :activity, :mention ] }
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
@@ -649,12 +654,14 @@ protected
       :prefers_message_email_notification,
       :prefers_project_invitation_email_notification,
       :prefers_project_journal_post_email_notification,
+      :prefers_mention_email_notification,
       :prefers_share_observations_on_facebook,
       :prefers_share_observations_on_twitter,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
       :prefers_location_details,
+      :prefers_receive_mentions,
       :site_id,
       :time_zone
     )

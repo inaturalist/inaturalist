@@ -2,6 +2,8 @@
   = t(:x_journal_new_post, :user => @parent_display_name)
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
+- content_for(:extrajs) do
+  = javascript_include_tag "posts/edit"
 .container
   .row
     #pageheader.col-md-12

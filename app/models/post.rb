@@ -23,6 +23,7 @@ class Post < ActiveRecord::Base
     :notification => "created_post",
     :include_notifier => true
   }
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
@@ -94,4 +95,10 @@ class Post < ActiveRecord::Base
     return false unless u
     user_id == u.id
   end
+
+  def mentioned_users
+    return [ ] unless published?
+    body.mentioned_users
+  end
+
 end
