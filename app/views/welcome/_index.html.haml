@@ -1,21 +1,113 @@
 - content_for :extracss do
   :css
+    .homesection {
+      margin-bottom: 60px;
+      color: #575757;
+    }
+    .homesection h1 {
+      margin-top: 0; 
+    }
+    #header {margin-bottom: 0;}
     .imgtxt .img {background-color: black; color:white; padding:0;overflow:hidden; height: 400px;}
     .imgtxt .txt {background-color: #74ac00; color:white; height: 400px;padding:2em;}
+    #hero { 
+      position: relative; 
+      overflow:hidden; 
+    }
+    #hero, #hero a {color: white;}
+    #hero .heroimage {position: absolute; left: 0; width: 100%; bottom: 0; min-height: 450px;}
+    #herobox { 
+      background-color: #f27134;
+      margin: 80px 0 80px 0;
+      min-width: 345px;
+    }
+    #herobox h1 {
+      font-size: 32px; 
+    }
+    #herobox .herotext p {
+      font-size: 17px;
+      margin: 0;
+    }
+    #herobox .herotext, #herobox .morelink {
+      padding: 30px 30px;
+    }
+    .herolinks { 
+      display: flex; 
+      width: 100%;
+      font-size: 16px;
+    }
+    .morelink {
+      font-size: 130%;
+      display: inline-block;
+      border-top: 1px solid #D44410;
+      padding: 20px;
+      flex-grow: 1;
+    }
+    .morelink:first-child {
+      border-right: 1px solid #D44410;
+    }
+    .morelink:after {
+      font-family: 'FontAwesome';
+      content: '\f18e';
+      margin-left: 10px;
+    }
+    #herofooter { 
+      background: rgba(0,0,0,0.5);
+      font-size: 18px;
+      line-height:25.2px;
+    }
+    #herofooter [class*='col-'] { 
+      height: 48px; 
+      line-height: 48px;
+      position: relative; 
+      white-space: nowrap;
+    }
+    #herofooter img { 
+      width: 58px; 
+      height: 58px; 
+      border-radius: 500px; 
+      border: 2px solid white;
+      position: absolute; 
+      bottom: 10px;
+    }
+    #herofooter .obstext {
+      padding-left: 70px;
+    }
+    #herofooter .username {
+      font-weight: bold;
+    }
+    #herofooter .username:after {
+      content: '\00B7';
+      margin: 0 5px 0 10px;
+    }
+    #how h1 {
+      text-align: center;
+    }
 .container
-  #leader.row.imgtxt
-    .col-xs-8.img
-      %img{src: 'http://static.inaturalist.org/photos/2257355/large.jpg?1439407371'}
-    .col-xs-4.txt
-      %h1{style: 'font-weight: bold;'} Connect with Nature
-      %p
-        Explore and share your observations from the natural world
-      = link_to t(:explore), observations_path, :class => "btn btn-primary"
-      = link_to t(:sign_up), signup_path, :class => "btn btn-default"
-  #how
+  #hero.homesection
+    %img.heroimage{src: 'https://farm1.staticflickr.com/490/18822222609_bd4e4317f4_k.jpg'}
+    .row
+      .col-xs-6.col-xs-offset-5.col-md-4.col-md-offset-7.col-sm-offset-6
+        #herobox
+          .herotext
+            %h1 Connect with Nature
+            %p
+              Explore and share your observations from the natural world.
+          .herolinks
+            = link_to t(:sign_up), signup_path, :class => "morelink"
+            = link_to t(:explore), observations_path, :class => "morelink"
     .row
       .col-xs-12
-        %h2 How It Works
+        #herofooter.row
+          .col-xs-11.col-xs-offset-1
+            %img{src: 'http://www.inaturalist.org/attachments/users/icons/79343-thumb.jpg?1425949423'}
+            .obstext
+              = link_to "Joelle Belmonte", "", :class => "username"
+              Differential Grasshopper
+  #how.homesection
+    .row
+      .col-xs-12
+        %h1 How It Works
     .row
       .col-xs-4
         [image]
