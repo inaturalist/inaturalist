@@ -26,7 +26,7 @@ shared_examples_for "a signed in UsersController" do
 
     it "return mentions" do
       without_delay { Comment.make!(body: "hey @#{ user.login }") }
-      get :new_updates, format: :json
+      get :new_updates, format: :json, notification: "mention"
       json = JSON.parse(response.body)
       expect(json.size).to be > 0
       expect(json.first["notification"]).to eq "mention"

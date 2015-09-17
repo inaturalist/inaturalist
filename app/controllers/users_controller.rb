@@ -340,7 +340,9 @@ class UsersController < ApplicationController
   end
   
   def new_updates
-    wheres = { notification: [ :activity, :mention ] }
+    params[:notification] ||= "activity"
+    params[:notification] = params[:notification].split(",")
+    wheres = { notification: params[:notification] }
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
