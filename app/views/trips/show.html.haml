@@ -32,6 +32,7 @@
 - content_for :extrajs do
   :javascript
     $('.observationcontrols').observationControls()
+    $("#comment_body").textcompleteUsers( );
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
   %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
