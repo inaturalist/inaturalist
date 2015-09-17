@@ -122,14 +122,10 @@ module DarwinCore
       start = Time.now
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        Observation.search_in_batches(observations_params) do |batch|
-          Observation.preload_associations(batch, preloads)
-          batch.each do |o|
-            next unless o.user.prefers_gbif_sharing?
-            o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
-            csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
-              o.send(method || field)
-            end
+        observations_in_batches(observations_params, preloads) do |o|
+          o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
+          csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
+            o.send(method || field)
           end
         end
       end
@@ -214,22 +210,39 @@ module DarwinCore
         params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
       end
       params[:photo_license] ||= 'any'
+      params[:has] = [params[:has], 'photos'].flatten.compact
       preloads = [{observation_photos: {photo: :user}}]
       
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        Observation.search_in_batches(params) do |batch|
-          Observation.preload_associations(batch, preloads)
-          batch.each do |observation|
-            observation.observation_photos.each do |op|
-              DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
-              csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
-            end
+        observations_in_batches(params, preloads) do |observation|
+          observation.observation_photos.each do |op|
+            DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
+            csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
           end
         end
       end
       
       tmp_path
+    end
+
+    def observations_in_batches(params, preloads, &block)
+      batch_times = []
+      Observation.search_in_batches(params) do |batch|
+        start = Time.now
+        avg_batch_time = if batch_times.size > 0
+          (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
+        else
+          0
+        end
+        avg_observation_time = avg_batch_time / 500
+        logger.debug "make_simple_multimedia_data, batch #{batch_times.size} (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
+        Observation.preload_associations(batch, preloads)
+        batch.each do |observation|
+          yield observation
+        end
+        batch_times << (Time.now - start)
+      end
     end
 
     def make_archive(*args)
