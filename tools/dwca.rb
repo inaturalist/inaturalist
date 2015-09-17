@@ -61,7 +61,7 @@ class Metadata < FakeView
     if options[:quality] == "research"
       scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
     elsif options[:quality] == "casual"
-      scope = scope.has_quality_grade(Observation::CASUAL_GRADE)
+      scope = scope.has_quality_grade(Observation::CASUAL)
     end
     scope = scope.license('any')
     scope = scope.has_photos if options[:extensions] && options[:extensions].include?("EolMedia")
@@ -128,7 +128,7 @@ def make_occurrence_data
   if @opts[:quality] == "research"
     scope = scope.where("quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"
-    scope = scope.where("quality_grade = ?", Observation::CASUAL_GRADE)
+    scope = scope.where("quality_grade = ?", Observation::CASUAL)
   end
   
   scope = scope.of(@taxon) if @taxon
@@ -164,7 +164,7 @@ def make_taxon_data
   if @opts[:quality] == "research"
     scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"
-    scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+    scope = scope.where("observations.quality_grade = ?", Observation::CASUAL)
   end
   
   scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
@@ -195,7 +195,7 @@ def make_eol_media_data
   if @opts[:quality] == "research"
     scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"
-    scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+    scope = scope.where("observations.quality_grade = ?", Observation::CASUAL)
   end
   
   scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
