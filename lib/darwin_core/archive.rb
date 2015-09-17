@@ -122,7 +122,7 @@ module DarwinCore
       start = Time.now
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        observations_in_batches(observations_params, preloads) do |o|
+        observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
           o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
           csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
             o.send(method || field)
@@ -215,7 +215,7 @@ module DarwinCore
       
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        observations_in_batches(params, preloads) do |observation|
+        observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
           observation.observation_photos.each do |op|
             DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
             csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
@@ -226,7 +226,7 @@ module DarwinCore
       tmp_path
     end
 
-    def observations_in_batches(params, preloads, &block)
+    def observations_in_batches(params, preloads, options = {}, &block)
       batch_times = []
       Observation.search_in_batches(params) do |batch|
         start = Time.now
@@ -236,7 +236,7 @@ module DarwinCore
           0
         end
         avg_observation_time = avg_batch_time / 500
-        logger.debug "make_simple_multimedia_data, batch #{batch_times.size} (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
+        logger.debug "Observation batch #{batch_times.size} #{"for #{options[:label]} " if options[:label]}(avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
         Observation.preload_associations(batch, preloads)
         batch.each do |observation|
           yield observation
