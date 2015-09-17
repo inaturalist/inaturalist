@@ -97,7 +97,7 @@ class Post < ActiveRecord::Base
   end
 
   def mentioned_users
-    return [ ] unless published?
+    return [ ] unless published? && body
     body.mentioned_users
   end
 

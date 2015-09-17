@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
   has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   has_many :deleted_observations
+  has_many :deleted_photos
   
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy

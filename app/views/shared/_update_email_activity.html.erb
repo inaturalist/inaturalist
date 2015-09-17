@@ -4,6 +4,7 @@
   class_name = resource.class.to_s.underscore
   viewing_user = current_user rescue @user
   no_thumb ||= false
+  no_meta ||= false
 -%>
 
 <div class="updatecontent">
@@ -84,14 +85,16 @@
               <% end -%>
             <% end -%>
           <% end -%>
-          <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
-            <%=t :posted_by %>
-            <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
-              person_url(user)) %>
-            <span class="when">
-              <span class="date"><%=t :n_ago, :n => time_ago_in_words(notifier.created_at) %></span>
-            </span>
-          </div>
+          <% unless no_meta -%>
+            <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
+              <%=t :posted_by %>
+              <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
+                person_url(user)) %>
+              <span class="when">
+                <span class="date"><%=t :n_ago, :n => time_ago_in_words(notifier.created_at) %></span>
+              </span>
+            </div>
+          <% end -%>
         </td>
       </tr>
     <% end %>

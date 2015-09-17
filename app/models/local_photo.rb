@@ -8,7 +8,8 @@ class LocalPhoto < Photo
     record.rotation.blank? ? "-auto-orient -strip" : "-strip"
   }
   
-  has_attached_file :file, 
+  has_attached_file :file,
+    preserve_files: true,
     :styles => {
       :original => {:geometry => "2048x2048>",  :auto_orient => false, :processors => [:rotator] },
       :large    => {:geometry => "1024x1024>",  :auto_orient => false },

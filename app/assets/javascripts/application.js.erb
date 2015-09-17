@@ -227,7 +227,7 @@ $(document).ready(function() {
   $('#headerupdatesnotice').click(function() {
     toggleHeaderSubnav(this)
     if (!$('#updatessubnav').data('loaded')) {
-      $('#updatessubnav').load('/users/new_updates', function(data) {
+      $('#updatessubnav').load('/users/new_updates?notification=activity,mention', function(data) {
         $(this).html(data)
         $('#updatessubnav').data('loaded', true)
         setUpdatesCount(0, {skipAnimation: true})
