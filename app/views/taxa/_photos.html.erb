@@ -6,7 +6,7 @@
   <% if taxon.species_or_lower? %>
     <% if [Photo, Photo.subclasses].flatten.include?(photos[0].class) %>
       <% if photos.first.id %>
-        <%= link_to(image_tag(photos.first.medium_url || photos.first.small_url), photos.becomes(Photo), :class => "zoomable", :title => t(:photo_attribution, :attribution => photos.first.attribution)) %>
+        <%= link_to(image_tag(photos.first.medium_url || photos.first.small_url), photos.first.becomes(Photo), :class => "zoomable", :title => t(:photo_attribution, :attribution => photos.first.attribution)) %>
       <% else %>
         <%= link_to(image_tag(photos.first.medium_url || photos.first.small_url), photos.first.native_page_url) %>
       <% end %>
