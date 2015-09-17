@@ -1893,7 +1893,7 @@ describe Observation do
       u = User.make!
       u.preferred_observation_license = "CC-BY-NC"
       u.save
-      o = Observation.make!(:user => u)
+      o = Observation.make!(:user => u, :license => nil)
       expect(o.license).to eq u.preferred_observation_license
     end
 
@@ -1901,14 +1901,15 @@ describe Observation do
       u = User.make!
       expect(u.preferred_observation_license).to be_blank
       o = Observation.make!(:user => u, :make_license_default => true, :license => Observation::CC_BY_NC)
+      expect( o.license ).to eq Observation::CC_BY_NC
       u.reload
       expect(u.preferred_observation_license).to eq Observation::CC_BY_NC
     end
 
     it "should update all other observations when requested" do
       u = User.make!
-      o1 = Observation.make!(:user => u)
-      o2 = Observation.make!(:user => u)
+      o1 = Observation.make!(:user => u, :license => nil)
+      o2 = Observation.make!(:user => u, :license => nil)
       expect(o1.license).to be_blank
       o2.make_licenses_same = true
       o2.license = Observation::CC_BY_NC
