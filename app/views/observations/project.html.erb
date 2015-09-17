@@ -15,7 +15,7 @@
     <strong><%= link_to "&laquo #{t(:back_to)} #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <div class="column span-1" style="text-align: center">
-    <%= image_tag @project.icon.url(:col-md-1) %>
+    <%= image_tag @project.icon.url(:span1) %>
   </div>
 <%- end -%>
 <%= render :partial => 'map_header', :locals => {

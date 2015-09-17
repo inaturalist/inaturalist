@@ -5,7 +5,7 @@
   remote = !non_remote
 .project_user_invitation
   .clear.stacked
-    = image_and_content link_to(image_tag(project.icon.url(:col-md-2), :alt => "#{h(project.title)} icon", :width => 70, :height => 70), project), :image_size => 70 do
+    = image_and_content link_to(image_tag(project.icon.url(:span2), :alt => "#{h(project.title)} icon", :width => 70, :height => 70), project), :image_size => 70 do
       %h4= link_to project.title, project
       .stacked
         = truncate_with_more(formatted_user_text(project.description), :length => 300)

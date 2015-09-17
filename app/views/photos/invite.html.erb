@@ -1,7 +1,7 @@
 <%-
   @title = t(:add_your_photo_to, :project => "#{@project ? h(@project.title) : CONFIG.site_name}")
   @img = if @project && @project.icon.file?
-    image_url @project.icon.url(:col-md-2)
+    image_url @project.icon.url(:span2)
   else
     image_url CONFIG.logo_icon_square_big
   end

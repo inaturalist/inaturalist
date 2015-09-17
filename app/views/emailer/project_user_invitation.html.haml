@@ -2,7 +2,7 @@
 %table{:cellpadding => 10}
   %tr
     %td{:valign => "top"}
-      = link_to image_tag(image_url(@project.icon.url(:col-md-2)), :alt => "#{h(@project.title)} icon", :width => 70, :height => 70), project_url(@project)
+      = link_to image_tag(image_url(@project.icon.url(:span2)), :alt => "#{h(@project.title)} icon", :width => 70, :height => 70), project_url(@project)
     %td
       %h3= link_to @project.title, project_url(@project)
       = truncate(strip_tags(@project.description), :length => 300)
