@@ -24,13 +24,14 @@
     'map_bundle'                               |
   %script{:charset => "utf-8", :type => "text/javascript"}
     $(document).ready(function() {
-    if ($('#map').length > 0) {
-    window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3})
-    var observations = #{json_escape @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe}
-    map.addObservations(observations)
-    map.zoomToObservations()
-    $('#map').hide()
-    }
+      if ($('#map').length > 0) {
+        window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3})
+        var observations = #{json_escape @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe}
+        map.addObservations(observations)
+        map.zoomToObservations()
+        $('#map').hide()
+      }
+      $("#comment_body").textcompleteUsers( );
     })
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
