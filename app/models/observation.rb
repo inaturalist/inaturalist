@@ -28,6 +28,7 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],
@@ -2399,6 +2400,11 @@ class Observation < ActiveRecord::Base
     quality_grade_will_change!
     save
     evaluate_new_flag_for_spam(flag)
+  end
+
+  def mentioned_users
+    return [ ] unless description
+    description.mentioned_users
   end
 
 end

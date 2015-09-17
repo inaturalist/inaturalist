@@ -145,9 +145,9 @@ class CommentsController < ApplicationController
   def redirect_to_parent
     if @comment.parent.is_a?(Post)
       post = @comment.parent
-      redirect_to(post_path(post, :anchor => "comment-#{@comment.id}"))
+      redirect_to(post_path(post, anchor: "activity_comment_#{@comment.id}"))
     else
-      redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
+      redirect_to(url_for(@comment.parent) + "#activity_comment_#{@comment.id}")
     end
   end
   

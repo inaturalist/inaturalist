@@ -95,6 +95,13 @@
           :label_after => true %>
       </div>
 
+      <h3><%= t :activity_settings %></h3>
+      <div class="stacked">
+        <%= f.check_box "prefers_receive_mentions",
+          label: t(:notify_me_of_mentions),
+          label_after: true %>
+      </div>
+
       <a name="projects"></a>
       <h3><%=t :project_settings %></h3>
       <div class="stacked">

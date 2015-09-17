@@ -2929,4 +2929,18 @@ describe Observation do
     end
   end
 
+  describe "mentions" do
+    it "knows what users have been mentioned" do
+      u = User.make!
+      o = Observation.make!(description: "hey @#{ u.login }")
+      expect( o.mentioned_users ).to eq [ u ]
+    end
+
+    it "generates mention updates" do
+      u = User.make!
+      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      expect( Update.where(notifier: o).mention.count ).to eq 1
+      expect( Update.where(notifier: o).mention.first.subscriber ).to eq u
+    end
+  end
 end

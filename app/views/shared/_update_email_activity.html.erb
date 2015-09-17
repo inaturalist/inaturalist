@@ -3,6 +3,8 @@
   updates ||= []
   class_name = resource.class.to_s.underscore
   viewing_user = current_user rescue @user
+  no_thumb ||= false
+  no_meta ||= false
 -%>
 
 <div class="updatecontent">
@@ -23,12 +25,12 @@
       -%>
       <tr>
         <td valign="top" style="padding-right:10px;">
-          <%= user_image(notifier.user, :size => "thumb", :width => 32, :height => 32) %>
+          <%- if notifier.user && !no_thumb %>
+            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32) %>
+          <%- end %>
         </td>
         <td valign="top">
-          <% if notifier.is_a?(Comment) -%>
-            <%= formatted_user_text(notifier.body) %>
-          <% elsif notifier.is_a?(Identification) %>
+          <%- if notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
               <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
@@ -69,14 +71,30 @@
               </em>
             </div>
           <% end -%>
-          <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
-            <%=t :posted_by %>
-            <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
-              person_url(user)) %>
-            <span class="when">
-              <span class="date"><%=t :n_ago, :n => time_ago_in_words(notifier.created_at) %></span>
-            </span>
-          </div>
+          <% unless notifier.is_a?(Identification) && update.notification != "mention" -%>
+            <% text = if notifier.respond_to?(:body)
+                notifier.body
+              elsif notifier.respond_to?(:description)
+                notifier.description
+              end -%>
+            <% if text -%>
+              <% if context = text.context_of_pattern("@#{ viewing_user.login }") -%>
+                <%= formatted_user_text(context) %>
+              <% else -%>
+                <%= formatted_user_text(text) %>
+              <% end -%>
+            <% end -%>
+          <% end -%>
+          <% unless no_meta -%>
+            <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
+              <%=t :posted_by %>
+              <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
+                person_url(user)) %>
+              <span class="when">
+                <span class="date"><%=t :n_ago, :n => time_ago_in_words(notifier.created_at) %></span>
+              </span>
+            </div>
+          <% end -%>
         </td>
       </tr>
     <% end %>
