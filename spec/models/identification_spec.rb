@@ -512,3 +512,20 @@ describe Identification, "captive" do
     expect(o.quality_metrics).to be_blank
   end
 end
+
+describe Identification do
+  describe "mentions" do
+    it "knows what users have been mentioned" do
+      u = User.make!
+      i = Identification.make!(body: "hey @#{ u.login }")
+      expect( i.mentioned_users ).to eq [ u ]
+    end
+
+    it "generates mention updates" do
+      u = User.make!
+      i = without_delay { Identification.make!(body: "hey @#{ u.login }") }
+      expect( Update.where(notifier: i).mention.count ).to eq 1
+      expect( Update.where(notifier: i).mention.first.subscriber ).to eq u
+    end
+  end
+end

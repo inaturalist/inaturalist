@@ -47,6 +47,7 @@ class Identification < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)
@@ -246,7 +247,12 @@ class Identification < ActiveRecord::Base
     end
     true
   end
-  
+
+  def mentioned_users
+    return [ ] unless body
+    body.mentioned_users
+  end
+
   # Static ##################################################################
   
   def self.run_update_curator_identification(ident)

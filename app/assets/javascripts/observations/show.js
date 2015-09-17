@@ -244,6 +244,9 @@ $(document).ready(function() {
     $('#new-comment-form-tab').click()
     $('#comment_body').focus()
   });
+
+  $('#comment_body').textcompleteUsers( );
+  $('#identification_body').textcompleteUsers( );
 })
 
 $('#add_more_photos_link').live('click', function() {
