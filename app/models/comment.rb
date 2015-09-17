@@ -57,7 +57,7 @@ class Comment < ActiveRecord::Base
   end
 
   def mentioned_users
-    return [ ] unless parent_type == "Observation" && body
+    return [ ] unless body
     body.mentioned_users
   end
 
