@@ -52,13 +52,8 @@ module DarwinCore
 
       def created
         if metadata && metadata[:date_time_original]
-          t = begin
-            Time.parse(metadata[:date_time_original]).iso8601
-          rescue
-            metadata[:date_time_original].iso8601
-          rescue
-            nil
-          end
+          t = Time.parse(metadata[:date_time_original]).iso8601 rescue nil
+          t ||= metadata[:date_time_original].iso8601 rescue nil
         end
         t ||= observation.time_observed_at.iso8601 if observation.time_observed_at
         t ||= observation.observed_on.to_s if observation.observed_on
