@@ -10,10 +10,13 @@ describe DarwinCore::Archive, "make_descriptor" do
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   let(:o) { make_research_grade_observation }
   let(:p) { 
     photo = o.photos.first
-    photo.update_attributes(license: Photo::CC_BY)
+    without_delay { photo.update_attributes(license: Photo::CC_BY) }
     DarwinCore::SimpleMultimedia.adapt(photo, observation: o)
   }
 
@@ -55,6 +58,9 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   it "should filter by taxon" do
     parent = Taxon.make!(rank: Taxon::GENUS)
     taxon = Taxon.make!(parent: parent, rank: Taxon::SPECIES)

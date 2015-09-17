@@ -98,16 +98,12 @@ module DarwinCore
       paths
     end
 
-    def observations_scope
-      scope = Observation.where("observations.license IS NOT NULL")
-      if @opts[:quality] == "research"
-        scope = scope.where("quality_grade = ?", Observation::RESEARCH_GRADE)
-      elsif @opts[:quality] == "casual"
-        scope = scope.where("quality_grade = ?", Observation::CASUAL_GRADE)
-      end
-      scope = scope.of(@taxon) if @taxon
-      scope = scope.in_place(@place) if @place
-      scope
+    def observations_params
+      params = {license: 'any'}
+      params[:place_id] = @place.id if @place
+      params[:taxon_id] = @taxon.id if @taxon
+      params[:quality_grade] = @opts[:quality]
+      params
     end
 
     def make_occurrence_data
@@ -116,17 +112,24 @@ module DarwinCore
       tmp_path = File.join(@work_path, fname)
       fake_view = FakeView.new
       
-      scope = observations_scope.
-        includes(:taxon, {:user => :stored_preferences}, :quality_metrics, :identifications)
+      preloads = [
+        :taxon, 
+        {:user => :stored_preferences}, 
+        :quality_metrics, 
+        :identifications
+      ]
       
       start = Time.now
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |o|
-          next unless o.user.prefers_gbif_sharing?
-          o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
-          csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
-            o.send(method || field)
+        Observation.search_in_batches(observations_params) do |batch|
+          Observation.preload_associations(batch, preloads)
+          batch.each do |o|
+            next unless o.user.prefers_gbif_sharing?
+            o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
+            csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
+              o.send(method || field)
+            end
           end
         end
       end
@@ -205,21 +208,23 @@ module DarwinCore
       headers = DarwinCore::SimpleMultimedia::TERM_NAMES
       fname = "images.csv"
       tmp_path = File.join(@work_path, fname)
-      licenses = @opts[:photo_licenses].map do |license_code|
-        Photo.license_number_for_code(license_code)
-      end
       
-      scope = observations_scope.
-        joins(:taxon, {observation_photos: {photo: :user}}).
-        includes(observation_photos: {photo: :user}).
-        where("photos.license IN (?)", licenses)
+      params = observations_params
+      if @opts[:photo_licenses]
+        params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
+      end
+      params[:photo_license] ||= 'any'
+      preloads = [{observation_photos: {photo: :user}}]
       
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |observation|
-          observation.observation_photos.each do |op|
-            DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
-            csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+        Observation.search_in_batches(params) do |batch|
+          Observation.preload_associations(batch, preloads)
+          batch.each do |observation|
+            observation.observation_photos.each do |op|
+              DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
+              csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+            end
           end
         end
       end
