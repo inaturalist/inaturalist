@@ -2403,6 +2403,7 @@ class Observation < ActiveRecord::Base
   end
 
   def mentioned_users
+    return [ ] unless description
     description.mentioned_users
   end
 

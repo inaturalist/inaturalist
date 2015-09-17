@@ -27,13 +27,24 @@ class Update < ActiveRecord::Base
   YOUR_OBSERVATIONS_ADDED = "your_observations_added"
   
   scope :unviewed, -> { where("viewed_at IS NULL") }
-  scope :activity, -> { where(:notification => "activity") }
+  scope :activity, -> { where(notification: "activity") }
+  scope :mention, -> { where(notification: "mention") }
 
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
       "resource_id: #{resource_id} notifier_type: #{notifier_type} notifier_id: #{notifier_id}>"
   end
-  
+
+  def mention?
+    notification == "mention"
+  end
+
+  def notifier_user
+    if notifier && notifier.respond_to?(:user) && notifier.user
+      notifier.user
+    end
+  end
+
   def set_resource_owner
     self.resource_owner = resource && resource.respond_to?(:user) ? resource.user : nil
   end

@@ -70,7 +70,7 @@ class String
       parts << matches[2]
       parts << matches[3]
       parts << "..." if (matches[3].length == context_length)
-      parts.map(&:strip).join(" ")
+      parts.map(&:strip).join
     end
   end
 

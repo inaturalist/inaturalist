@@ -876,9 +876,6 @@ module ApplicationHelper
     end
     resource ||= update.resource
     resource = update.resource.flaggable if update.resource_type == "Flag"
-    if update.notification == "mention"
-      return image_tag(asset_url(update.notifier.user.icon.url(:thumb)), options.merge(alt: "#{update.notifier.user.login} icon"))
-    end
     case resource.class.name
     when "User"
       image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon"))

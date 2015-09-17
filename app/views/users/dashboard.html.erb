@@ -173,18 +173,6 @@
                 <%= update_tagline_for(updates.last, :count => updates.size) %>
               </div>
               <% if notification == "activity" || is_mention -%>
-                <% if is_mention && resource.is_a?(Observation) -%>
-                  <div class="observations mini">
-                    <%- compact do %>
-                      <%= render partial: "observations/cached_component", locals: { observation: resource } %>
-                    <% end -%>
-                  </div>
-                  <% unless resource.description.blank? -%>
-                    <div class="item_content readable">
-                      <%= formatted_user_text resource.description %>
-                    </div>
-                  <% end -%>
-                <% end -%>
                 <div class="updatecontent">
                   <% for u in updates %>
                     <%-
@@ -195,7 +183,7 @@
                       notifier ||= u.notifier
                     -%>
                     <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
-                      <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
+                      <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
                     </div>
                   <% end %>
                   <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",

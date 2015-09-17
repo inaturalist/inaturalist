@@ -249,6 +249,7 @@ class Identification < ActiveRecord::Base
   end
 
   def mentioned_users
+    return [ ] unless body
     body.mentioned_users
   end
 

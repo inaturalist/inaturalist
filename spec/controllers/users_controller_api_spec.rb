@@ -24,6 +24,14 @@ shared_examples_for "a signed in UsersController" do
       expect(json.size).to be > 0
     end
 
+    it "return mentions" do
+      without_delay { Comment.make!(body: "hey @#{ user.login }") }
+      get :new_updates, format: :json
+      json = JSON.parse(response.body)
+      expect(json.size).to be > 0
+      expect(json.first["notification"]).to eq "mention"
+    end
+
     it "should filter by resource_type" do
       p = Post.make!(:parent => user, :user => user)
       without_delay { Comment.make!(:parent => p) }
@@ -119,6 +127,16 @@ describe UsersController, "without authentication" do
       expect(response).to be_success
       json = JSON.parse(response.body)
       expect(json).to be_blank
+    end
+
+    it "can order by activity" do
+      u1 = User.make!(login: "aaa", observations_count: 2)
+      u2 = User.make!(login: "abb", observations_count: 1)
+      u3 = User.make!(login: "acc", observations_count: 3)
+      get :search, q: "a", format: :json
+      expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "aaa", "abb", "acc" ]
+      get :search, q: "a", format: :json, order: "activity"
+      expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "acc", "aaa", "abb" ]
     end
   end
 end

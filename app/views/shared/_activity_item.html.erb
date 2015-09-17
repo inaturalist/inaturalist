@@ -16,6 +16,7 @@
   end
   hide_agree ||= false
   no_thumb ||= false
+  no_meta ||= false
   context_around ||= nil
 -%>
 <div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
@@ -74,42 +75,49 @@
       </div>
     <%- end -%>
     
-    <% if item.respond_to?(:body) && !item.body.blank? -%>
+    <% text = if item.respond_to?(:body) && item.body
+        item.body
+      elsif item.respond_to?(:description) && item.description
+        item.description
+      end -%>
+    <% if text -%>
       <div class="readable body">
-        <%- if context_around && context = item.body.context_of_pattern(context_around) %>
+        <%- if context_around && context = text.context_of_pattern(context_around) %>
           <%= formatted_user_text(context) %>
         <% else -%>
-          <%= formatted_user_text(item.body) %>
+          <%= formatted_user_text(text) %>
         <% end -%>
       </div>
     <% end -%>
     
-    <div class="meta">
-      <%=t :posted_by %>
-      <%= link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
-      <span class="when">
-        <abbr class="date timeago" title="<%= item.created_at.iso8601 %>">
-          <%=t :n_ago, :n => time_ago_in_words(item.created_at) %>
-        </abbr>
-      </span>
-      <span class="comment_actions">
-        <%-
-          pieces = []
-          if is_me?(item.user) && edit_url
-            pieces << link_to(t(:edit), edit_url)
-          end
-          if item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
-            pieces << link_to(t(:delete), item,
-                        :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)},
-                        :method => :delete, 
-                        :id => "delete_comment_#{item.id}_button")
-          end
-          if !item.is_a?(Flag) && FlagsController::FLAG_MODELS.include?(item.class.name)
-            pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
-          end
-        -%>
-        (<%= pieces.join(' | ').html_safe %>)
-      </span>
-    </div>
+    <% unless no_meta -%>
+      <div class="meta">
+        <%=t :posted_by %>
+        <%= link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
+        <span class="when">
+          <abbr class="date timeago" title="<%= item.created_at.iso8601 %>">
+            <%=t :n_ago, :n => time_ago_in_words(item.created_at) %>
+          </abbr>
+        </span>
+        <span class="comment_actions">
+          <%-
+            pieces = []
+            if is_me?(item.user) && edit_url
+              pieces << link_to(t(:edit), edit_url)
+            end
+            if item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
+              pieces << link_to(t(:delete), item,
+                          :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)},
+                          :method => :delete,
+                          :id => "delete_comment_#{item.id}_button")
+            end
+            if !item.is_a?(Flag) && FlagsController::FLAG_MODELS.include?(item.class.name)
+              pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
+            end
+          -%>
+          (<%= pieces.join(' | ').html_safe %>)
+        </span>
+      </div>
+    <% end -%>
   </div>
 </div>
