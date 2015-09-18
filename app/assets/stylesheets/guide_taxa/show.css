@@ -1,0 +1,8 @@
+#photos {white-space: nowrap; overflow-x:auto; overflow-y:hidden;}
+#photos img.thumb {max-height:200px;}
+.taxonmap {height: 300px;}
+#reuse_guide_taxon_dialog img {max-height: 30px;}
+#photos .guide_photo {position: relative; margin-right: 5px; display:inline-block;}
+#photos .guide_photo img {cursor: zoom-in;}
+#photos .lowerright a {color:#ddd; display:inline-block; width:1em; height:1em;}
+#photos .guide_photo:hover .lowerright a {color:white;}

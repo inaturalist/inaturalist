@@ -90,14 +90,11 @@
       var controls = $('<div class="photoSelectorControls"></div>').css(
         $.fn.photoSelector.defaults.controlsCSS
       )
-      var $searchInput = $('<input type="text" placeholder="'+I18n.t('search')+'" />').css(
-        $.fn.photoSelector.defaults.formInputCSS
-      )
-      var $searchButton = $('<a href="#" class="btn findbutton">'+I18n.t('find_photos')+'</a>').css(
-        $.fn.photoSelector.defaults.formInputCSS
-      )
-      var $searchWrapper = $("<div class='photoSelectorSearch input-append pull-left'></div>")
-      $searchWrapper.append($searchInput).append($searchButton)
+      var $searchInput = $('<input type="text" class="form-control" placeholder="'+I18n.t('search')+'" />')
+      var $searchButton = $('<a href="#" class="btn btn-default findbutton">'+I18n.t('find_photos')+'</a>')
+      var searchButtonWrapper = $('<span class="input-group-btn"></span>').html($searchButton)
+      var $searchWrapper = $("<div class='photoSelectorSearch input-group'></div>")
+      $searchWrapper.append($searchInput).append(searchButtonWrapper)
       var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
     } else {
       // Insert a search field and button.  No forms, please
@@ -251,7 +248,7 @@
 
     }
 
-    $(".picasaAlbums .album", wrapper).live('click', function() {
+    $(wrapper).on('click', ".picasaAlbums .album", function() {
       var aid = $(this).attr('data-aid'); // $(this).data('aid') doesn't work because of ridiculous type conversion
       try {
         updateSource({
@@ -268,7 +265,7 @@
       return false;
     });
 
-    $(".facebookAlbums .album", wrapper).live('click', function() {
+    $(wrapper).on('click', ".facebookAlbums .album", function() {
       try {
         updateSource({
           url: '/facebook/album/'+$(this).attr('data-aid'),
@@ -284,7 +281,7 @@
       return false;
     });
 
-    $(".facebookGroups .group", wrapper).live('click', function() {
+    $(wrapper).on('click', ".facebookGroups .group", function() {
       try {
         updateSource({
           url: '/facebook/group/',
@@ -300,7 +297,7 @@
       return false;
     })
   
-    $('.back_to_albums').live('click', function(){
+    $(wrapper).on('click', '.back_to_albums', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -312,13 +309,13 @@
       return false;
     });
 
-    $('.back_to_friends').live('click', function(){
+    $(wrapper).on('click', '.back_to_friends', function(){
       try { updateSource(); } 
       catch(e) { $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); }
       return false;
     });
 
-    $('.back_to_groups').live('click', function(){
+    $(wrapper).on('click', '.back_to_groups', function(){
       try { updateSource({ object_id: $(this).attr('data-group_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -331,7 +328,7 @@
     });
 
     // friend selector
-    $('.friendSelector .friend').live('click', function(){
+    $(wrapper).on('click', '.friendSelector .friend', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
@@ -347,8 +344,8 @@
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>')
     if (options.bootstrap) {
-      var prev = $('<button type="button" class="prevlink btn">&laquo; '+I18n.t('prev')+'</button>')
-      var next = $('<button type="button" class="nextlink btn">'+I18n.t('next')+' &raquo;</button>')
+      var prev = $('<button type="button" class="prevlink btn btn-default">&laquo; '+I18n.t('prev')+'</button>')
+      var next = $('<button type="button" class="nextlink btn btn-default">'+I18n.t('next')+' &raquo;</button>')
     } else {
       var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>')
       var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>')
@@ -381,19 +378,19 @@
 
     if (options.bootstrap) {
       var allNoneLabel = $('<label>'+I18n.t('select')+'</label>')
-      var selectAll = $('<button type="button" class="btn">'+I18n.t('all')+'</button>')
-      var selectNone = $('<button type="button" class="btn">'+I18n.t('none')+'</button>')
+      var selectAll = $('<button type="button" class="btn btn-default">'+I18n.t('all')+'</button>')
+      var selectNone = $('<button type="button" class="btn btn-default">'+I18n.t('none')+'</button>')
     } else {
       var allNoneLabel = $('<label class="inter">'+I18n.t('select')+'</label>')
       var selectAll = $('<a href="#" class="inter">'+I18n.t('all')+'</a>')
       var selectNone = $('<a href="#" class="inter">'+I18n.t('none')+'</a>')
     }
     selectAll.click(function() {
-      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').attr('checked', true)
+      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').prop('checked', true)
       return false
     })
     selectNone.click(function() {
-      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').attr('checked', false)
+      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').prop('checked', false)
       return false
     })
     
@@ -402,14 +399,20 @@
       $sourceWrapper.hide()
     }
     if (options.bootstrap) {
-      var prevnext = $('<div class="btn-group pull-right"></div>')
+      var prevnext = $('<div class="btn-group"></div>')
       prevnext.append(prev,next)
-      var allNone = $('<div class="allNone form-inline pull-right"></div>'),
+      var allNone = $('<div class="allNone form-inline"></div>'),
           allNoneButtons = $('<div class="btn-group"></div>')
       allNoneLabel.addClass('checkbox')
       allNoneButtons.append(selectAll, selectNone)
       allNone.append(allNoneLabel, allNoneButtons)
-      $(controls).append($searchWrapper, prevnext, allNone, page)
+      prevnext.addClass('pull-right')
+      allNone.addClass('pull-right')
+
+      controls.addClass('row stacked')
+      controls.append($('<div class="col-xs-6"></div>').append($searchWrapper))
+      controls.append($('<div class="col-xs-6"></div>').append(prevnext, allNone))
+      controls.append(page)
     } else {
       var allNone = $('<span class="allNone nobr inlineblock buttoncontainer"></span>')
       allNone.append(allNoneLabel, selectAll, selectNone)
@@ -519,7 +522,7 @@
           var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>'),
               header = "<h4>"+I18n.t('selected_photos')+"</h4>"
           if (options.bootstrap) {
-            var row = $('<div class="row-fluid"></div>')
+            var row = $('<div class="row"></div>')
             row.append(existing)
             selectedPhotosWrapper.append(header, row)
           } else {

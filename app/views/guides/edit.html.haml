@@ -13,100 +13,91 @@
       = link_to t(:back_to_x, :noun => @guide.title), @guide, :class => "back"
   = error_messages_for @guide
   %h1= @title
-  .row-fluid
-    .span3
-      = form_for @guide, :builder => DefaultFormBuilder do |f|
-        #guide_accordion.accordion
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#title_and_desc"}
-                %label=t :title_and_description
-              #title_and_desc.accordion-body.collapse.in
-                .accordion-inner
-                  = f.text_field :title, :placeholder => t(:title), :class => "span12", :label => false
-                  = f.text_area :description, :placeholder => t(:description), :class => "span12", :label => false
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#icon"}
-                %label=t :icon
-              #icon.accordion-body.collapse
-                .accordion-inner
-                  - if @guide.icon.file?
-                    = image_tag(@guide.icon.url(:thumb), :class => "left")
-                    %div
-                      = check_box_tag :icon_delete
-                      %label{:for => "icon_delete", :style => "display:inline"}=t :delete_icon?
-                    = link_to_toggle t(:change_icon), "#iconfield"
-                    #iconfield{:style => "display: none"}
-                      = f.file_field :icon, :label => false, :accept => "image/jpg,image/jpeg,image/png,image/gif", :class => "span12"
-                  - else
-                    = f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif", :class => "span12"
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#location"}
-                %label
-                  =t :location
-              #location.accordion-body.collapse
-                .accordion-inner
-                  = f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME)
-                  .meta.stacked=t 'views.guides.edit.guide_place_desc', :site_name => SITE_NAME_SHORT
-                  %label=t :coordinates
-                  .stacked
-                    = text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text"
-                  #map.stacked
-                  = f.text_field :latitude, :label => t(:latitude)
-                  = f.text_field :longitude, :label => t(:longitude)
-                  = f.hidden_field :map_type
-                  = f.hidden_field :zoom_level
-                  .meta.stacked=t 'views.guides.edit.coordinates_desc'
-                  - if @place
-                    = link_to t(:view_place), @place, :class => "readmore"
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#license"}
-                %label=t :licensing
-              #license.accordion-body.collapse
-                .accordion-inner
-                  = f.select :license, Observation::LICENSE_CODES, :include_blank => t(:no_license_all_rights_reserved), :class => "span12", :label => false
-                  .stacked
-                    %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#mobile"}
-                %label=t :mobile
-              #mobile.accordion-body.collapse
-                .accordion-inner
-                  = f.label :downloadable, :class => "checkbox" do
-                    = f.check_box :downloadable, :label => false
-                    = t(:enable_offline_access)
-                  =t 'views.guides.mobile_downloads_help_html'
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#editors"}
-                %label=t :editors
-              #editors.accordion-body.collapse
-                .accordion-inner
-                  #guide_users.clearfix
-                    = f.fields_for :guide_users, @guide.guide_users, :builder => ActionView::Helpers::FormBuilder do |gu|
-                      = render "guide_user_fields", :f => gu
-                  = link_to_add_association t(:add_editor), f, :guide_users, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_users", :class => "btn btn-small btn-success btn-add-editor"
+  .row
+    .col-xs-3
+      = form_for @guide, :builder => BootstrapFormBuilder do |f|
+        #guide_accordion.accordion.panel-group
+          .panel.panel-default
+            .panel-heading
+              %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#title_and_desc"}
+                =t :title_and_description
+            #title_and_desc.panel-body.collapse.in
+              = f.text_field :title, :placeholder => t(:title), :class => "form-control", :label => false
+              = f.text_area :description, :placeholder => t(:description), :class => "form-control", :label => false
+          .panel.panel-default
+            .panel-heading
+              %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#icon"}
+                =t :icon
+            #icon.panel-body.collapse
+              - if @guide.icon.file?
+                = image_tag(@guide.icon.url(:thumb), :class => "left")
+                %div
+                  = check_box_tag :icon_delete
+                  %label{:for => "icon_delete", :style => "display:inline"}=t :delete_icon?
+                = link_to_toggle t(:change_icon), "#iconfield"
+                #iconfield{:style => "display: none"}
+                  = f.file_field :icon, :label => false, :accept => "image/jpg,image/jpeg,image/png,image/gif"
+              - else
+                = f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif"
+          .panel.panel-default
+            .panel-heading
+              %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#location"}
+                =t :location
+            #location.panel-body.collapse
+              = f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME), :class => "form-control"
+              .meta.stacked=t 'views.guides.edit.guide_place_desc', :site_name => SITE_NAME_SHORT
+              %label=t :coordinates
+              .stacked
+                = text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text"
+              #map.stacked
+              = f.text_field :latitude, :label => t(:latitude)
+              = f.text_field :longitude, :label => t(:longitude)
+              = f.hidden_field :map_type
+              = f.hidden_field :zoom_level
+              .meta.stacked=t 'views.guides.edit.coordinates_desc'
+              - if @place
+                = link_to t(:view_place), @place, :class => "readmore"
+          .panel.panel-default
+            .panel-heading
+              %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#license"}
+                =t :licensing
+            #license.panel-body.collapse
+              = f.select :license, Observation::LICENSE_CODES, :include_blank => t(:no_license_all_rights_reserved), :class => "col-xs-12", :label => false
+              .stacked
+                %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
+          .panel.panel-default
+            .panel-heading
+              %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#mobile"}
+                =t :mobile
+            #mobile.panel-body.collapse
+              = f.check_box :downloadable, :label => t(:enable_offline_access)
+              =t 'views.guides.mobile_downloads_help_html'
+          .panel.panel-default
+            .panel-heading
+              %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#editors"}
+                =t :editors
+            #editors.panel-body.collapse
+              #guide_users.clearfix.container-fluid
+                = f.fields_for :guide_users, @guide.guide_users, :builder => ActionView::Helpers::FormBuilder do |gu|
+                  = render "guide_user_fields", :f => gu
+              = link_to_add_association t(:add_editor), f, :guide_users, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_users", :class => "btn btn-sm btn-success btn-add-editor"
         .actions
           - if @guide.published?
             = f.submit t(:save), :class => "btn btn-primary"
-            = f.submit t(:unpublish), :class => "btn", :name => "unpublish"
+            = f.submit t(:unpublish), :class => "btn btn-default", :name => "unpublish"
           - else
             = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
-            = f.submit t(:save), :class => "btn"
+            = f.submit t(:save), :class => "btn btn-default"
           = link_to t(:delete), @guide, :method => :delete, :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
 
-    .span9
-      #controls.clearfix.row-fluid{"data-spy" => "affix", "data-offset-top" => 148}
+    .col-xs-9
+      #controls.clearfix.row{"data-spy" => "affix", "data-offset-top" => 148}
         .navbar.clearfix
           .pull-left
-            %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
-            %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
+            %button#selectall.btn.btn-default{:type => "button", :role => "button"}=t :select_all
+            %button#selectnone.btn.btn-default{:type => "button", :role => "button"}=t :select_none
             .btn-group
-              %button#editbutton.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
+              %button#editbutton.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown"}
                 =t :edit
                 %span.caret
               %ul.dropdown-menu
@@ -136,172 +127,211 @@
                 %li= link_to t(:update_with_eol_content), "#eolupdate", "data-toggle" => "modal"
             %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_taxa
           %form.navbar-search.pull-right
-            %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
+            %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q, :class => "form-control"}
       #guide_taxa
         - if @guide_taxa.blank?
-          .nocontent.alert
+          .nocontent.bg-warning.box
             %p=t :looks_like_no_species_in_guide
-            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_some_now
+            %button.btn-primary.btn.btn-default{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_some_now
         - else
           - for guide_taxon in @guide_taxa
             = render "guide_taxon_row", :guide_taxon => guide_taxon
 
-#addtaxa.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :add_taxa
-  .modal-body
-    %ul.nav.nav-pills
-      %li.active= link_to t(:one_by_one), "#addtaxa-single", "data-toggle" => "pill"
-      %li= link_to t(:from_place), "#addtaxa-place", "data-toggle" => "pill"
-      %li= link_to t(:paste), "#addtaxa-paste", "data-toggle" => "pill"
-      %li= link_to t(:from_eol_collection), "#addtaxa-eol", "data-toggle" => "pill"
-    .tab-content
-      #addtaxa-single.tab-pane.active.fade.in
-      #addtaxa-place.tab-pane.fade
-        .stacked
-          %label=t :choose_a_place
-          %input.placechooser.chooser{:placeholder => t(:start_typing_place_name), :type => "text"}
-        .stacked
-          %label=t 'views.guides.edit.place_choose_taxon_note'
-          %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name), :type => "text"}
-          %span.muted
-            = surround '(', ')' do
-              =t :optional
-        .stacked
-          %label=t :rank
-          = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}), :include_blank => true
-          %span.muted
-            = surround '(', ')' do
-              =t :optional
-        .stacked.status.muted=t :x_matching_taxa, :count => 0
-        .muted=t 'views.guides.edit.places_note'
-      #addtaxa-paste.tab-pane.fade
-        .row-fluid
-          %textarea.span12{:placeholder => t(:paste_in_a_bunch_of_names)}
-          .muted.status=t 'views.guides.edit.paste_note_html', :site_name => SITE_NAME_SHORT
-      #addtaxa-eol.tab-pane.fade
-        %p=t 'views.guides.edit.eol_collection_desc_html'
-        %input{:type => "text", :name => "eol_collection_url", :placeholder => t(:eol_collection_url), :value => @guide.source_url.to_s =~ /eol\.org/ ? @guide.source_url : nil}
-  .modal-footer
-    %button.btn{"data-dismiss" => "modal"}=t :close
-    %button.btn.btn-primary{:data => {:loading_click => t(:adding)}}=t :add_taxa
+#addtaxa.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :add_taxa
+      .modal-body
+        %ul.nav.nav-pills
+          %li.active= link_to t(:one_by_one), "#addtaxa-single", "data-toggle" => "pill"
+          %li= link_to t(:from_place), "#addtaxa-place", "data-toggle" => "pill"
+          %li= link_to t(:paste), "#addtaxa-paste", "data-toggle" => "pill"
+          %li= link_to t(:from_eol_collection), "#addtaxa-eol", "data-toggle" => "pill"
+        .tab-content
+          #addtaxa-single.tab-pane.active
+          #addtaxa-place.tab-pane
+            .form-group
+              .clear
+                %label=t :choose_a_place
+              %input.placechooser.chooser.form-control{:placeholder => t(:start_typing_place_name), :type => "text"}
+            .form-group
+              .clear
+                %label=t 'views.guides.edit.place_choose_taxon_note'
+              %input.taxonchooser.chooser.form-control{:placeholder => t(:start_typing_taxon_name), :type => "text"}
+              %span.text-muted
+                = surround '(', ')' do
+                  =t :optional
+            .form-group
+              %label=t :rank
+              = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}), :include_blank => true, :class => "form-control"
+              %span.text-muted
+                = surround '(', ')' do
+                  =t :optional
+            .stacked.status.text-muted=t :x_matching_taxa, :count => 0
+            .text-muted=t 'views.guides.edit.places_note'
+          #addtaxa-paste.tab-pane
+            .row
+              .col-xs-12
+                %textarea.form-control{:placeholder => t(:paste_in_a_bunch_of_names)}
+                .text-muted.status=t 'views.guides.edit.paste_note_html', :site_name => SITE_NAME_SHORT
+          #addtaxa-eol.tab-pane
+            %p=t 'views.guides.edit.eol_collection_desc_html'
+            %input.form-control{:type => "text", :name => "eol_collection_url", :placeholder => t(:eol_collection_url), :value => @guide.source_url.to_s =~ /eol\.org/ ? @guide.source_url : nil}
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+        %button.btn.btn-primary{:data => {:loading_click => t(:adding)}}=t :add_taxa
 
-#licensing.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :about_licenses
-  .modal-body
-    %p=t 'views.guides.edit.licensing_explanation'
-    - for row in Observation::LICENSES.in_groups_of(2)
-      .row-fluid
-        - for code, name, description in row
-          .row6
-            %h4
-              = image_tag("#{code}.png")
-              = t(name)
-            .stacked.description
-              %p
-                = t(description)
-                = link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank"
-#addtags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :add_tags
-  .modal-body
-    %ul.nav.nav-pills
-      %li.active= link_to t(:your_tags), "#addtags-your", "data-toggle" => "pill"
-      %li= link_to t(:taxon_colors), "#addtags-colors", "data-toggle" => "pill"
-      %li= link_to t(:taxon_ranks), "#addtags-ranks", "data-toggle" => "pill"
-    .tab-content
-      #addtags-your.tab-pane.active.fade.in
-        %p=t 'views.guides.tags_help_html'
-        .row-fluid
-          %input{:type => "text", :placeholder => t(:add_comma_separated_tags, :default => "Add comma-separated tags"), :class => "span12"}
+#licensing.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :about_licenses
+      .modal-body
+        .container-fluid
+          .row
+            .col-xs-12
+              %p=t 'views.guides.edit.licensing_explanation'
+          - for row in Observation::LICENSES.in_groups_of(2)
+            .row
+              - for code, name, description in row
+                .col-xs-6
+                  .centered
+                    = image_tag("#{code}.png")
+                    %div
+                      %label= t(name)
+                  .stacked.description
+                    .text-muted
+                      = t(description)
+                      = link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank"
+#addtags.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :add_tags
+      .modal-body
+        .container-fluid
+          %ul.nav.nav-pills
+            %li.active= link_to t(:your_tags), "#addtags-your", "data-toggle" => "pill"
+            %li= link_to t(:taxon_colors), "#addtags-colors", "data-toggle" => "pill"
+            %li= link_to t(:taxon_ranks), "#addtags-ranks", "data-toggle" => "pill"
+          .tab-content
+            #addtags-your.tab-pane.active
+              .row
+                .col-xs-12
+                  %p=t 'views.guides.tags_help_html'
+              .row.stacked
+                .col-xs-12
+                  %input{:type => "text", :placeholder => t(:add_comma_separated_tags, :default => "Add comma-separated tags"), :class => "form-control"}
+              .row.recent_tags.quiet
+                .col-xs-12
+                  - for tag in @recent_tags
+                    = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-default btn-xs"
+            #addtags-colors.tab-pane
+              .row
+                .col-xs-12
+                  %p=t 'views.guides.edit.add_color_tags_help'
+            #addtags-ranks.tab-pane
+              .row
+                .col-xs-12
+                  %p=t 'views.guides.edit.add_rank_tags_help_html'
+              .row
+                .col-xs-6
+                  .form-group
+                    %label=t :rank
+                    = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r), r]}, "family"), :class => "form-control"
+                .col-xs-6
+                  .form-group
+                    %label=t :lexicon
+                    = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t("lexicons.#{v.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", :default => v), k]}), :class => "form-control"
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+        %button.btn.btn-primary=t :add_tags_to_selected_taxa
+#importtags.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      = form_tag import_tags_from_csv_guide_path(@guide), method: :put, multipart: true, :class => "unstacked" do
+        .modal-header
+          %button.close{:type => "button", "data-dismiss" => "modal"} x
+          %h4.modal-title=t :import_tags_from_csv
+        .modal-body
+          .container-fluid
+            .row
+              .col-xs-12
+                .quiet.box
+                  %label{:for => 'csv-tag-file'}=t :csv_file
+                  = file_field_tag :file, accept: "text/csv", id: 'csv-tag-file'
+            .row
+              .col-xs-12
+                =t 'views.guides.edit.import_tags_from_csv_help_html'
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+          = link_to t(:download_csv_template), import_tags_from_csv_template_guide_path(@guide, format: :csv), :class => "btn btn-default"
+          = submit_tag t(:import_tags_from_csv), :class => "btn btn-primary", data: {loading_click: true}
+#removetags.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :remove_tags
+      .modal-body
+        %input{:type => "text", :placeholder => t(:remove_comma_separated_tags, :default => "Remove comma-separated tags"), :class => "form-control"}
         .recent_tags.quiet
           - for tag in @recent_tags
-            = link_to_function "<i class='fa.fa-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
-      #addtags-colors.tab-pane.fade
-        %p=t 'views.guides.edit.add_color_tags_help'
-      #addtags-ranks.tab-pane.fade
-        %p=t 'views.guides.edit.add_rank_tags_help_html'
-        .row-fluid
-          .span6
-            %label
-              =t :rank
-            = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r), r]}, "family")
-          .span6
-            %label
-              =t :lexicon
-            = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t("lexicons.#{v.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", :default => v), k]})
-  .modal-footer
-    %button.btn{"data-dismiss" => "modal"}=t :close
-    %button.btn.btn-primary=t :add_tags_to_selected_taxa
-#importtags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
-  = form_tag import_tags_from_csv_guide_path(@guide), method: :put, multipart: true, :class => "unstacked" do
-    .modal-header
-      %button.close{:type => "button", "data-dismiss" => "modal"} x
-      %h3=t :import_tags_from_csv
-    .modal-body
-      .quiet.box
-        .row-fluid
-          %label{:for => 'csv-tag-file'}=t :csv_file
-          = file_field_tag :file, accept: "text/csv", id: 'csv-tag-file', :class => "span12", :required => true
-      =t 'views.guides.edit.import_tags_from_csv_help_html'
-    .modal-footer
-      %button.btn{"data-dismiss" => "modal"}=t :close
-      = link_to t(:download_csv_template), import_tags_from_csv_template_guide_path(@guide, format: :csv), :class => "btn"
-      = submit_tag t(:import_tags_from_csv), :class => "btn btn-primary", data: {loading_click: true}
-#removetags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :remove_tags
-  .modal-body.row-fluid
-    %input{:type => "text", :placeholder => t(:remove_comma_separated_tags, :default => "Remove comma-separated tags"), :class => "span11"}
-    .recent_tags.quiet
-      - for tag in @recent_tags
-        = link_to_function "<i class='fa.fa-minus-sign'></i> #{tag}".html_safe, "removeTag('#{tag}')", :class => "btn btn-mini"
-  .modal-footer
-    %button.btn{"data-dismiss" => "modal"}=t :close
-    %button.btn.btn-primary=t :remove_tags
-#eolupdate.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :update_with_eol_content
-  = form_for GuideEolUpdateFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json', :class => "unstacked"} do |f|
-    .modal-body
-      %p=t 'views.guides.edit.add_eol_content'
-      .row-fluid
-        = f.fields_for :options do |fo|
-          .span4
-            %h4=t :content_types
-            = fo.fields_for :types do |ft|
-              - %w(photos ranges sections).each do |tp|
-                = fo.label tp, :class => "checkbox" do
-                  = fo.check_box tp, :checked => true
-                  =t tp
-          .span8
-            %h4=t :section_subjects
-            %p=t 'views.guides.edit.eol_subjects_desc'
-            .row-fluid
-              .span4
-                = fo.label :overview, :value => true, :class => "radio" do
-                  = fo.radio_button :overview, true, :checked => true
-                  =t :overview
-              .span8
-                = fo.label :overview, :value => false, :class => "radio" do
-                  = fo.radio_button :overview, false
-                  =t :choose_subjects
-                #eol_subjects.hide{:style => "position:relative;"}
-                  = fo.select :subjects, GuideSection::EOL_SUBJECTS.map{|s| [t(s.underscore, :default => s.titleize), s]}, {}, :multiple => true
-          .span12
-            %h4=t :other_options
-            = fo.label :replace, :class => "checkbox" do
-              = fo.check_box :replace, :checked => false
-              =t :replace_existing_content
-              .muted=t 'views.guides.edit.replace_existing_eol_desc'
+            = link_to_function "<i class='fa fa-minus-circle'></i> #{tag}".html_safe, "removeTag('#{tag}')", :class => "btn btn-default btn-xs"
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+        %button.btn.btn-primary=t :remove_tags
+#eolupdate.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :update_with_eol_content
+      = form_for GuideEolUpdateFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json', :class => "unstacked"} do |f|
+        .modal-body
+          .container-fluid
+            .row
+              .col-xs-12
+                %p=t 'views.guides.edit.add_eol_content'
+            .row
+              = f.fields_for :options do |fo|
+                .col-xs-4
+                  %h5=t :content_types
+                  = fo.fields_for :types do |ft|
+                    - %w(photos ranges sections).each do |tp|
+                      .checkbox
+                        = fo.label tp do
+                          = fo.check_box tp, :checked => true
+                          =t tp
+                .col-xs-8
+                  %h5=t :section_subjects
+                  %p=t 'views.guides.edit.eol_subjects_desc'
+                  .row
+                    .col-xs-4
+                      .radio
+                        = fo.label :overview, :value => true do
+                          = fo.radio_button :overview, true, :checked => true
+                          =t :overview
+                    .col-xs-8
+                      .radio
+                        = fo.label :overview, :value => false do
+                          = fo.radio_button :overview, false
+                          =t :choose_subjects
+                      #eol_subjects{:style => "position:relative;display:none"}
+                        = fo.select :subjects, GuideSection::EOL_SUBJECTS.map{|s| [t(s.underscore, :default => s.titleize), s]}, {}, :multiple => true
+                .col-xs-12
+                  %h5=t :other_options
+                  .checkbox
+                    = fo.label :replace do
+                      = fo.check_box :replace, :checked => false
+                      =t :replace_existing_content
+                      .text-muted=t 'views.guides.edit.replace_existing_eol_desc'
 
-    .modal-footer
-      %button.btn{"data-dismiss" => "modal"}=t :close
-      = f.submit t(:update_selected_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
-      .meta.patience.hide=t 'views.guides.eolupdate_notice'
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+          = f.submit t(:update_selected_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
+          .meta.patience.hide=t 'views.guides.eolupdate_notice'

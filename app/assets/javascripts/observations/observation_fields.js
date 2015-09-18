@@ -193,7 +193,7 @@ var ObservationFields = {
 
 // the following stuff doesn't have too much to do with observation fields, but it's at least tangentially related
 $(document).ready(function() {
-  $('#project_menu .addlink, .project_invitation .acceptlink, #projectschooser .addlink').live('ajax:success', function(e, json, status) {
+  $(document).on('ajax:success', '#project_menu .addlink, .project_invitation .acceptlink, #projectschooser .addlink', function(e, json, status) {
     var observationId = (json && json.observation_id) || $(this).data('observation-id') || window.observation.id
     if (json && json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
       if (json.observation.observation_field_values && json.observation.observation_field_values.length > 0) {
@@ -210,7 +210,8 @@ $(document).ready(function() {
         originalInput: this
       })
     }
-  }).live('ajax:error', function(e, xhr, error, status) {
+  })
+  $(document).on('ajax:error', '#project_menu .addlink, .project_invitation .acceptlink, #projectschooser .addlink', function(e, xhr, error, status) {
     var json = $.parseJSON(xhr.responseText),
         projectId = json.project_observation.project_id || $(this).data('project-id'),
         observationId = json.project_observation.observation_id || $(this).data('observation-id') || window.observation.id
@@ -226,7 +227,7 @@ $(document).ready(function() {
       alert(json.error)
     }
   })
-  $('#project_menu .removelink, .project_invitation .removelink, #projectschooser .removelink').live('ajax:error', function(e, xhr, error, status) {
+  $(document).on('ajax:error', '#project_menu .removelink, .project_invitation .removelink, #projectschooser .removelink', function(e, xhr, error, status) {
     alert(xhr.responseText)
   })
 })

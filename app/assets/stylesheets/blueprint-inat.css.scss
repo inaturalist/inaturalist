@@ -1,0 +1,11 @@
+.next, .prev {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.next:after {
+  content: '\0020 \00BB';
+}
+
+.prev:before {
+  content: '\00AB \0020';
+}

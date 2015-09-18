@@ -2,7 +2,7 @@ $('#guide_taxon_taxon_id:visible').chooser({
   collectionUrl: '/taxa/autocomplete.json',
   resourceUrl: '/taxa/{{id}}.json?partial=chooser',
 })
-$('#import_photos_dialog').on('shown', function() {
+$('#import_photos_dialog').on('shown.bs.modal', function() {
   $content = $('#flickr_photos')
   if ($content.hasClass('loaded')) {
     return
@@ -18,11 +18,11 @@ var photoSelectorOptions = {
   bootstrap: true,
   urlParams: {
     authenticity_token: $('meta[name=csrf-token]').attr('content'),
-    limit: 32,
+    limit: 42,
     partial: 'bootstrap_photo_list_form'
   }
 }
-$('#import_photos_dialog [data-toggle="tab"]').on('show', function(e) {
+$('#import_photos_dialog [data-toggle="tab"]').on('show.bs.tab', function(e) {
   var $tab = $(e.target),
       provider = $tab.data('provider'),
       $content = $($tab.attr('href'))
@@ -61,11 +61,16 @@ $('#import_photos_dialog .modal-footer .btn-primary').click(function() {
     $('.guide-photo-fields:last .photo_id_input').val(data.id)
     $('.guide-photo-fields:last .local_photo_fields').hide()
   })
-  updatePositions("#guide_photos", ".row-fluid")
+  updatePositions("#guide_photos", ".nested-fields")
   $('#import_photos_dialog').modal('hide')
 })
-$('#import_sections_dialog').on('shown', function() {
-  var current = $('.tab-pane:visible', this)
+$('#import_sections_dialog').on('shown.bs.modal', function(e) {
+  sectionsForTab($('.tab-pane:visible', this))
+})
+$('#import_sections_dialog [data-toggle="tab"]').on('shown.bs.tab', function(e) {
+  sectionsForTab($($(e.target).attr('href')))
+})
+function sectionsForTab(current) {
   if (current.hasClass('loaded')) {
     return
   }
@@ -81,11 +86,11 @@ $('#import_sections_dialog').on('shown', function() {
     }
   })
   current.addClass('loaded')
-})
+}
 function sectionToHtml(section) {
   var div = $('<div></div>').addClass('lined stacked')
   div.append(
-    $('<a class="right btn">'+I18n.t('import')+'</a>').click(function() {addSection(section)})
+    $('<a class="right btn btn-default">'+I18n.t('import')+'</a>').click(function() {addSection(section)})
   )
   var attribution = $('<div class="small meta"></div>').html(section.attribution)
   if (section.source_url) {
@@ -106,7 +111,7 @@ function addSection(section) {
     $('.guide-section-fields:last .'+this+'_field .mirror').html(section[this])
   })
 }
-$('#import_ranges_dialog').on('shown', function() {
+$('#import_ranges_dialog').on('shown.bs.modal', function() {
   var current = $('.tab-pane:visible', this)
   if (current.hasClass('loaded')) {
     return
@@ -117,7 +122,7 @@ $('#import_ranges_dialog').on('shown', function() {
     if (!json || json.length == 0) {
       current.html("<p>"+I18n.t('no_range_data_available')+"</p>")
     } else {
-      var ul = $('<ul class="thumbnails"></ul>')
+      var ul = $('<div class="row"></div>')
       $.each(json, function() {
         ul.append(rangeToHtml(this))
       })
@@ -128,18 +133,18 @@ $('#import_ranges_dialog').on('shown', function() {
   current.addClass('loaded')
 })
 function rangeToHtml(range) {
-  var div = $('<div></div>').addClass('thumbnail span2 text-center')
+  var div = $('<div></div>').addClass('thumbnail text-center')
   div.append($('<img/>').attr('src', range.thumb_url).addClass('stacked'))
   div.append(
-    $('<a class="btn">'+I18n.t('import')+'</a>').click(function() {addRange(range)})
+    $('<a class="btn btn-default">'+I18n.t('import')+'</a>').click(function() {addRange(range)})
   )
-  var attribution = $('<div class="small meta"></div>').html(range.attribution)
+  var attribution = $('<div class="small meta upstacked"></div>').html(range.attribution)
   if (range.source_url) {
-    var link = $('<a></a>').attr('href', range.source_url).attr('target', '_blank')
+    var link = $('<a></a>') .attr('href', range.source_url).attr('target', '_blank')
     attribution = attribution.wrap(link)
   }
   div.append(attribution)
-  return div
+  return $('<div class="col-xs-3"></div>').html(div)
 }
 function addRange(range) {
   $('#guide_ranges_row .btn-add-range').click()
@@ -149,7 +154,7 @@ function addRange(range) {
     $('.guide-range-fields:last .'+this+'_field :input').val(range[this])
     $('.guide-range-fields:last .'+this+'_field .mirror').html(range[this])
   })
-  $('.guide-range-fields:last .control-group :input').lock()
+  $('.guide-range-fields:last .form-group :input').lock()
 }
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)
@@ -158,49 +163,55 @@ function updatePositions(container, sortable) {
   })
 }
 $('#guide_photos').sortable({
-  items: "> .row-fluid",
+  items: ".nested-fields",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_photos", ".guide-photo-fields")  
+    updatePositions("#guide_photos", ".nested-fields")  
   }
 })
 $('#guide_photos').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp(function() {
-    updatePositions("#guide_photos", ".row-fluid")  
+    updatePositions("#guide_photos", ".nested-fields")
   })
 })
 $('#guide_sections').sortable({
-  items: "> .row-fluid",
+  items: ".nested-fields",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_sections", ".row-fluid")  
+    updatePositions("#guide_sections", ".nested-fields")  
   }
 })
 $('#guide_ranges').sortable({
-  items: "> .row-fluid",
+  items: ".nested-fields",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
-    updatePositions("#guide_ranges", ".row-fluid")  
+    updatePositions("#guide_ranges", ".nested-fields")  
   }
 })
 $('#guide_sections').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp(function() {
-    updatePositions("#guide_sections", ".row-fluid")  
+    updatePositions("#guide_sections", ".nested-fields")  
   })
 })
-$('#guide_photos, #guide_sections, #guide_ranges').bind('cocoon:after-insert', function(e, item) {
-  updatePositions(this, ".row-fluid")  
+$('#guide_photos').bind('cocoon:after-insert', function(e, item) {
+  updatePositions("#guide_photos", ".nested-fields")
+})
+$('#guide_sections').bind('cocoon:after-insert', function(e, item) {
+  updatePositions("#guide_sections", ".nested-fields")
+})
+$('#guide_ranges').bind('cocoon:after-insert', function(e, item) {
+  updatePositions("#guide_ranges", ".nested-fields")
 })
 $('#guide_ranges').bind('cocoon:before-remove', function(e, item) {
   $(this).data('remove-timeout', 1000)
   $(item).slideUp()
 })
-$('#guide_sections input[type=text]').live('change', function() {
+$('#guide_sections').on('change', 'input[type=text]', function() {
   $(this).parents('.nested-fields:first').find('input[name*=modified_on_create]').val(true)
 })
 function addTag(tag) {
@@ -220,7 +231,7 @@ function addTag(tag) {
 function addPhotoTag(btn, tag) {
   var tag = $.trim(tag),
       tags,
-      input = $(btn).parents('[class*="span"]:first').find('.tag_list')
+      input = $(btn).parents('.photo-tags:first').find('.tag_list')
   if ($.trim(input.val()) == '') {
     tags = []
   } else {

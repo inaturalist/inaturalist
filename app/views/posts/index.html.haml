@@ -10,7 +10,7 @@
   .row
     = render :partial => "posts/header"
   .row
-    .span8
+    .col-md-8
       #postdates.posts_by_date
         = render :partial => 'posts_by_date'
         - if @posts.empty?
@@ -24,7 +24,7 @@
               = link_to t(:add_one), new_journal_post_path(@parent_slug), |
                 :class => "default button"                                |
       = will_paginate @posts
-    .span4
+    .col-md-4
       - unless @drafts.blank?
         .box
           %h3= t(:drafts)
@@ -33,7 +33,7 @@
               %li
                 = link_to post.title, edit_post_path(post)
                 %div
-                  %span.muted= t(:created_on, gender: 'post')
+                  %span.text-muted= t(:created_on, gender: 'post')
                   %span.date= l post.created_at, format: :long
       - unless @archives.blank?
         = render :partial => 'archives'

@@ -24,7 +24,7 @@ module GuidesHelper
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
     @guide_taxa = @guide_taxa.tagged(@tags) unless @tags.blank?
-    @guide_taxa = @guide_taxa.sorted_by(@sort) unless @sort.blank?
+    @guide_taxa = @guide_taxa.sorted_by(@sort)
     @view = gparams[:view] || "grid"
     @guide_taxa
   end

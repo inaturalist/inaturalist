@@ -708,6 +708,7 @@ en:
     attribution_sharealike_license: Attribution-ShareAlike License
     attribution_noderivs_license: Attribution-NoDerivs License
     gnu_free_documentation_license: GNU Free Documentation License
+  copyright_holder: Copyright holder
   copyright_infringement_desc: Violates copyright law or was created by someone other than the observer and lacks attribution
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
@@ -3458,7 +3459,7 @@ en:
           modify it without asking your permission. It makes it much easier to
           share your work, and if you incorporate 3rd party content from other
           sources that use Creative Commons ShareAlike licenses (like
-          Wikipedia), you are legall obliged to use a similar license. Here's
+          Wikipedia), you are legally obliged to use a similar license. Here's
           an overview of all the Creative Commons licenses and what they mean:
         paste_note_html: |
           Paste in up to 500 species names, one per line. %{site_name} will do
@@ -3488,7 +3489,7 @@ en:
         content in the guide without an Internet connection. It will take a
         few minutes to generate the archive, but once this is enabled the
         archive will update whenever you change this guide.</p>
-        <p class="alert error status">
+        <p class="alert status">
           Please <strong>do not enable offline mobile downloads unless you
           actually intend to use them.</strong> They represent a considerable
           burden on our system.

@@ -132,13 +132,13 @@
         }
       })
       $('#place_selector form')
-        .live('ajax:before', function() {
+        .on('ajax:before', function() {
           $('.loading', this).show()
         })
-        .live('ajax:complete', function() {
+        .on('ajax:complete', function() {
           $('.loading', this).hide()
         })
-        .live('ajax:success', function(event, json, status) {
+        .on('ajax:success', function(event, json, status) {
           $(this).siblings('.place_selector_places').html(json.map(function(place) { 
             return '<li class="clear">' + place.html + '</li>'
           }).join(' '))

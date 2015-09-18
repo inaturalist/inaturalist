@@ -1,29 +1,30 @@
-.nested-fields.guide-range-fields.lined.stacked.row-fluid
-  .span1
+.nested-fields.guide-range-fields.lined.stacked.row
+  .col-xs-1
     = f.text_field :position, :class => "sortable-position"
-  .span2
+  .col-xs-2
     = f.hidden_field :guide_taxon_id
-    = image_tag f.object.medium_url || "iconic_taxa/unknown-200px.png", :class => "media-object"
-  .span7
-    - if f.object.new_record?
-      .control-group.local_fields.file_field
-        = f.label :file, t(:file), :class => "control-label"
-        .controls
-          = f.file_field :file, :accept => "image/jpg,image/jpeg,image/png,image/gif"
-    .control-group.rights_holder_field
-      = f.label :rights_holder, t(:copyright_holder, :default => "Copyright holder"), :class => "control-label"
-      .controls= f.text_field :rights_holder, :data => {:locked => f.object.persisted?}, :class => "span12"
-    .control-group.license_field
-      = f.label :license, t(:license), :class => "control-label"
-      .controls= f.select :license, Observation::LICENSE_CODES, {:include_blank => t(:no_license_all_rights_reserved)}, {:data => {:locked => f.object.persisted?}}
-    .control-group.source_url_field
-      = f.label :source_url, t(:source_url), :class => "control-label"
-      .controls
-        = f.text_field :source_url, :data => {:locked => f.object.persisted?}, :placeholder => t(:original_url_for_this_map), :class => "span12"
-    - %w(thumb_url medium_url original_url).each do |a|
-      .readonly_field{:class => "#{a}_field"}
-        = f.label t(a, :default => a)
-        = f.hidden_field a, :class => "input-xxlarge"
-        %span.mirror= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
-  .controls.span2
-    = link_to_remove_association t(:remove_range), f, :class => "btn btn-small btn-mini pull-right"
+    = image_tag f.object.medium_url || "iconic_taxa/unknown-200px.png", :class => "img-responsive"
+  .col-xs-7
+    .form-horizontal
+      - if f.object.new_record?
+        .form-group.local_fields.file_field
+          = f.label :file, t(:file), :class => "control-label col-xs-3"
+          .controls.col-xs-9
+            = f.file_field :file, :accept => "image/jpg,image/jpeg,image/png,image/gif", :class => "file"
+      .form-group.rights_holder_field
+        = f.label :rights_holder, t(:copyright_holder, :default => "Copyright holder"), :class => "control-label col-xs-3"
+        .controls.col-xs-9= f.text_field :rights_holder, :data => {:locked => f.object.persisted?}, :class => "form-control"
+      .form-group.license_field
+        = f.label :license, t(:license), :class => "control-label col-xs-3"
+        .controls.col-xs-9= f.select :license, Observation::LICENSE_CODES, {:include_blank => t(:no_license_all_rights_reserved)}, {:data => {:locked => f.object.persisted?}}
+      .form-group.source_url_field
+        = f.label :source_url, t(:source_url), :class => "control-label col-xs-3"
+        .controls.col-xs-9
+          = f.text_field :source_url, :data => {:locked => f.object.persisted?}, :placeholder => t(:original_url_for_this_map), :class => "form-control"
+      - %w(thumb_url medium_url original_url).each do |a|
+        .form-group.readonly_field{:class => "#{a}_field"}
+          = f.label t(a, :default => a), :class => "col-xs-3 control-label"
+          = f.hidden_field a
+          %span.mirror.col-xs-9= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
+  .controls.col-xs-2
+    = link_to_remove_association t(:remove_range), f, :class => "btn btn-default pull-right"

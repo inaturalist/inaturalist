@@ -15,11 +15,6 @@
   margin-bottom: 0.5em;
 }
 
-form.post_form input.text, 
-form.post_form textarea {
-  width: 97%;
-}
-
 form.post_form textarea {
   height: 400px;
 }
@@ -72,4 +67,9 @@ form.post_form .observationSelectorObservations {
 #archives .label,
 #archives .count {
   color: #888;
+}
+
+.post img {
+  max-width: 100%;
+  height: auto;
 }

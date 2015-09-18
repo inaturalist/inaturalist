@@ -32,7 +32,7 @@ $(document).ready(function() {
       $('td.name', row).html(html)
     }
     $(':input[name*=taxon_id]', row).val(taxon.id)
-    $(':input[name*=observed]', row).attr('checked', $('#trip_taxa').data('check-last'))
+    $(':input[name*=observed]', row).prop('checked', $('#trip_taxa').data('check-last'))
     $('#new_species').chooser('clear')
     $('#trip_taxa').data('last-taxon', null)
     $('#trip_taxa').data('check-last', null)
@@ -92,9 +92,9 @@ $(document).ready(function() {
       $('#trip_taxa_row .add_fields').click()
     } else {
       // add complete check box
-      var li = $('<li></li>').data('taxon-id', taxon.id),
+      var li = $('<li></li>').data('taxon-id', taxon.id).addClass('checkbox'),
           inputId = taxon.name.toLowerCase()+'_complete',
-          label = $('<label></label>').attr('for', inputId).addClass('checkbox')
+          label = $('<label></label>').attr('for', inputId),
           checkbox = $('<input type="checkbox"/>').attr('name', inputId).attr('id', inputId)
       checkbox.data('taxon', taxon)
       label.append(checkbox)
@@ -121,7 +121,7 @@ $(document).ready(function() {
   })
 
   $('#goal_taxa :input:checkbox').click(function() {
-    if ($(this).attr('checked')) {
+    if ($(this).prop('checked')) {
       $('#trip_purposes').data('last-taxon', $(this).data('taxon'))
       $('#trip_purposes').data('hide-last', true)
       $('#trip_purposes_row .add_fields').click()
@@ -132,12 +132,13 @@ $(document).ready(function() {
     }
   })
 
-  $('#complete_taxa :checkbox').live('click', function() {
+  $('#complete_taxa').on('click', ':checkbox', function() {
     var taxonId = $(this).parents('li:first').data('taxon-id')
-    if ($(this).attr('checked')) {
-      $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]').val(true)
+    if ($(this).prop('checked')) {
+      console.log("[DEBUG] $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]'): ", $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]'))
+      $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]').val(true).prop('checked', true)
     } else {
-      $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]').val(false)
+      $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]').val(false).prop('checked', false)
     }
   })
 

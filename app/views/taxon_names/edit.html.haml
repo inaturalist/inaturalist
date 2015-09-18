@@ -3,7 +3,7 @@
   "#{@taxon_name.name}" #{t :for} #{default_taxon_name @taxon}
 .container
   .row
-    #pageheader.span12
+    #pageheader.col-md-12
       %span.breadcrumbs
         = link_to t(:back_to_taxon, :defaulttaxon => "#{default_taxon_name(@taxon)}"), @taxon, :class => 'back crumb'
       %h2
@@ -13,7 +13,7 @@
   = render :partial => 'form'
   - if @taxon_name.creator
     .row.meta
-      .span12
+      .col-md-12
         = t(:created_by, gender: 'taxon')
         = link_to @taxon_name.creator.login, @taxon_name.creator
         = t :on_day
@@ -26,7 +26,7 @@
           = l(@taxon_name.updated_at.to_date, :format => :long)
   - unless @synonyms.blank?
     .row.small.upstacked.meta
-      .span12
+      .col-md-12
         %h3= t :synonyms
         %p.ui
           = t :there_are_x_synonyms_html, :count => @synonyms.total_entries

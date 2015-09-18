@@ -3,10 +3,10 @@
   @parent ||= post.parent
   post_url = flexible_post_path(post)
 .post{:id => "post-#{post.id}"}
-  %h3.title.media-heading
+  %h3.title
     = link_to post.title, post_url
     - if post.is_a?(Trip)
-      %span.muted
+      %span.text-muted
         = surround '(', ')' do
           =t :trip
   .body.clear

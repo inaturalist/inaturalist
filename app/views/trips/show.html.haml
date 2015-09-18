@@ -45,13 +45,12 @@
         = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
       - else
         = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
-      %span.divider /
     %li.active
       = link_to @trip.title, @trip
       - if @trip.is_a?(Trip)
         = surround '(', ')' do
           =t :trip
-    %li.pull-right
+    %li.pull-right.prevnext
       - if @prev
         = link_to @prev do
           %i.fa.fa-chevron-left
@@ -61,8 +60,8 @@
         = link_to @next do
           = truncate @next.title
           %i.fa.fa-chevron-right
-  .row
-    .span3
+  .row.upstacked
+    .col-md-3
       %ul#sidenav.sidenav.nav.nav-list{:data => {:spy => "affix"}}
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
@@ -72,16 +71,16 @@
         - if @trip.is_a?(Trip)
           %li= link_to t(:check_list), "#check_list"
         %li= link_to t(:comments), "#comments"
-    .span9
+    .col-md-9
       %section{:id => "summary"}
         - if @trip.editable_by?(current_user)
           .btn-group.pull-right
-            = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn" do
+            = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn btn-default" do
               %i.fa.fa-edit
               = t(:edit)
         %h1= @title
         - if @trip.is_a?(Trip)
-          .subtitle.muted.lead
+          .subtitle.text-muted.lead
             = l(@trip.start_time, :format => :long) if @trip.start_time
             \-
             = l(@trip.stop_time, :format => :long) if @trip.start_time
@@ -89,7 +88,7 @@
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
-          .small.muted.stacked
+          .small.text-muted.stacked
             =t :posted_by
             = succeed ',' do
               = user_image @trip.user, :size => "mini", :class => "img-rounded"
@@ -103,7 +102,7 @@
             - compact do
               = render :partial => "observations/cached_component", :collection => @trip.observations
           - if @trip.is_a?(Trip)
-            .muted
+            .text-muted
               :ruby
                 obs_params = {
                   :d1 => @trip.start_time.iso8601,
@@ -119,16 +118,44 @@
       - if @trip.is_a?(Trip)
         %section{:id => "check_list"}
           %h2=t :check_list
-          - if @trip.trip_taxa.blank?
-            .muted.nocontent=t :no_taxa_listed
+          - if @trip_taxa.blank?
+            .text-muted.nocontent=t :no_taxa_listed
           - else
-            %ul.taxon_links.plain
-              - for trip_taxon in @trip.trip_taxa
-                %li
-                  = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+            .row
+              .col-xs-6
+                %h4 Observed
+                - if @trip.trip_purposes.blank?
+                  %ul.taxon_links.plain
+                    - for trip_taxon in @trip_taxa_observed
+                      %li
+                        = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+                - else
+                  - for trip_purpose in @trip.trip_purposes
+                    %h5
+                      = trip_purpose.resource.default_name.name
+                      - if trip_purpose.complete?
+                        .label.label-success{data: {tip: "Complete list of taxa observed. Taxa not on this list were not observed."}}=t :complete
+                    %ul.taxon_links.plain
+                      - for trip_taxon in @trip_taxa_observed
+                        - if trip_taxon.ancestor_ids.include?(trip_purpose.resource_id)
+                          %li
+                            = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+                  - unless @trip_taxa_untargeted.blank?
+                    %h5 Everything else
+                    %ul.taxon_links.plain
+                      - for trip_taxon in @trip_taxa_untargeted
+                        %li
+                          = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+              .col-xs-6
+                %h4 Sought but not found
+                %ul.taxon_links.plain
+                  - for trip_taxon in @trip_taxa_unobserved
+                    %li
+                      = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
       %section{:id => "comments"}
         - if @trip.published_at
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
         - else
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
-        = render :partial => "shared/flagging", :locals => { :instance => @post }
+        .upstacked
+          = render :partial => "shared/flagging", :locals => { :instance => @post }

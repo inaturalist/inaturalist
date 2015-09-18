@@ -234,6 +234,9 @@ a:hover {
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
 .ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: "Trebuchet MS", Arial, sans-serif; }
+.ui-tooltip {
+  padding: 0px;
+}
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -854,18 +857,6 @@ ul.leafylist li li:first-child {
   content: '\0020 \00BB';
 }
 
-.next, .prev {
-  font-weight: bold;
-  white-space: nowrap;
-}
-.next:after {
-  content: '\0020 \00BB';
-}
-
-.prev:before {
-  content: '\00AB \0020';
-}
-
 #version_info {
   margin-left: 1em;
   margin-bottom: 1em;
@@ -1474,7 +1465,7 @@ a.id_please_notice:hover{color:#584925;}
 
 .ui-chooser-input, .ui-chooser-choice { 
   font-family: "Trebuchet MS", Arial, sans-serif;
-  padding: 6px 5px 5px; 
+  padding: 4px 5px 3px; 
   margin: 0; 
   border-color: #ccc; 
   border-right: 0 transparent; 
@@ -1505,6 +1496,13 @@ a:hover .inat-icon, .inat-icon:hover { background-image: image-url('sprites-2222
 .ui-icon-list { background-position: -16px 0;}
 .ui-icon-map { background-position: -32px 0;}
 .ui-icon-layers { background-position: -64px 0;}
+.ui-icon.inlineblock {
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+  display: inline-block;
+  zoom: 1;
+}
 
 .source_nested_form_fields .ui-chooser-choice { max-width: 300px; padding: 5px 10px; }
 .ui-tabs li.ui-corner-top, .ui-tabs ul.ui-corner-all { -moz-border-radius: 0px; -webkit-border-radius: 0px; -khtml-border-radius: 0px; border-radius: 0px;}
@@ -1851,6 +1849,11 @@ p.spam {
 .leaderboard-container thead [class*="sorting_"] {background-color: #eee;}
 .leaderboard-container [class*="sorting_disabled"], 
 .leaderboard-container thead [class*="sorting_disabled"] {background-color: transparent;}
+
+.ui-widget-overlay {
+  background: black;
+  opacity: 0.6;
+}
 
 .textcomplete-dropdown {
   float: left;

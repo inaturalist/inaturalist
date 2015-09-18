@@ -3,11 +3,11 @@
 - img_class ||= nil
 = content_tag tag, :class => "media" do
   .pull-left{:class => img_class}
-    = link_to image_tag(guide.icon.url(:small_square), :class => "img-rounded"), guide
+    = link_to image_tag(guide.icon.url(:small_square), :class => "img-rounded img-responsive"), guide
   .media-body
     %h2.media-heading= link_to guide.title, guide
     %p= truncate(strip_tags(guide.description), :length => 300).html_safe
-    .muted
+    .text-muted
       - unless guide.published?
-        %span.badge.badge-warning.draft=t :draft
+        %span.label.label-as-badge.label-warning.draft=t :draft
       =t :edited_by_name_html, :name => commas_and(guide.guide_users.map{|gu| link_to_user(gu.user, :content_text => gu.user.login)})
