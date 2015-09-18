@@ -814,7 +814,7 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   checkbox
     .attr('id', id)
     .attr('name', name)
-    . prop('checked', overlay.getMap())
+    .prop('checked', overlay.getMap())
   checkbox.click(function() {
     var name = $(this).attr('name'),
         overlay = map.getOverlay(name).overlay

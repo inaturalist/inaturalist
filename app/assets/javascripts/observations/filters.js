@@ -61,7 +61,7 @@ function hideFilters(link, options) {
 
 function deselectAll() {
   $('#filters :text, #fitlers :input[type=hidden], #fitlers select').val(null)
-  $('#filters :input:checkbox'). prop('checked', false)
+  $('#filters :input:checkbox').prop('checked', false)
   deSelectAllIconicTaxa()
   $('#filters input[name=place_id]').chooser('clear', {bubble:false})
   $.fn.simpleTaxonSelector.unSelectTaxon('#filters .simpleTaxonSelector')
@@ -72,7 +72,7 @@ function setFiltersFromQuery(query) {
   var params = $.deparam(query)
   $.each(params, function(k,v) {
     if (k != 'iconic_taxa' && k != 'has') {
-      $('#filters :input:radio[name="'+k+'"][value="'+v+'"]'). prop('checked', true)
+      $('#filters :input:radio[name="'+k+'"][value="'+v+'"]').prop('checked', true)
     }
     if ($.isArray(v)) {
       v = v.join(',')
@@ -87,7 +87,7 @@ function setFiltersFromQuery(query) {
     } else if (k == 'iconic_taxa' || k == 'has') {
       $.each(v, function(i,av) {
         $selection = $('#filters :input:checkbox[name="'+k+'[]"][value='+av+']')
-        $selection. prop('checked', true)
+        $selection.prop('checked', true)
         if (k == 'iconic_taxa') {
           $selection.siblings('label').addClass('selected');
         }

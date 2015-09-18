@@ -192,7 +192,7 @@
         }
         $(this).data('selected', item)
         $(this.markup.input).hide()
-        $(this.markup.choice).html(itemLabel).showInlineBlock()
+        $(this.markup.choice).html(itemLabel).showInlineBlock().width(this.markup.input.width())
         $(this.markup.chooseButton).showInlineBlock()
         $(this.markup.clearButton)
           .height(this.markup.choice.outerHeight()-2)
@@ -288,8 +288,8 @@
         this.markup.chooseButton, 
         this.markup.loadingButton, 
         this.markup.clearButton)
-      this.markup.input.width(originalInput.outerWidth - this.markup.chooseButton.width() - 20)
-      this.markup.choice.width(originalInput.outerWidth)
+      this.markup.input.width(originalInput.outerWidth() - this.markup.chooseButton.width() - 20)
+      this.markup.choice.width(originalInput.outerWidth())
       return this.markup
     },
     destroy: function() {

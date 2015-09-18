@@ -69,11 +69,11 @@
       return false;
     });
     var selectAll = $('<a href="#" class="selectall button">' + I18n.t('select_all') + '</a>').click(function(e) {
-      $(wrapper).find('input:checkbox'). prop('checked', true);
+      $(wrapper).find('input:checkbox').prop('checked', true);
       return false;
     });
     var selectNone = $('<a href="#" class="selectnone button">' + I18n.t('select_none') + '</a>').click(function(e) {
-      $(wrapper).find('input:checkbox'). prop('checked', false);
+      $(wrapper).find('input:checkbox').prop('checked', false);
       return false;
     });
     $(controls).append(input, button, page, prev, selectAll, selectNone, 
