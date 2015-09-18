@@ -1,0 +1,39 @@
+.jumbotron .or {margin: 0 1em;}
+.bootstrap .nav-pills > .active.back > a, .bootstrap .nav-pills > .active.back > a:hover, .bootstrap .nav-pills > .active.back > a:focus {
+  background-color: #eee;
+  color:#333;
+}
+#taxonomy .taxon .othernames {display:block; color:#aaa;}
+#taxonomy a .taxon:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.iconic_taxon_sprite {margin-right:5px;}
+#guidesheader {
+  background: image-url('guidesbg1.jpg') no-repeat;
+  background-color:black;
+  color:white;
+  background-position: right top;
+  overflow:hidden;
+}
+#guidesheader.logged_in {padding-bottom:0; }
+#guidesheader .nav-tabs {margin-bottom:0; position:relative;top:1px; border-bottom:1px solid white;}
+#guidesheader .nav-tabs a {color:white;}
+#guidesheader .nav-tabs .active a {color:#08c;}
+#guidesheader h1 {
+  font-size:300%;
+  font-weight: bold;
+  text-shadow: 0px 1px 10px black;
+}
+#guidesheader h1 a { color: white; text-decoration: none;}
+#guidesheader p {
+  font-size:140%; 
+  text-shadow: 0px 1px 5px black;
+}
+#guidesheader .nav-tabs a, #guidesheader .nav-tabs a:hover, #guidesheader .nav-tabs a:focus {border: 0 transparent; font-size: 120%;}
+#guidesheader .nav > li.inactive > a:hover,
+#guidesheader .nav > li.inactive > a:focus {
+  text-decoration: none;
+  background-color: black;
+  opacity: 0.5;
+}

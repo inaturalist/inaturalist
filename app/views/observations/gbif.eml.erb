@@ -13,7 +13,6 @@
     <title xml:lang="en">iNaturalist research-grade observations</title>
     
     <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "creator", :data => @creator} %>
-    
     <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "metadataProvider", :data => @metadata_provider} %>
     
     <pubDate><%= Date.today.to_s %></pubDate>
@@ -88,12 +87,35 @@
       <qualityControl>
         <description>
           <para>
-            iNaturalist observations achieve research grade when 1) the
-            iNaturalist community agrees with the observer's ID, where an
-            "agreeing" identification is one that matches exactly or is of a
-            child taxon of the observer's ID, 2) the observation has a date,
-            3) the observation is georeferenced, 4) the observation has a
-            photo.
+            iNaturalist observations become candidates for "research" grade
+            when they have a photo, date, and coordinates. They become
+            "research" grade when the community agrees on an identification.
+            If the community has multiple opinions on what taxon has been
+            observed, iNaturalist chooses a taxon from all the proposed taxa
+            (and implied ancestor taxa of the proposed taxa) that more than
+            2/3 of the voters agree with. The full algorithm is as follows:
+            for all identified taxa and the taxa that contain them (e.g. genus
+            Homo contains Homo sapiens), score each as the ratio between the
+            number of cumulative IDs for that taxon over the sum of the
+            cumulative IDs, the number of more conservative IDs added after
+            the first ID of that taxon, and the number of IDs that are
+            completely different (i.e. IDs of taxa that do not contain the
+            taxon being scored). For the identified taxa that have a score
+            over 2/3 and at least 2 identifications, iNaturalist chooses the
+            lowest ranked taxon as the community taxon.
+          </para>
+          <para>
+            An observation can lose "research" grade status if the community
+            has voted it down on several metrics, including whether the
+            organism is wild / naturalized (i.e. not captive / cultivated),
+            whether the location and date seem accurate, and whether the
+            content of the observation is appropriate for the context (e.g.
+            violation of iNaturalist's Terms of Service, copyright violation,
+            plagiarism, etc.).
+          </para>
+          <para>
+            For more about data quality on iNaturalist, see
+            http://www.inaturalist.org/pages/help#quality
           </para>
         </description>
       </qualityControl>

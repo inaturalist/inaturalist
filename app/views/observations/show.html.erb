@@ -69,6 +69,7 @@
   <%= javascript_include_tag 'observations/observation_fields',
                              'map_bundle',
                              "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/jquery.hotkeys",
                              "observations/show" %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%=json_escape @default_photo_identity_url.to_json.html_safe %>,
@@ -195,7 +196,7 @@
           <% end -%>
         <% end %>
         <%= link_to unvote_path('observation', @observation.id, format: 'json'), 
-            :method => :post, 
+            :method => :delete, 
             :remote => true, 
             :id => "unfavebutton", 
             :class => "favebutton #{@observation.votes[nil].try(:[], :up).to_i == 0 ? 'nofaves' : 'hasfaves'}", 
@@ -209,6 +210,11 @@
           <%= link_to t(:x_faves, count: @observation.votes[nil].try(:[], :up).to_i), "#", :class => "votes_for_button", :onclick => "javascript:return false;" %>
         <% end -%>
       </div>
+
+      <%= link_to "javascript:showIdentificationForm();", id: "idbutton" do %>
+        <i class="fa fa-tag"></i>
+        <%= t(:identify) %>
+      <% end %>
 
       <% if !@projects.blank? && @project_addition_allowed %>
         <%= link_to_tip "<i class='fa fa-plus'></i> #{t(:add_to_project)}".html_safe, id: "add-to-project-button", tip_options: {
@@ -431,8 +437,8 @@
     
     <div id="forms" class="ui-tabs">
       <ul class="clear">
-        <li><h3><a href="#new_comment_form"><span><%=t :add_a_comment %></span></a></h3></li>
-        <li><h3><a href="#new_identification_form"><span><%=t :add_an_identification %></span></a></h3></li>
+        <li><h3><a href="#new_comment_form" id="new-comment-form-tab"><span><%=t :add_a_comment %></span></a></h3></li>
+        <li><h3><a href="#new_identification_form" id="new-identification-form-tab"><span><%=t :add_an_identification %></span></a></h3></li>
       </ul>
       
       <div id="new_comment_form">

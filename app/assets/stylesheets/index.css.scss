@@ -234,6 +234,9 @@ a:hover {
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
 .ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: "Trebuchet MS", Arial, sans-serif; }
+.ui-tooltip {
+  padding: 0px;
+}
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -737,11 +740,6 @@ span.button {
   color: DeepPink;
 }
 
-a .taxon:hover {
-  color: #36c;
-  text-decoration: underline;
-}
-
 .species .sciname,
 .genus .sciname,
 .sciname.genus,
@@ -852,18 +850,6 @@ ul.leafylist li li:first-child {
 
 .readmore:after {
   content: '\0020 \00BB';
-}
-
-.next, .prev {
-  font-weight: bold;
-  white-space: nowrap;
-}
-.next:after {
-  content: '\0020 \00BB';
-}
-
-.prev:before {
-  content: '\00AB \0020';
 }
 
 #version_info {
@@ -1474,7 +1460,7 @@ a.id_please_notice:hover{color:#584925;}
 
 .ui-chooser-input, .ui-chooser-choice { 
   font-family: "Trebuchet MS", Arial, sans-serif;
-  padding: 6px 5px 5px; 
+  padding: 4px 5px 3px; 
   margin: 0; 
   border-color: #ccc; 
   border-right: 0 transparent; 
@@ -1505,6 +1491,13 @@ a:hover .inat-icon, .inat-icon:hover { background-image: image-url('sprites-2222
 .ui-icon-list { background-position: -16px 0;}
 .ui-icon-map { background-position: -32px 0;}
 .ui-icon-layers { background-position: -64px 0;}
+.ui-icon.inlineblock {
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+  display: inline-block;
+  zoom: 1;
+}
 
 .source_nested_form_fields .ui-chooser-choice { max-width: 300px; padding: 5px 10px; }
 .ui-tabs li.ui-corner-top, .ui-tabs ul.ui-corner-all { -moz-border-radius: 0px; -webkit-border-radius: 0px; -khtml-border-radius: 0px; border-radius: 0px;}
@@ -1569,8 +1562,21 @@ table .numeric { text-align: center; }
 .admin:before {
   content: 'Admin only';
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+}
+
+.curatorsonly {
+  border-width: 2px;
+  border-style: dotted;
+  position: relative;
+}
+.curatorsonly:before {
+  content: 'Curators only';
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-weight: bold;
 }
 
@@ -1631,8 +1637,6 @@ table .numeric { text-align: center; }
 .iconic_taxon_sprite { vertical-align:middle;}
 .chooseritem { white-space: nowrap; }
 .taxon.chooseritem .othernames { display:inline; }
-#taxonchooser_chooser .ui-chooser-choice { padding: 4px 5px 3px;}
-#taxonchooser_chooser .ui-chooser-choice { padding: 5px 5px 4px;}
 
 .subscriptionsettings .ui-icon {
   background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');
@@ -1838,3 +1842,51 @@ p.spam {
 .leaderboard-container thead [class*="sorting_"] {background-color: #eee;}
 .leaderboard-container [class*="sorting_disabled"], 
 .leaderboard-container thead [class*="sorting_disabled"] {background-color: transparent;}
+
+.ui-widget-overlay {
+  background: black;
+  opacity: 0.6;
+}
+
+.textcomplete-dropdown {
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.textcomplete-dropdown  a {
+  text-decoration: none;
+  color: #333;
+}
+
+.textcomplete-dropdown>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #428bca;
+  outline: 0;
+  cursor: pointer;
+}
+
+.textcomplete-dropdown>li>a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+}
+
+

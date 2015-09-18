@@ -51,6 +51,22 @@ namespace :inaturalist do
     Update.delete_and_purge(["created_at < ?", 6.months.ago])
   end
 
+  desc "Delete expired S3 photos"
+  task :delete_expired_updates => :environment do
+    S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
+    AWS.config(access_key_id: S3_CONFIG["access_key_id"],
+      secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
+    bucket = AWS::S3.new.buckets[CONFIG.s3_bucket]
+
+    DeletedPhoto.where("created_at >= ?", 6.months.ago).
+      select(:id, :photo_id).find_each do |p|
+      images = bucket.objects.with_prefix("photos/#{ p.photo_id }/").to_a
+      if images.any?
+        bucket.objects.delete(images)
+      end
+    end
+  end
+
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
     output_path = "app/assets/javascripts/i18n/translations.js"

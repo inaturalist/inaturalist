@@ -116,7 +116,6 @@ fr:
   about_life!: À propos des êtres vivants !
   about_places: À propos des lieux
   about_the_cc_licenses: À propos des licences Creative Commons
-  about_the_quality_assessment: À propos de l’évaluation de la qualité
   about_the_taxobox_raquo: À propos de taxobox &raquo;
   about_these_licenses: À propos de ces licences
   about_this_map: À propos de cette carte
@@ -1446,6 +1445,7 @@ fr:
   id_please!: Identification,SVP!
   id_please: Identification SVP
   id_please_expandable_html: Identification<span class='full'> demandée</span> !
+  identify: Identifier
   identification: identification
   identification_deleted: identification supprimée.
   identification_saved: Identification enregistrée!
@@ -1927,7 +1927,7 @@ fr:
   most_observations: Le plus d'observations
   most_species: Le plus d'espèces
   most_observed_species: Espèces les plus observées
-  multiple_taxa: Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins
+  multiple_taxa_for_taxon_change: Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins
     de séparation)
   must_be_observed_in: doit être observé dans
   must_be_less_than_x_MB: Doit être de moins de %{x} Mo
@@ -1968,7 +1968,7 @@ fr:
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
   Needs_ID!: Besoin ID!
-  needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
+  needs_id_expandable_html: <span class='full'>Besoin </span>ID
   needs_to_be_identified: Doit être identifié
   new_announcement: Nouvelle annonce
   new_assessment: Nouvelle évaluation
@@ -2403,78 +2403,78 @@ fr:
   place_deleted: Lieu supprimé.
   place_geo:
     geo_planet_place_types:
-      Undefined: Indéfini
-      Building: Bâtiment
-      Street_Segment: Segment de rue
-      Nearby_Building: Bâtiment à proximité
-      Street: Rue
-      Intersection: Croisement
-      Town: Ville
-      State: État
-      Country: Pays
-      Local_Administrative_Area: Unité administrative locale
-      Postal_Code: Code postal
-      Island: Île
-      Airport: Aéroport
-      Drainage: Bassin hydrographique
-      Land_Feature: Caractéristique du terrain
-      Miscellaneous: Divers
-      Nationality: Nationalité
-      Supername: Surnom
-      Point_of_Interest: Point d’intérêt
-      Region: Région
-      Suburb: Banlieue
-      Sports_Team: Équipe sportive
-      Colloquial: Familier
-      Zone: Zone
-      Historical_State: État historique
-      Historical_County: Comté historique
-      Continent: Continent
-      Time_Zone: Fuseau horaire
-      Nearby_Intersection: Croisement à proximité
-      Estate: Domaine
-      Historical_Town: Ville historique
       Aggregate: Agrégat
-      Open_Space: Espace ouvert
-      Territory: Territoire
-      County: Comté
-      undefined: indéfini
-      building: bâtiment
-      street_segment: segment de rue
-      nearby_building: bâtiment à proximité
-      street: rue
-      intersection: croisement
-      town: ville
-      state: état
-      country: pays
-      local_administrative_area: unité administrative locale
-      postal_code: code postal
-      island: île
-      airport: aéroport
-      drainage: bassin hydrographique
-      land_feature: caractéristique du terrain
-      miscellaneous: divers
-      nationality: nationalité
-      supername: surnom
-      point_of_interest: point d’intérêt
-      region: région
-      suburb: banlieue
-      sports_team: équipe sportive
-      colloquial: familier
-      zone: zone
-      historical_state: état historique
-      historical_county: comté historique
-      continent: continent
-      time_zone: fuseau horaire
-      nearby_intersection: croisement à proximité
-      estate: domaine
-      historical_town: ville historique
       aggregate: agrégat
-      open_space: open_space
-      territory: territoire
+      Airport: Aéroport
+      airport: aéroport
+      Building: Bâtiment
+      building: bâtiment
+      Colloquial: Familier
+      colloquial: familier
+      Continent: Continent
+      continent: continent
+      Country: Pays
+      country: pays
+      County: Comté
       county: comté
+      Drainage: Bassin hydrographique
+      drainage: bassin hydrographique
+      Estate: Domaine
+      estate: domaine
+      Historical_County: Comté historique
+      historical_county: comté historique
+      Historical_State: État historique
+      historical_state: état historique
+      Historical_Town: Ville historique
+      historical_town: ville historique
+      Intersection: Croisement
+      intersection: croisement
+      Island: Île
+      island: île
+      Land_Feature: Caractéristique du terrain
+      land_feature: caractéristique du terrain
+      Local_Administrative_Area: Unité administrative locale
+      local_administrative_area: unité administrative locale
+      Miscellaneous: Divers
+      miscellaneous: divers
+      Nationality: Nationalité
+      nationality: nationalité
+      Nearby_Building: Bâtiment à proximité
+      nearby_building: bâtiment à proximité
+      Nearby_Intersection: Croisement à proximité
+      nearby_intersection: croisement à proximité
+      Open_Space: Espace ouvert
+      open_space: open_space
+      Point_of_Interest: Point d’intérêt
+      point_of_interest: point d’intérêt
+      Postal_Code: Code postal
+      postal_code: code postal
       Province: Province
       province: province
+      Region: Région
+      region: région
+      Sports_Team: Équipe sportive
+      sports_team: équipe sportive
+      State: État
+      state: état
+      Street: Rue
+      street: rue
+      Street_Segment: Segment de rue
+      street_segment: segment de rue
+      Suburb: Banlieue
+      suburb: banlieue
+      Supername: Surnom
+      supername: surnom
+      Territory: Territoire
+      territory: territoire
+      Time_Zone: Fuseau horaire
+      time_zone: fuseau horaire
+      Town: Ville
+      town: ville
+      Undefined: Indéfini
+      undefined: indéfini
+      Zone: Zone
+      zone: zone
   place_guess: lieu au hasard
   place_imported: Lieu importé!
   place_must_have_a_boundary_defined: Le lieu doit avoir une frontière définie.
@@ -2775,7 +2775,6 @@ fr:
     une date, une photo, des coordonnées et une identification reconnue par la communauté.
     Cliquer dessus pour voir l’évaluation de la garantie des données.
   research_quality: Qualité de la recherche
-  reserach_grade: Calibre recherche
   reset_your_password: Réinitialiser votre mot de passe
   resolve: Régler
   resolve_this_flag: Régler ce drapeau
@@ -4107,13 +4106,6 @@ fr:
         who_is_behind_inaturalist?: Qui est à l’origine d’%{site_name}?
         what_technologies_does_the_project_use?: Quelles sont les technologies et
           sources de données utilisées par le projet?
-        welcome_message_help: "Salut ! Si vous venez tout juste d’arriver sur %{site_name},
-          consultez notre\nguide <%= link_to \"Getting Started\", :action => \"getting_started\"
-          %> pour faire le tour des fonctions du site. Si vous avez\nune question
-          sur le site, consultez la FAQ ci-dessous. Si vous cherchez toujours\ndes
-          réponses, veuillez \n<a href=\"http://groups.google.com/group/inaturalist\"
-          title=\"%{site_name} | Google Groups\">inscrire votre question sur notre
-          groupe Google</a>."
         inaturalist_provides_a_place_to: |-
           %{site_name} fournit un endroit où l’on peut enregistrer et organiser ses découvertes sur la nature,
           rencontrer d’autres amoureux de de la nature et en apprendre davantage sur le monde naturel. Le site

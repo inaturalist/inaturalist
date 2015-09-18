@@ -22,16 +22,18 @@
     =t :back_to_groups
 - if @reauthorization_needed
   .alert
-    = t(:flickr_needs_to_confirm, :site_name => SITE_NAME_SHORT)
-    = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore"
+    .alert-warning
+      = t(:flickr_needs_to_confirm, :site_name => SITE_NAME_SHORT)
+      = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore"
 - elsif @timeout
   .alert
-    Request to the photo provider timed out.  Please try again later.
+    .alert-warning
+      Request to the photo provider timed out.  Please try again later.
 - elsif photos.blank? && !local_photos
-  .description.clear= t(:we_didnt_find_any_photos)
+  %p.text-muted.centered.clear.upstacked= t(:we_didnt_find_any_photos)
 - else
-  - photos.in_groups_of(4) do |row|
-    .row-fluid
+  - photos.in_groups_of(6) do |row|
+    .row
       - row.compact.each do |photo|
         :ruby
           native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
@@ -49,7 +51,7 @@
           data = photo.attributes.merge(:photo_class => photo.class.name).select do |k,v|
             %w(id user_id native_photo_id small_url square_url medium_url large_url type).include?(k)
           end.to_hash
-        .span3.photo{:data => data}
+        .col-xs-2.photo{:data => data}
           = check_box_tag input_name, native_photo_id, checked, {:id => input_id, :class => "checkbox"}
           - if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil)
             :ruby
@@ -70,7 +72,7 @@
             = link_to t(:sync), synclink_url, :class => "small synclink", :title => t(:import_date_time_location_taxonomic), 
               :data => {:confirm => confirmation_msg}
           %label{:for => input_id}
-            = image_tag(thumb_url, :alt => 'Image', :class => "img-rounded")
+            = image_tag(thumb_url, :alt => 'Image', :class => "img-rounded img-responsive")
           %span.small.view_photo= link_to(t(:view_original), photo.native_page_url || photo.becomes(Photo), :target => '_blank')
 
 - if local_photos

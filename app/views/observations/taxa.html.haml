@@ -6,24 +6,25 @@
     #wrapper { width: auto; padding: 0 10px; position: relative;padding:10px;}
     .observations_link {display:none;}
     .taxonrow:hover .observations_link {display:inline;}
+    ul.plain {margin-left: 25px;}
 
 - unless @stats_adequately_scoped
   .container-fluid
-    .row-fluid
-      .span12= render 'stats_inadequately_scoped'
+    .row
+      .col-md-12= render 'stats_inadequately_scoped'
 - else
   .container-fluid
-    .row-fluid
-      .span12
+    .row
+      .col-md-12
         %h4= @title
-    .row-fluid
-      .span12
+    .row
+      .col-md-12
         .btn-grp
-          %span.btn.btn-mini= link_to t(:download_csv), url_for_params(:format => "csv")
+          %span.btn.btn-xs= link_to t(:download_csv), url_for_params(:format => "csv")
           %strong.help-inline= t(:x_taxa_observed_html, :count => @taxa.count)
-    .row-fluid
-      .span12
-        %ul.taxon_links.unstyled
+    .row
+      .col-md-12
+        %ul.taxon_links.list-unstyled
           - if params[:order]
             - @taxa.each do |taxon|
               .taxonrow

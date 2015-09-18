@@ -65,7 +65,7 @@ $(document).ready(function() {
 
   $('#forms').tabs();
   
-  $('#data_quality_assessment .quality_metric_vote_link').live('click', function(e) {
+  $('#data_quality_assessment').on('click', '.quality_metric_vote_link', function(e) {
     e.preventDefault()
     var tr = $(this).parents('tr.quality_metric')
     $.ajax({
@@ -235,9 +235,21 @@ $(document).ready(function() {
     $(this).attr( "href", $(this).attr( "href" ).
       replace( /reviewed=.*$/, "reviewed=" +  currentReviewState ));
   });
+
+  $(document).bind('keyup', 'i', window.showIdentificationForm);
+  $(document).bind('keyup', 'f', function() {
+    $('.favebutton:visible').click()
+  });
+  $(document).bind('keyup', 'c', function() {
+    $('#new-comment-form-tab').click()
+    $('#comment_body').focus()
+  });
+
+  $('#comment_body').textcompleteUsers( );
+  $('#identification_body').textcompleteUsers( );
 })
 
-$('#add_more_photos_link').live('click', function() {
+$(document).on('click', '#add_more_photos_link', function() {
   var dialogId = "add_more_photos_dialog",
       dialog = $('#'+dialogId)
   if (dialog.length == 0) {
@@ -279,7 +291,7 @@ $('#add_more_photos_link').live('click', function() {
   return false
 })
 
-$('.joinlink').live('click', function(e) {
+$(document).on('click', '.joinlink', function(e) {
   $(this).parents('.qtip').qtip('hide')
   var dialogId = "join_project_modal",
       dialog = $('#'+dialogId),
@@ -343,4 +355,9 @@ function hideLocationDetails(link, options) {
   $('#location_details').slideUp()
   $(link).hide()
   $(link).siblings().show()
+}
+
+function showIdentificationForm() {
+  $('#new-identification-form-tab').click()
+  $('#new_identification input:visible:first').focus()
 }

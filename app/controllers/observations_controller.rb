@@ -1082,6 +1082,7 @@ class ObservationsController < ApplicationController
     @recent_exports = ObservationsExportFlowTask.
       where(user_id: current_user).order(id: :desc).limit(20)
     @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     respond_to do |format|
       format.html
     end
@@ -2110,7 +2111,7 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
-    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
@@ -2769,10 +2770,10 @@ class ObservationsController < ApplicationController
 
   def elastic_user_stats(search_params, limit)
     elastic_params = prepare_counts_elastic_query(search_params)
-    user_obs = elastic_user_obs(elastic_params, limit)
+    user_obs = Observation.elastic_user_observation_counts(elastic_params, limit)
     @user_counts = user_obs[:counts]
     @total = user_obs[:total]
-    @user_taxon_counts = elastic_user_taxon_counts(elastic_params, limit)
+    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params, limit)
 
     # # the list of top users is probably different for obs and taxa, so grab the leftovers from each
     obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
@@ -2783,35 +2784,11 @@ class ObservationsController < ApplicationController
     leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
     leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
-    @user_counts        += elastic_user_obs(leftover_obs_user_elastic_params)[:counts].to_a
-    @user_taxon_counts  += elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
+    @user_counts        += Observation.elastic_user_observation_counts(leftover_obs_user_elastic_params)[:counts].to_a
+    @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
     # don't want to return more than were asked for
     @user_counts = @user_counts[0...limit]
     @user_taxon_counts = @user_taxon_counts[0...limit]
-  end
-
-  def elastic_user_obs(elastic_params, limit = 500)
-    user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
-      distinct_users: { cardinality: { field: "user.id", precision_threshold: 10000 } },
-      user_observations: { "user.id": limit }
-    })).response.aggregations
-    { counts: user_counts.user_observations.buckets.
-        map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } },
-      total: user_counts.distinct_users.value }
-  end
-
-  def elastic_user_taxon_counts(elastic_params, limit = 500)
-    elastic_params[:filters] << { range: {
-      "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
-    species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
-      user_taxa: {
-        terms: {
-          field: "user.id", size: limit, order: { "distinct_taxa": :desc } },
-        aggs: {
-          distinct_taxa: {
-            cardinality: { field: "taxon.id", precision_threshold: 10000 }}}}})).response.aggregations
-    species_counts.user_taxa.buckets.
-      map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
   end
 
   def prepare_counts_elastic_query(search_params)

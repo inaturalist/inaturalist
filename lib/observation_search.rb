@@ -193,8 +193,11 @@ module ObservationSearch
           p.delete(:taxon_name)
         end
       end
+      if p[:taxon_ids] == [""]
+        p[:taxon_ids] = nil
+      end
       if !p[:observations_taxon] && !p[:taxon_ids].blank?
-        p[:observations_taxon_ids] = p[:taxon_ids]
+        p[:observations_taxon_ids] = [p[:taxon_ids]].flatten.join(',').split(',')
         p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
       end
 
@@ -543,6 +546,31 @@ module ObservationSearch
       # Observation.query(params).paginate()
       scope
     end
+
+    def elastic_user_observation_counts(elastic_params, limit = 500)
+      user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+        distinct_users: { cardinality: { field: "user.id", precision_threshold: 10000 } },
+        user_observations: { "user.id": limit }
+      })).response.aggregations
+      { counts: user_counts.user_observations.buckets.
+          map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } },
+        total: user_counts.distinct_users.value }
+    end
+
+    def elastic_user_taxon_counts(elastic_params, limit = 500)
+      elastic_params[:filters] << { range: {
+        "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
+      species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+        user_taxa: {
+          terms: {
+            field: "user.id", size: limit, order: { "distinct_taxa": :desc } },
+          aggs: {
+            distinct_taxa: {
+              cardinality: { field: "taxon.id", precision_threshold: 10000 }}}}})).response.aggregations
+      species_counts.user_taxa.buckets.
+        map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
+    end
+
   end
 
 end

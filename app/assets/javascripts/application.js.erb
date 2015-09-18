@@ -72,7 +72,7 @@ var QTIP_DEFAULTS = {
 }
 
 
-$('a[data-loading-click], input[data-loading-click][type=radio], input[data-loading-click][type=checkbox]').live('click', loadingClickForLink)
+$(document).on('click', 'a[data-loading-click], button[data-loading-click], input[data-loading-click][type=radio], input[data-loading-click][type=checkbox]', loadingClickForLink)
 
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
@@ -129,7 +129,7 @@ function loadingClickForButton(options) {
   $(link).attr('disabled', true)
 }
 
-$('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function(clickEvent) {
+$(document).on('click', 'input[data-loading-click][type=text], input[data-loading-click][type=submit]', function(clickEvent) {
   var button = this
   if ($(this).parents('form').length > 0) {
     if ($(this).attr("exception") != "true") {
@@ -142,7 +142,7 @@ $('input[data-loading-click][type=text], input[data-loading-click][type=submit]'
   }
 })
 
-$('[data-autosubmit]').live('change', function() {
+$(document).on('change', '[data-autosubmit]', function() {
   $(this).parents('form').submit()
 })
 
@@ -227,7 +227,7 @@ $(document).ready(function() {
   $('#headerupdatesnotice').click(function() {
     toggleHeaderSubnav(this)
     if (!$('#updatessubnav').data('loaded')) {
-      $('#updatessubnav').load('/users/new_updates', function(data) {
+      $('#updatessubnav').load('/users/new_updates?notification=activity,mention', function(data) {
         $(this).html(data)
         $('#updatessubnav').data('loaded', true)
         setUpdatesCount(0, {skipAnimation: true})
@@ -508,7 +508,7 @@ $.fn.preload = function() {
   this.each(function(){ $('<img/>')[0].src = this; })
 }
 
-$('.ui-widget-overlay, .shades').live('click', function() {
+$(document).on('click', '.ui-widget-overlay, .shades', function() {
   $('.dialog:visible').dialog('close')
 })
 
@@ -564,14 +564,7 @@ $.fn.loadingShades = function(e, options) {
 }
 
 $.fn.showInlineBlock = function() {
-  var opts = {}
-  if ($.browser.msie && $.browser.version < 8) {
-    opts.zoom = 1
-    opts.display = 'inline'
-    opts['*display'] = 'inline'
-  } else {
-    opts.display = 'inline-block'
-  }
+  var opts = {display: 'inline-block'}
   $(this).css(opts)
   return this
 }
@@ -730,9 +723,7 @@ $.fn.observationsGrid = function(size) {
         $(this).unbind('load')
       })      
       $(this).attr('src', $(this).attr('data-small-url'))
-      if (!$.browser.msie) {
-        $(this).hide()
-      }
+      $(this).hide()
     })
     $('.icon img[data-small-url]', this).each(function() {
       $(this).attr('src', $(this).attr('data-small-url')) 
@@ -973,8 +964,23 @@ $.fn.subscriptionSettings = function() {
     }
   }, QTIP_DEFAULTS)
   $(this).each(function() {
-    options.content.ajax.url = $(this).attr('href')
-    $(this).qtip(options)
+    var thisOptions = $.extend({}, options);
+    if( thisOptions.content.ajax ) {
+      thisOptions.content.ajax.url = $(this).attr('href');
+    }
+    // custom text for qtip popup
+    if( $(this).data("gear-text") ) {
+      var text = $(this).data("gear-text");
+      // custom URL to make the text a link
+      if( $(this).data("gear-url") ) {
+        text = "<a href='"+ $(this).data("gear-url") +"'>"+ text +"</a>";
+      }
+      thisOptions.content = {
+        text: "<div class='meta'>"+ text +"</div>"
+      };
+      thisOptions.ajax = null;
+    }
+    $(this).qtip(thisOptions)
     $(this).click(function() {return false})
   })
 }
@@ -1016,7 +1022,7 @@ $.fn.centerDialog = function() {
   $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
 }
 
-$('.flaglink').live('click', function() {
+$(document).on('click', '.flaglink', function() {
   $('#flagdialog').remove()
   var dialog = $('<div></div>').attr('id', 'flagdialog')
     .addClass('dialog')
@@ -1058,36 +1064,16 @@ function setPreference(pref, value) {
   })
 }
 
-$('.project_invitation .acceptlink').live('ajax:success', function() {
-  $(this).hide()
-  $(this).siblings('.ignorelink').hide()
-  $(this).siblings('.removelink').show()
-  $(this).siblings('.status').html(I18n.t('added!')).show().addClass('success')
-  $(this).parents('.box:first').removeClass('notice')
-})
-$('.project_user_invitation .acceptlink').live('ajax:success', function() {
+$(document).on('ajax:success', '.project_user_invitation .acceptlink', function() {
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('joined!')).show().addClass('success').removeClass('loading')
 })
-$('.project_user_invitation .acceptlink').live('ajax:before', function() {
+$(document).on('ajax:before', '.project_user_invitation .acceptlink', function() {
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
 })
-$('.project_invitation .removelink').live('ajax:success', function() {
-  $(this).hide()
-  $(this).siblings('.acceptlink').show()
-  $(this).siblings('.status').html(I18n.t('removed!')).show().removeClass('success')
-  $(this).parents('.box:first').addClass('notice')
-})
-$('.project_invitation .ignorelink').live('ajax:success', function() {
-  var item = $(this).parents('.item:first').get(0),
-      update = $(this).parents('.update:first').get(0),
-      project_invitation = $(this).parents('.project_invitation:first').get(0),
-      target = item || update || project_invitation
-  $(target).slideUp()
-})
 
-$('.add_matching_link').live('click', function(e) {
+$(document).on('click', '.add_matching_link', function(e) {
   var link = this,
       url = $(this).attr('href').replace(/add_matching/, 'preview_matching'),
       projectId = url.match(/projects\/(.+?)\/preview_matching/)[1]
@@ -1365,6 +1351,39 @@ $.fn.dnaHighlight = function() {
   })
 }
 
+$.fn.textcompleteUsers = function( ) {
+  var field = this;
+  field.textcomplete([{
+    index: 1,
+    match: /\B@([\\\w][\\\w\\\-_]*)$/,
+    search: function( term, callback ) {
+      $.getJSON( "/people/search.json", { q: term, order: "activity" } ).
+        done(function( data ) {
+          callback( $.map( data, function( user ) {
+            return user.html;
+          }));
+        }
+      );
+    },
+    replace: function( html ) {
+      var login, matches;
+      // extract the username from the HTML
+      if( matches = html.match( /\(([^ ]+)\)<\/div>/ )) {
+        login = matches[1];
+      } else if( matches = html.match( / ([^ ]+)<\/div>/ )) {
+        login = matches[1];
+      }
+      setTimeout(function(){ field.data("highlighter").highlight() }, 10);
+      return "@" + login + " ";
+    }
+  }]).highlightTextarea({
+    words: [{
+      color: "#ffee91",
+      words: ["\\\B(@[\\\w][\\\w\\\-_]*)"]
+    }]
+  });
+}
+
 $.fn.boldId = function() {
   $(this).each(function() {
     if ($('.boldid', this).length > 0) return
@@ -1427,7 +1446,7 @@ $.fn.boldId = function() {
 $.fn.leaderboard = function(options) {
   $(this).addClass('leaderboard-container')
   var htmltable = $(this).html(
-    $('<table>').append(
+    $('<table class="table">').append(
       $('<thead>').append(
         $('<tr>').append(
           $('<th>').append('#'),
@@ -1523,7 +1542,7 @@ $(document).ready(function() {
   // tmp fixes for old views being used with bootstrap
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default')
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter')
-  $('.bootstrap .button').addClass('btn').removeClass('button')
+  $('.bootstrap .button').addClass('btn btn-default').removeClass('button')
 })
 if (typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') { 
   var bootstrapButton = $.fn.button.noConflict()

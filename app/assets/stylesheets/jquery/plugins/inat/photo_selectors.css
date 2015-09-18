@@ -7,7 +7,7 @@
 }
 .photoSelectorPhotos .photo{width:auto;display:inline-block;border:1px solid transparent;padding:5px;}
 .photoSelectorPhotos .photo:hover{border:1px solid #ddd;}
-.photoSelectorPhotos .photo .checkbox{margin:0 auto 2px}
+.photoSelectorPhotos .photo .checkbox{margin:0 auto 2px; display: inline-block;}
 .photoSelectorPhotos .photo img{vertical-align:top;width:75px;}
 .photoSelectorFriends img,
 .photoSelectorAlbums img {
@@ -70,3 +70,4 @@
 }
 .photoSelector label {display:block;}
 .photoSelector nobr label {display:inline-block;}
+.photoSelectorSearch input.text { margin-right: 10px; }

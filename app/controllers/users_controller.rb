@@ -229,7 +229,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    scope = User.active.order('login')
+    scope = User.active
     @q = params[:q].to_s
     unless @q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
@@ -241,6 +241,11 @@ class UsersController < ApplicationController
         ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
       end
       scope = scope.where(conditions)
+    end
+    if params[:order] == "activity"
+      scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
+    else
+      scope = scope.order("login")
     end
     @users = scope.page(params[:page])
     respond_to do |format|
@@ -329,13 +334,15 @@ class UsersController < ApplicationController
   
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
-      wheres: { notification: :activity }).total_entries
+      wheres: { notification: [ :activity, :mention ] }).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
   
   def new_updates
-    wheres = { notification: :activity }
+    params[:notification] ||= "activity"
+    params[:notification] = params[:notification].split(",")
+    wheres = { notification: params[:notification] }
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
@@ -562,21 +569,17 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    scope = Observation.group(:user_id)
     if per == 'month'
-      date = Date.parse("#{ year }-#{ month }-1")
-      scope = scope.where("observed_on >= ? AND observed_on < ?", date, date + 1.month)
+      elastic_params = { observed_on_year: year, observed_on_month: month }
     else
-      date = Date.parse("#{ year }-1-1")
-      scope = scope.where("observed_on >= ? AND observed_on < ?", date, date + 1.year)
+      elastic_params = { observed_on_year: year }
     end
-    scope = scope.where("observations.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-    counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
-    users = User.where("id IN (?)", counts.map(&:first))
-    counts.inject({}) do |memo, item|
-      memo[users.detect{|u| u.id == item.first}] = item.last
-      memo
-    end
+    elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
+    elastic_query = Observation.params_to_elastic_query(elastic_params)
+    counts = Observation.elastic_user_observation_counts(elastic_query, 5)
+    user_counts = Hash[ counts[:counts].map{ |c| [ c["user_id"], c["count_all"] ] } ]
+    users = User.where(id: user_counts.keys).group_by(&:id)
+    Hash[ user_counts.map{ |id,c| [ users[id].first, c ] } ]
   end
 
   def most_species(options = {})
@@ -584,40 +587,16 @@ protected
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     if per == 'month'
-      date = Date.parse("#{ year }-#{ month }-1")
-      date_clause = "observed_on >= '#{ date }' AND observed_on < '#{ date + 1.month }'"
+      elastic_params = { observed_on_year: year, observed_on_month: month }
     else
-      date = Date.parse("#{ year }-1-1")
-      date_clause = "observed_on >= '#{ date }' AND observed_on < '#{ date + 1.year }'"
+      elastic_params = { observed_on_year: year }
     end
-    site_clause = if @site && @site.prefers_site_only_users?
-      "AND o.site_id = #{@site.id}"
-    end
-    sql = <<-SQL
-      SELECT
-        o.user_id,
-        count(*) AS count_all
-      FROM
-        (
-          SELECT DISTINCT o.taxon_id, o.user_id
-          FROM
-            observations o
-              JOIN taxa t ON o.taxon_id = t.id
-          WHERE
-            t.rank_level <= 10 AND
-              #{date_clause}
-              #{site_clause}
-        ) as o
-      GROUP BY o.user_id
-      ORDER BY count_all desc
-      LIMIT 5
-    SQL
-    rows = ActiveRecord::Base.connection.execute(sql)
-    users = User.where("id IN (?)", rows.map{|r| r['user_id']})
-    rows.inject([]) do |memo, row|
-      memo << [users.detect{|u| u.id == row['user_id'].to_i}, row['count_all']]
-      memo
-    end
+    elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
+    elastic_query = Observation.params_to_elastic_query(elastic_params)
+    counts = Observation.elastic_user_taxon_counts(elastic_query, 5)
+    user_counts = Hash[ counts.map{ |c| [ c["user_id"], c["count_all"] ] } ]
+    users = User.where(id: user_counts.keys).group_by(&:id)
+    Hash[ user_counts.map{ |id,c| [ users[id].first, c ] } ]
   end
 
   def most_identifications(options = {})
@@ -677,10 +656,14 @@ protected
       :prefers_message_email_notification,
       :prefers_project_invitation_email_notification,
       :prefers_project_journal_post_email_notification,
+      :prefers_mention_email_notification,
+      :prefers_share_observations_on_facebook,
+      :prefers_share_observations_on_twitter,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
       :prefers_location_details,
+      :prefers_receive_mentions,
       :site_id,
       :time_zone
     )

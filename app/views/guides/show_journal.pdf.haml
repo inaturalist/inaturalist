@@ -3,9 +3,10 @@
     .guide_taxon_header, .page {page-break-inside: avoid;}
     #attribution {page-break-inside: avoid;}
     #attribution ul {list-style:none;}
-    .guide_taxon {page-break-after: always; height: 700px; overflow:hidden;position:relative;}
+    .guide_taxon {page-break-after: always; height: 550px; overflow:hidden;position:relative;}
     #abstract {padding: 0 20%;}
-    .span6 #title, .span6 #abstract {display: table-cell; vertical-align: middle; height: 700px; overflow:hidden; padding:0;}
+    .col-xs-6 #title, 
+    .col-xs-6 #abstract {display: table-cell; vertical-align: middle; height: 700px; overflow:hidden; padding:0;}
     .guide_taxon:after{
       content:' ';
       display:block;
@@ -17,6 +18,7 @@
       background: -webkit-gradient(linear, 50% 0%, 50% 100%, from(rgba(255, 255, 255, 0)), to(white));
       background: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0), red);
     }
+    h3.display-name { margin-bottom: 0;}
     .guide_photos img {display:inline-block; margin: 0 0.5em 0.5em 0;}
     .guide_sections {text-align:justify;}
     .table th {width:auto; text-transform: capitalize;}
@@ -25,7 +27,7 @@
     .guide_range {margin-left: 1em;}
     .journal {border-left: 1px dashed #ccc;padding-left:2em; height:100%; position:relative; height:650px;}
     .notes, .drawings {position:relative;}
-    .journal h3 {
+    .bootstrap .journal h3 {
       text-transform: uppercase; 
       -webkit-transform-origin: 0% 50%; 
       -webkit-transform: rotate(-90deg); 
@@ -47,7 +49,7 @@
         - if @guide.icon.file?
           = image_tag @guide.icon.url(:medium)
         %h1= @guide.title
-        %p.muted
+        %p.text-muted
           =t :guide_compiled_by
           - if @guide.license.blank?
             = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
@@ -65,14 +67,14 @@
       - unless @guide.description.blank?
         = abstract
     - else
-      .row-fluid
-        .span6= title_and_image
-        .span6= abstract
+      .row
+        .col-xs-6= title_and_image
+        .col-xs-6= abstract
   - num_guide_taxa = @guide_taxa.size
   - @guide_taxa.each_with_index do |gt, i|
     .guide_taxon
-      .row-fluid
-        .span12.muted.meta
+      .row
+        .col-xs-12.text-muted.meta.stacked
           = @guide.title
           &mdash;
           =t :journal
@@ -88,30 +90,32 @@
               = @guide.license
           %span.pull-right
             = "#{i+1}/#{num_guide_taxa}"
-      .row-fluid
-        .span6
-          .stacked
-            - if gt.display_name == gt.name
-              %h2
-                %em= gt.display_name
-            - else
-              %h2= gt.display_name
-              %em.muted= gt.name
+      .row
+        .col-xs-6
+          .row.stacked
+            .col-xs-12
+              - if gt.display_name == gt.name
+                %h3.display-name
+                  %em= gt.display_name
+              - else
+                %h3.display-name= gt.display_name
+                %em.text-muted= gt.name
           - unless gt.guide_photos.blank?
-            .row-fluid.stacked
-              %ul.thumbnails.guide_photos.stacked
-                - for gp in gt.guide_photos.sort_by(&:position)[0..2]
-                  %li.span4
-                    = image_tag(gp.small_url, :class => "borderless thumbnail")
-              %p.attribution
-                %small.muted.meta
-                  = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
-                  = gt.guide_photos.sort_by(&:position)[0..2].map(&:attribution).uniq.join(', ')
+            .row.stacked
+              .col-xs-12
+                .row.thumbnails.guide_photos.stacked
+                  - for gp in gt.guide_photos.sort_by(&:position)[0..2]
+                    .col-xs-4
+                      = image_tag(gp.small_url, :class => "borderless thumbnail img-responsive")
+                %p.attribution
+                  %small.text-muted.meta
+                    = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
+                    = gt.guide_photos.sort_by(&:position)[0..2].map(&:attribution).uniq.join(', ')
           - if gr = gt.guide_ranges.sort_by(&:position).first
-            .stacked.pull-right.span4.guide_range.text-center
+            .stacked.pull-right.col-xs-4.guide_range.text-center
               = image_tag gr.medium_url, :class => "stacked"
               %p.attribution
-                %small.muted.meta
+                %small.text-muted.meta
                   =t :map
                   = gr.attribution
           .guide_sections
@@ -123,7 +127,7 @@
                     = s.attribution
                     = link_to(s.source_url, s.source_url) unless s.source_url.blank?
                 = formatted_user_text s.description
-        .span6
+        .col-xs-6
           .journal
             %table.table.table-bordered
               %tr

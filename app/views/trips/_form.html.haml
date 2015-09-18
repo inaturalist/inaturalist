@@ -1,96 +1,106 @@
 = content_for :extracss do
   = stylesheet_link_tag "trips/form"
 = content_for :extrajs do
-  %script{:type => "text/javascript", :src => "http://maps.google.com/maps/api/js?sensor=false"}
   = javascript_include_tag 'jquery/plugins/jquery.labelize', 
                            'jquery/plugins/jquery.dataTables.min', 
                            "jquery/plugins/inat/datepicker.js",
                            "jquery/plugins/jquery.latLonSelector.js",
                            "jquery/plugins/jquery-ui-timepicker-addon.min",
                            "trips/form"
-= form_for @trip, :builder => DefaultFormBuilder, :html => {:class => 'trip_form'} do |f|
+= form_for @trip, :builder => BootstrapFormBuilder, :html => {:class => 'trip_form'} do |f|
   = error_messages_for @trip
   .row
-    .span6
-      = f.text_field :title, :class => "span6"
-      .row-fluid
-        .span6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:start_time, :default => "Start time")
-        .span6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:end_time, :default => "End time")
-      = f.text_area :body, :class => "span6", :label => t(:description), :placeholder => t(:describe_your_trip, :default => "Describe your trip!")
-    #location.span6
+    .col-md-6
+      = f.text_field :title
+      .row
+        .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:start_time, :default => "Start time")
+        .col-md-6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:end_time, :default => "End time")
+      = f.text_area :body, :class => "form-control", :label => t(:description), :placeholder => t(:describe_your_trip, :default => "Describe your trip!")
+    #location.col-md-6
       .stacked
-        = f.text_field :place_id, :class => "span6", :label => t(:location), :placeholder => t(:start_typing_place_name)
+        = f.text_field :place_id, :class => "form-control", :label => t(:location), :placeholder => t(:start_typing_place_name)
       .stacked
-        = text_field_tag :location, '', :class => "text span6", :placeholder => "Search the map"
+        = text_field_tag :location, '', :class => "form-control", :placeholder => "Search the map"
       .map.stacked
         map goes here
-      .coordinates.row-fluid
-        .span4= f.text_field :latitude, :label => t(:lat), :class => "span12"
-        .span4= f.text_field :longitude, :label => t(:lon), :class => "span12"
-        .span4= f.text_field :radius, :label => t(:radius), :class => "span12"
+      .coordinates.row
+        .col-md-4= f.text_field :latitude, :label => t(:lat), :class => "form-control"
+        .col-md-4= f.text_field :longitude, :label => t(:lon), :class => "form-control"
+        .col-md-4= f.text_field :radius, :label => t(:radius), :class => "form-control"
   #trip_purposes_row.row
-    .span12
+    .col-md-12
       %h3=t :what_were_you_looking_for?
-      .row-fluid
-        .span6
+      .row
+        .col-md-6
           %h4 Choose from existing high level groups
           %ul#goal_taxa.plain.taxon_links
             - @target_taxa.each do |iconic_taxon|
-              %li
-                %label.checkbox{:for => iconic_taxon.name.underscore}
+              %li.checkbox
+                %label{:for => iconic_taxon.name.underscore}
                   = check_box_tag iconic_taxon.name.underscore, iconic_taxon.name.underscore, @trip.trip_purposes.any?{|tp| puts "tp.resource_id: #{tp.resource_id.class}, iconic_taxon.id: #{iconic_taxon.id.class}"; tp.resource_id == iconic_taxon.id}, :data => {:taxon => iconic_taxon.as_json(:methods => [:html])}
                   = render "shared/taxon", :taxon => iconic_taxon
-        .span6
+        .col-md-6
           %h4 or choose something else / more specific
           #trip_purposes.stacked.clearfix.taxon_links
             = f.fields_for :trip_purposes do |tp|
               = render "trip_purpose_fields", :f => tp
           .hide
-            = link_to_add_association t(:add_trip_purpose), f, :trip_purposes, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#trip_purposes", :class => "btn btn-small btn-success"
-          = text_field_tag :new_goal_taxon, '', :class => 'span4', :placeholder => t(:start_typing_taxon_name)
-  #trip_taxa_row.row.stacked
-    .span12
-      - if @trip && @trip.persisted?
-        .pull-right
-          %span
-            = link_to t(:remove_all), remove_taxa_trip_path(@trip), :id => "removetaxabutton", :class => 'btn btn-small', :method => :delete, :remote => true, :data => {:type => 'json', :loading_click => t(:removing)}
-          %span
-            = link_to t(:add_from_observations), add_taxa_from_observations_trip_path(@trip), :id => "addfromobsbutton", :class => 'btn btn-small', :method => :post, :remote => true, :data => {:type => 'json', :loading_click => t(:adding)}
-      %h3=t :check_list
-      .row-fluid
-        .span8
-          %table.taxon_links.stacked{:width => "100%"}
-            %thead
-              %tr
-                %th.observed Observed?
-                %th.name Name
-                %th
-            %tbody#trip_taxa
-              = f.fields_for :trip_taxa do |tt|
-                = render "trip_taxon_fields", :f => tt
-          .hide
-            = link_to_add_association t(:add_trip_taxon), f, :trip_taxa, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#trip_taxa"
-          %label=t :add_a_species
-          = text_field_tag :new_species, '', :class => 'span5', :placeholder => t(:start_typing_taxon_name)
-        .span4
-          %p Check the groups for which this represents a complete list of all the species you observed in that group
-          %ul#complete_taxa.plain.taxon_links
-            - for tp in @trip.trip_purposes.select{|tp| tp.resource_type == 'Taxon' && tp.resource.rank_level > Taxon::SPECIES_LEVEL}
-              - elt_id = "#{tp.resource.name.underscore}_complete"
-              %li{:data => {:taxon_id => tp.resource_id}}
-                %label.checkbox{:for => elt_id}
+            = link_to_add_association t(:add_trip_purpose), f, :trip_purposes, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#trip_purposes", :class => "btn btn-sm btn-success"
+          = text_field_tag :new_goal_taxon, '', :class => 'col-md-4', :placeholder => t(:start_typing_taxon_name)
+  #trip_taxa_row.stacked
+    .row
+      .col-md-12
+        %h3=t :check_list
+        - if @trip && @trip.persisted?
+          = link_to t(:add_from_observations), add_taxa_from_observations_trip_path(@trip), :id => "addfromobsbutton", :class => 'btn btn-default btn-sm', :method => :post, :remote => true, :data => {:type => 'json', :loading_click => t(:adding)}
+          :ruby
+            opts = {
+              :id => "removetaxabutton", 
+              :class => 'btn btn-default btn-sm', 
+              :method => :delete, 
+              :remote => true, 
+              :data => {
+                :type => 'json', 
+                :loading_click => t(:removing),
+                confirm: t(:are_you_sure?)
+              }
+            }
+          = link_to t(:remove_all), remove_taxa_trip_path(@trip), opts
+    .row
+      .col-md-8
+        %table.taxon_links.stacked.table
+          %thead
+            %tr
+              %th.observed Observed?
+              %th.name Name
+              %th
+          %tbody#trip_taxa
+            = f.fields_for :trip_taxa do |tt|
+              = render "trip_taxon_fields", :f => tt
+        .hide
+          = link_to_add_association t(:add_trip_taxon), f, :trip_taxa, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#trip_taxa"
+        %label=t :add_a_species
+        = text_field_tag :new_species, '', :class => 'col-md-5', :placeholder => t(:start_typing_taxon_name)
+      .col-md-4
+        %p Check the groups for which this represents a complete list of all the species you observed in that group
+        %ul#complete_taxa.plain.taxon_links
+          - for tp in @trip.trip_purposes.select{|tp| tp.resource_type == 'Taxon' && tp.resource.rank_level > Taxon::SPECIES_LEVEL}
+            - elt_id = "#{tp.resource.name.underscore}_complete"
+            %li{:data => {:taxon_id => tp.resource_id}}
+              .checkbox
+                %label{:for => elt_id}
                   = check_box_tag elt_id, elt_id, tp.complete?, :data => {:taxon => tp.resource.as_json}
                   = render "shared/taxon", :taxon => tp.resource
   / #trip_users_row.row.stacked
-  /   .span12
+  /   .col-md-12
   /     %h3=t :who_were_you_with?
-  #actions.row
-    .span12
+  #actions.row.upstacked
+    .col-md-12
       - if @trip.published?
         = f.submit t(:save_trip), :class => "btn btn-primary"
-        = f.submit t(:unpublish), :class => "btn", :name => "unpublish"
+        = f.submit t(:unpublish), :class => "btn btn-default", :name => "unpublish"
       - else
         = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
-        = f.submit t(:save), :class => "btn"
-      = link_to t(:cancel), :back, :class => "btn"
+        = f.submit t(:save), :class => "btn btn-default"
+      = link_to t(:cancel), :back, :class => "btn btn-default"
       = link_to t(:delete), @trip, :method => :delete, :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"

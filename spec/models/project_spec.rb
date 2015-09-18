@@ -354,3 +354,14 @@ describe Project, "aggregation_allowed?" do
     expect( por.ruler ).to be_aggregation_allowed
   end
 end
+
+describe Project, "slug" do
+  it "should change when the title changes" do
+    p = Project.make!(title: "The Title")
+    expect( p.slug ).to eq 'the-title'
+    p.update_attributes(title: 'The BEST Title')
+    p.reload
+    expect( p.title ).to eq 'The BEST Title'
+    expect( p.slug ).to eq 'the-best-title'
+  end
+end

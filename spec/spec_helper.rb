@@ -119,6 +119,13 @@ LocalPhoto.attachment_definitions[:file].tap do |d|
   end
 end
 
+# Override LocalPhoto processing so it always looks like it's done processing
+class LocalPhoto
+  def processing?
+    false
+  end
+end
+
 def stub_config(options = {})
   InatConfig.instance_eval do
     options.each do |k,v|

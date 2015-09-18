@@ -213,7 +213,7 @@ module TaxaHelper
     html = content_tag(:div, t(:loading_images), :id => element_id, :class => "loading status")
     js = <<-JS
       $('##{element_id}').load('#{taxon_photos_path(taxon, :partial => "photo", :limit => limit)}', function() {
-        $('#modal_image_box').jqmAddTrigger('##{element_id} a.modal_image_link');
+        $('.zoomable', this).zoomify();
         $('##{element_id}').removeClass('loading status');
       });
     JS

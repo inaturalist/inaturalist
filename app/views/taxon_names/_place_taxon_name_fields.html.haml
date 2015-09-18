@@ -1,5 +1,5 @@
 .nested-fields.place-taxon-name-fields.stacked.row.clearfix.lined
-  .span6
+  .col-md-6
     = f.hidden_field :taxon_name_id
     = f.text_field :place_id, :class => "pull-left placechooser", :placeholder => t(:start_typing_place_name)
-    = link_to_remove_association t(:remove_place), f, :class => "pull-right btn btn-mini"
+    = link_to_remove_association t(:remove_place), f, :class => "pull-right btn btn-xs"

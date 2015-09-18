@@ -11,6 +11,19 @@ describe UsersController, "dashboard" do
   end
 end
 
+describe UsersController, "update" do
+  let(:user) { User.make! }
+  before { sign_in user }
+  it "should allow you to change sharing preferences" do
+    expect( user.prefers_share_observations_on_facebook ).to be true
+    expect( user.prefers_share_observations_on_twitter ).to be true
+    patch :update, id: user.id, user: {prefers_share_observations_on_facebook: "0", prefers_share_observations_on_twitter: "0"}
+    user.reload
+    expect( user.prefers_share_observations_on_facebook ).to be false
+    expect( user.prefers_share_observations_on_twitter ).to be false
+  end
+end
+
 describe UsersController, "delete" do
   it "should be possible for the user" do
     user = User.make!

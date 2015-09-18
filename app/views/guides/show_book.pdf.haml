@@ -16,7 +16,7 @@
     - if @guide.icon.file?
       = image_tag @guide.icon.url(:medium)
     %h1= @guide.title
-    %p.muted
+    %p.text-muted
       =t :guide_compiled_by
       - if @guide.license.blank?
         = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
@@ -37,16 +37,16 @@
       .guide_taxon_header
         %h2= gt.display_name
         - unless gt.guide_photos.blank?
-          .row-fluid.stacked
-            .guide_photos
+          .row.stacked
+            .col-md-12.guide_photos
               .stacked
                 = gt.guide_photos.sort_by(&:position).map{|p| image_tag(p.medium_url, :class => "thumb")}.join('').html_safe
               %p.attribution
-                %small.muted.meta
+                %small.text-muted.meta
                   = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
                   = gt.guide_photos.sort_by(&:position).map(&:attribution).join(', ')
-      .row-fluid
-        .span9
+      .row
+        .col-md-9
           .guide_sections
             - for s in gt.guide_sections.sort_by(&:position)
               .guide_section
@@ -56,12 +56,12 @@
                     = s.attribution
                     = link_to(s.source_url, s.source_url) unless s.source_url.blank?
                 = formatted_user_text s.description
-        .span3
+        .col-md-3
           - gt.guide_ranges.sort_by(&:position).each do |gr|
             .guide_range.stacked.text-center
               = image_tag gr.medium_url, :class => "stacked"
               %p.attribution
-                %small.muted.meta
+                %small.text-muted.meta
                   =t :map
                   = gr.attribution
   #attribution

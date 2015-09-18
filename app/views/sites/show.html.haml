@@ -3,16 +3,15 @@
     %ul.breadcrumb
       %li
         = link_to t(:sites), sites_path
-        %span.divider /
       %li.active= @record.name
-    .span4
+    .col-md-4
       .meta.small.stacked{:style => "text-transform: uppercase;"}= t(:logo_square)
       = image_tag @record.logo_square.url
       .meta.small.stacked{:style => "text-transform: uppercase;"}= t('logo.logo')
       = image_tag @record.logo.url
-    .span8
+    .col-md-8
       %h2= @record.name
-      = link_to t(:edit), edit_site_path(@record), :class => "btn"
+      = link_to t(:edit), edit_site_path(@record), :class => "btn btn-default"
       - for grp, prefs in @pref_groups
         - prefs = prefs.select{|p| !@record.preferences[p.name].blank?}
         - next if prefs.blank?

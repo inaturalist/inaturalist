@@ -74,8 +74,7 @@ describe ObservationsController do
     end
     
     it "should use latitude param even if private_latitude set" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
-      observation = Observation.make!(:taxon => taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => make_threatened_taxon, :latitude => 38, :longitude => -122)
       expect(observation.private_longitude).to_not be_blank
       old_latitude = observation.latitude
       old_private_latitude = observation.private_latitude

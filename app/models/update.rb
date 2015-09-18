@@ -6,8 +6,18 @@ class Update < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true
   belongs_to :notifier, :polymorphic => true
   belongs_to :resource_owner, :class_name => "User"
-  
-  validates_uniqueness_of :notifier_id, :scope => [:notifier_type, :subscriber_id, :notification]
+
+  # non-mentions: [ notifier_id, notifier_type, subscriber_id, notification ]
+  validates_uniqueness_of :notifier_id, unless: -> { notification == "mention" },
+    scope: [:notifier_type, :subscriber_id, :notification]
+  # comment/ID mentions: [ notifier_id, notifier_type, subscriber_id ]
+  validates_uniqueness_of :notifier_id, if: -> { notification == "mention" &&
+    ![ "Observation", "Post" ].include?(notifier_type) },
+    scope: [:notifier_type, :subscriber_id]
+  # obs/post mentions: [ notifier_id, notifier_type, subscriber_id, resource_type, resource_id ]
+  validates_uniqueness_of :notifier_id, if: -> { notification == "mention" &&
+    [ "Observation", "Post" ].include?(notifier_type) },
+    scope: [:notifier_type, :subscriber_id, :resource_type, :resource_id ]
   validates_presence_of :resource, :notifier, :subscriber
   
   before_create :set_resource_owner
@@ -17,13 +27,24 @@ class Update < ActiveRecord::Base
   YOUR_OBSERVATIONS_ADDED = "your_observations_added"
   
   scope :unviewed, -> { where("viewed_at IS NULL") }
-  scope :activity, -> { where(:notification => "activity") }
+  scope :activity, -> { where(notification: "activity") }
+  scope :mention, -> { where(notification: "mention") }
 
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
       "resource_id: #{resource_id} notifier_type: #{notifier_type} notifier_id: #{notifier_id}>"
   end
-  
+
+  def mention?
+    notification == "mention"
+  end
+
+  def notifier_user
+    if notifier && notifier.respond_to?(:user) && notifier.user
+      notifier.user
+    end
+  end
+
   def set_resource_owner
     self.resource_owner = resource && resource.respond_to?(:user) ? resource.user : nil
   end
@@ -153,6 +174,7 @@ class Update < ActiveRecord::Base
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
+      !user.prefers_mention_email_notification? && u.notification == "mention"
     end.compact
     return if updates.blank?
     Emailer.updates_notification(user, updates).deliver_now

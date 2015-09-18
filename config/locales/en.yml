@@ -110,6 +110,7 @@ en:
   actions: Actions
   activate_user: Activate user
   active: active
+  activity_settings: Activity settings
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
   add_a: Add a
@@ -707,6 +708,7 @@ en:
     attribution_sharealike_license: Attribution-ShareAlike License
     attribution_noderivs_license: Attribution-NoDerivs License
     gnu_free_documentation_license: GNU Free Documentation License
+  copyright_holder: Copyright holder
   copyright_infringement_desc: Violates copyright law or was created by someone other than the observer and lacks attribution
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
@@ -1207,6 +1209,7 @@ en:
   id_please!: ID Please!
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
+  identify: Identify
   identification: identification
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
@@ -1566,6 +1569,13 @@ en:
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
   members: Members
+  mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
+  mentioned_you_in_noun_by_html: "%{user} mentioned you in %{noun} by %{by}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} mentioned you in a %{x} on %{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} mentioned you in an %{x} on %{noun}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
+  mentions: "Mentions"
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
@@ -1595,7 +1605,8 @@ en:
   most_observations: Most observations
   most_species: Most species
   most_observed_species: Most observed species
-  multiple_taxa: "Multiple taxa (input for swap/merge, output for split)"
+  multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
+  multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
@@ -1772,6 +1783,7 @@ en:
   not_yet: Not yet
   note: Note
   note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
+  notify_me_of_mentions: Notify me of mentions (e.g. @username)
   number_of_observations: Number of observations
   numeric_: numeric
   noun_by_you: "%{noun} by you"
@@ -2210,6 +2222,7 @@ en:
     description: The species list for %{owner_name}
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> curators added some of your observations
+  project_id: Project ID
   project_members: "%{project} Members"
   project_membership_model_description: Is your project open to everyone or only to people you invite?
   project_observation_settings: Project observation settings
@@ -2221,6 +2234,7 @@ en:
   project_rules: Project Rules
   project_settings: Project settings
   project_terms_and_rules: project terms &amp; rules
+  project_that_does_not_contain_these_observations: Project that does not contain these observations
   project_type_description: |
     Assessments and bioblitzes are special types of projects. Assessments are
     for collaborating on a set of species assesssments, usually to guage
@@ -2686,6 +2700,7 @@ en:
   taxon_doesnt_have_a_range: Taxon doesn't have a range
   taxon_drop: taxon drop
   taxon_id: Taxon ID
+  taxon_ids: Taxon IDs
   taxon_map:
       gbif_occurrences: GBIF Occurrences
       it_may_take_google_a_while_to: It may take Google a while to load these data, assuming GBIF has any.
@@ -3444,7 +3459,7 @@ en:
           modify it without asking your permission. It makes it much easier to
           share your work, and if you incorporate 3rd party content from other
           sources that use Creative Commons ShareAlike licenses (like
-          Wikipedia), you are legall obliged to use a similar license. Here's
+          Wikipedia), you are legally obliged to use a similar license. Here's
           an overview of all the Creative Commons licenses and what they mean:
         paste_note_html: |
           Paste in up to 500 species names, one per line. %{site_name} will do
@@ -3474,7 +3489,7 @@ en:
         content in the guide without an Internet connection. It will take a
         few minutes to generate the archive, but once this is enabled the
         archive will update whenever you change this guide.</p>
-        <p class="alert error status">
+        <p class="alert status">
           Please <strong>do not enable offline mobile downloads unless you
           actually intend to use them.</strong> They represent a considerable
           burden on our system.
@@ -3770,6 +3785,8 @@ en:
         receive_an_email_with_your_data_help: You'll receive an email with your export as an attachment.
         well_email_you: "Ok, we'll email you when it's ready."
         taking_a_while: "This is taking a while. Please try one of the options below."
+        date_range_help: "Max and min dates observed in YYYY-MM-DD format, e.g. 2015-01-17"
+        created_on_help: "Date observations were created, not observed, e.g. 2015-01-17, 2015-01, 2015"
       field_descriptions:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"

@@ -1,11 +1,11 @@
-.nested-fields.guide-photo-fields.row-fluid.lined.clearfix{:id => dom_id(f.object, "nested_field")}
+.nested-fields.guide-photo-fields.row.lined.clearfix{:id => dom_id(f.object, "nested_field")}
   .pull-left
     = f.hidden_field :guide_id
     - if f.object.new_record?
-      = f.text_field :user_id, :class => "chooser guide-user-chooser", :placeholder => t(:start_typing_someones_name), :label => false
+      = f.text_field :user_id, :class => "chooser guide-user-chooser form-control", :placeholder => t(:start_typing_someones_name), :label => false
     - else
       = link_to user_image(f.object.user), f.object.user
       = link_to_user f.object.user
   - if f.object.user_id != @guide.user_id
     .actions.text-right
-      = link_to_remove_association t(:remove_editor), f, :class => "btn btn-mini"
+      = link_to_remove_association t(:remove_editor), f, :class => "btn btn-xs"

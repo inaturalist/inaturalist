@@ -149,7 +149,7 @@ class TaxonName < ActiveRecord::Base
 
   def set_is_valid
     self.is_valid = true unless self.is_valid == false || lexicon == LEXICONS[:SCIENTIFIC_NAMES]
-    self.is_valid = true if taxon.taxon_names.size <= 1
+    self.is_valid = true if taxon.taxon_names.size < (persisted? ? 2 : 1)
     true
   end
   
@@ -183,18 +183,14 @@ class TaxonName < ActiveRecord::Base
     language_name = language_for_locale(options[:locale]) || 'english'
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name}
     engnames = common_names.select {|n| n.is_english?}
-    unknames = common_names.select {|n| n.lexicon == 'unspecified'}
+    unknames = common_names.select {|n| n.lexicon == 'unspecified' || n.lexicon.blank?}
     
     if place_names.length > 0
       place_names.first
     elsif locale_names.length > 0
       locale_names.first
-    elsif engnames.length > 0
-      engnames.first
     elsif unknames.length > 0
       unknames.first
-    else
-      common_names.first
     end
   end
 
@@ -217,20 +213,21 @@ class TaxonName < ActiveRecord::Base
 
   def locale_for_lexicon
     case localizable_lexicon
-    when "scientific_names" then "sci"
-    when "english" then "en"
-    when "spanish" then "es"
-    when "german" then "de"
-    when "portuguese" then "pt"
-    when "french" then "fr"
+    when "catalan" then "ca"
     when "chinese_traditional" then "zh"
-    when "japanese" then "ja"
-    when "maya" then "myn"
     when "dutch" then "nl"
-    when "indonesian" then "id"
+    when "english" then "en"
+    when "french" then "fr"
+    when "german" then "de"
     when "hawaiian" then "haw"
-    when "maori" then "mi"
+    when "indonesian" then "id"
     when "italian" then "it"
+    when "japanese" then "ja"
+    when "maori" then "mi"
+    when "maya" then "myn"
+    when "portuguese" then "pt"
+    when "scientific_names" then "sci"
+    when "spanish" then "es"
     else
       "und"
     end

@@ -2,27 +2,32 @@ input.position {width:1em;}
 .more {display:none;}
 .guide_taxon .names {margin-top:3px;}
 .guide_taxon .tag {margin-right: 5px;}
-.guide_taxon .img-circle {max-width:30px; height:30px; width:100%;}
+.guide_taxon .img-circle, .bootstrap input.sortable-position {max-width:30px; height:30px; width:100%;}
 .names .display_name {font-size:140%;}
-.bootstrap .row-fluid .microspan {width:4%; margin-left:0.5%;text-align: center;}
+.bootstrap .row .microspan {
+  width:4%; 
+  margin-left:0.5%;
+  text-align: center;
+  float: left;
+}
 .guide_taxon .check {margin-top:3px;}
 .bootstrap .guide_taxon .input-prepend {margin-bottom: 0;}
-.bootstrap .input-prepend input[name*=tag_list] {
+.bootstrap .edit_guide_taxon input[name*=tag_list] {
   padding: 0px 5px;
   font-size: 10px;
   box-shadow: none;
-  min-height:22px;
+  max-height:22px;
   border-color: #efefef;
 }
-.bootstrap .input-prepend .add-on:first-child {
+.bootstrap .edit_guide_taxon .input-group-addon {
   font-size: 10px;
   padding: 0 3px;
   min-height:20px;
   background-color: #efefef;
   border-color: #efefef;
 }
-.bootstrap .input-prepend input[name*=tag_list],
-.bootstrap .input-prepend .add-on:first-child {
+.bootstrap .edit_guide_taxon input[name*=tag_list],
+.bootstrap .edit_guide_taxon .input-group-addon {
   color: #666;
 }
 .grip {
@@ -40,8 +45,8 @@ input.position {width:1em;}
 #controls .navbar .navbar-search,
 #controls .navbar .btn-group {margin-top:0;}
 #controls .navbar .navbar-search input {margin-bottom:0;}
-#controls.affix {top:0px; z-index: 1;}
-#controls.affix .navbar {box-shadow: #777 7px 0 10px; padding:10px 0 10px 0; background-color:white;}
+#controls.affix {top:0px; z-index: 5; min-width: 600px;}
+#controls.affix .navbar {box-shadow: #777 7px 0 10px; padding:10px; background-color:white;}
 #controls .pull-left {margin-right:10px;}
 .guide_taxon.warning { background-color: #fcf8e3;}
 .guide_taxon {margin-bottom:0; padding: 7px 0;}
@@ -56,6 +61,8 @@ input.position {width:1em;}
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
 }
-.bootstrap .accordion-inner {min-width: 220px;}
+.bootstrap .panel-body {min-width: 220px;}
 #addtaxa-paste textarea {height:200px;}
 .actions .btn {margin-bottom:5px;}
+.bootstrap .navbar {margin-bottom: 0;}
+#guide_place_id { width: 80%; }
