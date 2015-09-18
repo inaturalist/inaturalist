@@ -34,6 +34,7 @@ gem 'diffy'
 gem 'doorkeeper'
 gem 'dynamic_form'
 gem 'exifr'
+gem 'fastimage'
 gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 5.1.0"
 gem 'gdata', :git => 'git://github.com/pleary/gdata.git'
