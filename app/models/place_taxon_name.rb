@@ -7,4 +7,5 @@ class PlaceTaxonName < ActiveRecord::Base
   def to_s
     "<PlaceTaxonName #{id}, place_id: #{place_id}, taxon_name_id: #{taxon_name_id}>"
   end
+  
 end

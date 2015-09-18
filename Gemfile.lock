@@ -191,6 +191,11 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    biodiversity (3.2.1)
+      gn_uuid (~> 0.5)
+      parallel (~> 1.4)
+      treetop (~> 1.4.1)
+      unicode_utils (~> 1.4)
     bluecloth (2.2.0)
     buftok (0.2.0)
     builder (3.2.2)
@@ -293,6 +298,7 @@ GEM
       rest-client (>= 0.9)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    gn_uuid (0.5.0)
     google-api-client (0.8.2)
       activesupport (>= 3.2)
       addressable (~> 2.3)
@@ -416,7 +422,9 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    parallel (1.6.1)
     pg (0.18.1)
+    polyglot (0.3.5)
     rack (1.6.1)
     rack-mobile-detect (0.4.0)
       rack
@@ -549,6 +557,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
     trollop (2.1.1)
     twitter (5.13.0)
       addressable (~> 2.3)
@@ -566,6 +577,7 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     useragent (0.13.3)
     utf8-cleaner (0.0.9)
     uuid (2.3.7)
@@ -604,6 +616,7 @@ DEPENDENCIES
   aws-sdk
   better_errors
   binding_of_caller
+  biodiversity
   bluecloth
   byebug
   capistrano (~> 3.3)

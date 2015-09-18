@@ -95,7 +95,7 @@ class EolService
     fname = "#{uri.path}_#{uri.query}".gsub(/[\/\.]+/, '_')
     fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/eol_service/#{fname}")
     if File.exists?(fixture_path)
-      puts "[DEBUG] Loading cached EOL response for #{uri}: #{fixture_path}"
+      # puts "[DEBUG] Loading cached EOL response for #{uri}: #{fixture_path}"
       Nokogiri::XML(open(fixture_path))
     else
       cmd = "wget -O \"#{fixture_path}\" \"#{uri}\""

@@ -269,17 +269,16 @@ module Ratatosk
         else
           Taxon.where(name: ancestor.name).where("id != ?", ancestor.id)
         end
+
+        graft_point = existing_homonyms.select do |homonym|
+          ancestor_phylum && homonym.phylum && ancestor_phylum.name == homonym.phylum.name
+        end.first
         
-        if existing_homonyms.size == 1 && 
-            %w"kingdom phylum".include?(existing_homonyms.first.rank)
+        if existing_homonyms.size == 1
           graft_point = existing_homonyms.first
           lineage = new_lineage
           break
         end
-        
-        graft_point = existing_homonyms.select do |homonym|
-          ancestor_phylum && homonym.phylum && ancestor_phylum.name == homonym.phylum.name
-        end.first
         
         if graft_point
           lineage = new_lineage

@@ -243,14 +243,13 @@ class TaxonName < ActiveRecord::Base
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
     case locale.to_s
-    when /^es/    then 'spanish'
-    when /^fr/    then 'french'
-    when /zh.CN/i  then 'chinese_simplified'
-    when /^zh/    then 'chinese_traditional'
-    when /^pt/    then 'portuguese'
-    when /^ja/    then 'japanese'
-    else
-      'english'
+    when /^en/      then 'english'
+    when /^es/      then 'spanish'
+    when /^fr/      then 'french'
+    when /zh.CN/i   then 'chinese_simplified'
+    when /^zh/      then 'chinese_traditional'
+    when /^pt/      then 'portuguese'
+    when /^ja/      then 'japanese'
     end
   end
 
@@ -269,7 +268,6 @@ class TaxonName < ActiveRecord::Base
   
   def self.find_external(q, options = {})
     r = ratatosk(options)
-    
     # fetch names and save them
     r.find(q).map do |ext_name|
       unless ext_name.valid?
@@ -277,7 +275,12 @@ class TaxonName < ActiveRecord::Base
           ext_name.taxon = existing_taxon
         end
       end
-      ext_name.save ? ext_name : nil
+      if ext_name.save
+        ext_name
+      else
+        Rails.logger.debug "[DEBUG] Failed to save ext_name: #{ext_name.errors.full_messages.to_sentence}"
+        nil
+      end
     end.compact
   end
   

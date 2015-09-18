@@ -6,31 +6,54 @@ module Ratatosk
     class EolNameProvider
       cattr_accessor :source
       
-      def self.source
-        @source ||= ::Source.find_by_title("Encyclopedia of Life") || ::Source.create(
-          :title => "Encyclopedia of Life",
-          :in_text => "EOL",
-          :url => "http://www.eol.org",
-          :citation => "Encyclopedia of Life. Available from http://www.eol.org."
+      def self.source(options = {})
+        return @@source if @@source && !options[:force]
+        @@source = Source.find_by_title("Encyclopedia of Life") || Source.create(
+          title: "Encyclopedia of Life",
+          in_text: "EOL",
+          url: "http://www.eol.org",
+          citation: "Encyclopedia of Life. Available from http://www.eol.org."
         )
       end
 
-      def initialize
-        @service = EolService.new(:timeout => 10, :debug => true)
+      def service
+        @service ||= EolService.new(timeout: 10, debug: Rails.env.development?)
       end
 
       def find(name)
-        hxml = @service.search(name)
+        hxml = service.search(name)
         unless hxml.errors.blank?
-          raise NameProviderError, "Failed to parse the response from the Catalogue of Life: #{hxml.errors}"
+          raise NameProviderError, "Failed to parse the response from the EOL: #{hxml.errors}"
         end
-        hxml.search('entry')[0..9].map do |entry|
-          matching_names = entry.at('content').text.split(';').map{|n| TaxonName.strip_author(n)}
-          matching_name = matching_names.detect{|n| n.index(name)}
-          if matching_name && (page = @service.page(entry.at('id').text)) && page.to_s.index(name)
+        names = {}
+        hxml.search('entry')[0..9].each do |entry|
+          page = service.page(entry.at('id').text, synonyms: true, common_names: true)
+          next unless page
+          next unless page.to_s =~ /#{name}/i
+          tn = begin
             EolTaxonNameAdapter.new(page)
+          rescue NameProviderError
+            next
           end
-        end.compact
+          names[tn.name] ||= tn
+          if synonym = page.xpath('//xmlns:taxonConcept/xmlns:synonym').detect{|s| TaxonName.strip_author(Taxon.remove_rank_from_name(s.text)) == name} 
+            stn = names[tn.name].dup
+            stn.name = TaxonName.strip_author(Taxon.remove_rank_from_name(synonym.text))
+            stn.source_identifier = nil
+            stn.is_valid = false
+            stn.taxon = names[tn.name].taxon
+            names[stn.name] = stn
+          end
+          if common_name = page.xpath('//xmlns:taxonConcept/xmlns:commonName').detect{|cn| cn.text =~ /#{name}/i}
+            ctn = names[tn.name].dup
+            ctn.name = common_name.text
+            ctn.source_identifier = nil
+            ctn.lexicon = TaxonName.language_for_locale(common_name['xml:lang'])
+            ctn.taxon = names[tn.name].taxon
+            names[ctn.name] = ctn
+          end
+        end
+        names.values[0..9]
       end
 
       #
@@ -40,19 +63,25 @@ module Ratatosk
       # Kingdom or an existing saved Taxon that is already in our local tree.
       #
       def get_lineage_for(taxon)
-        puts "taxon.preferred_hierarchy_id: #{taxon.preferred_hierarchy_id}"
-        hxml = if (hierarchy_id = taxon.preferred_hierarchy_id)
-          @service.hierarchy_entries(hierarchy_id)
+        eol_taxon = if taxon.respond_to?(:preferred_hierarchy_id)
+          taxon
+        else
+          page = service.page(taxon.source_identifier)
+          EolTaxonAdapter.new(page)
         end
-        lineage = [taxon]
-
+        hxml = if (hierarchy_id = eol_taxon.preferred_hierarchy_id)
+          service.hierarchy_entries(hierarchy_id)
+        end
+        lineage = []
         if hxml
           # walk UP the Eol lineage creating new taxa
-          [hxml.xpath('//dwc:taxon')].flatten.reverse_each do |ancestor_hxml|
+          [hxml.xpath('//dwc:Taxon')].flatten.each do |ancestor_hxml|
+            next if ancestor_hxml.at_xpath('dwc:taxonConceptID').nil?
+            break if ancestor_hxml.at_xpath('dwc:taxonConceptID').text == taxon.source_identifier
             lineage << EolTaxonAdapter.new(ancestor_hxml)
-            puts "lineage.last: #{lineage.last}"
           end
         end
+        lineage = [lineage, taxon].flatten.reverse
         lineage.compact
       end
       
@@ -122,8 +151,6 @@ module Ratatosk
 
       def name_elt
         elts = @hxml.xpath("//dwc:scientificName|//synonym|//commonName")
-        puts "elts: #{elts.map{|e| TaxonName.strip_author(e.text) }.inspect}"
-        puts "name: #{name}"
         elts.detect{|e| TaxonName.strip_author(e.text) == name} || elts.detect{|e| TaxonName.strip_author(e.text).index(name)}
       end
 
@@ -153,29 +180,8 @@ module Ratatosk
       end
 
       def is_accepted_sciname?
-        # accepted_name == name
         is_comname? || name_elt.name == "scientificName"        
       end
-
-      # def accepted_name
-      #   if accepted_name_hxml
-      #     accepted_name_hxml.at_xpath('dwc:scientificName').try(:inner_text)
-      #   else
-      #     name
-      #   end
-      # end
-
-      # def accepted_name_hxml
-      #   return @accepted_name_hxml unless @accepted_name_hxml.blank?
-      #   xml = @hxml.at_xpath('accepted_name')
-      #   @accepted_name_hxml = if xml.blank? || xml.elements.blank?
-      #     if accepted_synonym_id = @hxml.at(:url).inner_text.to_s[/(\d+)\/synonym\/\d+/, 1]
-      #       service.search(:id => accepted_synonym_id, :response => 'full')
-      #     end
-      #   else
-      #     xml
-      #   end
-      # end
     end
 
     class EolTaxonAdapter
@@ -187,20 +193,33 @@ module Ratatosk
       # Initialize with an Hpricot object of a single Eol XML response
       #
       def initialize(hxml, params = {})
+        parser = ::ScientificNameParser.new
         @adaptee = Taxon.new(params)
         @hxml = hxml
-        @adaptee.name               = @hxml.at('//dwc:scientificName').inner_text
-        @adaptee.rank               = @hxml.search('//dwc:taxonRank').map(&:text).inject({}) {|memo,rank| memo[rank] = memo[rank].to_i + 1; memo}.sort_by(&:last).last.try(:first)
-        @adaptee.source             = EolNameProvider.source
-        # @adaptee.source_identifier  = @hxml.at('id').inner_text
-        # @adaptee.source_url         = @hxml.at('url').inner_text
-        @adaptee.name_provider      = "EolNameProvider"
-        @adaptee.source_identifier  = @hxml.at('//xmlns:taxonConceptID').try(:text) || @hxml.at('//dwc:taxonID').try(:text)
-        @adaptee.source_url         = "http://eol.org/pages/#{@adaptee.source_identifier}"
+        original_name = @hxml.at_xpath('.//dwc:scientificName').inner_text
+        if (parsed_name = parser.parse(original_name)) && parsed_name[:scientificName]
+          @adaptee.name = parsed_name[:scientificName][:canonical]
+        end
+        if @adaptee.name.blank?
+          raise NameProviderError, "Failed to parse the response from the EOL: #{original_name}"
+        end
+        @adaptee.rank = @hxml.xpath('.//dwc:taxonRank').map(&:text).inject({}) {|memo,rank| 
+          memo[rank] = memo[rank].to_i + 1
+          memo
+        }.sort_by(&:last).last.try(:first)
+        @adaptee.source = EolNameProvider.source
+        @adaptee.name_provider = "EolNameProvider"
+        @adaptee.source_identifier = begin
+          @hxml.at_xpath('.//xmlns:taxonConceptID').try(:text)
+        rescue Nokogiri::XML::XPath::SyntaxError => e
+          @hxml.at_xpath('.//dwc:taxonConceptID').try(:text)
+        end
+        @adaptee.source_identifier ||= @hxml.at_xpath('.//dwc:taxonID').try(:text)
+        @adaptee.source_url = "http://eol.org/pages/#{@adaptee.source_identifier}"
       end
 
       def preferred_hierarchy_id
-        @hxml.at("//xmlns:taxon/dwc:taxonID").try(:inner_text)
+        @hxml.at(".//xmlns:taxon/dwc:taxonID").try(:inner_text)
       end
     end
   end # module NameProviders
