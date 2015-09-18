@@ -740,11 +740,6 @@ span.button {
   color: DeepPink;
 }
 
-a .taxon:hover {
-  color: #36c;
-  text-decoration: underline;
-}
-
 .species .sciname,
 .genus .sciname,
 .sciname.genus,
@@ -1642,8 +1637,6 @@ table .numeric { text-align: center; }
 .iconic_taxon_sprite { vertical-align:middle;}
 .chooseritem { white-space: nowrap; }
 .taxon.chooseritem .othernames { display:inline; }
-#taxonchooser_chooser .ui-chooser-choice { padding: 4px 5px 3px;}
-#taxonchooser_chooser .ui-chooser-choice { padding: 5px 5px 4px;}
 
 .subscriptionsettings .ui-icon {
   background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');
@@ -1895,3 +1888,5 @@ p.spam {
   color: #333;
   white-space: nowrap;
 }
+
+
