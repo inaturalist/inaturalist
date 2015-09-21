@@ -86,6 +86,32 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     ).to_select_tag_with_option_tags(zone_options, options, html_options)
     form_field method, tag, options.merge(html_options)
   end
+
+  def select_lexicon(method, lexicons, options = {}, html_options = {})
+    separator = '---------------------------'
+    sortable_locale = I18N_LOCALES.detect{|l| l =~ /#{I18n.locale}-phonetic/}
+    lexicons = if sortable_locale
+      lexicons.sort do |a,b|
+        I18n.t("lexicons.#{a.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: a) \
+        <=> \
+        I18n.t("lexicons.#{b.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: b)
+      end
+    else
+      lexicons.sort
+    end
+    lexicon_list = (lexicons & TaxonName::DEFAULT_LEXICONS) + [separator] + (lexicons - TaxonName::DEFAULT_LEXICONS)
+    lexicon_options = lexicon_list.map do |lexicon|
+      key = "lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}"
+      [
+        I18n.t(key, default: lexicon), 
+        lexicon,
+        {data: {'i18n-key' => key}}
+      ]
+    end
+    options[:include_blank] ||= I18n.t(:unknown)
+    options[:disabled] ||= separator
+    select(method, lexicon_options, options, html_options)
+  end
   
   def form_field(field, field_content = nil, options = {}, &block)
     options = field_content if block_given?

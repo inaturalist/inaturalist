@@ -9,25 +9,24 @@
         = n.text_field :name, :class => "text", :autofocus => true
       - else
         %strong= @taxon_name.name
-      - options = TaxonName::DEFAULT_LEXICONS.sort + ['---------------------------'] + (@lexicons - TaxonName::DEFAULT_LEXICONS)
-      = n.select :lexicon, options.map{|l| [t("lexicons.#{l.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", |
-        :default => l), l]}, :include_blank => t(:unknown), :disabled => '---------------------------'
-      = link_to_function t(:add_new_lexicon),                                  |
-        "$('#new_lexicon_field').show(); " +                                   |
-        "$('#new_lexicon_field input').attr('name', 'taxon_name[lexicon]');" + |
-        "$('#taxon_name_lexicon_select').attr('name', 'lexicon_select');" +    |
-        "$(this).hide();",                                                     |
-        :id => "new_lexicon_link"                                              |
-      = n.form_field :new_lexicon, :wrapper => {:id => "new_lexicon_field", :style => "display:none;"} do
-        .input-group
-          = n.text_field :lexicon, :name => "lexicon_text", 'label' => false, skip_builder: true, :class => "form-control"
-          .input-group-btn
-            = link_to_function t(:cancel),                                             |
-              "$('#new_lexicon_field').hide(); " +                                     |
-              "$('#new_lexicon_field input').attr('name', 'lexicon_text');" +          |
-              "$('#taxon_name_lexicon_select').attr('name', 'taxon_name[lexicon]');" + |
-              "$('#new_lexicon_link').show();",                                        |
-              :class => "btn btn-default"
+      = n.select_lexicon :lexicon, @lexicons
+      .stacked
+        = link_to_function t(:add_new_lexicon),                                  |
+          "$('#new_lexicon_field').show(); " +                                   |
+          "$('#new_lexicon_field input').attr('name', 'taxon_name[lexicon]');" + |
+          "$('#taxon_name_lexicon_select').attr('name', 'lexicon_select');" +    |
+          "$(this).hide();",                                                     |
+          :id => "new_lexicon_link"                                              |
+        = n.form_field :new_lexicon, :wrapper => {:id => "new_lexicon_field", :style => "display:none;"} do
+          .input-group
+            = n.text_field :lexicon, :name => "lexicon_text", 'label' => false, skip_builder: true, :class => "form-control"
+            .input-group-btn
+              = link_to_function t(:cancel),                                             |
+                "$('#new_lexicon_field').hide(); " +                                     |
+                "$('#new_lexicon_field input').attr('name', 'lexicon_text');" +          |
+                "$('#taxon_name_lexicon_select').attr('name', 'taxon_name[lexicon]');" + |
+                "$('#new_lexicon_link').show();",                                        |
+                :class => "btn btn-default"
       = n.form_field :validity, :label => false do
         = label_tag t(:if_this_is_a_scientific_name)
         .radio
