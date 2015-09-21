@@ -517,6 +517,8 @@ form .field .description { margin-bottom: 0.5em;}
 #pageheader .projecticon:hover, #pageheader .usericon:hover {border-color:#ddd;}
 #pageheader .breadcrumbs {margin-bottom: 10px; }
 
+img.usericon { border-radius: 50%; }
+.item_user .usericon { max-height: 42px; }
 img.mini.usericon {
   vertical-align: middle;
 }
@@ -1592,7 +1594,7 @@ table .numeric { text-align: center; }
 #redo_search_in_map_area_button{background:0% 50% image-url('silk/arrow_refresh.png') no-repeat;padding-left:20px;}
 #redo_search_in_map_area_loading.loading{display:inline;}
 
-.item_user{width:48px;}
+.item_user{width:48px; text-align: center;}
 .item_content{width:532px;}
 .item_content .body {overflow:hidden;}
 .item_content .body img {max-width: 100%;}
