@@ -90,6 +90,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   def select_lexicon(method, lexicons, options = {}, html_options = {})
     separator = '---------------------------'
     sortable_locale = I18N_LOCALES.detect{|l| l =~ /#{I18n.locale}-phonetic/}
+    lexicons = lexicons.uniq{|l| TaxonName.normalize_lexicon(l)}
     lexicons = if sortable_locale
       lexicons.sort do |a,b|
         I18n.t("lexicons.#{a.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: a) \

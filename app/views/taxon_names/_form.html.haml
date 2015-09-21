@@ -66,17 +66,8 @@
           = t 'views.taxon_names.form.new_name_guidelines_html'
       - unless @taxon_name.source_identifier.blank?
         .clear.quiet.box
-          .description
+          %p.description
             = t(:this_taxon_name_was_originally_imported)
-          %p.ui
-            = n.label :name_provider
-            %br/
-            = n.text_field :name_provider, :disabled => true, :class => "text"
-          %p.ui
-            = n.label :source_url
-            %br/
-            = n.text_field :source_url, :disabled => true, :class => "text"
-          %p.ui
-            = n.label :source_identifier
-            %br/
-            = n.text_field :source_identifier, :disabled => true, :class => "text"
+          = n.text_field :name_provider, :disabled => true, :class => "text"
+          = n.text_field :source_url, :disabled => true, :class => "text"
+          = n.text_field :source_identifier, :disabled => true, :class => "text"
