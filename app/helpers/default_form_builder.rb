@@ -93,9 +93,10 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     lexicons = lexicons.uniq{|l| TaxonName.normalize_lexicon(l)}
     lexicons = if sortable_locale
       lexicons.sort do |a,b|
-        I18n.t("lexicons.#{a.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: a) \
-        <=> \
-        I18n.t("lexicons.#{b.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: b)
+        t_a = I18n.t("lexicons.#{a.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: '')
+        t_b = I18n.t("lexicons.#{b.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: '')
+        # Make sure sortable translations appear first
+        [(t_a != '' ? 0 : 1), t_a] <=> [(t_b != '' ? 0 : 1), t_b]
       end
     else
       lexicons.sort
