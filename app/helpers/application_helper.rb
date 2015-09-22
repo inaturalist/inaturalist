@@ -882,19 +882,19 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon"))
+      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon", :class => "usericon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag(asset_url(resource.icon.url(:thumb)), options)
     when "ProjectUserInvitation"
-      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon"))
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon", :class => "usericon"))
     when "AssessmentSection"
       image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"
       image_tag("checklist-icon-color-32px.png", options)
     when "Post"
-      image_tag(asset_url(resource.user.icon.url(:thumb)), options)
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:class => "usericon"))
     when "Place"
       image_tag("icon-maps.png", options)
     when "Taxon"
