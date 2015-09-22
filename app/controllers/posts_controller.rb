@@ -174,7 +174,7 @@ class PostsController < ApplicationController
   end
   
   def browse
-    @posts = Post.published.page(params[:page] || 1).order('published_at DESC')
+    @posts = Post.not_flagged_as_spam.published.page(params[:page] || 1).order('published_at DESC')
     respond_to do |format|
       format.html
     end
