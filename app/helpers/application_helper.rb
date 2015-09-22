@@ -337,6 +337,7 @@ module ApplicationHelper
     size = options.delete(:size)
     style = options[:style]
     css_class = "user_image #{options[:class]}"
+    css_class += " usericon" if %w(mini small thumb).include?(size.to_s) || size.blank?
     options[:alt] ||= user.login
     options[:title] ||= user.login
     url = if defined? root_url
