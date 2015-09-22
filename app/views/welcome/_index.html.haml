@@ -1,9 +1,16 @@
 - content_for :extracss do
   = stylesheet_link_tag "welcome"
+- content_for :extrajs do
+  - if @site && @site.homepage_data.file?
+    :javascript
+      var HOMEPAGE_DATA_URL = #{@site.homepage_data.url.inspect}
+  - else
+    :javascript
+      var HOMEPAGE_DATA_URL;
+  = javascript_include_tag :welcome
 .container
   #hero.homesection.row
     .heroimage
-      %img{src: 'https://farm1.staticflickr.com/490/18822222609_bd4e4317f4_k.jpg'}
     .row
       .col-xs-6.col-xs-offset-5.col-md-4.col-md-offset-7.col-sm-offset-6
         #herobox
@@ -22,11 +29,6 @@
       .col-xs-12
         #herofooter.row
           .col-xs-11.col-xs-offset-1
-            = link_to "" do
-              %img{src: 'http://www.inaturalist.org/attachments/users/icons/79343-thumb.jpg?1425949423'}
-            .obstext
-              = link_to "Differential Grasshopper", observations_path
-              = link_to "Observed by: Joelle Belmonte", "", :class => "username"
   #how.homesection
     .row
       .col-xs-12
@@ -118,21 +120,6 @@
           %ol.carousel-indicators
             %li.active{data: {target: "#who-carousel", slide_to: "0"}}
           .carousel-inner{role: "listbox"}
-            .item.active
-              .row
-                .col-xs-8.bigpadded
-                  %blockquote<
-                    iNaturalist has changed the way that I interact with the natural world. I am much more likely to stop and take pictures of interesting organisms I see that I would otherwise overlook because I know that someone else might be interested in it for science and that the iNaturalist community can help me learn more about it.
-                  %a.name{href: 'http://www.inaturalist.org/people/carrieseltzer'}
-                    Carrie Selzter
-                  .role
-                    Program Manager, National Geographic's Great Nature Project
-                  .location
-                    %i.fa.fa-map-marker
-                    Washington, D.C., USA
-                .col-xs-3
-                  = link_to 'http://www.inaturalist.org/people/carrieseltzer' do
-                    = image_tag("http://www.inaturalist.org/attachments/users/icons/7580-original.jpeg", :class => "img-circle img-responsive")
   #call
     .row
       .col-xs-8.bigpadded

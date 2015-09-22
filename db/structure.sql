@@ -8405,6 +8405,38 @@ ALTER SEQUENCE deleted_observations_id_seq OWNED BY deleted_observations.id;
 
 
 --
+-- Name: deleted_photos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE deleted_photos (
+    id integer NOT NULL,
+    user_id integer,
+    photo_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: deleted_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE deleted_photos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: deleted_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE deleted_photos_id_seq OWNED BY deleted_photos.id;
+
+
+--
 -- Name: deleted_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -10756,7 +10788,11 @@ CREATE TABLE sites (
     stylesheet_content_type character varying(255),
     stylesheet_file_size integer,
     stylesheet_updated_at timestamp without time zone,
-    draft boolean DEFAULT false
+    draft boolean DEFAULT false,
+    homepage_data_file_name character varying,
+    homepage_data_content_type character varying,
+    homepage_data_file_size integer,
+    homepage_data_updated_at timestamp without time zone
 );
 
 
@@ -11882,6 +11918,13 @@ ALTER TABLE ONLY deleted_observations ALTER COLUMN id SET DEFAULT nextval('delet
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY deleted_photos ALTER COLUMN id SET DEFAULT nextval('deleted_photos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
 
 
@@ -12554,6 +12597,14 @@ ALTER TABLE ONLY delayed_jobs
 
 ALTER TABLE ONLY deleted_observations
     ADD CONSTRAINT deleted_observations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deleted_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY deleted_photos
+    ADD CONSTRAINT deleted_photos_pkey PRIMARY KEY (id);
 
 
 --
@@ -13393,6 +13444,13 @@ CREATE INDEX index_delayed_jobs_on_unique_hash ON delayed_jobs USING btree (uniq
 --
 
 CREATE INDEX index_deleted_observations_on_user_id_and_created_at ON deleted_observations USING btree (user_id, created_at);
+
+
+--
+-- Name: index_deleted_photos_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_deleted_photos_on_created_at ON deleted_photos USING btree (created_at);
 
 
 --
@@ -15577,4 +15635,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150625230227');
 INSERT INTO schema_migrations (version) VALUES ('20150701222736');
 
 INSERT INTO schema_migrations (version) VALUES ('20150902052821');
+
+INSERT INTO schema_migrations (version) VALUES ('20150916164339');
+
+INSERT INTO schema_migrations (version) VALUES ('20150922215548');
 
