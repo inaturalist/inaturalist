@@ -107,10 +107,14 @@ class TaxonName < ActiveRecord::Base
     self.name = Taxon.remove_rank_from_name(self.name)
     true
   end
+
+  def self.normalize_lexicon(lexicon)
+    LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize
+  end
   
   def normalize_lexicon
     return true if lexicon.blank?
-    self.lexicon = LEXICONS[lexicon.upcase.to_sym] if LEXICONS[lexicon.upcase.to_sym]
+    self.lexicon = TaxonName.normalize_lexicon(lexicon)
     true
   end
   
