@@ -1842,3 +1842,7 @@ p.spam {
   background: black;
   opacity: 0.6;
 }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  vertical-align: bottom;
+}

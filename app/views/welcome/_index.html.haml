@@ -1,193 +1,9 @@
 - content_for :extracss do
-  :css
-    .homesection {
-      color: #575757;
-    }
-    #hero, #how { margin-bottom: 60px; }
-    .bootstrap .homesection h1 {
-      margin: 0 0 30px;
-    }
-    .bootstrap .homesection p { 
-      font-size: 18px;
-    }
-    .bootstrap [class*='col-'].bleedcol { padding: 0; }
-    .bootstrap [class*='col-'].bigpadded { padding: 60px; }
-    #header {margin-bottom: 0;}
-    #wrapper { margin-bottom: 0; }
-    #hero { 
-      position: relative; 
-      overflow:hidden; 
-    }
-    #hero, #hero a {color: white;}
-    #hero .heroimage {position: absolute; left: 0; width: 100%; bottom: 0; min-height: 450px;}
-    #herobox { 
-      background-color: #f27134;
-      margin: 80px 0 80px 0;
-      min-width: 345px;
-    }
-    #herobox h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    #herobox .herotext p {
-      font-size: 17px;
-      margin: 0;
-    }
-    #herobox .herotext, #herobox .morelink {
-      padding: 30px 30px;
-    }
-    .herolinks { 
-      display: flex; 
-      width: 100%;
-      font-size: 16px;
-    }
-    .morelink {
-      font-size: 130%;
-      display: inline-block;
-      border-top: 1px solid #D44410;
-      padding: 20px;
-      flex-grow: 1;
-    }
-    .morelink:first-child {
-      border-right: 1px solid #D44410;
-    }
-    .morelink:after {
-      font-family: 'FontAwesome';
-      content: '\f18e';
-      margin-left: 10px;
-    }
-    #herofooter { 
-      background: rgba(0,0,0,0.5);
-      font-size: 18px;
-      line-height:25.2px;
-    }
-    #herofooter [class*='col-'] { 
-      height: 48px; 
-      line-height: 48px;
-      position: relative; 
-      white-space: nowrap;
-    }
-    #herofooter img { 
-      width: 58px; 
-      height: 58px; 
-      border-radius: 500px; 
-      border: 2px solid white;
-      position: absolute; 
-      bottom: 10px;
-    }
-    #herofooter .obstext {
-      padding-left: 70px;
-      font-weight: bold;
-    }
-    #herofooter .username {
-      font-weight: normal;
-    }
-    #herofooter .username:before {
-      content: '\007E';
-      margin: 0 10px 0 5px;
-      font-weight: normal;
-    }
-    #how [class*='col-'] {
-      text-align: center;
-      white-space: nowrap;
-    }
-    #how img { margin: 0 auto; }
-    #how label {
-      display: block;
-      border-radius: 100px;
-      width: 30px;
-      height: 30px;
-      margin: 0 auto 30px;
-      color: white;
-      background-color: #74ac00;
-      border: 3px solid white;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    #how .txtrow { position: relative; }
-    #how .txtrow:before {
-      content: ' ';
-      display: block;
-      height: 4px;
-      background-color: #BED989;
-      width: 69%;
-      margin: 0 auto;
-      top: 17px;
-      position: relative;
-    }
-    #how p { font-size: 24px; }
-    #science > .row {
-      background-color: black;
-      color: white;
-    }
-    #science .bleedcol { overflow: hidden; }
-    #science img {
-      max-width: 585px;
-      min-height: 400px;
-      overflow: hidden;
-    }
-    #value > .row {
-      background-color: #EAF3D8;
-    }
-    #value h1, #who h1 { text-align: center; margin-top: 60px;}
-    #value h2 {
-      font-size: 22px;
-      margin-top: 0;
-    }
-    #value [class*='col-'] {margin-bottom: 30px; }
-    #value > .row:last-child { padding-bottom: 30px;}
-    #mobile { background-color: #74ac00; }
-    #mobile .bleedcol { padding: 30px; }
-    #mobile .bleedcol img { margin: 0 auto; }
-    #mobile .bigpadded { background-color: white; }
-    #mobile .bigpadded img {margin-right: 30px;}
-    #mobile .bigpadded p {margin-bottom: 30px;}
-    #who > .row { background-color: #eee;}
-    #who .bigpadded { padding-top: 0; }
-    #who blockquote {
-      font-size: 24px;
-      line-height: 38px;
-      padding: 0;
-      border: 0 transparent;
-    }
-    #who blockquote:before {content: '\201C';}
-    #who blockquote:after {content: '\201D';}
-    #who .name {
-      font-weight: bold;
-      font-size: 24px;
-      color: #74ac00;
-      line-height: 28.8px;
-    }
-    #who .role {
-      color: #575757;
-      line-height: 26px;
-    }
-    #who .location {
-      color: #727272;
-      line-height: 26px;
-    }
-    #call .row {
-      background-color: black;
-      color: white;
-      font-size: 42px;
-      line-height: 50.4px;
-    }
-    #call .btncol {
-      padding-top: 60px;
-    }
-    #call .btn {
-      border: 0 transparent;
-      background-color: #74ac00;
-      border-radius: 30px;
-      color: white;
-      font-size: 30px;
-      width: 100%;
-      text-transform: uppercase;
-    }
+  = stylesheet_link_tag "welcome"
 .container
   #hero.homesection.row
-    %img.heroimage{src: 'https://farm1.staticflickr.com/490/18822222609_bd4e4317f4_k.jpg'}
+    .heroimage
+      %img{src: 'https://farm1.staticflickr.com/490/18822222609_bd4e4317f4_k.jpg'}
     .row
       .col-xs-6.col-xs-offset-5.col-md-4.col-md-offset-7.col-sm-offset-6
         #herobox
@@ -196,8 +12,12 @@
             %p
               Explore and share your observations from the natural world.
           .herolinks
-            = link_to t(:sign_up), signup_path, :class => "morelink"
-            = link_to t(:explore), observations_path, :class => "morelink"
+            = link_to signup_path, :class => "morelink" do
+              = t(:sign_up)
+              %i.icon-arrow-right
+            = link_to observations_path, :class => "morelink" do
+              = t(:explore)
+              %i.icon-arrow-right
     .row
       .col-xs-12
         #herofooter.row
@@ -213,19 +33,19 @@
         %h1 How It Works
     .row
       .col-xs-4
-        = image_tag 'homepage-how-1.png', :class => 'img-responsive'
+        %embed{src: image_path("homepage-how-record.svg"), :class => 'img-responsive'}
       .col-xs-4
-        = image_tag 'homepage-how-2.png', :class => 'img-responsive'
+        %embed{src: image_path("homepage-how-share.svg"), :class => 'img-responsive'}
       .col-xs-4
-        = image_tag 'homepage-how-3.png', :class => 'img-responsive'
+        %embed{src: image_path("homepage-how-discuss.svg"), :class => 'img-responsive'}
     .row.txtrow
-      .col-xs-4
+      #how-record.col-xs-4
         %label 1
         %p Record your observations
-      .col-xs-4
+      #how-share.col-xs-4
         %label 2
         %p Share with fellow naturalists
-      .col-xs-4
+      #how-discuss.col-xs-4
         %label 3
         %p Discuss your findings
   #science.homesection
@@ -246,41 +66,41 @@
       .col-xs-12
         %h1 Nature At Your Fingertips
     .row
-      .col-xs-1.col-xs-offset-1
-        = image_tag 'homepage-keep-track.png', :class => "img-responsive"
-      .col-xs-4
+      .col-xs-2
+        %embed{src: image_path("homepage-keep-track.svg")}
+      .col-xs-4.row
         %h2 Keep Track
         %p Record your encounters with other organisms and maintain life lists, all in the cloud.
-      .col-xs-1
-        = image_tag 'homepage-keep-track.png', :class => "img-responsive"
-      .col-xs-4
+      .col-xs-2.second-col
+        %embed{src: image_path("homepage-bee.svg")}
+      .col-xs-4.row
         %h2 Create Useful Data
         %p Help scientists and resource managers understand when and where organisms occur.
     .row
-      .col-xs-1.col-xs-offset-1
-        = image_tag 'homepage-keep-track.png', :class => "img-responsive"
-      .col-xs-4
+      .col-xs-2
+        %embed{src: image_path("homepage-crowdsource.svg")}
+      .col-xs-4.row
         %h2 Crowdsource Species Identification
         %p Connect with experts who can identify the organisms you observe.
-      .col-xs-1
-        = image_tag 'homepage-keep-track.png', :class => "img-responsive"
-      .col-xs-4
+      .col-xs-2.second-col
+        %embed{src: image_path("homepage-nerd-cowboy.svg")}
+      .col-xs-4.row
         %h2 Become a Citizen Scientist
         %p Find a project with a mission that interests you, or start your own.
     .row
-      .col-xs-1.col-xs-offset-1
-        = image_tag 'homepage-keep-track.png', :class => "img-responsive"
-      .col-xs-4
+      .col-xs-2
+        %embed{src: image_path("homepage-owl.svg")}
+      .col-xs-4.row
         %h2 Learn About Nature
         %p Build your knowledge by talking with other naturalists and helping others.
-      .col-xs-1
-        = image_tag 'homepage-keep-track.png', :class => "img-responsive"
-      .col-xs-4
+      .col-xs-2.second-col
+        %embed{src: image_path("homepage-megaphone.svg")}
+      .col-xs-4.row
         %h2 Run a Bioblitz
         %p Hold an event where people try to find as many species as possible.
   #mobile.homesection.row
     .col-xs-6.bleedcol
-      = image_tag 'homepage-devices.png', :class => "img-responsive"
+      %embed{src: image_path("homepage-devices.svg")}
     .col-xs-6.bigpadded
       %h1 Works On All Your Devices
       %p
@@ -294,20 +114,25 @@
     .row
       .col-xs-12
         %h1 Who Uses iNaturalist?
-    .row
-      .col-xs-8.bigpadded
-        %blockquote<
-          iNaturalist has changed the way that I interact with the natural world. I am much more likely to stop and take pictures of interesting organisms I see that I would otherwise overlook because I know that someone else might be interested in it for science and that the iNaturalist community can help me learn more about it.
-        %a.name{href: 'http://www.inaturalist.org/people/carrieseltzer'}
-          Carrie Selzter
-        .role
-          Program Manager, National Geographic's Great Nature Project
-        .location
-          %i.fa.fa-map-marker
-          Washington, D.C., USA
-      .col-xs-3
-        = link_to 'http://www.inaturalist.org/people/carrieseltzer' do
-          = image_tag("http://www.inaturalist.org/attachments/users/icons/7580-original.jpeg", :class => "img-circle img-responsive")
+        #who-carousel.carousel.slide{data: {ride: :carousel}}
+          %ol.carousel-indicators
+            %li.active{data: {target: "#who-carousel", slide_to: "0"}}
+          .carousel-inner{role: "listbox"}
+            .item.active
+              .row
+                .col-xs-8.bigpadded
+                  %blockquote<
+                    iNaturalist has changed the way that I interact with the natural world. I am much more likely to stop and take pictures of interesting organisms I see that I would otherwise overlook because I know that someone else might be interested in it for science and that the iNaturalist community can help me learn more about it.
+                  %a.name{href: 'http://www.inaturalist.org/people/carrieseltzer'}
+                    Carrie Selzter
+                  .role
+                    Program Manager, National Geographic's Great Nature Project
+                  .location
+                    %i.fa.fa-map-marker
+                    Washington, D.C., USA
+                .col-xs-3
+                  = link_to 'http://www.inaturalist.org/people/carrieseltzer' do
+                    = image_tag("http://www.inaturalist.org/attachments/users/icons/7580-original.jpeg", :class => "img-circle img-responsive")
   #call
     .row
       .col-xs-8.bigpadded

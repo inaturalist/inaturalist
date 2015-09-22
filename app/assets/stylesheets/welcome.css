@@ -1,148 +1,194 @@
-#welcomecol {
-  margin-bottom: 1em;
+.homesection {
+  color: #575757;
 }
-
-#welcomecol h1,
-#welcomecol h2 {
-  margin-bottom: 0.2em;
+#hero, #how { margin-bottom: 60px; }
+.bootstrap .homesection h1 {
+  margin: 0 0 30px;
 }
-
-#welcomecol .button {
-  text-align: center;
-  float: none;
-  margin: 0.4em auto;
+.bootstrap .homesection h2 {
+  font-weight: bold; 
+  font-size: 22px;
+  color: #353535;
+  text-align: left;
+  line-height: 31 px;
 }
-
-#learnmore, #signup, #addobs {
-  font-size: 120%;  
-  border-width: 2px;
-  padding: 0.4em 1em;
+.bootstrap .homesection p { 
+  font-size: 18px;
 }
-
-#more {
-  padding-left: 20px;
+.bootstrap [class*='col-'].bleedcol { padding: 0; }
+.bootstrap [class*='col-'].bigpadded { padding: 60px; }
+#header {margin-bottom: 0;}
+#wrapper { margin-bottom: 0; }
+#hero { 
+  position: relative; 
+  overflow:hidden; 
 }
-
-#more img {
-  display: inline;
-  float: none; 
-  margin: 0; 
-  vertical-align: bottom;
-  position: relative;
-  top: 0.1em;
+#hero, #hero a {color: white;}
+#hero .heroimage img {position: absolute; left: 0; width: 100%; bottom: 0; min-height: 450px;}
+#herobox { 
+  background-color: #f27134;
+  margin: 80px 0 80px 0;
+  min-width: 345px;
 }
-
-#contentcol h3 {
-  margin-bottom: 0.4em;
+#herobox h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
 }
-
-#observations {
-  padding: 0 1em 0 0;
-  background: none;
-}
-
-#groupscol h4 {
-  padding-left: 60px;
-  position: relative;
-  margin-bottom: 0.4em;
-}
-
-#groupscol h4 img {
-  position: absolute;
-  left: 0;
+#herobox .herotext p {
+  font-size: 17px;
   margin: 0;
 }
-
-#groupscol li p {
-  margin: 0;
+#herobox .herotext, #herobox .morelink {
+  padding: 30px 30px;
 }
-
-.mini.observation {
-  width: 400px;
+.herolinks { 
+  display: flex; 
+  width: 100%;
+  font-size: 16px;
 }
-
-
-.mini.observation .description {
-  margin-bottom: 1em;
+.morelink {
+  font-size: 130%;
+  display: inline-block;
+  border-top: 1px solid #D44410;
+  padding: 20px;
+  flex-grow: 1;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-
-ul#last-five {
-  padding: 0;
-  margin: 0;
+.morelink:first-child {
+  border-right: 1px solid #D44410;
 }
-
-ul#last-five li {
-  list-style: none;
-  padding-left: 30px;
-  background-repeat: no-repeat;
-  background-position: 0 0;
+#herofooter { 
+  background: rgba(0,0,0,0.5);
+  font-size: 18px;
+  line-height:25.2px;
 }
-
-#goalcol .box {
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-}
-
-#goal_chart {
-  background-color: #D9CACF;
-  position: relative;
-  height: 40px;
-}
-
-#goal_chart .series {
-  position: relative;
-  height: 40px;
-}
-
-#goal_chart .series .label {
-  position: absolute;
-  top: 20%;
-  line-height: 1;
-  font-family: "Trebuchet MS";
-  font-size: 14pt;
-  width: auto;
+#herofooter [class*='col-'] { 
+  height: 48px; 
+  line-height: 48px;
+  position: relative; 
   white-space: nowrap;
-  z-index: 999;
 }
-
-#goal_chart .series.firsthalf .label {
-  left: 100%;
-  color: #FF60AF;
-  margin-left: 10px;
+#herofooter img { 
+  width: 58px; 
+  height: 58px; 
+  border-radius: 500px; 
+  border: 2px solid white;
+  position: absolute; 
+  bottom: 10px;
 }
-
-#goal_chart .series.secondhalf .label {
-  right: 10px;
+#herofooter .obstext {
+  padding-left: 70px;
+  font-weight: bold;
+}
+#herofooter .username {
+  font-weight: normal;
+}
+#herofooter .username:before {
+  content: '\007E';
+  margin: 0 10px 0 5px;
+  font-weight: normal;
+}
+#how [class*='col-'] {
+  text-align: center;
+  white-space: nowrap;
+}
+#how img, #how embed { margin: 0 auto; }
+#how embed {max-width: 80%;}
+#how label {
+  display: block;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 30px;
+  color: white;
+  background-color: #74ac00;
+  border: 3px solid white;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.6;
+}
+#how .txtrow { position: relative; }
+#how .txtrow:before {
+  content: ' ';
+  display: block;
+  height: 4px;
+  background-color: #BED989;
+  width: 69%;
+  margin: 0 auto;
+  top: 17px;
+  position: relative;
+}
+#how p { font-size: 24px; }
+#science > .row {
+  background-color: black;
   color: white;
 }
-
-#goal_chart .tick {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 10px;
-  border-right: 1px solid #FCEDF2;
+#science .bleedcol { overflow: hidden; }
+#science img {
+  max-width: 585px;
+  min-height: 400px;
+  overflow: hidden;
 }
-
-.tick .label {
-  position: absolute;
-  bottom: 0px;
-  right: 2px;
-  color: #FCEDF2;
-  font-size: 6pt;
+#value > .row {
+  background-color: #EAF3D8;
 }
-
-#first_goal {
-  background-color: #FF64B1;
+#value h1, #who h1 { text-align: center; margin-top: 60px;}
+#value h2 {
+  font-size: 22px;
+  margin-top: 0;
 }
-
-#last-five li {
-  cursor: pointer;
-  color: #666;
-  margin-bottom: 1em;
+#value [class*='col-'] {margin-bottom: 30px; }
+#value > .row:last-child { padding-bottom: 30px;}
+#value embed { width: 99px; max-height: 80px; margin: 0 auto; display:block;}
+#value .media-left { padding-right: 30px;}
+#value .second-col { margin-left: 15px; }
+#mobile { background-color: #74ac00; }
+#mobile .bleedcol { padding: 30px; }
+#mobile .bleedcol img { margin: 0 auto; }
+#mobile .bigpadded { background-color: white; }
+#mobile .bigpadded img {margin-right: 30px;}
+#mobile .bigpadded p {margin-bottom: 30px;}
+#who > .row { background-color: #eee;}
+#who .bigpadded { padding-top: 0; }
+#who blockquote {
+  font-size: 24px;
+  line-height: 38px;
+  padding: 0;
+  border: 0 transparent;
 }
-
-#map {
+#who blockquote:before {content: '\201C';}
+#who blockquote:after {content: '\201D';}
+#who .name {
+  font-weight: bold;
+  font-size: 24px;
+  color: #74ac00;
+  line-height: 28.8px;
+}
+#who .role {
+  color: #575757;
+  line-height: 26px;
+}
+#who .location {
+  color: #727272;
+  line-height: 26px;
+}
+#call .row {
+  background-color: black;
+  color: white;
+  font-size: 42px;
+  line-height: 50.4px;
+  font-weight: 500;
+}
+#call .btncol {
+  padding-top: 60px;
+}
+#call .btn {
+  border: 0 transparent;
+  background-color: #74ac00;
+  border-radius: 30px;
+  color: white;
+  font-size: 30px;
   width: 100%;
-  height: 500px;
+  text-transform: uppercase;
 }
