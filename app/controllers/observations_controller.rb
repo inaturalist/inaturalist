@@ -660,6 +660,12 @@ class ObservationsController < ApplicationController
           end
         else
           if @observations.size == 1
+            if @project
+              @place = @project.place
+              @project_curators = @project.project_users.where("role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR])
+              @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+              @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
+            end
             render :action => 'new'
           else
             render :action => 'edit_batch'

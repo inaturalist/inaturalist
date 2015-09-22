@@ -13,6 +13,7 @@ end
 
 describe ObservationsController do
   describe "create" do
+    render_views
     let(:user) { User.make! }
     before do
       sign_in user
@@ -60,6 +61,14 @@ describe ObservationsController do
       end
       post :create, :observation => {:species_guess => "Foo"}
       expect(user.observations.last.site).to_not be_blank
+    end
+
+    it "should survive submitting an invalid observation to a project" do
+      p = Project.make!
+      por = ProjectObservationRule.make!(operator: 'georeferenced?', ruler: p)
+      expect {
+        post :create, observation: {species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s}, project_id: p.id
+      }.not_to raise_error
     end
   end
   
