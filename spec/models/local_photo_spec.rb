@@ -1,20 +1,60 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe LocalPhoto, "creation" do
-  it "should set the native page url" do
-    p = LocalPhoto.make!
-    expect(p.native_page_url).not_to be_blank
+  describe "creation" do
+    it "should set the native page url" do
+      p = LocalPhoto.make!
+      expect(p.native_page_url).not_to be_blank
+    end
+
+    it "should set the native_realname" do
+      u = User.make!(:name => "Hodor Hodor Hodor")
+      lp = LocalPhoto.make!(:user => u)
+      expect(lp.native_realname).to eq(u.name)
+    end
+
+    it "should set absolute image urls" do
+      lp = LocalPhoto.make!
+      expect(lp.small_url).to be =~ /http/
+    end
   end
 
-  it "should set the native_realname" do
-    u = User.make!(:name => "Hodor Hodor Hodor")
-    lp = LocalPhoto.make!(:user => u)
-    expect(lp.native_realname).to eq(u.name)
-  end
+  describe "dimensions" do
+    it "should extract dimension metadata" do
+      p = LocalPhoto.new(user: User.make!)
+      p.file.assign(File.new(File.join(Rails.root, "app/assets/images/404mole.png")))
+      expect( p.metadata ).to be nil
+      p.extract_metadata
+      expect( p.metadata[:dimensions][:original] ).to eq({ width: 600, height: 493 })
+    end
 
-  it "should set absolute image urls" do
-    lp = LocalPhoto.make!
-    expect(lp.small_url).to be =~ /http/
+    it "should extrapolate_dimensions_from_original from landscape photos" do
+      p = LocalPhoto.new(user: User.make!)
+      expect(p).to receive(:original_url).at_least(:once).and_return(
+        File.join(Rails.root, "app/assets/images/404mole.png"))
+      expect(p.extrapolate_dimensions_from_original).to eq({
+        original: { width: 600, height: 493 },
+        large: { width: 600, height: 493 },
+        medium: { width: 500, height: 411 },
+        small: { width: 240, height: 197 },
+        thumb: { width: 100, height: 82 },
+        square: { width: 75, height: 75 }
+      })
+    end
+
+    it "should extrapolate_dimensions_from_original from small portrait photos" do
+      p = LocalPhoto.new(user: User.make!)
+      expect(p).to receive(:original_url).at_least(:once).and_return(
+        File.join(Rails.root, "public/mapMarkers/mm_20_unknown.png"))
+      expect(p.extrapolate_dimensions_from_original).to eq({
+        original: { width: 13, height: 21 },
+        large: { width: 13, height: 21 },
+        medium: { width: 13, height: 21 },
+        small: { width: 13, height: 21 },
+        thumb: { width: 13, height: 21 },
+        square: { width: 75, height: 75 }
+      })
+    end
   end
 end
 
@@ -23,6 +63,7 @@ describe LocalPhoto, "to_observation" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
     t = Taxon.make!(:name => "Cuthona abronia")
+    p.extract_metadata
     o = p.to_observation
     expect(o.taxon).to eq(t)
   end
