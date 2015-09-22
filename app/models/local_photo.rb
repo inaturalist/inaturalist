@@ -65,14 +65,19 @@ class LocalPhoto < Photo
     true
   end
 
-  def extract_metadata
-    return unless file && !file.queued_for_write.blank?
+  def file=(data)
+    self.file.assign(data)
+    extract_metadata(data.path)
+  end
+
+  def extract_metadata(path = nil)
+    return unless file && (path || !file.queued_for_write.blank?)
     begin
-      self.metadata = { dimensions: { } }
+      self.metadata ||= { dimensions: { } }
       file.styles.keys.each do |style|
         self.metadata[:dimensions][style] = extract_dimensions(style)
       end
-      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(file.queued_for_write[:original].path)
+      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(path || file.queued_for_write[:original].path)
         self.metadata.merge!(exif.to_hash)
         xmp = XMP.parse(exif)
         if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
