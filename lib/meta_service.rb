@@ -98,9 +98,12 @@ class MetaService
       end
       raise Timeout::Error
     end
-    if api_endpoint_cache
+    if api_endpoint_cache && !response.body.blank?
       api_endpoint_cache.update_attributes(
-        request_completed_at: Time.now, success: true, response: response.body)
+        request_completed_at: Time.now, 
+        success: true, 
+        response: response.body
+      )
     end
     Nokogiri::XML(response.body)
   end

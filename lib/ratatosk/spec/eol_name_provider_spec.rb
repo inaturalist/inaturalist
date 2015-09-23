@@ -49,4 +49,22 @@ describe Ratatosk::NameProviders::EolNameProvider do
     expect( t ).to be_grafted
   end
 
+  it "should find a bunch of names" do
+    names = [
+      'Ofatulena duodecemstriata',
+      'Acossus populi'
+    ]
+    names.each do |name|
+      results = @np.find(name)
+      expect( results ).not_to be_blank
+      expect( results.first.name ).to eq name
+      expect( results.first.taxon.name ).to eq name
+      expect( results.first.taxon.rank ).to eq Taxon::SPECIES
+      unless results.first.taxon.valid?
+        puts "taxon errors: #{results.first.taxon.errors.full_messages.to_sentence}"
+      end
+      expect( results.first.taxon ).to be_valid
+    end
+  end
+
 end

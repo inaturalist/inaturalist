@@ -23,6 +23,7 @@ class EolService
 
   def request(method, *args)
     request_uri = get_uri(method, *args)
+    Rails.logger.debug "[DEBUG] getting #{request_uri}, args: #{args.inspect}"
     begin
       MetaService.fetch_request_uri(request_uri: request_uri, timeout: @timeout,
         api_endpoint: api_endpoint,
