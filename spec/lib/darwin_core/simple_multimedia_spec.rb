@@ -44,10 +44,12 @@ describe DarwinCore::SimpleMultimedia do
     expect( p.rightsHolder ).to eq p.user.name
   end
   it "should return user login for rightsHolder if name blank" do
-    p.update_attributes(native_realname: nil)
-    p.user.update_attributes(name: nil)
+    p.update_attributes(native_realname: "")
+    p.user.update_attributes(name: "")
+    p.reload
     expect( p.native_realname ).to be_blank
     expect( p.user.name ).to be_blank
+    expect( p.rightsHolder ).not_to be_blank
     expect( p.rightsHolder ).to eq p.user.login
   end
 end

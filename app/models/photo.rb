@@ -95,7 +95,7 @@ class Photo < ActiveRecord::Base
     elsif !native_username.blank?
       native_username
     elsif user
-      user.name || user.login
+      user.name.blank? ? user.login : user.name
     else
       I18n.t('copyright.anonymous')
     end

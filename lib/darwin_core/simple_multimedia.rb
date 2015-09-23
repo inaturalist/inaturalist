@@ -61,7 +61,7 @@ module DarwinCore
       end
 
       def creator
-        dwc_user_name
+        attribution_name
       end
 
       def publisher
@@ -77,18 +77,9 @@ module DarwinCore
       end
 
       def rightsHolder
-        dwc_user_name
+        attribution_name
       end
 
-      private
-
-      def dwc_user_name
-        if attribution_name.to_i != 0
-          user.name.blank? ? user.login : user.name
-        else
-          attribution_name
-        end
-      end
     end
   end
 end
