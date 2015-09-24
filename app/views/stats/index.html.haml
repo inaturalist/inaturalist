@@ -16,7 +16,7 @@
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
   = javascript_include_tag "admin/stats", "d3.min"
   :javascript
-    var STATS_JSON = #{ @stats };
+    var STATS_JSON = #{ @stats.to_json };
 .container
   %h2 Stats
   .row.sparks

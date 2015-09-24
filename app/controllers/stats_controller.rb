@@ -1,7 +1,5 @@
-class Admin::StatsController < ApplicationController
+class StatsController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :admin_required
   before_filter :set_time_zone_to_utc
   before_filter :load_params
   before_filter :fetch_statistics, except: :index
