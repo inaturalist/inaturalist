@@ -29,10 +29,10 @@ class StatsController < ApplicationController
         total_observers: { cardinality: { field: "user.id", precision_threshold: 10000 } }
       }).response.aggregations
     @stats = {
-      total_users: User.where("suspended_at IS NULL").count * 100,
-      total_observations: es_stats[:total_observations][:value] * 100,
-      total_observed_taxa: es_stats[:total_observed_taxa][:value] * 100,
-      total_observers: es_stats[:total_observers][:value] * 100,
+      total_users: User.where("suspended_at IS NULL").count,
+      total_observations: es_stats[:total_observations][:value],
+      total_observed_taxa: es_stats[:total_observed_taxa][:value],
+      total_observers: es_stats[:total_observers][:value],
       updated_at: Time.now
     }
     respond_to do |format|
