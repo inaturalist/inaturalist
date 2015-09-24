@@ -27,8 +27,16 @@ function addObservations(observations) {
             $('<a>').attr('href', '/people/'+o.user.login).html(
               $('<img/>').attr('src', o.user.user_icon_url)
             ),
-            $('<a class="obstext">').attr('href', '/observations/'+o.id).html(o.taxon.default_name.name),
-            $('<a class="username">').attr('href', '/observations/'+o.id).html(I18n.t('observed_by') + ' ' + o.user.name)
+            $('<a class="obstext">').attr('href', '/observations/'+o.id).append(
+              $('<span class="username">').html(o.user.name),
+              ' ',
+              $('<i class="login">').html(' (' + o.user.login + ')'),
+              $('<span class="taxonname">').html(o.taxon.default_name.name),
+              ' ',
+              I18n.t('from').toLowerCase(),
+              ' ',
+              $('<span class="location">').html(o.place_guess)
+            )
           )
         )
       ),

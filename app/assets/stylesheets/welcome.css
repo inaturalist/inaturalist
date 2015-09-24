@@ -97,14 +97,17 @@
   position: absolute; 
   bottom: 10px;
 }
+.herofooter a:hover img { 
+  opacity: 1;
+}
 .herofooter .obstext {
   padding-left: 70px;
+}
+.herofooter .username,
+.herofooter .taxonname {
   font-weight: bold;
 }
-.herofooter .username {
-  font-weight: normal;
-}
-.herofooter .username:before {
+.herofooter .taxonname:before {
   content: '\007E';
   margin: 0 10px;
   font-weight: normal;
@@ -195,7 +198,7 @@
   color: #727272;
   line-height: 26px;
 }
-#who .item {padding-bottom: 20px;}
+#who .item {padding-bottom: 20px; min-height: 370px;}
 #call .row {
   background-color: black;
   color: white;
