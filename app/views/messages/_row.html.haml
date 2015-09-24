@@ -1,5 +1,5 @@
 - message ||= row
-%tr
+%tr{id: dom_id(message)}
   %td.nobr.from
     = link_to user_image(message.from_user, :size => "thumb"), message.from_user
     = link_to_user message.from_user

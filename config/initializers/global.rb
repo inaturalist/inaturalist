@@ -58,7 +58,8 @@ class String
   end
 
   def mentioned_users
-    User.where(login: scan(/@([\\\w][\\\w\\\-_]*)/).flatten)
+    logins = scan(/(^|\s|>)@([\\\w][\\\w\\\-_]*)/).flatten
+    User.where(login: logins).limit(500)
   end
 
   def context_of_pattern(pattern, context_length = 100)

@@ -11,7 +11,7 @@
         %th= t(:date_)
     %tbody
       - for message in @messages
-        %tr{:class => message.read_at ? nil : 'unread'}
+        %tr{:class => message.read_at ? nil : 'unread', id: dom_id(message)}
           %td.nobr
             = user_image message.send("#{fromto}_user")
             = link_to_user message.send("#{fromto}_user")
