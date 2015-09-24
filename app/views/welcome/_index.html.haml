@@ -8,7 +8,7 @@
     :javascript
       var HOMEPAGE_DATA_URL;
   :javascript
-    var STATS_SUMMARY_URL = #{summary_stats_url.inspect}
+    var STATS_SUMMARY_URL = #{summary_stats_url(format: :json).inspect}
   = javascript_include_tag :welcome
 .container-fluid
   #hero.homesection.row
