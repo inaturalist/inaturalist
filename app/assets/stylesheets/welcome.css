@@ -18,28 +18,43 @@
 .bootstrap [class*='col-'].bleedcol { padding: 0; }
 .bootstrap [class*='col-'].bigpadded { padding: 60px; }
 #header {margin-bottom: 0;}
-#wrapper { margin-bottom: 0; }
+#wrapper { margin-bottom: 0; min-width: 980px; }
 #hero { 
-  position: relative; 
   overflow:hidden; 
+  background-color: #6fa501;
+}
+#hero,
+#hero .carousel .item,
+#hero .carousel .statcol {
+  height: 450px;
 }
 #hero, #hero a {color: white;}
-#hero .heroimage img {position: absolute; left: 0; width: 100%; top: 0; min-height: 450px;}
-#herobox { 
-  background-color: #f27134;
-  margin: 80px 0 80px 0;
-  min-width: 345px;
-  box-shadow: #222 0 1px 2px;
+#hero .heroimage {
+  width: 100%; 
+  width: 100%;
+  height: 450px;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: transparent;
 }
-#herobox h1 {
+.herobox { 
+  background-color: #f27134;
+  width: 345px;
+  box-shadow: rgba(0,0,0,0.4) 0 0px 50px;
+  position: absolute;
+  top: 80px;
+  right: 80px;
+}
+.bootstrap .homesection .herobox h1 {
   font-size: 32px;
   margin-bottom: 10px;
 }
-#herobox .herotext p {
+.herobox .herotext p {
   font-size: 17px;
   margin: 0;
 }
-#herobox .herotext, #herobox .morelink {
+.herobox .herotext, .herobox .morelink {
   padding: 30px 30px;
 }
 .herolinks { 
@@ -59,18 +74,22 @@
 .morelink:first-child {
   border-right: 1px solid #D44410;
 }
-#herofooter { 
+.herofooter { 
   background: rgba(0,0,0,0.5);
   font-size: 18px;
   line-height:25.2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
-#herofooter [class*='col-'] { 
+.herofooter [class*='col-'] { 
   height: 48px; 
   line-height: 48px;
   position: relative; 
   white-space: nowrap;
 }
-#herofooter img { 
+.herofooter img { 
   width: 58px; 
   height: 58px; 
   border-radius: 500px; 
@@ -78,14 +97,14 @@
   position: absolute; 
   bottom: 10px;
 }
-#herofooter .obstext {
+.herofooter .obstext {
   padding-left: 70px;
   font-weight: bold;
 }
-#herofooter .username {
+.herofooter .username {
   font-weight: normal;
 }
-#herofooter .username:before {
+.herofooter .username:before {
   content: '\007E';
   margin: 0 10px;
   font-weight: normal;
@@ -93,9 +112,13 @@
 #how [class*='col-'] {
   text-align: center;
   white-space: nowrap;
+  min-width: 255px;
 }
 #how img, #how embed { margin: 0 auto; }
-#how embed {max-width: 80%;}
+#how embed {
+  max-width: 80%;
+  height: 247px;
+}
 #how label {
   display: block;
   border-radius: 100px;
@@ -127,8 +150,6 @@
 }
 #science .bleedcol { overflow: hidden; }
 #science img {
-  max-width: 585px;
-  min-height: 400px;
   overflow: hidden;
 }
 #value > .row {
@@ -145,8 +166,8 @@
 #value .media-left { padding-right: 30px;}
 #value .second-col { margin-left: 15px; }
 #mobile { background-color: #74ac00; }
-#mobile .bleedcol { padding: 30px; }
-#mobile .bleedcol img { margin: 0 auto; }
+#mobile .bleedcol { padding: 30px; text-align: center;}
+#mobile .bleedcol embed { margin: 0 auto; max-height: 250px; width: 100%;}
 #mobile .bigpadded { background-color: white; }
 #mobile .bigpadded img {margin-right: 30px;}
 #mobile .bigpadded p {margin-bottom: 30px;}
@@ -174,6 +195,7 @@
   color: #727272;
   line-height: 26px;
 }
+#who .item {padding-bottom: 20px;}
 #call .row {
   background-color: black;
   color: white;
@@ -192,4 +214,29 @@
   font-size: 30px;
   width: 100%;
   text-transform: uppercase;
+}
+.bootstrap .carousel-control { width: 5%; }
+
+#stats .statcol {display: block;}
+#stats .obsstats { background-color: #6fa501; }
+#stats .speciesstats { background-color: #8dbb2d; }
+#stats .peoplestats { background-color: #83b51d; }
+
+#stats {
+  font-size: 150%;
+  line-height: 1.2em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+}
+#stats a { display: block; }
+#stats embed { width: 120px; height: 120px; margin: 120px 0 40px; }
+#stats .stat {font-size: 200%; margin-bottom: 20px; }
+
+.bootstrap .carousel-control.left,
+.bootstrap .carousel-control.right { 
+  font-size: 200%;
+  background: none;
+  margin-top: -1em;
 }
