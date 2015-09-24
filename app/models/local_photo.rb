@@ -5,41 +5,49 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.rotation.blank? && record.mobile? ? "-auto-orient -strip" : "-strip"
+    record.rotation.blank? ? "-auto-orient -strip" : "-strip"
   }
   
-  has_attached_file :file, 
-    :styles => {
-      :original => {:geometry => "2048x2048>",  :auto_orient => false, :processors => [:rotator] },
-      :large    => {:geometry => "1024x1024>",  :auto_orient => false },
-      :medium   => {:geometry => "500x500>",    :auto_orient => false },
-      :small    => {:geometry => "240x240>",    :auto_orient => false, :processors => [:deanimator] },
-      :thumb    => {:geometry => "100x100>",    :auto_orient => false, :processors => [:deanimator] },
-      :square   => {:geometry => "75x75#",      :auto_orient => false, :processors => [:deanimator] }
+  file_options = {
+    preserve_files: true,
+    styles: {
+      original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator ] },
+      large:    { geometry: "1024x1024>", auto_orient: false },
+      medium:   { geometry: "500x500>",   auto_orient: false },
+      small:    { geometry: "240x240>",   auto_orient: false, processors: [ :deanimator ] },
+      thumb:    { geometry: "100x100>",   auto_orient: false, processors: [ :deanimator ] },
+      square:   { geometry: "75x75#",     auto_orient: false, processors: [ :deanimator ] }
     },
-    :convert_options => {
-      :original => image_convert_options,
-      :large  => image_convert_options,
-      :medium => image_convert_options,
-      :small  => image_convert_options,
-      :thumb  => image_convert_options,
-      :square => image_convert_options
+    convert_options: {
+      original: image_convert_options,
+      large:    image_convert_options,
+      medium:   image_convert_options,
+      small:    image_convert_options,
+      thumb:    image_convert_options,
+      square:   image_convert_options
     },
-    :storage => :s3,
-    :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :s3_host_alias => CONFIG.s3_bucket,
-    :bucket => CONFIG.s3_bucket,
-    :path => "photos/:id/:style.:extension",
-    :url => ":s3_alias_url",
-    :default_url => "/attachment_defaults/:class/:style.png"
-    # # Uncomment this to switch to local storage.  Sometimes useful for 
-    # # testing w/o ntwk
-    # :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    # :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    # :default_url => "/attachment_defaults/:class/:style.png"
-  
+    default_url: "/attachment_defaults/:class/:style.png"
+  }
+
+  if Rails.env.production?
+    has_attached_file :file, file_options.merge(
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_host_alias: CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "photos/:id/:style.:extension",
+      url: ":s3_alias_url"
+    )
+  else
+    has_attached_file :file, file_options.merge(
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
+      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension"
+    )
+  end
+
   process_in_background :file
   after_post_process :set_urls
+  after_post_process :extract_metadata
 
   validates_presence_of :user
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
@@ -59,9 +67,18 @@ class LocalPhoto < Photo
 
   def file=(data)
     self.file.assign(data)
+    extract_metadata(data.path)
+  end
+
+  def extract_metadata(path = nil)
+    return unless file && (path || !file.queued_for_write.blank?)
     begin
-      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
-        self.metadata = exif.to_hash
+      self.metadata ||= { dimensions: { } }
+      file.styles.keys.each do |style|
+        self.metadata[:dimensions][style] = extract_dimensions(style)
+      end
+      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(path || file.queued_for_write[:original].path)
+        self.metadata.merge!(exif.to_hash)
         xmp = XMP.parse(exif)
         if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
           self.metadata[:dc] = {}
@@ -84,7 +101,7 @@ class LocalPhoto < Photo
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
   end
-  
+
   def set_urls
     styles = %w(original large medium small thumb square)
     updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
@@ -166,7 +183,7 @@ class LocalPhoto < Photo
       if o.species_guess.blank?
         o.species_guess = nil
       end
-      o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      o.description = [metadata[:dc][:description]].flatten.to_sentence unless metadata[:dc][:description].blank?
       if o.description.blank? && metadata[:image_description]
         if metadata[:image_description].is_a?(Array)
           o.description = metadata[:image_description].to_sentence
@@ -205,6 +222,53 @@ class LocalPhoto < Photo
 
   def processing?
     square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
+  end
+
+  def extract_dimensions(style)
+    if file? && tempfile = file.queued_for_write[style]
+      if sizes = FastImage.size(tempfile)
+        return { width: sizes[0],
+                 height: sizes[1] }
+      end
+    end
+  end
+
+  # this method was created for generating dimensions for
+  # all existing images in S3 in mass. It was designed for
+  # performance and not accuracy. It extrapolates the sizes of
+  # all the styles from the original to save on HTTP requests.
+  # Photo.extract_dimensions is the more exact method
+  def extrapolate_dimensions_from_original
+    return unless original_url
+    if original_dimensions = FastImage.size(original_url)
+      sizes = {
+        original: {
+          width: original_dimensions[0],
+          height: original_dimensions[1]
+        }
+      }
+      max_d = original_dimensions.max
+      # extrapolate the scaled dimensions of the other sizes
+      file.styles.each do |key, s|
+        next if key.to_sym == :original
+        if match = s.geometry.match(/([0-9]+)x([0-9]+)([^0-9])?/)
+          style_sizes = {
+            width: match[1].to_i,
+            height: match[2].to_i
+          }
+          modifier = match[3]
+          # the '#' modifier means the resulting image is exactly that size
+          unless modifier == "#"
+            ratio = (max_d < style_sizes[:width]) ?
+              1 : (style_sizes[:width] / max_d.to_f)
+            style_sizes[:width] = (sizes[:original][:width] * ratio).round
+            style_sizes[:height] = (sizes[:original][:height] * ratio).round
+          end
+          sizes[key] = style_sizes
+        end
+      end
+      sizes
+    end
   end
 
 end

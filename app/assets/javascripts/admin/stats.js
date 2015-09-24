@@ -16,7 +16,7 @@ Stats.loadCharts = function( ) {
 };
 
 Stats.loadAjaxCharts = function( ) {
-  $.getJSON("/admin/stats.json?start_date=" + Stats.yearAgoDate( ), function( json ) {
+  $.getJSON("/stats.json?start_date=" + Stats.yearAgoDate( ), function( json ) {
     Stats.loadChartsFromJSON( json );
   });
 };
@@ -335,5 +335,5 @@ Stats.sparkline = function( options ) {
       return y(d); 
     });
   graph.append("svg:path").attr("d", line(data));
-}
+};
 

@@ -260,10 +260,10 @@ $('.navbar-search input').keyup(function(e) {
   })
 })
 $('#selectall').click(function() {
-  $('.guide_taxon input:checkbox:visible'). prop('checked', true).change()
+  $('.guide_taxon input:checkbox:visible').prop('checked', true).change()
 })
 $('#selectnone').click(function() {
-  $('.guide_taxon input:checkbox'). prop('checked', false).change()
+  $('.guide_taxon input:checkbox').prop('checked', false).change()
 })
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)

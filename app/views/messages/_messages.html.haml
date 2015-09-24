@@ -11,12 +11,12 @@
         %th= t(:date_)
     %tbody
       - for message in @messages
-        %tr{:class => message.read_at ? nil : 'unread'}
+        %tr{:class => message.read_at ? nil : 'unread', id: dom_id(message)}
           %td.nobr
             = user_image message.send("#{fromto}_user")
             = link_to_user message.send("#{fromto}_user")
           %td.subject
             = link_to message.subject.blank? ? t(:no_subject_parens) : message.subject, message_path(message, :box => @box)
           %td.meta.nobr
-            = message.created_at.to_s(:short)
+            =l message.created_at, format: :long
   = will_paginate @messages, :params => {:box => @box, :anchor => @box, :partial => nil}

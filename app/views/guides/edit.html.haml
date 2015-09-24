@@ -44,7 +44,8 @@
               %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#location"}
                 =t :location
             #location.panel-body.collapse
-              = f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME), :class => "form-control"
+              = f.form_field(:place, label: t(:site_name_place, :site_name => SITE_NAME)) do
+                %input#guide_place_id{name: 'guide[place_id]', type: 'text', placeholder: t(:start_typing_place_name)}
               .meta.stacked=t 'views.guides.edit.guide_place_desc', :site_name => SITE_NAME_SHORT
               %label=t :coordinates
               .stacked

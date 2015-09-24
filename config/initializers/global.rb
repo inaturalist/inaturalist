@@ -56,6 +56,25 @@ class String
   def is_ja?
     !! (self =~ /[ぁ-ゖァ-ヺー一-龯々]/)
   end
+
+  def mentioned_users
+    logins = scan(/(^|\s|>)@([\\\w][\\\w\\\-_]*)/).flatten
+    User.where(login: logins).limit(500)
+  end
+
+  def context_of_pattern(pattern, context_length = 100)
+    fix = ".{0,#{ context_length }}"
+    if matches = match(/(#{ fix })(#{ pattern })(#{ fix })/)
+      parts = [ ]
+      parts << "..." if (matches[1].length == context_length)
+      parts << matches[1]
+      parts << matches[2]
+      parts << matches[3]
+      parts << "..." if (matches[3].length == context_length)
+      parts.join
+    end
+  end
+
 end
 
 # Restrict some queries to characters, numbers, and simple punctuation, as

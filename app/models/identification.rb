@@ -16,8 +16,9 @@ class Identification < ActiveRecord::Base
   
   before_create :update_other_identifications
   after_create  :update_observation, 
-                :increment_user_counter_cache,
                 :create_observation_review
+  
+  after_commit :update_user_counter_cache
                 
   after_save    :update_obs_stats, 
                 :update_curator_identification,
@@ -30,7 +31,6 @@ class Identification < ActiveRecord::Base
   # deleted yet, i.e. before the transaction is complete.
   after_commit :update_obs_stats,
                  :update_observation_after_destroy,
-                 :decrement_user_counter_cache, 
                  :revisit_curator_identification, 
                  :set_last_identification_as_current,
                  :remove_automated_observation_reviews,
@@ -47,6 +47,7 @@ class Identification < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)
@@ -167,18 +168,11 @@ class Identification < ActiveRecord::Base
   
   # Update the counter cache in users.  That cache ONLY tracks observations 
   # made for others.
-  def increment_user_counter_cache
+  def update_user_counter_cache
     return true unless self.user && self.observation
+    return true if user.destroyed?
     if self.user_id != self.observation.user_id
-      self.user.increment!(:identifications_count)
-    end
-    true
-  end
-  
-  def decrement_user_counter_cache
-    return true unless self.user && self.observation
-    if self.user_id != self.observation.user_id
-      self.user.decrement!(:identifications_count)
+      User.where(id: user_id).update_all(identifications_count: user.identifications_for_others.count)
     end
     true
   end
@@ -253,7 +247,12 @@ class Identification < ActiveRecord::Base
     end
     true
   end
-  
+
+  def mentioned_users
+    return [ ] unless body
+    body.mentioned_users
+  end
+
   # Static ##################################################################
   
   def self.run_update_curator_identification(ident)

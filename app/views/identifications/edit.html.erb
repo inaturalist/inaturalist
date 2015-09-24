@@ -15,6 +15,9 @@
     }
   </style>
 <%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag "identifications/edit" %>
+<%- end -%>
 <h2><%=t :edit_your_identification %></h2>
 <div class="column prepend-3 span-8 append-1 mini observations">
   <h3><%= @identification.observation.user.login %>'s Observation</h3>

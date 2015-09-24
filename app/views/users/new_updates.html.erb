@@ -8,9 +8,12 @@
         @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
       end
       resource ||= update.resource
+      if update.notification == "mention"
+        anchor = "activity_comment_#{ update.notifier_id }"
+      end
     -%>
     <li>
-      <a href="<%= url_for(resource) %>">
+      <a href="<%= polymorphic_url(resource, anchor: anchor) %>">
         <%= update_image_for(update, :width => 32) %>
         <span class="inlineblock">
           <span class="small meta">

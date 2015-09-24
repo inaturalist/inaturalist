@@ -3,6 +3,8 @@
   "#{@post.title}"
 - content_for(:extracss) do
   = stylesheet_link_tag "observations", "posts"
+- content_for(:extrajs) do
+  = javascript_include_tag "posts/edit"
 .container
   .row
     #pageheader.col-md-12

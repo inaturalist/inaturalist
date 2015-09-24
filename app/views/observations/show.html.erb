@@ -196,7 +196,7 @@
           <% end -%>
         <% end %>
         <%= link_to unvote_path('observation', @observation.id, format: 'json'), 
-            :method => :post, 
+            :method => :delete, 
             :remote => true, 
             :id => "unfavebutton", 
             :class => "favebutton #{@observation.votes[nil].try(:[], :up).to_i == 0 ? 'nofaves' : 'hasfaves'}", 

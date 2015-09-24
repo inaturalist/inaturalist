@@ -75,10 +75,10 @@
                 =t ctype
                 %span.small.meta.ui
                   = surround '(',')' do
-                    = link_to_function t(:all), "$('##{ctype}_columns :checkbox'). prop('checked', true)"
+                    = link_to_function t(:all), "$('##{ctype}_columns :checkbox').prop('checked', true)"
                     %span.meta
                       |
-                    = link_to_function t(:none), "$('##{ctype}_columns :checkbox'). prop('checked', false)"
+                    = link_to_function t(:none), "$('##{ctype}_columns :checkbox').prop('checked', false)"
               - help = t("views.observations.export.#{ctype}_help_html", :default => '')
               - unless help.blank?
                 %p.meta.ui= help
@@ -93,10 +93,10 @@
               =t :observation_fields
               %span.small.meta.ui
                 = surround '(',')' do
-                  = link_to_function t(:all), "$('#observation_field_columns :checkbox'). prop('checked', true)"
+                  = link_to_function t(:all), "$('#observation_field_columns :checkbox').prop('checked', true)"
                   %span.meta
                     |
-                  = link_to_function t(:none), "$('#observation_field_columns :checkbox'). prop('checked', false)"
+                  = link_to_function t(:none), "$('#observation_field_columns :checkbox').prop('checked', false)"
             %table#observation_field_columns
               - for grp in @observation_fields.in_groups_of(4)
                 %tr
@@ -114,7 +114,12 @@
         = render 'exports_table', :flow_tasks => @recent_exports
 
 #filters
-  = render "filter_fields", :hide_buttons => true, :show_user_field => true, :show_project_field => true
+  = render "filter_fields", 
+    hide_buttons: true, 
+    show_user_field: true, 
+    show_project_field: true, 
+    show_multiple_taxa_field: true, 
+    show_extra_date_fields: true
 #rundialog.dialog{:style => "display:none"}
   .clear.centered.inline.buttonrow
     .inter

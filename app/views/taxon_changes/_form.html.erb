@@ -134,7 +134,7 @@
     <% if taxon_change.new_record? || taxon_change_type == "TaxonSplit" || taxon_change_type == "TaxonMerge" || taxon_change_type == "TaxonSwap" %>
       <fieldset id="multiple_taxa" class="last column span-12">
         <% if taxon_change.new_record? -%>
-          <legend><%= t :multiple_taxa %></legend>
+          <legend><%= t :multiple_taxa_for_taxon_change %></legend>
         <% else %>
           <legend>
             <%= 

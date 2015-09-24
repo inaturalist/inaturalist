@@ -189,7 +189,7 @@ module Ratatosk
           raise RatatoskGraftError, msg
         end
         new_taxon.set_scientific_taxon_name
-        new_taxon.move_to_child_of(graft_point)
+        new_taxon.move_to_child_of(graft_point) if new_taxon.persisted? && graft_point.persisted?
         unless new_taxon.valid?
           if new_taxon.errors[:ancestry].to_s =~ /locked/
             msg = "it failed to graft to #{graft_point.name}, which "
@@ -269,17 +269,16 @@ module Ratatosk
         else
           Taxon.where(name: ancestor.name).where("id != ?", ancestor.id)
         end
+
+        graft_point = existing_homonyms.select do |homonym|
+          ancestor_phylum && homonym.phylum && ancestor_phylum.name == homonym.phylum.name
+        end.first
         
-        if existing_homonyms.size == 1 && 
-            %w"kingdom phylum".include?(existing_homonyms.first.rank)
+        if existing_homonyms.size == 1
           graft_point = existing_homonyms.first
           lineage = new_lineage
           break
         end
-        
-        graft_point = existing_homonyms.select do |homonym|
-          ancestor_phylum && homonym.phylum && ancestor_phylum.name == homonym.phylum.name
-        end.first
         
         if graft_point
           lineage = new_lineage

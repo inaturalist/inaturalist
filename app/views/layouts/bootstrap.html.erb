@@ -46,15 +46,13 @@
         <% end -%>
         <% if flash[:warning] -%>
           <div class="container">
-            <div class="alert">
-              <div class="alert-warning">
-                <% if flash[:warning_title] -%>
-                  <h3><%=raw flash[:warning_title] %></h3>
-                <% end -%>
-                <p class="unstacked">
-                  <%=raw flash[:warning] %>
-                </p>
-              </div>
+            <div class="alert alert-warning">
+              <% if flash[:warning_title] -%>
+                <strong><%=raw flash[:warning_title] %></strong>
+              <% end -%>
+              <p class="unstacked">
+                <%=raw flash[:warning] %>
+              </p>
             </div>
           </div>
         <% end -%>

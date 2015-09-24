@@ -227,7 +227,7 @@ $(document).ready(function() {
   $('#headerupdatesnotice').click(function() {
     toggleHeaderSubnav(this)
     if (!$('#updatessubnav').data('loaded')) {
-      $('#updatessubnav').load('/users/new_updates', function(data) {
+      $('#updatessubnav').load('/users/new_updates?notification=activity,mention', function(data) {
         $(this).html(data)
         $('#updatessubnav').data('loaded', true)
         setUpdatesCount(0, {skipAnimation: true})
@@ -964,8 +964,23 @@ $.fn.subscriptionSettings = function() {
     }
   }, QTIP_DEFAULTS)
   $(this).each(function() {
-    options.content.ajax.url = $(this).attr('href')
-    $(this).qtip(options)
+    var thisOptions = $.extend({}, options);
+    if( thisOptions.content.ajax ) {
+      thisOptions.content.ajax.url = $(this).attr('href');
+    }
+    // custom text for qtip popup
+    if( $(this).data("gear-text") ) {
+      var text = $(this).data("gear-text");
+      // custom URL to make the text a link
+      if( $(this).data("gear-url") ) {
+        text = "<a href='"+ $(this).data("gear-url") +"'>"+ text +"</a>";
+      }
+      thisOptions.content = {
+        text: "<div class='meta'>"+ text +"</div>"
+      };
+      thisOptions.ajax = null;
+    }
+    $(this).qtip(thisOptions)
     $(this).click(function() {return false})
   })
 }
@@ -1265,7 +1280,7 @@ $.fn.observationUserStats = function(options) {
             tr = $('<tr></tr>'),
             imageTD = $('<td class="image"></td>'),
             userTD = $('<td class="user"></td>')
-        imageTD.append($('<img/>').attr('src', img_url))
+        imageTD.append($('<img/>').attr('src', img_url).addClass('usericon'))
         userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.user.login))
         userTD.append(
           $('<div></div>').
@@ -1287,7 +1302,7 @@ $.fn.observationUserStats = function(options) {
             tr = $('<tr></tr>'),
             imageTD = $('<td class="image"></td>'),
             userTD = $('<td class="user"></td>')
-        imageTD.append($('<img/>').attr('src', img_url))
+        imageTD.append($('<img/>').attr('src', img_url).addClass('usericon'))
         userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.user.login))
         userTD.append(
           $('<div></div>').
@@ -1334,6 +1349,39 @@ $.fn.dnaHighlight = function() {
     }
     $(this).html(newt)
   })
+}
+
+$.fn.textcompleteUsers = function( ) {
+  var field = this;
+  field.textcomplete([{
+    index: 1,
+    match: /\B@([\\\w][\\\w\\\-_]*)$/,
+    search: function( term, callback ) {
+      $.getJSON( "/people/search.json", { q: term, order: "activity" } ).
+        done(function( data ) {
+          callback( $.map( data, function( user ) {
+            return user.html;
+          }));
+        }
+      );
+    },
+    replace: function( html ) {
+      var login, matches;
+      // extract the username from the HTML
+      if( matches = html.match( /\(([^ ]+)\)<\/div>/ )) {
+        login = matches[1];
+      } else if( matches = html.match( / ([^ ]+)<\/div>/ )) {
+        login = matches[1];
+      }
+      setTimeout(function(){ field.data("highlighter").highlight() }, 10);
+      return "@" + login + " ";
+    }
+  }]).highlightTextarea({
+    words: [{
+      color: "#ffee91",
+      words: ["\\\B(@[\\\w][\\\w\\\-_]*)"]
+    }]
+  });
 }
 
 $.fn.boldId = function() {

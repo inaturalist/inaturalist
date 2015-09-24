@@ -13,6 +13,7 @@ end
 
 describe ObservationsController do
   describe "create" do
+    render_views
     let(:user) { User.make! }
     before do
       sign_in user
@@ -61,6 +62,14 @@ describe ObservationsController do
       post :create, :observation => {:species_guess => "Foo"}
       expect(user.observations.last.site).to_not be_blank
     end
+
+    it "should survive submitting an invalid observation to a project" do
+      p = Project.make!
+      por = ProjectObservationRule.make!(operator: 'georeferenced?', ruler: p)
+      expect {
+        post :create, observation: {species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s}, project_id: p.id
+      }.not_to raise_error
+    end
   end
   
   describe "update" do
@@ -74,8 +83,7 @@ describe ObservationsController do
     end
     
     it "should use latitude param even if private_latitude set" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
-      observation = Observation.make!(:taxon => taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => make_threatened_taxon, :latitude => 38, :longitude => -122)
       expect(observation.private_longitude).to_not be_blank
       old_latitude = observation.latitude
       old_private_latitude = observation.private_latitude

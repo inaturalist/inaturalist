@@ -119,7 +119,7 @@
   </div>
 
   <% if is_curator? -%>
-    <fieldset class="observationrules">
+    <fieldset class="observationrules curatorsonly">
       <legend><%= t(:observation_aggregation).titleize %></legend>
       <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
       <%=t 'views.projects.edit.observation_aggregation_desc_html' %>

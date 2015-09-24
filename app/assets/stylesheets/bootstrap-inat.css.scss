@@ -35,7 +35,7 @@ body .bootstrap {
 .bootstrap a:hover { text-decoration: none; opacity: 0.8;}
 
 .readable, p {line-height: 1.6em;}
-.bootstrap .ui-chooser input.ui-chooser-input {padding:3px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+.bootstrap .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
 .bootstrap input.chooser {width: auto;}
 .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
 .bootstrap .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
@@ -169,6 +169,8 @@ img.borderless, .thumbnail.borderless { border: 0; }
 .bootstrap .breadcrumb > li.prevnext:before { display: none; }
 .bootstrap .leaderboard-container thead .sorting_desc,
 .bootstrap .leaderboard-container thead .sorting_asc {padding-right: 20px; }
+
+.bootstrap mark { padding: 0; }
 
 .carousel-control .fa-chevron-left,
 .carousel-control .fa-chevron-right {

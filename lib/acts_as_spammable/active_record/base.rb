@@ -29,11 +29,16 @@ module ActiveRecord
 
         scope :flagged_as_spam,
           -> { joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } }) }
-        scope :not_flagged_as_spam,
-          ->{ joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
-            AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }'
-            AND resolved = false)").
-          where("f.id IS NULL") }
+        scope :not_flagged_as_spam, ->{ 
+          s = joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
+              AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }'
+              AND resolved = false)").
+            where("f.id IS NULL")
+          if column_names.include?('user_id')
+            s = s.joins(:user).where("users.spammer = ?", false)
+          end
+          s
+        }
 
         define_method(:flagged_as_spam?) do
           self.flags.loaded? ?

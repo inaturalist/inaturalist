@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   preference :message_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
   preference :project_invitation_email_notification, :boolean, :default => true
+  preference :mention_email_notification, :boolean, :default => true
   preference :lists_by_login_sort, :string, :default => "id"
   preference :lists_by_login_order, :string, :default => "asc"
   preference :per_page, :integer, :default => 30
@@ -40,6 +41,7 @@ class User < ActiveRecord::Base
   preference :share_observations_on_facebook, :boolean, :default => true
   preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
+  preference :receive_mentions, :boolean, :default => true
   preference :observations_view, :string
   preference :community_taxa, :boolean, :default => true
   PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
@@ -55,8 +57,8 @@ class User < ActiveRecord::Base
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
-    message_email_notification project_invitation_email_notification 
-    project_journal_post_email_notification)
+    mention_email_notification message_email_notification
+    project_invitation_email_notification project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
@@ -65,6 +67,7 @@ class User < ActiveRecord::Base
   has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   has_many :deleted_observations
+  has_many :deleted_photos
   
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy
@@ -146,7 +149,8 @@ class User < ActiveRecord::Base
   MAX_LOGIN_SIZE = 40
   
   # Regexes from restful_authentication
-  login_regex       = /\A[A-z][\w\-_]+\z/                          # ASCII, strict
+  LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
+  login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
   bad_login_message = "use only letters, numbers, and -_ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze

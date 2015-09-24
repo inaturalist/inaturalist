@@ -660,6 +660,12 @@ class ObservationsController < ApplicationController
           end
         else
           if @observations.size == 1
+            if @project
+              @place = @project.place
+              @project_curators = @project.project_users.where("role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR])
+              @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+              @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
+            end
             render :action => 'new'
           else
             render :action => 'edit_batch'
@@ -1082,6 +1088,7 @@ class ObservationsController < ApplicationController
     @recent_exports = ObservationsExportFlowTask.
       where(user_id: current_user).order(id: :desc).limit(20)
     @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     respond_to do |format|
       format.html
     end
@@ -1644,6 +1651,8 @@ class ObservationsController < ApplicationController
         render :layout => "bootstrap"
       end
       format.csv do
+        Taxon.preload_associations(@taxa, [
+          :ancestor_taxa, { taxon_names: :place_taxon_names }])
         render :text => @taxa.to_csv(
           :only => [:id, :name, :rank, :rank_level, :ancestry, :is_active],
           :methods => [:common_name_string, :iconic_taxon_name, 
@@ -1654,6 +1663,7 @@ class ObservationsController < ApplicationController
         )
       end
       format.json do
+        Taxon.preload_associations(@taxa, :taxon_descriptions)
         render :json => {
           :taxa => @taxa
         }
@@ -2012,9 +2022,9 @@ class ObservationsController < ApplicationController
     # use the supplied search_params if available. Those will already have
     # tried to resolve and instances referred to by ID
     stats_params = search_params.blank? ? params : search_params
-    if params[:d1] && params[:d2]
+    if stats_params[:d1]
       d1 = (Date.parse(stats_params[:d1]) rescue Date.today)
-      d2 = (Date.parse(stats_params[:d2]) rescue Date.today)
+      d2 = stats_params[:d2] ? (Date.parse(stats_params[:d2]) rescue Date.today) : Date.today
       return false if d2 - d1 > 366
     end
     @stats_adequately_scoped = !(
@@ -2110,7 +2120,7 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
-    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')

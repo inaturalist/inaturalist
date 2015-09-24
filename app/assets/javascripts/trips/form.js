@@ -32,7 +32,7 @@ $(document).ready(function() {
       $('td.name', row).html(html)
     }
     $(':input[name*=taxon_id]', row).val(taxon.id)
-    $(':input[name*=observed]', row). prop('checked', $('#trip_taxa').data('check-last'))
+    $(':input[name*=observed]', row).prop('checked', $('#trip_taxa').data('check-last'))
     $('#new_species').chooser('clear')
     $('#trip_taxa').data('last-taxon', null)
     $('#trip_taxa').data('check-last', null)
@@ -121,7 +121,7 @@ $(document).ready(function() {
   })
 
   $('#goal_taxa :input:checkbox').click(function() {
-    if ($(this). prop('checked')) {
+    if ($(this).prop('checked')) {
       $('#trip_purposes').data('last-taxon', $(this).data('taxon'))
       $('#trip_purposes').data('hide-last', true)
       $('#trip_purposes_row .add_fields').click()

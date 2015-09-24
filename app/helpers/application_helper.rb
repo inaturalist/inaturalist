@@ -293,6 +293,7 @@ module ApplicationHelper
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
@@ -336,6 +337,7 @@ module ApplicationHelper
     size = options.delete(:size)
     style = options[:style]
     css_class = "user_image #{options[:class]}"
+    css_class += " usericon" if %w(mini small thumb).include?(size.to_s) || size.blank?
     options[:alt] ||= user.login
     options[:title] ||= user.login
     url = if defined? root_url
@@ -880,19 +882,19 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon"))
+      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon", :class => "usericon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag(asset_url(resource.icon.url(:thumb)), options)
     when "ProjectUserInvitation"
-      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon"))
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon", :class => "usericon"))
     when "AssessmentSection"
       image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"
       image_tag("checklist-icon-color-32px.png", options)
     when "Post"
-      image_tag(asset_url(resource.user.icon.url(:thumb)), options)
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:class => "usericon"))
     when "Place"
       image_tag("icon-maps.png", options)
     when "Taxon"
@@ -926,7 +928,7 @@ module ApplicationHelper
       link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
     end
 
-    if notifier.is_a?(Comment) || notifier.is_a?(Identification)
+    if notifier.is_a?(Comment) || notifier.is_a?(Identification) || update.notification == "mention"
       noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
       if resource_name = resource.try_methods(:name, :title)
         noun += " (\"#{truncate(resource_name, :length => 30)}\")".html_safe
@@ -1051,26 +1053,32 @@ module ApplicationHelper
   end
 
   def activity_snippet(update, notifier, notifier_user, options = {})
+    opts = {}
     if update.notification == "activity" && notifier_user
       notifier_class_name_key = notifier.class.to_s.underscore
       notifier_class_name = t(notifier_class_name_key).downcase
       key = "user_added_"
       opts = {
-        :user => options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        :x => notifier_class_name
+        user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
+        x: notifier_class_name
       }
       key += notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
       key += '_x_to'
+    elsif update.notification == "mention" && notifier_user
+      key = "mentioned_you_in"
+      opts = {
+        user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
+        x: notifier_class_name
+      }
     else
       key = "new_activity_on"
-      opts = {}
     end
 
     if options[:noun]
       key += '_noun'
       opts[:noun] = options[:noun]
     end
-    if update.resource_owner
+    if update.resource_owner && update.resource_owner != notifier_user
       key += '_by'
       opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
     end
@@ -1292,4 +1300,13 @@ module ApplicationHelper
   def has_t?(*args)
     I18n.has_t?(*args)
   end
+
+  def hyperlink_mentions(text)
+    linked_text = text.dup
+    linked_text.mentioned_users.each do |u|
+      linked_text.gsub!(/(^|\s|>)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+    end
+    linked_text
+  end
+
 end

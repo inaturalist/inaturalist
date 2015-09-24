@@ -107,10 +107,14 @@ class TaxonName < ActiveRecord::Base
     self.name = Taxon.remove_rank_from_name(self.name)
     true
   end
+
+  def self.normalize_lexicon(lexicon)
+    LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize
+  end
   
   def normalize_lexicon
     return true if lexicon.blank?
-    self.lexicon = LEXICONS[lexicon.upcase.to_sym] if LEXICONS[lexicon.upcase.to_sym]
+    self.lexicon = TaxonName.normalize_lexicon(lexicon)
     true
   end
   
@@ -213,20 +217,21 @@ class TaxonName < ActiveRecord::Base
 
   def locale_for_lexicon
     case localizable_lexicon
-    when "scientific_names" then "sci"
-    when "english" then "en"
-    when "spanish" then "es"
-    when "german" then "de"
-    when "portuguese" then "pt"
-    when "french" then "fr"
+    when "catalan" then "ca"
     when "chinese_traditional" then "zh"
-    when "japanese" then "ja"
-    when "maya" then "myn"
     when "dutch" then "nl"
-    when "indonesian" then "id"
+    when "english" then "en"
+    when "french" then "fr"
+    when "german" then "de"
     when "hawaiian" then "haw"
-    when "maori" then "mi"
+    when "indonesian" then "id"
     when "italian" then "it"
+    when "japanese" then "ja"
+    when "maori" then "mi"
+    when "maya" then "myn"
+    when "portuguese" then "pt"
+    when "scientific_names" then "sci"
+    when "spanish" then "es"
     else
       "und"
     end
@@ -239,14 +244,13 @@ class TaxonName < ActiveRecord::Base
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
     case locale.to_s
-    when /^es/    then 'spanish'
-    when /^fr/    then 'french'
-    when /zh.CN/i  then 'chinese_simplified'
-    when /^zh/    then 'chinese_traditional'
-    when /^pt/    then 'portuguese'
-    when /^ja/    then 'japanese'
-    else
-      'english'
+    when /^en/      then 'english'
+    when /^es/      then 'spanish'
+    when /^fr/      then 'french'
+    when /zh.CN/i   then 'chinese_simplified'
+    when /^zh/      then 'chinese_traditional'
+    when /^pt/      then 'portuguese'
+    when /^ja/      then 'japanese'
     end
   end
 
@@ -265,7 +269,6 @@ class TaxonName < ActiveRecord::Base
   
   def self.find_external(q, options = {})
     r = ratatosk(options)
-    
     # fetch names and save them
     r.find(q).map do |ext_name|
       unless ext_name.valid?
@@ -273,7 +276,12 @@ class TaxonName < ActiveRecord::Base
           ext_name.taxon = existing_taxon
         end
       end
-      ext_name.save ? ext_name : nil
+      if ext_name.save
+        ext_name
+      else
+        Rails.logger.debug "[DEBUG] Failed to save ext_name: #{ext_name.errors.full_messages.to_sentence}"
+        nil
+      end
     end.compact
   end
   

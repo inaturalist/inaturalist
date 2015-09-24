@@ -24,7 +24,7 @@
   padding: 0;
   border: 0;
   outline: 0;
-  line-height: 1.3;
+  line-height: 1.6;
   text-decoration: none;
   font-size: 100%;
   list-style: none;
@@ -831,7 +831,6 @@ body .ui-tooltip {
 ----------------------------------*/
 .ui-widget {
   font-family: "Trebuchet MS", Arial, sans-serif;
-  font-size: 1.1em;
 }
 .ui-widget .ui-widget {
   font-size: 1em;
@@ -841,14 +840,10 @@ body .ui-tooltip {
 .ui-widget textarea,
 .ui-widget button {
   font-family: "Trebuchet MS", Arial, sans-serif;
-  font-size: 1em;
 }
 .ui-widget-content {
   border: 1px solid #aaaaaa;
   background: #ffffff image-url("jquery-ui/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x;
-  color: #222222;
-}
-.ui-widget-content a {
   color: #222222;
 }
 .ui-widget-header {
