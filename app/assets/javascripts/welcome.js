@@ -1,5 +1,9 @@
 if (HOMEPAGE_DATA_URL) {
-  console.log("[DEBUG] HOMEPAGE_DATA_URL: ", HOMEPAGE_DATA_URL)
+  $.getJSON(STATS_SUMMARY_URL, function(json) {
+    $('#stats .obsstats .stat').html(json.total_observations.toLocaleString())
+    $('#stats .speciesstats .stat').html(json.total_observed_taxa.toLocaleString())
+    $('#stats .peoplestats .stat').html(json.total_users.toLocaleString())
+  })
   $.getJSON(HOMEPAGE_DATA_URL, function(json) {
     addObservations(json.observations)
     addTestimonials(json.testimonials)

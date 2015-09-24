@@ -7,6 +7,8 @@
   - else
     :javascript
       var HOMEPAGE_DATA_URL;
+  :javascript
+    var STATS_SUMMARY_URL = #{summary_stats_url.inspect}
   = javascript_include_tag :welcome
 .container-fluid
   #hero.homesection.row
@@ -17,19 +19,19 @@
             .obsstats.statcol.col-xs-4
               %a{href: '/observations'}
                 %embed{src: image_path('homepage-binocs.svg')}
-                .stat 1,234,567
+                .stat ???
                 =t :observations
                 %i.icon-arrow-right
             .speciesstats.statcol.col-xs-4
               %a{href: '/taxa'}
                 %embed{src: image_path('homepage-tree.svg')}
-                .stat 70,001
+                .stat ???
                 =t :species
                 %i.icon-arrow-right
             .peoplestats.statcol.col-xs-4
               %a{href: '/taxa'}
                 %embed{src: image_path('homepage-people.svg')}
-                .stat 100,000
+                .stat ???
                 =t :people
                 %i.icon-arrow-right
       %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}

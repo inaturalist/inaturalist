@@ -429,6 +429,7 @@ Rails.application.routes.draw do
   resource :stats do
     collection do
       get :index
+      get :summary
     end
   end
 
