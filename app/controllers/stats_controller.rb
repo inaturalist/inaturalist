@@ -30,6 +30,7 @@ class StatsController < ApplicationController
       }).response.aggregations
     @stats = {
       total_users: User.where("suspended_at IS NULL").count,
+      total_leaf_taxa: Observation.elastic_taxon_leaf_ids.size,
       total_observations: es_stats[:total_observations][:value],
       total_observed_taxa: es_stats[:total_observed_taxa][:value],
       total_observers: es_stats[:total_observers][:value],

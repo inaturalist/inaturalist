@@ -1,7 +1,7 @@
 if (HOMEPAGE_DATA_URL) {
   $.getJSON(STATS_SUMMARY_URL, function(json) {
     $('#stats .obsstats .stat').html(json.total_observations.toLocaleString())
-    $('#stats .speciesstats .stat').html(json.total_observed_taxa.toLocaleString())
+    $('#stats .speciesstats .stat').html(json.total_leaf_taxa.toLocaleString())
     $('#stats .peoplestats .stat').html(json.total_users.toLocaleString())
   })
   $.getJSON(HOMEPAGE_DATA_URL, function(json) {
@@ -26,25 +26,27 @@ function addObservations(observations) {
         '........... ........... ........... ........... ........... ........... '
       ),
       $('<div class="herofooter">').append(
-        $('<div class="row">').append(
-          $('<div class="col-xs-11 col-xs-offset-1">').append(
-            $('<a>').attr('href', '/people/'+o.user.login).html(
-              $('<img/>').attr('src', o.user.user_icon_url)
-            ),
-            $('<a class="obstext">').attr('href', '/observations/'+o.id).append(
-              $('<span class="username">').html(o.user.name),
-              ' ',
-              $('<i class="login">').html(' (' + o.user.login + ')'),
-              $('<span class="taxonname">').html(o.taxon.default_name.name),
-              ' ',
-              I18n.t('from').toLowerCase(),
-              ' ',
-              $('<span class="location">').html(o.place_guess)
+        $('<div class="container container-fixed">').append(
+          $('<div class="row">').append(
+            $('<div class="col-xs-11 col-xs-offset-1">').append(
+              $('<a>').attr('href', '/people/'+o.user.login).html(
+                $('<img/>').attr('src', o.user.user_icon_url)
+              ),
+              $('<a class="obstext">').attr('href', '/observations/'+o.id).append(
+                $('<span class="username">').html(o.user.name),
+                ' ',
+                $('<i class="login">').html(' (' + o.user.login + ')'),
+                $('<span class="taxonname">').html(o.taxon.default_name.name),
+                ' ',
+                I18n.t('from').toLowerCase(),
+                ' ',
+                $('<span class="location">').html(o.place_guess)
+              )
             )
           )
         )
-      ),
-      $('#herobox').clone().attr('id', '').removeClass('fade')
+      )
+      // $('#herobox').clone().attr('id', '').removeClass('fade')
     )
     if (i == 0) {
       item.addClass('active')

@@ -21,7 +21,8 @@
 #wrapper { margin-bottom: 0; min-width: 980px; }
 #hero { 
   overflow:hidden; 
-  background-color: #6fa501;
+  background-color: black;
+  position: relative;
 }
 #hero,
 #hero .carousel .item,
@@ -38,13 +39,14 @@
   background-repeat: no-repeat;
   color: transparent;
 }
+#herobox-container {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 100%;
+}
 .herobox { 
   background-color: #f27134;
-  width: 345px;
-  /*box-shadow: rgba(0,0,0,0.4) 0 0px 50px;*/
-  position: absolute;
-  top: 80px;
-  right: 80px;
 }
 .bootstrap .homesection .herobox h1 {
   font-size: 32px;
@@ -112,6 +114,8 @@
   margin: 0 10px;
   font-weight: normal;
 }
+.container-fixed { margin: 0 auto; min-width: 980px;}
+#science .container-fixed {min-width: auto; max-width: 530px; width: auto;}
 #how [class*='col-'] {
   text-align: center;
   white-space: nowrap;
@@ -151,9 +155,14 @@
   background-color: black;
   color: white;
 }
-#science .bleedcol { overflow: hidden; }
-#science img {
-  overflow: hidden;
+#science .bigpadded,
+#science .bleedcol .img {
+  height: 350px;
+}
+#science .bleedcol .img {
+  width: 100%; 
+  background: url(/assets/homepage-science.jpg) 50% 50%; 
+  background-size: cover;
 }
 #value > .row {
   background-color: #EAF3D8;
@@ -218,9 +227,9 @@
   width: 100%;
   text-transform: uppercase;
 }
-.bootstrap .carousel-control { width: 5%; }
+.bootstrap .carousel-control { width: 5%; z-index: 1; }
 
-#stats .statcol {display: block;}
+/*#stats .statcol {display: block;}
 #stats .obsstats { background-color: #6fa501; }
 #stats .speciesstats { background-color: #8dbb2d; }
 #stats .peoplestats { background-color: #83b51d; }
@@ -235,7 +244,7 @@
 }
 #stats a { display: block; }
 #stats embed { width: 120px; height: 120px; margin: 100px 0 40px; }
-#stats .stat {font-size: 200%; margin-bottom: 20px; }
+#stats .stat {font-size: 200%; margin-bottom: 20px; }*/
 
 .bootstrap .carousel-control.left,
 .bootstrap .carousel-control.right { 

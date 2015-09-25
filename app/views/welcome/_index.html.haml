@@ -14,118 +14,131 @@
   #hero.homesection.row
     #hero-carousel.carousel.slide{data: {ride: :carousel}}
       .carousel-inner{role: "listbox"}
-        #stats.item.active
-          .row
-            .obsstats.statcol.col-xs-4
-              %a{href: '/observations'}
-                %embed{src: image_path('homepage-binocs.svg')}
-                .stat ???
-                =t :observations
-                %i.icon-arrow-right
-            .speciesstats.statcol.col-xs-4
-              %a{href: '/taxa'}
-                %embed{src: image_path('homepage-tree.svg')}
-                .stat ???
-                =t :species
-                %i.icon-arrow-right
-            .peoplestats.statcol.col-xs-4
-              %a{href: '/taxa'}
-                %embed{src: image_path('homepage-people.svg')}
-                .stat ???
-                =t :people
-                %i.icon-arrow-right
+        / #stats.item.active
+        /   .row
+        /     .obsstats.statcol.col-xs-4
+        /       %a{href: '/observations'}
+        /         %embed{src: image_path('homepage-binocs.svg')}
+        /         .stat ???
+        /         =t :observations
+        /         %i.icon-arrow-right
+        /     .speciesstats.statcol.col-xs-4
+        /       %a{href: '/taxa'}
+        /         %embed{src: image_path('homepage-tree.svg')}
+        /         .stat ???
+        /         =t :species
+        /         %i.icon-arrow-right
+        /     .peoplestats.statcol.col-xs-4
+        /       %a{href: '/people'}
+        /         %embed{src: image_path('homepage-people.svg')}
+        /         .stat ???
+        /         =t :people
+        /         %i.icon-arrow-right
       %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}
         %span.fa.fa-chevron-left{"aria-hidden" => "true"}
         %span.sr-only=t :previous
       %a.right.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "next"}}
         %span.fa.fa-chevron-right{"aria-hidden" => "true"}
         %span.sr-only=t :next
-    #herobox.herobox.fade
-      .herotext
-        %h1 Connect with Nature
-        %p
-          Explore and share your observations from the natural world.
-      .herolinks
-        = link_to signup_path, :class => "morelink" do
-          = t(:sign_up)
-          %i.icon-arrow-right
-        = link_to observations_path, :class => "morelink" do
-          = t(:explore)
-          %i.icon-arrow-right
+    #herobox-container
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            #herobox.herobox
+              .herotext
+                %h1 Connect with Nature
+                %p
+                  Explore and share your observations from the natural world.
+              .herolinks
+                = link_to signup_path, :class => "morelink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to observations_path, :class => "morelink" do
+                  = t(:explore)
+                  %i.icon-arrow-right
   #how.homesection
     .row
       .col-xs-12
         %h1 How It Works
     .row
-      .col-xs-4
-        %embed{src: image_path("homepage-how-record.svg")}
-      .col-xs-4
-        %embed{src: image_path("homepage-how-share.svg")}
-      .col-xs-4
-        %embed{src: image_path("homepage-how-discuss.svg")}
-    .row.txtrow
-      #how-record.col-xs-4
-        %label 1
-        %p Record your observations
-      #how-share.col-xs-4
-        %label 2
-        %p Share with fellow naturalists
-      #how-discuss.col-xs-4
-        %label 3
-        %p Discuss your findings
+      .col-xs-12
+        .container.container-fixed
+          .row
+            .col-xs-4
+              %embed{src: image_path("homepage-how-record.svg")}
+            .col-xs-4
+              %embed{src: image_path("homepage-how-share.svg")}
+            .col-xs-4
+              %embed{src: image_path("homepage-how-discuss.svg")}
+          .row.txtrow
+            #how-record.col-xs-4
+              %label 1
+              %p Record your observations
+            #how-share.col-xs-4
+              %label 2
+              %p Share with fellow naturalists
+            #how-discuss.col-xs-4
+              %label 3
+              %p Discuss your findings
   #science.homesection
     .row
       .col-xs-6.bigpadded
-        %h1 Contribute to Science
-        %p
-          %span
-            Every observation can contribute to biodiversity science, from the rarest butterfly to the most common backyard weed. 
-          %span.hidden-xs.hidden-sm
-            We share your findings with scientific data repositories
-          %span.hidden-xs.hidden-sm.hidden-md
-            like the 
-            %a{href: 'http://gbif.org/'} Global Biodiversity Information Facility
-          %span.hidden-xs.hidden-sm
-            to help scientists find and use your data. All you have to do is observe.
+        .container.container-fixed
+          .row
+            .col-xs-12
+              %h1 Contribute to Science
+              %p
+                %span
+                  Every observation can contribute to biodiversity science, from the rarest butterfly to the most common backyard weed. 
+                  We share your findings with scientific data repositories
+                  %span.hidden-sm.hidden-xs
+                    like the 
+                    %a{href: 'http://gbif.org/'} Global Biodiversity Information Facility
+                  to help scientists find and use your data. All you have to do is observe.
       .col-xs-6.bleedcol
-        = image_tag 'homepage-science.jpg', :class => 'img-responsive'
+        .img
+
   #value.homesection
     .row
       .col-xs-12
         %h1 Nature At Your Fingertips
     .row
-      .col-xs-2
-        %embed{src: image_path("homepage-keep-track.svg")}
-      .col-xs-4.row
-        %h2 Keep Track
-        %p Record your encounters with other organisms and maintain life lists, all in the cloud.
-      .col-xs-2.second-col
-        %embed{src: image_path("homepage-bee.svg")}
-      .col-xs-4.row
-        %h2 Create Useful Data
-        %p Help scientists and resource managers understand when and where organisms occur.
-    .row
-      .col-xs-2
-        %embed{src: image_path("homepage-crowdsource.svg")}
-      .col-xs-4.row
-        %h2 Crowdsource Species Identification
-        %p Connect with experts who can identify the organisms you observe.
-      .col-xs-2.second-col
-        %embed{src: image_path("homepage-nerd-cowboy.svg")}
-      .col-xs-4.row
-        %h2 Become a Citizen Scientist
-        %p Find a project with a mission that interests you, or start your own.
-    .row
-      .col-xs-2
-        %embed{src: image_path("homepage-owl.svg")}
-      .col-xs-4.row
-        %h2 Learn About Nature
-        %p Build your knowledge by talking with other naturalists and helping others.
-      .col-xs-2.second-col
-        %embed{src: image_path("homepage-megaphone.svg")}
-      .col-xs-4.row
-        %h2 Run a Bioblitz
-        %p Hold an event where people try to find as many species as possible.
+      .col-xs-12
+        .container.container-fixed
+          .row
+            .col-xs-2
+              %embed{src: image_path("homepage-keep-track.svg")}
+            .col-xs-4.row
+              %h2 Keep Track
+              %p Record your encounters with other organisms and maintain life lists, all in the cloud.
+            .col-xs-2.second-col
+              %embed{src: image_path("homepage-bee.svg")}
+            .col-xs-4.row
+              %h2 Create Useful Data
+              %p Help scientists and resource managers understand when and where organisms occur.
+          .row
+            .col-xs-2
+              %embed{src: image_path("homepage-crowdsource.svg")}
+            .col-xs-4.row
+              %h2 Crowdsource Species Identification
+              %p Connect with experts who can identify the organisms you observe.
+            .col-xs-2.second-col
+              %embed{src: image_path("homepage-nerd-cowboy.svg")}
+            .col-xs-4.row
+              %h2 Become a Citizen Scientist
+              %p Find a project with a mission that interests you, or start your own.
+          .row
+            .col-xs-2
+              %embed{src: image_path("homepage-owl.svg")}
+            .col-xs-4.row
+              %h2 Learn About Nature
+              %p Build your knowledge by talking with other naturalists and helping others.
+            .col-xs-2.second-col
+              %embed{src: image_path("homepage-megaphone.svg")}
+            .col-xs-4.row
+              %h2 Run a Bioblitz
+              %p Hold an event where people try to find as many species as possible.
   #mobile.homesection.row
     .col-xs-6.bleedcol
       %embed{src: image_path("homepage-devices.svg")}
@@ -142,12 +155,18 @@
     .row
       .col-xs-12
         %h1 Who Uses iNaturalist?
-        #who-carousel.carousel.slide{data: {ride: :carousel}}
-          %ol.carousel-indicators
-          .carousel-inner{role: "listbox"}
+        .container.container-fixed
+          .row
+            .col-xs-12
+              #who-carousel.carousel.slide{data: {ride: :carousel}}
+                %ol.carousel-indicators
+                .carousel-inner{role: "listbox"}
   #call
     .row
-      .col-xs-8.bigpadded
-        What are you waiting for?
-      .col-xs-3.btncol
-        = link_to "Join today", signup_path, :class => "btn btn-default"
+      .col-xs-12
+        .container.container-fixed
+          .row
+            .col-xs-8.bigpadded
+              What are you waiting for?
+            .col-xs-3.btncol
+              = link_to "Join today", signup_path, :class => "btn btn-default"
