@@ -39,7 +39,7 @@
   background-repeat: no-repeat;
   color: transparent;
 }
-#herobox-container {
+.herobox-container {
   position: absolute;
   top: 75px;
   left: 0;
@@ -52,9 +52,24 @@
   font-size: 32px;
   margin-bottom: 10px;
 }
-.herobox .herotext p {
+#obs-stats-container .herobox h1,
+#species-stats-container .herobox h1,
+#people-stats-container .herobox h1 {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+.herobox p {
   font-size: 17px;
   margin: 0;
+}
+#obs-stats-container .herobox p,
+#species-stats-container .herobox p,
+#people-stats-container .herobox p {
+  font-size: 20px;
+}
+.herobox embed {
+  width: 72px;
+  height: 72px;
 }
 .herobox .herotext, .herobox .morelink {
   padding: 30px 30px;

@@ -14,48 +14,92 @@
   #hero.homesection.row
     #hero-carousel.carousel.slide{data: {ride: :carousel}}
       .carousel-inner{role: "listbox"}
-        / #stats.item.active
-        /   .row
-        /     .obsstats.statcol.col-xs-4
-        /       %a{href: '/observations'}
-        /         %embed{src: image_path('homepage-binocs.svg')}
-        /         .stat ???
-        /         =t :observations
-        /         %i.icon-arrow-right
-        /     .speciesstats.statcol.col-xs-4
-        /       %a{href: '/taxa'}
-        /         %embed{src: image_path('homepage-tree.svg')}
-        /         .stat ???
-        /         =t :species
-        /         %i.icon-arrow-right
-        /     .peoplestats.statcol.col-xs-4
-        /       %a{href: '/people'}
-        /         %embed{src: image_path('homepage-people.svg')}
-        /         .stat ???
-        /         =t :people
-        /         %i.icon-arrow-right
       %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}
         %span.fa.fa-chevron-left{"aria-hidden" => "true"}
         %span.sr-only=t :previous
       %a.right.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "next"}}
         %span.fa.fa-chevron-right{"aria-hidden" => "true"}
         %span.sr-only=t :next
-    #herobox-container
+    #connect-container.herobox-container
       .container.container-fixed
         .row
           .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
           .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
-            #herobox.herobox
+            .herobox
               .herotext
+                .staticon
                 %h1 Connect with Nature
                 %p
                   Explore and share your observations from the natural world.
               .herolinks
-                = link_to signup_path, :class => "morelink" do
+                = link_to signup_path, :class => "morelink signuplink" do
                   = t(:sign_up)
                   %i.icon-arrow-right
-                = link_to observations_path, :class => "morelink" do
+                = link_to observations_path, :class => "morelink explorelink" do
                   = t(:explore)
+                  %i.icon-arrow-right
+    #obs-stats-container.herobox-container{style: "display: none"}
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            .herobox
+              .herotext
+                .row
+                  .col-xs-4
+                    %embed{src: image_path('homepage-binocs.svg')}
+                  .col-xs-8.row
+                    %h1 ???
+                    %p
+                      =t 'views.welcome.index.observations_to_date'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to observations_path, :class => "morelink explorelink" do
+                  = t(:explore)
+                  %i.icon-arrow-right
+    #species-stats-container.herobox-container{style: "display: none"}
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            .herobox
+              .herotext
+                .row
+                  .col-xs-4
+                    %embed{src: image_path('homepage-tree.svg')}
+                  .col-xs-8.row
+                    %h1 ???
+                    %p
+                      =t 'views.welcome.index.species_observed'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to taxa_path, :class => "morelink explorelink" do
+                  = t(:learn)
+                  %i.icon-arrow-right
+    #people-stats-container.herobox-container{style: "display: none"}
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            .herobox
+              .herotext
+                .row
+                  .col-xs-4
+                    %embed{src: image_path('homepage-people.svg')}
+                  .col-xs-8.row
+                    %h1 ???
+                    %p
+                      =t 'views.welcome.index.people_signed_up'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to people_path, :class => "morelink explorelink" do
+                  = t(:meet)
                   %i.icon-arrow-right
   #how.homesection
     .row

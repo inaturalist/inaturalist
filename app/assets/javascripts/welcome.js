@@ -1,8 +1,9 @@
 if (HOMEPAGE_DATA_URL) {
   $.getJSON(STATS_SUMMARY_URL, function(json) {
-    $('#stats .obsstats .stat').html(json.total_observations.toLocaleString())
-    $('#stats .speciesstats .stat').html(json.total_leaf_taxa.toLocaleString())
-    $('#stats .peoplestats .stat').html(json.total_users.toLocaleString())
+    window.STATS_SUMMARY = json
+    $('#obs-stats-container h1').html(STATS_SUMMARY.total_observations.toLocaleString())
+    $('#species-stats-container h1').html(STATS_SUMMARY.total_leaf_taxa.toLocaleString())
+    $('#people-stats-container h1').html(STATS_SUMMARY.total_users.toLocaleString())
   })
   $.getJSON(HOMEPAGE_DATA_URL, function(json) {
     addObservations(json.observations)
@@ -46,7 +47,6 @@ function addObservations(observations) {
           )
         )
       )
-      // $('#herobox').clone().attr('id', '').removeClass('fade')
     )
     if (i == 0) {
       item.addClass('active')
@@ -89,3 +89,22 @@ function addTestimonials(testimonials) {
     $('#who .carousel-indicators').append(indicator, ' ')
   }
 }
+
+$('#hero-carousel').on('slide.bs.carousel', function (e) {
+  var item = $(e.relatedTarget),
+      fadeInSelector = '#connect-container'
+  switch (item.index()) {
+    case 1:
+      fadeInSelector = '#obs-stats-container'
+      break
+    case 2:
+      fadeInSelector = '#species-stats-container'
+      break
+    case 3:
+      fadeInSelector = '#people-stats-container'
+      break
+  }
+  $('.herobox-container:visible').fadeOut(function() {
+    $(fadeInSelector).fadeIn()
+  })
+})
