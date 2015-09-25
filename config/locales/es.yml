@@ -751,6 +751,7 @@ es:
   committed: Guardar
   committing: Guardando...
   community_id: 'Identificación de la <strong>comunidad</strong>:'
+  community_id_at_species_or_lower?: ¿La ID de la Comunidad es como especie o inferior?
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: ¿Identificador reconocido por la Comunidad?
   compare_with: Comparar con
@@ -863,6 +864,7 @@ es:
   critically_endangered: en peligro crítico
   css_description: Esto se incluirá después de todas las otras css en la página.
   csv: CSV
+  csv_file: Archivo CSV
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera
     de datos
   curate_observations: Curar observaciones
@@ -1008,6 +1010,7 @@ es:
     <a href="%{url}">Descarga plantilla</a> para usar en el
     <a href="/observations/import#csv_import">cargador masivo</a>
   download_csv: Descargar CSV
+  download_csv_template: Descargar plantilla CSV
   download_kml: Descargar KML
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
   draft: borrador
@@ -1429,6 +1432,7 @@ es:
   import_observations_from_a_photo: Importar observaciones de un proveedor de fotos
     o de un archivo en su computador.
   import_photos: Importar fotos
+  import_tags_from_csv: Importar etiquetas de CSV
   importing: Importando...
   in: en
   in_: de
@@ -1842,8 +1846,8 @@ es:
   most_observations: Con más observaciones
   most_species: La mayoría de las especies
   most_observed_species: Especies más observadas
-  multiple_taxa_for_taxon_change: Más de una especie o grupo (entrada de datos para intercambiar/mezclar,
-    salida de datos para separar)
+  multiple_taxa_for_taxon_change: Más de una especie o grupo (entrada de datos para
+    intercambiar/mezclar, salida de datos para separar)
   must_be_observed_in: deben ser observaciones en
   must_be_less_than_x_MB: Debe ser menor que %{x} MB
   must_have_observation_field: debe completar el campo '%{operand}' en la observación
@@ -1881,10 +1885,10 @@ es:
   near_threatened: casi amenazado
   nearby_observations: Observaciones cercanas
   need_id_help?: ¿Necesita ayuda?
-  needs_id: necesidades ID
-  Needs_ID!: ¡Necesidades ID!
-  needs_id_expandable_html: <span class='full'>Necesidades </span>ID
-  needs_to_be_identified: Necesita ser identificado
+  needs_id: necesita identificador
+  Needs_ID!: ¡Necesita identificador!
+  needs_id_expandable_html: <span class='full'>Necesita </span>identificador
+  needs_to_be_identified: Necesita identificarse
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de verificación
@@ -2209,6 +2213,8 @@ es:
     subespecies, variedades, etc (de este grupo o especie).
   only_show_taxa_fom_this_list: Mostrar sólo los taxones de esta lista
   only_showing_taxa_from: mostrando taxones de esta lista solamente
+  only_site_curators_can_turn_on_observation_aggregation: Solo los curadores del sitio
+    pueden activar la agregación de proyectos
   only_species: solamente especies
   only_species_and_subspecies: solamente especies y subespecies/variedades
   only_the_author_of_this_post_can_do_that: Solo el autor de esta nota puede hacer
@@ -2297,6 +2303,7 @@ es:
     de un sitio externo o %{site_name} no tiene permisos para mostrarla.
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_integration: Integración de fotos
+  photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
   photos: Fotos
   photos_or_sounds?: ¿Fotos o sonidos?
@@ -2332,6 +2339,8 @@ es:
       country: país
       County: Condado
       county: condado
+      District: Distrito
+      district: Distrito
       Drainage: Drenaje
       drainage: drenaje
       Estate: Inmuebles
@@ -2696,6 +2705,8 @@ es:
   resolved_by: Resuelto por
   resolver_said_x_html: <span class="meta">%{resolver} dijo:</span> "%{x}"
   results: resultados
+  review_verb: Revisar
+  reviewed: Revisada
   roadmap: camino
   role: Permiso
   rotate_left: Girar a la izquierda
@@ -2861,7 +2872,7 @@ es:
     de la especie o grupo: ''%{taxon_name}''!'
   something_went_wrong_updating: ¡Algo salió mal al actualizar su lista!
   somewhere_on_earth: en algún lugar de la Tierra
-  somewhere: En algun lugar...
+  somewhere: (En algún lugar...)
   sorry_flickr_isnt_responding_at_the_moment: Lo sentimos, Flickr de momento no esta
     respondiendo.
   sorry_how_about_we_try_repeat: ¡Lo sentimos ¿Por qué no tratamos de repetir su búsqueda
@@ -2985,6 +2996,7 @@ es:
   stats_title: Estadísticas del sitio
   status: Estado
   still_no_luck?: ¿Sigues sin encontrarlo?
+  still_needs_id?: ¿Todavía necesita identificador?
   still_working_on_classifying_taxon: Todavía trabajamos en la clasificación de este
     taxón. Vuelva a revisar más adelante.
   stop_editing: Detener modificación
@@ -3232,6 +3244,7 @@ es:
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con
     base en su
   this_is_a_life_list_of: Esta es una lista de vida de
+  this_is_a_life_list_from_place_html: Esta es la lista de vida de %{place}
   this_is_a_life_list_of_taxon_in_place: Esta es una lista de vida de %{taxon} en
     %{place}
   this_is_more_convenient_way_find_parent: Esta es una forma más conveniente de encontrar
@@ -3366,6 +3379,7 @@ es:
   updating: Actualizando...
   unprocessable: No se puede procesar
   unpublish: Despublicar
+  unreview: Sin revisar
   unsubscribe: Quitar suscripción
   unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: Reactivar usuario
@@ -3404,6 +3418,8 @@ es:
     web fuente
   US_states: Estados Unidos
   usage_stats: Estadísticas de uso
+  use_name_as_a_placeholder: Usa <span class='ac-placeholder'>"%{name}"</span> como
+    un marcador de posición
   use_this_form_to_create_a_new: |-
     Usa esta forma para crear un cambio taxonómico en el borrador, describiendo si es para separar, juntar o es un cambio
     en el grupo o especie, para que despues sea guardado.
