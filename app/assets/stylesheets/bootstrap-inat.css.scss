@@ -1,3 +1,5 @@
+$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
+
 @font-face { 
   font-family: Whitney; 
   src: asset-url('Whitney-Light-Pro.otf');
@@ -24,12 +26,12 @@ body .bootstrap {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
-  font-family: Whitney;
+  font-family: $font-stack;
 }
 
 .bootstrap .readable, .bootstrap p { 
   font-size: 100%;
-  font-family: Whitney;
+  font-family: $font-stack;
 }
 
 .bootstrap a:hover { text-decoration: none; opacity: 0.8;}

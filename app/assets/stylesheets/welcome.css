@@ -45,9 +45,10 @@
   left: 0;
   width: 100%;
 }
-.herobox { 
-  background-color: #f27134;
-}
+.herobox { background-color: #f27134; }
+#obs-stats-container .herobox { background-color: #5D5ACC; }
+#species-stats-container .herobox { background-color: #B72EA7; }
+#people-stats-container .herobox { background-color: #E2A203; }
 .bootstrap .homesection .herobox h1 {
   font-size: 32px;
   margin-bottom: 10px;
@@ -82,14 +83,14 @@
 .morelink {
   font-size: 130%;
   display: inline-block;
-  border-top: 1px solid #D44410;
+  border-top: 1px solid rgba(0,0,0,0.2);
   padding: 20px;
   flex-grow: 1;
   font-weight: bold;
   text-transform: uppercase;
 }
 .morelink:first-child {
-  border-right: 1px solid #D44410;
+  border-right: 1px solid rgba(0,0,0,0.2);
 }
 .herofooter { 
   background: rgba(0,0,0,0.5);
