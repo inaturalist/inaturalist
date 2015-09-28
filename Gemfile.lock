@@ -109,6 +109,15 @@ GIT
       right_http_connection (>= 1.2.5)
 
 GIT
+  remote: git@github.com:kueda/bugguide.git
+  revision: feb17c346f014c09b1b5b5f585dd4266c2d1ac72
+  specs:
+    bugguide (0.1.0)
+      activesupport
+      commander
+      nokogiri
+
+GIT
   remote: https://github.com/kueda/mobile-fu.git
   revision: 0c8b184cbef00c17e47e0c7947575d3b95cdc66d
   specs:
@@ -238,6 +247,8 @@ GEM
     coderay (1.1.0)
     colorize (0.7.5)
     columnize (0.9.0)
+    commander (4.3.5)
+      highline (~> 1.7.2)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     dalli (2.7.2)
@@ -316,6 +327,7 @@ GEM
     haml (4.0.6)
       tilt
     hashie (3.3.2)
+    highline (1.7.7)
     hike (1.2.3)
     hoe (3.13.0)
       rake (>= 0.8, < 11.0)
@@ -620,6 +632,7 @@ DEPENDENCIES
   binding_of_caller
   biodiversity
   bluecloth
+  bugguide!
   byebug
   capistrano (~> 3.3)
   capistrano-passenger (~> 0.0)
