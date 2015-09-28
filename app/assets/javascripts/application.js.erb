@@ -1373,15 +1373,10 @@ $.fn.textcompleteUsers = function( ) {
       } else if( matches = html.match( / ([^ ]+)<\/div>/ )) {
         login = matches[1];
       }
-      setTimeout(function(){ field.data("highlighter").highlight() }, 10);
+      // setTimeout(function(){ field.data("highlighter").highlight() }, 10);
       return "@" + login + " ";
     }
-  }]).highlightTextarea({
-    words: [{
-      color: "#ffee91",
-      words: ["\\\B(@[\\\w][\\\w\\\-_]*)"]
-    }]
-  });
+  }]);
 }
 
 $.fn.boldId = function() {
