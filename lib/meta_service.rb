@@ -98,10 +98,10 @@ class MetaService
       end
       raise Timeout::Error
     end
-    if api_endpoint_cache && !response.body.blank?
+    if api_endpoint_cache
       api_endpoint_cache.update_attributes(
-        request_completed_at: Time.now, 
-        success: true, 
+        request_completed_at: Time.now,
+        success: !response.body.blank?,
         response: response.body
       )
     end
