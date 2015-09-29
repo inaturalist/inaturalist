@@ -27,9 +27,8 @@
             .herobox
               .herotext
                 .staticon
-                %h1 Connect with Nature
-                %p
-                  Explore and share your observations from the natural world.
+                %h1=t 'views.welcome.index.connect_with_nature'
+                %p=t 'views.welcome.index.explore_and_share'
               .herolinks
                 = link_to signup_path, :class => "morelink signuplink" do
                   = t(:sign_up)
@@ -106,7 +105,7 @@
   #how.homesection
     .row
       .col-xs-12
-        %h1 How It Works
+        %h1=t 'views.welcome.index.how_it_works'
     .row
       .col-xs-12
         .container.container-fixed
@@ -120,13 +119,13 @@
           .row.txtrow
             #how-record.col-xs-4
               %label 1
-              %p Record your observations
+              %p=t 'views.welcome.index.record_your_observations'
             #how-share.col-xs-4
               %label 2
-              %p Share with fellow naturalists
+              %p=t 'views.welcome.index.share_with_fellow_naturalists'
             #how-discuss.col-xs-4
               %label 3
-              %p Discuss your findings
+              %p=t 'views.welcome.index.discuss_your_findings'
   #science.homesection.fixed-on-fluid
     .row.backgroundrow
       .col-xs-6.bleedcol.col-xs-offset-6
@@ -135,18 +134,14 @@
       .container.container-fixed
         .row
           .col-xs-6
-            %h1 Contribute to Science
+            %h1=t 'views.welcome.index.contribute_to_science'
             %p
-              %span
-                Every observation can contribute to biodiversity science, from the rarest butterfly to the most common backyard weed. 
-                We share your findings with scientific data repositories like the
-                %a{href: 'http://gbif.org'} Global Biodiversity Information Facility
-                to help scientists find and use your data. All you have to do is observe.
+              %span=t 'views.welcome.index.science_desc_html'
 
   #value.homesection
     .row
       .col-xs-12
-        %h1 Nature At Your Fingertips
+        %h1=t 'views.welcome.index.nature_at_your_fingertips'
     .row
       .col-xs-12
         .container.container-fixed
@@ -154,39 +149,38 @@
             .col-xs-2
               %embed{src: image_path("homepage-keep-track.svg")}
             .col-xs-4.row
-              %h2 Keep Track
-              %p Record your encounters with other organisms and maintain life lists, all in the cloud.
+              %h2=t 'views.welcome.index.keep_track'
+              %p=t 'views.welcome.index.record_your_encounters'
             .col-xs-2.second-col
               %embed{src: image_path("homepage-bee.svg")}
             .col-xs-4.row
-              %h2 Create Useful Data
-              %p Help scientists and resource managers understand when and where organisms occur.
+              %h2=t 'views.welcome.index.create_useful_data'
+              %p=t 'views.welcome.index.help_scientists'
           .row
             .col-xs-2
               %embed{src: image_path("homepage-crowdsource.svg")}
             .col-xs-4.row
-              %h2 Crowdsource Species Identification
-              %p Connect with experts who can identify the organisms you observe.
+              %h2=t 'views.welcome.index.crowdsource_species_dentification'
+              %p=t 'views.welcome.index.connect_with_experts'
             .col-xs-2.second-col
               %embed{src: image_path("homepage-nerd-cowboy.svg")}
             .col-xs-4.row
-              %h2 Become a Citizen Scientist
-              %p Find a project with a mission that interests you, or start your own.
+              %h2=t 'views.welcome.index.become_a_citizen_scientist'
+              %p=t 'views.welcome.index.find_a_project'
           .row
             .col-xs-2
               %embed{src: image_path("homepage-owl.svg")}
             .col-xs-4.row
-              %h2 Learn About Nature
-              %p Build your knowledge by talking with other naturalists and helping others.
+              %h2=t 'views.welcome.index.learn_about_nature'
+              %p=t 'views.welcome.index.build_your_knowledge'
             .col-xs-2.second-col
               %embed{src: image_path("homepage-megaphone.svg")}
             .col-xs-4.row
-              %h2 Run a Bioblitz
-              %p Hold an event where people try to find as many species as possible.
+              %h2=t 'views.welcome.index.run_a_bioblitz'
+              %p=t 'views.welcome.index.hold_an_event'
   #mobile.homesection.fixed-on-fluid
     .row.backgroundrow
       .col-xs-6.imgcol
-        / %embed{src: image_path("homepage-devices.svg")}
         &nbsp;
       .col.xs-6
         &nbsp;
@@ -196,9 +190,8 @@
           .col-xs-6
             %embed{src: image_path("homepage-devices.svg")}
           .col-xs-6.textcol
-            %h1 Works On All Your Devices
-            %p
-              Install our mobile apps so you can always observe, even without cell reception or wifi.
+            %h1=t 'views.welcome.index.works_on_all_your_devices'
+            %p=t 'views.welcome.index.install_our_mobile_apps'
             %p
               = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
                 = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
@@ -207,7 +200,7 @@
   #who.homesection
     .row
       .col-xs-12
-        %h1 Who Uses iNaturalist?
+        %h1=t 'views.welcome.index.who_uses_site_name', site_name: SITE_NAME
         .container.container-fixed
           .row
             .col-xs-12
@@ -219,7 +212,6 @@
       .col-xs-12
         .container.container-fixed
           .row
-            .col-xs-8.bigpadded
-              What are you waiting for?
+            .col-xs-8.bigpadded=t 'views.welcome.index.what_are_you_waiting_for'
             .col-xs-3.btncol
-              = link_to "Join today", signup_path, :class => "btn btn-default"
+              = link_to t('views.welcome.index.join_today'), signup_path, :class => "btn btn-default"
