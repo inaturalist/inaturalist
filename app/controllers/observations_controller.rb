@@ -969,10 +969,17 @@ class ObservationsController < ApplicationController
       return redirect_to :action => "import"
     end
 
+    unique_hash = {
+      :class => 'BulkObservationFile',
+      :user_id => current_user.id,
+      :filename => params[:upload]['datafile'].original_filename,
+      :project_id => params[:upload][:project_id]
+    }
+
     # Copy to a temp directory
     path = private_page_cache_path(File.join(
       "bulk_observation_files", 
-      "#{current_user.login}-#{Time.now.to_i}-#{params[:upload]['datafile'].original_filename}"
+      "#{unique_hash.to_s.parameterize}-#{Time.now}.csv"
     ))
     FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
@@ -986,9 +993,8 @@ class ObservationsController < ApplicationController
     )
     Delayed::Job.enqueue(
       bof, 
-      queue: "slow",
       priority: USER_PRIORITY,
-      unique_hash: bof.generate_unique_hash
+      unique_hash: unique_hash
     )
 
     # Notify the user that it's getting processed and return them to the upload screen.

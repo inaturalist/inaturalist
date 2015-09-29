@@ -468,3 +468,45 @@ describe ObservationsController, "new_batch" do
     end
   end
 end
+
+describe ObservationsController, "new_bulk_csv" do
+  let(:work_path) { File.join(Dir::tmpdir, "new_bulk_csv-#{Time.now.to_i}.csv") }
+  let(:headers) do
+    %w(taxon_name date_observed description place_name latitude longitude tags geoprivacy)
+  end
+  before do
+    sign_in User.make!
+  end
+  it "should not allow you to enqueue the same file twice" do
+    Delayed::Job.delete_all
+    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    expect( response ).to be_redirect
+    expect( Delayed::Job.count ).to eq 1
+    sleep(2)
+    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    expect( Delayed::Job.count ).to eq 1
+  end
+
+  it "should allow you to enqueue different files" do
+    Delayed::Job.delete_all
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        '37.7693',
+        '-122.46565',
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    expect( response ).to be_redirect
+    expect( Delayed::Job.count ).to eq 1
+    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    expect( Delayed::Job.count ).to eq 2
+  end
+end

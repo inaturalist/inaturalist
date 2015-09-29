@@ -223,8 +223,4 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     1
   end
 
-  def generate_unique_hash
-    [@user.try(:login), @observation_file, @project.try(:id)].compact.join('-')
-  end
-
 end
