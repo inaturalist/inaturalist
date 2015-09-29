@@ -35,7 +35,7 @@ module ActiveRecord
               AND resolved = false)").
             where("f.id IS NULL")
           if column_names.include?('user_id')
-            s = s.joins(:user).where("users.spammer = ?", false)
+            s = s.joins(:user).where("(users.spammer = ? OR users.spammer IS NULL)", false)
           end
           s
         }
