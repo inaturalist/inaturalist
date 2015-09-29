@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Cgalindo
 # Author: Macofe
+# Author: Sator
 # Author: Subi
 ---
 eu:
@@ -715,6 +716,7 @@ eu:
   critically_endangered: arrisku larrian
   css_description: Hori orrialdeko gainerako css guztien ondoren gehituko da.
   csv: CSV
+  csv_file: CSV fitxategia
   csv_should_not_contain_a_header_row: CSVk ez luke datuen goibururik izan behar
   curate_observations: Oharrak administratu
   curate_taxa: Taxonak administratu
@@ -1502,8 +1504,8 @@ eu:
   most: Gehiago
   most_agree: Gehiengoak babesten du
   most_disagree: Gehiengoak ez du babesten
-  multiple_taxa_for_taxon_change: Espezie edo talde bat baino gehiago (datu-sarrera trukatzeko/nahasteko,
-    datu-irteera bereizteko)
+  multiple_taxa_for_taxon_change: Espezie edo talde bat baino gehiago (datu-sarrera
+    trukatzeko/nahasteko, datu-irteera bereizteko)
   must_be_observed_in: 'hemengo behaketak izan behar dute:'
   must_have_observation_field: '''%{operand}'' eremua bete behar duzu oharrean'
   n_ago: '%{n} egiten du'

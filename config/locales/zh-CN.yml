@@ -146,6 +146,7 @@ zh-CN:
   add_new_taxon_name: 添加一个新分类名称
   add_notes_about_this_taxon: 添加有关在此地点的此分类单元的注释，例如它何地何时发生。
   add_obs_from_a_link: 从列表添加观察：%{link}
+  add_obs_from_a_list: 从列表中添加观察
   add_observation: 添加观察
   add_observations!: 添加观察！
   add_observations: 添加观察
@@ -284,6 +285,7 @@ zh-CN:
   announcements: 公告
   any: 任何
   apply_to_selected: 申请选择
+  apply_captive_cultivated: 应用俘虏 / 耕作
   apply_fields: 申请字段
   apply_geoprivacy: 应用geoprivacy
   apply_darr: 申请 &darr;
@@ -565,6 +567,7 @@ zh-CN:
   creative_commons_unless_otherwise_noted: 知识共享，除非另有声明。
   css_description: 这将在页面的所有其他CSS都包含后才包含。
   csv: CSV
+  csv_file: CSV文件
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
   curate_users: 助理用户
   curated: 当馆长
@@ -682,6 +685,7 @@ zh-CN:
   download: 下载
   download_bulk_import_template_html: <a href="%{url}">下载模板</a>用于<a href="/observations/import#csv_import">大量上传</a>
   download_csv: 下载CSV
+  download_csv_template: 下载CSV模板
   download_kml: 下载KML
   draft: 草稿
   draft_: 草稿
@@ -893,6 +897,7 @@ zh-CN:
   id_please!: ID请！
   id_please: ID请
   id_please_expandable_html: ID<span class='full'>请</span>！
+  identify: 鉴定
   identification: 鉴定
   identification_deleted: 身份证明已删除。
   identification_saved: 身份证明已保存！
@@ -912,11 +917,13 @@ zh-CN:
   import_from_other_photo_sites: 从其他照片网站导入
   import_from_yahoo: 从Yahoo导入
   import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
+  import_tags_from_csv: 从CSV导入标签
   in: 于
   in_: 于
   inaturalist_network_affiliation: iNaturalist网络关系
   including: 包括
   in_the_past_week: 在上周
+  inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
   inat_user_profile: '%{site_name}：%{user}的详细资料'
   inat_will_be_back_on: '%{site_name} 将会回到它的脚/翅膀/鱼鳍/触手/伪足上'
   inaturalist_is_an_online_community: '%{site_name}是一个在线的自然法学派社群！通过添加您的照片，您可以帮助研究员了解有关'
@@ -937,12 +944,14 @@ zh-CN:
   last_confirmed_observation: 最近确认的观察
   last_inat_observation: 最近 %{site_name} 观察
   last_observation: 最近观察
+  lat: Lat
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
   learn_more_raquo: 了解更多 &raquo;
   leave_a_comment: 留下评论
   leave_this_project: 离开这个项目
+  lexicon: 词典
   lexicons:
     scientific_names: 学名
     afrikaans: 南非语
@@ -979,6 +988,7 @@ zh-CN:
     tokelauan: 托克劳语
     turkish: 土耳其语
     waray_waray: 瓦瑞瓦瑞语
+  less: 更少
   life_list: '%{user}的生命清单'
   link: 链接
   linked_facebook: 您的%{site_name}账户目前已链接到您的Facebook账户。
@@ -996,6 +1006,7 @@ zh-CN:
     title:
       current_user: 您的列表
       login: 由 %{login} 列举
+  load: 加载
   loading_images: 正在加载图片...
   loading_map: 正在加载地图...
   loading_more_photos: 正在加载更多照片……
@@ -1024,12 +1035,14 @@ zh-CN:
   login_slash_username: 登录 / 用户名
   logo:
     none: 无
+  long: Lon
   longitude_in_decimal: 十进制角度经度，例如：-122.123
   longitude_slash_x_coord_slash_easting: 精度/x轴坐标/东向
   look_up_name: 查阅名称
   lookup: 查找
   lookup_user_rarr: 查找用户 &rarr;
   made_a: 做一个
+  map_legend: 地图图例
   maps:
     overlays:
       all_observations: 所有观察
@@ -1042,7 +1055,10 @@ zh-CN:
       checklist_places: 检查表地点
       checklist_places_description: 此分类单元列出的地点
       range: 范围
+  mark_as_reviewed: 标记为已复核
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist网络</a>的成员
+  message: 消息
+  messages: 消息
   months_ago: '%{text}前'
   more: 更多
   more_fields: 更多字段
@@ -1055,6 +1071,10 @@ zh-CN:
   name_llaves: '[名称]'
   name_provider: 名称提供方
   names: 名称
+  needs_id: 需要ID
+  Needs_ID!: 需要ID！
+  needs_id_expandable_html: <span class='full'>需要</span>ID
+  needs_to_be_identified: 需要被鉴定
   new_flag_for: 新标记用于
   new_members: 新成员
   new_post: 新贴子
@@ -1082,6 +1102,7 @@ zh-CN:
   no_range_data_available: 没有范围数据可用。
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
+  no_subject_parens: （无主题）
   no_x_this_y: 不是%{x}这个%{y}
   noble_curators: '%{site}的博物馆长'
   none: 无
@@ -1124,11 +1145,13 @@ zh-CN:
       without_observation: 添加了一个<strong>ID</strong>
     post: 制作了一个%{post_link}
     comment:
+      with_by: 由 %{by_link} 评论于 @vow_or_con{vow:an|a} %{comment_subject_link}
       without_by: 评论于@vow_or_con{vow:an|a} %{comment_subject_link}
   photo: 照片
   photo_attribution: 照片 %{attribution}
   photo_by_id_attribution: 照片 %{id}，%{attribution}
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
+  photo_type: 照片类型
   photos: 照片
   photos_size:
     small: 小
@@ -1147,6 +1170,8 @@ zh-CN:
       colloquial: 白话/俗话
       Country: 国家
       country: 国家
+      District: 区
+      district: 区
       drainage: 排水
       Estate: 房地产
       intersection: 交集
@@ -1161,6 +1186,8 @@ zh-CN:
       Suburb: 郊区
       suburb: 郊区
       supername: 超类名称
+      Time_Zone: 时区
+      time_zone: 时区
   place_name: 地名
   place_type_name: 地点类型名称
   places_name:
@@ -1270,6 +1297,8 @@ zh-CN:
   reset_your_password: 重置您的密码
   resolver_said_x_html: <span class="meta">%{resolver}说：</span>“%{x}”
   results: 结果
+  review_verb: 复核
+  reviewed: 已复核
   role: 角色
   rotate_left: 向左旋转
   rotate_right: 向右旋转
@@ -1381,11 +1410,14 @@ zh-CN:
   stats_title: 网站统计
   status: 状态
   still_no_luck?: 仍然不高兴？
+  still_needs_id?: 仍然需要ID？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
   stop_editing: 停止编辑
   stop_updating_position: 停止更新位置
   stuff_just_added: 您刚刚添加的东西
-  subject_resolved_noun_html: '%{subject}解决了%{noun}'
+  subject_resolved_noun_html: '%{subject} 解决了 %{noun}'
+  subject_affecting_stuff_html: '%{subject} 正在影响 %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} 承诺 %{thing} 做 %{stuff}'
   submit: 提交
   submit_comment: 提交评论
   submitted: 已提交
@@ -1500,10 +1532,11 @@ zh-CN:
   unknown: 未知
   unknown_rank: （未知排名）
   unlink_your_picasa_account: 取消链接您的Picasa账户
-  updates_notification_email_subject: '%{prefix}新的更新%{date}'
+  updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updating: 正在更新...
   unprocessable: 不可加工
   unpublish: 取消发布
+  unreview: 未复核
   unsubscribe: 取消订阅
   unsubscribe_from_this: 退订此
   update: 更新
@@ -1521,6 +1554,7 @@ zh-CN:
   url_identifier_of_a_project_derived_from: 由同一外部资源衍生出来的URL/项目标识符
   US_states: 美国州
   usage_stats: 用法状态
+  use_name_as_a_placeholder: 使用<span class='ac-placeholder'>"%{name}"</span>作为一个占位符
   use_this_form_to_create_a_new: 使用此表单以创建一个新的草稿分类学更改，它正在描述一次在稍后委托某人在活跃的分类中进行拆分、合并或交换的提议。
   use_unique_file_names_for_separate_uploads: 为各自上传使用唯一的文件名
   user: 用户
