@@ -12,7 +12,7 @@
   = javascript_include_tag :welcome
 .container-fluid
   #hero.homesection.row
-    #hero-carousel.carousel.slide{data: {ride: :carousel}}
+    #hero-carousel.carousel.slide{data: {ride: :carousel, interval: 'false'}}
       .carousel-inner{role: "listbox"}
       %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}
         %span.fa.fa-chevron-left{"aria-hidden" => "true"}
@@ -23,8 +23,7 @@
     #connect-container.herobox-container
       .container.container-fixed
         .row
-          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
-          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4.col-xs-offset-6.col-sm-offset-6.col-md-offset-6.col-lg-offset-7
             .herobox
               .herotext
                 .staticon
@@ -189,7 +188,7 @@
     .col-xs-6.bigpadded
       %h1 Works On All Your Devices
       %p
-        Install our mobile apps so you can always observe, even without cell reception.
+        Install our mobile apps so you can always observe, even without cell reception or wifi.
       %p
         = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
           = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
@@ -202,7 +201,7 @@
         .container.container-fixed
           .row
             .col-xs-12
-              #who-carousel.carousel.slide{data: {ride: :carousel}}
+              #who-carousel.carousel.slide{data: {ride: :carousel, interval: 6000}}
                 %ol.carousel-indicators
                 .carousel-inner{role: "listbox"}
   #call

@@ -18,7 +18,7 @@ function addObservations(observations) {
   for (var i = 0; i < observations.length; i++) {
     var o = observations[i]
     var item = $('<div class="item">').append(
-      $('<div class="heroimage">').css('backgroundImage', 'url('+o.image_url+')').html(
+      $('<a class="heroimage">').attr('href', '/observations/'+o.id).css('backgroundImage', 'url('+o.image_url+')').html(
         '........... ........... ........... ........... ........... ........... ' +
         '........... ........... ........... ........... ........... ........... ' +
         '........... ........... ........... ........... ........... ........... ' +
@@ -36,7 +36,6 @@ function addObservations(observations) {
               $('<a class="obstext">').attr('href', '/observations/'+o.id).append(
                 $('<span class="username">').html(o.user.name),
                 ' ',
-                $('<i class="login">').html(' (' + o.user.login + ')'),
                 $('<span class="taxonname">').html(o.taxon.default_name.name),
                 ' ',
                 I18n.t('from').toLowerCase(),
@@ -48,6 +47,7 @@ function addObservations(observations) {
         )
       )
     )
+    item.data('observation', o)
     if (i == 0) {
       item.addClass('active')
       $('#hero .item').removeClass('active')
@@ -69,7 +69,8 @@ function addTestimonials(testimonials) {
           $('<a class="name">').attr('href', t.url).html(t.name),
           $('<div class="role">').html(t.role),
           $('<div class="location">').append(
-            $('<i class="fa fa-map-marker></i>'),
+            $('<i class="fa fa-map-marker"></i>'),
+            ' ',
             t.location
           )
         ),
@@ -105,6 +106,9 @@ $('#hero-carousel').on('slide.bs.carousel', function (e) {
       break
   }
   $('.herobox-container:visible').fadeOut(function() {
+    if (item.data('observation') && item.data('observation').background_color) {
+      $('.herobox', fadeInSelector).css('backgroundColor', item.data('observation').background_color)
+    }
     $(fadeInSelector).fadeIn()
   })
 })

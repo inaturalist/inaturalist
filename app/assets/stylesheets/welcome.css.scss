@@ -31,6 +31,7 @@
 }
 #hero, #hero a {color: white;}
 #hero .heroimage {
+  display: block;
   width: 100%; 
   width: 100%;
   height: 450px;
@@ -45,10 +46,10 @@
   left: 0;
   width: 100%;
 }
+.herobox-container,
+.herobox-container .container,
+.herobox-container .container > .row { height: 0;}
 .herobox { background-color: #f27134; }
-#obs-stats-container .herobox { background-color: #5D5ACC; }
-#species-stats-container .herobox { background-color: #B72EA7; }
-#people-stats-container .herobox { background-color: #E2A203; }
 .bootstrap .homesection .herobox h1 {
   font-size: 32px;
   margin-bottom: 10px;
@@ -218,10 +219,12 @@
 #who .role {
   color: #575757;
   line-height: 26px;
+  font-weight: 500;
 }
 #who .location {
   color: #727272;
   line-height: 26px;
+  font-weight: 500;
 }
 #who .item {padding-bottom: 20px; height: 430px;}
 #call .row {
@@ -242,29 +245,28 @@
   font-size: 30px;
   width: 100%;
   text-transform: uppercase;
+  padding-top: 9px;
+  padding-bottom: 9px;
 }
 .bootstrap .carousel-control { width: 5%; z-index: 1; }
-
-/*#stats .statcol {display: block;}
-#stats .obsstats { background-color: #6fa501; }
-#stats .speciesstats { background-color: #8dbb2d; }
-#stats .peoplestats { background-color: #83b51d; }
-
-#stats {
-  font-size: 150%;
-  line-height: 1.2em;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: normal;
-  letter-spacing: 0.05em;
-}
-#stats a { display: block; }
-#stats embed { width: 120px; height: 120px; margin: 100px 0 40px; }
-#stats .stat {font-size: 200%; margin-bottom: 20px; }*/
-
 .bootstrap .carousel-control.left,
 .bootstrap .carousel-control.right { 
   font-size: 200%;
   background: none;
   margin-top: -1em;
+}
+.bootstrap .carousel-indicators li {
+  border: 2px solid #74ac00;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin: 0 5px;
+}
+.bootstrap .carousel-indicators .active {
+  background-color: #74ac00;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin: 0 5px;
 }
