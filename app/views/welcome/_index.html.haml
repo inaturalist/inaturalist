@@ -12,7 +12,7 @@
   = javascript_include_tag :welcome
 .container-fluid
   #hero.homesection.row
-    #hero-carousel.carousel.slide{data: {ride: :carousel, interval: 'false'}}
+    #hero-carousel.carousel.slide{data: {ride: :carousel}}
       .carousel-inner{role: "listbox"}
       %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}
         %span.fa.fa-chevron-left{"aria-hidden" => "true"}
@@ -48,7 +48,8 @@
                   .col-xs-4
                     %embed{src: image_path('homepage-binocs.svg')}
                   .col-xs-8.row
-                    %h1 ???
+                    %h1
+                      %i.fa.fa-refresh.fa-spin
                     %p
                       =t 'views.welcome.index.observations_to_date'
               .herolinks
@@ -69,7 +70,8 @@
                   .col-xs-4
                     %embed{src: image_path('homepage-tree.svg')}
                   .col-xs-8.row
-                    %h1 ???
+                    %h1
+                      %i.fa.fa-refresh.fa-spin
                     %p
                       =t 'views.welcome.index.species_observed'
               .herolinks
@@ -90,7 +92,8 @@
                   .col-xs-4
                     %embed{src: image_path('homepage-people.svg')}
                   .col-xs-8.row
-                    %h1 ???
+                    %h1
+                      %i.fa.fa-refresh.fa-spin
                     %p
                       =t 'views.welcome.index.people_signed_up'
               .herolinks
@@ -124,23 +127,21 @@
             #how-discuss.col-xs-4
               %label 3
               %p Discuss your findings
-  #science.homesection
-    .row
-      .col-xs-6.bigpadded
-        .container.container-fixed
-          .row
-            .col-xs-12
-              %h1 Contribute to Science
-              %p
-                %span
-                  Every observation can contribute to biodiversity science, from the rarest butterfly to the most common backyard weed. 
-                  We share your findings with scientific data repositories
-                  %span.hidden-sm.hidden-xs
-                    like the 
-                    %a{href: 'http://gbif.org/'} Global Biodiversity Information Facility
-                  to help scientists find and use your data. All you have to do is observe.
-      .col-xs-6.bleedcol
+  #science.homesection.fixed-on-fluid
+    .row.backgroundrow
+      .col-xs-6.bleedcol.col-xs-offset-6
         .img
+    .row.contentrow
+      .container.container-fixed
+        .row
+          .col-xs-6
+            %h1 Contribute to Science
+            %p
+              %span
+                Every observation can contribute to biodiversity science, from the rarest butterfly to the most common backyard weed. 
+                We share your findings with scientific data repositories like the
+                %a{href: 'http://gbif.org'} Global Biodiversity Information Facility
+                to help scientists find and use your data. All you have to do is observe.
 
   #value.homesection
     .row
@@ -182,18 +183,27 @@
             .col-xs-4.row
               %h2 Run a Bioblitz
               %p Hold an event where people try to find as many species as possible.
-  #mobile.homesection.row
-    .col-xs-6.bleedcol
-      %embed{src: image_path("homepage-devices.svg")}
-    .col-xs-6.bigpadded
-      %h1 Works On All Your Devices
-      %p
-        Install our mobile apps so you can always observe, even without cell reception or wifi.
-      %p
-        = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
-          = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
-        = link_to "https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8" do
-          = image_tag "http://static.inaturalist.org/wiki_page_attachments/235-original.png", alt: "iPhone app in the Apple App Store" 
+  #mobile.homesection.fixed-on-fluid
+    .row.backgroundrow
+      .col-xs-6.imgcol
+        / %embed{src: image_path("homepage-devices.svg")}
+        &nbsp;
+      .col.xs-6
+        &nbsp;
+    .row.contentrow
+      .container.container-fixed
+        .row
+          .col-xs-6
+            %embed{src: image_path("homepage-devices.svg")}
+          .col-xs-6.textcol
+            %h1 Works On All Your Devices
+            %p
+              Install our mobile apps so you can always observe, even without cell reception or wifi.
+            %p
+              = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
+                = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
+              = link_to "https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8" do
+                = image_tag "http://static.inaturalist.org/wiki_page_attachments/235-original.png", alt: "iPhone app in the Apple App Store" 
   #who.homesection
     .row
       .col-xs-12

@@ -132,7 +132,6 @@
   font-weight: normal;
 }
 .container-fixed { margin: 0 auto; min-width: 980px;}
-#science .container-fixed {min-width: auto; max-width: 530px; width: auto;}
 #how [class*='col-'] {
   text-align: center;
   white-space: nowrap;
@@ -168,9 +167,8 @@
   position: relative;
 }
 #how p { font-size: 24px; }
-#science > .row {
+#science .backgroundrow {
   background-color: black;
-  color: white;
 }
 #science .bigpadded,
 #science .bleedcol .img {
@@ -181,6 +179,18 @@
   background: image-url('homepage-science.jpg') 50% 50%; 
   background-size: cover;
 }
+#science { color: white; }
+.fixed-on-fluid {
+  position: relative;
+}
+.fixed-on-fluid .contentrow {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+}
+#science .contentrow { top: 60px; }
+#science .contentrow .col-xs-6 { padding-right: 45px; }
 #value > .row {
   background-color: #EAF3D8;
 }
@@ -194,12 +204,10 @@
 #value embed { width: 99px; max-height: 80px; margin: 0 auto; display:block;}
 #value .media-left { padding-right: 30px;}
 #value .second-col { margin-left: 15px; }
-#mobile { background-color: #74ac00; }
-#mobile .bleedcol { padding: 30px; text-align: center;}
-#mobile .bleedcol embed { margin: 0 auto; max-height: 250px; width: 100%;}
-#mobile .bigpadded { background-color: white; }
-#mobile .bigpadded img {margin-right: 30px;}
-#mobile .bigpadded p {margin-bottom: 30px;}
+#mobile embed { margin: 30px 0 30px auto; max-height: 250px; width: 100%;}
+#mobile .imgcol { background-color: #74ac00; height: 310px;}
+#mobile .textcol { padding: 60px 60px 60px 75px; }
+#mobile h1 {white-space: nowrap; }
 #who > .row { background-color: #eee;}
 #who .bigpadded { padding-top: 0; }
 #who blockquote {
@@ -220,13 +228,15 @@
   color: #575757;
   line-height: 26px;
   font-weight: 500;
+  font-size: 18px;
 }
 #who .location {
   color: #727272;
   line-height: 26px;
   font-weight: 500;
+  font-size: 18px;
 }
-#who .item {padding-bottom: 20px; height: 430px;}
+#who .item {padding-bottom: 20px; height: 490px;}
 #call .row {
   background-color: black;
   color: white;
@@ -245,8 +255,10 @@
   font-size: 30px;
   width: 100%;
   text-transform: uppercase;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  line-height: 1;
+  font-weight: bold;
 }
 .bootstrap .carousel-control { width: 5%; z-index: 1; }
 .bootstrap .carousel-control.left,
@@ -254,6 +266,9 @@
   font-size: 200%;
   background: none;
   margin-top: -1em;
+}
+.bootstrap #who .carousel-indicators {
+  bottom: 60px;
 }
 .bootstrap .carousel-indicators li {
   border: 2px solid #74ac00;
