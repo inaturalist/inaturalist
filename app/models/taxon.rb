@@ -1193,17 +1193,10 @@ class Taxon < ActiveRecord::Base
     rescue Timeout::Error => e
       []
     end
-    if external_names.blank?
-      external_names = begin
-        Ratatosk.find(name)
-      rescue Timeout::Error => e
-        []
-      end
-    end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
-      if en.save && !en.taxon.grafted?
+      if en.save && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
     end
