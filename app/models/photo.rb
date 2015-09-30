@@ -221,10 +221,43 @@ class Photo < ActiveRecord::Base
         end
         Photo.where(id: id).update_all(updates)
       elsif %w(resolved destroyed).include?(options[:action])
-        repair if respond_to?(:repair)
+        Photo.repair_single_photo(self)
       end
       observations.each(&:update_stats)
     end
+  end
+
+  def self.repair_single_photo(photo)
+    if photo.subtype && klass = (photo.subtype.constantize rescue nil)
+      if klass < Photo
+        # we have a photo with a valid Photo subtype (cached remote photo)
+        repair_photo = klass.new(photo.attributes.merge(type: photo.subtype))
+        # repair as if it were the remote photo, but don't save anything
+        repaired, errors = repair_photo.repair(no_save: true)
+        unless errors.blank?
+          return [ photo, errors ]
+        end
+        # if that succeded, update this photo with the repaired remote URL
+        photo.file = URI(repaired.original_url)
+        photo.save
+        return [ photo, { } ]
+      end
+    end
+    if photo.respond_to?(:repair)
+      return photo.repair
+    end
+  end
+
+  def self.local_photo_from_remote_photo(remote_photo)
+    # inherit native_* and other attributes from remote photos
+    remote_photo_attrs = remote_photo.attributes.select do |k,v|
+      k =~ /^native/ || [ "user_id", "license", "mobile" ].include?(k)
+    end
+    remote_photo_attrs["native_original_image_url"] = remote_photo.original_url
+    remote_photo_attrs["subtype"] = remote_photo.class.name
+    # stub this LocalPhoto's file with the remote photo URL
+    remote_photo_attrs["file"] = URI(remote_photo.original_url)
+    LocalPhoto.new(remote_photo_attrs)
   end
 
   # Retrieve info about a photo from its native source given its native id.  

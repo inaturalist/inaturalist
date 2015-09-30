@@ -174,7 +174,7 @@ class FlickrPhoto < Photo
     taxa.compact
   end
 
-  def repair
+  def repair(options = {})
     errors = {}
     f = FlickrPhoto.flickraw_for_user(user)
     begin
@@ -192,7 +192,7 @@ class FlickrPhoto < Photo
       self.original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
       if changed?
         puts "[DEBUG] updated #{self}, changed: #{changed.join(', ')}"
-        save
+        save unless options[:no_save]
       end
     rescue FlickRaw::FailedResponse => e
       if e.message =~ /Photo not found/
@@ -212,7 +212,7 @@ class FlickrPhoto < Photo
     end
 
     if errors[:photo_missing_from_flickr] || (errors[:flickr_authorization_missing] && orphaned?)
-      destroy
+      destroy unless options[:no_save]
     end
     [self, errors]
   end

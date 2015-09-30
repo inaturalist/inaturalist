@@ -21,7 +21,7 @@ class FacebookPhoto < Photo
     thumb_url
   end
 
-  def repair
+  def repair(options = {})
     unless fp = FacebookPhoto.get_api_response(native_photo_id, :user => user)
       return [self, {
         :facebook_account_not_linked => I18n.t(:facebook_account_not_linked, :user => user.try(:login), :site_name => SITE_NAME_SHORT)
@@ -30,7 +30,7 @@ class FacebookPhoto < Photo
     [:large_url, :medium_url, :small_url, :thumb_url].each_with_index do |img_size, i|
       send("#{img_size}=", fp['images'][i]['source'])
     end
-    save
+    save unless options[:no_save]
     [self, {}]
   rescue Koala::Facebook::AuthenticationError => e
     raise e unless e.message =~ /Error validating access token/

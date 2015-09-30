@@ -33,10 +33,14 @@
   <h4><%= t :select_one_or_more_photos %></h4>
   <% photos.each do |photo| %>
     <%- 
-      native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
+      native_photo_id = photo.native_photo_id || photo.id
       thumb_url = photo.try_methods(:thumb_url, :square_url, :url_t, :url_sq)
       next unless thumb_url
-      prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
+      prefix = if photo.is_a?(Photo)
+        photo.subtype.blank? ? photo.class.to_s.underscore : photo.subtype.underscore
+      else
+        "flickr_photo"
+      end
       unique_id = serial_id
       if index.blank?
         input_name = "#{prefix.pluralize}[]"

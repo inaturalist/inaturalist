@@ -2102,7 +2102,13 @@ class ObservationsController < ApplicationController
           end
         end
       end
-      
+
+      # we want to create local copies of photos from providers,
+      # so turn the specialized Photo into a LocalPhoto
+      if photo && photo_class != LocalPhoto
+        photo = Photo.local_photo_from_remote_photo(photo)
+      end
+
       if photo.blank?
         Rails.logger.error "[ERROR #{Time.now}] Failed to get photo for photo_class: #{photo_class}, photo_id: #{photo_id}"
       elsif photo.valid? || existing[photo_id]

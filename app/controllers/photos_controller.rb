@@ -188,7 +188,7 @@ class PhotosController < ApplicationController
     end
 
     url = @photo.taxa.first || @photo.observations.first || '/'
-    repaired, errors = @photo.repair
+    repaired, errors = Photo.repair_single_photo(@photo)
     if repaired.destroyed?
       flash[:error] = t(:photo_destroyed_because_it_was_deleted_from, :site_name => CONFIG.site_name_short)
       redirect_to url
