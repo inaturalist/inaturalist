@@ -1,9 +1,9 @@
 if (HOMEPAGE_DATA_URL) {
   $.getJSON(STATS_SUMMARY_URL, function(json) {
     window.STATS_SUMMARY = json
-    $('#obs-stats-container h1').html(STATS_SUMMARY.total_observations.toLocaleString())
-    $('#species-stats-container h1').html(STATS_SUMMARY.total_leaf_taxa.toLocaleString())
-    $('#people-stats-container h1').html(STATS_SUMMARY.total_users.toLocaleString())
+    $('#obs-stats-container h1').html(I18n.toNumber(STATS_SUMMARY.total_observations, {precision: 0}))
+    $('#species-stats-container h1').html(I18n.toNumber(STATS_SUMMARY.total_leaf_taxa, {precision: 0}))
+    $('#people-stats-container h1').html(I18n.toNumber(STATS_SUMMARY.total_users, {precision: 0}))
   })
   $.getJSON(HOMEPAGE_DATA_URL, function(json) {
     addObservations(json.observations)

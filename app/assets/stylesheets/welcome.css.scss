@@ -77,7 +77,11 @@
   padding: 30px 30px;
 }
 .herolinks { 
-  display: flex; 
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
   width: 100%;
   font-size: 16px;
 }
@@ -86,6 +90,7 @@
   display: inline-block;
   border-top: 1px solid rgba(0,0,0,0.2);
   padding: 20px;
+  -webkit-flex-grow: 1;
   flex-grow: 1;
   font-weight: bold;
   text-transform: uppercase;
