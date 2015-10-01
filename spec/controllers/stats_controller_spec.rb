@@ -1,21 +1,15 @@
 require "spec_helper"
 
-describe Admin::StatsController do
+describe StatsController do
 
   before :all do
-    @site = Site.make!
-    @admin = make_admin
     [ Time.now, 1.day.ago, 1.week.ago ].each do |t|
       Observation.make!(taxon: Taxon.make!(rank: "species"),
-        user: @admin, site: @site, created_at: t)
+        created_at: t)
     end
     (0..7).to_a.each do |i|
       SiteStatistic.generate_stats_for_day(i.days.ago)
     end
-  end
-
-  before :each do
-    sign_in @admin
   end
 
   describe "index" do
