@@ -16,7 +16,7 @@
   font-size: 18px;
 }
 .bootstrap [class*='col-'].bleedcol { padding: 0; }
-.bootstrap [class*='col-'].bigpadded { padding: 60px; }
+.bootstrap [class*='col-'].bigpadded { padding-top: 60px; padding-bottom: 60px; }
 #header {margin-bottom: 0;}
 #wrapper { margin-bottom: 0; min-width: 980px; }
 #hero { 
@@ -137,7 +137,7 @@
   margin: 0 10px;
   font-weight: normal;
 }
-.container-fixed { margin: 0 auto; min-width: 980px;}
+.container-fixed { margin: 0 auto; min-width: 980px; }
 #how [class*='col-'] {
   text-align: center;
   white-space: nowrap;
@@ -206,18 +206,18 @@
   font-size: 22px;
   margin-top: 0;
 }
-#value [class*='col-'] {margin-bottom: 30px; }
+#value .container-fixed [class*='col-'] {margin-bottom: 30px; }
 #value > .row:last-child { padding-bottom: 30px;}
 #value embed { width: 99px; max-height: 80px; margin: 0 10px 0 auto; display:block;}
 #value .media-left { padding-right: 30px;}
 #value .second-col { margin-left: 15px; }
-#mobile embed { margin: 30px 0 30px auto; max-height: 250px; width: 100%;}
-#mobile .imgcol { background-color: #74ac00; height: 310px;}
-#mobile .textcol { padding: 60px 60px 60px 75px; }
+#mobile embed { margin: 30px; max-height: 260px; width: 100%;}
+#mobile .imgcol { background-color: #74ac00; height: 320px;}
 #mobile h1 {white-space: nowrap; }
-#mobile img {margin: 30px 25px 0 0; }
+#mobile img {margin: 20px 25px 0 0; }
 #who > .row { background-color: #eee;}
 #who .bigpadded { padding-top: 0; }
+#who img { max-height: 274px;}
 #who blockquote {
   font-size: 24px;
   line-height: 38px;

@@ -130,13 +130,15 @@
     .row.backgroundrow
       .col-xs-6.bleedcol.col-xs-offset-6
         .img
-    .row.contentrow
-      .container.container-fixed
-        .row
-          .col-xs-6
-            %h1=t 'views.welcome.index.contribute_to_science'
-            %p
-              %span=t 'views.welcome.index.science_desc_html'
+    .contentrow
+      .row
+        .col-xs-12
+          .container.container-fixed
+            .row
+              .col-xs-6
+                %h1=t 'views.welcome.index.contribute_to_science'
+                %p
+                  %span=t 'views.welcome.index.science_desc_html'
 
   #value.homesection
     .row
@@ -180,23 +182,24 @@
               %p=t 'views.welcome.index.hold_an_event'
   #mobile.homesection.fixed-on-fluid
     .row.backgroundrow
+      .col-xs-6
+        &nbsp;
       .col-xs-6.imgcol
         &nbsp;
-      .col.xs-6
-        &nbsp;
-    .row.contentrow
-      .container.container-fixed
-        .row
-          .col-xs-6
-            %embed{src: image_path("homepage-devices.svg")}
-          .col-xs-6.textcol
-            %h1=t 'views.welcome.index.works_on_all_your_devices'
-            %p=t 'views.welcome.index.install_our_mobile_apps'
-            %p
-              = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
-                = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
-              = link_to "https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8" do
-                = image_tag "http://static.inaturalist.org/wiki_page_attachments/235-original.png", alt: "iPhone app in the Apple App Store" 
+    .contentrow
+      .row
+        .col-xs-12
+          .container.container-fixed
+            .row
+              .col-xs-6.textcol.bigpadded
+                %h1=t 'views.welcome.index.works_on_all_your_devices'
+                %p=t 'views.welcome.index.install_our_mobile_apps'
+                = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
+                  = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
+                = link_to "https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8" do
+                  = image_tag "http://static.inaturalist.org/wiki_page_attachments/235-original.png", alt: "iPhone app in the Apple App Store" 
+              .col-xs-6.centered
+                %embed{src: image_path("homepage-devices.svg")}
   #who.homesection
     .row
       .col-xs-12
@@ -207,7 +210,7 @@
               #who-carousel.carousel.slide{data: {ride: :carousel, interval: 7000}}
                 %ol.carousel-indicators
                 .carousel-inner{role: "listbox"}
-  #call
+  #call.homesection
     .row
       .col-xs-12
         .container.container-fixed

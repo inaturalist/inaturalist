@@ -64,7 +64,7 @@ function addTestimonials(testimonials) {
     var t = testimonials[i]
     var item = $('<div class="item">').append(
       $('<div class="row">').append(
-        $('<div class="col-xs-8 bigpadded">').append(
+        $('<div class="col-xs-7">').append(
           $('<blockquote>').html(t.body),
           $('<a class="name">').attr('href', t.url).html(t.name),
           $('<div class="role">').html(t.role),
@@ -74,7 +74,7 @@ function addTestimonials(testimonials) {
             t.location
           )
         ),
-        $('<div class="col-xs-3">').append(
+        $('<div class="col-xs-4 col-xs-offset-1 centered">').append(
           $('<a>').attr('href', t.url).html(
             $('<img class="img-circle img-responsive">').attr('src', t.image_url)
           )
