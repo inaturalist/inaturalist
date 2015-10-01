@@ -52,7 +52,7 @@
         input_id = "#{prefix}_#{index}_#{native_photo_id}_#{unique_id}"
       end
     -%>
-    <div class="photo" data-photo-class="<%= photo.class.name %>">
+    <div class="photo" data-photo-class="<%= photo.subtype || photo.class.name %>">
       <%= check_box_tag input_name, 
         native_photo_id, 
         checked, 

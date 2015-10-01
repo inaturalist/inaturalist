@@ -594,14 +594,15 @@ class ObservationsController < ApplicationController
         o.oauth_application = a.becomes(OauthApplication)
       end
       # Get photos
+      photos = []
       Photo.subclasses.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym
         if params[klass_key] && params[klass_key][fieldset_index]
-          o.photos << retrieve_photos(params[klass_key][fieldset_index], 
+          photos += retrieve_photos(params[klass_key][fieldset_index],
             :user => current_user, :photo_class => klass)
         end
         if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          if photo = o.photos.to_a.compact.last
+          if photo = photos.to_a.compact.last
             photo_o = photo.to_observation
             PHOTO_SYNC_ATTRS.each do |a|
               o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
@@ -609,7 +610,7 @@ class ObservationsController < ApplicationController
           end
         end
       end
-      photo = o.photos.to_a.compact.last
+      photo = photos.compact.last
       if o.new_record? && photo && photo.respond_to?(:to_observation) && 
           (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
         photo_o = photo.to_observation
@@ -625,6 +626,8 @@ class ObservationsController < ApplicationController
         o.taxon = photo_o.taxon if o.taxon.blank?
         o.species_guess = photo_o.species_guess if o.species_guess.blank?
       end
+      o.photos = photos.map{ |p| p.is_a?(LocalPhoto) ?
+        p : Photo.local_photo_from_remote_photo(p) }
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       o
     end
@@ -773,7 +776,8 @@ class ObservationsController < ApplicationController
         if updated_photos.empty?
           observation.photos.clear
         else
-          observation.photos = updated_photos
+          observation.photos = updated_photos.map{ |p| p.is_a?(LocalPhoto) ?
+            p : Photo.local_photo_from_remote_photo(p) }
         end
         
         # Destroy old photos.  ObservationPhotos seem to get removed by magic
@@ -2059,7 +2063,10 @@ class ObservationsController < ApplicationController
     # 4. return array
     photos = []
     native_photo_ids = photo_list.map{|p| p.to_s}.uniq
-    existing = photo_class.includes(:user).where("native_photo_id IN (?)", native_photo_ids).index_by{|p| p.native_photo_id}
+    existing_local = LocalPhoto.where(subtype: photo_class, native_photo_id: native_photo_ids)
+    existing = (existing_local.length > 0) ? existing_local :
+      photo_class.includes(:user).where(native_photo_id: native_photo_ids)
+    existing = existing.index_by{|p| p.native_photo_id }
     
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
@@ -2101,12 +2108,6 @@ class ObservationsController < ApplicationController
             photo_class.new_from_api_response(api_response, :user => current_user, :native_photo_id => photo_id)
           end
         end
-      end
-
-      # we want to create local copies of photos from providers,
-      # so turn the specialized Photo into a LocalPhoto
-      if photo && photo_class != LocalPhoto
-        photo = Photo.local_photo_from_remote_photo(photo)
       end
 
       if photo.blank?
@@ -2370,7 +2371,8 @@ class ObservationsController < ApplicationController
     reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
     reference_photo ||= current_user.photos.order("id ASC").last
     if reference_photo
-      assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
+      assoc_name = (reference_photo.subtype || reference_photo.class.to_s).
+        underscore.split('_').first + "_identity"
       if current_user.respond_to?(assoc_name)
         @default_photo_identity = current_user.send(assoc_name)
       else
