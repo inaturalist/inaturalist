@@ -111,3 +111,14 @@ def lat_lon_distance_in_meters(lat1, lon1, lat2, lon2)
   d = earthRadius * c  
   d
 end
+
+def fetch_head(url)
+  begin
+    uri = URI(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (url =~ /^https/)
+    return http.head(uri.request_uri)
+  rescue
+  end
+  nil
+end

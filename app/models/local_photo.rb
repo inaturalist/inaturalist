@@ -55,7 +55,9 @@ class LocalPhoto < Photo
   # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
 
-  validates_presence_of :user
+  # LocalPhotos with subtypes are former remote photos, and subtype
+  # is the former subclass. Those subclasses don't validate :user
+  validates_presence_of :user, unless: :subtype
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
