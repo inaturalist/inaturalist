@@ -626,8 +626,8 @@ class ObservationsController < ApplicationController
         o.taxon = photo_o.taxon if o.taxon.blank?
         o.species_guess = photo_o.species_guess if o.species_guess.blank?
       end
-      o.photos = photos.map{ |p| p.is_a?(LocalPhoto) ?
-        p : Photo.local_photo_from_remote_photo(p) }
+      o.photos = photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
+        Photo.local_photo_from_remote_photo(p) : p }
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       o
     end
@@ -776,8 +776,8 @@ class ObservationsController < ApplicationController
         if updated_photos.empty?
           observation.photos.clear
         else
-          observation.photos = updated_photos.map{ |p| p.is_a?(LocalPhoto) ?
-            p : Photo.local_photo_from_remote_photo(p) }
+          observation.photos = updated_photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
+            Photo.local_photo_from_remote_photo(p) : p }
         end
         
         # Destroy old photos.  ObservationPhotos seem to get removed by magic
@@ -2063,11 +2063,11 @@ class ObservationsController < ApplicationController
     # 4. return array
     photos = []
     native_photo_ids = photo_list.map{|p| p.to_s}.uniq
-    existing_local = LocalPhoto.where(subtype: photo_class, native_photo_id: native_photo_ids)
-    existing = (existing_local.length > 0) ? existing_local :
-      photo_class.includes(:user).where(native_photo_id: native_photo_ids)
-    existing = existing.index_by{|p| p.native_photo_id }
-    
+    # the photos may exist in their native photo_class, or cached
+    # as a LocalPhoto, so lookup both and combine results
+    existing = (LocalPhoto.where(subtype: photo_class, native_photo_id: native_photo_ids) +
+      photo_class.includes(:user).where(native_photo_id: native_photo_ids)).
+      index_by{|p| p.native_photo_id }
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
         api_response = begin
