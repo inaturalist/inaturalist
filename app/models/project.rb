@@ -658,7 +658,9 @@ class Project < ActiveRecord::Base
       total_entries = observations.total_entries if page === 1
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
-        po = ProjectObservation.where(project: self, observation: o).first_or_create
+        # don't use first_or_create here
+        po = ProjectObservation.where(project: self, observation: o).first ||
+          ProjectObservation.create(project: self, observation: o)
         if po && !po.errors.any?
           added += 1
         else
