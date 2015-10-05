@@ -46,10 +46,18 @@ class LocalPhoto < Photo
   end
 
   process_in_background :file
+  # we want to grab metadata from remote photos so make sure
+  # to pull the metadata from the true original, i.e. before
+  # post_processing which creates thumbnails
+  before_post_process :extract_metadata
   after_post_process :set_urls
+  # ...but part of the metadata is the size of the thumbnails
+  # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
 
-  validates_presence_of :user
+  # LocalPhotos with subtypes are former remote photos, and subtype
+  # is the former subclass. Those subclasses don't validate :user
+  validates_presence_of :user, unless: :subtype
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
@@ -60,14 +68,20 @@ class LocalPhoto < Photo
   # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
-    self.native_username ||= user.login
-    self.native_realname ||= user.name
+    if user
+      self.native_username ||= user.login
+      self.native_realname ||= user.name
+    end
     true
   end
 
   def file=(data)
     self.file.assign(data)
-    extract_metadata(data.path)
+    # uploaded photos need metadata immediately in order to
+    # "Sync obs. w/ photo metadata"
+    if data.is_a?(ActionDispatch::Http::UploadedFile)
+      extract_metadata(data.path)
+    end
   end
 
   def extract_metadata(path = nil)
@@ -105,8 +119,12 @@ class LocalPhoto < Photo
   def set_urls
     styles = %w(original large medium small thumb square)
     updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
+    # the original_url will be blank when initially saving any file
+    # by URL (cached remote photos). We want them to have placeholder
+    # photos, so use a dummy LocalPhoto for initial photo URLs
+    reference_file = original_url.blank? ? LocalPhoto.new.file : file
     updates += styles.map do |s|
-      url = file.url(s)
+      url = reference_file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
     updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
@@ -114,7 +132,7 @@ class LocalPhoto < Photo
     true
   end
 
-  def repair
+  def repair(options = {})
     self.file.reprocess!
     set_urls
     [self, {}]
@@ -129,12 +147,14 @@ class LocalPhoto < Photo
   end
   
   def set_native_photo_id
-    update_attribute(:native_photo_id, id)
-    true
+    if subtype.blank?
+      update_attribute(:native_photo_id, id)
+    end
   end
 
   def source_title
-    SITE_NAME
+    self.subtype.blank? ? SITE_NAME :
+      subtype.gsub(/Photo$/, '').underscore.humanize.titleize
   end
 
   def to_observation(options = {})

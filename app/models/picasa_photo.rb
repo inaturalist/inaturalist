@@ -77,7 +77,7 @@ class PicasaPhoto < Photo
     Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip), options)
   end
 
-  def repair
+  def repair(options = {})
     unless r = PicasaPhoto.get_api_response(native_photo_id, :user => user)
       return [self, {
         :picasa_account_not_linked => I18n.t(:picasa_account_not_linked, :user => user.try(:login), :site_name => SITE_NAME_SHORT)
@@ -90,7 +90,7 @@ class PicasaPhoto < Photo
     self.large_url       = r.url('1024')
     self.original_url    = r.url
     self.native_page_url = r.link('alternate').href
-    save
+    save unless options[:no_save]
     [self, {}]
   end
 

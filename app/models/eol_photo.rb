@@ -96,13 +96,13 @@ class EolPhoto < Photo
     ))
   end
 
-  def repair
+  def repair(options = {})
     r = EolPhoto.get_api_response(native_photo_id)
     p = EolPhoto.new_from_api_response(r)
     (EolPhoto.column_names - %w(id created_at updated_at)).each do |a|
       send("#{a}=", p.send(a))
     end
-    save
+    save unless options[:no_save]
     [self, errors]
   end
 
