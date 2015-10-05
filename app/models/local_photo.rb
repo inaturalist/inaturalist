@@ -68,8 +68,10 @@ class LocalPhoto < Photo
   # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
-    self.native_username ||= user.login
-    self.native_realname ||= user.name
+    if user
+      self.native_username ||= user.login
+      self.native_realname ||= user.name
+    end
     true
   end
 

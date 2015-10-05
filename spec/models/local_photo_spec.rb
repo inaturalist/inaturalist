@@ -17,6 +17,18 @@ describe LocalPhoto, "creation" do
       lp = LocalPhoto.make!
       expect(lp.small_url).to be =~ /http/
     end
+
+    it "requires user unless it has a subtype" do
+      expect{ LocalPhoto.make!(user: nil) }.to raise_error
+      expect{ LocalPhoto.make!(user: nil, subtype: "FlickrPhoto") }.to_not raise_error
+    end
+
+    it "uses id as native_photo id unless it has a subtype" do
+      lp = LocalPhoto.make!
+      expect( lp.native_photo_id ).to eq lp.id.to_s
+      lp = LocalPhoto.make!(subtype: "FlickrPhoto", native_photo_id: "1234")
+      expect( lp.native_photo_id ).to eq "1234"
+    end
   end
 
   describe "dimensions" do
@@ -147,4 +159,13 @@ describe LocalPhoto, "flagging" do
   end
   it "should change make associated observations casual grade when flagged"
   it "should change make associated observations research grade when resolved"
+end
+
+describe LocalPhoto do
+  it "uses subtype for source_title if available" do
+    lp = LocalPhoto.new
+    expect( lp.source_title ).to eq SITE_NAME
+    lp = LocalPhoto.new(subtype: "FlickrPhoto")
+    expect( lp.source_title ).to eq "Flickr"
+  end
 end
