@@ -166,15 +166,15 @@ $(document).ready(function() {
         $("#project_latitude").val(item.latitude).change()
       }
       if (item.id && $('input[name="project[prefers_place_boundary_visible]"]:visible').checked) {
-        placeLayer = window.map.addPlaceLayer({ place_id: item.id });
+        placeLayer = window.map.addPlaceLayer({ place: { id: item.id } });
       }
     }
   })
   $('input[name="project[prefers_place_boundary_visible]"]:visible').change(function() {
-    var place = $('#project_place_id').data('json')
+    var place = PLACE || $('#project_place_id').data('json');
     if (! place) { return; }
     if (this.checked) {
-      placeLayer = window.map.addPlaceLayer({ place_id: place.id });
+      placeLayer = window.map.addPlaceLayer({ place: { id: place.id } });
     } else {
       map.overlayMapTypes.setAt(placeLayer - 1, null);
     }
