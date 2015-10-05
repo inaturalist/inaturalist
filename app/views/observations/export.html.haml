@@ -75,10 +75,10 @@
                 =t ctype
                 %span.small.meta.ui
                   = surround '(',')' do
-                    = link_to_function t(:all), "$('##{ctype}_columns :checkbox').attr('checked', true)"
+                    = link_to_function t(:all), "$('##{ctype}_columns :checkbox').prop('checked', true)"
                     %span.meta
                       |
-                    = link_to_function t(:none), "$('##{ctype}_columns :checkbox').attr('checked', false)"
+                    = link_to_function t(:none), "$('##{ctype}_columns :checkbox').prop('checked', false)"
               - help = t("views.observations.export.#{ctype}_help_html", :default => '')
               - unless help.blank?
                 %p.meta.ui= help
@@ -93,10 +93,10 @@
               =t :observation_fields
               %span.small.meta.ui
                 = surround '(',')' do
-                  = link_to_function t(:all), "$('#observation_field_columns :checkbox').attr('checked', true)"
+                  = link_to_function t(:all), "$('#observation_field_columns :checkbox').prop('checked', true)"
                   %span.meta
                     |
-                  = link_to_function t(:none), "$('#observation_field_columns :checkbox').attr('checked', false)"
+                  = link_to_function t(:none), "$('#observation_field_columns :checkbox').prop('checked', false)"
             %table#observation_field_columns
               - for grp in @observation_fields.in_groups_of(4)
                 %tr

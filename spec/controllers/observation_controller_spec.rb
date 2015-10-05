@@ -13,6 +13,7 @@ end
 
 describe ObservationsController do
   describe "create" do
+    render_views
     let(:user) { User.make! }
     before do
       sign_in user
@@ -61,6 +62,14 @@ describe ObservationsController do
       post :create, :observation => {:species_guess => "Foo"}
       expect(user.observations.last.site).to_not be_blank
     end
+
+    it "should survive submitting an invalid observation to a project" do
+      p = Project.make!
+      por = ProjectObservationRule.make!(operator: 'georeferenced?', ruler: p)
+      expect {
+        post :create, observation: {species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s}, project_id: p.id
+      }.not_to raise_error
+    end
   end
   
   describe "update" do
@@ -74,8 +83,7 @@ describe ObservationsController do
     end
     
     it "should use latitude param even if private_latitude set" do
-      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
-      observation = Observation.make!(:taxon => taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => make_threatened_taxon, :latitude => 38, :longitude => -122)
       expect(observation.private_longitude).to_not be_blank
       old_latitude = observation.latitude
       old_private_latitude = observation.private_latitude
@@ -458,5 +466,47 @@ describe ObservationsController, "new_batch" do
     it "should accept POST requests" do
       expect(post: "/observations/new/batch").to be_routable
     end
+  end
+end
+
+describe ObservationsController, "new_bulk_csv" do
+  let(:work_path) { File.join(Dir::tmpdir, "new_bulk_csv-#{Time.now.to_i}.csv") }
+  let(:headers) do
+    %w(taxon_name date_observed description place_name latitude longitude tags geoprivacy)
+  end
+  before do
+    sign_in User.make!
+  end
+  it "should not allow you to enqueue the same file twice" do
+    Delayed::Job.delete_all
+    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    expect( response ).to be_redirect
+    expect( Delayed::Job.count ).to eq 1
+    sleep(2)
+    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    expect( Delayed::Job.count ).to eq 1
+  end
+
+  it "should allow you to enqueue different files" do
+    Delayed::Job.delete_all
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        '37.7693',
+        '-122.46565',
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    expect( response ).to be_redirect
+    expect( Delayed::Job.count ).to eq 1
+    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    expect( Delayed::Job.count ).to eq 2
   end
 end

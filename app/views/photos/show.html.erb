@@ -149,7 +149,7 @@
           <%- coords_viewable = @photo.observations.detect{|o| !o.coordinates_viewable_by?(current_user)}.blank? -%>
           <% for k,v in @photo.metadata %>
             <%- next if !coords_viewable && k.to_s =~ /(gps|date)/i -%>
-            <%- next if k.to_s == 'dc' || k.to_s =~ /description/ %>
+            <%- next if k.to_s == 'dc' || k.to_s =~ /description/ || k.to_s == "dimensions" %>
             <tr>
               <% if k.to_s =~ /gps/i -%>
                 <th><%= k.to_s.humanize.gsub(/Gps/, 'GPS') %></th>

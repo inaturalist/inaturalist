@@ -2,7 +2,6 @@
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
   textarea{width:690px; height: 200px;}
-  .usericon{float:left;margin-right:1em;border:2px solid #ddd;}
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
@@ -93,6 +92,13 @@
         <%= f.check_box "prefers_no_email", 
           :label => t(:dont_send_me_email), 
           :label_after => true %>
+      </div>
+
+      <h3><%= t :activity_settings %></h3>
+      <div class="stacked">
+        <%= f.check_box "prefers_receive_mentions",
+          label: t(:notify_me_of_mentions),
+          label_after: true %>
       </div>
 
       <a name="projects"></a>

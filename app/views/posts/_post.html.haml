@@ -6,7 +6,7 @@
   %h3.title.media-heading
     = link_to post.title, post_url
     - if post.is_a?(Trip)
-      %span.muted
+      %span.text-muted
         = surround '(', ')' do
           =t :trip
   .body.clear

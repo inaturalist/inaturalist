@@ -148,6 +148,7 @@
             else
               updates.last.notifier
             end
+            is_mention = (notification == "mention")
           -%>
           <div class="update clear stacked 
               <%= 'activity' if updates.last.notification == 'activity' %>
@@ -159,12 +160,19 @@
               <div class="updateheader meta stacked">
                 <div class="right small">
                   <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
-                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe, edit_subscription_by_resource_path(resource_type, resource_id), 
-                    :class => "subscriptionsettings" %>
+                  <%- if is_mention %>
+                    <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
+                      "#", class: "subscriptionsettings", "data-gear-text" => I18n.t("edit_your_default_settings"),
+                      "data-gear-url" => generic_edit_user_url %>
+                  <%- else %>
+                    <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
+                      edit_subscription_by_resource_path(resource_type, resource_id),
+                      class: "subscriptionsettings" %>
+                  <%- end %>
                 </div>
                 <%= update_tagline_for(updates.last, :count => updates.size) %>
               </div>
-              <% if notification == "activity" -%>
+              <% if notification == "activity" || is_mention -%>
                 <div class="updatecontent">
                   <% for u in updates %>
                     <%-
@@ -175,7 +183,7 @@
                       notifier ||= u.notifier
                     -%>
                     <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
-                      <%= render :partial => "shared/activity_item", :object => notifier %>
+                      <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
                     </div>
                   <% end %>
                   <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",

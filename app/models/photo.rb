@@ -20,6 +20,7 @@ class Photo < ActiveRecord::Base
   after_save :update_default_license,
              :update_all_licenses,
              :index_observations
+  after_destroy :create_deleted_photo
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -94,7 +95,7 @@ class Photo < ActiveRecord::Base
     elsif !native_username.blank?
       native_username
     elsif user
-      user.name || user.login
+      user.name.blank? ? user.login : user.name
     else
       I18n.t('copyright.anonymous')
     end
@@ -279,4 +280,13 @@ class Photo < ActiveRecord::Base
   def self.attributes_protected_by_default
     super - [inheritance_column]
   end
+
+  def create_deleted_photo
+    DeletedPhoto.create(
+      :photo_id => id,
+      :user_id => user_id
+    )
+    true
+  end
+
 end

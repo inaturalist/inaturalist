@@ -12,12 +12,12 @@
           source = this.options.source,
           collectionUrl = this.options.collectionUrl,
           cache = {},
-          defaultSources = this.options.defaultSources || $.parseJSON($(this.element).attr('data-chooser-default-sources'))
+          defaultSources = this.options.defaultSources || $.parseJSON($(this.element).attr('data-chooser-default-sources') || null)
       if (!collectionUrl && typeof(this.options.source) == 'string') {
         collectionUrl = this.options.collectionUrl = this.options.source
       }
       this.defaultSources = defaultSources = this.recordsToItems(defaultSources)
-      this.options.chosen = this.options.chosen || $.parseJSON($(this.element).attr('data-chooser-chosen')),
+      this.options.chosen = this.options.chosen || $.parseJSON($(this.element).attr('data-chooser-chosen') || null)
       this.options.source = this.options.source || defaultSources
       var markup = this.setupMarkup()
       this.selectDefault()
@@ -29,7 +29,6 @@
           }
         })
       }
-      
       markup.input.autocomplete({
         html: true,
         minLength: 0,
@@ -193,7 +192,7 @@
         }
         $(this).data('selected', item)
         $(this.markup.input).hide()
-        $(this.markup.choice).html(itemLabel).showInlineBlock()
+        $(this.markup.choice).html(itemLabel).showInlineBlock().width(this.markup.input.width())
         $(this.markup.chooseButton).showInlineBlock()
         $(this.markup.clearButton)
           .height(this.markup.choice.outerHeight()-2)
@@ -254,7 +253,7 @@
         choice: $('<div></div>')
           .addClass(this.options.choiceClass)
           .hide(),
-        chooseButton: $('<button type="button">&nbsp;</button>')
+        chooseButton: $('<button type="button" class="choosebutton">&nbsp;</button>')
           .button({
             icons: {
               primary: "ui-icon-triangle-1-s"
@@ -289,8 +288,8 @@
         this.markup.chooseButton, 
         this.markup.loadingButton, 
         this.markup.clearButton)
-      this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 3)
-      this.markup.choice.width(this.markup.input.width())
+      this.markup.input.width(originalInput.outerWidth() - this.markup.chooseButton.width() - 20)
+      this.markup.choice.width(originalInput.outerWidth())
       return this.markup
     },
     destroy: function() {

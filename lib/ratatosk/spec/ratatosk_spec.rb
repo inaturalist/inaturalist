@@ -6,22 +6,18 @@ describe Ratatosk::Ratatosk do
   end
   
   it "should have a find method" do
-    @ratatosk.should respond_to(:find)
+    expect(@ratatosk).to respond_to(:find)
   end
   
   it "should have an array of name providers" do
-    @ratatosk.name_providers.should_not be(nil)
+    expect(@ratatosk.name_providers).not_to be(nil)
     @ratatosk.name_providers.each do |np|
-      np.should respond_to(:find)
+      expect(np).to respond_to(:find)
     end
   end
   
-  it "should have functional be_a" do
-    "fortinbras".should be_a(String)
-  end
-  
   it "should have functional behaves_like_a" do
-    [].should behave_like_an(Enumerable)
+    expect([]).to behave_like_an(Enumerable)
   end
 end
 
@@ -53,9 +49,9 @@ describe Ratatosk, "searching" do
     tn = @ratatosk.find('Western Bluebird')
     tn.each do |taxon_name|
       # puts "DEBUG: #{taxon_name} is a #{taxon_name.class}"
-      taxon_name.taxon.should_not be(nil)
-      taxon_name.taxon.should behave_like_a(Taxon)
-      taxon_name.taxon.name.should_not be(nil)
+      expect(taxon_name.taxon).not_to be(nil)
+      # taxon_name.taxon.should behave_like_a(Taxon)
+      expect(taxon_name.taxon.name).not_to be(nil)
     end
   end
   
@@ -122,14 +118,14 @@ describe Ratatosk, "searching" do
     tn.save
     taxon = tn.taxon
     taxon.reload
-    taxon.unique_name.should_not be_nil
+    expect(taxon.unique_name).not_to be_nil
   end
 
   it "should add names to existing taxa" do
     load_test_taxa
     ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col])
     existing = Taxon.find_by_name('Calypte anna')
-    existing.should_not be_blank
+    expect(existing).not_to be_blank
     results = ratatosk.find('Calypte anna')
     puts "existing: #{existing}"
     results.each do |tn|
@@ -180,7 +176,7 @@ describe Ratatosk, "grafting" do
     new_taxon = Taxon.make!(:name => "Foo bar baz", :rank => "subspecies")
     @ratatosk.graft(new_taxon)
     new_taxon.reload
-    new_taxon.parent.should_not eq taxon
+    expect(new_taxon.parent).not_to eq taxon
   end
   
   it "should not graft homonyms in different phyla to the same parent"
@@ -263,8 +259,8 @@ describe Ratatosk, "grafting" do
       taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
       @ratatosk.graft(taxon)
       taxon.reload
-      taxon.should_not be_grafted
-      taxon.ancestor_ids.should_not include(@Amphibia.id)
+      expect(taxon).not_to be_grafted
+      expect(taxon.ancestor_ids).not_to include(@Amphibia.id)
     end
 
     it "should flag taxa that could not be grafted" do
@@ -273,13 +269,13 @@ describe Ratatosk, "grafting" do
       @Amphibia.should be_locked
       # puts "Amphibia.locked: #{@Amphibia.locked}"
       taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
-      lambda {
+      expect {
         # puts "spec, grafting"
         @ratatosk.graft(taxon)
         taxon.reload
         # puts "taxon.ancestor_ids: #{taxon.ancestor_ids.inspect}"
-        taxon.should_not be_grafted
-      }.should change(Flag, :count).by_at_least(1)
+        expect(taxon).not_to be_grafted
+      }.to change(Flag, :count).by_at_least(1)
     end
   end
 
@@ -288,7 +284,7 @@ describe Ratatosk, "grafting" do
     Taxon.find_by_name('Sula').should be_blank
     taxon = Taxon.make!(:name => "Sula leucogaster", :rank => Taxon::SPECIES)
     @ratatosk.graft(taxon)
-    taxon.parent.should_not be_blank
+    expect(taxon.parent).not_to be_blank
     taxon.parent.name.should eq('Sula')
   end
 end

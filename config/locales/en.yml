@@ -110,6 +110,7 @@ en:
   actions: Actions
   activate_user: Activate user
   active: active
+  activity_settings: Activity settings
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
   add_a: Add a
@@ -707,6 +708,7 @@ en:
     attribution_sharealike_license: Attribution-ShareAlike License
     attribution_noderivs_license: Attribution-NoDerivs License
     gnu_free_documentation_license: GNU Free Documentation License
+  copyright_holder: Copyright holder
   copyright_infringement_desc: Violates copyright law or was created by someone other than the observer and lacks attribution
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
@@ -1567,6 +1569,13 @@ en:
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
   members: Members
+  mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
+  mentioned_you_in_noun_by_html: "%{user} mentioned you in %{noun} by %{by}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} mentioned you in a %{x} on %{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} mentioned you in an %{x} on %{noun}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
+  mentions: "Mentions"
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
@@ -1774,6 +1783,7 @@ en:
   not_yet: Not yet
   note: Note
   note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
+  notify_me_of_mentions: Notify me of mentions (e.g. @username)
   number_of_observations: Number of observations
   numeric_: numeric
   noun_by_you: "%{noun} by you"
@@ -3449,7 +3459,7 @@ en:
           modify it without asking your permission. It makes it much easier to
           share your work, and if you incorporate 3rd party content from other
           sources that use Creative Commons ShareAlike licenses (like
-          Wikipedia), you are legall obliged to use a similar license. Here's
+          Wikipedia), you are legally obliged to use a similar license. Here's
           an overview of all the Creative Commons licenses and what they mean:
         paste_note_html: |
           Paste in up to 500 species names, one per line. %{site_name} will do
@@ -3479,7 +3489,7 @@ en:
         content in the guide without an Internet connection. It will take a
         few minutes to generate the archive, but once this is enabled the
         archive will update whenever you change this guide.</p>
-        <p class="alert error status">
+        <p class="alert status">
           Please <strong>do not enable offline mobile downloads unless you
           actually intend to use them.</strong> They represent a considerable
           burden on our system.

@@ -28,6 +28,7 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
+  notifies_users :mentioned_users, on: :save, notification: "mention"
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],
@@ -574,8 +575,8 @@ class Observation < ActiveRecord::Base
   }
 
   scope :between_dates, lambda{|d1, d2|
-    t1 = (Time.parse(URI.unescape(d1)) rescue Time.now)
-    t2 = (Time.parse(URI.unescape(d2)) rescue Time.now)
+    t1 = (Time.parse(URI.unescape(d1.to_s)) rescue Time.now)
+    t2 = (Time.parse(URI.unescape(d2.to_s)) rescue Time.now)
     if d1.to_s.index(':')
       where("time_observed_at BETWEEN ? AND ? OR (time_observed_at IS NULL AND observed_on BETWEEN ? AND ?)", t1, t2, t1.to_date, t2.to_date)
     else
@@ -2399,6 +2400,11 @@ class Observation < ActiveRecord::Base
     quality_grade_will_change!
     save
     evaluate_new_flag_for_spam(flag)
+  end
+
+  def mentioned_users
+    return [ ] unless description
+    description.mentioned_users
   end
 
 end

@@ -2,7 +2,7 @@ $('#addtaxa').modal({
   backdrop: true,
   show: false
 }).on('hidden', completeAddTaxa)
-$('#addtaxa').on('shown', function() { $('input:visible:first', this).focus() })
+$('#addtaxa').on('shown.bs.modal', function() { $('input:visible:first', this).focus() })
 $('#addtaxa-place .taxonchooser').chooser({
   collectionUrl: '/taxa/autocomplete.json',
   resourceUrl: '/taxa/{{id}}.json?partial=chooser'
@@ -260,10 +260,10 @@ $('.navbar-search input').keyup(function(e) {
   })
 })
 $('#selectall').click(function() {
-  $('.guide_taxon input:checkbox:visible').attr('checked', true).change()
+  $('.guide_taxon input:checkbox:visible').prop('checked', true).change()
 })
 $('#selectnone').click(function() {
-  $('.guide_taxon input:checkbox').attr('checked', false).change()
+  $('.guide_taxon input:checkbox').prop('checked', false).change()
 })
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)
@@ -274,7 +274,7 @@ function updatePositions(container, sortable) {
 $('#guide_taxa').sortable({
   items: "> form",
   cursor: "move",
-  placeholder: 'row-fluid stacked sorttarget',
+  placeholder: 'row stacked sorttarget',
   update: function(event, ui) {
     updatePositions("#guide_taxa", "form")  
     if (!window.updateGuideTaxaTimeout) {
@@ -337,27 +337,29 @@ if (iNaturalist && iNaturalist.Map) {
   })
 }
 window.firstRun = true
-$('#guide_place_id').chooser({
-  collectionUrl: '/places/autocomplete.json',
-  resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
-  chosen: PLACE,
-  afterSelect: function(item) {
-    $('#guide_place_id').data('json', item)
-    if (window.firstRun && PLACE) {
-      window.firstRun = false
-    } else {
-      $("#guide_latitude").val(item.latitude)
-      $("#guide_longitude").val(item.longitude)
-      if (item.swlat) {
-        var bounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(item.swlat, item.swlng),
-          new google.maps.LatLng(item.nelat, item.nelng)
-        )
-        map.fitBounds(bounds)
+$('#location').on('shown.bs.collapse', function() {
+  $('#guide_place_id').chooser({
+    collectionUrl: '/places/autocomplete.json',
+    resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+    chosen: PLACE,
+    afterSelect: function(item) {
+      $('#guide_place_id').data('json', item)
+      if (window.firstRun && PLACE) {
+        window.firstRun = false
+      } else {
+        $("#guide_latitude").val(item.latitude)
+        $("#guide_longitude").val(item.longitude)
+        if (item.swlat) {
+          var bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(item.swlat, item.swlng),
+            new google.maps.LatLng(item.nelat, item.nelng)
+          )
+          map.fitBounds(bounds)
+        }
+        $("#guide_latitude").val(item.latitude).change()
       }
-      $("#guide_latitude").val(item.latitude).change()
     }
-  }
+  })
 })
 
 $('#addtags .modal-footer .btn-primary').click(function() {
@@ -503,12 +505,12 @@ function removeAllTags() {
   })
 }
 
-$('.guide_taxon input[name*=tag_list]').live('change', function() {
+$(document).on('change', '.guide_taxon input[name*=tag_list]', function() {
   saveGuideTaxon.apply($(this).parents('form:first').get(0))
 })
 
 $('#guide_taxa .guide_taxon').labelize()
-$('input[name="guide_eol_update_flow_task[options][sections]"]').live('change', function() {
+$(document).on('change', 'input[name="guide_eol_update_flow_task[options][sections]"]', function() {
   if ($(this).is(':checked')) {
     $('input[name="guide_eol_update_flow_task[options][overview]"]').enable()
     $('#eol_subjects :input').enable()
@@ -517,8 +519,8 @@ $('input[name="guide_eol_update_flow_task[options][sections]"]').live('change', 
     $('#eol_subjects :input').disable()
   }
 })
-$('input[name="guide_eol_update_flow_task[options][overview]"]').live('change', function() {
-  if ($(this).val() == "true") {
+$(document).on('change', 'input[name="guide_eol_update_flow_task[options][overview]"]', function() {
+  if ($(this).val() == "true" || $(this).val() == true) {
     $('#eol_subjects').hide()
   } else {
     $('#eol_subjects').show()
@@ -580,7 +582,7 @@ window.runFlowTask = function(runUrl) {
   })
 }
 $('#guide_eol_update_flow_task_options_subjects').multiselect()
-$('#eolupdate').on('shown', function () {
+$('#eolupdate').on('shown.bs.modal', function () {
   $('body').css({height: '100%', overflow:'hidden'})
   var count = $('.guide_taxon input[type=checkbox]:checked').length,
       val = I18n.t('update_x_selected_taxa', {count: count})

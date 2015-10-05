@@ -12,7 +12,7 @@
   before ||= nil
   after ||= nil
   after_title ||= nil
-#pageheader.span12
+#pageheader.col-md-12
   = before
   = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'), person_by_login_path(@selected_user.login))
   %h2

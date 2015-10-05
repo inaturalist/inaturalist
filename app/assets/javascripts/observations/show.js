@@ -65,7 +65,7 @@ $(document).ready(function() {
 
   $('#forms').tabs();
   
-  $('#data_quality_assessment .quality_metric_vote_link').live('click', function(e) {
+  $('#data_quality_assessment').on('click', '.quality_metric_vote_link', function(e) {
     e.preventDefault()
     var tr = $(this).parents('tr.quality_metric')
     $.ajax({
@@ -244,9 +244,12 @@ $(document).ready(function() {
     $('#new-comment-form-tab').click()
     $('#comment_body').focus()
   });
+
+  $('#comment_body').textcompleteUsers( );
+  $('#identification_body').textcompleteUsers( );
 })
 
-$('#add_more_photos_link').live('click', function() {
+$(document).on('click', '#add_more_photos_link', function() {
   var dialogId = "add_more_photos_dialog",
       dialog = $('#'+dialogId)
   if (dialog.length == 0) {
@@ -288,7 +291,7 @@ $('#add_more_photos_link').live('click', function() {
   return false
 })
 
-$('.joinlink').live('click', function(e) {
+$(document).on('click', '.joinlink', function(e) {
   $(this).parents('.qtip').qtip('hide')
   var dialogId = "join_project_modal",
       dialog = $('#'+dialogId),

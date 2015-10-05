@@ -86,6 +86,23 @@ class TripsController < ApplicationController
           FakeView.image_url(@trip.user.icon.url(:original))
         end
         @shareable_description = FakeView.truncate(@trip.body, :length => 1000) if @trip.body
+        @trip_taxa = Taxon.sort_by_ancestry(@trip.trip_taxa.includes(:taxon)) do |a,b|
+          a.taxon.name <=> b.taxon.name
+        end
+        trip_purpose_taxon_ids = @trip.trip_purposes.map(&:resource_id).flatten.uniq
+        @trip_taxa_observed = []
+        @trip_taxa_unobserved = []
+        @trip_taxa_untargeted = []
+        @trip_taxa.each do |tt|
+          if tt.observed?
+            @trip_taxa_observed << tt
+            unless (trip_purpose_taxon_ids & tt.taxon.ancestor_ids).size > 0
+              @trip_taxa_untargeted << tt
+            end
+          else
+            @trip_taxa_unobserved << tt
+          end
+        end
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
@@ -165,6 +182,7 @@ class TripsController < ApplicationController
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render json: @trip.as_json(:root => true), status: :created, location: @trip }
       else
+        load_form_data
         format.html { render action: "new" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end

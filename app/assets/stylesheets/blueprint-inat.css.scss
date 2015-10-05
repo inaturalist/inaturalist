@@ -1,0 +1,32 @@
+.next, .prev {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.next:after {
+  content: '\0020 \00BB';
+}
+
+.prev:before {
+  content: '\00AB \0020';
+}
+
+.ui-autocomplete.ui-menu .ui-menu-item {
+  padding: 0 5px;
+}
+.ui-autocomplete .ui-menu-item a,
+.ui-autocomplete .ui-state-focus,
+.ui-autocomplete.ui-widget-content .ui-state-focus {
+  padding: 3px 5px;
+  display: inline-block;
+}
+
+.ui-autocomplete .ui-state-focus,
+.ui-autocomplete.ui-widget-content .ui-state-focus {
+  border: inherit;
+  background: #eee;
+  margin: inherit;
+}
+.ui-autocomplete .ui-state-focus a:hover,
+.ui-autocomplete.ui-widget-content .ui-state-focus a:hover {
+  text-decoration: none;
+}

@@ -43,9 +43,9 @@
 
   <%= google_maps_js %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js",
-                             'map_bundle' %>
-
-  <%= javascript_include_tag 'taxa/show' %>
+                             'map_bundle',
+                            'jquery/plugins/jqModal',
+                            'taxa/show' %>
 
   <script type="text/javascript" charset="utf-8">
     var TAXON = <%=json_escape @taxon.to_json.html_safe %>,

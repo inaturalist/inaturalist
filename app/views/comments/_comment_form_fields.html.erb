@@ -3,7 +3,7 @@
 <%= f.hidden_field :parent_type %>
 <%= f.hidden_field :user_id %>
 <div class="stacked">
-  <%= f.text_area :body %>
+  <%= f.text_area :body, :class => 'form-control' %>
 </div>
 <div class="buttonrow">
   <%= submit_tag t(:save_comment), :class => 'default button', 'data-loading-click' => true %>

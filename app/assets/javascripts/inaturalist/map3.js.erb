@@ -132,35 +132,38 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   // add the marker to the map
   marker.setMap(this);
   observation.marker = marker;
-  
   if (options.showAccuracy && 
       (observation.coordinates_obscured || (observation.positional_accuracy && observation.positional_accuracy > 0))) {
-    var accuracy = parseInt(observation.positional_accuracy) || 0
-    if (observation.coordinates_obscured) {
-      accuracy += 10000
-    }
-    if (accuracy == 0) return
     var iconicTaxonName = observation.iconic_taxon_name
     if (!iconicTaxonName && observation.iconic_taxon) iconicTaxonName = observation.iconic_taxon.name
     var color = iconicTaxonName ? iNaturalist.Map.ICONIC_TAXON_COLORS[iconicTaxonName] : '#333333'
-    var circle = new google.maps.Circle({
+    var shape;
+    var shapeOptions = {
       strokeColor: color,
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: color,
       fillOpacity: 0.35,
-      map: this,
-      center: marker.getPosition(),
-      radius: accuracy
-    })
-    observation._circle = circle
+      map: this
+    };
+    if( observation.coordinates_obscured ) {
+      shape = markerObscuredRectangle( marker, shapeOptions );
+    } else {
+      var accuracy = parseInt( observation.positional_accuracy ) || 0;
+      if( accuracy == 0 ) return
+      shape = new google.maps.Circle( _.extend( shapeOptions, {
+        center: marker.getPosition( ),
+        radius: accuracy
+      }));
+      observation._circle = shape;
+    }
     var listener = function() {
       var mapBounds = this.getBounds(),
-          circleBounds = circle.getBounds()
-      if (mapBounds && circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest())) {
-        circle.setVisible(false)
+          shapeBounds = shape.getBounds()
+      if (mapBounds && shapeBounds.contains(mapBounds.getNorthEast()) && shapeBounds.contains(mapBounds.getSouthWest())) {
+        shape.setVisible(false)
       } else {
-        circle.setVisible(true)
+        shape.setVisible(true)
       }
     }
     google.maps.event.addListener(this, 'zoom_changed', listener)
@@ -814,7 +817,7 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   checkbox
     .attr('id', id)
     .attr('name', name)
-    .attr('checked', overlay.getMap())
+    .prop('checked', overlay.getMap())
   checkbox.click(function() {
     var name = $(this).attr('name'),
         overlay = map.getOverlay(name).overlay
@@ -1242,3 +1245,21 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
 
 
 })();
+
+function markerObscuredRectangle( marker, shapeOptions ) {
+  var cell_size = 0.2;
+  var position = marker.getPosition( );
+  var coords = [ position.H, position.L ];
+  var ll = [ position.H - ( position.H % cell_size ),
+             position.L - ( position.L % cell_size ) ];
+  var uu = [ ll[0], ll[1] ];
+  _.each( coords, function( value, key ) {
+    if( value < uu[key] ) { uu[key] -= cell_size; }
+    else { uu[key] += cell_size; }
+  });
+  return new google.maps.Rectangle( _.extend( shapeOptions, {
+    bounds: new google.maps.LatLngBounds(
+        new google.maps.LatLng( Math.min(uu[0], ll[0]), Math.min(uu[1], ll[1]) ),
+        new google.maps.LatLng( Math.max(uu[0], ll[0]), Math.max(uu[1], ll[1]) ))
+  }));
+}

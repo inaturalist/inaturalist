@@ -1,94 +1,77 @@
 = content_for :title do
   = "#{@guide_taxon.display_name} (#{@guide.title})"
 = content_for :extracss do
-  :css
-    #photos {white-space: nowrap; overflow-x:auto; overflow-y:hidden;}
-    #photos img.thumb {max-height:200px;}
-    .taxonmap {height: 300px;}
-    .bootstrap .modal.imgmodal {border: 0 transparent;}
-    .bootstrap .modal.imgmodal img {display: none; max-width: none;}
-    .bootstrap .imgmodal .close {
-      color: #eee;
-      text-shadow: 0 1px 0 #000000;
-      float:none;
-      opacity: 0.5;
-    }
-    .bootstrap .imgmodal:hover .close {opacity:1;}
-    .bootstrap .imgmodal .close:hover {color:white;}
-    .imgmodal .footer {
-      position: absolute;
-      bottom: 0;
-      background-color: rgba(0,0,0,0.5);
-      color: white;
-      width: 100%;
-    }
-    .imgmodal .footer .caption { padding: 10px;}
-    .imgmodal .controls {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-    }
-    .imgmodal.zoomed {overflow:hidden;}
-    #reuse_guide_taxon_dialog img {max-height: 30px;}
-    #photos .guide_photo {position: relative; margin-right: 5px; display:inline-block;}
-    #photos .guide_photo img {cursor: zoom-in;}
-    #photos .lowerright a {color:#ddd; display:inline-block; width:1em; height:1em;}
-    #photos .guide_photo:hover .lowerright a {color:white;}
+  = stylesheet_link_tag "guide_taxa/show",
+                        "//blueimp.github.io/Gallery/css/blueimp-gallery.min.css",
+                        "bootstrap-image-gallery.min"
 = content_for :extrajs do
   :javascript
     var GUIDE_TAXON = #{@guide_taxon.to_json(:only => [:id, :guide_id])}
-  = javascript_include_tag "underscore.min", "wax.g", "guide_taxa/show"
-.container-fluid
-  %ul.breadcrumb
+  = javascript_include_tag "//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js", 
+                           "bootstrap-image-gallery.min", 
+                           "underscore.min", 
+                           "wax.g", 
+                           "guide_taxa/show"
+.container
+  %ol.breadcrumb
     %li
       = link_to t(:guides), guides_path
-      %span.divider /
     %li
       = link_to @guide.title, @guide
-      %span.divider /
     %li.active= @guide_taxon.display_name
-  .row-fluid.stacked
-    - if logged_in?
-      .btn-grp.pull-right
-        = link_to "#reuse_guide_taxon_dialog", "data-toggle" => "modal", :class => "btn" do
-          %i.fa.fa-copy
-          = t(:copy)
-        - if @guide.editable_by?(current_user)
-          = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
-    %h2
-      - if @guide_taxon.display_name == @guide_taxon.name
-        %em= @guide_taxon.name
-      - else
-        = @guide_taxon.display_name
-    - if @guide_taxon.display_name != @guide_taxon.name
-      %em= @guide_taxon.name
-
-  #photos.row-fluid.stacked
-    - for guide_photo in @guide_taxon.guide_photos.sort_by(&:position)
-      .inlineblock.guide_photo
-        = image_tag guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
-        .lowerright
-          = cite(tag: :small) do
-            - if guide_photo.native_page_url.blank?
-              = guide_photo.attribution
+  .row.stacked
+    .col-xs-12
+      - if logged_in?
+        .title-controls.pull-right
+          .btn-group
+            = link_to "#reuse_guide_taxon_dialog", "data-toggle" => "modal", :class => "btn btn-default" do
+              %i.fa.fa-copy
+              = t(:copy)
+            - if @guide.editable_by?(current_user)
+              = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn btn-default"
+          .btn-group
+            - if @prev
+              = link_to @prev, :class => "btn btn-default", title: @prev.display_name do
+                %i.fa.fa-chevron-left
+                = t(:prev)
             - else
-              = succeed ',' do
+              %span.btn.btn-default{disabled: :disabled}
+                %i.fa.fa-chevron-left
+                = t(:prev)
+            - if @next
+              = link_to @next, :class => "btn btn-default", title: @next.display_name do
+                = t(:next)
+                %i.fa.fa-chevron-right
+            - else
+              %span.btn.btn-default{disabled: :disabled}
+                = t(:next)
+                %i.fa.fa-chevron-right
+      %h2
+        - if @guide_taxon.display_name == @guide_taxon.name
+          %em= @guide_taxon.name
+        - else
+          = @guide_taxon.display_name
+      - if @guide_taxon.display_name != @guide_taxon.name
+        %em= @guide_taxon.name
+
+  #photos.row.stacked
+    .col-sm-12
+      - for guide_photo in @guide_taxon.guide_photos.sort_by(&:position)
+        .inlineblock.guide_photo
+          = link_to guide_photo.photo.try_methods(:large_url, :original_url, :medium_url), 
+            data: {gallery: true}, 
+            title: [guide_photo.description, guide_photo.attribution].reject(&:blank?).join('. ') do
+            = image_tag(guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded")
+          .lowerright
+            = cite(tag: :small) do
+              - if guide_photo.native_page_url.blank?
                 = guide_photo.attribution
-              = link_to(guide_photo.native_page_url, guide_photo.native_page_url)
-        .imgmodal.modal.fade.hide{:role => "dialog", "aria-hidden" => "true", :id => dom_id(guide_photo, "modal")}
-          = image_tag image_url(guide_photo.photo.try_methods(:large_url, :original_url, :medium_url))
-          .controls
-            %button.close{:type => "button", "data-dismiss" => "modal"} ×
-          .footer
-            .caption
-              = guide_photo.description
-              .small.attribution
-                = guide_photo.attribution
-                - unless guide_photo.native_page_url.blank?
-                  = surround '(', ')' do
-                    = link_to t(:link, :default => "link").downcase, guide_photo.native_page_url
-  .row-fluid
-    .span8
+              - else
+                = succeed ',' do
+                  = guide_photo.attribution
+                = link_to(guide_photo.native_page_url, guide_photo.native_page_url)
+  .row
+    .col-sm-8
       - for s in @guide_taxon.guide_sections.sort_by{|gt| gt.position.to_i}
         %h3
           = s.title
@@ -112,14 +95,14 @@
             %li= link_to tl.site_title, "http://eol.org/pages/#{@guide_taxon.eol_page_id}"
           - else
             %li= link_to tl.site_title, tl.url_for_taxon(@guide_taxon.taxon)
-    .span4
+    .col-sm-4
       - unless @guide_taxon.guide_ranges.blank?
         %h3=t :range_map
         - @guide_taxon.guide_ranges.sort_by(&:position).each do |gr|
           .stacked
             - if gr.medium_url
-              = image_tag gr.medium_url, :class => "stacked"
-            %p.muted
+              = image_tag gr.medium_url, :class => "stacked img-responsive"
+            %p.text-muted
               %small
                 - if gr.source_url.blank?
                   = gr.attribution
@@ -153,11 +136,41 @@
                 %th.text-left= predicate.humanize
                 %td= values.join(', ')
 
-#reuse_guide_taxon_dialog.modal.fade.hide{:role => "dialog", "aria-hidden" => "true"}
-  .modal-header
-    %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3=t :copy_guide_taxon_to
-    %p= t 'views.guide_taxa.show.reuse_desc'
-  .modal-body
-  .modal-footer
-    %button.btn{"data-dismiss" => "modal"}=t :close
+#reuse_guide_taxon_dialog.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :copy_guide_taxon_to
+        %p= t 'views.guide_taxa.show.reuse_desc'
+      .modal-body
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+
+
+/ The Bootstrap Image Gallery lightbox, should be a child element of the document body
+#blueimp-gallery.blueimp-gallery.blueimp-gallery-controls
+  / The container for the modal slides
+  .slides
+  / Controls for the borderless lightbox
+  %h3.title
+  %a.prev ‹
+  %a.next ›
+  %a.close ×
+  %a.play-pause
+  %ol.indicator
+  / The modal dialog, which will be used to wrap the lightbox content
+  .modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", :type => "button"} ×
+          %h4.modal-title
+        .modal-body.next
+        .modal-footer
+          %button.btn.btn-default.pull-left.prev{:type => "button"}
+            %i.glyphicon.glyphicon-chevron-left
+            =t :prev
+          %button.btn.btn-primary.next{:type => "button"}
+            =t :next
+            %i.glyphicon.glyphicon-chevron-right

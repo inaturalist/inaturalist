@@ -8,6 +8,7 @@
 
 .column.prepend-4.span-16.append-4
   #pageheader
+    .right.nobr.meta.date= l(@messages.first.created_at.to_datetime, :format => :long)
     .breadcrumbs
       = link_to t(:back_to_x, :noun => t(@box)), messages_path(:box => @box, :anchor => @box), :class => "back crumb"
     %h2= @thread_message.subject

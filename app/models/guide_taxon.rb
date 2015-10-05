@@ -38,7 +38,7 @@ class GuideTaxon < ActiveRecord::Base
     when ALPHADISPLAY_SORT
       order("guide_taxa.display_name")
     else
-      order("guide_taxa.position")
+      order("guide_taxa.position, guide_taxa.id")
     end
   }
 

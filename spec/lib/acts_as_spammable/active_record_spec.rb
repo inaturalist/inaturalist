@@ -181,4 +181,37 @@ describe "ActsAsSpammable", "ActiveRecord" do
         default_life_list?).to be false
     end
   end
+
+  describe "not_flagged_as_spam" do    
+    it "includes records not flagged as spam" do
+      o = Observation.make!
+      expect( o ).not_to be_known_spam
+      expect( o.user ).not_to be_spammer
+      expect( Observation.all ).to include o
+      expect( Observation.not_flagged_as_spam ).to include o
+    end
+
+    it "includes records by users with unknown spammer status" do
+      u = User.make!
+      expect( u.spammer ).to be_nil
+      o = Observation.make!(user: u)
+      expect( o ).not_to be_known_spam
+      expect( Observation.not_flagged_as_spam ).to include o
+    end
+
+    it "excludes records flagged as spam" do
+      o = Observation.make!(user: @user)
+      Flag.make!(flaggable: o, flag: Flag::SPAM)
+      expect( o ).to be_known_spam
+      expect( o.user ).not_to be_spammer
+      expect( Observation.not_flagged_as_spam ).not_to include o
+    end
+
+    it "excludes records not flagged as spam by spammers" do
+      o = Observation.make!
+      o.user.update_attribute(:spammer, true)
+      expect( o.user ).to be_spammer
+      expect( Observation.not_flagged_as_spam ).not_to include o
+    end
+  end
 end

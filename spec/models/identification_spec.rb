@@ -140,19 +140,25 @@ describe Identification, "creation" do
     expect(disagreement.is_agreement?).to be false
   end
   
-  it "should incremement the counter cache in users for an ident on someone else's observation" do
-    user = User.make!
-    expect {
-      Identification.make!(:user => user)
-    }.to change(user, :identifications_count).by(1)
-  end
-  
-  it "should NOT incremement the counter cache in users for an ident on one's OWN observation" do
-    user = User.make!
-    obs = Observation.make!(:user => user)
-    expect {
-      Identification.make!(:user => user, :observation => obs)
-    }.to_not change(user, :identifications_count)
+  describe "user counter cache" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+
+    it "should incremement for an ident on someone else's observation" do
+      user = User.make!
+      expect( user.identifications_count ).to eq 0
+      Identification.make!(user: user)
+      user.reload
+      expect( user.identifications_count ).to eq 1
+    end
+    
+    it "should NOT incremement for an ident on one's OWN observation" do
+      user = User.make!
+      obs = Observation.make!(:user => user)
+      expect {
+        Identification.make!(:user => user, :observation => obs)
+      }.to_not change(user, :identifications_count)
+    end
   end
   
   # Not sure how to do this with Delayed Job
@@ -184,7 +190,7 @@ describe Identification, "creation" do
   it "should obscure the observation's coordinates if the taxon is threatened" do
     o = Observation.make!(:latitude => 1, :longitude => 1)
     expect(o).not_to be_coordinates_obscured
-    i = Identification.make!(:taxon => Taxon.make!(:threatened), :observation => o, :user => o.user)
+    i = Identification.make!(:taxon => make_threatened_taxon, :observation => o, :user => o.user)
     o.reload
     expect(o).to be_coordinates_obscured
   end
@@ -295,7 +301,7 @@ describe Identification, "deletion" do
     user = @identification.user
     @identification.destroy
     user.reload
-    expect(user.identifications_count).to eq old_count - 1
+    expect(user.identifications_count).to eq [old_count, 0].min
   end
   
   it "should NOT decremement the counter cache in users for an ident on one's OWN observation" do
@@ -504,5 +510,22 @@ describe Identification, "captive" do
     i = Identification.make!(:captive_flag => "0")
     o = i.observation
     expect(o.quality_metrics).to be_blank
+  end
+end
+
+describe Identification do
+  describe "mentions" do
+    it "knows what users have been mentioned" do
+      u = User.make!
+      i = Identification.make!(body: "hey @#{ u.login }")
+      expect( i.mentioned_users ).to eq [ u ]
+    end
+
+    it "generates mention updates" do
+      u = User.make!
+      i = without_delay { Identification.make!(body: "hey @#{ u.login }") }
+      expect( Update.where(notifier: i).mention.count ).to eq 1
+      expect( Update.where(notifier: i).mention.first.subscriber ).to eq u
+    end
   end
 end

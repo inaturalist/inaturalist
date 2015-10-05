@@ -1,13 +1,5 @@
 require 'machinist/active_record'
-# require 'sham'
 require 'faker'
-
-# Sham.name { Faker::Name.name }
-# Sham.login { Faker::Internet.user_name.gsub(/\W/, '') }
-# Sham.email { Faker::Internet.email }
-# Sham.title { Faker::Lorem.sentence }
-# Sham.body  { Faker::Lorem.paragraph }
-# Sham.url { "http://#{Faker::Internet.domain_name}" }
 
 ApiEndpoint.blueprint do
   title { Faker::Lorem.sentence }
@@ -135,6 +127,15 @@ end
 
 LocalPhoto.blueprint do
   user { User.make }
+  square_url        { 'http://staticdev.inaturalist.org/photos/1234/square.jpg' }
+  thumb_url         { 'http://staticdev.inaturalist.org/photos/1234/thumb.jpg' }
+  small_url         { 'http://staticdev.inaturalist.org/photos/1234/small.jpg' }
+  medium_url        { 'http://staticdev.inaturalist.org/photos/1234/medium.jpg' }
+  large_url         { 'http://staticdev.inaturalist.org/photos/1234/large.jpg' }
+  original_url      { 'http://staticdev.inaturalist.org/photos/1234/original.jpg' }
+  native_page_url   { "http://localhost:3000/photos/1234" }
+  file_content_type { 'image/jpeg' }
+  file_updated_at   { Time.now }
 end
 
 Message.blueprint do
@@ -153,6 +154,7 @@ end
 
 Observation.blueprint do
   user { User.make! }
+  license { Observation::CC_BY }
 end
 
 ObservationField.blueprint do
@@ -188,6 +190,21 @@ end
 
 Photo.blueprint do
   user { User.make }
+  native_photo_id { rand(1000) }
+end
+
+FlickrPhoto.blueprint do
+  user { User.make! }
+  native_photo_id { rand(1000) }
+end
+
+FacebookPhoto.blueprint do
+  user { User.make! }
+  native_photo_id { rand(1000) }
+end
+
+PicasaPhoto.blueprint do
+  user { User.make! }
   native_photo_id { rand(1000) }
 end
 
@@ -312,12 +329,6 @@ end
 
 Taxon.blueprint(:species) do
   rank {"species"}
-end
-
-Taxon.blueprint(:threatened) do
-  conservation_status {Taxon::IUCN_ENDANGERED}
-  rank {"species"}
-  is_active { true }
 end
 
 TaxonChange.blueprint do

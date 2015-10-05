@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dwr:DarwinRecordSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dwc="http://rs.tdwg.org/dwc/terms/" xmlns:dwr="http://rs.tdwg.org/dwc/dwcrecord/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://rs.tdwg.org/dwc/dwcrecord/  http://rs.tdwg.org/dwc/xsd/tdwg_dwc_classes.xsd">
+  <dwc:Taxon>
+    <dc:identifier>202423</dc:identifier>
+    <dwc:taxonID>46216568</dwc:taxonID>
+    <dwc:parentNameUsageID>0</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>1</dwc:taxonConceptID>
+    <dwc:scientificName>Animalia</dwc:scientificName>
+    <dwc:taxonRank>kingdom</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/1/hierarchy_entries/46216568/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>914154</dc:identifier>
+    <dwc:taxonID>55547576</dwc:taxonID>
+    <dwc:parentNameUsageID>46216568</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>3014411</dwc:taxonConceptID>
+    <dwc:scientificName>Bilateria</dwc:scientificName>
+    <dwc:taxonRank>subkingdom</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/3014411/hierarchy_entries/55547576/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>914156</dc:identifier>
+    <dwc:taxonID>55849855</dwc:taxonID>
+    <dwc:parentNameUsageID>55547576</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>8814528</dwc:taxonConceptID>
+    <dwc:scientificName>Deuterostomia</dwc:scientificName>
+    <dwc:taxonRank>infrakingdom</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/8814528/hierarchy_entries/55849855/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>158852</dc:identifier>
+    <dwc:taxonID>55851570</dwc:taxonID>
+    <dwc:parentNameUsageID>55849855</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>694</dwc:taxonConceptID>
+    <dwc:scientificName>Chordata</dwc:scientificName>
+    <dwc:taxonRank>division</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/694/hierarchy_entries/55851570/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>331030</dc:identifier>
+    <dwc:taxonID>55852129</dwc:taxonID>
+    <dwc:parentNameUsageID>55851570</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>2774383</dwc:taxonConceptID>
+    <dwc:scientificName>Vertebrata</dwc:scientificName>
+    <dwc:taxonRank>subdivision</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/2774383/hierarchy_entries/55852129/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>914179</dc:identifier>
+    <dwc:taxonID>55852273</dwc:taxonID>
+    <dwc:parentNameUsageID>55852129</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>12094272</dwc:taxonConceptID>
+    <dwc:scientificName>Gnathostomata</dwc:scientificName>
+    <dwc:taxonRank>infraphylum</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/12094272/hierarchy_entries/55852273/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>914181</dc:identifier>
+    <dwc:taxonID>55887047</dwc:taxonID>
+    <dwc:parentNameUsageID>55852273</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>4712200</dwc:taxonConceptID>
+    <dwc:scientificName>Tetrapoda</dwc:scientificName>
+    <dwc:taxonRank>superclass</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/4712200/hierarchy_entries/55887047/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>179913</dc:identifier>
+    <dwc:taxonID>55934471</dwc:taxonID>
+    <dwc:parentNameUsageID>55887047</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>1642</dwc:taxonConceptID>
+    <dwc:scientificName>Mammalia Linnaeus, 1758</dwc:scientificName>
+    <dwc:taxonRank>class</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/1642/hierarchy_entries/55934471/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>179916</dc:identifier>
+    <dwc:taxonID>55934493</dwc:taxonID>
+    <dwc:parentNameUsageID>55934471</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>57446</dwc:taxonConceptID>
+    <dwc:scientificName>Theria Parker and Haswell, 1897</dwc:scientificName>
+    <dwc:taxonRank>subclass</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/57446/hierarchy_entries/55934493/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>179925</dc:identifier>
+    <dwc:taxonID>55935187</dwc:taxonID>
+    <dwc:parentNameUsageID>55934493</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>2844801</dwc:taxonConceptID>
+    <dwc:scientificName>Eutheria Gill, 1872</dwc:scientificName>
+    <dwc:taxonRank>infraclass</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/2844801/hierarchy_entries/55935187/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>180089</dc:identifier>
+    <dwc:taxonID>55936345</dwc:taxonID>
+    <dwc:parentNameUsageID>55935187</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>1645</dwc:taxonConceptID>
+    <dwc:scientificName>Primates Linnaeus, 1758</dwc:scientificName>
+    <dwc:taxonRank>order</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/1645/hierarchy_entries/55936345/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>943773</dc:identifier>
+    <dwc:taxonID>59883763</dwc:taxonID>
+    <dwc:parentNameUsageID>55936345</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>10487985</dwc:taxonConceptID>
+    <dwc:scientificName>Haplorrhini Pocock, 1918</dwc:scientificName>
+    <dwc:taxonRank>suborder</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/10487985/hierarchy_entries/59883763/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>943778</dc:identifier>
+    <dwc:taxonID>59883764</dwc:taxonID>
+    <dwc:parentNameUsageID>59883763</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>10509493</dwc:taxonConceptID>
+    <dwc:scientificName>Simiiformes Haeckel, 1866</dwc:scientificName>
+    <dwc:taxonRank>infraorder</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/10509493/hierarchy_entries/59883764/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>943782</dc:identifier>
+    <dwc:taxonID>59883957</dwc:taxonID>
+    <dwc:parentNameUsageID>59883764</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>4529848</dwc:taxonConceptID>
+    <dwc:scientificName>Hominoidea Gray, 1825</dwc:scientificName>
+    <dwc:taxonRank>superfamily</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/4529848/hierarchy_entries/59883957/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>180090</dc:identifier>
+    <dwc:taxonID>59883958</dwc:taxonID>
+    <dwc:parentNameUsageID>59883957</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>1653</dwc:taxonConceptID>
+    <dwc:scientificName>Hominidae Gray, 1825</dwc:scientificName>
+    <dwc:taxonRank>family</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/1653/hierarchy_entries/59883958/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>943805</dc:identifier>
+    <dwc:taxonID>59883966</dwc:taxonID>
+    <dwc:parentNameUsageID>59883958</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>10551052</dwc:taxonConceptID>
+    <dwc:scientificName>Homininae Gray, 1825</dwc:scientificName>
+    <dwc:taxonRank>subfamily</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/10551052/hierarchy_entries/59883966/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>180091</dc:identifier>
+    <dwc:taxonID>59883967</dwc:taxonID>
+    <dwc:parentNameUsageID>59883966</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>42268</dwc:taxonConceptID>
+    <dwc:scientificName>Homo Linnaeus, 1758</dwc:scientificName>
+    <dwc:taxonRank>genus</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/42268/hierarchy_entries/59883967/overview</dc:source>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dc:identifier>180092</dc:identifier>
+    <dwc:taxonID>59883968</dwc:taxonID>
+    <dwc:parentNameUsageID>59883967</dwc:parentNameUsageID>
+    <dwc:taxonConceptID>327955</dwc:taxonConceptID>
+    <dwc:scientificName>Homo sapiens Linnaeus, 1758</dwc:scientificName>
+    <dwc:taxonRank>Species</dwc:taxonRank>
+    <dc:source>http://eol.org/pages/327955/hierarchy_entries/59883968/overview</dc:source>
+    <dwc:vernacularName xml:lang="ca">Humà</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="ha">Mutum</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="de">Mensch</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="ru">Человек разумный современный</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="zu">Umuntu</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="es">Humano</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="te">మానవుడు</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="de">Menschen</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="fr">Homme</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="fr">Les humain</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="ro">Oamenii</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="ro">Om</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="ro">Oameni</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="en">Humans</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="en">Man</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="en">Humans</dwc:vernacularName>
+    <dwc:vernacularName xml:lang="en">Human</dwc:vernacularName>
+    <dwc:nameAccordingTo>Integrated Taxonomic Information System (ITIS)</dwc:nameAccordingTo>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo aethiopicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo americanus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo arabicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo australasicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo cafer Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo capensis Broom, 1917</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo columbicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo drennani Kleinschmidt, 1931</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo grimaldii Lapouge, 1906</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo hottentotus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo hyperboreus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo indicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo japeticus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo melaninus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo neptunianus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo palestinus McCown &amp; Keith, 1932</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo patagonus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo priscus Lapouge, 1899</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo scythicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo sinicus Bory de St. Vincent, 1825</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo spelaeus Lapouge, 1899</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo troglodytes Linnaeus, 1758</dwc:scientificName>
+    <dwc:taxonomicStatus>other, see comments</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo wadjakensis Dubois, 1921</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo sapiens grimaldiensis Gregory, 1921</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo fossilis protoaethiopicus Giuffrida-Ruggeri, 1915</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+  <dwc:Taxon>
+    <dwc:parentNameUsageID>59883968</dwc:parentNameUsageID>
+    <dwc:scientificName>Homo sapiens cromagnonensis Gregory, 1921</dwc:scientificName>
+    <dwc:taxonomicStatus>junior synonym</dwc:taxonomicStatus>
+  </dwc:Taxon>
+</dwr:DarwinRecordSet>

@@ -1,4 +1,4 @@
-<div class="span16">
+<div class="col-md-16">
   <header class="page-header">
     <h2>Your authorized applications</h2>
   </header>
@@ -17,7 +17,7 @@
         <tr>
           <td><%= application.name %></td>
           <td><%= application.created_at %></td>
-          <td><%= link_to 'Revoke', oauth_authorized_application_path(application), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn danger' %></td>
+          <td><%= link_to 'Revoke', oauth_authorized_application_path(application), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-default danger' %></td>
         </tr>
       <% end %>
     </tbody>

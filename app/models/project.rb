@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
   }
 
   extend FriendlyId
-  friendly_id :title, :use => [ :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
+  friendly_id :title, :use => [ :slugged, :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -316,6 +316,17 @@ class Project < ActiveRecord::Base
 
   def cached_slug
     slug
+  end
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
   end
 
   def curators
@@ -647,7 +658,9 @@ class Project < ActiveRecord::Base
       total_entries = observations.total_entries if page === 1
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
-        po = ProjectObservation.where(project: self, observation: o).first_or_create
+        # don't use first_or_create here
+        po = ProjectObservation.where(project: self, observation: o).first ||
+          ProjectObservation.create(project: self, observation: o)
         if po && !po.errors.any?
           added += 1
         else

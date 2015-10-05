@@ -1,4 +1,5 @@
-body {
+body {font-size: 75%;}
+body .bootstrap {
   margin: 0;
   font-size: 14px;
   line-height: 20px;
@@ -6,8 +7,12 @@ body {
   background-color: #ffffff;
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
+
+.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 100%;}
+
 .readable, p {line-height: 1.6em;}
-.bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+.bootstrap .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+.bootstrap input.chooser {width: auto;}
 .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
 .bootstrap .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
 .bootstrap .overlaycontrol li { line-height: 1; }
@@ -41,6 +46,7 @@ body {
 .bootstrap .photoSelector {padding: 0; border: 0 transparent;margin:0;}
 .bootstrap .photoSelector .view_photo {text-align: left;}
 .bootstrap .photoSelectorPhotos .photo img {width:100%;}
+.bootstrap .photoSelectorPhotos .photo label {margin-bottom: 0;}
 .bootstrap .photoSelectorSelected {
   background-color: #eee; 
   padding:10px; 
@@ -70,13 +76,74 @@ body {
   padding:5px;
   line-height:0;
   display:inline-block;
-  width:auto;
   border: 0 transparent;
-  width:1.5em;text-align:center;
+  width:2em;
+  height:2em;
+  text-align:center;
   background-color: #ccc;
   margin-bottom:0;
 }
 .bootstrap ul.plain {list-style:none;}
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
+.bootstrap .stacked, 
+.bootstrap .nav.nav-tabs,
+.bootstrap .nav.nav-pills {margin-bottom: 10px;}
 .bootstrap .unstacked {margin-bottom: 0px;}
 .bootstrap .overlaycontrol .ui-icon-layers {height: 22px; }
+
+// .bootstrap ul, .bootstrap ol {margin: inherit;}
+// .bootstrap ul.plain, .bootstrap ol.plain {margin-left: 10px;}
+
+// http://stackoverflow.com/questions/18329010/what-happened-to-nav-header-class
+.bootstrap .nav > li.nav-header {
+    cursor: default;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #999;
+}
+img.borderless, .thumbnail.borderless { border: 0; }
+
+.bootstrap .modal-body {max-height: 400px; overflow-x: hidden; overflow-y: auto; }
+
+// The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
+// of our namespace div, so we need to re-apply these styles. Ugh.
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.bootstrap .breadcrumb {margin-bottom: 0;}
+.title-controls {margin-top: 20px;}
+.bootstrap .modal .container-fluid {padding-left: 0; padding-right: 0;}
+
+.ui-front {z-index: 1051;}
+.bootstrap .accordion .panel-heading { padding: 0; }
+.bootstrap .accordion .panel-heading a { display: block; padding: 10px 15px; }
+.errorExplanation {margin-top: 20px; }
+// http://stackoverflow.com/questions/18730116/twitter-bootstrap-3-0-how-do-i-badge-badge-important-now
+.bootstrap .label-as-badge {
+  border-radius: 1em;
+  font-size: 100%;
+  padding: 3px 8px;
+  display: inline-block;
+}
+.bootstrap .form-control.hasDatepicker,
+.bootstrap .form-control.latLonSelectorInput {display:inline-block;}
+.bootstrap .breadcrumb > li.prevnext:before { display: none; }
+.bootstrap .leaderboard-container thead .sorting_desc,
+.bootstrap .leaderboard-container thead .sorting_asc {padding-right: 20px; }
+
+.bootstrap mark { padding: 0; }

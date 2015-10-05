@@ -307,6 +307,9 @@ describe User do
   end
 
   describe "sane_destroy" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+
     before(:each) do
       enable_elastic_indexing([ Observation, Taxon, Place, Update ])
       without_delay do
@@ -458,6 +461,28 @@ describe User do
       @user.sane_destroy
       expect(Post.find_by_id(pjp.id)).not_to be_blank
     end
+
+    it "should reassess the community taxon of observations the user has identified" do
+      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::SPECIES))
+      expect( o.community_taxon ).to be_blank
+      i = Identification.make!(observation: o, taxon: o.taxon, user: @user)
+      o.reload
+      expect( o.community_taxon ).to eq i.taxon
+      @user.sane_destroy
+      o.reload
+      expect( o.community_taxon ).to be_blank
+    end
+
+    it "should reassess the quality grade of observations the user has identified" do
+      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::SPECIES))
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      i = Identification.make!(observation: o, taxon: o.taxon, user: @user)
+      o.reload
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      without_delay { @user.sane_destroy }
+      o.reload
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    end
   end
 
   describe "suspension" do
@@ -528,166 +553,193 @@ describe User do
     end
   end
 
+  describe "merge" do
+    before(:each) do
+      @keeper = User.make!
+      @reject = User.make!
+      enable_elastic_indexing( Observation )
+    end
+    after(:each) { disable_elastic_indexing( Observation ) }
+
+    it "should move observations" do
+      o = Observation.make!(:user => @reject)
+      without_delay do
+        @keeper.merge(@reject)
+      end
+      o.reload
+      expect(o.user_id).to eq @keeper.id
+    end
+
+    it "should merge life lists" do
+      t = Taxon.make!
+      @reject.life_list.add_taxon(t)
+      @keeper.merge(@reject)
+      @keeper.reload
+      expect(@keeper.life_list.taxon_ids).to include(t.id)
+    end
+
+    it "should remove self frienships" do
+      f = Friendship.make!(:user => @reject, :friend => @keeper)
+      @keeper.merge(@reject)
+      expect(Friendship.find_by_id(f.id)).to be_blank
+      expect(@keeper.friendships.map(&:friend_id)).not_to include(@keeper.id)
+    end
+
+    it "should queue a job to refresh the keeper's life list" do
+      Delayed::Job.delete_all
+      stamp = Time.now
+      @keeper.merge(@reject)
+      jobs = Delayed::Job.where("created_at >= ?", stamp)
+      # puts jobs.map(&:handler).inspect
+      expect(jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}).not_to be_blank
+    end
+  end
+
+  describe "suggest_login" do
+    it "should suggest logins that are too short" do
+      suggestion = User.suggest_login("AJ")
+      expect(suggestion).not_to be_blank
+      expect(suggestion.size).to be >= User::MIN_LOGIN_SIZE
+    end
+
+    it "should not suggests logins that are too big" do
+      suggestion = User.suggest_login("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor")
+      expect(suggestion).not_to be_blank
+      expect(suggestion.size).to be <= User::MAX_LOGIN_SIZE
+    end
+  end
+
+  describe "community taxa preference" do
+    it "should not remove community taxa when set to false" do
+      o = Observation.make!
+      i1 = Identification.make!(:observation => o)
+      i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      o.reload
+      expect(o.community_taxon).to eq i1.taxon
+      o.user.update_attributes(:prefers_community_taxa => false)
+      Delayed::Worker.new.work_off
+      o.reload
+      expect(o.taxon).to be_blank
+    end
+
+    it "should set observation taxa to owner's ident when set to false" do
+      owners_taxon = Taxon.make!
+      o = Observation.make!(:taxon => owners_taxon)
+      i1 = Identification.make!(:observation => o)
+      i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      o.reload
+      expect(o.taxon).to eq o.community_taxon
+      o.user.update_attributes(:prefers_community_taxa => false)
+      Delayed::Worker.new.work_off
+      o.reload
+      expect(o.taxon).to eq owners_taxon
+    end
+
+    it "should not set observation taxa to owner's ident when set to false for observations that prefer community taxon" do
+      owners_taxon = Taxon.make!
+      o = Observation.make!(:taxon => owners_taxon, :prefers_community_taxon => true)
+      i1 = Identification.make!(:observation => o)
+      i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      o.reload
+      expect(o.taxon).to eq o.community_taxon
+      o.user.update_attributes(:prefers_community_taxa => false)
+      Delayed::Worker.new.work_off
+      o.reload
+      expect(o.taxon).to eq o.community_taxon
+    end
+
+    it "should change observation taxa to community taxa when set to true" do
+      o = Observation.make!
+      o.user.update_attributes(:prefers_community_taxa => false)
+      i1 = Identification.make!(:observation => o)
+      i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      o.reload
+      expect(o.taxon).to be_blank
+      o.user.update_attributes(:prefers_community_taxa => true)
+      Delayed::Worker.new.work_off
+      o.reload
+      expect(o.taxon).to eq o.community_taxon
+    end
+  end
+
+  describe "updating" do
+    describe 'disallows illegitimate logins' do
+      bad_logins.each do |login_str|
+        it "'#{login_str}'" do
+          u = User.make!
+          u.login = login_str
+          expect(u).not_to be_valid
+        end
+      end
+    end
+  end
+
+  describe "active_ids" do
+    it "should calculate active users across several classes" do
+      expect(User.active_ids.length).to eq 0
+      expect(Identification.count).to eq 0
+      observation = Observation.make!
+      # observations are made with identifications, so we'll start fresh
+      Identification.delete_all
+      Identification.make!(observation: observation)
+      expect(Identification.count).to eq 1
+      Comment.make!(parent: observation)
+      Post.make!(parent: observation)
+      expect(User.active_ids.length).to eq 4
+    end
+
+    it "should count the same user only once" do
+      expect(User.active_ids.length).to eq 0
+      user = User.make!
+      observation = Observation.make!(user: user)
+      Identification.delete_all
+      Identification.make!(observation: observation, user: user)
+      Comment.make!(parent: observation, user: user)
+      Post.make!(parent: observation, user: user)
+      expect(User.active_ids.length).to eq 1
+    end
+  end
+
+  describe "mentions" do
+    it "can prefer to not get mentions" do
+      u = User.make!
+      expect( u.updates.count ).to eq 0
+      without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      expect( u.updates.count ).to eq 2
+      u.update_attributes(prefers_receive_mentions: false)
+      without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      # the mention count remains the same
+      expect( u.updates.count ).to eq 2
+    end
+
+    it "can prefer to not get mentions in emails" do
+      u = User.make!
+      expect( u.updates.count ).to eq 0
+      without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      expect( u.updates.count ).to eq 1
+      deliveries = ActionMailer::Base.deliveries.size
+      u.update_attributes(prefers_mention_email_notification: false)
+      Update.email_updates_to_user(u, 1.hour.ago, Time.now)
+      expect( ActionMailer::Base.deliveries.size ).to eq deliveries
+      u.update_attributes(prefers_mention_email_notification: true)
+      Update.email_updates_to_user(u, 1.hour.ago, Time.now)
+      expect( ActionMailer::Base.deliveries.size ).to eq (deliveries + 1)
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {
-      :login => 'quire', 
-      :email => 'quire@example.com', 
-      :password => 'quire69', 
+      :login => 'quire',
+      :email => 'quire@example.com',
+      :password => 'quire69',
       :password_confirmation => 'quire69'
     }.merge(options)
     u = User.new(opts)
     u.save
     u
-  end
-end
-
-
-describe User, "merge" do
-  before(:each) do
-    @keeper = User.make!
-    @reject = User.make!
-    enable_elastic_indexing( Observation )
-  end
-  after(:each) { disable_elastic_indexing( Observation ) }
-
-  it "should move observations" do
-    o = Observation.make!(:user => @reject)
-    without_delay do
-      @keeper.merge(@reject)
-    end
-    o.reload
-    expect(o.user_id).to eq @keeper.id
-  end
-  
-  it "should merge life lists" do
-    t = Taxon.make!
-    @reject.life_list.add_taxon(t)
-    @keeper.merge(@reject)
-    @keeper.reload
-    expect(@keeper.life_list.taxon_ids).to include(t.id)
-  end
-  
-  it "should remove self frienships" do
-    f = Friendship.make!(:user => @reject, :friend => @keeper)
-    @keeper.merge(@reject)
-    expect(Friendship.find_by_id(f.id)).to be_blank
-    expect(@keeper.friendships.map(&:friend_id)).not_to include(@keeper.id)
-  end
-  
-  it "should queue a job to refresh the keeper's life list" do
-    Delayed::Job.delete_all
-    stamp = Time.now
-    @keeper.merge(@reject)
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    # puts jobs.map(&:handler).inspect
-    expect(jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}).not_to be_blank
-  end
-end
-
-describe User, "suggest_login" do
-  it "should suggest logins that are too short" do
-    suggestion = User.suggest_login("AJ")
-    expect(suggestion).not_to be_blank
-    expect(suggestion.size).to be >= User::MIN_LOGIN_SIZE
-  end
-  
-  it "should not suggests logins that are too big" do
-    suggestion = User.suggest_login("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor")
-    expect(suggestion).not_to be_blank
-    expect(suggestion.size).to be <= User::MAX_LOGIN_SIZE
-  end
-end
-
-describe User, "community taxa preference" do
-  it "should not remove community taxa when set to false" do
-    o = Observation.make!
-    i1 = Identification.make!(:observation => o)
-    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    o.reload
-    expect(o.community_taxon).to eq i1.taxon
-    o.user.update_attributes(:prefers_community_taxa => false)
-    Delayed::Worker.new.work_off
-    o.reload
-    expect(o.taxon).to be_blank
-  end
-
-  it "should set observation taxa to owner's ident when set to false" do
-    owners_taxon = Taxon.make!
-    o = Observation.make!(:taxon => owners_taxon)
-    i1 = Identification.make!(:observation => o)
-    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    o.reload
-    expect(o.taxon).to eq o.community_taxon
-    o.user.update_attributes(:prefers_community_taxa => false)
-    Delayed::Worker.new.work_off
-    o.reload
-    expect(o.taxon).to eq owners_taxon
-  end
-
-  it "should not set observation taxa to owner's ident when set to false for observations that prefer community taxon" do
-    owners_taxon = Taxon.make!
-    o = Observation.make!(:taxon => owners_taxon, :prefers_community_taxon => true)
-    i1 = Identification.make!(:observation => o)
-    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    o.reload
-    expect(o.taxon).to eq o.community_taxon
-    o.user.update_attributes(:prefers_community_taxa => false)
-    Delayed::Worker.new.work_off
-    o.reload
-    expect(o.taxon).to eq o.community_taxon
-  end
-
-  it "should change observation taxa to community taxa when set to true" do
-    o = Observation.make!
-    o.user.update_attributes(:prefers_community_taxa => false)
-    i1 = Identification.make!(:observation => o)
-    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    o.reload
-    expect(o.taxon).to be_blank
-    o.user.update_attributes(:prefers_community_taxa => true)
-    Delayed::Worker.new.work_off
-    o.reload
-    expect(o.taxon).to eq o.community_taxon
-  end
-end
-
-describe User, "updating" do
-  describe 'disallows illegitimate logins' do
-    bad_logins.each do |login_str|
-      it "'#{login_str}'" do
-        u = User.make!
-        u.login = login_str
-        expect(u).not_to be_valid
-      end
-    end
-  end
-end
-
-describe User, "active_ids" do
-  it "should calculate active users across several classes" do
-    User.active_ids.length.should == 0
-    Identification.count.should == 0
-    observation = Observation.make!
-    # observations are made with identifications, so we'll start fresh
-    Identification.delete_all
-    Identification.make!(observation: observation)
-    Identification.count.should == 1
-    Comment.make!(parent: observation)
-    Post.make!(parent: observation)
-    User.active_ids.length.should == 4
-  end
-
-  it "should count the same user only once" do
-    User.active_ids.length.should == 0
-    user = User.make!
-    observation = Observation.make!(user: user)
-    Identification.delete_all
-    Identification.make!(observation: observation, user: user)
-    Comment.make!(parent: observation, user: user)
-    Post.make!(parent: observation, user: user)
-    User.active_ids.length.should == 1
   end
 end

@@ -424,10 +424,11 @@ Rails.application.routes.draw do
     collection do
       get :index
     end
-    resource :stats, controller: "admin/stats" do
-      collection do
-        get :index
-      end
+  end
+
+  resource :stats do
+    collection do
+      get :index
     end
   end
 

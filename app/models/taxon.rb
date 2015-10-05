@@ -48,6 +48,7 @@ class Taxon < ActiveRecord::Base
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
   has_many :taxon_ancestors, :dependent => :delete_all
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
+  has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -122,9 +123,10 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry,
-        iconic_taxon_id, rank_level, created_at, updated_at, is_active,
-        observations_count").all
+      @cached_ancestors ||= ancestor_taxa.loaded? ? ancestor_taxa :
+        ancestors.select("id, name, rank, ancestry,
+          iconic_taxon_id, rank_level, created_at, updated_at, is_active,
+          observations_count").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless respond_to?(rank)
@@ -1104,7 +1106,6 @@ class Taxon < ActiveRecord::Base
     return geoprivacies.first if geoprivacies.size == 1
     return Observation::PRIVATE if geoprivacies.include?(Observation::PRIVATE)
     return Observation::OBSCURED unless geoprivacies.blank?
-    return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
     ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end
 
@@ -1225,17 +1226,10 @@ class Taxon < ActiveRecord::Base
     rescue Timeout::Error => e
       []
     end
-    if external_names.blank?
-      external_names = begin
-        Ratatosk.find(name)
-      rescue Timeout::Error => e
-        []
-      end
-    end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
-      if en.save && !en.taxon.grafted?
+      if en.save && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
     end

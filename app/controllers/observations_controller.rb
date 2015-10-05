@@ -660,6 +660,12 @@ class ObservationsController < ApplicationController
           end
         else
           if @observations.size == 1
+            if @project
+              @place = @project.place
+              @project_curators = @project.project_users.where("role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR])
+              @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+              @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
+            end
             render :action => 'new'
           else
             render :action => 'edit_batch'
@@ -963,10 +969,17 @@ class ObservationsController < ApplicationController
       return redirect_to :action => "import"
     end
 
+    unique_hash = {
+      :class => 'BulkObservationFile',
+      :user_id => current_user.id,
+      :filename => params[:upload]['datafile'].original_filename,
+      :project_id => params[:upload][:project_id]
+    }
+
     # Copy to a temp directory
     path = private_page_cache_path(File.join(
       "bulk_observation_files", 
-      "#{current_user.login}-#{Time.now.to_i}-#{params[:upload]['datafile'].original_filename}"
+      "#{unique_hash.to_s.parameterize}-#{Time.now}.csv"
     ))
     FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
@@ -980,9 +993,8 @@ class ObservationsController < ApplicationController
     )
     Delayed::Job.enqueue(
       bof, 
-      queue: "slow",
       priority: USER_PRIORITY,
-      unique_hash: bof.generate_unique_hash
+      unique_hash: unique_hash
     )
 
     # Notify the user that it's getting processed and return them to the upload screen.
@@ -1645,6 +1657,8 @@ class ObservationsController < ApplicationController
         render :layout => "bootstrap"
       end
       format.csv do
+        Taxon.preload_associations(@taxa, [
+          :ancestor_taxa, { taxon_names: :place_taxon_names }])
         render :text => @taxa.to_csv(
           :only => [:id, :name, :rank, :rank_level, :ancestry, :is_active],
           :methods => [:common_name_string, :iconic_taxon_name, 
@@ -1655,6 +1669,7 @@ class ObservationsController < ApplicationController
         )
       end
       format.json do
+        Taxon.preload_associations(@taxa, :taxon_descriptions)
         render :json => {
           :taxa => @taxa
         }
@@ -2024,9 +2039,9 @@ class ObservationsController < ApplicationController
     # use the supplied search_params if available. Those will already have
     # tried to resolve and instances referred to by ID
     stats_params = search_params.blank? ? params : search_params
-    if params[:d1] && params[:d2]
+    if stats_params[:d1]
       d1 = (Date.parse(stats_params[:d1]) rescue Date.today)
-      d2 = (Date.parse(stats_params[:d2]) rescue Date.today)
+      d2 = stats_params[:d2] ? (Date.parse(stats_params[:d2]) rescue Date.today) : Date.today
       return false if d2 - d1 > 366
     end
     @stats_adequately_scoped = !(

@@ -5,7 +5,7 @@
 = content_for :extrajs do
   = javascript_include_tag "taxon_names/taxon"
 .container
-  .span12
+  .col-md-12
     %ul.breadcrumb.unstacked
       %li
         = link_to t(:back_to_x, :noun => @taxon.name), @taxon, :class => "back crumb"
@@ -27,7 +27,7 @@
           .badge.pull-right=t :default
 
   - @names_by_place.each do |place, place_taxon_names|
-    .span12
+    .col-md-12
       %h3= link_to place_name_and_type(place), place
       %ul.plain.names
         - place_taxon_names.each do |ptn|

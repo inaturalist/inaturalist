@@ -1322,6 +1322,8 @@ class TaxaController < ApplicationController
       return
     end
     
+    Rails.logger.debug "[DEBUG] ext_names.map(&:name): #{ext_names.map(&:name).inspect}"
+    Rails.logger.debug "[DEBUG] ext_names.map(&:taxon_id): #{ext_names.map(&:taxon_id).inspect}"
     @external_taxa = Taxon.find(ext_names.map(&:taxon_id)) unless ext_names.blank?
     
     return if @external_taxa.blank?

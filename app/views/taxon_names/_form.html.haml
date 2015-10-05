@@ -2,19 +2,15 @@
   = javascript_include_tag "taxon_names/form"
 .row.stacked
   = form_for(@taxon_name, :builder => BootstrapFormBuilder, :url => @taxon_name.new_record? ? taxon_taxon_names_path(@taxon || @taxon_name.taxon) : @taxon_name) do |n|
-    .span6
+    .col-xs-6
       = error_messages_for :taxon_name
       = n.hidden_field :taxon_id
       - if @taxon_name.new_record? || is_curator? || is_me?(@taxon_name.creator)
         = n.text_field :name, :class => "text", :autofocus => true
       - else
         %strong= @taxon_name.name
-      - options = TaxonName::DEFAULT_LEXICONS.sort + ['---------------------------'] +
-      - (@lexicons - TaxonName::DEFAULT_LEXICONS)
-      = n.form_field :lexicon do
-        .select-field
-          = n.select :lexicon, options.map{|l| [t("lexicons.#{l.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", |
-            :default => l), l]}, :include_blank => t(:unknown), :disabled => '---------------------------', :skip_builder => true
+      = n.select_lexicon :lexicon, @lexicons
+      .stacked
         = link_to_function t(:add_new_lexicon),                                  |
           "$('#new_lexicon_field').show(); " +                                   |
           "$('#new_lexicon_field input').attr('name', 'taxon_name[lexicon]');" + |
@@ -22,20 +18,25 @@
           "$(this).hide();",                                                     |
           :id => "new_lexicon_link"                                              |
         = n.form_field :new_lexicon, :wrapper => {:id => "new_lexicon_field", :style => "display:none;"} do
-          = n.text_field :lexicon, :name => "lexicon_text", :class => "text", :skip_builder => true
-          = link_to_function t(:cancel),                                             |
-            "$('#new_lexicon_field').hide(); " +                                     |
-            "$('#new_lexicon_field input').attr('name', 'lexicon_text');" +          |
-            "$('#taxon_name_lexicon_select').attr('name', 'taxon_name[lexicon]');" + |
-            "$('#new_lexicon_link').show();"                                         |
+          .input-group
+            = n.text_field :lexicon, :name => "lexicon_text", 'label' => false, skip_builder: true, :class => "form-control"
+            .input-group-btn
+              = link_to_function t(:cancel),                                             |
+                "$('#new_lexicon_field').hide(); " +                                     |
+                "$('#new_lexicon_field input').attr('name', 'lexicon_text');" +          |
+                "$('#taxon_name_lexicon_select').attr('name', 'taxon_name[lexicon]');" + |
+                "$('#new_lexicon_link').show();",                                        |
+                :class => "btn btn-default"
       = n.form_field :validity, :label => false do
         = label_tag t(:if_this_is_a_scientific_name)
-        %label.radio.inline
-          = n.radio_button :is_valid, true.to_s, :skip_builder => true
-          = t(:true).downcase
-        %label.radio.inline
-          = n.radio_button :is_valid, false, :skip_builder => true
-          = t(:false).downcase
+        .radio
+          %label.inline
+            = n.radio_button :is_valid, true.to_s, :skip_builder => true
+            = t(:true).downcase
+        .radio
+          %label.inline
+            = n.radio_button :is_valid, false, :skip_builder => true
+            = t(:false).downcase
       - unless @taxon_name.new_record?
         .stacked.clear
           %h3
@@ -49,7 +50,7 @@
               = render "place_taxon_name_fields", :f => ptn
           .stacked
             = fields_for @taxon_name do |tn|
-              = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-small"
+              = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-sm"
       .clear.buttonrow.upstacked
         = n.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)
         = link_to t(:cancel), @taxon || @taxon_name.taxon, :class => 'button'
@@ -58,24 +59,15 @@
             :method => :delete,
             :data => {:confirm => t(:are_you_sure_want_delete_this_name)},
             :class => 'minor delete button'
-    .span6
+    .col-xs-6
       - if @taxon_name.new_record?
         .box
           %h3= t :guidelines
           = t 'views.taxon_names.form.new_name_guidelines_html'
       - unless @taxon_name.source_identifier.blank?
         .clear.quiet.box
-          .description
+          %p.description
             = t(:this_taxon_name_was_originally_imported)
-          %p.ui
-            = n.label :name_provider
-            %br/
-            = n.text_field :name_provider, :disabled => true, :class => "text"
-          %p.ui
-            = n.label :source_url
-            %br/
-            = n.text_field :source_url, :disabled => true, :class => "text"
-          %p.ui
-            = n.label :source_identifier
-            %br/
-            = n.text_field :source_identifier, :disabled => true, :class => "text"
+          = n.text_field :name_provider, :disabled => true, :class => "text"
+          = n.text_field :source_url, :disabled => true, :class => "text"
+          = n.text_field :source_identifier, :disabled => true, :class => "text"

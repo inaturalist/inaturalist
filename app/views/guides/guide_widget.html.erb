@@ -80,7 +80,7 @@
         })
       )
       
-      $('a').live('click', function() {
+      $(document).on('click', 'a', function() {
         if (!$(this).attr('href') || 
             $(this).attr('href').indexOf('#') == 0 ||
             $(this).hasClass('ui-tabs-anchor') ||

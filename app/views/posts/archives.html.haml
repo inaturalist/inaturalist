@@ -12,7 +12,7 @@
   .row
     = render :partial => "posts/header", :locals => { :include_breadcrumbs => true }
   .row
-    #postscol.column.span8
+    #postscol.column.col-md-8
       %h2.title
         = t(:journal_archives_for)
         = l @target_date, format: :month_year
@@ -25,6 +25,6 @@
               = link_to t(:add_one), new_post_path(@display_user.login), |
                 :class => "default button"                               |
       = will_paginate @posts, :renderer => INatLinkRenderer
-    #sidecol.span4
+    #sidecol.col-md-4
       - unless @archives.blank?
         = render :partial => 'archives'

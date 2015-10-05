@@ -47,7 +47,6 @@ xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
         end
         xml.coreid :index => 0
         ext_terms.each_with_index do |tuple, i|
-          # next if i == 0
           name, uri, default = tuple
           if default
             xml.field :index => i, :default => default, :term => uri
