@@ -1,5 +1,6 @@
 - content_for :extracss do
   :css
+    body .bootstrap {font-size: 10px; }
     .bootstrap h1 {margin-top:0;}
     .bootstrap .thumbnails .img {height: 110px; position:relative;}
     .noimg { height: 110px;border: 1px solid #eee;}
@@ -7,7 +8,7 @@
     .bootstrap .thumbnails img.iconic {padding-top:20px; }
     .bootstrap .thumbnail.borderless {border: 0 transparent; box-shadow: none; -webkit-box-shadow:none; -webkit-border-radius: 0px;}
     .bootstrap .thumbnails li {margin-bottom:0px;}
-    .row {page-break-inside: avoid;}
+    .thumbnail {page-break-inside: avoid;}
     #attribution {page-break-inside: avoid;}
     #attribution, #attribution li, #attribution p {line-height: 1.4;}
     #attribution ul {margin-left:0;display:inline;}
@@ -17,22 +18,22 @@
     #attribution {font-size:65%;}
     @media print{@page {size: portrait}}
 .container-fluid
-  %h1= @guide.title
-  / - for row in @guide_taxa.in_groups_of(4)
-  .row.stacked
-    .thumbnails
-      - for guide_taxon in @guide_taxa #row.compact
-        .col-md-3.col-sm-3.col-xs-4
-          .thumbnail.borderless
-            - if gp = guide_taxon.default_guide_photo
-              .img= image_tag gp.photo.small_url, :class => "img-responsive"
-            - elsif guide_taxon.taxon
-              .noimg= iconic_taxon_image(guide_taxon.taxon, :class => "img-responsive")
-            .display_name
-              %strong= guide_taxon.display_name
-            .name
-              %i= guide_taxon.name
-              = cite(gp.attribution) if gp = guide_taxon.default_guide_photo
+  %h3= @guide.title
+  - for row in @guide_taxa.in_groups_of(4)
+    .row
+      .thumbnails
+        - for guide_taxon in row.compact
+          .col-md-3.col-sm-3.col-xs-3
+            .thumbnail.borderless
+              - if gp = guide_taxon.default_guide_photo
+                .img= image_tag gp.photo.small_url, :class => "img-responsive"
+              - elsif guide_taxon.taxon
+                .noimg= iconic_taxon_image(guide_taxon.taxon, :class => "img-responsive")
+              .display_name
+                %strong= guide_taxon.display_name
+              .name
+                %i= guide_taxon.name
+                = cite(gp.attribution) if gp = guide_taxon.default_guide_photo
   #attribution.text-muted
     .stacked
       %strong
