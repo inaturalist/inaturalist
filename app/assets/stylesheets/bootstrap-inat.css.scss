@@ -2,17 +2,17 @@ $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
 
 @font-face { 
   font-family: Whitney; 
-  src: asset-url('Whitney-Book-Pro.otf');
+  src: asset-data-url('Whitney-Book-Pro.otf');
 }
 @font-face { 
   font-family: Whitney; 
   font-weight: bold;
-  src: asset-url('Whitney-Medium-Pro.otf');
+  src: asset-data-url('Whitney-Medium-Pro.otf');
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 600;
-  src: asset-url('Whitney-Semibold-Pro.otf');
+  src: asset-data-url('Whitney-Semibold-Pro.otf');
 } 
 body {font-size: 75%;}
 body .bootstrap {

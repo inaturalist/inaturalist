@@ -2,10 +2,10 @@
 
 @font-face {
   font-family: "inaturalisticons";
-  src:asset-url("inaturalisticons.eot");
+  src:asset-data-url("inaturalisticons.eot");
   src:asset-url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
-    asset-url("inaturalisticons.woff") format("woff"),
-    asset-url("inaturalisticons.ttf") format("truetype"),
+    asset-data-url("inaturalisticons.woff") format("woff"),
+    asset-data-url("inaturalisticons.ttf") format("truetype"),
     asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
