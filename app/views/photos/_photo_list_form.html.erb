@@ -33,10 +33,16 @@
   <h4><%= t :select_one_or_more_photos %></h4>
   <% photos.each do |photo| %>
     <%- 
-      native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
+      native_photo_id = photo.native_photo_id || photo.id
       thumb_url = photo.try_methods(:thumb_url, :square_url, :url_t, :url_sq)
       next unless thumb_url
-      prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
+      if photo.is_a?(Photo)
+        prefix = photo.class.to_s.underscore
+        sync_prefix = photo.subtype.blank? ? photo.class.to_s.underscore : photo.subtype.underscore
+      else
+        prefix = "flickr_photo"
+        sync_prefix = "flickr_photo"
+      end
       unique_id = serial_id
       if index.blank?
         input_name = "#{prefix.pluralize}[]"
@@ -46,7 +52,7 @@
         input_id = "#{prefix}_#{index}_#{native_photo_id}_#{unique_id}"
       end
     -%>
-    <div class="photo" data-photo-class="<%= photo.class.name %>">
+    <div class="photo" data-photo-class="<%= photo.subtype || photo.class.name %>">
       <%= check_box_tag input_name, 
         native_photo_id, 
         checked, 
@@ -55,10 +61,10 @@
       <% if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil) %>
         <% 
           if synclink_uri.query.blank?
-            synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
+            synclink_uri.query = "#{sync_prefix}_id=#{native_photo_id}"
           else
-            synclink_uri.query.gsub!(/\&?#{prefix}_id=[^\&]+/, '')
-            synclink_uri.query += "&#{prefix}_id=#{native_photo_id}"
+            synclink_uri.query.gsub!(/\&?#{sync_prefix}_id=[^\&]+/, '')
+            synclink_uri.query += "&#{sync_prefix}_id=#{native_photo_id}"
           end
           synclink_uri.query += "&sync_photo=t"
           synclink_url = synclink_uri.to_s

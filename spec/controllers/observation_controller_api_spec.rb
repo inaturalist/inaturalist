@@ -45,12 +45,15 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should allow Google Street View photos" do
+      url = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=37.903042,-122.24697600000002&heading=-73.33342317239405&pitch=28.839156732145224&fov=180&sensor=false"
       post :create, :format => :json, :observation => {:species_guess => "tree"}, :google_street_view_photos => {
-        "0" => "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=37.903042,-122.24697600000002&heading=-73.33342317239405&pitch=28.839156732145224&fov=180&sensor=false"
+        "0" => url
       }
       expect(response).to be_success
       o = Observation.last
-      expect(o.photos.last).to be_a GoogleStreetViewPhoto
+      expect(o.photos.last).to be_a LocalPhoto
+      expect(o.photos.last.native_photo_id).to eq url
+      expect(o.photos.last.native_original_image_url).to eq url
     end
 
     it "should not fail with a dot for a species_guess" do

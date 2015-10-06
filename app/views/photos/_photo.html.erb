@@ -17,7 +17,7 @@
         </li>
       <% end %>
       <li class="native_page_url">
-        <%- photographer_name = (photo.native_realname || photo.native_username) -%>
+        <%- photographer_name = photo.native_realname.blank? ? photo.native_username : photo.native_realname -%>
         <% unless photo.native_page_url.blank? -%>
           <%= link_to t(:view_original_by, :by => "#{photographer_name if !photographer_name.blank?}", :photo => photo.source_title), 
             photo.native_page_url %>

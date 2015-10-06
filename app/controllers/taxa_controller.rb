@@ -1226,7 +1226,9 @@ class TaxaController < ApplicationController
   def find_taxa
     @taxa = Taxon.order("taxa.name ASC").includes(:taxon_names, :taxon_photos, :taxon_descriptions)
     @taxa = @taxa.from_place(params[:place_id]) unless params[:place_id].blank?
-    @taxa = @taxa.self_and_descendants_of(params[:taxon_id]) unless params[:taxon_id].blank?
+    if !params[:taxon_id].blank? && (@ancestor = Taxon.find_by_id(params[:taxon_id]))
+      @taxa = @taxa.self_and_descendants_of(@ancestor)
+    end
     if params[:rank] == "species_or_lower"
       @taxa = @taxa.where("rank_level <= ?", Taxon::SPECIES_LEVEL)
     elsif !params[:rank].blank?

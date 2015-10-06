@@ -304,7 +304,6 @@ class Taxon < ActiveRecord::Base
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     if taxon
       conditions = taxon.descendant_conditions.to_sql
       conditions += " OR taxa.id = #{ taxon.id }"

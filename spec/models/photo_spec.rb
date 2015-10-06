@@ -65,4 +65,59 @@ describe Photo do
       expect(deleted_photos.user_id).to eq p.user_id
     end
   end
+
+  describe "local_photo_from_remote_photo" do
+    it "creates a LocalPhoto with the right attributes" do
+      fp = FlickrPhoto.new(
+        original_url: "http://static.inaturalist.org/sites/1-logo.png",
+        native_photo_id: "a native_photo_id",
+        native_page_url: "a native_page_url",
+        native_username: "a native_username",
+        native_realname: "a native_realname",
+        license: 2,
+        mobile: false,
+        metadata: { meta: :data })
+      lp = Photo.local_photo_from_remote_photo(fp)
+      expect( lp.native_photo_id ).to eq fp.native_photo_id
+      expect( lp.native_page_url ).to eq fp.native_page_url
+      expect( lp.native_username ).to eq fp.native_username
+      expect( lp.native_realname ).to eq fp.native_realname
+      expect( lp.license ).to eq fp.license
+      expect( lp.mobile ).to eq fp.mobile
+      expect( lp.metadata ).to eq fp.metadata
+      expect( lp.original_url ).to be nil
+      expect( lp.subtype ).to eq "FlickrPhoto"
+      expect( lp.native_original_image_url ).to eq fp.original_url
+    end
+  end
+
+  describe "turn_remote_photo_into_local_photo" do
+    it "creates and saves local photos" do
+      fp = FlickrPhoto.new(
+        original_url: "http://static.inaturalist.org/sites/1-logo.png")
+      expect(fp.type).to eq "FlickrPhoto"
+      Photo.turn_remote_photo_into_local_photo(fp)
+      expect(fp.type).to eq "LocalPhoto"
+      expect(fp.subtype).to eq "FlickrPhoto"
+      expect(fp.native_original_image_url).to eq fp.original_url
+    end
+
+    it "fails if the original and large URLs are inaccessible" do
+      fp = FlickrPhoto.new(
+        original_url: "http://static.inaturalist.org/whatever.png",
+        large_url: "http://static.inaturalist.org/whatever.png")
+      Photo.turn_remote_photo_into_local_photo(fp)
+      expect(fp.type).to eq "FlickrPhoto"
+    end
+
+    it "uses the large URL when the original is not available" do
+      fp = FlickrPhoto.new(
+        original_url: "http://static.inaturalist.org/whatever.png",
+        large_url: "http://static.inaturalist.org/sites/1-logo.png")
+      Photo.turn_remote_photo_into_local_photo(fp)
+      expect(fp.type).to eq "LocalPhoto"
+      expect(fp.native_original_image_url).to eq fp.large_url
+    end
+  end
+
 end

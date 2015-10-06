@@ -24,7 +24,7 @@ describe ApiEndpointCache do
     it "is true if it has been recently cached" do
       endpoint = ApiEndpoint.make!(cache_hours: 48)
       cache = ApiEndpointCache.make!(request_began_at: 1.day.ago,
-        request_completed_at: 1.day.ago, api_endpoint: endpoint)
+        request_completed_at: 1.day.ago, api_endpoint: endpoint, success: true)
       expect(cache.cached?).to be true
     end
   end
