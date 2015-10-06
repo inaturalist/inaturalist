@@ -1,3 +1,19 @@
+$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
+
+@font-face { 
+  font-family: Whitney; 
+  src: asset-url('Whitney-Book-Pro.otf');
+}
+@font-face { 
+  font-family: Whitney; 
+  font-weight: bold;
+  src: asset-url('Whitney-Medium-Pro.otf');
+} 
+@font-face { 
+  font-family: Whitney; 
+  font-weight: 600;
+  src: asset-url('Whitney-Semibold-Pro.otf');
+} 
 body {font-size: 75%;}
 body .bootstrap {
   margin: 0;
@@ -5,10 +21,25 @@ body .bootstrap {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: $font-stack;
 }
 
-.bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 100%;}
+.bootstrap h1,
+.bootstrap h2,
+.bootstrap h3,
+.bootstrap h4,
+.bootstrap h5,
+.bootstrap h6 {
+  color: #1A1A1A;
+}
+
+.bootstrap .readable, .bootstrap p { 
+  font-size: 100%;
+  font-family: $font-stack;
+}
+
+.bootstrap a:hover { text-decoration: none; opacity: 0.8;}
+.bootstrap a:hover img { opacity: 1;}
 
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
@@ -147,3 +178,20 @@ img.borderless, .thumbnail.borderless { border: 0; }
 .bootstrap .leaderboard-container thead .sorting_asc {padding-right: 20px; }
 
 .bootstrap mark { padding: 0; }
+
+.carousel-control .fa-chevron-left,
+.carousel-control .fa-chevron-right {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-block;
+  margin-top: -10px;
+}
+.carousel-control .fa-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+.carousel-control .fa-chevron-right {
+  right: 50%;
+  margin-right: -10px;
+}

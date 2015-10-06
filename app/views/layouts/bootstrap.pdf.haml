@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    = wicked_pdf_stylesheet_link_tag "bootstrap", 'bootstrap-inat', 'bootstrap-pdf'
+    = stylesheet_link_tag "bootstrap_bundle", 'bootstrap-pdf', media: :all
     = yield :extrahead
     = yield :extracss
   %body

@@ -2490,7 +2490,7 @@ class ObservationsController < ApplicationController
           :extra => {
             :taxon => observation.taxon,
             :iconic_taxon => observation.iconic_taxon,
-            :user => {:login => observation.user.login}
+            :user => {login: observation.user.login, name: observation.user.name}
           }
         }
         item[:html] = view_context.render_in_format(:html, :partial => partial, :object => observation)

@@ -1890,3 +1890,7 @@ p.spam {
   color: #333;
   white-space: nowrap;
 }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  vertical-align: bottom;
+}

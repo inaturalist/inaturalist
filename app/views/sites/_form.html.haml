@@ -1,6 +1,8 @@
 - content_for :extracss do
   :css
     .edit_site textarea {height: 300px;}
+    .edit_site legend {padding-bottom: 10px;}
+    .edit_site .row {margin-bottom: 20px;}
 = form_for @record, :builder => BootstrapFormBuilder do |f|
   - if @record.errors.any?
     .row
@@ -15,17 +17,20 @@
     .col-md-4= f.text_field :url, :required => true
     .col-md-4= f.check_box :draft
   %fieldset
-    %legend=t :images
+    %legend=t :assets
     .row
-      .col-md-4
+      .col-md-3
         = f.file_field :logo
         = image_tag @record.logo.url
-      .col-md-4
+      .col-md-3
         = f.file_field :logo_square
-        = image_tag @record.logo_square.url
-      .col-md-4
+        = image_tag @record.logo_square.url, :class => 'img-responsive'
+      .col-md-3
         = f.file_field :stylesheet
         = link_to @record.stylesheet.url, @record.stylesheet.url if @record.stylesheet?
+      .col-md-3
+        = f.file_field :homepage_data
+        = link_to @record.homepage_data.url, @record.homepage_data.url if @record.homepage_data?
   - for grp, prefs in @pref_groups
     %fieldset
       %legend= grp.capitalize
