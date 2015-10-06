@@ -632,6 +632,7 @@ class Observation < ActiveRecord::Base
     if logged_in
       preloads.delete(:iconic_taxon)
       preloads << { iconic_taxon: :taxon_descriptions }
+      preloads << :project_observations
     end
     Observation.preload_associations(observations, preloads)
   end
@@ -1214,6 +1215,7 @@ class Observation < ActiveRecord::Base
   
   def coordinates_viewable_by?(viewer)
     return true unless coordinates_obscured?
+    return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
     return true if user_id == viewer.id

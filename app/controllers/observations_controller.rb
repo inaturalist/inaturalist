@@ -1735,8 +1735,7 @@ class ObservationsController < ApplicationController
         non_elastic_user_stats(search_params, limit)
       end
       @user_ids = @user_counts.map{ |c| c["user_id"] } |
-        @user_taxon_counts.map{ |c| c["user_id"] } |
-        @identifier_counts[:counts].keys
+        @user_taxon_counts.map{ |c| c["user_id"] }
       @users = User.where(id: @user_ids).
         select("id, login, icon_file_name, icon_updated_at, icon_content_type")
       @users_by_id = @users.index_by(&:id)
@@ -1765,16 +1764,6 @@ class ObservationsController < ApplicationController
             {
               :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
-                :only => [:id, :name, :login],
-                :methods => [:user_icon_url]
-              )
-            }
-          },
-          :number_of_identifiers => @identifier_counts[:total],
-          :identifier_counts => @identifier_counts[:counts].map{ |user_id, count|
-            {
-              :count => count,
-              :user => @users_by_id[user_id].as_json(
                 :only => [:id, :name, :login],
                 :methods => [:user_icon_url]
               )
@@ -2823,8 +2812,6 @@ class ObservationsController < ApplicationController
     # don't want to return more than were asked for
     @user_counts = @user_counts[0...limit]
     @user_taxon_counts = @user_taxon_counts[0...limit]
-
-    @identifier_counts = Observation.elastic_user_identification_counts(elastic_params, limit)
   end
 
   def prepare_counts_elastic_query(search_params)

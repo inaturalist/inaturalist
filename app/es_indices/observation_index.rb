@@ -192,6 +192,10 @@ class Observation < ActiveRecord::Base
       search_wheres["user.id"] = p[:user_id]
     end
     search_wheres["taxon.rank"] = p[:rank] if p[:rank]
+    search_wheres["taxon.introduced"] = true if p[:introduced] == "true"
+    search_wheres["taxon.introduced"] = false if p[:introduced] == "false"
+    search_wheres["taxon.threatened"] = true if p[:threatened] == "true"
+    search_wheres["taxon.threatened"] = false if p[:threatened] == "false"
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
     if p[:observations_taxon]

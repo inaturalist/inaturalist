@@ -1027,7 +1027,7 @@ class Taxon < ActiveRecord::Base
       if options[:closest]
         most_specific_lt = lt.
           select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
-          sort_by{ |l| l.place.bbox_area }.first
+          sort_by{ |l| l.place.bbox_area || 0 }.first
         return false if most_specific_lt.blank?
         means.include?( most_specific_lt.establishment_means)
       else
