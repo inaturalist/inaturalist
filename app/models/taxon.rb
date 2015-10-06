@@ -301,7 +301,6 @@ class Taxon < ActiveRecord::Base
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     if taxon
       conditions = taxon.descendant_conditions.to_sql
       conditions += " OR taxa.id = #{ taxon.id }"
@@ -1193,17 +1192,10 @@ class Taxon < ActiveRecord::Base
     rescue Timeout::Error => e
       []
     end
-    if external_names.blank?
-      external_names = begin
-        Ratatosk.find(name)
-      rescue Timeout::Error => e
-        []
-      end
-    end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
-      if en.save && !en.taxon.grafted?
+      if en.save && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
     end

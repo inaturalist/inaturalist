@@ -58,12 +58,12 @@
         <%= render :partial => 'shared/taxon', 
                    :locals => { :taxon => @taxon_rule.operand,
                                 :link_url => url_for(@taxon_rule.operand) } %>
-        <% if list.place %>
+        <% if list.respond_to?(:place) && list.place %>
           <%=t :from %>
           <%= link_to(@list.place.display_name, @list.place) %>
         <% end %>
       </div>
-    <% elsif list.place %>
+    <% elsif list.respond_to?(:place) && list.place %>
       <div class="description stacked">
         <%=t :this_is_a_life_list_from_place_html, place: link_to(@list.place.display_name, @list.place) %>
       </div>

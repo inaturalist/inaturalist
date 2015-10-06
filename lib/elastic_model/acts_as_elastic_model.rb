@@ -12,7 +12,7 @@ module ActsAsElasticModel
     end
 
     # set the index name based on the environment, useful for specs
-    index_name [ Rails.env, model_name.collection ].join('_')
+    index_name [ (Rails.env.prod_dev? ? "production" : Rails.env), model_name.collection ].join('_')
 
     after_commit on: [:create, :update] do
       elastic_index!

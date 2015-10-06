@@ -286,7 +286,7 @@
             name ||= short_name
             name = t("name_providers.#{name.underscore}", :default => name)
             url = np.class.source.try(:url)
-            code = np.class.name.split('::').last.gsub(/NameProvider/, '').downcase
+            code = np.class.name.split('::').last.gsub(/NameProvider/, '').underscore.downcase
           -%>
           <%= form_tag url_for(), :method => :get, :class => 'clear' do %>
             <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>

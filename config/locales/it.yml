@@ -11,6 +11,7 @@
 # Author: LauraCri
 # Author: Macofe
 # Author: Martinligabue
+# Author: Oggioniale
 # Author: Rippitippi
 # Author: Statix64
 ---
@@ -117,7 +118,7 @@ it:
   about_these_licenses: A proposito di queste licenze
   about_this_map: A proposito di questa mappa
   about_this_project: A proposito di questo Progetto
-  about_x: A proposito di %{X}
+  about_x: A proposito di %{x}
   acc: Acc (m)
   account: Account
   accept: accetta
@@ -760,6 +761,7 @@ it:
   committed: Confermato
   committing: Conferma in corso...
   community_id: 'ID della <strong>Community</strong>:'
+  community_id_at_species_or_lower?: Comunità ID a livello di specie o inferiore?
   community_moderation_settings: Impostazioni della moderazione della Community
   community_supported_id: ID accettata della Community?
   compare_with: Confronta con
@@ -871,6 +873,7 @@ it:
   critically_endangered: in pericolo critico
   css_description: Questo verrà incluso dopo tutti gli altri css della pagina.
   csv: CSV
+  csv_file: File CSV
   csv_should_not_contain_a_header_row: Il CSV non deve contenere la riga di intestazione
   curate_observations: Organizza osservazioni
   curate_taxa: Organizza taxa
@@ -1021,6 +1024,7 @@ it:
     <a href="%{url}">Scarica il modello</a> da usare nell'
     <a href="/observations/import#csv_import">importazione di massa</a>
   download_csv: Scarica in formato CSV
+  download_csv_template: Scarica modello CSV
   download_kml: Scarica il file KML
   drag_and_drop_photos: trascina e rilascia le foto in tale finestra o
   draft: bozza
@@ -1394,6 +1398,7 @@ it:
   id_please!: ID per favore!
   id_please: ID per favore
   id_please_expandable_html: ID<span class='full'> per favore</span>!
+  identify: Identificare
   identification: identificazione
   identification_deleted: Identificazione eliminata.
   identification_saved: Identificazione salvata!
@@ -1447,6 +1452,7 @@ it:
   import_observations_from_a_photo: Importa osservazioni da un provider di foto o
     un file dal tuo computer.
   import_photos: Importa foto
+  import_tags_from_csv: Importare i tag da file CSV
   importing: Sto importando...
   in: in
   in_: in
@@ -1743,6 +1749,7 @@ it:
     overlays:
       gbif_network: GBIF network
       observations: Osservazioni
+  mark_as_reviewed: Contrassegna come revisionata
   member_of_the_inaturalist_network_html: Membri di <a href="%{url}">iNaturalist Network</a>
   more_info_title: Ulteriori Informazioni
   new_members: Nuovi membri
@@ -1783,6 +1790,7 @@ it:
     comment:
       with_by: Commentato su @vow_or_con{vow:an|a} %{comment_subject_link} by %{by_link}
       without_by: Commentato su @vow_or_con{vow:an|a} %{comment_subject_link}
+  photo_type: Tipo di foto
   powered_by_inaturalist_open_source_software_html: Offerto da <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalist open source software</a>
   project_list_defaults:
@@ -1790,6 +1798,7 @@ it:
     description: La lista delle specie per %{owner_name}
   receive_updates_from_this_project: Ricevi aggiornamenti da questo progetto
   recently_finished: Terminato di recente
+  review_verb: Revisiona
   sort: Ordina
   taxon_swap_only_has_one_input: Solo un input consentito per uno scambio
   taxon_swap_has_inputs_and_outputs: Lo scambio deve avere entrambi gli input e gli

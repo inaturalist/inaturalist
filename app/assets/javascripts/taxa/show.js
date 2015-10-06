@@ -161,14 +161,20 @@ $(document).ready(function(){
     .on('ajax:success', '#place_selector_search form, #place_selector_paste form', function(event, json, status) {
       $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
     })
-  $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
-    .on('ajax:before', function() {
+  $('#add_to_place_dialog').on(
+    'ajax:before',
+    '.add_to_place_link .add_link, .add_to_place_link .remove_link',
+    function() {
       $(this).siblings('.status').show()
       $(this).hide()
-    })
-    .on('ajax:error', function(event, request, settings) {
+    } 
+  ).on(
+    'ajax:error',
+    '.add_to_place_link .add_link, .add_to_place_link .remove_link',
+    function() {
       $(this).hide()
-    })
+    }
+  )
   $(document)
     .on('ajax:success', '.add_to_place_link .add_link', function(event, json, status) {
       $(this).siblings('.status').html(I18n.t('added!')).removeClass('loading').addClass('success')

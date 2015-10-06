@@ -63,7 +63,7 @@ module Ratatosk
     def initialize(params = {})
       @name_providers = if params[:name_providers] && !params[:name_providers].first.respond_to?(:get_lineage_for)
         params[:name_providers].map do |prefix|
-          if class_name = NameProviders.constants.detect{|c| c.to_s.downcase == "#{prefix}NameProvider".downcase}
+          if class_name = NameProviders.constants.detect{|c| c.to_s.downcase == "#{prefix.camelcase}NameProvider".downcase}
             NameProviders.const_get(class_name).new
           end
         end.compact
@@ -75,6 +75,7 @@ module Ratatosk
       if @name_providers.blank?
         @name_providers = [
           NameProviders::ColNameProvider.new,
+          NameProviders::EolNameProvider.new,
           NameProviders::UBioNameProvider.new,
           NameProviders::NZORNameProvider.new
         ]

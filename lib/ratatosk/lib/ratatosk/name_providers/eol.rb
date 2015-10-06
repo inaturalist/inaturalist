@@ -75,10 +75,15 @@ module Ratatosk
         lineage = []
         if hxml
           # walk UP the Eol lineage creating new taxa
-          [hxml.xpath('//dwc:Taxon')].flatten.each do |ancestor_hxml|
-            next if ancestor_hxml.at_xpath('dwc:taxonConceptID').nil?
-            break if ancestor_hxml.at_xpath('dwc:taxonConceptID').text == taxon.source_identifier
-            lineage << EolTaxonAdapter.new(ancestor_hxml)
+          begin
+            [hxml.xpath('//dwc:Taxon')].flatten.each do |ancestor_hxml|
+              next if ancestor_hxml.at_xpath('dwc:taxonConceptID').nil?
+              break if ancestor_hxml.at_xpath('dwc:taxonConceptID').text == taxon.source_identifier
+              lineage << EolTaxonAdapter.new(ancestor_hxml)
+            end
+          rescue Nokogiri::XML::XPath::SyntaxError => e
+            raise e unless e.message =~ /Undefined namespace prefix/
+            raise NameProviderError, "Failed to load hierarchy for #{taxon.name} (higherarchy ID: #{hierarchy_id}"
           end
         end
         lineage = [lineage, taxon].flatten.reverse
@@ -207,6 +212,9 @@ module Ratatosk
           memo[rank] = memo[rank].to_i + 1
           memo
         }.sort_by(&:last).last.try(:first)
+        if @adaptee.rank.blank? && @adaptee.name.split.size == 2
+          @adaptee.rank = ::Taxon::SPECIES
+        end
         @adaptee.source = EolNameProvider.source
         @adaptee.name_provider = "EolNameProvider"
         @adaptee.source_identifier = begin

@@ -19,4 +19,3 @@
 //= require jquery/plugins/inat/taxon_autocomplete
 //= require underscore.min
 //= require jquery.textcomplete.js
-//= require jquery.highlightTextarea

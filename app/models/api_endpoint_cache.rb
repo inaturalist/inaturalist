@@ -7,6 +7,7 @@ class ApiEndpointCache < ActiveRecord::Base
   end
 
   def cached?
+    return false unless success?
     # when cache_hours is nil, retain the cache forever
     return true if api_endpoint.cache_hours.nil?
     return false if request_completed_at.nil?
