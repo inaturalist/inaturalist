@@ -10788,7 +10788,11 @@ CREATE TABLE sites (
     stylesheet_content_type character varying(255),
     stylesheet_file_size integer,
     stylesheet_updated_at timestamp without time zone,
-    draft boolean DEFAULT false
+    draft boolean DEFAULT false,
+    homepage_data_file_name character varying,
+    homepage_data_content_type character varying,
+    homepage_data_file_size integer,
+    homepage_data_updated_at timestamp without time zone
 );
 
 
@@ -15633,4 +15637,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150701222736');
 INSERT INTO schema_migrations (version) VALUES ('20150902052821');
 
 INSERT INTO schema_migrations (version) VALUES ('20150916164339');
+
+INSERT INTO schema_migrations (version) VALUES ('20150922215548');
 

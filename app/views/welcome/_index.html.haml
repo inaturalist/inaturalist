@@ -1,0 +1,220 @@
+- content_for :extracss do
+  = stylesheet_link_tag "welcome"
+- content_for :extrajs do
+  - if @site && @site.homepage_data.file?
+    :javascript
+      var HOMEPAGE_DATA_URL = #{@site.homepage_data.url.inspect}
+  - else
+    :javascript
+      var HOMEPAGE_DATA_URL;
+  :javascript
+    var STATS_SUMMARY_URL = #{summary_stats_url(format: :json).inspect}
+  = javascript_include_tag :welcome
+.container-fluid
+  #hero.homesection.row
+    #hero-carousel.carousel.slide{data: {ride: :carousel}}
+      .carousel-inner{role: "listbox"}
+      %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}
+        %span.fa.fa-chevron-left{"aria-hidden" => "true"}
+        %span.sr-only=t :previous
+      %a.right.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "next"}}
+        %span.fa.fa-chevron-right{"aria-hidden" => "true"}
+        %span.sr-only=t :next
+    #connect-container.herobox-container
+      .container.container-fixed
+        .row
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4.col-xs-offset-6.col-sm-offset-6.col-md-offset-6.col-lg-offset-7
+            .herobox
+              .herotext
+                .staticon
+                %h1=t 'views.welcome.index.connect_with_nature'
+                %p=t 'views.welcome.index.explore_and_share'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to observations_path, :class => "morelink explorelink" do
+                  = t(:explore)
+                  %i.icon-arrow-right
+    #obs-stats-container.herobox-container{style: "display: none; "}
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            .herobox
+              = link_to observations_path, :class => "herotext" do
+                .row
+                  .col-xs-4
+                    %embed{src: image_path('homepage-binocs.svg')}
+                  .col-xs-8.row
+                    %h1
+                      %i.fa.fa-refresh.fa-spin
+                    %p
+                      =t 'views.welcome.index.observations_to_date'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to observations_path, :class => "morelink explorelink" do
+                  = t(:explore)
+                  %i.icon-arrow-right
+    #species-stats-container.herobox-container{style: "display: none"}
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            .herobox
+              = link_to taxa_path, :class => "herotext" do
+                .row
+                  .col-xs-4
+                    %embed{src: image_path('homepage-tree.svg')}
+                  .col-xs-8.row
+                    %h1
+                      %i.fa.fa-refresh.fa-spin
+                    %p
+                      =t 'views.welcome.index.species_observed'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to taxa_path, :class => "morelink explorelink" do
+                  = t(:learn)
+                  %i.icon-arrow-right
+    #people-stats-container.herobox-container{style: "display: none"}
+      .container.container-fixed
+        .row
+          .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
+          .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
+            .herobox
+              = link_to people_path, :class => "herotext" do
+                .row
+                  .col-xs-4
+                    %embed{src: image_path('homepage-people.svg')}
+                  .col-xs-8.row
+                    %h1
+                      %i.fa.fa-refresh.fa-spin
+                    %p
+                      =t 'views.welcome.index.people_signed_up'
+              .herolinks
+                = link_to signup_path, :class => "morelink signuplink" do
+                  = t(:sign_up)
+                  %i.icon-arrow-right
+                = link_to people_path, :class => "morelink explorelink" do
+                  = t(:meet)
+                  %i.icon-arrow-right
+  #how.homesection
+    .row
+      .col-xs-12
+        %h1=t 'views.welcome.index.how_it_works'
+    .row
+      .col-xs-12
+        .container.container-fixed
+          .row
+            .col-xs-4
+              %embed{src: image_path("homepage-how-record.svg")}
+            .col-xs-4
+              %embed{src: image_path("homepage-how-share.svg")}
+            .col-xs-4
+              %embed{src: image_path("homepage-how-discuss.svg")}
+          .row.txtrow
+            #how-record.col-xs-4
+              %label 1
+              %p=t 'views.welcome.index.record_your_observations'
+            #how-share.col-xs-4
+              %label 2
+              %p=t 'views.welcome.index.share_with_fellow_naturalists'
+            #how-discuss.col-xs-4
+              %label 3
+              %p=t 'views.welcome.index.discuss_your_findings'
+  #science.homesection.fixed-on-fluid
+    .row.backgroundrow
+      .col-xs-6.bleedcol.col-xs-offset-6
+        .img
+    .contentrow
+      .row
+        .col-xs-12
+          .container.container-fixed
+            .row
+              .col-xs-6
+                %h1=t 'views.welcome.index.contribute_to_science'
+                %p
+                  %span=t 'views.welcome.index.science_desc_html'
+
+  #value.homesection
+    .row
+      .col-xs-12
+        %h1=t 'views.welcome.index.nature_at_your_fingertips'
+    .row
+      .col-xs-12
+        .container.container-fixed
+          .row
+            .col-xs-2
+              %embed{src: image_path("homepage-keep-track.svg")}
+            .col-xs-4.row
+              %h2=t 'views.welcome.index.keep_track'
+              %p=t 'views.welcome.index.record_your_encounters'
+            .col-xs-2.second-col
+              %embed{src: image_path("homepage-bee.svg")}
+            .col-xs-4.row
+              %h2=t 'views.welcome.index.create_useful_data'
+              %p=t 'views.welcome.index.help_scientists'
+          .row
+            .col-xs-2
+              %embed{src: image_path("homepage-crowdsource.svg")}
+            .col-xs-4.row
+              %h2=t 'views.welcome.index.crowdsource_identifications'
+              %p=t 'views.welcome.index.connect_with_experts'
+            .col-xs-2.second-col
+              %embed{src: image_path("homepage-nerd-cowboy.svg")}
+            .col-xs-4.row
+              %h2=t 'views.welcome.index.become_a_citizen_scientist'
+              %p=t 'views.welcome.index.find_a_project'
+          .row
+            .col-xs-2
+              %embed{src: image_path("homepage-owl.svg")}
+            .col-xs-4.row
+              %h2=t 'views.welcome.index.learn_about_nature'
+              %p=t 'views.welcome.index.build_your_knowledge'
+            .col-xs-2.second-col
+              %embed{src: image_path("homepage-megaphone.svg")}
+            .col-xs-4.row
+              %h2=t 'views.welcome.index.run_a_bioblitz'
+              %p=t 'views.welcome.index.hold_an_event'
+  #mobile.homesection.fixed-on-fluid
+    .row.backgroundrow
+      .col-xs-6
+        &nbsp;
+      .col-xs-6.imgcol
+        &nbsp;
+    .contentrow
+      .row
+        .col-xs-12
+          .container.container-fixed
+            .row
+              .col-xs-5.textcol.bigpadded
+                %h1=t 'views.welcome.index.works_on_all_your_devices'
+                %p=t 'views.welcome.index.install_our_mobile_apps'
+                = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
+                  = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
+                = link_to "https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8" do
+                  = image_tag "http://static.inaturalist.org/wiki_page_attachments/235-original.png", alt: "iPhone app in the Apple App Store" 
+              .col-xs-6.col-xs-offset-1.centered
+                %embed{src: image_path("homepage-devices.svg")}
+  #who.homesection
+    .row
+      .col-xs-12
+        %h1=t 'views.welcome.index.who_uses_site_name', site_name: SITE_NAME
+        .container.container-fixed
+          .row
+            .col-xs-12
+              #who-carousel.carousel.slide{data: {ride: :carousel, interval: 7000}}
+                %ol.carousel-indicators
+                .carousel-inner{role: "listbox"}
+  #call.homesection
+    .row
+      .col-xs-12
+        .container.container-fixed
+          .row
+            .col-xs-8.bigpadded=t 'views.welcome.index.what_are_you_waiting_for'
+            .col-xs-3.btncol
+              = link_to t('views.welcome.index.join_today'), signup_path, :class => "btn btn-default"

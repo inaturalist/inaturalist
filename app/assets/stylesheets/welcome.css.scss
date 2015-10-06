@@ -1,0 +1,293 @@
+.homesection {
+  color: #575757;
+}
+#hero, #how { margin-bottom: 60px; }
+.bootstrap .homesection h1 {
+  margin: 0 0 30px;
+}
+.bootstrap .homesection h2 {
+  font-weight: bold; 
+  font-size: 22px;
+  color: #353535;
+  text-align: left;
+  line-height: 31px;
+}
+.bootstrap .homesection p { 
+  font-size: 18px;
+}
+.bootstrap [class*='col-'].bleedcol { padding: 0; }
+.bootstrap [class*='col-'].bigpadded { padding-top: 60px; padding-bottom: 60px; }
+#header {margin-bottom: 0;}
+#wrapper { margin-bottom: 0; min-width: 980px; }
+#hero { 
+  overflow:hidden; 
+  background-color: black;
+  position: relative;
+}
+#hero,
+#hero .carousel .item,
+#hero .carousel .statcol {
+  height: 450px;
+}
+#hero, #hero a, #hero h1 {color: white;}
+#hero .heroimage {
+  display: block;
+  width: 100%; 
+  width: 100%;
+  height: 450px;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+#hero .heroimage:hover { opacity: 1; }
+.herobox-container {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 100%;
+}
+.herobox-container,
+.herobox-container .container,
+.herobox-container .container > .row { height: 0;}
+.herobox { background-color: #f27134; }
+.bootstrap .homesection .herobox h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+#obs-stats-container .herobox h1,
+#species-stats-container .herobox h1,
+#people-stats-container .herobox h1 {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+.herobox p {
+  font-size: 17px;
+  margin: 0;
+}
+#obs-stats-container .herobox p,
+#species-stats-container .herobox p,
+#people-stats-container .herobox p {
+  font-size: 20px;
+}
+.herobox embed {
+  width: 72px;
+  height: 72px;
+}
+.herobox .herotext, .herobox .morelink {
+  padding: 30px 30px;
+  display: block;
+}
+.herolinks { 
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+  width: 100%;
+  font-size: 16px;
+}
+.morelink {
+  font-size: 130%;
+  display: inline-block;
+  border-top: 1px solid rgba(0,0,0,0.2);
+  padding: 20px;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.morelink:first-child {
+  border-right: 1px solid rgba(0,0,0,0.2);
+}
+.herofooter { 
+  background: rgba(0,0,0,0.5);
+  font-size: 18px;
+  line-height:25.2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.herofooter [class*='col-'] { 
+  height: 48px; 
+  line-height: 48px;
+  position: relative; 
+  white-space: nowrap;
+}
+.herofooter img { 
+  width: 58px; 
+  height: 58px; 
+  border-radius: 500px; 
+  border: 2px solid white;
+  position: absolute; 
+  bottom: 10px;
+}
+.herofooter a:hover img { 
+  opacity: 1;
+}
+.herofooter .obstext {
+  padding-left: 70px;
+}
+.herofooter .username,
+.herofooter .taxonname {
+  font-weight: bold;
+}
+.herofooter .taxonname:before {
+  content: '\007E';
+  margin: 0 10px;
+  font-weight: normal;
+}
+.container-fixed { margin: 0 auto; min-width: 980px; }
+#how [class*='col-'] {
+  text-align: center;
+  white-space: nowrap;
+  min-width: 255px;
+}
+#how img, #how embed { margin: 0 auto; }
+#how embed {
+  max-width: 80%;
+  height: 247px;
+}
+#how label {
+  display: block;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 30px;
+  color: white;
+  background-color: #74ac00;
+  border: 3px solid white;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.6;
+}
+#how .txtrow { position: relative; }
+#how .txtrow:before {
+  content: ' ';
+  display: block;
+  height: 4px;
+  background-color: #BED989;
+  width: 69%;
+  margin: 0 auto;
+  top: 17px;
+  position: relative;
+}
+#how p { font-size: 24px; }
+#science .backgroundrow {
+  background-color: black;
+}
+#science .bigpadded,
+#science .bleedcol .img {
+  height: 350px;
+}
+#science .bleedcol .img {
+  width: 100%; 
+  background: image-url('homepage-science.jpg') 50% 50%; 
+  background-size: cover;
+}
+#science, #science h1 { color: white; }
+.fixed-on-fluid {
+  position: relative;
+}
+.fixed-on-fluid .contentrow {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+}
+#science .contentrow { top: 60px; }
+#science .contentrow .col-xs-6 { padding-right: 45px; }
+#science a {color: white; text-decoration: underline;}
+#value > .row {
+  background-color: #EAF3D8;
+}
+#value h1, #who h1 { text-align: center; margin-top: 60px;}
+#value h2 {
+  font-size: 22px;
+  margin-top: 0;
+}
+#value .container-fixed [class*='col-'] {margin-bottom: 30px; }
+#value > .row:last-child { padding-bottom: 30px;}
+#value embed { width: 99px; max-height: 80px; margin: 0 10px 0 auto; display:block;}
+#value .media-left { padding-right: 30px;}
+#value .second-col { margin-left: 15px; }
+#mobile embed { margin: 30px; max-height: 260px; width: 100%;}
+#mobile .imgcol { background-color: #74ac00; height: 320px;}
+#mobile h1 {white-space: nowrap; }
+#mobile img {margin: 20px 25px 0 0; }
+#who > .row { background-color: #eee;}
+#who .bigpadded { padding-top: 0; }
+#who img { max-height: 274px;}
+#who blockquote {
+  font-size: 24px;
+  line-height: 38px;
+  padding: 0;
+  border: 0 transparent;
+}
+#who blockquote:before {content: '\201C';}
+#who blockquote:after {content: '\201D';}
+#who .name {
+  font-weight: bold;
+  font-size: 24px;
+  color: #74ac00;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+#who .role {
+  color: #575757;
+  line-height: 30px;
+  font-size: 18px;
+}
+#who .location {
+  color: #727272;
+  line-height: 26px;
+  font-size: 18px;
+}
+#who .item {padding-bottom: 20px; height: 490px;}
+#call .row {
+  background-color: black;
+  color: white;
+  font-size: 42px;
+  line-height: 50.4px;
+}
+#call .btncol {
+  padding-top: 60px;
+}
+#call .btn {
+  border: 0 transparent;
+  background-color: #74ac00;
+  border-radius: 30px;
+  color: white;
+  font-size: 26px;
+  width: 100%;
+  text-transform: uppercase;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 1;
+}
+.bootstrap .carousel-control { width: 5%; z-index: 1; }
+.bootstrap .carousel-control.left,
+.bootstrap .carousel-control.right { 
+  font-size: 200%;
+  background: none;
+  margin-top: -1em;
+}
+.bootstrap #who .carousel-indicators {
+  bottom: 60px;
+}
+.bootstrap .carousel-indicators li {
+  border: 2px solid #74ac00;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin: 0 5px;
+}
+.bootstrap .carousel-indicators .active {
+  background-color: #74ac00;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin: 0 5px;
+}

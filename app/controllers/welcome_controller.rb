@@ -13,6 +13,9 @@ class WelcomeController < ApplicationController
           @observations = load_observations_with_geo_and_good_photos
         end
         @google_webmaster_verification = @site.google_webmaster_verification if @site
+        unless @page
+          render layout: 'bootstrap'
+        end
       end
       format.mobile
     end
