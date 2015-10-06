@@ -29,8 +29,7 @@
         = f.file_field :stylesheet
         = link_to @record.stylesheet.url, @record.stylesheet.url if @record.stylesheet?
       .col-md-3
-        = f.file_field :homepage_data
-        = link_to @record.homepage_data.url, @record.homepage_data.url if @record.homepage_data?
+        = f.text_area :homepage_data
   - for grp, prefs in @pref_groups
     %fieldset
       %legend= grp.capitalize

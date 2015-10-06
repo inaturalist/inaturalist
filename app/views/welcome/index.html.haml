@@ -6,11 +6,12 @@
   %meta{content: image_url(CONFIG.logo_icon_square_big), property: "og:image"}
   %meta{content: root_url, property: "og:url"}
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: SITE_NAME), property: "og:description"}
-- content_for(:extrajs) do
-  = javascript_include_tag 'map_bundle'
 - content_for(:title) do
   = t(:a_community_for_naturalist)
 - if @page
+  - content_for(:extrajs) do
+    = google_maps_js
+    = javascript_include_tag 'map_bundle'
   = wiki_content(@page.content)
 - else
   = render 'index'
