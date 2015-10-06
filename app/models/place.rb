@@ -230,6 +230,11 @@ class Place < ActiveRecord::Base
   scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
 
+  def self.north_america
+    @@north_america ||= Place.where(name: "North America").
+      order(bbox_area: :desc).limit(1).first
+  end
+
   def to_s
     "<Place id: #{id}, name: #{name}, admin_level: #{admin_level}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +

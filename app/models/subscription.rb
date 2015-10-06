@@ -6,7 +6,8 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :resource, :user
   validates_uniqueness_of :user_id, :scope => [:resource_type, :resource_id, :taxon_id], 
     :message => "has already subscribed to this resource"
-  
+  validate :cannot_subscribe_to_north_america
+
   cattr_accessor :subscribable_classes
   @@subscribable_classes ||= []
 
@@ -20,4 +21,13 @@ class Subscription < ActiveRecord::Base
       notifier_id: notifier.id
     }, filters: [{ not: { exists: { field: :viewed_at } } }]).total_entries > 0
   end
+
+  def cannot_subscribe_to_north_america
+    return unless resource_type == "Place"
+    return unless taxon_id.blank?
+    if Place.north_america && resource_id == Place.north_america.id
+      errors.add(:resource_id, "cannot subscribe to North America without conditions")
+    end
+  end
+
 end
