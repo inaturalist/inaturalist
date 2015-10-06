@@ -42,7 +42,7 @@
           .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
           .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
             .herobox
-              .herotext
+              = link_to observations_path, :class => "herotext" do
                 .row
                   .col-xs-4
                     %embed{src: image_path('homepage-binocs.svg')}
@@ -64,7 +64,7 @@
           .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
           .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
             .herobox
-              .herotext
+              = link_to taxa_path, :class => "herotext" do
                 .row
                   .col-xs-4
                     %embed{src: image_path('homepage-tree.svg')}
@@ -86,7 +86,7 @@
           .col-xs-6.col-sm-6.col-md-6.col-lg-7.col-xs-7
           .col-xs-5.col-sm-5.col-md-5.col-lg-4.col-xl-4
             .herobox
-              .herotext
+              = link_to people_path, :class => "herotext" do
                 .row
                   .col-xs-4
                     %embed{src: image_path('homepage-people.svg')}
@@ -162,7 +162,7 @@
             .col-xs-2
               %embed{src: image_path("homepage-crowdsource.svg")}
             .col-xs-4.row
-              %h2=t 'views.welcome.index.crowdsource_species_identification'
+              %h2=t 'views.welcome.index.crowdsource_identifications'
               %p=t 'views.welcome.index.connect_with_experts'
             .col-xs-2.second-col
               %embed{src: image_path("homepage-nerd-cowboy.svg")}
@@ -191,14 +191,14 @@
         .col-xs-12
           .container.container-fixed
             .row
-              .col-xs-6.textcol.bigpadded
+              .col-xs-5.textcol.bigpadded
                 %h1=t 'views.welcome.index.works_on_all_your_devices'
                 %p=t 'views.welcome.index.install_our_mobile_apps'
                 = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android" do
                   = image_tag "https://developer.android.com/images/brand/en_app_rgb_wo_45.png", alt: "Android app on Google Play" 
                 = link_to "https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8" do
                   = image_tag "http://static.inaturalist.org/wiki_page_attachments/235-original.png", alt: "iPhone app in the Apple App Store" 
-              .col-xs-6.centered
+              .col-xs-6.col-xs-offset-1.centered
                 %embed{src: image_path("homepage-devices.svg")}
   #who.homesection
     .row

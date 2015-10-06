@@ -10,7 +10,7 @@
   font-size: 22px;
   color: #353535;
   text-align: left;
-  line-height: 31 px;
+  line-height: 31px;
 }
 .bootstrap .homesection p { 
   font-size: 18px;
@@ -29,7 +29,7 @@
 #hero .carousel .statcol {
   height: 450px;
 }
-#hero, #hero a {color: white;}
+#hero, #hero a, #hero h1 {color: white;}
 #hero .heroimage {
   display: block;
   width: 100%; 
@@ -76,6 +76,7 @@
 }
 .herobox .herotext, .herobox .morelink {
   padding: 30px 30px;
+  display: block;
 }
 .herolinks { 
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
@@ -185,7 +186,7 @@
   background: image-url('homepage-science.jpg') 50% 50%; 
   background-size: cover;
 }
-#science { color: white; }
+#science, #science h1 { color: white; }
 .fixed-on-fluid {
   position: relative;
 }
@@ -235,14 +236,12 @@
 }
 #who .role {
   color: #575757;
-  line-height: 26px;
-  font-weight: 500;
+  line-height: 30px;
   font-size: 18px;
 }
 #who .location {
   color: #727272;
   line-height: 26px;
-  font-weight: 500;
   font-size: 18px;
 }
 #who .item {padding-bottom: 20px; height: 490px;}
@@ -251,7 +250,6 @@
   color: white;
   font-size: 42px;
   line-height: 50.4px;
-  font-weight: 500;
 }
 #call .btncol {
   padding-top: 60px;
@@ -261,13 +259,12 @@
   background-color: #74ac00;
   border-radius: 30px;
   color: white;
-  font-size: 30px;
+  font-size: 26px;
   width: 100%;
   text-transform: uppercase;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   line-height: 1;
-  font-weight: 500;
 }
 .bootstrap .carousel-control { width: 5%; z-index: 1; }
 .bootstrap .carousel-control.left,

@@ -2,12 +2,7 @@ $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
 
 @font-face { 
   font-family: Whitney; 
-  src: asset-url('Whitney-Light-Pro.otf');
-}
-@font-face { 
-  font-family: Whitney; 
   src: asset-url('Whitney-Book-Pro.otf');
-  font-weight: 500;
 }
 @font-face { 
   font-family: Whitney; 
@@ -27,6 +22,15 @@ body .bootstrap {
   color: #333333;
   background-color: #ffffff;
   font-family: $font-stack;
+}
+
+.bootstrap h1,
+.bootstrap h2,
+.bootstrap h3,
+.bootstrap h4,
+.bootstrap h5,
+.bootstrap h6 {
+  color: #1A1A1A;
 }
 
 .bootstrap .readable, .bootstrap p { 
