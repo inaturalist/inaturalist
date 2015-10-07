@@ -882,4 +882,22 @@ class Place < ActiveRecord::Base
     end
   end
 
+  def self.param_to_array(places)
+    if places.is_a?(Place)
+      # single places become arrays
+      [ places ]
+    elsif places.is_a?(Fixnum)
+      # single IDs become an array of instances
+      Place.where(id: places)
+    elsif places.is_a?(Array) && places.size > 0
+      if places.first.is_a?(Place)
+        # muliple places need no modification
+        places
+      elsif places.first.is_a?(Fixnum)
+        # multiple IDs become an array of instances
+        Place.where(id: places)
+      end
+    end
+  end
+
 end

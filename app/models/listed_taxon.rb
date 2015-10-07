@@ -82,7 +82,7 @@ class ListedTaxon < ActiveRecord::Base
       NATIVE_EQUIVALENTS
     elsif establishment_means == "introduced"
       INTRODUCED_EQUIVALENTS
-    else
+    elsif !establishment_means.is_a?(Array)
       [establishment_means]
     end
     where("establishment_means IN (?)", means)
@@ -861,13 +861,14 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   # used with threatened_status filter
-  def self.place_ancestor_ids_sql(place_id)
+  def self.place_ancestor_ids_sql(place_ids)
+    place_ids = [ place_ids ] unless place_ids.is_a?(Array)
     <<-SQL
       SELECT DISTINCT 
         regexp_split_to_table(ancestry, '/') AS ancestor_id 
       FROM places
       WHERE
-        id = #{place_id} AND
+        id IN (#{ place_ids.join(",") }) AND
         ancestry IS NOT NULL
     SQL
   end

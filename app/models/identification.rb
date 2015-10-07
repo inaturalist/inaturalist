@@ -74,6 +74,14 @@ class Identification < ActiveRecord::Base
     "Identification #{id} by #{user.login}"
   end
 
+  def as_indexed_json(options={})
+    {
+      id: id,
+      user: user.as_indexed_json,
+      current: current
+    }
+  end
+
   # Validations ###############################################################
 
   def uniqueness_of_current
