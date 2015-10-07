@@ -10025,7 +10025,9 @@ CREATE TABLE photos (
     file_processing boolean,
     mobile boolean DEFAULT false,
     file_updated_at timestamp without time zone,
-    metadata text
+    metadata text,
+    subtype character varying(255),
+    native_original_image_url character varying(512)
 );
 
 
@@ -10789,10 +10791,7 @@ CREATE TABLE sites (
     stylesheet_file_size integer,
     stylesheet_updated_at timestamp without time zone,
     draft boolean DEFAULT false,
-    homepage_data_file_name character varying,
-    homepage_data_content_type character varying,
-    homepage_data_file_size integer,
-    homepage_data_updated_at timestamp without time zone
+    homepage_data text
 );
 
 
@@ -15638,5 +15637,9 @@ INSERT INTO schema_migrations (version) VALUES ('20150902052821');
 
 INSERT INTO schema_migrations (version) VALUES ('20150916164339');
 
+INSERT INTO schema_migrations (version) VALUES ('20150922154000');
+
 INSERT INTO schema_migrations (version) VALUES ('20150922215548');
+
+INSERT INTO schema_migrations (version) VALUES ('20151006230511');
 

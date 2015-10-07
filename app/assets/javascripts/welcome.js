@@ -1,15 +1,16 @@
-if (HOMEPAGE_DATA_URL) {
+$(document).ready(function() {
   $.getJSON(STATS_SUMMARY_URL, function(json) {
     window.STATS_SUMMARY = json
     $('#obs-stats-container h1').html(I18n.toNumber(STATS_SUMMARY.total_observations, {precision: 0}))
     $('#species-stats-container h1').html(I18n.toNumber(STATS_SUMMARY.total_leaf_taxa, {precision: 0}))
     $('#people-stats-container h1').html(I18n.toNumber(STATS_SUMMARY.total_users, {precision: 0}))
   })
-  $.getJSON(HOMEPAGE_DATA_URL, function(json) {
-    addObservations(json.observations)
-    addTestimonials(json.testimonials)
-  })
-}
+  if (HOMEPAGE_DATA) {
+    addObservations(HOMEPAGE_DATA.observations)
+    addTestimonials(HOMEPAGE_DATA.testimonials)
+  }  
+})
+
 
 function addObservations(observations) {
   if (!observations) {

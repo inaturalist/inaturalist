@@ -97,21 +97,6 @@ class Site < ActiveRecord::Base
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
   end
 
-  # CSS file to override default styles
-  if Rails.env.production?
-    has_attached_file :homepage_data,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_host_alias => CONFIG.s3_bucket,
-      :bucket => CONFIG.s3_bucket,
-      :path => "sites/:id-homepage.json",
-      :url => ":s3_alias_url"
-  else
-    has_attached_file :homepage_data,
-      :path => ":rails_root/public/attachments/sites/:id-homepage.json",
-      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-homepage.json"
-  end
-
   validates_attachment_content_type :stylesheet, :content_type => "text/css", :message => "must be CSS"
 
   # URL where visitors can learn more about the site

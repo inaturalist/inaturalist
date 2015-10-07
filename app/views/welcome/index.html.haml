@@ -9,6 +9,9 @@
 - content_for(:title) do
   = t(:a_community_for_naturalist)
 - if @page
+  - content_for(:extrajs) do
+    = google_maps_js
+    = javascript_include_tag 'map_bundle'
   = wiki_content(@page.content)
 - else
   = render 'index'

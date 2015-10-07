@@ -1,12 +1,12 @@
 - content_for :extracss do
   = stylesheet_link_tag "welcome"
 - content_for :extrajs do
-  - if @site && @site.homepage_data.file?
+  - if @site && !@site.homepage_data.blank?
     :javascript
-      var HOMEPAGE_DATA_URL = #{@site.homepage_data.url.inspect}
+      var HOMEPAGE_DATA = #{@site.homepage_data};
   - else
     :javascript
-      var HOMEPAGE_DATA_URL;
+      var HOMEPAGE_DATA = null;
   :javascript
     var STATS_SUMMARY_URL = #{summary_stats_url(format: :json).inspect}
   = javascript_include_tag :welcome
@@ -212,7 +212,7 @@
                 .carousel-inner{role: "listbox"}
   #call.homesection
     .row
-      .col-xs-12
+      .col-xs-12.row
         .container.container-fixed
           .row
             .col-xs-8.bigpadded=t 'views.welcome.index.what_are_you_waiting_for'
