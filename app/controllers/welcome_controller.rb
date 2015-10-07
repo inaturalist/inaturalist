@@ -14,7 +14,11 @@ class WelcomeController < ApplicationController
         end
         @google_webmaster_verification = @site.google_webmaster_verification if @site
         unless @page
-          render layout: 'bootstrap'
+          if logged_in?
+            redirect_to home_path
+          else
+            render layout: 'bootstrap'
+          end
         end
       end
       format.mobile
