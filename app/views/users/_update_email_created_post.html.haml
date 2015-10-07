@@ -2,7 +2,7 @@
   - post = update.notifier
   - the_post_url = journal_post_url(:login => resource.login, :id => post.id)
   = link_to(post.title, the_post_url)
-  %div= formatted_user_text(truncate(strip_tags(post.body), :length => 500))
+  %div= formatted_user_text(truncate(strip_tags(post.body), length: 500, escape: false))
   %div{:style => "color:#aaaaaa;font-size:smaller;margin-bottom:10px;"}
     = t :posted_by
     - if post.user

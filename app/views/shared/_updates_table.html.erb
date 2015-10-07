@@ -19,7 +19,7 @@
         <% if resource.is_a?(User) -%>
           <%= update_image_for(updates.first, :width => 48, :height => 48) %>
         <% elsif resource.is_a?(Project) %>
-          <%= image_tag("#{root_url}#{resource.icon.url(:thumb)}", :style => "max-width: 48px;") %>
+          <%= image_tag("#{resource.icon.url(:thumb)}", :style => "max-width: 48px;") %>
         <% else %>
           <%= update_image_for(updates.first, :style => "max-width:48px;") %>
         <% end -%>

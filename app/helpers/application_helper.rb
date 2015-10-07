@@ -882,25 +882,25 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon", :class => "usericon"))
+      image_tag(resource.icon.url(:thumb), options.merge(:alt => "#{resource.login} icon", :class => "usericon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
-      image_tag(asset_url(resource.icon.url(:thumb)), options)
+      image_tag(resource.icon.url(:thumb), options)
     when "ProjectUserInvitation"
-      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon", :class => "usericon"))
+      image_tag(resource.user.icon.url(:thumb), options.merge(:alt => "#{resource.user.login} icon", :class => "usericon"))
     when "AssessmentSection"
-      image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
+      image_tag(resource.assessment.project.icon.url(:thumb), options)
     when "ListedTaxon"
       image_tag("checklist-icon-color-32px.png", options)
     when "Post"
-      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:class => "usericon"))
+      image_tag(resource.user.icon.url(:thumb), options.merge(:class => "usericon"))
     when "Place"
       image_tag("icon-maps.png", options)
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag(asset_url("#{resource.class.name.underscore}-aaaaaa-48px.png"), options)
+      image_tag("#{resource.class.name.underscore}-aaaaaa-48px.png", options)
     when "ObservationField"
       image_tag("notebook-icon-color-155px-shadow.jpg", options)
     else
