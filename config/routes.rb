@@ -154,6 +154,10 @@ Rails.application.routes.draw do
   put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
   resources :photos, :only => [:show, :update, :destroy] do
     resources :flags
+    collection do
+      get 'repair' => :fix
+      post :repair_all
+    end
     member do
       put :rotate
     end

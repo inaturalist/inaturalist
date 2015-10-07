@@ -227,6 +227,26 @@ class Photo < ActiveRecord::Base
     end
   end
 
+  def self.repair_photos_for_user(user, type)
+    count = 0
+    user.photos.where(type: type).find_each do |photo|
+      next if Photo.valid_remote_photo_url?(photo.original_url)
+      next if Photo.valid_remote_photo_url?(photo.large_url)
+      p, errors = photo.repair(no_save: true)
+      unless errors.blank?
+        Rails.logger.error "[ERROR] Failed to repair #{p}: #{errors.inspect}"
+        next
+      end
+      Photo.turn_remote_photo_into_local_photo(p)
+      unless p.valid?
+        Rails.logger.error "[ERROR] Failed to save #{p}: #{p.errors.full_messages.to_sentence}"
+        next
+      end
+      count += 1
+    end
+    Rails.logger.info "[INFO] Repaired #{count} #{type}s for #{user}"
+  end
+
   def self.repair_single_photo(photo)
     if photo.subtype && klass = (photo.subtype.constantize rescue nil)
       if klass < Photo

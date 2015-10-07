@@ -1,0 +1,77 @@
+- content_for :title do
+  =t :repair_external_photos
+- content_for :extrajs do
+  :javascript
+    $('#repairlink').click(function() {
+      loadingClickForLink.apply(this)
+      $('#repair .fade').removeClass('fade')
+      window.delayedLinkTries = 0
+      checkDelayed($(this).attr('href'))
+      return false
+    })
+    function checkDelayed(url) {
+      if (window.delayedLinkTries > 20) {
+        alert('Your request for ' + url + ' seems to be taking forever.  Please try again later.')
+        return
+      }
+      $.ajax({
+        url: url,
+        type: 'post',
+        dataType: 'json'
+      }).complete(function(xhr, status) {
+        if (xhr.status == 200) {
+          window.location.reload()
+        } else if (xhr.status == 500) {
+          alert('There was unexpected error. Please try again later.')
+        } else {
+          window.delayedLinkTries += 1
+          setTimeout('checkDelayed("'+url+'")', 5000)
+        }
+      })
+    }
+.container
+  .row
+    .col-xs-12
+      %h1=t :repair_external_photos
+      %p
+        We used to only import the URLs of photos from external sites (e.g. Facebook). If they changed the URL, we lost access to the photo. Now we import the actual photo, but a lot of photos with broken URLs remain. This tool will let repair any broken photos you might have.
+  .row
+    .col-xs-12
+      = link_to "Repair your #{@type}s", "#repair", data: {toggle: :modal}, :class => "pull-right btn btn-success"
+      %ul.nav.nav-pills
+        - %w(FacebookPhoto FlickrPhoto PicasaPhoto).each do |type|
+          %li{:class => type == @type ? 'active' : nil}
+            = link_to t(type.underscore.gsub(/_photo/, '')), url_for(type: type)
+  .row
+    - if @photos.blank?
+      .col-xs-12
+        .quiet.box.centered
+          You have no photos of that type.
+    - else
+      - for photo in @photos
+        .col-xs-2
+          = link_to photo.becomes(Photo), :class => "thumbnail" do
+            = image_tag photo.small_url, :class => "img-responsive"
+      .col-xs-12
+        .centered
+          = will_paginate @photos
+#repair.modal.fade
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal"} x
+        %h4.modal-title=t :repair_external_photos
+      .modal-body
+        %p
+          If you haven't done it recently, please re-connect your account to make sure iNat has permission to access your photos.
+        %p
+          = link_to t(:connect_to_provider, provider: @provider_name.capitalize), auth_url_for(@provider_name), :class => "providerlink #{@provider_name} button"
+          - if @provider_identity
+            %small.meta
+              Last authorized at
+              = @provider_identity.updated_at
+        %p.meta.fade
+          Please be patient, this can take a few minutes
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
+        = link_to "Repair #{@type}s", repair_all_photos_path(type: @type), id: 'repairlink', :class => "btn btn-primary", data: {loading_click: true}

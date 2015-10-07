@@ -16,6 +16,7 @@ module Ambidextrous
   
   def auth_url_for(provider, options = {})
     provider = provider.to_s.downcase
+    provider = 'google_oauth2' if provider == 'picasa'
     url = ProviderAuthorization::AUTH_URLS[provider]
     url += "?" + options.map{|k,v| "#{k}=#{v}"}.join('&') unless options.blank?
     url
