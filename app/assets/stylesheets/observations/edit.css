@@ -43,6 +43,8 @@ input.place_guess { width: 336px; }
   right: 5px;
 }
 
+.photoSelector input.text { width: 178px; }
+
 .photoSelector, .soundSelector { width: 288px; }
 .photoSelectorControls .button, .soundSelectorControls .button { padding: 5px; }
 .photoSelectorControls .prevlink, .soundSelectorControls .prevlink {
