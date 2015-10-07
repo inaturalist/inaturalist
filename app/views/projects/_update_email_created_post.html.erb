@@ -15,7 +15,7 @@
       </td>
       <td>
         <%= link_to(h(post.title), the_post_url) %>
-        <div><%= formatted_user_text(truncate(strip_tags(post.body), :length => 500)) %></div>
+        <div><%= formatted_user_text(truncate(strip_tags(post.body), length: 500, escape: false)) %></div>
         <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
           <%=t :posted_by %>
           <% if post.user -%>
