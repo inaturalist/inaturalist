@@ -193,7 +193,11 @@ class PhotosController < ApplicationController
     end
     if @type
       @provider_name = @type.underscore.gsub(/_photo/, '')
-      @provider_identity = current_user.send("#{@provider_name}_identity")
+      @provider_identity = if @provider_name == 'flickr'
+        current_user.has_provider_auth('flickr')
+      else
+        current_user.send("#{@provider_name}_identity")
+      end
     end
     @photos = current_user.photos.page(params[:page]).per_page(120).order("photos.id ASC").where("photos.type != 'LocalPhoto'")
     @photos = @photos.where(type: @type) if !@type.blank? && @type != 'LocalPhoto'
@@ -215,7 +219,7 @@ class PhotosController < ApplicationController
       return
     end
     key = "repair_photos_for_user_#{current_user.id}_#{@type}"
-    delayed_progress(request.path) do
+    delayed_progress(key) do
       @job = Photo.delay.repair_photos_for_user(current_user, @type)
     end
     respond_to do |format|

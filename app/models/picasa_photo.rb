@@ -80,7 +80,7 @@ class PicasaPhoto < Photo
   def repair(options = {})
     unless r = PicasaPhoto.get_api_response(native_photo_id, :user => user)
       return [self, {
-        :picasa_account_not_linked => I18n.t(:picasa_account_not_linked, :user => user.try(:login), :site_name => SITE_NAME_SHORT)
+        :failed => "Failed to load Picasa photo"
       }]
     end
     self.square_url      = r.url('72c')
