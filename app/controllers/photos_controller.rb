@@ -5,8 +5,8 @@ class PhotosController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
   before_filter :require_owner, :only => [:update, :destroy, :rotate]
-  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy, :repair, :rotate]
-  before_filter :return_here, :only => [:show, :invite, :inviter]
+  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy, :repair, :rotate, :fix, :repair_all]
+  before_filter :return_here, :only => [:show, :invite, :inviter, :fix]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
   
@@ -177,6 +177,64 @@ class PhotosController < ApplicationController
       success_msg = "successfully sent #{@successful_ids.size} invite#{'s' if @successful_ids.size != 1}" unless @successful_ids.blank?
       error_msg = "failed to send #{@errors.size} invite#{'s' if @errors.size != 1}: #{@errors.map{|id, msg| [id, msg].join(': ')}}" unless @errors.blank?
       flash[:notice] = [success_msg, error_msg].compact.join(', ').capitalize
+    end
+  end
+
+  def fix
+    photo = current_user.photos.where("type != 'LocalPhoto'").first
+    @type = if params[:type].blank?
+      if photo = current_user.photos.where("type != 'LocalPhoto'").first
+        @type = photo.class.name
+      else
+        'FacebookPhoto'
+      end
+    elsif params[:type] != 'LocalPhoto'
+      @type = params[:type]
+    end
+    if @type
+      @provider_name = @type.underscore.gsub(/_photo/, '')
+      @provider_identity = if @provider_name == 'flickr'
+        current_user.has_provider_auth('flickr')
+      else
+        current_user.send("#{@provider_name}_identity")
+      end
+    end
+    @photos = current_user.photos.page(params[:page]).per_page(120).order("photos.id ASC").where("photos.type != 'LocalPhoto'")
+    @photos = @photos.where(type: @type) if !@type.blank? && @type != 'LocalPhoto'
+    respond_to do |format|
+      format.html { render layout: 'bootstrap' }
+    end
+  end
+
+  def repair_all
+    @type = params[:type] if %w(FlickrPhoto FacebookPhoto PicasaPhoto).include?(params[:type])
+    if @type.blank?
+      respond_to do |format|
+        format.json do
+          msg = "You must specify a photo type"
+          flash[:error] = msg
+          render status: :unprocessable_entity, json: {error: msg}
+        end
+      end
+      return
+    end
+    key = "repair_photos_for_user_#{current_user.id}_#{@type}"
+    delayed_progress(key) do
+      @job = Photo.delay.repair_photos_for_user(current_user, @type)
+    end
+    respond_to do |format|
+      format.json do
+        case @status
+        when "done"
+          flash[:notice] = "Repaired photos"
+          render json: {message: "Repaired photos"}
+        when "error"
+          flash[:error] = @error_msg
+          render status: :unprocessable_entity, json: {error: @error_msg}
+        else
+          render status: :accepted, json: {message: 'In progress...'}
+        end
+      end
     end
   end
 

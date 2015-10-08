@@ -182,6 +182,8 @@ function buildHelpTips() {
 }
 
 $(document).ready(function() {
+  // stub jquery browser has to keep older qtip alive
+  $.browser = $.browser || {}
   
   buildHelpTips()
   
@@ -412,6 +414,7 @@ function checkDelayedLink(url) {
     statusCode: {
       // Accepted: request acnkowledged but file hasn't been generated
       202: function() {
+        window.delayedLinkTries += 1
         setTimeout('checkDelayedLink("'+url+'")', 5000)
       },
       // OK: file is ready

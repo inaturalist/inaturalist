@@ -139,6 +139,7 @@ class ProviderAuthorizationsController < ApplicationController
     sign_in @provider_authorization.user
     @provider_authorization.user.remember_me
     @provider_authorization.update_with_auth_info(auth_info)
+    @provider_authorization.touch
     flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
       flash[:notice] = "You just authorized #{CONFIG.site_name_short} to write to your account " +
