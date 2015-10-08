@@ -377,19 +377,13 @@ class Observation < ActiveRecord::Base
 
     if p[:min_id]
       search_filters << {
-        range: { id: {gte: p[:min_id] } }
+        range: { id: { gte: p[:min_id] } }
       }
     end
-
-    if p[:limit]
-      search_filters << {
-        limit: { value: p[:limit] }
-      }
-    end
-
+    
     { where: search_wheres,
       filters: search_filters,
-      per_page: p[:per_page].blank? && p[:limit].blank? ? 30 : (p[:per_page] || 30),
+      per_page: p[:per_page] || 30,
       page: p[:page],
       sort: sort,
       extra_preloads: extra_preloads }

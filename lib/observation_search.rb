@@ -29,14 +29,13 @@ module ObservationSearch
 
     def search_in_batches(raw_params, options={}, &block)
       search_params = Observation.get_search_params(raw_params, options)
-      search_params.merge!({ min_id: 1, limit: 500, preload: [ ],
+      search_params.merge!({ min_id: 1, per_page: 500, preload: [ ],
         order_by: "id", order: "asc" })
       loop do
-        batch = Observation.get_search_scope_or_elastic_results(search_params)
+        batch = Observation.page_of_results(search_params)
         break if batch.size == 0
         block.call(batch)
         search_params[:min_id] = batch.last.id + 1
-        scope = Observation.get_search_scope_or_elastic_results(search_params)
       end
     end
 
@@ -112,13 +111,7 @@ module ObservationSearch
         # a dummy WillPaginate Collection is the most compatible empty result
         return WillPaginate::Collection.new(1, 30, 0)
       end
-      if params[:min_id] # && params[:limit]
-        elastic_params.delete(:page)
-        elastic_params.delete(:per_page)
-        Observation.elastic_search(elastic_params).records
-      else
-        Observation.elastic_paginate(elastic_params)
-      end
+      Observation.elastic_paginate(elastic_params)
     end
 
     def elastic_taxon_leaf_ids(elastic_params = {})

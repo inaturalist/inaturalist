@@ -109,9 +109,11 @@ describe DarwinCore::Archive, "make_occurrence_data" do
   end
 
   it "should not include duplicates" do
-    10.times { make_research_grade_observation }
-    archive = DarwinCore::Archive.new
+    number_of_obs = 5
+    number_of_obs.times { Observation.make! }
+    archive = DarwinCore::Archive.new(quality: "any")
     ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids.size ).to eq number_of_obs
     expect( ids.uniq.size ).to eq ids.size
   end
 end
