@@ -43,17 +43,10 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
-  after_create :delta_index_taxon
   before_destroy :set_old_list
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
-  
-  validates_presence_of :list_id, :taxon_id
-  validates_uniqueness_of :taxon_id, 
-                          :scope => :list_id, 
-                          :message => "is already on this list"
-  validates_length_of :description, :maximum => 1000, :allow_blank => true
-  
+
   scope :by_user, lambda {|user| joins(:list).where("lists.user_id = ?", user)}
 
   scope :order_by, lambda {|order_by|
@@ -197,7 +190,13 @@ class ListedTaxon < ActiveRecord::Base
   
   NATIVE_EQUIVALENTS = %w(native endemic)
   INTRODUCED_EQUIVALENTS = %w(introduced)
-  
+  CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
+
+  validates_presence_of :list_id, :taxon_id
+  validates_uniqueness_of :taxon_id,
+                          :scope => :list_id,
+                          :message => "is already on this list"
+  validates_length_of :description, :maximum => 1000, :allow_blank => true
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
   validate :not_on_a_comprehensive_check_list, :on => :create
@@ -205,9 +204,7 @@ class ListedTaxon < ActiveRecord::Base
   validate :list_rules_pass
   validate :taxon_matches_observation
   validate :check_list_editability
-  
-  CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
-  
+
   attr_accessor :skip_sync_with_parent,
                 :skip_species_for_infraspecies,
                 :skip_update_cache_columns,
@@ -216,7 +213,8 @@ class ListedTaxon < ActiveRecord::Base
                 :extra,
                 :html,
                 :old_list,
-                :force_trickle_down_establishment_means
+                :force_trickle_down_establishment_means,
+                :skip_index_taxon
   
   def ancestry
     taxon_ancestor_ids
@@ -417,14 +415,11 @@ class ListedTaxon < ActiveRecord::Base
       species_for_infraspecies(id)
     true
   end
-  
-  def delta_index_taxon
-    Taxon.where(id: taxon_id).update_all(delta: true)
-    true
-  end
 
   def index_taxon
-    taxon.reload.elastic_index!
+    unless skip_index_taxon
+      taxon.reload.elastic_index!
+    end
   end
 
   def update_cache_columns
@@ -850,6 +845,7 @@ class ListedTaxon < ActiveRecord::Base
       related_listed_taxon.observations_count = observations_count
       related_listed_taxon.observations_month_counts = observations_month_counts
       related_listed_taxon.occurrence_status_level = occurrence_status_level
+      related_listed_taxon.skip_index_taxon = true
       related_listed_taxon.skip_update_cache_columns = true
       related_listed_taxon.save
     end

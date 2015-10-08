@@ -167,9 +167,13 @@ class CheckList < List
       finder = finder.where(list_id: self.id)
     end
     
-    finder.find_in_batches do |batch|
+    finder.includes({
+      taxon: [ :taxon_names ],
+      list: [ :rules ],
+      last_observation: [ :taxon ] }).find_in_batches do |batch|
       batch.each do |listed_taxon|
         listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
+        listed_taxon.skip_index_taxon = true
         # re-apply list rules to the listed taxa
         listed_taxon.force_update_cache_columns = true
         listed_taxon.check_primary_listing
@@ -184,6 +188,7 @@ class CheckList < List
           listed_taxon.destroy
         end
       end
+      Taxon.elastic_index!(scope: Taxon.where(id: batch.map(&:taxon_id).uniq))
     end
     true
   end
