@@ -182,6 +182,8 @@ function buildHelpTips() {
 }
 
 $(document).ready(function() {
+  // stub jquery browser has to keep older qtip alive
+  $.browser = $.browser || {}
   
   buildHelpTips()
   
