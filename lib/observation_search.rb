@@ -29,20 +29,14 @@ module ObservationSearch
 
     def search_in_batches(raw_params, options={}, &block)
       search_params = Observation.get_search_params(raw_params, options)
-      search_params.merge!({ page: 1, per_page: 500, preload: [ ],
+      search_params.merge!({ min_id: 1, limit: 500, preload: [ ],
         order_by: "id", order: "asc" })
-      scope = Observation.get_search_scope_or_elastic_results(search_params)
-      if scope.is_a?(ActiveRecord::Relation)
-        scope.find_in_batches(batch_size: search_params[:per_page]) do |batch|
-          block.call(batch)
-        end
-      elsif scope.is_a?(WillPaginate::Collection)
-        block.call(scope)
-        total_pages = (scope.total_entries / search_params[:per_page].to_f).ceil
-        while search_params[:page] < total_pages
-          search_params[:page] += 1
-          block.call(Observation.get_search_scope_or_elastic_results(search_params))
-        end
+      loop do
+        batch = Observation.get_search_scope_or_elastic_results(search_params)
+        break if batch.size == 0
+        block.call(batch)
+        search_params[:min_id] = batch.last.id + 1
+        scope = Observation.get_search_scope_or_elastic_results(search_params)
       end
     end
 
@@ -51,7 +45,7 @@ module ObservationSearch
       if scope.is_a?(ActiveRecord::Relation)
         return scope.paginate(page: search_params[:page], per_page: search_params[:per_page]).
           order(nil)
-      elsif scope.is_a?(WillPaginate::Collection)
+      else
         return scope
       end
     end
@@ -118,7 +112,13 @@ module ObservationSearch
         # a dummy WillPaginate Collection is the most compatible empty result
         return WillPaginate::Collection.new(1, 30, 0)
       end
-      Observation.elastic_paginate(elastic_params)
+      if params[:min_id] # && params[:limit]
+        elastic_params.delete(:page)
+        elastic_params.delete(:per_page)
+        Observation.elastic_search(elastic_params).records
+      else
+        Observation.elastic_paginate(elastic_params)
+      end
     end
 
     def elastic_taxon_leaf_ids(elastic_params = {})
@@ -143,6 +143,9 @@ module ObservationSearch
       leaf_ids = ancestors.select{ |k,v| v == 0 }.keys
     end
 
+    # Takes a hash of query params like you'd get from an ActionController and
+    # normalizes them for use in our search methods like query (database) or
+    # elastic_query (ES)
     def query_params(params)
       p = params.clone.symbolize_keys
       if p[:swlat].blank? && p[:swlng].blank? && p[:nelat].blank? && p[:nelng].blank? && p[:BBOX]
@@ -542,6 +545,7 @@ module ObservationSearch
       end
 
       scope = scope.not_flagged_as_spam if params[:filter_spam]
+      scope = scope.where("observations.id >= ?", params[:min_id]) unless params[:min_id].blank?
       # return the scope, we can use this for will_paginate calls like:
       # Observation.query(params).paginate()
       scope
