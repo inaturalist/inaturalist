@@ -11,7 +11,7 @@ module DarwinCore
       @opts[:core] ||= "occurrence"
       @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "gbif.eml.erb")
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
-      @opts[:quality] ||= "research"
+      @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]

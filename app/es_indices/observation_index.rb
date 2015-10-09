@@ -375,6 +375,12 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    if p[:min_id]
+      search_filters << {
+        range: { id: { gte: p[:min_id] } }
+      }
+    end
+    
     { where: search_wheres,
       filters: search_filters,
       per_page: p[:per_page] || 30,

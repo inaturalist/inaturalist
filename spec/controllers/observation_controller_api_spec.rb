@@ -592,6 +592,34 @@ shared_examples_for "an ObservationsController" do
       expect(JSON.parse(response.body).length).to eq(2)
     end
 
+    it "should filter by min_id" do
+      o1 = Observation.make!
+      o2 = Observation.make!
+      o3 = Observation.make!
+      expect( o1.id ).to be < o2.id
+      expect( o2.id ).to be < o3.id
+      get :index, format: :json, min_id: o2.id
+      json = JSON.parse(response.body)
+      expect(json.detect{|obs| obs['id'] == o1.id}).to be_blank
+      expect(json.detect{|obs| obs['id'] == o2.id}).not_to be_blank
+      expect(json.detect{|obs| obs['id'] == o3.id}).not_to be_blank
+    end
+
+    it "should filter by min_id and per_page" do
+      o1 = Observation.make!
+      o2 = Observation.make!
+      o3 = Observation.make!
+      o4 = Observation.make!
+      expect( o1.id ).to be < o2.id
+      expect( o2.id ).to be < o3.id
+      get :index, format: :json, min_id: o2.id, per_page: 2, order_by: 'created_at', order: 'asc'
+      json = JSON.parse(response.body)
+      obs_ids = json.map{|o| o['id']}
+      expect(obs_ids.size).to eq 2
+      expect(obs_ids).not_to include o1.id
+      expect(obs_ids).to include o2.id
+    end
+
     it "should not include photo metadata" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank
