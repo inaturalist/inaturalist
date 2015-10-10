@@ -757,6 +757,7 @@ pt-BR:
   committed: Salvar.
   committing: Enviando...
   community_id: '<strong>Communidade</strong> ID:'
+  community_id_at_species_or_lower?: ID da Comunidade é como espécie ou inferior?
   community_moderation_settings: Configuração da Moderação da Comunidade
   community_supported_id: Indentificação verificada pela comunidade?
   compare_with: Comparar com
@@ -871,6 +872,7 @@ pt-BR:
   critically_endangered: criticamente em perigo
   css_description: Isto será incluído depois de todas as outras css na página
   csv: CSV
+  csv_file: Arquivo CSV
   csv_should_not_contain_a_header_row: CSV não deve conter um linha de cabeçalho
   curate_observations: Administrar observações
   curate_taxa: Táxon administrado
@@ -1021,6 +1023,7 @@ pt-BR:
   download_bulk_import_template_html: <a href="%{url}">Baixar template</a> para uso
     no <a href="/observations/import#csv_import">carregador múltiplo</a>
   download_csv: Baixar CSV
+  download_csv_template: Baixar modelo CSV
   download_kml: Baixar KML
   drag_and_drop_photos: arraste e solte fotos nesta janela ou
   draft: rascunho
@@ -1061,8 +1064,10 @@ pt-BR:
   edit_your_account: editar sua conta
   edit_your_account_and_profile_html: Modificar sua Conta &amp; Perfil
   edit_your_default_settings: Modifique suas configurações padrão
+  edit_your_global_project_settings: Editar suas configurações globais de projeto
   edit_your_identification: Editar sua identificação
   edit_your_profile: Editar seu perfil
+  edit_your_settings_for_this_project: Editar suas configurações para este projeto
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Editar suas configurações</a>
     para mudar os tipos de atualização que você recebe ou cancelar completamente a
     inscrição.
@@ -1092,6 +1097,7 @@ pt-BR:
   email_address_for_comments_and_other_feedback: Endereço de e-mail para comentários
     e outras colocações.
   email_addresses_to_receive_invites: Endereço de e-mail para receber convites
+  email_settings: Configurações de email
   embed: Incorporar
   embed_a_widget_for_this_taxon_on_website: Inserir um widget para este táxon em seu
     site &raquo;
@@ -1183,12 +1189,14 @@ pt-BR:
   fields_merged: Combinar os campos
   file_should_be_in_the_following_format: 'O arquivo deve estar no seguinte formato:
     nome da espécie ou grupo (táxon), descrição'
+  fill_out_project_observation_fields: Preencha campos de observação do projeto
   fill_out_your_profile: preencha seu perfil
   filling_out_checklist_for_place: preenchendo listas de verificação de lugares que
     você conhece bem
   filling_out_your_profile: preenchendo seu perfil
   filter: Filtrar
   filter_by: Filtrar por
+  filter_by_place: Filtrar por lugar
   filter_by_place_taxon_and_color: Filtrar por lugar, cor, especie ou grupo empregando
     os controles.
   filter_list_by_this_taxon: Filtre a lista por este táxon
@@ -1207,6 +1215,7 @@ pt-BR:
   find_places: Encontre Lugares
   find_some_people_to_follow: Encontre algumas pessoas para seguir
   find_species: Encontre Espécies
+  find_suitable_observations: Encontrar observações adequadas
   first_confirmed_inat_observation: Primeira observação %{site_name} confirmada
   first_connect_your_provider_account_to_your_site: 'Primeiro, conecte sua %{provider}
     conta a %{site_name}:'
@@ -1215,6 +1224,7 @@ pt-BR:
   flag: Alerta
   flag_an_item: Alerte sobre um ítem
   flag_as_spammer: Marque como spam
+  flag_as_non_spammer: Marque como não produtor de spam
   flag_description: Faça um alerta deste conteúdo para que os coordenadores saibam
     que algo está errado.
   flag_for_curation: Marque um alerta para moderação
@@ -1304,6 +1314,7 @@ pt-BR:
   getting_started: Primeiros passos
   give_it_some_detail: Inclua alguns detalhes!
   global_conservation_status: Estado de conservação global
+  global_names: Nomes globais
   globally: globalmente
   go: Ir
   good_choice_for_sharing: Boa alternativa para compartilhar com pesquisadores científicos
@@ -1332,6 +1343,7 @@ pt-BR:
   guide_was_successfully_created: Guia criado com sucesso.
   guide_was_successfully_published: Guia publicado com sucesso.
   guide_was_successfully_updated: Guia atualizado com sucesso.
+  guidelines: Diretrizes
   has_been: foi
   has_already_been_flagged_by: já foi notificado por
   hasnt_contributed_any_observations: não contribui com observações para este projeto
@@ -1370,6 +1382,7 @@ pt-BR:
   home_faq: Perguntas frequentes
   however_there_were_some_issues: 'Entretanto, existiram alguns problemas: %{issues}'
   hybrid: híbrido
+  i_agree_to_the_project_terms: Aceito os termos do projeto
   icon: Ícone
   icon_size: Tamanho do ícone
   icon_slash_photo: Ícone / Foto
@@ -1380,6 +1393,7 @@ pt-BR:
   id_please!: Identificar Por favor!
   id_please: Identificar Por favor!
   id_please_expandable_html: Identificar<span class='full'> Por favor</span>!
+  identify: Identificar
   identification: Identificação
   identification_deleted: Identificação apagada.
   identification_saved: Identificação salva!
@@ -1416,6 +1430,7 @@ pt-BR:
   if_your_search_comes_up: Se a sua busca retornou vazia, verifique algumas das caixas
     de seleção e repita a busca através de nossos provedores de nomes externos.
   ignore: Ignorar
+  ignore_times: Ignora os tempos
   image_must_be_exactly: imagem deve ser exatamente 950px de largura e no máximo 400px
     de altura.
   import: Importar
@@ -1432,9 +1447,11 @@ pt-BR:
   import_observations_from_a_photo: Importe observações de imagens em um serviço de
     armazenagem de fotos online ou de um arquivo em seu computador.
   import_photos: Importar fotos
+  import_tags_from_csv: Importar etiquetas de CSV
   importing: Importando...
   in: em
   in_: em
+  inaturalist_network_affiliation: Filiação da Rede iNaturalist
   inbox: caixa de entrada
   including: incluindo
   in_order_to_login_and_using_site_visit_url: 'Para realizar login e começar a utilizar
@@ -1470,6 +1487,7 @@ pt-BR:
   inspired_by_the_flickr_group: Inspirado no grupo do Flickr <a href='http://flickr.com/groups/idplease/'>identificador
     por favor</a>, este é um local para publicar observações de organismos que você
     não conhece, e também ajudar outras pessoas a identificar misteriosas criaturas!
+  internal_server_error: Erro interno do servidor
   introduced: introduzida
   invasive: invasoras
   invitation: Convite
@@ -1518,6 +1536,7 @@ pt-BR:
   join_this_project: Entre neste projeto
   joined!: Participando!
   joined_any_projects: participações e projetos
+  joining: Participando...
   journal: Boletim Informativo
   journal_archives_for: Arquivos do Boletim Informativo
   journal_post: Publique no Boletim Informativo
@@ -1542,6 +1561,9 @@ pt-BR:
   layout: Disposição
   leaderboard_for_x: Ranking para %{x}
   leaderboards: Colaboradores mais ativos
+  leaderboard_most:
+    species: A maioria das espécies em %{time}
+    observations: A maioria das observações em %{time}
   learn!: Aprenda!
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
   learn_more: Saiba mais
@@ -3634,7 +3656,7 @@ pt-BR:
     Deixe uma nota para alguém!
   you_havent_linked_your_inaturalist_picasa_account: Você não conectou sua conta do
     %{site_name} e sua conta do Picasa ainda
-  you_joined_this_project: Você entrou neste projeto!
+  you_joined_this_project: Você está participando deste projeto!
   you_may_have: É possível. Provavelmente funcionará apenas em versões de navegadores
     atuais como
   you_must_be_a_member_of_this_project_to_do_that: Você deve ser um membro deste projeto
@@ -4299,9 +4321,8 @@ pt-BR:
           biodiversidade para as pessoas enquanto ao mesmo tempo estão \n  coletando
           dados valiosos. Diferente de projetos convencionais, projetos bioblitz \n
           \ somam as estatísticas de <em>todas</em> observações feitas durante \n
-          \ um tempo e local específicos, desta maneira os participantes não tem que
-          necessariamente \n  entrar no projeto ou explicitamente adicionar as observações
-          deles ao projeto.\n</p>"
+          \ um tempo e local específicos, desta maneira que as observações não precisam
+          ser adicionadas ao projeto para definir as estatísticas do projeto.\n</p>"
         cover_desc: Imagem opcional do banner que irá aparecer no topo da página do
           seu projeto. Deve ter 950px de largura e menos que 400px de altura.
         custom_project_fields_means: Customize o banner do projeto, adicione conteúdo
@@ -4330,7 +4351,7 @@ pt-BR:
           in_taxon: esteja em um táxon
           observed_in_place: observado no local
           on_list: é de um táxon desta lista de projeto
-        start_time_desc: Horário de início da sua bioblitz
+        start_time_desc: 'Horário de início da sua bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm'
         trusted_project_means: 'Um projeto verificado significa que os moderadores
           podem adicionar ativos do projeto e atribuições personalizadas (ex: banner
           em HTML, CSS). Acesso aos atributos personalizados do projeto significa
@@ -4361,18 +4382,23 @@ pt-BR:
         bioblitz_results_desc_html: "<p>\n  Diferente de projetos regulares, as bioblitz
           divulgam o status do evento abaixo de\n  <em>todas</em> observações naquele
           local e período, não somente \n  as observações que as pessoas adicionaram
-          intencionalmente ao projeto.\n  Isto remove o obstáculo de unir-se ao projeto
-          para poder contribuir\n  com o status de observações do evento.\n</p>\n<p>\n
-          \ Perceba que enquanto este tipo de projeto mostra também as estatísticas
-          de observações que \n  não foram adicionadas por conta do projeto, isto
-          não permite que \n  os coordenadores vejam as coordenadas ocultas dessas
-          observações \n  ou assumam que os observadores tenham concordado com os
-          termos do projeto. \n  Se você é um coordenador de projetos e precisa acessar
-          coordenadas particulares, \n  você precisa que os participantes concordem
-          com os termos do projeto, \n  ou se você deseja que as observações sejam
-          tidas em conta para a lista de verificação \n  moderada do projeto, faça
-          questão de garantir que seus participantes entrem no projeto \n  e adicionem
-          as observações deles como fariam em um projeto normal.\n</p>"
+          intencionalmente ao projeto.\n  Isto remove a dificuldade de adicionar observações
+          ao projeto só para definir as estatísticas em tempo real. Note que as observações
+          não estarão disponíveis para exportar ou mostrar em vários projetos em várias
+          exibições de projeto como em contribuições de membros no website ou buscas
+          de observações de projeto em aplicativos móveis a menos que a equipe e participantes
+          do projeto ativamente adicionem observações relevantes como eles fariam
+          em projeto normal.\n</p>\n<p>\n  Perceba que enquanto este tipo de projeto
+          mostra também as estatísticas de observações que \n  não foram adicionadas
+          por conta do projeto, isto não permite que \n  os coordenadores vejam as
+          coordenadas ocultas dessas observações \n  ou assumam que os observadores
+          tenham concordado com os termos do projeto. \n  Se você é um coordenador
+          de projetos e precisa acessar coordenadas particulares, \n  você precisa
+          que os participantes concordem com os termos do projeto, \n  ou se você
+          deseja que as observações sejam tidas em conta para a lista de verificação
+          \n  moderada do projeto, faça questão de garantir que seus participantes
+          entrem no projeto \n  e adicionem as observações deles como fariam em um
+          projeto normal.\n</p>"
         project_observations_desc: Serão incluídas apenas observações submetidas especificamente
           a este projeto, e não contempla os demais registros realizados ainda que
           na mesma data, horário e local.
@@ -4655,7 +4681,7 @@ pt-BR:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %I:%M %p'
       short: '%d %b %H:%M'
-      observed_at: às %I:%M %p %Z
+      observed_at: '%I:%M %p %Z'
       rfc: '%d %B %Y'
       day_month_year: '%B %d, %Y'
       hours: '%l:%M %p'

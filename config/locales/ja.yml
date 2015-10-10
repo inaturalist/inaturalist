@@ -1745,6 +1745,7 @@ ja:
   project_invitations: プロジェクトへの招待
   project_journal_posts: プロジェクトのジャーナル投稿
   project_list: プロジェクトリスト
+  project_id: プロジェクトID
   project_members: '%{project}のメンバー'
   project_observation_settings: プロジェクト観察記録設定
   project_observations: プロジェクトの観測記録
@@ -1752,6 +1753,7 @@ ja:
   project_rules: プロジェクトルール
   project_settings: プロジェクト設定
   project_terms_and_rules: プロジェクト規約及び規則
+  project_that_does_not_contain_these_observations: これらの観察を含んでいないプロジェクト
   project_user_cannot_be_found: プロジェクトユーザーが見つかりません
   project_user_was_invalid: プロジェクトユーザーは無効です：%{project_user}
   project_was_successfully_created: プロジェクトは無事作成されました
@@ -2489,6 +2491,7 @@ ja:
     observations:
       export:
         well_email_you: 準備ができましたら電子メールでお知らせします。
+        created_on_help: 作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015
       field_descriptions:
         time_zone: 観察地の時間帯
         user_login: 観察者のユーザネーム

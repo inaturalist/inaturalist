@@ -1935,6 +1935,8 @@ fr:
   most_observed_species: Espèces les plus observées
   multiple_taxa_for_taxon_change: Taxons multiples (entrée aux fins d’échange/fusion,
     sortie aux fins de séparation)
+  multiple_taxon_ids_separated_by_commas: IDs de taxon multiples séparés par des virgules,
+    par ex. 123,654
   must_be_observed_in: doit être observé dans
   must_be_less_than_x_MB: Doit être de moins de %{x} Mo
   must_have_observation_field: le champ '%{operand}' de l’observation doit être rempli
@@ -2335,7 +2337,7 @@ fr:
   organisms: Organismes
   original: Original
   originally_flagged_by: Signalé à l'origine signalé
-  originally_imported_from_url_html: Importé à l'origine de <a href="%{url}">%{url}</a>
+  originally_imported_from_url_html: Importé à l'origine de <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: Lien de la page d'origine de cette photo.
   original_rights_holder: Détenteur des droits d'origine
   original_url_for_this_map: Lien d'origine de cette carte
@@ -2628,6 +2630,7 @@ fr:
   project_curators_added_some_of_your_observations_html: |-
     les superviseurs de <a href="%{url}">%{project}</a>
     ont ajouté certaines de vos observations
+  project_id: ID de projet
   project_members: Membres de %{project}
   project_membership_model_description: Votre projet est-il ouvert à tout le monde
     ou seulement aux personnes que vous invitez?
@@ -2640,6 +2643,8 @@ fr:
   project_rules: Règles du projet
   project_settings: Paramètres du projet
   project_terms_and_rules: conditions &amp; règles du projet
+  project_that_does_not_contain_these_observations: Projet qui ne contient pas ces
+    observations
   project_type_description: Les évaluations et les bioblitz sont des types de projet
     spéciaux. Les évaluations servent à collaborer sur un ensemble d’évaluations d’espèces,
     en général pour estimer l’importance de leur conservation. Les bioblitz sont des
@@ -3168,6 +3173,7 @@ fr:
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
   taxon_drop: perte de taxon
   taxon_id: Identifiant de taxon
+  taxon_ids: IDs de taxon
   taxon_map:
     gbif_occurrences: Présences selon  le SMIB
     it_may_take_google_a_while_to: Google peut prendre un certain temps pour charger
@@ -4418,6 +4424,10 @@ fr:
         well_email_you: Ok, nous vous enverrons un courriel quand ce sera prêt.
         taking_a_while: Cette action peut prendre un peu de temps. Veuillez essayer
           une des options ci-dessous.
+        date_range_help: Dates max et min observées au format AAAA-MM-JJ, par ex.
+          2015-01-17
+        created_on_help: Date où les observations ont été créées, non observées, par
+          ex. 2015-01-17, 2015-01, 2015
       field_descriptions:
         id: Identificateur unique pour l’observation
         species_guess: Nom de l’observateur entré pour le taxon observé

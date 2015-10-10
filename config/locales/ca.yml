@@ -495,7 +495,7 @@ ca:
   back_to_x_history: Torna la història %{x}
   back_to_x_journal: Torna al diari de %{user}
   back_to_x_observations: Torna a les observacions de %{user}
-  back_to_your_lists: Torna a les teves lliste
+  back_to_your_lists: Torna a les teves llistes
   back_to_your_journal: Torna al teu diari
   back_to_your_observations: Torna a les teves observacions
   back_to_your_profile: Torna al teu perfil
@@ -1363,8 +1363,8 @@ ca:
   icon_size: Mida de la icona
   icon_slash_photo: Icona / Foto
   iconic_taxon: Icona del Tàxon
-  id: Identificació
-  id_: identificació
+  id: ID
+  id_: ID
   id_more_in_id_please: IDentificar més en IDentificació, si us plau
   id_please!: IDentifica'l, si us plau!
   id_please: IDentifica'l, si us plau
@@ -1845,6 +1845,8 @@ ca:
   most_observed_species: La majoria d'espècies observades
   multiple_taxa_for_taxon_change: Múltiples tàxons (entrar per intercanviar/barrejar,
     sortir per separar)
+  multiple_taxon_ids_separated_by_commas: Moltes IDentificacions de tàxons separades
+    per comes, p.e. 123,456
   must_be_observed_in: han de ser observacions a
   must_be_less_than_x_MB: Ha de ser menor de %{x} MB
   must_have_observation_field: has de completar el camp '%{operand}' a l'observació
@@ -2235,7 +2237,7 @@ ca:
   organisms: Organismes
   original: Original
   originally_flagged_by: Originalment posat com a advertència per
-  originally_imported_from_url_html: Originalment importat des de <a href="%{url}">%{url}</a>
+  originally_imported_from_url_html: Originalment importat des de <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: Pàgina URL original per a aquesta foto.
   original_rights_holder: Titular dels drets originals
   original_url_for_this_map: URL Original d'aquest mapa
@@ -2523,6 +2525,7 @@ ca:
     description: La llista d'espècies de %{owner_name}
   project_curators_added_some_of_your_observations_html: supervisors de <a href="%{url}">%{project}</a>
     han afegit algunes de les teves observacions
+  project_id: ID del projecte
   project_members: Membres de %{project}
   project_membership_model_description: El seu projecte és obert a tothom o només
     per a les persones qui convides?
@@ -2535,6 +2538,8 @@ ca:
   project_rules: Normes del projecte
   project_settings: Configuració del projecte
   project_terms_and_rules: termes i regles del projecte
+  project_that_does_not_contain_these_observations: Projecte que no conté aquestes
+    observacions
   project_type_description: Valoracions i Bioblitzes són tipus especials de projectes.
     Les Valoracions son col·laboracions per a valorar l'estat d'un grup d'espècies,
     normalment d'importància per a la conservació. Els Bioblitzes sónesdeveniments
@@ -3011,7 +3016,7 @@ ca:
   subscriptions_arent_available_for: ' Les subscripcions no estan disponibles per
     a llocs sense límits definits.'
   successfully_changed_your_password: La teva contrasenya es va modificar satisfactòriament.
-  suggest_an_id: Suggereix un IDentificador
+  suggest_an_id: Suggereix una IDentificació
   suggest_or_require_that: Se suggereix o sol·licita que els col·laboradors omplin
     aquests camps per a les observacions que afegeixin al teu projecte.
   summary: Resum
@@ -3055,6 +3060,7 @@ ca:
   taxon_doesnt_have_a_range: El tàxon no té un rang
   taxon_drop: abandona tàxon
   taxon_id: IDentificador del Tàxon
+  taxon_ids: ID del tàxon
   taxon_map:
     gbif_occurrences: Registres de GBIF
     it_may_take_google_a_while_to: És possible que Google trigui una estona a carregar
@@ -4230,6 +4236,10 @@ ca:
         well_email_you: D'acord, t'enviarem un correu electrònic quan estigui llest
         taking_a_while: Això està requerint una mica de temps. Si us plau, prova una
           de les opcions de sota.
+        date_range_help: Dates d'observació màxima i mínima en format AAA-MM-DD, p.e.
+          2015-01-17
+        created_on_help: Data a la que es va crear l'observació, no d'observació,
+          p.e. 2015-01-17, 2015-01, 2015
       field_descriptions:
         id: Identificador únic de l'observació
         species_guess: Nom que va introduir l'observador pel tàxon observat
