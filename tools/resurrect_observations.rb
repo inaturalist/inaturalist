@@ -11,7 +11,7 @@ Usage:
 Options:
 EOS
   opt :user, "User whose observations to resurret", :short => "-u", :type => :string
-  opt :observation, "Observations to resurret", :short => "-o", :type => :integer
+  opt :observation, "Single observation ID to resurret", :short => "-o", :type => :integer
   opt :observed_on, "Observed date to resurrect observations from, format: YYYY-MM-DD", :short => "-d", :type => :string
   opt :created_on, "Created date to resurrect observations from, format: YYYY-MM-DD", :short => "-c", :type => :string
 end
