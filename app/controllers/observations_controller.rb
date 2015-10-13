@@ -112,9 +112,10 @@ class ObservationsController < ApplicationController
       # Get the cached filtered observations
       @observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
         obs = Observation.page_of_results(search_params)
-        unless @skipping_preloading
-          Observation.preload_for_component(obs, logged_in: !!current_user)
-        end
+        # this is doing preloading, as is some code below, but this isn't
+        # entirely redundant. If we preload now we can cache the preloaded
+        # data to save extra time later on.
+        Observation.preload_for_component(obs, logged_in: !!current_user)
         obs
       end
     else
@@ -128,9 +129,7 @@ class ObservationsController < ApplicationController
         @iconic_taxa ||= []
         determine_if_map_should_be_shown(search_params)
         prepare_map_params
-        unless @skipping_preloading
-          Observation.preload_for_component(@observations, logged_in: logged_in?)
-        end
+        Observation.preload_for_component(@observations, logged_in: logged_in?)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
           return render_observations_partial(partial)

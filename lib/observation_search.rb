@@ -8,6 +8,8 @@ module ObservationSearch
     def site_search_params(site, params = {})
       search_params = params.dup
       return search_params unless site && site.is_a?(Site)
+      # don't add a site filter to project queries
+      return search_params unless params[:projects].blank?
       case site.preferred_site_observations_filter
       when Site::OBSERVATIONS_FILTERS_SITE
         search_params[:site_id] = site.id if search_params[:site_id].blank?
