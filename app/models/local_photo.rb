@@ -139,7 +139,7 @@ class LocalPhoto < Photo
   end
 
   def attribution
-    if [user.name, user.login].include?(native_realname)
+    if user.blank? || [user.name, user.login].include?(native_realname)
       super
     else
       "#{super}, uploaded by #{user.try_methods(:name, :login)}"

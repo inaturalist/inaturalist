@@ -68,6 +68,12 @@ describe LocalPhoto, "creation" do
       })
     end
   end
+
+  it "can generate attribution without a user" do
+    lp = LocalPhoto.make!(user: nil, subtype: "FlickrPhoto")
+    expect( lp.attribution ).to eq "(c) anonymous, all rights reserved"
+  end
+
 end
 
 describe LocalPhoto, "to_observation" do
