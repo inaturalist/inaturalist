@@ -3,10 +3,12 @@ require 'trollop'
 
 OPTS = Trollop::options do
     banner <<-EOS
+
 Export an archive for a particular site within this installation. The archive
-can be into an empty database with import_site_archive.rb. This is basically a
-command script that runs a bunch of psql statements, so check the log to make
-sure they work. It will just run and zip up the results regardless.
+can be loaded into an empty database with import_site_archive.rb. This is
+basically a command script that runs a bunch of psql statements, so check the
+log to make sure they work. It will just run and zip up the results
+regardless.
 
 Usage:
 
@@ -108,16 +110,16 @@ def export_model(klass)
   # for models associated with certain models
   elsif klass.reflections.detect{|k,v| k == 'guide'}
     puts "Exporting #{klass.name.underscore.pluralize} belonging to users of #{@site_name}" if OPTS[:debug]
-    klass.joins(:guide => :user).where("users.site_id = ?", @site)
+    scope = scope.joins(:guide => :user).where("users.site_id = ?", @site)
   elsif klass.reflections.detect{|k,v| k == 'project'} && ![ProjectUser].include?(klass)
     puts "Exporting #{klass.name.underscore.pluralize} for projects with users from #{@site_name}" if OPTS[:debug]
-    klass.joins(project: {project_users: :user}).where("users.site_id = ?", @site)
+    scope = scope.joins(project: {project_users: :user}).where("users.site_id = ?", @site)
   elsif klass.reflections.detect{|k,v| k == 'observation'}
     puts "Exporting #{klass.name.underscore.pluralize} connected to observations by users of #{@site_name}" if OPTS[:debug]
-    klass.joins(observation: :user).where("users.site_id = ?", @site)
+    scope = scope.joins(observation: :user).where("users.site_id = ?", @site)
   elsif klass.reflections.detect{|k,v| k == 'list'}
     puts "Exporting #{klass.name.underscore.pluralize} connected to lists by users of #{@site_name}" if OPTS[:debug]
-    klass.joins(list: :user).where("users.site_id = ?", @site)
+    scope = scope.joins(list: :user).where("users.site_id = ?", @site)
 
   # anything else including a user_id or observation_id
   elsif klass.column_names.include?('user_id') && ![ConservationStatus, Source, TaxonChange].include?(klass)
