@@ -669,6 +669,12 @@ class User < ActiveRecord::Base
     "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}"
   end
 
+  def self.update_identifications_counter_cache(user_id)
+    return unless user = User.find_by_id(user_id)
+    User.where(id: user_id).update_all(
+      identifications_count: user.identifications_for_others.count)
+  end
+
   def to_plain_s
     "User #{login}"
   end
