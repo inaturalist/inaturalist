@@ -1249,9 +1249,9 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
 function markerObscuredRectangle( marker, shapeOptions ) {
   var cell_size = 0.2;
   var position = marker.getPosition( );
-  var coords = [ position.H, position.L ];
-  var ll = [ position.H - ( position.H % cell_size ),
-             position.L - ( position.L % cell_size ) ];
+  var coords = [ position.lat(), position.lng() ];
+  var ll = [ coords[0] - ( coords[0] % cell_size ),
+             coords[1] - ( coords[1] % cell_size ) ];
   var uu = [ ll[0], ll[1] ];
   _.each( coords, function( value, key ) {
     if( value < uu[key] ) { uu[key] -= cell_size; }
