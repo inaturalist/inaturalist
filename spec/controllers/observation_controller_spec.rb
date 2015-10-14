@@ -257,6 +257,51 @@ describe ObservationsController do
       post :destroy, :id => @observation
       expect(all_project_observations_path(@project, :format => :csv)).to_not be_private_page_cached
     end
+    describe "when viewed by a project curator" do
+      before do
+        @project.curators << @user
+        expect( @project ).to be_curated_by @user
+      end
+      it "should include private coordinates for observations with geoprivacy" do
+        @observation.update_attributes(
+          geoprivacy: Observation::PRIVATE,
+          latitude: 1.2345,
+          longitude: 1.2345
+        )
+        expect( @observation ).to be_coordinates_obscured
+        expect( @project_observation ).to be_prefers_curator_coordinate_access
+        get :project_all, :id => @project, :format => :csv
+        target_row = nil
+        CSV.parse(response.body, headers: true) do |row|
+          if row['id'].to_i == @observation.id
+            target_row = row
+          end
+        end
+        expect( target_row ).not_to be_blank
+        expect( target_row['private_latitude'] ).not_to be_blank
+        expect( target_row['private_longitude'] ).not_to be_blank
+      end
+
+      it "should include private coordinates for observations of threatened taxa" do
+        @observation.update_attributes(
+          latitude: 1.2345,
+          longitude: 1.2345,
+          taxon: make_threatened_taxon
+        )
+        expect( @observation ).to be_coordinates_obscured
+        expect( @project_observation ).to be_prefers_curator_coordinate_access
+        get :project_all, :id => @project, :format => :csv
+        target_row = nil
+        CSV.parse(response.body, headers: true) do |row|
+          if row['id'].to_i == @observation.id
+            target_row = row
+          end
+        end
+        expect( target_row ).not_to be_blank
+        expect( target_row['private_latitude'] ).not_to be_blank
+        expect( target_row['private_longitude'] ).not_to be_blank
+      end
+    end
   end
 
   describe "by_login_all" do
