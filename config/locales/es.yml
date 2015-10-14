@@ -122,6 +122,7 @@ es:
   actions: Acciones
   activate_user: Activar usuario
   active: activo
+  activity_settings: Configuración de la actividad
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} de un trabajo de %{original}
   add: Añadir
   add_a: Añadir una
@@ -1757,12 +1758,6 @@ es:
   mail_disclaimer: '%{site_name} no permitirá que sus usuarios le envíen más invitaciones
     a través de nuestro invitador. Por favor reporte el abuso de invitaciones a %{site}.'
   main_content: Contenido principal
-  main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_a_new_place: Crea un nuevo lugar
   make_a_taxon_swap_instead?: ¿Quieres hacer un intercambio de la especie o grupo?
   make_curator: Hacer curador
@@ -1807,7 +1802,6 @@ es:
       range: Intervalo
   map_tooltip: Muestra la vista de mapa
   map_for: Mapa para
-  maptype_for_places: google.maps.MapTypeId.TERRAIN
   mark_as_reviewed: Marcar como revisado
   matched_several_different_taxa: varios taxones distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
@@ -1816,6 +1810,15 @@ es:
   medium: medio
   member_of_the_inaturalist_network_html: Miembro de la <a href="%{url}">Red iNaturalist</a>
   members: Miembros
+  mentioned_you_in_noun_html: '%{user} te ha mencionado en %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} te ha mencionado en %{noun} por %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} te ha mencionado en un %{x} en %{noun}'
+  mentioned_you_in_an_x_on_noun_html: '%{user} te ha mencionado en un %{x} sobre %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} te ha mencionado en un %{x} en %{noun}
+    sobre %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} te ha mencionado en un %{x} en %{noun}
+    sobre %{by}'
+  mentions: Menciones
   merge: Combinar
   merge_it_with_another_place: Combinar con otro lugar
   merge_two_places_together: Combinar dos lugares. Todas las especies en las listas
@@ -2049,6 +2052,7 @@ es:
   note: Nota
   note_you_can_modify_the_height_attribute: 'Nota: Puedes modificar el atributo "altura"
     para llenar el espacio disponible en tu página web.'
+  notify_me_of_mentions: Notificarme sobre las menciones (p. ej. @username)
   number_of_observations: Número de observaciones
   numeric_: numérico
   noun_by_you: '%{noun} por usted'
@@ -2686,6 +2690,7 @@ es:
   reorder_by_taxonomy: Reordenar por taxonomía
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de
     foto.
+  repair_external_photos: Reparar fotos externas
   replace_boundary_with_kml: Reemplace límite con KML
   replace_parentesis: (reemplazar)
   replacing: reemplazando
@@ -3993,17 +3998,10 @@ es:
         aplicación para el iPhone </ a> para uso sin conexión.
       mobile_downloads_help_html: |-
         <p>
-          Esto creará un archivo descargable de todos los datos y los medios
-          de comunicación asociados con esta guía para que los usuarios de
-          iPhone pueden ver todo el contenido de la guía y sin una conexión a
-          Internet. Tomará unos minutos para generar el archivo, pero una vez
-          que esto se habilita el archivo se actualizará cada vez que cambie
-          esta guía.
+          Esto creará un archivo descargable de todos los datos y los contenidos multimedia asociados con esta guía para que los usuarios de iPhone puedan ver todo el contenido de la guía sin una conexión a Internet. Tomará unos minutos generar el archivo, pero una vez que se habilite el archivo se actualizará cada vez que cambies esta guía.
         </p>
-        <p class="alert error status">
-          Por favor <strong>no permiten descargas móviles fuera de línea a
-          menos que realmente la intención de utilizarlos.</strong> Ellos
-          representan una carga considerable para nuestro sistema.
+        <p class="alert status">
+          <strong>No habilites las descargas móviles sin conexión a menos que tengas realmente la intención de utilizarlas.</strong> Éstas representan una carga considerable para nuestro sistema.
         </p>
       pdf_layouts:
         grid: cuadrícula
@@ -4775,11 +4773,46 @@ es:
         welcome_message_html: "%{image} lo invita a utilizar este portal de información
           sobre biodiversidad, \nen el que podrá compartir lo que observa en la naturaleza,
           aprender de ella e \nintercambiar información con otros ciudadanos naturalistas."
-        connect_with_nature: Conecte con la Naturaleza
-        explore_and_share: Explorar y compartir sus observaciones del mundo natural.
-        observations_to_date: Observaciones a la Fecha
-        species_observed: Especies Observadas
-        people_signed_up: Personas se Inscribieron
+        connect_with_nature: Conectate con la naturaleza
+        explore_and_share: Explora y comparte tus observaciones del mundo natural.
+        observations_to_date: Observaciones hasta la fecha
+        species_observed: Especies observadas
+        people_signed_up: Personas inscritas
+        how_it_works: Cómo funciona
+        record_your_observations: Registra tus observaciones
+        share_with_fellow_naturalists: Comparte con otros naturalistas
+        discuss_your_findings: Habla sobre tus observaciones
+        contribute_to_science: Contribuye a la ciencia
+        science_desc_html: |-
+          Cada observación puede contribuir a la biodiversidad de la ciencia, desde la mariposa más rara hasta la hierba  más común de un patio. Compartimos tus
+          observaciones con repositorios de datos científicos como el
+          <a href="http://gbif.org" target="_blank">Global Biodiversity Information Facility</a>
+          para ayudar a los científicos a encontrar y utilizar tus datos. Todo lo que tienes que hacer es observar.
+        nature_at_your_fingertips: La naturaleza al alcance de tu mano
+        keep_track: Sigue la Pista
+        record_your_encounters: Registra tus observaciones de otros organismos y mantén
+          listas de vida, todo en la nube.
+        create_useful_data: Crea datos útiles
+        help_scientists: Ayuda a científicos y gestores de recursos a comprender cuándo
+          y dónde están los organismos.
+        crowdsource_identifications: Comparte identificaciones
+        connect_with_experts: Conectate con expertos que puedan identificar los organismos
+          que observas.
+        become_a_citizen_scientist: Conviértete en un científico ciudadano
+        find_a_project: Encuentra un proyecto con una misión que te interese, o inicia
+          el tuyo propio.
+        learn_about_nature: Aprende sobre la naturaleza
+        build_your_knowledge: Aumenta tus conocimientos hablando con otros naturalistas
+          y ayudando a los demás.
+        run_a_bioblitz: Realizar un Bioblitz
+        hold_an_event: Realiza un evento donde las personas intentan encontrar tantas
+          especies como les es posible.
+        works_on_all_your_devices: Funciona en todos tus dispositivos
+        install_our_mobile_apps: Instala nuestras aplicaciones móviles para observar
+          en todo momento, incluso sin recepción telefónica o wifi.
+        who_uses_site_name: ¿Quién utiliza %{site_name}?
+        what_are_you_waiting_for: ¿Qué estás esperando?
+        join_today: Únete hoy
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Guardar y editar para agregar datos adjuntos

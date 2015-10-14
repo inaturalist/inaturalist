@@ -109,6 +109,7 @@ ca:
   actions: Accions
   activate_user: Activa un usuari
   active: actiu
+  activity_settings: Configuració de l'Activitat
   adapted_by_name_from_a_work_by_original: Adaptat per %{name} a partir d'un treball
     de %{original}
   add: Afegeix
@@ -729,7 +730,7 @@ ca:
   commented: comentat
   comments: Comentaris
   comments_and_identifications: Comentaris i identificacions
-  comments_by_everyone: Comentaris de tots
+  comments_by_everyone: Comentaris de tothom
   comments_by_me: Els meus comentaris
   comments_on: Comentaris sobre
   comments_on_my_observations: Comentaris sobre les meves observacions
@@ -821,6 +822,7 @@ ca:
     attribution_sharealike_license: Reconeixement - Comparteix amb la mateixa llicència
     attribution_noderivs_license: Reconeixement - Sense obra derivada
     gnu_free_documentation_license: Llicència gratuïta de documentació GNU
+  copyright_holder: Propietari dels drets d'autor
   copyright_infringement_desc: Incompleix la llei de drets d'autor o va ser creat
     per algú altre que no pas l'observador i manca el reconeixement
   couldnt_change_your_password: 'La contrasenya no s’ha pogut modificar: %{e}'
@@ -1369,7 +1371,7 @@ ca:
   id_please!: IDentifica'l, si us plau!
   id_please: IDentifica'l, si us plau
   id_please_expandable_html: IDentifica'l<span class='full'> si us plau!</span>
-  identify: Indentificar
+  identify: Identificar
   identification: identificació
   identification_deleted: Identificació eliminada.
   identification_saved: Identificació desada!
@@ -1437,9 +1439,9 @@ ca:
   in_the_past_week: durant la setmana passada
   inactive: inactiva
   inactive_taxon: Tàxon inactiu
-  inactive_taxon_concepts_are: Els conceptes inactius són les espècies o grups que
-    taxonòmicament s’han canviat per un altre nom. Els conceptes inactius es conserven
-    per mantenir la història de l'espècie o grup i la compatibilitat amb altres llocs.
+  inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats
+    o que han canviat el nom. Les categories inactives es conserven per mantenir la
+    història de l'espècie o grup i la compatibilitat amb altres llocs.
   inat_account_action: '%{site_name} : Compte : %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} creu que el llistat d''aquest
     tàxon en aquest lloc és complet.'
@@ -1753,12 +1755,6 @@ ca:
     a través del nostre sistema. Et demanem que denunciïs l''abús d''invitacions a
     %{site}.'
   main_content: Contingut principal
-  main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_a_new_place: Crea un nou lloc
   make_a_taxon_swap_instead?: Vols fer un intercanvi de l'espècie o grup?
   make_curator: Fes de supervisor
@@ -1803,7 +1799,6 @@ ca:
       range: Rang
   map_tooltip: Mostra la vista del mapa
   map_for: Mapa per a
-  maptype_for_places: google.maps.MapTypeId.TERRAIN
   mark_as_reviewed: Marca-ho com a revisat
   matched_several_different_taxa: coincideix amb diferents tàxons
   matching_species_will_shown_up_here: Les espècies que trobis es mostraran aquí.
@@ -1813,6 +1808,15 @@ ca:
   medium: mitjà
   member_of_the_inaturalist_network_html: Membre de la <a href="%{url}">Xarxa iNaturalist</a>
   members: Membres
+  mentioned_you_in_noun_html: '%{user} t''ha esmentat a %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} te ha mencionado en %{noun} de %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} t''ha esmentat a un %{x} a %{noun}'
+  mentioned_you_in_an_x_on_noun_html: '%{user} t''ha esmentat a un %{x} a %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} t''ha esmentat en un %{x} en %{noun}
+    de %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} te ha mencionado en un %{x} en %{noun}
+    de %{by}'
+  mentions: Mencions
   merge: Combina
   merge_it_with_another_place: Combina amb un altre lloc
   merge_two_places_together: Combina dos llocs. Totes les espècies a les llistes de
@@ -1905,7 +1909,7 @@ ca:
   new_observation_rules: Noves normes d'observació
   new_observations: Noves observacions
   new_observations_ellispsis: Noves observacions...
-  new_observations_from_place_html: Noves observacions de %{place}
+  new_observations_from_place_html: Noves observacions a %{place}
   new_observations_may_take_up_to: Les noves observacions poden trigar al voltant
     de %{widget_expiration} minuts a aparèixer en el giny.
   new_observations_of_x_html: Noves observacions de %{x}
@@ -2046,6 +2050,7 @@ ca:
   note: Nota
   note_you_can_modify_the_height_attribute: 'Nota: podeu modificar l''atribut ''alçada''
     per ajustar l''espai disponible a la vostra pàgina web.'
+  notify_me_of_mentions: Notificar-me les mencions (p.e. @username)
   number_of_observations: Nombre d'observacions
   numeric_: numèric
   noun_by_you: '%{noun} pròpies'
@@ -2112,10 +2117,10 @@ ca:
   observations_last500: Observacions (darreres 500)
   observations_map: Observacions/mapa
   observation_must_dotdotdot: L'observació ha de...
-  observations_near_a_place_are: Les observacions properes a un lloc que tinguin un
-    rectangle al voltant dels límits de la figura poden donar com a resultat algunes
-    dades imprecises per a llocs que no semblin rectangles. Això es deu a una limitació
-    de la nostra base de dades en la resolució de la qual estem treballant
+  observations_near_a_place_are: Les observacions "properes" a un lloc es troben en
+    un rectangle al voltant dels seus límits, el que pot provocar un resultat imprecís
+    per a llocs que no tenen forma rectangular. Això es degut a una limitació de la
+    nostra base de dades que estem treballant en resoldre.
   observations_needing_curation: Observacions que requereixen la revisió d'un administrador
   observations_obscured: Observacions (enfosquides)
   observations_observed_this_month: Les observacions <em>realitzades</em> aquest mes
@@ -2146,7 +2151,7 @@ ca:
   observed_by: Observat per
   observed_in_place?: observacions a
   observed_on: Observat el
-  observed_one: observat un(a)
+  observed_one: ha observat un(a)
   observer: Observador
   observer_short: Persona
   observing: observant
@@ -2674,6 +2679,7 @@ ca:
   reorder_by_taxonomy: Reordenar la taxonomia
   repair_doesnt_work_for_that_kind_of_photo: La reparació no funciona per a aquest
     tipus de foto.
+  repair_external_photos: Reparar Fotos Externes
   replace_boundary_with_kml: Substitueix límit amb KML
   replace_parentesis: (reemplaça)
   replacing: reemplaçant
@@ -2861,7 +2867,7 @@ ca:
   some_people_that: Algunes persones que
   some_rights_reserved: alguns drets reservats
   something: Alguna cosa
-  something_: algun grup o espècie
+  something_: alguna cosa
   something_went_wrong_adding: Alguna cosa no ha anat bé en afegir aquesta espècie
     a la teva llista
   something_went_wrong_deleting_the_taxon_name: 'Alguna cosa no ha anat bé en eliminar
@@ -2949,8 +2955,8 @@ ca:
     title: 'ex. Serps: L''Evolució del Misteri a la Natura'
     in_text: ex. Herrera, 2000
     url: p.e. http://www.ucpress.edu/book.php?isbn=9780520224872
-    citation: 'Herrera, H. J. (1992) Iniciació al dret d''autor. Mèxic: Limusa, 171
-      pàg.'
+    citation: 'p.e. Herrera, H. J. (1992) Iniciació al dret d''autor. Mèxic: Limusa,
+      171 pàg.'
   source_identifier: Identificador de la font
   source_unknown: Font desconeguda
   source_url: URL de la Font
@@ -3126,8 +3132,8 @@ ca:
   thats_not_a_real_date: Això no és una data real!
   the: el (la)
   the_admin_is_the_person_who: L'administrador és la persona que va crear aquest projecte.
-    Pot fer les mateixes tasques que un administrador o supervisor i és l'únic que
-    pot eliminar el projecte.
+    Pot fer les mateixes tasques que un gestor o un supervisor i és l'únic que pot
+    eliminar el projecte.
   the_community_agrees_location_doesnt: la comunitat determina que la <strong>ubicació
     és incorrecta</strong> (és a dir, micos enmig de l'oceà, hipopòtams en edificis,
     etc.)
@@ -3951,7 +3957,7 @@ ca:
         d'iPhone</a> pel seu ús fora de línia.
       mobile_downloads_help_html: |-
         <p>Això crearà un arxiu descarregable de totes les dades i mitjans associats amb aquesta guia, de forma que els usuaris d'iPhone poden veure tot el contingut de la guia sense connexió a Internet. Necessitarà uns minuts per a generar l'arxiu, però quan aquesta opció està habilitada, l'arxiu s'actualitzarà cada vegada que canvieu aquesta guia.</p>
-        <p class="alert error status">Si us plau, <strong>no habiliteu les descàrregues des del mòbil a menys que  en realitat, tingueu la intenció d'utilitzar-los. </strong> Representen una càrrega considerable pel nostre sistema.
+        <p class="alert status">Si us plau, <strong>no habiliteu les descàrregues des del mòbil a menys que  en realitat, tingueu la intenció d'utilitzar-los. </strong> Representen una càrrega considerable pel nostre sistema.
         </p>
       pdf_layouts:
         grid: Quadrícula
@@ -4410,7 +4416,7 @@ ca:
           a les observacions
         filling_out_checklists: l’actualització de llistes de verificació per als
           llocs que coneixes bé
-        you_can_help_out_by: Pots ajudar a millorar les nostres dades de llocs mitjançant
+        you_can_help_out_by: 'Pots ajudar a millorar les nostres dades de llocs mitjançant:'
       new:
         check_list_note: 'Nota: Les llistes de verificació es desactiven automàticament
           per a llocs molt grans.'
@@ -4661,6 +4667,48 @@ ca:
           %{image} et convida a utilitzar aquest portal d'informació sobre biodiversitat
           on podràs compartir el que observes en la natura, aprendre de la natura i
           intercanviar informació amb altres naturalistes.
+        connect_with_nature: Connecta amb la Natura
+        explore_and_share: Explora i comparteix les teves observacions sobre el món
+          natural
+        observations_to_date: Observacions fins Ara
+        species_observed: Espècies Observades
+        people_signed_up: Persones Registrades
+        how_it_works: Com Funciona?
+        record_your_observations: Desa les teves observacions
+        share_with_fellow_naturalists: Comparteix amb companys naturalistes
+        discuss_your_findings: Parla sobre el que has observat
+        contribute_to_science: Contribueix a la Ciència
+        science_desc_html: "Totes les observacions poden contribuir a la ciència de
+          la biodiversitat de la ciència, des de la més rara papallona a la més comuna
+          de les males herbes del pati. Compartim les teves observacions amb bancs
+          de dades científiques com ara la \n<a href=\"http://gbif.org\" target=\"_blank\">Global
+          Biodiversity Information Facility</a> per ajudar els científics a trobar
+          i utilitzar les teves dades. Tot el que has de fer és\nobservar."
+        nature_at_your_fingertips: La Natura al Teu Abast
+        keep_track: Segueix la Pista
+        record_your_encounters: Registra les teves troballes d'altres organismes i
+          manté llistes de vida, tot en el núvol.
+        create_useful_data: Crear Dades Útils
+        help_scientists: Ajuda els científics i gestors de recursos a conèixer on
+          i quant estan els organismes.
+        crowdsource_identifications: Comparteix Identificacions
+        connect_with_experts: Connecta mb experts que poden identifica els organismes
+          que observes.
+        become_a_citizen_scientist: Sigues un Ciutadà Científic
+        find_a_project: Troba un projecte amb un objectiu que t'interessi, o comença
+          un de propi.
+        learn_about_nature: Aprèn Sobre la Natura
+        build_your_knowledge: Augmenta el teu coneixement parlant amb altres naturalistes
+          o ajudant altres.
+        run_a_bioblitz: Fes un Bioblitz
+        hold_an_event: Celebra a un esdeveniment on diferents persones intenten trobar
+          tantes espècies com els hi sigui possible.
+        works_on_all_your_devices: Funciona a tots els teus Dispositius
+        install_our_mobile_apps: Instal·la les nostres Apps mòbils per poder fer observacions
+          sempre, fins i tot sense cobertura telefònica o wifi
+        who_uses_site_name: Qui Utilitza %{site_name}?
+        what_are_you_waiting_for: Què estàs esperant?
+        join_today: Uneix-te Avui mateix
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Desar i editar per afegir fitxers adjunts

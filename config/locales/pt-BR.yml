@@ -7,6 +7,7 @@
 # Author: Fasouzafreitas
 # Author: Julianagatti
 # Author: Vonmatter
+# Author: Walesson
 ---
 pt-BR:
   licensing_your_content: "Licenciar seu conteúdo permite que outros tenham direito
@@ -1773,12 +1774,6 @@ pt-BR:
     através do nosso sistema de convites. Por favor avise-nos sobre qualquer abuso
     relacionado a convites em %{site}.'
   main_content: Conteúdo principal
-  main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_a_new_place: Crie um novo lugar
   make_a_taxon_swap_instead?: Deseja fazer uma troca de táxons?
   make_curator: Torne coordenador
@@ -1817,7 +1812,6 @@ pt-BR:
       place_boundary: Colocar limite
   map_tooltip: Mostre a vista do mapa
   map_for: Mapa para
-  maptype_for_places: google.maps.MapTypeId.TERRAIN
   matched_several_different_taxa: encontrou diversas táxons diferentes que coincidem
   matching_species_will_shown_up_here: As espécies encontradas serão mostradas aqui.
     Os mapas irão mostrar uma área se %{place} tiver uma para alguma espécie.
@@ -4480,6 +4474,8 @@ pt-BR:
         welcome_message_html: "para %{image}, onde você pode <strong>gravar</strong>
           o que você vê na natureza, \n<strong>encontre</strong> outras pessoas que
           adoram a natureza, \ne <strong>aprenda</strong> mais sobre o mundo natural."
+        connect_with_nature: Conecte-se com a Natureza
+        contribute_to_science: Contribuir para a Ciência
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Salve e modifique para adicionar anexos
@@ -4493,19 +4489,18 @@ pt-BR:
     - Sex
     - Sab
     abbr_month_names:
-    - .
-    - Jan
-    - Fev
-    - Mar
-    - Abr
-    - Mai
-    - Jun
-    - Jul
-    - Ago
-    - Set
-    - Out
-    - Nov
-    - Dez
+      1: Jan
+      2: Fev
+      3: Mar
+      4: Abr
+      5: Mai
+      6: Jun
+      7: Jul
+      8: Ago
+      9: Set
+      10: Out
+      11: Nov
+      12: Dez
     day_names:
     - Domingo
     - Segunda-feira
@@ -4521,19 +4516,18 @@ pt-BR:
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:
-    - .
-    - Janeiro
-    - Fevereiro
-    - Março
-    - Abril
-    - Maio
-    - Junho
-    - Julho
-    - Agosto
-    - Setembro
-    - Outubro
-    - Novembro
-    - Dezembro
+      1: Janeiro
+      2: Fevereiro
+      3: Março
+      4: Abril
+      5: Maio
+      6: Junho
+      7: Julho
+      8: Agosto
+      9: Setembro
+      10: Outubro
+      11: Novembro
+      12: Dezembro
     order:
     - :ano
     - :mês

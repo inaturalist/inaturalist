@@ -79,6 +79,7 @@ ja:
   actions: 操作
   activate_user: アクティブユーザー
   active: アクティブ
+  activity_settings: アクティビティ設定
   add: 追加
   add_a: 追加する：
   add_a_batch_of_observations: 観察記録を一括追加
@@ -561,6 +562,7 @@ ja:
     attribution_sharealike_license: 表示 - 継承
     attribution_noderivs_license: 表示 - 改変禁止
     gnu_free_documentation_license: GNUフリー文書利用許諾契約書
+  copyright_holder: 著作権保持者
   couldnt_change_your_password: パスワードを変えることができませんでした：%{e}
   couldnt_find_a_user_matching_x_param: '%{id}というユーザーが見つかりません'
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
@@ -1219,7 +1221,6 @@ ja:
   lowest_rank: 最下位階級
   made_a: 作成した
   main_content: メインコンテンツ
-  main_content_description: いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす。
   make_a_new_place: 新規場所を作成
   make_curator: キューレータ管理者の権限を付与
   make_it_a_life_list?: ライフリストにしますか？
@@ -2529,6 +2530,12 @@ ja:
       edit:
         project_addition_preferences:
           joined: 自分の参加しているプロジェクト
+    welcome:
+      index:
+        species_observed: 観察された種
+        contribute_to_science: 科学への貢献をする
+        learn_about_nature: 自然について学ぶ
+        who_uses_site_name: 誰が%{site_name}を使うのか？
   date:
     abbr_day_names:
     - 日
