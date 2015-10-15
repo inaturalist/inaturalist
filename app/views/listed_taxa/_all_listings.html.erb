@@ -6,9 +6,10 @@
       <%= form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
         :id => dom_id(@listed_taxon, "edit_occurrence"), 
         :class => "smallbuttons inline buttonrow"} do |f| %>
+        <% primary_taxon = @listed_taxon.primary_listed_taxon -%>
         <%= f.hidden_field :primary_listing, :value => true %>
-        <%= f.hidden_field :establishment_means, :value => @listed_taxon.primary_listed_taxon.establishment_means %>
-        <%= f.hidden_field :occurrence_status_level, :value => @listed_taxon.primary_listed_taxon.occurrence_status_level %>
+        <%= f.hidden_field :establishment_means, :value => primary_taxon ? primary_taxon.establishment_means : nil %>
+        <%= f.hidden_field :occurrence_status_level, :value => primary_taxon ? primary_taxon.occurrence_status_level : nil %>
         <%= f.submit t(:make_this_the_primary_listing), :class => "default button" %>
       <% end %>
     <% end -%>

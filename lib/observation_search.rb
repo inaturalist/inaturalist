@@ -260,6 +260,7 @@ module ObservationSearch
         p[:ofv_params].delete_if{|k,v| v[:observation_field].blank?}
       end
 
+      p[:user_id] = p[:user_id] || p[:user]
       unless p[:user_id].blank?
         p[:user] = User.find_by_id(p[:user_id])
         p[:user] ||= User.find_by_login(p[:user_id])

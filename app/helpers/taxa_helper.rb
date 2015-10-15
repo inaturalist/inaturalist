@@ -113,9 +113,9 @@ module TaxaHelper
     iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon]
     iconic_taxon ||= if taxon
       taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-      taxon.is_iconic? ? taxon : Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
-    else
-      nil
+      unless taxon.blank?
+        taxon.is_iconic? ? taxon : Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
+      end
     end
     path = 'iconic_taxa/'
     if iconic_taxon
