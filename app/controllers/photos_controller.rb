@@ -181,16 +181,15 @@ class PhotosController < ApplicationController
   end
 
   def fix
-    photo = current_user.photos.where("type != 'LocalPhoto'").first
+    types = %w(FacebookPhoto FlickrPhoto PicasaPhoto)
     @type = if params[:type].blank?
-      if photo = current_user.photos.where("type != 'LocalPhoto'").first
+      if photo = current_user.photos.where("type IN (?)", types).first
         @type = photo.class.name
-      else
-        'FacebookPhoto'
       end
-    elsif params[:type] != 'LocalPhoto'
+    else
       @type = params[:type]
     end
+    @type = 'FacebookPhoto' unless types.include?(@type)
     if @type
       @provider_name = @type.underscore.gsub(/_photo/, '')
       @provider_identity = if @provider_name == 'flickr'
