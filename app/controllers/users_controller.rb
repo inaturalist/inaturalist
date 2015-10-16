@@ -311,7 +311,6 @@ class UsersController < ApplicationController
     Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
-    Update.user_viewed_updates(@pagination_updates)
     @month_observations = current_user.observations.
       where([ "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
