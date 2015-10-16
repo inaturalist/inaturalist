@@ -10,8 +10,8 @@ Usage:
 
 Options:
 EOS
-  opt :user, "User whose observations to resurret", :short => "-u", :type => :string
-  opt :observation, "Single observation ID to resurret", :short => "-o", :type => :integer
+  opt :user, "User whose observations to resurrect", :short => "-u", :type => :string
+  opt :observation, "Observation ID(s) to resurrect", :short => "-o", :type => :string
   opt :observed_on, "Observed date to resurrect observations from, format: YYYY-MM-DD", :short => "-d", :type => :string
   opt :created_on, "Created date to resurrect observations from, format: YYYY-MM-DD", :short => "-c", :type => :string
 end
@@ -39,10 +39,11 @@ if OPTS.user
 end
 
 if OPTS.observation
-  if @observation = Observation.find_by_id(OPTS.observation)
-    @where << "observations.id = #{@observation.id}"
+  @observations = Observation.where(id: OPTS.observation.split(","))
+  unless @observations.blank?
+    @where << "observations.id IN (#{@observations.map(&:id).join(',')})"
   else
-    puts "Couldn't find observation matching '#{OPTS.observation}'"
+    puts "Couldn't find observations matching '#{OPTS.observation}'"
     exit(0)
   end
 end
@@ -95,12 +96,12 @@ has_many_reflections.each do |k, reflection|
     system "test #{fname} || rm #{fname}"
   end
   sql = <<-SQL
-    SELECT #{reflection.table_name}.* 
-    FROM #{reflection.table_name} 
+    SELECT DISTINCT #{reflection.table_name}.*
+    FROM #{reflection.table_name}
       JOIN observations ON #{reflection.table_name}.#{reflection.foreign_key} = observations.id
     WHERE #{@where.join(' AND ')}
   SQL
-  cmd = "psql inaturalist_production -c \"COPY (#{sql}) TO STDOUT WITH CSV\" >> #{fname}"
+  cmd = "psql inaturalist_production -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
   system cmd
   puts "\t#{cmd}"
   resurrection_cmds << "psql inaturalist_production -c \"\\copy #{reflection.table_name} FROM '#{fname}' WITH CSV\""
@@ -109,8 +110,8 @@ end
 puts "Exporting from photos..."
 fname = "resurrect_#{session_id}-photos.csv"
 sql = <<-SQL
-  SELECT photos.* 
-  FROM photos 
+  SELECT DISTINCT photos.*
+  FROM photos
     JOIN observation_photos ON observation_photos.photo_id = photos.id
     JOIN observations ON observations.id = observation_photos.observation_id
   WHERE #{@where.join(' AND ')}
@@ -123,8 +124,8 @@ resurrection_cmds << "psql inaturalist_production -c \"\\copy photos FROM '#{fna
 puts "Exporting from observation_photos..."
 fname = "resurrect_#{session_id}-observation_photos.csv"
 sql = <<-SQL
-  SELECT observation_photos.* 
-  FROM observation_photos 
+  SELECT DISTINCT observation_photos.*
+  FROM observation_photos
     JOIN photos ON photos.id = observation_photos.photo_id
     JOIN observations ON observations.id = observation_photos.observation_id
   WHERE #{@where.join(' AND ')}
@@ -137,8 +138,8 @@ resurrection_cmds << "psql inaturalist_production -c \"\\copy observation_photos
 puts "Exporting from sounds..."
 fname = "resurrect_#{session_id}-sounds.csv"
 sql = <<-SQL
-  SELECT sounds.* 
-  FROM sounds 
+  SELECT DISTINCT sounds.*
+  FROM sounds
     JOIN observation_sounds ON observation_sounds.sound_id = sounds.id
     JOIN observations ON observations.id = observation_sounds.observation_id
   WHERE #{@where.join(' AND ')}
