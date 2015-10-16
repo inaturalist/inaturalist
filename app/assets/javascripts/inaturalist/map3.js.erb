@@ -993,7 +993,9 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
-  if( options.observation_id ) { options.featured_observation_id = options.observation_id; }
+  if( options.observation_id && typeof options.observation_id == "number" ) {
+    options.featured_observation_id = options.observation_id;
+  }
   // these are the parameters that will be sent to the windshaft API
   var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
     'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',

@@ -92,6 +92,12 @@ $(document).ready(function() {
     var json = $.parseJSON(r.responseText)
     alert(json.error)
   })
+  $('#filters input[name=taxon_name]').taxonAutocomplete({
+    afterSelect: function( ) {
+      filtersToQuery( );
+      reloadPreview( );
+    }
+  });
 })
 window.runFlowTask = function(runUrl) {
   window.delayedLinkTries = (window.delayedLinkTries || 0) + 1

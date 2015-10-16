@@ -305,13 +305,9 @@ $.fn.taxonAutocomplete = function( options ) {
     if( this.menu.element.is( ":visible" ) ) {
       var that = this;
       that.menu.blur( );
-      // delaying the close slightly so that the keydown callback below
-      // happens before the menu has disappeared
-      setTimeout( function( ){
-        that.menu.element.hide( );
-        that.isNewMenu = true;
-        that._trigger( "close", event );
-      }, 10 );
+      that.menu.element.hide( );
+      that.isNewMenu = true;
+      that._trigger( "close", event );
     }
   };
   field.keydown( function( e ) {
