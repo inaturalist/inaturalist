@@ -210,6 +210,14 @@ describe Project, "generate_csv" do
       expect(row['curator_coordinate_access']).to eq "false"
     end
   end
+  it "should include captive_cultivated" do
+    path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
+    po = make_project_observation
+    po.project.generate_csv(path, Observation::CSV_COLUMNS)
+    CSV.foreach(path, headers: true) do |row|
+      expect(row['captive_cultivated']).not_to be_blank
+    end
+  end
 end
 
 describe Project, "aggregation preference" do

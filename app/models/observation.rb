@@ -138,7 +138,8 @@ class Observation < ActiveRecord::Base
     "image_url", 
     "tag_list",
     "description",
-    "oauth_application_id"
+    "oauth_application_id",
+    "captive_cultivated"
   ]
   BASIC_COLUMNS = [
     "id", 

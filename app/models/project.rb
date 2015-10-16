@@ -369,14 +369,14 @@ class Project < ActiveRecord::Base
         ProjectObservation.preload_associations(batch, [
           :stored_preferences,
           curator_identification: [:taxon, :user],
-          observation: {
+          observation: [{
             identifications: :taxon,
             observation_photos: :photo,
             taxon: {taxon_names: :place_taxon_names},
             observation_field_values: :observation_field,
             project_observations: :stored_preferences,
-            user: {project_users: :stored_preferences}
-          }
+            user: {project_users: :stored_preferences},
+          }, :quality_metrics ]
         ])
         batch.each do |project_observation|
           csv << columns.map {|column| 
