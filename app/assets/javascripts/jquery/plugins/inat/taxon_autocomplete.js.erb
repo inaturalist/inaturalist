@@ -306,7 +306,8 @@ $.fn.taxonAutocomplete = function( options ) {
       var that = this;
       that.menu.blur( );
       // delaying the close slightly so that the keydown callback below
-      // happens before the menu has disappeared
+      // happens before the menu has disappeared. So the return key
+      // doesn't automatically submit the form unless we want that
       setTimeout( function( ){
         that.menu.element.hide( );
         that.isNewMenu = true;
