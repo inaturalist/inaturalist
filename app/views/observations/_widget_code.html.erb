@@ -1,6 +1,5 @@
 <%- 
   widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5).gsub(/http\:/, '')
-  base_url = CONFIG.site_url
   place ||= @place
   taxon ||= @taxon
   project ||= @project
@@ -30,8 +29,7 @@
     <tr class="inat-user">
       <% unless place || taxon || project %>
         <td class="inat-user-image">
-          <%- img_url = base_url + current_user.icon.url(:thumb) -%>
-          <%= link_to image_tag(img_url, :class => 'usericon'), observations_by_login_url(current_user.login), :border => 0 %>
+          <%= link_to image_tag(current_user.icon.url(:thumb), :class => 'usericon'), observations_by_login_url(current_user.login), :border => 0 %>
         </td>
       <% end %>
       <td class="inat-value"<%= ' colspan="2"' if place %>>
