@@ -305,9 +305,13 @@ $.fn.taxonAutocomplete = function( options ) {
     if( this.menu.element.is( ":visible" ) ) {
       var that = this;
       that.menu.blur( );
-      that.menu.element.hide( );
-      that.isNewMenu = true;
-      that._trigger( "close", event );
+      // delaying the close slightly so that the keydown callback below
+      // happens before the menu has disappeared
+      setTimeout( function( ){
+        that.menu.element.hide( );
+        that.isNewMenu = true;
+        that._trigger( "close", event );
+      }, 10 );
     }
   };
   field.keydown( function( e ) {

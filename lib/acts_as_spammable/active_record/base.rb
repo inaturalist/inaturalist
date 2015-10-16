@@ -8,6 +8,7 @@ module ActiveRecord
         acts_as_flaggable
 
         rakismet_fields = options[:fields]
+        rakismet_user = options[:user] || :user
         # set up the rakismet attributes. Concatenate multiple
         # fields using periods as if sentences
         rakismet_attrs author: proc { user_responsible ? user_responsible.name : nil },
@@ -105,18 +106,18 @@ module ActiveRecord
           end
         end
 
+        define_method(:user_responsible) do
+          if self.is_a?(User)
+            self
+          elsif self.respond_to?(rakismet_user)
+            self.send(rakismet_user)
+          end
+        end
+
       end
 
       def spammable?
         respond_to?(:flagged_as_spam)
-      end
-    end
-
-    def user_responsible
-      if self.is_a?(User)
-        self
-      elsif self.respond_to?(:user)
-        self.user
       end
     end
 
@@ -139,6 +140,7 @@ module ActiveRecord
     end
 
     def owned_by_spammer?
+      return false unless self.respond_to?(:user_responsible)
       return true if user_responsible && user_responsible.spammer?
       false
     end

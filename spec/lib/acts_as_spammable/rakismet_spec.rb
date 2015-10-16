@@ -4,8 +4,8 @@ describe Rakismet, "ActiveRecord" do
 
   it "knows the spammable models" do
     expect(Rakismet.spammable_models).to eq [ Observation, Post, Comment,
-      Identification, List, Project, Guide, GuideSection, LifeList, User,
-      CheckList ]
+      Identification, Message, List, Project, Guide, GuideSection, LifeList,
+      User, CheckList ]
   end
 
   it "knows good fake_environment_variables" do
