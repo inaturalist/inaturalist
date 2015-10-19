@@ -26,6 +26,43 @@ shared_examples_for "an ObservationFieldValuesController" do
       json = JSON.parse(response.body)
       expect(json.size).to eq 0
     end
+
+    describe "taxon in response" do
+      let(:t) { Taxon.make!(source: Source.make!, source_identifier: 12345) }
+      let(:tst) { TaxonSchemeTaxon.make!(taxon: t, source_identifier: 12345) }
+      let(:of) { ObservationField.make!(datatype: ObservationField::TAXON) }
+      let(:ofv) { ObservationFieldValue.make!(observation_field: of, value: t.id) }
+
+      before do
+        expect( tst ).to be_valid
+        expect( ofv ).to be_valid
+      end
+
+      it "should be there in the response for a taxon field" do
+        get :index, format: 'json', type: of.datatype
+        json = JSON.parse(response.body)
+        o = json.first
+        expect( o['taxon'] ).not_to be_blank
+      end
+      it "the taxon should have source" do
+        get :index, format: 'json', type: of.datatype
+        json = JSON.parse(response.body)
+        o = json.first
+        expect( o['taxon']['source'] ).not_to be_blank
+      end
+      it "the taxon should have source identifier" do
+        get :index, format: 'json', type: of.datatype
+        json = JSON.parse(response.body)
+        o = json.first
+        expect( o['taxon']['source_identifier'] ).not_to be_blank
+      end
+      it "the taxon should have taxon scheme taxa" do
+        get :index, format: 'json', type: of.datatype
+        json = JSON.parse(response.body)
+        o = json.first
+        expect( o['taxon']['taxon_scheme_taxa'] ).not_to be_blank
+      end
+    end
   end
 
   describe "create" do
