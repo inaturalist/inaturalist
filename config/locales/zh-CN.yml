@@ -1059,6 +1059,7 @@ zh-CN:
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist网络</a>的成员
   message: 消息
   messages: 消息
+  month: 月
   months_ago: '%{text}前'
   more: 更多
   more_fields: 更多字段
@@ -1077,6 +1078,7 @@ zh-CN:
   needs_to_be_identified: 需要被鉴定
   new_flag_for: 新标记用于
   new_members: 新成员
+  new_message: 新消息
   new_post: 新贴子
   new_project: 新项目
   new_taxon_link: 新分类链接
@@ -1093,9 +1095,11 @@ zh-CN:
   no_license_all_rights_reserved: 无许可协议（保留所有权利）
   no_link_flickr: 不，我宁愿不那样。
   no_matching_article_from_x: 没有来自%{x}的匹配的条目
+  no_messages_yet: 尚无消息
   no_more_mail_from_site: 不希望接受任何来自 %{site_name} 的邮件么？请在此编辑您的邮件设置
   no_more_taxa_to_load: 没有更多要加载的分类！
   no_more_updates: 没有更多更新！
+  no_new_messages: 没有新消息
   no_observations_submitted: 没有提交观察！
   no_project_to_admin_current_user: 您不管理任何项目
   no_project_to_admin_login: '%{login}不管理任何项目'
@@ -1125,6 +1129,13 @@ zh-CN:
   observations_week: 观察 / 周
   observationcounts_refreshed: 观察计数已刷新
   occurence_status_describes_how: 发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。
+  occurrence_status_levels:
+    present: 礼物
+    common: 普通
+    uncommon: 罕见
+    irregular: 无规律
+    doubtful: 可疑
+    absent: 缺席
   on_date: 于 %{date}
   on_edit_date: 在 %{editdate}
   on_submit_date: 在 %{submitdate}
@@ -1135,7 +1146,11 @@ zh-CN:
   open: 打开
   open_description: 任何人可以查看观察，除非分类受到威胁。
   or: 或
+  or_post_message_to_google_group: 或者向我们的Google群组发送消息：
   original: 原文
+  other_animals_plural:
+    one: 其他动物
+    other: 其他动物
   owner: 所有人
   parent_name: 父名称
   password: 密码
@@ -1147,6 +1162,8 @@ zh-CN:
     comment:
       with_by: 由 %{by_link} 评论于 @vow_or_con{vow:an|a} %{comment_subject_link}
       without_by: 评论于@vow_or_con{vow:an|a} %{comment_subject_link}
+  personal_message: 个人消息
+  personal_message_description: 没有人喜欢从一台机器获取电子邮件！为什么不让您的朋友知道您邀请他们的原因呢？
   photo: 照片
   photo_attribution: 照片 %{attribution}
   photo_by_id_attribution: 照片 %{id}，%{attribution}
@@ -1243,6 +1260,8 @@ zh-CN:
   posts: 帖子
   powered_by_inaturalist_open_source_software_html: 由<a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalist开源软件</a>驱动
+  preview_personal_message: 我希望您和我一起加入 %{site}，这是一个您可以记录您对植物和动物的观察，保持追踪您的生命清单，并了解自然世界的网站！
+  preview_your_message: 预览您的消息
   previous: 上一步
   prev: 上一个
   previous_page: 上一页
@@ -1257,6 +1276,7 @@ zh-CN:
   project_group_label: 组
   project_list_defaults:
     title: '%{owner_name}的清单'
+  project_id: 项目 ID
   project_post: 项目贴子
   project_settings: 项目设置
   project_user_cannot_be_found: 找不到项目用户
@@ -1436,6 +1456,7 @@ zh-CN:
   take_me_facebook: 是的，带我前往Facebook！
   taxa: 分类单元
   taxon: 类群
+  taxon_ids: 分类单元ID
   taxon_map:
     data_url: 数据URL
     overlays: 覆盖图
@@ -1802,6 +1823,7 @@ zh-CN:
       edit:
         add_color_tags_help: 从与选定分类群相关联的颜色中添加颜色标签。
         coordinates_desc: 提供您的坐标将帮助人们在搜索您的位置时找到它。
+        eol_subjects_desc: EOL通过若干个不同的主题页顶发布内容，不是所有的都可用于任何分类单元。选择“预览”将会从EOL导入第一段可用文本段落，当可用时，这通常包含一段摘要。
         eol_collection_desc_html: <a href="http://eol.org/" target="_blank">网络生命大百科（EOL）</a>是一个有关地球上生命的信息存储库。在EOL您可以创建物种<a
           href="http://eol.org/info/252" target="_blank">收藏</a>。如果您希望从EOL收藏导入物种，请在此粘贴那个收藏的URL。
         places_note: 注意：不是所有地点都检查带分类列表。如果您在通过分类查找地点时遇到问题，尝试选择更大的有行政区划的地区，例如国家、州、省或县。
@@ -1891,6 +1913,7 @@ zh-CN:
         be_patient: 请耐心等待，这可能需要几分钟时间。如果耗时过长，您可以
         check_back: 如果您在几分钟内重新加载此页面，您的输出应出现在页面下方的列表中。
         well_email_you: 好的，我们会在它就绪时给您发邮件。
+        created_on_help: 观察创建的时间，而不是已观察，例如2015-01-17、2015-01、2015
       field_descriptions:
         id: 用于观察的唯一标识符
         taxon_id: 用于观察到的分类的唯一标识符
@@ -1954,6 +1977,8 @@ zh-CN:
     emailer:
       observations_export_notification:
         your_observations_export_failed_html: 您的观察导出失败。请访问<a href="%{url}">观察导出页面</a>以查看您导出的观察列表。
+      bulk_import_success:
+        success_message: 您 %{filename} 的大量导入已成功。您的观察现正在处理，很快将出现在网站上。
       bulk_import_error:
         taxon_spelling_notice_html: 请检查每条记录的拼写。如果您的拼写正确，请在 %{search_taxa_url} 搜索物种。如果名称尚未存在于
           %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。
@@ -2122,18 +2147,33 @@ zh-CN:
       second: 秒
       year: 年
   errors:
+    format: '%{attribute} %{message}'
     messages:
       accepted: 必须接受
       blank: 不能为空
-      confirmation: 与确认不匹配
+      confirmation: 不匹配确认
       empty: 不能为空
       equal_to: 必须等于%{count}
       even: 必须是偶数
       exclusion: 被保留
+      greater_than: 必须大于 %{count}
       inclusion: 未包括在列表中
       invalid: 无效
+      less_than: 必须小于 %{count}
+      not_a_number: 不是数字
+      not_an_integer: 必须是一个整数
       odd: 必须是奇数
       record_invalid: 验证失败：%{errors}
+      taken: 已被使用
+      too_long:
+        one: 太长了（最多1个字符）
+        other: 太长了（最多 %{count} 个字符）
+      too_short:
+        one: 太短了（至少1个字符）
+        other: 太短了（至少 %{count} 个字符）
+      wrong_length:
+        one: 长度错误（应为1个字符）
+        other: 长度错误（应为 %{count} 个字符）
     template:
       header:
         other: '%{count}个错误禁止了此%{model}的保存'
@@ -2178,6 +2218,17 @@ zh-CN:
   activemodel:
     errors:
       format: '%{attribute} %{message}'
+      messages:
+        accepted: 必须接受
+        blank: 不能为空
+        confirmation: 不匹配确认
+        empty: 不能为空
+        even: 必须是偶数
+        exclusion: 被保留
+        inclusion: 未包括在列表中
+        invalid: 无效
+        odd: 必须是奇数
+        taken: 已被使用
       template:
         header:
           other: '%{count}个错误禁止了此%{model}的保存'
