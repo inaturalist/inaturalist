@@ -83,7 +83,7 @@
 
 <% if @announcement -%>
   <div class="column span-24">
-    <%= @announcement.body %>
+    <%= @announcement.body.html_safe %>
   </div>
 <% end -%>
 

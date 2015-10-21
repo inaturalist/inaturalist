@@ -316,6 +316,7 @@ class UsersController < ApplicationController
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
+        @announcement = Announcement.where('placement = \'users/dashboard\' AND ? BETWEEN "start" AND "end"', Time.now.utc).last
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").
