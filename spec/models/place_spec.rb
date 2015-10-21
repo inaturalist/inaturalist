@@ -156,10 +156,23 @@ describe Place, "merging" do
   it "should move the rejects children over to the keeper" do
     keeper = Place.make!
     reject = Place.make!
-    child = Place.make!(:parent => reject)
+    child = Place.make!(parent: reject)
+    grandchild = Place.make!(parent: child)
     keeper.merge(reject)
     child.reload
+    grandchild.reload
     expect(child.parent).to eq keeper
+    expect(grandchild.parent).to eq child
+  end
+
+  it "should orphan children that are synonymous with existing children of the keeper" do
+    keeper = Place.make!
+    reject = Place.make!
+    keeper_child = Place.make!(parent: keeper)
+    reject_child = Place.make!(parent: reject, name: keeper_child.name)
+    keeper.merge(reject)
+    reject_child.reload
+    expect( reject_child.parent ).to be_blank
   end
 
   it "should update observations_places" do
