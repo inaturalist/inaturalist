@@ -7,9 +7,10 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_place_ids
   attr_accessor :indexed_places
 
-  scope :load_for_index, -> { includes(:user, :confirmed_reviews,
+  scope :load_for_index, -> { includes(
+    :user, :confirmed_reviews, :flags, :quality_metrics,
     { sounds: :user },
-    { photos: :user },
+    { photos: [ :user, :flags ] },
     { taxon: [ :taxon_names, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
@@ -72,8 +73,10 @@ class Observation < ActiveRecord::Base
       id_please: id_please,
       out_of_range: out_of_range,
       captive: captive,
-      license_code: license,
+      license_code: license ? license.downcase : nil,
       geoprivacy: geoprivacy,
+      cached_votes_total: cached_votes_total,
+      verifiable: research_grade_candidate?,
       cached_votes_total: cached_votes_total,
       num_identification_agreements: num_identification_agreements,
       num_identification_disagreements: num_identification_disagreements,
@@ -187,84 +190,123 @@ class Observation < ActiveRecord::Base
       search_wheres["multi_match"] = { query: q, operator: "and", fields: fields }
     end
     if p[:user]
-      search_wheres["user.id"] = p[:user]
+      search_filters << { term: {
+        "user.id" => ElasticModel.id_or_object(p[:user]) } }
     elsif p[:user_id]
-      search_wheres["user.id"] = p[:user_id]
+      search_filters << { term: {
+        "user.id" => ElasticModel.id_or_object(p[:user_id]) } }
     end
-    search_wheres["taxon.rank"] = p[:rank] if p[:rank]
-    search_wheres["taxon.introduced"] = true if p[:introduced] == "true"
-    search_wheres["taxon.introduced"] = false if p[:introduced] == "false"
-    search_wheres["taxon.threatened"] = true if p[:threatened] == "true"
-    search_wheres["taxon.threatened"] = false if p[:threatened] == "false"
+
+    # params to search based on value
+    [ { http_param: :rank, es_field: "taxon.rank" },
+      { http_param: :sound_license, es_field: "sounds.license_code" },
+      { http_param: :observed_on_day, es_field: "observed_on_details.day" },
+      { http_param: :observed_on_month, es_field: "observed_on_details.month" },
+      { http_param: :observed_on_year, es_field: "observed_on_details.year" },
+      { http_param: :place, es_field: "place_ids" },
+      { http_param: :site_id, es_field: "site_id" }
+    ].each do |filter|
+      unless p[ filter[:http_param] ].blank?
+        search_filters << { terms: { filter[:es_field] =>
+          [ p[ filter[:http_param] ] ].flatten.map{ |v|
+            ElasticModel.id_or_object(v) } } }
+      end
+    end
+
+    # params that can be true / false / any
+    [ { http_param: :introduced, es_field: "taxon.introduced" },
+      { http_param: :threatened, es_field: "taxon.threatened" },
+      { http_param: :native, es_field: "taxon.native" },
+      { http_param: :endemic, es_field: "taxon.endemic" },
+      { http_param: :id_please, es_field: "id_please" },
+      { http_param: :out_of_range, es_field: "out_of_range" },
+      { http_param: :mappable, es_field: "mappable" },
+      { http_param: :verifiable, es_field: "verifiable" },
+      { http_param: :captive, es_field: "captive" }
+    ].each do |filter|
+      if p[ filter[:http_param] ].yesish?
+        search_filters << { term: { filter[:es_field] => true } }
+      elsif p[ filter[:http_param] ].noish?
+        search_filters << { term: { filter[:es_field] => false } }
+      end
+    end
+
+    # params that can check for presence of something
+    [ { http_param: :with_photos, es_field: "photos.url" },
+      { http_param: :with_sounds, es_field: "sounds" },
+      { http_param: :with_geo, es_field: "geojson" },
+      { http_param: :identified, es_field: "taxon" },
+    ].each do |filter|
+      f = { exists: { field: filter[:es_field] } }
+      if p[ filter[:http_param] ].yesish?
+        search_filters << f
+      elsif p[ filter[:http_param] ].noish?
+        search_filters << { not: f }
+      end
+    end
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
     if p[:observations_taxon]
-      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon]
+      search_filters << { term: {
+        "taxon.ancestor_ids" => ElasticModel.id_or_object(p[:observations_taxon]) } }
     elsif p[:observations_taxon_ids]
-      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon_ids]
+      search_filters << { terms: {
+        "taxon.ancestor_ids" => p[:observations_taxon_ids] } }
     end
-    search_wheres["site_id"] = p[:site_id] if p[:site_id]
-    search_wheres["id_please"] = true if p[:id_please]
-    search_wheres["out_of_range"] = true if p[:out_of_range]
-    search_wheres["mappable"] = true if p[:mappable] == "true"
-    search_wheres["mappable"] = false if p[:mappable] == "false"
-    if p[:license] == 'any'
+    if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }
-    elsif p[:license] == 'none'
+    elsif p[:license] == "none"
       search_filters << { missing: { field: "license_code" } }
     elsif p[:license]
-      search_wheres["license_code"] = p[:license]
+      search_filters << { terms: { license_code:
+        [ p[:license] ].flatten.map{ |l| l.downcase } } }
     end
-    if p[:photo_license] == 'any'
+    if p[:photo_license] == "any"
       search_filters << { exists: { field: "photos.license_code" } }
-    elsif p[:photo_license] == 'none'
+    elsif p[:photo_license] == "none"
       search_filters << { missing: { field: "photos.license_code" } }
     elsif p[:photo_license]
-      search_wheres["photos.license_code"] = p[:photo_license]
+      search_filters << { terms: { "photos.license_code" =>
+        [ p[:photo_license] ].flatten.map{ |l| l.downcase } } }
     end
-    search_wheres["sounds.license_code"] = p[:sound_license] if p[:sound_license]
-    search_wheres["observed_on_details.day"] = p[:observed_on_day] if p[:observed_on_day]
-    search_wheres["observed_on_details.month"] = p[:observed_on_month] if p[:observed_on_month]
-    search_wheres["observed_on_details.year"] = p[:observed_on_year] if p[:observed_on_year]
     if d = Observation.split_date(p[:created_on], utc: true)
-      search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
-      search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
-      search_wheres["created_at_details.year"] = d[:year] if d[:year] && d[:day] != 0
+      [ :day, :month, :year ].each do |part|
+        if d[part] && d[part] != 0
+          search_filters << { term: { "created_at_details.#{ part }" => d[part] } }
+        end
+      end
     end
     if p[:projects].blank? && !p[:project].blank?
       p[:projects] = [ p[:project] ]
     end
     p[:projects] = [p[:projects]].flatten if p[:projects]
-    extra = p[:extra].to_s.split(',')
+    extra = p[:extra].to_s.split(",")
     if !p[:projects].blank?
-      search_wheres["project_ids"] = p[:projects].to_a
+      search_filters << { terms: { project_ids:
+        p[:projects].map{ |proj| ElasticModel.id_or_object(proj) } } }
       extra_preloads << :projects
     end
-    extra_preloads << {identifications: [:user, :taxon]} if extra.include?('identifications')
-    extra_preloads << {observation_photos: :photo} if extra.include?('observation_photos')
-    extra_preloads << {observation_field_values: :observation_field} if extra.include?('fields')
+    extra_preloads << { identifications: [:user, :taxon] } if extra.include?("identifications")
+    extra_preloads << { observation_photos: :photo } if extra.include?("observation_photos")
+    extra_preloads << { observation_field_values: :observation_field } if extra.include?("fields")
     unless p[:hrank].blank? && p[:lrank].blank?
-      search_wheres["range"] = { "taxon.rank_level" => {
-        from: Taxon::RANK_LEVELS[p[:lrank]] || 0,
-        to: Taxon::RANK_LEVELS[p[:hrank]] || 100 } }
-    end
-    if p[:captive].is_a?(FalseClass) || p[:captive].is_a?(TrueClass)
-      search_wheres["captive"] = p[:captive]
+      search_filters << { range: { "taxon.rank_level" => {
+        gte: Taxon::RANK_LEVELS[p[:lrank]] || 0,
+        lte: Taxon::RANK_LEVELS[p[:hrank]] || 100 } } }
     end
     if p[:quality_grade] && p[:quality_grade] != "any"
-      quality_grades = p[:quality_grade].to_s.split(',') & Observation::QUALITY_GRADES
-      search_wheres["quality_grade"] = quality_grades
+      search_filters << { terms: { quality_grade:
+        p[:quality_grade].to_s.split(",") & Observation::QUALITY_GRADES } }
     end
     case p[:identifications]
     when "most_agree"
-      search_wheres["identifications_most_agree"] = true
+      search_filters << { term: { identifications_most_agree: true } }
     when "some_agree"
-      search_wheres["identifications_some_agree"] = true
+      search_filters << { term: { identifications_some_agree: true } }
     when "most_disagree"
-      search_wheres["identifications_most_disagree"] = true
+      search_filters << { term: { identifications_most_disagree: true } }
     end
 
-    
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
       search_filters << { envelope: { geojson: {
         nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
@@ -276,36 +318,31 @@ class Observation < ActiveRecord::Base
         location: {
           lat: p[:lat], lon: p[:lng] } } }
     end
-    search_wheres["place_ids"] = p[:place] if p[:place]
-    # make sure the photo has a URL, that will prevent images that are
-    # still processing from being returned by has[]=photos requests
-    search_filters << { exists: { field: "photos.url" } } if p[:with_photos]
-    search_filters << { exists: { field: "sounds" } } if p[:with_sounds]
-    search_filters << { exists: { field: "geojson" } } if p[:with_geo]
-    if p[:iconic_taxa] && p[:iconic_taxa].size > 0
+    if p[:iconic_taxa_instances] && p[:iconic_taxa_instances].size > 0
       # iconic_taxa will be an array which might contain a nil value
-      known_taxa = p[:iconic_taxa].compact
+      known_taxa = p[:iconic_taxa_instances].compact
       # if it is smaller after compact, then it contained nil and
       # we will need to do a different kind of Elasticsearch query
-      allows_unknown = (known_taxa.size < p[:iconic_taxa].size)
+      allows_unknown = (known_taxa.size < p[:iconic_taxa_instances].size)
       if allows_unknown
         # to allow iconic_taxon_id to be nil, I think the best way
         # is a "should" boolean filter, which allows anyof a set of
         # valid terms as well as missing terms (null)
         search_filters << { bool: { should: [
-          { terms: { "taxon.iconic_taxon_id": known_taxa.map(&:id) } },
+          { terms: { "taxon.iconic_taxon_id" => known_taxa.map(&:id) } },
           { missing: { field: "taxon.iconic_taxon_id" } }
         ]}}
       else
-        # if we don't want to include null values, a where clause is simpler
-        search_wheres["taxon.iconic_taxon_id"] = p[:iconic_taxa]
+        # if we don't want to include null values, a terms filter is simpler
+        search_filters << { terms: { "taxon.iconic_taxon_id" =>
+          p[:iconic_taxa_instances].map{ |t| ElasticModel.id_or_object(t) } } }
       end
     end
 
     if current_user
-      if p[:reviewed] === "true"
-        search_wheres["reviewed_by"] = current_user.id
-      elsif p[:reviewed] === "false"
+      if p[:reviewed].yesish?
+        search_filters << { term: { reviewed_by: current_user.id } }
+      elsif p[:reviewed].noish?
         search_filters << { not: { term: { reviewed_by: current_user.id } } }
       end
     end
@@ -350,18 +387,9 @@ class Observation < ActiveRecord::Base
     end
 
     if p[:not_in_project]
-      project_id = p[:not_in_project].is_a?(Project) ? p[:not_in_project].id : p[:not_in_project]
-      search_filters << {
-        'not': {
-          term: { project_ids: project_id }
-        }
-      }
-    end
-
-    if p[:identified].yesish?
-      search_filters << { exists: {field: :taxon} }
-    elsif p[:identified].noish?
-      search_filters << { 'not': { exists: {field: :taxon} } }
+      project_id = p[:not_in_project].is_a?(Project) ?
+        p[:not_in_project].id : p[:not_in_project]
+      search_filters << { not: { term: { project_ids: project_id } } }
     end
 
     unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
@@ -369,16 +397,19 @@ class Observation < ActiveRecord::Base
       when Observation::OPEN
         search_filters << { not: { exists: { field: :geoprivacy } } }
       when "obscured_private"
-        search_wheres["geoprivacy"] = Observation::GEOPRIVACIES
+        search_filters << { terms: { geoprivacy: Observation::GEOPRIVACIES } }
       else
-        search_wheres["geoprivacy"] = p[:geoprivacy]
+        search_filters << { term: { geoprivacy: p[:geoprivacy] } }
       end
     end
 
+    if p[:popular].yesish?
+      search_filters << { range: { cached_votes_total: { gte: 1 } } }
+    elsif p[:popular].noish?
+      search_filters << { term: { cached_votes_total: 0 } }
+    end
     if p[:min_id]
-      search_filters << {
-        range: { id: { gte: p[:min_id] } }
-      }
+      search_filters << { range: { id: { gte: p[:min_id] } } }
     end
     
     { where: search_wheres,

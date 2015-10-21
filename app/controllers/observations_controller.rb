@@ -128,7 +128,6 @@ class ObservationsController < ApplicationController
       format.html do
         @iconic_taxa ||= []
         determine_if_map_should_be_shown(search_params)
-        prepare_map_params
         Observation.preload_for_component(@observations, logged_in: logged_in?)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
@@ -2128,7 +2127,7 @@ class ObservationsController < ApplicationController
     @place = search_params[:place] unless search_params[:place].blank?
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
-    @iconic_taxa = search_params[:iconic_taxa]
+    @iconic_taxa = search_params[:iconic_taxa_instances]
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
