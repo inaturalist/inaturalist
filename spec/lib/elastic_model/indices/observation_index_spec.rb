@@ -4,6 +4,7 @@ describe "Observation Index" do
   before( :all ) do
     @starting_time_zone = Time.zone
     Time.zone = ActiveSupport::TimeZone["Samoa"]
+    load_test_taxa
   end
   after( :all ) { Time.zone = @starting_time_zone }
 
@@ -141,6 +142,12 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:taxon][:endemic] ).to be true
   end
 
+  it "sets verifiable" do
+    expect( Observation.make!.as_indexed_json[:verifiable] ).to be false
+    expect( make_research_grade_candidate_observation.
+      as_indexed_json[:verifiable] ).to be true
+  end
+
   it "indexes identifications" do
     o = Observation.make!
     Identification.where(observation_id: o.id).destroy_all
@@ -158,26 +165,7 @@ describe "Observation Index" do
 
     it "doesn't apply a site filter unless the site wants one" do
       s = Site.make!(preferred_site_observations_filter: nil)
-      expect( Observation.params_to_elastic_query({ }, site: s) ).to include( where: { } )
-    end
-
-    it "filters by site_id" do
-      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE)
-      expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-        where: { "site_id" => s.id } )
-    end
-
-    it "filters by site place" do
-      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE, place: Place.make!)
-      expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-        where: { "place_ids" => s.place } )
-    end
-
-    it "filters by site bounding box" do
-      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_BOUNDING_BOX,
-        preferred_geo_nelat: 55, preferred_geo_nelng: 66, preferred_geo_swlat: 77, preferred_geo_swlng: 88)
-      expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-        filters: [{ envelope: { geojson: { nelat: "55", nelng: "66", swlat: "77", swlng: "88", user: nil } } }] )
+      expect( Observation.params_to_elastic_query({ }, site: s) ).to include( filters: [ ] )
     end
 
     it "queries names" do
@@ -206,79 +194,223 @@ describe "Observation Index" do
           [ "taxon.names.name", :tags, :description, :place_guess ] } } )
     end
 
-    it "filters by user and user_id" do
-      expect( Observation.params_to_elastic_query({ user: 1 }) ).to include(
-        where: { "user.id" => 1 } )
-      expect( Observation.params_to_elastic_query({ user_id: 1 }) ).to include(
-        where: { "user.id" => 1 } )
+    it "filters by param values" do
+      [ { http_param: :rank, es_field: "taxon.rank" },
+        { http_param: :sound_license, es_field: "sounds.license_code" },
+        { http_param: :observed_on_day, es_field: "observed_on_details.day" },
+        { http_param: :observed_on_month, es_field: "observed_on_details.month" },
+        { http_param: :observed_on_year, es_field: "observed_on_details.year" },
+        { http_param: :place, es_field: "place_ids" },
+        { http_param: :site_id, es_field: "site_id" }
+      ].each do |filter|
+        # single values
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => "thevalue" }) ).to include(
+            filters: [ { terms: { filter[:es_field] => [ "thevalue" ] } } ] )
+        # multiple values
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => [ "value1", "value2" ] }) ).to include(
+            filters: [ { terms: { filter[:es_field] => [ "value1", "value2" ] } } ] )
+      end
     end
 
-    it "filters by rank" do
-      expect( Observation.params_to_elastic_query({ rank: "species" }) ).to include(
-        where: { "taxon.rank" => "species" } )
+    it "filters by boolean params" do
+      [ { http_param: :introduced, es_field: "taxon.introduced" },
+        { http_param: :threatened, es_field: "taxon.threatened" },
+        { http_param: :native, es_field: "taxon.native" },
+        { http_param: :endemic, es_field: "taxon.endemic" },
+        { http_param: :id_please, es_field: "id_please" },
+        { http_param: :out_of_range, es_field: "out_of_range" },
+        { http_param: :mappable, es_field: "mappable" },
+        { http_param: :verifiable, es_field: "verifiable" },
+        { http_param: :captive, es_field: "captive" }
+      ].each do |filter|
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => "true" }) ).to include(
+            filters: [ { term: { filter[:es_field] => true } } ] )
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => "false" }) ).to include(
+            filters: [ { term: { filter[:es_field] => false } } ] )
+      end
+    end
+
+    it "filters by presence of attributes" do
+      [ { http_param: :with_photos, es_field: "photos.url" },
+        { http_param: :with_sounds, es_field: "sounds" },
+        { http_param: :with_geo, es_field: "geojson" },
+        { http_param: :identified, es_field: "taxon" },
+      ].each do |filter|
+        f = { exists: { field: filter[:es_field] } }
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => "true" }) ).to include(
+            filters: [ f ] )
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => "false" }) ).to include(
+            filters: [ { not: f } ] )
+      end
+    end
+
+    it "filters by site_id" do
+      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE)
+      expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
+      filters: [ { terms: { "site_id" => [ s.id ] } } ] )
+    end
+
+    it "filters by site place" do
+      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE, place: Place.make!)
+      expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
+        filters: [ { terms: { "place_ids" => [ s.place.id ] } } ] )
+    end
+
+    it "filters by site bounding box" do
+      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_BOUNDING_BOX,
+        preferred_geo_nelat: 55, preferred_geo_nelng: 66, preferred_geo_swlat: 77, preferred_geo_swlng: 88)
+      expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
+        filters: [{ envelope: { geojson: { nelat: "55", nelng: "66", swlat: "77", swlng: "88", user: nil } } }] )
+    end
+
+    it "filters by user and user_id" do
+      expect( Observation.params_to_elastic_query({ user: 1 }) ).to include(
+        filters: [ { term: { "user.id" => 1 } } ] )
+      expect( Observation.params_to_elastic_query({ user_id: 1 }) ).to include(
+        filters: [ { term: { "user.id" => 1 } } ] )
     end
 
     it "filters by taxon_id" do
       expect( Observation.params_to_elastic_query({ observations_taxon: 1 }) ).to include(
-        where: { "taxon.ancestor_ids" => 1 } )
+        filters: [ { term: { "taxon.ancestor_ids" => 1 } } ] )
     end
 
     it "filters by taxon_ids" do
       expect( Observation.params_to_elastic_query({ observations_taxon_ids: [ 1, 2 ] }) ).to include(
-        where: { "taxon.ancestor_ids" => [ 1, 2 ] } )
+        filters: [ { terms: { "taxon.ancestor_ids" => [ 1, 2 ] } } ] )
+    end
+
+    it "filters by license" do
+      expect( Observation.params_to_elastic_query({ license: "any" }) ).to include(
+        filters: [ { exists: { field: "license_code" } } ] )
+      expect( Observation.params_to_elastic_query({ license: "none" }) ).to include(
+        filters: [ { missing: { field: "license_code" } } ] )
+      expect( Observation.params_to_elastic_query({ license: "CC-BY" }) ).to include(
+        filters: [ { terms: { license_code: [ "cc-by" ] } } ] )
+      expect( Observation.params_to_elastic_query({ license: [ "CC-BY", "CC-BY-NC" ] }) ).to include(
+        filters: [ { terms: { license_code: [ "cc-by", "cc-by-nc" ] } } ] )
+    end
+
+    it "filters by photo license" do
+      expect( Observation.params_to_elastic_query({ photo_license: "any" }) ).to include(
+        filters: [ { exists: { field: "photos.license_code" } } ] )
+      expect( Observation.params_to_elastic_query({ photo_license: "none" }) ).to include(
+        filters: [ { missing: { field: "photos.license_code" } } ] )
+      expect( Observation.params_to_elastic_query({ photo_license: "CC-BY" }) ).to include(
+        filters: [ { terms: { "photos.license_code" => [ "cc-by" ] } } ] )
+      expect( Observation.params_to_elastic_query({ photo_license: [ "CC-BY", "CC-BY-NC" ] }) ).to include(
+        filters: [ { terms: { "photos.license_code" => [ "cc-by", "cc-by-nc" ] } } ] )
     end
 
     it "filters by created_on year" do
       expect( Observation.params_to_elastic_query({ created_on: "2005" }) ).to include(
-        where: { "created_at_details.year" => 2005 } )
+        filters: [ { term: { "created_at_details.year" => 2005 } } ] )
     end
 
     it "filters by created_on year and month" do
       expect( Observation.params_to_elastic_query({ created_on: "2005-01" }) ).to include(
-        where: { "created_at_details.year" => 2005, "created_at_details.month" => 1 } )
+        filters: [ { term: { "created_at_details.month" => 1 } },
+                   { term: { "created_at_details.year" => 2005 } } ] )
     end
 
     it "filters by created_on year and month and day" do
       expect( Observation.params_to_elastic_query({ created_on: "2005-01-02" }) ).to include(
-        where: { "created_at_details.year" => 2005, "created_at_details.month" => 1,
-          "created_at_details.day" => 2 } )
+        filters: [ { term: { "created_at_details.day" => 2 } },
+                   { term: { "created_at_details.month" => 1 } },
+                   { term: { "created_at_details.year" => 2005 } } ] )
     end
 
     it "filters by project" do
       expect( Observation.params_to_elastic_query({ project: 1 }) ).to include(
-        where: { "project_ids" => [ 1 ] } )
+        filters: [ { terms: { project_ids: [ 1 ] } } ] )
     end
 
     it "filters by lrank" do
       expect( Observation.params_to_elastic_query({ lrank: "species" }) ).to include(
-        where: { "range" => { "taxon.rank_level" => { from: 10, to: 100 } } } )
+        filters: [ { range: { "taxon.rank_level" => { gte: 10, lte: 100 } } } ])
     end
 
     it "filters by hrank" do
       expect( Observation.params_to_elastic_query({ hrank: "family" }) ).to include(
-        where: { "range" => { "taxon.rank_level" => { from: 0, to: 30 } } } )
+        filters: [ { range: { "taxon.rank_level" => { gte: 0, lte: 30 } } } ])
     end
 
     it "filters by lrank and hrank" do
       expect( Observation.params_to_elastic_query({ lrank: "species", hrank: "family" }) ).to include(
-        where: { "range" => { "taxon.rank_level" => { from: 10, to: 30 } } } )
+        filters: [ { range: { "taxon.rank_level" => { gte: 10, lte: 30 } } } ])
     end
 
-    it "does not filter by reviewed without a user" do
-      u = User.make!
-      expect( Observation.params_to_elastic_query({ reviewed: "true" }) ).to include( where: { } )
+    it "filters by quality_grade" do
+      expect( Observation.params_to_elastic_query({ quality_grade: "any" }) ).to include(
+        filters: [  ] )
+      expect( Observation.params_to_elastic_query({ quality_grade: "research" }) ).to include(
+        filters: [ { terms: { quality_grade: [ "research" ] } } ] )
+      expect( Observation.params_to_elastic_query({ quality_grade: "research,casual" }) ).to include(
+        filters: [ { terms: { quality_grade: [ "research", "casual" ] } } ] )
     end
 
-    it "filters by reviewed true" do
+    it "filters by identifications" do
+      expect( Observation.params_to_elastic_query({ identifications: "most_agree" }) ).to include(
+        filters: [ { term: { identifications_most_agree: true } } ] )
+      expect( Observation.params_to_elastic_query({ identifications: "some_agree" }) ).to include(
+        filters: [ { term: { identifications_some_agree: true } } ] )
+      expect( Observation.params_to_elastic_query({ identifications: "most_disagree" }) ).to include(
+        filters: [ { term: { identifications_most_disagree: true } } ] )
+    end
+
+    it "filters by bounding box" do
+      expect( Observation.params_to_elastic_query({ nelat: 1, nelng: 2, swlat: 3, swlng: 4 }) ).to include(
+        filters: [ { envelope: { geojson: {
+          nelat: 1, nelng: 2, swlat: 3, swlng: 4, user: nil } } } ])
+    end
+
+    it "filters by iconic_taxa" do
+      animalia = Taxon.where(name: "Animalia").first
+      expect( Observation.params_to_elastic_query({ iconic_taxa: [ animalia.name ] }) ).to include(
+        filters: [ { terms: { "taxon.iconic_taxon_id" => [ animalia.id ] } } ])
+        expect( Observation.params_to_elastic_query({ iconic_taxa: [ animalia.name, "unknown" ] }) ).to include(
+          filters: [ { bool: { should: [
+            { terms: { "taxon.iconic_taxon_id" => [ animalia.id ] } },
+            { missing: { field: "taxon.iconic_taxon_id" } } ] } } ])
+    end
+
+    it "filters by reviewed" do
       u = User.make!
+      # doesn't filter without a user
+      expect( Observation.params_to_elastic_query({ reviewed: "true" }) ).to include( filters: [ ] )
       expect( Observation.params_to_elastic_query({ reviewed: "true" }, current_user: u) ).to include(
-        where: { "reviewed_by" => u.id } )
-    end
-
-    it "filters by reviewed false" do
-      u = User.make!
+        filters: [ { term: { reviewed_by: u.id } } ] )
       expect( Observation.params_to_elastic_query({ reviewed: "false" }, current_user: u) ).to include(
         filters: [ { not: { term: { reviewed_by: u.id } } } ] )
+    end
+
+    it "filters by geoprivacy" do
+      expect( Observation.params_to_elastic_query({ geoprivacy: "any" }) ).to include(
+        filters: [ ])
+      expect( Observation.params_to_elastic_query({ geoprivacy: "open" }) ).to include(
+        filters: [ { not: { exists: { field: :geoprivacy } } } ])
+      expect( Observation.params_to_elastic_query({ geoprivacy: "obscured" }) ).to include(
+        filters: [ { term: { geoprivacy: "obscured" } } ])
+      expect( Observation.params_to_elastic_query({ geoprivacy: "obscured_private" }) ).to include(
+        filters: [ { terms: { geoprivacy: [ "obscured", "private" ] } } ])
+    end
+
+    it "filters by popular" do
+      expect( Observation.params_to_elastic_query({ popular: "true" }) ).to include(
+        filters: [ { range: { cached_votes_total: { gte: 1 } } } ])
+      expect( Observation.params_to_elastic_query({ popular: "false" }) ).to include(
+        filters: [ { term: { cached_votes_total: 0 } } ])
+    end
+
+    it "filters by min_id" do
+      expect( Observation.params_to_elastic_query({ min_id: 99 }) ).to include(
+        filters: [ { range: { id: { gte: 99 } } } ])
     end
 
   end

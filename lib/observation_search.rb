@@ -116,6 +116,31 @@ module ObservationSearch
       Observation.elastic_paginate(elastic_params)
     end
 
+    def iconic_taxa_param_to_instances(iconic_taxa)
+      if iconic_taxa
+        # split a string of names
+        if iconic_taxa.is_a? String
+          iconic_taxa = iconic_taxa.split(',')
+        end
+
+        # resolve taxa entered by name
+        allows_unknown = iconic_taxa.include?(nil)
+        iconic_taxa = iconic_taxa.compact.map do |it|
+          it = it.last if it.is_a?(Array)
+          if it.is_a? Taxon
+            it
+          elsif it.to_i == 0
+            allows_unknown = true if it.to_s.downcase == "unknown"
+            Taxon::ICONIC_TAXA_BY_NAME[it]
+          else
+            Taxon::ICONIC_TAXA_BY_ID[it]
+          end
+        end.uniq.compact
+        iconic_taxa << nil if allows_unknown
+        iconic_taxa
+      end
+    end
+
     def elastic_taxon_leaf_ids(elastic_params = {})
       results = Observation.elastic_search(elastic_params.merge(size: 0,
         aggregate: {
@@ -157,31 +182,13 @@ module ObservationSearch
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa
       if p[:iconic_taxa]
-        # split a string of names
-        if p[:iconic_taxa].is_a? String
-          p[:iconic_taxa] = p[:iconic_taxa].split(',')
-        end
-
-        # resolve taxa entered by name
-        allows_unknown = p[:iconic_taxa].include?(nil)
-        p[:iconic_taxa] = p[:iconic_taxa].compact.map do |it|
-          it = it.last if it.is_a?(Array)
-          if it.is_a? Taxon
-            it
-          elsif it.to_i == 0
-            allows_unknown = true if it.to_s.downcase == "unknown"
-            Taxon::ICONIC_TAXA_BY_NAME[it]
-          else
-            Taxon::ICONIC_TAXA_BY_ID[it]
-          end
-        end.uniq.compact
-        p[:iconic_taxa] << nil if allows_unknown
+        p[:iconic_taxa_instances] = iconic_taxa_param_to_instances(p[:iconic_taxa])
       end
       if !p[:taxon_id].blank?
         p[:observations_taxon] = Taxon.find_by_id(p[:taxon_id].to_i)
       elsif !p[:taxon_name].blank?
         begin
-          p[:observations_taxon] = Taxon.single_taxon_for_name(p[:taxon_name], iconic_taxa: p[:iconic_taxa])
+          p[:observations_taxon] = Taxon.single_taxon_for_name(p[:taxon_name], iconic_taxa: p[:iconic_taxa_instances])
         rescue ActiveRecord::StatementInvalid => e
           raise e unless e.message =~ /invalid byte sequence/
           taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
@@ -228,7 +235,7 @@ module ObservationSearch
 
       # date
       date_pieces = [p[:year], p[:month], p[:day]]
-      unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
+      unless date_pieces.map{|d| (d.blank? || d.is_a?(Array)) ? nil : d}.compact.blank?
         p[:on] = date_pieces.join('-')
       end
       if p[:on].to_s =~ /^\d{4}/
@@ -238,7 +245,7 @@ module ObservationSearch
         end
       end
       p[:observed_on_year] ||= p[:year].to_i unless p[:year].blank?
-      p[:observed_on_month] ||= p[:month].to_i unless p[:month].blank?
+      p[:observed_on_month] ||= [ p[:month] ].flatten.map(&:to_i) unless p[:month].blank?
       p[:observed_on_day] ||= p[:day].to_i unless p[:day].blank?
 
       # observation fields
@@ -342,11 +349,10 @@ module ObservationSearch
       if params[:identifications] && params[:identifications] != "any"
         scope = scope.identifications(params[:identifications])
       end
-      scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
+      scope = scope.has_iconic_taxa(params[:iconic_taxa_instances]) if params[:iconic_taxa_instances]
       scope = scope.order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by]
 
       quality_grades = params[:quality_grade].to_s.split(',')
-      # if Observation::QUALITY_GRADES.include?(params[:quality_grade])
       if (quality_grades & Observation::QUALITY_GRADES).size > 0
         scope = scope.has_quality_grade( params[:quality_grade] )
       end
@@ -356,7 +362,8 @@ module ObservationSearch
       elsif !params[:taxon_id].blank?
         scope = scope.of(params[:taxon_id].to_i)
       elsif !params[:taxon_name].blank?
-        scope = scope.of(Taxon.single_taxon_for_name(params[:taxon_name], :iconic_taxa => params[:iconic_taxa]))
+        scope = scope.of(Taxon.single_taxon_for_name(params[:taxon_name],
+          iconic_taxa: params[:iconic_taxa_instances]))
       elsif !params[:taxon_ids].blank?
         taxon_ids = params[:taxon_ids].map(&:to_i)
         if params[:taxon_ids].size == 1

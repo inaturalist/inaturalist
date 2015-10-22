@@ -1155,7 +1155,7 @@ class Observation < ActiveRecord::Base
   end
 
   def sounds?
-    sounds.exists?
+    sounds.loaded? ? ! sounds.empty? : sounds.exists?
   end
   
   def set_quality_grade(options = {})
