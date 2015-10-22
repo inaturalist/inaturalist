@@ -38,27 +38,31 @@ class ObservationsExportFlowTask < FlowTask
     outputs.each(&:destroy)
     query = inputs.first.extra[:query]
     format = options[:format]
-    # format = "json"
     archive_path = case format
     when 'json'
       json_archive
     else
       csv_archive
     end
+    logger.info "ObservationsExportFlowTask #{id}: Created archive at #{archive_path}" if @debug
     open(archive_path) do |f|
       self.outputs.create!(:file => f)
     end
+    logger.info "ObservationsExportFlowTask #{id}: Created outputs" if @debug
     if options[:email]
       Emailer.observations_export_notification(self).deliver_now
+      logger.info "ObservationsExportFlowTask #{id}: Emailed user #{user_id}" if @debug
     end
     true
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
+    logger.error "ObservationsExportFlowTask #{id}: Error: #{exception_string}" if @debug
     update_attributes(finished_at: Time.now,
       error: "Error",
       exception: [ exception_string, e.backtrace ].join("\n"))
     if options[:email]
       Emailer.observations_export_failed_notification(self).deliver_now
+      logger.error "ObservationsExportFlowTask #{id}: Emailed user #{user_id} about error" if @debug
     end
     false
   end
