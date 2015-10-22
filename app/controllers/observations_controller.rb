@@ -2151,7 +2151,7 @@ class ObservationsController < ApplicationController
     @order = search_params[:order]
     @observed_on = search_params[:observed_on]
     @observed_on_year = search_params[:observed_on_year]
-    @observed_on_month = search_params[:observed_on_month]
+    @observed_on_month = [ search_params[:observed_on_month] ].flatten.first
     @observed_on_day = search_params[:observed_on_day]
     @ofv_params = search_params[:ofv_params]
     @site_uri = params[:site] unless params[:site].blank?

@@ -537,6 +537,15 @@ shared_examples_for "an ObservationsController" do
       expect(json.detect{|obs| obs['id'] == o2.id}).to be_blank
     end
 
+    it "should filter by multiple months" do
+      o1 = Observation.make!(observed_on_string: "2010-03-15")
+      o2 = Observation.make!(observed_on_string: "2010-04-15")
+      get :index, format: :json, month: [ 3, 4 ]
+      json = JSON.parse(response.body)
+      expect(json.detect{|obs| obs['id'] == o1.id}).not_to be_blank
+      expect(json.detect{|obs| obs['id'] == o2.id}).not_to be_blank
+    end
+
     it "should filter by captive=true" do
       captive = Observation.make!(:captive_flag => "1")
       wild = Observation.make!(:captive_flag => "0")

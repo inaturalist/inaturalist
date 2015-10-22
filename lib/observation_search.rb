@@ -235,7 +235,7 @@ module ObservationSearch
 
       # date
       date_pieces = [p[:year], p[:month], p[:day]]
-      unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
+      unless date_pieces.map{|d| (d.blank? || d.is_a?(Array)) ? nil : d}.compact.blank?
         p[:on] = date_pieces.join('-')
       end
       if p[:on].to_s =~ /^\d{4}/
@@ -245,7 +245,7 @@ module ObservationSearch
         end
       end
       p[:observed_on_year] ||= p[:year].to_i unless p[:year].blank?
-      p[:observed_on_month] ||= p[:month].to_i unless p[:month].blank?
+      p[:observed_on_month] ||= [ p[:month] ].flatten.map(&:to_i) unless p[:month].blank?
       p[:observed_on_day] ||= p[:day].to_i unless p[:day].blank?
 
       # observation fields

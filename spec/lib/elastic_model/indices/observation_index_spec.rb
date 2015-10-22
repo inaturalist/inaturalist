@@ -203,9 +203,14 @@ describe "Observation Index" do
         { http_param: :place, es_field: "place_ids" },
         { http_param: :site_id, es_field: "site_id" }
       ].each do |filter|
+        # single values
         expect( Observation.params_to_elastic_query({
           filter[:http_param] => "thevalue" }) ).to include(
             filters: [ { terms: { filter[:es_field] => [ "thevalue" ] } } ] )
+        # multiple values
+        expect( Observation.params_to_elastic_query({
+          filter[:http_param] => [ "value1", "value2" ] }) ).to include(
+            filters: [ { terms: { filter[:es_field] => [ "value1", "value2" ] } } ] )
       end
     end
 
