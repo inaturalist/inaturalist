@@ -685,6 +685,10 @@ iNaturalist.OverlayControl = function(map, options) {
   return this;
 }
 
+iNaturalist.OverlayControl.prototype.removeOverlayControl = function(title) {
+  $("li[data-title='"+title+"']", this.div).remove()
+}
+
 // Given an array of wax.g map layers (overlayMapTypes), add a single
 // checkbox to the custom iNaturalist Overlays map control. That single
 // checkbox can have custom title and description, and will toggle everything
@@ -705,6 +709,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     // Will break if multiple maps have the same taxon
     id += '-' + options.taxon.id;
   }
+  li.attr('data-title', title)
   var label = $("<label/>").attr("for", id).html(title)
   if (options.hover) {
     label.attr('title', options.hover)
@@ -981,7 +986,18 @@ function postgisTileservers( ) {
   return elasticsearchTileservers( );
 }
 
-google.maps.Map.prototype.addObservationsLayer = function(options) {
+google.maps.Map.prototype.removeObservationsLayer = function(title) {
+  for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
+    if( this.overlayMapTypes.getAt(i).title == title ) {
+      this.overlayMapTypes.removeAt(i);
+      if( this._overlayControl ) {
+        this._overlayControl.removeOverlayControl(title)
+      } 
+    }
+  }
+}
+
+google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
   var tileservers = elasticsearchTileservers( );
@@ -990,6 +1006,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
         "/{z}/{x}/{y}.png",
       pointTileSuffix = "/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
+  options.title = title;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
   var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
@@ -1020,7 +1037,9 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     gridminzoom: gridmaxzoom + 1,
     interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled
-  })
+  });
+  gridLayer.layer.title = title;
+  pointLayer.layer.title = title;
   // add a toggle for this layer to the overlay control, if it exists
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(

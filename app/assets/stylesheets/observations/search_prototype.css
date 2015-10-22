@@ -1,0 +1,33 @@
+.observation {
+  border-bottom: 1px solid #eee;
+}
+.bootstrap .observation.media { margin-top: 0; }
+.observation .media-object {
+  display: block;
+  min-height: 100px;
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+}
+#map {
+  width: 100%;
+  height: 600px;
+  background-color: LightBlue;
+}
+
+#main-container { position: relative; }
+#obs {
+  position: absolute; 
+  top: 100px; 
+  right: 100px;
+  background-color: white;
+  padding: 0px;
+  height: 420px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#filter-dropdown {
+  width: 850px;
+}

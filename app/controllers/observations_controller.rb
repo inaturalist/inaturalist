@@ -57,7 +57,7 @@ class ObservationsController < ApplicationController
   blocks_spam :only => load_only, :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
+  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram, :search_prototype]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
@@ -1771,6 +1771,10 @@ class ObservationsController < ApplicationController
         }
       end
     end
+  end
+
+  def search_prototype
+    render layout: "bootstrap"
   end
 
   private

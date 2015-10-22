@@ -890,6 +890,15 @@ shared_examples_for "an ObservationsController" do
       expect( JSON.parse(response.body).size ).to eq 1
     end
 
+    it "should filter by has[]=photos" do
+      with_photo = without_delay { make_research_grade_observation }
+      without_photo = without_delay { Observation.make! }
+      get :index, format: :json, has: ['photos']
+      obs_ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+      expect( obs_ids ).to include with_photo.id
+      expect( obs_ids ).not_to include without_photo.id
+    end
+
     it "observations with no time_observed_at ignore time part of date filters" do
       Observation.make!(observed_on_string: "2014-12-31 20:00:00 -0100")
       Observation.make!(observed_on_string: "2014-12-31")

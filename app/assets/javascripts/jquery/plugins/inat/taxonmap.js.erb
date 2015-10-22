@@ -35,7 +35,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.taxonLayers = $(elt).data('taxon-layers');
   options.mapTypeControl = $(elt).data('map-type-control');
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
-  options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer');
+  options.showAllLayer = options.showAllLayer != null ? options.showAllLayer : $(elt).data('show-all-layer');
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
   options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');  
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
@@ -47,9 +47,9 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.taxonPlacesLayerHover = options.taxonPlacesLayerHover || $(elt).data('taxon-places-layer-hover');
   options.taxonObservationsLayerLabel = options.taxonObservationsLayerLabel || $(elt).data('taxon-observations-layer-label');
   options.taxonObservationsLayerDescription = options.taxonObservationsLayerDescription || $(elt).data('taxon-observations-layer-description');  
-  options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label');
+  options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label') || I18n.t('maps.overlays.all_observations');
   options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description');
-  options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label');
+  options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label') || I18n.t('gbif_occurrences');
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
@@ -135,8 +135,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     if( ! _.isObject( options.showAllLayer ) ) {
       options.showAllLayer = { }
     }
-    map.addObservationsLayer(_.defaults( options.showAllLayer, {
-      title: options.allLayerLabel,
+    map.addObservationsLayer(options.allLayerLabel, _.defaults( options.showAllLayer, {
       description: options.allLayerDescription,
       disabled: options.enableShowAllLayer === false,
       controlPosition: options.controlPosition,
@@ -212,9 +211,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
       if( layer.observations ) {
         layerOptions = _.isObject( layer.observations ) ?
           layer.observations : { };
-        map.addObservationsLayer( _.defaults( layerOptions, {
+        map.addObservationsLayer( options.taxonObservationsLayerLabel, _.defaults( layerOptions, {
           taxon: layer.taxon,
-          title: options.taxonObservationsLayerLabel,
           description: options.taxonObservationsLayerDescription,
           hover: options.taxonObservationsLayerHover,
           controlPosition: options.controlPosition,
@@ -249,15 +247,22 @@ inatTaxonMap.addPlaceLayers = function( map, options ) {
 };
 
 inatTaxonMap.addObservationLayers = function( map, options ) {
+  options = options || {}
   if( options.observationLayers ) {
     _.each( options.observationLayers, function( layer ) {
-      map.addObservationsLayer( _.defaults( _.clone( layer ), {
-        title: options.featuredLayerLabel,
+      var title = options.title || options.featuredLayerLabel || 'Observations';
+      map.addObservationsLayer( title, _.defaults( _.clone( layer ), {
         controlPosition: options.controlPosition,
         mapStyle: options.mapStyle
       }));
     });
   }
+};
+
+inatTaxonMap.removeObservationLayers = function( map, options ) {
+  options = options || {}
+  var title = options.title || options.featuredLayerLabel || 'Observations';
+  map.removeObservationsLayer( title );
 };
 
 inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
