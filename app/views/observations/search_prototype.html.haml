@@ -2,23 +2,26 @@
   = javascript_include_tag 'angular/angular'
   = javascript_include_tag 'angular-resource/angular-resource'
   = javascript_include_tag 'observations/search_prototype'
+  = javascript_include_tag 'angular-google-places-autocomplete/src/autocomplete'
 - content_for :extracss do
   = stylesheet_link_tag "observations/search_prototype"
+  = stylesheet_link_tag 'angular-google-places-autocomplete/src/autocomplete'
 
 .container{'ng-app' => "ObservationSearchPrototype"}
   .row
     .col-xs-12
       #filters{"ng-controller" => "FiltersCtrl"}
         .row
-          .col-xs-6
+          .col-xs-4
             %h1=t :observations
-          .col-xs-6
-            .form-inline.pull-left
-              %input#params-taxon-id.form-control{:name => "taxon_id", "ng-model" => "params.taxon_id", "ng-model-options" => "{debounce: 1000}", :placeholder => "Taxon ID", :type => "text"}
+          .col-xs-8
+            .form-inline.pull-left.primary-filters
+              %input.form-control{placeholder: "Taxon", type: "text", name: "taxon_name"}
+              %input{type: 'hidden', name: 'taxon_id'}
               in
-              %input.form-control{:name => "place_name", "ng-model" => "params.place_name", "ng-model-options" => "{debounce: 1000}", :placeholder => "Place name", :type => "text"}
-            .btn-group.pull-right
-              %button.btn.btn-default.dropdown-toggle{data: {toggle: 'dropdown'}}
+              %input.form-control{:name => "place_name", "ng-model-options" => "{debounce: 1000}", :placeholder => "Place name", :type => "text", "g-places-autocomplete" => "", "ng-model" => "place"}
+            #filter-container.btn-group.pull-right
+              %button.btn.btn-default.dropdown-toggle
                 Filters
                 %span.caret
               .dropdown-menu.dropdown-menu-right
@@ -33,7 +36,7 @@
                               =t :wild
                           .checkbox
                             %label
-                              %input{type: 'checkbox', disabled: true}
+                              %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
                               =t :verifiable
                           .checkbox
                             %label
@@ -41,16 +44,16 @@
                               =t :research_quality
                           .checkbox
                             %label
-                              %input{type: 'checkbox', disabled: true}
+                              %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
                               =t :threatened
                         .col-xs-6
                           .checkbox
                             %label
-                              %input{type: 'checkbox', disabled: true}
+                              %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
                               =t :introduced
                           .checkbox
                             %label
-                              %input{type: 'checkbox', disabled: true}
+                              %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
                               =t :popular
                           .checkbox
                             %label
@@ -133,35 +136,37 @@
                             = options_for_select(%w(asc desc).map{|o| t(o)}, @order)
                   .row
                     .col-xs-12
-                      More filters
-                  .row
-                    .col-xs-4
-                      .form-group
-                        %label{for: 'params-user-id'} Person
-                        %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "Name or username"}
-                      .form-group
-                        %label{for: 'params-projects'} Project
-                        %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "Project name"}
-                    .col-xs-4
-                      %label Location data
-                      %br
-                      Restrict results to
-                      %br
-                      %label.radio-inline
-                        %input{type: 'radio', name: 'geo-type', value: 'place', "ng-model" => "params.geoType"}
-                        =t :places
-                      %label.radio-inline
-                        %input{type: 'radio', name: 'geo-type', value: 'map', "ng-model" => "params.geoType"}
-                        =t :map_view
-                      %label.radio-inline
-                        %input{type: 'radio', name: 'geo-type', value: 'world', "ng-model" => "params.geoType"}
-                        =t :worldwide
-                    .col-xs-4
-                      %label Photo licensing
-                      %select.form-control{"ng-model" => "params.photo_license"}
-                        %option{value: ''}=t :all
-                        - for code, name, desc in Observation::LICENSES do
-                          %option{value: code}= code
+                      %button.button.btn-default{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
+                        =t :more_filters
+                      #more-filters.collapse
+                        .row
+                          .col-xs-4
+                            .form-group
+                              %label{for: 'params-user-id'} Person
+                              %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "Name or username"}
+                            .form-group
+                              %label{for: 'params-projects'} Project
+                              %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "Project name"}
+                          .col-xs-4
+                            %label Location data
+                            %br
+                            Restrict results to
+                            %br
+                            %label.radio-inline
+                              %input{type: 'radio', name: 'geo-type', value: 'place', "ng-model" => "params.geoType"}
+                              =t :places
+                            %label.radio-inline
+                              %input{type: 'radio', name: 'geo-type', value: 'map', "ng-model" => "params.geoType"}
+                              =t :map_view
+                            %label.radio-inline
+                              %input{type: 'radio', name: 'geo-type', value: 'world', "ng-model" => "params.geoType"}
+                              =t :worldwide
+                          .col-xs-4
+                            %label Photo licensing
+                            %select.form-control{"ng-model" => "params.photo_license"}
+                              %option{value: ''}=t :all
+                              - for code, name, desc in Observation::LICENSES do
+                                %option{value: code}= code
   #main-container.row{"ng-controller" => "MainCtrl"}
     #map{ enable_show_all_layer: 'false' }
     #obs.col-xs-4

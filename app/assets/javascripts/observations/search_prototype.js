@@ -1,10 +1,17 @@
 'use strict';
 
 $(document).ready(function() {
-  $('#filters .dropdown-menu').click(function(e) {
-      e.stopPropagation();
+  $('#filter-container .dropdown-toggle').click(function() {
+    $(this).parent().toggleClass('open');
   });
-})
+  $('body').on('click', function(e) {
+    if (!$('#filter-container').is(e.target)
+        && $('#filter-container').has(e.target).length === 0
+        && $('.open').has(e.target).length === 0) {
+      $('#filter-container').removeClass('open');
+    };
+  });
+});
 
 /**
  * @ngdoc overview
@@ -17,7 +24,8 @@ $(document).ready(function() {
 angular
   .module('ObservationSearchPrototype', [
     'ngResource',
-    'iNatResources'
+    'iNatResources',
+    'google.places'
   ]);
 
 // RESOURCES
@@ -103,8 +111,8 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
         delete processedParams.nelat;
         delete processedParams.place_id;
     }
-    delete processedParams.dateType;
-    console.log("[DEBUG] processedParams: ", processedParams);
+    delete processedParams.geoType;
+    // console.log("[DEBUG] processedParams: ", processedParams);
     $scope.observations = Observation.query(processedParams);
     if ($rootScope.map) {
       window.inatTaxonMap.removeObservationLayers($rootScope.map, {title: 'Observations'});
@@ -119,7 +127,17 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
   }
   
   angular.element(document).ready(function () {
-    // $('input[name="taxon_id"]').taxonAutocomplete()
+    $('#filters input[name="taxon_name"]').taxonAutocomplete({
+      taxon_id_el: $('#filters input[name="taxon_id"]'),
+      afterSelect: function(result) {
+        $rootScope.params.taxon_id = result.item.id;
+        $rootScope.$digest();
+      },
+      afterUnselect: function() {
+        $rootScope.params.taxon_id = null;
+        $rootScope.$digest();
+      }
+    })
     $("#map").taxonMap({
       urlCoords: true, 
       mapType: google.maps.MapTypeId.TERRAIN,
@@ -135,7 +153,9 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
       $rootScope.params.swlat = sw.lat();
       $rootScope.params.nelng = ne.lng();
       $rootScope.params.nelat = ne.lat();
-      $rootScope.$digest();
+      if(!$rootScope.$$phase) {
+        $rootScope.$digest();
+      }
     }
     $rootScope.map.addListener('dragend', onChangedBounds);
     $rootScope.map.addListener('zoom_changed', onChangedBounds);
@@ -150,10 +170,24 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
 
 angular.module('ObservationSearchPrototype').controller('FiltersCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $rootScope.params = $rootScope.params || {};
-  $rootScope.params.captive = false;
+  // $rootScope.params.captive = false;
   $rootScope.params.has_photos = true;
   $rootScope.params.order_by = 'observations.id';
   $rootScope.params.order = 'desc';
   $rootScope.params.dateType = 'any';
   $rootScope.params.geoType = 'world';
+
+  $scope.$watch('place', function() {
+    if ($scope.place && $scope.place.geometry && $rootScope.map) {
+      $rootScope.params.geoType = 'map';
+      if ($scope.place.geometry.viewport) {
+        $rootScope.map.fitBounds($scope.place.geometry.viewport);
+      } else {
+        $rootScope.map.setCenter($scope.place.geometry.location);
+        $rootScope.map.setZoom(15);
+      }
+    } else {
+      $rootScope.params.geoType = 'world';
+    }
+  });
 }]);
