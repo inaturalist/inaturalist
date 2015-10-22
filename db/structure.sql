@@ -13635,6 +13635,13 @@ CREATE INDEX index_identifications_on_user_id_and_created_at ON identifications 
 
 
 --
+-- Name: index_identifications_on_user_id_and_current; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_identifications_on_user_id_and_current ON identifications USING btree (user_id, current);
+
+
+--
 -- Name: index_list_rules_on_list_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15642,4 +15649,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150922154000');
 INSERT INTO schema_migrations (version) VALUES ('20150922215548');
 
 INSERT INTO schema_migrations (version) VALUES ('20151006230511');
+
+INSERT INTO schema_migrations (version) VALUES ('20151014213826');
 

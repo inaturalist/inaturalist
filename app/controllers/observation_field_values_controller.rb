@@ -16,9 +16,9 @@ class ObservationFieldValuesController < ApplicationController
     pagination_headers_for(@ofvs)
     respond_to do |format|
       format.json do
-        taxon_json_opts = {:only => [:id, :name, :rank], :include => [:source]}
+        taxon_json_opts = {:only => [:id, :name, :rank, :source_identifier], :include => [:source, :taxon_scheme_taxa]}
         if params[:type] == ObservationField::TAXON
-          taxa = Taxon.includes(:source).where("id IN (?)", @ofvs.map{|ofv| ofv.value.to_i}.compact.uniq).index_by(&:id)
+          taxa = Taxon.includes(:source, :taxon_scheme_taxa).where("id IN (?)", @ofvs.map{|ofv| ofv.value.to_i}.compact.uniq).index_by(&:id)
           @ofvs.each_with_index do |ofv,i| 
             @ofvs[i].taxon = taxa[@ofvs[i].value.to_i].as_json(taxon_json_opts)
           end

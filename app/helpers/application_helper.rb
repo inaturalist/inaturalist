@@ -896,15 +896,15 @@ module ApplicationHelper
     when "Post"
       image_tag(resource.user.icon.url(:thumb), options.merge(:class => "usericon"))
     when "Place"
-      image_tag("icon-maps.png", options)
+      image_tag(FakeView.image_url("icon-maps.png"), options)
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
       image_tag("#{resource.class.name.underscore}-aaaaaa-48px.png", options)
     when "ObservationField"
-      image_tag("notebook-icon-color-155px-shadow.jpg", options)
+      image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
     else
-      image_tag("logo-cccccc-20px.png", options)
+      image_tag(FakeView.image_url("logo-cccccc-20px.png"), options)
     end
   end
   

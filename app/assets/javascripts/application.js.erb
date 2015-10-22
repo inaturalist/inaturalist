@@ -1538,10 +1538,10 @@ $.fn.leaderboard = function(options) {
 
 $(document).ready(function() {
   // tmp fixes for old views being used with bootstrap
-  $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default')
-  $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter')
-  $('.bootstrap .button').addClass('btn btn-default').removeClass('button')
+  $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default');
+  $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
+  $('.bootstrap .button').addClass('btn btn-default').removeClass('button');
 })
 if (typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') { 
-  var bootstrapButton = $.fn.button.noConflict()
+  var bootstrapButton = $.fn.button.noConflict();
 }

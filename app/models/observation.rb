@@ -138,7 +138,8 @@ class Observation < ActiveRecord::Base
     "image_url", 
     "tag_list",
     "description",
-    "oauth_application_id"
+    "oauth_application_id",
+    "captive_cultivated"
   ]
   BASIC_COLUMNS = [
     "id", 
@@ -1154,7 +1155,7 @@ class Observation < ActiveRecord::Base
   end
 
   def sounds?
-    sounds.exists?
+    sounds.loaded? ? ! sounds.empty? : sounds.exists?
   end
   
   def set_quality_grade(options = {})

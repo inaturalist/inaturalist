@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     collection do
       get :import
     end
+    resources :flags
   end
   resources :guide_ranges do
     collection do

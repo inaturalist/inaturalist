@@ -258,7 +258,8 @@ class Photo < ActiveRecord::Base
           return [ photo, errors ]
         end
         # if that succeded, update this photo with the repaired remote URL
-        photo.file = URI(repaired.original_url)
+        photo.file = URI(repaired.original_url || repaired.large_url ||
+          repaired.medium_url || repaired.small_url)
         photo.save
         return [ photo, { } ]
       end
@@ -287,18 +288,24 @@ class Photo < ActiveRecord::Base
   # to be used primarly for retroactive caching of remote photos
   def self.turn_remote_photo_into_local_photo(remote_photo)
     return unless remote_photo && remote_photo.class < Photo
-    fetch_url = remote_photo.original_url
-    unless Photo.valid_remote_photo_url?(fetch_url)
-      # accept the large size if the original fails
-      fetch_url = remote_photo.large_url
-      return unless Photo.valid_remote_photo_url?(fetch_url)
-    end
+    return unless fetch_url = remote_photo.best_available_url
     remote_photo.type = "LocalPhoto"
     remote_photo.subtype = remote_photo.class.name
     remote_photo.native_original_image_url = fetch_url
     remote_photo = remote_photo.becomes(LocalPhoto)
     remote_photo.file = fetch_url
     remote_photo.save
+  end
+
+  # to be used primarly for turn_remote_photo_into_local_photo
+  def best_available_url
+    [ :original, :large, :medium, :small ].each do |s|
+      url = self.send("#{ s }_url")
+      if url && Photo.valid_remote_photo_url?(url)
+        return url
+      end
+    end
+    nil
   end
 
   def self.valid_remote_photo_url?(remote_photo_url)
@@ -352,7 +359,7 @@ class Photo < ActiveRecord::Base
   def as_indexed_json(options={})
     {
       id: id,
-      license_code: license == 0 ? nil : license_code,
+      license_code: license == 0 ? nil : license_code.downcase,
       attribution: attribution,
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }

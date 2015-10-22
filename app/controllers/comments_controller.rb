@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
   def user
     @display_user = User.find_by_id(params[:id]) || User.find_by_login(params[:login])
     return render_404 unless @display_user
-    @comments = @display_user.comments.paginate(:page => params[:page], :order => "id DESC")
+    @comments = @display_user.comments.order(id: :desc).page(params[:page])
   end
   
   def show

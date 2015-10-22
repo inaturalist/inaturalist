@@ -52,8 +52,6 @@ class Identification < ActiveRecord::Base
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)
   }
-  scope :for_others, -> { joins(:observation).where("observations.user_id != identifications.user_id") }
-  scope :for_self, -> { joins(:observation).where("observations.user_id = identifications.user_id") }
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
@@ -177,14 +175,14 @@ class Identification < ActiveRecord::Base
   # Update the counter cache in users.  That cache ONLY tracks observations 
   # made for others.
   def update_user_counter_cache
-    return true unless self.user && self.observation
-    return true if user.destroyed?
+    return unless self.user && self.observation
+    return if user.destroyed?
     if self.user_id != self.observation.user_id
-      User.where(id: user_id).update_all(identifications_count: user.identifications_for_others.count)
+      User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
+        update_identifications_counter_cache(user_id)
     end
-    true
   end
-  
+
   def set_last_identification_as_current
     last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
     if last_outdated

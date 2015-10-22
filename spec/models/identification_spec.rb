@@ -144,19 +144,26 @@ describe Identification, "creation" do
     before(:all) { DatabaseCleaner.strategy = :truncation }
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
-    it "should incremement for an ident on someone else's observation" do
+    it "should incremement for an ident on someone else's observation, with delay" do
       user = User.make!
+      Delayed::Job.destroy_all
+      expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 0
       Identification.make!(user: user)
+      expect( Delayed::Job.count ).to be > 1
       user.reload
+      expect( user.identifications_count ).to eq 0
+      Delayed::Worker.new.work_off
+      user.reload
+      expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 1
     end
     
     it "should NOT incremement for an ident on one's OWN observation" do
       user = User.make!
-      obs = Observation.make!(:user => user)
+      obs = Observation.make!(user: user)
       expect {
-        Identification.make!(:user => user, :observation => obs)
+        without_delay{ Identification.make!(user: user, observation: obs) }
       }.to_not change(user, :identifications_count)
     end
   end

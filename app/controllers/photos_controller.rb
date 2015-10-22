@@ -181,26 +181,17 @@ class PhotosController < ApplicationController
   end
 
   def fix
-    photo = current_user.photos.where("type != 'LocalPhoto'").first
-    @type = if params[:type].blank?
-      if photo = current_user.photos.where("type != 'LocalPhoto'").first
-        @type = photo.class.name
-      else
-        'FacebookPhoto'
-      end
-    elsif params[:type] != 'LocalPhoto'
-      @type = params[:type]
+    types = %w(FacebookPhoto FlickrPhoto PicasaPhoto)
+    @type = params[:type]
+    @type = 'FacebookPhoto' unless types.include?(@type)
+    @provider_name = @type.underscore.gsub(/_photo/, '')
+    @provider_identity = if @provider_name == 'flickr'
+      current_user.has_provider_auth('flickr')
+    else
+      current_user.send("#{@provider_name}_identity")
     end
-    if @type
-      @provider_name = @type.underscore.gsub(/_photo/, '')
-      @provider_identity = if @provider_name == 'flickr'
-        current_user.has_provider_auth('flickr')
-      else
-        current_user.send("#{@provider_name}_identity")
-      end
-    end
-    @photos = current_user.photos.page(params[:page]).per_page(120).order("photos.id ASC").where("photos.type != 'LocalPhoto'")
-    @photos = @photos.where(type: @type) if !@type.blank? && @type != 'LocalPhoto'
+    @photos = current_user.photos.page(params[:page]).per_page(120).order("photos.id ASC")
+    @photos = @photos.where(type: @type)
     respond_to do |format|
       format.html { render layout: 'bootstrap' }
     end

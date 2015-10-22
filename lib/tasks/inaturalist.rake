@@ -48,11 +48,18 @@ namespace :inaturalist do
 
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
-    Update.delete_and_purge(["created_at < ?", 6.months.ago])
+    min_id = Update.minimum(:id)
+    # using an ID clause to limit the number of rows in the query
+    last_id_to_delete = Update.where(["created_at < ?", 3.months.ago]).
+      where("id < #{ min_id + 1000000 }").maximum(:id)
+    Update.delete_and_purge("id <= #{ last_id_to_delete }")
+    # delete anything that may be left in Elasticsearch
+    Elasticsearch::Model.client.delete_by_query(index: Update.index_name,
+      body: { query: { range: { id: { lte: last_id_to_delete } } } })
   end
 
   desc "Delete expired S3 photos"
-  task :delete_expired_updates => :environment do
+  task :delete_expired_photos => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
     AWS.config(access_key_id: S3_CONFIG["access_key_id"],
       secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")

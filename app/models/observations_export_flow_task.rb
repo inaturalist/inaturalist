@@ -31,48 +31,40 @@ class ObservationsExportFlowTask < FlowTask
     "<#{self.class.name} #{id}>"
   end
 
-  def run
-    begin
-      update_attributes(finished_at: nil, error: nil, exception: nil)
-      outputs.each(&:destroy)
-      query = inputs.first.extra[:query]
-      format = options[:format]
-      @observations = observations_scope
-      # format = "json"
-      archive_path = case format
-      when 'json'
-        json_archive
-      else
-        csv_archive
-      end
-      open(archive_path) do |f|
-        self.outputs.create!(:file => f)
-      end
-      if options[:email]
-        Emailer.observations_export_notification(self).deliver_now
-      end
-      true
-    rescue Exception => e
-      exception_string = [ e.class, e.message ].join(" :: ")
-      update_attributes(finished_at: Time.now,
-        error: "Error",
-        exception: [ exception_string, e.backtrace ].join("\n"))
-      if options[:email]
-        Emailer.observations_export_failed_notification(self).deliver_now
-      end
-      false
-    end
-  end
-
-  def observations_scope
-    if params.blank?
-      Observation.where("1 = 2")
+  def run(run_options = {})
+    @logger = run_options[:logger] if run_options[:logger]
+    @debug = run_options[:debug]
+    update_attributes(finished_at: nil, error: nil, exception: nil)
+    outputs.each(&:destroy)
+    query = inputs.first.extra[:query]
+    format = options[:format]
+    archive_path = case format
+    when 'json'
+      json_archive
     else
-      query_params = Observation.query_params(params)
-      # remove order, b/c it won't work with find_each and seems to cause errors in DJ
-      scope = Observation.query(query_params).includes(:user).reorder(nil)
-      scope
+      csv_archive
     end
+    logger.info "ObservationsExportFlowTask #{id}: Created archive at #{archive_path}" if @debug
+    open(archive_path) do |f|
+      self.outputs.create!(:file => f)
+    end
+    logger.info "ObservationsExportFlowTask #{id}: Created outputs" if @debug
+    if options[:email]
+      Emailer.observations_export_notification(self).deliver_now
+      logger.info "ObservationsExportFlowTask #{id}: Emailed user #{user_id}" if @debug
+    end
+    true
+  rescue Exception => e
+    exception_string = [ e.class, e.message ].join(" :: ")
+    logger.error "ObservationsExportFlowTask #{id}: Error: #{exception_string}" if @debug
+    update_attributes(finished_at: Time.now,
+      error: "Error",
+      exception: [ exception_string, e.backtrace ].join("\n"))
+    if options[:email]
+      Emailer.observations_export_failed_notification(self).deliver_now
+      logger.error "ObservationsExportFlowTask #{id}: Emailed user #{user_id} about error" if @debug
+    end
+    false
   end
 
   def preloads
@@ -83,11 +75,12 @@ class ObservationsExportFlowTask < FlowTask
     includes << { observation_field_values: :observation_field }
     includes << :photos if export_columns.detect{ |c| c == 'image_url' }
     includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
-    return includes
+    includes
   end
 
   def observations_count
-    observations_scope.count
+    return 0 if params.blank?
+    Observation.elastic_query(params).total_entries
   end
 
   def json_archive
@@ -121,14 +114,24 @@ class ObservationsExportFlowTask < FlowTask
     columns = export_columns
     CSV.open(fpath, "w") do |csv|
       csv << columns
+      batch_i = 0
+      obs_i = 0
       Observation.search_in_batches(params) do |batch|
+        if @debug
+          logger.info
+          logger.info "BATCH #{batch_i}"
+          logger.info
+        end
         Observation.preload_associations(batch, preloads)
         batch.each do |observation|
+          logger.info "Obs #{obs_i} (#{observation.id})" if @debug
           csv << columns.map do |c|
             c = "cached_tag_list" if c == "tag_list"
             observation.send(c) rescue nil
           end
+          obs_i += 1
         end
+        batch_i += 1
       end
     end
     zip_path = File.join(work_path, "#{basename}.csv.zip")
@@ -195,5 +198,9 @@ class ObservationsExportFlowTask < FlowTask
     opts[:queue] = "slow" if count > 10000
     opts[:unique_hash] = {'ObservationsExportFlowTask': id}
     opts
+  end
+
+  def logger
+    @logger ||= Rails.logger
   end
 end

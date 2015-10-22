@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
-  acts_as_flaggable
+  acts_as_spammable fields: [ :subject, :body ],
+    user: :from_user
 
   belongs_to :user
   belongs_to :from_user, :class_name => "User"
@@ -83,9 +84,7 @@ class Message < ActiveRecord::Base
   end
 
   def flagged_with(flag, options = {})
-    if Message.joins(:flags).where("from_user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
-      user.suspend!
-    end
+    evaluate_new_flag_for_spam(flag)
     Message.where(:user_id => to_user_id, :thread_id => thread_id).destroy_all
   end
 end

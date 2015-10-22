@@ -373,6 +373,12 @@ TaxonScheme.blueprint do
   source { Source.make! }
 end
 
+TaxonSchemeTaxon.blueprint do
+  taxon_scheme { TaxonScheme.make! }
+  taxon { Taxon.make! }
+  source_identifier { rand(1000) }
+end
+
 TaxonSplit.blueprint do
   source { Source.make! }
   user { User.make! }
