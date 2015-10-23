@@ -77,7 +77,6 @@ class Observation < ActiveRecord::Base
       geoprivacy: geoprivacy,
       cached_votes_total: cached_votes_total,
       verifiable: research_grade_candidate?,
-      cached_votes_total: cached_votes_total,
       num_identification_agreements: num_identification_agreements,
       num_identification_disagreements: num_identification_disagreements,
       identifications_most_agree:

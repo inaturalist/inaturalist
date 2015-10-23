@@ -153,7 +153,10 @@ class ObservationsController < ApplicationController
         @updated_at = Observation.order("updated_at DESC").first.updated_at
       end
       
-      format.dwc
+      format.dwc do
+        Observation.preload_for_component(@observations, logged_in: logged_in?)
+        Observation.preload_associations(@observations, [ :identifications ])
+      end
 
       format.csv do
         render_observations_to_csv
