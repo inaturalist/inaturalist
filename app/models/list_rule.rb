@@ -39,6 +39,10 @@ class ListRule < ActiveRecord::Base
   end
 
   def refresh_list
-    list.delay(priority: USER_INTEGRITY_PRIORITY).refresh if list && list.persisted?
+    if list && list.persisted?
+      list.delay(priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "#{ list.class.name }::refresh": list.id }
+      ).refresh
+    end
   end
 end

@@ -750,9 +750,13 @@ class Place < ActiveRecord::Base
     mergee.destroy
     self.save
     CheckList.where(place_id: id).each do |cl|
-      cl.delay(priority: USER_INTEGRITY_PRIORITY).refresh
+      cl.delay(priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "CheckList::refresh": cl.id }
+      ).refresh
     end
-    self.check_list.delay(priority: USER_INTEGRITY_PRIORITY).refresh
+    self.check_list.delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "CheckList::refresh": self.check_list.id }
+    ).refresh
     self
   end
   

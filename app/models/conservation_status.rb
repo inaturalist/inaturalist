@@ -103,8 +103,10 @@ class ConservationStatus < ActiveRecord::Base
 
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
-    Observation.delay(:priority => USER_INTEGRITY_PRIORITY).
-      reassess_coordinates_for_observations_of(taxon_id, :place => place_id)
+    Observation.delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Observation::reassess_coordinates_for_observations_of": [
+        taxon_id, place: place_id ] }
+    ).reassess_coordinates_for_observations_of(taxon_id, place: place_id)
     true
   end
 

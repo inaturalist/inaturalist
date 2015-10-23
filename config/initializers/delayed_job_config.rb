@@ -1,7 +1,7 @@
 Delayed::Worker.default_queue_name = "default"
 Delayed::Worker.max_attempts = 10
 Delayed::Worker.destroy_failed_jobs = false
-Delayed::Worker.max_run_time = 8.hours
+Delayed::Worker.max_run_time = 10.hours
 
 # Set up the logger
 Delayed::Worker.logger = Logger.new(File.join(Rails.root, 'log', 'delayed_job.log'))

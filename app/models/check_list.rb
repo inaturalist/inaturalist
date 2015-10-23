@@ -194,9 +194,12 @@ class CheckList < List
   end
   
   def reload_and_refresh_now
-    job = CheckList.delay(:priority => USER_PRIORITY).reload_and_refresh_now(self)
-    Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
-    job
+    if job = CheckList.delay(priority: USER_PRIORITY,
+      unique_hash: { "CheckList::reload_and_refresh_now": self.id }
+    ).reload_and_refresh_now(self)
+      Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
+      job
+    end
   end
   
   def reload_and_refresh_now_cache_key
@@ -204,9 +207,12 @@ class CheckList < List
   end
   
   def refresh_now_without_reload
-    job = CheckList.delay(:priority => USER_PRIORITY).refresh_now_without_reload(self)
-    Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
-    job
+    if job = CheckList.delay(priority: USER_PRIORITY,
+      unique_hash: { "CheckList::refresh_now_without_reload": self.id }
+    ).refresh_now_without_reload(self)
+      Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
+      job
+    end
   end
   
   def refresh_now_without_reload_cache_key
