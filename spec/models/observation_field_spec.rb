@@ -50,7 +50,7 @@ describe ObservationField, "merge" do
     keeper.allowed_values.should eq "a|b|c|d"
   end
 
-  it "should on keep requested allowed values" do
+  it "should keep requested allowed values" do
     keeper.update_attributes(:allowed_values => "a|b")
     reject.update_attributes(:allowed_values => "c|d")
     keeper.merge(reject, :keep => [:allowed_values])
@@ -58,7 +58,7 @@ describe ObservationField, "merge" do
     keeper.allowed_values.should eq "c|d"
   end
 
-  it "should update observation field values of the reject" do
+  it "should update observation field for the observation field values of the reject" do
     ofv = ObservationFieldValue.make!(:observation_field => reject)
     keeper.merge(reject)
     ofv.reload
