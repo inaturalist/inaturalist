@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
   before_filter :limit_page_param_for_search, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
+  before_filter :curator_required, :only => [:planner]
   
   caches_page :geometry
   caches_page :cached_guide
@@ -447,7 +448,6 @@ class PlacesController < ApplicationController
         @places = Place.joins(:place_geometry).
           where(place_type: Place::OPEN_SPACE).
           where("place_geometries.id IS NOT NULL").
-          includes(:check_list).
           order("ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))").
           page(1)
         @data = []
