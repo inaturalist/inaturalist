@@ -10,6 +10,8 @@ shared_examples_for "a ProjectObservationsController" do
   end
 
   describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should work" do
       expect(project.users).to include(user)
       expect {
@@ -35,6 +37,18 @@ shared_examples_for "a ProjectObservationsController" do
           :project_id => project.id
         }
       }.not_to raise_error
+    end
+
+    it "should update the observation in the elastic index" do
+      expect( observation.projects ).to be_blank
+      expect( Observation.elastic_query(projects: [project.id]) ).to be_blank
+      post :create, :format => :json, :project_observation => {
+        :observation_id => observation.id,
+        :project_id => project.id
+      }
+      observation.reload
+      expect( observation.projects ).not_to be_blank
+      expect( Observation.elastic_query(projects: [project.id]) ).not_to be_blank
     end
 
     describe "with project_id" do
