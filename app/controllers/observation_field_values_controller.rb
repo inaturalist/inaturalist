@@ -29,7 +29,7 @@ class ObservationFieldValuesController < ApplicationController
                 :only => [:id, :taxon_scheme_id, :source_identifier],
                 :include => {
                   :taxon_scheme => {
-                    :only => [:id, :name]
+                    :only => [:id, :title]
                   }
                 }
               }
