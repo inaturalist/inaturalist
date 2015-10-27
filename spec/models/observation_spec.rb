@@ -2944,4 +2944,61 @@ describe Observation do
       expect( Update.where(notifier: o).mention.first.subscriber ).to eq u
     end
   end
+
+  describe "dedupe_for_user" do
+    before do
+      @obs = Observation.make!(
+        observed_on_string: "2015-01-01", 
+        latitude: 1, 
+        longitude: 1, 
+        taxon: Taxon.make!
+      )
+      @dupe = Observation.make!(
+        observed_on_string: @obs.observed_on_string, 
+        latitude: @obs.latitude, 
+        longitude: @obs.longitude, 
+        taxon: @obs.taxon, 
+        user: @obs.user
+      )
+    end
+    it "should remove duplicates" do
+      Observation.dedupe_for_user(@obs.user)
+      expect( Observation.find_by_id(@obs.id) ).not_to be_blank
+      expect( Observation.find_by_id(@dupe.id) ).to be_blank
+    end
+    it "should remove duplicates with obscured coordinates" do
+      @dupe.update_attributes(geoprivacy: Observation::OBSCURED)
+      Observation.dedupe_for_user(@obs.user)
+      expect( Observation.find_by_id(@obs.id) ).not_to be_blank
+      expect( Observation.find_by_id(@dupe.id) ).to be_blank
+    end
+    it "should not assume null datetimes are the same" do
+      @obs.update_attributes(observed_on_string: nil)
+      @dupe.update_attributes(observed_on_string: nil)
+      Observation.dedupe_for_user(@obs.user)
+      expect( Observation.find_by_id(@obs.id) ).not_to be_blank
+      expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
+    end
+    it "should not assume blank datetimes are the same" do
+      @obs.update_attributes(observed_on_string: '')
+      @dupe.update_attributes(observed_on_string: '')
+      Observation.dedupe_for_user(@obs.user)
+      expect( Observation.find_by_id(@obs.id) ).not_to be_blank
+      expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
+    end
+    it "should not assume null coordinates are the same" do
+      @obs.update_attributes(latitude: nil, longitude: nil)
+      @dupe.update_attributes(latitude: nil, longitude: nil)
+      Observation.dedupe_for_user(@obs.user)
+      expect( Observation.find_by_id(@obs.id) ).not_to be_blank
+      expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
+    end
+    it "should not assume null taxa are the same" do
+      @obs.update_attributes(taxon: nil)
+      @dupe.update_attributes(taxon: nil)
+      Observation.dedupe_for_user(@obs.user)
+      expect( Observation.find_by_id(@obs.id) ).not_to be_blank
+      expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
+    end
+  end
 end
