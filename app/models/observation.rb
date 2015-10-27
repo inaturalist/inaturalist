@@ -2411,8 +2411,12 @@ class Observation < ActiveRecord::Base
   end
 
   def self.dedupe_for_user(user, options = {})
-    user = User.find_by_id(user) unless user.is_a?(User)
-    user = User.find_by_login(user) unless user.is_a?(User)
+    unless user.is_a?(User)
+      u = User.find_by_id(user) 
+      u ||= User.find_by_login(user)
+      user = u
+    end
+    return unless user
     sql = <<-SQL
       SELECT 
         array_agg(id) AS observation_ids
@@ -2434,10 +2438,15 @@ class Observation < ActiveRecord::Base
     start = Time.now
     Observation.connection.execute(sql).each do |row|
       ids = row['observation_ids'].gsub(/[\{\}]/, '').split(',').map(&:to_i).sort
-      puts "Found duplicates: #{ids.join(',')}" if options[:test]
+      puts "Found duplicates: #{ids.join(',')}" if options[:debug]
       keeper_id = ids.shift
-      puts "\tDeleting #{ids.join(',')}" if options[:debug]
-      Observation.find(ids).each(&:destroy) unless options[:test]
+      puts "\tKeeping #{keeper_id}" if options[:debug]
+      unless options[:test]
+        Observation.find(ids).each do |o|
+          puts "\tDeleting #{o.id}" if options[:debug]
+          o.destroy
+        end
+      end
       deleted += ids.size
     end
     puts "Deleted #{deleted} observations in #{Time.now - start}s" if options[:debug]
