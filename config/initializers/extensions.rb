@@ -41,3 +41,15 @@ class Array
     end
   end
 end
+
+class OpenStruct
+  def self.new_recursive(hash)
+    struct = new(hash)
+    struct.to_h.each do |k,v|
+      if v.is_a?(Hash)
+        struct.send("#{ k }=", new_recursive(v))
+      end
+    end
+    struct
+  end
+end

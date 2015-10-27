@@ -1,16 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-class InatConfig
-  @site = Site.make!
-  def self.set_site(site)
-    @site = site
-  end
-  def site_id
-    self.class.instance_variable_get(:@site) ?
-      self.class.instance_variable_get(:@site).id : 1
-  end
-end
-
 describe ObservationsController do
   describe "create" do
     render_views
@@ -52,13 +41,8 @@ describe ObservationsController do
     end
     
     it "should set the site" do
-      # @site = Site.make!
-      class InatConfig
-        def site_id
-          @site ||= Site.make!
-          @site.id
-        end
-      end
+      @site = Site.make!
+      CONFIG.site_id = @site.id
       post :create, :observation => {:species_guess => "Foo"}
       expect(user.observations.last.site).to_not be_blank
     end

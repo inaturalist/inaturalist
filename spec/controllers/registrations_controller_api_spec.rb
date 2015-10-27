@@ -1,16 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-class InatConfig
-  @site = Site.make!
-  def self.set_site(site)
-    @site = site
-  end
-  def site_id
-    self.class.instance_variable_get(:@site) ?
-      self.class.instance_variable_get(:@site).id : 1
-  end
-end
-
 describe Users::RegistrationsController, "create" do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
@@ -70,7 +59,6 @@ describe Users::RegistrationsController, "create" do
 
   it "should assign a user to a site" do
     @site = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
-    InatConfig.set_site(@site)
     u = User.make
     post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
     User.find_by_login(u.login).site.should eq @site

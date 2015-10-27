@@ -33,6 +33,7 @@ describe "Logstasher" do
         (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
       "Lynx/2.8.5rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8i",
       "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)",
+      "Mozilla/5.0 (compatible; MegaIndex.ru/2.0; +http://megaindex.com/crawler)",
       "NewRelicPinger/1.0 (733677)",
       "Python-urllib/2.7",
       "Ruby"
@@ -41,7 +42,7 @@ describe "Logstasher" do
       "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36",
       "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0",
-      "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0"
+      "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0",
     ]
     bots.each do |bot|
       expect( Logstasher.is_user_agent_a_bot?(bot) ).to be true

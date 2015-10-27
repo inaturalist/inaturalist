@@ -277,7 +277,7 @@ class Observation < ActiveRecord::Base
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
   validates_inclusion_of :coordinate_system,
-    :in => proc { CONFIG.coordinate_systems.keys.map(&:to_s) },
+    :in => proc { CONFIG.coordinate_systems.to_h.keys.map(&:to_s) },
     :message => "'%{value}' is not a valid coordinate system",
     :allow_blank => true,
     :if => lambda {|o|
