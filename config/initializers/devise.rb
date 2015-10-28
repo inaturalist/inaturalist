@@ -2,16 +2,15 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   
-  configuration_bindings = YAML.load(File.open("#{Rails.root}/config/config.yml"))[Rails.env]
-  rest_auth_site_key         = configuration_bindings['rest_auth']['REST_AUTH_SITE_KEY']
-  rest_auth_digest_stretches = configuration_bindings['rest_auth']['REST_AUTH_DIGEST_STRETCHES']
+  rest_auth_site_key         = SiteConfig.rest_auth.REST_AUTH_SITE_KEY
+  rest_auth_digest_stretches = SiteConfig.rest_auth.REST_AUTH_DIGEST_STRETCHES
   
   config.secret_key = rest_auth_site_key
   
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "#{configuration_bindings['site_name']} <#{configuration_bindings['noreply_email']}>"
+  config.mailer_sender = "#{ SiteConfig.site_name } <#{ SiteConfig.noreply_email }>"
 
   # Configure the class responsible to send e-mails.
   config.mailer = "DeviseMailer"
