@@ -25,11 +25,6 @@
     <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
       :include_blank => t(:normal),
       :description => t(:project_type_description) %>
-    <%= f.form_field :preferred_membership_model, :description => t(:project_membership_model_description) do %>
-      <% for type in Project::MEMBERSHIP_MODELS %>
-        <%= f.radio_button "preferred_membership_model", type, :label => t(type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
-      <% end %>
-    <% end -%>
   </div>
   
   <div id="icon_fields" class="column span-12 last">
@@ -64,6 +59,22 @@
         <%= f.file_field :cover, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png" %>
       <% end -%>
     <% end %>
+  </div>
+
+  <div class="column span-12">
+    <%= f.form_field :preferred_membership_model, :description => t(:project_membership_model_description) do %>
+      <% for type in Project::MEMBERSHIP_MODELS %>
+        <%= f.radio_button "preferred_membership_model", type, :label => t(type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
+      <% end %>
+    <% end -%>
+  </div>
+
+  <div class="last column span-12">
+    <%= f.form_field :preferred_submission_model, description: t(:submission_model_description) do %>
+      <% for type in Project::SUBMISSION_MODELS %>
+        <%= f.radio_button "preferred_submission_model", type, :label => t("views.projects.edit.submission_models.#{type}", default: type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
+      <% end %>
+    <% end -%>
   </div>
   
   <%= f.text_area :description, :description => t(:describe_purpose) %>

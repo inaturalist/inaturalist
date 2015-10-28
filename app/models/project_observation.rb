@@ -5,6 +5,7 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :project, :observation
   validate :observer_allows_addition?
+  validate :project_allows_submitter?
   validate :observer_invited?
   validates_rules_from :project, :rule_methods => [
     :captive?,
@@ -136,6 +137,18 @@ class ProjectObservation < ActiveRecord::Base
       return false
     end
     true
+  end
+
+  def project_allows_submitter?
+    return unless project
+    return true if project.preferred_submission_model == Project::SUBMISSION_BY_ANYONE
+    return true unless user
+    if project.curated_by?(user)
+      true
+    else
+      errors.add :user_id, :must_be_curator
+      false
+    end
   end
 
   def observer_invited?
