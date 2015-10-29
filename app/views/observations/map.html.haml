@@ -12,7 +12,7 @@
 
       // getting the coordinates from the URL and the site default BOUNDS
       // we want to use the site default unless there URL specifies something else
-      var BOUNDS = #{ raw CONFIG.bounds.to_json };
+      var BOUNDS = #{ raw CONFIG.bounds.to_h.to_json };
       if( window.location.search === "" && !BOUNDS ) {
         coord = { lat: 10, lng: 20, zoom: 2 };
       }

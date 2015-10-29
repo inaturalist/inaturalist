@@ -30,7 +30,7 @@
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>,
         places = <%=json_escape @places.to_json.html_safe %>,
-        BOUNDS = <%=raw CONFIG.bounds.to_json %>
+        BOUNDS = <%=raw CONFIG.bounds.to_h.to_json %>
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
         lat: 0, 

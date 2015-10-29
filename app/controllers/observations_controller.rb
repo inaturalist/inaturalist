@@ -2830,7 +2830,7 @@ class ObservationsController < ApplicationController
     search_cache_params[:locale] ||= I18n.locale
     search_cache_params[:per_page] ||= search_params[:per_page]
     search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-    search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+    search_cache_params[:bounds] ||= CONFIG.bounds.to_h if CONFIG.bounds
     "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
   end
 

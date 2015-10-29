@@ -2,8 +2,7 @@ class StatsController < ApplicationController
 
   before_filter :set_time_zone_to_utc
   before_filter :load_params
-  before_filter :fetch_statistics, except: :index
-  caches_action :summary, expires_in: 15.minutes
+  caches_action :summary, expires_in: 1.hour
 
   def index
     respond_to do |format|
@@ -22,6 +21,7 @@ class StatsController < ApplicationController
   end
 
   def summary
+    fetch_statistics
     es_stats = Observation.elastic_search(size: 0,
       aggregate: {
         total_observations: { cardinality: { field: "id", precision_threshold: 10000 } },
@@ -52,8 +52,8 @@ class StatsController < ApplicationController
     @start_date = Time.zone.parse(params[:start_date]).beginning_of_day rescue 1.day.ago
     @start_date = Time.zone.now if @start_date > Time.zone.now
     @end_date = Time.zone.now if @end_date > Time.zone.now
-    if first_stat = SiteStatistic.order("created_at asc").first
-      @start_date = first_stat.created_at if @start_date < first_stat.created_at
+    if SiteStatistic.first_stat && @start_date < SiteStatistic.first_stat.created_at
+      @start_date = SiteStatistic.first_stat.created_at
     end
   end
 
