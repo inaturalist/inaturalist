@@ -31,7 +31,7 @@
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
-        BOUNDS = <%=raw CONFIG.bounds.to_h.to_json %>
+        BOUNDS = <%= CONFIG.bounds ? raw(CONFIG.bounds.to_h.to_json) : "false" %>
   </script>
 <% end %>
 <div id="pageheader" class="column span-24">

@@ -28,9 +28,8 @@
   <%= javascript_include_tag 'map_bundle' %>
 
   <script type="text/javascript" charset="utf-8">
-    var TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>,
-        places = <%=json_escape @places.to_json.html_safe %>,
-        BOUNDS = <%=raw CONFIG.bounds.to_h.to_json %>
+    var places = <%=json_escape @places.to_json.html_safe %>,
+        BOUNDS = <%= CONFIG.bounds ? raw(CONFIG.bounds.to_h.to_json) : "false" %>
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
         lat: 0, 
