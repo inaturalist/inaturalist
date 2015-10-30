@@ -1217,11 +1217,8 @@ module ApplicationHelper
 
   def leaflet_js(options = {})
     h = <<-HTML
-      #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css') }
-      <!--[if lte IE 8]>
-          #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css') }
-      <![endif]-->
-      #{ javascript_include_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js') }
+      #{ stylesheet_link_tag 'leaflet.css' }
+      #{ javascript_include_tag 'leaflet.js' }
     HTML
     if options[:draw]
       h += <<-HTML
