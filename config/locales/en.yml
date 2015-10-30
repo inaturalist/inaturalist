@@ -2398,11 +2398,12 @@ en:
   rules_for_becoming_a_member: Rules for Becoming a Member
   rules_for_becoming_memner: Rules for Becoming a Member
   rules_types:
-        must_be_georeferenced: must be georeferenced
-        must_be_identified: must be identified
-        must_be_on_list: must be on list
-        must_be_observed_in_place: must be observed in Place
-        must_be_in: must be in taxon
+    must_be_georeferenced: must be georeferenced
+    must_be_identified: must be identified
+    must_be_on_list: must be on list
+    must_be_observed_in_place: must be observed in Place
+    must_be_in: must be in taxon
+    must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
   said: said
   sat: Sat
   satellite: satellite
@@ -2648,6 +2649,7 @@ en:
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} committed %{thing} affecting %{stuff}"
+  submission_model_description: Who can add observations to your project?
   submit: Submit
   submit_comment: Submit comment
   submitted: Submitted
@@ -3877,6 +3879,11 @@ en:
             identifications, choose the lowest ranked taxon.
           </p>
         cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
+        curator_coordinate_access_disabled_desc_html: |
+          This project does not allow observations with coordinates the
+          project curators cannot see. If you don't want to share the
+          coordinates of this observation with the curators of this project,
+          you must remove the observation from the project.
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
@@ -4028,6 +4035,11 @@ en:
         keep_observations_desc: |
           Your observations will stay in the project and curators will still
           be able to view their private coordinates.
+        project_requires_curator_coordinate_access_desc: |
+          This project does not allow observations with coordinates the
+          project curators cannot see. If you don't want to share the
+          coordinates of your observations with the curators of this project,
+          you must remove them from the project.
         remove_observations_label: |
           Remove all your observations from this project
         remove_observations_desc_html: |
@@ -4100,6 +4112,9 @@ en:
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
         start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
+        submission_models:
+          any: anyone
+          curators: project curators
         trusted_project_means: |
           Trusting a project means that the project managers can add project
           assets and custom project attributes (e.g. banner HTML, CSS). Access
@@ -4150,8 +4165,8 @@ en:
           unless you trust the project curators.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: You
-        any: Project curators
+        observer: You (<span class="notice status">best observation for control over sharing private locations</span>)
+        any: Project members (<span class="success status">best option for sharing your observations with this project</span>)
         none: No one
       curator_coordinate_access_label: |
         Allow project curators to view the private coordinates of your
@@ -4163,10 +4178,10 @@ en:
       project_user_curator_coordinate_access_descriptions:
         observer: |
           Only allow project curators to view private coordinates of your
-          observations that you add to this project
+          observations that you add to this project.
         any: |
           Allow project curators to view the private coordinates of your
-          observations added to this project by you and the project curators
+          observations added to this project by you and other project members.
         none: |
           Don't share private coordinates of your observations with the project curators
       project_terms_desc_html: |
@@ -4608,16 +4623,18 @@ en:
         tracking_codes: Tracking codes
         source_url: Source URL
         start_time: Start time
+      project_observation:
+        user_id: Submitter
       place:
-              code: Code
-              display_name: Display name
-              latitude: Latitude
-              longitude: Longitude
-              name: Name
-              parent_id: parent
-              place_type: Place type
-              prefers_check_lists: Check lists allowed?
-              woeid: WOEID
+        code: Code
+        display_name: Display name
+        latitude: Latitude
+        longitude: Longitude
+        name: Name
+        parent_id: parent
+        place_type: Place type
+        prefers_check_lists: Check lists allowed?
+        woeid: WOEID
       flag:
         reason: Reason
         flag: Flag
@@ -4627,28 +4644,28 @@ en:
       observation_field_value:
         value: 'value'
       taxon:
-              name: Name
-              rank: Rank
-              parent_id: Parent ID
-              locked: Locked
-              auto_photos: Auto photos
-              auto_description: Auto description
-              wikipedia_title: Wikipedia title
-              wikipedia_summary: Wikipedia summary
-              source_identifier: Source identifier
-              source_url: Source URL
+        name: Name
+        rank: Rank
+        parent_id: Parent ID
+        locked: Locked
+        auto_photos: Auto photos
+        auto_description: Auto description
+        wikipedia_title: Wikipedia title
+        wikipedia_summary: Wikipedia summary
+        source_identifier: Source identifier
+        source_url: Source URL
       taxon_name:
-              name_provider: Name provider
-              source_url: Source URL
-              source_identifier: Source identifier
+        name_provider: Name provider
+        source_url: Source URL
+        source_identifier: Source identifier
       source:
-                    title: Title
-                    in_text: In text
-                    url: URL
-                    citation: Citation
+        title: Title
+        in_text: In text
+        url: URL
+        citation: Citation
       listed_taxon:
-              occurrence_status_level: Ocurrence status level
-              establishment_means: Establishment means
+        occurrence_status_level: Ocurrence status level
+        establishment_means: Establishment means
     errors:
       models:
         guide:
@@ -4677,6 +4694,10 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: must be a curator of this project
   i18n:
     inflections:
       :@vow_or_con:

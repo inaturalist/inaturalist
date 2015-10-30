@@ -1,0 +1,41 @@
+- content_for(:title) do
+  = @title = "#{truncate(@project.title, :length => 85)}: #{t :terms_and_rules_html}".html_safe
+  = t(:terms_and_rules_html)
+#pageheader.clear
+  .breadcrumbs
+    %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
+  %h2
+    - if @project.icon.file?
+      = image_tag @project.icon.url(:thumb), :style => "vertical-align: middle"
+    = @title
+%h3=t :terms
+- if @project.terms.blank?
+  .nocontent.meta=t :none
+- else
+  = formatted_user_text(@project.terms)
+%h3= t(:project_rules)
+- if !@project_user_rules.blank? || !@project_observation_rules.blank?
+  - unless @project_observation_rules.blank?
+    %h4= t(:new_observations_ellispsis)
+    %ul
+      - @project_observation_rules.group_by(&:operator).each do |operator, rules|
+        %li= rules.map(&:terms).join(" #{t(:or, :default => "OR")} ")
+- else
+  .nocontent.meta=t :none
+
+%h3= t(:other, default: 'other').capitalize
+%table
+  %tr
+    %td
+      %strong
+        =t :membership_model
+    %td
+      =t @project.preferred_membership_model
+  %tr
+    %td
+      %strong=t :submission_model
+      .meta=t :who_can_add_observations_to_this_project?
+    %td
+      =t "views.projects.edit.submission_models.#{@project.preferred_submission_model}", default: @project.preferred_submission_model
+.breadcrumbs
+  %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'

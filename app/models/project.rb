@@ -42,6 +42,11 @@ class Project < ActiveRecord::Base
   preference :count_by, :string, :default => 'species'
   preference :range_by_date, :boolean, :default => false
   preference :aggregation, :boolean, default: false
+  
+  SUBMISSION_BY_ANYONE = 'any'
+  SUBMISSION_BY_CURATORS = 'curators'
+  SUBMISSION_MODELS = [SUBMISSION_BY_ANYONE, SUBMISSION_BY_CURATORS]
+  preference :submission_model, :string, default: SUBMISSION_BY_ANYONE
 
   MEMBERSHIP_OPEN = 'open'
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
