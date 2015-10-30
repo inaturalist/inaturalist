@@ -24,7 +24,7 @@
         PLACE = <%= @place.to_json.html_safe %>,
         SHOW_PLACE_GEOMETRY = <%= @place ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : '[]' %>,
-        BOUNDS = <%=raw CONFIG.bounds.to_json %>
+        BOUNDS = <%= CONFIG.bounds ? raw(CONFIG.bounds.to_h.to_json) : "false" %>
   </script>
 <% end %>
 <div id="pageheader" class="column span-24">

@@ -74,6 +74,6 @@
           = link_to t(:delete), "", :class => "deletebutton delete button", :style => "display:none"
 .small.meta
   =t(:this_tool_is_experimental)
-  = link_to t(:report_any_problems), "mailto:#{CONFIG.get(:help_email)}"
+  = link_to t(:report_any_problems), "mailto:#{CONFIG.help_email}"
   =t(:you_may_have)
   = commas_and [["Safari", "http://www.apple.com/safari/"], ["Chrome", "https://www.google.com/intl/en/chrome/browser/"], ["Firefox", "http://www.mozilla.org/en-US/firefox"]].map{|n,u| link_to n, u}
