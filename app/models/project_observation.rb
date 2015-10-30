@@ -9,20 +9,21 @@ class ProjectObservation < ActiveRecord::Base
   validate :observer_invited?
   validates_rules_from :project, :rule_methods => [
     :captive?,
-    :wild?,
+    :coordinates_shareable_by_project_curators?,
     :georeferenced?, 
-    :has_media?,
     :has_a_photo?,
     :has_a_sound?,
+    :has_media?,
     :identified?, 
     :in_taxon?, 
     :observed_in_place?, 
-    :on_list?
+    :on_list?,
+    :wild?
   ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
   preference :curator_coordinate_access, :boolean, default: nil
-  before_create :set_curator_coordinate_access
+  before_validation :set_curator_coordinate_access
 
   notifies_owner_of :observation, 
     queue_if: lambda { |record| record.user_id != record.observation.user_id },
@@ -46,6 +47,7 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def set_curator_coordinate_access
+    return unless observation
     return true unless preferred_curator_coordinate_access.nil?
     if project_user
       self.preferred_curator_coordinate_access = case project_user.preferred_curator_coordinate_access
@@ -308,6 +310,10 @@ class ProjectObservation < ActiveRecord::Base
 
   def wild?
     !captive?
+  end
+
+  def coordinates_shareable_by_project_curators?
+    prefers_curator_coordinate_access?
   end
 
   def touch_observation

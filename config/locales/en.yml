@@ -2398,11 +2398,12 @@ en:
   rules_for_becoming_a_member: Rules for Becoming a Member
   rules_for_becoming_memner: Rules for Becoming a Member
   rules_types:
-        must_be_georeferenced: must be georeferenced
-        must_be_identified: must be identified
-        must_be_on_list: must be on list
-        must_be_observed_in_place: must be observed in Place
-        must_be_in: must be in taxon
+    must_be_georeferenced: must be georeferenced
+    must_be_identified: must be identified
+    must_be_on_list: must be on list
+    must_be_observed_in_place: must be observed in Place
+    must_be_in: must be in taxon
+    must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
   said: said
   sat: Sat
   satellite: satellite
@@ -4154,8 +4155,8 @@ en:
           unless you trust the project curators.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: You
-        any: Project curators
+        observer: You (<span class="notice status">best observation for control over sharing private locations</span>)
+        any: Project members (<span class="success status">best option for sharing your observations with this project</span>)
         none: No one
       curator_coordinate_access_label: |
         Allow project curators to view the private coordinates of your
@@ -4167,10 +4168,10 @@ en:
       project_user_curator_coordinate_access_descriptions:
         observer: |
           Only allow project curators to view private coordinates of your
-          observations that you add to this project
+          observations that you add to this project.
         any: |
           Allow project curators to view the private coordinates of your
-          observations added to this project by you and the project curators
+          observations added to this project by you and other project members.
         none: |
           Don't share private coordinates of your observations with the project curators
       project_terms_desc_html: |
