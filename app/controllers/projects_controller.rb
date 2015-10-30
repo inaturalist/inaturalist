@@ -477,6 +477,15 @@ class ProjectsController < ApplicationController
     
     respond_to_join(:dest => @observation, :notice => t(:youve_joined_the_x_project, :project_invitation => @project_invitation.project.title))
   end
+
+  def confirm_leave
+    @project_requires_curator_coordinate_access = @project.project_observation_rules.detect do |por|
+      por.operator == 'coordinates_shareable_by_project_curators?'
+    end
+    respond_to do |format|
+      format.html
+    end
+  end
   
   def leave
     unless @project_user && (request.post? || request.delete?)

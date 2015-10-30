@@ -3879,6 +3879,11 @@ en:
             identifications, choose the lowest ranked taxon.
           </p>
         cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
+        curator_coordinate_access_disabled_desc_html: |
+          This project does not allow observations with coordinates the
+          project curators cannot see. If you don't want to share the
+          coordinates of this observation with the curators of this project,
+          you must remove the observation from the project.
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
@@ -4030,6 +4035,11 @@ en:
         keep_observations_desc: |
           Your observations will stay in the project and curators will still
           be able to view their private coordinates.
+        project_requires_curator_coordinate_access_desc: |
+          This project does not allow observations with coordinates the
+          project curators cannot see. If you don't want to share the
+          coordinates of your observations with the curators of this project,
+          you must remove them from the project.
         remove_observations_label: |
           Remove all your observations from this project
         remove_observations_desc_html: |

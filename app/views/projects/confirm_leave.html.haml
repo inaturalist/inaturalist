@@ -2,7 +2,8 @@
   =t :are_you_sure_leave_this_project
 - content_for :extracss do
   :css
-    .field p.ui.description {margin-left: 2em;}
+    .field-desc {margin-left: 1.8em;}
+    .disabled { text-decoration: line-through; }
 #pageheader.clear
   .breadcrumbs
     %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
@@ -13,18 +14,21 @@
     %label
       = radio_button_tag :keep, 'true', checked: true
       =t 'views.projects.confirm_leave.keep_observations_label'
-    %p.ui.description=t 'views.projects.confirm_leave.keep_observations_desc'
+    %p.ui.description.field-desc=t 'views.projects.confirm_leave.keep_observations_desc'
   .field
-    %label
-      = radio_button_tag :keep, 'revoke'
+    %label{:class => "#{'disabled' if @project_requires_curator_coordinate_access}"}
+      = radio_button_tag :keep, 'revoke', nil, disabled: @project_requires_curator_coordinate_access
       =t 'views.projects.confirm_leave.revoke_observations_label'
-    %p.ui.description=t 'views.projects.confirm_leave.revoke_observations_desc'
-  .field
+    .field-desc
+      %p.ui.description=t 'views.projects.confirm_leave.revoke_observations_desc'
+      - if @project_requires_curator_coordinate_access
+        .notice.status.box
+          =t 'views.projects.confirm_leave.project_requires_curator_coordinate_access_desc'
   .field
     %label
       = radio_button_tag :keep, 'false'
       =t 'views.projects.confirm_leave.remove_observations_label'
-    %p.ui.description=t 'views.projects.confirm_leave.remove_observations_desc_html'
+    %p.ui.description.field-desc=t 'views.projects.confirm_leave.remove_observations_desc_html'
 
   = f.submit t(:leave_this_project), 'class': 'default button'
   = link_to t(:cancel), :back, :class => "button"
