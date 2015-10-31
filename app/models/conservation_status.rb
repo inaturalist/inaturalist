@@ -113,4 +113,15 @@ class ConservationStatus < ActiveRecord::Base
   def update_taxon_conservation_status
     Taxon.set_conservation_status(taxon_id)
   end
+
+  def as_indexed_json(options={})
+    {
+      place_id: place_id,
+      source_id: source_id,
+      authority: authority,
+      status: status ? status.downcase : nil,
+      geoprivacy: geoprivacy,
+      iucn: iucn
+    }
+  end
 end
