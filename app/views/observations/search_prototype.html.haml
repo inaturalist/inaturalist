@@ -19,6 +19,8 @@
               %input.form-control{placeholder: "Taxon", type: "text", name: "taxon_name"}
               %input{type: 'hidden', name: 'taxon_id'}
               in
+              / ng-model-options="{debounce: 1000}" means angular will wait 1000 ms after the last change in the UI before changing the bound model value
+              / g-places-autocomplete triggers the Google place autocomplete directive
               %input.form-control{:name => "place_name", "ng-model-options" => "{debounce: 1000}", :placeholder => "Place name", :type => "text", "g-places-autocomplete" => "", "ng-model" => "place"}
             #filter-container.btn-group.pull-right
               %button.btn.btn-default.dropdown-toggle

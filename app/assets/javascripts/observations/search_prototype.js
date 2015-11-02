@@ -1,5 +1,8 @@
 'use strict';
 
+// I started using the default bootstrap dropdown to manage the filter opening,
+// but it assumes all clicks in the dropdown should close the dropdown, so I had
+// to not use the boostrap javascript there and do it myself
 $(document).ready(function() {
   $('#filter-container .dropdown-toggle').click(function() {
     $(this).parent().toggleClass('open');
@@ -29,6 +32,8 @@ angular
   ]);
 
 // RESOURCES
+// Using angular's $resource service to wrap our API. Here only wrapping GET
+// requests to /observations
 var iNatResources = angular.module('iNatResources', ['ngResource']);
 iNatResources.factory('Observation', ['$resource', function($resource) {
   var paramDefaults = {};
@@ -43,7 +48,17 @@ iNatResources.factory('Observation', ['$resource', function($resource) {
 }]);
 
 // CONTROLLERS
+
+// MainCtrl controls the dislay of the observations. Note that while the
+// filters are stored in the $rootScope, which is shared by all controllers in
+// the app, observations themselves are isolated to the MainCtrl
 angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '$rootScope', 'Observation', function ($scope, $rootScope, Observation) {
+  // Translates the params stored in the $rootScope into params suitable for
+  // an API request. I tried to make the filters just match the API exactly,
+  // but angular doesn't seem to make that easy for multi-value params like
+  // iconic_taxa[]. There are also some UI elements that have state but don't
+  // need to be included in API requests, like the kind of date filter being
+  // applied. I suspect there are more "angular" ways to deal with this
   function reloadObservations() {
     var processedParams = angular.copy($rootScope.params)
     // deal with iconic taxa
@@ -126,6 +141,11 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
     }
   }
   
+  // Initialize UI elements outside of angular. In theory these could be re-
+  // implemented as angular directives. I played with some of the angular
+  // Google Maps directives out there, e.g. https://github.com/allenhwkim
+  // /angularjs-google-maps, but of course they don't make it easy to
+  // incorporate our custom tiles and UTFGrid tiles.
   angular.element(document).ready(function () {
     $('#filters input[name="taxon_name"]').taxonAutocomplete({
       taxon_id_el: $('#filters input[name="taxon_id"]'),
@@ -153,6 +173,9 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
       $rootScope.params.swlat = sw.lat();
       $rootScope.params.nelng = ne.lng();
       $rootScope.params.nelat = ne.lat();
+      // $rootScope.$$phase tests to see whether the rootScope is currently
+      // being digested. Without this, you get way too many events firing off
+      // when you drag the map
       if(!$rootScope.$$phase) {
         $rootScope.$digest();
       }
@@ -161,13 +184,16 @@ angular.module('ObservationSearchPrototype').controller('MainCtrl', ['$scope', '
     $rootScope.map.addListener('zoom_changed', onChangedBounds);
     reloadObservations();
   });
-
+  
+  // reload observations whenever params change
   var deepObjectComparison = true; // without this the params hash will always appear the same when its values change
   $rootScope.$watch('params', function(newValue, oldValue) {
     reloadObservations();
   }, deepObjectComparison);
 }]);
 
+// FiltersCtrl manages the filters box. It doesn't have much of a local state,
+// but does set the defaults for the params in the $rootScope
 angular.module('ObservationSearchPrototype').controller('FiltersCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $rootScope.params = $rootScope.params || {};
   // $rootScope.params.captive = false;
@@ -176,7 +202,7 @@ angular.module('ObservationSearchPrototype').controller('FiltersCtrl', ['$scope'
   $rootScope.params.order = 'desc';
   $rootScope.params.dateType = 'any';
   $rootScope.params.geoType = 'world';
-
+  
   $scope.$watch('place', function() {
     if ($scope.place && $scope.place.geometry && $rootScope.map) {
       $rootScope.params.geoType = 'map';
