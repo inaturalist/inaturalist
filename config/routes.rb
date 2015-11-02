@@ -336,7 +336,6 @@ Rails.application.routes.draw do
       get 'names', :to => 'taxon_names#taxon'
     end
     collection do
-      get 'tree'
       get 'synonyms'
     end
   end

@@ -408,11 +408,6 @@
     </p>
 
     <p class="ui">
-      <%= link_to t(:tree_browser_raquo).html_safe, {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
-        :rel => "nofollow" %>
-    </p>
-
-    <p class="ui">
       <%= link_to t(:search_descendant_taxa_raquo).html_safe,
         {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
         :rel => "nofollow" %>
