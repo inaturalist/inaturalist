@@ -354,7 +354,7 @@ class Observation < ActiveRecord::Base
     end
     if p[:lat] && p[:lng]
       search_filters << { geo_distance: {
-        distance: "#{p["radius"] || 10}km",
+        distance: "#{p[:radius] || 10}km",
         location: {
           lat: p[:lat], lon: p[:lng] } } }
     end
@@ -536,7 +536,7 @@ class Observation < ActiveRecord::Base
       # if a place condition is specified, return all results
       # from the place(s) specified, or where place is NULL
       status_condition[:nested][:query][:filtered][:filter] = { bool: { should: [
-        { terms: { "taxon.conservation_statuses.place_id":
+        { terms: { "taxon.conservation_statuses.place_id" =>
           [ params[:place] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
         { missing: { field: "taxon.conservation_statuses.place_id" } }
       ] } }
