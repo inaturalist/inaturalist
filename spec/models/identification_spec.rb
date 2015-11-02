@@ -1,7 +1,9 @@
-# require File.dirname(__FILE__) + '/../spec_helper.rb'
-require File.expand_path("../../spec_helper", __FILE__)
+require "spec_helper"
 
 describe Identification, "creation" do
+
+  before(:all) { User.destroy_all }
+
   it "should have a taxon" do 
     @id = Identification.make!
     @id.taxon = nil

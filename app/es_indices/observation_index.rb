@@ -2,10 +2,9 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  attr_accessor :indexed_tag_names
-  attr_accessor :indexed_project_ids
-  attr_accessor :indexed_place_ids
-  attr_accessor :indexed_places
+  attr_accessor :indexed_tag_names, :indexed_project_ids, :indexed_place_ids,
+    :indexed_places, :indexed_project_ids_with_curator_id,
+    :indexed_project_ids_without_curator_id
 
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags, :quality_metrics,
@@ -22,6 +21,10 @@ class Observation < ActiveRecord::Base
         indexes :names do
           indexes :name, analyzer: "ascii_snowball_analyzer"
         end
+        indexes :conservation_statuses, type: :nested do
+          indexes :authority, analyzer: "keyword_analyzer"
+          indexes :status, analyzer: "keyword_analyzer"
+        end
       end
       indexes :photos do
         indexes :license_code, analyzer: "keyword_analyzer"
@@ -29,7 +32,7 @@ class Observation < ActiveRecord::Base
       indexes :sounds do
         indexes :license_code, analyzer: "keyword_analyzer"
       end
-      indexes :field_values do
+      indexes :observation_field_values, type: :nested do
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
       end
@@ -87,11 +90,17 @@ class Observation < ActiveRecord::Base
         (num_identification_agreements < num_identification_disagreements),
       place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
       project_ids: (indexed_project_ids || project_observations.map(&:project_id)).compact.uniq,
+      project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
+        project_observations.select{ |po| !po.curator_identification_id.nil? }.
+          map(&:project_id)).compact.uniq,
+      project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
+        project_observations.select{ |po| po.curator_identification_id.nil? }.
+          map(&:project_id)).compact.uniq,
       reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
-      taxon: t ? t.as_indexed_json(basic: true) : nil,
-      field_values: observation_field_values.uniq.map(&:as_indexed_json),
+      taxon: t ? t.as_indexed_json(for_observation: true) : nil,
+      observation_field_values: observation_field_values.uniq.map(&:as_indexed_json),
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
@@ -117,6 +126,9 @@ class Observation < ActiveRecord::Base
     observations.each{ |o|
       o.indexed_tag_names ||= [ ]
       o.indexed_project_ids ||= [ ]
+      o.indexed_project_ids_with_curator_id ||= [ ]
+      o.indexed_project_ids_without_curator_id ||= [ ]
+      o.indexed_project_ids_with_curator_id ||= [ ]
       o.indexed_place_ids ||= [ ]
       o.indexed_places ||= [ ]
     }
@@ -135,11 +147,17 @@ class Observation < ActiveRecord::Base
     end
     # fetch all project_ids store them in `indexed_project_ids`
     connection.execute("
-      SELECT observation_id, project_id
+      SELECT observation_id, project_id, curator_identification_id
       FROM project_observations
       WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
       if o = observations_by_id[ r["observation_id"].to_i ]
         o.indexed_project_ids << r["project_id"].to_i
+        # these are for the `pcid` search param
+        if r["curator_identification_id"].nil?
+          o.indexed_project_ids_without_curator_id << r["project_id"].to_i
+        else
+          o.indexed_project_ids_with_curator_id << r["project_id"].to_i
+        end
       end
     end
     # fetch all place_ids store them in `indexed_place_ids`
@@ -166,7 +184,8 @@ class Observation < ActiveRecord::Base
     return nil unless Observation.able_to_use_elasticsearch?(p)
     p = site_search_params(options[:site], p)
     search_wheres = { }
-    search_filters = []
+    complex_wheres = [ ]
+    search_filters = [ ]
     extra_preloads = [ ]
     q = unless p[:q].blank?
       q = sanitize_query(p[:q])
@@ -202,6 +221,7 @@ class Observation < ActiveRecord::Base
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
+      { http_param: :week, es_field: "observed_on_details.week" },
       { http_param: :place, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" }
     ].each do |filter|
@@ -281,10 +301,31 @@ class Observation < ActiveRecord::Base
     p[:projects] = [p[:projects]].flatten if p[:projects]
     extra = p[:extra].to_s.split(",")
     if !p[:projects].blank?
-      search_filters << { terms: { project_ids:
-        p[:projects].map{ |proj| ElasticModel.id_or_object(proj) } } }
+      project_ids = p[:projects].map{ |proj| ElasticModel.id_or_object(proj) }
+      search_filters << { terms: { project_ids: project_ids } }
       extra_preloads << :projects
+      # since we have projects, check the `pcid` param
+      if params[:pcid].yesish?
+        search_filters << { terms: {
+          project_ids_with_curator_id: project_ids } }
+      elsif params[:pcid].noish?
+        search_filters << { terms: {
+          project_ids_without_curator_id: project_ids } }
+      end
+    else
+      if params[:pcid].yesish?
+        search_filters << { exists: {
+          field: "project_ids_with_curator_id" } }
+      elsif params[:pcid].noish?
+        search_filters << { exists: {
+          field: "project_ids_without_curator_id" } }
+      end
     end
+    if p[:not_in_project]
+      search_filters << { not: { term: { project_ids:
+        ElasticModel.id_or_object(p[:not_in_project]) } } }
+    end
+
     extra_preloads << { identifications: [:user, :taxon] } if extra.include?("identifications")
     extra_preloads << { observation_photos: :photo } if extra.include?("observation_photos")
     extra_preloads << { observation_field_values: :observation_field } if extra.include?("fields")
@@ -313,7 +354,7 @@ class Observation < ActiveRecord::Base
     end
     if p[:lat] && p[:lng]
       search_filters << { geo_distance: {
-        distance: "#{p["radius"] || 10}km",
+        distance: "#{p[:radius] || 10}km",
         location: {
           lat: p[:lat], lon: p[:lng] } } }
     end
@@ -361,6 +402,32 @@ class Observation < ActiveRecord::Base
         ] }
       ] }
     end
+    if p[:h1] && p[:h2]
+      p[:h1] = p[:h1].to_i % 24
+      p[:h2] = p[:h2].to_i % 24
+      if p[:h1] > p[:h2]
+        search_filters << { bool: { should: [
+          { range: { "observed_on_details.hour" => { gte: p[:h1] } } },
+          { range: { "observed_on_details.hour" => { lte: p[:h2] } } }
+        ] } }
+      else
+        search_filters << { range: { "observed_on_details.hour" => {
+          gte: p[:h1], lte: p[:h2] } } }
+      end
+    end
+    if p[:m1] && p[:m2]
+      p[:m1] = p[:m1].to_i % 12
+      p[:m2] = p[:m2].to_i % 12
+      if p[:m1] > p[:m2]
+        search_filters << { bool: { should: [
+          { range: { "observed_on_details.month" => { gte: p[:m1] } } },
+          { range: { "observed_on_details.month" => { lte: p[:m2] } } }
+        ] } }
+      else
+        search_filters << { range: { "observed_on_details.month" => {
+          gte: p[:m1], lte: p[:m2] } } }
+      end
+    end
     unless p[:updated_since].blank?
       if timestamp = Chronic.parse(p[:updated_since])
         search_filters << { range: { updated_at: { gte: timestamp } } }
@@ -369,6 +436,43 @@ class Observation < ActiveRecord::Base
         # invalid, the search will fail to return any results
         return nil
       end
+    end
+    if p[:ofv_params]
+      p[:ofv_params].each do |k,v|
+        # use a nested query to search within a single nested
+        # object and not across all nested objects
+        nested_query = {
+          nested: {
+            path: "observation_field_values",
+            query: { bool: { must: [ { match: {
+              "observation_field_values.name" => v[:observation_field].name } } ] }
+            }
+          }
+        }
+        unless v[:value].blank?
+          nested_query[:nested][:query][:bool][:must] <<
+            { match: { "observation_field_values.value" => v[:value] } }
+        end
+        complex_wheres << nested_query
+      end
+    end
+    # conservation status
+    unless p[:cs].blank?
+      values = [ p[:cs] ].flatten.map(&:downcase)
+      complex_wheres << conservation_condition(:status, values, p)
+    end
+    # IUCN conservation status
+    unless p[:csi].blank?
+      iucn_equivs = [ p[:csi] ].flatten.map{ |v|
+        Taxon::IUCN_CODE_VALUES[v.upcase] }.compact.uniq
+      unless iucn_equivs.blank?
+        complex_wheres << conservation_condition(:iucn, iucn_equivs, p)
+      end
+    end
+    # conservation status authority
+    unless p[:csa].blank?
+      values = [ p[:csa] ].flatten.map(&:downcase)
+      complex_wheres << conservation_condition(:authority, values, p)
     end
     # sort defaults to created at descending
     sort_order = (p[:order] || "desc").downcase.to_sym
@@ -383,12 +487,6 @@ class Observation < ActiveRecord::Base
       { id: sort_order }
     else "observations.id"
       { created_at: sort_order }
-    end
-
-    if p[:not_in_project]
-      project_id = p[:not_in_project].is_a?(Project) ?
-        p[:not_in_project].id : p[:not_in_project]
-      search_filters << { not: { term: { project_ids: project_id } } }
     end
 
     unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
@@ -412,6 +510,7 @@ class Observation < ActiveRecord::Base
     end
     
     { where: search_wheres,
+      complex_wheres: complex_wheres,
       filters: search_filters,
       per_page: p[:per_page] || 30,
       page: p[:page],
@@ -420,6 +519,35 @@ class Observation < ActiveRecord::Base
   end
 
   private
+
+  def self.conservation_condition(es_field, values, params)
+    # use a nested query to search the specified fiels
+    status_condition = {
+      nested: {
+        path: "taxon.conservation_statuses",
+        query: { filtered: { query: {
+          bool: { must: [ { terms: {
+            "taxon.conservation_statuses.#{ es_field }" => values
+          } } ] }
+        } } }
+      }
+    }
+    if params[:place]
+      # if a place condition is specified, return all results
+      # from the place(s) specified, or where place is NULL
+      status_condition[:nested][:query][:filtered][:filter] = { bool: { should: [
+        { terms: { "taxon.conservation_statuses.place_id" =>
+          [ params[:place] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
+        { missing: { field: "taxon.conservation_statuses.place_id" } }
+      ] } }
+    else
+      # no place condition specified, so apply a `place is NULL` condition
+      status_condition[:nested][:query][:filtered][:filter] = [
+        { missing: { field: "taxon.conservation_statuses.place_id" } }
+      ]
+    end
+    status_condition
+  end
 
   def add_taxon_statuses(json, t)
     # taxa can be globally threatened, but need context for the rest

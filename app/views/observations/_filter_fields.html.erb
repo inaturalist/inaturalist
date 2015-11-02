@@ -274,7 +274,7 @@
       <nobr>
         <strong><%=t :curator_identification %></strong>
         <% for state in %w"any yes no" %>
-          <% if @pcid == state %>
+          <% if params[:pcid] == state %>
             <%= radio_button_tag :pcid, state, :checked => 'checked' %>
           <% else %>
             <%= radio_button_tag :pcid, state %>
