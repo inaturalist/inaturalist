@@ -34,7 +34,7 @@
         minLength: 0,
         select: function(ui, event) {
           if (event.item.forceRemote) {
-            cache[request.term] = null
+            cache = {}
             self.options.source = collectionUrl
             $(ui.target).autocomplete('search', ui.target.value)
           } else if (event.item.clear) {
