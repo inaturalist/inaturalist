@@ -3,6 +3,7 @@ require "spec_helper"
 describe "ActsAsSpammable", "ActiveRecord" do
 
   before(:all) do
+    User.destroy_all
     @user = User.make!
     Rakismet.disabled = false
   end

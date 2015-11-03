@@ -1172,16 +1172,6 @@ class TaxaController < ApplicationController
     end
   end
   
-  def tree
-    @taxon = Taxon.includes(:taxon_names, :photos).find_by_id(params[:id])
-    @taxon ||= Taxon.includes(:taxon_names, :photos).find_by_id(params[:taxon_id].to_i)
-    unless @taxon
-      @taxon = Taxon.find_by_name('Life')
-      @taxon ||= Taxon.iconic_taxa.first.parent
-    end
-    @iconic_taxa = Taxon::ICONIC_TAXA
-  end
-  
   # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
   def try_show
     name, format = params[:q].to_s.sanitize_encoding.split('_').join(' ').split('.')
@@ -1433,6 +1423,8 @@ class TaxaController < ApplicationController
   
 
   def load_form_variables
-    @conservation_status_authorities = ConservationStatus.select('DISTINCT authority').where("authority IS NOT NULL").map(&:authority).compact
+    @conservation_status_authorities = ConservationStatus.
+      select('DISTINCT authority').where("authority IS NOT NULL").
+      map(&:authority).compact.reject(&:blank?).map(&:strip).sort
   end
 end
