@@ -23,6 +23,10 @@ class Delayed::Backend::ActiveRecord::Job
     handler_yaml.is_a?(BulkObservationFile)
   end
 
+  def observations_export?
+    handler_yaml.is_a?(ObservationsExportFlowTask)
+  end
+
   def unique_process
     locked_by.match(/(.*) pid/)[1] if locked_by
   end
@@ -45,11 +49,13 @@ class Delayed::Backend::ActiveRecord::Job
 
   def acts_on_object
     return if paperclip? || bulk_observation_file?
+    return handler_yaml if observations_export?
     handler_yaml.object if handler_yaml.respond_to?(:object)
   end
 
   def acts_on_method
     return if paperclip? || bulk_observation_file?
+    return "run" if observations_export?
     return unless handler_yaml.respond_to?(:method_name)
     if handler_yaml.method_name.to_s == "send"
       return handler_yaml.args.first
@@ -58,6 +64,7 @@ class Delayed::Backend::ActiveRecord::Job
   end
 
   def acts_on_args
+    return if observations_export?
     if bulk_observation_file?
       return {
         observation_file: handler_yaml.observation_file,
@@ -80,7 +87,8 @@ class Delayed::Backend::ActiveRecord::Job
       id: id,
       host: host,
       pid: pid,
-      process: unique_process
+      process: unique_process,
+      attempts: attempts
     }
     info[:object] = if paperclip?
       acts_on_args.first.constantize
@@ -89,7 +97,6 @@ class Delayed::Backend::ActiveRecord::Job
     else
       acts_on_object
     end
-    info[:unique_hash] = unique_hash
     info[:method] = paperclip? ? "DelayedPaperclip" : acts_on_method
     info[:arguments] = unless acts_on_args.blank?
       if acts_on_args.length == 1
@@ -98,11 +105,12 @@ class Delayed::Backend::ActiveRecord::Job
         acts_on_args
       end
     end
+    info[:unique_hash] = unique_hash
     info[:locked_at] = locked_at.to_s(:long) if locked_at
     info[:created_at] = created_at.to_s(:long) if created_at
     info[:failed_at] = failed_at.to_s(:long) if failed_at
     if last_error
-      info[:last_error] = "<br>" + last_error[0...1000].gsub("\n", "<br>")
+      info[:last_error] = "<br><br>" + last_error[0...1000].gsub("\n", "<br>")
     end
     info
   end
