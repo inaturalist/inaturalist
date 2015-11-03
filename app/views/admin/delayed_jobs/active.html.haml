@@ -1,0 +1,20 @@
+%h2.sub-header Possibly Active Jobs
+%table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Host
+        %th PID
+        %th Locked
+        %th Info
+    %tbody
+      - @jobs.each do |dj|
+        %tr
+          %td= dj.host
+          %td= dj.pid
+          %td= t(:n_ago, n: time_ago_in_words(dj.locked_at)) if dj.locked_at
+          %td
+            - dj.dashboard_info.each do |k,v|
+              %strong= "#{ k }:"
+              = raw v
+              %br

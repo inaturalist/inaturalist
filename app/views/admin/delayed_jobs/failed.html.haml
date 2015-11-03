@@ -1,0 +1,16 @@
+%h2.sub-header Recently Failed Jobs
+%table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Failed
+        %th Info
+    %tbody
+      - @jobs.each do |dj|
+        %tr
+          %td= t(:n_ago, n: time_ago_in_words(dj.failed_at)) if dj.failed_at
+          %td
+            - dj.dashboard_info.each do |k,v|
+              %strong= "#{ k }:"
+              = raw v
+              %br

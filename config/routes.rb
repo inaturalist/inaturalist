@@ -432,6 +432,13 @@ Rails.application.routes.draw do
     collection do
       get :index
     end
+    resource :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
+      collection do
+        get :index
+        get :active
+        get :failed
+      end
+    end
   end
 
   resource :stats do

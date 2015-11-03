@@ -7,7 +7,10 @@ class AdminController < ApplicationController
   before_filter :admin_required
   before_filter :return_here, :only => [:stats, :index, :user_content]
 
+  layout "application"
+
   def index
+    render layout: "admin"
   end
 
   def user_content
@@ -45,11 +48,6 @@ class AdminController < ApplicationController
     flash[:notice] = "Logged in as #{user.login}. Be careful, and remember to log out when you're done."
     redirect_to root_path
   end
-
-  def delayed_jobs
-    @jobs = Delayed::Job.all
-  end
-  
 
   private
   def load_user_content_info
