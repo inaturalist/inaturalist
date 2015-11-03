@@ -28,6 +28,10 @@ class Delayed::Backend::ActiveRecord::Job
     handler_yaml.is_a?(ObservationsExportFlowTask)
   end
 
+  def flow_task?
+    handler_yaml.kind_of?(FlowTask)
+  end
+
   def unique_process
     locked_by.match(/(.*) pid/)[1] if locked_by
   end
@@ -50,13 +54,13 @@ class Delayed::Backend::ActiveRecord::Job
 
   def acts_on_object
     return if paperclip? || bulk_observation_file?
-    return handler_yaml if observations_export?
+    return handler_yaml if flow_task?
     handler_yaml.object if handler_yaml.respond_to?(:object)
   end
 
   def acts_on_method
     return if paperclip? || bulk_observation_file?
-    return "run" if observations_export?
+    return "run" if flow_task?
     return unless handler_yaml.respond_to?(:method_name)
     return handler_yaml.args.first if handler_yaml.method_name.to_s == "send"
     handler_yaml.method_name
@@ -64,6 +68,7 @@ class Delayed::Backend::ActiveRecord::Job
 
   def acts_on_args
     return { query: handler_yaml.query } if observations_export?
+    return if flow_task?
     if bulk_observation_file?
       return {
         observation_file: handler_yaml.observation_file,
