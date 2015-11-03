@@ -1,5 +1,6 @@
 class Delayed::Backend::ActiveRecord::Job
   def self.possibly_active
+    # Delayed::Job.order(created_at: :desc).limit(10)
     results = self.where("locked_by IS NOT NULL").
       where("locked_at > ?", Delayed::Worker.max_run_time.ago).
       where("failed_at IS NULL").
@@ -57,14 +58,12 @@ class Delayed::Backend::ActiveRecord::Job
     return if paperclip? || bulk_observation_file?
     return "run" if observations_export?
     return unless handler_yaml.respond_to?(:method_name)
-    if handler_yaml.method_name.to_s == "send"
-      return handler_yaml.args.first
-    end
+    return handler_yaml.args.first if handler_yaml.method_name.to_s == "send"
     handler_yaml.method_name
   end
 
   def acts_on_args
-    return if observations_export?
+    return { query: handler_yaml.query } if observations_export?
     if bulk_observation_file?
       return {
         observation_file: handler_yaml.observation_file,
@@ -73,12 +72,8 @@ class Delayed::Backend::ActiveRecord::Job
         csv_options: handler_yaml.csv_options
       }
     end
-    if paperclip?
-      return handler_yaml.job_data["arguments"]
-    end
-    if handler_yaml.method_name.to_s == "send"
-      return handler_yaml.args[1,]
-    end
+    return handler_yaml.job_data["arguments"] if paperclip?
+    return handler_yaml.args[1,] if handler_yaml.method_name.to_s == "send"
     handler_yaml.args
   end
 
@@ -99,7 +94,7 @@ class Delayed::Backend::ActiveRecord::Job
     end
     info[:method] = paperclip? ? "DelayedPaperclip" : acts_on_method
     info[:arguments] = unless acts_on_args.blank?
-      if acts_on_args.length == 1
+      if acts_on_args.is_a?(Array) && acts_on_args.length == 1
         acts_on_args.first
       else
         acts_on_args
