@@ -436,6 +436,7 @@ Rails.application.routes.draw do
         get :index
         get :active
         get :failed
+        get :pending
       end
     end
   end

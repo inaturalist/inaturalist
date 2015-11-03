@@ -16,6 +16,14 @@ class Delayed::Backend::ActiveRecord::Job
     active_jobs.reverse
   end
 
+  def self.failed
+    Delayed::Job.where("failed_at IS NOT NULL").order(failed_at: :desc)
+  end
+
+  def self.pending
+    Delayed::Job.where("run_at > ?", Time.now).order(run_at: :asc)
+  end
+
   def paperclip?
     queue == "paperclip"
   end

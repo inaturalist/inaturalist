@@ -9,9 +9,17 @@
           %li
             = link_to "Delayed Jobs", admin_delayed_jobs_path
           %li.subitem{ class: ("active" if action_name == "active") }
-            = link_to "Active", active_admin_delayed_jobs_path
+            %a{ href: active_admin_delayed_jobs_path}
+              Active
+              %span.badge= Delayed::Job.possibly_active.count
+          %li.subitem{ class: ("active" if action_name == "pending") }
+            %a{ href: pending_admin_delayed_jobs_path}
+              Pending
+              %span.badge= Delayed::Job.pending.count
           %li.subitem{ class: ("active" if action_name == "failed") }
-            = link_to "Failed", failed_admin_delayed_jobs_path
+            %a{ href: failed_admin_delayed_jobs_path}
+              Failed
+              %span.badge= Delayed::Job.failed.count
           %li= link_to t(:curate_observations), curate_observations_path
           %li= link_to t(:curate_taxa), curate_taxa_path
           %li= link_to t(:curate_users), curate_users_path

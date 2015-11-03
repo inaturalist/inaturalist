@@ -14,8 +14,11 @@ class Admin::DelayedJobsController < ApplicationController
   end
 
   def failed
-    @jobs = Delayed::Job.where("failed_at IS NOT NULL").
-      order(failed_at: :desc).limit(100)
+    @jobs = Delayed::Job.failed.limit(100)
+  end
+
+  def pending
+    @jobs = Delayed::Job.pending.limit(100)
   end
 
 end

@@ -1,4 +1,4 @@
-%h2.sub-header Possibly Active Jobs
+%h2.sub-header= "Possibly Active Jobs (#{ Delayed::Job.possibly_active.count })"
 %table-responsive
   %table.table.table-striped
     %thead
