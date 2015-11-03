@@ -9,9 +9,8 @@
   padding: 5px 10px;
 }
 .dashboard .sidebar .subitem {
-  margin: 2px 0px 2px 20px;
-  line-height: 15px;
-  font-size: 0.9em;
+  margin-left: 20px;
+  line-height: 18px;
 }
 .dashboard .sidebar .active a {
   color: #fff;
@@ -24,6 +23,10 @@
 }
 .dashboard .sidebar .badge {
   float: right;
+}
+.dashboard .sidebar .active .badge {
+  color: #337ab7;
+  background-color: #fff;
 }
 .dashboard .main {
   padding-top: 5px;
