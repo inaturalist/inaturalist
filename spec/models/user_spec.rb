@@ -730,6 +730,61 @@ describe User do
     end
   end
 
+  describe "prefers_redundant_identification_notifications" do
+    before(:each) { enable_elastic_indexing( Observation, Update ) }
+    after(:each) { disable_elastic_indexing( Observation, Update ) }
+
+    let(:u) { User.make! }
+    let(:genus) { Taxon.make!(rank: Taxon::GENUS) }
+    let(:species) { Taxon.make!(rank: Taxon::SPECIES, parent: genus) }
+    let(:subspecies) { Taxon.make!(rank: Taxon::SUBSPECIES, parent: species) }
+    let(:o) { Observation.make!(user: u, taxon: species) }
+
+    describe "true" do
+      before do
+        u.update_attributes(prefers_redundant_identification_notifications: true)
+        expect( o ).to be_persisted
+      end
+      it "should allow identifications that match with the observer" do
+        without_delay { Identification.make!(observation: o, taxon: species) }
+        expect( u.updates.count ).to eq 1
+      end
+      it "should allow identifications of taxa that are descendants of the observer's taxon" do
+        without_delay { Identification.make!(observation: o, taxon: subspecies) }
+        expect( u.updates.count ).to eq 1
+      end
+      it "should allow identifications of taxa that are ancestors of the observer's taxon" do
+        without_delay { Identification.make!(observation: o, taxon: genus) }
+        expect( u.updates.count ).to eq 1
+      end
+    end
+
+    describe "false" do
+      before do
+        u.update_attributes(prefers_redundant_identification_notifications: false)
+        expect( o ).to be_persisted
+      end
+      it "should supress identifications that match with the observer" do
+        without_delay { Identification.make!(observation: o, taxon: species) }
+        expect( u.updates.count ).to eq 0
+      end
+      it "should allow identifications of taxa that are descendants of the observer's taxon" do
+        without_delay { Identification.make!(observation: o, taxon: subspecies) }
+        expect( u.updates.count ).to eq 1
+      end
+      it "should allow identifications of taxa that are ancestors of the observer's taxon" do
+        without_delay { Identification.make!(observation: o, taxon: genus) }
+        expect( u.updates.count ).to eq 1
+      end
+      it "should allow notification if observer has no identification" do
+        obs = Observation.make!(user: u)
+        expect( obs.owners_identification ).to be_blank
+        without_delay { Identification.make!(observation: obs) }
+        expect( u.updates.count ).to eq 1
+      end
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {

@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   PROJECT_ADDITION_BY_NONE = "none"
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
   preference :location_details, :boolean, default: false
+  preference :redundant_identification_notifications, :boolean, default: true
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)

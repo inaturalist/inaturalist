@@ -100,6 +100,12 @@
           label: t(:notify_me_of_mentions),
           label_after: true %>
       </div>
+      <div class="stacked">
+        <%= f.check_box "prefers_redundant_identification_notifications",
+          label: t(:notify_me_about_redundant_identifications),
+          description: t(:notify_me_about_redundant_identifications_desc),
+          label_after: true %>
+      </div>
 
       <a name="projects"></a>
       <h3><%=t :project_settings %></h3>
