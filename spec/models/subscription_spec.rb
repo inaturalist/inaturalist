@@ -2,6 +2,16 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Subscription do
+
+  it "knows if user subscriptions have been suspended" do
+    s = Subscription.make!
+    expect( Subscription.where(id: s.id).count ).to eq 1
+    expect( Subscription.where(id: s.id).with_unsuspended_users.count ).to eq 1
+    s.user.update_column(:subscriptions_suspended_at, Time.now)
+    expect( Subscription.where(id: s.id).count ).to eq 1
+    expect( Subscription.where(id: s.id).with_unsuspended_users.count ).to eq 0
+  end
+
   describe "to place" do
     let(:user) { User.make! }
     let(:place) { make_place_with_geom }

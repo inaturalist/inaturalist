@@ -11,6 +11,9 @@ class Subscription < ActiveRecord::Base
   cattr_accessor :subscribable_classes
   @@subscribable_classes ||= []
 
+  scope :with_unsuspended_users, -> {
+    joins(:user).where(users: { subscriptions_suspended_at: nil }) }
+
   def to_s
     "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
   end

@@ -13,9 +13,9 @@ module HasSubscribers
       return if self.included_modules.include?(HasSubscribers::InstanceMethods)
       include HasSubscribers::InstanceMethods
       
-      has_many :update_subscriptions, :class_name => "Subscription", :as => :resource, :inverse_of => :resource
-      has_many :subscribers, :through => :update_subscriptions, :source => :user
-      has_many :updates, :as => :resource
+      has_many :update_subscriptions, class_name: "Subscription", as: :resource, inverse_of: :resource
+      has_many :subscribers, through: :update_subscriptions, source: :user
+      has_many :updates, as: :resource
       
       cattr_accessor :notifying_associations
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
@@ -206,7 +206,7 @@ module HasSubscribers
           end
         end
         
-        subscribable.update_subscriptions.find_each do |subscription|
+        subscribable.update_subscriptions.with_unsuspended_users.find_each do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
           next if subscription.created_at > notifier.updated_at
           next if subscription.has_unviewed_updates_from(notifier)

@@ -56,6 +56,13 @@ namespace :inaturalist do
     # delete anything that may be left in Elasticsearch
     Elasticsearch::Model.client.delete_by_query(index: Update.index_name,
       body: { query: { range: { id: { lte: last_id_to_delete } } } })
+
+    # suspend subscriptions of users with no viewed updates
+    Update.select(:subscriber_id).group(:subscriber_id).having("max(viewed_at) IS NULL").
+      order(:subscriber_id).pluck(:subscriber_id).in_groups_of(500, false) do |batch|
+      User.where(id: batch.compact).where(subscriptions_suspended_at: nil).
+        update_all(subscriptions_suspended_at: Time.now)
+    end
   end
 
   desc "Delete expired S3 photos"
