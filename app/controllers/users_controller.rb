@@ -664,6 +664,7 @@ protected
       :prefers_community_taxa,
       :prefers_location_details,
       :prefers_receive_mentions,
+      :prefers_redundant_identification_notifications,
       :site_id,
       :time_zone
     )
