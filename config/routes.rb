@@ -430,6 +430,7 @@ Rails.application.routes.draw do
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
+      get :queries
     end
     resource :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       collection do

@@ -1,0 +1,17 @@
+.vis {
+  height: 300px;
+}
+.spark {
+  width: 100%;
+  height: 40px;
+}
+.spark path {
+  stroke: deeppink;
+  stroke-width: 1;
+  fill: none;
+}
+.sparks label {
+  text-align: center;
+  font-size: smaller;
+  color: #777;
+}

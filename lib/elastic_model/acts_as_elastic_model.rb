@@ -151,6 +151,9 @@ module ActsAsElasticModel
             type: __elasticsearch__.document_type,
             body: prepare_for_index(batch)
           })
+          if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
+            where(id: batch).update_all(last_indexed_at: Time.now)
+          end
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_index! failed: #{ e }"
@@ -177,6 +180,9 @@ module ActsAsElasticModel
         __elasticsearch__.index_document
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+        if respond_to?(:last_indexed_at) && !destroyed?
+          update_column(:last_indexed_at, Time.now)
+        end
       rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
         Logstasher.write_exception(e)
         Rails.logger.error "[Error] elastic_index! failed: #{ e }"

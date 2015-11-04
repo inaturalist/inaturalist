@@ -1,20 +1,8 @@
 - content_for(:extracss) do
-  = stylesheet_link_tag "admin/stats"
-  :css
-    .spark { width: 100%; height: 40px;}
-    .spark path {
-      stroke: deeppink;
-      stroke-width: 1;
-      fill: none;
-    }
-    .sparks label {
-      text-align: center;
-      font-size: smaller;
-      color: #777;
-    }
+  = stylesheet_link_tag :stats
 - content_for(:extrajs) do
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
-  = javascript_include_tag "admin/stats", "d3.min"
+  = javascript_include_tag :stats, "d3.min"
   :javascript
     var STATS_JSON = #{ @stats.to_json };
 .container
