@@ -776,6 +776,12 @@ describe User do
         without_delay { Identification.make!(observation: o, taxon: genus) }
         expect( u.updates.count ).to eq 1
       end
+      it "should allow notification if observer has no identification" do
+        obs = Observation.make!(user: u)
+        expect( obs.owners_identification ).to be_blank
+        without_delay { Identification.make!(observation: obs) }
+        expect( u.updates.count ).to eq 1
+      end
     end
   end
 

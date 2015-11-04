@@ -47,7 +47,8 @@ class Identification < ActiveRecord::Base
       ident.taxon_change_id.blank?
     },
     :if => lambda {|notifier, subscribable, subscription|
-      return true if subscribable.user.prefers_redundant_identification_notifications
+      return true if subscribable && subscribable.user && subscribable.user.prefers_redundant_identification_notifications
+      return true unless subscribable.owners_identification && notifier
       subscribable.owners_identification.taxon_id != notifier.taxon_id
     }
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
