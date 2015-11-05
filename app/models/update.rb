@@ -184,7 +184,7 @@ class Update < ActiveRecord::Base
   def self.eager_load_associates(updates, options = {})
     includes = options[:includes] || {
       :observation => [ :user, { :taxon => { :taxon_names => :place_taxon_names } },
-        { :photos => :flags}, { :projects => :users }, :stored_preferences,
+        { :photos => :flags}, :projects, :stored_preferences,
         :quality_metrics, :flags, :iconic_taxon ],
       :observation_field => [:user],
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],

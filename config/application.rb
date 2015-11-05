@@ -19,9 +19,6 @@ module Inaturalist
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
-    # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
@@ -37,7 +34,7 @@ module Inaturalist
     config.active_record.raise_in_transactional_callbacks = true
     
     # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
-    config.active_record.observers = :observation_sweeper, :user_sweeper
+    config.active_record.observers = [ :observation_sweeper, :user_sweeper, :update_observer ]
     
     config.time_zone = 'UTC'
     
