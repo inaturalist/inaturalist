@@ -128,7 +128,9 @@ module ActsAsElasticModel
           records = result.records.to_a
           elastic_ids = result.results.results.map{ |r| r.id.to_i }
           elastic_ids_to_delete = elastic_ids - records.map(&:id)
-          elastic_delete!(where: { id: elastic_ids_to_delete })
+          unless elastic_ids_to_delete.blank?
+            elastic_delete!(where: { id: elastic_ids_to_delete })
+          end
           WillPaginate::Collection.create(result.current_page, result.per_page,
             result.total_entries - elastic_ids_to_delete.count) do |pager|
             pager.replace(records)

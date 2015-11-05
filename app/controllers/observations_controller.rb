@@ -137,6 +137,7 @@ class ObservationsController < ApplicationController
 
       format.json do
         Observation.preload_for_component(@observations, logged_in: logged_in?)
+        Observation.preload_associations(@observations, :tags)
         render_observations_to_json
       end
       
