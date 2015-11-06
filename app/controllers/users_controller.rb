@@ -32,11 +32,11 @@ class UsersController < ApplicationController
     :if => Proc.new {|c| 
       (c.params.keys - %w(action controller format)).blank?
     }
-  caches_action :updates_count,
-    expires_in: 15.minutes,
-    cache_path: Proc.new { |c|
-      updates_count_path(user_id: c.instance_variable_get("@current_user").id)
-    }
+  # caches_action :updates_count,
+  #   expires_in: 15.minutes,
+  #   cache_path: Proc.new { |c|
+  #     updates_count_path(user_id: c.instance_variable_get("@current_user").id)
+  #   }
   cache_sweeper :user_sweeper, :only => [:update]
   
   def new
