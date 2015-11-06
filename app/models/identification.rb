@@ -49,8 +49,9 @@ class Identification < ActiveRecord::Base
     :if => lambda {|notifier, subscribable, subscription|
       return true unless notifier && subscribable && subscription
       return true if subscription.user && subscription.user.prefers_redundant_identification_notifications
-      subscribers_identification = subscribable.identifications.detect{|i| i.user_id == subscription.user_id}
+      subscribers_identification = subscribable.identifications.current.detect{|i| i.user_id == subscription.user_id}
       return true unless subscribers_identification
+      return true unless subscribers_identification.body.blank?
       subscribers_identification.taxon_id != notifier.taxon_id
     }
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
