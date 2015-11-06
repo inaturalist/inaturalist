@@ -248,6 +248,7 @@ class Update < ActiveRecord::Base
     updates_scope = Update.where(id: updates)
     updates_scope.update_all(viewed_at: Time.now)
     Update.elastic_index!(scope: updates_scope)
+    ActionController::Base.new.send(:expire_action, FakeView.updates_count_path(user_id: subscriber_id))
   end
 
   def self.delete_and_purge(*args)
