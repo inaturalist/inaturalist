@@ -696,7 +696,8 @@ class Taxon < ActiveRecord::Base
         per_page: options[:limit] - chosen_photos.size,
         license: '1,2,3,4,5,6', # CC licenses
         extras: 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
-        sort: 'relevance'
+        sort: 'relevance',
+        safe_search: '1'
       }
       r = FlickrCache.fetch(flickr, "photos", "search", search_params)
       r = [] if r.blank?
