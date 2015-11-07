@@ -2,7 +2,7 @@
   taxon ||= @taxon
   photos ||= taxon.photos.limit(24)
 -%>
-<% if !photos.size == 0 %>
+<% if photos.size > 0 %>
   <% if taxon.species_or_lower? %>
     <% if [Photo, Photo.subclasses].flatten.include?(photos[0].class) %>
       <% if photos.first.id %>
