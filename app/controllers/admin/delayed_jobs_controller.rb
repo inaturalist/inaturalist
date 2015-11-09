@@ -21,4 +21,11 @@ class Admin::DelayedJobsController < ApplicationController
     @jobs = Delayed::Job.pending.limit(100)
   end
 
+  def unlock
+    if params[:id] && delayed_job = Delayed::Job.find_by_id(params[:id])
+      delayed_job.update_columns(locked_by: nil, locked_at: nil)
+    end
+    redirect_to :active_admin_delayed_jobs
+  end
+
 end

@@ -12,7 +12,12 @@
         %tr
           %td= dj.host
           %td= dj.pid
-          %td= t(:n_ago, n: time_ago_in_words(dj.locked_at)) if dj.locked_at
+          %td
+            - if dj.locked_at
+              = t(:n_ago, n: time_ago_in_words(dj.locked_at))
+              %span.unlock<
+                = link_to "unlock", unlock_admin_delayed_job_path(dj.id),
+                  data: { confirm: "Are you sure this job is no longer running?" }
           %td
             - dj.dashboard_info.each do |k,v|
               %strong= "#{ k }:"
