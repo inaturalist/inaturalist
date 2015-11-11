@@ -250,17 +250,17 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   ##### Rules ###############################################################
-  def observed_in_place?(place)
+  def observed_in_place?(place = nil)
     return false if place.blank?
     place.contains_lat_lng?(
-      observation.private_latitude || observation.latitude, 
+      observation.private_latitude || observation.latitude,
       observation.private_longitude || observation.longitude)
   end
   
-  def observed_in_bounding_box_of?(place)
+  def observed_in_bounding_box_of?(place = nil)
     return false if place.blank?
     place.bbox_contains_lat_lng?(
-      observation.private_latitude || observation.latitude, 
+      observation.private_latitude || observation.latitude,
       observation.private_longitude || observation.longitude)
   end
   
@@ -272,7 +272,7 @@ class ProjectObservation < ActiveRecord::Base
     !observation.taxon_id.blank?
   end
   
-  def in_taxon?(taxon)
+  def in_taxon?(taxon = nil)
     return false if taxon.blank?
     return true if observation.taxon.blank?
     taxon.id == observation.taxon_id || taxon.ancestor_of?(observation.taxon)
@@ -285,7 +285,8 @@ class ProjectObservation < ActiveRecord::Base
     list.listed_taxa.detect{|lt| lt.taxon_id == observation.taxon_id}
   end
 
-  def has_observation_field?(observation_field)
+  def has_observation_field?(observation_field = nil)
+    return false if observation_field.blank?
     observation.observation_field_values.where(:observation_field_id => observation_field).exists?
   end
 

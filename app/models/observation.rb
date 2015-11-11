@@ -2086,10 +2086,6 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def tag_list
-    ActsAsTaggableOn.default_parser.new(tags).parse
-  end
-
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
