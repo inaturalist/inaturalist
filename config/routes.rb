@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       get :count
       get :new_messages
     end
+    resources :flags
   end
 
   post '/oauth/assertion_token' => 'provider_oauth#assertion'

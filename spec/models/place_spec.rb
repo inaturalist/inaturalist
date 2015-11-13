@@ -38,6 +38,16 @@ describe Place, "creation" do
     expect(p.check_list.taxa).to include t
   end
 
+  it "should create listed taxa with stats set" do
+    t = Taxon.make!(rank: Taxon::SPECIES)
+    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    Delayed::Worker.new.work_off
+    p.reload
+    lt = p.check_list.listed_taxa.where(taxon_id: t.id).first
+    expect( lt.last_observation_id ).not_to be_blank
+  end
+
   it "should not allow titles that start with numbers" do
     p = Place.make(:name => "14")
     expect(p).to_not be_valid
