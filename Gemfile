@@ -23,6 +23,7 @@ gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-passenger', '~> 0.0'
 gem 'chroma'
 gem 'chronic'
+gem 'coffee-rails'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
