@@ -1,0 +1,9 @@
+#result-grid.container-fluid{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='grid' || busy" }
+  .col-xs-3.cell{ "ng-repeat": "o in observations" }
+    %a{ href: "/observations/{{ o.id }}" }
+      .media-object{ style: "background-image: url({{ o.photo( ) }})" }
+    .details
+      %span.user {{ o.user.login }}
+      %span.title {{ o.species_guess }}
+      %span.comments {{ o.num_identification_agreements }}
+      %span.favorites {{ o.cached_votes_total }}

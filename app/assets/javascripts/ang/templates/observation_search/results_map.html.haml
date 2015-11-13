@@ -1,0 +1,18 @@
+#obs-container
+  #map{ enable_show_all_layer: 'false' }
+  #obs.col-xs-4
+    .div{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='map' || busy", "infinite-scroll-parent": "true", "infinite-scroll-distance": 0 }
+      .media.observation{ "ng-repeat": "o in observations" }
+        .media-left
+          %a{:href => "/observations/{{ o.id }}"}
+            .media-object{style: "background-image: url({{ o.photo( ) }})"}
+        .media-body
+          %h4.ng-cloak= FakeView.link_to "{{ o.species_guess }}", "/observations/{{ o.id }}"
+          .username.ng-cloak= "{{ o.user.login }}"
+          .date.ng-cloak= "{{ o.observed_on }}"
+          .location.ng-cloak= "{{ o.place_guess }}"
+          .actions.ng-cloak
+            %span.identifications
+              {{ o.identifications_count }}
+              =t :identifications
+            %span.quality_grade= "{{ o.quality_grade }}"

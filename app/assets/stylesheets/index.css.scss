@@ -89,6 +89,12 @@ html, body {height: 100%;}
   cursor: pointer;
 }
 
+#map-legend {
+  position: absolute;
+  top: -366px;
+  left: -320px;
+}
+
 .gmapv3legend .title {
   font-size: 15px;
   line-height: 32px;
@@ -105,6 +111,7 @@ html, body {height: 100%;}
 .gmapv3legend .ul-container ul.inat-overlay {
   width: 200px;
   margin: 0px;
+  padding: 0px;
 }
 
 .gmapv3legend .ul-container ul.inat-overlay.left {
@@ -153,7 +160,6 @@ html, body {height: 100%;}
 }
 
 .gmapv3legend ul.inat-overlay .icon img {
-  width: 16px;
   height: 16px;
   padding: 0px 4px;
 }

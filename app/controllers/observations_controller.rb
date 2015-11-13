@@ -49,7 +49,8 @@ class ObservationsController < ApplicationController
                             :taxon_stats,
                             :user_stats,
                             :community_taxon_summary,
-                            :map]
+                            :map,
+                            :search_prototype]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review ]
@@ -57,7 +58,7 @@ class ObservationsController < ApplicationController
   blocks_spam :only => load_only, :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram, :search_prototype]
+  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
@@ -2769,7 +2770,7 @@ class ObservationsController < ApplicationController
     if showing_leaves
       leaf_ids = Observation.elastic_taxon_leaf_ids(prepare_counts_elastic_query(search_params))
       @rank_counts[:leaves] = leaf_ids.count
-      # we fetch extra extra taxa above so we can safely filter
+      # we fetch extra taxa above so we can safely filter
       # out the non-leaf taxa from the result
       @species_counts.delete_if{ |s| !leaf_ids.include?(s["taxon_id"]) }
     end

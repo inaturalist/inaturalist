@@ -113,9 +113,11 @@ autocompleter.taxonTemplate = function( result, fieldValue ) {
 autocompleter.resetTaxonSelection = function( wrappingDiv, options ) {
   options = options || { };
   options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
-  options.taxon_id_el.val( null );
-  wrappingDiv.find(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
-  if( options.afterUnselect ) { options.afterUnselect( ); }
+  if( options.taxon_id_el.val( ) !== null ) {
+    options.taxon_id_el.val( null );
+    wrappingDiv.find(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
+    if( options.afterUnselect ) { options.afterUnselect( ); }
+  }
 };
 
 autocompleter.selectedTaxonID = function( options ) {

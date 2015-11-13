@@ -181,6 +181,10 @@ GEM
       nokogiri
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
+    angular-rails-templates (0.2.0)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
     apipie-rails (0.3.1)
       json
     arel (6.0.3)
@@ -626,6 +630,7 @@ DEPENDENCIES
   addressable
   airbrake
   ancestry
+  angular-rails-templates
   apipie-rails
   aws-sdk
   better_errors

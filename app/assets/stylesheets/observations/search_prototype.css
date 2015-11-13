@@ -1,8 +1,69 @@
-.observation {
-  border-bottom: 1px solid #eee;
+#header {
+  margin-bottom: 0px;
+}
+#main-container {
+  width: 100%;
+}
+#results {
+  width: 100%;
+  min-height: 420px;
+  background: #eee;
+  display: inline-block;
+}
+#results .btn-group {
+  position: absolute;
+  z-index: 2;
+  left: 120px;
+  margin-top: 11px;
+}
+#result-grid {
+  margin-top: 55px;
+  display: inline-block;
+}
+#result-table {
+  margin-top: 55px;
+}
+#result-grid .media-object {
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin: 0px auto;
+}
+#result-grid .details {
+  margin: 0px auto;
+  background: white;
+  width: 200px;
+  height: 50px;
+  padding: 5px;
+}
+#result-grid .title {
+  font-weight: bold;
+  display: block;
+}
+#result-grid .user {
+  float: right;
+}
+#result-grid .comments:before {
+  content: "com:";
+}
+#result-grid .favorites:before {
+  content: "faves:";
+}
+
+#result-grid .cell {
+  padding: 20px;
+}
+.form {
+  background: #fff;
+}
+.ng-cloak { display:none; }
+.observation:not(:first-child) {
+  border-top: 1px solid #eee;
 }
 .bootstrap .observation.media { margin-top: 0; }
-.observation .media-object {
+.media-object {
   display: block;
   min-height: 100px;
   width: 120px;
@@ -12,24 +73,72 @@
 }
 #map {
   width: 100%;
-  height: 600px;
+  height: 510px;
   background-color: LightBlue;
 }
-
-#main-container { position: relative; }
+#obs-container { position: relative; }
 #obs {
-  position: absolute; 
-  top: 100px; 
-  right: 100px;
+  position: absolute;
+  top: 45px;
+  right: 50px;
   background-color: white;
   padding: 0px;
   height: 420px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
+#filters {
+  width: 90%;
+  margin: 0px auto;
+}
+#filters h1 {
+  float: left;
+}
+#filters .pull-right {
+  margin-top: 20px;
+}
 
 #filter-dropdown {
-  width: 850px;
+  width: 600px;
 }
 #filters .ac-chooser { display: inline-block; }
 .bootstrap .primary-filters .form-control {width: 250px;}
+#filter-container .dropdown-menu {
+  margin-top: 80px;
+}
+#stats-container {
+  height: 65px;
+  background: #565656;
+  color: white;
+  font-size: 17px;
+  padding-left: 40px;
+}
+#stats-container > div {
+  height: 100%;
+}
+#stats-container .geo {
+  padding: 0px;
+  line-height: 65px;
+  background: none;
+  border: 0px;
+  cursor: pointer;
+}
+#stats-container .geo.active {
+  color: #86a91c;
+}
+#stats-container .geo:first-child:after {
+  content: " >";
+  margin: 0px 10px;
+}
+
+#stats-container .stat-title {
+  font-weight: 100;
+  text-transform: uppercase;
+  padding: 10px 0px 5px;
+}
+#stats-container .stat-value {
+  font-weight: bold;
+}
+#stats-container .green {
+  background: #86a91c;
+}

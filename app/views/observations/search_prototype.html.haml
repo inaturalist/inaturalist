@@ -1,193 +1,54 @@
 - content_for :extrajs do
-  = javascript_include_tag 'angular/angular'
-  = javascript_include_tag 'angular-resource/angular-resource'
-  = javascript_include_tag 'observations/search_prototype'
-  = javascript_include_tag 'angular-google-places-autocomplete/src/autocomplete'
+  = javascript_include_tag "angular_bundle"
+  = javascript_include_tag "ang/controllers/observation_search"
 - content_for :extracss do
   = stylesheet_link_tag "observations/search_prototype"
-  = stylesheet_link_tag 'angular-google-places-autocomplete/src/autocomplete'
+  = stylesheet_link_tag "angular-google-places-autocomplete/src/autocomplete"
 
-.container{'ng-app' => "ObservationSearchPrototype"}
-  .row
+#main-container{ "ng-app": "ObservationSearch", "ng-controller": "SearchController" }
+  .row.form
     .col-xs-12
-      #filters{"ng-controller" => "FiltersCtrl"}
-        .row
-          .col-xs-4
-            %h1=t :observations
-          .col-xs-8
-            .form-inline.pull-left.primary-filters
-              %input.form-control{placeholder: "Taxon", type: "text", name: "taxon_name"}
-              %input{type: 'hidden', name: 'taxon_id'}
-              in
-              / ng-model-options="{debounce: 1000}" means angular will wait 1000 ms after the last change in the UI before changing the bound model value
-              / g-places-autocomplete triggers the Google place autocomplete directive
-              %input.form-control{:name => "place_name", "ng-model-options" => "{debounce: 1000}", :placeholder => "Place name", :type => "text", "g-places-autocomplete" => "", "ng-model" => "place"}
-            #filter-container.btn-group.pull-right
-              %button.btn.btn-default.dropdown-toggle
-                Filters
-                %span.caret
-              .dropdown-menu.dropdown-menu-right
-                #filter-dropdown.container
-                  .row
-                    .col-xs-4
-                      .row
-                        .col-xs-6
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "0", "ng-false-value" => ""}
-                              =t :wild
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
-                              =t :verifiable
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value" => "'any'"}
-                              =t :research_quality
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
-                              =t :threatened
-                        .col-xs-6
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
-                              =t :introduced
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
-                              =t :popular
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', disabled: true}
-                              =t :first_report
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.has_sounds", "ng-false-value" => ""}
-                              =t :has_sounds
-                          .checkbox
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params.has_photos", "ng-false-value" => ""}
-                              =t :has_photos
-                      .row
-                        .col-xs-12
-                          .form-group
-                            %label{for: 'params-q'} Description / Tags
-                            %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "blue, butterfly, etc."}
-                    .col-xs-4
-                      .row
-                        .col-xs-12
-                          - Taxon::ICONIC_TAXA.each do |t|
-                            %label
-                              %input{type: 'checkbox', "ng-model" => "params._iconic_taxa.#{t.name}", :value => t.name}
-                              = t.name
-                      .row
-                        .col-xs-12
-                          %label{for: 'params-hrank'}=t :rank
-                      .row
-                        .col-xs-6
-                          %select#params-hrank.form-control{"ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}"}
-                            %option{value: ''}=t :high
-                            - for rank in Taxon::VISIBLE_RANKS
-                              %option{value: rank}= t("ranks.#{rank}", :default => rank).downcase
-                        .col-xs-6
-                          %select#params-lrank.form-control{"ng-model" => "params.lrank", "ng-model-options" => "{debounce: 1000}"}
-                            %option{value: ''}=t :low
-                            - for rank in Taxon::VISIBLE_RANKS
-                              %option{value: rank}= t("ranks.#{rank}", :default => rank).downcase
-                    .col-xs-4
-                      .row
-                        .col-xs-12
-                          %label=t :dates
-                      .row
-                        .col-xs-12
-                          %label.radio-inline
-                            %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
-                              =t :any
-                      .row
-                        .col-xs-12
-                          %label.radio-inline
-                            %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
-                            %span.date-type
-                              Exact date:
-                              %input{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-disabled" => "params.dateType != 'exact'"}
-                      .row
-                        .col-xs-12
-                          %label.radio-inline
-                            %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
-                            %span.date-type
-                              Range:
-                              %input{type: 'text', placeholder: 'Start', "ng-model" => "params.d1", "ng-disabled" => "params.dateType != 'range'"}
-                              %input{type: 'text', placeholder: 'End', "ng-model" => "params.d2", "ng-disabled" => "params.dateType != 'range'"}
-                      .row
-                        .col-xs-12
-                          %label.radio-inline
-                            %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
-                            %span.date-type
-                              Month(s):
-                              = select_tag :month, options_for_select([[t(:month), '']] + (1..12).to_a.map{|n| [t("date_format.month.#{Date::MONTHNAMES[n].downcase}"),n]}, :selected => @observed_on_month), "ng-model" => "params.month", "ng-disabled" => "params.dateType != 'month'"
-                      .row
-                        .col-xs-12
-                          %label{for: 'params-order-by'}=t :sort_by
-                      .row
-                        .col-xs-6
-                          %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}"}
-                            = observations_order_by_options
-                        .col-xs-6
-                          %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
-                            = options_for_select(%w(asc desc).map{|o| t(o)}, @order)
-                  .row
-                    .col-xs-12
-                      %button.button.btn-default{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
-                        =t :more_filters
-                      #more-filters.collapse
-                        .row
-                          .col-xs-4
-                            .form-group
-                              %label{for: 'params-user-id'} Person
-                              %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "Name or username"}
-                            .form-group
-                              %label{for: 'params-projects'} Project
-                              %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "Project name"}
-                          .col-xs-4
-                            %label Location data
-                            %br
-                            Restrict results to
-                            %br
-                            %label.radio-inline
-                              %input{type: 'radio', name: 'geo-type', value: 'place', "ng-model" => "params.geoType"}
-                              =t :places
-                            %label.radio-inline
-                              %input{type: 'radio', name: 'geo-type', value: 'map', "ng-model" => "params.geoType"}
-                              =t :map_view
-                            %label.radio-inline
-                              %input{type: 'radio', name: 'geo-type', value: 'world', "ng-model" => "params.geoType"}
-                              =t :worldwide
-                          .col-xs-4
-                            %label Photo licensing
-                            %select.form-control{"ng-model" => "params.photo_license"}
-                              %option{value: ''}=t :all
-                              - for code, name, desc in Observation::LICENSES do
-                                %option{value: code}= code
-  #main-container.row{"ng-controller" => "MainCtrl"}
-    #map{ enable_show_all_layer: 'false' }
-    #obs.col-xs-4
-      .media.observation{"ng-repeat" => "o in observations"}
-        .media-left
-          %a{:href => "/observations/{{ o.id }}"}
-            .media-object{style: "background-image: url({{ o.photos[0].small_url }})"}
-        .media-body
-          %h4
-            = link_to "{{ o.species_guess }}", "/observations/{{ o.id }}"
-          .username
-            {{ o.user.login }}
-          .date
-            {{ o.observed_on }}
-          .location
-            {{ o.place_guess }}
-          .actions
-            %span.identifications
-              {{ o.identifications_count }}
-              =t :identifications
-            %span.quality_grade
-              {{ o.quality_grade }}
+      #filters
+        %h1= t :observations
+        #filter-container.btn-group.pull-right
+          %button.btn.btn-default.dropdown-toggle
+            Filters
+            %span.caret
+          .dropdown-menu.dropdown-menu-right
+            %div{ "filter-menu": true }
+        .form-inline.pull-right.primary-filters
+          %input.form-control{ placeholder: "Taxon", type: "search", name: "taxon_name" }
+          %input{ type: "hidden", name: "taxon_id" }
+          in
+          / ng-model-options="{debounce: 1000}" means angular will wait 1000 ms after the last change in the UI before changing the bound model value
+          / g-places-autocomplete triggers the Google place autocomplete directive
+          %input.form-control{ name: "place_name", "ng-model-options": "{debounce: 1000}", placeholder: "Place name", type: "text", "g-places-autocomplete": "", "ng-model": "place" }
+  #stats-container
+    .col-xs-4
+      %span.geo{ "ng-class": "{ active: params.geoType=='world' }", "ng-click": "setGeoFilter('world')"}
+        The World
+      %span.geo{ "ng-class": "{ active: params.geoType=='map' }", "ng-click": "setGeoFilter('visible')"}
+        Visible Map
+    .col-xs-2.green
+      .stat-title= "Observations"
+      .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
+    .col-xs-2
+      .stat-title= "Species"
+      .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
+    .col-xs-2
+      .stat-title= "Identifiers"
+      .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
+    .col-xs-2
+      .stat-title= "Observers"
+      .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
+  #results
+    .btn-group
+      %button.button.btn-default{ "ng-click": "changeView('map')" }
+        %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
+      %button.button.btn-default{ "ng-click": "changeView('grid')" }
+        %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
+      %button.button.btn-default{ "ng-click": "changeView('table')" }
+        %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
+    %div{ "results-map": true, "ng-show": "currentView=='map'", "ng-controller": "MapController" }
+    %div{ "results-grid": true, "ng-show": "currentView=='grid'", "ng-controller": "GridController" }
+    %div{ "results-table": true, "ng-show": "currentView=='table'", "ng-controller": "TableController" }

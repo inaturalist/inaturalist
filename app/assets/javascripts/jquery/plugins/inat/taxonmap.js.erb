@@ -121,13 +121,13 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     // passing in this DIV.
     var legendControlDiv = document.createElement('div');
     var legendControl = new iNaturalist.LegendControl(legendControlDiv, map);
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControlDiv);
+    map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(legendControlDiv);
 
     // Create the DIV to hold the control and call the CenterControl() constructor
     // passing in this DIV.
     var legendDiv = document.createElement('div');
     var legend = new iNaturalist.Legend(legendDiv, map);
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+    map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(legendDiv);
   }
 
   // All Observations layer

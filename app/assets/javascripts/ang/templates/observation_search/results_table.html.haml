@@ -1,0 +1,20 @@
+#result-table.container-fluid
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Media
+        %th Name
+        %th User
+        %th Observed
+        %th Place
+        %th Added
+    %tbody{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='table' || busy" }
+      %tr{ "ng-repeat": "o in observations" }
+        %td.media.observation
+          %a{ href: "/observations/{{ o.id }}" }
+            .media-object{ style: "background-image: url({{ o.photo( ) }})" }
+        %td= FakeView.link_to "{{ o.species_guess }}", "/observations/{{ o.id }}"
+        %td {{ o.user.login }}
+        %td {{ o.observed_on }}
+        %td {{ o.place_guess }}
+        %td {{ o.created_at }}
