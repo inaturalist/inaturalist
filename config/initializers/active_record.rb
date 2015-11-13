@@ -131,6 +131,13 @@ module ActiveRecord
     end
   end
 
+  class ActiveRecord::ConnectionAdapters::PostGISAdapter::MainAdapter
+    def active_queries
+      User.connection.execute("SELECT * FROM pg_stat_activity WHERE state = 'active' ORDER BY state_change ASC").
+        to_a.delete_if{ |r| r["query"] =~ /SELECT \* FROM pg_stat_activity/ }
+    end
+  end
+
   # MONKEY PATCH
   # pluck_all selects just the columns needed and constructs a hash with their values
   # In rails 4, this is a feature of the "pluck" itself (the ability to take multiple argumetns)

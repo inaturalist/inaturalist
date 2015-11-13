@@ -7,11 +7,8 @@ class WelcomeController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @announcement = Announcement.where('placement = \'welcome/index\' AND ? BETWEEN "start" AND "end"', Time.now.utc).last
-        @observations_cache_key = "#{SITE_NAME}_#{I18n.locale}_welcome_observations"
-        unless fragment_exist?(@observations_cache_key)
-          @observations = load_observations_with_geo_and_good_photos
-        end
+        @announcement = Announcement.where(placement: "welcome/index").
+          where('? BETWEEN "start" AND "end"', Time.now.utc).last
         @google_webmaster_verification = @site.google_webmaster_verification if @site
         unless @page
           if logged_in?
@@ -23,12 +20,6 @@ class WelcomeController < ApplicationController
       end
       format.mobile
     end
-  end
-
-  def load_observations_with_geo_and_good_photos(number_to_load = 4)
-    params = { with_photos: true, with_geo: true, per_page: number_to_load }
-    observations = Observation.elastic_query(params, site: @site)
-    observations
   end
 
   def toggle_mobile

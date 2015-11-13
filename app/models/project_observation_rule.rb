@@ -35,10 +35,10 @@ class ProjectObservationRule < Rule
       thing_it_has = operator.split('_')[1..-1].join('_').gsub(/\?/, '')
       I18n.t(:must_have_x, :x => I18n.t(thing_it_has, :default => thing_it_has.humanize.downcase))
     elsif super.include? 'must be in taxon'
-      taxon_rule=super.split(' taxon ')
-      I18n.t("rules_types.#{taxon_rule.first.gsub(' ','_')}", :default=>super) + ' ' + taxon_rule.last
+      taxon_rule = super.split(' taxon ')
+      I18n.t("rules_types.#{taxon_rule.first.gsub(' ','_')}", default: super) + ' ' + taxon_rule.last
     else
-      I18n.t("rules_types.#{super.gsub(' ','_')}", :default=>super)
+      I18n.t("rules_types.#{super.gsub(' ','_')}", default: super)
     end
   end
 end

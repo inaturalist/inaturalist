@@ -134,7 +134,9 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
         Project.update_observed_taxa_count(@project.id)
 
         # Do a mass refresh of the project taxa.
-        Project.refresh_project_list(@project.id, :taxa => observations.collect(&:taxon_id), :add_new_taxa => true)
+        Project.refresh_project_list(@project.id,
+          taxa: observations.collect(&:taxon_id).uniq,
+          add_new_taxa: true)
       end
     end
   end

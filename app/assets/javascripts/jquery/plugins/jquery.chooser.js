@@ -34,6 +34,7 @@
         minLength: 0,
         select: function(ui, event) {
           if (event.item.forceRemote) {
+            cache = {}
             self.options.source = collectionUrl
             $(ui.target).autocomplete('search', ui.target.value)
           } else if (event.item.clear) {
@@ -78,7 +79,6 @@
           if (self.request) {
             self.request.abort()
           }
-          
           self.request = $.getJSON(collectionUrl, self.options.queryParam+"="+request.term, function(json) {
             markup.chooseButton.showInlineBlock()
             markup.loadingButton.hide()

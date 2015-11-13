@@ -24,8 +24,7 @@
         WIKIPEDIA_DESCRIPTION_URL = #{url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe},
         FLICKR_API_KEY = #{FLICKR_API_KEY.inspect.html_safe},
         NEARBY_PLACES = #{json_escape @nearby_places.to_json.html_safe},
-        INSIDE_PLACES = #{json_escape @inside_places.to_json.html_safe},
-        TILESTACHE_SERVER = #{CONFIG.tile_servers.tilestache.inspect.html_safe}
+        INSIDE_PLACES = #{json_escape @inside_places.to_json.html_safe}
   = javascript_include_tag 'map_bundle',
     "jquery/plugins/jquery.infinitescroll.min",
     "taxon_guide", "places/show"

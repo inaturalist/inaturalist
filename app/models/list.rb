@@ -278,7 +278,9 @@ class List < ActiveRecord::Base
     else
       lists.each do |list|
         Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
-        list.delay(:priority => INTEGRITY_PRIORITY, :queue => list.is_a?(CheckList) ? "slow" : "default").refresh(options)
+        list.delay(priority: INTEGRITY_PRIORITY, queue: list.is_a?(CheckList) ? "slow" : "default",
+          unique_hash: { "#{ list.class.name }::refresh": { list_id: list.id, options: options } }
+        ).refresh(options)
       end
     end
     Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"

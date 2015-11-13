@@ -529,8 +529,8 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should filter by week of the year" do
-      o1 = Observation.make!(:observed_on_string => "2012-01-05 13:13")
-      o2 = Observation.make!(:observed_on_string => "2010-03-01 13:13")
+      o1 = Observation.make!(:observed_on_string => "2012-01-05T13:13+00:00")
+      o2 = Observation.make!(:observed_on_string => "2010-03-01T13:13+00:00")
       get :index, :format => :json, :week => 1
       json = JSON.parse(response.body)
       expect(json.detect{|obs| obs['id'] == o1.id}).not_to be_blank
@@ -928,6 +928,8 @@ shared_examples_for "an ObservationsController" do
           expect(r.id).not_to be_blank
         end
         Delayed::Worker.new(quiet: true).work_off
+        [ o1, o2 ].map(&:reload)
+        [ o1, o2 ].map(&:elastic_index!)
       end
       it "should filter by yes" do
         expect( Observation.count ).to eq 2

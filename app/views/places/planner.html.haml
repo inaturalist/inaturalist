@@ -1,0 +1,93 @@
+- content_for :extracss do
+  :css
+    #map { height: 400px; }
+- content_for :extrajs do
+  :javascript
+    function makeMapMarkers( json ) {
+      window.markers = window.markers || []
+      for(var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null)
+        markers[i] = null
+      }
+      window.markers = []
+      for(var i = 0; i < json.data.length; i++) {
+        var pt = new google.maps.LatLng(json.data[i].latitude, json.data[i].longitude),
+            mk = new google.maps.Marker({
+              position: pt,
+              title: json.data[i].name
+            })
+        mk.place = json.data[i]
+        mk.setMap(window.map)
+        mk.addListener('click', function() {
+          window.infowindow.setContent(
+            '<a href="/places/'+this.place.id+'">'+this.place.name+'</a>'
+          )
+          window.infowindow.open(map, this)
+        })
+        markers.push(mk)
+      }
+    }
+    $(document).ready(function() {
+      window.map = iNaturalist.Map.createMap()
+      window.infowindow = new google.maps.InfoWindow({
+        content: 'Loading...'
+      });
+      window.table = $('#data').DataTable({
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bInfo": false,
+        "aaSorting": [[3,'desc']],
+        'ajax': {
+          url: '/places/planner.json',
+          dataSrc: function( json ) {
+            makeMapMarkers( json )
+            return json.data
+          }
+        },
+        'columns': [
+          {'data': 'name'},
+          {'data': 'distance'},
+          {
+            'data': 'Directions',
+            'render': function(data, type, full, meta) {
+              return '<a href="http://maps.google.com/?q='+full.latitude+','+full.longitude+'">Google</a>'
+            }
+          },
+          {'data': 'observations_count'},
+          {'data': 'taxa_count'}
+        ]
+      })
+      var mapChangeListener = function() {
+        var center = map.getCenter(),
+            url = '/places/planner.json?lat='+center.lat()+'&lng='+center.lng()
+        table.ajax.url(url).load();
+      }
+      map.addListener('dragend', mapChangeListener)
+      map.addListener('zoom_changed', mapChangeListener)
+    })
+.container-fluid
+  .row
+    .col-xs-12
+      %h1 Nearby Open Space
+  .row
+    .col-xs-4
+      #map
+      Drag the map around to find places to visit.
+    .col-xs-8
+      %table#data.table
+        %thead
+          %tr
+            %th=t :place
+            %th Distance (km)
+            %th Directions
+            %th=t :observations
+            %th=t :taxa
+        / %tbody
+        /   - for row in @data
+        /     %tr
+        /       %td= link_to row[:name], place_path(row[:id])
+        /       %td
+        /         = link_to "Google Maps", "http://maps.google.com/?q=#{row[:latitude]},#{row[:longitude]}"
+        /       %td= row[:observations_count]
+        /       %td= row[:taxa_count]

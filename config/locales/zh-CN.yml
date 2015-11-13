@@ -97,6 +97,7 @@ zh-CN:
   actions: 操作
   activate_user: 激活用户
   active: 激活
+  activity_settings: 活跃设置
   adapted_by_name_from_a_work_by_original: 改编自由 %{original} 创作的作品 %{name}
   add: 添加
   add_a: 添加一个
@@ -521,6 +522,7 @@ zh-CN:
   conservation_status: 保护状态
   conservation_status_descriptions:
     description: 简单描述为什么列出这个。
+    authority: 宣布此状态的组织。如果*您*希望被列为权威，您可以跳过这条。
   contest: 竞赛
   contributions: 贡献
   contributors_to_project: 贡献至 %{project}
@@ -544,6 +546,7 @@ zh-CN:
     attribution_sharealike_license: 署名-相同方式共享许可协议
     attribution_noderivs_license: 署名-禁止演绎许可协议
     gnu_free_documentation_license: GNU自由文档协议
+  copyright_holder: 版权所有人
   couldnt_change_your_password: 无法更改您的密码：%{e}
   couldnt_log_you_in_x: 无法记录您作为“%{x}”
   countries: 国家
@@ -944,7 +947,7 @@ zh-CN:
   last_confirmed_observation: 最近确认的观察
   last_inat_observation: 最近 %{site_name} 观察
   last_observation: 最近观察
-  lat: Lat
+  lat: 纬度
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
@@ -1057,6 +1060,13 @@ zh-CN:
       range: 范围
   mark_as_reviewed: 标记为已复核
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist网络</a>的成员
+  mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
+  mentioned_you_in_noun_by_html: '%{user} 在 %{noun} 通过 %{by} 提到了您'
+  mentioned_you_in_a_x_on_noun_html: '%{user} 在 %{noun} 中的 %{x} 提到了您'
+  mentioned_you_in_an_x_on_noun_html: '%{user} 在 %{noun} 中的 %{x} 提到了您'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} 在 %{noun} 中的 %{x} 通过 %{by} 提到了您'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} 在 %{noun} 上的 %{x} 通过 %{by} 提到了您'
+  mentions: 提及
   message: 消息
   messages: 消息
   month: 月
@@ -1349,6 +1359,10 @@ zh-CN:
   select_one_or_more_photos: 请选择一个或多个照片
   select_photos_from_your_photo_stream: 从外部照片分享网站选择照片以转换至%{site_name}观察中。我们将从照片的元数据中填充日期、时间和位置，并尝试从标签查找物种名称。
   send: 发送
+  send_invite: 发送邀请
+  send_invites_to: 发送邀请至
+  send_me_reset_password_instructions: 向我发送有关重置密码的说明
+  send_the_invites: 发送邀请
   sending: 正在发送...
   separate_values_with_a_pipe: 用竖线分隔值，例如“1-5|6-10|a lot”或“yes|no|maybe”
   september: 九月
@@ -1528,7 +1542,6 @@ zh-CN:
   total_observations: 总计观察
   total_unique_observers: 总计独立观察者
   total_users: 总用户，
-  tree_browser: 树浏览器
   "true": 真
   trusted_project?: 可信任的项目？
   try_wikipedia: 尝试维基百科？
@@ -2078,6 +2091,20 @@ zh-CN:
     welcome:
       index:
         welcome_message_html: 至%{image}，在这里您可以<strong>记录</strong>您在自然中看见，与其他自然爱好者<strong>见面</strong>与<strong>了解</strong>有关自然世界的地方。
+        connect_with_nature: 连接自然
+        species_observed: 观察的物种
+        people_signed_up: 注册的人
+        how_it_works: 它是如何工作的
+        record_your_observations: 记录您的观察
+        discuss_your_findings: 讨论您看到的
+        contribute_to_science: 贡献科学
+        keep_track: 保持追踪
+        create_useful_data: 创建有用数据
+        learn_about_nature: 了解有关自然
+        run_a_bioblitz: 运行一个Bioblitz
+        who_uses_site_name: 谁使用 %{site_name}？
+        what_are_you_waiting_for: 您在等待什么？
+        join_today: 今天加入
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: 保存并编辑以添加附件

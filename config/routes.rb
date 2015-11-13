@@ -337,7 +337,6 @@ Rails.application.routes.draw do
       get 'names', :to => 'taxon_names#taxon'
     end
     collection do
-      get 'tree'
       get 'synonyms'
     end
   end
@@ -419,6 +418,9 @@ Rails.application.routes.draw do
   get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   resources :places do
+    collection do
+      get :planner
+    end
     member do
       get :merge
       post :merge
@@ -429,6 +431,18 @@ Rails.application.routes.draw do
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
+      get :queries
+    end
+    resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
+      member do
+        get :unlock
+      end
+      collection do
+        get :index
+        get :active
+        get :failed
+        get :pending
+      end
     end
   end
 

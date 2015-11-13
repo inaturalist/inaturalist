@@ -128,13 +128,9 @@ class LocalPhoto
 end
 
 def stub_config(options = {})
-  InatConfig.instance_eval do
-    options.each do |k,v|
-      define_method k do
-        @config[k] = v
-        method_missing k.to_sym
-      end
-    end
+  options.each do |k,v|
+    CONFIG.send("#{ k }=",
+      (v.is_a?(Hash) ? OpenStruct.new_recursive(v) : v))
   end
 end
 

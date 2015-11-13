@@ -140,6 +140,15 @@ describe ActsAsElasticModel do
         Observation.elastic_index!
         expect( Observation.elastic_search( ).count ).to eq 0
       end
+
+      it "sets last_index_at for Observations" do
+        obs = Observation.make!
+        obs.update_column(:last_indexed_at, 1.year.ago)
+        expect( obs.last_indexed_at ).to be < 1.minute.ago
+        Observation.elastic_index!
+        obs.reload
+        expect( obs.last_indexed_at ).to be > 1.minute.ago
+      end
     end
 
     describe "elastic_delete!" do
@@ -184,6 +193,15 @@ describe ActsAsElasticModel do
         expect( Taxon.elastic_search( ).count ).to eq 0
         taxon.elastic_index!
         expect( Taxon.elastic_search( ).count ).to eq 0
+      end
+
+      it "sets last_index_at for Observations" do
+        obs = Observation.make!
+        obs.update_column(:last_indexed_at, 1.year.ago)
+        expect( obs.last_indexed_at ).to be < 1.minute.ago
+        obs.elastic_index!
+        obs.reload
+        expect( obs.last_indexed_at ).to be > 1.minute.ago
       end
     end
   end

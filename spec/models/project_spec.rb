@@ -373,3 +373,29 @@ describe Project, "slug" do
     expect( p.slug ).to eq 'the-best-title'
   end
 end
+
+describe Project, "preferred_submission_model" do
+  it "should allow observations submitted by anybody when set to any" do
+    p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_ANYONE)
+    po = ProjectObservation.make!(project: p)
+    expect( po ).to be_valid
+  end
+  it "should allow observations submitted by curators when set to curators" do
+    p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_CURATORS)
+    po = ProjectObservation.make!(project: p, user: p.user)
+    expect( po ).to be_valid
+  end
+  it "should allow observations with no submitter when set to curators" do
+    p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_CURATORS)
+    po = ProjectObservation.make!(project: p)
+    expect( po ).to be_valid
+  end
+  it "should not allow observations submitted by non-curators when set to curators" do
+    p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_CURATORS)
+    pu = ProjectUser.make!(project: p)
+    po = ProjectObservation.make(project: p, user: pu.user)
+    expect( po ).not_to be_valid
+    po.save
+    expect( po ).not_to be_persisted
+  end
+end

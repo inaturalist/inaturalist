@@ -68,4 +68,17 @@ describe "Extensions" do
       end
     end
   end
+
+  describe OpenStruct do
+    describe "new_recursive" do
+      it "creates a resursive OpenStruct from a hash" do
+        h = { one: { two: { three: :go } } }
+        regular = OpenStruct.new(h)
+        recursive = OpenStruct.new_recursive(h)
+        expect( regular.one ).to be_a Hash
+        expect( recursive.one ).to be_a OpenStruct
+        expect( recursive.one.two.three ).to eq :go
+      end
+    end
+  end
 end

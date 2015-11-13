@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
   before_filter :limit_page_param_for_search, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
+  before_filter :curator_required, :only => [:planner]
   
   caches_page :geometry
   caches_page :cached_guide
@@ -436,6 +437,34 @@ class PlacesController < ApplicationController
     @guide_url = place_guide_url(@place)
     show_guide_widget
     render :template => "guides/guide_widget"
+  end
+
+  def planner
+    respond_to do |format|
+      format.html { render layout: 'bootstrap' }
+      format.json do
+        @latitude = params[:lat].to_f
+        @longitude = params[:lng].to_f
+        @places = Place.joins(:place_geometry).
+          where(place_type: Place::OPEN_SPACE).
+          where("place_geometries.id IS NOT NULL").
+          order("ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))").
+          page(1)
+        @data = []
+        @places.each do |p|
+          @data << {
+            id: p.id,
+            name: p.display_name,
+            latitude: p.latitude,
+            longitude: p.longitude,
+            observations_count: Observation.joins(:observations_places).where("observations_places.place_id = ?", p).count,
+            taxa_count: Observation.select("DISTINCT taxon_id").joins(:observations_places).where("observations_places.place_id = ?", p).count,
+            distance: lat_lon_distance_in_meters(@latitude, @longitude, p.latitude, p.longitude) / 1000
+          }
+        end
+        render json: {data: @data}
+      end
+    end
   end
   
   private

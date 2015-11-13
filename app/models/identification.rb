@@ -43,7 +43,17 @@ class Identification < ActiveRecord::Base
   attr_accessor :captive_flag
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
-    :queue_if => lambda {|ident| ident.taxon_change_id.blank?}
+    :queue_if => lambda {|ident| 
+      ident.taxon_change_id.blank?
+    },
+    :if => lambda {|notifier, subscribable, subscription|
+      return true unless notifier && subscribable && subscription
+      return true if subscription.user && subscription.user.prefers_redundant_identification_notifications
+      subscribers_identification = subscribable.identifications.current.detect{|i| i.user_id == subscription.user_id}
+      return true unless subscribers_identification
+      return true unless notifier.body.blank?
+      subscribers_identification.taxon_id != notifier.taxon_id
+    }
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
@@ -114,14 +124,17 @@ class Identification < ActiveRecord::Base
       observation.skip_identifications = true
       # update the species_guess
       species_guess = observation.species_guess
-      unless taxon.taxon_names.exists?(:name => species_guess)
+      unless taxon.taxon_names.exists?(name: species_guess)
         species_guess = taxon.common_name.try(:name) || taxon.name
       end
-      attrs = {:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id}
-      ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+      attrs = { species_guess: species_guess, taxon_id: taxon_id, iconic_taxon_id: taxon.iconic_taxon_id }
+      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+        unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
+          observation.id, self.user_id ] }
+      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     end
     observation.identifications.reload
-    observation.set_community_taxon(:force => true)
+    observation.set_community_taxon(force: true)
     observation.update_attributes(attrs)
     true
   end
@@ -144,7 +157,10 @@ class Identification < ActiveRecord::Base
         species_guess = nil
       end
       attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
-      ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+        unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
+          observation.id, self.user_id ] }
+      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     end
     observation.skip_identifications = true
     observation.identifications.reload
@@ -274,9 +290,17 @@ class Identification < ActiveRecord::Base
     obs.project_observations.each do |po|
       if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
         po.update_attributes(:curator_identification_id => current_ident.id)
-        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
+            [ po.project_id, obs.user_id ] }
+        ).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
+            [ po.project_id, obs.user_id ] }
+        ).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "Project::update_observed_taxa_count": po.project_id }
+        ).update_observed_taxa_count(po.project_id)
       end
     end
   end
@@ -299,9 +323,17 @@ class Identification < ActiveRecord::Base
         end
 
         po.update_attributes(:curator_identification_id => nil) unless other_curator_ident
-        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
+            [ po.project_id, obs.user_id ] }
+        ).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
+            [ po.project_id, obs.user_id ] }
+        ).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "Project::update_observed_taxa_count": po.project_id }
+        ).update_observed_taxa_count(po.project_id)
       end
     end
   end

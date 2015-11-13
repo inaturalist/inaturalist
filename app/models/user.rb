@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   PROJECT_ADDITION_BY_NONE = "none"
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
   preference :location_details, :boolean, default: false
+  preference :redundant_identification_notifications, :boolean, default: true
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -633,8 +634,9 @@ class User < ActiveRecord::Base
     elsif options[:viewed]
       options[:filters] << { range: { viewed_at: { gt: 1.day.ago } } }
     end
+    options[:filters] << { term: { subscriber_id: id } }
     Update.elastic_paginate(
-      where: options[:wheres].merge({ subscriber_id: id }),
+      where: options[:wheres],
       filters: options[:filters],
       per_page: options[:per_page],
       sort: { id: :desc })

@@ -31,6 +31,10 @@ class SiteStatistic < ActiveRecord::Base
     SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).exists?
   end
 
+  def self.first_stat
+    @@first_stat ||= SiteStatistic.order("created_at asc").first
+  end
+
   private
 
   def self.observations_stats(at_time = Time.now)

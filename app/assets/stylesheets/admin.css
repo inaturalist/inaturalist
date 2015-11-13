@@ -1,0 +1,52 @@
+#header {
+  margin-bottom: 0px;
+}
+.dashboard .sidebar {
+  padding-top: 10px;
+  background-color: #f9f9f9;
+}
+.dashboard .sidebar li > a {
+  padding: 5px 10px;
+}
+.dashboard .sidebar .subitem {
+  margin-left: 20px;
+  line-height: 18px;
+}
+.dashboard .sidebar .active a {
+  color: #fff;
+  background-color: #428bca;
+}
+.dashboard .sidebar .active a:hover {
+  color: #fff;
+  background-color: #428bca;
+  opacity: 1;
+}
+.dashboard .sidebar .badge {
+  float: right;
+}
+.dashboard .sidebar .active .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+.dashboard .main {
+  padding-top: 5px;
+  margin-left: 0px;
+}
+.dashboard h1.page-header {
+  margin: 0px;
+}
+.dashboard .sidebar-head {
+  font-size: 24px;
+  line-height: 60px;
+  padding: 15px;
+}
+.unlock {
+  display: block;
+  font-size: 0.9em;
+}
+.unlock:before {
+  content: "(";
+}
+.unlock:after {
+  content: ")";
+}

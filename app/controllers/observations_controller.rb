@@ -138,6 +138,7 @@ class ObservationsController < ApplicationController
 
       format.json do
         Observation.preload_for_component(@observations, logged_in: logged_in?)
+        Observation.preload_associations(@observations, :tags)
         render_observations_to_json
       end
       
@@ -154,7 +155,10 @@ class ObservationsController < ApplicationController
         @updated_at = Observation.order("updated_at DESC").first.updated_at
       end
       
-      format.dwc
+      format.dwc do
+        Observation.preload_for_component(@observations, logged_in: logged_in?)
+        Observation.preload_associations(@observations, [ :identifications ])
+      end
 
       format.csv do
         render_observations_to_csv
@@ -2832,7 +2836,7 @@ class ObservationsController < ApplicationController
     search_cache_params[:locale] ||= I18n.locale
     search_cache_params[:per_page] ||= search_params[:per_page]
     search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-    search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+    search_cache_params[:bounds] ||= CONFIG.bounds.to_h if CONFIG.bounds
     "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
   end
 

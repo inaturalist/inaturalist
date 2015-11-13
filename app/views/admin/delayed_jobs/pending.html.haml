@@ -1,0 +1,16 @@
+%h2.sub-header= "Pending Jobs (#{ Delayed::Job.pending.count })"
+%table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Run At
+        %th Info
+    %tbody
+      - @jobs.each do |dj|
+        %tr
+          %td= t(:in_n, n: time_ago_in_words(dj.run_at)) if dj.run_at
+          %td
+            - dj.dashboard_info.each do |k,v|
+              %strong= "#{ k }:"
+              = raw v
+              %br

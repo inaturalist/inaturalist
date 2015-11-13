@@ -250,7 +250,7 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
+  NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em
     csi csa pcid list_id ofv_params)
 
   accepts_nested_attributes_for :observation_field_values, 
@@ -277,7 +277,7 @@ class Observation < ActiveRecord::Base
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
   validates_inclusion_of :coordinate_system,
-    :in => proc { CONFIG.coordinate_systems.keys.map(&:to_s) },
+    :in => proc { CONFIG.coordinate_systems.to_h.keys.map(&:to_s) },
     :message => "'%{value}' is not a valid coordinate system",
     :allow_blank => true,
     :if => lambda {|o|
@@ -2085,7 +2085,7 @@ class Observation < ActiveRecord::Base
     end
     true
   end
-  
+
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
@@ -2408,6 +2408,48 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  def self.dedupe_for_user(user, options = {})
+    unless user.is_a?(User)
+      u = User.find_by_id(user) 
+      u ||= User.find_by_login(user)
+      user = u
+    end
+    return unless user
+    sql = <<-SQL
+      SELECT 
+        array_agg(id) AS observation_ids
+      FROM
+        observations
+      WHERE
+        user_id = #{user.id}
+        AND taxon_id IS NOT NULL
+        AND observed_on_string IS NOT NULL AND observed_on_string != ''
+        AND private_geom IS NOT NULL
+      GROUP BY 
+        user_id,
+        taxon_id, 
+        observed_on_string, 
+        private_geom
+      HAVING count(*) > 1;
+    SQL
+    deleted = 0
+    start = Time.now
+    Observation.connection.execute(sql).each do |row|
+      ids = row['observation_ids'].gsub(/[\{\}]/, '').split(',').map(&:to_i).sort
+      puts "Found duplicates: #{ids.join(',')}" if options[:debug]
+      keeper_id = ids.shift
+      puts "\tKeeping #{keeper_id}" if options[:debug]
+      unless options[:test]
+        Observation.find(ids).each do |o|
+          puts "\tDeleting #{o.id}" if options[:debug]
+          o.destroy
+        end
+      end
+      deleted += ids.size
+    end
+    puts "Deleted #{deleted} observations in #{Time.now - start}s" if options[:debug]
   end
 
 end

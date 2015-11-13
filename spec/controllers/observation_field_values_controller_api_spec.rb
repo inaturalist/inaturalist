@@ -61,6 +61,7 @@ shared_examples_for "an ObservationFieldValuesController" do
         json = JSON.parse(response.body)
         o = json.first
         expect( o['taxon']['taxon_scheme_taxa'] ).not_to be_blank
+        expect( o['taxon']['taxon_scheme_taxa'][0]['taxon_scheme'] ).not_to be_blank
       end
     end
   end

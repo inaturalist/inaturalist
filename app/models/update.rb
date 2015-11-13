@@ -184,7 +184,7 @@ class Update < ActiveRecord::Base
   def self.eager_load_associates(updates, options = {})
     includes = options[:includes] || {
       :observation => [ :user, { :taxon => { :taxon_names => :place_taxon_names } },
-        { :photos => :flags}, { :projects => :users }, :stored_preferences,
+        { :photos => :flags}, :projects, :stored_preferences,
         :quality_metrics, :flags, :iconic_taxon ],
       :observation_field => [:user],
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
@@ -248,6 +248,7 @@ class Update < ActiveRecord::Base
     updates_scope = Update.where(id: updates)
     updates_scope.update_all(viewed_at: Time.now)
     Update.elastic_index!(scope: updates_scope)
+    ActionController::Base.new.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'updates_count', user_id: subscriber_id)
   end
 
   def self.delete_and_purge(*args)

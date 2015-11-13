@@ -1,0 +1,25 @@
+%h2.sub-header= "Possibly Active Jobs (#{ @jobs.count })"
+%table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Host
+        %th PID
+        %th Locked
+        %th Info
+    %tbody
+      - @jobs.each do |dj|
+        %tr
+          %td= dj.host
+          %td= dj.pid
+          %td
+            - if dj.locked_at
+              = t(:n_ago, n: time_ago_in_words(dj.locked_at))
+              %span.unlock<
+                = link_to "unlock", unlock_admin_delayed_job_path(dj.id),
+                  data: { confirm: "Are you sure this job is no longer running?" }
+          %td
+            - dj.dashboard_info.each do |k,v|
+              %strong= "#{ k }:"
+              = raw v
+              %br

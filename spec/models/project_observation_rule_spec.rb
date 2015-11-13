@@ -51,4 +51,20 @@ describe ProjectObservationRule, "creation" do
     expect(ProjectObservation.make(:project => p, :observation => o3)).not_to be_valid # wrong taxon
     expect(ProjectObservation.make(:project => p, :observation => o4)).to be_valid
   end
+  it "validates observed_in_place?" do
+    place = make_place_with_geom
+    p = Project.make!
+    o = Observation.make!
+    # create the rule
+    p.project_observation_rules.create(operand: place, operator: "observed_in_place?")
+    # invalid because obs is not in the place
+    expect(ProjectObservation.make(project: p, observation: o)).not_to be_valid
+    o.update_attributes(latitude: place.latitude, longitude: place.longitude)
+    # valid when obs is in the place
+    expect(ProjectObservation.make(project: p, observation: o)).to be_valid
+    ProjectObservation.destroy_all
+    Place.destroy_all
+    # invalid (not not an error) when the rule references a missing place
+    expect(ProjectObservation.make(project: p, observation: o)).not_to be_valid
+  end
 end

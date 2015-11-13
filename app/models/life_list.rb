@@ -110,9 +110,12 @@ class LifeList < List
   # Add all the taxa the list's owner has observed.  Cache the job ID so we 
   # can display a loading notification on lists/show.
   def add_taxa_from_observations
-    job = LifeList.delay(:priority => USER_PRIORITY).add_taxa_from_observations(self)
-    Rails.cache.write(add_taxa_from_observations_key, job.id)
-    true
+    if job = LifeList.delay(priority: USER_PRIORITY,
+      unique_hash: { "LifeList::add_taxa_from_observations": self.id }
+    ).add_taxa_from_observations(self)
+      Rails.cache.write(add_taxa_from_observations_key, job.id)
+      true
+    end
   end
   
   def add_taxa_from_observations_key
@@ -152,9 +155,12 @@ class LifeList < List
   end
   
   def reload_from_observations
-    job = LifeList.delay(:priority => USER_PRIORITY).reload_from_observations(self)
-    Rails.cache.write(reload_from_observations_cache_key, job.id)
-    job
+    if job = LifeList.delay(priority: USER_PRIORITY,
+      unique_hash: { "LifeList::reload_from_observations": self.id }
+    ).reload_from_observations(self)
+      Rails.cache.write(reload_from_observations_cache_key, job.id)
+      job
+    end
   end
   
   def reload_from_observations_cache_key

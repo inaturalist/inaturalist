@@ -38,6 +38,7 @@ class TaxonName < ActiveRecord::Base
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
     :AFRIKAANS           =>  'Afrikaans',
     :BENGALI             =>  'Bengali',
+    :CATALAN             =>  'Catalan',
     :CEBUANO             =>  'Cebuano',
     :CREOLE_FRENCH       =>  'creole (French)',
     :CREOLE_PORTUGUESE   =>  'creole (Portuguese)',
@@ -244,6 +245,7 @@ class TaxonName < ActiveRecord::Base
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
     case locale.to_s
+    when /^ca/      then 'catalan'
     when /^en/      then 'english'
     when /^es/      then 'spanish'
     when /^fr/      then 'french'

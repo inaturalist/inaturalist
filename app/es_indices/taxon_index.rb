@@ -26,7 +26,7 @@ class Taxon < ActiveRecord::Base
     # Temporary hack to figure out why some taxa are being indexed w/o
     # all taxon_names. Checking indexed_place_ids which will be assigned during
     # bluk indexing, and we're pretty sure the bulk indexing is working OK
-    if indexed_place_ids.nil? && !options[:basic]
+    if indexed_place_ids.nil? && !options[:for_observation]
       begin
         # comparing .count (always runs a COUNT() query) to .length (always
         # selects records and counts them). I suspect some taxa are preloading
@@ -46,14 +46,18 @@ class Taxon < ActiveRecord::Base
       name: name,
       names: taxon_names.
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
-        map{ |tn| tn.as_indexed_json(autocomplete: !options[:basic]) },
+        map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) },
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active
     }
-    unless options[:basic]
+    if options[:for_observation]
+      unless conservation_statuses.empty?
+        json[:conservation_statuses] = conservation_statuses.map(&:as_indexed_json)
+      end
+    else
       json.merge!({
         created_at: created_at,
         default_photo_url: default_photo ? default_photo.best_url(:square) : nil,

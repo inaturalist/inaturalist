@@ -7,9 +7,19 @@
       height: 170px;
     }
     #sidenav {
-      width: 210px;
+      width: 175px;
       padding: 0;
       background-color: #fff;
+    }
+    @media (min-width: 992px) {
+      #sidenav {
+        width: 210px;
+      }
+    }
+    @media (min-width: 1200px) {
+      #sidenav {
+        width: 275px;
+      }
     }
     #sidenav > li:first-child > a {
       -webkit-border-radius: 6px 6px 0 0;
@@ -61,7 +71,7 @@
           = truncate @next.title
           %i.fa.fa-chevron-right
   .row.upstacked
-    .col-md-3
+    .col-xs-3
       %ul#sidenav.sidenav.nav.nav-list{:data => {:spy => "affix"}}
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
@@ -71,7 +81,7 @@
         - if @trip.is_a?(Trip)
           %li= link_to t(:check_list), "#check_list"
         %li= link_to t(:comments), "#comments"
-    .col-md-9
+    .col-xs-9
       %section{:id => "summary"}
         - if @trip.editable_by?(current_user)
           .btn-group.pull-right

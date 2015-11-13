@@ -81,6 +81,8 @@ module ElasticModel
         criteria << { match: { key => id_or_object(value) } }
       end
     end
+    options[:complex_wheres] ||= [ ]
+    criteria += options[:complex_wheres]
     criteria
   end
 
@@ -222,7 +224,7 @@ module ElasticModel
       month: datetime.month,
       year: datetime.year,
       hour: datetime.respond_to?(:hour) ? datetime.hour : nil,
-      week: datetime.strftime("%W").to_i + 1 }
+      week: datetime.strftime("%V").to_i }
   end
 
 end

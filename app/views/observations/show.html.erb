@@ -614,6 +614,10 @@
       <h3><%=t :projects %></h3>
       <% unless @project_observations.blank? -%>
         <% for po in @project_observations %>
+          <%-
+            project_requires_curator_coordinate_access = po.project.project_observation_rules.detect{|por| por.operator == 'coordinates_shareable_by_project_curators?' }
+            curator_coordinate_access_disabled = project_requires_curator_coordinate_access && po.prefers_curator_coordinate_access?
+          -%>
           <div class="quiet box clear inline buttonrow">
             <% if is_me?(@observation.user) || is_me?(po.user) || curator_of?(po.project) -%>
               <%= popover content_tag(:span, '', 'class': 'ui-icon ui-icon-gear inlineblock'), 
@@ -643,17 +647,23 @@
                       </div>
                     </div>
                   <% end -%>
-                  <div class="lined">
+                  <div class="lined <%= 'disabled' if curator_coordinate_access_disabled %>">
                     <%= form_for po, remote: true, data: {format: :json} do |f| %>
                       <label>
                         <%= f.check_box :prefers_curator_coordinate_access, 
                           id: dom_id(po, 'preferred_usage'),
+                          disabled: curator_coordinate_access_disabled,
                           data: {autosubmit: true} %>
                         <%= t(:allow_curator_coordinate_access) %>
                       </label>
                       <div class="meta">
                         <%=t 'views.observations.show.allow_curator_coordinate_access_desc_html', url: project_terms_url(po.project) %>
                       </div>
+                      <% if curator_coordinate_access_disabled %>
+                        <div class="notice status box">
+                          <%=t 'views.observations.show.curator_coordinate_access_disabled_desc_html' %>
+                        </div>
+                      <% end %>
                     <% end %>
                   </div>
                 <% end -%>

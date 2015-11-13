@@ -218,9 +218,12 @@ class ListsController < ApplicationController
   def refresh
     delayed_task(@list.refresh_cache_key) do
       queue = @list.is_a?(CheckList) ? "slow" : nil
-      job = @list.delay(:priority => USER_PRIORITY, :queue => queue).refresh(:skip_update_cache_columns => true)
-      Rails.cache.write(@list.refresh_cache_key, job.id)
-      job
+      if job = @list.delay(priority: USER_PRIORITY, queue: queue,
+        unique_hash: { "#{ @list.class.name }::refresh": @list.id }
+      ).refresh(skip_update_cache_columns: true)
+        Rails.cache.write(@list.refresh_cache_key, job.id)
+        job
+      end
     end
     
     respond_to_delayed_task(
@@ -232,9 +235,12 @@ class ListsController < ApplicationController
   
   def add_from_observations_now
     delayed_task(@list.reload_from_observations_cache_key) do
-      job = @list.delay(:priority => USER_PRIORITY).add_observed_taxa(:force_update_cache_columns => true)
-      Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
-      job
+      if job = @list.delay(priority: USER_PRIORITY,
+        unique_hash: { "#{ @list.class.name }::add_observed_taxa": @list.id }
+      ).add_observed_taxa(:force_update_cache_columns => true)
+        Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
+        job
+      end
     end
     
     respond_to_delayed_task(
@@ -246,9 +252,12 @@ class ListsController < ApplicationController
   
   def refresh_now
     delayed_task(@list.refresh_cache_key) do
-      job = @list.delay(:priority => USER_PRIORITY).refresh
-      Rails.cache.write(@list.refresh_cache_key, job.id)
-      job
+      if job = @list.delay(priority: USER_PRIORITY,
+        unique_hash: { "#{ @list.class.name }::refresh": @list.id }
+        ).refresh
+        Rails.cache.write(@list.refresh_cache_key, job.id)
+        job
+      end
     end
     
     respond_to_delayed_task(

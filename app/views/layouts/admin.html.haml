@@ -1,0 +1,35 @@
+= content_for :extracss do
+  = stylesheet_link_tag "admin"
+= content_for :content do
+  .container-fluid
+    .row.dashboard
+      .col-sm-3.col-md-2.sidebar
+        %span.sidebar-head Admin
+        %ul.nav.nav-sidebar
+          %li
+            = link_to "Delayed Jobs", admin_delayed_jobs_path
+          %li.subitem{ class: ("active" if action_name == "active") }
+            %a{ href: active_admin_delayed_jobs_path }
+              Active
+              %span.badge= Delayed::Job.possibly_active.count
+          %li.subitem{ class: ("active" if action_name == "pending") }
+            %a{ href: pending_admin_delayed_jobs_path }
+              Pending
+              %span.badge= Delayed::Job.pending.count
+          %li.subitem{ class: ("active" if action_name == "failed") }
+            %a{ href: failed_admin_delayed_jobs_path }
+              Failed
+              %span.badge= Delayed::Job.failed.count
+          %li{ class: ("active" if action_name == "queries") }
+            %a{ href: queries_admin_path }
+              Active Queries
+              %span.badge
+                = @queries ? @queries.count : ActiveRecord::Base.connection.active_queries.count
+          %li= link_to t(:curate_observations), curate_observations_path
+          %li= link_to t(:curate_taxa), curate_taxa_path
+          %li= link_to t(:curate_users), curate_users_path
+          %li= link_to t(:announcements), announcements_path
+          %li= link_to t(:stats), stats_path
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        = yield
+= render template: "layouts/bootstrap"
