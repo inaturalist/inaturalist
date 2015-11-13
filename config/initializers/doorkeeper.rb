@@ -74,4 +74,7 @@ Doorkeeper.configure do
 
   grant_flows %w(authorization_code client_credentials password)
 
+  # Don't force devs to use SSL redirects
+  force_ssl_in_redirect_uri false
+
 end
