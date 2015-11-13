@@ -237,6 +237,17 @@ describe Identification, "creation" do
     expect(o.observation_reviews.first).to eq r
     expect(o.observation_reviews.first.updated_at).to be > r.updated_at
   end
+
+  it "should set curator_identification_id on project observations to last current identification" do
+    o = Observation.make!
+    p = Project.make!
+    pu = ProjectUser.make!(:user => o.user, :project => p)
+    po = ProjectObservation.make!(:observation => o, :project => p)
+    i1 = Identification.make!(:user => p.user, :observation => o)
+    Delayed::Worker.new.work_off
+    po.reload
+    expect(po.curator_identification_id).to eq i1.id
+  end
 end
 
 describe Identification, "updating" do
