@@ -233,7 +233,19 @@ shared_examples_for "an ObservationsController" do
       expect(response_obs['identifications'].first['taxon']['common_name']['name']).not_to be_blank
     end
 
-    it "should include taxon rank level"
+    it "should include taxon rank level" do
+      o = Observation.make!(taxon: Taxon.make!(:species))
+      get :show, format: :json, id: o.id
+      r = JSON.parse(response.body)
+      expect( r['taxon']['rank_level'] ).to eq Taxon::SPECIES_LEVEL
+    end
+
+    it "should include user name" do
+      o = Observation.make!
+      get :show, format: :json, id: o.id
+      r = JSON.parse(response.body)
+      expect( r['user']['name'] ).to eq o.user.name
+    end
   end
 
   describe "update" do

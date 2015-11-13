@@ -342,6 +342,7 @@ class ObservationsController < ApplicationController
           :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
+            :user => User.default_json_options,
             :observation_field_values => {:include => {:observation_field => {:only => [:name]}}},
             :project_observations => {
               :include => {
