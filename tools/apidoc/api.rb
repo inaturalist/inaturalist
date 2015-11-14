@@ -1612,7 +1612,7 @@ EOT
   end
 
   put "/users/:id", auth_required: true do
-    desc "Takes the same parameters as <code>POST /users</code> and response should be the same. :id is the user ID."
+    desc "Update a user. Takes the same parameters as <code>POST /users</code> and response should be the same. :id is the user ID."
     formats %w(json)
   end
 
