@@ -286,9 +286,14 @@ class ProjectsController < ApplicationController
   def members
     @project_users = @project.project_users.joins(:user).
       paginate(:page => params[:page]).order("users.login ASC")
-    @admin = @project.user
-    @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
-    @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
+    respond_to do |format|
+      format.html do
+        @admin = @project.user
+        @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
+        @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
+      end
+      format.json { render json: @project_users.as_json(:include => {user: User.default_json_options}) }
+    end
   end
   
   def observed_taxa_count

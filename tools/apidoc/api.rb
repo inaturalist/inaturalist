@@ -1522,6 +1522,16 @@ EOT
     end
   end
 
+  get "/projects/:id/members", auth_required: true do
+    desc "Get the users who have joined this project."
+    param "page" do
+      values "any integer"
+    end
+    param "per_page" do
+      values 1..200
+    end
+  end
+
   post "/projects/:id/join", :auth_required => true do
     desc "Adds the authenticated user as a member of the project"
     formats %w(json)
@@ -1599,6 +1609,11 @@ EOT
 }
       EOT
     end
+  end
+
+  put "/users/:id", auth_required: true do
+    desc "Takes the same parameters as <code>POST /users</code> and response should be the same. :id is the user ID."
+    formats %w(json)
   end
 
   get "/users/edit", :auth_required => true do
