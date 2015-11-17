@@ -7959,7 +7959,8 @@ CREATE TABLE announcements (
     "end" timestamp without time zone,
     body text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    locale character varying
 );
 
 
@@ -15663,4 +15664,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151014213826');
 INSERT INTO schema_migrations (version) VALUES ('20151030205931');
 
 INSERT INTO schema_migrations (version) VALUES ('20151104175231');
+
+INSERT INTO schema_migrations (version) VALUES ('20151117005737');
 

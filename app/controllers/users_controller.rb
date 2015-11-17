@@ -321,7 +321,7 @@ class UsersController < ApplicationController
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
-        @announcement = Announcement.where('placement = \'users/dashboard\' AND ? BETWEEN "start" AND "end"', Time.now.utc).last
+        @announcements = Announcement.in_locale(I18n.locale).where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").
@@ -477,11 +477,18 @@ class UsersController < ApplicationController
   end
 
   def update_session
-    allowed_keys = %w(show_quality_metrics)
-    updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
+    allowed_patterns = [
+      /^show_quality_metrics$/,
+      /^user-seen-ann*/
+    ]
+    updates = params.select {|k,v|
+      allowed_patterns.detect{|p| 
+        k.match(p)
+      }
+    }.symbolize_keys
     updates.each do |k,v|
-      v = true if %w(yes y true t).include?(v)
-      v = false if %w(no n false f).include?(v)
+      v = true if v.yesish?
+      v = false if v.noish?
       session[k] = v
     end
     render :head => :no_content, :layout => false, :text => nil
