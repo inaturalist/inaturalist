@@ -434,6 +434,14 @@ describe "Observation Index" do
         filters: [ { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } } ] )
     end
 
+    it "filters by updated_since OR aggregation_user_ids" do
+      expect( Observation.params_to_elastic_query({
+        updated_since: "2015-10-31T00:00:00+00:00", aggregation_user_ids: [ 1, 2 ] }) ).to include(
+        filters: [ { bool: { should: [
+          { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } },
+          { term: { "user.id" => [1, 2] } } ] } } ] )
+    end
+
     it "filters by observation field values" do
       of = ObservationField.make!
       ofv_params = { whatever: { observation_field: of, value: "testvalue" } }

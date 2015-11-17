@@ -325,6 +325,24 @@ describe Project, "aggregate_observations" do
     expect( o.projects ).to include project
     expect( o.project_observations.size ).to eq 1
   end
+
+  it "adds observations whose users were updated since last_aggregated_at" do
+    project.update_attributes(place: make_place_with_geom, trusted: true)
+    o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
+    o2 = Observation.make!(latitude: 90, longitude: 90)
+    project.aggregate_observations
+    expect( project.observations.count ).to eq 1
+    o2.update_attributes(latitude: project.place.latitude, longitude: project.place.longitude)
+    o2.update_columns(updated_at: 1.day.ago)
+    o2.elastic_index!
+    project.aggregate_observations
+    # it's still 1 becuase the observations was updated in the past
+    expect( project.observations.count ).to eq 1
+    o2.user.update_columns(updated_at: Time.now)
+    project.aggregate_observations
+    # now the observation was aggregated because the user was updated
+    expect( project.observations.count ).to eq 2
+  end
 end
 
 describe Project, "aggregation_allowed?" do

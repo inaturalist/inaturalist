@@ -641,7 +641,11 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
     params = observations_url_params.merge(per_page: 200, not_in_project: id)
     # making sure we only look observations opdated since the last aggregation
-    params[:updated_since] = last_aggregated_at.to_s unless last_aggregated_at.nil?
+    unless last_aggregated_at.nil?
+      params[:updated_since] = last_aggregated_at.to_s
+      params[:aggregation_user_ids] = User.
+        where("users.updated_at >= ?", last_aggregated_at).map(&:id)
+    end
     list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
     total_entries = nil

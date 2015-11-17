@@ -416,7 +416,14 @@ class UsersController < ApplicationController
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
     locale_was = @display_user.locale
+    preferred_project_addition_by_was = @display_user.preferred_project_addition_by
     if whitelist_params && @display_user.update_attributes(whitelist_params)
+      # user changed their project addition rules and nothing else, so
+      # updated_at wasn't touched on user. Set set updated_at on the user
+      if @display_user.preferred_project_addition_by != preferred_project_addition_by_was &&
+         @display_user.previous_changes.empty?
+        @display_user.update_columns(updated_at: Time.now)
+      end
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do

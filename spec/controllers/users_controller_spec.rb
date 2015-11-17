@@ -22,6 +22,17 @@ describe UsersController, "update" do
     expect( user.prefers_share_observations_on_facebook ).to be false
     expect( user.prefers_share_observations_on_twitter ).to be false
   end
+
+  it "changes updated_at when changing preferred_project_addition_by" do
+    expect {
+      put :update, id: user.id, user: { preferred_photo_license: "CC-BY-NC-SA" }
+      user.reload
+    }.to_not change(user, :updated_at)
+    expect {
+      put :update, id: user.id, user: { preferred_project_addition_by: "none" }
+      user.reload
+    }.to change(user, :updated_at)
+  end
 end
 
 describe UsersController, "delete" do

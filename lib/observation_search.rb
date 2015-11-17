@@ -516,7 +516,12 @@ module ObservationSearch
 
       unless params[:updated_since].blank?
         if timestamp = Chronic.parse(params[:updated_since])
-          scope = scope.where("observations.updated_at > ?", timestamp)
+          if params[:aggregation_user_ids].blank?
+            scope = scope.where("observations.updated_at > ?", timestamp)
+          else
+            scope = scope.where("observations.updated_at > ? OR observations.user_id IN (?)",
+              timestamp, params[:aggregation_user_ids])
+          end
         else
           scope = scope.where("1 = 2")
         end

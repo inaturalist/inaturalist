@@ -429,12 +429,17 @@ class Observation < ActiveRecord::Base
       end
     end
     unless p[:updated_since].blank?
-      if timestamp = Chronic.parse(p[:updated_since])
+      timestamp = Chronic.parse(p[:updated_since])
+      # there is an expectation in a spec that when updated_since is
+      # invalid, the search will fail to return any results
+      return nil if timestamp.blank?
+      if p[:aggregation_user_ids].blank?
         search_filters << { range: { updated_at: { gte: timestamp } } }
       else
-        # there is an expectation in a spec that when updated_since is
-        # invalid, the search will fail to return any results
-        return nil
+        search_filters << { bool: { should: [
+          { range: { updated_at: { gte: timestamp } } },
+          { term: { "user.id" => p[:aggregation_user_ids] } }
+        ] } }
       end
     end
     if p[:ofv_params]

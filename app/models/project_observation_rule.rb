@@ -7,6 +7,8 @@ class ProjectObservationRule < Rule
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
   before_save :clear_operand
+  after_save :reset_last_aggregated_if_rules_changed
+  after_destroy :reset_last_aggregated_if_rules_changed
   validate :operand_present
   validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
 
@@ -41,5 +43,10 @@ class ProjectObservationRule < Rule
       I18n.t("rules_types.#{super.gsub(' ','_')}", default: super)
     end
   end
-end
 
+  def reset_last_aggregated_if_rules_changed
+    if ruler && ruler.is_a?(Project)
+      ruler.update_columns(last_aggregated_at: nil)
+    end
+  end
+end
