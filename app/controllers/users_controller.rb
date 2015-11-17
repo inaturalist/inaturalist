@@ -321,7 +321,9 @@ class UsersController < ApplicationController
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
-        @announcements = Announcement.in_locale(I18n.locale).where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)
+        scope = Announcement.where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)
+        @announcements = scope.in_locale(I18n.locale)
+        @announcements = scope.in_locale(I18n.locale.to_s.split('-').first) if @announcements.blank?
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").
