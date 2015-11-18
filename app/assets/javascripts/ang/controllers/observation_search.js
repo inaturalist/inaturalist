@@ -9,51 +9,6 @@ var application = angular.module( "ObservationSearch", [
 // disable scrolling to the top when we're updating the view
 application.value( "$anchorScroll", angular.noop );
 
-// defining the views
-application.directive( "resultsMap", function( ) {
-  return {
-    templateUrl: "ang/templates/observation_search/results_map.html",
-    link: function( scope, element, attr ) {
-      scope.setupMap( );
-      // the observation div on the map is a scrollable div in a scrollable page
-      // make sure that when you scroll to the botton of that div, the page
-      // doesn't start scrolling down
-      $( "#obs" ).isolatedScroll( );
-    }
-  };
-});
-application.directive( "resultsGrid", function( ) {
-  return {
-    templateUrl: "ang/templates/observation_search/results_grid.html"
-  };
-});
-application.directive( "resultsTable", function( ) {
-  return {
-    templateUrl: "ang/templates/observation_search/results_table.html"
-  };
-});
-application.directive( "filterMenu", function( ) {
-  return {
-    templateUrl: "ang/templates/observation_search/filter_menu.html",
-    link: function( scope, element, attr ) {
-      // I started using the default bootstrap dropdown to manage the filter opening,
-      // but it assumes all clicks in the dropdown should close the dropdown, so I had
-      // to not use the boostrap javascript there and do it myself
-      $( "#filter-container .dropdown-toggle" ).click( function( ) {
-        $( this ).parent( ).toggleClass( "open" );
-      });
-      // closing the filter box
-      $( "body" ).on( "click", function( e ) {
-        if( !$( "#filter-container" ).is( e.target ) &&
-            $( "#filter-container" ).has( e.target ).length === 0 &&
-            $( ".open" ).has( e.target ).length === 0 ) {
-          $( "#filter-container" ).removeClass( "open" );
-        };
-      });
-    }
-  };
-});
-
 application.controller( "SearchController", [ "ObservationsFactory", "shared", "$scope", "$rootScope", "$location",
 function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
   $scope.possibleViews = [ "map", "grid", "table" ];
@@ -66,6 +21,22 @@ function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
     dateType: "any",
     geoType: "world"
   };
+  $scope.setupFilters = function() {
+    // I started using the default bootstrap dropdown to manage the filter opening,
+    // but it assumes all clicks in the dropdown should close the dropdown, so I had
+    // to not use the boostrap javascript there and do it myself
+    $( "#filter-container .dropdown-toggle" ).click( function( ) {
+      $( this ).parent( ).toggleClass( "open" );
+    });
+    // closing the filter box
+    $( "body" ).on( "click", function( e ) {
+      if( !$( "#filter-container" ).is( e.target ) &&
+          $( "#filter-container" ).has( e.target ).length === 0 &&
+          $( ".open" ).has( e.target ).length === 0 ) {
+        $( "#filter-container" ).removeClass( "open" );
+      };
+    });
+  }
   $scope.resetStats = function( ) {
     $rootScope.totalObservations = "--";
     $rootScope.totalSpecies = "--";
@@ -249,11 +220,16 @@ function( shared, $scope, $rootScope, $anchorScroll ) {
     $scope.map.addListener( "dragend", $scope.delayedUpdateParamsForCurrentBounds );
     $scope.map.addListener( "zoom_changed", $scope.delayedUpdateParamsForCurrentBounds );
     $scope.setMapLayers( );
+    // the observation div on the map is a scrollable div in a scrollable page
+    // make sure that when you scroll to the botton of that div, the page
+    // doesn't start scrolling down
+    $( "#obs" ).isolatedScroll( );
   };
   $scope.$watch( "params", function( ) {
     $scope.setMapLayers( );
   }, true );
   $scope.setMapLayers = function( ) {
+    if (!$scope.map) { return };
     window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
