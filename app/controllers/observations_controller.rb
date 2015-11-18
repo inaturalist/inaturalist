@@ -379,6 +379,15 @@ class ObservationsController < ApplicationController
                 },
                 :taxon => taxon_options
               }
+            },
+            :faves => {
+              :only => [:created_at],
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
+                }
+              }
             }
           })
       end

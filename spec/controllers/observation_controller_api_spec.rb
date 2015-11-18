@@ -246,6 +246,27 @@ shared_examples_for "an ObservationsController" do
       r = JSON.parse(response.body)
       expect( r['user']['name'] ).to eq o.user.name
     end
+
+    describe "faves" do
+      let(:o) { Observation.make! }
+      let(:voter) { User.make! }
+      before do
+        o.vote_by voter: voter, vote: true
+      end
+      it "should be included" do
+        get :show, format: :json, id: o.id
+        r = JSON.parse(response.body)
+        expect( r['faves'] ).not_to be_blank
+      end
+      it "should have users with id, login, and icon" do
+        get :show, format: :json, id: o.id
+        r = JSON.parse(response.body)
+        user = r['faves'][0]['user']
+        expect( user['login'] ).to eq voter.login
+        expect( user['id'] ).to eq voter.id
+        expect( user['user_icon_url'] ).to eq voter.user_icon_url
+      end
+    end
   end
 
   describe "update" do
