@@ -225,6 +225,21 @@ describe Place, "merging" do
     expect( klt.primary_listing? || rlt.primary_listing? ).to eq true
     expect( klt.primary_listing? && rlt.primary_listing? ).to eq false
   end
+
+  it "should not result in single listed taxa for a given taxon that are not primary" do
+    keeper = Place.make!
+    reject = Place.make!
+    klt = keeper.check_list.add_taxon(Taxon.make!, user: User.make!)
+    rl = reject.check_lists.create(title: "foo")
+    rlt = rl.add_taxon(Taxon.make!, user: User.make!)
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+    without_delay { keeper.merge(reject) }
+    klt.reload
+    rlt.reload
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+  end
 end
 
 describe Place, "bbox_contains_lat_lng?" do
