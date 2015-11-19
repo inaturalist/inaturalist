@@ -11,6 +11,11 @@ $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
 } 
 @font-face { 
   font-family: Whitney; 
+  font-weight: 100;
+  src: asset-data-url('Whitney-Light-Pro.otf');
+} 
+@font-face { 
+  font-family: Whitney; 
   font-weight: 600;
   src: asset-data-url('Whitney-Semibold-Pro.otf');
 } 
@@ -40,6 +45,10 @@ body .bootstrap {
 
 .bootstrap a:hover { text-decoration: none; opacity: 0.8;}
 .bootstrap a:hover img { opacity: 1;}
+
+.bootstrap .btn,
+.bootstrap .form-control,
+.ac-select-thumb img {border-radius: 2px;}
 
 .readable, p {line-height: 1.6em;}
 .bootstrap .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
@@ -197,3 +206,6 @@ img.borderless, .thumbnail.borderless { border: 0; }
   right: 50%;
   margin-right: -10px;
 }
+
+.ac-select-thumb { float: none; display: inline-block; }
+.ac-select-thumb img { width: 32px; height: 32px; }

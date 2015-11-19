@@ -13,7 +13,7 @@
 #results .btn-group {
   position: absolute;
   z-index: 2;
-  left: 120px;
+  /*left: 120px;*/
   margin-top: 11px;
 }
 #result-grid {
@@ -80,7 +80,7 @@
 #obs {
   position: absolute;
   top: 45px;
-  right: 50px;
+  right: 100px;
   background-color: white;
   padding: 0px;
   height: 420px;
@@ -88,8 +88,7 @@
   overflow-y: scroll;
 }
 #filters {
-  width: 90%;
-  margin: 0px auto;
+  padding: 20px 0;
 }
 #filters h1 {
   float: left;
@@ -98,47 +97,68 @@
   margin-top: 20px;
 }
 
+.bootstrap #filter-container > button.btn-default {
+  background-color: #727272;
+  border-color: #727272;
+  color: #eee;
+}
+.bootstrap #filter-container > button:hover { color: white; }
+
 #filter-dropdown {
   width: 600px;
 }
 #filters .ac-chooser { display: inline-block; }
 .bootstrap .primary-filters .form-control {width: 250px;}
-#filter-container .dropdown-menu {
-  margin-top: 80px;
+.primary-filters > span { margin: 0 5px;}
+#filter-container { margin-left: 10px; }
+#stats-container,
+#stats-container .statcol {
+  height: 75px;
 }
 #stats-container {
-  height: 65px;
   background: #565656;
   color: white;
   font-size: 17px;
-  padding-left: 40px;
 }
 #stats-container > div {
   height: 100%;
 }
 #stats-container .geo {
   padding: 0px;
-  line-height: 65px;
+  line-height: 75px;
   background: none;
   border: 0px;
   cursor: pointer;
 }
 #stats-container .geo.active {
-  color: #86a91c;
+  color: #a8cc09;
+  font-weight: bold;
 }
 #stats-container .geo:first-child:after {
-  content: " >";
-  margin: 0px 10px;
+  content: "\3009";
+  margin: 0 -5px 0 5px;
+  color: #aaa;
+  width: 1em;
+  display: inline-block;
 }
 
 #stats-container .stat-title {
   font-weight: 100;
   text-transform: uppercase;
-  padding: 10px 0px 5px;
+  padding-bottom: 5px;
+  letter-spacing: 0.04em;
+  color: #eee;
 }
 #stats-container .stat-value {
   font-weight: bold;
 }
-#stats-container .green {
+#stats-container .statcol.active {
   background: #86a91c;
 }
+#stats-container .stat {
+  margin: 15px 0;
+  border-right: 1px solid #aaa;
+}
+#stats-container .statcol.active .stat,
+#stats-container .statcol:last-child .stat { border: 0 transparent; }
+
