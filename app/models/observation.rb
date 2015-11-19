@@ -250,8 +250,7 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em
-    csi csa pcid list_id ofv_params)
+  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em list_id)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
