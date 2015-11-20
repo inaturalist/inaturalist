@@ -178,7 +178,6 @@ module ObservationSearch
           nil
         end
       end
-      p[:q] = sanitize_query(p[:q]) unless p[:q].blank?
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa
       if p[:iconic_taxa]

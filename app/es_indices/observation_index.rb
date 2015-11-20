@@ -188,7 +188,6 @@ class Observation < ActiveRecord::Base
     search_filters = [ ]
     extra_preloads = [ ]
     q = unless p[:q].blank?
-      q = sanitize_query(p[:q])
       q.blank? ? nil : q
     end
     search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])

@@ -710,6 +710,40 @@ shared_examples_for "an ObservationsController" do
       expect(json.detect{|obs| obs['id'] == o2.id}).to be_blank
     end
 
+    describe "filtration by tag in elasticsearch" do
+      after do
+        o = Observation.make!(tag_list: @tag)
+        get :index, format: :json, q: @tag, search_on: "tags"
+        json = JSON.parse(response.body)
+        expect( json.size ).to eq 1
+        expect( json.detect{|obs| obs['id'] == o.id} ).not_to be_blank
+      end
+      it "should work" do
+        @tag = "thetag"
+      end
+      it "with hyphen" do
+        @tag = "the-tag"
+      end
+      it "with colon" do
+        @tag = "the:tag"
+      end
+      it "with underscore" do
+        @tag = "the_tag"
+      end
+    end
+
+    it "should filter by tag with an underscore in the database" do
+      list = List.make!
+      taxon = Taxon.make!
+      list.add_taxon(taxon)
+      o = Observation.make!(tag_list: @tag, taxon: taxon)
+      # filtering by list_id should force a database search
+      get :index, format: :json, q: @tag, search_on: "tags", list_id: list.id
+      json = JSON.parse(response.body)
+      expect( json.size ).to eq 1
+      expect( json.detect{|obs| obs['id'] == o.id} ).not_to be_blank
+    end
+
     it "should include common names" do
       tn = TaxonName.make!(:lexicon => TaxonName::ENGLISH)
       o = Observation.make!(:taxon => tn.taxon)

@@ -586,6 +586,7 @@ class Observation < ActiveRecord::Base
 
   scope :dbsearch, lambda {|*args|
     q, on = args
+    q = sanitize_query(q) unless q.blank?
     case on
     when 'species_guess'
       where("observations.species_guess ILIKE", "%#{q}%")
