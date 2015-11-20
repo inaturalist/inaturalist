@@ -1,18 +1,44 @@
 #obs-container
   #map{ enable_show_all_layer: 'false' }
-  #obs.col-xs-3
-    .div{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='map' || busy", "infinite-scroll-parent": "true", "infinite-scroll-distance": 0 }
-      .media.observation{ "ng-repeat": "o in observations" }
-        .media-left
-          %a{:href => "/observations/{{ o.id }}"}
-            .media-object{style: "background-image: url({{ o.photo( ) }})"}
-        .media-body
-          %h4.ng-cloak= FakeView.link_to "{{ o.species_guess }}", "/observations/{{ o.id }}"
-          .username.ng-cloak= "{{ o.user.login }}"
-          .date.ng-cloak= "{{ o.observed_on }}"
-          .location.ng-cloak= "{{ o.place_guess }}"
-          .actions.ng-cloak
-            %span.identifications
-              {{ o.identifications_count }}
-              =t :identifications
-            %span.quality_grade= "{{ o.quality_grade }}"
+  .container.container-fixed
+    .row
+      .col-xs-4.col-xs-offset-8
+        #obs
+          .div{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='map' || busy", "infinite-scroll-parent": "true", "infinite-scroll-distance": 0 }
+            .media.observation{ "ng-repeat": "o in observations" }
+              .media-left
+                %a{:href => "/observations/{{ o.id }}"}
+                  .media-object{style: "background-image: url({{ o.photo( ) }})"}
+              .media-body
+                / TODO we need a directive for taxa, e.g. in-taxon="{{ o.taxon }}"
+                %a{:class => "taxon {{ iconicTaxonNameForID(o.taxon.iconic_taxon_id) }}", href: "/observations/{{ o.id }}"}
+                  %i{:class => "icon-iconic-{{ iconicTaxonNameForID(o.taxon.iconic_taxon_id) | lowercase }}"}
+                  {{ o.species_guess || 'Something' }}
+                .username.ng-cloak.media.obs-attr
+                  .media-left
+                    %i.fa.fa-user
+                  .media-body
+                    {{ o.user.login }}
+                .date.ng-cloak.media.obs-attr
+                  .media-left
+                    %i.fa.fa-calendar
+                  .media-body
+                    {{ (o.observed_on | date : 'short') || t('unknown') }}
+                .location.ng-cloak.media.obs-attr
+                  .media-left
+                    %i.fa.fa-map-marker
+                  .media-body
+                    .fadednowrap
+                      {{ o.place_guess || [o.latitude, o.longitude].joins(',') || t('unknown') }}
+                .actions.ng-cloak
+                  %span.identifications{"ng-show" => "o.identifications.length > 0"}
+                    {{ o.identifications.length || 0 }}
+                    %span{"ng-show" => "o.identifications_count == 1"}= I18n.t :id
+                    %span{"ng-show" => "o.identifications_count != 1"}= I18n.t :ids
+                  %span.comments{"ng-show" => "o.comments_count > 0"}
+                    ???
+                    %i.fa.fa-comment-o
+                  %span{:class => "quality_grade {{ o.quality_grade }}_notice", "ng-hide" => "o.quality_grade == 'casual'"}
+                    {{ t(o.quality_grade) }}
+                  %a.taxon.pull-right{href: "/observations/{{ o.id }}"}
+                    %i.icon-arrow-right

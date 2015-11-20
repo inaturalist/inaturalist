@@ -13,9 +13,12 @@
 #results .btn-group {
   position: absolute;
   z-index: 2;
-  /*left: 120px;*/
   margin-top: 11px;
 }
+#obs-container .observation > .media-body {
+  padding: 5px 5px 5px 0;
+}
+#obs-container .location .fadednowrap {max-width: 200px;}
 #result-grid {
   margin-top: 55px;
   display: inline-block;
@@ -66,26 +69,34 @@
 .media-object {
   display: block;
   min-height: 100px;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   background-size: cover;
   background-position: center;
 }
 #map {
   width: 100%;
-  height: 510px;
+  /*height: 510px;*/
   background-color: LightBlue;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#obs-container,
+#obs-container .container,
+#map {
+  height: 600px;
 }
 #obs-container { position: relative; }
 #obs {
-  position: absolute;
-  top: 45px;
-  right: 100px;
   background-color: white;
   padding: 0px;
   height: 420px;
   overflow-x: hidden;
   overflow-y: scroll;
+  position: relative;
+  top: 60px;
+  font-size: 90%;
 }
 #filters {
   padding: 20px 0;
@@ -162,3 +173,7 @@
 #stats-container .statcol.active .stat,
 #stats-container .statcol:last-child .stat { border: 0 transparent; }
 
+
+.obs-attr.media {margin-top: 0;}
+.obs-attr.media .media-left .fa { width: 12px; color: #aaa;}
+.obs-attr.media .media-left { padding-right: 5px; text-align: center;}

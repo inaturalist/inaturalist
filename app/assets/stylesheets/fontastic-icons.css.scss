@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "inaturalisticons";
-  src:asset-data-url("inaturalisticons.eot");
-  src:asset-url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
-    asset-data-url("inaturalisticons.woff") format("woff"),
-    asset-data-url("inaturalisticons.ttf") format("truetype"),
-    asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
+  src:url("inaturalisticons.eot");
+  src:url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
+    url("inaturalisticons.woff") format("woff"),
+    url("inaturalisticons.ttf") format("truetype"),
+    url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
 
@@ -52,4 +52,58 @@
 }
 .icon-arrow-up:before {
   content: "d";
+}
+.icon-lifebuoy:before {
+  content: "g";
+}
+.icon-species-unknown:before {
+  content: "f";
+}
+.icon-ios-calendar-outline:before {
+  content: "h";
+}
+.icon-captive:before {
+  content: "i";
+}
+.icon-iconic-amphibia:before {
+  content: "j";
+}
+.icon-iconic-animalia:before {
+  content: "k";
+}
+.icon-iconic-arachnida:before {
+  content: "l";
+}
+.icon-iconic-aves:before {
+  content: "m";
+}
+.icon-iconic-actinopterygii:before {
+  content: "n";
+}
+.icon-iconic-fungi:before {
+  content: "o";
+}
+.icon-iconic-insecta:before {
+  content: "p";
+}
+.icon-iconic-chromista:before {
+  content: "q";
+}
+.icon-iconic-mammalia:before {
+  content: "r";
+}
+.icon-iconic-mollusca:before {
+  content: "s";
+}
+.icon-iconic-plantae:before {
+  content: "t";
+}
+.icon-iconic-protozoa:before {
+  content: "u";
+}
+.icon-iconic-reptilia:before {
+  content: "v";
+}
+.icon-iconic-something:before {
+  content: "w";
 }
