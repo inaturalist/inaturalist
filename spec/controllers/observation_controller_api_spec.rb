@@ -768,6 +768,14 @@ shared_examples_for "an ObservationsController" do
       expect(obs['comments_count']).to eq 1
     end
 
+    it "should include faves_count" do
+      o = Observation.make!
+      o.liked_by User.make!
+      get :index, format: :json
+      obs = JSON.parse(response.body).detect{|r| r['id'] == o.id}
+      expect(obs['faves_count']).to eq 1
+    end
+
     it "should let you request project_observations as extra data" do
       po = make_project_observation
       get :index, :format => :json, :extra => "projects"

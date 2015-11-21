@@ -2512,7 +2512,7 @@ class ObservationsController < ApplicationController
     else
       opts = options
       opts[:methods] ||= []
-      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list]
+      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list, :faves_count]
       opts[:methods].uniq!
       opts[:include] ||= {}
       opts[:include][:taxon] ||= {

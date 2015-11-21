@@ -672,7 +672,7 @@ class Observation < ActiveRecord::Base
 
   # returns a string for sharing on social media (fb, twitter)
   def to_share_s
-    return self.to_plain_s({:no_user=>true})
+    return self.to_plain_s(no_user: true)
   end
   
   def time_observed_at_utc
@@ -695,7 +695,7 @@ class Observation < ActiveRecord::Base
       [options[:include]].flatten.compact
     end
     options[:methods] ||= []
-    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc]
+    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc, :faves_count]
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
@@ -2408,6 +2408,14 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  # Show count of all faves on this observation. cached_votes_total stores the
+  # count of all votes without a vote_scope, which for an Observation means
+  # the faves, but since that might vary from model to model based on how we
+  # use acts_as_votable, faves_count seems clearer.
+  def faves_count
+    cached_votes_total
   end
 
   def self.dedupe_for_user(user, options = {})

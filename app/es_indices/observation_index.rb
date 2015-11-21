@@ -78,6 +78,7 @@ class Observation < ActiveRecord::Base
       captive: captive,
       license_code: license ? license.downcase : nil,
       geoprivacy: geoprivacy,
+      faves_count: cached_votes_total,
       cached_votes_total: cached_votes_total,
       verifiable: research_grade_candidate?,
       num_identification_agreements: num_identification_agreements,
