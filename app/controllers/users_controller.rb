@@ -618,26 +618,8 @@ protected
       # We've started running into memory problems with ES not being able to
       # handle aggregates on a year scale, so this is a hack until we can get
       # more memory.
-      year_params1 = {
-        filters: [{
-          range: {
-            observed_on: {
-              gte: Time.parse("#{year}-01-01"), 
-              lte: Time.parse("#{year}-06-01")
-            }
-          }
-        }]
-      }
-      year_params2 = {
-        filters: [{
-          range: {
-            observed_on: {
-              gt: Time.parse("#{year}-06-01"), 
-              lte: Time.now
-            }
-          }
-        }]
-      }
+      year_params1 = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: [1,2,3,4,5])
+      year_params2 = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: [6,7,8,9,10,11,12])
       counts1 = Observation.elastic_user_taxon_counts(year_params1, 100)
       counts2 = Observation.elastic_user_taxon_counts(year_params2, 100)
       counts_by_user_id1 = counts1.inject({}) do |memo, c|
@@ -658,7 +640,7 @@ protected
       }.sort_by{|c| 
         # sort by count desc
         c['count_all'] * -1
-      }[0..5]
+      }[0..4]
     else
       Observation.elastic_user_taxon_counts(elastic_query, 5)
     end
