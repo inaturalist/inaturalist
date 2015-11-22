@@ -622,8 +622,8 @@ protected
         filters: [{
           range: {
             observed_on: {
-              gte: Time.new("#{year}-01-01"), 
-              lte: Time.new("#{year}-06-01")
+              gte: Time.parse("#{year}-01-01"), 
+              lte: Time.parse("#{year}-06-01")
             }
           }
         }]
@@ -632,7 +632,7 @@ protected
         filters: [{
           range: {
             observed_on: {
-              gt: Time.new("#{year}-06-01"), 
+              gt: Time.parse("#{year}-06-01"), 
               lte: Time.now
             }
           }
