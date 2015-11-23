@@ -188,9 +188,7 @@ class Observation < ActiveRecord::Base
     complex_wheres = [ ]
     search_filters = [ ]
     extra_preloads = [ ]
-    q = unless p[:q].blank?
-      q.blank? ? nil : q
-    end
+    q = p[:q] unless p[:q].blank?
     search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
     if q
       fields = case search_on

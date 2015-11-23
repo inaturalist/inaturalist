@@ -79,7 +79,7 @@ class String
 end
 
 # Restrict some queries to characters, numbers, and simple punctuation, as
-# well as normalize Latin accented characters while leaving non-latic
+# well as normalize Latin accented characters while leaving non-Latin
 # characters alone.
 # http://www.ruby-doc.org/core-2.0.0/Regexp.html#label-Character+Properties
 # http://stackoverflow.com/a/10306827/720268

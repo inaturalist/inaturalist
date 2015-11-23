@@ -712,11 +712,12 @@ shared_examples_for "an ObservationsController" do
 
     describe "filtration by tag in elasticsearch" do
       after do
-        o = Observation.make!(tag_list: @tag)
+        tagged = Observation.make!(tag_list: @tag)
+        not_tagged = Observation.make!
         get :index, format: :json, q: @tag, search_on: "tags"
         json = JSON.parse(response.body)
         expect( json.size ).to eq 1
-        expect( json.detect{|obs| obs['id'] == o.id} ).not_to be_blank
+        expect( json.detect{|obs| obs['id'] == tagged.id} ).not_to be_blank
       end
       it "should work" do
         @tag = "thetag"
@@ -737,6 +738,7 @@ shared_examples_for "an ObservationsController" do
       taxon = Taxon.make!
       list.add_taxon(taxon)
       o = Observation.make!(tag_list: @tag, taxon: taxon)
+      not_tagged = Observation.make!
       # filtering by list_id should force a database search
       get :index, format: :json, q: @tag, search_on: "tags", list_id: list.id
       json = JSON.parse(response.body)
