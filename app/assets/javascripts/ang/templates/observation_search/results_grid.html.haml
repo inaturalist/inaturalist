@@ -1,4 +1,4 @@
-#result-grid.container-fluid{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='grid' || busy" }
+#result-grid.container-fluid{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || busy" }
   .col-xs-3.cell{ "ng-repeat": "o in observations" }
     %a{ href: "/observations/{{ o.id }}" }
       .media-object{ style: "background-image: url({{ o.photo( ) }})" }

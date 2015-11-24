@@ -163,6 +163,9 @@
 #stats-container .stat-value {
   font-weight: bold;
 }
+#stats-container .statcol {
+  cursor: pointer;
+}
 #stats-container .statcol.active {
   background: #86a91c;
 }

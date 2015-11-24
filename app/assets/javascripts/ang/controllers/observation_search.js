@@ -11,8 +11,10 @@ application.value( "$anchorScroll", angular.noop );
 
 application.controller( "SearchController", [ "ObservationsFactory", "shared", "$scope", "$rootScope", "$location",
 function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
-  $scope.possibleViews = [ "map", "grid", "table" ];
-  $scope.defaultView = "map";
+  $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
+  $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
+  $scope.defaultView = "observations";
+  $scope.defaultSubview = "map";
   $scope.defaultParams = {
     has_photos: true,
     taxon_id: null,
@@ -38,10 +40,13 @@ function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
     });
   }
   $scope.resetStats = function( ) {
-    $rootScope.totalObservations = "--";
-    $rootScope.totalSpecies = "--";
-    $rootScope.totalObservers = "--";
-    $rootScope.totalIdentifiers = "--";
+    $scope.totalObservations = "--";
+    $scope.totalSpecies = "--";
+    $scope.totalObservers = "--";
+    $scope.totalIdentifiers = "--";
+    $scope.taxa = [ ];
+    $scope.identifiers = [ ];
+    $scope.observers = [ ];
   };
   $scope.resetParams = function( ) {
     $scope.params = _.clone( $scope.defaultParams );
@@ -60,20 +65,34 @@ function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
     if( $scope.currentView != $scope.defaultView ) {
       newParams.push( [ "view", $scope.currentView ] );
     }
+    if( $scope.currentSubview != $scope.defaultSubview ) {
+      newParams.push( [ "subview", $scope.currentSubview ] );
+    }
     newParams = _.sortBy( newParams, function( arr ) {
       return arr[ 0 ];
     });
     $location.search( _.object( newParams ) );
   };
-  $scope.changeView = function( newView ) {
-    if( newView && newView != $scope.currentView ) {
-      $scope.currentView = newView;
-      if( $scope.observations && $scope.observations ) {
-        $scope.observations = $scope.observations.slice( 0, 10 );
+  $scope.viewing = function( view, subview ) {
+    if( subview ) {
+      if( view == $scope.currentView && subview == $scope.currentSubview ) {
+        return true;
       }
-      if( newView == "map" ) {
+    } else if( view == $scope.currentView ) {
+      return true;
+    }
+    return false;
+  };
+  $scope.changeView = function( newView, newSubview ) {
+    if( newView != $scope.currentView || newSubview != $scope.currentSubview ) {
+      $scope.currentView = newView;
+      $scope.currentSubview = newSubview;
+      if( $scope.observations && $scope.observations ) {
+        $scope.observations = $scope.observations.slice( 0, 40 );
+      }
+      if( $scope.currentSubview == "map" ) {
         setTimeout( function( ) {
-          google.maps.event.trigger(window.map, 'resize');
+          google.maps.event.trigger( window.map, "resize" );
         }, 200);
       }
       $scope.updateBrowserLocation( );
@@ -92,19 +111,41 @@ function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
     }
   };
   $scope.searchAndUpdateStats = function( ) {
-    var processedParams = shared.processParams( _.clone( $scope.params ) );
+    $scope.page = 1;
+    var processedParams = shared.processParams(
+      _.extend( { }, $scope.params, { page: $scope.page } ));
     $scope.updateBrowserLocation( );
     ObservationsFactory.search( processedParams ).then( function( response ) {
-      $scope.page = 1;
       $scope.resetStats( );
-      $rootScope.totalObservations = response.data.total_results;
+      $scope.totalObservations = response.data.total_results;
       $scope.observations = ObservationsFactory.responseToInstances( response );
       ObservationsFactory.stats( processedParams ).then( function( response ) {
-        $rootScope.totalObservers = response.data.observer_count;
-        $rootScope.totalIdentifiers = response.data.identifier_count;
+        $scope.totalObservers = response.data.observer_count;
+        $scope.totalIdentifiers = response.data.identifier_count;
+      });
+      ObservationsFactory.speciesCount( processedParams ).then( function( response ) {
+        $scope.totalSpecies = response.data.leaf_count;
       });
       ObservationsFactory.speciesCounts( processedParams ).then( function( response ) {
-        $rootScope.totalSpecies = response.data.leaf_count;
+        $scope.taxa = _.map( response.data, function( r ) {
+          var t = new iNatModels.Taxon( r.taxon );
+          t.resultCount = r.count;
+          return t;
+        });
+      });
+      ObservationsFactory.identifiers( processedParams ).then( function( response ) {
+        $scope.identifiers = _.map( response.data, function( r ) {
+          var u = new iNatModels.User( r.user );
+          u.resultCount = r.count;
+          return u;
+        });
+      });
+      ObservationsFactory.observers( processedParams ).then( function( response ) {
+        $scope.observers = _.map( response.data, function( r ) {
+          var u = new iNatModels.User( r.user );
+          u.resultCount = r.count;
+          return u;
+        });
       });
     });
   };
@@ -122,10 +163,16 @@ function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
     });
   };
   var urlParams = $location.search( );
-  if( _.contains( $scope.possibleViews, urlParams.view ) ) {
+  if( urlParams.view && _.contains( $scope.possibleViews, urlParams.view ) ) {
     $scope.currentView = urlParams.view;
   }
+  if( $scope.currentView && $scope.possibleSubviews[ $scope.currentView ] &&
+      _.contains( $scope.possibleSubviews[ $scope.currentView ], urlParams.subview ) ) {
+    $scope.currentSubview = urlParams.subview;
+  }
+  $scope.changeView( urlParams.view, urlParams.subview );
   $scope.currentView = $scope.currentView || $scope.defaultView;
+  $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
   $scope.shared = shared;
   $scope.resetStats( );
   $scope.setInitialParams( );
@@ -214,7 +261,7 @@ function( shared, $scope, $rootScope, $anchorScroll ) {
         new google.maps.LatLng( $scope.$parent.params.swlat, $scope.$parent.params.swlng ),
         new google.maps.LatLng( $scope.$parent.params.nelat, $scope.$parent.params.nelng ) );
       $scope.map.fitBounds( bounds );
-      // adjust for the fact that fitBounds zooming out a little
+      // adjust for the fact that fitBounds zooms out a little
       $scope.map.setZoom( $scope.map.getZoom( ) + 1);
     }
     $scope.map.addListener( "dragend", $scope.delayedUpdateParamsForCurrentBounds );
@@ -252,13 +299,5 @@ function( shared, $scope, $rootScope, $anchorScroll ) {
     options = options || {}
     return I18n.t(k, options)
   }
-
-}]);
-
-application.controller( "TableController", [ function( ) {
-
-}]);
-
-application.controller( "GridController", [ "$scope", function( $scope ) {
 
 }]);

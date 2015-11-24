@@ -9,6 +9,6 @@ iNatModels.Observation = function( attrs ) {
 
 iNatModels.Observation.prototype.photo = function( ) {
   if( this.photos && this.photos.length > 0 ) {
-    return this.photos[0].url.replace("square.jpg", "large.jpg");
+    return this.photos[0].url.replace( "square.jpg", "large.jpg" );
   }
 };

@@ -8,7 +8,7 @@
         %th Observed
         %th Place
         %th Added
-    %tbody{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "currentView!='table' || busy" }
+    %tbody{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || busy" }
       %tr{ "ng-repeat": "o in observations" }
         %td.media.observation
           %a{ href: "/observations/{{ o.id }}" }

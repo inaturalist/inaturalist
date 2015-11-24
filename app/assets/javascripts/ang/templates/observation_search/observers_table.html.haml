@@ -1,0 +1,10 @@
+#result-table.container-fluid
+  %table.table.table-striped
+    %thead
+      %tr
+        %th User
+        %th Count
+    %tbody
+      %tr{ "ng-repeat": "u in observers" }
+        %td {{ u.login }}
+        %td {{ u.resultCount }}

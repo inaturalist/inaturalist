@@ -29,41 +29,47 @@
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo{ "ng-class": "{ active: params.geoType=='world' }", "ng-click": "setGeoFilter('world')"}
+          %span.geo.active{ "ng-class": "{ active: params.geoType=='world' }", "ng-click": "setGeoFilter('world')"}
             The World
           %span.geo{ "ng-class": "{ active: params.geoType=='map' }", "ng-click": "setGeoFilter('visible')"}
             Visible Map
-        .col-xs-2.statcol.active
+        .col-xs-2.statcol.active{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
           .stat
             .stat-title= "Observations"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
-        .col-xs-2.statcol
+        .col-xs-2.statcol{ "ng-class": "{ active: viewing('species') }", "ng-click": "changeView('species')" }
           .stat
             .stat-title= "Species"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
-        .col-xs-2.statcol
+        .col-xs-2.statcol{ "ng-class": "{ active: viewing('identifiers') }", "ng-click": "changeView('identifiers')" }
           .stat
             .stat-title= "Identifiers"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
-        .col-xs-2.statcol
+        .col-xs-2.statcol{ "ng-class": "{ active: viewing('observers') }", "ng-click": "changeView('observers')" }
           .stat
             .stat-title= "Observers"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
   #results
-    .container.container-fixed
+    .container.container-fixed{ "ng-show": "viewing('observations')" }
       .row
         .col-xs-6
           .btn-group
-            %button.button.btn-default{ "ng-click": "changeView('map')" }
+            %button.button.btn-default{ "ng-click": "changeView('observations', 'map')" }
               %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "changeView('grid')" }
+            %button.button.btn-default{ "ng-click": "changeView('observations', 'grid')" }
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "changeView('table')" }
+            %button.button.btn-default{ "ng-click": "changeView('observations', 'table')" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
         .col-xs-6
-    %div{ "ng-show": "currentView=='map'", "ng-controller": "MapController"}
-      %div{"ng-include": "'ang/templates/observation_search/results_map.html'", "onload": "setupMap()"}
-    %div{ "results-grid": true, "ng-show": "currentView=='grid'", "ng-controller": "GridController" }
+    %div{ "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
+      %div{"ng-include": "'ang/templates/observation_search/results_map.html'", onload: "setupMap( )"}
+    %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
       %div{"ng-include": "'ang/templates/observation_search/results_grid.html'"}
-    %div{ "results-table": true, "ng-show": "currentView=='table'", "ng-controller": "TableController" }
+    %div{ "results-table": true, "ng-show": "viewing('observations', 'table')" }
       %div{"ng-include": "'ang/templates/observation_search/results_table.html'"}
+    %div{ "taxa-grid": true, "ng-show": "viewing('species')" }
+      %div{"ng-include": "'ang/templates/observation_search/taxa_grid.html'"}
+    %div{ "taxa-grid": true, "ng-show": "viewing('identifiers')" }
+      %div{"ng-include": "'ang/templates/observation_search/identifiers_table.html'" }
+    %div{ "taxa-grid": true, "ng-show": "viewing('observers')" }
+      %div{"ng-include": "'ang/templates/observation_search/observers_table.html'"}
