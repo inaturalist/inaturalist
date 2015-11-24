@@ -21,6 +21,7 @@ module ActiveRecord
                        comment_type: options[:comment_type],
                        blog_lang: "en,fr,es,zh,gl,th,jp"
 
+        validate :user_cannot_be_spammer
         after_save :evaluate_user_spammer_status, unless: proc {
           user_responsible && user_responsible.known_non_spammer? }
         unless options[:automated] === false
@@ -40,6 +41,12 @@ module ActiveRecord
           end
           s
         }
+
+        define_method(:user_cannot_be_spammer) do
+          if self.respond_to?(rakismet_user) && self.send(rakismet_user).spammer?
+            errors.add(rakismet_user, "cannot be spammer")
+          end
+        end
 
         define_method(:flagged_as_spam?) do
           self.flags.loaded? ?
