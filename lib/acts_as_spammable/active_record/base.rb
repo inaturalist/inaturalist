@@ -43,7 +43,7 @@ module ActiveRecord
         }
 
         define_method(:user_cannot_be_spammer) do
-          if self.respond_to?(rakismet_user) && self.send(rakismet_user).spammer?
+          if self.respond_to?(rakismet_user) && self.send(rakismet_user).is_a?(User) && self.send(rakismet_user).spammer?
             errors.add(rakismet_user, "cannot be spammer")
           end
         end
