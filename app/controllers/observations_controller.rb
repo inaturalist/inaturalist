@@ -1802,6 +1802,8 @@ class ObservationsController < ApplicationController
       :location_is_exact,
       :longitude,
       :map_scale,
+      :make_license_default,
+      :make_licenses_same,
       :oauth_application_id,
       :observed_on_string,
       :place_guess,

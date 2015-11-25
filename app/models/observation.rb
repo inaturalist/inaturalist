@@ -1688,13 +1688,13 @@ class Observation < ActiveRecord::Base
   end
   
   def update_default_license
-    return true unless [true, "1", "true"].include?(@make_license_default)
+    return true unless make_license_default.yesish?
     user.update_attribute(:preferred_observation_license, license)
     true
   end
   
   def update_all_licenses
-    return true unless [true, "1", "true"].include?(@make_licenses_same)
+    return true unless make_licenses_same.yesish?
     Observation.where(user_id: user_id).update_all(license: license)
     true
   end

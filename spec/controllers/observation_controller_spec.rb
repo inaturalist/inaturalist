@@ -108,6 +108,39 @@ describe ObservationsController do
         expect(o.quality_metrics).not_to be_blank
       end
     end
+
+    describe "license changes" do
+      let(:u) { User.make! }
+      let(:past_o) { Observation.make!(user: u, license: nil) }
+      let(:o) { Observation.make!(user: u, license: nil) }
+      before do
+        expect( u.preferred_observation_license ).to be_nil
+        expect( past_o.license ).to be_nil
+        expect( o.license ).to be_nil
+        sign_in u
+      end
+      it "should update the license of the observation" do
+        without_delay do
+          put :update, id: o.id, observation: {license: Observation::CC_BY}
+        end
+        o.reload
+        expect( o.license ).to eq Observation::CC_BY
+      end
+      it "should update user default" do
+        without_delay do
+          put :update, id: o.id, observation: {license: Observation::CC_BY, make_license_default: true}
+        end
+        u.reload
+        expect( u.preferred_observation_license ).to eq Observation::CC_BY
+      end
+      it "should update past licenses" do
+        without_delay do
+          put :update, id: o.id, observation: {license: Observation::CC_BY, make_licenses_same: true}
+        end
+        past_o.reload
+        expect( past_o.license ).to eq Observation::CC_BY
+      end
+    end
   end
 
   describe "show" do
