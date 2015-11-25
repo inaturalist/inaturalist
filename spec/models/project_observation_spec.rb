@@ -40,6 +40,16 @@ describe ProjectObservation, "creation" do
     expect(o.updated_at).to be > o.created_at
   end
 
+  it "should properly touch objects that had projects preloaded" do
+    o = Observation.make!(:user => @project_user.user)
+    Observation.preload_associations(o, :project_observations)
+    expect(Observation.elastic_search(where: { id: o.id }).
+      results.results.first.project_ids).to eq [ ]
+    o.project_observations.create(project: @project)
+    expect(Observation.elastic_search(where: { id: o.id }).
+      results.results.first.project_ids).to eq [ @project.id ]
+  end
+
   it "should set curator_coordinate_access to false by default" do
     po = ProjectObservation.make!
     expect( po.project.project_users.where(user_id: po.observation.user_id) ).to be_blank

@@ -1497,7 +1497,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       if @observation.update_attributes(o)
         if !params[:project_id].blank? && @observation.user_id == current_user.id && (@project = Project.find(params[:project_id]) rescue nil)
-          @project_observation = ProjectObservation.create(:observation => @observation, :project => @project)
+          @project_observation = @observation.project_observations.create(project: @project, user: current_user)
         end
         format.html do
           flash[:notice] = I18n.t(:observations_was_successfully_updated)

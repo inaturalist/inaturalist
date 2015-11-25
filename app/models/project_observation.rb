@@ -321,7 +321,14 @@ class ProjectObservation < ActiveRecord::Base
     return true if project.curated_by?(usr)
     false
   end
-  
+
+  def touch_observation
+    if observation
+      observation.project_observations.reload
+      observation.touch
+    end
+  end
+
   ##### Static ##############################################################
   def self.to_csv(project_observations, options = {})
     return nil if project_observations.blank?

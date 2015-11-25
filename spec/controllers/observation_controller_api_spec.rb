@@ -1295,6 +1295,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "update_fields" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     shared_examples_for "it allows changes" do
       it "should allow ofv creation" do
         put :update_fields, :format => :json, :id => o.id, :observation => {
@@ -1341,6 +1343,18 @@ shared_examples_for "an ObservationsController" do
           }
         }
         expect(ProjectObservation.where(:project_id => p, :observation_id => o).exists?).to be true
+      end
+      it "adds the project observation to elasticsearch" do
+        p = Project.make!
+        pu = ProjectUser.make!(user: o.user, project: p)
+        o.elastic_index!
+        expect(Observation.elastic_search(where: { id: o.id }).
+          results.results.first.project_ids).to eq [ ]
+        put :update_fields, format: :json, id: o.id, project_id: p.id, observation: {
+          observation_field_values_attributes: { }
+        }
+        expect(Observation.elastic_search(where: { id: o.id }).
+          results.results.first.project_ids).to eq [ p.id ]
       end
     end
 
