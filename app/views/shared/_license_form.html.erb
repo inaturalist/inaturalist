@@ -44,10 +44,10 @@
   <div class="column span-18 inline buttonrow">
     <%= f.submit t(:set_license), :class => "default button", "data-loading-click" => t(:saving) %>
     <%= link_to_function t(:cancel), "$(this).parents('.dialog:first').dialog('close')", :class => "minor button" %>
-    <span class="inlineblock">
+    <span class="inter inlineblock">
       <%= f.check_box :make_license_default, :label => t(:make_this_your_default_license, :type => "#{record_type}"), :label_after => true %>
     </span>
-    <span class="inlineblock">
+    <span class="inter inlineblock">
       <%= f.check_box :make_licenses_same, :label => t(:update_past, :type => "#{record_type.pluralize}"), :label_after => true %>
     </span>
   </div>
