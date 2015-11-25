@@ -5,7 +5,11 @@ describe ObservationsController, type: :controller do
   render_views
   let(:spammer) { User.make!(spammer: true) }
   let(:curator) { make_curator }
-  let(:spammer_content) { Observation.make!(user: spammer) }
+  let(:spammer_content) {
+    o = Observation.make!
+    o.user.update_attributes(spammer: true)
+    o
+  }
   let(:flagged_content) {
     o = Observation.make!
     Flag.make!(flaggable: o, flag: Flag::SPAM)

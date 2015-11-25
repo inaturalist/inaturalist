@@ -1,8 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PostsController, "spam" do
-  let(:spammer_content) { Post.make!(user: User.make!(spammer: true),
-    parent: User.make!) }
+  let(:spammer_content) {
+    p = Post.make!(parent: User.make!)
+    p.user.update_attributes(spammer: true)
+    p
+  }
   let(:flagged_content) {
     p = Post.make!(parent: User.make!)
     Flag.make!(flaggable: p, flag: Flag::SPAM)

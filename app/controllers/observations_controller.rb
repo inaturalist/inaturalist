@@ -2619,16 +2619,19 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+    if @project.tracking_code_allowed?(params[:tracking_code])
+      tracking_code = params[:tracking_code]
+    end
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
-      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code, user: current_user)
+      po = observation.project_observations.build(project: @project,
+        tracking_code: tracking_code, user: current_user)
       unless po.save
         errors = (errors + po.errors.full_messages).uniq
       end
     end
-     
+
     if !errors.blank?
       if request.format.html?
         flash[:error] = t(:your_observations_couldnt_be_added_to_that_project, :errors => errors.to_sentence)

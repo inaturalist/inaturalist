@@ -90,8 +90,9 @@ describe UsersController, "set_spammer" do
     end
 
     it "removes spam flags when setting to non-spammer" do
-      @user = User.make!(spammer: true)
+      @user = User.make!
       obs = Observation.make!(user: @user)
+      @user.update_attributes(spammer: true)
       Flag.make!(flaggable: obs, flag: Flag::SPAM)
       expect(@user.spammer).to be true
       expect(@user.flags_on_spam_content.count).to eq 1
