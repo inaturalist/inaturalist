@@ -156,20 +156,20 @@ class TaxaController < ApplicationController
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
         place_id ||= current_user.place_id if logged_in?
         place_id ||= CONFIG.place_id
-        place = Place.find(place_id) rescue nil
+        @place = Place.find(place_id) rescue nil
         @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
           cs.place.blank? ? [0] : cs.place.self_and_ancestor_ids
         end
-        if place
+        if @place
           @conservation_status = @conservation_statuses.detect do |cs|
-            cs.place_id == place.id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+            cs.place_id == @place.id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
           end
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
-        if place
+        if @place
           @listed_taxon = @taxon.listed_taxa.joins(:place).includes(:place).
-            where(place_id: place.self_and_ancestor_ids).
+            where(place_id: @place.self_and_ancestor_ids).
             order("(places.ancestry || '/' || places.id) DESC, establishment_means").first
         end
         
@@ -1314,8 +1314,6 @@ class TaxaController < ApplicationController
       return
     end
     
-    Rails.logger.debug "[DEBUG] ext_names.map(&:name): #{ext_names.map(&:name).inspect}"
-    Rails.logger.debug "[DEBUG] ext_names.map(&:taxon_id): #{ext_names.map(&:taxon_id).inspect}"
     @external_taxa = Taxon.find(ext_names.map(&:taxon_id)) unless ext_names.blank?
     
     return if @external_taxa.blank?
