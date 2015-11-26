@@ -11,9 +11,7 @@
                   .media-object{style: "background-image: url({{ o.photo( ) }})"}
               .media-body
                 / TODO we need a directive for taxa, e.g. in-taxon="{{ o.taxon }}"
-                %a{:class => "taxon {{ iconicTaxonNameForID(o.taxon.iconic_taxon_id) }}", href: "/observations/{{ o.id }}"}
-                  %i{:class => "icon-iconic-{{ iconicTaxonNameForID(o.taxon.iconic_taxon_id) | lowercase }}"}
-                  {{ o.species_guess || 'Something' }}
+                %inat-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
                 .username.ng-cloak.media.obs-attr
                   .media-left
                     %i.fa.fa-user
@@ -39,6 +37,6 @@
                     ???
                     %i.fa.fa-comment-o
                   %span{:class => "quality_grade {{ o.quality_grade }}_notice", "ng-hide" => "o.quality_grade == 'casual'"}
-                    {{ t(o.quality_grade) }}
+                    {{ shared.t(o.quality_grade) | capitalize }}
                   %a.taxon.pull-right{href: "/observations/{{ o.id }}"}
                     %i.icon-arrow-right

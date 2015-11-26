@@ -1115,7 +1115,7 @@ a.csvlink{background-image:image-url('silk/table.png');}
   background-image: image-url('logo-15px.png');
 }
 
-.taxon_links .taxon.Unknown          { color: inherit;  background-image: image-url('iconic_taxa/unknown-15px.png'); }
+.taxon_links .taxon.Unknown          { color: #aaaaaa;  background-image: image-url('iconic_taxa/unknown-15px.png'); }
 .taxon_links .taxon.Protozoa         { color: #691776;  background-image: image-url('iconic_taxa/protozoa-15px.png'); }
 .taxon_links .taxon.Plantae          { color: #73AC13;  background-image: image-url('iconic_taxa/plantae-15px.png'); }
 .taxon_links .taxon.Fungi            { color: DeepPink; background-image: image-url('iconic_taxa/fungi-15px.png'); }
@@ -1130,7 +1130,7 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: image-url('iconic_taxa/actinopterygii-15px.png'); }
 .taxon_links .taxon.Chromista        { color: #993300;  background-image: image-url('iconic_taxa/chromista-15px.png'); }
 
-.taxon.Unknown a          { color: inherit;  }
+.taxon.Unknown a          { color: #aaaaaa;  }
 .taxon.Protozoa a         { color: #691776;  }
 .taxon.Plantae a          { color: #73AC13;  }
 .taxon.Fungi a            { color: DeepPink; }
@@ -1144,6 +1144,10 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon.Mammalia a         { color: #1E90FF;  }
 .taxon.Actinopterygii a   { color: #1E90FF;  }
 .taxon.Chromista a        { color: #993300;  }
+
+.taxon.has-com-name .sciname { color: #aaa; }
+.taxon.has-com-name .sciname:before { content: '(' }
+.taxon.has-com-name .sciname:after { content: ')' }
 
 /* Users table */
 

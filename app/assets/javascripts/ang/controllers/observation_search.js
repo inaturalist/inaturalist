@@ -3,6 +3,7 @@ var application = angular.module( "ObservationSearch", [
   "infinite-scroll",
   "ngRoute",
   "templates",
+  "ehFilters", // angular-capitalize
   "iNatAPI"
 ]);
 
@@ -286,18 +287,5 @@ function( shared, $scope, $rootScope, $anchorScroll ) {
       ]
     });
   };
-  $scope.iconicTaxonNameForID = function(iconicTaxonID) {
-    var t = window.ICONIC_TAXA[iconicTaxonID]
-    if (t) {
-      return t.name;
-    } else {
-      return 'Unknown'
-    }
-  };
-  
-  $scope.t = function(k, options) {
-    options = options || {}
-    return I18n.t(k, options)
-  }
 
 }]);

@@ -7,3 +7,4 @@
 //= require_tree ./ang/templates
 //= require angular-google-places-autocomplete/src/autocomplete
 //= require ngInfiniteScroll/build/ng-infinite-scroll.min
+//= require angular-capitalize/angular-capitalize

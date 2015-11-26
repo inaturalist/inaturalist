@@ -80,9 +80,54 @@ function( $http, $rootScope ) {
     return num.toString( ).replace( /\B(?=(\d{3})+(?!\d))/g, "," );
   };
 
+  var t = function(k, options) {
+    options = options || {}
+    return I18n.t(k, options)
+  }
+
   return {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
-    processParams: processParams
+    processParams: processParams,
+    t: t
+  }
+}]);
+
+iNatAPI.directive('inatTaxon', ["shared", function(shared) {
+  return {
+    scope: {
+      taxon: '=',
+      url: '@'
+    },
+    link: function(scope, elt, attr) {
+      scope.iconicTaxonNameForID = function(iconicTaxonID) {
+        var t = window.ICONIC_TAXA[iconicTaxonID]
+        if (t) {
+          return t.name;
+        } else {
+          return 'Unknown'
+        }
+      };
+      scope.shared = shared;
+
+      scope.commonName = function() {
+        if (!scope.taxon) { return null; }
+        if (!scope.taxon.names || scope.taxon.names.length == 0) { return null; }
+        var name;
+        for (var i = 0; i < scope.taxon.names.length; i++) {
+          if (scope.taxon.names[i].locale != 'sci') {
+            name = scope.taxon.names[i].name;
+            break;
+          }
+        }
+        return name;
+      }
+
+      scope.scientificName = function() {
+        if (!scope.taxon) { return null; }
+        return scope.taxon.name;
+      }
+    },
+    templateUrl: 'ang/templates/shared/taxon.html'
   }
 }]);
