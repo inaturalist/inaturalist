@@ -1,5 +1,7 @@
 module ObservationSearch
 
+  LIST_FILTER_SIZE_CAP = 5000
+
   def self.included(base)
     base.extend ClassMethods
   end
@@ -531,7 +533,7 @@ module ObservationSearch
       end
 
       if list = List.find_by_id(params[:list_id])
-        if list.listed_taxa.count <= 2000
+        if list.listed_taxa.count <= LIST_FILTER_SIZE_CAP
           scope = scope.joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
             where("listed_taxa.list_id = #{list.id}")
         end
