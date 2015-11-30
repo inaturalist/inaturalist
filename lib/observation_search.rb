@@ -267,7 +267,7 @@ module ObservationSearch
       end
 
       p[:user_id] = p[:user_id] || p[:user]
-      unless p[:user_id].blank?
+      unless p[:user_id].blank? || p[:user_id].is_a?(Array)
         p[:user] = User.find_by_id(p[:user_id])
         p[:user] ||= User.find_by_login(p[:user_id])
       end

@@ -209,8 +209,8 @@ class Observation < ActiveRecord::Base
       search_filters << { term: {
         "user.id" => ElasticModel.id_or_object(p[:user]) } }
     elsif p[:user_id]
-      search_filters << { term: {
-        "user.id" => ElasticModel.id_or_object(p[:user_id]) } }
+      search_filters << { terms: {
+        "user.id" => [ p[:user_id] ].flatten.map{ |u| ElasticModel.id_or_object(u) } } }
     end
 
     # params to search based on value

@@ -271,9 +271,9 @@ describe "Observation Index" do
 
     it "filters by user and user_id" do
       expect( Observation.params_to_elastic_query({ user: 1 }) ).to include(
-        filters: [ { term: { "user.id" => 1 } } ] )
+        filters: [ { terms: { "user.id" => [ 1 ] } } ] )
       expect( Observation.params_to_elastic_query({ user_id: 1 }) ).to include(
-        filters: [ { term: { "user.id" => 1 } } ] )
+        filters: [ { terms: { "user.id" => [ 1 ] } } ] )
     end
 
     it "filters by taxon_id" do

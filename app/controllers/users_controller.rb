@@ -613,37 +613,21 @@ protected
       elastic_params = { observed_on_year: year }
     end
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
-    elastic_query = Observation.params_to_elastic_query(elastic_params)
-    counts = if per == 'year' && month > 5
+    if per == "year"
       # We've started running into memory problems with ES not being able to
       # handle aggregates on a year scale, so this is a hack until we can get
       # more memory.
-      year_params1 = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: [1,2,3,4,5])
-      year_params2 = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: [6,7,8,9,10,11,12])
-      counts1 = Observation.elastic_user_taxon_counts(year_params1, 100)
-      counts2 = Observation.elastic_user_taxon_counts(year_params2, 100)
-      counts_by_user_id1 = counts1.inject({}) do |memo, c|
-        memo[c['user_id']] = c['count_all']
-        memo
+      # Fetch the top 50 users with distinct observed species in each month
+      # and use those user IDs as a filter for the year-long query
+      elastic_params[:user_id] = [ ]
+      (1..12).each do |month|
+        month_params = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: month)
+        counts = Observation.elastic_user_taxon_counts(month_params, 50)
+        elastic_params[:user_id] += counts.map{ |c| c["user_id"] }
       end
-      counts_by_user_id2 = counts2.inject({}) do |memo, c|
-        memo[c['user_id']] = c['count_all']
-        memo
-      end
-      counts_by_user_id1.each do |user_id, count|
-        next unless counts_by_user_id2[user_id]
-        counts_by_user_id1[user_id] += counts_by_user_id2.delete(user_id)
-      end
-      counts_by_user_id1.merge(counts_by_user_id2).map{|k,v| 
-        # convert back into an ES-like hash
-        {'user_id' => k, 'count_all' => v}
-      }.sort_by{|c| 
-        # sort by count desc
-        c['count_all'] * -1
-      }[0..4]
-    else
-      Observation.elastic_user_taxon_counts(elastic_query, 5)
     end
+    elastic_query = Observation.params_to_elastic_query(elastic_params)
+    counts = Observation.elastic_user_taxon_counts(elastic_query, 5)
     user_counts = Hash[ counts.map{ |c| [ c["user_id"], c["count_all"] ] } ]
     users = User.where(id: user_counts.keys).group_by(&:id)
     Hash[ user_counts.map{ |id,c| [ users[id].first, c ] } ]
