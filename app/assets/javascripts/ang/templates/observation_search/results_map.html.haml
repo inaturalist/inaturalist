@@ -10,7 +10,6 @@
                 %a{:href => "/observations/{{ o.id }}"}
                   .media-object{style: "background-image: url({{ o.photo( ) }})"}
               .media-body
-                / TODO we need a directive for taxa, e.g. in-taxon="{{ o.taxon }}"
                 %inat-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
                 .username.ng-cloak.media.obs-attr
                   .media-left

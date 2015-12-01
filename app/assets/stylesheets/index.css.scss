@@ -1145,9 +1145,10 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon.Actinopterygii a   { color: #1E90FF;  }
 .taxon.Chromista a        { color: #993300;  }
 
-.taxon.has-com-name .sciname { color: #aaa; }
-.taxon.has-com-name .sciname:before { content: '(' }
-.taxon.has-com-name .sciname:after { content: ')' }
+.taxon.has-com-name .sciname { color: #aaa; white-space: nowrap; }
+.taxon.has-com-name .sciname:before { content: '('; display: inline-block; }
+.taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
+.taxon .sciname .rank:after {content: ' ';}
 
 /* Users table */
 
@@ -1930,6 +1931,7 @@ p.spam {
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
   vertical-align: middle;
+  display: inline-block;
 }
 
 .preferred_curator_coordinate_access_field .status { display: inline; }

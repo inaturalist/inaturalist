@@ -1,10 +1,10 @@
 %span{:class => "taxon {{ taxon.rank }} {{ iconicTaxonNameForID(taxon.iconic_taxon_id) }} {{ commonName() ? 'has-com-name' : ''}}"}
   %a{:class => "icon-iconic-{{ iconicTaxonNameForID(taxon.iconic_taxon_id) | lowercase }}", href: "{{ url }}"}
-  %a{:class => "noname", href: "{{ url }}", "ng-if": "!taxon"}
+  %a{:class => "noname", href: "{{ url }}", "ng-show": "!taxon"}
     {{ shared.t('something') }}
-  %a{:class => "comname", href: "{{ url }}", "ng-if": "commonName()"}
+  %a{:class => "comname", href: "{{ url }}", "ng-show": "commonName()"}
     {{ commonName() }}
-  %a{:class => "sciname", href: "{{ url }}", "ng-if": "scientificName()"}
-    %span{"ng-if" => "commonName() && taxon.rank_level > 10"}
+  %a{:class => "sciname", href: "{{ url }}", "ng-show": "scientificName()"}><
+    %span.rank{"ng-show" => "commonName() && taxon.rank_level > 10"}><
       {{ taxon.rank | capitalize }}
     {{ scientificName() }}
