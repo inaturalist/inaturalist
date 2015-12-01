@@ -1,5 +1,7 @@
 module ObservationSearch
 
+  LIST_FILTER_SIZE_CAP = 5000
+
   def self.included(base)
     base.extend ClassMethods
   end
@@ -178,7 +180,6 @@ module ObservationSearch
           nil
         end
       end
-      p[:q] = sanitize_query(p[:q]) unless p[:q].blank?
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa
       if p[:iconic_taxa]
@@ -268,7 +269,7 @@ module ObservationSearch
       end
 
       p[:user_id] = p[:user_id] || p[:user]
-      unless p[:user_id].blank?
+      unless p[:user_id].blank? || p[:user_id].is_a?(Array)
         p[:user] = User.find_by_id(p[:user_id])
         p[:user] ||= User.find_by_login(p[:user_id])
       end
@@ -516,7 +517,12 @@ module ObservationSearch
 
       unless params[:updated_since].blank?
         if timestamp = Chronic.parse(params[:updated_since])
-          scope = scope.where("observations.updated_at > ?", timestamp)
+          if params[:aggregation_user_ids].blank?
+            scope = scope.where("observations.updated_at > ?", timestamp)
+          else
+            scope = scope.where("observations.updated_at > ? OR observations.user_id IN (?)",
+              timestamp, params[:aggregation_user_ids])
+          end
         else
           scope = scope.where("1 = 2")
         end
@@ -527,7 +533,7 @@ module ObservationSearch
       end
 
       if list = List.find_by_id(params[:list_id])
-        if list.listed_taxa.count <= 2000
+        if list.listed_taxa.count <= LIST_FILTER_SIZE_CAP
           scope = scope.joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
             where("listed_taxa.list_id = #{list.id}")
         end

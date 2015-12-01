@@ -250,8 +250,7 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em
-    csi csa pcid list_id ofv_params)
+  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em list_id)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
@@ -587,6 +586,7 @@ class Observation < ActiveRecord::Base
 
   scope :dbsearch, lambda {|*args|
     q, on = args
+    q = sanitize_query(q) unless q.blank?
     case on
     when 'species_guess'
       where("observations.species_guess ILIKE", "%#{q}%")
@@ -672,7 +672,7 @@ class Observation < ActiveRecord::Base
 
   # returns a string for sharing on social media (fb, twitter)
   def to_share_s
-    return self.to_plain_s({:no_user=>true})
+    return self.to_plain_s(no_user: true)
   end
   
   def time_observed_at_utc
@@ -695,7 +695,7 @@ class Observation < ActiveRecord::Base
       [options[:include]].flatten.compact
     end
     options[:methods] ||= []
-    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc]
+    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc, :faves_count]
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
@@ -1688,13 +1688,13 @@ class Observation < ActiveRecord::Base
   end
   
   def update_default_license
-    return true unless [true, "1", "true"].include?(@make_license_default)
+    return true unless make_license_default.yesish?
     user.update_attribute(:preferred_observation_license, license)
     true
   end
   
   def update_all_licenses
-    return true unless [true, "1", "true"].include?(@make_licenses_same)
+    return true unless make_licenses_same.yesish?
     Observation.where(user_id: user_id).update_all(license: license)
     true
   end
@@ -2408,6 +2408,14 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  # Show count of all faves on this observation. cached_votes_total stores the
+  # count of all votes without a vote_scope, which for an Observation means
+  # the faves, but since that might vary from model to model based on how we
+  # use acts_as_votable, faves_count seems clearer.
+  def faves_count
+    cached_votes_total
   end
 
   def self.dedupe_for_user(user, options = {})

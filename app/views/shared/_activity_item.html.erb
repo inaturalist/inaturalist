@@ -18,6 +18,8 @@
   no_thumb ||= false
   no_meta ||= false
   context_around ||= nil
+  posted_at ||= item.created_at
+  posted_at = item.updated_at if item.is_a?(Flag)
 -%>
 <div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
   <div class="item_user column">
@@ -95,8 +97,8 @@
         <%=t :posted_by %>
         <%= link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
         <span class="when">
-          <abbr class="date timeago" title="<%= item.created_at.iso8601 %>">
-            <%=t :n_ago, :n => time_ago_in_words(item.created_at) %>
+          <abbr class="date timeago" title="<%= posted_at.iso8601 %>">
+            <%=t :n_ago, :n => time_ago_in_words(posted_at) %>
           </abbr>
         </span>
         <span class="comment_actions">

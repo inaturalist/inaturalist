@@ -155,6 +155,14 @@ describe "ActsAsSpammable", "ActiveRecord" do
     expect(Taxon.make!.owned_by_spammer?).to be false
   end
 
+  it "does not allow spammers to create objects" do
+    u = User.make!
+    expect{ Comment.make!(user: u) }.to_not raise_error
+    u.update_column(:spammer, true)
+    expect{ Comment.make!(user: u) }.to raise_error(ActiveRecord::RecordInvalid,
+      "Validation failed: User cannot be spammer")
+  end
+
 
   describe "User Exceptions" do
     it "checks users for spam when they have descriptions" do

@@ -359,7 +359,7 @@ class Photo < ActiveRecord::Base
   def as_indexed_json(options={})
     {
       id: id,
-      license_code: (license.blank? || license == 0) ?
+      license_code: (license_code.blank? || license.blank? || license == 0) ?
         nil : license_code.downcase,
       attribution: attribution,
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url

@@ -81,9 +81,9 @@
   </script>
 <%- end -%>
 
-<% if @announcement -%>
+<% if announcement = @announcements.detect{|a| a.placement == 'users/dashboard'} -%>
   <div class="column span-24">
-    <%= @announcement.body.html_safe %>
+    <%= announcement.body.html_safe %>
   </div>
 <% end -%>
 
@@ -212,6 +212,10 @@
     </div>
 
     <div id="rightcol" class="last column span-8">
+      <% if (announcement = @announcements.detect{|a| a.placement == 'users/dashboard#sidebar'}) && !user_seen_announcement?(announcement) -%>
+        <%= announcement.body.html_safe %>
+      <% end -%>
+
       <%= link_to t(:add_observations), new_observation_path, :id => "obsbutton", :class => "default button" %>
 
       <div id="calendar" class="clear stacked">

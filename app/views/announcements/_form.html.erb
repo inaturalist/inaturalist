@@ -3,6 +3,7 @@
   <%= f.select :placement, Announcement::PLACEMENTS %>
   <%= f.datetime_select :start %>
   <%= f.datetime_select :end %>
+  <%= f.select :locale, I18N_SUPPORTED_LOCALES, include_blank: 'all' %>
   <%= f.text_area :body %>
   
   <div class="actions buttons">

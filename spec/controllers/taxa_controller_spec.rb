@@ -15,6 +15,17 @@ describe TaxaController do
       get :show, :id => t.id
       expect(response.body).to be =~ /<h2>.*?#{tn2.name}.*?<\/h2>/m
     end
+
+    it "should use a taxon name for the requested place instead of the default" do
+      t = Taxon.make!
+      tn1 = TaxonName.make!(:taxon => t, :name => "the default name")
+      tn2 = TaxonName.make!(:taxon => t, :name => "the place name")
+      p = Place.make!
+      PlaceTaxonName.make!(:place => p, :taxon_name => tn2)
+      sign_in User.make!
+      get :show, id: t.id, place_id: p.id
+      expect(response.body).to be =~ /<h2>.*?#{tn2.name}.*?<\/h2>/m
+    end
   end
 
   describe "merge" do

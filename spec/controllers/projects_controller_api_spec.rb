@@ -62,6 +62,24 @@ shared_examples_for "a ProjectsController" do
       end
     end
   end
+
+  describe "members" do
+    before do
+      sign_in User.make!
+    end
+    it "should include project members" do
+      get :members, format: :json, id: project.id
+      json = JSON.parse(response.body)
+      user_ids = json.map{|pu| pu['user']['id']}
+      expect( user_ids ).to include @project_user.user_id
+    end
+    it "should include role" do
+      get :members, format: :json, id: project.id
+      json = JSON.parse(response.body)
+      admin = json.detect{|pu| pu['user_id'] == project.user_id}
+      expect( admin['role'] ).to eq ProjectUser::MANAGER
+    end
+  end
 end
 
 describe ProjectsController, "oauth authentication" do

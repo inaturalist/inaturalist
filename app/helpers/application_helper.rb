@@ -347,6 +347,10 @@ module ApplicationHelper
     end
     image_tag(url, options.merge(:style => style, :class => css_class))
   end
+
+  def user_seen_announcement?(announcement)
+    session[announcement.session_key]
+  end
   
   def observation_image(observation, options = {})
     style = options[:style]

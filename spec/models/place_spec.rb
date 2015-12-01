@@ -38,6 +38,16 @@ describe Place, "creation" do
     expect(p.check_list.taxa).to include t
   end
 
+  it "should create listed taxa with stats set" do
+    t = Taxon.make!(rank: Taxon::SPECIES)
+    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    Delayed::Worker.new.work_off
+    p.reload
+    lt = p.check_list.listed_taxa.where(taxon_id: t.id).first
+    expect( lt.last_observation_id ).not_to be_blank
+  end
+
   it "should not allow titles that start with numbers" do
     p = Place.make(:name => "14")
     expect(p).to_not be_valid
@@ -214,6 +224,21 @@ describe Place, "merging" do
     rlt.reload
     expect( klt.primary_listing? || rlt.primary_listing? ).to eq true
     expect( klt.primary_listing? && rlt.primary_listing? ).to eq false
+  end
+
+  it "should not result in single listed taxa for a given taxon that are not primary" do
+    keeper = Place.make!
+    reject = Place.make!
+    klt = keeper.check_list.add_taxon(Taxon.make!, user: User.make!)
+    rl = reject.check_lists.create(title: "foo")
+    rlt = rl.add_taxon(Taxon.make!, user: User.make!)
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+    without_delay { keeper.merge(reject) }
+    klt.reload
+    rlt.reload
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
   end
 end
 

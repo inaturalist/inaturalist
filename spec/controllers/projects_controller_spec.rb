@@ -1,7 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ProjectsController, "spam" do
-  let(:spammer_content) { Project.make!(user: User.make!(spammer: true)) }
+  let(:spammer_content) {
+    p = Project.make!
+    p.user.update_attributes(spammer: true)
+    p
+  }
   let(:flagged_content) {
     p = Project.make!
     Flag.make!(flaggable: p, flag: Flag::SPAM)

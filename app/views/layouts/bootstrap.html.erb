@@ -17,6 +17,9 @@
     <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
       <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
     <% end %>
+    <% if !@headless && @site && @site.preferred_ios_app_id -%>
+      <meta name="apple-itunes-app" content="app-id=<%= @site.preferred_ios_app_id %>">
+    <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
   </head>

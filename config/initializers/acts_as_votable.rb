@@ -12,6 +12,10 @@ module ActsAsVotable
   end
 
   module Votable
+    def faves
+      votes_for.where(vote_flag: true, vote_scope: nil)      
+    end
+    
     def votes
       votes_for.inject({}) do |memo, vote|
         memo[vote.vote_scope] ||= {}

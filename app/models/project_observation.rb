@@ -66,27 +66,26 @@ class ProjectObservation < ActiveRecord::Base
   def project_user
     project.project_users.where(user_id: observation.user_id).first
   end
-  
+
   after_create  :refresh_project_list
   after_destroy :refresh_project_list
-  
+
   after_create  :update_observations_counter_cache_later
   after_destroy :update_observations_counter_cache_later
-  
+
   after_create  :update_taxa_counter_cache_later
   after_destroy :update_taxa_counter_cache_later
-  
+
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
 
   after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
-  after_create  :touch_observation
-  after_destroy :touch_observation
-  
   after_save :update_project_list_if_curator_ident_changed
-  
+
+  include Shared::TouchesObservationModule
+
   def update_project_list_if_curator_ident_changed
     return true unless curator_identification_id_changed?
     old_curator_identification_id = curator_identification_id_was
@@ -317,17 +316,19 @@ class ProjectObservation < ActiveRecord::Base
     prefers_curator_coordinate_access?
   end
 
-  def touch_observation
-    observation.touch if observation
-    true
-  end
-
   def removable_by?(usr)
     return true if [user_id, observation.user_id].include?(usr.id)
     return true if project.curated_by?(usr)
     false
   end
-  
+
+  def touch_observation
+    if observation
+      observation.project_observations.reload
+      observation.touch
+    end
+  end
+
   ##### Static ##############################################################
   def self.to_csv(project_observations, options = {})
     return nil if project_observations.blank?

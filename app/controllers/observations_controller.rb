@@ -343,6 +343,7 @@ class ObservationsController < ApplicationController
           :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
+            :user => User.default_json_options,
             :observation_field_values => {:include => {:observation_field => {:only => [:name]}}},
             :project_observations => {
               :include => {
@@ -378,6 +379,15 @@ class ObservationsController < ApplicationController
                   :methods => [:user_icon_url]
                 },
                 :taxon => taxon_options
+              }
+            },
+            :faves => {
+              :only => [:created_at],
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
+                }
               }
             }
           })
@@ -1488,7 +1498,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       if @observation.update_attributes(o)
         if !params[:project_id].blank? && @observation.user_id == current_user.id && (@project = Project.find(params[:project_id]) rescue nil)
-          @project_observation = ProjectObservation.create(:observation => @observation, :project => @project)
+          @project_observation = @observation.project_observations.create(project: @project, user: current_user)
         end
         format.html do
           flash[:notice] = I18n.t(:observations_was_successfully_updated)
@@ -1797,6 +1807,8 @@ class ObservationsController < ApplicationController
       :location_is_exact,
       :longitude,
       :map_scale,
+      :make_license_default,
+      :make_licenses_same,
       :oauth_application_id,
       :observed_on_string,
       :place_guess,
@@ -2507,7 +2519,7 @@ class ObservationsController < ApplicationController
     else
       opts = options
       opts[:methods] ||= []
-      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list]
+      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list, :faves_count]
       opts[:methods].uniq!
       opts[:include] ||= {}
       opts[:include][:taxon] ||= {
@@ -2614,16 +2626,19 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+    if @project.tracking_code_allowed?(params[:tracking_code])
+      tracking_code = params[:tracking_code]
+    end
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
-      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code, user: current_user)
+      po = observation.project_observations.build(project: @project,
+        tracking_code: tracking_code, user: current_user)
       unless po.save
         errors = (errors + po.errors.full_messages).uniq
       end
     end
-     
+
     if !errors.blank?
       if request.format.html?
         flash[:error] = t(:your_observations_couldnt_be_added_to_that_project, :errors => errors.to_sentence)

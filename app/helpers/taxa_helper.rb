@@ -143,16 +143,19 @@ module TaxaHelper
     ).try(:name) || ""
   end
   
-  def common_taxon_name(taxon)
+  def common_taxon_name(taxon, options = {})
     return nil if taxon.blank?
-    user = if defined? current_user
+    user = if options[:user]
+      options[:user]
+    elsif defined? current_user
       current_user
     else
       @user
     end
+    place = options[:place] || user.try(:place)
     TaxonName.choose_common_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names,
-      :place => user.try(:place)
+      place: place
     )
   end
   

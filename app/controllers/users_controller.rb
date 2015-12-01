@@ -321,7 +321,9 @@ class UsersController < ApplicationController
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
-        @announcement = Announcement.where('placement = \'users/dashboard\' AND ? BETWEEN "start" AND "end"', Time.now.utc).last
+        scope = Announcement.where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)
+        @announcements = scope.in_locale(I18n.locale)
+        @announcements = scope.in_locale(I18n.locale.to_s.split('-').first) if @announcements.blank?
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").
@@ -416,7 +418,14 @@ class UsersController < ApplicationController
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
     locale_was = @display_user.locale
+    preferred_project_addition_by_was = @display_user.preferred_project_addition_by
     if whitelist_params && @display_user.update_attributes(whitelist_params)
+      # user changed their project addition rules and nothing else, so
+      # updated_at wasn't touched on user. Set set updated_at on the user
+      if @display_user.preferred_project_addition_by != preferred_project_addition_by_was &&
+         @display_user.previous_changes.empty?
+        @display_user.update_columns(updated_at: Time.now)
+      end
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do
@@ -470,11 +479,18 @@ class UsersController < ApplicationController
   end
 
   def update_session
-    allowed_keys = %w(show_quality_metrics)
-    updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
+    allowed_patterns = [
+      /^show_quality_metrics$/,
+      /^user-seen-ann*/
+    ]
+    updates = params.select {|k,v|
+      allowed_patterns.detect{|p| 
+        k.match(p)
+      }
+    }.symbolize_keys
     updates.each do |k,v|
-      v = true if %w(yes y true t).include?(v)
-      v = false if %w(no n false f).include?(v)
+      v = true if v.yesish?
+      v = false if v.noish?
       session[k] = v
     end
     render :head => :no_content, :layout => false, :text => nil
@@ -597,6 +613,19 @@ protected
       elastic_params = { observed_on_year: year }
     end
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
+    if per == "year"
+      # We've started running into memory problems with ES not being able to
+      # handle aggregates on a year scale, so this is a hack until we can get
+      # more memory.
+      # Fetch the top 50 users with distinct observed species in each month
+      # and use those user IDs as a filter for the year-long query
+      elastic_params[:user_id] = [ ]
+      (1..12).each do |month|
+        month_params = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: month)
+        counts = Observation.elastic_user_taxon_counts(month_params, 50)
+        elastic_params[:user_id] += counts.map{ |c| c["user_id"] }
+      end
+    end
     elastic_query = Observation.params_to_elastic_query(elastic_params)
     counts = Observation.elastic_user_taxon_counts(elastic_query, 5)
     user_counts = Hash[ counts.map{ |c| [ c["user_id"], c["count_all"] ] } ]

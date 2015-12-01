@@ -55,7 +55,7 @@ class Taxon < ActiveRecord::Base
     }
     if options[:for_observation]
       unless conservation_statuses.empty?
-        json[:conservation_statuses] = conservation_statuses.map(&:as_indexed_json)
+        json[:statuses] = conservation_statuses.map(&:as_indexed_json)
       end
     else
       json.merge!({
