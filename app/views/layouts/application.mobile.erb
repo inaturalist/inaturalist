@@ -5,8 +5,8 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=<%= @user_scalable.blank? ? '1' : @user_scalable %>" />
-    <% if CONFIG.ios_app_id && !@headless -%>
-      <meta name="apple-itunes-app" content="app-id=<%= CONFIG.ios_app_id %>">
+    <% if !@headless && @site && @site.preferred_ios_app_id -%>
+      <meta name="apple-itunes-app" content="app-id=<%= @site.preferred_ios_app_id %>">
     <% end -%>
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <%= favicon_link_tag %>
@@ -24,6 +24,9 @@
     <%= yield :extrahead %>
   </head>
 <body class="mobile">
+  <% if !@headless && @site && @site.preferred_ios_app_id -%>
+    <%= @site.preferred_ios_app_id %>
+  <% end -%>
   <%= render :partial => 'shared/header' unless @headless %>
 
   <% if flash[:notice] %>
