@@ -1085,7 +1085,7 @@ class TaxaController < ApplicationController
     
     flickr = get_flickraw
     
-    photos = FlickrPhoto.where(native_photo_id: params[:flickr_photos]).includes(:observations)
+    photos = Photo.where(subtype: 'FlickrPhoto', native_photo_id: params[:flickr_photos]).includes(:observations)
     
     params[:flickr_photos].each do |flickr_photo_id|
       tags = params[:tags]
