@@ -1,136 +1,139 @@
 #filter-dropdown.container
-  .row
-    .col-xs-6
-      .row
-        .col-xs-6
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
-              =t :wild
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
-              =t :verifiable
-          .checkbox
-            %label
-              %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
-              =t :research_quality
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
-              =t :threatened
-        .col-xs-6
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
-              =t :introduced
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
-              =t :popular
-          .checkbox
-            %label
-              %input{type: 'checkbox', disabled: true}
-              =t :first_report
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.has_sounds", "ng-false-value" => ""}
-              =t :has_sounds
-          .checkbox
-            %label
-              %input{type: 'checkbox', "ng-model" => "params.has_photos", "ng-false-value" => ""}
-              =t :has_photos
-      .row
-        .col-xs-12
-          .form-group
-            %label{for: 'params-q'} Description / Tags
-            %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "blue, butterfly, etc."}
-    .col-xs-6
-      .row
-        .col-xs-12
-          - Taxon::ICONIC_TAXA.each do |t|
-            %label
-              %input{type: 'checkbox', "ng-model" => "params._iconic_taxa.#{t.name}", :value => t.name}
-              = t.name
-      .row
-        .col-xs-12
-          %label{for: 'params-hrank'}=t :rank
-      .row
-        .col-xs-6
-          %select#params-hrank.form-control{"ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}"}
-            %option{value: ''}=t :high
-            - for rank in Taxon::VISIBLE_RANKS
-              %option{value: rank}= I18n.t("ranks.#{rank}", :default => rank).downcase
-        .col-xs-6
-          %select#params-lrank.form-control{"ng-model" => "params.lrank", "ng-model-options" => "{debounce: 1000}"}
-            %option{value: ''}=t :low
-            - for rank in Taxon::VISIBLE_RANKS
-              %option{value: rank}= I18n.t("ranks.#{rank}", :default => rank).downcase
-      .row
-        .col-xs-12
-          %label{for: 'params-order-by'}=t :sort_by
-      .row
-        .col-xs-6
-          %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}"}
-            = FakeView.observations_order_by_options
-        .col-xs-6
-          %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
-            = FakeView.options_for_select(%w(asc desc).map{|o|I18n.t(o)}, @order)
-  .row
-    .col-xs-12
-      %button.button.btn-default{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
-        =t :more_filters
-      %button.button.btn-default{ type: 'button', "ng-click": "reset( )" }
-        =t :clear
-      #more-filters.collapse
+  #filters-body
+    .row
+      .col-xs-4
+        .row
+          .col-xs-12
+            %label.sectionlabel=I18n.translate :show
+        #show-filters.row
+          .col-xs-6
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
+                =I18n.t :wild
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
+                =I18n.t :verifiable
+            .checkbox
+              %label
+                %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
+                =I18n.t :research_quality
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
+                =I18n.t :threatened
+          .col-xs-6
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
+                =I18n.t :introduced
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
+                =I18n.t :popular
+            .checkbox
+              %label
+                %input{type: 'checkbox', disabled: true}
+                =I18n.t :first_report
+            / .checkbox
+            /   %label
+            /     %input{type: 'checkbox', "ng-model" => "params.has_sounds", "ng-false-value" => ""}
+            /     =I18n.t :has_sounds
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.has_photos", "ng-false-value" => ""}
+                =I18n.t :has_photos
+        .row
+          .col-xs-12
+            .form-group
+              %label{for: 'params-q'} Description / Tags
+              %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "blue, butterfly, etc."}
+      .col-xs-4
+        .row
+          .col-xs-12
+            %label.sectionlabel=I18n.t :categories
+            #filters-categories.btn-group{data: {toggle: 'buttons'}}
+              - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia'}.each_with_index do |t, i|
+                %label{title: t.name, :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}"}
+                  %input{type: 'checkbox', "ng-model" => "params._iconic_taxa.#{t.name}", :value => t.name}
+                  %i{:class => "icon-iconic-#{t.name.downcase}"}
+        .row
+          .col-xs-12
+            %label.sectionlabel{for: 'params-hrank'}=I18n.t :rank
+        #filters-ranks.row
+          .col-xs-6
+            %select#params-hrank.form-control{"ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}"}
+              %option{value: ''}=I18n.t :high
+              - for rank in Taxon::VISIBLE_RANKS
+                %option{value: rank}= I18n.t("ranks.#{rank}", :default => rank).downcase
+          .col-xs-6
+            %select#params-lrank.form-control{"ng-model" => "params.lrank", "ng-model-options" => "{debounce: 1000}"}
+              %option{value: ''}=I18n.t :low
+              - for rank in Taxon::VISIBLE_RANKS
+                %option{value: rank}= I18n.t("ranks.#{rank}", :default => rank).downcase
+        .row
+          .col-xs-12
+            %label.sectionlabel{for: 'params-order-by'}=I18n.t :sort_by
         .row
           .col-xs-6
-            .form-group
-              %label{for: 'params-user-id'} Person
-              %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "Name or username"}
-            .form-group
-              %label{for: 'params-projects'} Project
-              %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "Project name"}
-            .form-group
-              %label Photo licensing
-              %select.form-control{"ng-model" => "params.photo_license"}
-                %option{value: ''}=t :all
-                - for code, name, desc in Observation::LICENSES do
-                  %option{value: code}= code
+            %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}"}
+              = FakeView.observations_order_by_options
           .col-xs-6
-            .form-group
-              %label Location data
-              %br
-              Restrict results to
-              %br
-              %label.radio-inline
-                %input{type: 'radio', name: 'geo-type', value: 'place', "ng-model" => "params.geoType"}
-                =t :places
-              %label.radio-inline
-                %input{type: 'radio', name: 'geo-type', value: 'map', "ng-model" => "params.geoType"}
-                =t :map_view
-              %label.radio-inline
-                %input{type: 'radio', name: 'geo-type', value: 'world', "ng-model" => "params.geoType"}
-                =t :worldwide
-            .form-group
-              %label=t :dates
-              %br
-              %label.radio-inline
-                %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
-                  =t :any
-              %label.radio-inline
-                %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
-                %span.date-type
-                  Exact date:
-                  %input{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-disabled" => "params.dateType != 'exact'"}
-              %label.radio-inline
-                %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
-                %span.date-type
-                  Range:
-                  %input{type: 'text', placeholder: 'Start', "ng-model" => "params.d1", "ng-disabled" => "params.dateType != 'range'"}
-                  %input{type: 'text', placeholder: 'End', "ng-model" => "params.d2", "ng-disabled" => "params.dateType != 'range'"}
-              %label.radio-inline
-                %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
-                %span.date-type
-                  Month(s):
-                  = FakeView.select_tag :month, FakeView.options_for_select([[t(:month), '']] + (1..12).to_a.map{|n| [t("date_format.month.#{Date::MONTHNAMES[n].downcase}"),n]}, :selected => @observed_on_month), "ng-model" => "params.month", "ng-disabled" => "params.dateType != 'month'"
+            %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
+              = FakeView.options_for_select(%w(asc desc).map{|o|I18n.t(o)}, @order)
+      .col-xs-4
+        %label.sectionlabel=I18n.t :dates
+        #filters-dates
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
+              =I18n.t :any
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
+            %span.date-type
+              Exact date:
+              %input#filters-dates-exact.form-control.date-picker{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-disabled" => "params.dateType != 'exact'"}
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
+            %span.date-type
+              Range:
+              %input.form-control.date-picker{type: 'text', placeholder: 'Start', "ng-model" => "params.d1", "ng-disabled" => "params.dateType != 'range'"}
+              %input.form-control.date-picker{type: 'text', placeholder: 'End', "ng-model" => "params.d2", "ng-disabled" => "params.dateType != 'range'"}
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
+            %span.date-type
+              Month(s):
+              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| [I18n.t("date_format.month.#{Date::MONTHNAMES[n].downcase}"),n]}, :selected => @observed_on_months), "ng-model" => "params.months", "ng-disabled" => "params.dateType != 'month'", :class => "form-control", id: "filters-dates-months", multiple: "multiple"
+    .row
+      .col-xs-12
+        %button#filters-more-btn.btn.btn-link.collapsed{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
+          =I18n.t :more_filters
+          %i.fa.fa-caret-down
+          %i.fa.fa-caret-up
+        #more-filters.collapse
+          .row
+            .col-xs-4
+              .form-group
+                %label{for: 'params-user-id'}=I18n.t :person
+                .input-group
+                  %span.input-group-addon.fa.fa-user
+                  %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "Name or username"}
+              .form-group
+                %label{for: 'params-projects'}=I18n.t :project
+                .input-group
+                  %span.input-group-addon.fa.fa-briefcase
+                  %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "Project name"}
+            .col-xs-4
+              .form-group
+                %label Photo licensing
+                %select.form-control{"ng-model" => "params.photo_license"}
+                  %option{value: ''}=I18n.t :all
+                  - for code, name, desc in Observation::LICENSES do
+                    %option{value: code}= code
+  #filters-footer.row
+    .col-xs-12
+      %button.btn.btn-primary
+        =I18n.t :update_search
+      %button.btn.btn-default{ type: 'button', "ng-click": "reset( )" }
+        =I18n.t :reset_search_filters
+

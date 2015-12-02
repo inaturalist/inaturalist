@@ -116,8 +116,9 @@
 .bootstrap #filter-container > button:hover { color: white; }
 
 #filter-dropdown {
-  width: 600px;
+  width: 900px;
 }
+#filters .dropdown-menu { background-color: #eee; padding: 0px;}
 #filters .ac-chooser { display: inline-block; }
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
@@ -182,3 +183,43 @@
 .obs-attr.media .media-left { padding-right: 5px; text-align: center;}
 
 inat-taxon { white-space: nowrap; }
+
+#filters label {text-transform: capitalize;}
+.bootstrap label.sectionlabel {
+  display: block;
+  font-weight: bold;
+}
+
+.bootstrap #filters .radio, 
+.bootstrap #filters .checkbox {
+  margin: 0px 0 2px;
+}
+
+#show-filters {margin-bottom: 8px; }
+#filters-categories { margin-bottom: 5px;}
+#filters-ranks {margin-bottom: 10px;}
+.bootstrap #filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
+.bootstrap #filters-dates .form-control {width: 100px; height: 20px;display: inline-block;}
+.bootstrap #filters-dates #filters-dates-exact.form-control {width: 176px;}
+
+#filters label.iconic-taxon {
+  font-size: 30px;
+  margin: 0 5px 5px 0;
+  padding: 0px 6px;
+  font-size: 26.8px;
+}
+#filters label.iconic-taxon.last {margin-right: 0;}
+
+#filters-body {
+  padding: 10px 0px 15px;
+}
+#filters-footer {
+  background-color: #ccc;
+  padding: 10px 0;
+}
+
+#filters-more-btn {padding:0;}
+#filters-more-btn .fa-caret-up { display: inline;}
+#filters-more-btn .fa-caret-down { display: none;}
+#filters-more-btn.collapsed .fa-caret-up { display: none; }
+#filters-more-btn.collapsed .fa-caret-down { display: inline; }

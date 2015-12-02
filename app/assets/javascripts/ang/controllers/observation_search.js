@@ -35,10 +35,39 @@ function( ObservationsFactory, shared, $scope, $rootScope, $location ) {
     $( "body" ).on( "click", function( e ) {
       if( !$( "#filter-container" ).is( e.target ) &&
           $( "#filter-container" ).has( e.target ).length === 0 &&
-          $( ".open" ).has( e.target ).length === 0 ) {
+          $( ".open" ).has( e.target ).length === 0 &&
+          $( e.target ).parents('.ui-datepicker').length === 0 &&
+          $( e.target ).parents('.ui-datepicker-header').length === 0 &&
+          $( e.target ).parents('.ui-multiselect-menu').length === 0
+        ) {
         $( "#filter-container" ).removeClass( "open" );
       };
     });
+    $('.date-picker').datepicker({
+      yearRange: "c-100:c+0",
+      maxDate: '+0d',
+      constrainInput: false,
+      firstDay: 0,
+      changeFirstDay: false,
+      changeMonth: true,
+      changeYear: true,
+      dateFormat: 'yy-mm-dd',
+      showTimezone: false,
+      closeText: I18n.t('date_picker.closeText'),
+      currentText: I18n.t('date_picker.currentText'),
+      prevText: I18n.t('date_picker.prevText'),
+      nextText: I18n.t('date_picker.nextText'),
+      monthNames: eval(I18n.t('date_picker.monthNames')),
+      monthNamesShort: eval(I18n.t('date_picker.monthNamesShort')),
+      dayNames: eval(I18n.t('date_picker.dayNames')),
+      dayNamesShort: eval(I18n.t('date_picker.dayNamesShort')),
+      dayNamesMin: eval(I18n.t('date_picker.dayNamesMin'))
+    });
+    $('#filters select[multiple]').multiselect({
+      minWidth: 150,
+      checkAllText: I18n.t('all'),
+      uncheckAllText: I18n.t('none')
+    })
   }
   $scope.resetStats = function( ) {
     $scope.totalObservations = "--";

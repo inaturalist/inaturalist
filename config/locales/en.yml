@@ -501,6 +501,7 @@ en:
   case_plural: 's'
   casual: casual
   catalogue_of_life: Catalogue of Life
+  categories: categories
   cc_attribution_license: Creative Commons Attribution license
   cc_by_description: "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."
   cc_by_name: Attribution
@@ -811,6 +812,7 @@ en:
     dayNamesShort: "['Sun','Mon','Tue','Wed','Thu','Sun','Sat']"
     dayNamesMin: "['Su','Mo','Tu','We','Th','Fr','Sa']"
   date_time: Date/Time
+  dates: dates
   datetime_: Date/Time
   day: Day
   default: default
@@ -1059,6 +1061,7 @@ en:
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observer: 1st observer
+  first_report: first report
   flag: Flag
   flag_an_item: Flag an item
   flag_as_spammer: Flag as spammer
@@ -1168,8 +1171,10 @@ en:
   guide_was_successfully_published: Guide was successfully published.
   guide_was_successfully_updated: Guide was successfully updated.
   guidelines: Guidelines
-  has_been: has been
   has_already_been_flagged_by: has already been flagged by
+  has_been: has been
+  has_photos: has photos
+  has_sounds: has sounds
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
   hate_me_flickr: "Unlink your Flickr and %{site_name} Accounts"
@@ -1193,6 +1198,7 @@ en:
   hi_user: "Hi %{user}"
   hide: Hide
   hide_details: Hide details
+  high: high
   highest_rank: Highest rank
   home: Home
   home_faq: FAQ
@@ -1520,6 +1526,7 @@ en:
   lookup: Lookup
   lookup: Lookup
   lookup_user_rarr: "Lookup user &rarr;"
+  low: low
   lowest_rank: Lowest rank
   made_a: made a
   mail_disclaimer: "%{site_name} will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to %{site}."
@@ -1597,6 +1604,7 @@ en:
   months_ago: "%{text} ago"
   more: More
   more_fields: More fields
+  more_filters: More filters
   more_info: More info
   more_info_title: More Info
   more_journal_posts: More journal posts
@@ -2177,6 +2185,7 @@ en:
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
+  popular: popular
   position: Position
   positional_accuracy: Positional accuracy
   possessive_user: "%{user}'s"
@@ -2383,6 +2392,7 @@ en:
   research_grade_short_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_quality: Research quality
+  reset_search_filters: Reset search filters
   reset_your_password: Reset your password
   resolve: Resolve
   resolve_this_flag: Resolve this flag
@@ -2977,6 +2987,7 @@ en:
   update_existing_sounds_with_new_license: Update existing sounds with new license choices
   update_past: "Update past %{type}"
   update_photos: Update photos
+  update_search: Update search
   update_selected_taxa: Update selected taxa
   update_subscription: Update subscription
   update_x_selected_taxa: 
@@ -3375,6 +3386,7 @@ en:
   find_some_people_to_follow: "Find some people to follow"
   here_are_some_things_you_can_do_in_the_meantime: "Here are some things you can do in the meantime"
   none_of_the_people_you_follow_have_any_updates_yet: "None of the people you follow have made any updates yet!"
+  verifiable: verifiable
   views:
     views: 'Views'
     custom_projects:
@@ -4725,7 +4737,8 @@ en:
         check_list: :@f
         observation_field: :@m
         post: :@m
-        taxon: :@m            
+        taxon: :@m      
+  wild: wild      
   will_paginate:
     previous_label: "&#8592; Prev"
     next_label: "Next &#8594;"
