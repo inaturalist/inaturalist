@@ -4,46 +4,46 @@
       .col-xs-4
         .row
           .col-xs-12
-            %label.sectionlabel=I18n.translate :show
+            %label.sectionlabel Show
         #show-filters.row
           .col-xs-6
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
-                =I18n.t :wild
+                Wild
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
-                =I18n.t :verifiable
+                Verifiable
             .checkbox
               %label
                 %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
-                =I18n.t :research_quality
+                Research Quality
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
-                =I18n.t :threatened
+                Threatened
           .col-xs-6
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
-                =I18n.t :introduced
+                Introduced
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
-                =I18n.t :popular
+                Popular
             .checkbox
               %label
                 %input{type: 'checkbox', disabled: true}
-                =I18n.t :first_report
+                First Report
             / .checkbox
             /   %label
             /     %input{type: 'checkbox', "ng-model" => "params.has_sounds", "ng-false-value" => ""}
-            /     =I18n.t :has_sounds
+            /     =t :has_sounds
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.has_photos", "ng-false-value" => ""}
-                =I18n.t :has_photos
+                Has Photos
         .row
           .col-xs-12
             .form-group
@@ -52,7 +52,7 @@
       .col-xs-4
         .row
           .col-xs-12
-            %label.sectionlabel=I18n.t :categories
+            %label.sectionlabel Categories
             #filters-categories.btn-group{data: {toggle: 'buttons'}}
               - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia'}.each_with_index do |t, i|
                 %label{title: t.name, :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}"}
@@ -60,34 +60,34 @@
                   %i{:class => "icon-iconic-#{t.name.downcase}"}
         .row
           .col-xs-12
-            %label.sectionlabel{for: 'params-hrank'}=I18n.t :rank
+            %label.sectionlabel{for: 'params-hrank'} Rank
         #filters-ranks.row
           .col-xs-6
             %select#params-hrank.form-control{"ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}"}
-              %option{value: ''}=I18n.t :high
+              %option{value: ''} High
               - for rank in Taxon::VISIBLE_RANKS
-                %option{value: rank}= I18n.t("ranks.#{rank}", :default => rank).downcase
+                %option{value: rank}= rank
           .col-xs-6
             %select#params-lrank.form-control{"ng-model" => "params.lrank", "ng-model-options" => "{debounce: 1000}"}
-              %option{value: ''}=I18n.t :low
+              %option{value: ''} Low
               - for rank in Taxon::VISIBLE_RANKS
-                %option{value: rank}= I18n.t("ranks.#{rank}", :default => rank).downcase
+                %option{value: rank}= rank
         .row
           .col-xs-12
-            %label.sectionlabel{for: 'params-order-by'}=I18n.t :sort_by
+            %label.sectionlabel{for: 'params-order-by'} Sort by
         .row
           .col-xs-6
             %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}"}
               = FakeView.observations_order_by_options
           .col-xs-6
             %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
-              = FakeView.options_for_select(%w(asc desc).map{|o|I18n.t(o)}, @order)
+              = FakeView.options_for_select(%w(asc desc).map{|o|t(o)}, @order)
       .col-xs-4
-        %label.sectionlabel=I18n.t :dates
+        %label.sectionlabel Dates
         #filters-dates
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
-              =I18n.t :any
+              Any
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
             %span.date-type
@@ -103,23 +103,23 @@
             %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
             %span.date-type
               Month(s):
-              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| [I18n.t("date_format.month.#{Date::MONTHNAMES[n].downcase}"),n]}, :selected => @observed_on_months), "ng-model" => "params.months", "ng-disabled" => "params.dateType != 'month'", :class => "form-control", id: "filters-dates-months", multiple: "multiple"
+              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_months), "ng-model" => "params.months", "ng-disabled" => "params.dateType != 'month'", :class => "form-control", id: "filters-dates-months", multiple: "multiple"
     .row
       .col-xs-12
         %button#filters-more-btn.btn.btn-link.collapsed{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
-          =I18n.t :more_filters
+          More Filters
           %i.fa.fa-caret-down
           %i.fa.fa-caret-up
         #more-filters.collapse
           .row
             .col-xs-4
               .form-group
-                %label{for: 'params-user-id'}=I18n.t :person
+                %label{for: 'params-user-id'} Person
                 .input-group
                   %span.input-group-addon.fa.fa-user
                   %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "Name or username"}
               .form-group
-                %label{for: 'params-projects'}=I18n.t :project
+                %label{for: 'params-projects'} Project
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
                   %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "Project name"}
@@ -127,13 +127,13 @@
               .form-group
                 %label Photo licensing
                 %select.form-control{"ng-model" => "params.photo_license"}
-                  %option{value: ''}=I18n.t :all
+                  %option{value: ''} All
                   - for code, name, desc in Observation::LICENSES do
                     %option{value: code}= code
   #filters-footer.row
     .col-xs-12
       %button.btn.btn-primary
-        =I18n.t :update_search
+        Update Search
       %button.btn.btn-default{ type: 'button', "ng-click": "reset( )" }
-        =I18n.t :reset_search_filters
+        Reset Search Filters
 
