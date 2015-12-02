@@ -4,7 +4,8 @@ var application = angular.module( "ObservationSearch", [
   "ngRoute",
   "templates",
   "ehFilters", // angular-capitalize
-  "iNatAPI"
+  "iNatAPI",
+  "ui.bootstrap"
 ]);
 
 // disable scrolling to the top when we're updating the view

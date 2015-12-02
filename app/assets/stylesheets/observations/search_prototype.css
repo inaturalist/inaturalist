@@ -202,13 +202,13 @@ inat-taxon { white-space: nowrap; }
 .bootstrap #filters-dates .form-control {width: 100px; height: 20px;display: inline-block;}
 .bootstrap #filters-dates #filters-dates-exact.form-control {width: 176px;}
 
-#filters label.iconic-taxon {
+#filters .iconic-taxon {
   font-size: 30px;
   margin: 0 5px 5px 0;
   padding: 0px 6px;
   font-size: 26.8px;
 }
-#filters label.iconic-taxon.last {margin-right: 0;}
+#filters .iconic-taxon.last {margin-right: 0;}
 
 #filters-body {
   padding: 10px 0px 15px;

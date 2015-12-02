@@ -53,10 +53,9 @@
         .row
           .col-xs-12
             %label.sectionlabel Categories
-            #filters-categories.btn-group{data: {toggle: 'buttons'}}
+            #filters-categories.btn-group
               - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia'}.each_with_index do |t, i|
-                %label{title: t.name, :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}"}
-                  %input{type: 'checkbox', "ng-model" => "params._iconic_taxa.#{t.name}", :value => t.name}
+                %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}"}
                   %i{:class => "icon-iconic-#{t.name.downcase}"}
         .row
           .col-xs-12
@@ -81,7 +80,7 @@
               = FakeView.observations_order_by_options
           .col-xs-6
             %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
-              = FakeView.options_for_select(%w(asc desc).map{|o|t(o)}, @order)
+              = FakeView.options_for_select(%w(asc desc), @order)
       .col-xs-4
         %label.sectionlabel Dates
         #filters-dates
