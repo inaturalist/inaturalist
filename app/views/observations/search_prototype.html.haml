@@ -44,7 +44,10 @@
           %span.geo.ng-cloak{ "ng-if": "currentPlace", "ng-class": "{ selected: params.geoType=='place' }", "ng-click": "setGeoFilter('world')"}
             = "{{ currentPlace.name }}"
             %span.glyphicon.glyphicon-remove-sign
-          %span.geo.ng-cloak{ "ng-if": "!currentPlace && !params.place_id && nearbyPlaces.length > 0", "ng-click": "filterByPlace( nearbyPlaces[0] )", "ng-mouseover": "showNearbyPlace( nearbyPlaces[0] )",  "ng-mouseleave": "hideNearbyPlace( nearbyPlaces[0] )" }
+          %span.geo.selected.ng-cloak{ "ng-if": "params.geoType=='map'", "ng-click": "setGeoFilter('world')" }
+            Bounding Box
+            %span.glyphicon.glyphicon-remove-sign
+          %span.geo.ng-cloak{ "ng-if": "nearbyPlaces.length > 0", "ng-click": "filterByPlace( nearbyPlaces[0] )", "ng-mouseover": "showNearbyPlace( nearbyPlaces[0] )",  "ng-mouseleave": "hideNearbyPlace( nearbyPlaces[0] )" }
             = "{{ nearbyPlaces[0].name }}"
         .col-xs-2.statcol.active{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
           .stat
