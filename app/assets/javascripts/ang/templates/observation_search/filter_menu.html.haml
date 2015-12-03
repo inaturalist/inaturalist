@@ -89,7 +89,7 @@
               = FakeView.observations_order_by_options
           .col-xs-6
             %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
-              = FakeView.options_for_select(%w(asc desc).map{|o| [o, "{{ shared.t('#{o}') }}"]}, @order)
+              = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
       .col-xs-4
         %label.sectionlabel Dates
         #filters-dates

@@ -109,29 +109,58 @@ namespace :inaturalist do
                  'ranks.subspecies',
                  'ranks.variety',
                  'ranks.form',
-                 'ranks.leaves'
+                 'ranks.leaves',
+                 'asc',
+                 'desc',
+                 'date_format.month.january',
+                 'date_format.month.february',
+                 'date_format.month.march',
+                 'date_format.month.april',
+                 'date_format.month.may',
+                 'date_format.month.june',
+                 'date_format.month.july',
+                 'date_format.month.august',
+                 'date_format.month.september',
+                 'date_format.month.october',
+                 'date_format.month.november',
+                 'date_format.month.december'
                 ]
+    
     # look for other keys in all javascript files
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if f == output_path
       contents = IO.read( f )
-      results = contents.scan(/I18n.t\( ?(.)(.*?)\1/i)
+      results = contents.scan(/(I18n|shared).t\( ?(.)(.*?)\2/i)
       unless results.empty?
-        all_keys += results.map{ |r| r[1].chomp(".") }
+        all_keys += results.map{ |r| r[2].chomp(".") }
       end
     end
+
+    # look for keys in angular expressions in all templates
+    Dir.glob(Rails.root.join("app/views/**/*")).each do |f|
+      next unless File.file?( f )
+      next if f =~ /\.(gif|png|php)$/
+      next if f == output_path
+      contents = IO.read( f )
+      results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
+      unless results.empty?
+        all_keys += results.map{ |r| r[2].chomp(".") }
+      end
+    end
+
     # remnant from a dynamic JS call for colors
     all_keys.delete("lts[i].valu")
-    all_translations = { }
+
     # load translations
+    all_translations = { }
     I18n.backend.send(:init_translations)
     I18n.backend.send(:translations).keys.each do |locale|
       next if locale === :qqq
       all_translations[ locale ] = { }
       all_keys.uniq.sort.each do |key_string|
-        split_keys = key_string.split(".").map(&:to_sym)
+        split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
         var = split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
             # fallback to English if there is no translation in the specified locale
@@ -145,6 +174,7 @@ namespace :inaturalist do
         end
       end
     end
+
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
