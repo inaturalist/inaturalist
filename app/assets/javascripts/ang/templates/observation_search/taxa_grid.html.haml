@@ -1,7 +1,7 @@
 #result-grid.container-fluid
   .col-xs-3.cell{ "ng-repeat": "t in taxa" }
     %a{ href: "/taxa/{{ t.id }}" }
-      .media-object{ style: "background-image: url({{ t.default_photo_url }})" }
+      .media-object{ style: "background-image: url({{ t.medium_photo_url }})" }
     .details
       %span.title {{ t.preferredNameInLocale("en") }}
       %span.subtitle {{ t.subtitle("en") }}

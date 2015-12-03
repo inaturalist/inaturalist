@@ -18,7 +18,7 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" ) {
     return inaturalist.EXTERNAL_SEARCH_ICON;
   }
-  if( result.default_photo_url ) { return result.default_photo_url; }
+  if( result.square_photo_url ) { return result.square_photo_url; }
   if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
     return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
   } else {

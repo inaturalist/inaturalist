@@ -103,8 +103,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         taxa = TaxaFactory.responseToInstances( response );
         if( taxa.length > 0 ) {
           var taxon = taxa[ 0 ];
-          if( taxon.default_photo_url ) {
-            $( "#filters .ac-select-thumb img" ).attr( "src", taxon.default_photo_url );
+          if( taxon.square_photo_url ) {
+            $( "#filters .ac-select-thumb img" ).attr( "src", taxon.square_photo_url );
           }
           $( "input[name='taxon_name']" ).attr( "value", taxon.preferredNameInLocale( "en" ) );
         }
