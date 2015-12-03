@@ -86,6 +86,9 @@ class Identification < ActiveRecord::Base
     {
       id: id,
       user: user.as_indexed_json,
+      created_at: created_at,
+      created_at_details: ElasticModel.date_details(created_at),
+      body: body,
       current: current
     }
   end

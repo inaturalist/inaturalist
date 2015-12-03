@@ -1,19 +1,19 @@
 class Comment < ActiveRecord::Base
-  acts_as_spammable :fields => [ :body ]
+  acts_as_spammable fields: [ :body ]
 
-  belongs_to :parent, :polymorphic => true
+  belongs_to :parent, polymorphic: true
   belongs_to :user
-  
-  validates_length_of :body, :within => 1..5000, :message => "can't be blank"
+
+  validates_length_of :body, within: 1..5000, message: "can't be blank"
   validates_presence_of :parent
-  
+
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
-  
+
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
   notifies_users :mentioned_users, on: :save, notification: "mention"
-  auto_subscribes :user, :to => :parent
-  
+  auto_subscribes :user, to: :parent
+
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
   scope :for_observer, lambda {|user| 
     joins("JOIN observations o ON o.id = comments.parent_id").
@@ -22,7 +22,7 @@ class Comment < ActiveRecord::Base
   }
   scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
   scope :dbsearch, lambda {|q| where("comments.body ILIKE ?", "%#{q}%")}
-  
+
   attr_accessor :html
 
   def to_s
@@ -32,11 +32,21 @@ class Comment < ActiveRecord::Base
   def to_plain_s(options = {})
     "Comment #{id}"
   end
-  
+
+  def as_indexed_json(options={})
+    {
+      id: id,
+      user: user.as_indexed_json,
+      created_at: created_at,
+      created_at_details: ElasticModel.date_details(created_at),
+      body: body
+    }
+  end
+
   def formatted_body
     BlueCloth::new(self.body).to_html
   end
-  
+
   def update_parent_counter_cache
     if parent && parent.class.column_names.include?("comments_count")
       if parent.class.column_names.include?("updated_at")

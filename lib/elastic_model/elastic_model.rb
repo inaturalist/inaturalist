@@ -211,6 +211,7 @@ module ElasticModel
 
   def self.geom_geojson(geom)
     return unless [ RGeo::Geos::CAPIMultiPolygonImpl,
+                    RGeo::Geos::CAPIPolygonImpl,
                     RGeo::Geos::CAPIPointImpl ].include?(geom.class)
     RGeo::GeoJSON.encode(geom)
   end

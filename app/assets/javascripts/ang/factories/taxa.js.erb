@@ -1,0 +1,18 @@
+iNatAPI.factory( "TaxaFactory", [ "shared", function( shared ) {
+  var show = function( id ) {
+    var url = "<%= CONFIG.tile_servers.elasticsearch %>/taxa/" + id;
+    return shared.basicGet( url );
+  };
+  var responseToInstances = function( response ) {
+    if( !( response && response.data && response.data.results ) ) {
+      return { };
+    }
+    return _.map( response.data.results, function( r ) {
+      return new iNatModels.Taxon( r );
+    });
+  };
+  return {
+    show: show,
+    responseToInstances: responseToInstances
+  };
+}]);

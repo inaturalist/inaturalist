@@ -32,6 +32,7 @@ class Place < ActiveRecord::Base
       display_name: display_name,
       display_name_autocomplete: display_name,
       place_type: place_type,
+      admin_level: admin_level,
       bbox_area: bbox_area,
       ancestor_place_ids: ancestor_place_ids,
       geometry_geojson: (place_geometry && !index_without_geometry) ?

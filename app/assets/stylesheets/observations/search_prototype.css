@@ -85,7 +85,7 @@
 #obs-container,
 #obs-container .container,
 #map {
-  height: 600px;
+  height: 550px;
 }
 #obs-container { position: relative; }
 #obs {
@@ -131,6 +131,7 @@
   background: #565656;
   color: white;
   font-size: 17px;
+  white-space: nowrap;
 }
 #stats-container > div {
   height: 100%;
@@ -224,3 +225,14 @@ inat-taxon { white-space: nowrap; }
 #filters-more-btn .fa-caret-down { display: none;}
 #filters-more-btn.collapsed .fa-caret-up { display: none; }
 #filters-more-btn.collapsed .fa-caret-down { display: inline; }
+
+.dropdown-menu.places {
+  width: 400px;
+  left: 0px;
+  background: #f16f3a;
+}
+#redo-search {
+  color: #fff;
+  background: #f16f3a;
+  margin-left: 10px;
+}

@@ -80,16 +80,53 @@ function( $http, $rootScope ) {
     return num.toString( ).replace( /\B(?=(\d{3})+(?!\d))/g, "," );
   };
 
-  var t = function(k, options) {
-    options = options || {}
-    return I18n.t(k, options)
-  }
+  var t = function( k, options ) {
+    options = options || { };
+    return I18n.t( k, options );
+  };
+
+  var offsetCenter = function( map, center, offsetx, offsety ) {
+    var overlay = new google.maps.OverlayView( );
+    overlay.draw = function( ) { };
+    overlay.setMap( map );
+    var proj = overlay.getProjection( );
+    if( !proj ) { return center; }
+    var cPoint = proj.fromLatLngToDivPixel( center );
+    cPoint.x = cPoint.x + offsetx; // left of center
+    cPoint.y = cPoint.y + offsety; // north of center
+    var newCenter = proj.fromDivPixelToLatLng( cPoint );
+    overlay.setMap( null );
+    overlay = null;
+    return newCenter;
+  };
+
+  var processPoints = function( geometry, callback, thisArg ) {
+    if( geometry instanceof google.maps.LatLng ) {
+      callback.call( thisArg, geometry );
+    } else if( geometry instanceof google.maps.Data.Point ) {
+      callback.call( thisArg, geometry.get( ) );
+    } else {
+      geometry.getArray( ).forEach( function( g ) {
+        processPoints( g, callback, thisArg );
+      });
+    }
+  };
+
+  var stringStartsWith = function( str, pattern, position ) {
+    position = _.isNumber( position ) ? position : 0;
+    // We use `lastIndexOf` instead of `indexOf` to avoid tying execution
+    // time to string length when string doesn't start with pattern.
+    return str.toLowerCase( ).lastIndexOf( pattern.toLowerCase( ), position ) === position;
+  };
 
   return {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
     processParams: processParams,
-    t: t
+    t: t,
+    offsetCenter: offsetCenter,
+    processPoints: processPoints,
+    stringStartsWith: stringStartsWith
   }
 }]);
 
