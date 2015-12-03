@@ -1741,7 +1741,7 @@ class ObservationsController < ApplicationController
     stats_adequately_scoped?(search_params)
     # all the HTML view needs to know is stats_adequately_scoped?
     if request.format.json?
-      if Observation.able_to_use_elasticsearch?(search_params)
+      if false || Observation.able_to_use_elasticsearch?(search_params) # temporarily disabled
         elastic_user_stats(search_params, limit)
       else
         non_elastic_user_stats(search_params, limit)
