@@ -20,18 +20,20 @@
                   .media-left
                     %i.fa.fa-calendar
                   .media-body
-                    {{ (o.observed_on | date : 'short') || t('unknown') }}
+                    {{ (o.observed_on | date : 'short') || shared.t('unknown') }}
                 .location.ng-cloak.media.obs-attr
                   .media-left
                     %i.fa.fa-map-marker
                   .media-body
                     .fadednowrap
-                      {{ o.place_guess || [o.latitude, o.longitude].joins(',') || t('unknown') }}
+                      {{ o.place_guess || [o.latitude, o.longitude].joins(',') || shared.t('unknown') }}
                 .actions.ng-cloak
                   %span.identifications{"ng-show" => "o.identifications.length > 0"}
                     {{ o.identifications.length || 0 }}
-                    %span{"ng-show" => "o.identifications_count == 1"}= I18n.t :id
-                    %span{"ng-show" => "o.identifications_count != 1"}= I18n.t :ids
+                    %span{"ng-show" => "o.identifications.length == 1"}
+                      {{ shared.t('id') }}
+                    %span{"ng-show" => "o.identifications.length != 1"}
+                      {{ shared.t('ids') }}
                   %span.comments{"ng-show" => "o.comments_count > 0"}
                     ???
                     %i.fa.fa-comment-o

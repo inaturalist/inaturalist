@@ -35,19 +35,19 @@
             Visible Map
         .col-xs-2.statcol.active{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
           .stat
-            .stat-title= "Observations"
+            .stat-title.ng-cloak= "{{ shared.t('observations') }}"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('species') }", "ng-click": "changeView('species')" }
           .stat
-            .stat-title= "Species"
+            .stat-title.ng-cloak= "{{ shared.t('species') }}"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('identifiers') }", "ng-click": "changeView('identifiers')" }
           .stat
-            .stat-title= "Identifiers"
+            .stat-title.ng-cloak= "{{ shared.t('identifiers') }}"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('observers') }", "ng-click": "changeView('observers')" }
           .stat
-            .stat-title= "Observers"
+            .stat-title.ng-cloak= "{{ shared.t('observers') }}"
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
   #results
     .container.container-fixed{ "ng-show": "viewing('observations')" }
