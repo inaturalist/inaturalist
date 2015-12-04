@@ -701,8 +701,7 @@ class ObservationsController < ApplicationController
               :viewer => current_user,
               :methods => [:user_login, :iconic_taxon_name],
               :include => {
-                :taxon => Taxon.default_json_options,
-                :observation_field_values => {}
+                :taxon => Taxon.default_json_options
               }
             )
           else
