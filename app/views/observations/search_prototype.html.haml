@@ -29,26 +29,14 @@
     .container.container-fixed
       .row
         .col-xs-4
-          .btn-group
-            %span.geo.active.dropdown-toggle{ "data-toggle": "dropdown" }
-              Places
-            .dropdown-menu.dropdown-menu-right.places
-              .col-xs-6
-                %h4 Standard
-                %h4 Recent
-              .col-xs-6
-                %h4 Nearby
-                .place{ "ng-repeat": "p in nearbyPlaces" }
-                  %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
-                    = "{{ p.name }}"
+          %span.geo{ "ng-if": "params.geoType=='world'" }
+            The World
           %span.geo.ng-cloak{ "ng-if": "currentPlace", "ng-class": "{ selected: params.geoType=='place' }", "ng-click": "setGeoFilter('world')"}
             = "{{ currentPlace.name }}"
             %span.glyphicon.glyphicon-remove-sign
           %span.geo.selected.ng-cloak{ "ng-if": "params.geoType=='map'", "ng-click": "setGeoFilter('world')" }
             Bounding Box
             %span.glyphicon.glyphicon-remove-sign
-          %span.geo.ng-cloak{ "ng-if": "nearbyPlaces.length > 0", "ng-click": "filterByPlace( nearbyPlaces[0] )", "ng-mouseover": "showNearbyPlace( nearbyPlaces[0] )",  "ng-mouseleave": "hideNearbyPlace( nearbyPlaces[0] )" }
-            = "{{ nearbyPlaces[0].name }}"
         .col-xs-2.statcol.active{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
           .stat
             .stat-title.ng-cloak= "{{ shared.t('observations') }}"
@@ -76,9 +64,20 @@
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
             %button.button.btn-default{ "ng-click": "changeView('observations', 'table')" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "setGeoFilter('visible')", id: "redo-search" }
+            %button.button.btn-default.reload{ "ng-click": "setGeoFilter('visible')" }
               %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
               Redo Search
+            %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown" }
+              Places
+            .dropdown-menu.dropdown-menu-right.places
+              .col-xs-6
+                %h4 Standard
+                %h4 Recent
+              .col-xs-6
+                %h4 Nearby
+                .place{ "ng-repeat": "p in nearbyPlaces" }
+                  %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                    = "{{ p.name }}"
         .col-xs-6
     %div{ "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
       %div{ "ng-include": "'ang/templates/observation_search/results_map.html'", onload: "setupMap( )"}

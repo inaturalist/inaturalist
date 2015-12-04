@@ -193,17 +193,12 @@
   border: 0px;
   cursor: pointer;
   font-weight: 100;
+  color: #eee;
 }
 #stats-container .geo.selected {
+  color: #fff;
   border: 2px solid #f16f3a;
   padding: 5px;
-}
-#stats-container .geo:first-child:after {
-  content: "\3009";
-  margin: 0 -5px 0 5px;
-  color: #aaa;
-  width: 1em;
-  display: inline-block;
 }
 #stats-container .glyphicon-remove-sign {
   margin-left: 5px;
@@ -284,8 +279,12 @@ inat-taxon { white-space: nowrap; }
   width: 400px;
   left: 0px;
   background: #f16f3a;
+  color: #fff;
 }
-#redo-search {
+.dropdown-menu.places .place {
+  cursor: pointer;
+}
+.bootstrap .btn-group .btn-default.reload {
   color: #fff;
   background: #f16f3a;
   margin-left: 10px;
