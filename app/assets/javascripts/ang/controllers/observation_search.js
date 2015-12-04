@@ -106,17 +106,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.setInitialParams = function( ) {
     $scope.params = _.extend( { }, $scope.defaultParams, urlParams );
-    // load place name and polygon from ID
-    if( $scope.params.place_id ) {
-      PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
-        places = PlacesFactory.responseToInstances( response );
-        if( places.length > 0 ) {
-          $scope.currentPlace = places[ 0 ];
-          $scope.place = $scope.currentPlace.name;
-          $scope.params.place_id = $scope.currentPlace.id;
-        }
-      });
-    }
     // load taxon auto name and photo for autocomplete
     if( $scope.params.taxon_id ) {
       TaxaFactory.show( $scope.params.taxon_id ).then( function( response ) {
@@ -183,6 +172,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $rootScope.$emit( "updateParamsForCurrentBounds" );
     } else {
       $scope.params.geoType = "world";
+      $rootScope.$emit( "hideNearbyPlace" );
       $scope.params.place_id = null;
       $scope.currentPlace = null;
       $scope.params.swlng = null;
@@ -311,6 +301,9 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
   $rootScope.$on( "updateParamsForCurrentBounds", function( event, force ) {
     $scope.updateParamsForCurrentBounds( force );
   });
+  $rootScope.$on( "offsetCenter", function( event, lat, lng ) {
+    $scope.map.setCenter( shared.offsetCenter( $scope.map, $scope.map.getCenter( ), lat, lng ) );
+  });
   $scope.updateParamsForCurrentBounds = function( force ) {
     if( !( $scope.$parent.params.geoType == "map" || force === true )) { return; }
     var bounds = $scope.map.getBounds( ),
@@ -331,9 +324,8 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
         $scope.map.setCenter( place.geometry.location );
         $scope.map.setZoom( 15 );
       }
-      $scope.map.setCenter( shared.offsetCenter( $scope.map, $scope.map.getCenter( ), 130, 20) );
+      $rootScope.$emit( "offsetCenter", 130, 20 );
       $rootScope.$emit( "searchForBestPlace" );
-      $scope.updateParamsForCurrentBounds( true );
     }
   });
   $scope.refreshRequestTime = 0;
@@ -353,16 +345,17 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     var center = shared.offsetCenter( $scope.map, $scope.map.getCenter( ), -130, -20 );
     var lat = center.lat( );
     var lng = center.lng( );
-    var admin_level = 0;
-    // search for places based on zoom_level/admin_level
-    var zoom = $scope.map.getZoom( );
-    if( zoom >= 6 ) { admin_level = 1; }
-    if( zoom >= 9 ) { admin_level = 2; }
-    if( zoom >= 11 ) { admin_level = 3; }
     var b = $scope.map.getBounds( );
     // search within a radius roughly matching the viewport
     var boundsDistance = google.maps.geometry.spherical.computeDistanceBetween(
       b.getNorthEast( ), b.getSouthWest( ) ) * 0.4;
+    var admin_level = 0;
+    // search for places based on zoom_level/admin_level
+    var zoom = $scope.map.getZoom( );
+    if( zoom <= 6 ) { boundsDistance = null; }
+    if( zoom >= 6 ) { admin_level = 1; }
+    if( zoom >= 9 ) { admin_level = 2; }
+    if( zoom >= 11 ) { admin_level = 3; }
     PlacesFactory.nearby( { lat: lat, lng: lng, admin_level: admin_level, radius: boundsDistance }).then( function( response ) {
       places = PlacesFactory.responseToInstances( response );
       if( places.length > 0 ) {
@@ -409,10 +402,25 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
       $rootScope.$emit( "searchForBestPlace" );
     });
     $scope.setMapLayers( );
+    $rootScope.$emit( "offsetCenter" );
     // the observation div on the map is a scrollable div in a scrollable page
     // make sure that when you scroll to the botton of that div, the page
     // doesn't start scrolling down
     $( "#obs" ).isolatedScroll( );
+    $rootScope.$emit( "searchForBestPlace" );
+    setTimeout( function( ) {
+      // load place name and polygon from ID
+      if( $scope.$parent.params.place_id ) {
+        PlacesFactory.show( $scope.$parent.params.place_id ).then( function( response ) {
+          places = PlacesFactory.responseToInstances( response );
+          if( places.length > 0 ) {
+            $scope.$parent.currentPlace = places[ 0 ];
+            $scope.$parent.place = $scope.$parent.currentPlace.name;
+            $scope.$parent.params.place_id = $scope.$parent.currentPlace.id;
+          }
+        });
+      }
+    }, 100)
   };
   $scope.$watch( "params", function( ) {
     $scope.setMapLayers( );
@@ -467,7 +475,7 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
       $scope.map.panToBounds( bounds );
       $scope.map.fitBounds( bounds );
       // move the map to a little left and north of center
-      $scope.map.setCenter( shared.offsetCenter( $scope.map, $scope.map.getCenter( ), 130, 20) );
+      $rootScope.$emit( "offsetCenter", 130, 20 );
       $rootScope.$emit( "searchForBestPlace" );
     }
     // draw the filter bounding box
@@ -486,6 +494,12 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
           ] ]
         }
       });
+      var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng( $scope.params.swlat, $scope.params.swlng ),
+        new google.maps.LatLng( $scope.params.nelat, $scope.params.nelng ) );
+      $scope.map.panToBounds( bounds );
+      $scope.map.fitBounds( bounds );
+      $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
       $scope.currentPlaceLayer.setMap($scope.map)
     }
   };
