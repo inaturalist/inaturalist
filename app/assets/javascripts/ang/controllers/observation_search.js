@@ -5,8 +5,28 @@ var application = angular.module( "ObservationSearch", [
   "templates",
   "ehFilters", // angular-capitalize
   "iNatAPI",
-  "ui.bootstrap"
+  "ui.bootstrap",
+  "angularMoment"
 ]);
+
+// http://stackoverflow.com/a/22965260
+moment.lang('en', {
+  relativeTime : {
+    future: "in %s",
+    past:   "%s",
+    s:  "seconds",
+    m:  "1m",
+    mm: "%dm",
+    h:  "1h",
+    hh: "%h",
+    d:  "1d",
+    dd: "%dd",
+    M:  "1m",
+    MM: "%dm",
+    y:  "1y",
+    yy: "%dy"
+  }
+});
 
 // disable scrolling to the top when we're updating the view
 application.value( "$anchorScroll", angular.noop );

@@ -110,6 +110,7 @@ namespace :inaturalist do
                  'ranks.variety',
                  'ranks.form',
                  'ranks.leaves',
+                 'research',
                  'asc',
                  'desc',
                  'date_format.month.january',

@@ -685,7 +685,7 @@ class User < ActiveRecord::Base
     {
       id: id,
       login: login,
-      custom_icon: !icon.blank?
+      icon_url: user_icon_url
     }
   end
 

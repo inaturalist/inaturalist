@@ -19,6 +19,11 @@ $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
   font-weight: 600;
   src: asset-data-url('Whitney-Semibold-Pro.otf');
 } 
+@font-face { 
+  font-family: Whitney; 
+  font-weight: 700;
+  src: asset-data-url('Whitney-Bold-Pro.otf');
+} 
 body {font-size: 75%;}
 body .bootstrap {
   margin: 0;

@@ -1,9 +1,19 @@
-#result-grid.container-fluid{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || busy" }
-  .col-xs-3.cell{ "ng-repeat": "o in observations" }
-    %a{ href: "/observations/{{ o.id }}" }
-      .media-object{ style: "background-image: url({{ o.photo( ) }})" }
-    .details
-      %span.user {{ o.user.login }}
-      %span.title {{ o.species_guess }}
-      %span.comments {{ o.num_identification_agreements }}
-      %span.favorites {{ o.cached_votes_total }}
+#result-grid.container.container-fixed{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || busy" }
+  .row
+    .col-xs-3{ "ng-repeat": "o in observations" }
+      .thumbnail.borderless
+        %a.photo{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
+        .caption
+          .user{ style: "background-image: url('{{ o.user.icon_url }}')" }
+          %inat-taxon.title{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
+          .meta
+            %span.identifications{"ng-show" => "o.identifications_count > 0"}
+              %i.fa.fa-tag
+              {{ o.identifications_count }}
+            %span.comments{"ng-show" => "o.comments_count > 0"}
+              %i.fa.fa-comment
+              {{ o.comments_count }}
+            %span.favorites{"ng-show" => "o.faves_count > 0"}
+              %i.fa.fa-star
+              {{ o.faves_count }}
+            %span.pull-right{"am-time-ago" => "o.observed_on", title: "{{ o.observed_on }}"}
