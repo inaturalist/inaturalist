@@ -4,7 +4,8 @@
       .thumbnail.borderless
         %a.photo{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
         .caption
-          .user{ style: "background-image: url('{{ o.user.icon_url }}')" }
+          %a.user{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+            %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
           %inat-taxon.title{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
           .meta
             %span.identifications{"ng-show" => "o.identifications_count > 0"}

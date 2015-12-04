@@ -25,13 +25,31 @@
 #result-table {
   margin-top: 55px;
 }
+#result-grid .thumbnail {
+  margin-bottom: 30px;
+}
 #result-grid .photo {
   display: block;
   width: 100%;
-  height: 262.5px;
+  height: 120px;
   background-size: cover;
   background-position: center;
   margin: 0px auto;
+}
+@media (min-width: 768px) {
+  #result-grid .photo {
+    height: 157.5px;
+  }
+}
+@media (min-width: 992px) {
+  #result-grid .photo {
+    height: 212.5px;
+  }
+}
+@media (min-width: 1200px) {
+  #result-grid .photo {
+    height: 262.5px;
+  }
 }
 #result-grid .caption {
   height: 85px;
@@ -72,14 +90,20 @@
 #result-grid .user {
   position: absolute;
   right: 30px;
-  top: 235px;
+  bottom: 95px;
   border-radius: 120px;
   width: 48px;
   height: 48px;
+  line-height: 45px;
+  font-size: 32px;
   background-size: cover;
   background-position: center;
+  background-color: #aaa;
+  color: white;
+  text-align: center;
   border: 2px solid white;
 }
+#result-grid .user:hover {opacity: 1;}
 #result-grid .meta {color: #a3a3a3; font-size: 12px;}
 #result-grid .favorites { margin-left: 5px;}
 #result-grid .comments {margin-left: 7px;}
