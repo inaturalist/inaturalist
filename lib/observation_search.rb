@@ -570,13 +570,39 @@ module ObservationSearch
         total: user_counts.distinct_users.value }
     end
 
-    def elastic_user_taxon_counts(elastic_params, limit = 500)
+    def elastic_user_taxon_counts(elastic_params, options = {})
+      options[:limit] ||= 500
+      aggregation_user_limit = 10000
       elastic_params[:filters] << { range: {
         "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
+      # We've started running into memory problems with ES not being able to
+      # handle some aggregates on a large scale. We will query for users in
+      # batches of 10,000, so if there are fewer than that we can query now.
+      if( options[:count_users] && options[:count_users] <= aggregation_user_limit )
+        return elastic_user_taxon_counts_batch(elastic_params, options)
+      end
+      # fetch a list of every user_id whose observations match the search
+      user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+        user_observations: { "user.id": 0 }
+      })).response.aggregations
+      user_ids = user_counts.user_observations.buckets.map{ |b| b["key"] }
+      counts = [ ]
+      # in batches, search ES with the original query filtered by the batch IDs
+      user_ids.each_slice(aggregation_user_limit) do |batch_user_ids|
+        filters = elastic_params[:filters] + [
+          { terms: { "user.id" => batch_user_ids } } ]
+        counts += elastic_user_taxon_counts_batch(elastic_params.merge(filters: filters), options)
+      end
+      # sort by count descending and return the top `limit`
+      counts.sort_by{ |b| b["count_all"] }.reverse[0...options[:limit]]
+    end
+
+    def elastic_user_taxon_counts_batch(elastic_params, options = {})
+      options[:limit] ||= 500
       species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
         user_taxa: {
           terms: {
-            field: "user.id", size: limit, order: { "distinct_taxa": :desc } },
+            field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc } },
           aggs: {
             distinct_taxa: {
               cardinality: { field: "taxon.id", precision_threshold: 10000 }}}}})).response.aggregations
