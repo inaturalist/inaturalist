@@ -613,21 +613,8 @@ protected
       elastic_params = { observed_on_year: year }
     end
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
-    if per == "year"
-      # We've started running into memory problems with ES not being able to
-      # handle aggregates on a year scale, so this is a hack until we can get
-      # more memory.
-      # Fetch the top 50 users with distinct observed species in each month
-      # and use those user IDs as a filter for the year-long query
-      elastic_params[:user_id] = [ ]
-      (1..12).each do |month|
-        month_params = Observation.params_to_elastic_query(observed_on_year: year, observed_on_month: month)
-        counts = Observation.elastic_user_taxon_counts(month_params, 50)
-        elastic_params[:user_id] += counts.map{ |c| c["user_id"] }
-      end
-    end
     elastic_query = Observation.params_to_elastic_query(elastic_params)
-    counts = Observation.elastic_user_taxon_counts(elastic_query, 5)
+    counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5)
     user_counts = Hash[ counts.map{ |c| [ c["user_id"], c["count_all"] ] } ]
     users = User.where(id: user_counts.keys).group_by(&:id)
     Hash[ user_counts.map{ |id,c| [ users[id].first, c ] } ]

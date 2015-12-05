@@ -1740,7 +1740,7 @@ class ObservationsController < ApplicationController
     stats_adequately_scoped?(search_params)
     # all the HTML view needs to know is stats_adequately_scoped?
     if request.format.json?
-      if false && Observation.able_to_use_elasticsearch?(search_params) # temporarily disabled
+      if Observation.able_to_use_elasticsearch?(search_params)
         elastic_user_stats(search_params, limit)
       else
         non_elastic_user_stats(search_params, limit)
@@ -1763,6 +1763,7 @@ class ObservationsController < ApplicationController
         render :json => {
           :total => @total,
           :most_observations => @user_counts.map{|row|
+            @users_by_id[row['user_id'].to_i].blank? ? nil :
             {
               :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
@@ -1770,8 +1771,9 @@ class ObservationsController < ApplicationController
                 :methods => [:user_icon_url]
               )
             }
-          },
+          }.compact,
           :most_species => @user_taxon_counts.map{|row|
+            @users_by_id[row['user_id'].to_i].blank? ? nil :
             {
               :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
@@ -1779,7 +1781,7 @@ class ObservationsController < ApplicationController
                 :methods => [:user_icon_url]
               )
             }
-          }
+          }.compact
         }
       end
     end
@@ -2814,7 +2816,8 @@ class ObservationsController < ApplicationController
     user_obs = Observation.elastic_user_observation_counts(elastic_params, limit)
     @user_counts = user_obs[:counts]
     @total = user_obs[:total]
-    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params, limit)
+    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params,
+      limit: limit, count_users: @total)
 
     # # the list of top users is probably different for obs and taxa, so grab the leftovers from each
     obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
@@ -2826,7 +2829,8 @@ class ObservationsController < ApplicationController
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
     leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
     @user_counts        += Observation.elastic_user_observation_counts(leftover_obs_user_elastic_params)[:counts].to_a
-    @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
+    @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params,
+      count_users: leftover_tax_user_ids.length).to_a
     # don't want to return more than were asked for
     @user_counts = @user_counts[0...limit]
     @user_taxon_counts = @user_taxon_counts[0...limit]
