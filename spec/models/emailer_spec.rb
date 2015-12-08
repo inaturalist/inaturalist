@@ -3,7 +3,9 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Emailer, "updates_notification" do
   include ActionView::Helpers::TextHelper
-
+  before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
+  end
   before do
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }

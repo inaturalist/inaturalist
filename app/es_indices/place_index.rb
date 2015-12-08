@@ -19,7 +19,7 @@ class Place < ActiveRecord::Base
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
       indexes :display_name, analyzer: "ascii_snowball_analyzer"
-      indexes :display_name_autocomplete, index_analyzer: "keyword_autocomplete_analyzer",
+      indexes :display_name_autocomplete, analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
     end
   end

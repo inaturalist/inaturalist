@@ -394,18 +394,19 @@ class Observation < ActiveRecord::Base
 
     if p[:d1] || p[:d2]
       p[:d2] = Time.now if p[:d2] && p[:d2] > Time.now
-      search_filters << { or: [
-        { and: [
+      search_filters << { bool: { should: [
+        { bool: { must: [
           { range: { observed_on: {
             gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } },
           { exists: { field: "time_observed_at" } }
-        ] },
-        { and: [
+        ] } },
+        { bool: { must: [
           { range: { observed_on: {
-            gte: (p[:d1] || Time.new("1800")).to_date, lte: (p[:d2] || Time.now).to_date } } },
+            gte: (p[:d1] || Time.new("1800")).to_date.to_s + "||/d",
+            lte: (p[:d2] || Time.now).to_date.to_s + "||/d" } } },
           { missing: { field: "time_observed_at" } }
-        ] }
-      ] }
+        ] } }
+      ] }}
     end
     if p[:h1] && p[:h2]
       p[:h1] = p[:h1].to_i % 24
@@ -443,7 +444,7 @@ class Observation < ActiveRecord::Base
       else
         search_filters << { bool: { should: [
           { range: { updated_at: { gte: timestamp } } },
-          { term: { "user.id" => p[:aggregation_user_ids] } }
+          { terms: { "user.id" => p[:aggregation_user_ids] } }
         ] } }
       end
     end
