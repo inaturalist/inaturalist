@@ -4,17 +4,7 @@ namespace :es do
 
   desc "Start elasticsearch in the background"
   task :start => :environment do
-    next if fail_unless_binaries_exists
-    unless elasticsearch_is_running?
-      puts "\nElasticsearch is starting up...\n"
-      `elasticsearch/bin/elasticsearch -d`
-    end
-    success = wait_until_elasticsearch_is_running
-    if success
-      puts "\nElasticsearch is now running at #{ elasticsearch_url }\n\n"
-    else
-      puts "\nElasticsearch failed to start\n\n"
-    end
+    start
   end
 
   desc "Start elasticsearch in the forground"
@@ -27,8 +17,13 @@ namespace :es do
 
   desc "Stop background elasticsearch process"
   task :stop => :environment do
-    next if fail_unless_binaries_exists
-    `curl -XPOST #{ elasticsearch_url }/_shutdown &> /dev/null`
+    stop
+  end
+
+  desc "Restart background elasticsearch process"
+  task :restart => :environment do
+    stop
+    start
   end
 
   desc "Index all models in elasticsearch"
@@ -55,6 +50,27 @@ namespace :es do
     end
   end
 
+end
+
+def start
+  return if fail_unless_binaries_exists
+  unless elasticsearch_is_running?
+    puts "\nElasticsearch is starting up...\n"
+    `elasticsearch/bin/elasticsearch -p #{ pid_path } -d`
+  end
+  success = wait_until_elasticsearch_is_running
+  if success
+    puts "\nElasticsearch is now running at #{ elasticsearch_url }\n\n"
+  else
+    puts "\nElasticsearch failed to start\n\n"
+  end
+end
+
+def stop
+  return if fail_unless_binaries_exists
+  if File.exists?(pid_path)
+    `kill \`cat #{ pid_path }\``
+  end
 end
 
 def elasticsearch_url
@@ -96,7 +112,7 @@ end
 def elasticsearch_is_running?
   begin
     response = Net::HTTP.get(URI.parse(elasticsearch_url))
-    return JSON.parse(response)["status"] == 200
+    return JSON.parse(response)["tagline"] == "You Know, for Search"
   rescue
   end
   return false
@@ -117,4 +133,8 @@ def wait_until_elasticsearch_is_running(options={})
     sleep(1)
   end
   return elasticsearch_is_running?
+end
+
+def pid_path
+  File.join(Rails.root, "tmp", "pids", "elasticsearch.pid")
 end

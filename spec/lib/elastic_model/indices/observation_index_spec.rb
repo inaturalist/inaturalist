@@ -439,7 +439,7 @@ describe "Observation Index" do
         updated_since: "2015-10-31T00:00:00+00:00", aggregation_user_ids: [ 1, 2 ] }) ).to include(
         filters: [ { bool: { should: [
           { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } },
-          { term: { "user.id" => [1, 2] } } ] } } ] )
+          { terms: { "user.id" => [1, 2] } } ] } } ] )
     end
 
     it "filters by observation field values" do

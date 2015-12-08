@@ -81,6 +81,7 @@ module ActsAsElasticModel
         begin
           __elasticsearch__.client.delete_by_query(index: index_name,
             body: ElasticModel.search_hash(options))
+          __elasticsearch__.refresh_index! if Rails.env.test?
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_search failed: #{ e }"

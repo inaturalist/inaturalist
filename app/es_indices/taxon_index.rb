@@ -14,7 +14,7 @@ class Taxon < ActiveRecord::Base
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
         # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
         indexes :name_ja, analyzer: "kuromoji"
-        indexes :name_autocomplete, index_analyzer: "autocomplete_analyzer",
+        indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
         indexes :name_autocomplete_ja, analyzer: "autocomplete_analyzer_ja"
         indexes :exact, analyzer: "keyword_analyzer"
