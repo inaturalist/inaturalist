@@ -130,6 +130,35 @@ function( $http, $rootScope ) {
   }
 }]);
 
+// prints a date like "Today 12:34 PM" with some stylable wrapper elements
+iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
+  return {
+    scope: {
+      date: '=',
+    },
+    link: function(scope, elt, attr) {
+      scope.dateString = function() {
+        var date = moment(scope.date),
+            now = moment(new Date()),
+            dateString;
+        if (date.isSame(now, 'day')) {
+          dateString = I18n.t('today');
+        } else if (date.isSame(now.subtract(1, 'day'), 'day')) {
+          dateString = I18n.t('yesterday');
+        } else {
+          dateString = date.format('ll');
+        }
+        return dateString;
+      }
+      scope.timeString = function() {
+        return moment(scope.date).format('LT');
+      }
+    },
+    template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'
+  }
+}]);
+
+// print a taxon with correctly formatted common and scientific names
 iNatAPI.directive('inatTaxon', ["shared", function(shared) {
   return {
     scope: {

@@ -28,16 +28,16 @@
                     .fadednowrap
                       {{ o.place_guess || [o.latitude, o.longitude].joins(',') || shared.t('unknown') }}
                 .actions.ng-cloak
-                  %span.identifications{"ng-show" => "o.identifications.length > 0"}
-                    {{ o.identifications.length || 0 }}
-                    %span{"ng-show" => "o.identifications.length == 1"}
-                      {{ shared.t('id') }}
-                    %span{"ng-show" => "o.identifications.length != 1"}
-                      {{ shared.t('ids') }}
-                  %span.comments{"ng-show" => "o.comments_count > 0"}
-                    ???
-                    %i.fa.fa-comment-o
-                  %span{:class => "quality_grade {{ o.quality_grade }}", "ng-hide" => "o.quality_grade == 'casual'"}
-                    {{ shared.t(o.quality_grade) | capitalize }}
+                  %span{:class => "quality_grade {{ o.quality_grade }}", "ng-show" => "o.quality_grade != 'needs_id'"}
+                    {{ shared.t( o.quality_grade ) | capitalize }}
+                  %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
+                    %i.icon-identification
+                    {{ o.identifications_count }}
+                  %span.comments{"ng-show" => "o.comments_count > 0", title: "{{ shared.t('x_comments', {count: o.comments_count}) }}"}
+                    %i.icon-chatbubble
+                    {{ o.comments_count }}
+                  %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
+                    %i.fa.fa-star
+                    {{ o.faves_count }}
                   %a.taxon.pull-right{href: "/observations/{{ o.id }}"}
                     %i.icon-arrow-right

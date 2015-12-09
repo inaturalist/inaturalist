@@ -59,38 +59,42 @@
   display: block;
   margin-bottom: 3px
 }
-#result-grid .title .display-name {
-  font-weight: 700;
+inat-taxon.split-taxon .display-name {
+  font-weight: 800;
   display: block;
   font-size: 15px;
   color: black;
 }
-#result-grid .title .sciname {
+inat-taxon.split-taxon .sciname {
   display: block;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#result-grid .title .display-name {
+inat-taxon.split-taxon .display-name {
   width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#result-grid .title .sciname.display-name,
-#result-grid .title .noname.display-name {
+#result-grid inat-taxon.split-taxon .sciname.display-name,
+#result-grid inat-taxon.split-taxon .noname.display-name {
   margin-bottom: 23px;
 }
-#result-grid .title .icon {display: none;}
-#result-grid .title .sciname:before,
-#result-grid .title .sciname:after {
+#result-table inat-taxon.split-taxon .sciname {
+  margin-bottom: 15px;
+}
+#result-table inat-taxon.split-taxon .sciname.display-name,
+#result-table inat-taxon.split-taxon .noname.display-name {
+  margin-bottom: 34px;
+}
+inat-taxon.split-taxon .icon {display: none;}
+inat-taxon.split-taxon .has-com-name .sciname:before,
+inat-taxon.split-taxon .has-com-name .sciname:after {
   content: '';
 }
-#result-grid .user {
-  position: absolute;
-  right: 30px;
-  bottom: 95px;
+.bootstrap .userimage {
   border-radius: 120px;
   width: 48px;
   height: 48px;
@@ -103,7 +107,13 @@
   text-align: center;
   border: 2px solid white;
 }
-#result-grid .user:hover {opacity: 1;}
+#result-grid .userimage {
+  position: absolute;
+  right: 30px;
+  bottom: 95px;
+}
+.bootstrap .userimage:hover,
+.bootstrap .userimage:active {opacity: 1; color: #eee;}
 #result-grid .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
 #result-grid .meta .comments i,
 #result-grid .meta .identifications i {font-size: 110%;}
@@ -298,7 +308,7 @@ inat-taxon { white-space: nowrap; }
 
 .quality_grade {
   display: inline-block;
-  background-color: #eee;
+  background-color: #ddd;
   padding: 2px 0px 1px 10px;
   position: relative;
   font-size: 12px !important;
@@ -311,7 +321,7 @@ inat-taxon { white-space: nowrap; }
   position: absolute;
   display: block;
   bottom: 0;
-  border: 10px solid #eee;
+  border: 10px solid #ddd;
   border-right-width: 5px;
   border-right-color: transparent;
   right: -15px;
@@ -326,10 +336,84 @@ inat-taxon { white-space: nowrap; }
   border-right-color: transparent;
 }
 .quality_grade.research {
-  background-color:#DCEAA3;
-  color:#529214;
+  background-color:#74ac00;
+  color:white;
 }
 .quality_grade.research:after {
-  border-color: #DCEAA3;
+  border-color: #74ac00;
   border-right-color: transparent;
+}
+
+#result-table th {
+  background-color: #646464;
+  border: 1px solid #aaa;
+  color: white;
+  font-weight: 100;
+  padding: 10px;
+  position: relative;
+}
+#result-table th.sortable {
+  cursor: pointer;
+}
+#result-table th.sortable:after {
+  opacity: 0.2;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  content: '\f0d7';
+  display: inline-block;
+  font: normal normal normal 18px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+#result-table th.sorting,
+#result-table th.sortable:hover {
+  background-color: #444444;
+  font-weight: bold;
+}
+#result-table th.sorting:after,
+#result-table th.sortable:hover:after { opacity: 1; }
+#result-table th.sorting-asc:after { content: '\f0d8'; }
+#result-table th.sorting-desc:after { content: '\f0d7'; }
+#result-table td { padding: 10px; }
+#result-table .img {
+  width: 75px;
+  height: 75px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-color: #BABABA;
+}
+#result-table .img .photo-count {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #eee;
+  background-color: #646464;
+  padding: 1px 5px;
+  font-weight: 100;
+  display: block;
+}
+#result-table td.user {
+  white-space: nowrap;
+}
+#result-table td.user .userimage {
+  display: inline-block;
+  vertical-align: middle;
+  width: 38px;
+  height: 38px;
+  font-size: 25px;
+  line-height: 37px;
+  border: 0 transparent;
+  margin-right: 5px;
+}
+
+#result-table .date,
+#result-table .time {
+  display: block;
 }

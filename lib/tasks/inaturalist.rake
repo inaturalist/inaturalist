@@ -166,8 +166,12 @@ namespace :inaturalist do
           if key == split_keys.last
             # fallback to English if there is no translation in the specified locale
             value = split_keys.inject(I18n.backend.send(:translations)[locale], :[]) rescue nil
-            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[])
-            h[key] ||= value
+            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[]) rescue nil
+            if value
+              h[key] ||= value
+            elsif Rails.env.development?
+              puts "WARNING: Failed to translate #{key}"
+            end
           else
             h[key] ||= { }
           end

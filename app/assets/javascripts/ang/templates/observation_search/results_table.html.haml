@@ -1,20 +1,48 @@
-#result-table.container-fluid
+#result-table.container
   %table.table.table-striped
     %thead
       %tr
-        %th Media
-        %th Name
-        %th User
-        %th Observed
-        %th Place
-        %th Added
+        %th
+          {{ shared.t('media') | capitalize }}
+        %th
+          {{ shared.t('name') | capitalize }}
+        %th
+          {{ shared.t('user') | capitalize }}
+        %th{:class => "sortable {{ params.order_by == 'observed_on' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observed_on')"}
+          {{ shared.t('observed') | capitalize }}
+        %th
+          {{ shared.t('place') | capitalize }}
+        %th{:class => "sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observations.id')"}
+          {{ shared.t('added') | capitalize }}
     %tbody{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || busy" }
       %tr{ "ng-repeat": "o in observations" }
-        %td.media.observation
-          %a{ href: "/observations/{{ o.id }}" }
-            .media-object{ style: "background-image: url({{ o.photo( ) }})" }
-        %td= FakeView.link_to "{{ o.species_guess }}", "/observations/{{ o.id }}"
-        %td {{ o.user.login }}
-        %td {{ o.observed_on }}
-        %td {{ o.place_guess }}
-        %td {{ o.created_at }}
+        %td
+          %a.img{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
+            %span.photo-count{"ng-show" => "o.photos.length > 1"} {{ o.photos.length }}
+        %td
+          %inat-taxon.split-taxon{ taxon: "o.taxon", url: "/observations/{{ o.id }}" }
+          .meta
+            %span{:class => "quality_grade {{ o.quality_grade }}", "ng-show" => "o.quality_grade != 'needs_id'"}
+              {{ shared.t( o.quality_grade ) | capitalize }}
+            %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
+              %i.icon-identification
+              {{ o.identifications_count }}
+            %span.comments{"ng-show" => "o.comments_count > 0", title: "{{ shared.t('x_comments', {count: o.comments_count}) }}"}
+              %i.icon-chatbubble
+              {{ o.comments_count }}
+            %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
+              %i.fa.fa-star
+              {{ o.faves_count }}
+        %td.user
+          %a.user.userimage{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+            %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
+          %a{ href: "/observations/{{ o.id }}", title: "{{ o.user.login }}" }
+            {{ o.user.login }}
+        %td
+          %inat-calendar-date{ date: "o.observed_on" }
+        %td
+          %i.fa.fa-map-marker
+          {{ o.place_guess }}
+        %td
+          %inat-calendar-date{ date: "o.created_at" }
+        

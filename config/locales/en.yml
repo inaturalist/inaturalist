@@ -17,6 +17,9 @@ en:
   a_default_taxon_name_will_automatically_created: |
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
+  x_comments:
+    one: '1 comment'
+    other: '%{count} comments'
   x_followers:
     one: '1 follower'
     other: '%{count} followers'
@@ -48,8 +51,8 @@ en:
     one: '1 person'
     other: '%{count} people'
   x_faves:
-    one: '1 Fave'
-    other: '%{count} Faves'
+    one: '1 fave'
+    other: '%{count} faves'
   x_people_like_this:
     one: '1 person likes this'
     other: '%{count} people like this'
@@ -1577,6 +1580,7 @@ en:
   matched_several_different_taxa: matched several different taxa
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
+  media: Media
   medium: medium
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
@@ -1641,6 +1645,7 @@ en:
     ubio: uBio
     nzor: New Zealand Organisms Register
   named_based_url_might_change: "Name-based URLs might change, but this won't."
+  name: Name
   names: Names
   names_for_taxon_html: "Names for %{taxon}"
   naturalised: naturalized
@@ -3246,6 +3251,7 @@ en:
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds & observations so scientists can use my data!
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
+  yesterday: Yesterday
   yesterday_at: ', yesterday at 4pm'
   you: you
   you_admin: you admin

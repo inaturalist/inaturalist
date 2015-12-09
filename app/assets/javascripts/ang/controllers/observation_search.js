@@ -280,6 +280,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.params.nelng = null;
     $scope.params.nelat = null;
   }
+  $scope.orderBy = function( order ) {
+    if ($scope.params.order_by == order) {
+      $scope.params.order = ($scope.params.order == 'asc' ? 'desc' : 'asc');
+    } else {
+      $scope.params.order_by = order;
+      $scope.params.order = 'desc';
+    }
+  }
   angular.element( document ).ready( function( ) {
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
