@@ -37,7 +37,7 @@
                   %span.comments{"ng-show" => "o.comments_count > 0"}
                     ???
                     %i.fa.fa-comment-o
-                  %span{:class => "quality_grade {{ o.quality_grade }}_notice", "ng-hide" => "o.quality_grade == 'casual'"}
+                  %span{:class => "quality_grade {{ o.quality_grade }}", "ng-hide" => "o.quality_grade == 'casual'"}
                     {{ shared.t(o.quality_grade) | capitalize }}
                   %a.taxon.pull-right{href: "/observations/{{ o.id }}"}
                     %i.icon-arrow-right

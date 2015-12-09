@@ -8,11 +8,13 @@
             %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
           %inat-taxon.title{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
           .meta
+            %span{:class => "quality_grade {{ o.quality_grade }}", "ng-show" => "o.quality_grade != 'needs_id'"}
+              {{ shared.t( o.quality_grade ) | capitalize }}
             %span.identifications{"ng-show" => "o.identifications_count > 0"}
-              %i.fa.fa-tag
+              %i.icon-identification
               {{ o.identifications_count }}
             %span.comments{"ng-show" => "o.comments_count > 0"}
-              %i.fa.fa-comment
+              %i.icon-chatbubble
               {{ o.comments_count }}
             %span.favorites{"ng-show" => "o.faves_count > 0"}
               %i.fa.fa-star

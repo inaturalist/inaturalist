@@ -104,9 +104,11 @@
   border: 2px solid white;
 }
 #result-grid .user:hover {opacity: 1;}
-#result-grid .meta {color: #a3a3a3; font-size: 12px;}
+#result-grid .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
+#result-grid .meta .comments i,
+#result-grid .meta .identifications i {font-size: 110%;}
 #result-grid .favorites { margin-left: 5px;}
-#result-grid .comments {margin-left: 7px;}
+#result-grid .comments {margin-left: 5px;}
 
 .form {
   background: #fff;
@@ -292,4 +294,42 @@ inat-taxon { white-space: nowrap; }
 #place-name-input .input-group-btn button {
   background-color: #f16f3a;
   color: white;
+}
+
+.quality_grade {
+  display: inline-block;
+  background-color: #eee;
+  padding: 2px 0px 1px 10px;
+  position: relative;
+  font-size: 12px !important;
+  line-height: 17px !important;
+  z-index: 1;
+  margin-right: 20px;
+}
+.quality_grade:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 10px solid #eee;
+  border-right-width: 5px;
+  border-right-color: transparent;
+  right: -15px;
+  z-index: -1;
+}
+.quality_grade.needs_id {
+  background-color:#FFEE91;
+  color:#85743D;
+}
+.quality_grade.needs_id:after {
+  border-color: #FFEE91;
+  border-right-color: transparent;
+}
+.quality_grade.research {
+  background-color:#DCEAA3;
+  color:#529214;
+}
+.quality_grade.research:after {
+  border-color: #DCEAA3;
+  border-right-color: transparent;
 }
