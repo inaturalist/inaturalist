@@ -147,6 +147,7 @@ inat-taxon.split-taxon .has-com-name .sciname:after {
   color: white;
   text-align: center;
   border: 2px solid white;
+  vertical-align: middle;
 }
 #result-grid .userimage {
   position: absolute;
@@ -443,9 +444,9 @@ inat-taxon { white-space: nowrap; }
 #result-table td.user {
   white-space: nowrap;
 }
-#result-table td.user .userimage {
+#result-table td.user .userimage,
+.plain-table .userimage {
   display: inline-block;
-  vertical-align: middle;
   width: 38px;
   height: 38px;
   font-size: 25px;
@@ -486,3 +487,11 @@ inat-taxon { white-space: nowrap; }
 #taxa-grid .corner.conservation-status.CR {
   background-color:#D12F19;
 }
+.plain-table {
+  margin-top: 20px;
+}
+.plain-table th { white-space: nowrap; font-weight: bold;}
+.plain-table th.user {
+  width: 100%;
+}
+.plain-table td { line-height: 40px; }

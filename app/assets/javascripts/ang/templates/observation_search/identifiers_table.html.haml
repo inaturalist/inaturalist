@@ -1,10 +1,17 @@
-#result-table.container-fluid
-  %table.table.table-striped
+#identifiers-table.container
+  %table.table.table-striped.plain-table
     %thead
       %tr
-        %th User
-        %th Count
+        %th.user
+          {{ shared.t( 'user' )}}
+        %th
+          %i.icon-identification
+          {{ shared.t( 'identifications' )}}
     %tbody
       %tr{ "ng-repeat": "u in identifiers" }
-        %td {{ u.login }}
+        %td
+          %a.user.userimage{ href: "/people/{{ u.login }}", style: "background-image: url('{{ u.icon_url }}')", title: "{{ u.login }}" }
+            %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
+          %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}" }
+            {{ u.login }}
         %td {{ u.resultCount }}
