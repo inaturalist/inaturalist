@@ -33,17 +33,17 @@
               %label
                 %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
                 {{ shared.t('popular') }}
-            .checkbox
-              %label
-                %input{type: 'checkbox', disabled: true}
-                {{ shared.t('first_report') }}
             / .checkbox
             /   %label
-            /     %input{type: 'checkbox', "ng-model" => "params.has_sounds", "ng-false-value" => ""}
-            /     =t :has_sounds
+            /     %input{type: 'checkbox', disabled: true}
+            /     {{ shared.t('first_report') }}
             .checkbox
               %label
-                %input{type: 'checkbox', "ng-model" => "params.has_photos", "ng-false-value" => ""}
+                %input{type: 'checkbox', "ng-model" => "params.sounds", "ng-false-value" => ""}
+                {{ shared.t('has_sounds') }}
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.photos", "ng-false-value" => ""}
                 {{ shared.t('has_photos') }}
         .row
           .col-xs-12
@@ -111,7 +111,7 @@
             %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('months') }}
-              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.months", "ng-disabled" => "params.dateType != 'month'", :class => "form-control", id: "filters-dates-months", multiple: "multiple"
+              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", "ng-disabled" => "params.dateType != 'month'", :class => "form-control", id: "filters-dates-month", multiple: "multiple"
 
     .row
       .col-xs-12
@@ -147,6 +147,6 @@
     .col-xs-12
       %button.btn.btn-primary
         {{ shared.t('update_search') }}
-      %button.btn.btn-default{ type: 'button', "ng-click": "reset( )" }
+      %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
         {{ shared.t('reset_search_filters') }}
 

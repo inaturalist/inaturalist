@@ -12,8 +12,8 @@ function( $http, $rootScope ) {
     );
   };
 
-  var processParams = function( p ) {
-    var params = angular.copy( p );
+  var processParams = function( p, possibleFields ) {
+    var params = _.extend( { }, p );
     // deal with iconic taxa
     if (params._iconic_taxa) {
       var iconic_taxa = [];
@@ -22,56 +22,44 @@ function( $http, $rootScope ) {
           iconic_taxa.push(name)
         }
       });
-      params.iconic_taxa = iconic_taxa;
+      if( iconic_taxa.length > 0 ) {
+        params.iconic_taxa = iconic_taxa;
+      }
       delete params._iconic_taxa;
     }
-    // deal with has
-    var has = [], matches, keysToDelete = [];
-    angular.forEach(params, function(v, k) {
-      matches = k.match(/has_(\w+)/)
-      if( matches && v ) {
-        has.push( matches[1] );
-        keysToDelete.push( k );
-      }
-    });
-    params.has = has;
     // date types
     // this looks and feels horrible, but I'm not sure what the angular way of doing it would be
-    // switch( params.dateType ) {
-    //   case 'exact':
-    //     keysToDelete = keysToDelete.concat([ "d1", "d2", "month" ]);
-    //     break;
-    //   case 'range':
-    //     keysToDelete = keysToDelete.concat([ "on", "month" ]);
-    //     break;
-    //   case 'month':
-    //     keysToDelete = keysToDelete.concat([ "on", "d1", "d2" ]);
-    //     break;
-    //   default:
-    //     keysToDelete = keysToDelete.concat([ "on", "d1", "d2", "month" ]);
-    // }
-    // delete params.dateType;
-    // switch( params.geoType ) {
-    //   case 'place':
-    //     keysToDelete = keysToDelete.concat([ "swlng", "swlat", "nelng", "nelat" ]);
-    //     break;
-    //   case 'map':
-    //     var bounds = $rootScope.map.getBounds(),
-    //         ne     = bounds.getNorthEast(),
-    //         sw     = bounds.getSouthWest();
-    //     params.swlng = sw.lng();
-    //     params.swlat = sw.lat();
-    //     params.nelng = ne.lng();
-    //     params.nelat = ne.lat();
-    //     keysToDelete.push("place_id")
-    //     break;
-    //   default:
-    //     keysToDelete = keysToDelete.concat([ "swlng", "swlat", "nelng", "nelat", "place_id" ]);
-    // }
-    angular.forEach(keysToDelete, function(k) {
-      delete params[k];
+    if( params.dateType ) {
+      var keysToDelete = [ ];
+      switch( params.dateType ) {
+        case 'exact':
+          keysToDelete = keysToDelete.concat([ "d1", "d2", "month" ]);
+          break;
+        case 'range':
+          keysToDelete = keysToDelete.concat([ "on", "month" ]);
+          break;
+        case 'month':
+          keysToDelete = keysToDelete.concat([ "on", "d1", "d2" ]);
+          break;
+        default:
+          keysToDelete = keysToDelete.concat([ "on", "d1", "d2", "month" ]);
+      }
+      delete params.dateType;
+      _.each( keysToDelete, function( k ) {
+        delete params[ k ];
+      });
+    }
+    if( possibleFields ) {
+      var unknownFields = _.difference( _.keys( params ), possibleFields );
+      _.each( unknownFields, function( f ) {
+        delete params[ f ]
+      });
+    }
+    _.each( _.keys( params ), function( k ) {
+      if( params[ k ] === null || params[ k ] === undefined ) {
+        delete params[ k ];
+      }
     });
-    delete params.geoType;
     return params;
   };
 
@@ -119,6 +107,10 @@ function( $http, $rootScope ) {
     return str.toLowerCase( ).lastIndexOf( pattern.toLowerCase( ), position ) === position;
   };
 
+  var pp = function( obj ) {
+    console.log( JSON.stringify( obj, null, "  " ) );
+  };
+
   return {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
@@ -126,7 +118,8 @@ function( $http, $rootScope ) {
     t: t,
     offsetCenter: offsetCenter,
     processPoints: processPoints,
-    stringStartsWith: stringStartsWith
+    stringStartsWith: stringStartsWith,
+    pp: pp
   }
 }]);
 

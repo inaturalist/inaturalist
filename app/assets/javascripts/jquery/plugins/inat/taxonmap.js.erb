@@ -22,7 +22,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
   options.minZoom = parseInt( $(elt).data('min-zoom') );
   options.urlCoords = $(elt).data('url-coords');
-  options.disableFullscreen = $(elt).data('disable-fullscreen');
+  options.disableFullscreen = ((options.disableFullscreen || $(elt).data('disable-fullscreen')) === true);
   options.showRange = $(elt).data('show-range');
   options.minX = $(elt).data('min-x');
   options.minY = $(elt).data('min-y');
@@ -33,7 +33,8 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.observationLayers = $(elt).data('observation-layers');
   options.placeLayers = $(elt).data('place-layers');
   options.taxonLayers = $(elt).data('taxon-layers');
-  options.mapTypeControl = $(elt).data('map-type-control');
+  options.mapTypeControl = ((options.mapTypeControl || $(elt).data('map-type-control')) === true);
+  options.zoomControl = ((options.zoomControl || $(elt).data('zoom-control')) === true);
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
   options.showAllLayer = options.showAllLayer != null ? options.showAllLayer : $(elt).data('show-all-layer');
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
@@ -82,6 +83,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     minZoom: options.minZoom,
     disableFullscreen: options.disableFullscreen,
     backgroundColor: '#E3EAF6',
+    zoomControl: (options.zoomControl !== false),
     styles: [
       {
         stylers: [
@@ -114,7 +116,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     map.setMapTypeId(options.mapType)
   }
   // Create the custom control (but don't show it yet)
-  map._overlayControl = new iNaturalist.OverlayControl(map);
+  // map._overlayControl = new iNaturalist.OverlayControl(map);
 
   if( options.showLegend ) {
     // Create the DIV to hold the control and call the CenterControl() constructor
