@@ -273,13 +273,17 @@ inat-taxon.split-taxon .has-com-name .sciname:after {
 }
 #stats-container .statcol.active {
   background: #86a91c;
+  margin-right: -1px;
+  z-index: 1;
 }
 #stats-container .stat {
   margin: 15px 0;
-  border-right: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  margin-left: -15px;
+  padding-left: 15px;
 }
 #stats-container .statcol.active .stat,
-#stats-container .statcol:last-child .stat { border: 0 transparent; }
+#stats-container #obsstatcol .stat { border: 0 transparent; }
 
 
 .obs-attr.media {margin-top: 0;}

@@ -11,4 +11,4 @@
         .photometa
           {{ shared.t('x_observations', {count: t.resultCount}) }}
         .caption
-          %inat-taxon.title.split-taxon{taxon: "t"}
+          %inat-taxon.title.split-taxon{taxon: "t", url: "/taxa/{{ t.id }}"}

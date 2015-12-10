@@ -41,7 +41,7 @@
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "removeSelectedBounds( )" }
             Bounding Box
             %span.glyphicon.glyphicon-remove-sign
-        .col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
+        #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
           .stat
             .stat-title.ng-cloak= t(:observations)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
