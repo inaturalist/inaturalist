@@ -1,8 +1,12 @@
-#result-grid.container-fluid
-  .col-xs-3.cell{ "ng-repeat": "t in taxa" }
-    %a{ href: "/taxa/{{ t.id }}" }
-      .media-object{ style: "background-image: url({{ t.medium_photo_url }})" }
-    .details
-      %span.title {{ t.preferredNameInLocale("en") }}
-      %span.subtitle {{ t.subtitle("en") }}
-      %span.count {{ t.resultCount }}
+#taxa-grid.container.bootstrap-10
+  .row.grid
+    .col-xs-2.cell{ "ng-repeat": "t in taxa" }
+      .thumbnail.borderless
+        %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", style: "background-image: url({{ t.photo( ) }})" }
+          %i{:class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}"}
+        %div{"ng-show" => "t.conservationStatusCode()", :class => "corner conservation-status {{ t.conservationStatusCode( ) }}", title: "{{ t.conservationStatus( ) }}"}
+          {{ t.conservationStatusCode() }}
+        %div{"ng-show" => "t.establishmentMeansCode() && !t.conservationStatusCode()", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ t.establishmentMeansCode( ) }}"}
+          {{ t.establishmentMeansCode() }}
+        .caption
+          %inat-taxon.title.split-taxon{taxon: "t"}

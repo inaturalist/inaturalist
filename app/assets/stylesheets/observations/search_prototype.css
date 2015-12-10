@@ -19,48 +19,89 @@
   padding: 5px 5px 5px 0;
 }
 #obs-container .location .fadednowrap {max-width: 200px;}
-#result-grid {
-  margin-top: 55px;
-}
+#result-grid,
+#taxa-grid,
 #result-table {
   margin-top: 55px;
 }
 #result-grid .thumbnail {
   margin-bottom: 30px;
 }
-#result-grid .photo {
+.grid .thumbnail {
+  position: relative;
+}
+.grid .photo {
   display: block;
   width: 100%;
-  height: 120px;
   background-size: cover;
   background-position: center;
   margin: 0px auto;
+  text-align: center;
+}
+.grid .photo,
+.grid .photo:hover {
+  color: transparent;
+}
+.grid .photo.iconic,
+.grid .photo.iconic:hover {
+  color: #eee;
+}
+.grid .photo {
+  height: 120px;
+  line-height: 250px;
+  font-size: 150px;
 }
 @media (min-width: 768px) {
-  #result-grid .photo {
+  .grid .photo {
     height: 157.5px;
   }
 }
 @media (min-width: 992px) {
-  #result-grid .photo {
+  .grid .photo {
     height: 212.5px;
   }
 }
 @media (min-width: 1200px) {
-  #result-grid .photo {
+  .grid .photo {
     height: 262.5px;
   }
 }
-#result-grid .caption {
+
+.bootstrap-10 .grid .photo {
+  height: 212px;
+  line-height: 210px;
+  font-size: 100px;
+}
+@media (min-width: 768px) {
+  .bootstrap-10 .grid .photo {
+    height: 128px;
+    line-height: 128px;
+  }
+}
+@media (min-width: 992px) {
+  .bootstrap-10 .grid .photo {
+    height: 172px;
+    line-height: 172px;
+    font-size: 150px;
+  }
+}
+@media (min-width: 1200px) {
+  .bootstrap-10 .grid .photo {
+    height: 212px;
+    line-height: 210px;
+    font-size: 150px;
+  }
+}
+.grid .caption {
   height: 85px;
   padding: 12px;
 }
-#result-grid .title {
+.grid .title {
   display: block;
   margin-bottom: 3px
 }
 inat-taxon.split-taxon .display-name {
-  font-weight: 800;
+  font-weight: bold;
   display: block;
   font-size: 15px;
   color: black;
@@ -109,8 +150,8 @@ inat-taxon.split-taxon .has-com-name .sciname:after {
 }
 #result-grid .userimage {
   position: absolute;
-  right: 30px;
-  bottom: 95px;
+  right: 15px;
+  bottom: 65px;
 }
 .bootstrap .userimage:hover,
 .bootstrap .userimage:active {opacity: 1; color: #eee;}
@@ -416,4 +457,32 @@ inat-taxon { white-space: nowrap; }
 #result-table .date,
 #result-table .time {
   display: block;
+}
+
+#taxa-grid .grid .caption {
+  height: 60px;
+}
+#taxa-grid .corner {
+  position: absolute;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  font-size: 12px;
+  line-height: 25px;
+  text-align: center;
+  background-color: #888;
+  color: white;
+  border-radius: 0;
+  right: 0;
+  font-weight: 600;
+}
+#taxa-grid .corner.establishment-means.IN {
+  background-color: DeepPink;
+}
+#taxa-grid .corner.conservation-status {
+  background-color:#817134;
+}
+#taxa-grid .corner.conservation-status.EN,
+#taxa-grid .corner.conservation-status.CR {
+  background-color:#D12F19;
 }

@@ -6,6 +6,9 @@
 }
 .bootstrap {
   @import "bootstrap";
+  .bootstrap-10 {
+    @import "bootstrap-10";
+  }
 }
 @import 'bootstrap-inat';
 #footer {

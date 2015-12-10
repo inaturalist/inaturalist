@@ -10,7 +10,7 @@ var application = angular.module( "ObservationSearch", [
 ]);
 
 // http://stackoverflow.com/a/22965260
-moment.lang('en', {
+moment.locale('en', {
   relativeTime : {
     future: "in %s",
     past:   "%s",
