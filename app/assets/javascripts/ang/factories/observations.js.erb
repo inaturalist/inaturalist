@@ -1,7 +1,7 @@
 iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
   var search = function( params ) {
     var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations";
-    params.per_page = 10;
+    params.per_page = 12;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };

@@ -6,7 +6,8 @@
 - content_for :extracss do
   = stylesheet_link_tag "observations/search_prototype"
   = stylesheet_link_tag "angular-google-places-autocomplete/src/autocomplete"
-
+- content_for :extrahead do
+  %base{ href: search_prototype_observations_path }
 #main-container{ "ng-app": "ObservationSearch", "ng-controller": "SearchController" }
   .container.container-fixed
     .row.form
@@ -17,7 +18,7 @@
             %button.btn.btn-default.dropdown-toggle
               %i.fa.fa-filter
               %i.fa.fa-chevron-down
-            .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "setupFilters()"}
+            .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad()"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name" }
             %input{ type: "hidden", name: "taxon_id" }
@@ -25,40 +26,39 @@
             / ng-model-options="{debounce: 1000}" means angular will wait 1000 ms after the last change in the UI before changing the bound model value
             / g-places-autocomplete triggers the Google place autocomplete directive
             #place-name-input.input-group
-              %input.form-control{ name: "place_name", "ng-model-options": "{debounce: 1000}", placeholder: t(:place), type: "text", "g-places-autocomplete": "", "ng-model": "place" }
-              %span.input-group-btn.ng-cloak
-                %button.btn.btn-default{type: "button"}
-                  {{ shared.t('go') }}
+              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text" }
+              %span.input-group-btn
+                %button.btn.btn-default{type: "button"}= t(:go)
   #stats-container
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo{ "ng-if": "params.geoType=='world'" }
+          %span.geo{ "ng-if": "!selectedPlace && !params.swlng" }
             The World
-          %span.geo.ng-cloak{ "ng-if": "currentPlace", "ng-class": "{ selected: params.geoType=='place' }", "ng-click": "setGeoFilter('world')"}
-            = "{{ currentPlace.name }}"
+          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "removeSelectedPlace( )" }
+            = "{{ selectedPlace.name }}"
             %span.glyphicon.glyphicon-remove-sign
-          %span.geo.selected.ng-cloak{ "ng-if": "params.geoType=='map'", "ng-click": "setGeoFilter('world')" }
+          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "removeSelectedBounds( )" }
             Bounding Box
             %span.glyphicon.glyphicon-remove-sign
-        .col-xs-2.statcol.active{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
+        .col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
           .stat
-            .stat-title.ng-cloak= "{{ shared.t('observations') }}"
+            .stat-title.ng-cloak= t(:observations)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('species') }", "ng-click": "changeView('species')" }
           .stat
-            .stat-title.ng-cloak= "{{ shared.t('species') }}"
+            .stat-title.ng-cloak= t(:species)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('identifiers') }", "ng-click": "changeView('identifiers')" }
           .stat
-            .stat-title.ng-cloak= "{{ shared.t('identifiers') }}"
+            .stat-title.ng-cloak= t(:identifiers)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('observers') }", "ng-click": "changeView('observers')" }
           .stat
-            .stat-title.ng-cloak= "{{ shared.t('observers') }}"
+            .stat-title.ng-cloak= t(:observers)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
   #results
-    .container.container-fixed{ "ng-show": "viewing('observations')" }
+    .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
       .row
         .col-xs-6
           .btn-group
@@ -68,7 +68,7 @@
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
             %button.button.btn-default{ "ng-click": "changeView('observations', 'table')" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
-            %button.button.btn-default.reload{ "ng-click": "setGeoFilter('visible')" }
+            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )" }
               %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
               Redo Search
             %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown" }
@@ -83,8 +83,7 @@
                   %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
                     = "{{ p.name }}"
         .col-xs-6
-    %div{ "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
-      %div{ "ng-include": "'ang/templates/observation_search/results_map.html'", onload: "setupMap( )"}
+    %div{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
       %div{ "ng-include": "'ang/templates/observation_search/results_grid.html'"}
     %div{ "results-table": true, "ng-show": "viewing('observations', 'table')" }

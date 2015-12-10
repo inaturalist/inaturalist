@@ -1,5 +1,4 @@
 var application = angular.module( "ObservationSearch", [
-  "google.places",
   "infinite-scroll",
   "ngRoute",
   "templates",
@@ -28,84 +27,155 @@ moment.locale('en', {
   }
 });
 
+// defining the views
+application.directive( "resultsMap", function( ) {
+  return {
+    templateUrl: "ang/templates/observation_search/results_map.html",
+    link: function( scope, element, attr ) {
+      $( "#map" ).taxonMap({
+        urlCoords: true,
+        mapType: google.maps.MapTypeId.TERRAIN,
+        showLegend: true,
+        showAllLayer: false,
+        disableFullscreen: true,
+        mapTypeControl: false
+      });
+      scope.map = $( "#map" ).data( "taxonMap" );
+      scope.map.addListener( "dragend", function( ) { scope.onMove( ); });
+      scope.map.addListener( "zoom_changed", function( ) { scope.onMove( ); });
+      scope.alignMap( );
+      scope.$watch( attr.ngShow, function( value ) {
+        if( value === true ) {
+          setTimeout( function( ) {
+            scope.setMapLayers( true );
+          }, 50);
+        }
+      });
+      // the observation div on the map is a scrollable div in a scrollable page
+      // make sure that when you scroll to the botton of that div, the page
+      // doesn't start scrolling down
+      $( "#obs" ).isolatedScroll( );
+    }
+  };
+});
+
 // disable scrolling to the top when we're updating the view
 application.value( "$anchorScroll", angular.noop );
+
+application.config( [ "$locationProvider", function($locationProvider) {
+  $locationProvider.html5Mode({
+    enabled: true
+  });
+}]);
+
 
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location ) {
+  $scope.shared = shared;
   $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
+  $scope.possibleFields = [ "iconic_taxa", "month", "swlat", "swlng",
+    "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview" ];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $scope.defaultParams = {
-    has_photos: true,
-    taxon_id: null,
+    photos: true,
     order_by: "observations.id",
     order: "desc",
     dateType: "any",
-    geoType: "world"
+    page: 1
   };
+  $scope.mapCenter = { lat: 0, lng: 130 };
+  $scope.mapZoom = 1;
   $scope.nearbyPlaces = [ ];
-  $scope.setupFilters = function() {
-    // I started using the default bootstrap dropdown to manage the filter opening,
-    // but it assumes all clicks in the dropdown should close the dropdown, so I had
-    // to not use the boostrap javascript there and do it myself
-    $( "#filter-container .dropdown-toggle" ).click( function( ) {
-      $( this ).parent( ).toggleClass( "open" );
-    });
-    // closing the filter box
-    $( "body" ).on( "click", function( e ) {
-      if( !$( "#filter-container" ).is( e.target ) &&
-          $( "#filter-container" ).has( e.target ).length === 0 &&
-          $( ".open" ).has( e.target ).length === 0 &&
-          $( e.target ).parents('.ui-datepicker').length === 0 &&
-          $( e.target ).parents('.ui-datepicker-header').length === 0 &&
-          $( e.target ).parents('.ui-multiselect-menu').length === 0
-        ) {
-        $( "#filter-container" ).removeClass( "open" );
-      };
-    });
-    $('.date-picker').datepicker({
-      yearRange: "c-100:c+0",
-      maxDate: '+0d',
-      constrainInput: false,
-      firstDay: 0,
-      changeFirstDay: false,
-      changeMonth: true,
-      changeYear: true,
-      dateFormat: 'yy-mm-dd',
-      showTimezone: false,
-      closeText: I18n.t('date_picker.closeText'),
-      currentText: I18n.t('date_picker.currentText'),
-      prevText: I18n.t('date_picker.prevText'),
-      nextText: I18n.t('date_picker.nextText'),
-      monthNames: eval(I18n.t('date_picker.monthNames')),
-      monthNamesShort: eval(I18n.t('date_picker.monthNamesShort')),
-      dayNames: eval(I18n.t('date_picker.dayNames')),
-      dayNamesShort: eval(I18n.t('date_picker.dayNamesShort')),
-      dayNamesMin: eval(I18n.t('date_picker.dayNamesMin'))
-    });
-    $('#filters select[multiple]').multiselect({
-      minWidth: 150,
-      checkAllText: I18n.t('all'),
-      uncheckAllText: I18n.t('none')
-    })
-  }
+  $scope.taxonInitialized = false;
+  $scope.placeInitialized = false;
+  $scope.filtersInitialized = false;
+  $scope.parametersInitialized = false;
+
+  // this is the first block to run when the page loads
+  $scope.preInitialize = function( ) {
+    $scope.resetStats( );         // all stats read ---
+    $scope.matchUrlState( );      // set the right view
+    $scope.setInitialParams( );   // set params from URL, lookup place and taxon
+  };
+
+  // once the initial state is prepared from the URL and params loaded
+  $scope.afterParametersInitialized = function( ) {
+    if( $scope.taxonInitialized && $scope.placeInitialized &&
+        $scope.filtersInitialized && !$scope.parametersInitialized ) {
+      $scope.searchAndUpdateStats( );           // fetch the observations
+      $rootScope.$emit( "setMapLayers", true ); // set proper map layers for the search and orient the map
+      $scope.watchParams( );                    // now we watch for param changes
+      $rootScope.$emit( "searchForBestPlace" );
+      $scope.parametersInitialized = true;
+    }
+  };
+  // any time an initialization step finishes, attempt afterInitialize
+  $scope.$watchGroup([ "taxonInitialized", "filtersInitialized",
+                       "placeInitialized" ], function( ) {
+    $scope.afterParametersInitialized( );
+  });
+  // runs when the filters template has been rendered
+  $scope.onFiltersLoad = function( ) {
+    $scope.setupFilterToggle( );
+    $scope.setupDatepicker( );
+    $scope.setupPlaceSearchbox( );
+    $scope.setupMiltiselects( );
+    $scope.determineFieldNames( );
+    $scope.setupTaxonAutocomplete( );
+    $scope.filtersInitialized = true;
+  };
   $scope.resetStats = function( ) {
-    $scope.totalObservations = "--";
-    $scope.totalSpecies = "--";
-    $scope.totalObservers = "--";
-    $scope.totalIdentifiers = "--";
-    $scope.taxa = [ ];
-    $scope.identifiers = [ ];
-    $scope.observers = [ ];
+    _.each([ "totalObservations", "totalSpecies", "totalObservers", "totalIdentifiers" ], function( k ) {
+      $scope[ k ] = "--";
+    });
+    _.each([ "taxa", "identifiers", "observers" ], function( k ) {
+      $scope[ k ] = [ ];
+    });
   };
   $scope.resetParams = function( ) {
     $scope.params = _.clone( $scope.defaultParams );
   };
+  $scope.watchParams = function( ) {
+    // params may change but not affect the results
+    // for example DateType will change with the different date options
+    $scope.$watch( "params", function( ) {
+      $scope.processedParams = shared.processParams( $scope.params, $scope.possibleFields );
+    }, true);
+    // changes in processedParams are what initiate searches
+    $scope.$watch( "processedParams", function( before, after ) {
+      if( _.isEqual( before, after ) ) { return; }
+      $scope.searchAndUpdateStats( );
+      $rootScope.$emit( "setMapLayers", $scope.alignMapOnSearch );
+      // restore some one-time search settings
+      $scope.alignMapOnSearch = false;
+    }, true);
+  };
+  // watch for place selections, unselections
+  $scope.$watch( "selectedPlace", function( ) {
+    if( $scope.selectedPlace && $scope.selectedPlace.id ) {
+      if( $scope.params.place_id != $scope.selectedPlace.id ) {
+        $scope.mapCenter = null;
+        $scope.mapBounds = null;
+        $scope.mapZoom = null;
+        $scope.alignMapOnSearch = true;
+        $scope.params.place_id = $scope.selectedPlace.id;
+      }
+    } else {
+      delete $scope.params.place_id;
+    }
+  });
+  // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
-    $scope.params = _.extend( { }, $scope.defaultParams, urlParams );
+    $scope.params = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    if( $scope.params.taxon_id ) {
+      $scope.params.taxon_id = parseInt( $scope.params.taxon_id );
+    }
+    if( $scope.params.place_id ) {
+      $scope.params.place_id = parseInt( $scope.params.place_id );
+    }
     // load taxon auto name and photo for autocomplete
     if( $scope.params.taxon_id ) {
       TaxaFactory.show( $scope.params.taxon_id ).then( function( response ) {
@@ -117,15 +187,29 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           }
           $( "input[name='taxon_name']" ).attr( "value", taxon.preferredNameInLocale( "en" ) );
         }
+        $scope.taxonInitialized = true;
       });
-    }
+    } else { $scope.taxonInitialized = true; }
+    // load place name and polygon from ID
+    if( $scope.params.place_id ) {
+      PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
+        places = PlacesFactory.responseToInstances( response );
+        if( places.length > 0 ) {
+          $scope.selectedPlace = places[ 0 ];
+        }
+        $scope.placeInitialized = true;
+      });
+    } else { $scope.placeInitialized = true; }
   };
   $scope.updateBrowserLocation = function( ) {
     var newParams = [ ];
     _.each( $scope.params, function( value, param ) {
+      // don't show default params in the URL
       if( $scope.defaultParams.hasOwnProperty( param ) && value === $scope.defaultParams[ param ] ) {
         return;
       }
+      // assess view and subview params below
+      if( param == "view" || param == "subview" ) { return; }
       newParams.push( [ param, value ] );
     });
     if( $scope.currentView != $scope.defaultView ) {
@@ -134,10 +218,21 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( $scope.currentSubview != $scope.defaultSubview ) {
       newParams.push( [ "subview", $scope.currentSubview ] );
     }
+    // keep param order consistent
     newParams = _.sortBy( newParams, function( arr ) {
       return arr[ 0 ];
     });
-    $location.search( _.object( newParams ) );
+    if( !_.isEmpty( newParams ) ) {
+      var urlParams = shared.processParams( _.object( newParams ), $scope.possibleFields );
+      urlParams = _.mapObject( urlParams, function( v, k ) {
+        if( _.isArray( v ) ) { return v.join(","); }
+        if( $scope.defaultParams[ k ] === true && v !== true ) { v = "any"; }
+        return v;
+      });
+      // store the params in the browser history state
+      $location.state( urlParams );
+      $location.search( urlParams );
+    }
   };
   $scope.viewing = function( view, subview ) {
     if( subview ) {
@@ -149,43 +244,23 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     return false;
   };
-  $scope.changeView = function( newView, newSubview ) {
+  $scope.changeView = function( newView, newSubview, updateLocation ) {
     if( newView != $scope.currentView || newSubview != $scope.currentSubview ) {
       $scope.currentView = newView;
       $scope.currentSubview = newSubview;
       if( $scope.observations && $scope.observations ) {
         $scope.observations = $scope.observations.slice( 0, 40 );
       }
-      if( $scope.currentSubview == "map" ) {
-        setTimeout( function( ) {
-          google.maps.event.trigger( window.map, "resize" );
-        }, 200);
+      if( updateLocation !== false ) {
+        $scope.updateBrowserLocation( );
       }
-      $scope.updateBrowserLocation( );
     }
   };
-  $scope.setGeoFilter = function( filter ) {
-    if( filter == "visible" ) {
-      $scope.params.geoType = "map";
-      $rootScope.$emit( "hideNearbyPlace" );
-      $scope.currentPlace = null;
-      $rootScope.$emit( "updateParamsForCurrentBounds" );
-    } else {
-      $scope.params.geoType = "world";
-      $rootScope.$emit( "hideNearbyPlace" );
-      $scope.params.place_id = null;
-      $scope.currentPlace = null;
-      $scope.params.swlng = null;
-      $scope.params.swlat = null;
-      $scope.params.nelng = null;
-      $scope.params.nelat = null;
-    }
-  };
-  $scope.searchAndUpdateStats = function( ) {
-    $scope.page = 1;
+  $scope.searchAndUpdateStats = function( options ) {
+    $scope.pagination = { page: 1 };
+    options = options || { };
     var processedParams = shared.processParams(
-      _.extend( { }, $scope.params, { page: $scope.page } ));
-    $scope.updateBrowserLocation( );
+      _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
       $scope.resetStats( );
       $scope.totalObservations = response.data.total_results;
@@ -221,49 +296,36 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
   };
   $scope.nextPage = function( ) {
-    if( !$scope.page ) { return; }
-    if( $scope.busy === true ) { return; }
-    $scope.page += 1;
-    $scope.busy = true;
+    $scope.pagination = $scope.pagination || { };
+    if( !$scope.pagination.page ) { return; }
+    if( $scope.pagination.busy === true ) { return; }
+    if( $scope.pagination.finished === true ) { return; }
+    $scope.pagination.page += 1;
+    $scope.pagination.busy = true;
     var processedParams = shared.processParams(
-      _.extend( { }, $scope.params, { page: $scope.page } ));
+      _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
+      if( response.data.total_results <= ( response.data.page * response.data.per_page ) ) {
+        $scope.pagination.finished = true;
+      }
       $scope.observations = $scope.observations.concat(
         ObservationsFactory.responseToInstances( response ));
-      $scope.busy = false;
+      $scope.pagination.busy = false;
     });
   };
-  var urlParams = $location.search( );
-  if( urlParams.view && _.contains( $scope.possibleViews, urlParams.view ) ) {
-    $scope.currentView = urlParams.view;
-  }
-  if( $scope.currentView && $scope.possibleSubviews[ $scope.currentView ] &&
-      _.contains( $scope.possibleSubviews[ $scope.currentView ], urlParams.subview ) ) {
-    $scope.currentSubview = urlParams.subview;
-  }
-  $scope.changeView( urlParams.view, urlParams.subview );
-  $scope.currentView = $scope.currentView || $scope.defaultView;
-  $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
-  $scope.shared = shared;
-  $scope.resetStats( );
-  $scope.setInitialParams( );
-
-  // reload observations whenever params change
-  // without deepObjectComparison the params hash will always
-  // appear the same when its values change
-  var deepObjectComparison = true;
-  $scope.$watch( "params", function( ) {
-    $scope.searchAndUpdateStats( );
-  }, deepObjectComparison );
-
-  $scope.$watch( "place", function( ) {
-    if( $scope.place && $scope.place.geometry ) {
-      // setting a timer for automatching the searched place to a known place
-      $scope.placeLastSearched = new Date( ).getTime( );
-      $scope.shouldMatchPlaceSearch = true;
-      $rootScope.$emit( "updateMapForPlace", $scope.place );
+  $scope.matchUrlState = function( ) {
+    var urlParams = $location.search( );
+    if( urlParams.view && _.contains( $scope.possibleViews, urlParams.view ) ) {
+      $scope.currentView = urlParams.view;
     }
-  });
+    if( $scope.currentView && $scope.possibleSubviews[ $scope.currentView ] &&
+        _.contains( $scope.possibleSubviews[ $scope.currentView ], urlParams.subview ) ) {
+      $scope.currentSubview = urlParams.subview;
+    }
+    $scope.changeView( urlParams.view, urlParams.subview, false );
+    $scope.currentView = $scope.currentView || $scope.defaultView;
+    $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
+  };
   $scope.showNearbyPlace = function( place ) {
     $rootScope.$emit( "showNearbyPlace", place );
   };
@@ -271,15 +333,24 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $rootScope.$emit( "hideNearbyPlace", place );
   };
   $scope.filterByPlace = function( place ) {
-    $scope.params.geoType = "place";
-    $scope.currentPlace = place;
-    $scope.place = $scope.currentPlace.name;
-    $scope.params.place_id = $scope.currentPlace.id;
+    $rootScope.$emit( "hideNearbyPlace" );
+    $scope.selectedPlace = place;
+    $scope.removeSelectedBounds( );
+  };
+  $scope.filterByBounds = function( ) {
+    $rootScope.$emit( "hideNearbyPlace" );
+    $scope.removeSelectedPlace( );
+    $rootScope.$emit( "updateParamsForCurrentBounds" );
+  };
+  $scope.removeSelectedPlace = function( ) {
+    $scope.selectedPlace = null;
+  };
+  $scope.removeSelectedBounds = function( ) {
     $scope.params.swlng = null;
     $scope.params.swlat = null;
     $scope.params.nelng = null;
     $scope.params.nelat = null;
-  }
+  };
   $scope.orderBy = function( order ) {
     if ($scope.params.order_by == order) {
       $scope.params.order = ($scope.params.order == 'asc' ? 'desc' : 'asc');
@@ -287,8 +358,81 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.params.order_by = order;
       $scope.params.order = 'desc';
     }
-  }
-  angular.element( document ).ready( function( ) {
+  };
+  $scope.setupFilterToggle = function( ) {
+    // I started using the default bootstrap dropdown to manage the filter opening,
+    // but it assumes all clicks in the dropdown should close the dropdown, so I had
+    // to not use the boostrap javascript there and do it myself
+    $( "#filter-container .dropdown-toggle" ).click( function( ) {
+      $( this ).parent( ).toggleClass( "open" );
+    });
+    // closing the filter box
+    $( "body" ).on( "click", function( e ) {
+      if( !$( "#filter-container" ).is( e.target ) &&
+          $( "#filter-container" ).has( e.target ).length === 0 &&
+          $( ".open" ).has( e.target ).length === 0 &&
+          $( e.target ).parents('.ui-datepicker').length === 0 &&
+          $( e.target ).parents('.ui-datepicker-header').length === 0 &&
+          $( e.target ).parents('.ui-multiselect-menu').length === 0
+        ) {
+        $( "#filter-container" ).removeClass( "open" );
+      };
+    });
+  };
+  $scope.setupDatepicker = function( ) {
+    $('.date-picker').datepicker({
+      yearRange: "c-100:c+0",
+      maxDate: '+0d',
+      constrainInput: false,
+      firstDay: 0,
+      changeFirstDay: false,
+      changeMonth: true,
+      changeYear: true,
+      dateFormat: 'yy-mm-dd',
+      showTimezone: false,
+      closeText: I18n.t('date_picker.closeText'),
+      currentText: I18n.t('date_picker.currentText'),
+      prevText: I18n.t('date_picker.prevText'),
+      nextText: I18n.t('date_picker.nextText'),
+      monthNames: eval(I18n.t('date_picker.monthNames')),
+      monthNamesShort: eval(I18n.t('date_picker.monthNamesShort')),
+      dayNames: eval(I18n.t('date_picker.dayNames')),
+      dayNamesShort: eval(I18n.t('date_picker.dayNamesShort')),
+      dayNamesMin: eval(I18n.t('date_picker.dayNamesMin'))
+    });
+  };
+  $scope.setupPlaceSearchbox = function( ) {
+    $scope.placeSearchBox = new google.maps.places.SearchBox(
+      document.getElementById( "place_name" ));
+    $scope.placeSearchBox.addListener( "places_changed", function( ) {
+      var places = $scope.placeSearchBox.getPlaces( );
+      if( places.length != 1 ) { return; }
+      var place = places[ 0 ];
+      if( !place.geometry ) { return; }
+      $scope.searchedPlace = place;
+      // setting a timer for automatching the searched place to a known place
+      $scope.placeLastSearched = new Date( ).getTime( );
+      $scope.shouldMatchPlaceSearch = true;
+      $scope.mapCenter = null;
+      $scope.mapZoom = null;
+      $scope.mapBounds = null;
+      if( $scope.searchedPlace.geometry.viewport ) {
+        $scope.mapBounds = $scope.searchedPlace.geometry.viewport;
+      } else {
+        $scope.mapCenter = $scope.searchedPlace.geometry.location;
+        $scope.mapZoom = 15;
+      }
+      $rootScope.$emit( "alignMap" );
+    });
+  };
+  $scope.setupMiltiselects = function( ) {
+    $( "#filters select[multiple]" ).multiselect({
+      minWidth: 150,
+      checkAllText: I18n.t( "all" ),
+      uncheckAllText: I18n.t( "none" )
+    });
+  };
+  $scope.setupTaxonAutocomplete = function( ) {
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
@@ -296,24 +440,34 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.searchAndUpdateStats( );
       },
       afterUnselect: function( ) {
-        $scope.params.taxon_id = null;
-        $scope.searchAndUpdateStats( );
+        if( $scope.params.taxon_id != null ) {
+          $scope.params.taxon_id = null;
+          $scope.searchAndUpdateStats( );
+        }
       }
     });
-  });
+  };
+  $scope.determineFieldNames = function( ) {
+    _.map( $( "#filters input,select" ), function( input ) {
+      var name = $( input ).attr( "ng-model" ) || input.name;
+      name = name.replace( "params.", "" );
+      $scope.possibleFields.push( name );
+    });
+    $scope.defaultProcessedParams = shared.processParams( $scope.params, $scope.possibleFields );
+  };
+  $scope.preInitialize( );
 }]);
 
 
 application.controller( "MapController", [ "PlacesFactory", "shared", "$scope", "$rootScope", "$anchorScroll",
 function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
-  $rootScope.$on( "updateParamsForCurrentBounds", function( event, force ) {
-    $scope.updateParamsForCurrentBounds( force );
+  $rootScope.$on( "updateParamsForCurrentBounds", function( ) {
+    $scope.updateParamsForCurrentBounds( );
   });
   $rootScope.$on( "offsetCenter", function( event, lat, lng ) {
     $scope.map.setCenter( shared.offsetCenter( $scope.map, $scope.map.getCenter( ), lat, lng ) );
   });
-  $scope.updateParamsForCurrentBounds = function( force ) {
-    if( !( $scope.$parent.params.geoType == "map" || force === true )) { return; }
+  $scope.updateParamsForCurrentBounds = function( ) {
     var bounds = $scope.map.getBounds( ),
         ne     = bounds.getNorthEast( ),
         sw     = bounds.getSouthWest( );
@@ -321,34 +475,13 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     $scope.$parent.params.swlat = sw.lat( );
     $scope.$parent.params.nelng = ne.lng( );
     $scope.$parent.params.nelat = ne.lat( );
-    $scope.$parent.currentPlace = null;
-    $scope.$parent.params.place_id = null;
+    $scope.$parent.selectedPlace = null;
   };
-  $rootScope.$on( "updateMapForPlace", function( event, place ) {
-    if( place && $scope.map ) {
-      if( place.geometry.viewport ) {
-        $scope.map.fitBounds( place.geometry.viewport );
-      } else {
-        $scope.map.setCenter( place.geometry.location );
-        $scope.map.setZoom( 15 );
-      }
-      $rootScope.$emit( "offsetCenter", 130, 20 );
-      $rootScope.$emit( "searchForBestPlace" );
+  $rootScope.$on( "searchForBestPlace", function( event ) { $scope.searchForBestPlace( ); });
+  $scope.searchForBestPlace = function( ) {
+    if( $scope.searchBox && $scope.map ) {
+      $scope.searchBox.setBounds( $scope.map.getBounds( ) );
     }
-  });
-  $scope.refreshRequestTime = 0;
-
-  $scope.delayedUpdateParamsForCurrentBounds = function( ) {
-    var thisRequestTime = new Date( ).getTime( );
-    refreshRequestTime = thisRequestTime;
-    setTimeout( function( ) {
-      if( refreshRequestTime == thisRequestTime ) {
-        $scope.updateParamsForCurrentBounds( );
-      }
-    }, 800 );
-  };
-  $rootScope.$on( "searchForBestPlace", function( event ) {
-    if( !$scope.map ) { return; }
     // search a little left and north of center
     var center = shared.offsetCenter( $scope.map, $scope.map.getCenter( ), -130, -20 );
     var lat = center.lat( );
@@ -369,70 +502,22 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
       if( places.length > 0 ) {
         $scope.$parent.nearbyPlaces = places;
         // check the nearby places for a match to searches in the last second
-        if( $scope.$parent.nearbyPlaces.length > 0 && $scope.$parent.shouldMatchPlaceSearch &&
-            (new Date( ).getTime( ) - $scope.$parent.placeLastSearched) < 1000 ) {
+        if( $scope.$parent.nearbyPlaces.length > 0 && $scope.shouldMatchPlaceSearch &&
+            (new Date( ).getTime( ) - $scope.placeLastSearched) < 1000 ) {
           _.each( $scope.$parent.nearbyPlaces, function( p ) {
-            if( !$scope.$parent.shouldMatchPlaceSearch || !$scope.$parent.place ) { return; }
-            var searchedName = ( _.isObject( $scope.$parent.place ) ?
-              $scope.$parent.place.name : $scope.$parent.place ).toLowerCase( );
+            if( !$scope.shouldMatchPlaceSearch || !$scope.searchedPlace ) { return; }
+            var searchedName = ( _.isObject( $scope.searchedPlace ) ?
+              $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
             if( shared.stringStartsWith( p.name, searchedName ) || shared.stringStartsWith( searchedName, p.name ) ) {
               $scope.$parent.filterByPlace( p );
-              $scope.$parent.shouldMatchPlaceSearch = false;
+              $scope.shouldMatchPlaceSearch = false;
               return;
             }
           })
         }
       } else { $scope.$parent.nearbyPlaces = [ ]; }
     });
-  });
-  $scope.setupMap = function( ) {
-    $( "#map" ).taxonMap({
-      urlCoords: true,
-      mapType: google.maps.MapTypeId.TERRAIN,
-      showLegend: true,
-      showAllLayer: false,
-      longitude: 130
-    });
-    $scope.map = $( "#map" ).data( "taxonMap" );
-    if( $scope.$parent.params.nelat || $scope.$parent.params.nelng ||
-        $scope.$parent.params.swlat || $scope.$parent.params.swlng ) {
-      var bounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng( $scope.$parent.params.swlat, $scope.$parent.params.swlng ),
-        new google.maps.LatLng( $scope.$parent.params.nelat, $scope.$parent.params.nelng ) );
-      $scope.map.fitBounds( bounds );
-      // adjust for the fact that fitBounds zooms out a little
-      $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
-    }
-    $scope.map.addListener( "dragend", function( ) {
-      $rootScope.$emit( "searchForBestPlace" );
-    });
-    $scope.map.addListener( "zoom_changed", function( ) {
-      $rootScope.$emit( "searchForBestPlace" );
-    });
-    $scope.setMapLayers( );
-    $rootScope.$emit( "offsetCenter" );
-    // the observation div on the map is a scrollable div in a scrollable page
-    // make sure that when you scroll to the botton of that div, the page
-    // doesn't start scrolling down
-    $( "#obs" ).isolatedScroll( );
-    $rootScope.$emit( "searchForBestPlace" );
-    setTimeout( function( ) {
-      // load place name and polygon from ID
-      if( $scope.$parent.params.place_id ) {
-        PlacesFactory.show( $scope.$parent.params.place_id ).then( function( response ) {
-          places = PlacesFactory.responseToInstances( response );
-          if( places.length > 0 ) {
-            $scope.$parent.currentPlace = places[ 0 ];
-            $scope.$parent.place = $scope.$parent.currentPlace.name;
-            $scope.$parent.params.place_id = $scope.$parent.currentPlace.id;
-          }
-        });
-      }
-    }, 100)
   };
-  $scope.$watch( "params", function( ) {
-    $scope.setMapLayers( );
-  }, true );
   $rootScope.$on( "showNearbyPlace", function( event, place ) {
     if( $scope.nearbyPlaceLayer ) { $scope.nearbyPlaceLayer.setMap( null ); }
     $scope.nearbyPlaceLayer = null;
@@ -446,69 +531,101 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     $scope.nearbyPlaceLayer.addGeoJson( geojson );
     $scope.nearbyPlaceLayer.setMap( $scope.map );
   });
-  $rootScope.$on( "hideNearbyPlace", function( event ) {
+  $rootScope.$on( "hideNearbyPlace", function( ) {
     if( $scope.nearbyPlaceLayer ) { $scope.nearbyPlaceLayer.setMap( null ); }
     $scope.nearbyPlaceLayer = null;
   });
-  $scope.setMapLayers = function( ) {
-    if (!$scope.map) { return };
-    window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
-    window.inatTaxonMap.addObservationLayers( $scope.map, {
-      title: "Observations",
-      mapStyle: "summary",
-      observationLayers: [
-        shared.processParams( _.clone( $scope.params ) )
-      ]
-    });
-    // fully remove any existing data layer
-    if( $scope.currentPlaceLayer ) { $scope.currentPlaceLayer.setMap( null ); }
-    $scope.currentPlaceLayer = null;
-    $scope.currentPlaceLayer = new google.maps.Data({ style: {
-      strokeColor: '#d77a3b',
-      strokeOpacity: 0.75,
-      strokeWeight: 5,
-      fillOpacity: 0
-    }});
-    // draw the polygon for the current place
-    if( $scope.$parent.currentPlace ) {
-      var c = { type: "Feature",
-        geometry: $scope.$parent.currentPlace.geometry_geojson };
-      $scope.currentPlaceLayer.addGeoJson( c );
-      $scope.currentPlaceLayer.setMap( $scope.map );
+  $rootScope.$on( "setMapLayers", function( event, align) {
+    $scope.setMapLayers( align );
+  });
+  $rootScope.$on( "alignMap", function( ) {
+    $scope.alignMap( );
+  });
+  $scope.onMove = function( ) {
+    $scope.$parent.mapCenter = $scope.map.getCenter( );
+    $scope.$parent.mapZoom = $scope.map.getZoom( );
+    $rootScope.$emit( "searchForBestPlace" );
+  }
+  $scope.alignMap = function( ) {
+    if( !$scope.mapLayersInitialized ) { return; }
+    if( $scope.$parent.mapCenter ) {
+      $scope.map.setCenter( $scope.$parent.mapCenter );
+      $scope.map.setZoom( $scope.$parent.mapZoom );
+    } else if( $scope.$parent.mapBounds ) {
+      $scope.map.panToBounds( $scope.$parent.mapBounds );
+      $scope.map.fitBounds( $scope.$parent.mapBounds );
+      $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
+    } else if( $scope.selectedPlaceLayer ) {
       var bounds = new google.maps.LatLngBounds();
       // extend the bounds to encompass all features in the polygon
-      $scope.currentPlaceLayer.forEach(function(feature) {
+      $scope.selectedPlaceLayer.forEach(function(feature) {
         shared.processPoints( feature.getGeometry( ), bounds.extend, bounds );
       });
       $scope.map.panToBounds( bounds );
       $scope.map.fitBounds( bounds );
-      // move the map to a little left and north of center
-      $rootScope.$emit( "offsetCenter", 130, 20 );
-      $rootScope.$emit( "searchForBestPlace" );
+      if( $scope.$parent.selectedPlace ) {
+        // move the map to a little left and north of center
+        $rootScope.$emit( "offsetCenter", 130, 20 );
+        $rootScope.$emit( "searchForBestPlace" );
+      } else {
+        $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
+      }
     }
-    // draw the filter bounding box
-    else if( $scope.params.swlat && $scope.params.swlng &&
-        $scope.params.nelat && $scope.params.nelng ) {
-      $scope.currentPlaceLayer.addGeoJson({
-        type: "Feature",
-        geometry: {
-          type: "Polygon",
-          coordinates: [ [
-            [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.swlat ) ],
-            [ parseFloat( $scope.params.nelng ), parseFloat( $scope.params.swlat ) ],
-            [ parseFloat( $scope.params.nelng ), parseFloat( $scope.params.nelat ) ],
-            [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.nelat ) ],
-            [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.swlat ) ]
-          ] ]
-        }
-      });
-      var bounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng( $scope.params.swlat, $scope.params.swlng ),
-        new google.maps.LatLng( $scope.params.nelat, $scope.params.nelng ) );
-      $scope.map.panToBounds( bounds );
-      $scope.map.fitBounds( bounds );
-      $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
-      $scope.currentPlaceLayer.setMap($scope.map)
+  };
+  $scope.setMapLayers = function( align ) {
+    if( !$scope.map ) { return };
+    if( !$scope.$parent.parametersInitialized ) { return };
+    window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
+    var layerParams = shared.processParams( $scope.params, $scope.possibleFields );
+    shared.pp(layerParams)
+    shared.pp($scope.$parent.defaultProcessedParams)
+    window.inatTaxonMap.addObservationLayers( $scope.map, {
+      title: "Observations",
+      mapStyle: _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ? "summary" : "colored_heatmap",
+      observationLayers: [ layerParams ]
+    });
+    // fully remove any existing data layer
+    if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }
+    $scope.selectedPlaceLayer = null;
+    if( $scope.$parent.selectedPlace || $scope.params.swlat ) {
+      $scope.selectedPlaceLayer = new google.maps.Data({ style: {
+        strokeColor: '#d77a3b',
+        strokeOpacity: 0.75,
+        strokeWeight: 5,
+        fillOpacity: 0
+      }});
+      // draw the polygon for the current place
+      if( $scope.$parent.selectedPlace ) {
+        var c = { type: "Feature",
+          geometry: $scope.$parent.selectedPlace.geometry_geojson };
+        $scope.selectedPlaceLayer.addGeoJson( c );
+        $scope.selectedPlaceLayer.setMap( $scope.map );
+        var bounds = new google.maps.LatLngBounds();
+        // extend the bounds to encompass all features in the polygon
+        $scope.selectedPlaceLayer.forEach(function(feature) {
+          shared.processPoints( feature.getGeometry( ), bounds.extend, bounds );
+        });
+      }
+      // draw the filter bounding box
+      else if( $scope.params.swlat && $scope.params.swlng &&
+          $scope.params.nelat && $scope.params.nelng ) {
+        $scope.selectedPlaceLayer.addGeoJson({
+          type: "Feature",
+          geometry: {
+            type: "Polygon",
+            coordinates: [ [
+              [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.swlat ) ],
+              [ parseFloat( $scope.params.nelng ), parseFloat( $scope.params.swlat ) ],
+              [ parseFloat( $scope.params.nelng ), parseFloat( $scope.params.nelat ) ],
+              [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.nelat ) ],
+              [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.swlat ) ]
+            ] ]
+          }
+        });
+        $scope.selectedPlaceLayer.setMap($scope.map)
+      }
     }
+    $scope.mapLayersInitialized = true;
+    if( align ) { $scope.alignMap( ); }
   };
 }]);
