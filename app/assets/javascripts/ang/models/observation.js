@@ -4,9 +4,9 @@ iNatModels.Observation = function( attrs ) {
   var that = this;
   _.each( attrs, function( value, attr ) {
     if( attr === "taxon" ) {
-      that[ attr ] = new iNatModels.Taxon( attr );
+      that[ attr ] = new iNatModels.Taxon( value );
     } else if( attr === "user" ) {
-      that[ attr ]  = new iNatModels.User( attr );
+      that[ attr ] = new iNatModels.User( value );
     } else {
       that[ attr ] = value
     };

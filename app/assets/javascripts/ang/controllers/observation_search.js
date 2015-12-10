@@ -259,6 +259,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.searchAndUpdateStats = function( options ) {
     $scope.pagination = { page: 1 };
     options = options || { };
+    $scope.updateBrowserLocation( );
     var processedParams = shared.processParams(
       _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {

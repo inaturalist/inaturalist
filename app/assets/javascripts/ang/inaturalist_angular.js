@@ -56,7 +56,9 @@ function( $http, $rootScope ) {
       });
     }
     _.each( _.keys( params ), function( k ) {
-      if( params[ k ] === null || params[ k ] === undefined ) {
+      if( k == "photos" ) { return; }
+      if( params[ k ] === null || params[ k ] === undefined || params[ k ] === "" ||
+          ( _.isArray( params[ k ] ) && params[ k ].length == 0 ) ) {
         delete params[ k ];
       }
     });
