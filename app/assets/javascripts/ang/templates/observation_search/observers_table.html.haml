@@ -2,6 +2,8 @@
   %table.table.table-striped.plain-table
     %thead
       %tr
+        %th.rank
+          {{ shared.t( 'rank' )}}
         %th.user
           {{ shared.t( 'user' )}}
         %th
@@ -9,6 +11,8 @@
           {{ shared.t( 'observations' )}}
     %tbody
       %tr{ "ng-repeat": "u in observers" }
+        %td.rank
+          {{ $index + 1 }}
         %td
           %a.user.userimage{ href: "/people/{{ u.login }}", style: "background-image: url('{{ u.icon_url }}')", title: "{{ u.login }}" }
             %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}

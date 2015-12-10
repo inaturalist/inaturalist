@@ -487,6 +487,17 @@ inat-taxon { white-space: nowrap; }
 #taxa-grid .corner.conservation-status.CR {
   background-color:#D12F19;
 }
+
+#taxa-grid .photometa {
+  position: absolute;
+  bottom: 60px;
+  background-color: rgba(0,0,0,0.3);
+  color: white;
+  width: 100%;
+  line-height: 30px;
+  padding: 0 9px;
+}
+
 .plain-table {
   margin-top: 20px;
 }
@@ -494,4 +505,5 @@ inat-taxon { white-space: nowrap; }
 .plain-table th.user {
   width: 100%;
 }
-.plain-table td { line-height: 40px; }
+.plain-table .rank { text-align: center; }
+.bootstrap table.plain-table > tbody > tr > td { line-height: 40px; }

@@ -8,5 +8,7 @@
           {{ t.conservationStatusCode() }}
         %div{"ng-show" => "t.establishmentMeansCode() && !t.conservationStatusCode()", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ t.establishmentMeansCode( ) }}"}
           {{ t.establishmentMeansCode() }}
+        .photometa
+          {{ shared.t('x_observations', {count: t.resultCount}) }}
         .caption
           %inat-taxon.title.split-taxon{taxon: "t"}
