@@ -3,7 +3,7 @@ var iNatAPI = angular.module( "iNatAPI", [ ]);
 iNatAPI.factory( "shared", [ "$http", "$rootScope",
 function( $http, $rootScope ) {
   var basicGet = function( url ) {
-    return $http.get( url, { cache: true } ).then(
+    return $http.get( url, { cache: false } ).then(
       function( response ) {
         return response;
       }, function( errorResponse ) {
@@ -57,8 +57,9 @@ function( $http, $rootScope ) {
     }
     _.each( _.keys( params ), function( k ) {
       if( k == "photos" ) { return; }
-      if( params[ k ] === null || params[ k ] === undefined || params[ k ] === "" ||
-          ( _.isArray( params[ k ] ) && params[ k ].length == 0 ) ) {
+      // _.isEmpty returns true for ints and floats
+      if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )
+          && !_.isNumber( params[ k ] ) ) {
         delete params[ k ];
       }
     });
@@ -75,19 +76,29 @@ function( $http, $rootScope ) {
     return I18n.t( k, options );
   };
 
-  var offsetCenter = function( map, center, offsetx, offsety ) {
+  var offsetCenter = function( options, callback ) {
+    if( !options.map ) { return callback( ); }
     var overlay = new google.maps.OverlayView( );
     overlay.draw = function( ) { };
-    overlay.setMap( map );
+    overlay.setMap( options.map );
     var proj = overlay.getProjection( );
-    if( !proj ) { return center; }
-    var cPoint = proj.fromLatLngToDivPixel( center );
-    cPoint.x = cPoint.x + offsetx; // left of center
-    cPoint.y = cPoint.y + offsety; // north of center
+    var currentCenter = options.map.getCenter( );
+    if( !proj ) {
+      options.attempts = options.attempts || 0;
+      options.attempts += 1;
+      if( options.attempts >= 10 ) { return callback( currentCenter ); }
+      setTimeout( function( ) {
+        offsetCenter( options, callback );
+      }, 5);
+      return;
+    }
+    var cPoint = proj.fromLatLngToDivPixel( currentCenter );
+    cPoint.x = cPoint.x + options.left; // left of center
+    cPoint.y = cPoint.y + options.up; // north of center
     var newCenter = proj.fromDivPixelToLatLng( cPoint );
     overlay.setMap( null );
     overlay = null;
-    return newCenter;
+    callback( newCenter );
   };
 
   var processPoints = function( geometry, callback, thisArg ) {

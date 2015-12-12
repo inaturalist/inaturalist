@@ -4,10 +4,10 @@
     .row
       .col-xs-4.col-xs-offset-8
         #obs
-          .div{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || busy", "infinite-scroll-parent": "true", "infinite-scroll-distance": 0 }
+          .div{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || busy", "infinite-scroll-parent": "true", "infinite-scroll-distance": 0 }
             .media.observation{ "ng-repeat": "o in observations" }
               .media-left
-                %a{:href => "/observations/{{ o.id }}"}
+                %a{ href: "/observations/{{ o.id }}", target: "_self" }
                   .media-object{style: "background-image: url({{ o.photo( ) }})"}
               .media-body
                 %inat-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
@@ -39,5 +39,5 @@
                   %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
                     %i.fa.fa-star
                     {{ o.faves_count }}
-                  %a.taxon.pull-right{href: "/observations/{{ o.id }}"}
+                  %a.taxon.pull-right{ href: "/observations/{{ o.id }}", target: "_self" }
                     %i.icon-arrow-right

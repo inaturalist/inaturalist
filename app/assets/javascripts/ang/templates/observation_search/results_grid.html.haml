@@ -1,10 +1,10 @@
-#result-grid.grid.container.container-fixed{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || busy" }
+#result-grid.grid.container.container-fixed{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || busy" }
   .row
     .col-xs-3{ "ng-repeat": "o in observations" }
       .thumbnail.borderless
-        %a.photo{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
+        %a.photo{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})", target: "_self" }
         .caption
-          %a.userimage{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+          %a.userimage{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}", target: "_self" }
             %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
           %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
           .meta
