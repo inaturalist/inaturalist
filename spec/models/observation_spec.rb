@@ -1658,7 +1658,16 @@ describe Observation do
     end
   
     it "should remove public coordinates when private" do
-      o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+      o = Observation.make!(latitude: 37, longitude: -122, geoprivacy: Observation::PRIVATE)
+      expect(o.latitude).to be_blank
+      expect(o.longitude).to be_blank
+    end
+
+    it "should remove public coordinates when moving from obscured to private" do
+      o = Observation.make!(latitude: 37, longitude: -122, geoprivacy: Observation::OBSCURED)
+      expect(o.latitude).not_to be_blank
+      expect(o.longitude).not_to be_blank
+      o.update_attributes(geoprivacy: Observation::PRIVATE)
       expect(o.latitude).to be_blank
       expect(o.longitude).to be_blank
     end
