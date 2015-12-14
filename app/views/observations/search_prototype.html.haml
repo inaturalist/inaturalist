@@ -32,13 +32,13 @@
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo{ "ng-if": "!selectedPlace && !params.swlng" }
-            The World
+          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng" }
+            {{ shared.t('the_world') }}
           %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "removeSelectedPlace( )" }
             = "{{ selectedPlace.name }}"
             %span.glyphicon.glyphicon-remove-sign
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "removeSelectedBounds( )" }
-            Bounding Box
+            {{ shared.t('bounding_box') }}
             %span.glyphicon.glyphicon-remove-sign
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
@@ -68,19 +68,19 @@
             %button.button.btn-default{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
             %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
-              Places of Interest
+              {{ shared.t('places_of_interest') }}
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
-                %h4 Standard
-                %h4 Recent
+                %h4 {{ shared.t('standard') }}
+                %h4 {{ shared.t('recent') }}
               .col-xs-6
-                %h4 Nearby
+                %h4 {{ shared.t('nearby') }}
                 .place{ "ng-repeat": "p in nearbyPlaces" }
                   %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
                     = "{{ p.name }}"
             %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !justSelectedLocation" }
               %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
-              Redo Search in Map
+              {{ shared.t('redo_search_in_map') }}
         .col-xs-6
     %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
