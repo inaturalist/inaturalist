@@ -6,11 +6,13 @@
           {{ shared.t( 'rank' )}}
         %th.user
           {{ shared.t( 'user' )}}
-        %th
+        %th{ "ng-click": "observersSort = 'observationCount';" }
           %i.fa.fa-binoculars
           {{ shared.t( 'observations' )}}
+        %th{ "ng-click": "observersSort = 'speciesCount';" }
+          {{ shared.t( 'species' )}}
     %tbody
-      %tr{ "ng-repeat": "u in observers | limitTo: numberObserversShown" }
+      %tr{ "ng-repeat": "u in observers | orderBy:observersSort:true | limitTo: numberObserversShown" }
         %td.rank
           {{ $index + 1 }}
         %td
@@ -18,4 +20,5 @@
             %i.fa.fa-user{"ng-hide" => "u.icon_url"}
           %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}" }
             {{ u.login }}
-        %td {{ u.resultCount }}
+        %td {{ u.observationCount }}
+        %td {{ u.speciesCount }}

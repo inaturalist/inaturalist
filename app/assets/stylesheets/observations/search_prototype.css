@@ -601,3 +601,6 @@ inat-taxon { white-space: nowrap; }
 }
 .plain-table .rank { text-align: center; }
 .bootstrap table.plain-table > tbody > tr > td { line-height: 40px; }
+[ng-click] {
+    cursor: pointer;
+}

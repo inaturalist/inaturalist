@@ -314,6 +314,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.numberTaxaShown = 15;
     $scope.numberIdentifiersShown = 15;
     $scope.numberObserversShown = 15;
+    $scope.observersSort = "observationCount";
     options = options || { };
     $scope.updateBrowserLocation( options );
     $scope.resetStats( );
@@ -362,7 +363,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.observers = _.map( response.data, function( r ) {
           var u = new iNatModels.User( r.user );
-          u.resultCount = r.count;
+          u.observationCount = r.observation_count;
+          u.speciesCount = r.species_count;
           return u;
         });
       });
