@@ -1057,13 +1057,16 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   }
 };
 
-google.maps.Map.prototype.getInfoWindow = function() {
-  if (!this.infoWindow) {
+google.maps.Map.prototype.getInfoWindow = function( ) {
+  if( !this.infoWindow ) {
     this.infoWindow = new google.maps.InfoWindow({
        content: $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0),
        position: new google.maps.LatLng(0,0)
-    })
+    });
   }
+  // resetting any offset applied to infoWindows
+  // The -1 mofes it a little left, seems like a better alignment
+  this.infoWindow.setOptions({ pixelOffset: new google.maps.Size(-1, 0) });
   return this.infoWindow
 }
 
@@ -1154,15 +1157,20 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room
           $( "#map-legend" ).hide( );
-          if(o.data['latitude']){
+          if( o.data['latitude'] ) {
             var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
+            var iw = map.getInfoWindow( );
             $.ajax({
               url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
               type: 'GET',
               dataType: 'html',
               beforeSend: function() {
-                var iw = map.getInfoWindow( );
                 iw.position = latLng;
+                // if we're showing points and the marker isn't obscured then leave
+                // a small margin under the infowidow so it show above the marker
+                if( options.minzoom && o.data.geoprivacy != "obscured" && !o.data.private_location ) {
+                  iw.setOptions({ pixelOffset: new google.maps.Size(-1, -11) });
+                }
                 iw.setContent($('<div class="loading status">'+I18n.t('loading')+'</div>').get(0));
                 iw.open( map );
                 // setting infoWindowOpenTime to prevent rapid window toggling
@@ -1171,7 +1179,6 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
                 deselectText();
               },
               success: function(data) {
-                var iw = map.getInfoWindow()
                 iw.position = latLng
                 iw.setContent($('<div class="compact mini infowindow observations"></div>').append(data).get(0));
                 iw.open(map)

@@ -16,8 +16,8 @@ iNatModels.Observation = function( attrs ) {
 iNatModels.Observation.prototype.photo = function( ) {
   if( this.photos && this.photos.length > 0 ) {
     var url = this.photos[0].url;
-    url = url.replace( "square.jpg", "large.jpg" );
-    url = url.replace( "square.JPG", "large.JPG" );
+    url = url.replace( "square.jpg", "medium.jpg" );
+    url = url.replace( "square.JPG", "medium.JPG" );
     return url;
   }
 };

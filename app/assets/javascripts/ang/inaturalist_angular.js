@@ -15,22 +15,22 @@ function( $http, $rootScope ) {
   var processParams = function( p, possibleFields ) {
     var params = _.extend( { }, p );
     // deal with iconic taxa
-    if (params._iconic_taxa) {
-      var iconic_taxa = [];
-      angular.forEach(params._iconic_taxa, function(selected, name) {
-        if (selected) {
-          iconic_taxa.push(name)
+    var keysToDelete = [ ];
+    if( params._iconic_taxa ) {
+      var iconic_taxa = [ ];
+      angular.forEach( params._iconic_taxa, function( selected, name ) {
+        if( selected ) {
+          iconic_taxa.push( name )
         }
       });
       if( iconic_taxa.length > 0 ) {
         params.iconic_taxa = iconic_taxa;
       }
-      delete params._iconic_taxa;
+      keysToDelete.push( "_iconic_taxa" );
     }
     // date types
     // this looks and feels horrible, but I'm not sure what the angular way of doing it would be
     if( params.dateType ) {
-      var keysToDelete = [ ];
       switch( params.dateType ) {
         case 'exact':
           keysToDelete = keysToDelete.concat([ "d1", "d2", "month" ]);
@@ -44,10 +44,7 @@ function( $http, $rootScope ) {
         default:
           keysToDelete = keysToDelete.concat([ "on", "d1", "d2", "month" ]);
       }
-      delete params.dateType;
-      _.each( keysToDelete, function( k ) {
-        delete params[ k ];
-      });
+      keysToDelete.push( "dateType" );
     }
     if( possibleFields ) {
       var unknownFields = _.difference( _.keys( params ), possibleFields );
@@ -60,8 +57,11 @@ function( $http, $rootScope ) {
       // _.isEmpty returns true for ints and floats
       if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )
           && !_.isNumber( params[ k ] ) ) {
-        delete params[ k ];
+        keysToDelete.push( k );
       }
+    });
+    _.each( keysToDelete, function( k ) {
+      delete params[ k ];
     });
     return params;
   };

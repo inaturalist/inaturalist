@@ -1,6 +1,5 @@
 var application = angular.module( "ObservationSearch", [
   "infinite-scroll",
-  "ngRoute",
   "templates",
   "ehFilters", // angular-capitalize
   "iNatAPI",
@@ -90,17 +89,20 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // this is the first block to run when the page loads
   $scope.preInitialize = function( ) {
     $scope.resetStats( );         // all stats read ---
-    $scope.matchUrlState( );      // set the right view
     $scope.setInitialParams( );   // set params from URL, lookup place and taxon
+    $scope.matchUrlState( );      // set the right view
   };
 
   // once the initial state is prepared from the URL and params loaded
   $scope.afterParametersInitialized = function( ) {
     if( $scope.taxonInitialized && $scope.placeInitialized &&
         $scope.filtersInitialized && !$scope.parametersInitialized ) {
-      $scope.searchAndUpdateStats( );           // fetch the observations
-      $rootScope.$emit( "setMapLayers", true ); // set proper map layers for the search and orient the map
-      $scope.watchParams( );                    // now we watch for param changes
+      // fetch the observations
+      $scope.searchAndUpdateStats({ browserStateOnly: true });
+      // set proper map layers for the search and orient the map
+      $rootScope.$emit( "setMapLayers", true );
+      // now we watch for param changes
+      $scope.watchParams( );
       $scope.parametersInitialized = true;
     }
   };
@@ -108,13 +110,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.$watchGroup([ "taxonInitialized", "filtersInitialized",
                        "placeInitialized" ], function( ) {
     $scope.afterParametersInitialized( );
-  });
-  // when searching places from non-map tabs (map is not visible)
-  // indicate the map will need to be realigned when visiable again
-  $scope.$watchGroup([ "mapCenter", "mapBounds", "mapZoom" ], function( ) {
-    if( !$scope.viewing( "observations", "map" ) ) {
-      $scope.mapNeedsAligning = true;
-    }
   });
   // runs when the filters template has been rendered
   $scope.onFiltersLoad = function( ) {
@@ -124,6 +119,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.setupMiltiselects( );
     $scope.determineFieldNames( );
     $scope.setupTaxonAutocomplete( );
+    $scope.setupBrowserStateBehavior( );
     $scope.filtersInitialized = true;
   };
   $scope.resetStats = function( ) {
@@ -150,10 +146,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // changes in processedParams are what initiate searches
     $scope.$watch( "processedParams", function( before, after ) {
       if( _.isEqual( before, after ) ) { return; }
-      $scope.searchAndUpdateStats( );
+      // we don't want to set the location on page load, it will already be set
+      $scope.searchAndUpdateStats({ skipSetLocation: $scope.goingBack });
       $rootScope.$emit( "setMapLayers", $scope.alignMapOnSearch );
       // restore some one-time search settings
       $scope.alignMapOnSearch = false;
+      $scope.goingBack = false;
     }, true);
   };
   // watch for place selections, unselections
@@ -179,15 +177,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       TaxaFactory.show( $scope.params.taxon_id ).then( function( response ) {
         taxa = TaxaFactory.responseToInstances( response );
         if( taxa.length > 0 ) {
-          var taxon = taxa[ 0 ];
-          if( taxon.square_photo_url ) {
-            $( "#filters .ac-select-thumb img" ).attr( "src", taxon.square_photo_url );
-          }
-          $( "input[name='taxon_name']" ).attr( "value", taxon.preferredNameInLocale( "en" ) );
+          $scope.selectedTaxon = taxa[ 0 ];
         }
+        $scope.updateTaxonAutocomplete( );
         $scope.taxonInitialized = true;
       });
-    } else { $scope.taxonInitialized = true; }
+    } else {
+      // this will remove the autocomlete image since there's no taxon
+      $scope.updateTaxonAutocomplete( );
+      $scope.taxonInitialized = true;
+    }
   };
   $scope.initializePlaceParams = function( ) {
     if( $scope.params.place_id ) {
@@ -221,7 +220,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
   };
-  $scope.updateBrowserLocation = function( ) {
+  $scope.updateBrowserLocation = function( options ) {
+    options = options || { };
+    if( options.skipSetLocation ) { return; }
     var newParams = [ ];
     _.each( $scope.params, function( value, param ) {
       // don't show default params in the URL
@@ -242,20 +243,31 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     newParams = _.sortBy( newParams, function( arr ) {
       return arr[ 0 ];
     });
+    // default to initial state
+    var currentState = { };
+    var currentSearch = { };
     if( !_.isEmpty( newParams ) ) {
       var urlParams = shared.processParams( _.object( newParams ), $scope.possibleFields );
       urlParams = _.mapObject( urlParams, function( v, k ) {
+        // arrays turned to comma-delimited lists for URLs
         if( _.isArray( v ) ) { return v.join(","); }
+        // allow `photos=any` when the default value of true is changed
         if( $scope.defaultParams[ k ] === true && v !== true ) { v = "any"; }
         return v;
       });
-      // store the params in the browser history state
-      $location.state( urlParams );
-      $location.search( urlParams );
-    } else {
-      // going back to the initial state, so record that
-      $location.state({ });
-      $location.search({ });
+      // prepare current settings to store to browser state history
+      currentState = { params: urlParams, selectedPlace: $scope.selectedPlace,
+        selectedTaxon: $scope.selectedTaxon,
+        mapCenter: ( $scope.mapCenter && $scope.mapCenter.toJSON ) ?
+          $scope.mapCenter.toJSON( ) : $scope.mapCenter,
+        mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
+        mapZoom: $scope.mapZoom };
+      currentSearch = urlParams;
+    }
+    $location.state( currentState );
+    // on the initial page load we want to store state, but not change location
+    if( options.browserStateOnly !== true ) {
+      $location.search( currentSearch );
     }
   };
   $scope.viewing = function( view, subview ) {
@@ -268,7 +280,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     return false;
   };
-  $scope.changeView = function( newView, newSubview, updateLocation ) {
+  $scope.changeView = function( newView, newSubview, options ) {
     if( newView != $scope.currentView || newSubview != $scope.currentSubview ) {
       $scope.currentView = newView;
       // note: subview is being preserved on view changes
@@ -276,24 +288,35 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( $scope.observations && $scope.observations ) {
         $scope.observations = $scope.observations.slice( 0, 40 );
       }
-      if( updateLocation !== false ) {
-        $scope.updateBrowserLocation( );
-      }
+      $scope.updateBrowserLocation( options );
     }
   };
   $scope.updateParams = function( newParams ) {
-    $scope.params = $.extend($scope.params, newParams);
-    if (newParams.view) {
-      $scope.changeView(newParams.view);
-    };
+    var timeout = 10;
+    if( newParams.view ) {
+      $scope.changeView( newParams.view, null, { skipSetLocation: true } );
+      if( newParams.view == "observations" && $scope.currentSubview == "map" ) {
+        // the map view will need a moment before being able to align properly
+        timeout = 300;
+      }
+    }
+    setTimeout(function( ) {
+      var reinitializeTaxon = ( newParams.taxon_id != $scope.params.taxon_id );
+      $scope.alignMapOnSearch = true;
+      $scope.params = _.extend( { }, $scope.params, newParams );
+      // update the taxon autocomplete image
+      if( reinitializeTaxon ) { $scope.initializeTaxonParams( ); }
+    }, timeout);
   };
   $scope.searchAndUpdateStats = function( options ) {
+    if( $scope.searchDisabled ) { return true; }
     $scope.pagination = { page: 1 };
-    $scope.numberTaxaShown = 20;
-    $scope.numberIdentifiersShown = 20;
-    $scope.numberObserversShown = 20;
+    $scope.numberTaxaShown = 15;
+    $scope.numberIdentifiersShown = 15;
+    $scope.numberObserversShown = 15;
     options = options || { };
-    $scope.updateBrowserLocation( );
+    $scope.updateBrowserLocation( options );
+    $scope.resetStats( );
     var processedParams = shared.processParams( _.extend( { },
       $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     // recording there was some location in the search. That will be used
@@ -301,20 +324,26 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( processedParams.place_id || processedParams.swlat ) {
       $scope.justSelectedLocation = true;
     }
-    $scope.lastSearchTime = new Date( ).getTime( );
+    // prevent slow searches from overwriting current results
+    var thisSearchTime = new Date( ).getTime( );
+    $scope.lastSearchTime = thisSearchTime;
     ObservationsFactory.search( processedParams ).then( function( response ) {
-      $scope.lastSearchTime = new Date( ).getTime( );
-      $scope.resetStats( );
+      if( $scope.lastSearchTime != thisSearchTime ) { return; }
+      thisSearchTime = new Date( ).getTime( );
+      $scope.lastSearchTime = thisSearchTime;
       $scope.totalObservations = response.data.total_results;
       $scope.observations = ObservationsFactory.responseToInstances( response );
       ObservationsFactory.stats( processedParams ).then( function( response ) {
+        if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalObservers = response.data.observer_count;
         $scope.totalIdentifiers = response.data.identifier_count;
       });
       ObservationsFactory.speciesCount( processedParams ).then( function( response ) {
+        if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalSpecies = response.data.leaf_count;
       });
       ObservationsFactory.speciesCounts( processedParams ).then( function( response ) {
+        if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.taxa = _.map( response.data, function( r ) {
           var t = new iNatModels.Taxon( r.taxon );
           t.resultCount = r.count;
@@ -322,6 +351,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         });
       });
       ObservationsFactory.identifiers( processedParams ).then( function( response ) {
+        if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.identifiers = _.map( response.data, function( r ) {
           var u = new iNatModels.User( r.user );
           u.resultCount = r.count;
@@ -329,6 +359,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         });
       });
       ObservationsFactory.observers( processedParams ).then( function( response ) {
+        if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.observers = _.map( response.data, function( r ) {
           var u = new iNatModels.User( r.user );
           u.resultCount = r.count;
@@ -368,16 +399,19 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.matchUrlState = function( ) {
     var urlParams = $location.search( );
-    if( urlParams.view && _.contains( $scope.possibleViews, urlParams.view ) ) {
+    if( $scope.params.view && _.contains( $scope.possibleViews, $scope.params.view ) ) {
       $scope.currentView = urlParams.view;
     }
-    if( $scope.currentView && $scope.possibleSubviews[ $scope.currentView ] &&
-        _.contains( $scope.possibleSubviews[ $scope.currentView ], urlParams.subview ) ) {
-      $scope.currentSubview = urlParams.subview;
+    if( $scope.possibleSubviews[ "observations" ] &&
+        _.contains( $scope.possibleSubviews[ "observations" ], $scope.params.subview ) ) {
+      $scope.currentSubview = $scope.params.subview;
     }
-    $scope.changeView( urlParams.view, urlParams.subview, false );
     $scope.currentView = $scope.currentView || $scope.defaultView;
     $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
+    $scope.changeView( $scope.currentView, $scope.currentSubview, { skipSetLocation: true } );
+    // once we set the views, the view params should be deleted
+    delete $scope.params.view;
+    delete $scope.params.subview;
   };
   $scope.showNearbyPlace = function( place ) {
     $rootScope.$emit( "showNearbyPlace", place );
@@ -466,6 +500,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( !place.geometry ) { return; }
       $scope.searchedPlace = place;
       $scope.focusOnSearchedPlace( );
+      if( !$scope.viewing( "observations", "map" ) ) {
+        $scope.mapNeedsAligning = true;
+      }
     });
   };
   $scope.focusOnSearchedPlace = function( ) {
@@ -503,16 +540,65 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
+        $scope.selectedTaxon = new iNatModels.Taxon( result.item );
         $scope.params.taxon_id = result.item.id;
         $scope.searchAndUpdateStats( );
       },
       afterUnselect: function( ) {
         if( $scope.params.taxon_id != null ) {
+          $scope.selectedTaxon = null;
           $scope.params.taxon_id = null;
           $scope.searchAndUpdateStats( );
         }
       }
     });
+  };
+  $scope.updateTaxonAutocomplete = function( ) {
+    if( $scope.selectedTaxon ) {
+      var t = new iNatModels.Taxon( $scope.selectedTaxon );
+      if( t.square_photo_url ) {
+        $( "#filters .ac-select-thumb img" ).attr( "src", t.square_photo_url );
+      }
+      $( "input[name='taxon_id']" ).val( t.id );
+      $( "input[name='taxon_name']" ).val( t.preferredNameInLocale( "en" ) );
+    } else {
+      $( "#filters input[name='taxon_name']" ).trigger( "search" );
+    }
+  };
+  $scope.setupBrowserStateBehavior = function( ) {
+    window.onpopstate = function( event ) {
+      var previousParams = _.extend( { }, $scope.defaultParams, event.state.params );
+      // we could set place and taxon below, and that should not run searches
+      $scope.searchDisabled = true;
+      $scope.mapCenter = event.state.mapCenter;
+      $scope.mapZoom = event.state.mapZoom;
+      // resture the bounds we had to store as JSON
+      if( event.state.mapBounds ) {
+        $scope.mapBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng( event.state.mapBounds.south, event.state.mapBounds.west ),
+          new google.maps.LatLng( event.state.mapBounds.north, event.state.mapBounds.east ));
+      } else { $scope.mapBounds = null };
+      if( event.state.selectedPlace != $scope.selectedPlace ) {
+        $scope.filterByPlace( event.state.selectedPlace );
+      }
+      if( event.state.selectedTaxon != $scope.selectedTaxon ) {
+        $scope.selectedTaxon = event.state.selectedTaxon;
+        $scope.updateTaxonAutocomplete( );
+      }
+      var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
+      delete previousProcessedParams.view;
+      delete previousProcessedParams.subview;
+      $scope.searchDisabled = false;
+      if( !_.isEqual( $scope.processedParams, previousProcessedParams ) ) {
+        $scope.goingBack = true;
+        $scope.alignMapOnSearch = true;
+        $scope.params = previousParams;
+      }
+      // make sure we don't set the location again when going back in history
+      $scope.changeView( previousParams.view || $scope.defaultView,
+        previousParams.subview || $scope.defaultSubview, { skipSetLocation: true } )
+      if(!$scope.$$phase) { $scope.$digest( ); }
+    };
   };
   $scope.determineFieldNames = function( ) {
     _.map( $( "#filters input,select" ), function( input ) {
@@ -650,7 +736,7 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     if( $scope.nearbyPlaceLayer ) { $scope.nearbyPlaceLayer.setMap( null ); }
     $scope.nearbyPlaceLayer = null;
   });
-  $rootScope.$on( "setMapLayers", function( event, align) {
+  $rootScope.$on( "setMapLayers", function( event, align ) {
     $scope.setMapLayers( align );
   });
   $rootScope.$on( "alignMap", function( ) {

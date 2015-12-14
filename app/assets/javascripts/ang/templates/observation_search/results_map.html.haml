@@ -10,7 +10,7 @@
                 %a{ href: "/observations/{{ o.id }}", target: "_self" }
                   .media-object{style: "background-image: url({{ o.photo( ) }})"}
               .media-body
-                %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+                %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", "ng-style": "{{!!o.user.icon_url}} && { 'background-image': \"url('{{ o.user.icon_url }}')\" }", title: "{{ o.user.login }}" }
                   %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
                 %inat-taxon.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
                 .dateloc
