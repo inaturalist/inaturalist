@@ -136,6 +136,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.resetParams = function( ) {
     $scope.params = _.extend( { }, $scope.defaultParams );
+    $scope.closeFilters();
+  };
+  $scope.closeFilters = function( ) {
+    $( "#filter-container" ).removeClass( "open" );
   };
   $scope.watchParams = function( ) {
     // params may change but not affect the results
@@ -276,6 +280,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.updateBrowserLocation( );
       }
     }
+  };
+  $scope.updateParams = function( newParams ) {
+    $scope.params = $.extend($scope.params, newParams);
+    if (newParams.view) {
+      $scope.changeView(newParams.view);
+    };
   };
   $scope.searchAndUpdateStats = function( options ) {
     $scope.pagination = { page: 1 };

@@ -145,7 +145,7 @@
                     %option{value: code}= code
   #filters-footer.row
     .col-xs-12
-      %button.btn.btn-primary
+      %button.btn.btn-primary{ type: "button", "ng-click": "closeFilters( )" }
         {{ shared.t('update_search') }}
       %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
         {{ shared.t('reset_search_filters') }}

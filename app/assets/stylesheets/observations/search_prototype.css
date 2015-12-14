@@ -77,26 +77,26 @@
 
 .bootstrap-10 .grid .photo {
   height: 212px;
-  line-height: 210px;
+  line-height: 180px;
   font-size: 100px;
 }
 @media (min-width: 768px) {
   .bootstrap-10 .grid .photo {
     height: 128px;
-    line-height: 128px;
+    line-height: 98px;
   }
 }
 @media (min-width: 992px) {
   .bootstrap-10 .grid .photo {
     height: 172px;
-    line-height: 172px;
+    line-height: 142px;
     font-size: 150px;
   }
 }
 @media (min-width: 1200px) {
   .bootstrap-10 .grid .photo {
     height: 212px;
-    line-height: 210px;
+    line-height: 180px;
     font-size: 150px;
   }
 }
@@ -445,7 +445,6 @@ inat-taxon { white-space: nowrap; }
 
 #obs-container .quality_grade {
   display: inline-block;
-  background-color: #ddd;
   padding: 1px 0px 1px 5px;
   position: relative;
   font-size: 10px !important;
@@ -458,19 +457,17 @@ inat-taxon { white-space: nowrap; }
   position: absolute;
   display: block;
   bottom: 0;
-  border: 8px solid #ddd;
-  border-right-width: 7px;
-  border-right-color: transparent;
-  right: -12px;
+  border-width: 8px;
+  border-right-width: 5px;
+  right: -10px;
   z-index: -1;
 }
 
-#obs-container .quality_grade.needs_id, 
 .quality_grade.needs_id {
   background-color:#FFEE91;
   color:#85743D;
+  display: none; /* no one seems to like this... */
 }
-#obs-container .quality_grade.needs_id:after, 
 .quality_grade.needs_id:after {
   border-color: #FFEE91;
   border-right-color: transparent;
@@ -596,6 +593,10 @@ inat-taxon { white-space: nowrap; }
   width: 100%;
   line-height: 30px;
   padding: 0 9px;
+}
+#taxa-grid .photometa:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .plain-table {
