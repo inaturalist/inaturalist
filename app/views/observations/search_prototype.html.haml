@@ -61,11 +61,11 @@
       .row
         .col-xs-6
           .btn-group
-            %button.button.btn-default{ "ng-click": "changeView('observations', 'map')" }
+            %button.button.btn-default{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}" }
               %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "changeView('observations', 'grid')" }
+            %button.button.btn-default{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}" }
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "changeView('observations', 'table')" }
+            %button.button.btn-default{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
             %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
               Places of Interest
