@@ -5,7 +5,6 @@
   = javascript_include_tag "ang/controllers/observation_search"
 - content_for :extracss do
   = stylesheet_link_tag "observations/search_prototype"
-  = stylesheet_link_tag "angular-google-places-autocomplete/src/autocomplete"
 - content_for :extrahead do
   %base{ href: search_prototype_observations_path }
 #main-container{ "ng-app": "ObservationSearch", "ng-controller": "SearchController" }
@@ -26,9 +25,9 @@
             / ng-model-options="{debounce: 1000}" means angular will wait 1000 ms after the last change in the UI before changing the bound model value
             / g-places-autocomplete triggers the Google place autocomplete directive
             #place-name-input.input-group
-              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text" }
+              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
               %span.input-group-btn
-                %button.btn.btn-default{type: "button"}= t(:go)
+                %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
   #stats-container
     .container.container-fixed
       .row
@@ -41,7 +40,7 @@
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "removeSelectedBounds( )" }
             Bounding Box
             %span.glyphicon.glyphicon-remove-sign
-        #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations', 'map')" }
+        #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
             .stat-title.ng-cloak= t(:observations)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
@@ -68,11 +67,8 @@
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
             %button.button.btn-default{ "ng-click": "changeView('observations', 'table')" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
-            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )" }
-              %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
-              Redo Search
-            %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown" }
-              Places
+            %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
+              Places of Interest
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
                 %h4 Standard
@@ -82,8 +78,11 @@
                 .place{ "ng-repeat": "p in nearbyPlaces" }
                   %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
                     = "{{ p.name }}"
+            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !justSelectedLocation" }
+              %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
+              Redo Search in Map
         .col-xs-6
-    %div{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
+    %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
       %div{ "ng-include": "'ang/templates/observation_search/results_grid.html'"}
     %div{ "results-table": true, "ng-show": "viewing('observations', 'table')" }

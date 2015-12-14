@@ -14,10 +14,10 @@
           {{ shared.t('place') | capitalize }}
         %th.added{:class => "sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observations.id')"}
           {{ shared.t('added') | capitalize }}
-    %tbody{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || busy" }
+    %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || busy" }
       %tr{ "ng-repeat": "o in observations" }
         %td
-          %a.img{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
+          %a.img{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})", target: "_self" }
             %span.photo-count.ng-cloak{"ng-show" => "o.photos.length > 1"} {{ o.photos.length }}
         %td
           %inat-taxon.split-taxon{ taxon: "o.taxon", url: "/observations/{{ o.id }}" }
@@ -34,9 +34,9 @@
               %i.fa.fa-star
               {{ o.faves_count }}
         %td.user
-          %a.user.userimage{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+          %a.user.userimage{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}", target: "_self" }
             %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
-          %a{ href: "/observations/{{ o.id }}", title: "{{ o.user.login }}" }
+          %a{ href: "/observations/{{ o.id }}", title: "{{ o.user.login }}", target: "_self" }
             {{ o.user.login }}
         %td
           %inat-calendar-date{ date: "o.observed_on" }

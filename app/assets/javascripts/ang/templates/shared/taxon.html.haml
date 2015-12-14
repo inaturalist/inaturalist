@@ -1,10 +1,10 @@
 %span{:class => "taxon {{ taxon.rank }} {{ iconicTaxonNameForID(taxon.iconic_taxon_id) }} {{ commonName() ? 'has-com-name' : ''}}"}
-  %a{:class => "icon icon-iconic-{{ iconicTaxonNameForID(taxon.iconic_taxon_id) | lowercase }}", href: "{{ url || '/taxa/'+taxon.id }}"}
-  %a{:class => "noname {{ taxon.id ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "!taxon.id"}
+  %a{:class => "icon icon-iconic-{{ iconicTaxonNameForID(taxon.iconic_taxon_id) | lowercase }}", href: "{{ url || '/taxa/'+taxon.id }}", target: "_self" }
+  %a{:class => "noname {{ taxon.id ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "!taxon.id", target: "_self" }
     {{ shared.t('unknown') }}
-  %a{:class => "comname {{ commonName() ? 'display-name' : ''}}", href: "{{ url }}", "ng-show": "commonName()"}
+  %a{:class => "comname {{ commonName() ? 'display-name' : ''}}", href: "{{ url }}", "ng-show": "commonName()", target: "_self" }
     {{ commonName() }}
-  %a{:class => "sciname {{ commonName() ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "scientificName()"}><
+  %a{:class => "sciname {{ commonName() ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "scientificName()", target: "_self" }><
     %span.rank{"ng-show" => "commonName() && taxon.rank_level > 10"}><
       {{ taxon.rank | capitalize }}
     {{ scientificName() }}

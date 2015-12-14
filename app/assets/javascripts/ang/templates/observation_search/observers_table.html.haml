@@ -1,4 +1,4 @@
-#observers-table.container
+#observers-table.container{ "infinite-scroll": "showMoreObservers( )", "infinite-scroll-disabled": "!viewing('observers')" }
   %table.table.table-striped.plain-table
     %thead
       %tr
@@ -10,7 +10,7 @@
           %i.fa.fa-binoculars
           {{ shared.t( 'observations' )}}
     %tbody
-      %tr{ "ng-repeat": "u in observers" }
+      %tr{ "ng-repeat": "u in observers | limitTo: numberObserversShown" }
         %td.rank
           {{ $index + 1 }}
         %td

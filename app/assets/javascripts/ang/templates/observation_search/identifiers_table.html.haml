@@ -1,4 +1,4 @@
-#identifiers-table.container
+#identifiers-table.container{ "infinite-scroll": "showMoreIdentifiers( )", "infinite-scroll-disabled": "!viewing('identifiers')" }
   %table.table.table-striped.plain-table
     %thead
       %tr
@@ -10,7 +10,7 @@
           %i.icon-identification
           {{ shared.t( 'identifications' )}}
     %tbody
-      %tr{ "ng-repeat": "u in identifiers" }
+      %tr{ "ng-repeat": "u in identifiers | limitTo: numberIdentifiersShown" }
         %td.rank
           {{ $index + 1 }}
         %td

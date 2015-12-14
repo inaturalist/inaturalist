@@ -4,10 +4,16 @@
 #main-container {
   width: 100%;
 }
+#bodywrapper {
+  margin-bottom: -202px;
+}
+#wrapper {
+  margin-bottom: 0px;
+}
 #results {
   width: 100%;
-  min-height: 420px;
   background: #eee;
+  min-height: 450px;
   display: inline-block;
 }
 #results .btn-group {
@@ -168,15 +174,18 @@ inat-taxon.split-taxon .icon {display: none;}
 #map {
   width: 100%;
   /*height: 510px;*/
-  background-color: LightBlue;
+  background-color: #e3eaf6;
   position: absolute;
   top: 0;
   left: 0;
 }
 #obs-container,
 #obs-container .container,
-#map {
+#map, #observations-map {
   height: 550px;
+}
+#observations-map {
+  background-color: #e3eaf6;
 }
 #obs-container { position: relative; }
 #obs {
