@@ -11,3 +11,4 @@
 //= require angular-bootstrap/ui-bootstrap
 //= require moment/moment
 //= require angular-moment/angular-moment
+//= require angular-truncate/src/truncate

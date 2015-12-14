@@ -10,25 +10,18 @@
                 %a{:href => "/observations/{{ o.id }}"}
                   .media-object{style: "background-image: url({{ o.photo( ) }})"}
               .media-body
-                %inat-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
-                .username.ng-cloak.media.obs-attr
-                  .media-left
-                    %i.fa.fa-user
-                  .media-body
-                    {{ o.user.login }}
-                .date.ng-cloak.media.obs-attr
-                  .media-left
-                    %i.fa.fa-calendar
-                  .media-body
-                    {{ (o.observed_on | date : 'short') || shared.t('unknown') }}
-                .location.ng-cloak.media.obs-attr
-                  .media-left
-                    %i.fa.fa-map-marker
-                  .media-body
-                    .fadednowrap
-                      {{ o.place_guess || [o.latitude, o.longitude].joins(',') || shared.t('unknown') }}
-                .actions.ng-cloak
-                  %span{:class => "quality_grade {{ o.quality_grade }}", "ng-show" => "o.quality_grade != 'needs_id'"}
+                %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+                  %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
+                %inat-taxon.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
+                .dateloc
+                  %span.location{title: "{{ o.displayPlace() }}"}
+                    .hidden-lg {{ o.displayPlace() | characters:6:true }}
+                    .visible-lg-inline-block {{ o.displayPlace() | characters:18:true }}
+                  %span.date{ title: "{{ shared.t('observed_on') }} {{ o.observed_on }}" }
+                    %span.hidden-lg {{ (o.observed_on | amDateFormat : 'l') || shared.t('unknown') }}
+                    %span.visible-lg-inline-block {{ (o.observed_on | amDateFormat : 'll') || shared.t('unknown') }}
+                .meta.ng-cloak
+                  %span{:class => "quality_grade {{ o.quality_grade }}"}
                     {{ shared.t( o.quality_grade ) | capitalize }}
                   %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
                     %i.icon-identification
@@ -39,5 +32,4 @@
                   %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
                     %i.fa.fa-star
                     {{ o.faves_count }}
-                  %a.taxon.pull-right{href: "/observations/{{ o.id }}"}
-                    %i.icon-arrow-right
+                  %span.created_at.pull-right{"am-time-ago" => "o.created_at", title: "{{ shared.t('added_on') }} {{ o.created_at }}"}

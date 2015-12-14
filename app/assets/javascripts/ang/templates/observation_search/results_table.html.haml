@@ -2,27 +2,27 @@
   %table.table.table-striped
     %thead
       %tr
-        %th
+        %th.media
           {{ shared.t('media') | capitalize }}
-        %th
+        %th.name
           {{ shared.t('name') | capitalize }}
-        %th
+        %th.user
           {{ shared.t('user') | capitalize }}
-        %th{:class => "sortable {{ params.order_by == 'observed_on' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observed_on')"}
+        %th.observed{:class => "sortable {{ params.order_by == 'observed_on' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observed_on')"}
           {{ shared.t('observed') | capitalize }}
-        %th
+        %th.place
           {{ shared.t('place') | capitalize }}
-        %th{:class => "sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observations.id')"}
+        %th.added{:class => "sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observations.id')"}
           {{ shared.t('added') | capitalize }}
     %tbody{ "infinite-scroll": "nextPage( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || busy" }
       %tr{ "ng-repeat": "o in observations" }
         %td
           %a.img{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
-            %span.photo-count{"ng-show" => "o.photos.length > 1"} {{ o.photos.length }}
+            %span.photo-count.ng-cloak{"ng-show" => "o.photos.length > 1"} {{ o.photos.length }}
         %td
           %inat-taxon.split-taxon{ taxon: "o.taxon", url: "/observations/{{ o.id }}" }
           .meta
-            %span{:class => "quality_grade {{ o.quality_grade }}", "ng-show" => "o.quality_grade != 'needs_id'"}
+            %span{:class => "quality_grade {{ o.quality_grade }}"}
               {{ shared.t( o.quality_grade ) | capitalize }}
             %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
               %i.icon-identification

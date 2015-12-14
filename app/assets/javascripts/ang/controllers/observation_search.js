@@ -5,7 +5,8 @@ var application = angular.module( "ObservationSearch", [
   "ehFilters", // angular-capitalize
   "iNatAPI",
   "ui.bootstrap",
-  "angularMoment"
+  "angularMoment",
+  "truncate"
 ]);
 
 // http://stackoverflow.com/a/22965260

@@ -15,15 +15,17 @@
   z-index: 2;
   margin-top: 11px;
 }
-#obs-container .observation > .media-body {
-  padding: 5px 5px 5px 0;
-}
 #obs-container .location .fadednowrap {max-width: 200px;}
 #result-grid,
 #taxa-grid,
 #result-table {
   margin-top: 55px;
 }
+
+#obs-container .taxon.has-com-name .sciname { 
+  color: #333;
+}
+
 #result-grid .thumbnail {
   margin-bottom: 30px;
 }
@@ -131,10 +133,6 @@ inat-taxon.split-taxon .display-name {
   margin-bottom: 34px;
 }
 inat-taxon.split-taxon .icon {display: none;}
-inat-taxon.split-taxon .has-com-name .sciname:before,
-inat-taxon.split-taxon .has-com-name .sciname:after {
-  content: '';
-}
 .bootstrap .userimage {
   border-radius: 120px;
   width: 48px;
@@ -166,18 +164,7 @@ inat-taxon.split-taxon .has-com-name .sciname:after {
   background: #fff;
 }
 .ng-cloak { display:none; }
-.observation:not(:first-child) {
-  border-top: 1px solid #eee;
-}
 .bootstrap .observation.media { margin-top: 0; }
-.media-object {
-  display: block;
-  min-height: 100px;
-  width: 110px;
-  height: 110px;
-  background-size: cover;
-  background-position: center;
-}
 #map {
   width: 100%;
   /*height: 510px;*/
@@ -200,7 +187,6 @@ inat-taxon.split-taxon .has-com-name .sciname:after {
   overflow-y: scroll;
   position: relative;
   top: 11px;
-  font-size: 90%;
 }
 #filters {
   padding: 20px 0;
@@ -285,11 +271,85 @@ inat-taxon.split-taxon .has-com-name .sciname:after {
 #stats-container .statcol.active .stat,
 #stats-container #obsstatcol .stat { border: 0 transparent; }
 
+#obs-container .dateloc,
+#obs-container .observation .meta,
+#obs-container .observation .has-com-name .sciname {
+  font-size: 12px;
+  line-height: 18px;
+}
+#obs-container .dateloc {
+  padding-right: 36px;
+}
+#obs-container .observation .date,
+#obs-container .observation .location {
+  display: inline-block;
+  white-space: nowrap;
+}
+#obs-container .observation .date:before {
+  content: '\2022';
+  font-weight: bold;
+  margin: 0 3px 0 2px;
+}
+#obs-container .observation { position: relative; }
+#obs-container .observation .userimage {
+  width: 36px;
+  height: 36px;
+  border: 0 transparent;
+}
 
-.obs-attr.media {margin-top: 0;}
-.obs-attr.media .media-left .fa { width: 12px; color: #aaa;}
-.obs-attr.media .media-left { padding-right: 5px; text-align: center;}
-.observation .media-body .actions {margin-left: 4px;}
+#obs-container .observation .created_at {
+  width: 36px;
+  text-align: center;
+}
+
+#obs-container .media-object {
+  display: block;
+  width: 96px;
+  height: 96px;
+  background-size: cover;
+  background-position: center;
+}
+#obs-container .media-left {
+  padding: 0;
+}
+#obs-container .media-body {
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+#obs-container inat-taxon.split-taxon .display-name,
+#obs-container inat-taxon.split-taxon .sciname {
+  width: 100%;
+}
+#obs-container .userimage {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  #obs-container inat-taxon.split-taxon .display-name,
+  #obs-container inat-taxon.split-taxon .sciname {
+    width: 60%;
+  }
+}
+@media (min-width: 992px) {
+  #obs-container inat-taxon.split-taxon .display-name,
+  #obs-container inat-taxon.split-taxon .sciname {
+    width: 75%;
+  }
+  #obs-container .userimage {
+    display: block;
+  }
+}
+@media (min-width: 1200px) {
+  #obs-container inat-taxon.split-taxon .display-name,
+  #obs-container inat-taxon.split-taxon .sciname {
+    width: 80%;
+  }
+}
+
+
+#obs-container .observation .meta { clear: both;  }
+
 
 inat-taxon { white-space: nowrap; }
 
@@ -373,10 +433,35 @@ inat-taxon { white-space: nowrap; }
   right: -15px;
   z-index: -1;
 }
+
+#obs-container .quality_grade {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 1px 0px 1px 5px;
+  position: relative;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  z-index: 1;
+  margin-right: 20px;
+}
+#obs-container .quality_grade:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 8px solid #ddd;
+  border-right-width: 7px;
+  border-right-color: transparent;
+  right: -12px;
+  z-index: -1;
+}
+
+#obs-container .quality_grade.needs_id, 
 .quality_grade.needs_id {
   background-color:#FFEE91;
   color:#85743D;
 }
+#obs-container .quality_grade.needs_id:after, 
 .quality_grade.needs_id:after {
   border-color: #FFEE91;
   border-right-color: transparent;
@@ -397,7 +482,9 @@ inat-taxon { white-space: nowrap; }
   font-weight: 100;
   padding: 10px;
   position: relative;
+  width: 20%;
 }
+#result-table th.media {width: 5%;}
 #result-table th.sortable {
   cursor: pointer;
 }

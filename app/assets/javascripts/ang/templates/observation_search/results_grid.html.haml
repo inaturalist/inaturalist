@@ -4,11 +4,11 @@
       .thumbnail.borderless
         %a.photo{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})" }
         .caption
-          %a.userimage{ href: "/observations/{{ o.id }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
+          %a.userimage{ href: "/people/{{ o.user.login }}", style: "background-image: url('{{ o.user.icon_url }}')", title: "{{ o.user.login }}" }
             %i.fa.fa-user{"ng-hide" => "o.user.icon_url"}
           %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
           .meta
-            %span{:class => "quality_grade {{ o.quality_grade }}", "ng-show" => "o.quality_grade != 'needs_id'"}
+            %span{:class => "quality_grade {{ o.quality_grade }}"}
               {{ shared.t( o.quality_grade ) | capitalize }}
             %span.identifications{"ng-show" => "o.identifications_count > 0"}
               %i.icon-identification

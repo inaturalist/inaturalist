@@ -21,3 +21,13 @@ iNatModels.Observation.prototype.photo = function( ) {
     return url;
   }
 };
+
+iNatModels.Observation.prototype.displayPlace = function( ) {
+  if (this.place_guess) {
+    return this.place_guess;
+  } else if (this.latitude) {
+    return [this.latitude, this.longitude].join(',')
+  } else {
+    return I18n.t('unknown');
+  }
+}

@@ -1,6 +1,6 @@
 %span{:class => "taxon {{ taxon.rank }} {{ iconicTaxonNameForID(taxon.iconic_taxon_id) }} {{ commonName() ? 'has-com-name' : ''}}"}
   %a{:class => "icon icon-iconic-{{ iconicTaxonNameForID(taxon.iconic_taxon_id) | lowercase }}", href: "{{ url || '/taxa/'+taxon.id }}"}
-  %a{:class => "noname {{ taxon ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "!taxon"}
+  %a{:class => "noname {{ taxon.id ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "!taxon.id"}
     {{ shared.t('unknown') }}
   %a{:class => "comname {{ commonName() ? 'display-name' : ''}}", href: "{{ url }}", "ng-show": "commonName()"}
     {{ commonName() }}

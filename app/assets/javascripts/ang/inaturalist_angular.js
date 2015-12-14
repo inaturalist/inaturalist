@@ -173,15 +173,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
 
       scope.commonName = function() {
         if (!scope.taxon) { return null; }
-        if (!scope.taxon.names || scope.taxon.names.length == 0) { return null; }
-        var name;
-        for (var i = 0; i < scope.taxon.names.length; i++) {
-          if (scope.taxon.names[i].locale != 'sci') {
-            name = scope.taxon.names[i].name;
-            break;
-          }
-        }
-        return name;
+        return scope.taxon.preferredNameInLocale( I18n.locale, true );
       }
 
       scope.scientificName = function() {
