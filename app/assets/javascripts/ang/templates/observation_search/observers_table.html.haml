@@ -17,7 +17,7 @@
           {{ $index + 1 }}
         %td
           %a.user.userimage{ href: "/people/{{ u.login }}", "ng-style": "{{!!u.icon_url}} && { 'background-image': \"url('{{ u.icon_url }}')\" }", title: "{{ u.login }}" }
-            %i.fa.fa-user{"ng-hide" => "u.icon_url"}
+            %i.icon-person{"ng-hide" => "u.icon_url"}
           %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}" }
             {{ u.login }}
         %td {{ u.observationCount }}

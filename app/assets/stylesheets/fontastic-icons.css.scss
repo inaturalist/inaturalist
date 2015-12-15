@@ -64,6 +64,15 @@
 .icon-captive:before {
   content: "\69";
 }
+.icon-chatbubble:before {
+  content: "\79";
+}
+.icon-identification:before {
+  content: "\78";
+}
+.icon-person:before {
+  content: "\7a";
+}
 .icon-iconic-amphibia:before {
   content: "\6a";
 }
@@ -79,36 +88,30 @@
 .icon-iconic-actinopterygii:before {
   content: "\6e";
 }
-.icon-iconic-fungi:before {
+.icon-iconic-unknown:before {
   content: "\6f";
 }
-.icon-iconic-chromista:before {
+.icon-iconic-reptilia:before {
+  content: "\70";
+}
+.icon-iconic-protozoa:before {
   content: "\71";
 }
-.icon-iconic-mammalia:before {
+.icon-iconic-plantae:before {
   content: "\72";
 }
 .icon-iconic-mollusca:before {
   content: "\73";
 }
-.icon-iconic-plantae:before {
+.icon-iconic-mammalia:before {
   content: "\74";
 }
-.icon-iconic-protozoa:before {
+.icon-iconic-chromista:before {
   content: "\75";
 }
-.icon-iconic-reptilia:before {
+.icon-iconic-insecta:before {
   content: "\76";
 }
-.icon-iconic-unknown:before {
+.icon-iconic-fungi:before {
   content: "\77";
-}
-.icon-chatbubble:before {
-  content: "\79";
-}
-.icon-identification:before {
-  content: "\78";
-}
-.icon-iconic-insecta:before {
-  content: "\70";
 }
