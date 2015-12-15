@@ -100,18 +100,18 @@
             %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('exact_date') }}
-              %input#filters-dates-exact.form-control.date-picker{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-disabled" => "params.dateType != 'exact'"}
+              %input#filters-dates-exact.form-control.date-picker{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-click" => "params.dateType = 'exact'"}
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('range') }}
-              %input.form-control.date-picker{type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.d1", "ng-disabled" => "params.dateType != 'range'"}
-              %input.form-control.date-picker{type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.d2", "ng-disabled" => "params.dateType != 'range'"}
+              %input.form-control.date-picker{type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.d1", "ng-click" => "params.dateType = 'range'"}
+              %input.form-control.date-picker{type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.d2", "ng-click" => "params.dateType = 'range'"}
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('months') }}
-              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", "ng-disabled" => "params.dateType != 'month'", :class => "form-control", id: "filters-dates-month", multiple: "multiple"
+              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control", id: "filters-dates-month", multiple: "multiple"
 
     .row
       .col-xs-12

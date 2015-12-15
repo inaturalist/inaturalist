@@ -116,7 +116,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.setupFilterToggle( );
     $scope.setupDatepicker( );
     $scope.setupPlaceSearchbox( );
-    $scope.setupMiltiselects( );
     $scope.determineFieldNames( );
     $scope.setupTaxonAutocomplete( );
     $scope.setupBrowserStateBehavior( );
@@ -408,6 +407,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         _.contains( $scope.possibleSubviews[ "observations" ], $scope.params.subview ) ) {
       $scope.currentSubview = $scope.params.subview;
     }
+    if ( urlParams.on ) {
+      $scope.params.dateType = 'exact';
+    } else if ( urlParams.d1 ) {
+      $scope.params.dateType = 'range';
+    } else if ( urlParams.month ) {
+      $scope.params.dateType = 'month';
+    }
     $scope.currentView = $scope.currentView || $scope.defaultView;
     $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
     $scope.changeView( $scope.currentView, $scope.currentSubview, { skipSetLocation: true } );
@@ -456,6 +462,17 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // to not use the boostrap javascript there and do it myself
     $( "#filter-container .dropdown-toggle" ).click( function( ) {
       $( this ).parent( ).toggleClass( "open" );
+      // Sooo hacky, but hard to get it to translate the SELECT element before running the jquery ui code otherwise
+      $( "#filters select[multiple]" ).not('.multiselectified').multiselect({
+        minWidth: 150,
+        checkAllText: I18n.t( "all" ),
+        uncheckAllText: I18n.t( "none" ),
+        open: function(event, ui) {
+          $scope.params.dateType = 'month';
+          $(event.target).parents('label:first').click();
+        }
+      });
+      $( "#filters select[multiple]" ).not('.multiselectified').addClass('multiselectified');
     });
     // closing the filter box
     $( "body" ).on( "click", function( e ) {
@@ -531,13 +548,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.$watch( "placeSearch", function( ) {
     $scope.searchedPlace = null;
   });
-  $scope.setupMiltiselects = function( ) {
-    $( "#filters select[multiple]" ).multiselect({
-      minWidth: 150,
-      checkAllText: I18n.t( "all" ),
-      uncheckAllText: I18n.t( "none" )
-    });
-  };
   $scope.setupTaxonAutocomplete = function( ) {
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
