@@ -124,7 +124,8 @@ namespace :inaturalist do
                  'date_format.month.september',
                  'date_format.month.october',
                  'date_format.month.november',
-                 'date_format.month.december'
+                 'date_format.month.december',
+                 'momentjs'
                 ]
     
     # look for other keys in all javascript files

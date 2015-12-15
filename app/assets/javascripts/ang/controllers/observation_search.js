@@ -8,24 +8,15 @@ var application = angular.module( "ObservationSearch", [
   "truncate"
 ]);
 
+// Load translations for moment if available
 // http://stackoverflow.com/a/22965260
-moment.locale('en', {
-  relativeTime : {
-    future: "in %s",
-    past:   "%s",
-    s:  "seconds",
-    m:  "1m",
-    mm: "%dm",
-    h:  "1h",
-    hh: "%h",
-    d:  "1d",
-    dd: "%dd",
-    M:  "1m",
-    MM: "%dm",
-    y:  "1y",
-    yy: "%dy"
-  }
-});
+if (I18n.translations[I18n.locale] && 
+    I18n.translations[I18n.locale].momentjs && 
+    I18n.translations[I18n.locale].momentjs.shortRelativeTime) {
+  moment.locale(I18n.locale, {
+    relativeTime: I18n.translations[I18n.locale].momentjs.shortRelativeTime
+  })
+}
 
 // defining the views
 application.directive( "resultsMap", function( ) {
