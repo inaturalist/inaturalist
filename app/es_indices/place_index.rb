@@ -9,7 +9,7 @@ class Place < ActiveRecord::Base
   after_commit :double_check_index
   attr_accessor :index_without_geometry
 
-  scope :load_for_index, -> { includes(:place_geometry) }
+  scope :load_for_index, -> { includes([ :place_geometry, :user ]) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -35,6 +35,7 @@ class Place < ActiveRecord::Base
       admin_level: admin_level,
       bbox_area: bbox_area,
       ancestor_place_ids: ancestor_place_ids,
+      user: user ? user.as_indexed_json : nil,
       geometry_geojson: (place_geometry && !index_without_geometry) ?
         ElasticModel.geom_geojson(place_geometry.geom) : nil,
       location: ElasticModel.point_latlon(latitude, longitude),

@@ -52,9 +52,6 @@ application.directive( "resultsMap", function( ) {
   };
 });
 
-// disable scrolling to the top when we're updating the view
-application.value( "$anchorScroll", angular.noop );
-
 application.config( [ "$locationProvider", function($locationProvider) {
   $locationProvider.html5Mode({
     enabled: true
@@ -62,8 +59,8 @@ application.config( [ "$locationProvider", function($locationProvider) {
 }]);
 
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
-"TaxaFactory", "shared", "$scope", "$rootScope", "$location",
-function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location ) {
+"TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll",
+function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {
   $scope.shared = shared;
   $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
@@ -78,7 +75,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     dateType: "any",
     page: 1
   };
-  $scope.mapCenter = { lat: 0, lng: 130 };
+  $scope.mapCenter = new google.maps.LatLng( 0, 130 );
   $scope.mapZoom = 1;
   $scope.nearbyPlaces = [ ];
   $scope.taxonInitialized = false;
@@ -160,6 +157,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.mapCenter = null;
         $scope.mapBounds = null;
         $scope.mapZoom = null;
+        $scope.mapBoundsIcon = null;
         $scope.alignMapOnSearch = true;
         $scope.params.place_id = $scope.selectedPlace.id;
       }
@@ -204,11 +202,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // otherwise set the starting mapBounds
       if( $scope.params.swlat && $scope.params.swlng &&
           $scope.params.nelat && $scope.params.nelng ) {
-        $scope.mapCenter = null;
         $scope.mapZoom = null;
         $scope.mapBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng( $scope.params.swlat, $scope.params.swlng ),
             new google.maps.LatLng( $scope.params.nelat, $scope.params.nelng ));
+        $scope.mapCenter = $scope.mapBounds.getCenter( );
       }
       $scope.placeInitialized = true;
     }
@@ -260,12 +258,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         mapCenter: ( $scope.mapCenter && $scope.mapCenter.toJSON ) ?
           $scope.mapCenter.toJSON( ) : $scope.mapCenter,
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
-        mapZoom: $scope.mapZoom };
+        mapZoom: $scope.mapZoom, mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
-    $location.state( currentState );
-    // on the initial page load we want to store state, but not change location
-    if( options.browserStateOnly !== true ) {
+    if( options.browserStateOnly ) {
+      $scope.initialBrowserState = currentState;
+    } else {
+      $location.state( currentState );
       $location.search( currentSearch );
     }
   };
@@ -294,6 +293,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var timeout = 10;
     if( newParams.view ) {
       $scope.changeView( newParams.view, null, { skipSetLocation: true } );
+      $anchorScroll( );
       if( newParams.view == "observations" && $scope.currentSubview == "map" ) {
         // the map view will need a moment before being able to align properly
         timeout = 300;
@@ -440,12 +440,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.removeSelectedPlace = function( ) {
     $scope.selectedPlace = null;
     $scope.justSelectedLocation = false;
+    $scope.mapBounds = null;
+    $scope.mapBoundsIcon = null;
   };
   $scope.removeSelectedBounds = function( ) {
     $scope.params.swlng = null;
     $scope.params.swlat = null;
     $scope.params.nelng = null;
     $scope.params.nelat = null;
+    $scope.mapBounds = null;
+    $scope.mapBoundsIcon = null;
     $scope.justSelectedLocation = false;
   };
   $scope.orderBy = function( order ) {
@@ -532,6 +536,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.mapCenter = null;
       $scope.mapZoom = null;
       $scope.mapBounds = null;
+      // if the searched place is specific enough to have an address, add an X
+      if( $scope.searchedPlace.adr_address &&
+          $scope.searchedPlace.adr_address.match( /address/) ) {
+        $scope.mapBoundsIcon = true;
+      } else { $scope.mapBoundsIcon = null; }
       if( $scope.searchedPlace.geometry.viewport ) {
         $scope.mapBounds = $scope.searchedPlace.geometry.viewport;
         $scope.mapCenter = $scope.searchedPlace.geometry.location;
@@ -550,6 +559,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   });
   $scope.setupTaxonAutocomplete = function( ) {
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
+      resetOnChange: false,
+      bootstrapClear: true,
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
         $scope.selectedTaxon = new iNatModels.Taxon( result.item );
@@ -568,33 +579,33 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.updateTaxonAutocomplete = function( ) {
     if( $scope.selectedTaxon ) {
       var t = new iNatModels.Taxon( $scope.selectedTaxon );
-      if( t.square_photo_url ) {
-        $( "#filters .ac-select-thumb img" ).attr( "src", t.square_photo_url );
-      }
-      $( "input[name='taxon_id']" ).val( t.id );
-      $( "input[name='taxon_name']" ).val( t.preferredNameInLocale( "en" ) );
+      $( "input[name='taxon_name']" ).trigger( "assignTaxon", t );
     } else {
       $( "#filters input[name='taxon_name']" ).trigger( "search" );
     }
   };
   $scope.setupBrowserStateBehavior = function( ) {
     window.onpopstate = function( event ) {
-      var previousParams = _.extend( { }, $scope.defaultParams, event.state.params );
+      var state = event.state || $scope.initialBrowserState;
+      var previousParams = _.extend( { }, $scope.defaultParams, state.params );
       // we could set place and taxon below, and that should not run searches
       $scope.searchDisabled = true;
-      $scope.mapCenter = event.state.mapCenter;
-      $scope.mapZoom = event.state.mapZoom;
-      // resture the bounds we had to store as JSON
-      if( event.state.mapBounds ) {
-        $scope.mapBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng( event.state.mapBounds.south, event.state.mapBounds.west ),
-          new google.maps.LatLng( event.state.mapBounds.north, event.state.mapBounds.east ));
-      } else { $scope.mapBounds = null };
-      if( event.state.selectedPlace != $scope.selectedPlace ) {
-        $scope.filterByPlace( event.state.selectedPlace );
+      if( state.mapCenter ) {
+        $scope.mapCenter = new google.maps.LatLng( state.mapCenter.lat, state.mapCenter.lng );
       }
-      if( event.state.selectedTaxon != $scope.selectedTaxon ) {
-        $scope.selectedTaxon = event.state.selectedTaxon;
+      $scope.mapZoom = state.mapZoom;
+      $scope.mapBoundsIcon = state.mapBoundsIcon;
+      // resture the bounds we had to store as JSON
+      if( state.mapBounds ) {
+        $scope.mapBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng( state.mapBounds.south, state.mapBounds.west ),
+          new google.maps.LatLng( state.mapBounds.north, state.mapBounds.east ));
+      } else { $scope.mapBounds = null };
+      if( state.selectedPlace != $scope.selectedPlace ) {
+        $scope.filterByPlace( state.selectedPlace );
+      }
+      if( state.selectedTaxon != $scope.selectedTaxon ) {
+        $scope.selectedTaxon = state.selectedTaxon;
         $scope.updateTaxonAutocomplete( );
       }
       var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
@@ -624,8 +635,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
 }]);
 
 
-application.controller( "MapController", [ "PlacesFactory", "shared", "$scope", "$rootScope", "$anchorScroll",
-function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
+application.controller( "MapController", [ "PlacesFactory", "shared", "$scope", "$rootScope",
+function( PlacesFactory, shared, $scope, $rootScope ) {
+  $scope.placeLayerStyle = {
+    strokeColor: "#d77a3b",
+    strokeOpacity: 0.75,
+    strokeWeight: 5,
+    fillOpacity: 0
+  };
   $rootScope.$on( "updateParamsForCurrentBounds", function( ) {
     $scope.updateParamsForCurrentBounds( );
   });
@@ -661,8 +678,10 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     }, 300);
   }
   $scope.updateParamsForCurrentBounds = function( ) {
-    var bounds = $scope.$parent.viewing( "observations", "map" ) ?
-      $scope.map.getBounds( ) : $scope.$parent.mapBounds;
+    var bounds = $scope.$parent.mapBounds;
+    if( !bounds && $scope.$parent.viewing( "observations", "map" ) && $scope.map ) {
+      bounds = $scope.map.getBounds( );
+    }
     if( !bounds ) { return; }
     var ne     = bounds.getNorthEast( ),
         sw     = bounds.getSouthWest( );
@@ -676,32 +695,33 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     $scope.searchForNearbyPlaces( );
   });
   $scope.searchForNearbyPlaces = function( ) {
-    if( $scope.$parent.placeSearchBox && $scope.map ) {
+    var onMap = $scope.viewing("observations", "map");
+    if( $scope.$parent.placeSearchBox && $scope.map && onMap ) {
       $scope.$parent.placeSearchBox.setBounds( $scope.map.getBounds( ) );
     }
+    var nearbyParams = { };
+    var bounds;
+    if( onMap ) {
+      var bounds = $scope.map.getBounds( );
+      nearbyParams.zoom = $scope.map.getZoom( );
+    } else {
+      if( $scope.mapBounds ) { bounds = $scope.mapBounds; }
+      if( $scope.mapCenter ) { _.extend( nearbyParams, $scope.mapCenter.toJSON( ) ); }
+      nearbyParams.zoom = $scope.mapZoom;
+    }
+    if( bounds ) {
+      nearbyParams.swlat = bounds.getSouthWest( ).lat( );
+      nearbyParams.swlng = bounds.getSouthWest( ).lng( );
+      nearbyParams.nelat = bounds.getNorthEast( ).lat( );
+      nearbyParams.nelng = bounds.getNorthEast( ).lng( );
+    }
     // search a little left of center
-    shared.offsetCenter({ map: $scope.map, left: -130, up: 0 }, function( center ) {
-      var lat = 0,
-          lng = 0,
-          admin_level = 0,
-          boundsDistance = 1000000;
-      // there may not be a center if the map hasn't loaded yet
+    shared.offsetCenter({ map: (onMap ? $scope.map : null), left: -130, up: 0 }, function( center ) {
       if( center ) {
-        var lat = center.lat( );
-        var lng = center.lng( );
-        var b = $scope.map.getBounds( );
-        // search within a radius roughly matching the viewport
-        var boundsDistance = google.maps.geometry.spherical.computeDistanceBetween(
-          b.getNorthEast( ), b.getSouthWest( ) ) * 0.4;
-        var admin_level = 0;
-        // search for places based on zoom_level/admin_level
-        var zoom = $scope.map.getZoom( );
-        if( zoom <= 6 ) { boundsDistance = null; }
-        if( zoom >= 6 ) { admin_level = 1; }
-        if( zoom >= 9 ) { admin_level = 2; }
-        if( zoom >= 11 ) { admin_level = 3; }
+        nearbyParams.lat = center.lat( );
+        nearbyParams.lng = center.lng( );
       }
-      PlacesFactory.nearby( { lat: lat, lng: lng, admin_level: admin_level, radius: boundsDistance }).then( function( response ) {
+      PlacesFactory.nearby( nearbyParams ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
         if( places.length > 0 ) {
           $scope.$parent.nearbyPlaces = places;
@@ -734,12 +754,12 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
   $rootScope.$on( "showNearbyPlace", function( event, place ) {
     if( $scope.nearbyPlaceLayer ) { $scope.nearbyPlaceLayer.setMap( null ); }
     $scope.nearbyPlaceLayer = null;
-    $scope.nearbyPlaceLayer = new google.maps.Data({ style: {
-      strokeColor: '#d77a3b',
-      strokeOpacity: 0.6,
-      strokeWeight: 4,
-      fillOpacity: 0
-    }});
+    $scope.nearbyPlaceLayer = new google.maps.Data({ style:
+      _.extend( { }, $scope.placeLayerStyle, {
+        strokeOpacity: 0.6,
+        strokeWeight: 4
+      })
+    });
     var geojson = { type: "Feature", geometry: place.geometry_geojson };
     $scope.nearbyPlaceLayer.addGeoJson( geojson );
     $scope.nearbyPlaceLayer.setMap( $scope.map );
@@ -819,14 +839,11 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
     });
     // fully remove any existing data layer
     if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }
+    if( $scope.boundingBoxCenterIcon ) { $scope.boundingBoxCenterIcon.setMap( null ); }
     $scope.selectedPlaceLayer = null;
+    $scope.boundingBoxCenterIcon = null;
     if( $scope.$parent.selectedPlace || $scope.params.swlat ) {
-      $scope.selectedPlaceLayer = new google.maps.Data({ style: {
-        strokeColor: '#d77a3b',
-        strokeOpacity: 0.75,
-        strokeWeight: 5,
-        fillOpacity: 0
-      }});
+      $scope.selectedPlaceLayer = new google.maps.Data({ style: $scope.placeLayerStyle });
       // draw the polygon for the current place
       if( $scope.$parent.selectedPlace ) {
         var c = { type: "Feature",
@@ -837,20 +854,30 @@ function( PlacesFactory, shared, $scope, $rootScope, $anchorScroll ) {
       // draw the filter bounding box
       else if( $scope.params.swlat && $scope.params.swlng &&
           $scope.params.nelat && $scope.params.nelng ) {
-        $scope.selectedPlaceLayer.addGeoJson({
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [ [
-              [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.swlat ) ],
-              [ parseFloat( $scope.params.nelng ), parseFloat( $scope.params.swlat ) ],
-              [ parseFloat( $scope.params.nelng ), parseFloat( $scope.params.nelat ) ],
-              [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.nelat ) ],
-              [ parseFloat( $scope.params.swlng ), parseFloat( $scope.params.swlat ) ]
-            ] ]
-          }
-        });
-        $scope.selectedPlaceLayer.setMap($scope.map)
+        // google.maps.Rectangle seems more reliable than using GeoJSON here
+        $scope.selectedPlaceLayer = new google.maps.Rectangle(
+          _.extend( { }, $scope.placeLayerStyle, {
+            map: $scope.map,
+            bounds: {
+              north: parseFloat( $scope.params.nelat ),
+              south: parseFloat( $scope.params.swlat ),
+              east: parseFloat( $scope.params.nelng ),
+              west: parseFloat( $scope.params.swlng )
+            }
+          })
+        );
+        // add an X marker in the center of the bounding box
+        if( $scope.$parent.mapBoundsIcon && $scope.$parent.mapCenter ) {
+          $scope.boundingBoxCenterIcon = new google.maps.Marker({
+            position: $scope.$parent.mapCenter,
+            icon: {
+              url: "/mapMarkers/x.svg",
+              scaledSize: new google.maps.Size( 20, 20 ),
+              anchor: new google.maps.Point( 10, 10 ),
+            },
+            map: $scope.map
+          });
+        }
       }
     }
     $scope.mapLayersInitialized = true;

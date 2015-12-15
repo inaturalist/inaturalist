@@ -240,7 +240,7 @@ inat-taxon.split-taxon .icon {display: none;}
   line-height: 75px;
   background: none;
   border: 0px;
-  cursor: pointer;
+  cursor: default;
   font-weight: 100;
   color: #eee;
 }
@@ -603,4 +603,14 @@ inat-taxon { white-space: nowrap; }
 .bootstrap table.plain-table > tbody > tr > td { line-height: 40px; }
 [ng-click] {
     cursor: pointer;
+}
+.searchclear.glyphicon {
+  margin-left: -28px;
+  padding-left: 4px;
+  top: 4px;
+  color: #ddd;
+  background: #fff;
+}
+.searchclear.glyphicon:hover {
+  color: #666;
 }

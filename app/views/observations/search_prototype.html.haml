@@ -17,13 +17,11 @@
             %button.btn.btn-default.dropdown-toggle
               %i.fa.fa-filter
               %i.fa.fa-chevron-down
-            .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad()"}
+            .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name" }
             %input{ type: "hidden", name: "taxon_id" }
             %span=t :in
-            / ng-model-options="{debounce: 1000}" means angular will wait 1000 ms after the last change in the UI before changing the bound model value
-            / g-places-autocomplete triggers the Google place autocomplete directive
             #place-name-input.input-group
               %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
               %span.input-group-btn
@@ -34,12 +32,12 @@
         .col-xs-4
           %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng" }
             {{ shared.t('the_world') }}
-          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "removeSelectedPlace( )" }
+          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace" }
             = "{{ selectedPlace.name }}"
-            %span.glyphicon.glyphicon-remove-sign
-          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "removeSelectedBounds( )" }
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
+          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng" }
             {{ shared.t('bounding_box') }}
-            %span.glyphicon.glyphicon-remove-sign
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
             .stat-title.ng-cloak= t(:observations)
