@@ -514,13 +514,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
   };
   $scope.setupPlaceSearchbox = function( ) {
-    $scope.placeSearchBox = new google.maps.places.SearchBox(
-      document.getElementById( "place_name" ));
-    $scope.placeSearchBox.addListener( "places_changed", function( ) {
-      var places = $scope.placeSearchBox.getPlaces( );
-      if( places.length != 1 ) { return; }
-      var place = places[ 0 ];
-      if( !place.geometry ) { return; }
+    // only search for "geocode" types, not businesses
+    $scope.placeSearchBox = new google.maps.places.Autocomplete(
+      document.getElementById( "place_name" ), {
+        types: [ "geocode" ]
+      });
+    $scope.placeSearchBox.addListener( "place_changed", function( ) {
+      var place = $scope.placeSearchBox.getPlace( );
+      if( !place || !place.geometry ) { return; }
       $scope.searchedPlace = place;
       $scope.focusOnSearchedPlace( );
       if( !$scope.viewing( "observations", "map" ) ) {
@@ -546,9 +547,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.mapCenter = $scope.searchedPlace.geometry.location;
         $scope.mapZoom = null;
       } else {
-        $scope.mapCenter = $scope.searchedPlace.geometry.location;
-        $scope.mapZoom = 15;
-        $scope.mapBounds = null;
+        var c = $scope.searchedPlace.geometry.location;
+        $scope.mapCenter = c;
+        // use some bounds which equate roughly to zoom level 15
+        $scope.mapBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng( c.lat() - 0.01, c.lng() - 0.02 ),
+            new google.maps.LatLng( c.lat() + 0.01, c.lng() + 0.02 ));
+        $scope.mapZoom = null;
       }
       $rootScope.$emit( "alignMap" );
     }
@@ -586,7 +591,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.setupBrowserStateBehavior = function( ) {
     window.onpopstate = function( event ) {
-      var state = event.state || $scope.initialBrowserState;
+      var state = _.extend( { }, event.state || $scope.initialBrowserState );
       var previousParams = _.extend( { }, $scope.defaultParams, state.params );
       // we could set place and taxon below, and that should not run searches
       $scope.searchDisabled = true;
@@ -596,17 +601,21 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.mapZoom = state.mapZoom;
       $scope.mapBoundsIcon = state.mapBoundsIcon;
       // resture the bounds we had to store as JSON
+      if( state.selectedPlace != $scope.selectedPlace ) {
+        $scope.filterByPlace( state.selectedPlace );
+      }
       if( state.mapBounds ) {
         $scope.mapBounds = new google.maps.LatLngBounds(
           new google.maps.LatLng( state.mapBounds.south, state.mapBounds.west ),
           new google.maps.LatLng( state.mapBounds.north, state.mapBounds.east ));
       } else { $scope.mapBounds = null };
-      if( state.selectedPlace != $scope.selectedPlace ) {
-        $scope.filterByPlace( state.selectedPlace );
-      }
       if( state.selectedTaxon != $scope.selectedTaxon ) {
         $scope.selectedTaxon = state.selectedTaxon;
         $scope.updateTaxonAutocomplete( );
+      } else if( state.params.taxon_id != $scope.params.taxon_id ) {
+        // useful for selecting a taxon from the observations grid view
+        $scope.params.taxon_id = state.params.taxon_id;
+        $scope.initializeTaxonParams( );
       }
       var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
       delete previousProcessedParams.view;
@@ -615,6 +624,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( !_.isEqual( $scope.processedParams, previousProcessedParams ) ) {
         $scope.goingBack = true;
         $scope.alignMapOnSearch = true;
+        $scope.delayedAlign = true;
         $scope.params = previousParams;
       }
       // make sure we don't set the location again when going back in history
@@ -683,6 +693,8 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
       bounds = $scope.map.getBounds( );
     }
     if( !bounds ) { return; }
+    // just making sure we have real bounds
+    $scope.$parent.mapBounds = bounds;
     var ne     = bounds.getNorthEast( ),
         sw     = bounds.getSouthWest( );
     $scope.$parent.params.swlng = sw.lng( );
@@ -721,32 +733,36 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
         nearbyParams.lat = center.lat( );
         nearbyParams.lng = center.lng( );
       }
+      var attemptNearbySelection = false;
+      var timeSinceSearch = new Date( ).getTime( ) - $scope.placeLastSearched;
+      if( $scope.$parent.attemptAutoNearbySelection && timeSinceSearch < 1000 ) {
+        attemptNearbySelection = true;
+      } else { $scope.attemptAutoNearbySelection = false; }
       PlacesFactory.nearby( nearbyParams ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
         if( places.length > 0 ) {
           $scope.$parent.nearbyPlaces = places;
           var timeSinceSearch = new Date( ).getTime( ) - $scope.placeLastSearched;
-          if( $scope.attemptAutoNearbySelection && timeSinceSearch < 1000 ) {
-            // check the nearby places for a match to searches in the last second
-            if( $scope.$parent.nearbyPlaces.length > 0 ) {
-              _.each( $scope.$parent.nearbyPlaces, function( p ) {
-                if( !$scope.attemptAutoNearbySelection || !$scope.searchedPlace ) { return; }
-                var searchedName = ( _.isObject( $scope.searchedPlace ) ?
-                  $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
-                if( shared.stringStartsWith( p.name, searchedName ) || shared.stringStartsWith( searchedName, p.name ) ) {
-                  $scope.$parent.filterByPlace( p );
-                  $scope.$parent.attemptAutoNearbySelection = false;
-                  return;
-                }
-              });
-            }
-            // no good matches from nearby places, so filter by the searched bounds
-            if( $scope.$parent.attemptAutoNearbySelection ) {
-              $scope.updateParamsForCurrentBounds( );
-            }
+          // check the nearby places for a match to searches in the last second
+          if( attemptNearbySelection && $scope.$parent.nearbyPlaces.length > 0 ) {
+            _.each( $scope.$parent.nearbyPlaces, function( p ) {
+              // check attemptNearbySelection since it's set to false when a match is made
+              if( !attemptNearbySelection || !$scope.searchedPlace ) { return; }
+              var searchedName = ( _.isObject( $scope.searchedPlace ) ?
+                $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
+              if( shared.stringStartsWith( p.name, searchedName ) || shared.stringStartsWith( searchedName, p.name ) ) {
+                $scope.$parent.filterByPlace( p );
+                attemptNearbySelection = false;
+                return;
+              }
+            });
             $scope.$parent.justSelectedLocation = true;
           }
         } else { $scope.$parent.nearbyPlaces = [ ]; }
+        // no good matches from nearby places, so filter by the searched bounds
+        if( attemptNearbySelection ) {
+          $scope.updateParamsForCurrentBounds( );
+        }
         $scope.$parent.attemptAutoNearbySelection = false;
       });
     });
@@ -881,6 +897,12 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
       }
     }
     $scope.mapLayersInitialized = true;
-    if( align ) { $scope.alignMap( ); }
+    if( align ) {
+      var timeout = $scope.$parent.delayedAlign ? 20 : 1;
+      setTimeout( function( ) {
+        $scope.alignMap( );
+      }, timeout );
+    }
+    $scope.$parent.delayedAlign = false;
   };
 }]);

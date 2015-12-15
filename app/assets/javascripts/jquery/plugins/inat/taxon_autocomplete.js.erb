@@ -360,6 +360,7 @@ $.fn.taxonAutocomplete = function( options ) {
     field.val( t.preferredNameInLocale( I18n.locale ) );
     wrappingDiv.find(".ac-select-thumb img").attr( "src", t.default_photo_url );
     selectedTaxon = t;
+    if( searchClear ) { $(searchClear).show( ); }
   });
   field.bind( "resetTaxonSelection", function( e ) {
     if( options.taxon_id_el.val( ) !== null ) {

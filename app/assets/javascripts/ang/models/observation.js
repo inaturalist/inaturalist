@@ -16,6 +16,7 @@ iNatModels.Observation = function( attrs ) {
 iNatModels.Observation.prototype.photo = function( ) {
   if( this.photos && this.photos.length > 0 ) {
     var url = this.photos[0].url;
+    if( !url ) { return null; }
     return url.replace( /square.(jpe?g)/i, function( match, $1 ) {
       return "medium." + $1;
     });
