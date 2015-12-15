@@ -69,7 +69,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $scope.defaultParams = {
-    photos: true,
+    verifiable: true,
     order_by: "observations.id",
     order: "desc",
     dateType: "any",

@@ -567,6 +567,9 @@ inat-taxon { white-space: nowrap; }
   right: 0;
   font-weight: 600;
 }
+#taxa-grid .corner {
+  display: none;
+}
 #taxa-grid .corner.establishment-means.IN {
   background-color: DeepPink;
 }
