@@ -1,7 +1,8 @@
 var inaturalist = inaturalist || { };
 // sort iconic taxa so all apps use the same order and have identical assets
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
-  [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ] }].sort.to_json %>;
+  [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ]
+}].to_json %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
 inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
 inaturalist.TAXON_ROOT_URL = "<%= FakeView.taxon_url(1)[0..-2] %>";
@@ -15,14 +16,16 @@ autocompleter.capitalize = function( s ) {
 
 // return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
 autocompleter.defaultPhotoForResult = function( result ) {
-  if( result.type === "search_external" || result.type === "message" ) {
-    return inaturalist.EXTERNAL_SEARCH_ICON;
+  if( result.type === "search_external" || result.type === "message" || !result.name ) {
+    return "<i class='fa fa-search'></i>";
   }
-  if( result.square_photo_url ) { return result.square_photo_url; }
-  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
-    return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
+  if( result.square_photo_url ) { 
+    return "<img src='"+result.square_photo_url+"'/>";
+  }
+  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] && inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name ) {
+    return "<i class='icon icon-iconic-"+inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name.toLowerCase()+"'></i>";
   } else {
-    return inaturalist.UNKNOWN_TAXON_ICON;
+    return "<i class='icon icon-iconic-unknown'></i>";
   }
 };
 
@@ -77,12 +80,12 @@ autocompleter.taxonTemplate = function( result, fieldValue ) {
       ( result.subtitle ? " " + result.subtitle : "" );
   }
 
-  result.default_photo_url = autocompleter.defaultPhotoForResult( result );
+  result.defaultPhoto = autocompleter.defaultPhotoForResult( result );
   var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "data-taxon-id", result.id ).
     attr( "data-type", result.type );
   var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
-  if( result.default_photo_url ) {
-    $( "<img/>" ).attr( "src", result.default_photo_url ).appendTo( thumbDiv );
+  if( result.defaultPhoto ) {
+    $( result.defaultPhoto ).appendTo( thumbDiv );
   }
   var labelDiv = $( "<div/>" ).addClass( "ac-label" );
   labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
@@ -122,12 +125,12 @@ autocompleter.createWrappingDiv = function( field, options ) {
     field.wrap( wrappingDiv );
     if( options.thumbnail !== false ) {
       // render the initial thumbnail of existing result, or the unknown icon
-      var photo_url = autocompleter.defaultPhotoForResult({
+      var photo = autocompleter.defaultPhotoForResult({
         default_photo_url: field.data( "default-photo-url" ),
         iconic_taxon_id: field.data( "iconic-taxon-id" ) });
       var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" );
-      if( photo_url ) {
-        thumbDiv.append( $( "<img/>" ).attr( "src", photo_url ) );
+      if( photo ) {
+        thumbDiv.append( $( photo ) );
       }
       field.parent( ).prepend( thumbDiv );
       if( options.bootstrapClear ) {
@@ -248,7 +251,7 @@ $.fn.taxonAutocomplete = function( options ) {
       // set the hidden taxon_id
       options.taxon_id_el.val( ui.item.id );
       // set the selection's thumbnail image
-      wrappingDiv.find(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
+      wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
       selectedTaxon = ui.item;
       if( options.afterSelect ) { options.afterSelect( ui ); }
       return false;
@@ -358,14 +361,15 @@ $.fn.taxonAutocomplete = function( options ) {
   field.bind( "assignTaxon", function( e, t ) {
     options.taxon_id_el.val( t.id );
     field.val( t.preferredNameInLocale( I18n.locale ) );
-    wrappingDiv.find(".ac-select-thumb img").attr( "src", t.default_photo_url );
+    var photo = autocompleter.defaultPhotoForResult(t)
+    wrappingDiv.find(".ac-select-thumb").html( photo );
     selectedTaxon = t;
     if( searchClear ) { $(searchClear).show( ); }
   });
   field.bind( "resetTaxonSelection", function( e ) {
     if( options.taxon_id_el.val( ) !== null ) {
       options.taxon_id_el.val( null );
-      wrappingDiv.find(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
+      wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
       if( options.afterUnselect ) { options.afterUnselect( ); }
     }
     selectedTaxon = null;
