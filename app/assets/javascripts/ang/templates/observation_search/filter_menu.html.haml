@@ -7,7 +7,7 @@
             %label.sectionlabel
               {{ shared.t('show') }}
         #show-filters.row
-          .col-xs-6
+          #filters-left-col.col-xs-6
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
@@ -51,7 +51,7 @@
               %label{for: 'params-q'}
                 {{ shared.t('description_slash_tags') }}
               %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "blue, butterfly, etc."}
-      .col-xs-4
+      #filters-center-col.col-xs-4
         .row
           .col-xs-12
             %label.sectionlabel
@@ -90,7 +90,7 @@
           .col-xs-6
             %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
               = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
-      .col-xs-4
+      #filters-right-col.col-xs-4
         %label.sectionlabel Dates
         #filters-dates
           %label.radio
@@ -100,18 +100,18 @@
             %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('exact_date') }}
-              %input#filters-dates-exact.form-control.date-picker{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-click" => "params.dateType = 'exact'"}
+              %input#filters-dates-exact.form-control.input-sm.date-picker{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-click" => "params.dateType = 'exact'"}
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('range') }}
-              %input.form-control.date-picker{type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.d1", "ng-click" => "params.dateType = 'range'"}
-              %input.form-control.date-picker{type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.d2", "ng-click" => "params.dateType = 'range'"}
+              %input.form-control.input-sm.date-picker{type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.d1", "ng-click" => "params.dateType = 'range'"}
+              %input.form-control.input-sm.date-picker{type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.d2", "ng-click" => "params.dateType = 'range'"}
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
             %span.date-type
               {{ shared.t('months') }}
-              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control", id: "filters-dates-month", multiple: "multiple"
+              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control input-sm", id: "filters-dates-month", multiple: "multiple"
 
     .row
       .col-xs-12
@@ -146,7 +146,7 @@
   #filters-footer.row
     .col-xs-12
       %button.btn.btn-primary{ type: "button", "ng-click": "closeFilters( )" }
-        {{ shared.t('update_search') }}
+        {{ shared.t('update_search') | capitalize:'title' }}
       %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
-        {{ shared.t('reset_search_filters') }}
+        {{ shared.t('reset_search_filters') | capitalize:'title' }}
 

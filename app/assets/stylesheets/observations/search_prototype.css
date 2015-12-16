@@ -372,6 +372,7 @@ inat-taxon { white-space: nowrap; }
 .bootstrap label.sectionlabel {
   display: block;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .bootstrap #filters .radio, 
@@ -383,14 +384,17 @@ inat-taxon { white-space: nowrap; }
 #filters-categories { margin-bottom: 5px;}
 #filters-ranks {margin-bottom: 10px;}
 .bootstrap #filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
-.bootstrap #filters-dates .form-control {width: 100px; height: 20px;display: inline-block;}
+.bootstrap #filters-dates .form-control {
+  width: 100px; 
+  display: inline-block;
+}
 .bootstrap #filters-dates #filters-dates-exact.form-control {width: 176px;}
 
 #filters .iconic-taxon {
   font-size: 30px;
   margin: 0 5px 5px 0;
   padding: 0px 6px;
-  font-size: 26.8px;
+  font-size: 26.5px;
 }
 #filters .iconic-taxon.last {margin-right: 0;}
 
@@ -401,8 +405,15 @@ inat-taxon { white-space: nowrap; }
   background-color: #ccc;
   padding: 10px 0;
 }
+#filters-footer .btn {margin-right: 12px;}
+#filters-footer .btn-default { border-color: #aaa; }
 
-#filters-more-btn {padding:0;}
+#filters-center-col {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+#filters-more-btn {padding:0;margin: 12px 0;}
 #filters-more-btn .fa-caret-up { display: inline;}
 #filters-more-btn .fa-caret-down { display: none;}
 #filters-more-btn.collapsed .fa-caret-up { display: none; }
