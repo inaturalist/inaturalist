@@ -23,11 +23,10 @@
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name" }
             %input{ type: "hidden", name: "taxon_id" }
-            %span=t :in
-            #place-name-input.input-group
+            %span=t :near
+            %span#place-name-input
               %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
-              %span.input-group-btn
-                %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
+              %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
   #stats-container
     .container.container-fixed
       .row

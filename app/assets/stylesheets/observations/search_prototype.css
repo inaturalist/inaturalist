@@ -433,7 +433,8 @@ inat-taxon { white-space: nowrap; }
   background: #f16f3a;
   margin-left: 10px;
 }
-#place-name-input .input-group-btn button {
+#place-name-input {margin-left: 0;}
+#place-name-input button {
   background-color: #f16f3a;
   color: white;
 }
