@@ -385,6 +385,13 @@ inat-taxon.split-taxon .icon {display: none;}
   height: 96px;
   background-size: cover;
   background-position: center;
+  font-size: 80px;
+  line-height: 86px;
+  color: transparent;
+  text-align: center;
+}
+#obs-container .media-object.iconic {
+  color: #aaa;
 }
 #obs-container .media-left {
   padding: 0;
