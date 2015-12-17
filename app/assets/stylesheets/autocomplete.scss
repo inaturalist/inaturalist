@@ -96,6 +96,9 @@
 .buttonrow .ac-chooser {
   display: inline-block;
 }
+.ac-chooser {
+  white-space: nowrap;
+}
 .ac-chooser .species_guess.ui-autocomplete-input {
   width: 190px;
 }

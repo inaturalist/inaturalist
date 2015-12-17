@@ -59,12 +59,12 @@
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
       .row
         .col-xs-6
-          .btn-group
-            %button.button.btn-default{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}" }
+          #view-controls.btn-group
+            %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
               %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}" }
+            %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
-            %button.button.btn-default{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}" }
+            %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
             %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
               {{ shared.t('places_of_interest') }}

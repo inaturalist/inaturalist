@@ -16,7 +16,7 @@
   min-height: 450px;
   display: inline-block;
 }
-#results .btn-group {
+#view-controls {
   position: absolute;
   z-index: 2;
   margin-top: 15px;
@@ -203,6 +203,67 @@ inat-taxon.split-taxon .icon {display: none;}
   position: relative;
   top: 15px;
 }
+#maprow {
+  position: relative;
+  height: 0;
+}
+.fullscreen-enabled #maprow,
+#obs-container.fullscreen-enabled {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#map-controls {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+}
+#map-legend-control {
+  position: absolute;
+  top: 500px;
+  left: 15px;
+}
+#map-legend {
+  position: static;
+  display: block !important;
+  border: 0 transparent;
+  box-shadow: none;
+}
+#map-legend-control .gmapv3legend { max-width: none; }
+#map-legend-control .gmapv3legend .ul-container {
+  width: 400px;
+}
+#map-legend-control .gmapv3legend .ul-container ul.inat-overlay.left,
+#map-legend-control .gmapv3legend .ul-container ul.inat-overlay.right {
+  float: left;
+  width: 200px;
+}
+.bootstrap #map-legend-control .label {
+  color: black;
+  white-space: normal;
+  text-align: left;
+  font-size: 14px;
+  line-height: 14px;
+}
+.fullscreen-enabled #map-controls {
+  top: 20px;
+  left: 20px;
+}
+.fullscreen-enabled #map-legend-control {
+  bottom: 40px;
+  top: auto;
+  left: 20px;
+}
+.fullscreen-enabled #map-controls,
+.fullscreen-enabled #map-legend-control {
+  z-index: 1001;
+  position: fixed;
+}
+#map-controls .btn-group {
+  display: block;
+  margin-bottom: 10px;
+}
+#map-controls .btn { text-align: center; }
 #filters {
   padding: 20px 0;
 }
@@ -635,13 +696,19 @@ inat-taxon { white-space: nowrap; }
 [ng-click] {
     cursor: pointer;
 }
+
+.ac-chooser {
+  position: relative;
+}
 .searchclear.glyphicon {
-  margin-left: -28px;
-  padding-left: 4px;
-  top: 4px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding-left: 5px;
   color: #ddd;
   background: #fff;
 }
 .searchclear.glyphicon:hover {
   color: #666;
+  cursor: pointer;
 }

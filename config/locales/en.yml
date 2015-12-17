@@ -1017,6 +1017,7 @@ en:
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
+  failed_to_find_your_location: Failed to find your location.
   'false': 'False'
   faq: Frequently Asked Questions
   Family: Family
@@ -1061,8 +1062,10 @@ en:
   find_photos: Find Photos
   find_places: Find Places
   find_some_people_to_follow: find some people to follow
+  find_some_people_to_follow: "Find some people to follow"
   find_species: Find Species
   find_suitable_observations: Find suitable observations
+  find_your_current_location: Find your current location
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
@@ -1127,6 +1130,7 @@ en:
   full_id_please: ID Please!
   full_id_please!: "ID Please!"
   full_id_please?: "ID Please?"
+  full_screen: Full screen
   fungi:
     one: fungus
     other: fungi
@@ -3418,10 +3422,11 @@ en:
   youve_opted_out_of_community_ids_for_this_obs: "You've opted out of community identifications for this observation"
   youve_seen_it_want_to: "You've seen it! Want to"
   youve_successfully_linked_your_provider_account: "You've successfully linked your %{provider} account"
+  zoom_in: Zoom In
+  zoom_out: Zoom Out
   zoom_to_taxon_name: "Zoom to %{taxonname}"
   zoom_to_x: "zoom to %{x}"
   your_dashboard_helps_you: "Your dashboard helps you keep track of what people are doing on the site. To follow someone's updates, click the 'Follow [name]' link in the header when viewing their observations or profile."
-  find_some_people_to_follow: "Find some people to follow"
   here_are_some_things_you_can_do_in_the_meantime: "Here are some things you can do in the meantime"
   none_of_the_people_you_follow_have_any_updates_yet: "None of the people you follow have made any updates yet!"
   verifiable: verifiable

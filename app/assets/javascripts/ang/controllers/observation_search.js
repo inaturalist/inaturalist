@@ -657,7 +657,6 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
     $( "#map" ).taxonMap({
       urlCoords: true,
       mapType: google.maps.MapTypeId.TERRAIN,
-      showLegend: true,
       showAllLayer: false,
       disableFullscreen: true,
       mapTypeControl: false
@@ -675,6 +674,7 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
           $scope.map.addListener( "center_changed", function( ) { $scope.delayedOnMove( ); });
           $scope.map.addListener( "zoom_changed", function( ) { $scope.delayedOnMove( ); });
         }, 500 );
+        iNaturalist.Legend($('#map-legend-container').get(0), $scope.map);
       }
     }, 300);
   }
@@ -895,5 +895,42 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
       }, timeout );
     }
     $scope.$parent.delayedAlign = false;
+  };
+  $scope.zoomIn = function( ) {
+    $scope.map.setZoom( $scope.map.getZoom() + 1 );
+  };
+  $scope.zoomOut = function( ) {
+    $scope.map.setZoom( $scope.map.getZoom() - 1 );
+  };
+  $scope.findUserLocation = function( ) {
+    if( typeof( navigator.geolocation ) != "undefined" ) {
+      var getCurrentPositionSuccess = function( location ) {
+        $('#user-location-control button').html(
+          $('<i class="glyphicon glyphicon-record"></i>')
+        );
+        var pos = { 
+          lat: location.coords.latitude, 
+          lng: location.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: pos,
+          radius: (location.accuracy*10) || 1000
+        });
+        $scope.map.fitBounds( circle.getBounds( ) );
+      };
+      var getCurrentPositionFailure = function( ) {
+        $('#user-location-control button').html(
+          $('<i class="glyphicon glyphicon-record"></i>')
+        );
+        alert( I18n.t('failed_to_find_your_location') );
+      };
+      $('#user-location-control button').html(
+        $('<i class="fa fa-refresh fa-spin"></i>')
+      );
+      navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure);
+    }
+  };
+  $scope.togglFullscreen = function( ) {
+    $scope.fullscreen = !$scope.fullscreen;
   };
 }]);
