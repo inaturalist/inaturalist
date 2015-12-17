@@ -14,7 +14,7 @@
           {{ shared.t('place') | capitalize }}
         %th.added{:class => "sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy('observations.id')"}
           {{ shared.t('added') | capitalize }}
-    %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || busy" }
+    %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching", "infinite-scroll-distance": 1 }
       %tr{ "ng-repeat": "o in observations" }
         %td
           %a{ href: "/observations/{{ o.id }}", style: "background-image: url({{ o.photo( ) }})", target: "_self", :class => "img {{ o.photo( ) ? '' : 'iconic'}}" }
@@ -46,4 +46,5 @@
           {{ o.place_guess }}
         %td
           %inat-calendar-date{ date: "o.created_at" }
-        
+  .spinner.ng-cloak{ "ng-show": "pagination.searching" }
+    %span.fa.fa-spin.fa-spinner

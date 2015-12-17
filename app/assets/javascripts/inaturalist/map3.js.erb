@@ -1036,7 +1036,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     gridmaxzoom: gridmaxzoom,
     interactivity: options.interactivity === false ? false : 'id',
     interactionsURL: intereactionsServer( ) + gridTileSuffix,
-    disabled: options.disabled
+    disabled: options.disabled,
+    infoWindowCallback: options.infoWindowCallback
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + pointTileSuffix;
@@ -1045,7 +1046,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     minzoom: gridmaxzoom + 1,
     gridminzoom: gridmaxzoom + 1,
     interactionsURL: intereactionsServer( ) + pointTileSuffix,
-    disabled: options.disabled
+    disabled: options.disabled,
+    infoWindowCallback: options.infoWindowCallback
   });
   gridLayer.layer.title = title;
   pointLayer.layer.title = title;
@@ -1060,7 +1062,6 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
 google.maps.Map.prototype.getInfoWindow = function( ) {
   if( !this.infoWindow ) {
     this.infoWindow = new google.maps.InfoWindow({
-       content: $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0),
        position: new google.maps.LatLng(0,0)
     });
   }
@@ -1160,32 +1161,27 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
           if( o.data['latitude'] ) {
             var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
             var iw = map.getInfoWindow( );
+            var iwOpts = { };
+            if( options.minzoom && o.data.geoprivacy != "obscured" && !o.data.private_location ) {
+              // if we're showing points and the marker isn't obscured then leave
+              // a small margin under the infowidow so it show above the marker
+              iwOpts.pixelOffset = new google.maps.Size(-1, -11);
+            }
+            if( options.infoWindowCallback ) {
+              return options.infoWindowCallback( map, iw, latLng, o.data['id'], iwOpts );
+            }
             $.ajax({
               url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
               type: 'GET',
               dataType: 'html',
               beforeSend: function() {
-                iw.position = latLng;
-                // if we're showing points and the marker isn't obscured then leave
-                // a small margin under the infowidow so it show above the marker
-                if( options.minzoom && o.data.geoprivacy != "obscured" && !o.data.private_location ) {
-                  iw.setOptions({ pixelOffset: new google.maps.Size(-1, -11) });
-                }
-                iw.setContent($('<div class="loading status">'+I18n.t('loading')+'</div>').get(0));
-                iw.open( map );
-                // setting infoWindowOpenTime to prevent rapid window toggling
-                infoWindowOpenTime = new Date( );
-                // remove any text highlighting, which happens when the user clicks around
-                deselectText();
+                var content = $( '<div class="loading status">' + I18n.t( "loading") + "</div>" ).get( 0 );
+                map.infoWindowSetContent( iw, latLng, content, iwOpts );
               },
               success: function(data) {
-                iw.position = latLng
-                iw.setContent($('<div class="compact mini infowindow observations"></div>').append(data).get(0));
-                iw.open(map)
-                // make sure the InfoWindow has focus
-                $(iw).focus();
-                // remove any text highlighting, which happens when the user clicks around
-                deselectText();
+                var content = $('<div class="compact mini infowindow observations"></div>' ).
+                  append( data ).get( 0 );
+                map.infoWindowSetContent( iw, latLng, content, iwOpts );
               },
               error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -1208,6 +1204,23 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
       }
     });
   return waxInteraction;
+};
+
+google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, options ) {
+  options = options || { };
+  if( options.pixelOffset ) {
+    // proper window placement for non-obscured markers
+    iw.setOptions({ pixelOffset: options.pixelOffset });
+  }
+  iw.position = latLng;
+  iw.setContent( content );
+  iw.open( this );
+  // make sure the InfoWindow has focus
+  $( iw ).focus( );
+  // remove any text highlighting, which happens when the user clicks around
+  deselectText( );
+  // setting infoWindowOpenTime to prevent rapid window toggling
+  infoWindowOpenTime = new Date( );
 };
 
 // Static constants

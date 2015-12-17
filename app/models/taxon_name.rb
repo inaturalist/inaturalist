@@ -149,6 +149,7 @@ class TaxonName < ActiveRecord::Base
         json[:name_autocomplete_ja] = name
       end
       json[:exact] = name
+      json[:place_taxon_names] = place_taxon_names.map(&:as_indexed_json)
     end
     json
   end

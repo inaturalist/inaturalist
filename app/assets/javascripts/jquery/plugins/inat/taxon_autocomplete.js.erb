@@ -19,8 +19,8 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
     return "<i class='fa fa-search'></i>";
   }
-  if( result.square_photo_url ) { 
-    return "<img src='"+result.square_photo_url+"'/>";
+  if( result.default_photo_url ) {
+    return "<img src='"+result.default_photo_url+"'/>";
   }
   if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] && inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name ) {
     return "<i class='icon icon-iconic-"+inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name.toLowerCase()+"'></i>";
@@ -336,7 +336,7 @@ $.fn.taxonAutocomplete = function( options ) {
     if( searchClear ) {
       field.val( ) ? $(searchClear).show( ) : $(searchClear).hide( );
     }
-    if( options.resetOnChange === false ) { return; }
+    if( field.val( ) && options.resetOnChange === false ) { return; }
     // keys like arrows, tab, shift, caps-lock, etc. won't change
     // the value of the field so we don't need to reset the selection
     nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
@@ -344,6 +344,11 @@ $.fn.taxonAutocomplete = function( options ) {
     if( _.contains( nonCharacters, key ) ) { return; }
     field.trigger( "resetTaxonSelection" );
     selectedTaxon = null;
+  });
+  field.keyup( function( e ) {
+    if( !field.val( ) ) {
+      field.trigger( "resetTaxonSelection" );
+    }
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {

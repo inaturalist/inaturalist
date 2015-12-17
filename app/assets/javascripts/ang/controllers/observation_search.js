@@ -32,7 +32,7 @@ application.directive( "resultsMap", function( ) {
             // if it does, and a search has happened when on another view,
             // line up the map with the searched place
             if( scope.$parent.mapNeedsAligning ) { scope.setMapLayers( true ); }
-          }, 50);
+          }, 100);
         }
       });
       // the observation div on the map is a scrollable div in a scrollable page
@@ -66,8 +66,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     dateType: "any",
     page: 1
   };
-  $scope.mapCenter = new google.maps.LatLng( 0, 130 );
-  $scope.mapZoom = 1;
+  $scope.mapBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng( -80, -179 ),
+    new google.maps.LatLng( 80, 179 ));
   $scope.nearbyPlaces = [ ];
   $scope.taxonInitialized = false;
   $scope.placeInitialized = false;
@@ -119,6 +120,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.resetParams = function( ) {
     $scope.params = _.extend( { }, $scope.defaultParams );
+    // reset taxon autocomplete
+    $( "#filters input[name='taxon_name']" ).trigger( "resetAll" );
+    // reset place autocomplete
+    $scope.selectedPlace = null;
+    $scope.searchedPlace = null;
+    $scope.placeSearch = null;
     $scope.closeFilters();
   };
   $scope.closeFilters = function( ) {
@@ -145,9 +152,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.$watch( "selectedPlace", function( ) {
     if( $scope.selectedPlace && $scope.selectedPlace.id ) {
       if( $scope.params.place_id != $scope.selectedPlace.id ) {
-        $scope.mapCenter = null;
         $scope.mapBounds = null;
-        $scope.mapZoom = null;
         $scope.mapBoundsIcon = null;
         $scope.alignMapOnSearch = true;
         $scope.params.place_id = $scope.selectedPlace.id;
@@ -193,11 +198,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // otherwise set the starting mapBounds
       if( $scope.params.swlat && $scope.params.swlng &&
           $scope.params.nelat && $scope.params.nelng ) {
-        $scope.mapZoom = null;
         $scope.mapBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng( $scope.params.swlat, $scope.params.swlng ),
             new google.maps.LatLng( $scope.params.nelat, $scope.params.nelng ));
-        $scope.mapCenter = $scope.mapBounds.getCenter( );
       }
       $scope.placeInitialized = true;
     }
@@ -246,10 +249,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // prepare current settings to store to browser state history
       currentState = { params: urlParams, selectedPlace: $scope.selectedPlace,
         selectedTaxon: $scope.selectedTaxon,
-        mapCenter: ( $scope.mapCenter && $scope.mapCenter.toJSON ) ?
-          $scope.mapCenter.toJSON( ) : $scope.mapCenter,
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
-        mapZoom: $scope.mapZoom, mapBoundsIcon: $scope.mapBoundsIcon };
+        mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
     if( options.browserStateOnly ) {
@@ -374,10 +375,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.showMoreObservations = function( ) {
     $scope.pagination = $scope.pagination || { };
     if( !$scope.pagination.page ) { return; }
-    if( $scope.pagination.busy === true ) { return; }
+    if( $scope.pagination.searching === true ) { return; }
     if( $scope.pagination.finished === true ) { return; }
     $scope.pagination.page += 1;
-    $scope.pagination.busy = true;
+    $scope.pagination.searching = true;
     var processedParams = shared.processParams(
       _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
@@ -386,7 +387,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       }
       $scope.observations = $scope.observations.concat(
         ObservationsFactory.responseToInstances( response ));
-      $scope.pagination.busy = false;
+      $scope.pagination.searching = false;
     });
   };
   $scope.matchUrlState = function( ) {
@@ -512,21 +513,47 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
     $scope.placeSearchBox.addListener( "place_changed", function( ) {
       var place = $scope.placeSearchBox.getPlace( );
-      if( !place || !place.geometry ) { return; }
-      $scope.searchedPlace = place;
-      $scope.focusOnSearchedPlace( );
-      if( !$scope.viewing( "observations", "map" ) ) {
-        $scope.mapNeedsAligning = true;
-      }
+      if( place && place.geometry ) { return $scope.setSearchedPlace( place ); }
+      // there was no selected place, so query with the current input value
+      $scope.searchPlaceAutocompleteService( );
     });
+    $scope.placeAutocompleteService = new google.maps.places.AutocompleteService( );
+  };
+  $scope.searchPlaceAutocompleteService = function( ) {
+    var q = $( "#place_name").val( );
+    if( !q ) { return; }
+    // query the autocomplete service for the text in the search input
+    $scope.placeAutocompleteService.getQueryPredictions({ input: q },
+      function( predictions, status ) {
+        if( status != google.maps.places.PlacesServiceStatus.OK ||
+            predictions.length == 0 || !predictions[ 0 ].place_id ) { return; }
+        // now that we have the result, we need to query the PlacesService
+        // for the geometry. That service needs to be associated with an
+        // element, so use the map if we can, otherwise make one up
+        var e = $scope.viewing( "observations", "map" ) ? $( "#map" ).data( "taxonMap" ) :
+          document.createElement('div');
+        var s = new google.maps.places.PlacesService( e );
+        s.getDetails({ placeId: predictions[ 0 ].place_id }, function( place, status ) {
+          if( status !== google.maps.places.PlacesServiceStatus.OK ) { return; }
+          // use the details of the fetched place
+          $scope.setSearchedPlace( place );
+        });
+      });
+  };
+  $scope.setSearchedPlace = function( place ) {
+    if( !place || !place.geometry ) { return; }
+    $scope.searchedPlace = place;
+    $scope.focusOnSearchedPlace( );
+    if( !$scope.viewing( "observations", "map" ) ) {
+      $scope.mapNeedsAligning = true;
+      $scope.delayedAlign = true;
+    }
   };
   $scope.focusOnSearchedPlace = function( ) {
     if( $scope.searchedPlace ) {
       // setting a timer for automatching the searched place to a known place
       $scope.placeLastSearched = new Date( ).getTime( );
       $scope.attemptAutoNearbySelection = true;
-      $scope.mapCenter = null;
-      $scope.mapZoom = null;
       $scope.mapBounds = null;
       // if the searched place is specific enough to have an address, add an X
       if( $scope.searchedPlace.adr_address &&
@@ -535,18 +562,17 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       } else { $scope.mapBoundsIcon = null; }
       if( $scope.searchedPlace.geometry.viewport ) {
         $scope.mapBounds = $scope.searchedPlace.geometry.viewport;
-        $scope.mapCenter = $scope.searchedPlace.geometry.location;
-        $scope.mapZoom = null;
       } else {
         var c = $scope.searchedPlace.geometry.location;
-        $scope.mapCenter = c;
         // use some bounds which equate roughly to zoom level 15
         $scope.mapBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng( c.lat() - 0.01, c.lng() - 0.02 ),
             new google.maps.LatLng( c.lat() + 0.01, c.lng() + 0.02 ));
-        $scope.mapZoom = null;
       }
       $rootScope.$emit( "alignMap" );
+    } else {
+      // no searched place yet, so try searching with place input text
+      $scope.searchPlaceAutocompleteService( );
     }
   };
   // when the place search input changes, delete the stored searched place
@@ -586,10 +612,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       var previousParams = _.extend( { }, $scope.defaultParams, state.params );
       // we could set place and taxon below, and that should not run searches
       $scope.searchDisabled = true;
-      if( state.mapCenter ) {
-        $scope.mapCenter = new google.maps.LatLng( state.mapCenter.lat, state.mapCenter.lng );
-      }
-      $scope.mapZoom = state.mapZoom;
       $scope.mapBoundsIcon = state.mapBoundsIcon;
       // resture the bounds we had to store as JSON
       if( state.selectedPlace != $scope.selectedPlace ) {
@@ -603,7 +625,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( state.selectedTaxon != $scope.selectedTaxon ) {
         $scope.selectedTaxon = state.selectedTaxon;
         $scope.updateTaxonAutocomplete( );
-      } else if( state.params.taxon_id != $scope.params.taxon_id ) {
+      } else if( state.params && state.params.taxon_id != $scope.params.taxon_id ) {
         // useful for selecting a taxon from the observations grid view
         $scope.params.taxon_id = state.params.taxon_id;
         $scope.initializeTaxonParams( );
@@ -646,8 +668,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
 }]);
 
 
-application.controller( "MapController", [ "PlacesFactory", "shared", "$scope", "$rootScope",
-function( PlacesFactory, shared, $scope, $rootScope ) {
+application.controller( "MapController", [ "ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope",
+function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $scope.placeLayerStyle = {
     strokeColor: "#d77a3b",
     strokeOpacity: 0.75,
@@ -669,7 +691,8 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
       mapType: google.maps.MapTypeId.TERRAIN,
       showAllLayer: false,
       disableFullscreen: true,
-      mapTypeControl: false
+      mapTypeControl: false,
+      infoWindowCallback: $scope.infoWindowCallback
     });
     $scope.map = $( "#map" ).data( "taxonMap" );
     // waiting a bit after creating the map to initialize the layers
@@ -716,12 +739,7 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
     var bounds;
     if( onMap ) {
       var bounds = $scope.map.getBounds( );
-      nearbyParams.zoom = $scope.map.getZoom( );
-    } else {
-      if( $scope.mapBounds ) { bounds = $scope.mapBounds; }
-      if( $scope.mapCenter ) { _.extend( nearbyParams, $scope.mapCenter.toJSON( ) ); }
-      nearbyParams.zoom = $scope.mapZoom;
-    }
+    } else if( $scope.mapBounds ) { bounds = $scope.mapBounds; }
     if( bounds ) {
       nearbyParams.swlat = bounds.getSouthWest( ).lat( );
       nearbyParams.swlng = bounds.getSouthWest( ).lng( );
@@ -736,7 +754,8 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
       }
       var attemptNearbySelection = false;
       var timeSinceSearch = new Date( ).getTime( ) - $scope.placeLastSearched;
-      if( $scope.$parent.attemptAutoNearbySelection && timeSinceSearch < 1000 ) {
+      // allow 3 seconds for searches to finish
+      if( $scope.$parent.attemptAutoNearbySelection && timeSinceSearch < 3000 ) {
         attemptNearbySelection = true;
       } else { $scope.attemptAutoNearbySelection = false; }
       PlacesFactory.nearby( nearbyParams ).then( function( response ) {
@@ -819,13 +838,11 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
     }
   };
   $scope.alignMap = function( ) {
-    if( $scope.mapLayersInitialized ) {
+    // don't attempt aligning if we're not viewing the map
+    if( $scope.mapLayersInitialized && $scope.$parent.viewing( "observations", "map" ) ) {
       if( $scope.$parent.mapBounds ) {
         $scope.map.fitBounds( $scope.$parent.mapBounds );
-        $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
-      } else if( $scope.$parent.mapCenter ) {
-        $scope.map.setCenter( $scope.$parent.mapCenter );
-        $scope.map.setZoom( $scope.$parent.mapZoom );
+        $rootScope.$emit( "offsetCenter", 130, 0 );
       } else if( $scope.selectedPlaceLayer ) {
         var bounds = new google.maps.LatLngBounds();
         // extend the bounds to encompass all features in the polygon
@@ -839,10 +856,32 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
         } else {
           $scope.map.setZoom( $scope.map.getZoom( ) + 1 );
         }
+        if( $scope.$parent.searchedPlace ) {
+          $scope.$parent.searchedPlace.geometry.viewport = bounds;
+        }
+        $scope.$parent.mapBounds = bounds;
       }
       $scope.$parent.mapNeedsAligning = false;
     }
     $rootScope.$emit( "searchForNearbyPlaces" );
+  };
+  // callback method when an observation is clicked on the map
+  // fetch the observation details, and render the snippet template
+  $scope.infoWindowCallback = function( map, iw, latLng, observation_id, options ) {
+    map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>" +
+      I18n.t( "loading" ) + "</div>", options );
+    ObservationsFactory.show( observation_id ).then( function( response ) {
+      observations = ObservationsFactory.responseToInstances( response );
+      if( observations.length > 0 ) {
+        $scope.infoWindowObservation = observations[ 0 ];
+        // make sure the view is updated
+        if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
+        // delay this a bit so the view has time to update
+        setTimeout(function( ) {
+          map.infoWindowSetContent( iw, latLng, $( "#infoWindowSnippet" ).html( ), options );
+        }, 10)
+      }
+    });
   };
   $scope.setMapLayers = function( align ) {
     if( !$scope.map ) { return };
@@ -852,7 +891,8 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
       mapStyle: _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ? "summary" : "colored_heatmap",
-      observationLayers: [ layerParams ]
+      observationLayers: [ layerParams ],
+      infoWindowCallback: $scope.infoWindowCallback
     });
     // fully remove any existing data layer
     if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }
@@ -884,9 +924,9 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
           })
         );
         // add an X marker in the center of the bounding box
-        if( $scope.$parent.mapBoundsIcon && $scope.$parent.mapCenter ) {
+        if( $scope.$parent.mapBoundsIcon && $scope.searchedPlace ) {
           $scope.boundingBoxCenterIcon = new google.maps.Marker({
-            position: $scope.$parent.mapCenter,
+            position: $scope.searchedPlace.geometry.location,
             icon: {
               url: "/mapMarkers/x.svg",
               scaledSize: new google.maps.Size( 20, 20 ),

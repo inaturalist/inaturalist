@@ -1,0 +1,28 @@
+.media.observation
+  .media-left
+    %a{ href: "/observations/{{ o.id }}", target: "_self" }
+      .media-object{style: "background-image: url({{ o.photo( ) }})"}
+  .media-body
+    %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", "style": "{{ shared.backgroundIf(o.user.icon_url) }}", title: "{{ o.user.login }}" }
+      %i.icon-person{"ng-hide" => "o.user.icon_url"}
+    %inat-taxon.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
+    .dateloc
+      %span.location{title: "{{ o.displayPlace() }}"}
+        .hidden-lg {{ o.displayPlace() | characters:6:true }}
+        .visible-lg-inline-block {{ o.displayPlace() | characters:18:true }}
+      %span.date{ title: "{{ shared.t('observed_on') }} {{ o.observed_on }}" }
+        %span.hidden-lg {{ (o.observed_on | amDateFormat : 'l') || shared.t('unknown') }}
+        %span.visible-lg-inline-block {{ (o.observed_on | amDateFormat : 'll') || shared.t('unknown') }}
+    .meta.ng-cloak
+      %span{:class => "quality_grade {{ o.quality_grade }}"}
+        {{ shared.t( o.quality_grade ) }}
+      %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
+        %i.icon-identification
+        {{ o.identifications_count }}
+      %span.comments{"ng-show" => "o.comments_count > 0", title: "{{ shared.t('x_comments', {count: o.comments_count}) }}"}
+        %i.icon-chatbubble
+        {{ o.comments_count }}
+      %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
+        %i.fa.fa-star
+        {{ o.faves_count }}
+      %span.created_at.pull-right{"am-time-ago" => "o.created_at", title: "{{ shared.t('added_on') }} {{ o.created_at }}"}

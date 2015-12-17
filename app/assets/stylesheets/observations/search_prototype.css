@@ -715,3 +715,30 @@ inat-taxon { white-space: nowrap; }
   color: #666;
   cursor: pointer;
 }
+.spinner {
+  font-family: "FontAwesome" !important;
+  text-align: center;
+  font-size: 2em;
+  margin: 20px;
+  color: #646464;
+}
+#infoWindowSnippet {
+  display: none;
+}
+.bootstrap .infowindow {
+  width: 360px;
+  height: 96px;
+  display: inline-block;
+  margin: 1px;
+}
+.gm-style-iw {
+  top: 0 !important;
+  left: 0 !important;
+  width: 300px !important;
+  height: 80px !important;
+  overflow: visible !important;
+}
+.infowindow.loading {
+  text-align: center;
+  line-height: 96px;
+}
