@@ -149,4 +149,14 @@
         {{ shared.t('update_search') | capitalize:'title' }}
       %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
         {{ shared.t('reset_search_filters') | capitalize:'title' }}
+      #feeds.pull-right
+        %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}"}
+          %i.fa.fa-rss
+          {{ shared.t('atom') }}
+        %a.btn.btn-link{"ng-href" => "/observations.kml?{{ paramsForUrl( ) }}"}
+          %i.fa.fa-globe
+          {{ shared.t('kml') }}
+        %a.btn.btn-link{"ng-href" => "/observations/export?{{ paramsForUrl( ) }}"}
+          %i.fa.fa-download
+          {{ shared.t('download') }}
 

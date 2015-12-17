@@ -632,6 +632,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
     $scope.defaultProcessedParams = shared.processParams( $scope.defaultParams, $scope.possibleFields );
   };
+  $scope.paramsForUrl = function( ) {
+    var urlParams = _.extend({}, $scope.params);
+    delete urlParams.page;
+    delete urlParams.order;
+    delete urlParams.order_by;
+    delete urlParams.dateType;
+    delete urlParams.view;
+    delete urlParams.subview;
+    return $.param( $scope.params );
+  }
   $scope.preInitialize( );
 }]);
 

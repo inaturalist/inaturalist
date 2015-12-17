@@ -270,7 +270,8 @@ inat-taxon.split-taxon .icon {display: none;}
 #filters h1 {
   float: left;
 }
-#filters .pull-right {
+#filter-container,
+#filters .primary-filters {
   margin-top: 20px;
 }
 
@@ -466,8 +467,10 @@ inat-taxon { white-space: nowrap; }
   background-color: #ccc;
   padding: 10px 0;
 }
-#filters-footer .btn {margin-right: 12px;}
+#filters-footer .btn {margin-left: 12px;}
+#filters-footer .btn:first-child {margin-left: 0px;}
 #filters-footer .btn-default { border-color: #aaa; }
+#feeds .btn {padding-left: 0; padding-right: 0;}
 
 #filters-center-col {
   border-left: 1px solid #ccc;
