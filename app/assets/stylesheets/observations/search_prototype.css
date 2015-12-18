@@ -308,7 +308,6 @@ inat-taxon.split-taxon .icon {display: none;}
   line-height: 75px;
   background: none;
   border: 0px;
-  cursor: default;
   font-weight: 100;
   color: #eee;
 }
@@ -497,6 +496,16 @@ inat-taxon { white-space: nowrap; }
   background: #f16f3a;
   margin-left: 10px;
 }
+.bootstrap .btn-group .btn-default.places {
+  background: #fff;
+  margin-left: 10px;
+}
+.bootstrap .btn-group.open .btn-default.places {
+  color: #fff;
+  background: #f16f3a;
+  margin-left: 10px;
+}
+
 #place-name-input {margin-left: 0;}
 #place-name-input button {
   background-color: #f16f3a;
@@ -697,7 +706,10 @@ inat-taxon { white-space: nowrap; }
 .plain-table .rank { text-align: center; }
 .bootstrap table.plain-table > tbody > tr > td { line-height: 40px; }
 [ng-click] {
-    cursor: pointer;
+  cursor: pointer;
+}
+.unclickable {
+  cursor: default;
 }
 
 .ac-chooser {

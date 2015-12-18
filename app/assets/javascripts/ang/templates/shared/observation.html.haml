@@ -1,7 +1,7 @@
 .media.observation
   .media-left
     %a{ href: "/observations/{{ o.id }}", target: "_self" }
-      .media-object{style: "background-image: url({{ o.photo( ) }})"}
+      .media-object{ style: "{{ shared.backgroundIf( o.photo( ) ) }}" }
   .media-body
     %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", "style": "{{ shared.backgroundIf(o.user.icon_url) }}", title: "{{ o.user.login }}" }
       %i.icon-person{"ng-hide" => "o.user.icon_url"}

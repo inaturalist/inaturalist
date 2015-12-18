@@ -77,7 +77,6 @@ function( $http, $rootScope ) {
   };
 
   var backgroundIf = function( url ) {
-    console.log(url);
     if( url ) {
       return "background-image: url(" + url + ")";
     }

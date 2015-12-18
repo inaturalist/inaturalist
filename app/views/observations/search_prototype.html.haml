@@ -31,12 +31,15 @@
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng" }
+          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng", "ng-click": "changeView('observations', 'map')",
+            "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('the_world') }}
-          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace" }
+          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "changeView('observations', 'map')",
+            "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name }}"
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
-          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng" }
+          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "changeView('observations', 'map')",
+            "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('bounding_box') }}
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
@@ -66,18 +69,25 @@
               %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
             %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
               %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
-            %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
+            %button.button.btn-default.places.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
               {{ shared.t('places_of_interest') }}
+              %span.glyphicon.glyphicon-globe.fa{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }"  }
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
                 %h4 {{ shared.t('standard') }}
-                %h4 {{ shared.t('recent') }}
-              .col-xs-6
-                %h4 {{ shared.t('nearby') }}
-                .place{ "ng-repeat": "p in nearbyPlaces" }
+                .place{ "ng-repeat": "p in nearbyPlaces.standard" }
                   %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
                     = "{{ p.name }}"
-            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !justSelectedLocation" }
+                %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
+                  {{ shared.t("no_places_available") }}
+              .col-xs-6
+                %h4 {{ shared.t('community_curated') }}
+                .place{ "ng-repeat": "p in nearbyPlaces.community" }
+                  %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                    = "{{ p.name }}"
+                %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
+                  {{ shared.t("no_places_available") }}
+            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !hideRedoSearch" }
               %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
               {{ shared.t('redo_search_in_map') }}
         .col-xs-6
