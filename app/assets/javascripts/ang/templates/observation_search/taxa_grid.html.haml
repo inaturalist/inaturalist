@@ -1,8 +1,8 @@
-#taxa-grid.container.bootstrap-10{ "infinite-scroll": "showMoreTaxa( )", "infinite-scroll-disabled": "!viewing('species')" }
+#taxa-grid.container.bootstrap-10{ "infinite-scroll": "showMoreTaxa( )", "infinite-scroll-disabled": "!viewing('species')", "infinite-scroll-distance": 1 }
   .row.grid
     .col-xs-2.cell{ "ng-repeat": "t in taxa | limitTo: numberTaxaShown" }
       .thumbnail.borderless
-        %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", style: "background-image: url({{ t.photo( ) }})" }
+        %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", style: "{{ shared.backgroundIf( t.photo( ) ) }}" }
           %i{:class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}"}
         %div{"ng-show" => "t.conservationStatusCode()", :class => "corner conservation-status {{ t.conservationStatusCode( ) }}", title: "{{ t.conservationStatus( ) }}"}
           {{ t.conservationStatusCode() }}

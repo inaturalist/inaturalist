@@ -255,7 +255,8 @@ inatTaxonMap.addObservationLayers = function( map, options ) {
       var title = options.title || options.featuredLayerLabel || 'Observations';
       map.addObservationsLayer( title, _.defaults( _.clone( layer ), {
         controlPosition: options.controlPosition,
-        mapStyle: options.mapStyle
+        mapStyle: options.mapStyle,
+        infoWindowCallback: options.infoWindowCallback
       }));
     });
   }

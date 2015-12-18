@@ -42,7 +42,7 @@ iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
 };
 
 iNatModels.Taxon.prototype.photo = function( ) {
-  return this.medium_photo_url || this.default_photo_url;
+  return this.default_photo ? this.default_photo.medium_url : this.default_photo_url;
 };
 
 // The rest is just some placeholder stuff until we get these values in the API

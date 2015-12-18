@@ -53,7 +53,7 @@ function( $http, $rootScope ) {
       });
     }
     _.each( _.keys( params ), function( k ) {
-      if( k == "photos" ) { return; }
+      if( k == "verifiable" ) { return; }
       // _.isEmpty returns true for ints and floats
       if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )
           && !_.isNumber( params[ k ] ) ) {
@@ -75,6 +75,12 @@ function( $http, $rootScope ) {
     options = options || { };
     return I18n.t( k, options );
   };
+
+  var backgroundIf = function( url ) {
+    if( url ) {
+      return "background-image: url(" + url + ")";
+    }
+  }
 
   var offsetCenter = function( options, callback ) {
     if( !options.map ) { return callback( ); }
@@ -129,6 +135,7 @@ function( $http, $rootScope ) {
     numberWithCommas: numberWithCommas,
     processParams: processParams,
     t: t,
+    backgroundIf: backgroundIf,
     offsetCenter: offsetCenter,
     processPoints: processPoints,
     stringStartsWith: stringStartsWith,
@@ -193,5 +200,17 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
       }
     },
     templateUrl: 'ang/templates/shared/taxon.html'
+  }
+}]);
+
+iNatAPI.directive( "observationSnippet", [ "shared", function(shared) {
+  return {
+    scope: {
+      o: '='
+    },
+    link: function( scope ) {
+      scope.shared = shared;
+    },
+    templateUrl: "ang/templates/shared/observation.html"
   }
 }]);

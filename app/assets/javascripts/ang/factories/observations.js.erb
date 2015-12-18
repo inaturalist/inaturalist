@@ -1,7 +1,11 @@
 iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
+  var show = function( id ) {
+    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/" + id;
+    return shared.basicGet( url );
+  };
   var search = function( params ) {
     var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations";
-    params.per_page = 12;
+    params.per_page = 24;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
@@ -16,8 +20,8 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     return shared.basicGet( url );
   };
   var speciesCounts = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_counts";
-    if( params ) { url += "?" + $.param(params); }
+    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_counts?locale=" + I18n.locale;
+    if( params ) { url += "&" + $.param(params); }
     return shared.basicGet( url );
   };
   var identifiers = function( params ) {
@@ -39,6 +43,7 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     });
   };
   return {
+    show: show,
     search: search,
     stats: stats,
     speciesCount: speciesCount,
