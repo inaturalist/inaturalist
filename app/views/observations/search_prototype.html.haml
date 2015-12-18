@@ -59,13 +59,37 @@
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
       .row
         .col-xs-6
-          #view-controls.btn-group
-            %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
-              %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
-            %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
-              %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
-            %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
-              %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
+          #view-controls
+            .btn-group
+              %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
+                %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
+              %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
+                %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
+              %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
+                %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
+            #layer-control.btn-group
+              %button.btn.btn-default.dropdown-toggle{data: {toggle: "dropdown"}}
+                %i.icon-layers{title: "{{ shared.t('layers') }}"}
+              %ul.dropdown-menu
+                %li.radio
+                  %label
+                    %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "map" }
+                    {{ shared.t('map') | capitalize }}
+                %li.radio
+                  %label
+                    %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "satellite" }
+                    {{ shared.t('satellite') | capitalize }}
+                %li.divider{role: "separator"}
+                %li{:class => "checkbox {{ mapTerrain ? 'disabled' : '' }}"}
+                  %label
+                    %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled": "mapTerrain" }
+                    {{ shared.t('labels') | capitalize }}
+                %li{:class => "checkbox {{ mapType == 'map' ? '' : 'disabled' }}"}
+                  %label
+                    %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
+                    {{ shared.t('terrain') | capitalize }}
+
+
             %button.button.btn-default.reload.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
               {{ shared.t('places_of_interest') }}
             .dropdown-menu.dropdown-menu-right.places

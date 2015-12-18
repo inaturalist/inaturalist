@@ -13,7 +13,7 @@
             %i.glyphicon.glyphicon-record
         #user-location-full-screen.btn-group.btn-group-stateless.clearfix
           %button.btn.btn-default{ "ng-click": "togglFullscreen( )", title: "{{ shared.t('full_screen') }}" }
-            %i{ :class => "glyphicon glyphicon-resize-{{ fullscreen ? 'small' : 'full' }}" }
+            %i{ :class => "icon icon-arrows-{{ fullscreen ? 'in' : 'out' }}" }
       #map-legend-control
         .btn-group.dropup
           %button.btn.btn-default.dropdown-toggle{data: {toggle: 'dropdown'}}

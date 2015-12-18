@@ -59,6 +59,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview" ];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
+  $rootScope.mapType = "map";
+  $rootScope.mapLabels = false;
+  $rootScope.mapTerrain = false;
   $scope.defaultParams = {
     verifiable: true,
     order_by: "observations.id",
@@ -73,6 +76,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.placeInitialized = false;
   $scope.filtersInitialized = false;
   $scope.parametersInitialized = false;
+
+  $scope.$watchGroup(['mapType', 'mapLabels', 'mapTerrain'], function() {
+    $rootScope.$emit( "setMapType", $scope.mapType, $scope.mapLabels, $scope.mapTerrain );
+  });
 
   // this is the first block to run when the page loads
   $scope.preInitialize = function( ) {
@@ -672,6 +679,9 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
       mapTypeControl: false
     });
     $scope.map = $( "#map" ).data( "taxonMap" );
+    $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels);
+    $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT, iNaturalist.Map.MapTypes.light);
+    $scope.map.setMapTypeId(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS);
     // waiting a bit after creating the map to initialize the layers
     // to avoid issues with map aligning, letting the browser catch up
     setTimeout( function( ) {
@@ -790,6 +800,20 @@ function( PlacesFactory, shared, $scope, $rootScope ) {
   });
   $rootScope.$on( "alignMap", function( ) {
     $scope.alignMap( );
+  });
+  $rootScope.$on( "setMapType", function( event, mapType, mapLabels, mapTerrain ) {
+    if ( !$scope.map ) { return; };
+    var mapTypeId;
+    if (mapType == 'map') {
+      if (mapTerrain) {
+        mapTypeId = google.maps.MapTypeId.TERRAIN;
+      } else {
+        mapTypeId = mapLabels ? iNaturalist.Map.MapTypes.LIGHT : iNaturalist.Map.MapTypes.LIGHT_NO_LABELS;
+      }
+    } else {
+      mapTypeId = mapLabels ? google.maps.MapTypeId.HYBRID : google.maps.MapTypeId.SATELLITE;
+    }
+    $scope.map.setMapTypeId(mapTypeId);
   });
   $scope.lastMoveTime = 0;
   $scope.delayedOnMove = function( ) {

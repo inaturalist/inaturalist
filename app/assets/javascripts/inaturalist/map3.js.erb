@@ -396,6 +396,32 @@ if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
 iNaturalist.Map.MAP_BACKGROUND_COLOR = '#B3D1FF'
 iNaturalist.Map.SATELLITE_BACKGROUND_COLOR = '#2A4280'
 
+// Map styles
+iNaturalist.Map.MapTypes = {};
+iNaturalist.Map.MapTypes.LIGHT = "light";
+iNaturalist.Map.MapTypes.light = new google.maps.StyledMapType([
+  {
+    stylers: [
+      {lightness: 50},
+      {saturation: -50}
+    ]
+  }
+], {name: "Map"});
+iNaturalist.Map.MapTypes.LIGHT_NO_LABELS = "light_no_labels";
+iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
+  {
+    stylers: [
+      {lightness: 50},
+      {saturation: -50}
+    ]
+  },
+  {
+    featureType: "all",
+    elementType: "labels",
+    stylers: [ { visibility: "off" } ]
+  }
+], {name: "Map (no labels)"});
+
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}

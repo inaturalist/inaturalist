@@ -21,6 +21,9 @@
   z-index: 2;
   margin-top: 15px;
 }
+#layer-control li {
+  padding: 0 10px;
+}
 #obs-container .location .fadednowrap {max-width: 200px;}
 #result-grid,
 #taxa-grid,
@@ -499,7 +502,7 @@ inat-taxon { white-space: nowrap; }
 .dropdown-menu.places .place {
   cursor: pointer;
 }
-.bootstrap .btn-group .btn-default.reload {
+#view-controls .btn-default.reload {
   color: #fff;
   background: #f16f3a;
   margin-left: 10px;
