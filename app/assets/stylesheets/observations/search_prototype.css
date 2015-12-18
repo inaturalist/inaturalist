@@ -764,3 +764,27 @@ inat-taxon { white-space: nowrap; }
   text-align: center;
   line-height: 96px;
 }
+@-webkit-keyframes fa-spin {
+  0% {
+    -moz-transform:rotate(0);
+    -webkit-transform:rotate(0);
+    transform:rotate(0);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -moz-transform:rotate(0);
+    -webkit-transform:rotate(0);
+    transform:rotate(0);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
