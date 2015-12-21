@@ -20,5 +20,5 @@
             %i.icon-person{"ng-hide" => "u.icon_url"}
           %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}" }
             {{ u.login }}
-        %td {{ u.observationCount }}
-        %td {{ u.speciesCount }}
+        %td {{ shared.numberWithCommas( u.observationCount ) }}
+        %td {{ shared.numberWithCommas( u.speciesCount ) }}
