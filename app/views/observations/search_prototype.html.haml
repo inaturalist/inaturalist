@@ -16,7 +16,7 @@
         #filters.clear
           %h1= t :observations
           #filter-container.btn-group.pull-right
-            %button.btn.btn-default.dropdown-toggle
+            %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t('filters') }}", "tooltip-placement" => "bottom" }
               %i.fa.fa-filter
               %i.fa.fa-chevron-down
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
@@ -98,14 +98,16 @@
               %span.glyphicon.glyphicon-globe.fa{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }"  }
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
-                %h4 {{ shared.t('standard') }}
+                %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }
+                  {{ shared.t('standard') }}
                 .place{ "ng-repeat": "p in nearbyPlaces.standard" }
                   %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
                     = "{{ p.name }}"
                 %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
                   {{ shared.t("no_places_available") }}
               .col-xs-6
-                %h4 {{ shared.t('community_curated') }}
+                %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
+                  {{ shared.t('community_curated') }}
                 .place{ "ng-repeat": "p in nearbyPlaces.community" }
                   %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
                     = "{{ p.name }}"

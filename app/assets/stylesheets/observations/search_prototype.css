@@ -21,6 +21,7 @@
   z-index: 2;
   margin-top: 15px;
 }
+#view-controls .glyphicon { font-size: 12px; }
 #layer-control li {
   padding: 0 10px;
 }
@@ -374,6 +375,7 @@ inat-taxon.split-taxon .icon {display: none;}
   width: 36px;
   height: 36px;
   border: 0 transparent;
+  overflow: hidden;
 }
 
 #obs-container .observation .created_at {
@@ -662,7 +664,8 @@ inat-taxon { white-space: nowrap; }
 }
 
 #taxa-grid .thumbnail { overflow: visible; }
-#taxa-grid .tooltip { min-width: 200px; }
+#taxa-grid .tooltip-inner { min-width: 200px; }
+#filters .tooltip-inner { white-space: nowrap; }
 #taxa-grid .grid .caption {
   height: 60px;
 }

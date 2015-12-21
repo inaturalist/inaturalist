@@ -13,7 +13,7 @@
                 %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
                 {{ shared.t('wild') }}
             .checkbox
-              %label
+              %label{"uib-tooltip" => "{{ shared.t('eligible_for_research_grade') }}", "tooltip-placement" => "right"}
                 %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
                 {{ shared.t('verifiable') }}
             .checkbox
@@ -30,7 +30,7 @@
                 %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
                 {{ shared.t('introduced') }}
             .checkbox
-              %label
+              %label{ "uib-tooltip" => "{{ shared.t('has_one_or_more_faves') }}", "tooltip-placement" => "right" }
                 %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
                 {{ shared.t('popular') }}
             / .checkbox
