@@ -609,7 +609,8 @@ iNaturalist.LegendControl = function( controlDiv, map ) {
 }
 
 
-iNaturalist.Legend = function( controlDiv, map ) {
+iNaturalist.Legend = function( controlDiv, map, options ) {
+  options = options || {};
   var controlUI = $( "<div id='map-legend'><div class='title'>" + I18n.t( "map_legend" ) +"</div></div>" ).
     addClass( "gmapv3legend" ).hide( );
   var ulDiv = $( "<div></div>" ).addClass( "ul-container" );
@@ -632,23 +633,25 @@ iNaturalist.Legend = function( controlDiv, map ) {
     images: [ "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
     label: I18n.t( "obscured" ),
     classes: "last" }));
-  ul1.append( $( "<li class='header'>" + I18n.t( "map_marker_size" ) +"</li>") );
-  ul1.append( iNaturalist.legendItem({
-    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
-              "<%= asset_path('map_legend/legend_lg_mm.png') %>",
-              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
-              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
-    imageClasses: "large",
-    label: I18n.t( "featured" ),
-    classes: "tall" }));
-  ul1.append( iNaturalist.legendItem({
-    images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
-              "<%= asset_path('map_legend/legend_lg_mm.png') %>",
-              "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
-              "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
-    imageClasses: "wide",
-    label: I18n.t( "all" ),
-    classes: "last" }));
+  if (!options.hideFeatured) {
+    ul1.append( $( "<li class='header'>" + I18n.t( "map_marker_size" ) +"</li>") );
+    ul1.append( iNaturalist.legendItem({
+      images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+                "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+                "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
+                "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+      imageClasses: "large",
+      label: I18n.t( "featured" ),
+      classes: "tall" }));
+    ul1.append( iNaturalist.legendItem({
+      images: [ "<%= asset_path('map_legend/legend_lg_mm_research.png') %>",
+                "<%= asset_path('map_legend/legend_lg_mm.png') %>",
+                "<%= asset_path('map_legend/legend_lg_mm_circle_research.png') %>",
+                "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
+      imageClasses: "wide",
+      label: I18n.t( "all" ),
+      classes: "last" }));
+  }
   ulDiv.append( ul1 );
 
   var ul2 = $( "<ul></ul>" ).addClass( "inat-overlay right" );

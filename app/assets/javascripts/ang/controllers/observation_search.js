@@ -718,7 +718,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
           $scope.map.addListener( "center_changed", function( ) { $scope.delayedOnMove( ); });
           $scope.map.addListener( "zoom_changed", function( ) { $scope.delayedOnMove( ); });
         }, 500 );
-        iNaturalist.Legend($('#map-legend-container').get(0), $scope.map);
+        iNaturalist.Legend($('#map-legend-container').get(0), $scope.map, {hideFeatured: true});
       }
     }, 300);
   }
