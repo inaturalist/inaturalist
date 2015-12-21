@@ -1005,7 +1005,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( typeof( navigator.geolocation ) != "undefined" ) {
       var getCurrentPositionSuccess = function( location ) {
         $('#user-location-control button').html(
-          $('<i class="glyphicon glyphicon-record"></i>')
+          $('<i class="icon-locate"></i>')
         );
         var pos = { 
           lat: location.coords.latitude, 
@@ -1019,7 +1019,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       };
       var getCurrentPositionFailure = function( ) {
         $('#user-location-control button').html(
-          $('<i class="glyphicon glyphicon-record"></i>')
+          $('<i class="icon-locate"></i>')
         );
         alert( I18n.t('failed_to_find_your_location') );
       };
