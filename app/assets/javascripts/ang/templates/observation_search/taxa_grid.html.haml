@@ -8,7 +8,11 @@
           {{ t.conservationStatusCode() }}
         %div{"ng-show" => "t.establishmentMeansCode() && !t.conservationStatusCode()", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ t.establishmentMeansCode( ) }}"}
           {{ t.establishmentMeansCode() }}
-        .photometa{"ng-click" => "updateParams({ taxon_id: t.id, view: 'observations' })"}
-          {{ shared.t('x_observations', {count: t.resultCount}) }}
+        .photometa
+          %span{"ng-click" => "updateParams({ taxon_id: t.id, view: 'observations' })"}
+            {{ shared.t('x_observations', {count: t.resultCount}) }}
+          .pull-right
+            .photo-license{ "uib-tooltip" => "{{ t.photoAttribution( ) }}", "tooltip-popup-delay" => 500 }
+              {{ t.photoLicenseShort( ) }}
         .caption
           %inat-taxon.title.split-taxon{taxon: "t", url: "/taxa/{{ t.id }}"}

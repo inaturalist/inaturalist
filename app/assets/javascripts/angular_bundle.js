@@ -7,7 +7,7 @@
 //= require_tree ./ang/templates
 //= require ngInfiniteScroll/build/ng-infinite-scroll.min
 //= require angular-capitalize/angular-capitalize
-//= require angular-bootstrap/ui-bootstrap
+//= require angular-bootstrap/ui-bootstrap-tpls
 //= require moment/moment
 //= require angular-moment/angular-moment
 //= require angular-truncate/src/truncate

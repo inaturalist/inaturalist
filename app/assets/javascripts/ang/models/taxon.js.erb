@@ -45,6 +45,17 @@ iNatModels.Taxon.prototype.photo = function( ) {
   return this.default_photo ? this.default_photo.medium_url : this.default_photo_url;
 };
 
+iNatModels.Taxon.prototype.photoLicenseShort = function( ) {
+  if( !this.default_photo ) return;
+  if( !this.default_photo.license_code || this.default_photo.license_code == 'c' ) return '©';
+  if( this.default_photo.license_code.match(/^cc-/) ) return 'CC';
+  return this.default_photo.license_code.toUpperCase();
+};
+
+iNatModels.Taxon.prototype.photoAttribution = function( ) {
+  return this.default_photo ? (I18n.t('photo') + ': ' + this.default_photo.attribution) : null;
+};
+
 // The rest is just some placeholder stuff until we get these values in the API
 
 iNatModels.Taxon.prototype.conservationStatus = function() {

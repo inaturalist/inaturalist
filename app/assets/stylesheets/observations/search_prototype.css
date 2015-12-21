@@ -661,6 +661,8 @@ inat-taxon { white-space: nowrap; }
   display: block;
 }
 
+#taxa-grid .thumbnail { overflow: visible; }
+#taxa-grid .tooltip { min-width: 200px; }
 #taxa-grid .grid .caption {
   height: 60px;
 }
@@ -701,9 +703,12 @@ inat-taxon { white-space: nowrap; }
   line-height: 30px;
   padding: 0 9px;
 }
-#taxa-grid .photometa:hover {
+#taxa-grid .photometa span:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+#taxa-grid .photometa .pull-right {
+  position: relative;
 }
 
 .plain-table {
