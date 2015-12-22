@@ -19,8 +19,8 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = options.mapType || $(elt).data('map-type');
   options.mapStyle = options.mapStyle || $(elt).data('map-style');
-  options.zoomLevel = parseInt( $(elt).data('zoom-level') );
-  options.minZoom = parseInt( $(elt).data('min-zoom') );
+  options.zoomLevel = options.zoomLevel || parseInt( $(elt).data('zoom-level') );
+  options.minZoom = options.minZoom || parseInt( $(elt).data('min-zoom') );
   options.urlCoords = $(elt).data('url-coords');
   options.disableFullscreen = ((options.disableFullscreen || $(elt).data('disable-fullscreen')) === true);
   options.showRange = $(elt).data('show-range');

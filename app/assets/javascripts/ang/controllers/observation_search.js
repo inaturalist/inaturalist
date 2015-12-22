@@ -700,7 +700,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       showAllLayer: false,
       disableFullscreen: true,
       mapTypeControl: false,
-      infoWindowCallback: $scope.infoWindowCallback
+      infoWindowCallback: $scope.infoWindowCallback,
+      minZoom: 2
     });
     $scope.map = $( "#map" ).data( "taxonMap" );
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels);

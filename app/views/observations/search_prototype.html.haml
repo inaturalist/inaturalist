@@ -16,7 +16,7 @@
         #filters.clear
           %h1= t :observations
           #filter-container.btn-group.pull-right
-            %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t('filters') }}", "tooltip-placement" => "bottom" }
+            %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t('filters') }}" }
               %i.fa.fa-sliders
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
