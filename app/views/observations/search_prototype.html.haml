@@ -60,7 +60,7 @@
   #results
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
       .row
-        .col-xs-6
+        .col-xs-8
           #view-controls
             #subview-controls.btn-group
               %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
@@ -92,8 +92,8 @@
                     {{ shared.t('terrain') | capitalize }}
 
 
-            %button.button.btn-default.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
-              %span.glyphicon.glyphicon-globe.fa{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
+            %button.button.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
+              %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
               {{ shared.t('places_of_interest') }}
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6

@@ -115,11 +115,8 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    place_ancestor_ids = place ? (  [ place.id ] +
-      place.ancestry.to_s.split("/").map(&:to_i) ).flatten.uniq : nil
     {
       place_id: place_id,
-      place_ancestor_ids: place_ancestor_ids,
       source_id: source_id,
       authority: authority,
       status: status ? status.downcase : nil,

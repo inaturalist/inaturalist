@@ -10,7 +10,7 @@ class Observation < ActiveRecord::Base
     :user, :confirmed_reviews, :flags, :quality_metrics,
     { sounds: :user },
     { photos: [ :user, :flags ] },
-    { taxon: [ :taxon_names, :conservation_statuses,
+    { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
     { identifications: [ :user ] },

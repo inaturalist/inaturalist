@@ -3,7 +3,8 @@ var iNatAPI = angular.module( "iNatAPI", [ ]);
 iNatAPI.factory( "shared", [ "$http", "$rootScope",
 function( $http, $rootScope ) {
   var basicGet = function( url ) {
-    return $http.get( url, { cache: false } ).then(
+    // 20 second timeout
+    return $http.get( url, { cache: false, timeout: 20000 } ).then(
       function( response ) {
         return response;
       }, function( errorResponse ) {
@@ -126,6 +127,14 @@ function( $http, $rootScope ) {
     return str.toLowerCase( ).lastIndexOf( pattern.toLowerCase( ), position ) === position;
   };
 
+  var localeParams = function( ) {
+    var localeParams = { locale: I18n.locale };
+    if( PREFERRED_PLACE ) {
+      localeParams.preferred_place_id = PREFERRED_PLACE.id;
+    }
+    return localeParams;
+  };
+
   var pp = function( obj ) {
     console.log( JSON.stringify( obj, null, "  " ) );
   };
@@ -139,6 +148,7 @@ function( $http, $rootScope ) {
     offsetCenter: offsetCenter,
     processPoints: processPoints,
     stringStartsWith: stringStartsWith,
+    localeParams: localeParams,
     pp: pp
   }
 }]);
@@ -188,16 +198,6 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         }
       };
       scope.shared = shared;
-
-      scope.commonName = function() {
-        if (!scope.taxon) { return null; }
-        return scope.taxon.preferredNameInLocale( I18n.locale, true );
-      }
-
-      scope.scientificName = function() {
-        if (!scope.taxon) { return null; }
-        return scope.taxon.name;
-      }
     },
     templateUrl: 'ang/templates/shared/taxon.html'
   }

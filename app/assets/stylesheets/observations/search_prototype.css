@@ -375,7 +375,7 @@ inat-taxon.split-taxon .icon {display: none;}
   margin: 0 3px 0 2px;
 }
 #obs-container .observation { position: relative; }
-#obs-container .observation:hover {
+#obs .observation:hover {
   background-color: #EEF8DE;
 }
 #obs-container .observation .userimage {
@@ -523,14 +523,9 @@ inat-taxon { white-space: nowrap; }
 .btn .glyphicon {
   top: 3px;
 }
-.bootstrap .btn-group .btn-default.places {
-  background: #fff;
-  margin-left: 10px;
-}
-.bootstrap .btn-group.open .btn-default.places {
+#view-controls.open .btn-default.places {
   color: #fff;
   background: #f16f3a;
-  margin-left: 10px;
 }
 
 #place-name-input {margin-left: 0;}
@@ -698,11 +693,12 @@ inat-taxon { white-space: nowrap; }
   right: 0;
   font-weight: 600;
 }
-#taxa-grid .corner {
-  display: none;
-}
 #taxa-grid .corner.establishment-means.IN {
   background-color: DeepPink;
+}
+#taxa-grid .corner.establishment-means.N,
+#taxa-grid .corner.establishment-means.E {
+  background-color: #84A92F;
 }
 #taxa-grid .corner.conservation-status {
   background-color:#817134;
@@ -774,13 +770,16 @@ inat-taxon { white-space: nowrap; }
   width: 360px;
   height: 96px;
   display: inline-block;
-  margin: 1px;
+  margin: 1px -25px 0px 0px;
 }
 .gm-style-iw {
   top: 0 !important;
   left: 0 !important;
   width: 300px !important;
   height: 80px !important;
+  overflow: visible !important;
+}
+.gm-style-iw > div, .gm-style-iw > div > div {
   overflow: visible !important;
 }
 .infowindow.loading {

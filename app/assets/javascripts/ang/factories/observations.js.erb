@@ -5,7 +5,7 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
   };
   var search = function( params ) {
     var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations";
-    params.per_page = 24;
+    params.per_page = 12;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
@@ -14,14 +14,9 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
-  var speciesCount = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_count";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
-  };
   var speciesCounts = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_counts?locale=" + I18n.locale;
-    if( params ) { url += "&" + $.param(params); }
+    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_counts";
+    if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var identifiers = function( params ) {
@@ -46,7 +41,6 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     show: show,
     search: search,
     stats: stats,
-    speciesCount: speciesCount,
     speciesCounts: speciesCounts,
     identifiers: identifiers,
     observers: observers,

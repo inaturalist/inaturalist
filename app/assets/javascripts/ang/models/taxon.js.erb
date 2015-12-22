@@ -9,26 +9,6 @@ iNatModels.Taxon = function( attrs ) {
 
 iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.to_json(only: [:id, :name, :rank]) %>;
 
-iNatModels.Taxon.prototype.preferredNameInLocale = function( locale, defaultToEnglish ) {
-  var nameInLocale;
-  if( locale ) { locale = locale.split( "-" )[0]; }
-  _.each( this.names, function( n ) {
-    if( nameInLocale ) { return; }
-    if( n.locale === locale ) { nameInLocale = n.name; }
-  });
-  if( !nameInLocale && locale != "en" && defaultToEnglish === true ) {
-    return this.preferredNameInLocale( "en" );
-  }
-  return nameInLocale;
-};
-
-iNatModels.Taxon.prototype.subtitle = function( locale, defaultToEnglish ) {
-  var nameInLocale = this.preferredNameInLocale( locale, defaultToEnglish );
-  if( nameInLocale != this.name ) {
-    return this.name;
-  }
-};
-
 iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
   var that = this
   var iconicTaxon = _.detect(iNatModels.Taxon.ICONIC_TAXA, function(t) { 
@@ -56,68 +36,22 @@ iNatModels.Taxon.prototype.photoAttribution = function( ) {
   return this.default_photo ? (I18n.t('photo') + ': ' + this.default_photo.attribution) : null;
 };
 
-// The rest is just some placeholder stuff until we get these values in the API
-
-iNatModels.Taxon.prototype.conservationStatus = function() {
-  var out;
-  switch( this.establishmentMeansCode ) {
-    case 'NT':
-      out = 'near threatened';
-      break;
-    case 'VU':
-      out = 'vulnerable';
-      break;
-    case 'EN':
-      out = 'endangered';
-      break
-    case 'CR':
-      out = 'critically endangered';
-      break;
+iNatModels.Taxon.prototype.establishmentMeansCode = function( ) {
+  if( !_.isUndefined( this.establishment_means_code ) ) {
+    return this.establishment_means_code;
   }
-  return out;
-};
-
-iNatModels.Taxon.prototype.conservationStatusCode = function() {
-  var status;
-  switch( this.name.length % 10) {
-    case 0:
-      status = 'NT'
+  switch( this.preferred_establishment_means ) {
+    case "native":
+      this.establishment_means_code = "N";
       break;
-    case 1:
-      status = 'VU'
+    case "endemic":
+      this.establishment_means_code = "E";
       break;
-    case 2:
-      status = 'EN'
+    case "introduced":
+      this.establishment_means_code = "IN";
       break;
-    case 3:
-      status = 'CR'
-      break;
+    default:
+      this.establishment_means_code = null;
   }
-  return status;
-};
-
-iNatModels.Taxon.prototype.establishmentMeans = function() {
-  var out;
-  switch( this.establishmentMeansCode ) {
-    case 'N':
-      out = 'native';
-      break;
-    case 'I':
-      out = 'introduced';
-      break;
-  }
-  return out;
-};
-
-iNatModels.Taxon.prototype.establishmentMeansCode = function() {
-  var establishmentMeans;
-  switch( this.name.length % 5) {
-    case 0:
-      establishmentMeans = 'N'
-      break;
-    case 1:
-      establishmentMeans = 'IN'
-      break;
-  }
-  return establishmentMeans;
+  return this.establishment_means_code;
 };
