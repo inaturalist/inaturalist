@@ -717,8 +717,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         // more delays before enabling onMoves so setMapLayers
         // can finish aligning the map if it needs to
         setTimeout( function( ) {
-          $scope.map.addListener( "dragstart", function( ) { $scope.delayedOnMove( ); });
-          $scope.map.addListener( "center_changed", function( ) { $scope.delayedOnMove( ); });
+          $scope.map.addListener( "dragend", function( ) { $scope.delayedOnMove( ); });
           $scope.map.addListener( "zoom_changed", function( ) { $scope.delayedOnMove( ); });
         }, 500 );
         iNaturalist.Legend($('#map-legend-container').get(0), $scope.map, {hideFeatured: true});

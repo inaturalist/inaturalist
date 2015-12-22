@@ -511,10 +511,26 @@ inat-taxon { white-space: nowrap; }
   left: 0px;
   background: #f16f3a;
   color: #fff;
+  line-height: 1em;
 }
 .dropdown-menu.places .place {
   cursor: pointer;
+  margin-bottom: 8px;
 }
+.dropdown-menu.places .place .name:hover {
+  text-decoration: underline;
+}
+.dropdown-menu.places .place .name:hover type {
+  text-decoration: none;
+}
+.dropdown-menu.places .place .type {
+  text-transform: uppercase;
+  font-size: 0.85em;
+  margin-left: 5px;
+  color: #333;
+  font-weight: 200;
+}
+
 #view-controls .btn-default.reload {
   color: #fff;
   background: #f16f3a;

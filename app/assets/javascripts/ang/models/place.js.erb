@@ -1,0 +1,18 @@
+var iNatModels = iNatModels || { };
+
+iNatModels.Place = function( attrs ) {
+  var that = this;
+  _.each( attrs, function( value, attr ) {
+    that[ attr ] = value;
+  });
+};
+
+iNatModels.Place.prototype.placeTypeLabel = function( ) {
+  var label = iNatModels.Place.PLACE_TYPES[ this.place_type ];
+  if( label ) {
+    return I18n.t( "place_geo.geo_planet_place_types." +
+      label.replace( " ", "_" ) );
+  }
+};
+
+iNatModels.Place.PLACE_TYPES = <%= Place::PLACE_TYPES.to_json %>;
