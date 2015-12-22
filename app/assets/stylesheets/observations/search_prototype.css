@@ -21,7 +21,6 @@
   z-index: 2;
   margin-top: 15px;
 }
-#view-controls .glyphicon { font-size: 12px; }
 #layer-control li {
   padding: 0 10px;
 }
@@ -222,6 +221,11 @@ inat-taxon.split-taxon .icon {display: none;}
   top: 75px;
   left: 15px;
 }
+.btn [class^="icon-"],
+.btn [class*=" icon-"] {
+  position: relative;
+  top: -1px;
+}
 #map-legend-control {
   position: absolute;
   top: 500px;
@@ -371,11 +375,19 @@ inat-taxon.split-taxon .icon {display: none;}
   margin: 0 3px 0 2px;
 }
 #obs-container .observation { position: relative; }
+#obs-container .observation:hover {
+  background-color: #EEF8DE;
+}
 #obs-container .observation .userimage {
   width: 36px;
   height: 36px;
-  border: 0 transparent;
+  border: 2px solid transparent;
   overflow: hidden;
+  font-size: 26px;
+  line-height: 32px;
+}
+#obs-container .observation .userimage:hover {
+  border-color: #74ac00;
 }
 
 #obs-container .observation .created_at {
@@ -507,6 +519,9 @@ inat-taxon { white-space: nowrap; }
   color: #fff;
   background: #f16f3a;
   margin-left: 10px;
+}
+.btn .glyphicon {
+  top: 3px;
 }
 .bootstrap .btn-group .btn-default.places {
   background: #fff;

@@ -4,7 +4,7 @@
       %div{style: "background-image: url({{ o.photo( ) }})", :class => "media-object photo {{ o.photo( ) ? '' : 'iconic' }}"}
         %i{:class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}"}
   .media-body
-    %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", "style": "{{ shared.backgroundIf(o.user.icon_url) }}", title: "{{ o.user.login }}", "uib-tooltip" => "{{ o.user.login }}", "tooltip-placement" => "left" }
+    %a.userimage.pull-right{ href: "/people/{{ o.user.login }}", "style": "{{ shared.backgroundIf(o.user.icon_url) }}", "uib-tooltip" => "{{ o.user.login }}", "tooltip-placement" => "left" }
       %i.icon-person{"ng-hide" => "o.user.icon_url"}
     %inat-taxon.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
     .dateloc

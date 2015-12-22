@@ -17,13 +17,12 @@
           %h1= t :observations
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t('filters') }}", "tooltip-placement" => "bottom" }
-              %i.fa.fa-filter
-              %i.fa.fa-chevron-down
+              %i.fa.fa-sliders
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name" }
             %input{ type: "hidden", name: "taxon_id" }
-            %span=t :near
+            %span= t(:near, default: "near").capitalize
             %span#place-name-input
               %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
               %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
@@ -63,7 +62,7 @@
       .row
         .col-xs-6
           #view-controls
-            .btn-group
+            #subview-controls.btn-group
               %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
               %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
@@ -94,8 +93,8 @@
 
 
             %button.button.btn-default.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
+              %span.glyphicon.glyphicon-globe.fa{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
               {{ shared.t('places_of_interest') }}
-              %span.glyphicon.glyphicon-globe.fa{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }"  }
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }

@@ -60,7 +60,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $rootScope.mapType = "map";
-  $rootScope.mapLabels = false;
+  $rootScope.mapLabels = true;
   $rootScope.mapTerrain = false;
   $scope.defaultParams = {
     verifiable: true,
@@ -696,7 +696,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.map ) { return; }
     $( "#map" ).taxonMap({
       urlCoords: true,
-      mapType: google.maps.MapTypeId.TERRAIN,
+      mapType: google.maps.MapTypeId.ROADMAP,
       showAllLayer: false,
       disableFullscreen: true,
       mapTypeControl: false,
@@ -705,7 +705,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.map = $( "#map" ).data( "taxonMap" );
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels);
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT, iNaturalist.Map.MapTypes.light);
-    $scope.map.setMapTypeId(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS);
+    $scope.map.setMapTypeId(iNaturalist.Map.MapTypes.LIGHT);
     // waiting a bit after creating the map to initialize the layers
     // to avoid issues with map aligning, letting the browser catch up
     setTimeout( function( ) {
