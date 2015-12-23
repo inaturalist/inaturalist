@@ -1988,6 +1988,16 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def others_identifications
+    if identifications.loaded?
+      identifications.select do |i|
+        i.current? && i.user_id != user_id
+      end
+    else
+      identifications.current.not_by(user_id)
+    end
+  end
+
   def method_missing(method, *args, &block)
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
     if method.to_s =~ /^field:/

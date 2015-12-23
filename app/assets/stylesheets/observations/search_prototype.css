@@ -481,6 +481,9 @@ inat-taxon { white-space: nowrap; }
   padding: 0px 6px;
   font-size: 26.5px;
 }
+#filters .iconic-taxon:focus {
+  outline: none;
+}
 #filters .iconic-taxon.last {margin-right: 0;}
 
 #filters-body {

@@ -9,11 +9,6 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
-  var stats = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/stats";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
-  };
   var speciesCounts = function( params ) {
     var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_counts";
     if( params ) { url += "?" + $.param(params); }
@@ -40,7 +35,6 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
   return {
     show: show,
     search: search,
-    stats: stats,
     speciesCounts: speciesCounts,
     identifiers: identifiers,
     observers: observers,

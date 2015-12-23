@@ -219,6 +219,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
     $scope.params = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    // setting _iconic_taxa for the iconic taxa filters, (e.g { Chromista: true })
+    if( $scope.params.iconic_taxa ) {
+      $scope.params._iconic_taxa = _.object( _.map( $scope.params.iconic_taxa.split(","),
+        function( n ) { return [ n, true ]; }
+      ));
+    }
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
   };
@@ -337,11 +343,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.lastSearchTime = thisSearchTime;
       $scope.totalObservations = response.data.total_results;
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      ObservationsFactory.stats( processedParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.totalObservers = response.data.observer_count;
-        $scope.totalIdentifiers = response.data.identifier_count;
-      });
       ObservationsFactory.speciesCounts( processedParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
@@ -353,7 +354,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       ObservationsFactory.identifiers( processedParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.identifiers = _.map( response.data, function( r ) {
+        $scope.totalIdentifiers = response.data.total_results;
+        $scope.identifiers = _.map( response.data.results, function( r ) {
           var u = new iNatModels.User( r.user );
           u.resultCount = r.count;
           return u;
@@ -361,7 +363,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       ObservationsFactory.observers( processedParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.observers = _.map( response.data, function( r ) {
+        $scope.totalObservers = response.data.total_results;
+        $scope.observers = _.map( response.data.results, function( r ) {
           var u = new iNatModels.User( r.user );
           u.observationCount = r.observation_count;
           u.speciesCount = r.species_count;
@@ -490,6 +493,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         ) {
         $( "#filter-container" ).removeClass( "open" );
       };
+    });
+    // these buttons look better without a focus state
+    $( ".btn.iconic-taxon" ).focus( function( ) {
+      $( this ).blur( );
     });
   };
   $scope.setupDatepicker = function( ) {
@@ -643,6 +650,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
       delete previousProcessedParams.view;
       delete previousProcessedParams.subview;
+      // restoring state of iconic taxa filters, (e.g { Chromista: true })
+      if( previousParams.iconic_taxa ) {
+        previousParams._iconic_taxa = _.object( _.map( previousParams.iconic_taxa.split(","),
+          function( n ) { return [ n, true ]; }
+        ));
+      }
       $scope.searchDisabled = false;
       if( !_.isEqual( $scope.processedParams, previousProcessedParams ) ) {
         $scope.goingBack = true;
