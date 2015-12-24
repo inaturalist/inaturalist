@@ -119,11 +119,9 @@
       .last.column.span-5
         = f.text_field :longitude, :required => true, :class => 'text'
     .clear
-      .column.span-5.append-1
+      .column.span-11
         = f.select :place_type, Place::PLACE_TYPE_CODES.sort.uniq{|k,v| k.downcase}.map{|k,v| [t("place_geo.geo_planet_place_types.#{k.gsub(' ','_')}", :default => k), v]}.sort, |
           :include_blank => t(:unknown), :class => 'select'
-      .last.column.span-5
-        = f.select :admin_level, Place::ADMIN_LEVELS, :include_blank => true, :description => t('views.places.edit.admin_level_desc')
     = f.text_field :woeid, :description => "Yahoo Where On Earth ID"
     = f.text_field :parent_id, :placeholder => t(:type_place_name), "data-chooser-chosen" => @place.parent.to_json, :label => t(:parent).capitalize
     = link_to_toggle_box t(:replace_boundary_with_kml) do
