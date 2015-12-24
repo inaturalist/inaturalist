@@ -152,11 +152,10 @@
       #feeds.pull-right
         %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}"}
           %i.fa.fa-rss
-          {{ shared.t('atom') }}
+          %span {{ shared.t('atom') }}
         %a.btn.btn-link{"ng-href" => "/observations.kml?{{ paramsForUrl( ) }}"}
           %i.fa.fa-globe
-          {{ shared.t('kml') }}
+          %span {{ shared.t('kml') }}
         %a.btn.btn-link{"ng-href" => "/observations/export?{{ paramsForUrl( ) }}"}
           %i.fa.fa-download
-          {{ shared.t('download') }}
-
+          %span {{ shared.t('download') }}

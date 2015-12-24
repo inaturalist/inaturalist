@@ -1,4 +1,4 @@
-#observers-table.container{ "infinite-scroll": "showMoreObservers( )", "infinite-scroll-disabled": "!viewing('observers')", "infinite-scroll-distance": 1 }
+#observers-table.sortable-table.container{ "infinite-scroll": "showMoreObservers( )", "infinite-scroll-disabled": "!viewing('observers')", "infinite-scroll-distance": 1 }
   %table.table.table-striped.plain-table
     %thead
       %tr
@@ -6,10 +6,10 @@
           {{ shared.t( 'rank' )}}
         %th.user
           {{ shared.t( 'user' )}}
-        %th{ "ng-click": "observersSort = 'observationCount';" }
+        %th{ "ng-click": "observersSort = 'observationCount';", :class => "sortable sorting-desc {{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
           %i.fa.fa-binoculars
           {{ shared.t( 'observations' )}}
-        %th{ "ng-click": "observersSort = 'speciesCount';" }
+        %th{ "ng-click": "observersSort = 'speciesCount';", :class => "sortable sorting-desc {{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
           {{ shared.t( 'species' )}}
     %tbody
       %tr{ "ng-repeat": "u in observers | orderBy:observersSort:true | limitTo: numberObserversShown" }
@@ -20,5 +20,7 @@
             %i.icon-person{"ng-hide" => "u.icon_url"}
           %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}" }
             {{ u.login }}
-        %td {{ shared.numberWithCommas( u.observationCount ) }}
-        %td {{ shared.numberWithCommas( u.speciesCount ) }}
+        %td{ :class => "{{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
+          {{ shared.numberWithCommas( u.observationCount ) }}
+        %td{ :class => "{{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
+          {{ shared.numberWithCommas( u.speciesCount ) }}
