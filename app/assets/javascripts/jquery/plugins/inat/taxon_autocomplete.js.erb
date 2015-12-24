@@ -19,8 +19,8 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
     return "<i class='fa fa-search'></i>";
   }
-  if( result.default_photo_url ) {
-    return "<img src='"+result.default_photo_url+"'/>";
+  if( result.default_photo ) {
+    return "<img src='"+ result.default_photo.square_url +"'/>";
   }
   if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] && inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name ) {
     return "<i class='icon icon-iconic-"+inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name.toLowerCase()+"'></i>";
@@ -29,24 +29,10 @@ autocompleter.defaultPhotoForResult = function( result ) {
   }
 };
 
-// return the first (preferred) name in a locale
-autocompleter.preferredNameInLocale = function( result, locale ) {
-  var nameInLocale;
-  if( locale ) { locale = locale.split('-')[0]; }
-  _.each( result.names, function( n ) {
-    if( nameInLocale ) { return; }
-    if( n.locale === locale ) { nameInLocale = n.name; }
-  });
-  return nameInLocale;
-};
-
 // return the best name in the locale, or defaulting to EN
 autocompleter.setTitle = function( result ) {
   if( result.title ) { return; }
-  var name = autocompleter.preferredNameInLocale( result, I18n.locale );
-  if( !name && I18n.locale !== "en" ) {
-    name = autocompleter.preferredNameInLocale( result, "en" );
-  }
+  var name = result.preferred_common_name || result.english_common_name;
   result.title = name || result.name;
 };
 
@@ -171,9 +157,16 @@ $.fn.taxonAutocomplete = function( options ) {
     delay: 50,
     source: function( request, response ) {
       $.ajax({
-        url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete?per_page=10",
+        url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete",
         dataType: "jsonp",
-        data: { q: request.term },
+        cache: true,
+        data: {
+          q: request.term,
+          per_page: 10,
+          locale: I18n.locale,
+          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+        },
+        jsonpCallback: "taxonAutocompleteCallback",
         success: function( data ) {
           var results = data.results || [ ];
           // show as the last item an option to search external name providers
@@ -365,7 +358,7 @@ $.fn.taxonAutocomplete = function( options ) {
   });
   field.bind( "assignTaxon", function( e, t ) {
     options.taxon_id_el.val( t.id );
-    field.val( t.preferredNameInLocale( I18n.locale ) );
+    field.val( t.preferred_common_name || t.name );
     var photo = autocompleter.defaultPhotoForResult(t)
     wrappingDiv.find(".ac-select-thumb").html( photo );
     selectedTaxon = t;
@@ -387,8 +380,8 @@ $.fn.taxonAutocomplete = function( options ) {
   if( options.allow_placeholders !== true ) {
     field.blur( function( ) {
       if( options.resetOnChange === false && selectedTaxon ) {
-        field.val( selectedTaxon.preferredNameInLocale ?
-          selectedTaxon.preferredNameInLocale( I18n.locale ) : selectedTaxon.title );
+        field.val( selectedTaxon.preferred_common_name ||
+          selectedTaxon.preferred_english_name || selectedTaxon.title );
       }
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field

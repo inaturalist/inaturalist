@@ -56,7 +56,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
   $scope.possibleFields = [ "iconic_taxa", "month", "swlat", "swlng",
-    "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview" ];
+    "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
+    "locale", "preferred_place_id" ];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $rootScope.mapType = "map";
@@ -125,6 +126,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     _.each([ "taxa", "identifiers", "observers" ], function( k ) {
       $scope[ k ] = [ ];
     });
+    if(!$scope.$$phase) { $scope.$digest( ); }
   };
   $scope.resetParams = function( ) {
     $scope.params = _.extend( { }, $scope.defaultParams );
@@ -174,8 +176,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.params.taxon_id = parseInt( $scope.params.taxon_id );
     }
     if( $scope.params.taxon_id ) {
-      // load taxon auto name and photo for autocomplete
-      TaxaFactory.show( $scope.params.taxon_id ).then( function( response ) {
+      // load taxon auto name and photo for autocomplete. Send locale
+      // params to we load the right taxon name for the users's prefs
+      TaxaFactory.show( $scope.params.taxon_id, shared.localeParams( ) ).then( function( response ) {
         taxa = TaxaFactory.responseToInstances( response );
         if( taxa.length > 0 ) {
           $scope.selectedTaxon = taxa[ 0 ];
@@ -216,6 +219,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
     $scope.params = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    // setting _iconic_taxa for the iconic taxa filters, (e.g { Chromista: true })
+    if( $scope.params.iconic_taxa ) {
+      $scope.params._iconic_taxa = _.object( _.map( $scope.params.iconic_taxa.split(","),
+        function( n ) { return [ n, true ]; }
+      ));
+    }
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
   };
@@ -318,7 +327,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.updateBrowserLocation( options );
     $scope.resetStats( );
     var processedParams = shared.processParams( _.extend( { },
-      $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
+      $scope.params, { page: $scope.pagination.page }, shared.localeParams( ) ),
+      $scope.possibleFields);
     // recording there was some location in the search. That will be used
     // to hide the `Redo Search` button until the map moves
     if( processedParams.place_id || processedParams.swlat ) {
@@ -333,18 +343,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.lastSearchTime = thisSearchTime;
       $scope.totalObservations = response.data.total_results;
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      ObservationsFactory.stats( processedParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.totalObservers = response.data.observer_count;
-        $scope.totalIdentifiers = response.data.identifier_count;
-      });
-      ObservationsFactory.speciesCount( processedParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.totalSpecies = response.data.leaf_count;
-      });
       ObservationsFactory.speciesCounts( processedParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.taxa = _.map( response.data, function( r ) {
+        $scope.totalSpecies = response.data.total_results;
+        $scope.taxa = _.map( response.data.results, function( r ) {
           var t = new iNatModels.Taxon( r.taxon );
           t.resultCount = r.count;
           return t;
@@ -352,7 +354,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       ObservationsFactory.identifiers( processedParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.identifiers = _.map( response.data, function( r ) {
+        $scope.totalIdentifiers = response.data.total_results;
+        $scope.identifiers = _.map( response.data.results, function( r ) {
           var u = new iNatModels.User( r.user );
           u.resultCount = r.count;
           return u;
@@ -360,7 +363,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       ObservationsFactory.observers( processedParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.observers = _.map( response.data, function( r ) {
+        $scope.totalObservers = response.data.total_results;
+        $scope.observers = _.map( response.data.results, function( r ) {
           var u = new iNatModels.User( r.user );
           u.observationCount = r.observation_count;
           u.speciesCount = r.species_count;
@@ -490,6 +494,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $( "#filter-container" ).removeClass( "open" );
       };
     });
+    // these buttons look better without a focus state
+    $( ".btn.iconic-taxon" ).focus( function( ) {
+      $( this ).blur( );
+    });
   };
   $scope.setupDatepicker = function( ) {
     $('.date-picker').datepicker({
@@ -550,6 +558,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.setSearchedPlace = function( place ) {
     if( !place || !place.geometry ) { return; }
+    $scope.resetStats( );
     $scope.searchedPlace = place;
     $scope.focusOnSearchedPlace( );
     if( !$scope.viewing( "observations", "map" ) ) {
@@ -641,6 +650,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
       delete previousProcessedParams.view;
       delete previousProcessedParams.subview;
+      // restoring state of iconic taxa filters, (e.g { Chromista: true })
+      if( previousParams.iconic_taxa ) {
+        previousParams._iconic_taxa = _.object( _.map( previousParams.iconic_taxa.split(","),
+          function( n ) { return [ n, true ]; }
+        ));
+      }
       $scope.searchDisabled = false;
       if( !_.isEqual( $scope.processedParams, previousProcessedParams ) ) {
         $scope.goingBack = true;
@@ -715,8 +730,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         // more delays before enabling onMoves so setMapLayers
         // can finish aligning the map if it needs to
         setTimeout( function( ) {
-          $scope.map.addListener( "dragstart", function( ) { $scope.delayedOnMove( ); });
-          $scope.map.addListener( "center_changed", function( ) { $scope.delayedOnMove( ); });
+          $scope.map.addListener( "dragend", function( ) { $scope.delayedOnMove( ); });
           $scope.map.addListener( "zoom_changed", function( ) { $scope.delayedOnMove( ); });
         }, 500 );
         iNaturalist.Legend($('#map-legend-container').get(0), $scope.map, {hideFeatured: true});
@@ -881,7 +895,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     // half second after searches to prevent that
     if( $scope.$parent.lastSearchTime && time - $scope.$parent.lastSearchTime < 500 ) {
       return;
-    } else { $scope.$parent.lastSearchTime = null; }
+    }
     if( $scope.$parent.hideRedoSearch ) {
       $scope.$parent.hideRedoSearch = false;
       if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }

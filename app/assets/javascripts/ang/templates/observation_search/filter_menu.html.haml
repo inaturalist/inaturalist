@@ -129,11 +129,11 @@
                   %span.input-group-addon.icon-person
                   %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('name_or_username') }}"}
               .form-group
-                %label{for: 'params-projects'}
+                %label{for: 'params-project-id'}
                   {{ shared.t('project') }}
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
-                  %input#params-projects.form-control{"ng-model" => "params.projects", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('project_name') }}"}
+                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('project_name') }}"}
             .col-xs-4
               .form-group
                 %label

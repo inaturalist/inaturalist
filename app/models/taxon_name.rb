@@ -139,7 +139,8 @@ class TaxonName < ActiveRecord::Base
     json = {
       name: name.slice(0,1).capitalize + name.slice(1..-1),
       locale: locale_for_lexicon,
-      position: position
+      position: position,
+      place_taxon_names: place_taxon_names.map(&:as_indexed_json)
     }
     if options[:autocomplete]
       json[:is_valid] = is_valid
@@ -149,7 +150,6 @@ class TaxonName < ActiveRecord::Base
         json[:name_autocomplete_ja] = name
       end
       json[:exact] = name
-      json[:place_taxon_names] = place_taxon_names.map(&:as_indexed_json)
     end
     json
   end

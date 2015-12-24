@@ -60,7 +60,7 @@
   #results
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
       .row
-        .col-xs-6
+        .col-xs-8
           #view-controls
             #subview-controls.btn-group
               %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
@@ -90,24 +90,30 @@
                   %label
                     %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
                     {{ shared.t('terrain') | capitalize }}
-            %button.button.btn-default.dropdown-toggle{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
-              %span.glyphicon.glyphicon-globe.fa{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
+
+
+            %button.button.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
+              %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
               {{ shared.t('places_of_interest') }}
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }
                   {{ shared.t('standard') }}
                 .place{ "ng-repeat": "p in nearbyPlaces.standard" }
-                  %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                  %span.name{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }<
                     = "{{ p.name }}"
+                  %span.type
+                    = "{{ p.placeTypeLabel( ) }}"
                 %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
                   {{ shared.t("no_places_available") }}
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
                   {{ shared.t('community_curated') }}
                 .place{ "ng-repeat": "p in nearbyPlaces.community" }
-                  %span{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                  %span.name{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }<
                     = "{{ p.name }}"
+                  %span.type
+                    = "{{ p.placeTypeLabel( ) }}"
                 %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
                   {{ shared.t("no_places_available") }}
             %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !hideRedoSearch" }

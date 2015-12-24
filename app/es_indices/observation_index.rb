@@ -10,7 +10,7 @@ class Observation < ActiveRecord::Base
     :user, :confirmed_reviews, :flags, :quality_metrics,
     { sounds: :user },
     { photos: [ :user, :flags ] },
-    { taxon: [ :taxon_names, :conservation_statuses,
+    { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
     { identifications: [ :user ] },
@@ -36,6 +36,8 @@ class Observation < ActiveRecord::Base
       indexes :ofvs, type: :nested do
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
+      end
+      indexes :others_ids, type: :nested do
       end
       indexes :comments do
         indexes :body, analyzer: "ascii_snowball_analyzer"
@@ -110,8 +112,8 @@ class Observation < ActiveRecord::Base
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
-      identifications: identifications.map(&:as_indexed_json),
-      identifications_count: identifications.size,
+      others_ids: others_identifications.map(&:as_indexed_json),
+      identifications_count: num_identifications_by_others,
       comments: comments.map(&:as_indexed_json),
       comments_count: comments.size,
       location: (latitude && longitude) ?

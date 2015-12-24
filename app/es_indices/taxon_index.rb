@@ -57,6 +57,7 @@ class Taxon < ActiveRecord::Base
       is_active: is_active,
       statuses: conservation_statuses.map(&:as_indexed_json)
     }
+    json[:ancestry] = json[:ancestor_ids].join(",")
     unless options[:for_observation]
       json.merge!({
         created_at: created_at,
