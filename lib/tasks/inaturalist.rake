@@ -148,7 +148,7 @@ namespace :inaturalist do
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.each do |locale, translastions|
+      all_translations.sort.each do |locale, translastions|
         file.puts "I18n.translations[\"#{ locale }\"] = #{ translastions.to_json };"
       end
     end
