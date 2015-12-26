@@ -686,7 +686,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete urlParams.view;
     delete urlParams.subview;
     return $.param( $scope.params );
-  }
+  };
+  $scope.showInfowindow = function( o ) {
+    $rootScope.$emit( "showInfowindow", o );
+  };
+  $scope.hideInfowindow = function( ) {
+    $rootScope.$emit( "hideInfowindow" );
+  };
   $scope.preInitialize( );
 }]);
 
@@ -781,9 +787,10 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       }
       var timeSinceSearch = new Date( ).getTime( ) - $scope.placeLastSearched;
       // allow 3 seconds for searches to finish
-      if( $scope.$parent.autoPlaceSelect && timeSinceSearch >= 3000 ) {
-        $scope.$parent.autoPlaceSelect = false;
+      if( $scope.$parent.autoPlaceSelect && timeSinceSearch < 3000 ) {
+        $scope.$parent.autoPlaceSelectOnce = true;
       }
+      $scope.$parent.autoPlaceSelect = false;
       PlacesFactory.nearby( nearbyParams ).then( $scope.nearbyPlaceCallback );
     });
   };
@@ -799,23 +806,22 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
           return new iNatModels.Place( r );
         })
       };
-      var timeSinceSearch = new Date( ).getTime( ) - $scope.placeLastSearched;
       // check the nearby places for a match to searches in the last second
-      if( $scope.$parent.autoPlaceSelect ) {
+      if( $scope.$parent.autoPlaceSelectOnce ) {
         var autoSelection = $scope.matchNearbyPlace( nearbyPlaces.standard );
         autoSelection = autoSelection || $scope.matchNearbyPlace( nearbyPlaces.community );
         if( autoSelection ) {
           $scope.$parent.filterByPlace( autoSelection );
-          $scope.$parent.autoPlaceSelect = false;
+          $scope.$parent.autoPlaceSelectOnce = false;
         }
       }
     }
     $scope.$parent.nearbyPlaces = nearbyPlaces;
     // no good matches from nearby places, so filter by the searched bounds
-    if( $scope.$parent.autoPlaceSelect ) {
+    if( $scope.$parent.autoPlaceSelectOnce ) {
       $scope.updateParamsForCurrentBounds( );
     }
-    $scope.$parent.autoPlaceSelect = false;
+    $scope.$parent.autoPlaceSelectOnce = false;
     $scope.$parent.searchingNearbyPlaces = false;
     $scope.lastMoveTime = null;
   };
@@ -929,6 +935,25 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     }
     $rootScope.$emit( "searchForNearbyPlaces" );
   };
+  $rootScope.$on( "showInfowindow", function( event, o ) {
+    if( $scope.snippetInfoWindowObservation &&
+      $scope.snippetInfoWindowObservation.id == o.id ) { return; }
+    if( $scope.snippetInfoWindow ) {
+      $scope.snippetInfoWindow.close( );
+    }
+    $scope.snippetInfoWindowObservation = o;
+    $scope.snippetInfoWindow = $scope.snippetInfoWindow ||
+      $scope.map.getInfoWindow({ disableAutoPan: true });
+    var ll = o.location.split(",");
+    var latLng = new google.maps.LatLng( ll[0], ll[1] );
+    $scope.infoWindowCallback( $scope.map, iw, latLng, o.id );
+  });
+  $rootScope.$on( "hideInfowindow", function( event, o ) {
+    if( $scope.snippetInfoWindow ) {
+      $scope.snippetInfoWindow.close( );
+    }
+    $scope.snippetInfoWindowObservation = null;
+  });
   // callback method when an observation is clicked on the map
   // fetch the observation details, and render the snippet template
   $scope.infoWindowCallback = function( map, iw, latLng, observation_id, options ) {

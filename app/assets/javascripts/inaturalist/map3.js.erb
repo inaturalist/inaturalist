@@ -1088,17 +1088,23 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   }
 };
 
-google.maps.Map.prototype.getInfoWindow = function( ) {
-  if( !this.infoWindow ) {
-    this.infoWindow = new google.maps.InfoWindow({
-       position: new google.maps.LatLng(0,0)
-    });
-  }
+google.maps.Map.prototype.getInfoWindow = function( options ) {
+  iw = new google.maps.InfoWindow( _.extend( { }, options, {
+    position: new google.maps.LatLng( 0, 0 )
+  }));
   // resetting any offset applied to infoWindows
   // The -1 moves it a little left, seems like a better alignment
-  this.infoWindow.setOptions({ pixelOffset: new google.maps.Size(-1, 0) });
-  return this.infoWindow
-}
+  iw.setOptions({ pixelOffset: new google.maps.Size(-1, 0) });
+  return iw;
+};
+
+google.maps.Map.prototype.createInfoWindow = function( options ) {
+  if( !this.infoWindow ) {
+    this.infoWindow = this.getInfoWindow( options );
+  }
+  return this.infoWindow;
+};
+
 
 google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
   var options = options || {},
@@ -1141,6 +1147,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
   var interactionOn = false;
   var waxInteraction = wax.g.interaction( );
   var oldFeature = waxInteraction.screen_feature;
+  map.createInfoWindow( );
   waxInteraction.screen_feature = function( pos, callback ) {
     // making sure the colored heatmap doesn't have offset interactions
     if( options.maxzoom && map.getZoom( ) <= options.maxzoom ) {
@@ -1189,7 +1196,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
           $( "#map-legend" ).hide( );
           if( o.data['latitude'] ) {
             var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
-            var iw = map.getInfoWindow( );
+            var iw = map.createInfoWindow( );
             var iwOpts = { };
             if( options.minzoom && o.data.geoprivacy != "obscured" && !o.data.private_location ) {
               // if we're showing points and the marker isn't obscured then leave
