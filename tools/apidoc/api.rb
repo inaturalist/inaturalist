@@ -1625,15 +1625,15 @@ EOT
     desc "Get info about new updates for the authenticated user, e.g. comments and identifications on their content."
     formats %w(json)
     param "resource_type" do
-      desc "Fitler by the type of resource that received the update, e.g. only show updates on your observations."
+      desc "Filter by the type of resource that received the update, e.g. only show updates on your observations."
       values %w(ListedTaxon Observation Post)
     end
     param "notifier_type" do
-      desc "Fitler by the type of resource that created the update, e.g. only show comments."
+      desc "Filter by the type of resource that created the update, e.g. only show comments."
       values %w(Comment Identification)
     end
     param "notifier_types[]" do
-      desc "Fitler by multiple notifier types."
+      desc "Filter by multiple notifier types."
       values %w(Comment Identification)
     end
     param "skip_view" do
