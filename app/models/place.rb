@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
-  before_save :calculate_bbox_area, :set_display_name, :set_admin_level
+  before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
@@ -290,15 +290,6 @@ class Place < ActiveRecord::Base
     true
   end
 
-  # There's only so much we can do here, since various place types have
-  # different admin levels based on the country, e.g. Irish counties are
-  # equivalent to US states
-  def set_admin_level
-    self.admin_level ||= COUNTRY_LEVEL if place_type == COUNTRY
-    self.admin_level ||= STATE_LEVEL if place_type == STATE
-    true
-  end
-  
   def wikipedia_name
     if [TOWN_LEVEL, COUNTY_LEVEL].include?(admin_level)
       display_name.gsub(', US', '')
