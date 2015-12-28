@@ -702,8 +702,7 @@ class ObservationsController < ApplicationController
               :viewer => current_user,
               :methods => [:user_login, :iconic_taxon_name],
               :include => {
-                :taxon => Taxon.default_json_options,
-                :observation_field_values => {}
+                :taxon => Taxon.default_json_options
               }
             )
           else
@@ -2812,6 +2811,8 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
     @total = scope.select("DISTINCT observations.user_id").count
   end
 
@@ -2820,8 +2821,8 @@ class ObservationsController < ApplicationController
     user_obs = Observation.elastic_user_observation_counts(elastic_params, limit)
     @user_counts = user_obs[:counts]
     @total = user_obs[:total]
-    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params, limit: limit,
-      count_users: @total)
+    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params,
+      limit: limit, count_users: @total)
 
     # # the list of top users is probably different for obs and taxa, so grab the leftovers from each
     obs_user_ids = @user_counts.map{|r| r['user_id']}.sort

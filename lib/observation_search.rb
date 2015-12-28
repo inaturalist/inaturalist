@@ -605,7 +605,7 @@ module ObservationSearch
             field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc } },
           aggs: {
             distinct_taxa: {
-              cardinality: { field: "taxon.id", precision_threshold: 10000 }}}}})).response.aggregations
+              cardinality: { field: "taxon.id", precision_threshold: 100 }}}}})).response.aggregations
       species_counts.user_taxa.buckets.
         map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
     end
