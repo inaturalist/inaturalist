@@ -63,6 +63,7 @@ class Identification < ActiveRecord::Base
     joins(:observation).where("observation.user_id = ?", user)
   }
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
+  scope :not_by, lambda {|user| where("identifications.user_id != ?", user)}
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
@@ -86,7 +87,9 @@ class Identification < ActiveRecord::Base
     {
       id: id,
       user: user.as_indexed_json,
-      current: current
+      created_at: created_at,
+      created_at_details: ElasticModel.date_details(created_at),
+      body: body
     }
   end
 

@@ -138,7 +138,9 @@ class TaxonName < ActiveRecord::Base
   def as_indexed_json(options={})
     json = {
       name: name.slice(0,1).capitalize + name.slice(1..-1),
-      locale: locale_for_lexicon
+      locale: locale_for_lexicon,
+      position: position,
+      place_taxon_names: place_taxon_names.map(&:as_indexed_json)
     }
     if options[:autocomplete]
       json[:is_valid] = is_valid

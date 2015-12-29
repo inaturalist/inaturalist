@@ -5,8 +5,11 @@ class Taxon < ActiveRecord::Base
   # used to cache place_ids when bulk indexing
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:colors, :taxon_names, :taxon_descriptions,
-    { taxon_photos: :photo }) }
+  scope :load_for_index, -> { includes(:colors, :taxon_descriptions,
+    { conservation_statuses: :place },
+    { taxon_names: :place_taxon_names },
+    { taxon_photos: { photo: :user } },
+    { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :names do
@@ -51,22 +54,22 @@ class Taxon < ActiveRecord::Base
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
-      is_active: is_active
+      is_active: is_active,
+      statuses: conservation_statuses.map(&:as_indexed_json)
     }
-    if options[:for_observation]
-      unless conservation_statuses.empty?
-        json[:statuses] = conservation_statuses.map(&:as_indexed_json)
-      end
-    else
+    json[:ancestry] = json[:ancestor_ids].join(",")
+    unless options[:for_observation]
       json.merge!({
         created_at: created_at,
-        default_photo_url: default_photo ? default_photo.best_url(:square) : nil,
+        default_photo: default_photo ?
+          default_photo.as_indexed_json(sizes: [ :square, :medium ]) : nil,
         colors: colors.map(&:as_indexed_json),
         ancestry: ancestry,
         observations_count: observations_count,
         # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import
-        place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq
+        place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
+        listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json)
       })
     end
     json
