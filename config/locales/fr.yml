@@ -138,6 +138,7 @@ fr:
   actions: Actions
   activate_user: Activer l'utilisateur
   active: actif
+  activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: Adaptation du travail de %{original} par
     %{name}
   add: Ajouter
@@ -886,6 +887,7 @@ fr:
     attribution_sharealike_license: Licence d’attribution – Partage des conditions
     attribution_noderivs_license: Licence d’attribution – Pas de modifications
     gnu_free_documentation_license: Licence Documentation libre GNU
+  copyright_holder: Détenteur des droits
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
   couldnt_change_your_password: 'Impossible de modifier votre mot de passe : %{e}'
@@ -1396,8 +1398,8 @@ fr:
   guide_was_successfully_published: Le guide a bien été publié.
   guide_was_successfully_updated: Le guide a bien été mis à jour.
   guidelines: Lignes directrices
-  has_been: a été
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
+  has_been: a été
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
   hate_me_facebook: Supprimer le lien entre Facebook et vos comptes %{site_name}
   hate_me_flickr: Supprimer le lien entre vos comptes Flickr et %{site_name}
@@ -1648,6 +1650,7 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     bengali: Bengali
+    catalan: Catalan
     cebuano: Cebuano
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
@@ -1895,6 +1898,14 @@ fr:
   medium: moyen
   member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
   members: Membres
+  mentioned_you_in_noun_html: '%{user} vous a mentionné dans %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} vous a mentionné dans %{noun} par %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} vous a mentionné dans un %{x} sur %{noun}'
+  mentioned_you_in_an_x_on_noun_html: '%{user} vous a mentionné dans un %{x} sur %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} vous a mentionné dans un %{x} sur
+    %{noun} par %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} vous a mentionné dans un %{x} sur
+    %{noun} par %{by}'
   mentions: Mentions
   merge: Fusionner
   merge_it_with_another_place: Fusionner avec un autre lieu
@@ -2132,6 +2143,7 @@ fr:
   note: Note
   note_you_can_modify_the_height_attribute: 'Remarque : Vous pouvez modifier l’attribut
     ''height'' pour l’adapter à l’espace disponible sur votre page web.'
+  notify_me_of_mentions: M’informer des mentions (par ex. @username)
   number_of_observations: Nombre d’observations
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
@@ -2769,6 +2781,7 @@ fr:
   reorder_by_taxonomy: Réorganiser l’ordre par taxonomie
   repair_doesnt_work_for_that_kind_of_photo: La réparation ne fonctionne pas pour
     ce type de photo
+  repair_external_photos: Réparer les photos externes
   replace_boundary_with_kml: Remplacer la frontière par format KML
   replace_parentesis: (remplacez)
   replacing: remplacement en cours
@@ -2815,6 +2828,8 @@ fr:
     must_be_on_list: doit être dans la liste
     must_be_observed_in_place: doit être observé fans le lieu
     must_be_in: doit être dans le taxon
+    must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser
+      les superviseurs du projet à voir les coordonnées.
   said: a dit
   sat: Sam
   satellite: satellite
@@ -3104,6 +3119,7 @@ fr:
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
   subject_committed_thing_affecting_stuff_html: '%{subject} a validé %{thing} concernant
     %{stuff}'
+  submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit: Soumettre
   submit_comment: Soumettre un commentaire
   submitted: Soumis
@@ -4104,7 +4120,7 @@ fr:
         contenu du guide sans connexion Internet. La génération de
         l’archive prendra quelques minutes, mais une fois activée,
         elle sera mise à jour quand vous modifierez ce guide.</p>
-        <p class="alert error status">
+        <p class="alert status">
           Veuillez <strong>ne pas activer les téléchargements mobiles hors ligne si vous ne
           prévoyez pas les utiliser.</strong> Ils encombrent votre système.
         </p>
@@ -4519,6 +4535,11 @@ fr:
           </p>
         cumulative_count_desc: Nombre d’identifications pour un taxon distinct et
           tous ses descendants
+        curator_coordinate_access_disabled_desc_html: |-
+          Ce projet n’autorise pas d’observations avec des coordonnées
+          non visibles par les superviseurs. Si vous ne voulez pas partager les
+          coordonnées de cette observation avec les superviseurs de ce projet,
+          vous devez supprimer l’observation du projet.
         disagreement_count_desc: Nombre de taxons identifiés qui ne font pas partie
           des ancêtres d’un taxon
         identification_count_desc: Nombre d’identifications pour un taxon distinct
@@ -4670,6 +4691,11 @@ fr:
         keep_observations_label: Laisser vos observations dans ce projet
         keep_observations_desc: Vos observations resteront dans le projet et les superviseurs
           pourront voir leurs coordonnées privées.
+        project_requires_curator_coordinate_access_desc: |-
+          Ce projet n’autorise pas d’observations avec des coordonnées
+          non visibles par les superviseurs. Si vous ne voulez pas partager les
+          coordonnées de cette observation avec les superviseurs de ce projet,
+          vous devez supprimer l’observation du projet.
         remove_observations_label: Supprimer toutes vos observations de ce projet
         remove_observations_desc_html: |-
           Gardez à l’esprit que les superviseurs du projet pourront toujours ajouter vos
@@ -4745,6 +4771,9 @@ fr:
           observed_in_place: être observé dans le lieu
           on_list: être d’un taxon de la liste du projet
         start_time_desc: 'Date de début de votre bioblitz. Format: AAAA-MM-JJThh:mm:ss±hh:mm'
+        submission_models:
+          any: n’importe qui
+          curators: superviseurs du projet
         trusted_project_means: |-
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
@@ -4795,8 +4824,11 @@ fr:
           sauf si vous faites confiance aux superviseurs du projet.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Vous
-        any: Responsables du projet
+        observer: Vous (<span class="notice status">meilleure observation pour contrôler
+          le partage des emplacements privés</span>)
+        any: |-
+          Membres du projet (<span class="success status">meilleur choix pour partager vos observations avec ce projet</span>)
+          Responsables du projet
         none: Personne
       curator_coordinate_access_label: Permettre au responsable du projet de voir
         les coordonnées privées de vos observations lorsqu'elles sont ajoutées par
@@ -4804,10 +4836,11 @@ fr:
         Vous pouvez configurer individuellement les avis de chaque observations.
         Cette option sera appliquée automatiquement sur toutes les autres.
       project_user_curator_coordinate_access_descriptions:
-        observer: Permettre aux responsables du projet de voir uniquement les coordonnées
-          privées des observations que vous ajoutez au projet
+        observer: Seuls les responsables du projet de voir uniquement les coordonnées
+          privées de vos observations ajoutées à ce projet.
         any: Permettre aux responsables du projet de voir les coordonnées privées
-          de vos observations si vous ou un responsable du projet les avez ajoutées
+          de vos observations ajoutées à ce projet par vous ou d’autres membres du
+          projet.
         none: Ne pas partager les coordonnées privées de vos observations avec les
           responsables du projet
       project_terms_desc_html: |-
@@ -4972,6 +5005,42 @@ fr:
         observations_to_date: Observations à ce jour
         species_observed: Espèces Observées
         people_signed_up: Personnes se Sont Inscrites
+        how_it_works: Comment cela marche
+        record_your_observations: Enregistrer vos observations
+        share_with_fellow_naturalists: Partager avec vos confrères naturalistes
+        discuss_your_findings: Discuter de vos découvertes
+        contribute_to_science: Contribuer à la Science
+        science_desc_html: |-
+          Chaque observation peut contribuer à la science de la biodiversité, du
+          papillon le plus rare à la mauvaise herbe de l’arrière-cour la plus courante. Nous partageons vos
+          découvertes avec les dépôts de données scientifique comme l’<a href='http://gbif.org' target='_blank'>Établissement pour l’Information sur la Biodiversité Globale</a>
+          pour aider les scientifiques à trouver et utiliser vos données. Tout ce que vous avez à faire est
+          d’observer.
+        nature_at_your_fingertips: La nature au bout de vos doigts
+        keep_track: Garder la trace
+        record_your_encounters: Enregistrer vos rencontres avec d’autres organismes
+          et maintenez des listes de vie, tout cela dans le cloud.
+        create_useful_data: Créer des données utiles
+        help_scientists: Aider les scientifiques et les gestionnaires de ressource
+          à comprendre quand et où apparaissent les organismes.
+        crowdsource_identifications: Identifications participatives
+        connect_with_experts: Se mettre en relation avec des experts qui peuvent identifier
+          les organismes que vous observez.
+        become_a_citizen_scientist: Devenir un scientifique citoyen
+        find_a_project: Trouver un projet avec une mission qui vous intéresse, et
+          démarrez le vôtre.
+        learn_about_nature: En apprendre sur la nature
+        build_your_knowledge: Accroître votre connaissance en parlant avec d’autres
+          naturalistes et aider les autres.
+        run_a_bioblitz: Lancer un Bioblitz
+        hold_an_event: Organiser un événement où les gens essayeront de trouver autant
+          d’espèces que possible.
+        works_on_all_your_devices: Travailler sur tous vos appareils
+        install_our_mobile_apps: Installer notre application mobile afin de pouvoir
+          toujours observer, même sans réception cellulaire ou wifi.
+        who_uses_site_name: Qui utilise %{site_name} ?
+        what_are_you_waiting_for: Qu’attendez-vous ?
+        join_today: S’inscrire aujourd’hui
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Enregistrez et modifiez pour ajouter des
@@ -5230,6 +5299,10 @@ fr:
                 assez lamentable de régler le problème. Vous pouvez toujours
                 enregistrer un brouillon, et si vous utilisez toujours le site
                 dans un jour, vous pourrez publier.
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: doit être un responsable de ce projet
     attributes:
       assessment:
         description: Description
@@ -5263,6 +5336,8 @@ fr:
         tracking_codes: Codes de suivi
         source_url: URL source
         start_time: Heure de début
+      project_observation:
+        user_id: Auteur
       place:
         code: Code
         display_name: Nom public
