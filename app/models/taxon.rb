@@ -32,6 +32,9 @@ class Taxon < ActiveRecord::Base
   has_many :listed_taxa_with_establishment_means,
     -> { where("establishment_means IS NOT NULL") },
     class_name: "ListedTaxon"
+  has_many :listed_taxa_with_means_or_statuses,
+    -> { where("establishment_means IS NOT NULL OR occurrence_status_level IS NOT NULL") },
+    class_name: "ListedTaxon"
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :taxon_schemes, :through => :taxon_scheme_taxa
   has_many :lists, :through => :listed_taxa

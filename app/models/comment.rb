@@ -32,7 +32,17 @@ class Comment < ActiveRecord::Base
   def to_plain_s(options = {})
     "Comment #{id}"
   end
-  
+
+  def as_indexed_json
+    {
+      id: id,
+      user: user.as_indexed_json,
+      created_at: created_at,
+      created_at_details: ElasticModel.date_details(created_at),
+      body: body
+    }
+  end
+
   def formatted_body
     BlueCloth::new(self.body).to_html
   end

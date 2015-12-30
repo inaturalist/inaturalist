@@ -573,6 +573,7 @@ module ObservationSearch
     def elastic_user_taxon_counts(elastic_params, options = {})
       options[:limit] ||= 500
       aggregation_user_limit = 10000
+      elastic_params[:filters] ||= [ ]
       elastic_params[:filters] << { range: {
         "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
       # We've started running into memory problems with ES not being able to
