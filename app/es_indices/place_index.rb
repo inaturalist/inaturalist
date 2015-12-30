@@ -37,7 +37,7 @@ class Place < ActiveRecord::Base
       ancestor_place_ids: ancestor_place_ids,
       user: user ? user.as_indexed_json : nil,
       geometry_geojson: (place_geometry && !index_without_geometry) ?
-        ElasticModel.geom_geojson(place_geometry.geom) : nil,
+        ElasticModel.geom_geojson(place_geometry.simplified_geom) : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
       point_geojson: ElasticModel.point_geojson(latitude, longitude)
     }

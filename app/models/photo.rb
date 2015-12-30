@@ -367,7 +367,7 @@ class Photo < ActiveRecord::Base
     }
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
-      json["#{ size }_url"] = best_url(:size)
+      json["#{ size }_url"] = best_url(size)
     end
     json
   end

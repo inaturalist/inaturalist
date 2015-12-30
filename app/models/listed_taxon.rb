@@ -894,7 +894,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json
     {
       place_id: place_id,
       user_id: user_id,

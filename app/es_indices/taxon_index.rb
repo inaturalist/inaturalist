@@ -61,8 +61,8 @@ class Taxon < ActiveRecord::Base
     unless options[:for_observation]
       json.merge!({
         created_at: created_at,
-        default_photo_url: default_photo ? default_photo.best_url(:square) : nil,
-        default_photo: default_photo ? default_photo.as_indexed_json(sizes: [ :square, :medium ]) : nil,
+        default_photo: default_photo ?
+          default_photo.as_indexed_json(sizes: [ :square, :medium ]) : nil,
         colors: colors.map(&:as_indexed_json),
         ancestry: ancestry,
         observations_count: observations_count,
