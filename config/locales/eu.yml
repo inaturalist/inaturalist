@@ -492,6 +492,7 @@ eu:
   card: Txartela
   casual: ustekabekoa
   catalogue_of_life: Bizitzako katalogoa
+  categories: kategoriak
   cc_attribution_license: Creative Commons-eko esleipen-lizentzia
   cc_by_description: Lizentzia honek beste pertsona batzuei beren lanetik abiatuta
     banatzea, konbinatzea, doitzea eta eraikitzea ahalbidetzen die, baita merkataritzako
@@ -812,6 +813,7 @@ eu:
     dayNamesShort: '[''ig'',''al'',''ar'',''az'',''og'',''ol'',''lr'']'
     dayNamesMin: '[''Ig'',''Al'',''Ar'',''Az'',''Og'',''Ol'',''Lr'']'
   date_time: Data/Ordua
+  dates: datak
   datetime_: Data/Ordua
   day: Eguna
   default: Lehenetsia
@@ -843,6 +845,7 @@ eu:
   describe_your_interest_in_nature: Deskribatu naturari buruz duzun interesa!
   description: Deskribapena
   description_from: 'Honen deskribapena:'
+  description_slash_tags: Deskribapena / Etiketak
   description_tags_more: Deskribapena, Etiketak, & Gehiago
   desription: Deskribapena
   destroy: Desegin
@@ -961,6 +964,7 @@ eu:
   everyone_journal_posts: Artikuluak egunkari guztietan
   exact_coordinates_obscured_for: Koordenatu zehatzak ezkutatuta mehatxatutako espezieen
     bistaratze publikorako.
+  exact_date: Data zehatza
   exact_location: Kokapen zehatza
   exact_rank: Tarte zehatza
   existing_flags: Existitzen diren markak.
@@ -1028,6 +1032,7 @@ eu:
     zure %{provider} kontua  %{site_name}webgunera:'
   first_inat_observation: Lehen oharra %{site_name}
   first_observer: Lehen behatzailea
+  first_report: lehenengo txostena
   flag: Ekarri
   flag_an_item: Eduki bat markatu
   flag_description: Edukia markatu administrariei zerbait ez dagoela ondo jakinarazteko.
@@ -1555,9 +1560,11 @@ eu:
   mollusks: moluskuak
   mon: Ast
   month: Hilabetea
+  months: Hilabeteak
   months_ago: '%{text} egiten du'
   more: Gehiago
   more_fields: Eremu gehiago
+  more_filters: Iragazki gehiago
   more_info: Informazio gehiago
   more_journal_posts: Egunkariko ohar gehiago
   more_observations: 'Ohar gehiago:'
@@ -1577,6 +1584,7 @@ eu:
   name_entered: Izena sartuta
   name_llaves: '[IZENA]'
   name_of_the_place_you: Behaketa egin zenuen lekuaren izena
+  name_or_username: Izena edo erabiltzaile-izena
   name_provider: Hornitzailearen izena
   name_providers:
     col: Bizitzako katalogoa
@@ -1824,6 +1832,7 @@ eu:
   observed_on: 'Hau behatuta:'
   observed_one: bat behatua
   observer: Behatzailea
+  observers: Begiraleak
   observer_short: Pertsona
   observing: behatzen
   occurence_status_describes_how: 'Agerraldi-egoerak taxon batek eremu jakin batean
@@ -2706,6 +2715,7 @@ eu:
   the_user_x_has_been_suspended: '%{user} erabiltzailea egonean dago'
   the_user_x_has_been_unsuspended: '%{user} erabiltzailea egoneko zerrendatik ezabatua
     izan da'
+  the_world: Mundua
   the_world_is_full_of_interesting_places: Mundua leku interesgarriz beteta dago;
     horietako bakoitzak bizitza-forma arraro eta zoragarriak ditu. Batzuk munduaren
     beste puntan daude eta beste batzuk, berriz, bertan. %{site_name} lekuak planetako
@@ -2871,6 +2881,7 @@ eu:
   unsubscribe: Harpidetza kendu
   unsubscribe_from_this: 'Harpidetza kendu honi:'
   unsuspend_user: Erabiltzailea berraktibatu
+  unverifiable: Egiaztaezina
   update: Eguneratu
   update_existing_observations_with_new_license: Dauden behaketak aukeratutako lizentziarekin
     eguneratu
@@ -3108,6 +3119,7 @@ eu:
   yes_license_my_observations_so_scientists_can_use: Bai, nire argazkien eta behaketen
     lizentzia sortu zientzialariek nire datuak erabili ahal izateko!
   yes_show_this_in_the_box: Bai, erakutsi hau taxonen gaineko laukian
+  yesterday: Atzo
   yesterday_at: ', atzo, arratsaldeko lauretan'
   you: zu
   you_admin: zuk administratzen duzuna
@@ -3265,6 +3277,7 @@ eu:
     zenbait gauza daude
   none_of_the_people_you_follow_have_any_updates_yet: Jarraitzen duten pertsonek oraindik
     ez dute eguneraketarik egin!
+  verifiable: egiaztagarria
   views:
     views: Ikustaldiak
     custom_projects:

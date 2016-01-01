@@ -19,6 +19,9 @@ zh-CN:
   a_default_taxon_name_will_automatically_created: |-
     一个来自归属于此分类的学名的默认分类名称将被创建。
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
+  x_comments:
+    one: 1 条评论
+    other: '%{count} 条评论'
   x_followers:
     one: 1位关注者
     other: '%{count} 位关注者'
@@ -50,7 +53,7 @@ zh-CN:
     one: 1 个人
     other: '%{count} 个人'
   x_faves:
-    one: 1次喜爱
+    one: 1 次喜爱
     other: '%{count} 次喜爱'
   x_people_like_this:
     one: 1个人喜欢这个
@@ -407,6 +410,7 @@ zh-CN:
   blog_widget: 博客小部件
   blue: 蓝色
   body: 身体
+  bounding_box: 边界框
   breadcrumbs: 面包屑
   brief_caption: 简要描述
   brief_description_on_what_you_observed: 您观察到的事物的简短描述
@@ -434,6 +438,7 @@ zh-CN:
   case_plural: s
   casual: 变装
   catalogue_of_life: 生命目录（Catalogue of Life）
+  categories: 分类
   cc_attribution_license: 知识共享署名许可协议
   cc_by_name: 署名
   cc_by_nc_name: 署名-非商业性使用
@@ -675,6 +680,7 @@ zh-CN:
     dayNamesShort: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
     dayNamesMin: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
   date_time: 日期/时间
+  dates: 日期
   datetime_: 日期/时间
   day: 日
   default: 默认
@@ -705,6 +711,7 @@ zh-CN:
   describe_your_interest_in_nature: 描述您在自然中的兴趣！
   description: 描述
   description_from: 描述自
+  description_slash_tags: 描述 / 标签
   description_tags_more: 描述、标签以及更多
   desription: 描述
   destroy: 破坏
@@ -803,6 +810,7 @@ zh-CN:
   event_url: 活动URL
   everyone: 任何人
   everywhere: 任意地方
+  exact_date: 具体日期
   exact_location: 精确位置
   exact_rank: 精密排名
   existing_flags: 现有标记
@@ -850,6 +858,7 @@ zh-CN:
   find_photos: 查找照片
   find_species: 查找物种
   first_observer: 第一个观察者
+  first_report: 第一份报告
   flag: 标记
   flag_an_item: 标记一个项目
   flag_as_spammer: 标记为破坏者
@@ -932,6 +941,8 @@ zh-CN:
   guidelines: 指南
   has_already_been_flagged_by: 已被标记，标记者
   has_been: 已经
+  has_photos: 有照片
+  has_sounds: 有声音
   heads_up: 小心
   hello: <test>
   help: 帮助
@@ -942,6 +953,7 @@ zh-CN:
   hi_user: 您好，%{user}
   hide: 隐藏
   hide_details: 隐藏详情
+  high: 高
   home: 首页
   home_faq: 常见问题
   hybrid: 混血
@@ -964,9 +976,10 @@ zh-CN:
   identifications: 身份证明
   identifications_by: 由 %{user} 做出的身份证明
   identified?: 已认证
+  identifiers: 标识符
   identotron: Identotron
   identotron_help: Identotron帮助
-  ids: ID的
+  ids: ID
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_you_dont_want_us_to_share_your_data: 如果您不希望我们分享您的数据
   if_you_use: 如果您使用
@@ -984,6 +997,7 @@ zh-CN:
   importing: 正在导入...
   in: 于
   in_: 于
+  in_n: 在 %{n}
   inaturalist_network_affiliation: iNaturalist网络关系
   inbox: 收件箱
   including: 包括
@@ -1169,6 +1183,7 @@ zh-CN:
   look_up_name: 查阅名称
   lookup: 查找
   lookup_user_rarr: 查找用户 &rarr;
+  low: 低
   made_a: 做一个
   main_content: 主内容
   manually_create_new_place: 手动创建一个新地点
@@ -1188,6 +1203,7 @@ zh-CN:
       range: 范围
   mark_as_reviewed: 标记为已复核
   maybe_your_signed_in_with: 也许您是使用您的 %{omniauth} 账户登录的？
+  media: 媒体
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist网络</a>的成员
   members: 成员
   mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
@@ -1205,9 +1221,11 @@ zh-CN:
   mobile_view_available: 移动外观可用
   mon: 一
   month: 月
+  months: 月
   months_ago: '%{text}前'
   more: 更多
   more_fields: 更多字段
+  more_filters: 更多过滤器
   more_info: 更多信息
   more_info_title: 更多信息
   more_journal_posts: 更多日志发布
@@ -1215,12 +1233,14 @@ zh-CN:
   n_ago: '%{n}前'
   name: 名称
   name_llaves: '[名称]'
+  name_or_username: 名称或用户名
   name_provider: 名称提供方
   name_providers:
     col: 生命目录（Catalogue of Life）
     ubio: uBio
   named_based_url_might_change: 基于名称的URL可能会更改，但这个不会。
   names: 名称
+  nearby: 附近
   needs_id: 需要ID
   Needs_ID!: 需要ID！
   needs_id_expandable_html: <span class='full'>需要</span>ID
@@ -1286,6 +1306,7 @@ zh-CN:
   observations_w_field: 观察报告 w/ 字段
   observations_week: 观察 / 周
   observationcounts_refreshed: 观察计数已刷新
+  observers: 观察者
   occurence_status_describes_how: 发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。
   occurrence_status_levels:
     present: 礼物
@@ -1332,6 +1353,7 @@ zh-CN:
   photo_attribution: 照片 %{attribution}
   photo_by_id_attribution: 照片 %{id}，%{attribution}
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
+  photo_licensing: 照片许可协议
   photo_type: 照片类型
   photos: 照片
   photos_size:
@@ -1433,6 +1455,7 @@ zh-CN:
   please_confirm_your_inat_username: 请确认您在%{site_name}的用户名
   please_confirm_your_account_html: 请花一秒钟<a href="%{url}">确认您的账户</a>。
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
+  popular: 热门
   position: 位置
   possessive_user: '%{user}的'
   post: 帖子
@@ -1458,6 +1481,7 @@ zh-CN:
   project_list_defaults:
     title: '%{owner_name}的清单'
   project_id: 项目 ID
+  project_name: 项目名称
   project_post: 项目贴子
   project_settings: 项目设置
   project_type_description: |-
@@ -1478,6 +1502,7 @@ zh-CN:
   reason_you_are_flagging_this_item: 您标记此项目的原因。
   receive_email_notifications_when_people_leave_you: 接受电子邮件通知有关
   receive_updates_from_this_project: 从此项目接收更新
+  recent: 最近
   recent_additions: 最新添加
   recent_observations: 最新观察
   recent_post: 最新贴子
@@ -1619,6 +1644,7 @@ zh-CN:
   species_search: 物种搜索
   species_taxon_name: 物种 / 分类名称
   src: 源
+  standard: 标准
   start: 开始
   start_a_new_list: 开始一个新列表
   start_a_new_project: 开始一个新项目
@@ -1693,6 +1719,7 @@ zh-CN:
   the_project: 项目
   the_species_listed_below_were_not_found_in_the_site_database: 下列物种未在%{site_name}数据库中找到。
   the_title_of_the_wikipedia_article_we_use: 我们用于描述的维基百科条目标题。如果维基百科URL是<code>http://zh.wikipedia.org/wiki/鸟</code>，那么这个值应该是<code>鸟</code>。如果留空，此分类的学名会被使用（它通常都能工作）。
+  the_world: 世界
   there_isnt_wiki_article: 没有维基百科条目或重定向的标题叫做“<i>%{taxon}</i>”。您可能想找
   there_isnt_a_wikipedia_article_titled_x_html: 没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
   there_were_errors: 存在错误。
@@ -1762,8 +1789,10 @@ zh-CN:
   unreview: 未复核
   unsubscribe: 取消订阅
   unsubscribe_from_this: 退订此
+  unverifiable: 不能证实
   update: 更新
   update_photos: 更新照片
+  update_search: 更新搜索
   update_subscription: 更新订阅
   update_your_content: 更新您的内容
   updated: 已更新
@@ -1930,6 +1959,7 @@ zh-CN:
   yes_find_them!: 是的，找到他们！
   yes_i_want_to_join: 是的，我想加入
   yes_license_my_observations_so_scientists_can_use: 是的，授权我的图片、声音和观察，这样科学家可以使用我的数据！
+  yesterday: 昨天
   yesterday_at: ，昨天在下午4点
   you: 您
   you_admin: 您管理
@@ -2021,6 +2051,7 @@ zh-CN:
   zoom_to_taxon_name: 缩放到 %{taxonname}
   zoom_to_x: 缩放至 %{x}
   your_dashboard_helps_you: 您的控制面板帮助你保持追踪在此网站工作的人们。要关注一些人的更新，在查看他们的观察或个人资料时点击标题上的“关注[名字]”链接。
+  verifiable: 可证实
   views:
     views: 视图
     custom_projects:
@@ -2258,7 +2289,7 @@ zh-CN:
           unless you trust the project curators.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: 您（<span class="notice status">控制分享私有位置的最好观察</span>）
+        observer: 您（<span class="notice status">控制分享私有位置的最好选项</span>）
         any: 项目成员（<span class="success status">与此项目分享您的观察的最好选项</span>）
         none: 没有
       curator_coordinate_access_label: 允许项目馆长查看您观察中的私有坐标，当添加项目自
@@ -2572,6 +2603,7 @@ zh-CN:
         observation_field: :@m
         post: :@m
         taxon: :@m
+  wild: 野生
   will_paginate:
     previous_label: '&#8592; 上一页'
     next_label: 下一页 &#8594;

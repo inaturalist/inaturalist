@@ -12,6 +12,7 @@
 # Author: Macofe
 # Author: Martinligabue
 # Author: MattiaMen
+# Author: Nemo bis
 # Author: Oggioniale
 # Author: Rippitippi
 # Author: Statix64
@@ -35,6 +36,9 @@ it:
     automaticamente a partire dal nome scientifico di questa unità tassonomica. Non
     appena avrai salvato questo nuovo taxon, potrai aggiungere qui nuovi nomi (nomi
     comuni, nomi scientifici in disuso, ecc.).
+  x_comments:
+    one: 1 commento
+    other: '%{count} commenti'
   x_followers:
     one: 1 seguace
     other: '%{count} seguaci'
@@ -66,8 +70,8 @@ it:
     one: 1 persona
     other: '%{count} persone'
   x_faves:
-    one: 1 Preferito
-    other: '%{count} Preferiti'
+    one: 1 preferito
+    other: '%{count} preferiti'
   x_people_like_this:
     one: piace ad 1 persona
     other: piace a %{count} persone
@@ -587,6 +591,7 @@ it:
   case_plural: .
   casual: casuale
   catalogue_of_life: Catalogue of Life
+  categories: categorie
   cc_attribution_license: Licenza di attribuzione dei Creative Commons
   cc_by_description: Questa licenza consente agli altri utenti di distribuire, modificare,
     ottimizzare e sviluppare il vostro lavoro, anche a fini commerciali, purché vi
@@ -950,6 +955,7 @@ it:
     dayNamesShort: '[''Dom'',''Lun'',''Mar'',''Mer'',''Gio'',''Ven'',''Sab'']'
     dayNamesMin: '[''Do'',''Lu'',''Ma'',''Me'',''Gi'',''Ve'',''Sa'']'
   date_time: Data/Ora
+  dates: date
   datetime_: Data/Ora
   day: Giorno
   default: predefinito
@@ -989,6 +995,7 @@ it:
   describe_your_interest_in_nature: Descrivi il tuo interesse per la natura!
   description: Descrizione
   description_from: Descrizione di
+  description_slash_tags: Descrizione / Etichette
   description_tags_more: Descrizione, Ethichette, &amp; Co.
   desription: Descrizione
   destroy: Distruggi
@@ -1140,6 +1147,7 @@ it:
   everywhere: ovunque
   exact_coordinates_obscured_for: Le coordinate esatte per le specie minacciate sono
     oscurate alla vista del pubblico.
+  exact_date: Data esatta
   exact_location: Localita_esatta
   exact_rank: Rank esatto
   existing_flags: Contrassegni esistenti
@@ -1224,6 +1232,7 @@ it:
     %{provider} account a %{site_name}:'
   first_inat_observation: Prima osservazione di %{site_name}
   first_observer: 1° osservatore
+  first_report: primo rapporto
   flag: Segnalazioni
   flag_an_item: Contrassegna un elemento
   flag_as_spammer: Segna come spamm
@@ -1348,6 +1357,8 @@ it:
   guidelines: Linee guida
   has_already_been_flagged_by: è già stato contrassegnato da
   has_been: è stato
+  has_photos: ha foto
+  has_sounds: ha suoni
   hasnt_contributed_any_observations: non ha contribuito con nessuna osservazione
     a questo progetto.
   hate_me_facebook: Scollega i tuoi account Facebook e %{site_name}
@@ -1383,6 +1394,7 @@ it:
   hi_user: Ciao %{user}
   hide: Nascondi
   hide_details: Nascondi i dettagli
+  high: alta
   highest_rank: Il rango più alto
   home: Home
   home_faq: FAQ
@@ -1408,6 +1420,7 @@ it:
   identifications: Identificazioni
   identifications_by: Identificazioni di %{user}
   identified?: identificati
+  identifiers: Identificatori
   identotron: Identotron
   identotron_for: Identotron per
   identotron_help: Aiuto su Identotron
@@ -1457,6 +1470,7 @@ it:
   importing: Sto importando...
   in: in
   in_: in
+  in_n: in %{n}
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   inbox: posta in arrivo
   including: incluso
@@ -1773,6 +1787,7 @@ it:
     tua guida.
   lookup: Cerca
   lookup_user_rarr: Cerca utente &rarr;
+  low: basso
   lowest_rank: Il rango più basso
   made_a: fatto un
   mail_disclaimer: '%{site_name} non permette ai suoi utenti di mandarti altri inviti
@@ -1827,6 +1842,7 @@ it:
     qui. Le mappe mostreranno un areale se il %{place} ne ha uno disponibile  per
     la specie.
   maybe_your_signed_in_with: Forse ti sei registrato con il tuo account %{omniauth}?
+  media: File multimediali
   medium: medio
   member_of_the_inaturalist_network_html: Membri di <a href="%{url}">iNaturalist Network</a>
   members: Membri
@@ -1857,9 +1873,11 @@ it:
   mollusks: molluschi
   mon: Lun
   month: Mese
+  months: Mesi
   months_ago: '%{text} fa'
   more: Di più
   more_fields: Più campi
+  more_filters: Più filtri
   more_info: Più info
   more_info_title: Ulteriori Informazioni
   more_journal_posts: Più post del diario
@@ -1887,6 +1905,7 @@ it:
   name_entered: Nome inserito
   name_llaves: '[NOME]'
   name_of_the_place_you: Il nome del luogo dove si è effettuata l'osservazione
+  name_or_username: Nome o nome utente
   name_provider: Nome del fornitore dei dati
   name_providers:
     col: Catalogue of Life
@@ -1909,6 +1928,7 @@ it:
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near_threatened: Quasi Minacciata
+  nearby: Nelle vicinanze
   nearby_observations: Osservazioni nelle vicinanze
   need_id_help?: Aiuto su "Seve ID"?
   needs_id: serve ID
@@ -2477,6 +2497,7 @@ it:
     united_states: Stati Uniti
     virgin_islands: Isole Vergini
     west_africa: Africa Occidentale
+  places_of_interest: Luoghi di interesse
   places_merged_successfully: Luoghi uniti con successo!
   plants: piante
   please_add_a_citation_for_this_change: Per piacere aggiungi un riferimento per questa
@@ -2500,6 +2521,7 @@ it:
     può richiedere alcuni minuti se hai molte osservazioni.
   please_hold_on_while_the_file_is_generated: Per favore attendi la creazione del
     file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
+  popular: popolare
   position: Posizione
   positional_accuracy: Precisione della posizione
   possessive_user: di %{user}
@@ -2563,6 +2585,7 @@ it:
   project_members: Membri di %{project}
   project_membership_model_description: Il tuo progetto è aperto a tutti o solo alle
     persone che inviti?
+  project_name: Nome progetto
   project_observation_settings: Impostazioni delle osservazioni del progetto
   project_observations: Osservazioni del Progetto
   project_post: Post del Progetto
@@ -2644,6 +2667,7 @@ it:
   receive_email_notifications_when_people_leave_you: Ricevi notifiche email su
   receive_updates_from_this_project: Ricevi aggiornamenti da questo progetto
   received: ricevuto
+  recent: Recenti
   recent_additions: Aggiunte recenti
   recent_comments_on_your_stuff: Ultimi commenti sui tuoi contenuti
   recent_observations: Osservazioni recenti
@@ -2664,6 +2688,7 @@ it:
   recently_resolved: Recentemente risolti
   record!: Registra!
   red: rosso
+  redo_search_in_map: Ripeti la ricerca nella mappa
   redo_search_in_map_area: Ripeti la ricerca nell'area di mappa
   refresh: Aggiorna
   refresh_listed_taxa: aggiorna i taxa elencati
@@ -3009,6 +3034,7 @@ it:
   species_taxon_name: Specie / Nome taxon
   species_unknown: Specie sconosciuta
   src: Fonte
+  standard: Standard
   start: Inizia
   start_a_new_list: Iniziare una nuova lista
   start_a_new_project: Avvia un nuovo progetto
@@ -3209,6 +3235,7 @@ it:
     usato il nome scientifico di questo taxon (che di solito funziona).
   the_user_x_has_been_suspended: L'utente %{user} è stato sospeso
   the_user_x_has_been_unsuspended: L'utente %{user} è stato sospeso
+  the_world: Il mondo
   the_world_is_full_of_interesting_places: Il mondo è pieno di posti interessanti,
     ognuno pieno di forme di vita strane e meravigliose. Alcune sono all'altro capo
     del mondo, altre appena sotto casa! I luoghi di %{site_name} ti permettono di
@@ -3408,6 +3435,7 @@ it:
   unsubscribe: Cancella iscrizione
   unsubscribe_from_this: Cancella la tua iscrizione da questo
   unsuspend_user: Riammetti utente
+  unverifiable: Non verificabile
   upcoming_bioblitzes: Prossime blioblitzes
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti
@@ -3416,6 +3444,7 @@ it:
   update_existing_sounds_with_new_license: Aggiorna i suoni con la nuova licenza scelta
   update_past: Aggiorna le vecchie %{type}
   update_photos: Aggiorna le foto
+  update_search: Aggiorna ricerca
   update_selected_taxa: Aggiorna i taxa selazionati
   update_subscription: Aggiornamento l'iscrizione
   update_x_selected_taxa:
@@ -3701,6 +3730,7 @@ it:
     foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire
     dei miei dati!
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
+  yesterday: Ieri
   yesterday_at: ', ieri alle 4 pm'
   you: te
   you_admin: tu amministri
@@ -3897,6 +3927,7 @@ it:
     nel frattempo
   none_of_the_people_you_follow_have_any_updates_yet: Ancora nessun aggiornamento
     riguardo alle persone che segui!
+  verifiable: verificabile
   views:
     views: Visualizzazioni
     custom_projects:
@@ -5011,7 +5042,8 @@ it:
           one: è troppo corto (minimo 1 carattere)
           other: è troppo corto (minimo %{count} caratteri)
         wrong_length:
-          other: =lunghezza sbagliata (dovrebbe essere 1 carattere)
+          one: lunghezza sbagliata (dovrebbe essere 1 carattere)
+          other: lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
         header:
@@ -5149,6 +5181,7 @@ it:
         observation_field: :@m
         post: :@m
         taxon: :@m
+  wild: selvatico
   will_paginate:
     previous_label: '&#8592; Precedente'
     next_label: Successivo &#8594;

@@ -38,6 +38,9 @@ fr:
     l’attribution du nom scientifique de ce taxon. Quand vous aurez enregistré
     ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs,
     noms scientifiques obsolètes, etc.).
+  x_comments:
+    one: 1 commentaire
+    other: '%{count} commentaires'
   x_followers:
     one: 1 abonné
     other: '%{count} abonnés'
@@ -69,8 +72,8 @@ fr:
     one: 1 personne
     other: '%{count} personnes'
   x_faves:
-    one: 1 Favori
-    other: '%{count} Favoris'
+    one: 1 favori
+    other: '%{count} favoris'
   x_people_like_this:
     one: 1 personne aime cela
     other: '%{count} personnes aiment cela'
@@ -566,6 +569,7 @@ fr:
     représentent différents types d’espaces verts (parcs, réserves). Si vous
     faites un zoom, vous verrez plus de lieux plus petits.
   body: Corps
+  bounding_box: Boîte englobante
   breadcrumbs: Piste de navigation
   breadcrumbs_description: |-
     Cette action remplacera le h1 et les appels à l’action par défaut;
@@ -605,6 +609,7 @@ fr:
   case_plural: s
   casual: occasionnel
   catalogue_of_life: Catalogue of Life
+  categories: catégories
   cc_attribution_license: Licence d’attribution de Creative Commons
   cc_by_description: |-
     Cette licence permet aux autres de distribuer et d’améliorer votre travail,
@@ -997,6 +1002,7 @@ fr:
     dayNamesShort: '[''Dim'',''Lun'',''Mar'',''Mer'',''Jeu'',''Ven'',''Sam'']'
     dayNamesMin: '[''Di'',''Lu'',''Ma'',''Me'',''Je'',''Ve'',''Sa'']'
   date_time: Horodatage
+  dates: dates
   datetime_: Horodatage
   day: Jour
   default: par défaut
@@ -1035,6 +1041,7 @@ fr:
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
   description: Description
   description_from: Description de
+  description_slash_tags: Description / Balises
   description_tags_more: Description, étiquettes, &amp; Plus
   desription: Description
   destroy: Détruiser
@@ -1190,6 +1197,7 @@ fr:
   everywhere: partout
   exact_coordinates_obscured_for: Coordonnées exactes non affichées pour les espèces
     menacées.
+  exact_date: Date exacte
   exact_location: Emplacement exact
   exact_rank: Rang exact
   existing_flags: Drapeaux existants
@@ -1276,6 +1284,7 @@ fr:
     %{provider} à %{site_name} :'
   first_inat_observation: Première observation %{site_name}
   first_observer: Premier observateur
+  first_report: premier rapport
   flag: Signaler
   flag_an_item: Signaler un élément
   flag_as_spammer: Signaler comme polluposteur
@@ -1400,6 +1409,8 @@ fr:
   guidelines: Lignes directrices
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
   has_been: a été
+  has_photos: a des photos
+  has_sounds: a des sons
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
   hate_me_facebook: Supprimer le lien entre Facebook et vos comptes %{site_name}
   hate_me_flickr: Supprimer le lien entre vos comptes Flickr et %{site_name}
@@ -1434,6 +1445,7 @@ fr:
   hi_user: Bonjour %{user}
   hide: Masquer
   hide_details: Masquer les détails
+  high: haut
   highest_rank: Rang le plus elevé
   home: Accueil
   home_faq: FAQ
@@ -1459,10 +1471,11 @@ fr:
   identifications: Identifications
   identifications_by: Identifications de %{user}
   identified?: identifié
+  identifiers: Identifiants
   identotron: Identotron
   identotron_for: Identotron pour
   identotron_help: Aide de l’Identotron
-  ids: Identification de
+  ids: IDs
   ids_made_for_others: Identifications faites pour d’autres
   if_matches_come_from_a_comprehensive_list: Si la correspondance vient d’une liste
     complète, une barre verte sera affichée.
@@ -1511,6 +1524,7 @@ fr:
   importing: Importation en cours…
   in: dans
   in_: dans
+  in_n: dans %{n}
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
   inbox: boîte de réception
   including: y compris
@@ -1840,6 +1854,7 @@ fr:
     votre guide.
   lookup: Chercher
   lookup_user_rarr: Chercher un utilisateur &rarr;
+  low: bas
   lowest_rank: Rang le moins élevé
   made_a: a fait un
   mail_disclaimer: '%{site_name} ne permettra pas à ses utilisateurs de vous envoyer
@@ -1895,6 +1910,7 @@ fr:
     ici. Les cartes afficheront une aire de répartition pour cette espèce si elle
     existe à %{place}.
   maybe_your_signed_in_with: Êtes-vous peut-être connecté avec votre compte %{omniauth}?
+  media: Média
   medium: moyen
   member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
   members: Membres
@@ -1925,9 +1941,11 @@ fr:
   mollusks: mollusques
   mon: Lun
   month: Mois
+  months: Mois
   months_ago: il y a %{text}
   more: Plus
   more_fields: Plus de champs
+  more_filters: Plus de filtres
   more_info: Plus d’informations
   more_info_title: Plus d’informations
   more_journal_posts: Plus de notes de journal
@@ -1955,6 +1973,7 @@ fr:
   name_entered: Nom saisi
   name_llaves: '[NOM]'
   name_of_the_place_you: Nom du lieu où vous avez fait l’observation
+  name_or_username: Nom ou nom d’utilisateur
   name_provider: Fournisseur du nom
   name_providers:
     col: Catalogue of Life
@@ -1977,6 +1996,7 @@ fr:
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near_threatened: quasi-menacée
+  nearby: À proximité
   nearby_observations: Observations à proximité
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
@@ -2144,6 +2164,11 @@ fr:
   note_you_can_modify_the_height_attribute: 'Remarque : Vous pouvez modifier l’attribut
     ''height'' pour l’adapter à l’espace disponible sur votre page web.'
   notify_me_of_mentions: M’informer des mentions (par ex. @username)
+  notify_me_about_redundant_identifications: M’avertir des confirmations d’identité
+  notify_me_about_redundant_identifications_desc: Recevoir des avertissements sur
+    les identifications qui correspondent aux vôtres. Si vous refusez cela, vous ne
+    recevrez que les avertissements sur les identifiants de taxons qui ne correspondent
+    pas exactement avec la vôtre.
   number_of_observations: Nombre d’observations
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
@@ -2253,6 +2278,7 @@ fr:
   observed_on: Observé le
   observed_one: observé un
   observer: Observateur
+  observers: Observateurs
   observer_short: Obs.
   observing: observation
   occurence_status_describes_how: L’état de la présence décrit le degré de rareté
@@ -2398,6 +2424,7 @@ fr:
     sur le site externe ou %{site_name} n’a plus le droit de la voir
   photo_hosting_accounts: Comptes d’hébergement de photos
   photo_integration: Intégration de photos
+  photo_licensing: Licence de photo
   photo_type: Type de Photo
   photo_urls_repaired: URL de photo réparées
   photos: Photos
@@ -2552,6 +2579,7 @@ fr:
     united_states: États-Unis
     virgin_islands: Îles Vierges
     west_africa: Afrique occidentale
+  places_of_interest: Endroits intéressants
   places_merged_successfully: Les lieux ont bien été fusionnés!
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette
@@ -2575,6 +2603,7 @@ fr:
     Cette démarche peut prendre quelques minutes si vous avez beaucoup d’observations.
   please_hold_on_while_the_file_is_generated: Veuillez patienter pendant la génération
     du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
+  popular: populaire
   position: Emplacement
   positional_accuracy: Exactitude de l’emplacement
   possessive_user: '%{user}'
@@ -2640,6 +2669,7 @@ fr:
   project_members: Membres de %{project}
   project_membership_model_description: Votre projet est-il ouvert à tout le monde
     ou seulement aux personnes que vous invitez?
+  project_name: Nom du projet
   project_observation_settings: Paramètres d’observation du projet
   project_observations: Observations du projet
   project_post: Note du projet
@@ -2720,6 +2750,7 @@ fr:
     sur
   receive_updates_from_this_project: Recevoir des avis pour ce projet
   received: reçu
+  recent: Récent
   recent_additions: Ajouts récents
   recent_comments_on_your_stuff: Commentaires récents sur vos trucs
   recent_observations: Observations récentes
@@ -2738,6 +2769,7 @@ fr:
   recently_resolved: Récemment résolu
   record!: Enregistrez!
   red: rouge
+  redo_search_in_map: Refaire la recherche sur la carte
   redo_search_in_map_area: Refaire la recherche dans la région cartographique
   refresh: Rafraîchir
   refresh_listed_taxa: rafraîchir les taxons réprtoriés
@@ -2802,6 +2834,7 @@ fr:
     une date, une photo, des coordonnées et une identification reconnue par la communauté.
     Cliquer dessus pour voir l’évaluation de la garantie des données.
   research_quality: Qualité de la recherche
+  reset_search_filters: Réinitialiser les filtres de recherche
   reset_your_password: Réinitialiser votre mot de passe
   resolve: Régler
   resolve_this_flag: Régler ce drapeau
@@ -3090,6 +3123,7 @@ fr:
   species_taxon_name: Nom de l’espèce/taxon
   species_unknown: Espèce inconnue
   src: Rech.
+  standard: Standard
   start: Démarrer
   start_a_new_list: Démarrer une nouvelle liste
   start_a_new_project: Démarrer un nouveau projet
@@ -3297,6 +3331,7 @@ fr:
     ce taxon sera utilisé (ce qui fonctionne, en général).
   the_user_x_has_been_suspended: L’utilisateur %{user} a été suspendu
   the_user_x_has_been_unsuspended: La suspension de l’utilisateur %{user} a été levée
+  the_world: Le monde
   the_world_is_full_of_interesting_places: |-
     Le monde est plein de lieux intéressants, chacun rempli de formes de vie
     étranges et merveilleuses. Certaines sont de l’autre côté de la planète, tandis que
@@ -3502,6 +3537,7 @@ fr:
   unsubscribe: Désabonnez-vous
   unsubscribe_from_this: Désabonnez-vous
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
+  unverifiable: Non vérifiable
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
   update_existing_observations_with_new_license: Mettre à jour les observations existantes
@@ -3512,6 +3548,7 @@ fr:
     des nouveaux choix de licence
   update_past: Mettre jour les derniers %{type}
   update_photos: Mettre à jour les photos
+  update_search: Mettre à jour la recherche
   update_selected_taxa: Mettre à jour les taxons sélectionnés
   update_subscription: Mettre à jour l’abonnement
   update_x_selected_taxa:
@@ -3801,6 +3838,7 @@ fr:
     photos, sons et observations, de sorte que les scientifiques puissent utiliser
     mes données!
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
+  yesterday: Hier
   yesterday_at: ', hier à 16 h'
   you: vous
   you_admin: que vous administrez
@@ -4010,6 +4048,7 @@ fr:
     faire en attendant
   none_of_the_people_you_follow_have_any_updates_yet: Aucune des personnes que vous
     suivez n’a encore fait de mise à jour!
+  verifiable: vérifiable
   views:
     views: Vues
     custom_projects:
@@ -4824,7 +4863,7 @@ fr:
           sauf si vous faites confiance aux superviseurs du projet.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Vous (<span class="notice status">meilleure observation pour contrôler
+        observer: Vous (<span class="notice status">meilleur choix pour contrôler
           le partage des emplacements privés</span>)
         any: |-
           Membres du projet (<span class="success status">meilleur choix pour partager vos observations avec ce projet</span>)
@@ -5403,6 +5442,7 @@ fr:
         observation_field: :@m
         post: :@m
         taxon: :@m
+  wild: sauvage
   will_paginate:
     previous_label: '&#8592; Précédent'
     next_label: Suivant &#8594;
