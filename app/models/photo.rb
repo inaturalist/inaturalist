@@ -278,10 +278,11 @@ class Photo < ActiveRecord::Base
       k =~ /^native/ ||
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
-    remote_photo_attrs["native_original_image_url"] = remote_photo.original_url
+    photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
+    remote_photo_attrs["native_original_image_url"] = photo_url
     remote_photo_attrs["subtype"] = remote_photo.class.name
     # stub this LocalPhoto's file with the remote photo URL
-    remote_photo_attrs["file"] = URI(remote_photo.original_url)
+    remote_photo_attrs["file"] = URI(photo_url)
     LocalPhoto.new(remote_photo_attrs)
   end
 
@@ -366,7 +367,7 @@ class Photo < ActiveRecord::Base
     }
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
-      json["#{ size }_url"] = best_url(:size)
+      json["#{ size }_url"] = best_url(size)
     end
     json
   end

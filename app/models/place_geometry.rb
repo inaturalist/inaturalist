@@ -105,6 +105,27 @@ class PlaceGeometry < ActiveRecord::Base
       update_observations_places(id)
   end
 
+  def simplified_geom
+    return if !geom
+    if !place.bbox_area || place.bbox_area < 0.1
+      return geom
+    end
+    tolerance =
+      if place.bbox_area < 1
+        0.001
+      elsif place.bbox_area < 10
+        0.01
+      elsif place.bbox_area < 100
+        0.017
+      elsif place.bbox_area < 500
+        0.04
+      else
+        0.075
+      end
+    PlaceGeometry.where(id: id).
+      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
+  end
+
   def self.update_observations_places(place_geometry_id)
     if pg = PlaceGeometry.where(id: place_geometry_id).first
       old_scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", pg.place_id)

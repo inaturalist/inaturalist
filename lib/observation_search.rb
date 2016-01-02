@@ -573,6 +573,7 @@ module ObservationSearch
     def elastic_user_taxon_counts(elastic_params, options = {})
       options[:limit] ||= 500
       aggregation_user_limit = 10000
+      elastic_params[:filters] ||= [ ]
       elastic_params[:filters] << { range: {
         "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
       # We've started running into memory problems with ES not being able to
@@ -605,7 +606,7 @@ module ObservationSearch
             field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc } },
           aggs: {
             distinct_taxa: {
-              cardinality: { field: "taxon.id", precision_threshold: 10000 }}}}})).response.aggregations
+              cardinality: { field: "taxon.id", precision_threshold: 100 }}}}})).response.aggregations
       species_counts.user_taxa.buckets.
         map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
     end

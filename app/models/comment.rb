@@ -33,7 +33,7 @@ class Comment < ActiveRecord::Base
     "Comment #{id}"
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json
     {
       id: id,
       user: user.as_indexed_json,

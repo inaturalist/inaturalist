@@ -313,3 +313,38 @@ describe Place, "append_geom" do
     expect( old_geom ).not_to eq place.place_geometry.geom
   end
 end
+
+describe Place, "save_geom" do
+  before { enable_elastic_indexing( Observation, Place ) }
+  after { disable_elastic_indexing( Observation, Place ) }
+  describe "if there was no geom before" do
+    let(:p) { Place.make! }
+    let(:geom) { RGeo::Geos.factory(:srid => -1).parse_wkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")}
+    it "should add observed taxa to the checklist" do
+      expect( p.check_list.taxon_ids ).to be_empty
+      o = make_research_grade_observation(latitude: 0.5, longitude: 0.5)
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).to include o.taxon_id
+    end
+    it "should not remove existing user-added listed taxa to the checklist" do
+      t = Taxon.make!
+      u = User.make!
+      lt = p.check_list.add_taxon(t, user: u)
+      expect( lt ).not_to be_auto_removable_from_check_list
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).to include t.id
+    end
+    it "should not change primary_listing of existing user-added listed taxa" do
+      t = Taxon.make!
+      u = User.make!
+      lt = p.check_list.add_taxon(t, user: u)
+      expect( lt ).to be_primary_listing
+      without_delay { p.save_geom(geom) }
+      lt.reload
+      expect( lt ).to be_primary_listing
+    end
+  end
+end
+
