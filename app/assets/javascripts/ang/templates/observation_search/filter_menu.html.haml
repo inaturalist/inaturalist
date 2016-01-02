@@ -127,13 +127,13 @@
                   {{ shared.t('person') }}
                 .input-group
                   %span.input-group-addon.icon-person
-                  %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('name_or_username') }}"}
+                  %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('username_or_user_id') }}"}
               .form-group
                 %label{for: 'params-project-id'}
                   {{ shared.t('project') }}
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
-                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('project_name') }}"}
+                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('project_id_or_url_slug') }}"}
             .col-xs-4
               .form-group
                 %label
