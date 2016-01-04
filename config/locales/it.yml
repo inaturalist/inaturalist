@@ -552,6 +552,7 @@ it:
     i diversi tipi di spazi aperti (parchi, riserve). Zoomando sarà possibile vedere
     più dettagli e le località minori.
   body: Corpo del messaggio
+  bounding_box: Riquadro di ricerca
   breadcrumbs: Percorso di navigazione
   breadcrumbs_description: Questa azione rimpiazzerà l'h1 e le istruzioni di default;
     assicuratevi di includerle se sono importanti per il progetto e ricordatevi che
@@ -2094,6 +2095,10 @@ it:
   note_you_can_modify_the_height_attribute: 'Nota: È possibile modificare l''altezza
     per adattarla allo spazio disponibile sulla tua pagina web.'
   notify_me_of_mentions: Notificami le citazioni (e.g. @nomeutente)
+  notify_me_about_redundant_identifications: Avvisami della conferma delle identificazioni
+  notify_me_about_redundant_identifications_desc: Ricevi le notifiche sulle identificazioni
+    che sono in accordo con le tue. Se lo deselezioni riceverai solo le notifiche
+    delle identificazioni che non corrispondono esattamente al taxon della tua identificazione.
   number_of_observations: Numero di osservazioni
   numeric_: numerico
   noun_by_you: tuoi/tue %{noun}
@@ -2198,6 +2203,7 @@ it:
   observed_on: Osservata il
   observed_one: l'ha osservata
   observer: Utente
+  observers: Osservatori
   observer_short: Utente
   observing: osservando
   occurence_status_describes_how: Lo stato di distribuzione descrive se il taxon è
@@ -2343,6 +2349,7 @@ it:
     dal sito esterno o perchè %{site_name} non ha più il permesso di vederla
   photo_hosting_accounts: Account di hosting per le foto
   photo_integration: Integrazione della foto
+  photo_licensing: Licenza delle foto
   photo_type: Tipo di foto
   photo_urls_repaired: URL della foto riparati
   photos: Foto
@@ -2755,6 +2762,7 @@ it:
     foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere
     la valutazione della qualità dei dati
   research_quality: Qualità Ricerca
+  reset_search_filters: Resetta i filtri di ricerca
   reset_your_password: Resetta la tua password
   resolve: Risolvi
   resolve_this_flag: Risolvi questo contrassegno

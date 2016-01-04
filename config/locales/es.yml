@@ -540,6 +540,7 @@ es:
     tipos de espacios abiertos parques y reservas. Si haces un acercamiento, podrás
     ver lugares más pequeños.
   body: Cuerpo
+  bounding_box: Contenedor
   breadcrumbs: Breadcrumbs
   breadcrumbs_description: Esto reemplazará al h1 y los ajustes por defecto de la
     acción, asegúrate de incluirlos si son importantes para este proyecto y recuerda
@@ -1373,6 +1374,7 @@ es:
   hi_user: Hola, %{user}
   hide: Ocultar
   hide_details: Ocultar detalles
+  high: alta
   highest_rank: Rango más alto
   home: Inicio
   home_faq: PP. FF.
@@ -1767,6 +1769,7 @@ es:
   looks_like_no_species_in_guide: Parece que no has añadido ninguna especie aún.
   lookup: Buscar
   lookup_user_rarr: Buscar usuario &rarr;
+  low: baja
   lowest_rank: Rango más bajo
   made_a: creo una
   mail_disclaimer: '%{site_name} no permitirá que sus usuarios le envíen más invitaciones
@@ -2073,6 +2076,8 @@ es:
   note_you_can_modify_the_height_attribute: 'Nota: Puedes modificar el atributo "altura"
     para llenar el espacio disponible en tu página web.'
   notify_me_of_mentions: Notificarme sobre las menciones (p. ej. @username)
+  notify_me_about_redundant_identifications: Notificarme sobre la confirmación de
+    identificaciones
   number_of_observations: Número de observaciones
   numeric_: numérico
   noun_by_you: '%{noun} por usted'
@@ -2329,6 +2334,7 @@ es:
     de un sitio externo o %{site_name} no tiene permisos para mostrarla.
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_integration: Integración de fotos
+  photo_licensing: Licencia de la foto
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
   photos: Fotos
@@ -2737,6 +2743,7 @@ es:
     tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad.
     Haga clic para ver la evaluación de la calidad de LOS datos.
   research_quality: Calidad de la investigación
+  reset_search_filters: Restablecer los filtros de búsqueda
   reset_your_password: Restablecer su contraseña
   resolve: Resolver
   resolve_this_flag: Resolver esta marca
@@ -4660,8 +4667,8 @@ es:
          a menos que confíes en los curadores de proyectos.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Tú (<span class="notice status">la mejor opción para controlar cómo
-          se comparten las ubicaciones privadas</span>)
+        observer: Tú (<span class="notice status">es la mejor opción para controlar
+          cómo se comparten las ubicaciones privadas</span>)
         any: Miembros del proyecto (<span class="success status">la mejor opción para
           compartir tus observaciones con este proyecto</span>)
         none: Nadie
