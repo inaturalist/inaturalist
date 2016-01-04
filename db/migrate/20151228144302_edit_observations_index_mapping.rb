@@ -16,13 +16,6 @@ class EditObservationsIndexMapping < ActiveRecord::Migration
           properties: {
             body: { type: "string", analyzer: "ascii_snowball_analyzer" }
           }
-        },
-        others_ids: {
-          properties: {
-            statuses: {
-              type: "nested"
-            }
-          }
         }
       }
     }
