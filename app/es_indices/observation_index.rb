@@ -37,7 +37,7 @@ class Observation < ActiveRecord::Base
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
       end
-      indexes :others_ids, type: :nested do
+      indexes :non_owner_ids, type: :nested do
       end
       indexes :comments do
         indexes :body, analyzer: "ascii_snowball_analyzer"
@@ -112,7 +112,7 @@ class Observation < ActiveRecord::Base
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
-      others_ids: others_identifications.map(&:as_indexed_json),
+      non_owner_ids: others_identifications.map(&:as_indexed_json),
       identifications_count: num_identifications_by_others,
       comments: comments.map(&:as_indexed_json),
       comments_count: comments.size,
