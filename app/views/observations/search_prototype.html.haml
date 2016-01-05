@@ -99,20 +99,22 @@
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }
                   {{ shared.t('standard') }}
-                .place{ "ng-repeat": "p in nearbyPlaces.standard" }
-                  %span.name{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }<
+                .place{ "ng-repeat": "p in nearbyPlaces.standard", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                  %span.glyphicon.glyphicon-map-marker>
+                  %span.name<>
                     = "{{ p.name }}"
-                  %span.type
+                  %span.type<>
                     = "{{ p.placeTypeLabel( ) }}"
                 %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
                   {{ shared.t("no_places_available") }}
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
                   {{ shared.t('community_curated') }}
-                .place{ "ng-repeat": "p in nearbyPlaces.community" }
-                  %span.name{ "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }<
+                .place{ "ng-repeat": "p in nearbyPlaces.community", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                  %span.glyphicon.glyphicon-map-marker>
+                  %span.name<>
                     = "{{ p.name }}"
-                  %span.type
+                  %span.type<>
                     = "{{ p.placeTypeLabel( ) }}"
                 %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
                   {{ shared.t("no_places_available") }}

@@ -520,28 +520,45 @@ inat-taxon { white-space: nowrap; }
 #filters-more-btn.collapsed .fa-caret-down { display: inline; }
 
 .dropdown-menu.places {
-  width: 400px;
+  width: 500px;
   left: 0px;
   background: #f16f3a;
   color: #fff;
-  line-height: 1em;
+  line-height: 1.2em;
+}
+.dropdown-menu.places .col-xs-6:first-child {
+  border-right: 1px solid rgba(0, 0, 0, .15);
+}
+.dropdown-menu.places h4 {
+  font-size: 17px;
+  color: rgba(0, 0, 0, .6);
+  text-transform: uppercase;
+}
+.dropdown-menu.places .glyphicon-map-marker {
+  font-size: 0.8em;
+  margin-right: 3px;
 }
 .dropdown-menu.places .place {
   cursor: pointer;
   margin-bottom: 8px;
+  text-indent: -7px;
+  margin-left: 14px;
 }
-.dropdown-menu.places .place .name:hover {
+.dropdown-menu.places .name {
+  font-weight: 700;
+}
+.dropdown-menu.places .place:hover {
   text-decoration: underline;
 }
-.dropdown-menu.places .place .name:hover type {
-  text-decoration: none;
+.dropdown-menu.places .place:hover .type {
+  text-decoration: underline;
+  text-decoration-color: #333;
 }
 .dropdown-menu.places .place .type {
   text-transform: uppercase;
-  font-size: 0.85em;
+  font-size: 12px;
   margin-left: 5px;
-  color: #333;
-  font-weight: 200;
+  color: rgba(0, 0, 0, .5);
 }
 
 #view-controls .btn-default.reload {
