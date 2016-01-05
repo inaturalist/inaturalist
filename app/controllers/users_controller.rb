@@ -22,11 +22,12 @@ class UsersController < ApplicationController
   
   caches_action :dashboard,
     :expires_in => 1.hour,
-    :cache_path => Proc.new {|c| 
+    :cache_path => Proc.new {|c|
       c.send(
-        :home_url, 
+        :home_url,
         :user_id => c.instance_variable_get("@current_user").id,
-        :mobile => c.request.format.mobile?
+        :mobile => c.request.format.mobile?,
+        :ssl => c.request.ssl?
       )
     },
     :if => Proc.new {|c| 
