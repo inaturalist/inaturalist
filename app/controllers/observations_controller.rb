@@ -2155,6 +2155,9 @@ class ObservationsController < ApplicationController
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
+    search_params[:has] ||= [ ]
+    search_params[:has] << "photos" if search_params[:photos].yesish?
+    search_params[:has] << "sounds" if search_params[:sounds].yesish?
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
@@ -2184,6 +2187,8 @@ class ObservationsController < ApplicationController
     @rank = search_params[:rank]
     @hrank = search_params[:hrank]
     @lrank = search_params[:lrank]
+    @verifiable = search_params[:verifiable]
+    @popular = search_params[:popular]
     if stats_adequately_scoped?(search_params)
       @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
       @d2 = search_params[:d2].blank? ? nil : search_params[:d2]

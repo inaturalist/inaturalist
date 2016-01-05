@@ -33,10 +33,6 @@
               %label{ "uib-tooltip" => "{{ shared.t('has_one_or_more_faves') }}", "tooltip-placement" => "right" }
                 %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
                 {{ shared.t('popular') }}
-            / .checkbox
-            /   %label
-            /     %input{type: 'checkbox', disabled: true}
-            /     {{ shared.t('first_report') }}
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.sounds", "ng-false-value" => ""}
@@ -150,12 +146,12 @@
       %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
         {{ shared.t('reset_search_filters') | capitalize:'title' }}
       #feeds.pull-right
-        %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}"}
+        %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}", target: "_self"}
           %i.fa.fa-rss
           %span {{ shared.t('atom') }}
-        %a.btn.btn-link{"ng-href" => "/observations.kml?{{ paramsForUrl( ) }}"}
+        %a.btn.btn-link{"ng-href" => "/observations.kml?{{ paramsForUrl( ) }}", target: "_self"}
           %i.fa.fa-globe
           %span {{ shared.t('kml') }}
-        %a.btn.btn-link{"ng-href" => "/observations/export?{{ paramsForUrl( ) }}"}
+        %a.btn.btn-link{"ng-href" => "/observations/export?{{ paramsForUrl( ) }}", target: "_self"}
           %i.fa.fa-download
           %span {{ shared.t('download') }}

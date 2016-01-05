@@ -69,14 +69,17 @@ function deselectAll() {
 
 function setFiltersFromQuery(query) {
   deselectAll()
-  var params = $.deparam(query)
+  var params = $.deparam(query);
+  params.has = params.has || [ ];
+  if( params.photos === "true" ) { params.has.push("photos"); }
+  if( params.sounds === "true" ) { params.has.push("sounds"); }
   $.each(params, function(k,v) {
     if (k != 'iconic_taxa' && k != 'has') {
       $('#filters :input:radio[name="'+k+'"][value="'+v+'"]').prop('checked', true)
     }
     if ($.isArray(v)) {
-      v = v.join(',')
-      $('#filters :input[name="'+k+'[]"]').not(':checkbox, :radio').val(v)
+      v2 = v.join(',')
+      $('#filters :input[name="'+k+'[]"]').not(':checkbox, :radio').val(v2)
     } else {
       $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v)
     }
@@ -84,7 +87,7 @@ function setFiltersFromQuery(query) {
       $('#filters input[name=place_id]').chooser('selectId', v)
     } else if (k == 'taxon_id') {
       $.fn.simpleTaxonSelector.selectTaxonFromId('#filters .simpleTaxonSelector', v)
-    } else if (k == 'iconic_taxa' || k == 'has') {
+    } else if (k == 'iconic_taxa' || k == 'has' || k == 'month') {
       $.each(v, function(i,av) {
         $selection = $('#filters :input:checkbox[name="'+k+'[]"][value='+av+']')
         $selection.prop('checked', true)

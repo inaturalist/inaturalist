@@ -678,14 +678,23 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.defaultProcessedParams = shared.processParams( $scope.defaultParams, $scope.possibleFields );
   };
   $scope.paramsForUrl = function( ) {
-    var urlParams = _.extend({}, $scope.params);
+    var urlParams = _.extend( { }, $scope.params );
+    if( urlParams.month && !_.isArray( urlParams.month ) ) {
+      urlParams.month = urlParams.month.split(",");
+    }
+    urlParams.iconic_taxa = _.keys( urlParams._iconic_taxa );
+    if( urlParams.project_id ) {
+      urlParams.projects = urlParams.project_id;
+    }
+    delete urlParams._iconic_taxa;
+    delete urlParams.project_id;
     delete urlParams.page;
     delete urlParams.order;
     delete urlParams.order_by;
     delete urlParams.dateType;
     delete urlParams.view;
     delete urlParams.subview;
-    return $.param( $scope.params );
+    return $.param( urlParams );
   };
   $scope.showInfowindow = function( o ) {
     $rootScope.$emit( "showInfowindow", o );
