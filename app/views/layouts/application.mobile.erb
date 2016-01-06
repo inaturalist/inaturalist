@@ -24,9 +24,6 @@
     <%= yield :extrahead %>
   </head>
 <body class="mobile">
-  <% if !@headless && @site && @site.preferred_ios_app_id -%>
-    <%= @site.preferred_ios_app_id %>
-  <% end -%>
   <%= render :partial => 'shared/header' unless @headless %>
 
   <% if flash[:notice] %>
