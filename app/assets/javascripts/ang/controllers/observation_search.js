@@ -572,21 +572,47 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.placeLastSearched = new Date( ).getTime( );
       $scope.autoPlaceSelect = true;
       $scope.mapBounds = null;
-      // if the searched place is specific enough to have an address, add an X
-      if( $scope.searchedPlace.adr_address &&
-          $scope.searchedPlace.adr_address.match( /address/) ) {
-        $scope.mapBoundsIcon = true;
-      } else { $scope.mapBoundsIcon = null; }
+      var bounds;
       if( $scope.searchedPlace.geometry.viewport ) {
-        $scope.mapBounds = $scope.searchedPlace.geometry.viewport;
+        bounds = $scope.searchedPlace.geometry.viewport;
       } else {
         var c = $scope.searchedPlace.geometry.location;
         // use some bounds which equate roughly to zoom level 15
-        $scope.mapBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng( c.lat() - 0.01, c.lng() - 0.02 ),
-            new google.maps.LatLng( c.lat() + 0.01, c.lng() + 0.02 ));
+        bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng( c.lat( ) - 0.01, c.lng( ) - 0.02 ),
+            new google.maps.LatLng( c.lat( ) + 0.01, c.lng( ) + 0.02 ));
       }
-      $rootScope.$emit( "alignMap" );
+      // if the searched place is specific enough to have an address
+      if( $scope.searchedPlace.adr_address &&
+          $scope.searchedPlace.adr_address.match( /address/) ) {
+        // add an X
+        $scope.mapBoundsIcon = true;
+        // align the map straight away w/o looking for a best place to choose
+        $scope.mapBounds = bounds;
+        $rootScope.$emit( "updateParamsForCurrentBounds" );
+        $rootScope.$emit( "alignMap" );
+      } else {
+        // no X marker on the map
+        $scope.mapBoundsIcon = null;
+        var name = ( _.isObject( $scope.searchedPlace ) ?
+          $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
+        var options = { bounds: bounds, params: { per_page: 1, name: name } };
+        // search for a best nearby place with a similar name
+        $rootScope.$emit( "searchForNearbyPlaces", options, function( response ) {
+          if( !response || !response.data || !response.data.results ) {
+            return $rootScope.$emit( "alignMap" );
+          }
+          if( response.data.results.standard.length > 0 ) {
+            $scope.filterByPlace( response.data.results.standard[ 0 ] );
+          } else if( response.data.results.community.length > 0 ) {
+            $scope.filterByPlace( response.data.results.community[ 0 ] );
+          } else {
+            $scope.mapBounds = bounds;
+            $rootScope.$emit( "updateParamsForCurrentBounds" );
+            $rootScope.$emit( "alignMap" );
+          }
+        });
+      }
     } else {
       // no searched place yet, so try searching with place input text
       $scope.searchPlaceAutocompleteService( );
@@ -768,39 +794,36 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.$parent.params.nelat = ne.lat( );
     $scope.$parent.selectedPlace = null;
   };
-  $rootScope.$on( "searchForNearbyPlaces", function( event ) {
-    $scope.searchForNearbyPlaces( );
+  $rootScope.$on( "searchForNearbyPlaces", function( event, options, callback ) {
+    $scope.searchForNearbyPlaces( options, callback );
   });
-  $scope.searchForNearbyPlaces = function( ) {
+  $scope.searchForNearbyPlaces = function( options, callback ) {
     $scope.$parent.searchingNearbyPlaces = true;
     var onMap = $scope.viewing("observations", "map");
     if( $scope.$parent.placeSearchBox && $scope.map && onMap ) {
       $scope.$parent.placeSearchBox.setBounds( $scope.map.getBounds( ) );
     }
-    var nearbyParams = { };
-    var bounds;
+    options = options || { };
+    options.params = options.params || { };
     if( onMap ) {
-      var bounds = $scope.map.getBounds( );
-    } else if( $scope.mapBounds ) { bounds = $scope.mapBounds; }
-    if( bounds ) {
-      nearbyParams.swlat = bounds.getSouthWest( ).lat( );
-      nearbyParams.swlng = bounds.getSouthWest( ).lng( );
-      nearbyParams.nelat = bounds.getNorthEast( ).lat( );
-      nearbyParams.nelng = bounds.getNorthEast( ).lng( );
+      options.bounds = options.bounds || $scope.map.getBounds( );
+    } else if( $scope.mapBounds ) {
+      options.bounds = options.bounds || $scope.mapBounds;
+    }
+    if( options.bounds ) {
+      options.params.swlat = options.bounds.getSouthWest( ).lat( );
+      options.params.swlng = options.bounds.getSouthWest( ).lng( );
+      options.params.nelat = options.bounds.getNorthEast( ).lat( );
+      options.params.nelng = options.bounds.getNorthEast( ).lng( );
     }
     // search a little left of center
     shared.offsetCenter({ map: (onMap ? $scope.map : null), left: -130, up: 0 }, function( center ) {
       if( center ) {
-        nearbyParams.lat = center.lat( );
-        nearbyParams.lng = center.lng( );
+        options.params.lat = center.lat( );
+        options.params.lng = center.lng( );
       }
-      var timeSinceSearch = new Date( ).getTime( ) - $scope.placeLastSearched;
-      // allow 3 seconds for searches to finish
-      if( $scope.$parent.autoPlaceSelect && timeSinceSearch < 3000 ) {
-        $scope.$parent.autoPlaceSelectOnce = true;
-      }
-      $scope.$parent.autoPlaceSelect = false;
-      PlacesFactory.nearby( nearbyParams ).then( $scope.nearbyPlaceCallback );
+      callback = callback || $scope.nearbyPlaceCallback;
+      PlacesFactory.nearby( options.params ).then( callback );
     });
   };
   $scope.nearbyPlaceCallback = function( response ) {
@@ -815,38 +838,10 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
           return new iNatModels.Place( r );
         })
       };
-      // check the nearby places for a match to searches in the last second
-      if( $scope.$parent.autoPlaceSelectOnce ) {
-        var autoSelection = $scope.matchNearbyPlace( nearbyPlaces.standard );
-        autoSelection = autoSelection || $scope.matchNearbyPlace( nearbyPlaces.community );
-        if( autoSelection ) {
-          $scope.$parent.filterByPlace( autoSelection );
-          $scope.$parent.autoPlaceSelectOnce = false;
-        }
-      }
     }
     $scope.$parent.nearbyPlaces = nearbyPlaces;
-    // no good matches from nearby places, so filter by the searched bounds
-    if( $scope.$parent.autoPlaceSelectOnce ) {
-      $scope.updateParamsForCurrentBounds( );
-    }
-    $scope.$parent.autoPlaceSelectOnce = false;
     $scope.$parent.searchingNearbyPlaces = false;
     $scope.lastMoveTime = null;
-  };
-  $scope.matchNearbyPlace = function( places ) {
-    if( !$scope.searchedPlace ) { return; }
-    var match;
-    _.each( places, function( p ) {
-      if( match ) { return; }
-      var searchedName = ( _.isObject( $scope.searchedPlace ) ?
-        $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
-      if( shared.stringStartsWith( p.name, searchedName ) ||
-          shared.stringStartsWith( searchedName, p.name ) ) {
-        match = p;
-      }
-    });
-    return match;
   };
   $rootScope.$on( "showNearbyPlace", function( event, place ) {
     if( $scope.nearbyPlaceLayer ) { $scope.nearbyPlaceLayer.setMap( null ); }

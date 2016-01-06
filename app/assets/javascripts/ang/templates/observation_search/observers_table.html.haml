@@ -7,7 +7,6 @@
         %th.user
           {{ shared.t( 'user' )}}
         %th{ "ng-click": "observersSort = 'observationCount';", :class => "sortable sorting-desc {{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
-          %i.fa.fa-binoculars
           {{ shared.t( 'observations' )}}
         %th{ "ng-click": "observersSort = 'speciesCount';", :class => "sortable sorting-desc {{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
           {{ shared.t( 'species' )}}

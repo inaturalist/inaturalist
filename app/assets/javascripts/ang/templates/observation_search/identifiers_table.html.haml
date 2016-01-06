@@ -7,7 +7,6 @@
         %th.user
           {{ shared.t( 'user' )}}
         %th
-          %i.icon-identification
           {{ shared.t( 'identifications' )}}
     %tbody
       %tr{ "ng-repeat": "u in identifiers | limitTo: numberIdentifiersShown" }
