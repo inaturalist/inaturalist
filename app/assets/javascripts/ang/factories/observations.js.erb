@@ -1,26 +1,26 @@
 iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
   var show = function( id ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/" + id;
+    var url = "//<%= CONFIG.node_api_host %>/observations/" + id;
     return shared.basicGet( url );
   };
   var search = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations";
+    var url = "//<%= CONFIG.node_api_host %>/observations";
     params.per_page = 12;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var speciesCounts = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/species_counts";
+    var url = "//<%= CONFIG.node_api_host %>/observations/species_counts";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var identifiers = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/identifiers";
+    var url = "//<%= CONFIG.node_api_host %>/observations/identifiers";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var observers = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/observations/observers";
+    var url = "//<%= CONFIG.node_api_host %>/observations/observers";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
