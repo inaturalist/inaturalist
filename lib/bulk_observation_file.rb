@@ -139,6 +139,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
           add_new_taxa: true)
       end
     end
+    Observation.elastic_index!(ids: observations.map(&:id))
   end
 
   def new_observation(row)
@@ -182,6 +183,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     # Skip some expensive post-save tasks
     obs.skip_refresh_check_lists = true
     obs.skip_refresh_lists       = true
+    obs.skip_indexing            = true
     obs.bulk_import              = true
 
     obs
