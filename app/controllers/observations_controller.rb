@@ -59,7 +59,7 @@ class ObservationsController < ApplicationController
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
-  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :show]
+  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :index, :show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_prefs, :only => [:project, :by_login]
@@ -119,7 +119,11 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-    unless request.format.html?
+    showing_partial = ((partial = params[:partial]) && PARTIALS.include?(partial))
+    # the new default /observations doesn't need any observations
+    # looked up now as it will use Angular/Node. This is for legacy
+    # API methods, and HTML/views and partials
+    unless request.format.html? &&!request.format.mobile? && !showing_partial
       h = observations_index_search(params)
       params = h[:params]
       search_params = h[:search_params]
@@ -127,7 +131,11 @@ class ObservationsController < ApplicationController
     end
     respond_to do |format|
 
-      format.any(:html, :mobile) do
+      format.html do
+        if showing_partial
+          pagination_headers_for(@observations)
+          return render_observations_partial(params[:partial])
+        end
         render layout: "bootstrap"
       end
 
