@@ -1204,6 +1204,7 @@ zh-CN:
   mark_as_reviewed: 标记为已复核
   maybe_your_signed_in_with: 也许您是使用您的 %{omniauth} 账户登录的？
   media: 媒体
+  medium: 中
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist网络</a>的成员
   members: 成员
   mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
@@ -1218,6 +1219,7 @@ zh-CN:
   message: 消息
   messages: 消息
   mobile_app_for: 移动应用程序用于
+  mobile_apps_for: 移动应用程序用于
   mobile_view_available: 移动外观可用
   mon: 一
   month: 月
@@ -1230,7 +1232,15 @@ zh-CN:
   more_info_title: 更多信息
   more_journal_posts: 更多日志发布
   more_observations: 更多观察
+  most: 多数
+  most_agree: 多数同意
+  most_disagree: 多数不同意
+  must_have_x: 必须有 %{x}
   n_ago: '%{n}前'
+  n_people_agrees: '%{amount} 个人同意'
+  n_people_disagrees: '%{amount} 个人不同意'
+  n_person_agrees: '%{amount} 个人同意'
+  n_person_disagrees: '%{amount} 个人不同意'
   name: 名称
   name_llaves: '[名称]'
   name_or_username: 名称或用户名
@@ -1240,17 +1250,25 @@ zh-CN:
     ubio: uBio
   named_based_url_might_change: 基于名称的URL可能会更改，但这个不会。
   names: 名称
+  names_for_taxon_html: 用于 %{taxon} 的名称
+  native: 本地
+  ne_lat: 东北纬度
+  ne_lon: 东北经度
   nearby: 附近
+  need_id_help?: 需要ID帮助？
   needs_id: 需要ID
   Needs_ID!: 需要ID！
   needs_id_expandable_html: <span class='full'>需要</span>ID
   needs_to_be_identified: 需要被鉴定
   new_flag_for: 新标记用于
+  new_list: 新列表
   new_members: 新成员
   new_message: 新消息
   new_observations_of_x_html: '%{x} 的新观察'
+  new_password: 新密码
   new_post: 新贴子
   new_project: 新项目
+  new_source: 新来源
   new_taxon_link: 新分类链接
   new_taxon_name: 新的分类名称
   new_updates_in_the_last_24_hours_from: 来自%{site_name}的近24小时新更新
@@ -1289,6 +1307,7 @@ zh-CN:
   not_linked_facebook: 您的%{site_name}账户并未链接至您的Facebook账户&#59;
   note: 注释
   notify_me_of_mentions: 通知提及我的（例如@username）
+  obs: 观察
   obscured_or_private: 已掩盖或私有
   observation: 观察
   observation_added: 观察已添加。
@@ -1299,13 +1318,17 @@ zh-CN:
   observations_deleted: 观察已删除。
   observations_for_project: 对 %{project} 的观察
   observations_have_had_their_coordinates: 他们的观察中的坐标已转移至相距 %{km} 千米外的随机点上，既因为分类单元受到威胁，又因为观察者选择模糊坐标。
-  observations_of_taxon: '%{x} 的观察'
+  observations_map: 观察 / 地图
+  observation_must_dotdotdot: 观察必须...
+  observations_of_taxon: '%{taxon_name} 的观察'
+  observations_per_month: 观察 / 月
   observations_saved: 观察报告已保存！
   observations_text_search_warning: 当与其他过滤器结合使用时，文本搜索可能产生怪异结果。如果您希望查找特定物种的观察，请使用分类过滤器。
   observations_w: 观察 w/
   observations_w_field: 观察报告 w/ 字段
   observations_week: 观察 / 周
   observationcounts_refreshed: 观察计数已刷新
+  observed: 已观察
   observers: 观察者
   occurence_status_describes_how: 发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。
   occurrence_status_levels:
@@ -1320,6 +1343,7 @@ zh-CN:
   on_date: 于 %{date}
   on_day: 于
   on_edit_date: 在 %{editdate}
+  on_list?: 在列表中
   on_submit_date: 在 %{submitdate}
   one_of_your_lists: 您的列表中的一个...
   only_a_project_manager_can_add: 只有项目经理可以添加项目馆长状态
@@ -1329,15 +1353,36 @@ zh-CN:
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   open: 打开
   open_description: 任何人可以查看观察，除非分类受到威胁。
+  optional: 可选
   or: 或
   or_post_message_to_google_group: 或者向我们的Google群组发送消息：
+  or_upload: 或上传
+  or_you_can: 或者您可以...
+  or_you_can_: 或者您可以
+  orange: 橙色
+  order: 排序
+  order_by: 排序方式：
+  organisms: 有机体
   original: 原文
+  other: 其他
+  other_animals: 其他动物
   other_animals_plural:
     one: 其他动物
     other: 其他动物
+  other_annimals: 其他动物
+  our_blog: 我们的博客
   owner: 所有人
+  parent: 父
   parent_name: 父名称
   password: 密码
+  password_confirmation: 密码确认
+  paste: 粘贴
+  pdf: PDF
+  pdf_slash_print: PDF / 打印
+  people: 人们
+  people_agree: 人们同意
+  people_following_user: 关注 %{user} 的人
+  people_user_follows: '%{user} 关注的人'
   people_added:
     observation: 已添加 @vow_or_con{vow:an|a} %{taxon_link} 的 %{observation_link}
     identification:
@@ -1347,11 +1392,16 @@ zh-CN:
     comment:
       with_by: 由 %{by_link} 评论于 @vow_or_con{vow:an|a} %{comment_subject_link}
       without_by: 评论于@vow_or_con{vow:an|a} %{comment_subject_link}
+  person: 人
   personal_message: 个人消息
   personal_message_description: 没有人喜欢从一台机器获取电子邮件！为什么不让您的朋友知道您邀请他们的原因呢？
+  per_page: 每页
+  permalink: 固定链接
   photo: 照片
+  photo?: 图片？
   photo_attribution: 照片 %{attribution}
   photo_by_id_attribution: 照片 %{id}，%{attribution}
+  photo_deleted: 照片已删除
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
   photo_licensing: 照片许可协议
   photo_type: 照片类型
@@ -1365,6 +1415,7 @@ zh-CN:
   photos_size_photo: '%{photos_size} 张照片'
   picasa_account_not_linked: '%{user}不再有一个链接Picasa的账户，因此%{site_name}并无权限访问此照片。'
   pick_a_username: 选择用户名
+  pink: 粉色
   place: 地方
   place_geo:
     geo_planet_place_types:
@@ -1389,12 +1440,15 @@ zh-CN:
       Land_Feature: 地貌
       land_feature: 地貌
       Miscellaneous: 杂项
+      Nationality: 国籍
+      nationality: 国籍
       Province: 省
       province: 省
       Region: 区域
       region: 区域
       State: 州
       state: 州
+      Street: 街道
       street: 街道
       Suburb: 郊区
       suburb: 郊区
@@ -1491,12 +1545,20 @@ zh-CN:
     conservation importance. Bioblitzes are events where people try to observe
     as many species as possible in a given place for a given period of time.
   project_user_cannot_be_found: 找不到项目用户
+  project_user_was_invalid: 项目用户无效：%{project_user}
   project_was_successfully_created: 已成功创建项目。
+  project_was_successfully_updated: 已成功更新项目。
   project_x_was_delete: '%{project}已删除'
+  projects: 项目
+  public_domain: 公有领域
   queued: 已入队列
   query: 查询
   ranks:
     class: 类
+    subclass: 子集
+    superfamily: 超科
+    family: 家庭
+    subfamily: 亚科
     leaves: 离开
   re_apply_list_rules: 重新应用列表规则
   reason: 原因
@@ -1515,6 +1577,7 @@ zh-CN:
   record!: 记录！
   redo_search_in_map: 在地图中重新搜索
   refresh: 刷新
+  refreshing: 正在刷新
   reload_and_refresh: 重新加载和刷新列表
   remember_its_a_lot_easier_to_id: 请记住，it's a lot easier to ID something if you provide
     as much descriptive information as possible. Most importantly, please provide
@@ -1533,10 +1596,14 @@ zh-CN:
   removing: 正在移除……
   repair_external_photos: 修补外部照片
   reply: 回复
+  request_id_help: 请求ID帮助
+  request_password: 请求密码
   request_timed_out: 请求超时！
   required: 必填
+  required_field: 必填字段
   reset_search_filters: 重置搜索过滤器
   reset_your_password: 重置您的密码
+  resolve: 解决
   resolver_said_x_html: <span class="meta">%{resolver}说：</span>“%{x}”
   results: 结果
   review_verb: 复核
@@ -1555,6 +1622,7 @@ zh-CN:
   save_flag: 保存标记
   save_guide: 保存指南
   save_observation: 保存观察
+  saving: 正在保存...
   saving_verb: 保存中
   search: 搜索
   search_catalogue_of_life: 搜索<a href="http://www.catalogueoflife.org">Catalogue of
@@ -1590,6 +1658,7 @@ zh-CN:
   showing_one_to: 显示1~
   sign_in: 登录
   sign_out: 退出
+  sign_up!: 注册！
   sign_up: 注册
   sign_up_exclamation: 注册！
   sign_in_exclamation: 登录！
@@ -1610,6 +1679,7 @@ zh-CN:
     before_importing_sounds: 在导入声音前
     listen: 听
     no_photos_sounds: 没有照片或声音
+    photos_sounds: 照片 / 声音
     request_timed_out: 请求SoundCloud超时。请稍后再试。
     select_one_or_more_sounds: 请选择一个或多个声音
     selected_sounds: 已选择声音
@@ -2138,6 +2208,7 @@ zh-CN:
         can_i_include_my_observations_on_my_blog?: 我可以在我自己的博客网站上包含我的 %{site_name}
           观察么？
         photos_attached_to_observations_should_be: 附加于观察的照片应该是在观察期间独自观察到的图片。如果您记录了一棵树的观察，一天后回到这里拍了一张照片，请为此照片添加一个新的观察，因为它代表了一棵树的不同时间点。
+        what_is_geoprivacy?: 什么是geoprivacy？
         note_that_curators_of: 注意无论您的geoprivacy设置如何，个别项目的监护人都总是可以查看坐标，因此如果您关心谁拥有访问坐标的权限，您应该确保您信任您参与的项目的监护人。
         when_coordinates_are_obscured_it_means_that: |-
           当坐标被掩盖时，它表示在完整坐标的 %{km}KM 内的随机一点上为公开显示（也就是说在首页、观察页面和项目页面上），while the true coordinates are only visible when you
@@ -2429,7 +2500,31 @@ zh-CN:
         other: 关于%{count}月
       about_x_years:
         other: 关于%{count}年
+      almost_x_years:
+        one: 几乎 1 年
+        other: 几乎 %{count} 年
       half_a_minute: 半分钟
+      less_than_x_minutes:
+        one: 小于一分钟
+        other: 小于 %{count} 分钟
+      less_than_x_seconds:
+        one: 小于 1 秒
+        other: 小于 %{count} 秒
+      over_x_years:
+        one: 1 年多
+        other: '%{count} 年多'
+      x_days:
+        one: 1 日
+        other: '%{count} 日'
+      x_minutes:
+        one: 1 分钟
+        other: '%{count} 分钟'
+      x_months:
+        one: 1 月
+        other: '%{count} 月'
+      x_seconds:
+        one: 1 秒
+        other: '%{count} 秒'
     prompts:
       day: 日
       hour: 小时
@@ -2471,20 +2566,39 @@ zh-CN:
       header:
         other: '%{count}个错误禁止了此%{model}的保存'
   helpers:
+    select:
+      prompt: 请选择
     submit:
       create: 创建 %{model}
       submit: 保存 %{model}
       update: 更新%{model}
   number:
+    currency:
+      format:
+        delimiter: ，
+        format: '%u%n'
+        precision: "2"
+        separator: .
+        unit: $
+    format:
+      delimiter: ，
+      precision: "3"
+      separator: .
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: 十亿
           million: 百万
           quadrillion: 百万的四次方
           thousand: 千
           trillion: 万亿
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
       storage_units:
+        format: '%n %u'
         units:
           byte:
             other: 字节
@@ -2516,10 +2630,17 @@ zh-CN:
         blank: 不能为空
         confirmation: 不匹配确认
         empty: 不能为空
+        equal_to: 必须等于 %{count}
         even: 必须是偶数
         exclusion: 被保留
+        greater_than: 必须大于 %{count}
+        greater_than_or_equal_to: 必须大于等于 %{count}
         inclusion: 未包括在列表中
         invalid: 无效
+        less_than: 必须小于 %{count}
+        less_than_or_equal_to: 必须小于等于 %{count}
+        not_a_number: 不是数字
+        not_an_integer: 必须是整数
         odd: 必须是奇数
         taken: 已被使用
       template:
@@ -2567,8 +2688,12 @@ zh-CN:
         user_id: 提交者
       place:
         code: 代码
+        latitude: 纬度
+        longitude: 经度
         name: 名称
+        parent_id: 父
         place_type: 地点类型
+        woeid: WOEID
       flag:
         reason: 原因
         flag: 标记
@@ -2581,7 +2706,11 @@ zh-CN:
         name: 名称
         source_identifier: 来源标识符
       taxon_name:
+        source_url: 来源URL
         source_identifier: 来源标识符
+      source:
+        title: 标题
+        url: URL
   i18n:
     inflections:
       :@vow_or_con:
