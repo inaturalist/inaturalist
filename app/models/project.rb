@@ -57,7 +57,7 @@ class Project < ActiveRecord::Base
   
   validates_length_of :title, :within => 1..100
   validates_presence_of :user
-  validates_format_of :event_url, :with => URI.regexp, 
+  validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
     :message => "should look like a URL, e.g. #{CONFIG.site_url}",
     :allow_blank => true
   validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
