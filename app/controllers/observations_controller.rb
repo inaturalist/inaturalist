@@ -2188,6 +2188,8 @@ class ObservationsController < ApplicationController
     @hrank = search_params[:hrank]
     @lrank = search_params[:lrank]
     @verifiable = search_params[:verifiable]
+    @threatened = search_params[:threatened]
+    @introduced = search_params[:introduced]
     @popular = search_params[:popular]
     if stats_adequately_scoped?(search_params)
       @d1 = search_params[:d1].blank? ? nil : search_params[:d1]

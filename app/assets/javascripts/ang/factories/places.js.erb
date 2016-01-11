@@ -1,10 +1,10 @@
 iNatAPI.factory( "PlacesFactory", [ "shared", function( shared ) {
   var show = function( id ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/places/" + id;
+    var url = "//<%= CONFIG.node_api_host %>/places/" + id;
     return shared.basicGet( url );
   };
   var nearby = function( params ) {
-    var url = "<%= CONFIG.tile_servers.elasticsearch %>/places/nearby";
+    var url = "//<%= CONFIG.node_api_host %>/places/nearby";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
