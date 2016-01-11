@@ -185,7 +185,6 @@ Rails.application.routes.draw do
       get :phylogram
       get :export
       get :map
-      get :search_prototype
     end
     member do
       put :viewed_updates

@@ -7,14 +7,6 @@ class ObservationsController < ApplicationController
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :index, :by_login, :project,
-    :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
-    :if => Proc.new {|c| 
-      c.session.blank? && # make sure they're logged out
-      c.request.format && # make sure format corresponds to a known mime type
-      (c.request.format.geojson? || c.request.format.widget? || c.request.format.kml?) && 
-      c.request.url.size < 250}
   caches_action :of,
     :expires_in => 1.day,
     :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
@@ -49,8 +41,7 @@ class ObservationsController < ApplicationController
                             :taxon_stats,
                             :user_stats,
                             :community_taxon_summary,
-                            :map,
-                            :search_prototype]
+                            :map]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review ]
@@ -68,10 +59,10 @@ class ObservationsController < ApplicationController
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
-  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :index, :show]
+  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_prefs, :only => [:index, :project, :by_login]
+  before_filter :load_prefs, :only => [:project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
@@ -93,13 +84,7 @@ class ObservationsController < ApplicationController
   PHOTO_SYNC_ATTRS = [:description, :species_guess, :taxon_id, :observed_on,
     :observed_on_string, :latitude, :longitude, :place_guess]
 
-  # GET /observations
-  # GET /observations.xml
-  def index
-    if !logged_in? && params[:page].to_i > 100
-      authenticate_user!
-      return false
-    end
+  def observations_index_search(params)
     # making `page` default to a string because HTTP params are
     # usually strings and we want to keep the cache_key consistent
     params[:page] ||= "1"
@@ -109,9 +94,8 @@ class ObservationsController < ApplicationController
       user_preferences: @prefs)
     if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
       search_key = search_cache_key(search_params)
-      @observation_partial_cache_key = view_cache_key(search_params)
       # Get the cached filtered observations
-      @observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
+      observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
         obs = Observation.page_of_results(search_params)
         # this is doing preloading, as is some code below, but this isn't
         # entirely redundant. If we preload now we can cache the preloaded
@@ -120,20 +104,31 @@ class ObservationsController < ApplicationController
         obs
       end
     else
-      @observations = Observation.page_of_results(search_params)
+      observations = Observation.page_of_results(search_params)
     end
     set_up_instance_variables(search_params)
+    { params: params,
+      search_params: search_params,
+      observations: observations }
+  end
 
+  # GET /observations
+  # GET /observations.xml
+  def index
+    if !logged_in? && params[:page].to_i > 100
+      authenticate_user!
+      return false
+    end
+    unless request.format.html?
+      h = observations_index_search(params)
+      params = h[:params]
+      search_params = h[:search_params]
+      @observations = h[:observations]
+    end
     respond_to do |format|
-      
-      format.html do
-        @iconic_taxa ||= []
-        determine_if_map_should_be_shown(search_params)
-        Observation.preload_for_component(@observations, logged_in: logged_in?)
-        if (partial = params[:partial]) && PARTIALS.include?(partial)
-          pagination_headers_for(@observations)
-          return render_observations_partial(partial)
-        end
+
+      format.any(:html, :mobile) do
+        render layout: "bootstrap"
       end
 
       format.json do
@@ -1788,10 +1783,6 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def search_prototype
-    render layout: "bootstrap"
-  end
-
   private
 
   def observation_params(options = {})
@@ -2865,16 +2856,6 @@ class ObservationsController < ApplicationController
     search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
     search_cache_params[:bounds] ||= CONFIG.bounds.to_h if CONFIG.bounds
     "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
-  end
-
-  def view_cache_key(search_params)
-    # setting a unique key to be used to cache view partials
-    view_cache_params = {
-      search_key: search_cache_key(search_params),
-      partial: params[:partial],
-      view: (@view || params[:view]),
-      ssl: request.ssl? }
-    "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
   end
 
   def prepare_map_params(search_params = {})

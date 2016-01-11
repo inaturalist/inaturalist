@@ -313,7 +313,7 @@
   </div>
 </div>
 
-<% if params[:month] -%>
+<% unless params[:month].blank? -%>
   <div class="clear row upstacked radio">
     <div class="left">
       <div class="label">
