@@ -133,7 +133,30 @@ class Place < ActiveRecord::Base
     102 => 'District',
     103 => 'Province'
   }
-  PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
+  GADM_PLACE_TYPES = {
+    1000 => 'Municipality',
+    1001 => 'Parish',
+    1002 => 'Department Segment',
+    1003 => 'City Building',
+    1004 => 'Commune',
+    1005 => 'Governorate',
+    1006 => 'Prefecture',
+    1007 => 'Canton',
+    1008 => 'Republic',
+    1009 => 'Division',
+    1010 => 'Subdivision',
+    1011 => 'Village block',
+    1012 => 'Sum',
+    1013 => 'Unknown',
+    1014 => 'Shire',
+    1015 => 'Prefecture City',
+    1016 => 'Regency',
+    1017 => 'Constituency',
+    1018 => 'Local Authority',
+    1019 => 'Poblacion',
+    1020 => 'Delegation'
+  }
+  PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).merge(GADM_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
 
