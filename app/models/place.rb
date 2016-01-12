@@ -384,7 +384,9 @@ class Place < ActiveRecord::Base
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor if ancestor
-        place.parent = ancestor if place.persisted? && ancestor.persisted?
+        if place && place.persisted? && ancestor && ancestor.persisted?
+          place.parent = ancestor
+        end
       end
     end
     
@@ -768,9 +770,11 @@ class Place < ActiveRecord::Base
         unique_hash: { "CheckList::refresh": cl.id }
       ).refresh
     end
-    self.check_list.delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "CheckList::refresh": self.check_list.id }
-    ).refresh
+    if self.check_list
+      self.check_list.delay(priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "CheckList::refresh": self.check_list.id }
+      ).refresh
+    end
     self
   end
   
