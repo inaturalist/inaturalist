@@ -29,6 +29,14 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html
       format.atom
+      format.json do
+        render json: @posts, :include => {
+          user: {
+            only: [:id, :login], 
+            methods: [:user_icon_url, :medium_user_icon_url]
+          }
+        }
+      end
     end
   end
   
@@ -75,6 +83,7 @@ class PostsController < ApplicationController
         @shareable_description = FakeView.truncate(@post.body, :length => 1000) if @post.body
         render "trips/show"
       end
+      format.json { render json: @post }
     end
   end
   
@@ -95,21 +104,25 @@ class PostsController < ApplicationController
       @post.observations << Observation.by(current_user).find(params[:observations])
     end
     if @post.save
-      if @post.published_at
-        flash[:notice] = t(:post_published)
-        # redirect_to (@post.parent.is_a?(Project) ?
-        #              project_journal_post_path(@post.parent.slug, @post) :
-        #              journal_post_path(@post.user.login, @post))
-        redirect_to path_for_post(@post)
-      else
-        flash[:notice] = t(:draft_saved)
-        # redirect_to (@post.parent.is_a?(Project) ?
-        #              edit_project_journal_post_path(@post.parent.slug, @post) :
-        #              edit_journal_post_path(@post.user.login, @post))
-        redirect_to edit_path_for_post(@post)
+      respond_to do |format|
+        format.html do
+          if @post.published_at
+            flash[:notice] = t(:post_published)
+            redirect_to path_for_post(@post)
+          else
+            flash[:notice] = t(:draft_saved)
+            redirect_to edit_path_for_post(@post)
+          end
+        end
+        format.json do
+          render json: @post
+        end
       end
     else
-      render :action => :new
+      respond_to do |format|
+        format.html { render :action => :new }
+        format.json { render status: :unprocessable_entity, json: { errors: @post.errors } }
+      end
     end
   end
     
@@ -141,28 +154,43 @@ class PostsController < ApplicationController
     end
 
     if @post.update_attributes(params[@post.class.name.underscore.to_sym])
-      if @post.published_at
-        flash[:notice] = t(:post_published)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     project_journal_post_path(@post.parent.slug, @post) :
-                     journal_post_path(@post.user.login, @post))
-      else
-        flash[:notice] = t(:draft_saved)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     edit_project_journal_post_path(@post.parent.slug, @post) :
-                     edit_journal_post_path(@post.user.login, @post))
+      respond_to do |format|
+        format.html do
+          if @post.published_at
+            flash[:notice] = t(:post_published)
+            redirect_to (@post.parent.is_a?(Project) ?
+                         project_journal_post_path(@post.parent.slug, @post) :
+                         journal_post_path(@post.user.login, @post))
+          else
+            flash[:notice] = t(:draft_saved)
+            redirect_to (@post.parent.is_a?(Project) ?
+                         edit_project_journal_post_path(@post.parent.slug, @post) :
+                         edit_journal_post_path(@post.user.login, @post))
+          end
+        end
+        format.json do
+          render json: @post
+        end
       end
     else
-      render :action => :edit
+      respond_to do |format|
+        format.html { render :action => :edit }
+        format.json { render status: :unprocessable_entity, json: { errors: @post.errors } }
+      end
     end
   end
   
   def destroy
     @post.destroy
-    flash[:notice] = t(:journal_post_deleted)
-    redirect_to (@post.parent.is_a?(Project) ?
-                 project_journal_path(@post.parent.slug) :
-                 journal_by_login_path(@post.user.login))
+    respond_to do |format|
+      format.html do
+        flash[:notice] = t(:journal_post_deleted)
+        redirect_to (@post.parent.is_a?(Project) ?
+                     project_journal_path(@post.parent.slug) :
+                     journal_by_login_path(@post.user.login))
+      end
+      format.json { head :no_content }
+    end
   end
   
   def archives
