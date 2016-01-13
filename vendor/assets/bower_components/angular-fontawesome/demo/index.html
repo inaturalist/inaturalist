@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width: device-width; initial-scale: 1">
+
+  <title>angular-fontawesome</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/github.min.css"></link>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+
+  <style>
+  p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .demo-header {
+    padding: 4em;
+    background-color: #f8f8f8;
+  }
+
+  .demo-footer {
+    width: 100%;
+    padding: 2em;
+    background-color: #f8f8f8;
+  }
+
+  .demo-section-label {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+  }
+
+  .demo-section-content {
+    margin-bottom: 1.25rem;
+  }
+
+  .code-sample-code, .code-sample-live {
+    margin-top: 0.5em;
+  }
+
+  .code-sample-code:before,
+  .code-sample-live:before {
+    position: relative;
+    top: -0.5em;
+    font-size: 0.8em;
+    width: 100%;
+    color: #999;
+  }
+
+  .code-sample-code:before {
+    content: 'CODE';
+  }
+
+  .code-sample-live:before {
+    content: "DEMO";
+  }
+  </style>
+</head>
+<body ng-app="picardy.fontawesome.demo">
+  <header class="demo-header">
+    <div class="container">
+      <h1>
+        angular-fontawesome
+        <a href="https://travis-ci.org/picardy/angular-fontawesome">
+          <img src="https://travis-ci.org/picardy/angular-fontawesome.svg?branch=master" alt="TravisCI"></img>
+        </a>
+      </h1>
+
+      <p>Avoid writing boilerplate classes for your FontAwesome integration, and use the power of Angular to make interactive icon-based widgets.</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row demo-section" id="getting-started">
+      <div class="col-xs-12 demo-section-label">
+        <h3><fa name="cogs"></fa>&nbsp;Getting Started</h3>
+      </div>
+
+      <div class="col-xs-12 demo-section-content">
+        <ol>
+          <li>Include the FontAwesome CSS and fonts in your application by <a href="https://fortawesome.github.io/Font-Awesome/get-started/">following their instructions</a>.</li>
+          <li>
+            Include the angular-fontawesome module in your Angular app.
+            <div class="row">
+              <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+                <pre><code class="javascript">angular.module('myApp', ['picardy.fontawesome']);</code></pre>
+              </div>
+            </div>
+
+          </li>
+          <li>
+            Use the directive on any page which bootstraps your app.
+            <div class="row">
+              <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+                <pre><code class="html">&lt;script&gt;
+angular.module('myApp', ['picardy.fontawesome'])
+  .controller('MyController', function($scope) {
+    $scope.spinnerColor = 'forestgreen';
+  });
+&lt;/script&gt;
+
+&lt;div ng-controller="MyController"&gt;
+  &lt;fa name="pied-piper-alt"
+   alt="Loading"
+   size="4"
+   spin
+   ng-style="{'color': spinnerColor}"&gt;&lt;/fa&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+              <div class="code-sample-live col-sm-6 col-xs-12">
+                <div ng-controller="CodeSample1Ctrl">
+                  <fa name="pied-piper-alt"
+                    alt="Loading"
+                    size="4"
+                    spin
+                    ng-style="{'color': spinnerColor}"></fa>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row demo-section" id="attributes">
+      <div class="col-xs-12 demo-section-label">
+        <h3><fa name="list"></fa>&nbsp;Attributes</h3>
+      </div>
+
+      <div class="col-xs-12 demo-section-content">
+        <p>The <code>fa</code> directive's attributes map to the classes used by FontAwesome.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="ICON-NAME"
+  alt="TEXT-ALTERNATIVE"
+  size="1-5|large"
+  flip="horizontal|vertical"
+  rotate="90|180|270"
+  spin
+  border
+  list&gt&lt;/fa&gt</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-name">
+        <h4><code>name</code></h4>
+        <p>The icon's <a href="http://fontawesome.io/icons/">name</a>, such as <code>'spinner'</code> or <code>'square'</code>.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="fighter-jet"&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa size="3" name="fighter-jet"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-rotate">
+        <h4><code>size</code></h4>
+        <p>Resize the icon.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="line-chart" size="1"&gt;&lt;/fa&gt;
+&lt;fa name="line-chart" size="2"&gt;&lt;/fa&gt;
+&lt;fa name="line-chart" size="3"&gt;&lt;/fa&gt;
+&lt;fa name="line-chart" size="4"&gt;&lt;/fa&gt;
+&lt;fa name="line-chart" size="5"&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa name="line-chart" size="1"></fa>
+              <fa name="line-chart" size="2"></fa>
+              <fa name="line-chart" size="3"></fa>
+              <fa name="line-chart" size="4"></fa>
+              <fa name="line-chart" size="5"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-alt">
+        <h4><code>alt</code></h4>
+        <p>For accessibility support, add an <code>alt</code> attribute, which will add <a href="https://github.com/FortAwesome/Font-Awesome/issues/6133#issuecomment-88944728">screen-reader friendly</a> replacement text in a separate element.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="github" alt="github website"&gt;&lt;/fa&gt;</code></pre>
+          </div>
+
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa size="3" name="github" alt="github website"></fa>&nbsp;<em>(inspect the source to see the <code>.sr-only</code> tag)</em>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h5>Note</h5>
+              </div>
+              <div class="panel-body">
+                <p>The <a href="http://getbootstrap.com/css/#helper-classes-screen-readers"><code>sr-only</code> class</a> should hide the text from anyone not using a screen reader. It is taken from <a href="http://getbootstrap.com/">Bootstrap</a>, so if you're not using Bootstrap, you must add this style to your css:</p>
+
+                <pre><code class="css">.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-flip">
+        <h4><code>flip</code></h4>
+        <p>Flip the icon <code>'horizontal'</code> or <code>'vertical'</code></p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="pencil"&gt;&lt;/fa&gt;
+&lt;fa name="pencil" flip="horizontal"&gt;&lt;/fa&gt;
+&lt;fa name="pencil" flip="vertical"&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa name="pencil" size="3"></fa>
+              <fa name="pencil" size="3" flip="horizontal"></fa>
+              <fa name="pencil" size="3" flip="vertical"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-rotate">
+        <h4><code>rotate</code></h4>
+        <p>Rotate the icon <code>90</code>, <code>180</code>, or <code>270</code> degrees.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="floppy-o"&gt;&lt;/fa&gt;
+&lt;fa name="floppy-o" rotate="90"&gt;&lt;/fa&gt;
+&lt;fa name="floppy-o" rotate="180"&gt;&lt;/fa&gt;
+&lt;fa name="floppy-o" rotate="270"&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa name="floppy-o" size="3"></fa>
+              <fa name="floppy-o" size="3" rotate="90"></fa>
+              <fa name="floppy-o" size="3" rotate="180"></fa>
+              <fa name="floppy-o" size="3" rotate="270"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-spin">
+        <h4><code>spin</code></h4>
+        <p>Animate the icon to spin.</p>
+
+        <p>You don't need to provide <code>true</code> to use the boolean attributes in angular-fontawesome:</p>
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="spinner" spin&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa name="spinner" size="3" spin></fa>
+            </div>
+          </div>
+        </div>
+
+        <p>You can pass in <code>true</code> or <code>false</code> to the attribute as well, allowing the spin class to be be easily toggleable.</p>
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+
+            <pre><code class="html">&lt;script&gt;
+angular.module('myApp', ['picardy.fontawesome'])
+  .controller('MyController', function($scope) {
+    $scope.isLoading = false;
+
+    // simulate loading.
+    $scope.reload = function () {
+      $scope.isLoading = true;
+
+      $timeout(function () {
+        $scope.isLoading = false;
+      }, 1000);
+    };
+  });
+&lt;/script&gt;
+
+&lt;div ng-controller="MyController"&gt;
+  &lt;button class="btn" ng-disabled="isLoading" ng-click="reload()"&gt;
+    &lt;fa name="{{ isLoading ? 'spinner' : 'check' }}"
+     spin="{{ isLoading }}"&gt;&lt;/fa&gt
+    &lt;span ng-hide="isLoading"&gt;reload&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div ng-controller="CodeSample2Ctrl">
+              <button class="btn" ng-disabled="isLoading" ng-click="reload()">
+                <fa name="{{ isLoading ? 'spinner' : 'check' }}" spin="{{ isLoading }}"></fa><span ng-hide="isLoading">&nbsp;reload</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-border">
+        <h4><code>border</code></h4>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="envelope" border&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa name="envelope" size="3" border></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-fw">
+        <h4><code>fixed width</code></h4>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa name="book" fw&gt;&lt;/fa&gt;&lt;br&gt;
+&lt;fa name="coffee" fw&gt;&lt;/fa&gt;&lt;br&gt;
+&lt;fa name="pinterest" fw&gt;&lt;/fa&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div class="row">
+              <div class="col-sm-6 col-xs-12">
+                <h6>BEFORE</h6>
+                <fa name="book" size="3"></fa><br>
+                <fa name="coffee" size="3"></fa><br>
+                <fa name="pinterest" size="3"></fa>
+              </div>
+
+              <div class="col-sm-6 col-xs-12">
+                <h6>AFTER <small>(so alignment)</small></h6>
+                <fa name="book" size="3" fw></fa><br>
+                <fa name="coffee" size="3" fw></fa><br>
+                <fa name="pinterest" size="3" fw></fa>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-inverse">
+        <h4><code>inverse</code></h4>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;div class="well" style="background-color: #555;"&gt;
+  &lt;fa name="home" inverse&gt;&lt;/fa&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div class="well" style="background-color: #555;">
+              <fa name="home" size="3" inverse></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-list">
+        <h4><code>list</code></h4>
+
+        <p>This directive autodetects if you're setup to do <code>fa-li</code> and then takes care of it for you.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;ul class="fa-ul"&gt;
+  &lt;li&gt;
+    &lt;fa name="square" list&gt;&lt;/fa&gt;
+    Text here
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;fa name="check" list&gt;&lt;/fa&gt;
+    Another item
+    &lt;fa name="map-signs"&gt;&lt;/fa&gt;
+  &lt;/li>
+  &lt;li>
+    &lt;fa name="square" list&gt;&lt;/fa&gt;
+    A third
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <ul class="fa-ul">
+              <li>
+                <fa name="square" list></fa>
+                Text here
+              </li>
+              <li>
+                <fa name="check" list></fa>
+                Another item
+                <fa name="map-signs"></fa>
+              </li>
+              <li>
+                <fa name="square" list></fa>
+                A third
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 demo-section-content" id="attributes-inverse">
+        <h4><code>stack</code></h4>
+        <p>The <code>faStack</code> directive is used as a wrapper for FontAwesome's <a href="https://fortawesome.github.io/Font-Awesome/examples/#stacked">stacked icon behavior</a>.</p>
+
+        <div class="row">
+          <div class="code-sample-code col-sm-6 col-xs-12" ng-non-bindable>
+            <pre><code class="html">&lt;fa-stack size="large"&gt;
+  &lt;fa name="square-o" stack="2"&gt;&lt;/fa&gt;
+  &lt;fa name="bullseye" stack="1"&gt;&lt;/fa&gt;
+&lt;/fa-stack&gt;</code></pre>
+          </div>
+          <div class="code-sample-live col-sm-6 col-xs-12">
+            <div>
+              <fa-stack size="large">
+                <fa name="square-o" stack="2"></fa>
+                <fa name="bullseye" stack="1"></fa>
+              </fa-stack>
+            </div>
+          </div>
+        </div>
+
+        <p>When using <code>&lt;fa-stack&gt;</code> as a wrapper, you must also specify the 'stack' attribute on the children. Failure to do so will render the fonts, just not one on top of another like we want them to.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="demo-footer text-center">
+    <p><a href="https://github.com/picardy/angular-fontawesome/blob/master/LICENSE">MIT Licensed.</a></p>
+    <p>Maintained by <a href="https://picardylearning.com">Picardy</a>.</p>
+  </footer>
+
+  <a href="https://github.com/picardy/angular-fontawesome">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+  </a>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/languages/css.min.js"></script>
+  <script src="../src/angular-fontawesome.js"></script>
+  <script src="./demo.js"></script>
+</body>
+</html>
