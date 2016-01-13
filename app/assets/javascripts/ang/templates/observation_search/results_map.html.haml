@@ -10,7 +10,8 @@
             %i.glyphicon.glyphicon-minus
         #user-location-control.btn-group.btn-group-stateless.clearfix
           %button.btn.btn-default{ "ng-click": "findUserLocation( )", title: "{{ shared.t('find_your_current_location') }}" }
-            %i{ "ng-class" => "{ 'fa fa-spin fa-refresh': findingUserLocation, 'icon-locate': !findingUserLocation }" }
+            %i.icon-locate{"ng-hide" => "findingUserLocation"}
+            %i.fa.fa-refresh.fa-spin{"ng-show" => "findingUserLocation"}
         #user-location-full-screen.btn-group.btn-group-stateless.clearfix
           %button.btn.btn-default{ "ng-click": "togglFullscreen( )", title: "{{ shared.t('full_screen') }}" }
             %i{ :class => "icon icon-arrows-{{ fullscreen ? 'in' : 'out' }}" }
