@@ -1201,6 +1201,26 @@ shared_examples_for "an ObservationsController" do
         expect( xml.at_xpath('//dwr:SimpleDarwinRecordSet').children.size ).not_to be_blank
       end
     end
+
+    describe "HTML format" do
+      render_views
+      before{ @o = make_research_grade_observation }
+      it "should show the angular app" do
+        # the angular app doesn't need to load any observations
+        Observation.should_not_receive(:get_search_params)
+        get :index, format: :html
+        expect(response.body).to include "ng-controller='MapController'"
+        expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
+      end
+
+      it "can render a partial instead" do
+        # we need observations to render all other partials/formats
+        Observation.should_receive(:get_search_params)
+        get :index, format: :html, partial: "observation_component"
+        expect(response.body).to_not include "ng-controller='MapController'"
+        expect( response.body ).to have_tag("div.user a", text: @o.user.login)
+      end
+    end
   end
 
   describe "taxon_stats" do

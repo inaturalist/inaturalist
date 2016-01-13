@@ -2,7 +2,7 @@
   .row.grid
     .col-xs-2.cell{ "ng-repeat": "t in taxa | limitTo: numberTaxaShown" }
       .thumbnail.borderless
-        %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", style: "{{ shared.backgroundIf( t.photo( ) ) }}" }
+        %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", "ng-style": "shared.backgroundIf( t.photo( ) )", target: "_self" }
           %i{ :class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}" }
         %div{ "ng-show" => "t.preferred_conservation_status", :class => "corner conservation-status {{ t.preferred_conservation_status }}", title: "{{ t.conservationStatus( ) | capitalize:'title' }}" }
           {{ t.preferred_conservation_status }}

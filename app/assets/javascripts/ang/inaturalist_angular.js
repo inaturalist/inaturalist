@@ -79,7 +79,7 @@ function( $http, $rootScope ) {
 
   var backgroundIf = function( url ) {
     if( url ) {
-      return "background-image: url(" + url + ")";
+      return { "background-image": "url(" + url + ")" };
     }
   }
 

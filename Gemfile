@@ -126,4 +126,7 @@ group :test do
   gem 'simplecov', :require => false
   gem "rspec-rails"
   gem "rspec-html-matchers"
+  gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver'
+  gem "chromedriver-helper"
 end
