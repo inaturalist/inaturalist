@@ -184,6 +184,10 @@ inat-taxon.split-taxon .icon {display: none;}
 #result-grid .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
 #result-grid .meta .comments i,
 #result-grid .meta .identifications i {font-size: 110%;}
+#result-grid .meta .pull-right {
+  position: relative;
+  top: 2px;
+}
 #result-grid .favorites { margin-left: 5px;}
 #result-grid .comments {margin-left: 5px;}
 
@@ -818,7 +822,7 @@ inat-taxon { white-space: nowrap; }
 .plain-table th.user {
   width: 100%;
 }
-.plain-table .rank { text-align: center; }
+.plain-table .rank { text-align: center; width: 5%; }
 .bootstrap table.plain-table > tbody > tr > td { line-height: 40px; }
 [ng-click] {
   cursor: pointer;

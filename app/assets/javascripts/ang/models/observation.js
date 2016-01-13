@@ -33,4 +33,11 @@ iNatModels.Observation.prototype.displayPlace = function( ) {
   } else {
     return I18n.t('unknown');
   }
-}
+};
+
+iNatModels.Observation.prototype.qualityGrade = function( ) {
+  if ( this.quality_grade == 'research' ) {
+    return I18n.t( 'research_grade' );
+  }
+  return I18n.t( this.quality_grade || 'casual' );
+};

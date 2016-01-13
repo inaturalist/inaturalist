@@ -16,7 +16,7 @@
         %span.visible-lg-inline-block {{ (o.observed_on | amDateFormat : 'll') || shared.t('unknown') }}
     .meta.ng-cloak
       %span{:class => "quality_grade {{ o.quality_grade }}"}
-        {{ shared.t( o.quality_grade ) }}
+        {{ o.qualityGrade( ) | capitalize:'title' }}
       %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
         %i.icon-identification
         {{ o.identifications_count }}

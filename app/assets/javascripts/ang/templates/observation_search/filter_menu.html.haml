@@ -19,7 +19,7 @@
             .checkbox
               %label
                 %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
-                {{ shared.t('research_quality') }}
+                {{ shared.t('research_grade') }}
             .checkbox
               %label
                 %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
@@ -87,7 +87,8 @@
             %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
               = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
       #filters-right-col.col-xs-4
-        %label.sectionlabel Dates
+        %label.sectionlabel
+          {{ shared.t( 'date_observed' ) }}
         #filters-dates
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}

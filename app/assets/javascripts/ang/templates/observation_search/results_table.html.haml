@@ -24,7 +24,7 @@
           %inat-taxon.split-taxon{ taxon: "o.taxon", url: "/observations/{{ o.id }}" }
           .meta
             %span{:class => "quality_grade {{ o.quality_grade }}"}
-              {{ shared.t( o.quality_grade ) | capitalize }}
+              {{ o.qualityGrade( ) | capitalize:'title' }}
             %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
               %i.icon-identification
               {{ o.identifications_count }}

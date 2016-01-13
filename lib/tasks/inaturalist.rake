@@ -90,7 +90,7 @@ namespace :inaturalist do
                  "place_geo.geo_planet_place_types",
                  "ranks", "research", "asc", "desc",
                  "date_format.month", "momentjs", "endemic", "native", 
-                 "introduced" ]
+                 "introduced", "casual" ]
 
     # look for other keys in all javascript files
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
