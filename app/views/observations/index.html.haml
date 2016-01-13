@@ -43,20 +43,28 @@
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
-            .stat-title.ng-cloak= t(:observations)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
+            .stat-title.ng-cloak
+              = t(:observations)
+              %i.fa.fa-arrow-right{ "ng-hide": "viewing('observations')" }
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('species') }", "ng-click": "changeView('species')" }
           .stat
-            .stat-title.ng-cloak= t(:species)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
+            .stat-title.ng-cloak
+              = t(:species)
+              %i.fa.fa-arrow-right{ "ng-hide": "viewing('species')" }
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('identifiers') }", "ng-click": "changeView('identifiers')" }
           .stat
-            .stat-title.ng-cloak= t(:identifiers)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
+            .stat-title.ng-cloak
+              = t(:identifiers)
+              %i.fa.fa-arrow-right{ "ng-hide": "viewing('identifiers')" }
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('observers') }", "ng-click": "changeView('observers')" }
           .stat
-            .stat-title.ng-cloak= t(:observers)
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
+            .stat-title.ng-cloak
+              = t(:observers)
+              %i.fa.fa-arrow-right{ "ng-hide": "viewing('observers')" }
   #results
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
       .row

@@ -342,9 +342,29 @@ inat-taxon.split-taxon .icon {display: none;}
   padding-bottom: 5px;
   letter-spacing: 0.04em;
   color: #eee;
+  font-size: 14px;
+  position: relative;
+}
+#stats-container .stat-title i {
+  line-height: 18px;
+  background-color: #999;
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#stats-container .stat-title i:before {
+  position: relative;
+  left: 0.5px;
 }
 #stats-container .stat-value {
   font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
 }
 #stats-container .statcol {
   cursor: pointer;
