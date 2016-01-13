@@ -89,7 +89,8 @@ namespace :inaturalist do
                  "views.observations.export.taking_a_while",
                  "place_geo.geo_planet_place_types",
                  "ranks", "research", "asc", "desc",
-                 "date_format.month", "momentjs" ]
+                 "date_format.month", "momentjs", "endemic", "native", 
+                 "introduced" ]
 
     # look for other keys in all javascript files
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|

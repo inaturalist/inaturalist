@@ -55,3 +55,42 @@ iNatModels.Taxon.prototype.establishmentMeansCode = function( ) {
   }
   return this.establishment_means_code;
 };
+
+
+iNatModels.Taxon.prototype.conservationStatus = function( ) {
+  if( !_.isUndefined( this.conservationStatusName ) ) {
+    return this.conservationStatusName;
+  }
+  switch( this.preferred_conservation_status ) {
+    case "NE":
+      this.conservationStatusName = I18n.t( 'not_evaluated' );
+      break;
+    case "DD":
+      this.conservationStatusName = I18n.t( 'data_deficient' );
+      break;
+    case "LC":
+      this.conservationStatusName = I18n.t( 'least_concern' );
+      break;
+    case "NT":
+      this.conservationStatusName = I18n.t( 'near_threatened' );
+      break;
+    case "VU":
+      this.conservationStatusName = I18n.t( 'vulnerable' );
+      break;
+    case "EN":
+      this.conservationStatusName = I18n.t( 'endangered' );
+      break;
+    case "CR":
+      this.conservationStatusName = I18n.t( 'critically_endangered' );
+      break;
+    case "EW":
+      this.conservationStatusName = I18n.t( 'extinct_in_the_wild' );
+      break;
+    case "EX":
+      this.conservationStatusName = I18n.t( 'extinct' );
+      break;
+    default:
+      this.conservationStatusName = I18n.t( 'unknown' );
+  }
+  return this.conservationStatusName;
+};
