@@ -11,4 +11,3 @@
 //= require moment/moment
 //= require angular-moment/angular-moment
 //= require angular-truncate/src/truncate
-//= require angular-fontawesome/dist/angular-fontawesome

@@ -5,8 +5,7 @@ var application = angular.module( "ObservationSearch", [
   "iNatAPI",
   "ui.bootstrap",
   "angularMoment",
-  "truncate",
-  "picardy.fontawesome"
+  "truncate"
 ]);
 
 // Load translations for moment if available
