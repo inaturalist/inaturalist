@@ -247,6 +247,8 @@ img.borderless, .thumbnail.borderless { border: 0; }
 }
 
 .bootstrap .btn-group.btn-group-stateless .btn:focus,
-.bootstrap .btn-group.btn-group-stateless .btn:active {
+.bootstrap .btn-group.btn-group-stateless .btn:active,
+.bootstrap .btn-stateless.btn:focus,
+.bootstrap .btn-stateless.btn:active {
   background-color: white;
 }

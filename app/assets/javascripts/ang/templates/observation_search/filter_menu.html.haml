@@ -131,7 +131,7 @@
                   {{ shared.t('project') }}
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
-                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('project_id_or_url_slug') }}"}
+                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('url_slug_or_id') }}", title: "{{ shared.t('url_slug_or_id') }}" }
             .col-xs-4
               .form-group
                 %label

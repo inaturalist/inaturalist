@@ -1048,9 +1048,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $scope.findUserLocation = function( ) {
     if( typeof( navigator.geolocation ) != "undefined" ) {
       var getCurrentPositionSuccess = function( location ) {
-        $('#user-location-control button').html(
-          $('<i class="icon-locate"></i>')
-        );
+        $scope.findingUserLocation = false;
         var pos = { 
           lat: location.coords.latitude, 
           lng: location.coords.longitude
@@ -1062,14 +1060,10 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         $scope.map.fitBounds( circle.getBounds( ) );
       };
       var getCurrentPositionFailure = function( ) {
-        $('#user-location-control button').html(
-          $('<i class="icon-locate"></i>')
-        );
+        $scope.findingUserLocation = false;
         alert( I18n.t('failed_to_find_your_location') );
       };
-      $('#user-location-control button').html(
-        $('<i class="fa fa-refresh fa-spin"></i>')
-      );
+      $scope.findingUserLocation = true;
       navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure);
     }
   };

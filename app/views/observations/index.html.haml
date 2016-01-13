@@ -69,7 +69,7 @@
                 %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
               %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
-            #layer-control.btn-group{ "ng-show": "viewing('observations', 'map')" }
+            #layer-control.btn-group.btn-group-stateless{ "ng-show": "viewing('observations', 'map')" }
               %button.btn.btn-default.dropdown-toggle{data: {toggle: "dropdown"}}
                 %i.icon-layers{title: "{{ shared.t('layers') }}"}
               %ul.dropdown-menu
@@ -92,7 +92,7 @@
                     {{ shared.t('terrain') | capitalize }}
 
 
-            %button.button.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
+            %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
               %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
               {{ shared.t('places_of_interest') }}
             .dropdown-menu.dropdown-menu-right.places
