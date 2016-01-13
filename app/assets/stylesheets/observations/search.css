@@ -50,11 +50,23 @@
   text-align: center;
 }
 .grid .photo,
-.grid .photo:hover {
+.grid .photo:hover,
+.grid .photo:active,
+.grid .photo:visited,
+.grid .photo:link {
   color: transparent;
 }
+/*.grid .photo { color: red; }
+.grid .photo:hover { color: blue; }
+.grid .photo:active { color: green; }
+.grid .photo:visited { color: yellow; }
+.grid .photo:link { color: deeppink; }*/
+
 .grid .photo.iconic,
-.grid .photo.iconic:hover {
+.grid .photo.iconic:hover,
+.grid .photo.iconic:active,
+.grid .photo.iconic:visited,
+.grid .photo.iconic:link {
   color: #eee;
 }
 .grid .photo {
