@@ -27,7 +27,7 @@
           .div{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || pagination.searching", "infinite-scroll-parent": "true" }
             %observation-snippet{ "ng-repeat": "o in observations", o: "o", "ng-mouseover": "showInfowindow( o )", "ng-mouseleave": "hideInfowindow( )" }
           .spinner.ng-cloak{ "ng-show": "pagination.searching" }
-            %span.fa.fa-spin.fa-spinner
+            %span.fa.fa-spin.fa-refresh
 #infoWindowSnippet
   .infowindow.obs-container
     %observation-snippet{ o: "infoWindowObservation" }

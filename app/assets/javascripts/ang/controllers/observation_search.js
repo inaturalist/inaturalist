@@ -1064,8 +1064,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         $scope.map.fitBounds( circle.getBounds( ) );
       };
       var getCurrentPositionFailure = function( ) {
-        $scope.findingUserLocation = false;
         alert( I18n.t('failed_to_find_your_location') );
+        $scope.findingUserLocation = false;
       };
       $scope.findingUserLocation = true;
       navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure);

@@ -47,4 +47,4 @@
         %td{ :class => "{{ params.order_by == 'observations.id' ? 'sorting' : '' }}" }
           %inat-calendar-date{ date: "o.created_at" }
   .spinner.ng-cloak{ "ng-show": "pagination.searching" }
-    %span.fa.fa-spin.fa-spinner
+    %span.fa.fa-spin.fa-refresh
