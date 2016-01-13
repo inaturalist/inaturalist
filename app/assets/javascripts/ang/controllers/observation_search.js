@@ -234,7 +234,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var newParams = [ ];
     _.each( $scope.params, function( value, param ) {
       // don't show default params in the URL
-      if( $scope.defaultParams.hasOwnProperty( param ) && value === $scope.defaultParams[ param ] ) {
+      if( $scope.defaultParams.hasOwnProperty( param ) &&
+          value === $scope.defaultParams[ param ] && param !== "dateType" ) {
         return;
       }
       // assess view and subview params below
@@ -387,6 +388,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.showMoreObservations = function( ) {
     $scope.pagination = $scope.pagination || { };
     if( !$scope.pagination.page ) { return; }
+    if( !$scope.observations ) { return; }
     if( $scope.pagination.searching === true ) { return; }
     if( $scope.pagination.finished === true ) { return; }
     $scope.pagination.page += 1;
