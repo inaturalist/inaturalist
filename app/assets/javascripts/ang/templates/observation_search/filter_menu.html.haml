@@ -46,7 +46,7 @@
             .form-group
               %label{for: 'params-q'}
                 {{ shared.t('description_slash_tags') }}
-              %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "blue, butterfly, etc."}
+              %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('blue_butterfly_etc') }}"}
       #filters-center-col.col-xs-4
         .row
           .col-xs-12
