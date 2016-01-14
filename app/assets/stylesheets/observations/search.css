@@ -902,3 +902,11 @@ inat-taxon { white-space: nowrap; }
     transform: rotate(360deg);
   }
 }
+
+.bootstrap .btn-icon-stupidity {
+  padding: 4px 10.5px 3px;
+}
+.bootstrap .btn-icon-stupidity i { font-size: 18px; }
+.bootstrap .btn-icon-stupidity i.fa {
+  margin: 4px 1.5px;
+}
