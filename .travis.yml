@@ -35,6 +35,16 @@ before_script:
   - sleep 15
   - ci/scripts/before_script.sh
 
+env:
+  - TESTFOLDER=spec/controllers
+  - TESTFOLDER=spec/helpers
+  - TESTFOLDER=spec/initializers
+  - TESTFOLDER=spec/lib
+  - TESTFOLDER=spec/models
+  - TESTFOLDER=spec/views
+
+script: "bundle exec rspec $TESTFOLDER"
+
 notifications:
   slack:
     secure: a5oKH3x+irU27B+5f9hZPLEKl4gFPjj74UXPvVPKJdJ8shnDVwZkJdzsCV9u2qirD07TzZNCKGprTIG4zWJdYyMVmKucwT7hRMPCGIBu/2cGvSBfOSyiDHLNmvUvA6yOaECWT7h8CpTE2wqxNV8avqGlc20oNrxlJT2bpVTTU4U=
