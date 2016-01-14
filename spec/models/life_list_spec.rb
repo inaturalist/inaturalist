@@ -94,11 +94,8 @@ describe LifeList do
       t = Taxon.make!(:parent => @parent)
       o = Observation.make!(:user => @list.user, :taxon => t)
       @list.taxon_ids.should_not include(t.id)
-      pp @list.taxon_ids
       LifeList.refresh_with_observation(o)
       @list.reload
-      pp @t.id
-      pp @list.taxon_ids
       @list.taxon_ids.should include(t.id)
     
       o.destroy
