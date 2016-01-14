@@ -40,7 +40,14 @@ describe Project, "creation" do
   end
 
   describe "for bioblitzes" do
-    let(:p) { Project.make(project_type: Project::BIOBLITZ_TYPE, place: make_place_with_geom) }
+    let(:p) do
+      Project.make(
+        project_type: Project::BIOBLITZ_TYPE, 
+        place: make_place_with_geom,
+        start_time: "2013-05-10T00:00:00-0800",
+        end_time: "2013-05-11T23:00:00-0800"
+      )
+    end
 
     it "should parse unconventional start_time formats" do
       p.start_time = "3 days ago"
@@ -56,7 +63,14 @@ describe Project, "creation" do
       expect { p.save }.not_to raise_error
       expect( p ).not_to be_valid
     end
+
+    it "should not allow comma-separated event URLs" do
+      expect( p ).to be_valid
+      p.event_url = "http://bioblitz-birding.eventbrite.com, http://bioblitz-plants.eventbrite.com, http://bioblitz-ecosystems.eventbrite.com"
+      expect( p ).not_to be_valid
+    end
   end
+
 end
 
 describe Project, "destruction" do

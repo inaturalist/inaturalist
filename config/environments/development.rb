@@ -34,7 +34,7 @@ Inaturalist::Application.configure do
   config.active_record.migration_error = :page_load
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = CONFIG.site_url
+  #config.action_controller.asset_host = CONFIG.site_url
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

@@ -55,7 +55,7 @@ class TaxaController < ApplicationController
     
     begin
       @taxa.try(:total_entries)
-    rescue
+    rescue => e
       Rails.logger.error "[ERROR] Taxon index failed: #{e}"
       @taxa = WillPaginate::Collection.new(1, 30, 0)
     end

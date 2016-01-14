@@ -2,6 +2,7 @@
   project = update_your_observations_added || resource
   updates ||= []
   observations = updates.map do |u|
+    next unless u.notifier
     o = if @update_cache && @update_cache[:observations]
       @update_cache[:observations][u.notifier.observation_id]
     end
