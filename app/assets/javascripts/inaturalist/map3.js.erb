@@ -1092,9 +1092,6 @@ google.maps.Map.prototype.getInfoWindow = function( options ) {
   iw = new google.maps.InfoWindow( _.extend( { }, options, {
     position: new google.maps.LatLng( 0, 0 )
   }));
-  // resetting any offset applied to infoWindows
-  // The -1 moves it a little left, seems like a better alignment
-  iw.setOptions({ pixelOffset: new google.maps.Size(-1, 0) });
   return iw;
 };
 
@@ -1201,7 +1198,9 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
             if( options.minzoom && o.data.geoprivacy != "obscured" && !o.data.private_location ) {
               // if we're showing points and the marker isn't obscured then leave
               // a small margin under the infowidow so it show above the marker
-              iwOpts.pixelOffset = new google.maps.Size(-1, -11);
+              iwOpts.pixelOffset = new google.maps.Size(0, -11);
+            } else {
+              iwOpts.pixelOffset = new google.maps.Size(0, 0);
             }
             if( options.infoWindowCallback ) {
               return options.infoWindowCallback( map, iw, latLng, o.data['id'], iwOpts );
