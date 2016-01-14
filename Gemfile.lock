@@ -61,6 +61,15 @@ GIT
       rgeo-activerecord (~> 2.0)
 
 GIT
+  remote: git://github.com/kueda/bugguide.git
+  revision: 970be508a4bce380cf8aa455d370a3cdd5719e10
+  specs:
+    bugguide (0.1.2)
+      activesupport (~> 4.2)
+      commander (~> 4.3)
+      nokogiri (~> 1.6)
+
+GIT
   remote: git://github.com/kueda/flickraw.git
   revision: 35cc21b0f1b6b1af3d10b19d53ea46dd2e5316ea
   branch: ssl-cert
@@ -107,15 +116,6 @@ GIT
   specs:
     right_aws (3.1.0)
       right_http_connection (>= 1.2.5)
-
-GIT
-  remote: git@github.com:kueda/bugguide.git
-  revision: 970be508a4bce380cf8aa455d370a3cdd5719e10
-  specs:
-    bugguide (0.1.2)
-      activesupport (~> 4.2)
-      commander (~> 4.3)
-      nokogiri (~> 1.6)
 
 GIT
   remote: https://github.com/kueda/mobile-fu.git

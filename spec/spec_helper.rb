@@ -33,8 +33,8 @@ RSpec.configure do |config|
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction #, {:except => %w[spatial_ref_sys]}
-    DatabaseCleaner.clean_with(:truncation, {:except => %w[spatial_ref_sys]})
+    DatabaseCleaner.strategy = :transaction
+    Elasticsearch::Model.client.ping
   end
 
   config.before(:each) do
@@ -50,6 +50,7 @@ RSpec.configure do |config|
   end
   
   config.before(:all) do
+    DatabaseCleaner.clean_with(:truncation, { except: %w[spatial_ref_sys] })
     [PlaceGeometry, Observation, TaxonRange].each do |klass|
       begin
         Rails.logger.debug "[DEBUG] dropping enforce_srid_geom on place_geometries"
@@ -73,6 +74,8 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :view
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
+  # disable certain specs. Useful for travis
+  config.filter_run_excluding disabled: true
 end
 
 def without_delay

@@ -18,5 +18,7 @@ for ex in $RAILS_CONFIG_DIR/*.example; do
 done
 
 echo "Setting up DB"
-RAILS_ENV=test bundle exec rake --trace \
-    db:setup
+RAILS_ENV=test bundle exec rake --trace db:setup
+
+echo "Setting up ES"
+RAILS_ENV=test bundle exec rake --trace es:rebuild

@@ -38,15 +38,18 @@ namespace :es do
 
   desc "Delete and rebuild all models in elasticsearch"
   task :rebuild => :environment do
-    next if fail_unless_binaries_exists
-    next if fail_unless_elasticsearch_is_running
-    elastic_models.each do |klass, opts|
-      puts "Rebuilding #{klass}..."
-      if klass.__elasticsearch__.client.indices.exists(index: klass.index_name)
-        klass.__elasticsearch__.delete_index!
+    success = wait_until_elasticsearch_is_running
+    if success
+      elastic_models.each do |klass, opts|
+        puts "Rebuilding #{klass}..."
+        if klass.__elasticsearch__.client.indices.exists(index: klass.index_name)
+          klass.__elasticsearch__.delete_index!
+        end
+        klass.__elasticsearch__.create_index!
+        klass.elastic_index!(opts)
       end
-      klass.__elasticsearch__.create_index!
-      klass.elastic_index!(opts)
+    else
+      puts "\nElasticsearch failed to start\n\n"
     end
   end
 
