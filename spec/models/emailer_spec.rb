@@ -10,7 +10,8 @@ describe Emailer, "updates_notification" do
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }
     @user = @observation.user
-    Inaturalist::Application.config.action_mailer.default_url_options[:host] = "localhost:3000"
+    Inaturalist::Application.config.action_mailer.default_url_options[:host] =
+      CONFIG.site_url =~ /localhost:3000/ ? "localhost:3000" : URI.parse(CONFIG.site_url).host
     enable_elastic_indexing(Update)
   end
   after(:each) { disable_elastic_indexing(Update) }

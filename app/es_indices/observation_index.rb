@@ -10,10 +10,11 @@ class Observation < ActiveRecord::Base
     :user, :confirmed_reviews, :flags, :quality_metrics,
     { sounds: :user },
     { photos: [ :user, :flags ] },
-    { taxon: [ :taxon_names, :conservation_statuses,
+    { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user ] } ) }
+    { identifications: [ :user ] },
+    { comments: [ :user ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -35,6 +36,11 @@ class Observation < ActiveRecord::Base
       indexes :ofvs, type: :nested do
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
+      end
+      indexes :non_owner_ids, type: :nested do
+      end
+      indexes :comments do
+        indexes :body, analyzer: "ascii_snowball_analyzer"
       end
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :tags, analyzer: "ascii_snowball_analyzer"
@@ -106,7 +112,10 @@ class Observation < ActiveRecord::Base
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
       sounds: sounds.map(&:as_indexed_json),
-      identifications: identifications.map(&:as_indexed_json),
+      non_owner_ids: others_identifications.map(&:as_indexed_json),
+      identifications_count: num_identifications_by_others,
+      comments: comments.map(&:as_indexed_json),
+      comments_count: comments.size,
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
@@ -219,6 +228,9 @@ class Observation < ActiveRecord::Base
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
+      { http_param: :day, es_field: "observed_on_details.day" },
+      { http_param: :month, es_field: "observed_on_details.month" },
+      { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
       { http_param: :place, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" }

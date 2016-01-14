@@ -1216,7 +1216,10 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     sensor = options[:sensor] ? 'true' : 'false'
-    "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?sensor=#{sensor}'></script>".html_safe
+    libraries = options[:libraries] || []
+    params = "sensor=#{sensor}"
+    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
+    "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
 
   def leaflet_js(options = {})

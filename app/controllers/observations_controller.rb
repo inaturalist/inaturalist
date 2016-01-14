@@ -7,14 +7,6 @@ class ObservationsController < ApplicationController
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :index, :by_login, :project,
-    :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
-    :if => Proc.new {|c| 
-      c.session.blank? && # make sure they're logged out
-      c.request.format && # make sure format corresponds to a known mime type
-      (c.request.format.geojson? || c.request.format.widget? || c.request.format.kml?) && 
-      c.request.url.size < 250}
   caches_action :of,
     :expires_in => 1.day,
     :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
@@ -99,40 +91,24 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-    # making `page` default to a string because HTTP params are
-    # usually strings and we want to keep the cache_key consistent
-    params[:page] ||= "1"
-    search_params = Observation.get_search_params(params,
-      current_user: current_user, site: @site)
-    search_params = Observation.apply_pagination_options(search_params,
-      user_preferences: @prefs)
-    if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
-      search_key = search_cache_key(search_params)
-      @observation_partial_cache_key = view_cache_key(search_params)
-      # Get the cached filtered observations
-      @observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
-        obs = Observation.page_of_results(search_params)
-        # this is doing preloading, as is some code below, but this isn't
-        # entirely redundant. If we preload now we can cache the preloaded
-        # data to save extra time later on.
-        Observation.preload_for_component(obs, logged_in: !!current_user)
-        obs
-      end
-    else
-      @observations = Observation.page_of_results(search_params)
+    showing_partial = ((partial = params[:partial]) && PARTIALS.include?(partial))
+    # the new default /observations doesn't need any observations
+    # looked up now as it will use Angular/Node. This is for legacy
+    # API methods, and HTML/views and partials
+    unless request.format.html? &&!request.format.mobile? && !showing_partial
+      h = observations_index_search(params)
+      params = h[:params]
+      search_params = h[:search_params]
+      @observations = h[:observations]
     end
-    set_up_instance_variables(search_params)
-
     respond_to do |format|
-      
+
       format.html do
-        @iconic_taxa ||= []
-        determine_if_map_should_be_shown(search_params)
-        Observation.preload_for_component(@observations, logged_in: logged_in?)
-        if (partial = params[:partial]) && PARTIALS.include?(partial)
+        if showing_partial
           pagination_headers_for(@observations)
-          return render_observations_partial(partial)
+          return render_observations_partial(params[:partial])
         end
+        render layout: "bootstrap"
       end
 
       format.json do
@@ -2150,6 +2126,9 @@ class ObservationsController < ApplicationController
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
+    search_params[:has] ||= [ ]
+    search_params[:has] << "photos" if search_params[:photos].yesish?
+    search_params[:has] << "sounds" if search_params[:sounds].yesish?
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
@@ -2179,6 +2158,10 @@ class ObservationsController < ApplicationController
     @rank = search_params[:rank]
     @hrank = search_params[:hrank]
     @lrank = search_params[:lrank]
+    @verifiable = search_params[:verifiable]
+    @threatened = search_params[:threatened]
+    @introduced = search_params[:introduced]
+    @popular = search_params[:popular]
     if stats_adequately_scoped?(search_params)
       @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
       @d2 = search_params[:d2].blank? ? nil : search_params[:d2]
@@ -2785,7 +2768,7 @@ class ObservationsController < ApplicationController
     if showing_leaves
       leaf_ids = Observation.elastic_taxon_leaf_ids(prepare_counts_elastic_query(search_params))
       @rank_counts[:leaves] = leaf_ids.count
-      # we fetch extra extra taxa above so we can safely filter
+      # we fetch extra taxa above so we can safely filter
       # out the non-leaf taxa from the result
       @species_counts.delete_if{ |s| !leaf_ids.include?(s["taxon_id"]) }
     end
@@ -2855,16 +2838,6 @@ class ObservationsController < ApplicationController
     "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
   end
 
-  def view_cache_key(search_params)
-    # setting a unique key to be used to cache view partials
-    view_cache_params = {
-      search_key: search_cache_key(search_params),
-      partial: params[:partial],
-      view: (@view || params[:view]),
-      ssl: request.ssl? }
-    "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
-  end
-
   def prepare_map_params(search_params = {})
     map_params = valid_map_params(search_params)
     non_viewer_params = map_params.reject{ |k,v| k == :viewer }
@@ -2920,6 +2893,34 @@ class ObservationsController < ApplicationController
 
   def decide_if_skipping_preloading
     @skipping_preloading = (params[:partial] == "cached_component")
+  end
+
+  def observations_index_search(params)
+    # making `page` default to a string because HTTP params are
+    # usually strings and we want to keep the cache_key consistent
+    params[:page] ||= "1"
+    search_params = Observation.get_search_params(params,
+      current_user: current_user, site: @site)
+    search_params = Observation.apply_pagination_options(search_params,
+      user_preferences: @prefs)
+    if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
+      search_key = search_cache_key(search_params)
+      # Get the cached filtered observations
+      observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
+        obs = Observation.page_of_results(search_params)
+        # this is doing preloading, as is some code below, but this isn't
+        # entirely redundant. If we preload now we can cache the preloaded
+        # data to save extra time later on.
+        Observation.preload_for_component(obs, logged_in: !!current_user)
+        obs
+      end
+    else
+      observations = Observation.page_of_results(search_params)
+    end
+    set_up_instance_variables(search_params)
+    { params: params,
+      search_params: search_params,
+      observations: observations }
   end
 
 end

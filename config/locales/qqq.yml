@@ -87,6 +87,7 @@ qqq:
   back_to_x_journal: where user is the name of a user
   back_to_x_observations: where user is the name of a user
   batch_edit_taxa_for_x_html: where x is a resource like an observation
+  blue_butterfly_etc: Placeholder text for search query fields
   built_with_site_guides_html:  where site_name is the name of the site
   by_editedby: where edidtedby is a user name
   by_submittedby: where submittedby is a user name
@@ -193,6 +194,8 @@ qqq:
   matching_species_will_shown_up_here: where place is the name of a place
   maybe_your_signed_in_with: where omniauth is the name of an external provider like Facebook
   merge_observation_field_x_into: where x is the name of an observation field such as eating
+  momentjs:
+    shoartRelativeTime: "all these keys are very short expressions of relative times, like 1 to 3 characters"
   months_ago: where text is the number of months like four months ago
   must_be_less_than_x_MB: where x is the file size as a number
   must_have_observation_field: where opened is the name of an observation field like eating

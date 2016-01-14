@@ -15,7 +15,9 @@ module ActsAsElasticModel
     index_name [ (Rails.env.prod_dev? ? "production" : Rails.env), model_name.collection ].join('_')
 
     after_commit on: [:create, :update] do
-      elastic_index!
+      unless respond_to?(:skip_indexing) && skip_indexing
+        elastic_index!
+      end
     end
 
     after_commit on: [:destroy] do
@@ -55,6 +57,13 @@ module ActsAsElasticModel
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
+          if filter_ids.length > 1000
+            # call again for each batch, then return
+            filter_ids.each_slice(1000) do |slice|
+              elastic_index!(options.merge(ids: slice))
+            end
+            return
+          end
           scope = scope.where(id: filter_ids)
         end
         # indexing can be delayed

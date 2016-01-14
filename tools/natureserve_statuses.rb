@@ -151,9 +151,10 @@ def work_on_uid(uid, options = {})
   taxon ||= Taxon.active.joins(:taxon_scheme_taxa).where("taxa.name = ? AND taxon_scheme_taxa.source_identifier = ?", name, uid).first
   taxon ||= Taxon.single_taxon_for_name(name)
   taxon ||= Taxon.active.find_by_name(name)
-  if OPTS[:create_taxa]
+  if OPTS[:create_taxa] && name !~ /sp\.?\s+\d+/ && name !~ / spp/
     taxon ||= Taxon.new(
-      :name => name, :rank => Taxon::SPECIES, 
+      :name => name, 
+      :rank => Taxon::SPECIES, 
       :source => SOURCE,
       :source_url => url,
       :source_identifier => uid

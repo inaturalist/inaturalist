@@ -1,0 +1,160 @@
+#filter-dropdown.container
+  #filters-body
+    .row
+      .col-xs-4
+        .row
+          .col-xs-12
+            %label.sectionlabel
+              {{ shared.t('show') }}
+        #show-filters.row
+          #filters-left-col.col-xs-6
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
+                {{ shared.t('wild') }}
+            .checkbox
+              %label{"uib-tooltip" => "{{ shared.t('eligible_for_research_grade') }}", "tooltip-placement" => "right"}
+                %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
+                {{ shared.t('verifiable') }}
+            .checkbox
+              %label
+                %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
+                {{ shared.t('research_grade') }}
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
+                {{ shared.t('threatened') }}
+          .col-xs-6
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
+                {{ shared.t('introduced') }}
+            .checkbox
+              %label{ "uib-tooltip" => "{{ shared.t('has_one_or_more_faves') }}", "tooltip-placement" => "right" }
+                %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
+                {{ shared.t('popular') }}
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.sounds", "ng-false-value" => ""}
+                {{ shared.t('has_sounds') }}
+            .checkbox
+              %label
+                %input{type: 'checkbox', "ng-model" => "params.photos", "ng-false-value" => ""}
+                {{ shared.t('has_photos') }}
+        .row
+          .col-xs-12
+            .form-group
+              %label{for: 'params-q'}
+                {{ shared.t('description_slash_tags') }}
+              %input#params-q.form-control{"ng-model" => "params.q", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('blue_butterfly_etc') }}"}
+      #filters-center-col.col-xs-4
+        .row
+          .col-xs-12
+            %label.sectionlabel
+              {{ shared.t('categories') }}
+            #filters-categories.btn-group
+              - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia'}.each_with_index do |t, i|
+                %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}"}
+                  %i{:class => "icon-iconic-#{t.name.downcase}"}
+        .row
+          .col-xs-12
+            %label.sectionlabel{for: 'params-hrank'}
+              {{ shared.t('rank') }}
+        #filters-ranks.row
+          .col-xs-6
+            %select#params-hrank.form-control{"ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}"}
+              %option{value: ''}
+                {{ shared.t('high') }}
+              - for rank in Taxon::VISIBLE_RANKS
+                %option{value: rank}
+                  {{ shared.t('ranks.#{rank}') }}
+          .col-xs-6
+            %select#params-lrank.form-control{"ng-model" => "params.lrank", "ng-model-options" => "{debounce: 1000}"}
+              %option{value: ''}
+                {{ shared.t('low') }}
+              - for rank in Taxon::VISIBLE_RANKS
+                %option{value: rank}
+                  {{ shared.t('ranks.#{rank}') }}
+        .row
+          .col-xs-12
+            %label.sectionlabel{for: 'params-order-by'}
+              {{ shared.t('sort_by') }}
+        .row
+          .col-xs-6
+            %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}"}
+              = FakeView.observations_order_by_options
+          .col-xs-6
+            %select#params-order.form-control{"ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}"}
+              = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
+      #filters-right-col.col-xs-4
+        %label.sectionlabel
+          {{ shared.t( 'date_observed' ) }}
+        #filters-dates
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
+              {{ shared.t('any') }}
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
+            %span.date-type
+              {{ shared.t('exact_date') }}
+              %input#filters-dates-exact.form-control.input-sm.date-picker{type: 'text', placeholder: 'YYYY-MM-DD', "ng-model" => "params.on", "ng-click" => "params.dateType = 'exact'"}
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
+            %span.date-type
+              {{ shared.t('range') }}
+              %input.form-control.input-sm.date-picker{type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.d1", "ng-click" => "params.dateType = 'range'"}
+              %input.form-control.input-sm.date-picker{type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.d2", "ng-click" => "params.dateType = 'range'"}
+          %label.radio
+            %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
+            %span.date-type
+              {{ shared.t('months') }}
+              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control input-sm", id: "filters-dates-month", multiple: "multiple"
+          %input{ type: "hidden", name: "created_d1" }
+          %input{ type: "hidden", name: "created_d2" }
+          %input{ type: "hidden", name: "not_in_project" }
+    .row
+      .col-xs-12
+        %button#filters-more-btn.btn.btn-link.collapsed{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
+          {{ shared.t('more_filters') }}
+          %i.fa.fa-caret-down
+          %i.fa.fa-caret-up
+        #more-filters.collapse
+          .row
+            .col-xs-4
+              .form-group
+                %label{for: 'params-user-id'}
+                  {{ shared.t('person') }}
+                .input-group
+                  %span.input-group-addon.icon-person
+                  %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('username_or_user_id') }}"}
+              .form-group
+                %label{for: 'params-project-id'}
+                  {{ shared.t('project') }}
+                .input-group
+                  %span.input-group-addon.fa.fa-briefcase
+                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('url_slug_or_id') }}", title: "{{ shared.t('url_slug_or_id') }}" }
+            .col-xs-4
+              .form-group
+                %label
+                  {{ shared.t('photo_licensing') }}
+                %select.form-control{"ng-model" => "params.photo_license"}
+                  %option{value: ''}
+                    {{ shared.t('all') }}
+                  - for code, name, desc in Observation::LICENSES do
+                    %option{value: code}= code
+  #filters-footer.row
+    .col-xs-12
+      %button.btn.btn-primary{ type: "button", "ng-click": "closeFilters( )" }
+        {{ shared.t('update_search') | capitalize:'title' }}
+      %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
+        {{ shared.t('reset_search_filters') | capitalize:'title' }}
+      #feeds.pull-right
+        %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}", target: "_self"}
+          %i.fa.fa-rss
+          %span {{ shared.t('atom') }}
+        %a.btn.btn-link{"ng-href" => "/observations.kml?{{ paramsForUrl( ) }}", target: "_self"}
+          %i.fa.fa-globe
+          %span {{ shared.t('kml') }}
+        %a.btn.btn-link{"ng-href" => "/observations/export?{{ paramsForUrl( ) }}", target: "_self"}
+          %i.fa.fa-download
+          %span {{ shared.t('download') }}

@@ -313,6 +313,46 @@
   </div>
 </div>
 
+<% unless params[:month].blank? -%>
+  <div class="clear row upstacked radio">
+    <div class="left">
+      <div class="label">
+        <strong><%=t :months %></strong>
+      </div>
+      <div class="left">
+        <% (1..12).to_a.each do |i| -%>
+          <input type="checkbox" name="month[]" value="<%= i %>" id="month_<%= i %>" checked="<%= params[:month] && params[:month].include?(i) %>">
+          <label for="month_<%= i %>"><%= t("date_format.month.#{Date::MONTHNAMES[i].downcase}") %></label>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+<% end -%>
+<% if @photo_license -%>
+  <div class="clear row upstacked radio">
+    <div class="left">
+      <div class="label">
+        <strong><%=t :photo_licensing %></strong>
+      </div>
+      <div class="left">
+        <%= select_tag :photo_license, options_for_select(Observation::LICENSES.map{ |l| [l[0],l[0]] }, @photo_license), :include_blank => t(:any) %>
+      </div>
+    </div>
+  </div>
+<% end -%>
+<% if @verifiable -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "verifiable", value: @verifiable }) %>
+<% end -%>
+<% if @threatened -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "threatened", value: @threatened }) %>
+<% end -%>
+<% if @introduced -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "introduced", value: @introduced }) %>
+<% end -%>
+<% if @popular -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "popular", value: @popular }) %>
+<% end -%>
+
 <% if show_user_field -%>
   <div class="clear row upstacked">
     <div class="label"><strong><%=t :user %></strong></div>

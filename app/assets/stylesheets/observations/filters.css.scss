@@ -78,7 +78,7 @@
 #order_filters select{width:auto;}
 #submit_filters_button{margin-bottom:0;}
 #attribute_filters{clear:left;}
-#attribute_filters label{font-weight:normal;}
+#attribute_filters label, #filters .radio label{font-weight:normal;}
 #filters .row{clear:left;}
 #filters .row .label{float:left;width:70px;font-size:95%;margin-top:2px;}
 #filters .row .left{clear:none;}

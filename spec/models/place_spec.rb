@@ -282,8 +282,10 @@ end
 
 describe Place, "display_name" do
   it "should be in correct order" do
-    country = Place.make!(:code => "cn", :place_type => Place::PLACE_TYPE_CODES['country'])
-    state = Place.make!(:code => "st", :place_type => Place::PLACE_TYPE_CODES['state'], :parent => country)
+    country = Place.make!(code: "cn", place_type: Place::PLACE_TYPE_CODES['country'],
+      admin_level: Place::COUNTRY_LEVEL)
+    state = Place.make!(code: "st", place_type: Place::PLACE_TYPE_CODES['state'],
+      parent: country, admin_level: Place::STATE_LEVEL)
     place = Place.make!(:parent => state)
     expect(place.parent).to eq(state)
     expect(place.display_name(:reload => true)).to be =~ /, #{state.code}, #{country.code}$/

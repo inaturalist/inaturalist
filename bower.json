@@ -1,0 +1,16 @@
+{
+  "_about": "Following the strategy at http://joelencioni.com/blog/2014/01/03/integrating-bower-with-rails/. The most important thing to know is that there's a .bowerrc file specifying that bower components be instlaled in vendor/assets/bower_components/",
+  "name": "iNaturlaist",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-resource": "^1.3.0",
+    "ngInfiniteScroll": "1.2.0",
+    "angular-route": "1.4.x",
+    "angular-capitalize": "*",
+    "angular-bootstrap": "*",
+    "moment": "~2.10.6",
+    "angular-moment": "~0.10.3",
+    "angular-truncate": "*"
+  }
+}

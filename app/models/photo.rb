@@ -358,13 +358,18 @@ class Photo < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    {
+    json = {
       id: id,
       license_code: (license_code.blank? || license.blank? || license == 0) ?
         nil : license_code.downcase,
       attribution: attribution,
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
+    options[:sizes] ||= [ ]
+    options[:sizes].each do |size|
+      json["#{ size }_url"] = best_url(size)
+    end
+    json
   end
 
   private

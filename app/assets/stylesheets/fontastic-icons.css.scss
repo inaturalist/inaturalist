@@ -9,7 +9,6 @@
     asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {
@@ -39,17 +38,101 @@
 }
 
 .icon-inat-wordmark:before {
-  content: "e";
+  content: "\e000";
 }
 .icon-arrow-down:before {
-  content: "a";
+  content: "\e001";
 }
 .icon-arrow-left:before {
-  content: "b";
+  content: "\e002";
 }
 .icon-arrow-right:before {
-  content: "c";
+  content: "\e003";
+}
+.icon-species-unknown:before {
+  content: "\e004";
+}
+.icon-ios-calendar-outline:before {
+  content: "\e005";
+}
+.icon-captive:before {
+  content: "\e006";
+}
+.icon-chatbubble:before {
+  content: "\e007";
+}
+.icon-identification:before {
+  content: "\e008";
+}
+.icon-person:before {
+  content: "\e009";
+}
+.icon-iconic-animalia:before {
+  content: "\e00a";
+}
+.icon-iconic-arachnida:before {
+  content: "\e00b";
+}
+.icon-iconic-aves:before {
+  content: "\e00c";
+}
+.icon-iconic-actinopterygii:before {
+  content: "\e00d";
+}
+.icon-iconic-reptilia:before {
+  content: "\e00e";
+}
+.icon-iconic-protozoa:before {
+  content: "\e00f";
+}
+.icon-iconic-plantae:before {
+  content: "\e010";
+}
+.icon-iconic-mollusca:before {
+  content: "\e011";
+}
+.icon-iconic-mammalia:before {
+  content: "\e012";
+}
+.icon-iconic-chromista:before {
+  content: "\e013";
+}
+.icon-iconic-insecta:before {
+  content: "\e014";
+}
+.icon-iconic-fungi:before {
+  content: "\e015";
+}
+.icon-locate:before {
+  content: "\e017";
+}
+.icon-arrows-out:before {
+  content: "\e018";
+}
+.icon-arrows-in:before {
+  content: "\e019";
+}
+.icon-iconic-unknown:before {
+  content: "\e01a";
+}
+.icon-iconic-amphibia:before {
+  content: "\e01b";
+}
+.icon-icn-id-help:before {
+  content: "\e01c";
+}
+.icon-no-location:before {
+  content: "\e01d";
 }
 .icon-arrow-up:before {
-  content: "d";
+  content: "\e01e";
+}
+.icon-icn-location-obscured:before {
+  content: "\e01f";
+}
+.icon-icn-location-private:before {
+  content: "\e020";
+}
+.icon-layers:before {
+  content: "\e021";
 }

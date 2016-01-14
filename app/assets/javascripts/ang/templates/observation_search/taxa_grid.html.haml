@@ -1,0 +1,18 @@
+#taxa-grid.container.bootstrap-10{ "infinite-scroll": "showMoreTaxa( )", "infinite-scroll-disabled": "!viewing('species')", "infinite-scroll-distance": 1 }
+  .row.grid
+    .col-xs-2.cell{ "ng-repeat": "t in taxa | limitTo: numberTaxaShown" }
+      .thumbnail.borderless
+        %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", "ng-style": "shared.backgroundIf( t.photo( ) )", target: "_self" }
+          %i{ :class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}" }
+        %div{ "ng-show" => "t.preferred_conservation_status", :class => "corner conservation-status {{ t.preferred_conservation_status }}", title: "{{ t.conservationStatus( ) | capitalize:'title' }}" }
+          {{ t.preferred_conservation_status }}
+        %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.preferred_conservation_status", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.t( t.preferred_establishment_means ) | capitalize:'title' }}" }
+          {{ t.establishmentMeansCode( ) }}
+        .photometa
+          %span{ "ng-click" => "updateParams({ taxon_id: t.id, view: 'observations' })" }
+            {{ shared.t( 'x_observations', { count: shared.numberWithCommas( t.resultCount ) } ) }}
+          .pull-right
+            .photo-license{ "uib-tooltip" => "{{ t.photoAttribution( ) }}", "tooltip-popup-delay" => 500 }
+              {{ t.photoLicenseShort( ) }}
+        .caption
+          %inat-taxon.title.split-taxon{ taxon: "t", url: "/taxa/{{ t.id }}" }

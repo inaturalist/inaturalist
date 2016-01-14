@@ -153,8 +153,8 @@ describe "Observation Index" do
     Identification.where(observation_id: o.id).destroy_all
     5.times{ Identification.make!(observation: o) }
     json = o.as_indexed_json
-    expect( json[:identifications].length ).to eq 5
-    expect( json[:identifications].first ).to eq o.identifications.first.as_indexed_json
+    expect( json[:non_owner_ids].length ).to eq 5
+    expect( json[:non_owner_ids].first ).to eq o.identifications.first.as_indexed_json
   end
 
   describe "params_to_elastic_query" do

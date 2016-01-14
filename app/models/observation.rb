@@ -39,7 +39,8 @@ class Observation < ActiveRecord::Base
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
-  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications, :bulk_import
+  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
+    :bulk_import, :skip_indexing
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -1985,6 +1986,16 @@ class Observation < ActiveRecord::Base
       }.last
     else
       identifications.current.by(user_id).last
+    end
+  end
+
+  def others_identifications
+    if identifications.loaded?
+      identifications.select do |i|
+        i.current? && i.user_id != user_id
+      end
+    else
+      identifications.current.not_by(user_id)
     end
   end
 

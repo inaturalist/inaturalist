@@ -71,6 +71,7 @@ module ObservationSearch
     end
 
     def apply_pagination_options(params, options={})
+      params ||= { }
       search_params = params.clone.symbolize_keys
       search_params[:page] = search_params[:page].to_i
       # don't allow sub 0 page
@@ -246,7 +247,7 @@ module ObservationSearch
         end
       end
       p[:observed_on_year] ||= p[:year].to_i unless p[:year].blank?
-      p[:observed_on_month] ||= [ p[:month] ].flatten.map(&:to_i) unless p[:month].blank?
+      p[:observed_on_month] ||= p[:month].to_i unless p[:month].blank? || p[:month].is_a?(Array)
       p[:observed_on_day] ||= p[:day].to_i unless p[:day].blank?
 
       # observation fields
@@ -573,6 +574,7 @@ module ObservationSearch
     def elastic_user_taxon_counts(elastic_params, options = {})
       options[:limit] ||= 500
       aggregation_user_limit = 10000
+      elastic_params[:filters] ||= [ ]
       elastic_params[:filters] << { range: {
         "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
       # We've started running into memory problems with ES not being able to
