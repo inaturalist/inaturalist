@@ -233,7 +233,40 @@ shared_examples_for "an ObservationsController" do
       expect(response_obs['identifications'].first['taxon']['common_name']['name']).not_to be_blank
     end
 
-    it "should include taxon rank level"
+    it "should include taxon rank level" do
+      o = Observation.make!(taxon: Taxon.make!(:species))
+      get :show, format: :json, id: o.id
+      r = JSON.parse(response.body)
+      expect( r['taxon']['rank_level'] ).to eq Taxon::SPECIES_LEVEL
+    end
+
+    it "should include user name" do
+      o = Observation.make!
+      get :show, format: :json, id: o.id
+      r = JSON.parse(response.body)
+      expect( r['user']['name'] ).to eq o.user.name
+    end
+
+    describe "faves" do
+      let(:o) { Observation.make! }
+      let(:voter) { User.make! }
+      before do
+        o.vote_by voter: voter, vote: true
+      end
+      it "should be included" do
+        get :show, format: :json, id: o.id
+        r = JSON.parse(response.body)
+        expect( r['faves'] ).not_to be_blank
+      end
+      it "should have users with id, login, and icon" do
+        get :show, format: :json, id: o.id
+        r = JSON.parse(response.body)
+        user = r['faves'][0]['user']
+        expect( user['login'] ).to eq voter.login
+        expect( user['id'] ).to eq voter.id
+        expect( user['user_icon_url'] ).to eq voter.user_icon_url
+      end
+    end
   end
 
   describe "update" do
@@ -677,6 +710,42 @@ shared_examples_for "an ObservationsController" do
       expect(json.detect{|obs| obs['id'] == o2.id}).to be_blank
     end
 
+    describe "filtration by tag in elasticsearch" do
+      after do
+        tagged = Observation.make!(tag_list: @tag)
+        not_tagged = Observation.make!
+        get :index, format: :json, q: @tag, search_on: "tags"
+        json = JSON.parse(response.body)
+        expect( json.size ).to eq 1
+        expect( json.detect{|obs| obs['id'] == tagged.id} ).not_to be_blank
+      end
+      it "should work" do
+        @tag = "thetag"
+      end
+      it "with hyphen" do
+        @tag = "the-tag"
+      end
+      it "with colon" do
+        @tag = "the:tag"
+      end
+      it "with underscore" do
+        @tag = "the_tag"
+      end
+    end
+
+    it "should filter by tag with an underscore in the database" do
+      list = List.make!
+      taxon = Taxon.make!
+      list.add_taxon(taxon)
+      o = Observation.make!(tag_list: @tag, taxon: taxon)
+      not_tagged = Observation.make!
+      # filtering by list_id should force a database search
+      get :index, format: :json, q: @tag, search_on: "tags", list_id: list.id
+      json = JSON.parse(response.body)
+      expect( json.size ).to eq 1
+      expect( json.detect{|obs| obs['id'] == o.id} ).not_to be_blank
+    end
+
     it "should include common names" do
       tn = TaxonName.make!(:lexicon => TaxonName::ENGLISH)
       o = Observation.make!(:taxon => tn.taxon)
@@ -699,6 +768,14 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json
       obs = JSON.parse(response.body).detect{|o| o['id'] == c.parent_id}
       expect(obs['comments_count']).to eq 1
+    end
+
+    it "should include faves_count" do
+      o = Observation.make!
+      o.liked_by User.make!
+      get :index, format: :json
+      obs = JSON.parse(response.body).detect{|r| r['id'] == o.id}
+      expect(obs['faves_count']).to eq 1
     end
 
     it "should let you request project_observations as extra data" do
@@ -1218,6 +1295,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "update_fields" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     shared_examples_for "it allows changes" do
       it "should allow ofv creation" do
         put :update_fields, :format => :json, :id => o.id, :observation => {
@@ -1264,6 +1343,18 @@ shared_examples_for "an ObservationsController" do
           }
         }
         expect(ProjectObservation.where(:project_id => p, :observation_id => o).exists?).to be true
+      end
+      it "adds the project observation to elasticsearch" do
+        p = Project.make!
+        pu = ProjectUser.make!(user: o.user, project: p)
+        o.elastic_index!
+        expect(Observation.elastic_search(where: { id: o.id }).
+          results.results.first.project_ids).to eq [ ]
+        put :update_fields, format: :json, id: o.id, project_id: p.id, observation: {
+          observation_field_values_attributes: { }
+        }
+        expect(Observation.elastic_search(where: { id: o.id }).
+          results.results.first.project_ids).to eq [ p.id ]
       end
     end
 

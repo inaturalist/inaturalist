@@ -137,6 +137,7 @@ class ObservationsController < ApplicationController
 
       format.json do
         Observation.preload_for_component(@observations, logged_in: logged_in?)
+        Observation.preload_associations(@observations, :tags)
         render_observations_to_json
       end
       
@@ -341,6 +342,7 @@ class ObservationsController < ApplicationController
           :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
+            :user => User.default_json_options,
             :observation_field_values => {:include => {:observation_field => {:only => [:name]}}},
             :project_observations => {
               :include => {
@@ -376,6 +378,15 @@ class ObservationsController < ApplicationController
                   :methods => [:user_icon_url]
                 },
                 :taxon => taxon_options
+              }
+            },
+            :faves => {
+              :only => [:created_at],
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
+                }
               }
             }
           })
@@ -690,8 +701,7 @@ class ObservationsController < ApplicationController
               :viewer => current_user,
               :methods => [:user_login, :iconic_taxon_name],
               :include => {
-                :taxon => Taxon.default_json_options,
-                :observation_field_values => {}
+                :taxon => Taxon.default_json_options
               }
             )
           else
@@ -1486,7 +1496,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       if @observation.update_attributes(o)
         if !params[:project_id].blank? && @observation.user_id == current_user.id && (@project = Project.find(params[:project_id]) rescue nil)
-          @project_observation = ProjectObservation.create(:observation => @observation, :project => @project)
+          @project_observation = @observation.project_observations.create(project: @project, user: current_user)
         end
         format.html do
           flash[:notice] = I18n.t(:observations_was_successfully_updated)
@@ -1753,6 +1763,7 @@ class ObservationsController < ApplicationController
         render :json => {
           :total => @total,
           :most_observations => @user_counts.map{|row|
+            @users_by_id[row['user_id'].to_i].blank? ? nil :
             {
               :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
@@ -1760,8 +1771,9 @@ class ObservationsController < ApplicationController
                 :methods => [:user_icon_url]
               )
             }
-          },
+          }.compact,
           :most_species => @user_taxon_counts.map{|row|
+            @users_by_id[row['user_id'].to_i].blank? ? nil :
             {
               :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
@@ -1769,7 +1781,7 @@ class ObservationsController < ApplicationController
                 :methods => [:user_icon_url]
               )
             }
-          }
+          }.compact
         }
       end
     end
@@ -1791,6 +1803,8 @@ class ObservationsController < ApplicationController
       :location_is_exact,
       :longitude,
       :map_scale,
+      :make_license_default,
+      :make_licenses_same,
       :oauth_application_id,
       :observed_on_string,
       :place_guess,
@@ -2501,7 +2515,7 @@ class ObservationsController < ApplicationController
     else
       opts = options
       opts[:methods] ||= []
-      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list]
+      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list, :faves_count]
       opts[:methods].uniq!
       opts[:include] ||= {}
       opts[:include][:taxon] ||= {
@@ -2608,16 +2622,19 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+    if @project.tracking_code_allowed?(params[:tracking_code])
+      tracking_code = params[:tracking_code]
+    end
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
-      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code, user: current_user)
+      po = observation.project_observations.build(project: @project,
+        tracking_code: tracking_code, user: current_user)
       unless po.save
         errors = (errors + po.errors.full_messages).uniq
       end
     end
-     
+
     if !errors.blank?
       if request.format.html?
         flash[:error] = t(:your_observations_couldnt_be_added_to_that_project, :errors => errors.to_sentence)
@@ -2789,6 +2806,8 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
     @total = scope.select("DISTINCT observations.user_id").count
   end
 
@@ -2797,7 +2816,8 @@ class ObservationsController < ApplicationController
     user_obs = Observation.elastic_user_observation_counts(elastic_params, limit)
     @user_counts = user_obs[:counts]
     @total = user_obs[:total]
-    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params, limit)
+    @user_taxon_counts = Observation.elastic_user_taxon_counts(elastic_params,
+      limit: limit, count_users: @total)
 
     # # the list of top users is probably different for obs and taxa, so grab the leftovers from each
     obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
@@ -2809,7 +2829,8 @@ class ObservationsController < ApplicationController
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
     leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
     @user_counts        += Observation.elastic_user_observation_counts(leftover_obs_user_elastic_params)[:counts].to_a
-    @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params).to_a
+    @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params,
+      count_users: leftover_tax_user_ids.length).to_a
     # don't want to return more than were asked for
     @user_counts = @user_counts[0...limit]
     @user_taxon_counts = @user_taxon_counts[0...limit]

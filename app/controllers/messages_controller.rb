@@ -117,6 +117,7 @@ class MessagesController < ApplicationController
   end
 
   def require_owner
+    return true if current_user && current_user.is_admin?
     if @message.user != current_user
       msg = "You don't have permission to do that"
       respond_to do |format|

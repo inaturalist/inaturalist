@@ -45,4 +45,12 @@ class PlaceTaxonName < ActiveRecord::Base
     end
     logger.info "Created #{created} PlaceTaxonName records, failed on #{errors} (#{Time.now - start}s)"
   end
+
+  def as_indexed_json(options={})
+    {
+      place_id: place_id,
+      position: position
+    }
+  end
+
 end

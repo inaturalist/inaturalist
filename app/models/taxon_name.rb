@@ -138,7 +138,9 @@ class TaxonName < ActiveRecord::Base
   def as_indexed_json(options={})
     json = {
       name: name.slice(0,1).capitalize + name.slice(1..-1),
-      locale: locale_for_lexicon
+      locale: locale_for_lexicon,
+      position: position,
+      place_taxon_names: place_taxon_names.map(&:as_indexed_json)
     }
     if options[:autocomplete]
       json[:is_valid] = is_valid
@@ -225,6 +227,7 @@ class TaxonName < ActiveRecord::Base
     when "french" then "fr"
     when "german" then "de"
     when "hawaiian" then "haw"
+    when "hebrew" then "iw"
     when "indonesian" then "id"
     when "italian" then "it"
     when "japanese" then "ja"
@@ -249,10 +252,11 @@ class TaxonName < ActiveRecord::Base
     when /^en/      then 'english'
     when /^es/      then 'spanish'
     when /^fr/      then 'french'
+    when /^iw/      then 'hebrew'
+    when /^ja/      then 'japanese'
+    when /^pt/      then 'portuguese'
     when /zh.CN/i   then 'chinese_simplified'
     when /^zh/      then 'chinese_traditional'
-    when /^pt/      then 'portuguese'
-    when /^ja/      then 'japanese'
     end
   end
 

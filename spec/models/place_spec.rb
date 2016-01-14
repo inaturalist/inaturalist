@@ -38,6 +38,16 @@ describe Place, "creation" do
     expect(p.check_list.taxa).to include t
   end
 
+  it "should create listed taxa with stats set" do
+    t = Taxon.make!(rank: Taxon::SPECIES)
+    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    Delayed::Worker.new.work_off
+    p.reload
+    lt = p.check_list.listed_taxa.where(taxon_id: t.id).first
+    expect( lt.last_observation_id ).not_to be_blank
+  end
+
   it "should not allow titles that start with numbers" do
     p = Place.make(:name => "14")
     expect(p).to_not be_valid
@@ -215,6 +225,21 @@ describe Place, "merging" do
     expect( klt.primary_listing? || rlt.primary_listing? ).to eq true
     expect( klt.primary_listing? && rlt.primary_listing? ).to eq false
   end
+
+  it "should not result in single listed taxa for a given taxon that are not primary" do
+    keeper = Place.make!
+    reject = Place.make!
+    klt = keeper.check_list.add_taxon(Taxon.make!, user: User.make!)
+    rl = reject.check_lists.create(title: "foo")
+    rlt = rl.add_taxon(Taxon.make!, user: User.make!)
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+    without_delay { keeper.merge(reject) }
+    klt.reload
+    rlt.reload
+    expect( klt ).to be_primary_listing
+    expect( rlt ).to be_primary_listing
+  end
 end
 
 describe Place, "bbox_contains_lat_lng?" do
@@ -257,8 +282,10 @@ end
 
 describe Place, "display_name" do
   it "should be in correct order" do
-    country = Place.make!(:code => "cn", :place_type => Place::PLACE_TYPE_CODES['country'])
-    state = Place.make!(:code => "st", :place_type => Place::PLACE_TYPE_CODES['state'], :parent => country)
+    country = Place.make!(code: "cn", place_type: Place::PLACE_TYPE_CODES['country'],
+      admin_level: Place::COUNTRY_LEVEL)
+    state = Place.make!(code: "st", place_type: Place::PLACE_TYPE_CODES['state'],
+      parent: country, admin_level: Place::STATE_LEVEL)
     place = Place.make!(:parent => state)
     expect(place.parent).to eq(state)
     expect(place.display_name(:reload => true)).to be =~ /, #{state.code}, #{country.code}$/
@@ -288,3 +315,38 @@ describe Place, "append_geom" do
     expect( old_geom ).not_to eq place.place_geometry.geom
   end
 end
+
+describe Place, "save_geom" do
+  before { enable_elastic_indexing( Observation, Place ) }
+  after { disable_elastic_indexing( Observation, Place ) }
+  describe "if there was no geom before" do
+    let(:p) { Place.make! }
+    let(:geom) { RGeo::Geos.factory(:srid => -1).parse_wkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")}
+    it "should add observed taxa to the checklist" do
+      expect( p.check_list.taxon_ids ).to be_empty
+      o = make_research_grade_observation(latitude: 0.5, longitude: 0.5)
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).to include o.taxon_id
+    end
+    it "should not remove existing user-added listed taxa to the checklist" do
+      t = Taxon.make!
+      u = User.make!
+      lt = p.check_list.add_taxon(t, user: u)
+      expect( lt ).not_to be_auto_removable_from_check_list
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).to include t.id
+    end
+    it "should not change primary_listing of existing user-added listed taxa" do
+      t = Taxon.make!
+      u = User.make!
+      lt = p.check_list.add_taxon(t, user: u)
+      expect( lt ).to be_primary_listing
+      without_delay { p.save_geom(geom) }
+      lt.reload
+      expect( lt ).to be_primary_listing
+    end
+  end
+end
+

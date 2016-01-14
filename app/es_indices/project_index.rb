@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :title, analyzer: "ascii_snowball_analyzer"
-      indexes :title_autocomplete, index_analyzer: "keyword_autocomplete_analyzer",
+      indexes :title_autocomplete, analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :location, type: "geo_point", lat_lon: true

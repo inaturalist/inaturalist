@@ -2,6 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ObservationsController do
   describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     render_views
     let(:user) { User.make! }
     before do
@@ -22,7 +24,16 @@ describe ObservationsController do
       expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
-    
+
+    it "should add project observations to elasticsearch" do
+      project = Project.make!
+      expect(project.users.find_by_id(user.id)).to be_blank
+      post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
+      expect(project.observations.last.id).to eq Observation.last.id
+      expect(Observation.elastic_search(where: { id: Observation.last.id }).
+        results.results.first.project_ids).to eq [ project.id ]
+    end
+
     it "should add project observations if auto join project specified and format is json" do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
@@ -97,6 +108,39 @@ describe ObservationsController do
         expect(o.quality_metrics).not_to be_blank
       end
     end
+
+    describe "license changes" do
+      let(:u) { User.make! }
+      let(:past_o) { Observation.make!(user: u, license: nil) }
+      let(:o) { Observation.make!(user: u, license: nil) }
+      before do
+        expect( u.preferred_observation_license ).to be_nil
+        expect( past_o.license ).to be_nil
+        expect( o.license ).to be_nil
+        sign_in u
+      end
+      it "should update the license of the observation" do
+        without_delay do
+          put :update, id: o.id, observation: {license: Observation::CC_BY}
+        end
+        o.reload
+        expect( o.license ).to eq Observation::CC_BY
+      end
+      it "should update user default" do
+        without_delay do
+          put :update, id: o.id, observation: {license: Observation::CC_BY, make_license_default: true}
+        end
+        u.reload
+        expect( u.preferred_observation_license ).to eq Observation::CC_BY
+      end
+      it "should update past licenses" do
+        without_delay do
+          put :update, id: o.id, observation: {license: Observation::CC_BY, make_licenses_same: true}
+        end
+        past_o.reload
+        expect( past_o.license ).to eq Observation::CC_BY
+      end
+    end
   end
 
   describe "show" do
@@ -151,7 +195,6 @@ describe ObservationsController do
   describe "project" do
     before(:each) { enable_elastic_indexing( Observation, Update ) }
     after(:each) { disable_elastic_indexing( Observation, Update ) }
-
     render_views
 
     describe "viewed by project curator" do
@@ -399,10 +442,8 @@ describe ObservationsController do
   end
 
   describe "index" do
-
     before(:each) { enable_elastic_indexing( Observation, Update ) }
     after(:each) { disable_elastic_indexing( Observation, Update ) }
-    
     it "should just ignore project slugs for projects that don't exist" do
       expect {
         get :index, projects: 'imaginary-project'
@@ -466,7 +507,11 @@ describe ObservationsController do
 end
 
 describe ObservationsController, "spam" do
-  let(:spammer_content) { Observation.make!(user: User.make!(spammer: true)) }
+  let(:spammer_content) {
+    o = Observation.make!
+    o.user.update_attributes(spammer: true)
+    o
+  }
   let(:flagged_content) {
     o = Observation.make!
     Flag.make!(flaggable: o, flag: Flag::SPAM)

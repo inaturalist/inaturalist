@@ -39,7 +39,8 @@ class Observation < ActiveRecord::Base
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
-  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications, :bulk_import
+  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
+    :bulk_import, :skip_indexing
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -586,6 +587,7 @@ class Observation < ActiveRecord::Base
 
   scope :dbsearch, lambda {|*args|
     q, on = args
+    q = sanitize_query(q) unless q.blank?
     case on
     when 'species_guess'
       where("observations.species_guess ILIKE", "%#{q}%")
@@ -671,7 +673,7 @@ class Observation < ActiveRecord::Base
 
   # returns a string for sharing on social media (fb, twitter)
   def to_share_s
-    return self.to_plain_s({:no_user=>true})
+    return self.to_plain_s(no_user: true)
   end
   
   def time_observed_at_utc
@@ -694,7 +696,7 @@ class Observation < ActiveRecord::Base
       [options[:include]].flatten.compact
     end
     options[:methods] ||= []
-    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc]
+    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc, :faves_count]
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
@@ -1687,13 +1689,13 @@ class Observation < ActiveRecord::Base
   end
   
   def update_default_license
-    return true unless [true, "1", "true"].include?(@make_license_default)
+    return true unless make_license_default.yesish?
     user.update_attribute(:preferred_observation_license, license)
     true
   end
   
   def update_all_licenses
-    return true unless [true, "1", "true"].include?(@make_licenses_same)
+    return true unless make_licenses_same.yesish?
     Observation.where(user_id: user_id).update_all(license: license)
     true
   end
@@ -1987,6 +1989,16 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def others_identifications
+    if identifications.loaded?
+      identifications.select do |i|
+        i.current? && i.user_id != user_id
+      end
+    else
+      identifications.current.not_by(user_id)
+    end
+  end
+
   def method_missing(method, *args, &block)
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
     if method.to_s =~ /^field:/
@@ -2084,7 +2096,7 @@ class Observation < ActiveRecord::Base
     end
     true
   end
-  
+
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
@@ -2407,6 +2419,14 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  # Show count of all faves on this observation. cached_votes_total stores the
+  # count of all votes without a vote_scope, which for an Observation means
+  # the faves, but since that might vary from model to model based on how we
+  # use acts_as_votable, faves_count seems clearer.
+  def faves_count
+    cached_votes_total
   end
 
   def self.dedupe_for_user(user, options = {})

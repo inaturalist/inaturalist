@@ -142,13 +142,13 @@ Stats.loadObservations7Days = function( json ) {
       { label: "Active Users" }
     ],
     data: _.map( json, function( stat ) {
-      return [ 
-        new Date(stat.created_at), 
-        stat.data.observations.last_7_days, 
-        stat.data.observations.identified, 
-        stat.data.observations.community_identified, 
-        stat.data.observations.community_identified_to_genus, 
-        stat.data.observations.today, 
+      return [
+        new Date(stat.created_at),
+        stat.data.observations.last_7_days,
+        stat.data.observations.identified,
+        stat.data.observations.community_identified,
+        stat.data.observations.community_identified_to_genus,
+        stat.data.observations.today,
         stat.data.users.active
       ];
     })
@@ -171,10 +171,10 @@ Stats.loadTTID = function( json ) {
     ],
     data: _.map( json, function( stat ) {
       if (stat.data.identifier) {
-        return [ 
-          new Date(stat.created_at), 
-          stat.data.identifier.med_ttid / 60, 
-          stat.data.identifier.avg_ttid / 60, 
+        return [
+          new Date(stat.created_at),
+          stat.data.identifier.med_ttid / 60,
+          stat.data.identifier.avg_ttid / 60,
           stat.data.identifier.med_ttcid / 60,
           stat.data.identifier.avg_ttcid / 60
         ];
@@ -185,9 +185,9 @@ Stats.loadTTID = function( json ) {
     chartOptions: {
       scaleType: 'allfixed',
       colors: [
-        dodgerblue.toString(), 
+        dodgerblue.toString(),
         ldodgerblue.toString(),
-        pink.toString(), 
+        pink.toString(),
         lpink.toString()
       ]
     }
@@ -232,10 +232,10 @@ Stats.loadUsers = function( json ) {
       { label: "Recent w/ 0 obs" },
     ],
     data: _.map( json, function( stat ) {
-      return [ 
-        new Date(stat.created_at), 
-        stat.data.users.active, 
-        stat.data.users.today, 
+      return [
+        new Date(stat.created_at),
+        stat.data.users.active,
+        stat.data.users.today,
         stat.data.users.identifiers,
         stat.data.users.last_7_days,
         stat.data.users.recent_7_obs,
@@ -293,9 +293,9 @@ Stats.simpleChart = function( options ) {
     chartOptions.vAxis = { minValue: 0 };
     chartOptions.height = 300;
     chartOptions.chartArea = { height: "80%" };
-    chartOptions.explorer = { 
-      axis: "horizontal", 
-      keepInBounds: false, 
+    chartOptions.explorer = {
+      axis: "horizontal",
+      keepInBounds: false,
       zoomDelta: 1.05
     };
   } else if( options.chartType === google.visualization.PieChart ) {
@@ -328,11 +328,11 @@ Stats.sparkline = function( options ) {
   var x = d3.scale.linear().domain([0, data.length]).range([0, $('#'+element).width()]);
   var y = d3.scale.linear().domain([0, _.max(data)]).range([$('#'+element).height(), 0]);
   var line = d3.svg.line()
-    .x(function(d,i) { 
-      return x(i); 
+    .x(function(d,i) {
+      return x(i);
     })
-    .y(function(d) { 
-      return y(d); 
+    .y(function(d) {
+      return y(d);
     });
   graph.append("svg:path").attr("d", line(data));
 };

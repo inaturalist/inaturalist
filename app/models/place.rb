@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
-  before_save :calculate_bbox_area, :set_display_name, :set_admin_level
+  before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
@@ -133,7 +133,30 @@ class Place < ActiveRecord::Base
     102 => 'District',
     103 => 'Province'
   }
-  PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
+  GADM_PLACE_TYPES = {
+    1000 => 'Municipality',
+    1001 => 'Parish',
+    1002 => 'Department Segment',
+    1003 => 'City Building',
+    1004 => 'Commune',
+    1005 => 'Governorate',
+    1006 => 'Prefecture',
+    1007 => 'Canton',
+    1008 => 'Republic',
+    1009 => 'Division',
+    1010 => 'Subdivision',
+    1011 => 'Village block',
+    1012 => 'Sum',
+    1013 => 'Unknown',
+    1014 => 'Shire',
+    1015 => 'Prefecture City',
+    1016 => 'Regency',
+    1017 => 'Constituency',
+    1018 => 'Local Authority',
+    1019 => 'Poblacion',
+    1020 => 'Delegation'
+  }
+  PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).merge(GADM_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
 
@@ -290,15 +313,6 @@ class Place < ActiveRecord::Base
     true
   end
 
-  # There's only so much we can do here, since various place types have
-  # different admin levels based on the country, e.g. Irish counties are
-  # equivalent to US states
-  def set_admin_level
-    self.admin_level ||= COUNTRY_LEVEL if place_type == COUNTRY
-    self.admin_level ||= STATE_LEVEL if place_type == STATE
-    true
-  end
-  
   def wikipedia_name
     if [TOWN_LEVEL, COUNTY_LEVEL].include?(admin_level)
       display_name.gsub(', US', '')
@@ -370,7 +384,9 @@ class Place < ActiveRecord::Base
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor if ancestor
-        place.parent = ancestor if place.persisted? && ancestor.persisted?
+        if place && place.persisted? && ancestor && ancestor.persisted?
+          place.parent = ancestor
+        end
       end
     end
     
@@ -754,9 +770,11 @@ class Place < ActiveRecord::Base
         unique_hash: { "CheckList::refresh": cl.id }
       ).refresh
     end
-    self.check_list.delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "CheckList::refresh": self.check_list.id }
-    ).refresh
+    if self.check_list
+      self.check_list.delay(priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "CheckList::refresh": self.check_list.id }
+      ).refresh
+    end
     self
   end
   

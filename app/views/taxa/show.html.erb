@@ -130,7 +130,7 @@
     </span>
 
     <h2>
-      <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon, :named_ancestor => true } %>
+      <%= render :partial => 'shared/taxon', :locals => { taxon: @taxon, named_ancestor: true, place: @place } %>
     </h2>
   </div>
 </div>

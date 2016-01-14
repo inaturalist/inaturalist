@@ -49,6 +49,11 @@ class AdminController < ApplicationController
     redirect_to root_path
   end
 
+  def queries
+    @queries = ActiveRecord::Base.connection.active_queries
+    render layout: "admin"
+  end
+
   private
   def load_user_content_info
     user_id = params[:id] || params[:user_id]

@@ -15,7 +15,9 @@ module ActsAsElasticModel
     index_name [ (Rails.env.prod_dev? ? "production" : Rails.env), model_name.collection ].join('_')
 
     after_commit on: [:create, :update] do
-      elastic_index!
+      unless respond_to?(:skip_indexing) && skip_indexing
+        elastic_index!
+      end
     end
 
     after_commit on: [:destroy] do
@@ -55,6 +57,13 @@ module ActsAsElasticModel
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
+          if filter_ids.length > 1000
+            # call again for each batch, then return
+            filter_ids.each_slice(1000) do |slice|
+              elastic_index!(options.merge(ids: slice))
+            end
+            return
+          end
           scope = scope.where(id: filter_ids)
         end
         # indexing can be delayed
@@ -81,6 +90,7 @@ module ActsAsElasticModel
         begin
           __elasticsearch__.client.delete_by_query(index: index_name,
             body: ElasticModel.search_hash(options))
+          __elasticsearch__.refresh_index! if Rails.env.test?
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_search failed: #{ e }"
@@ -128,7 +138,9 @@ module ActsAsElasticModel
           records = result.records.to_a
           elastic_ids = result.results.results.map{ |r| r.id.to_i }
           elastic_ids_to_delete = elastic_ids - records.map(&:id)
-          elastic_delete!(where: { id: elastic_ids_to_delete })
+          unless elastic_ids_to_delete.blank?
+            elastic_delete!(where: { id: elastic_ids_to_delete })
+          end
           WillPaginate::Collection.create(result.current_page, result.per_page,
             result.total_entries - elastic_ids_to_delete.count) do |pager|
             pager.replace(records)
@@ -151,6 +163,9 @@ module ActsAsElasticModel
             type: __elasticsearch__.document_type,
             body: prepare_for_index(batch)
           })
+          if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
+            where(id: batch).update_all(last_indexed_at: Time.now)
+          end
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_index! failed: #{ e }"
@@ -177,6 +192,9 @@ module ActsAsElasticModel
         __elasticsearch__.index_document
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+        if respond_to?(:last_indexed_at) && !destroyed?
+          update_column(:last_indexed_at, Time.now)
+        end
       rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
         Logstasher.write_exception(e)
         Rails.logger.error "[Error] elastic_index! failed: #{ e }"

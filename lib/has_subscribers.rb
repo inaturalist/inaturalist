@@ -198,6 +198,9 @@ module HasSubscribers
         if notify_owner
           owner_subscription = subscribable.update_subscriptions.where(user_id: subscribable.user_id).first
           unless owner_subscription
+            if options[:if]
+              next unless options[:if].call(notifier, subscribable, Subscription.new(resource: subscribable, user: subscribable.user))
+            end
             u = Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
             unless u.valid?

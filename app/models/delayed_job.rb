@@ -57,7 +57,7 @@ class Delayed::Backend::ActiveRecord::Job
   end
 
   def handler_yaml
-    @handler_yaml ||= YAML.load(handler)
+    @handler_yaml ||= (YAML.load(handler) rescue nil)
   end
 
   def acts_on_object
@@ -86,6 +86,7 @@ class Delayed::Backend::ActiveRecord::Job
       }
     end
     return handler_yaml.job_data["arguments"] if paperclip?
+    return unless handler_yaml.respond_to?(:method_name)
     return handler_yaml.args[1,] if handler_yaml.method_name.to_s == "send"
     handler_yaml.args
   end

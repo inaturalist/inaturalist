@@ -803,11 +803,15 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def other_primary_listed_taxa?
-    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 0
+    scope = ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    scope = scope.where("id != ?", id) if id
+    scope.count > 0
   end
   
   def multiple_primary_listed_taxa?
-    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 1
+    scope = ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    scope = scope.where("id != ?", id) if id
+    scope.count > 1
   end
   
   def primary_listed_taxon
@@ -839,6 +843,7 @@ class ListedTaxon < ActiveRecord::Base
   def update_attributes_on_related_listed_taxa
     return true unless primary_listing
     related_listed_taxa.each do |related_listed_taxon|
+      related_listed_taxon.primary_listing = false
       related_listed_taxon.establishment_means = establishment_means
       related_listed_taxon.first_observation_id = first_observation_id
       related_listed_taxon.last_observation_id = last_observation_id 
@@ -887,6 +892,15 @@ class ListedTaxon < ActiveRecord::Base
         )
       end
     end
+  end
+
+  def as_indexed_json
+    {
+      place_id: place_id,
+      user_id: user_id,
+      occurrence_status_level: occurrence_status_level,
+      establishment_means: establishment_means
+    }
   end
 
 end

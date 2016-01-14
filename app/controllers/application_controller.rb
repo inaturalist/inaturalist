@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_site
   before_filter :set_ga_trackers
   before_filter :set_request_locale
+  before_filter :sign_out_spammers
 
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 18
@@ -79,6 +80,12 @@ class ApplicationController < ActionController::Base
       current_user.try(:locale) || I18n.default_locale
     I18n.locale = current_user.try(:locale) if I18n.locale.blank?
     I18n.locale = I18n.default_locale if I18n.locale.blank?
+  end
+
+  def sign_out_spammers
+    if current_user && current_user.spammer?
+      sign_out current_user
+    end
   end
 
   # Redirect to the URI stored by the most recent store_location call or

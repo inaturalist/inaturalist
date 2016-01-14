@@ -21,7 +21,7 @@
     %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
   %h2
     - if is_me? @contributor.user
-      =t :your_contributions_to_project, project_title: truncate(@project.title, :length => 55)
+      =t :your_contributions_to_project, project_title: truncate(@project.title.html_safe, :length => 55)
     - else
       =t :users_contributions_to_project_html, 
         login: @contributor.user.login,

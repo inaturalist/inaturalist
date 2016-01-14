@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       get :count
       get :new_messages
     end
+    resources :flags
   end
 
   post '/oauth/assertion_token' => 'provider_oauth#assertion'
@@ -430,8 +431,12 @@ Rails.application.routes.draw do
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
+      get :queries
     end
-    resource :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
+    resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
+      member do
+        get :unlock
+      end
       collection do
         get :index
         get :active

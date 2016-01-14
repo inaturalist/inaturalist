@@ -32,6 +32,9 @@ class Taxon < ActiveRecord::Base
   has_many :listed_taxa_with_establishment_means,
     -> { where("establishment_means IS NOT NULL") },
     class_name: "ListedTaxon"
+  has_many :listed_taxa_with_means_or_statuses,
+    -> { where("establishment_means IS NOT NULL OR occurrence_status_level IS NOT NULL") },
+    class_name: "ListedTaxon"
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :taxon_schemes, :through => :taxon_scheme_taxa
   has_many :lists, :through => :listed_taxa
@@ -696,7 +699,8 @@ class Taxon < ActiveRecord::Base
         per_page: options[:limit] - chosen_photos.size,
         license: '1,2,3,4,5,6', # CC licenses
         extras: 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
-        sort: 'relevance'
+        sort: 'relevance',
+        safe_search: '1'
       }
       r = FlickrCache.fetch(flickr, "photos", "search", search_params)
       r = [] if r.blank?

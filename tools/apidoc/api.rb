@@ -1522,6 +1522,16 @@ EOT
     end
   end
 
+  get "/projects/:id/members", auth_required: true do
+    desc "Get the users who have joined this project."
+    param "page" do
+      values "any integer"
+    end
+    param "per_page" do
+      values 1..200
+    end
+  end
+
   post "/projects/:id/join", :auth_required => true do
     desc "Adds the authenticated user as a member of the project"
     formats %w(json)
@@ -1601,6 +1611,11 @@ EOT
     end
   end
 
+  put "/users/:id", auth_required: true do
+    desc "Update a user. Takes the same parameters as <code>POST /users</code> and response should be the same. :id is the user ID."
+    formats %w(json)
+  end
+
   get "/users/edit", :auth_required => true do
     desc "Retrieve user profile info. Response should be like <code>POST /users</code> above."
     formats %w(json)
@@ -1610,15 +1625,15 @@ EOT
     desc "Get info about new updates for the authenticated user, e.g. comments and identifications on their content."
     formats %w(json)
     param "resource_type" do
-      desc "Fitler by the type of resource that received the update, e.g. only show updates on your observations."
+      desc "Filter by the type of resource that received the update, e.g. only show updates on your observations."
       values %w(ListedTaxon Observation Post)
     end
     param "notifier_type" do
-      desc "Fitler by the type of resource that created the update, e.g. only show comments."
+      desc "Filter by the type of resource that created the update, e.g. only show comments."
       values %w(Comment Identification)
     end
     param "notifier_types[]" do
-      desc "Fitler by multiple notifier types."
+      desc "Filter by multiple notifier types."
       values %w(Comment Identification)
     end
     param "skip_view" do

@@ -40,7 +40,14 @@ describe Project, "creation" do
   end
 
   describe "for bioblitzes" do
-    let(:p) { Project.make(project_type: Project::BIOBLITZ_TYPE, place: make_place_with_geom) }
+    let(:p) do
+      Project.make(
+        project_type: Project::BIOBLITZ_TYPE, 
+        place: make_place_with_geom,
+        start_time: "2013-05-10T00:00:00-0800",
+        end_time: "2013-05-11T23:00:00-0800"
+      )
+    end
 
     it "should parse unconventional start_time formats" do
       p.start_time = "3 days ago"
@@ -56,7 +63,14 @@ describe Project, "creation" do
       expect { p.save }.not_to raise_error
       expect( p ).not_to be_valid
     end
+
+    it "should not allow comma-separated event URLs" do
+      expect( p ).to be_valid
+      p.event_url = "http://bioblitz-birding.eventbrite.com, http://bioblitz-plants.eventbrite.com, http://bioblitz-ecosystems.eventbrite.com"
+      expect( p ).not_to be_valid
+    end
   end
+
 end
 
 describe Project, "destruction" do
@@ -324,6 +338,24 @@ describe Project, "aggregate_observations" do
     o.reload
     expect( o.projects ).to include project
     expect( o.project_observations.size ).to eq 1
+  end
+
+  it "adds observations whose users were updated since last_aggregated_at" do
+    project.update_attributes(place: make_place_with_geom, trusted: true)
+    o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
+    o2 = Observation.make!(latitude: 90, longitude: 90)
+    project.aggregate_observations
+    expect( project.observations.count ).to eq 1
+    o2.update_attributes(latitude: project.place.latitude, longitude: project.place.longitude)
+    o2.update_columns(updated_at: 1.day.ago)
+    o2.elastic_index!
+    project.aggregate_observations
+    # it's still 1 becuase the observations was updated in the past
+    expect( project.observations.count ).to eq 1
+    o2.user.update_columns(updated_at: Time.now)
+    project.aggregate_observations
+    # now the observation was aggregated because the user was updated
+    expect( project.observations.count ).to eq 2
   end
 end
 

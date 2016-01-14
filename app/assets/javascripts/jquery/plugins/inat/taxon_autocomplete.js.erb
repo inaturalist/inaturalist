@@ -18,6 +18,11 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" ) {
     return inaturalist.EXTERNAL_SEARCH_ICON;
   }
+  // use default_photo or default_photo_url while we update
+  // taxa to only have default_photo
+  if( result.default_photo ) {
+    return result.default_photo.square_url || result.default_photo.medium_url;
+  }
   if( result.default_photo_url ) { return result.default_photo_url; }
   if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
     return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;

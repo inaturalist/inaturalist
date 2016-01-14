@@ -43,7 +43,17 @@ class Identification < ActiveRecord::Base
   attr_accessor :captive_flag
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
-    :queue_if => lambda {|ident| ident.taxon_change_id.blank?}
+    :queue_if => lambda {|ident| 
+      ident.taxon_change_id.blank?
+    },
+    :if => lambda {|notifier, subscribable, subscription|
+      return true unless notifier && subscribable && subscription
+      return true if subscription.user && subscription.user.prefers_redundant_identification_notifications
+      subscribers_identification = subscribable.identifications.current.detect{|i| i.user_id == subscription.user_id}
+      return true unless subscribers_identification
+      return true unless notifier.body.blank?
+      subscribers_identification.taxon_id != notifier.taxon_id
+    }
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
@@ -53,6 +63,7 @@ class Identification < ActiveRecord::Base
     joins(:observation).where("observation.user_id = ?", user)
   }
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
+  scope :not_by, lambda {|user| where("identifications.user_id != ?", user)}
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
@@ -76,7 +87,9 @@ class Identification < ActiveRecord::Base
     {
       id: id,
       user: user.as_indexed_json,
-      current: current
+      created_at: created_at,
+      created_at_details: ElasticModel.date_details(created_at),
+      body: body
     }
   end
 

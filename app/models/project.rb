@@ -57,7 +57,7 @@ class Project < ActiveRecord::Base
   
   validates_length_of :title, :within => 1..100
   validates_presence_of :user
-  validates_format_of :event_url, :with => URI.regexp, 
+  validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
     :message => "should look like a URL, e.g. #{CONFIG.site_url}",
     :allow_blank => true
   validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
@@ -641,7 +641,11 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
     params = observations_url_params.merge(per_page: 200, not_in_project: id)
     # making sure we only look observations opdated since the last aggregation
-    params[:updated_since] = last_aggregated_at.to_s unless last_aggregated_at.nil?
+    unless last_aggregated_at.nil?
+      params[:updated_since] = last_aggregated_at.to_s
+      params[:aggregation_user_ids] = User.
+        where("users.updated_at >= ?", last_aggregated_at).map(&:id)
+    end
     list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
     total_entries = nil
@@ -659,9 +663,10 @@ class Project < ActiveRecord::Base
           raise ProjectAggregatorAlreadyRunning, msg
         end
       end
-      # the list filter will be ignored if the count is over 2000,
+      # the list filter will be ignored if the count is over the cap,
       # so we might as well use the faster ES search in that case
-      observations = if list && list.listed_taxa.count <= 2000
+      # Might want to experiment with removing the cap, though
+      observations = if list && list.listed_taxa.count <= ObservationSearch::LIST_FILTER_SIZE_CAP
         # using cached total_entries to avoid many COUNT(*)s on slow queries
         Observation.query(params).paginate(page: page, total_entries: total_entries,
           per_page: observations_url_params[:per_page])

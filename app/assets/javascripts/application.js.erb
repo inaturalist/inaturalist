@@ -880,7 +880,7 @@ function setUpdatesCount(count, options) {
 }
 
 function getUpdatesCount() {
-  $.get('/users/updates_count', function(data) {
+  $.getJSON('/users/updates_count.json', function(data) {
     setUpdatesCount(data.count)
   })
 }

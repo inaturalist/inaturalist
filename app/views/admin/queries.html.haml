@@ -1,0 +1,16 @@
+%h2.sub-header= "Active Queries (#{ @queries.count })"
+%table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th State Change
+        %th Info
+    %tbody
+      - @queries.each do |query|
+        %tr
+          %td= t(:n_ago, n: time_ago_in_words(query["state_change"]))
+          %td
+            - query.each do |k,v|
+              %strong= "#{ k }:"
+              = v
+              %br
