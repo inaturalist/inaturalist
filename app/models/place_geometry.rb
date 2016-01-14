@@ -15,8 +15,6 @@ class PlaceGeometry < ActiveRecord::Base
   validates_presence_of :geom
   validate :validate_geometry
 
-  attr_accessor :skip_indexing
-
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?

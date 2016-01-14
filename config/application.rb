@@ -114,7 +114,6 @@ FlickRaw.check_certificate = false
 # General settings
 SITE_NAME = CONFIG.site_name
 SITE_NAME_SHORT = CONFIG.site_name_short || SITE_NAME
-OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 
 # force encoding
 Encoding.default_internal = Encoding::UTF_8

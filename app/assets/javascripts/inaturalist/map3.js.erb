@@ -456,7 +456,6 @@ iNaturalist.Map.createMap = function(options) {
   if( ! _.has( options, "disableFullscreen" ) ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   }
-  map._observationsTileServer = options.observationsTileServer
 
   if (options.bounds) {
     if (typeof(options.bounds.getCenter) == 'function') {

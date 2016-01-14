@@ -758,6 +758,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       showAllLayer: false,
       disableFullscreen: true,
       mapTypeControl: false,
+      overlayMenu: false,
+      zoomControl: false,
       infoWindowCallback: $scope.infoWindowCallback,
       minZoom: 2
     });

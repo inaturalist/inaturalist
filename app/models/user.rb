@@ -684,8 +684,7 @@ class User < ActiveRecord::Base
   def as_indexed_json(options={})
     {
       id: id,
-      login: login,
-      icon_url: user_icon_url
+      login: login
     }
   end
 

@@ -62,7 +62,7 @@ class ObservationsController < ApplicationController
   MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :index, :show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_prefs, :only => [:project, :by_login]
+  before_filter :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"

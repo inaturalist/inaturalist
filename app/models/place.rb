@@ -857,14 +857,6 @@ class Place < ActiveRecord::Base
     super(options)
   end
 
-  def to_geojson
-    return unless place_geometry && place_geometry.geom
-    {
-      type: "Feature",
-      geometry: ElasticModel.geom_geojson(place_geometry.geom)
-    }
-  end
-
   def ancestor_place_ids
     return unless ancestry
     ancestry.split("/").map(&:to_i) << id
