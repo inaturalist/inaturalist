@@ -38,6 +38,9 @@ fr:
     l’attribution du nom scientifique de ce taxon. Quand vous aurez enregistré
     ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs,
     noms scientifiques obsolètes, etc.).
+  x_comments:
+    one: 1 commentaire
+    other: '%{count} commentaires'
   x_followers:
     one: 1 abonné
     other: '%{count} abonnés'
@@ -69,8 +72,8 @@ fr:
     one: 1 personne
     other: '%{count} personnes'
   x_faves:
-    one: 1 Favori
-    other: '%{count} Favoris'
+    one: 1 favori
+    other: '%{count} favoris'
   x_people_like_this:
     one: 1 personne aime cela
     other: '%{count} personnes aiment cela'
@@ -138,6 +141,7 @@ fr:
   actions: Actions
   activate_user: Activer l'utilisateur
   active: actif
+  activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: Adaptation du travail de %{original} par
     %{name}
   add: Ajouter
@@ -566,6 +570,7 @@ fr:
     représentent différents types d’espaces verts (parcs, réserves). Si vous
     faites un zoom, vous verrez plus de lieux plus petits.
   body: Corps
+  bounding_box: Boîte englobante
   breadcrumbs: Piste de navigation
   breadcrumbs_description: |-
     Cette action remplacera le h1 et les appels à l’action par défaut;
@@ -605,7 +610,7 @@ fr:
   case_plural: s
   casual: occasionnel
   catalogue_of_life: Catalogue of Life
-  categories: Catégories
+  categories: catégories
   cc_attribution_license: Licence d’attribution de Creative Commons
   cc_by_description: |-
     Cette licence permet aux autres de distribuer et d’améliorer votre travail,
@@ -888,6 +893,7 @@ fr:
     attribution_sharealike_license: Licence d’attribution – Partage des conditions
     attribution_noderivs_license: Licence d’attribution – Pas de modifications
     gnu_free_documentation_license: Licence Documentation libre GNU
+  copyright_holder: Détenteur des droits
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
   couldnt_change_your_password: 'Impossible de modifier votre mot de passe : %{e}'
@@ -997,6 +1003,7 @@ fr:
     dayNamesShort: '[''Dim'',''Lun'',''Mar'',''Mer'',''Jeu'',''Ven'',''Sam'']'
     dayNamesMin: '[''Di'',''Lu'',''Ma'',''Me'',''Je'',''Ve'',''Sa'']'
   date_time: Horodatage
+  dates: dates
   datetime_: Horodatage
   day: Jour
   default: par défaut
@@ -1035,7 +1042,7 @@ fr:
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
   description: Description
   description_from: Description de
-  description_slash_tags: Description / Etiquettes
+  description_slash_tags: Description / Balises
   description_tags_more: Description, étiquettes, &amp; Plus
   desription: Description
   destroy: Détruiser
@@ -1278,6 +1285,7 @@ fr:
     %{provider} à %{site_name} :'
   first_inat_observation: Première observation %{site_name}
   first_observer: Premier observateur
+  first_report: premier rapport
   flag: Signaler
   flag_an_item: Signaler un élément
   flag_as_spammer: Signaler comme polluposteur
@@ -1400,10 +1408,10 @@ fr:
   guide_was_successfully_published: Le guide a bien été publié.
   guide_was_successfully_updated: Le guide a bien été mis à jour.
   guidelines: Lignes directrices
-  has_been: a été
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
-  has_photos: avec des photos
-  has_sounds: avec des sons
+  has_been: a été
+  has_photos: a des photos
+  has_sounds: a des sons
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
   hate_me_facebook: Supprimer le lien entre Facebook et vos comptes %{site_name}
   hate_me_flickr: Supprimer le lien entre vos comptes Flickr et %{site_name}
@@ -1438,6 +1446,7 @@ fr:
   hi_user: Bonjour %{user}
   hide: Masquer
   hide_details: Masquer les détails
+  high: haut
   highest_rank: Rang le plus elevé
   home: Accueil
   home_faq: FAQ
@@ -1467,7 +1476,7 @@ fr:
   identotron: Identotron
   identotron_for: Identotron pour
   identotron_help: Aide de l’Identotron
-  ids: Identification de
+  ids: IDs
   ids_made_for_others: Identifications faites pour d’autres
   if_matches_come_from_a_comprehensive_list: Si la correspondance vient d’une liste
     complète, une barre verte sera affichée.
@@ -1516,6 +1525,7 @@ fr:
   importing: Importation en cours…
   in: dans
   in_: dans
+  in_n: dans %{n}
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
   inbox: boîte de réception
   including: y compris
@@ -1655,6 +1665,7 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     bengali: Bengali
+    catalan: Catalan
     cebuano: Cebuano
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
@@ -1844,6 +1855,7 @@ fr:
     votre guide.
   lookup: Chercher
   lookup_user_rarr: Chercher un utilisateur &rarr;
+  low: bas
   lowest_rank: Rang le moins élevé
   made_a: a fait un
   mail_disclaimer: '%{site_name} ne permettra pas à ses utilisateurs de vous envoyer
@@ -1899,9 +1911,18 @@ fr:
     ici. Les cartes afficheront une aire de répartition pour cette espèce si elle
     existe à %{place}.
   maybe_your_signed_in_with: Êtes-vous peut-être connecté avec votre compte %{omniauth}?
+  media: Média
   medium: moyen
   member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
   members: Membres
+  mentioned_you_in_noun_html: '%{user} vous a mentionné dans %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} vous a mentionné dans %{noun} par %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} vous a mentionné dans un %{x} sur %{noun}'
+  mentioned_you_in_an_x_on_noun_html: '%{user} vous a mentionné dans un %{x} sur %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} vous a mentionné dans un %{x} sur
+    %{noun} par %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} vous a mentionné dans un %{x} sur
+    %{noun} par %{by}'
   mentions: Mentions
   merge: Fusionner
   merge_it_with_another_place: Fusionner avec un autre lieu
@@ -1921,7 +1942,7 @@ fr:
   mollusks: mollusques
   mon: Lun
   month: Mois
-  monts: Mois
+  months: Mois
   months_ago: il y a %{text}
   more: Plus
   more_fields: Plus de champs
@@ -1953,6 +1974,7 @@ fr:
   name_entered: Nom saisi
   name_llaves: '[NOM]'
   name_of_the_place_you: Nom du lieu où vous avez fait l’observation
+  name_or_username: Nom ou nom d’utilisateur
   name_provider: Fournisseur du nom
   name_providers:
     col: Catalogue of Life
@@ -1977,6 +1999,7 @@ fr:
   ne_lon: Lon. NE
   near: près de
   near_threatened: quasi-menacée
+  nearby: À proximité
   nearby_observations: Observations à proximité
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
@@ -2144,6 +2167,12 @@ fr:
   note: Note
   note_you_can_modify_the_height_attribute: 'Remarque : Vous pouvez modifier l’attribut
     ''height'' pour l’adapter à l’espace disponible sur votre page web.'
+  notify_me_of_mentions: M’informer des mentions (par ex. @username)
+  notify_me_about_redundant_identifications: M’avertir des confirmations d’identité
+  notify_me_about_redundant_identifications_desc: Recevoir des avertissements sur
+    les identifications qui correspondent aux vôtres. Si vous refusez cela, vous ne
+    recevrez que les avertissements sur les identifiants de taxons qui ne correspondent
+    pas exactement avec la vôtre.
   number_of_observations: Nombre d’observations
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
@@ -2399,6 +2428,7 @@ fr:
     sur le site externe ou %{site_name} n’a plus le droit de la voir
   photo_hosting_accounts: Comptes d’hébergement de photos
   photo_integration: Intégration de photos
+  photo_licensing: Licence de photo
   photo_type: Type de Photo
   photo_urls_repaired: URL de photo réparées
   photos: Photos
@@ -2553,6 +2583,7 @@ fr:
     united_states: États-Unis
     virgin_islands: Îles Vierges
     west_africa: Afrique occidentale
+  places_of_interest: Endroits intéressants
   places_merged_successfully: Les lieux ont bien été fusionnés!
   places_of_interest: Lieux d'intérêt
   plants: plantes
@@ -2580,7 +2611,7 @@ fr:
   please_hold_on_while_the_file_is_generated: |
     Veuillez patienter pendant la génération
     du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
-  popular: Populaire
+  popular: populaire
   position: Emplacement
   positional_accuracy: Exactitude de l’emplacement
   possessive_user: '%{user}'
@@ -2647,6 +2678,7 @@ fr:
   project_members: Membres de %{project}
   project_membership_model_description: Votre projet est-il ouvert à tout le monde
     ou seulement aux personnes que vous invitez?
+  project_name: Nom du projet
   project_observation_settings: Paramètres d’observation du projet
   project_observations: Observations du projet
   project_post: Note du projet
@@ -2727,6 +2759,7 @@ fr:
     sur
   receive_updates_from_this_project: Recevoir des avis pour ce projet
   received: reçu
+  recent: Récent
   recent_additions: Ajouts récents
   recent_comments_on_your_stuff: Commentaires récents sur vos trucs
   recent_observations: Observations récentes
@@ -2745,6 +2778,7 @@ fr:
   recently_resolved: Récemment résolu
   record!: Enregistrez!
   red: rouge
+  redo_search_in_map: Refaire la recherche sur la carte
   redo_search_in_map_area: Refaire la recherche dans la région cartographique
   refresh: Rafraîchir
   refresh_listed_taxa: rafraîchir les taxons réprtoriés
@@ -2788,6 +2822,7 @@ fr:
   reorder_by_taxonomy: Réorganiser l’ordre par taxonomie
   repair_doesnt_work_for_that_kind_of_photo: La réparation ne fonctionne pas pour
     ce type de photo
+  repair_external_photos: Réparer les photos externes
   replace_boundary_with_kml: Remplacer la frontière par format KML
   replace_parentesis: (remplacez)
   replacing: remplacement en cours
@@ -2808,7 +2843,7 @@ fr:
     une date, une photo, des coordonnées et une identification reconnue par la communauté.
     Cliquer dessus pour voir l’évaluation de la garantie des données.
   research_quality: Qualité de la recherche
-  reset_search_filters: Enlever les filtres de recherche
+  reset_search_filters: Réinitialiser les filtres de recherche
   reset_your_password: Réinitialiser votre mot de passe
   resolve: Régler
   resolve_this_flag: Régler ce drapeau
@@ -2835,6 +2870,8 @@ fr:
     must_be_on_list: doit être dans la liste
     must_be_observed_in_place: doit être observé fans le lieu
     must_be_in: doit être dans le taxon
+    must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser
+      les superviseurs du projet à voir les coordonnées.
   said: a dit
   sat: Sam
   satellite: satellite
@@ -3096,6 +3133,7 @@ fr:
   species_taxon_name: Nom de l’espèce/taxon
   species_unknown: Espèce inconnue
   src: Rech.
+  standard: Standard
   start: Démarrer
   start_a_new_list: Démarrer une nouvelle liste
   start_a_new_project: Démarrer un nouveau projet
@@ -3125,6 +3163,7 @@ fr:
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
   subject_committed_thing_affecting_stuff_html: '%{subject} a validé %{thing} concernant
     %{stuff}'
+  submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit: Soumettre
   submit_comment: Soumettre un commentaire
   submitted: Soumis
@@ -3302,6 +3341,7 @@ fr:
     ce taxon sera utilisé (ce qui fonctionne, en général).
   the_user_x_has_been_suspended: L’utilisateur %{user} a été suspendu
   the_user_x_has_been_unsuspended: La suspension de l’utilisateur %{user} a été levée
+  the_world: Le monde
   the_world_is_full_of_interesting_places: |-
     Le monde est plein de lieux intéressants, chacun rempli de formes de vie
     étranges et merveilleuses. Certaines sont de l’autre côté de la planète, tandis que
@@ -3507,6 +3547,7 @@ fr:
   unsubscribe: Désabonnez-vous
   unsubscribe_from_this: Désabonnez-vous
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
+  unverifiable: Non vérifiable
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
   update_existing_observations_with_new_license: Mettre à jour les observations existantes
@@ -3810,6 +3851,7 @@ fr:
     photos, sons et observations, de sorte que les scientifiques puissent utiliser
     mes données!
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
+  yesterday: Hier
   yesterday_at: ', hier à 16 h'
   you: vous
   you_admin: que vous administrez
@@ -4019,6 +4061,7 @@ fr:
     faire en attendant
   none_of_the_people_you_follow_have_any_updates_yet: Aucune des personnes que vous
     suivez n’a encore fait de mise à jour!
+  verifiable: vérifiable
   views:
     views: Vues
     custom_projects:
@@ -4129,7 +4172,7 @@ fr:
         contenu du guide sans connexion Internet. La génération de
         l’archive prendra quelques minutes, mais une fois activée,
         elle sera mise à jour quand vous modifierez ce guide.</p>
-        <p class="alert error status">
+        <p class="alert status">
           Veuillez <strong>ne pas activer les téléchargements mobiles hors ligne si vous ne
           prévoyez pas les utiliser.</strong> Ils encombrent votre système.
         </p>
@@ -4544,6 +4587,11 @@ fr:
           </p>
         cumulative_count_desc: Nombre d’identifications pour un taxon distinct et
           tous ses descendants
+        curator_coordinate_access_disabled_desc_html: |-
+          Ce projet n’autorise pas d’observations avec des coordonnées
+          non visibles par les superviseurs. Si vous ne voulez pas partager les
+          coordonnées de cette observation avec les superviseurs de ce projet,
+          vous devez supprimer l’observation du projet.
         disagreement_count_desc: Nombre de taxons identifiés qui ne font pas partie
           des ancêtres d’un taxon
         identification_count_desc: Nombre d’identifications pour un taxon distinct
@@ -4695,6 +4743,11 @@ fr:
         keep_observations_label: Laisser vos observations dans ce projet
         keep_observations_desc: Vos observations resteront dans le projet et les superviseurs
           pourront voir leurs coordonnées privées.
+        project_requires_curator_coordinate_access_desc: |-
+          Ce projet n’autorise pas d’observations avec des coordonnées
+          non visibles par les superviseurs. Si vous ne voulez pas partager les
+          coordonnées de cette observation avec les superviseurs de ce projet,
+          vous devez supprimer l’observation du projet.
         remove_observations_label: Supprimer toutes vos observations de ce projet
         remove_observations_desc_html: |-
           Gardez à l’esprit que les superviseurs du projet pourront toujours ajouter vos
@@ -4770,6 +4823,9 @@ fr:
           observed_in_place: être observé dans le lieu
           on_list: être d’un taxon de la liste du projet
         start_time_desc: 'Date de début de votre bioblitz. Format: AAAA-MM-JJThh:mm:ss±hh:mm'
+        submission_models:
+          any: n’importe qui
+          curators: superviseurs du projet
         trusted_project_means: |-
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
@@ -4820,8 +4876,11 @@ fr:
           sauf si vous faites confiance aux superviseurs du projet.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Vous
-        any: Responsables du projet
+        observer: Vous (<span class="notice status">meilleur choix pour contrôler
+          le partage des emplacements privés</span>)
+        any: |-
+          Membres du projet (<span class="success status">meilleur choix pour partager vos observations avec ce projet</span>)
+          Responsables du projet
         none: Personne
       curator_coordinate_access_label: Permettre au responsable du projet de voir
         les coordonnées privées de vos observations lorsqu'elles sont ajoutées par
@@ -4829,10 +4888,11 @@ fr:
         Vous pouvez configurer individuellement les avis de chaque observations.
         Cette option sera appliquée automatiquement sur toutes les autres.
       project_user_curator_coordinate_access_descriptions:
-        observer: Permettre aux responsables du projet de voir uniquement les coordonnées
-          privées des observations que vous ajoutez au projet
+        observer: Seuls les responsables du projet de voir uniquement les coordonnées
+          privées de vos observations ajoutées à ce projet.
         any: Permettre aux responsables du projet de voir les coordonnées privées
-          de vos observations si vous ou un responsable du projet les avez ajoutées
+          de vos observations ajoutées à ce projet par vous ou d’autres membres du
+          projet.
         none: Ne pas partager les coordonnées privées de vos observations avec les
           responsables du projet
       project_terms_desc_html: |-
@@ -4997,6 +5057,42 @@ fr:
         observations_to_date: Observations à ce jour
         species_observed: Espèces Observées
         people_signed_up: Personnes se Sont Inscrites
+        how_it_works: Comment cela marche
+        record_your_observations: Enregistrer vos observations
+        share_with_fellow_naturalists: Partager avec vos confrères naturalistes
+        discuss_your_findings: Discuter de vos découvertes
+        contribute_to_science: Contribuer à la Science
+        science_desc_html: |-
+          Chaque observation peut contribuer à la science de la biodiversité, du
+          papillon le plus rare à la mauvaise herbe de l’arrière-cour la plus courante. Nous partageons vos
+          découvertes avec les dépôts de données scientifique comme l’<a href='http://gbif.org' target='_blank'>Établissement pour l’Information sur la Biodiversité Globale</a>
+          pour aider les scientifiques à trouver et utiliser vos données. Tout ce que vous avez à faire est
+          d’observer.
+        nature_at_your_fingertips: La nature au bout de vos doigts
+        keep_track: Garder la trace
+        record_your_encounters: Enregistrer vos rencontres avec d’autres organismes
+          et maintenez des listes de vie, tout cela dans le cloud.
+        create_useful_data: Créer des données utiles
+        help_scientists: Aider les scientifiques et les gestionnaires de ressource
+          à comprendre quand et où apparaissent les organismes.
+        crowdsource_identifications: Identifications participatives
+        connect_with_experts: Se mettre en relation avec des experts qui peuvent identifier
+          les organismes que vous observez.
+        become_a_citizen_scientist: Devenir un scientifique citoyen
+        find_a_project: Trouver un projet avec une mission qui vous intéresse, et
+          démarrez le vôtre.
+        learn_about_nature: En apprendre sur la nature
+        build_your_knowledge: Accroître votre connaissance en parlant avec d’autres
+          naturalistes et aider les autres.
+        run_a_bioblitz: Lancer un Bioblitz
+        hold_an_event: Organiser un événement où les gens essayeront de trouver autant
+          d’espèces que possible.
+        works_on_all_your_devices: Travailler sur tous vos appareils
+        install_our_mobile_apps: Installer notre application mobile afin de pouvoir
+          toujours observer, même sans réception cellulaire ou wifi.
+        who_uses_site_name: Qui utilise %{site_name} ?
+        what_are_you_waiting_for: Qu’attendez-vous ?
+        join_today: S’inscrire aujourd’hui
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Enregistrez et modifiez pour ajouter des
@@ -5255,6 +5351,10 @@ fr:
                 assez lamentable de régler le problème. Vous pouvez toujours
                 enregistrer un brouillon, et si vous utilisez toujours le site
                 dans un jour, vous pourrez publier.
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: doit être un responsable de ce projet
     attributes:
       assessment:
         description: Description
@@ -5288,6 +5388,8 @@ fr:
         tracking_codes: Codes de suivi
         source_url: URL source
         start_time: Heure de début
+      project_observation:
+        user_id: Auteur
       place:
         code: Code
         display_name: Nom public
@@ -5353,6 +5455,7 @@ fr:
         observation_field: :@m
         post: :@m
         taxon: :@m
+  wild: sauvage
   will_paginate:
     previous_label: '&#8592; Précédent'
     next_label: Suivant &#8594;
