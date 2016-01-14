@@ -74,7 +74,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :view
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
-  # allow certain exclusion filters
+  # disable certain specs. Useful for travis
   config.filter_run_excluding disabled: true
 end
 
