@@ -10,6 +10,7 @@ class FakeView < ActionView::Base
   include PlacesHelper
   include TaxaHelper
   include GuidesHelper
+  include ObservationsHelper
 
   @@default_url_options = {:host => CONFIG.site_url.sub("http://", '')}
   

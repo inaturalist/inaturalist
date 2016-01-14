@@ -470,6 +470,7 @@ en:
   black: black
   blog_widget: Blog widget
   blue: blue
+  blue_butterfly_etc: "blue, butterfly, etc."
   blue_icons_represent_political_units: "Blue icons represent political units like countries, states, provinces, counties, and the like, while green icons represent different kinds of open space (parks, reserves). If you zoom in you'll see more, smaller places."
   body: Body
   bounding_box: Bounding Box
@@ -641,6 +642,7 @@ en:
   commit: Commit
   committed: Committed
   committing: Committing...
+  community_curated: Community Curated
   community_id: '<strong>Community</strong> ID: '
   community_id_at_species_or_lower?: Community ID at species or lower?
   community_moderation_settings: Community Moderation Settings
@@ -949,6 +951,7 @@ en:
   eg: 'e.g. '
   either: Either
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
+  eligible_for_research_grade: Eligible for Research Grade
   email: Email
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
@@ -1017,6 +1020,7 @@ en:
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
+  failed_to_find_your_location: Failed to find your location.
   'false': 'False'
   faq: Frequently Asked Questions
   Family: Family
@@ -1061,8 +1065,10 @@ en:
   find_photos: Find Photos
   find_places: Find Places
   find_some_people_to_follow: find some people to follow
+  find_some_people_to_follow: "Find some people to follow"
   find_species: Find Species
   find_suitable_observations: Find suitable observations
+  find_your_current_location: Find your current location
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
@@ -1127,6 +1133,7 @@ en:
   full_id_please: ID Please!
   full_id_please!: "ID Please!"
   full_id_please?: "ID Please?"
+  full_screen: Full screen
   fungi:
     one: fungus
     other: fungi
@@ -1179,6 +1186,7 @@ en:
   guidelines: Guidelines
   has_already_been_flagged_by: has already been flagged by
   has_been: has been
+  has_one_or_more_faves: Has one or more faves
   has_photos: has photos
   has_sounds: has sounds
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
@@ -1363,6 +1371,7 @@ en:
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
+  layers: Layers
   layout: Layout
   leaderboard_for_x: "Leaderboard for %{x}"
   leaderboards: Leaderboards
@@ -1607,6 +1616,21 @@ en:
   mobile_apps_for: Mobile apps for
   mobile_view_available: Mobile view available
   mollusks: mollusks
+  momentjs:
+    shortRelativeTime:
+      future: "in %s"
+      past:   "%s"
+      s:  "s"
+      m:  "1m"
+      mm: "%dm"
+      h:  "1h"
+      hh: "%dh"
+      d:  "1d"
+      dd: "%dd"
+      M:  "1m"
+      MM: "%dm"
+      y:  "1y"
+      yy: "%dy"
   mon: Mon
   month: Month
   months: Months
@@ -1656,6 +1680,7 @@ en:
   nav_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: NE Lat.
   ne_lon: NE Lon.
+  near: near
   near_threatened: near threatened
   nearby: Nearby
   nearby_observations: Nearby Observations
@@ -1754,6 +1779,7 @@ en:
   no_one_posted_anything_yet: No one's posted anything yet!
   no_ones_observed: No one's observed
   no_photos: No photos
+  no_places_available: No places available
   no_places_selected: No places selected.
   no_post_yet: No posts yet!
   no_project_selected: No project selected
@@ -2142,6 +2168,8 @@ en:
   place_updated: Place updated!
   placement: Placement
   places: Places
+  places_added_by_members_of_the_community: Places added by members of the community
+  places_maintained_by_site_admins: Places maintained by site admins
   places_name:
     afghanistan: Afghanistan
     africa: Africa
@@ -2307,7 +2335,9 @@ en:
       superorder: superorder
       order: order
       suborder: suborder
+      infraorder: infraorder
       superfamily: superfamily
+      epifamily: epifamily
       family: family
       subfamily: subfamily
       supertribe: supertribe
@@ -2501,6 +2531,7 @@ en:
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_one_or_more_photos: 'Select one or more photos'
+  select_options: Select options
   select_photos_from_your_photo_stream: |
     Select photos from external photo-sharing sites to convert into %{site_name}
     observations. We'll fill in the date, time, and location from a photo's
@@ -3030,6 +3061,7 @@ en:
   uploaded_by: Uploaded by
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
+  url_slug_or_id: "URL slug or ID, e.g. my-project or 333"
   US_states: US States
   usage_stats: Usage stats
   use_name_as_a_placeholder: |
@@ -3402,10 +3434,11 @@ en:
   youve_opted_out_of_community_ids_for_this_obs: "You've opted out of community identifications for this observation"
   youve_seen_it_want_to: "You've seen it! Want to"
   youve_successfully_linked_your_provider_account: "You've successfully linked your %{provider} account"
+  zoom_in: Zoom In
+  zoom_out: Zoom Out
   zoom_to_taxon_name: "Zoom to %{taxonname}"
   zoom_to_x: "zoom to %{x}"
   your_dashboard_helps_you: "Your dashboard helps you keep track of what people are doing on the site. To follow someone's updates, click the 'Follow [name]' link in the header when viewing their observations or profile."
-  find_some_people_to_follow: "Find some people to follow"
   here_are_some_things_you_can_do_in_the_meantime: "Here are some things you can do in the meantime"
   none_of_the_people_you_follow_have_any_updates_yet: "None of the people you follow have made any updates yet!"
   verifiable: verifiable
@@ -4760,7 +4793,7 @@ en:
         observation_field: :@m
         post: :@m
         taxon: :@m      
-  wild: wild      
+  wild: wild
   will_paginate:
     previous_label: "&#8592; Prev"
     next_label: "Next &#8594;"

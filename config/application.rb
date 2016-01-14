@@ -58,6 +58,9 @@ module Inaturalist
     # in case assets reference application objects or methods
     config.assets.initialize_on_precompile = true
 
+    # Ensure bower components are included in the asset pipeline
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
     config.i18n.enforce_available_locales = false
 
     # new for Rails 4.2 as per https://github.com/collectiveidea/delayed_job
@@ -111,7 +114,6 @@ FlickRaw.check_certificate = false
 # General settings
 SITE_NAME = CONFIG.site_name
 SITE_NAME_SHORT = CONFIG.site_name_short || SITE_NAME
-OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 
 # force encoding
 Encoding.default_internal = Encoding::UTF_8
@@ -130,3 +132,4 @@ require 'pp'
 require 'to_csv'
 require 'elasticsearch/model'
 require 'elasticsearch/rails/instrumentation'
+require 'angular-rails-templates'

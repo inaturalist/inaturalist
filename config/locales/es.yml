@@ -531,6 +531,7 @@ es:
   black: negro
   blog_widget: Widget del blog
   blue: azul
+  blue_butterfly_etc: "azul, mariposa, etc."
   blue_icons_represent_political_units: Los íconos azules representan unidades políticas
     como países, estados y afines, mientras que los íconos verdes representan diferentes
     tipos de espacios abiertos parques y reservas. Si haces un acercamiento, podrás
@@ -572,6 +573,7 @@ es:
   case_plural: s
   casual: casual
   catalogue_of_life: Catálogo de la Vida
+  categories: categorías
   cc_attribution_license: Licencia de atribución de Creative Commons
   cc_by_description: Esta licencia permite a otros distribuir, mezclar, ajustar y
     construir con base en su trabajo, incluso con fines comerciales, siempre y cuando
@@ -975,6 +977,7 @@ es:
   describe_your_interest_in_nature: ¡Describa su interés en la naturaleza!
   description: Descripción
   description_from: Descripción de
+  description_slash_tags: Descripción / Etiquetas
   description_tags_more: Descripción, Etiquetas, &amp; Más
   desription: Descripción
   destroy: Destruir
@@ -1123,6 +1126,7 @@ es:
   everywhere: todas partes
   exact_coordinates_obscured_for: Coordenadas exactas ocultas para visualización pública
     para especies amenazadas.
+  exact_date: Fechas exactas
   exact_location: Ubicación exacta
   exact_rank: Rango exacto
   existing_flags: Marcas existentes
@@ -1327,8 +1331,10 @@ es:
   guide_was_successfully_published: La guía fue publicada satisfactoriamente.
   guide_was_successfully_updated: La guía fue actualizada satisfactoriamente.
   guidelines: Directrices
-  has_been: ha sido
   has_already_been_flagged_by: ya ha sido marcada por
+  has_been: ha sido
+  has_photos: tiene fotos 
+  has_sounds: tiene sonidos
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
   hate_me_facebook: Desvincular sus cuentas de Facebook e %{site_name}
   hate_me_flickr: Desvincular sus cuentas de Flickr e %{site_name}
@@ -1362,6 +1368,7 @@ es:
   hi_user: Hola, %{user}
   hide: Ocultar
   hide_details: Ocultar detalles
+  high: alto
   highest_rank: Rango más alto
   home: Inicio
   home_faq: PP. FF.
@@ -1387,6 +1394,7 @@ es:
   identifications: Identificaciones
   identifications_by: Identificaciones por %{user}
   identified?: con identificación
+  identifiers: Identificadores
   identotron: Identotron
   identotron_for: Identotrón para
   identotron_help: Ayuda con el identotrón
@@ -1753,6 +1761,7 @@ es:
   looks_like_no_species_in_guide: Parece que no has añadido ninguna especie aún.
   lookup: Buscar
   lookup_user_rarr: Buscar usuario &rarr;
+  low: bajo
   lowest_rank: Rango más bajo
   made_a: creo una
   mail_disclaimer: '%{site_name} no permitirá que sus usuarios le envíen más invitaciones
@@ -1836,9 +1845,11 @@ es:
   mollusks: moluscos
   mon: lun
   month: Mes
+  months: Meses
   months_ago: hace %{text}
   more: Más
   more_fields: Más campos
+  more_filters: Más filtros
   more_info: Más información
   more_info_title: Más información
   more_journal_posts: Más notas de diario
@@ -1886,6 +1897,7 @@ es:
     culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
+  near: cerca
   near_threatened: casi amenazado
   nearby_observations: Observaciones cercanas
   need_id_help?: ¿Necesita ayuda?
@@ -2163,6 +2175,7 @@ es:
   observed_on: Observado el
   observed_one: observado una
   observer: Observador
+  observers: Observadores
   observer_short: Observador
   observing: observando
   occurence_status_describes_how: 'El estado de ocurrencia describe que tan común
@@ -2308,6 +2321,7 @@ es:
     de un sitio externo o %{site_name} no tiene permisos para mostrarla.
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_integration: Integración de fotos
+  photo_licensing: Licencias de fotos
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
   photos: Fotos
@@ -2464,6 +2478,7 @@ es:
     virgin_islands: Islas Vírgenes
     west_africa: África occidental
   places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
+  places_of_interest: Lugares de Interés
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
@@ -2484,6 +2499,7 @@ es:
     tomar algunos minutos para listas grandes.
   please_hold_on_while_the_file_is_generated: Por favor espere mientras se genera
     el archivo. Puede tomar algunos minutos para listas grandes.
+  popular: popular
   position: Posición
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
@@ -2589,7 +2605,7 @@ es:
   query: Consulta
   range: Intervalo
   range_from: Distribución de
-  rank: rango
+  rank: Rango
   rank_restrictions: Clasificar las restricciones
   ranks:
     kingdom: reino
@@ -2711,6 +2727,7 @@ es:
     tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad.
     Haga clic para ver la evaluación de la calidad de LOS datos.
   research_quality: Calidad de la investigación
+  reset_search_filters: Restablecer los filtros de búsqueda
   reset_your_password: Restablecer su contraseña
   resolve: Resolver
   resolve_this_flag: Resolver esta marca
@@ -2802,6 +2819,7 @@ es:
     de especies no observadas en la lista del proyecto
   select_one_or_more_photos: Selecciona una o más fotos
   select_none: No seleccionar ninguno
+  select_options: Seleccione opciones
   select_photos_from_your_photo_stream: Selecciona las fotos de sitios que comparten
     fotos para convertirlas en observaciones de {site_name}. Encontraremos la fecha,
     la  hora y lugar de los metadatos de la foto y trataremos de buscar los nombres
@@ -3405,6 +3423,7 @@ es:
     licencia que escogí
   update_past: Actualizar %{type} pasado
   update_photos: Actualizar fotos
+  update_search: Actualizar búsqueda
   update_selected_taxa: Actualizar taxones seleccionados
   update_subscription: Actualiza suscripción
   update_x_selected_taxa:
@@ -3428,6 +3447,7 @@ es:
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
     web fuente
+  url_slug_or_id: "mi-proyecto de oro 333"
   US_states: Estados Unidos
   usage_stats: Estadísticas de uso
   use_name_as_a_placeholder: Usa <span class='ac-placeholder'>"%{name}"</span> como
@@ -3492,6 +3512,7 @@ es:
   valid_interrogation: ¿Válido?
   valid_options_are: Las opciones válidas son
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
+  verifiable: Verificable
   view: Ver
   view_all: Ver todo
   view_all_members: Ver todos los miembros
@@ -3647,6 +3668,7 @@ es:
   widget: Widget
   widget_code: Código de widget
   widget_for: Widget para
+  wild: salvaje
   will_be: será
   wikipedia_entry: Registro de Wikipedia
   wikipedia_taxobox_raquo: Ficha de taxón en Wikipedia &raquo;

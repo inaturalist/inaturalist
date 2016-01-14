@@ -1,0 +1,31 @@
+{
+  "name": "angular-capitalize",
+  "version": "2.0.4",
+  "homepage": "https://github.com/egilkh/angular-capitalize",
+  "authors": [
+    "egilkh <egilkh@gmail.com>"
+  ],
+  "description": "AngularJS capitalize filter for sentences or words.",
+  "keywords": [
+    "angularjs",
+    "capitalization",
+    "capitalize",
+    "filter"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "karma.conf.js",
+    "package.json",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.x"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.x"
+  }
+}

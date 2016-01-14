@@ -976,6 +976,15 @@ shared_examples_for "an ObservationsController" do
       expect( JSON.parse(response.body).size ).to eq 1
     end
 
+    it "should filter by has[]=photos" do
+      with_photo = without_delay { make_research_grade_observation }
+      without_photo = without_delay { Observation.make! }
+      get :index, format: :json, has: ['photos']
+      obs_ids = JSON.parse(response.body).map{|o| o['id'].to_i}
+      expect( obs_ids ).to include with_photo.id
+      expect( obs_ids ).not_to include without_photo.id
+    end
+
     it "observations with no time_observed_at ignore time part of date filters" do
       Observation.make!(observed_on_string: "2014-12-31 20:00:00 -0100")
       Observation.make!(observed_on_string: "2014-12-31")
@@ -1190,6 +1199,26 @@ shared_examples_for "an ObservationsController" do
         get :index, format: :dwc
         xml = Nokogiri::XML(response.body)
         expect( xml.at_xpath('//dwr:SimpleDarwinRecordSet').children.size ).not_to be_blank
+      end
+    end
+
+    describe "HTML format" do
+      render_views
+      before{ @o = make_research_grade_observation }
+      it "should show the angular app" do
+        # the angular app doesn't need to load any observations
+        Observation.should_not_receive(:get_search_params)
+        get :index, format: :html
+        expect(response.body).to include "ng-controller='MapController'"
+        expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
+      end
+
+      it "can render a partial instead" do
+        # we need observations to render all other partials/formats
+        Observation.should_receive(:get_search_params)
+        get :index, format: :html, partial: "observation_component"
+        expect(response.body).to_not include "ng-controller='MapController'"
+        expect( response.body ).to have_tag("div.user a", text: @o.user.login)
       end
     end
   end

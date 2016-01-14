@@ -19,10 +19,10 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = options.mapType || $(elt).data('map-type');
   options.mapStyle = options.mapStyle || $(elt).data('map-style');
-  options.zoomLevel = parseInt( $(elt).data('zoom-level') );
-  options.minZoom = parseInt( $(elt).data('min-zoom') );
+  options.zoomLevel = options.zoomLevel || parseInt( $(elt).data('zoom-level') );
+  options.minZoom = options.minZoom || parseInt( $(elt).data('min-zoom') );
   options.urlCoords = $(elt).data('url-coords');
-  options.disableFullscreen = $(elt).data('disable-fullscreen');
+  options.disableFullscreen = ((options.disableFullscreen || $(elt).data('disable-fullscreen')) === true);
   options.showRange = $(elt).data('show-range');
   options.minX = $(elt).data('min-x');
   options.minY = $(elt).data('min-y');
@@ -33,23 +33,25 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.observationLayers = $(elt).data('observation-layers');
   options.placeLayers = $(elt).data('place-layers');
   options.taxonLayers = $(elt).data('taxon-layers');
-  options.mapTypeControl = $(elt).data('map-type-control');
+  options.mapTypeControl = (options.mapTypeControl !== false && $(elt).data('map-type-control') !== true);
+  options.zoomControl = (options.zoomControl !== false && $(elt).data('zoom-control') !== false);
+  options.overlayMenu = (options.overlayMenu !== false && $(elt).data('overlay-menu') !== false);
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
-  options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer');
+  options.showAllLayer = options.showAllLayer != null ? options.showAllLayer : $(elt).data('show-all-layer');
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
-  options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');  
+  options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
-  options.placeLayerDescription = options.placeLayerDescription || $(elt).data('place-layer-description');  
+  options.placeLayerDescription = options.placeLayerDescription || $(elt).data('place-layer-description');
   options.taxonRangeLayerLabel = options.taxonRangeLayerLabel || $(elt).data('taxon-range-layer-label');
-  options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');  
+  options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');
   options.taxonPlacesLayerLabel = options.taxonPlacesLayerLabel || $(elt).data('taxon-places-layer-label');
   options.taxonPlacesLayerDescription = options.taxonPlacesLayerDescription || $(elt).data('taxon-places-layer-description');
   options.taxonPlacesLayerHover = options.taxonPlacesLayerHover || $(elt).data('taxon-places-layer-hover');
   options.taxonObservationsLayerLabel = options.taxonObservationsLayerLabel || $(elt).data('taxon-observations-layer-label');
   options.taxonObservationsLayerDescription = options.taxonObservationsLayerDescription || $(elt).data('taxon-observations-layer-description');  
-  options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label');
+  options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label') || I18n.t('maps.overlays.all_observations');
   options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description');
-  options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label');
+  options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label') || I18n.t('gbif_occurrences');
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
@@ -82,6 +84,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     minZoom: options.minZoom,
     disableFullscreen: options.disableFullscreen,
     backgroundColor: '#E3EAF6',
+    zoomControl: (options.zoomControl !== false),
     styles: [
       {
         stylers: [
@@ -114,7 +117,9 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     map.setMapTypeId(options.mapType)
   }
   // Create the custom control (but don't show it yet)
-  map._overlayControl = new iNaturalist.OverlayControl(map);
+  if( options.overlayMenu ) {
+    map._overlayControl = new iNaturalist.OverlayControl(map);
+  }
 
   if( options.showLegend ) {
     // Create the DIV to hold the control and call the CenterControl() constructor
@@ -135,8 +140,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     if( ! _.isObject( options.showAllLayer ) ) {
       options.showAllLayer = { }
     }
-    map.addObservationsLayer(_.defaults( options.showAllLayer, {
-      title: options.allLayerLabel,
+    map.addObservationsLayer(options.allLayerLabel, _.defaults( options.showAllLayer, {
       description: options.allLayerDescription,
       disabled: options.enableShowAllLayer === false,
       controlPosition: options.controlPosition,
@@ -212,9 +216,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
       if( layer.observations ) {
         layerOptions = _.isObject( layer.observations ) ?
           layer.observations : { };
-        map.addObservationsLayer( _.defaults( layerOptions, {
+        map.addObservationsLayer( options.taxonObservationsLayerLabel, _.defaults( layerOptions, {
           taxon: layer.taxon,
-          title: options.taxonObservationsLayerLabel,
           description: options.taxonObservationsLayerDescription,
           hover: options.taxonObservationsLayerHover,
           controlPosition: options.controlPosition,
@@ -249,15 +252,23 @@ inatTaxonMap.addPlaceLayers = function( map, options ) {
 };
 
 inatTaxonMap.addObservationLayers = function( map, options ) {
+  options = options || {}
   if( options.observationLayers ) {
     _.each( options.observationLayers, function( layer ) {
-      map.addObservationsLayer( _.defaults( _.clone( layer ), {
-        title: options.featuredLayerLabel,
+      var title = options.title || options.featuredLayerLabel || 'Observations';
+      map.addObservationsLayer( title, _.defaults( _.clone( layer ), {
         controlPosition: options.controlPosition,
-        mapStyle: options.mapStyle
+        mapStyle: options.mapStyle,
+        infoWindowCallback: options.infoWindowCallback
       }));
     });
   }
+};
+
+inatTaxonMap.removeObservationLayers = function( map, options ) {
+  options = options || {}
+  var title = options.title || options.featuredLayerLabel || 'Observations';
+  map.removeObservationsLayer( title );
 };
 
 inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {

@@ -559,6 +559,7 @@ fr:
   black: noir
   blog_widget: Widget de blogue
   blue: bleu
+  blue_butterfly_etc: "bleu, papillon, etc."
   blue_icons_represent_political_units: |-
     Les icônes bleues représentent des entités politiques comme les pays, les
     états, les provinces et les régions, tandis que les icônes vertes
@@ -604,6 +605,7 @@ fr:
   case_plural: s
   casual: occasionnel
   catalogue_of_life: Catalogue of Life
+  categories: Catégories
   cc_attribution_license: Licence d’attribution de Creative Commons
   cc_by_description: |-
     Cette licence permet aux autres de distribuer et d’améliorer votre travail,
@@ -1033,6 +1035,7 @@ fr:
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
   description: Description
   description_from: Description de
+  description_slash_tags: Description / Etiquettes
   description_tags_more: Description, étiquettes, &amp; Plus
   desription: Description
   destroy: Détruiser
@@ -1188,6 +1191,7 @@ fr:
   everywhere: partout
   exact_coordinates_obscured_for: Coordonnées exactes non affichées pour les espèces
     menacées.
+  exact_date: Date exacte
   exact_location: Emplacement exact
   exact_rank: Rang exact
   existing_flags: Drapeaux existants
@@ -1398,6 +1402,8 @@ fr:
   guidelines: Lignes directrices
   has_been: a été
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
+  has_photos: avec des photos
+  has_sounds: avec des sons
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
   hate_me_facebook: Supprimer le lien entre Facebook et vos comptes %{site_name}
   hate_me_flickr: Supprimer le lien entre vos comptes Flickr et %{site_name}
@@ -1457,6 +1463,7 @@ fr:
   identifications: Identifications
   identifications_by: Identifications de %{user}
   identified?: identifié
+  identifiers: Identifiants
   identotron: Identotron
   identotron_for: Identotron pour
   identotron_help: Aide de l’Identotron
@@ -1914,9 +1921,11 @@ fr:
   mollusks: mollusques
   mon: Lun
   month: Mois
+  monts: Mois
   months_ago: il y a %{text}
   more: Plus
   more_fields: Plus de champs
+  more_filters: Plus de filtres
   more_info: Plus d’informations
   more_info_title: Plus d’informations
   more_journal_posts: Plus de notes de journal
@@ -1933,10 +1942,10 @@ fr:
     par ex. 123,654
   must_be_observed_in: doit être observé dans
   must_be_less_than_x_MB: Doit être de moins de %{x} Mo
-  must_have_observation_field: le champ '%{operand}' de l’observation doit être rempli
+  must_have_observation_field: "le champ '%{operand}' de l’observation doit être rempli"
   must_have_x: doit avoir %{x}
   n_ago: il y a %{n}
-  n_people_agrees: '%{amount} des gens sont d’accord'
+  n_people_agrees: "%{amount} des gens sont d’accord"
   n_people_disagrees: '%{amount} des gens ne sont pas d’accord'
   n_person_agrees: '%{amount} des gens sont d’accord'
   n_person_disagrees: '%{amount} des gens ne sont pas d’accord'
@@ -1957,7 +1966,8 @@ fr:
   naturalized: acclimatée
   native: indigène
   nav: Nav
-  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+  nav_description: |
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
@@ -1965,25 +1975,27 @@ fr:
     culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: Lat. NE
   ne_lon: Lon. NE
+  near: près de
   near_threatened: quasi-menacée
   nearby_observations: Observations à proximité
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
   Needs_ID!: Besoin ID!
-  needs_id_expandable_html: <span class='full'>Besoin </span>ID
+  needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
   new_announcement: Nouvelle annonce
   new_assessment: Nouvelle évaluation
   new_check_list: Nouvelle liste de contrôle
   new_check_list_for: Créer une nouvelle liste de contrôle pour %{place} &raquo;
-  new_check_list_record: Si vous voulez indiquer que cette liste comme complète, créez-la,
+  new_check_list_record: |
+    Si vous voulez indiquer que cette liste comme complète, créez-la,
     ajoutez les taxons, puis modifiez-la et vous aurez là la possibilité d’indiquer
     qu’elle est complète.
   new_custom_field_for: Nouveau champ personnalisé pour
   new_flag_for: Nouveau drapeau pour
   new_guide: Nouveau guide
   new_journal_posts: Nouvelle note du journal
-  new_list: Nouvelle liste d'observations
+  new_list: "Nouvelle liste d'observations"
   new_members: Nouveaux membres…
   new_message: Nouveau message
   new_observation_field: Nouveau champ de l’observation
@@ -2241,6 +2253,7 @@ fr:
   observed_on: Observé le
   observed_one: observé un
   observer: Observateur
+  observers: Observateurs
   observer_short: Obs.
   observing: observation
   occurence_status_describes_how: L’état de la présence décrit le degré de rareté
@@ -2541,6 +2554,7 @@ fr:
     virgin_islands: Îles Vierges
     west_africa: Afrique occidentale
   places_merged_successfully: Les lieux ont bien été fusionnés!
+  places_of_interest: Lieux d'intérêt
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette
     modification.
@@ -2555,14 +2569,18 @@ fr:
     taxon.
   please_confirm_your_inat_username: Veuillez confirmer votre nom d’utilisateur sur
     %{site_name}
-  please_confirm_your_account_html: Merci de prendre quelques instants pour <a href="%{url}">confirmer
+  please_confirm_your_account_html: |
+    Merci de prendre quelques instants pour <a href="%{url}">confirmer
     votre compte</a>.
   please_enter_a_new_pass: Veuillez saisir un nouveau mot de passe et le confirmer.
   please_fix_your_csv_and_try_again: Veuillez corriger le format CSV et réessayer.
-  please_hold_on_while_the_file: Veuillez patienter pendant la génération du fichier.
+  please_hold_on_while_the_file: |
+    Veuillez patienter pendant la génération du fichier.
     Cette démarche peut prendre quelques minutes si vous avez beaucoup d’observations.
-  please_hold_on_while_the_file_is_generated: Veuillez patienter pendant la génération
+  please_hold_on_while_the_file_is_generated: |
+    Veuillez patienter pendant la génération
     du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
+  popular: Populaire
   position: Emplacement
   positional_accuracy: Exactitude de l’emplacement
   possessive_user: '%{user}'
@@ -2573,7 +2591,8 @@ fr:
   posted_on: Publié le
   posts: Notes
   powered_by: Optimisé par
-  powered_by_inaturalist_open_source_software_html: Propulsé par le logiciel ouvert
+  powered_by_inaturalist_open_source_software_html: |
+    Propulsé par le logiciel ouvert
     <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
   present: présent
   preview: Aperçu
@@ -2789,6 +2808,7 @@ fr:
     une date, une photo, des coordonnées et une identification reconnue par la communauté.
     Cliquer dessus pour voir l’évaluation de la garantie des données.
   research_quality: Qualité de la recherche
+  reset_search_filters: Enlever les filtres de recherche
   reset_your_password: Réinitialiser votre mot de passe
   resolve: Régler
   resolve_this_flag: Régler ce drapeau
@@ -2883,6 +2903,7 @@ fr:
     les listes non observées à partir de la liste des projets
   select_one_or_more_photos: Sélectionnez une ou plusieurs photos
   select_none: Ne rien sélectionner
+  select_options: Sélectionnez les options
   select_photos_from_your_photo_stream: Sélectionnez des photos des sites d’échange
     externes pour les convertir en observations %{site_name}. Nous remplirons la date,
     l’heure et le lieu à partir des métadonnées de la photo et essayerons de trouver
@@ -3496,6 +3517,7 @@ fr:
     des nouveaux choix de licence
   update_past: Mettre jour les derniers %{type}
   update_photos: Mettre à jour les photos
+  update_search: Mettre à jour la recherche
   update_selected_taxa: Mettre à jour les taxons sélectionnés
   update_subscription: Mettre à jour l’abonnement
   update_x_selected_taxa:
@@ -3518,6 +3540,7 @@ fr:
   url_identifier_of_a_project_derived_from: URL/identifiant d&un projet dérivé d’une
     ressource externe
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
+  url_slug_or_id: "mon-projet ou 333"
   US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
   use_name_as_a_placeholder: Utilisez <span class='ac-placeholder'>"%{name}"</span>
@@ -3583,6 +3606,7 @@ fr:
   valid_interrogation: Valide?
   valid_options_are: Les options valides sont
   verbing_x_of_y: '%{verb} %{x} de %{y}…'
+  verifiable: Vérifiable
   view: Afficher
   view_all: Afficher tout
   view_all_members: Afficher tous les membres
@@ -3745,6 +3769,7 @@ fr:
   widget: Widget
   widget_code: Code du widget
   widget_for: Widget pour
+  wild: Sauvage
   will_be: sera
   wikipedia_entry: Entrée de Wikipédia
   wikipedia_taxobox_raquo: Taxobox de Wikipédia &raquo;
@@ -3985,11 +4010,11 @@ fr:
   youve_seen_it_want_to: Vous l’avez vu! Vous voulez
   youve_successfully_linked_your_provider_account: Vous avez bien lié votre compte
     %{provider}
-  zoom_to_taxon_name: Faites un zoom sur %{taxonname}
-  zoom_to_x: faites un zoom sur %{x}
   your_dashboard_helps_you: Votre tableau de bord vous aide à suivre ce que font les
     gens sur le site. Pour suivre les mises à jour de quelqu’un, cliquez sur le lien
     'Suivez [nom]' dans l’entête quand leur observation ou profil est affiché.
+  zoom_to_taxon_name: Faites un zoom sur %{taxonname}
+  zoom_to_x: faites un zoom sur %{x}
   here_are_some_things_you_can_do_in_the_meantime: Voici des choses que vous pourriez
     faire en attendant
   none_of_the_people_you_follow_have_any_updates_yet: Aucune des personnes que vous
@@ -5332,4 +5357,4 @@ fr:
     previous_label: '&#8592; Précédent'
     next_label: Suivant &#8594;
     page_gap: '&hellip;'
-...
+

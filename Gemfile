@@ -11,6 +11,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
 gem 'ancestry'
+gem 'angular-rails-templates'
 gem 'aws-sdk'
 gem 'biodiversity'
 gem 'bluecloth'
@@ -22,6 +23,7 @@ gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-passenger', '~> 0.0'
 gem 'chroma'
 gem 'chronic'
+gem 'coffee-rails'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
@@ -124,4 +126,7 @@ group :test do
   gem 'simplecov', :require => false
   gem "rspec-rails"
   gem "rspec-html-matchers"
+  gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver'
+  gem "chromedriver-helper"
 end
