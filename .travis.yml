@@ -28,7 +28,6 @@ before_install:
   - sudo /usr/share/elasticsearch/bin/plugin install delete-by-query
   - sudo service elasticsearch start
   - gem install bundler
-  - pwd
   - mkdir -p tmp/pids
 
 before_script:
