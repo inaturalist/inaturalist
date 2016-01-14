@@ -36,12 +36,8 @@ before_script:
   - ci/scripts/before_script.sh
 
 env:
-  - TESTFOLDER=spec/controllers
-  - TESTFOLDER=spec/helpers
-  - TESTFOLDER=spec/initializers
-  - TESTFOLDER=spec/lib
   - TESTFOLDER=spec/models
-  - TESTFOLDER=spec/views
+  - TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
 
 script: "bundle exec rspec $TESTFOLDER"
 
