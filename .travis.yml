@@ -29,6 +29,7 @@ before_install:
   - sudo service elasticsearch start
   - gem install bundler
   - mkdir -p tmp/pids
+  - echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
 
 before_script:
   - sleep 15
