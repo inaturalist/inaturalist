@@ -1,6 +1,7 @@
 require "spec_helper"
 
-describe FlickrCache do
+describe FlickrCache,
+  disabled: (CONFIG.flickr.shared_secret == "09af09af09af09af") do
 
   before(:all) do
     @flickr_response = OpenStruct.new(url: "some image URL")

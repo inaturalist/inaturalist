@@ -1,14 +1,37 @@
+sudo: required
+
+dist: trusty
+
 language: ruby
 
+cache:
+  bundler: true
+
 rvm:
-  - 1.9.3
+  - 2.2.0
 
-env:
-  - SPEC_DIR=spec/models
-  - SPEC_DIR=spec/helpers
-  - SPEC_DIR=spec/controllers
+addons:
+  postgresql: "9.3"
 
-before_install: ci/scripts/before_install.sh
-before_script:  ci/scripts/before_script.sh
-script:         ci/scripts/script.sh
-after_script:   ci/scripts/after_script.sh
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y postgresql-9.3-postgis-2.1 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev wkhtmltopdf
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - psql -U postgres -c "create extension postgis"
+  - sudo -u postgres createdb template_postgis
+  - sudo -u postgres psql template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
+  - sudo -u postgres psql template_postgis < /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql
+  - sudo -u postgres psql template_postgis < /usr/share/postgresql/9.3/contrib/postgis-2.1/spatial_ref_sys.sql
+  - curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.1.1/elasticsearch-2.1.1.deb && sudo dpkg -i --force-confnew elasticsearch-2.1.1.deb
+  - sudo /usr/share/elasticsearch/bin/plugin install analysis-kuromoji
+  - sudo /usr/share/elasticsearch/bin/plugin install delete-by-query
+  - sudo service elasticsearch start
+  - gem install bundler
+  - pwd
+  - mkdir -p tmp/pids
+
+before_script:
+  - sleep 15
+  - ci/scripts/before_script.sh
+
