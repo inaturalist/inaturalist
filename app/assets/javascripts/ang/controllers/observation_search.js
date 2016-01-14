@@ -628,6 +628,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
+      search_external: false,
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
         $scope.selectedTaxon = new iNatModels.Taxon( result.item );
