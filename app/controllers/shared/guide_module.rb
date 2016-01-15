@@ -21,7 +21,7 @@ module Shared::GuideModule
 
     if @q = @filter_params[:q]
       @search_taxon_ids = Taxon.elastic_search(
-        where: { "names.name": @q }, fields: :id).per_page(1000).map(&:id)
+        where: { "names.name" => @q }, fields: :id).per_page(1000).map(&:id)
       if @search_taxon_ids.size == 1
         @taxon = Taxon.find_by_id(@search_taxon_ids.first)
       elsif Taxon.where(id: @search_taxon_ids).where("name LIKE ?", "#{@q.capitalize}%").count == 1

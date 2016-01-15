@@ -4,7 +4,7 @@ class ObservationsController < ApplicationController
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
   before_filter :decide_if_skipping_preloading, only: [ :index ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
-  before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
+  before_filter :allow_cors, only: [:index], 'if' => -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :of,
@@ -1578,7 +1578,7 @@ class ObservationsController < ApplicationController
           elastic_params = prepare_counts_elastic_query(search_params)
           # using 0 for the aggregation count to get all results
           distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-            aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+            aggregate: { species: { "taxon.id" => 0 } })).response.aggregations
           @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
         end
       else
@@ -2528,7 +2528,7 @@ class ObservationsController < ApplicationController
         taxon_options = Taxon.default_json_options
         taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
         opts[:include][:identifications] ||= {
-          'include': {
+          'include' => {
             user: {
               only: [:name, :login, :id],
               methods: [:user_icon_url]
@@ -2750,7 +2750,7 @@ class ObservationsController < ApplicationController
         rank: {
           terms: {
             field: "taxon.rank", size: 30,
-            order: { "distinct_taxa": :desc } },
+            order: { "distinct_taxa" => :desc } },
           aggs: {
             distinct_taxa: {
               cardinality: { field: "taxon.id", precision_threshold: 10000 } } } }
@@ -2761,7 +2761,7 @@ class ObservationsController < ApplicationController
     elastic_params[:filters] << { range: {
       "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
     species_counts = Observation.elastic_search(elastic_params.merge(size: 0,
-      aggregate: { species: { "taxon.id": 100 } })).response.aggregations
+      aggregate: { species: { "taxon.id" => 100 } })).response.aggregations
     # the count is a string to maintain backward compatibility
     @species_counts = species_counts.species.buckets.
       map{ |b| { "taxon_id" => b["key"], "count_all" => b["doc_count"].to_s } }

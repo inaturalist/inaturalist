@@ -322,7 +322,7 @@ class ApplicationController < ActionController::Base
     if params[:with_geom].yesish?
       search_params.merge!(filters: [ { exists: { field: "geometry_geojson" } } ])
     elsif params[:with_geom].noish?
-      search_params.merge!(filters: [ { 'not': { exists: { field: "geometry_geojson" } } } ])
+      search_params.merge!(filters: [ { 'not' => { exists: { field: "geometry_geojson" } } } ])
     end
     @places = Place.elastic_paginate(search_params)
     Place.preload_associations(@places, :place_geometry_without_geom)

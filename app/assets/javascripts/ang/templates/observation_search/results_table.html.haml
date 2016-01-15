@@ -14,10 +14,10 @@
           {{ shared.t('place') | capitalize }}
         %th{ :class => "added sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy( 'observations.id' )" }
           {{ shared.t('added') | capitalize }}
-    %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching", "infinite-scroll-distance": 1 }
-      %tr{ "ng-repeat": "o in observations" }
+    %tbody{ "infinite-scroll" => "showMoreObservations( )", "infinite-scroll-disabled" => "!viewing('observations', 'table') || pagination.searching", "infinite-scroll-distance" => 1 }
+      %tr{ "ng-repeat" => "o in observations" }
         %td
-          %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "img {{ o.photo( ) ? '' : 'iconic'}}" }
+          %a{ href: "/observations/{{ o.id }}", "ng-style" => "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "img {{ o.photo( ) ? '' : 'iconic'}}" }
             %i{:class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}"}
             %span.photo-count.ng-cloak{"ng-show" => "o.photos.length > 1"} {{ o.photos.length }}
         %td
@@ -35,7 +35,7 @@
               %i.fa.fa-star
               {{ o.faves_count }}
         %td.user
-          %a.user.userimage{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
+          %a.user.userimage{ href: "/observations/{{ o.id }}", "ng-style" => "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
           %a{ href: "/observations/{{ o.id }}", title: "{{ o.user.login }}", target: "_self" }
             {{ o.user.login }}
@@ -46,5 +46,5 @@
           {{ o.displayPlace( ) }}
         %td{ :class => "{{ params.order_by == 'observations.id' ? 'sorting' : '' }}" }
           %inat-calendar-date{ date: "o.created_at" }
-  .spinner.ng-cloak{ "ng-show": "pagination.searching" }
+  .spinner.ng-cloak{ "ng-show" => "pagination.searching" }
     %span.fa.fa-spin.fa-refresh

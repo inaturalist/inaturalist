@@ -7,7 +7,7 @@ module Shared::SweepersModule
     return if taxon.blank?
     tid = taxon.id if taxon.is_a?(Taxon)
     ListedTaxon.delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "ListedTaxon::expire_caches_for": tid }
+      unique_hash: { "ListedTaxon::expire_caches_for" => tid }
     ).expire_caches_for(tid)
   end
 
