@@ -129,11 +129,15 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if(!$scope.$$phase) { $scope.$digest( ); }
   };
   $scope.resetParams = function( ) {
+    var resetParams = _.extend( { }, $scope.defaultParams );
+    if( $scope.preferredPlaceObject ) {
+      resetParams.place_id = $scope.preferredPlaceObject.id;
+    }
     $scope.params = _.extend( { }, $scope.defaultParams );
     // reset taxon autocomplete
     $( "#filters input[name='taxon_name']" ).trigger( "resetAll" );
     // reset place autocomplete
-    $scope.selectedPlace = null;
+    $scope.selectedPlace = $scope.preferredPlaceObject;
     $scope.searchedPlace = null;
     $scope.placeSearch = null;
     $scope.closeFilters();
@@ -201,6 +205,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
         if( places.length > 0 ) {
+          if( PREFERRED_PLACE && places[ 0 ].id === PREFERRED_PLACE.id ) {
+            $scope.preferredPlaceObject = places[ 0 ];
+          }
           $scope.filterByPlace( places[ 0 ] );
         }
         $scope.placeInitialized = true;
