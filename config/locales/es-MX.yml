@@ -560,6 +560,7 @@ es-MX:
   case_plural: s
   casual: Casual
   catalogue_of_life: Catálogo de la Vida
+  categories: categorías
   cc_attribution_license: Licencia de Atribución de Creative Commons
   cc_by_description: Esta licencia permite a otros distribuir, mezclar, modificar
     y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito
@@ -954,6 +955,7 @@ es-MX:
   describe_your_interest_in_nature: ¡Describe tu interés en la naturaleza!
   description: Descripción
   description_from: Descripción de
+  description_slash_tags: Descripción / Etiquetas
   description_tags_more: Descripción, Etiquetas, &amp; Más
   desription: Descripción
   destroy: Destruye
@@ -984,7 +986,7 @@ es-MX:
   dont_send_me_email: ¡No me envíen correo electrónico!
   dont_use_double_quotes: No uses "entre comillas" en ningún lado
   double_click_to_finish: (Con doble clic termina tu forma)
-  download: 'Descargar:'
+  download: 'Descargar'
   download_bulk_import_template_html: |-
     <a href="%{url}">Descarga la plantilla</a> para usarla en
     <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
@@ -1101,6 +1103,7 @@ es-MX:
   everywhere: todas partes
   exact_coordinates_obscured_for: Las coordenadas exactas están oscurecidas para la
     vista de especies en riesgo por el público
+  exact_date: Fecha exacta
   exact_location: Ubicación exacta
   exact_rank: Rango exacto
   existing_flags: Advertencias presentes
@@ -1308,6 +1311,8 @@ es-MX:
   guidelines: Lineamientos
   has_already_been_flagged_by: ya ha sido marcada con advertencia por
   has_been: ha sido
+  has_photos: tiene fotos
+  has_sounds: tiene sonidos
   hasnt_contributed_any_observations: no ha contribuido con observaciones a este proyecto.
   hate_me_facebook: Desenlaza tu cuenta de Facebook y de  %{site_name}
   hate_me_flickr: Desenlaza tus cuentas de Flickr y de %{site_name}
@@ -1341,6 +1346,7 @@ es-MX:
   hi_user: Hola %{user}
   hide: Ocultar
   hide_details: Esconde los detalles
+  high: alta
   highest_rank: Rango más alto
   home: Inicio
   home_faq: Preguntas frecuentes
@@ -1717,6 +1723,7 @@ es-MX:
   looks_like_no_species_in_guide: Parece que no has añadido ninguna especie aún.
   lookup: Busca
   lookup_user_rarr: Busca usario &rarr,
+  low: baja
   lowest_rank: Rango más bajo
   made_a: creo una
   mail_disclaimer: El %{site_name} no permitirá a sus usuarios enviar invitaciones
@@ -1789,9 +1796,11 @@ es-MX:
   mollusks: Moluscos
   mon: Lun
   month: Mes
+  months: Meses
   months_ago: hace %{text}
   more: Más
   more_fields: Más campos
+  more_filters: Más filtros
   more_info: Más información
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
@@ -2379,6 +2388,7 @@ es-MX:
     virgin_islands: Islas Vírgenes
     west_africa: África occidental
   places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
+  places_of_interest: Lugares de Interés
   plants: Plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_add_this_observation_to: 'Porfavor añade esta observación a:'
@@ -2615,6 +2625,7 @@ es-MX:
     para ver la evaluación de calidad de los datos.
   research_quality: Calidad de investigación
   reset_your_password: Cambia tu contraseña
+  reset_search_filters: Restablecer los filtros de búsqueda
   resolve: Resolver
   resolve_this_flag: Resolver esta advertencia
   resolved: Resuelta
@@ -2704,6 +2715,7 @@ es-MX:
     de especies no observadas
   select_one_or_more_photos: Selecciona una o mas fotos
   select_none: Desmarca todos
+  select_options: Seleccione opciones
   select_photos_from_your_photo_stream: Selecciona fotos de tus álbums para convertirlas
     en observaciones de  %{site_name}. Nosotros incluiremos la fecha, hora y ubicación
     de los metadatos de la foto e intentaremos buscar el nombre de las especies a
@@ -3088,6 +3100,7 @@ es-MX:
   the_user_x_has_been_suspended: El usuario %{user} ha sido suspendido
   the_user_x_has_been_unsuspended: El usuario %{user} ha sido removido de la lista
     de suspendidos
+  the_world: El mundo
   the_world_is_full_of_interesting_places: l mundo está lleno de lugares interesantes,
     cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado
     del mundo, mientras que otras viven ¡a la vuelta de la esquina! %{site_name} Lugares
@@ -3296,6 +3309,7 @@ es-MX:
     licencia que escogí
   update_past: Actualiza las pasadas %{type}
   update_photos: Actualiza fotos
+  update_search: Actualizar búsqueda
   update_selected_taxa: Actualiza taxa seleccionados
   update_subscription: Actualiza suscripción
   update_x_selected_taxa:
@@ -3319,6 +3333,7 @@ es-MX:
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
     web fuente
+  url_slug_or_id: "mi-proyecto de oro 333"
   US_states: Estados de Estados Unidos
   usage_stats: Estadísticas de uso
   use_this_form_to_create_a_new: Usa esta forma para crear un cambio taxonómico en
@@ -3381,6 +3396,7 @@ es-MX:
   valid_interrogation: ¿Es válido?
   valid_options_are: Las opciones válidas son
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
+  verifiable: verificable
   view: Ver
   view_all: Ver todas
   view_all_members: Ver a todos los miembros
@@ -3534,6 +3550,7 @@ es-MX:
   widget: Widget
   widget_code: Código widget
   widget_for: Widget para
+  wild: salvaje
   will_be: será
   wikipedia_entry: entrada de wikipedia
   wikipedia_taxobox_raquo: Ficha de la especie o grupo en Wikipedia &raquo;
