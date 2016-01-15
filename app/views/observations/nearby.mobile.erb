@@ -29,7 +29,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup gmap
-      window.map = iNaturalist.Map.createMap({controls: false, observationsTileServer: '<%= OBSERVATIONS_TILE_SERVER %>'});
+      window.map = iNaturalist.Map.createMap({controls: false});
       map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(new NearMeControl(map));
       map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(new SearchMapControl(map));
       

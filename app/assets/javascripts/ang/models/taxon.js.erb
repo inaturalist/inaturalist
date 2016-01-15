@@ -1,0 +1,96 @@
+var iNatModels = iNatModels || { };
+
+iNatModels.Taxon = function( attrs ) {
+  var that = this;
+  _.each( attrs, function( value, attr ) {
+    that[ attr ] = value;
+  });
+};
+
+iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.to_json(only: [:id, :name, :rank]) %>;
+
+iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
+  var that = this
+  var iconicTaxon = _.detect(iNatModels.Taxon.ICONIC_TAXA, function(t) { 
+    return t.id == that.iconic_taxon_id;
+  });
+  if (iconicTaxon) {
+    return iconicTaxon.name;
+  } else {
+    return 'unknown';
+  }
+};
+
+iNatModels.Taxon.prototype.photo = function( ) {
+  return this.default_photo ? this.default_photo.medium_url : this.default_photo_url;
+};
+
+iNatModels.Taxon.prototype.photoLicenseShort = function( ) {
+  if( !this.default_photo ) return;
+  if( !this.default_photo.license_code || this.default_photo.license_code == 'c' ) return '©';
+  if( this.default_photo.license_code.match(/^cc-/) ) return 'CC';
+  return this.default_photo.license_code.toUpperCase();
+};
+
+iNatModels.Taxon.prototype.photoAttribution = function( ) {
+  return this.default_photo ? (I18n.t('photo') + ': ' + this.default_photo.attribution) : null;
+};
+
+iNatModels.Taxon.prototype.establishmentMeansCode = function( ) {
+  if( !_.isUndefined( this.establishment_means_code ) ) {
+    return this.establishment_means_code;
+  }
+  switch( this.preferred_establishment_means ) {
+    case "native":
+      this.establishment_means_code = "N";
+      break;
+    case "endemic":
+      this.establishment_means_code = "E";
+      break;
+    case "introduced":
+      this.establishment_means_code = "IN";
+      break;
+    default:
+      this.establishment_means_code = null;
+  }
+  return this.establishment_means_code;
+};
+
+
+iNatModels.Taxon.prototype.conservationStatus = function( ) {
+  if( !_.isUndefined( this.conservationStatusName ) ) {
+    return this.conservationStatusName;
+  }
+  switch( this.preferred_conservation_status ) {
+    case "NE":
+      this.conservationStatusName = I18n.t( 'not_evaluated' );
+      break;
+    case "DD":
+      this.conservationStatusName = I18n.t( 'data_deficient' );
+      break;
+    case "LC":
+      this.conservationStatusName = I18n.t( 'least_concern' );
+      break;
+    case "NT":
+      this.conservationStatusName = I18n.t( 'near_threatened' );
+      break;
+    case "VU":
+      this.conservationStatusName = I18n.t( 'vulnerable' );
+      break;
+    case "EN":
+      this.conservationStatusName = I18n.t( 'endangered' );
+      break;
+    case "CR":
+      this.conservationStatusName = I18n.t( 'critically_endangered' );
+      break;
+    case "EW":
+      this.conservationStatusName = I18n.t( 'extinct_in_the_wild' );
+      break;
+    case "EX":
+      this.conservationStatusName = I18n.t( 'extinct' );
+      break;
+    default:
+      this.conservationStatusName = I18n.t( 'unknown' );
+  }
+  return this.conservationStatusName;
+};

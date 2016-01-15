@@ -1,0 +1,16 @@
+- field = field || nil
+- value = value || nil
+- if field
+  .clear.row.upstacked.radio
+    .label
+      %strong= t(field).capitalize
+    .left
+      %input{ id: "#{field}_any_checkbox", type: "radio", name: field, value:"", checked: !value }
+      %label{ for: "#{field}_any_checkbox" }
+        = t(:any, default: "any").downcase
+      %input{ id: "#{field}_yes_checkbox", type: "radio", name: field, value:"true", checked: value.yesish? }
+      %label{ for: "#{field}_yes_checkbox" }
+        = t(:yes).downcase
+      %input{ id: "#{field}_no_checkbox", type: "radio", name: field, value:"false", checked: !value.nil? && value.noish? }
+      %label{ for: "#{field}_no_checkbox" }
+        = t(:no).downcase

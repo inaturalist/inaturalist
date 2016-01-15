@@ -1,0 +1,24 @@
+iNatAPI.factory( "PlacesFactory", [ "shared", function( shared ) {
+  var show = function( id ) {
+    var url = "//<%= CONFIG.node_api_host %>/places/" + id;
+    return shared.basicGet( url );
+  };
+  var nearby = function( params ) {
+    var url = "//<%= CONFIG.node_api_host %>/places/nearby";
+    if( params ) { url += "?" + $.param(params); }
+    return shared.basicGet( url );
+  };
+  var responseToInstances = function( response ) {
+    if( !( response && response.data && response.data.results ) ) {
+      return { };
+    }
+    return _.map( response.data.results, function( r ) {
+      return new iNatModels.Place( r );
+    });
+  };
+  return {
+    show: show,
+    nearby: nearby,
+    responseToInstances: responseToInstances
+  };
+}]);

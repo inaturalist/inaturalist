@@ -105,6 +105,7 @@ html, body {height: 100%;}
 .gmapv3legend .ul-container ul.inat-overlay {
   width: 200px;
   margin: 0px;
+  padding: 0px;
 }
 
 .gmapv3legend .ul-container ul.inat-overlay.left {
@@ -153,7 +154,6 @@ html, body {height: 100%;}
 }
 
 .gmapv3legend ul.inat-overlay .icon img {
-  width: 16px;
   height: 16px;
   padding: 0px 4px;
 }
@@ -1109,7 +1109,7 @@ a.csvlink{background-image:image-url('silk/table.png');}
   background-image: image-url('logo-15px.png');
 }
 
-.taxon_links .taxon.Unknown          { color: inherit;  background-image: image-url('iconic_taxa/unknown-15px.png'); }
+.taxon_links .taxon.Unknown          { color: #aaaaaa;  background-image: image-url('iconic_taxa/unknown-15px.png'); }
 .taxon_links .taxon.Protozoa         { color: #691776;  background-image: image-url('iconic_taxa/protozoa-15px.png'); }
 .taxon_links .taxon.Plantae          { color: #73AC13;  background-image: image-url('iconic_taxa/plantae-15px.png'); }
 .taxon_links .taxon.Fungi            { color: DeepPink; background-image: image-url('iconic_taxa/fungi-15px.png'); }
@@ -1124,7 +1124,7 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: image-url('iconic_taxa/actinopterygii-15px.png'); }
 .taxon_links .taxon.Chromista        { color: #993300;  background-image: image-url('iconic_taxa/chromista-15px.png'); }
 
-.taxon.Unknown a          { color: inherit;  }
+.taxon.Unknown a          { color: #aaaaaa;  }
 .taxon.Protozoa a         { color: #691776;  }
 .taxon.Plantae a          { color: #73AC13;  }
 .taxon.Fungi a            { color: DeepPink; }
@@ -1138,6 +1138,14 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon.Mammalia a         { color: #1E90FF;  }
 .taxon.Actinopterygii a   { color: #1E90FF;  }
 .taxon.Chromista a        { color: #993300;  }
+
+.taxon.has-com-name .sciname { 
+  color: #aaa;
+  white-space: nowrap;
+}
+.taxon.has-com-name .sciname:before { content: '('; display: inline-block; }
+.taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
+.taxon .sciname .rank:after {content: ' ';}
 
 /* Users table */
 
@@ -1441,11 +1449,37 @@ abbr.date {border:0 transparent;}
   text-align: center;
 }
 
-.research_grade_notice,.id_please_notice, .comprehensive_notice{-webkit-border-radius:5px;-moz-border-radius:5px;border:0 transparent;border-radius:10px;padding:2px 5px; white-space: nowrap;}
-.research_grade_notice, .comprehensive_notice{background-color:#DCEAA3;color:#529214;}
-a.research_grade_notice:hover{color:#326412;}
-.id_please_notice{background-color:#FFEE91;color:#85743D;}
-a.id_please_notice:hover{color:#584925;}
+.research_grade_notice, 
+.research_notice,
+.id_please_notice,
+.needs_id_notice, 
+.comprehensive_notice {
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border:0 transparent;
+  border-radius:10px;
+  padding:2px 5px; 
+  white-space: nowrap;
+}
+.research_grade_notice, 
+.research_notice,
+.comprehensive_notice {
+  background-color:#DCEAA3;
+  color:#529214;
+}
+a.research_grade_notice:hover,
+a.research_notice:hover {
+  color:#326412;
+}
+.id_please_notice,
+.needs_id_notice {
+  background-color:#FFEE91;
+  color:#85743D;
+}
+a.id_please_notice:hover,
+a.needs_id_notice:hover {
+  color:#584925;
+}
 
 .ui-tooltip, .qtip{ max-width: 500px; line-height: 1.5;}
 
@@ -1893,7 +1927,8 @@ p.spam {
 }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
-  vertical-align: bottom;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .preferred_curator_coordinate_access_field .status { display: inline; }

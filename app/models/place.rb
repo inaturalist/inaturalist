@@ -514,7 +514,7 @@ class Place < ActiveRecord::Base
       self.nelng = geom.envelope.upper_corner.x
     end
     calculate_bbox_area
-    save(:validate => false)
+    save(validate: false)
   end
   
   #

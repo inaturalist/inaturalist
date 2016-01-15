@@ -150,11 +150,12 @@ class ProjectsController < ApplicationController
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         @observations_url_params = if @project.project_type == Project::BIOBLITZ_TYPE
+          @observations_search_url_params = @project.observations_search_url_params
           @project.observations_url_params
         else
-          {projects: [@project.slug]}
+          @observations_search_url_params = { projects: [@project.slug] }
         end
-        @observations_url = observations_url(@observations_url_params)
+        @observations_url = observations_url(@observations_search_url_params)
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end

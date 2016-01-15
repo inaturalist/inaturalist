@@ -1,0 +1,25 @@
+#observers-table.sortable-table.container{ "infinite-scroll": "showMoreObservers( )", "infinite-scroll-disabled": "!viewing('observers')", "infinite-scroll-distance": 1 }
+  %table.table.table-striped.plain-table
+    %thead
+      %tr
+        %th.rank
+          {{ shared.t( 'rank_position' )}}
+        %th.user
+          {{ shared.t( 'user' )}}
+        %th{ "ng-click": "observersSort = 'observationCount';", :class => "sortable sorting-desc {{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
+          {{ shared.t( 'observations' )}}
+        %th{ "ng-click": "observersSort = 'speciesCount';", :class => "sortable sorting-desc {{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
+          {{ shared.t( 'species' )}}
+    %tbody
+      %tr{ "ng-repeat": "u in observers | orderBy:observersSort:true | limitTo: numberObserversShown" }
+        %td.rank
+          {{ $index + 1 }}
+        %td
+          %a.user.userimage{ href: "/people/{{ u.login }}", "ng-style": "shared.backgroundIf( u.icon_url )", title: "{{ u.login }}", target: "_self" }
+            %i.icon-person{"ng-hide" => "u.icon_url"}
+          %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}", target: "_self" }
+            {{ u.login }}
+        %td{ :class => "{{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
+          {{ shared.numberWithCommas( u.observationCount ) }}
+        %td{ :class => "{{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
+          {{ shared.numberWithCommas( u.speciesCount ) }}

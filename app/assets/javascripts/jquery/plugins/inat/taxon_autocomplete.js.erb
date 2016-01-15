@@ -1,7 +1,8 @@
 var inaturalist = inaturalist || { };
 // sort iconic taxa so all apps use the same order and have identical assets
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
-  [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ] }].sort.to_json %>;
+  [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ]
+}].to_json %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
 inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
 inaturalist.TAXON_ROOT_URL = "<%= FakeView.taxon_url(1)[0..-2] %>";
@@ -15,40 +16,23 @@ autocompleter.capitalize = function( s ) {
 
 // return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
 autocompleter.defaultPhotoForResult = function( result ) {
-  if( result.type === "search_external" || result.type === "message" ) {
-    return inaturalist.EXTERNAL_SEARCH_ICON;
+  if( result.type === "search_external" || result.type === "message" || !result.name ) {
+    return "<i class='fa fa-search'></i>";
   }
-  // use default_photo or default_photo_url while we update
-  // taxa to only have default_photo
   if( result.default_photo ) {
-    return result.default_photo.square_url || result.default_photo.medium_url;
+    return "<img src='"+ result.default_photo.square_url +"'/>";
   }
-  if( result.default_photo_url ) { return result.default_photo_url; }
-  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] ) {
-    return inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].icon;
+  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] && inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name ) {
+    return "<i class='icon icon-iconic-"+inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name.toLowerCase()+"'></i>";
   } else {
-    return inaturalist.UNKNOWN_TAXON_ICON;
+    return "<i class='icon icon-iconic-unknown'></i>";
   }
-};
-
-// return the first (preferred) name in a locale
-autocompleter.preferredNameInLocale = function( result, locale ) {
-  var nameInLocale;
-  if( locale ) { locale = locale.split('-')[0]; }
-  _.each( result.names, function( n ) {
-    if( nameInLocale ) { return; }
-    if( n.locale === locale ) { nameInLocale = n.name; }
-  });
-  return nameInLocale;
 };
 
 // return the best name in the locale, or defaulting to EN
 autocompleter.setTitle = function( result ) {
   if( result.title ) { return; }
-  var name = autocompleter.preferredNameInLocale( result, I18n.locale );
-  if( !name && I18n.locale !== "en" ) {
-    name = autocompleter.preferredNameInLocale( result, "en" );
-  }
+  var name = result.preferred_common_name || result.english_common_name;
   result.title = name || result.name;
 };
 
@@ -82,12 +66,12 @@ autocompleter.taxonTemplate = function( result, fieldValue ) {
       ( result.subtitle ? " " + result.subtitle : "" );
   }
 
-  result.default_photo_url = autocompleter.defaultPhotoForResult( result );
+  result.defaultPhoto = autocompleter.defaultPhotoForResult( result );
   var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "data-taxon-id", result.id ).
     attr( "data-type", result.type );
   var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
-  if( result.default_photo_url ) {
-    $( "<img/>" ).attr( "src", result.default_photo_url ).appendTo( thumbDiv );
+  if( result.defaultPhoto ) {
+    $( result.defaultPhoto ).appendTo( thumbDiv );
   }
   var labelDiv = $( "<div/>" ).addClass( "ac-label" );
   labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
@@ -115,14 +99,6 @@ autocompleter.taxonTemplate = function( result, fieldValue ) {
   return wrapperDiv;
 };
 
-autocompleter.resetTaxonSelection = function( wrappingDiv, options ) {
-  options = options || { };
-  options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
-  options.taxon_id_el.val( null );
-  wrappingDiv.find(".ac-select-thumb img").attr( "src", inaturalist.UNKNOWN_TAXON_ICON );
-  if( options.afterUnselect ) { options.afterUnselect( ); }
-};
-
 autocompleter.selectedTaxonID = function( options ) {
   options = options || { };
   options.taxon_id_el = options.taxon_id_el || $("#taxon_id");
@@ -135,14 +111,21 @@ autocompleter.createWrappingDiv = function( field, options ) {
     field.wrap( wrappingDiv );
     if( options.thumbnail !== false ) {
       // render the initial thumbnail of existing result, or the unknown icon
-      var photo_url = autocompleter.defaultPhotoForResult({
+      var photo = autocompleter.defaultPhotoForResult({
         default_photo_url: field.data( "default-photo-url" ),
         iconic_taxon_id: field.data( "iconic-taxon-id" ) });
       var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" );
-      if( photo_url ) {
-        thumbDiv.append( $( "<img/>" ).attr( "src", photo_url ) );
+      if( photo ) {
+        thumbDiv.append( $( photo ) );
       }
       field.parent( ).prepend( thumbDiv );
+      if( options.bootstrapClear ) {
+        var removeIcon = $( "<span/>" ).addClass( "searchclear glyphicon glyphicon-remove-circle" );
+        field.parent( ).append( removeIcon );
+        removeIcon.on( "click", function( ) {
+          field.trigger( "resetAll" );
+        });
+      }
     }
   }
 };
@@ -158,11 +141,15 @@ $.fn.taxonAutocomplete = function( options ) {
   if( !field || this.length < 1 ) { return; }
   autocompleter.createWrappingDiv( field, options );
   var wrappingDiv = field.closest( ".ac-chooser" );
+  var searchClear = wrappingDiv.find( ".searchclear" )[0];
+  if( searchClear ) { $(searchClear).hide( ); }
+  var selectedTaxon;
   // search is strangely the event when the (x) is clicked in the
   // text field search box. We want to restore all defaults
   field.on( "search", function ( ) {
     field.val( "" );
-    autocompleter.resetTaxonSelection( wrappingDiv, options );
+    field.trigger( "resetTaxonSelection" );
+    selectedTaxon = null;
     return false;
   });
   var ac = field.autocomplete({
@@ -170,9 +157,16 @@ $.fn.taxonAutocomplete = function( options ) {
     delay: 50,
     source: function( request, response ) {
       $.ajax({
-        url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete?per_page=10",
+        url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete",
         dataType: "jsonp",
-        data: { q: request.term },
+        cache: true,
+        data: {
+          q: request.term,
+          per_page: 10,
+          locale: I18n.locale,
+          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+        },
+        jsonpCallback: "taxonAutocompleteCallback",
         success: function( data ) {
           var results = data.results || [ ];
           // show as the last item an option to search external name providers
@@ -250,7 +244,8 @@ $.fn.taxonAutocomplete = function( options ) {
       // set the hidden taxon_id
       options.taxon_id_el.val( ui.item.id );
       // set the selection's thumbnail image
-      wrappingDiv.find(".ac-select-thumb img").attr( "src", ui.item.default_photo_url );
+      wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
+      selectedTaxon = ui.item;
       if( options.afterSelect ) { options.afterSelect( ui ); }
       return false;
     },
@@ -331,12 +326,22 @@ $.fn.taxonAutocomplete = function( options ) {
       }
       return false;
     }
+    if( searchClear ) {
+      field.val( ) ? $(searchClear).show( ) : $(searchClear).hide( );
+    }
+    if( field.val( ) && options.resetOnChange === false ) { return; }
     // keys like arrows, tab, shift, caps-lock, etc. won't change
     // the value of the field so we don't need to reset the selection
     nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
       34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
     if( _.contains( nonCharacters, key ) ) { return; }
-    autocompleter.resetTaxonSelection( wrappingDiv, options );
+    field.trigger( "resetTaxonSelection" );
+    selectedTaxon = null;
+  });
+  field.keyup( function( e ) {
+    if( !field.val( ) ) {
+      field.trigger( "resetTaxonSelection" );
+    }
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
@@ -351,14 +356,41 @@ $.fn.taxonAutocomplete = function( options ) {
       $(this).autocomplete( "search", $(this).val( ));
     }
   });
+  field.bind( "assignTaxon", function( e, t ) {
+    options.taxon_id_el.val( t.id );
+    field.val( t.preferred_common_name || t.name );
+    var photo = autocompleter.defaultPhotoForResult(t)
+    wrappingDiv.find(".ac-select-thumb").html( photo );
+    selectedTaxon = t;
+    if( searchClear ) { $(searchClear).show( ); }
+  });
+  field.bind( "resetTaxonSelection", function( e ) {
+    if( options.taxon_id_el.val( ) !== null ) {
+      options.taxon_id_el.val( null );
+      wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
+      if( options.afterUnselect ) { options.afterUnselect( ); }
+    }
+    selectedTaxon = null;
+  });
+  field.bind( "resetAll", function( e ) {
+    field.trigger( "resetTaxonSelection" );
+    field.val( null );
+    if( searchClear ) { $(searchClear).hide( ); }
+  });
   if( options.allow_placeholders !== true ) {
     field.blur( function( ) {
+      if( options.resetOnChange === false && selectedTaxon ) {
+        field.val( selectedTaxon.preferred_common_name ||
+          selectedTaxon.preferred_english_name || selectedTaxon.title );
+      }
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field
       setTimeout( function( ) {
         if( !autocompleter.selectedTaxonID( options ) && autocompleter.menuClosed( )) {
-          field.val( "" );
-          autocompleter.resetTaxonSelection( wrappingDiv, options );
+          field.val( null );
+          field.trigger( "resetTaxonSelection" );
+          selectedTaxon = null;
+          if( searchClear ) { $(searchClear).hide( ); }
         }
       }, 20);
     });

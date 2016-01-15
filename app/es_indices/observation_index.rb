@@ -228,6 +228,9 @@ class Observation < ActiveRecord::Base
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
+      { http_param: :day, es_field: "observed_on_details.day" },
+      { http_param: :month, es_field: "observed_on_details.month" },
+      { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
       { http_param: :place, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" }

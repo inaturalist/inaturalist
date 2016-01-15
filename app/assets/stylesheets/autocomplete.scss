@@ -18,10 +18,17 @@
   height: 36px;
 }
 .ui-autocomplete .ac-thumb {
-  float: left;
   width: 44px;
   display: inline-block;
+  text-align: center;
+  vertical-align: top;
 }
+.ui-autocomplete .ac-thumb,
+.ui-autocomplete .ac-label,
+.ui-autocomplete .ac-view {
+  vertical-align: middle;
+}
+
 .ui-autocomplete .ac-message .ac-thumb {
   width: 34px;
   padding-left: 5px;
@@ -55,6 +62,7 @@
   display: inline-block;
   width: 258px;
 }
+
 .ui-autocomplete .identification .ac-label {
   width: 450px;
 }
@@ -88,6 +96,9 @@
 .buttonrow .ac-chooser {
   display: inline-block;
 }
+.ac-chooser {
+  white-space: nowrap;
+}
 .ac-chooser .species_guess.ui-autocomplete-input {
   width: 190px;
 }
@@ -95,8 +106,14 @@
   width: 31px;
   float: left;
   margin-right: 5px;
+  text-align: center;
 }
 .ac-select-thumb img {
   width: 31px;
   height: 31px;
+}
+.ac-thumb i,
+.ac-select-thumb i {
+  font-size: 24px;
+  vertical-align: middle;
 }

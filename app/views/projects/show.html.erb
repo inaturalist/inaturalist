@@ -153,7 +153,7 @@
     <div id="projectstats" class="stacked">
       <div class="inline buttonrow right">
         <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-          <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
+          <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_search_url_params), :class => "inter" %>
         <% else %>
           <%= link_to t(:all_observations, :default => "All observations").capitalize, project_observations_url(@project), :class => "inter" %>
         <% end %>

@@ -94,57 +94,56 @@ namespace :inaturalist do
                  "kml_file_size_error", "input_taxon", "output_taxon",
                  "date_added", "observation_date", "date_picker",
                  "views.observations.export.taking_a_while",
-                 'ranks.kingdom',
-                 'ranks.phylum',
-                 'ranks.subphylum',
-                 'ranks.superclass',
-                 'ranks.class',
-                 'ranks.subclass',
-                 'ranks.superorder',
-                 'ranks.order',
-                 'ranks.suborder',
-                 'ranks.superfamily',
-                 'ranks.family',
-                 'ranks.subfamily',
-                 'ranks.supertribe',
-                 'ranks.tribe',
-                 'ranks.subtribe',
-                 'ranks.genus',
-                 'ranks.genushybrid: Géner',
-                 'ranks.species',
-                 'ranks.hybrid',
-                 'ranks.subspecies',
-                 'ranks.variety',
-                 'ranks.form',
-                 'ranks.leaves'
-                ]
+                 "place_geo.geo_planet_place_types",
+                 "ranks", "research", "asc", "desc",
+                 "date_format.month", "momentjs", "endemic", "native", 
+                 "introduced", "casual" ]
+
     # look for other keys in all javascript files
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if f == output_path
       contents = IO.read( f )
-      results = contents.scan(/I18n.t\( ?(.)(.*?)\1/i)
+      results = contents.scan(/(I18n|shared).t\( ?(.)(.*?)\2/i)
       unless results.empty?
-        all_keys += results.map{ |r| r[1].chomp(".") }
+        all_keys += results.map{ |r| r[2].chomp(".") }
       end
     end
+
+    # look for keys in angular expressions in all templates
+    Dir.glob(Rails.root.join("app/views/**/*")).each do |f|
+      next unless File.file?( f )
+      next if f =~ /\.(gif|png|php)$/
+      next if f == output_path
+      contents = IO.read( f )
+      results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
+      unless results.empty?
+        all_keys += results.map{ |r| r[2].chomp(".") }
+      end
+    end
+
     # remnant from a dynamic JS call for colors
     all_keys.delete("lts[i].valu")
-    all_translations = { }
+
     # load translations
+    all_translations = { }
     I18n.backend.send(:init_translations)
     I18n.backend.send(:translations).keys.each do |locale|
       next if locale === :qqq
       all_translations[ locale ] = { }
       all_keys.uniq.sort.each do |key_string|
-        split_keys = key_string.split(".").map(&:to_sym)
+        split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
         var = split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
             # fallback to English if there is no translation in the specified locale
             value = split_keys.inject(I18n.backend.send(:translations)[locale], :[]) rescue nil
-            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[])
-            h[key] ||= value
+            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[]) rescue nil
+            if value
+              h[key] ||= value
+            elsif Rails.env.development?
+              puts "WARNING: Failed to translate #{key}"
+            end
           else
             h[key] ||= { }
           end
@@ -152,6 +151,7 @@ namespace :inaturalist do
         end
       end
     end
+
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"

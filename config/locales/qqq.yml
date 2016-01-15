@@ -87,6 +87,7 @@ qqq:
   back_to_x_journal: where user is the name of a user
   back_to_x_observations: where user is the name of a user
   batch_edit_taxa_for_x_html: where x is a resource like an observation
+  blue_butterfly_etc: Placeholder text for search query fields
   built_with_site_guides_html:  where site_name is the name of the site
   by_editedby: where edidtedby is a user name
   by_submittedby: where submittedby is a user name
@@ -193,6 +194,8 @@ qqq:
   matching_species_will_shown_up_here: where place is the name of a place
   maybe_your_signed_in_with: where omniauth is the name of an external provider like Facebook
   merge_observation_field_x_into: where x is the name of an observation field such as eating
+  momentjs:
+    shoartRelativeTime: "all these keys are very short expressions of relative times, like 1 to 3 characters"
   months_ago: where text is the number of months like four months ago
   must_be_less_than_x_MB: where x is the file size as a number
   must_have_observation_field: where opened is the name of an observation field like eating
@@ -242,8 +245,8 @@ qqq:
   photo_attribution: where attribution is the author's name
   photo_by_id_attribution: where id is an identifier and attribution is the author's name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
-  photos_size_photos: number of photos
   photos_size_photo: number of photos
+  photos_size_photos: number of photos
   picasa_account_not_linked: where site is the site name and user is the name of a user
   place_added_to_inat_by: where site_name is the site name
   please_add_this_to_x_html: where x is the name of a project
@@ -260,6 +263,7 @@ qqq:
   projects_from_place: where place is the name of a place
   projects_in_x: where x is the name of a place
   public_coordinates_obscured_by: where distance is a number
+  rank_position: "Rank, as in position in a list"
   recent_atom_observations_by: where login is the name of a user
   recent_observations_by: where login is the name of a user
   recently_active_projects_from_place: where place is the name of a place
@@ -270,8 +274,8 @@ qqq:
   second_person_possessive_singular: where noun is a resource like an observation
   second_person_possessive_singular_: where noun is a resource like an observation
   select_photos_from_your_photo_stream: where site_name is the name of a site
-  showing_taxa_from_place: where place is the name of a place
   show_taxa_from_place: where place is the name of a place
+  showing_taxa_from_place: where place is the name of a place
   sign_in_with_provider: where provider is an external provider like Facebook
   site_name_place: where site_name is the name of a site
   site_observations_export_from_date: where site_name is the name of a site
