@@ -20,7 +20,7 @@
               %i.fa.fa-sliders
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
-            %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name" }
+            %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name", value: params[:taxon_name] }
             %input{ type: "hidden", name: "taxon_id" }
             %span= t(:near, default: "near").capitalize
             %span#place-name-input

@@ -47,6 +47,7 @@ module DarwinCore
     def self.adapt(record, options = {})
       record.extend(InstanceMethods)
       record.set_view(options[:view])
+      record.set_show_private_coordinates(options[:private_coordinates])
       record
     end
 
@@ -57,6 +58,10 @@ module DarwinCore
 
       def set_view(view)
         @view = view
+      end
+
+      def set_show_private_coordinates(show_private_coordinates)
+        @show_private_coordinates = show_private_coordinates
       end
 
       def occurrenceID
@@ -141,11 +146,28 @@ module DarwinCore
       end
 
       def decimalLatitude
-        latitude.to_f unless latitude.blank?
+        if @show_private_coordinates
+          if private_latitude.blank?
+            latitude.to_f unless latitude.blank?
+          else
+            private_latitude.to_f
+          end
+        else
+          latitude.to_f unless latitude.blank?
+        end
       end
 
       def decimalLongitude
-        longitude.to_f unless longitude.blank?
+        # longitude.to_f unless longitude.blank?
+        if @show_private_coordinates
+          if private_longitude.blank?
+            longitude.to_f unless longitude.blank?
+          else
+            private_longitude.to_f
+          end
+        else
+          longitude.to_f unless longitude.blank?
+        end
       end
 
       def coordinateUncertaintyInMeters

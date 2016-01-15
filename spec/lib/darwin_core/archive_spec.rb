@@ -117,15 +117,21 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids.uniq.size ).to eq ids.size
   end
 
-
-  it "should not include private coordinates" do
+  it "should not include private coordinates by default" do
     o = make_research_grade_observation(geoprivacy: Observation::PRIVATE)
     archive = DarwinCore::Archive.new(quality: "any")
     obs = CSV.read(archive.make_occurrence_data, headers: true).first
     expect( obs['id'] ).to eq o.id.to_s
-    # puts "obs['latitude']: #{obs['latitude']}"
-    # puts "o.private_latitude: #{o.private_latitude}"
-    expect( obs['latitude'] ).not_to eq o.private_latitude.to_s
-    expect( obs['longitude'] ).not_to eq o.private_longitude.to_s
+    expect( obs['decimalLatitude'] ).not_to eq o.private_latitude.to_s
+    expect( obs['decimalLongitude'] ).not_to eq o.private_longitude.to_s
+  end
+
+  it "should optionally include private coordinates" do
+    o = make_research_grade_observation(geoprivacy: Observation::PRIVATE)
+    archive = DarwinCore::Archive.new(quality: "any", private_coordinates: true)
+    obs = CSV.read(archive.make_occurrence_data, headers: true).first
+    expect( obs['id'] ).to eq o.id.to_s
+    expect( obs['decimalLatitude'] ).to eq o.private_latitude.to_s
+    expect( obs['decimalLongitude'] ).to eq o.private_longitude.to_s
   end
 end
