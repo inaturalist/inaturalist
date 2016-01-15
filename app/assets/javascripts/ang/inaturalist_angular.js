@@ -2,9 +2,11 @@ var iNatAPI = angular.module( "iNatAPI", [ ]);
 
 iNatAPI.factory( "shared", [ "$http", "$rootScope",
 function( $http, $rootScope ) {
-  var basicGet = function( url ) {
+  var basicGet = function( url, options ) {
+    options = options || { };
+    if( options.cache !== true) { options.cache = false; }
     // 20 second timeout
-    return $http.get( url, { cache: false, timeout: 20000 } ).then(
+    return $http.get( url, { cache: options.cache, timeout: 20000 } ).then(
       function( response ) {
         return response;
       }, function( errorResponse ) {

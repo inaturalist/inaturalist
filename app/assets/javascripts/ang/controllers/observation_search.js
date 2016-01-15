@@ -972,16 +972,19 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.infoWindowCallback( $scope.map, iw, latLng, o.id );
   });
   $rootScope.$on( "hideInfowindow", function( event, o ) {
+    $scope.snippetInfoWindowObservation = null;
     if( $scope.snippetInfoWindow ) {
       $scope.snippetInfoWindow.close( );
     }
-    $scope.snippetInfoWindowObservation = null;
   });
+  $scope.infoWindowCallbackStartTime;
   // callback method when an observation is clicked on the map
   // fetch the observation details, and render the snippet template
   $scope.infoWindowCallback = function( map, iw, latLng, observation_id, options ) {
     map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>" +
       I18n.t( "loading" ) + "</div>", options );
+    var time = new Date( ).getTime( );
+    $scope.infoWindowCallbackStartTime =  time;
     ObservationsFactory.show( observation_id ).then( function( response ) {
       observations = ObservationsFactory.responseToInstances( response );
       if( observations.length > 0 ) {
@@ -990,6 +993,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
         // delay this a bit so the view has time to update
         setTimeout(function( ) {
+          if( $scope.infoWindowCallbackStartTime !== time ) { return; }
+          if( !$scope.snippetInfoWindowObservation ) { return; }
           map.infoWindowSetContent( iw, latLng, $( "#infoWindowSnippet" ).html( ), options );
         }, 10)
       }
