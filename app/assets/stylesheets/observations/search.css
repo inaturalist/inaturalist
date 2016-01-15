@@ -499,7 +499,6 @@ inat-taxon.split-taxon .icon {display: none;}
 
 inat-taxon { white-space: nowrap; }
 
-#filters label {text-transform: capitalize;}
 .bootstrap label.sectionlabel {
   display: block;
   font-weight: bold;
@@ -531,7 +530,9 @@ inat-taxon { white-space: nowrap; }
   outline: none;
 }
 #filters .iconic-taxon.last {margin-right: 0;}
-
+.bootstrap #filters .radio label, .bootstrap #filters .checkbox label {
+  text-transform: lowercase;
+}
 #filters-body {
   padding: 10px 0px 15px;
 }

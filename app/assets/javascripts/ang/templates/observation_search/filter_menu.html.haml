@@ -5,7 +5,7 @@
         .row
           .col-xs-12
             %label.sectionlabel
-              {{ shared.t('show') }}
+              {{ shared.t('show') | capitalize:'title' }}
         #show-filters.row
           #filters-left-col.col-xs-6
             .checkbox
@@ -51,7 +51,7 @@
         .row
           .col-xs-12
             %label.sectionlabel
-              {{ shared.t('categories') }}
+              {{ shared.t('categories') | capitalize:'title' }}
             #filters-categories.btn-group
               - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia'}.each_with_index do |t, i|
                 %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}"}
@@ -88,7 +88,7 @@
               = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
       #filters-right-col.col-xs-4
         %label.sectionlabel
-          {{ shared.t( 'date_observed' ) }}
+          {{ shared.t( 'date_observed' ) | capitalize:'title' }}
         #filters-dates
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
