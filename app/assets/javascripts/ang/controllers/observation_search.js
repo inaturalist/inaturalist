@@ -70,10 +70,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     dateType: "any",
     page: 1
   };
-  if ( PREFERRED_PLACE && !$location.search( ).place_id ) {
-    $scope.defaultParams.place_id = PREFERRED_PLACE.id;
-    $location.search( { place_id: PREFERRED_PLACE.id } ).replace( );
-  }
   $scope.mapBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng( -80, -179 ),
     new google.maps.LatLng( 80, 179 ));
@@ -229,8 +225,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         function( n ) { return [ n, true ]; }
       ));
     }
+    if( PREFERRED_PLACE && _.isEqual( $scope.params, $scope.defaultParams ) ) {
+      $scope.params.place_id = PREFERRED_PLACE.id;
+    }
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
+    $scope.updateBrowserLocation({ replace: true })
   };
   $scope.updateBrowserLocation = function( options ) {
     options = options || { };
@@ -279,7 +279,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.initialBrowserState = currentState;
     } else {
       $location.state( currentState );
-      $location.search( currentSearch );
+      if( options.replace ) {
+        $location.search( currentSearch ).replace( );
+      } else {
+        $location.search( currentSearch );
+      }
     }
   };
   $scope.viewing = function( view, subview ) {
