@@ -18,7 +18,7 @@
                 {{ shared.t('verifiable') }}
             .checkbox
               %label
-                %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
+                %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value" => "" }
                 {{ shared.t('research_grade') }}
             .checkbox
               %label
@@ -144,9 +144,9 @@
                     %option{value: code}= code
   #filters-footer.row
     .col-xs-12
-      %button.btn.btn-primary{ type: "button", "ng-click": "closeFilters( )" }
+      %button.btn.btn-primary{ type: "button", "ng-click" => "closeFilters( )" }
         {{ shared.t('update_search') | capitalize:'title' }}
-      %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
+      %button.btn.btn-default{ type: 'button', "ng-click" => "resetParams( )" }
         {{ shared.t('reset_search_filters') | capitalize:'title' }}
       #feeds.pull-right
         %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}", target: "_self"}

@@ -9,7 +9,7 @@
   = stylesheet_link_tag "observations/search"
 - content_for :extrahead do
   %base{ href: observations_path }
-#main-container{ "ng-app": "ObservationSearch", "ng-controller": "SearchController" }
+#main-container{ "ng-app" => "ObservationSearch", "ng-controller" => "SearchController" }
   .container.container-fixed
     .row.form
       .col-xs-12
@@ -18,66 +18,66 @@
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t('filters') }}" }
               %i.fa.fa-sliders
-            .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
+            .dropdown-menu.dropdown-menu-right{"ng-include" => "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name" }
             %input{ type: "hidden", name: "taxon_id" }
             %span= t(:near, default: "near").capitalize
             %span#place-name-input
-              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
-              %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
+              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model" => "placeSearch" }
+              %button.btn.btn-default{ type: "button", "ng-click" => "focusOnSearchedPlace( )" }= t(:go)
   #stats-container
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng", "ng-click": "changeView('observations', 'map')",
-            "ng-class": "{ unclickable: viewing('observations', 'map') }" }
+          %span.geo.ng-cloak{ "ng-if" => "!selectedPlace && !params.swlng", "ng-click" => "changeView('observations', 'map')",
+            "ng-class" => "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('the_world') }}
-          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "changeView('observations', 'map')",
-            "ng-class": "{ unclickable: viewing('observations', 'map') }" }
+          %span.geo.selected.ng-cloak{ "ng-if" => "selectedPlace", "ng-click" => "changeView('observations', 'map')",
+            "ng-class" => "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name }}"
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
-          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "changeView('observations', 'map')",
-            "ng-class": "{ unclickable: viewing('observations', 'map') }" }
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click" => "removeSelectedPlace( )" }
+          %span.geo.selected.ng-cloak{ "ng-if" => "params.swlng", "ng-click" => "changeView('observations', 'map')",
+            "ng-class" => "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('bounding_box') }}
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
-        #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click" => "removeSelectedBounds( )" }
+        #obsstatcol.col-xs-2.statcol{ "ng-class" => "{ active: viewing('observations') }", "ng-click" => "changeView('observations')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
             .stat-title.ng-cloak
               = t(:observations)
-              %i.fa.fa-arrow-right{ "ng-hide": "viewing('observations')" }
-        .col-xs-2.statcol{ "ng-class": "{ active: viewing('species') }", "ng-click": "changeView('species')" }
+              %i.fa.fa-arrow-right{ "ng-hide" => "viewing('observations')" }
+        .col-xs-2.statcol{ "ng-class" => "{ active: viewing('species') }", "ng-click" => "changeView('species')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
             .stat-title.ng-cloak
               = t(:species)
-              %i.fa.fa-arrow-right{ "ng-hide": "viewing('species')" }
-        .col-xs-2.statcol{ "ng-class": "{ active: viewing('identifiers') }", "ng-click": "changeView('identifiers')" }
+              %i.fa.fa-arrow-right{ "ng-hide" => "viewing('species')" }
+        .col-xs-2.statcol{ "ng-class" => "{ active: viewing('identifiers') }", "ng-click" => "changeView('identifiers')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
             .stat-title.ng-cloak
               = t(:identifiers)
-              %i.fa.fa-arrow-right{ "ng-hide": "viewing('identifiers')" }
-        .col-xs-2.statcol{ "ng-class": "{ active: viewing('observers') }", "ng-click": "changeView('observers')" }
+              %i.fa.fa-arrow-right{ "ng-hide" => "viewing('identifiers')" }
+        .col-xs-2.statcol{ "ng-class" => "{ active: viewing('observers') }", "ng-click" => "changeView('observers')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
             .stat-title.ng-cloak
               = t(:observers)
-              %i.fa.fa-arrow-right{ "ng-hide": "viewing('observers')" }
+              %i.fa.fa-arrow-right{ "ng-hide" => "viewing('observers')" }
   #results
-    .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
+    .container.container-fixed.ng-cloak{ "ng-show" => "viewing('observations')" }
       .row
         .col-xs-8
           #view-controls
             #subview-controls.btn-group
-              %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
-                %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
-              %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
-                %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
-              %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
-                %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
-            #layer-control.btn-group.btn-group-stateless{ "ng-show": "viewing('observations', 'map')" }
+              %button{ "ng-click" => "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
+                %span.glyphicon.glyphicon-map-marker{ "aria-hidden" => "true" }
+              %button{ "ng-click" => "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
+                %span.glyphicon.glyphicon-th{ "aria-hidden" => "true" }
+              %button{ "ng-click" => "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
+                %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden" => "true" }
+            #layer-control.btn-group.btn-group-stateless{ "ng-show" => "viewing('observations', 'map')" }
               %button.btn.btn-default.btn-icon-stupidity.dropdown-toggle{data: {toggle: "dropdown"}}
                 %i.icon-layers{title: "{{ shared.t('layers') }}"}
               %ul.dropdown-menu
@@ -92,52 +92,52 @@
                 %li.divider{role: "separator"}
                 %li{:class => "checkbox {{ mapTerrain ? 'disabled' : '' }}"}
                   %label
-                    %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled": "mapTerrain" }
+                    %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled" => "mapTerrain" }
                     {{ shared.t('labels') | capitalize }}
                 %li{:class => "checkbox {{ mapType == 'map' ? '' : 'disabled' }}"}
                   %label
-                    %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
+                    %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled" => "mapType != 'map'" }
                     {{ shared.t('terrain') | capitalize }}
 
 
-            %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
-              %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
+            %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle" => "dropdown", "ng-show" => "viewing('observations', 'map')" }
+              %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class" => "{ 'fa-spin': searchingNearbyPlaces }" }
               {{ shared.t('places_of_interest') }}
             .dropdown-menu.dropdown-menu-right.places
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }
                   {{ shared.t('standard') }}
-                .place{ "ng-repeat": "p in nearbyPlaces.standard", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                .place{ "ng-repeat" => "p in nearbyPlaces.standard", "ng-click" => "filterByPlace( p )", "ng-mouseover" => "showNearbyPlace( p )",  "ng-mouseleave" => "hideNearbyPlace( p )" }
                   %span.glyphicon.glyphicon-map-marker>
                   %span.name<>
                     = "{{ p.name }}"
                   %span.type<>
                     = "{{ p.placeTypeLabel( ) }}"
-                %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
+                %span{ "ng-show" => "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
                   {{ shared.t("no_places_available") }}
               .col-xs-6
                 %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
                   {{ shared.t('community_curated') }}
-                .place{ "ng-repeat": "p in nearbyPlaces.community", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                .place{ "ng-repeat" => "p in nearbyPlaces.community", "ng-click" => "filterByPlace( p )", "ng-mouseover" => "showNearbyPlace( p )",  "ng-mouseleave" => "hideNearbyPlace( p )" }
                   %span.glyphicon.glyphicon-map-marker>
                   %span.name<>
                     = "{{ p.name }}"
                   %span.type<>
                     = "{{ p.placeTypeLabel( ) }}"
-                %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
+                %span{ "ng-show" => "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
                   {{ shared.t("no_places_available") }}
-            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !hideRedoSearch" }
-              %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
+            %button.button.btn-default.reload{ "ng-click" => "filterByBounds( )", "ng-show" => "viewing('observations', 'map') && !hideRedoSearch" }
+              %span.glyphicon.glyphicon-repeat{ "aria-hidden" => "true" }
               {{ shared.t('redo_search_in_map') }}
         .col-xs-6
-    %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
-    %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
-      %div{ "ng-include": "'ang/templates/observation_search/results_grid.html'"}
-    %div{ "results-table": true, "ng-show": "viewing('observations', 'table')" }
-      %div{ "ng-include": "'ang/templates/observation_search/results_table.html'"}
-    %div{ "taxa-grid": true, "ng-show": "viewing('species')" }
-      %div{ "ng-include": "'ang/templates/observation_search/taxa_grid.html'"}
-    %div{ "ng-show": "viewing('identifiers')" }
-      %div{ "ng-include": "'ang/templates/observation_search/identifiers_table.html'" }
-    %div{ "ng-show": "viewing('observers')" }
-      %div{ "ng-include": "'ang/templates/observation_search/observers_table.html'"}
+    %div#observations-map{ "results-map" => true, "ng-show" => "viewing('observations', 'map')", "ng-controller" => "MapController" }
+    %div{ "results-grid" => true, "ng-show" => "viewing('observations', 'grid')" }
+      %div{ "ng-include" => "'ang/templates/observation_search/results_grid.html'"}
+    %div{ "results-table" => true, "ng-show" => "viewing('observations', 'table')" }
+      %div{ "ng-include" => "'ang/templates/observation_search/results_table.html'"}
+    %div{ "taxa-grid" => true, "ng-show" => "viewing('species')" }
+      %div{ "ng-include" => "'ang/templates/observation_search/taxa_grid.html'"}
+    %div{ "ng-show" => "viewing('identifiers')" }
+      %div{ "ng-include" => "'ang/templates/observation_search/identifiers_table.html'" }
+    %div{ "ng-show" => "viewing('observers')" }
+      %div{ "ng-include" => "'ang/templates/observation_search/observers_table.html'"}

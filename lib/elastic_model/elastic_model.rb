@@ -156,8 +156,8 @@ module ElasticModel
       return { or: [
         envelope_filter({ envelope: { field => coords } }),
         { and: [
-          { term: { "user.id": opts[:user].id } },
-          envelope_filter({ envelope: { "private_#{field}": coords } }) ]}
+          { term: { "user.id" => opts[:user].id } },
+          envelope_filter({ envelope: { "private_#{field}" => coords } }) ]}
       ]}
     end
     nelat = opts[:nelat]

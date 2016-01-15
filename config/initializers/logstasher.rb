@@ -135,7 +135,7 @@ module Logstasher
           [ k, v.to_s ]
         }]
       payload.merge!({
-        "@timestamp": args[1],
+        "@timestamp" => args[1],
         subtype: "ActionController",
         start_time: args[1],
         end_time: args[2],

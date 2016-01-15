@@ -385,7 +385,7 @@ class Taxon < ActiveRecord::Base
         Identification.joins(:taxon).where(conditions).exists? || 
         Identification.joins(:taxon).where(old_conditions).exists? )
       Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "Observation::update_stats_for_observations_of": id }).
+        unique_hash: { "Observation::update_stats_for_observations_of" => id }).
         update_stats_for_observations_of(id)
     end
     true
@@ -805,7 +805,7 @@ class Taxon < ActiveRecord::Base
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
       LifeList.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
+        unique_hash: { "LifeList::update_life_lists_for_taxon" => id }).
         update_life_lists_for_taxon(self)
     end
     true
@@ -852,7 +852,7 @@ class Taxon < ActiveRecord::Base
     
     if !new_record? && options[:refresh_if_blank]
       delay(priority: OPTIONAL_PRIORITY,
-        unique_hash: { "Taxon::set_wikipedia_summary": id }).
+        unique_hash: { "Taxon::set_wikipedia_summary" => id }).
         set_wikipedia_summary(:locale => locale)
     end
     nil

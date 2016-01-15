@@ -82,14 +82,14 @@
     - else
       %li#messagesnav.notices.navtab
         .innertab
-          = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
+          = link_to messages_path, id: "headermessagesnotice", 'class' => "messages headernotice" do
             %i.fa.fa-envelope
             %span.count 0
         #messagessubnav.subnav.rightsubnav{style: "display:none;"}
           .loadingwrapper= loading
       %li#updatesnav.notices.navtab
         .innertab
-          = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
+          = link_to messages_path, id: "headerupdatesnotice", 'class' => "updates headernotice" do
             %i.fa.fa-comment
             %span.count 0
         #updatessubnav.subnav.rightsubnav{style: "display:none;"}

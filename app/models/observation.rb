@@ -959,19 +959,19 @@ class Observation < ActiveRecord::Base
     
     # Refreh the ProjectLists
     ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "ProjectList::refresh_with_observation": id }).
+      unique_hash: { "ProjectList::refresh_with_observation" => id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
 
     # Don't refresh LifeLists and Lists if only quality grade has changed
     return true unless taxon_id_changed?
     List.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "List::refresh_with_observation": id }).
+      unique_hash: { "List::refresh_with_observation" => id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
         :skip_subclasses => true)
     LifeList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "LifeList::refresh_with_observation": id }).
+      unique_hash: { "LifeList::refresh_with_observation" => id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
 
@@ -987,7 +987,7 @@ class Observation < ActiveRecord::Base
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
     CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "CheckList::refresh_with_observation": id }).
+      unique_hash: { "CheckList::refresh_with_observation" => id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
         :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
@@ -1170,7 +1170,7 @@ class Observation < ActiveRecord::Base
     observation.save
     if observation.quality_grade_changed?
       CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "CheckList::refresh_with_observation": id }).
+        unique_hash: { "CheckList::refresh_with_observation" => id }).
         refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
@@ -2240,7 +2240,7 @@ class Observation < ActiveRecord::Base
         # observation aggregation for twitter happens in share_on_twitter.
         # fb aggregation happens on their end via open graph aggregations.
         self.delay(priority: USER_INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
-          unique_hash: { "Observation::share_on_#{provider_name}": u.id }).
+          unique_hash: { "Observation::share_on_#{provider_name}" => u.id }).
           send("share_on_#{provider_name}")
       end
     end
