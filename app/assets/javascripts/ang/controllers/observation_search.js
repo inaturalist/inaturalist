@@ -219,6 +219,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.mapBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng( $scope.params.swlat, $scope.params.swlng ),
             new google.maps.LatLng( $scope.params.nelat, $scope.params.nelng ));
+      } else if( $scope.params.lat && $scope.params.lng ) {
+        $scope.mapBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng( parseFloat( $scope.params.lat ) - 0.1,
+            parseFloat( $scope.params.lng ) - 0.1 ),
+          new google.maps.LatLng( parseFloat( $scope.params.lat ) + 0.1,
+            parseFloat( $scope.params.lng ) + 0.1 ));
       }
       $scope.placeInitialized = true;
     }
@@ -468,6 +474,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.params.swlat = null;
     $scope.params.nelng = null;
     $scope.params.nelat = null;
+    $scope.params.lat = null;
+    $scope.params.lng = null;
     $scope.mapBounds = null;
     $scope.mapBoundsIcon = null;
     $scope.hideRedoSearch = false;
@@ -1015,43 +1023,57 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.boundingBoxCenterIcon ) { $scope.boundingBoxCenterIcon.setMap( null ); }
     $scope.selectedPlaceLayer = null;
     $scope.boundingBoxCenterIcon = null;
-    if( $scope.$parent.selectedPlace || $scope.params.swlat ) {
-      $scope.selectedPlaceLayer = new google.maps.Data({ style: $scope.placeLayerStyle });
-      // draw the polygon for the current place
-      if( $scope.$parent.selectedPlace ) {
-        var c = { type: "Feature",
-          geometry: $scope.$parent.selectedPlace.geometry_geojson };
-        $scope.selectedPlaceLayer.addGeoJson( c );
-        $scope.selectedPlaceLayer.setMap( $scope.map );
+    var xMarkerPosition;
+    $scope.selectedPlaceLayer = new google.maps.Data({ style: $scope.placeLayerStyle });
+    // draw the polygon for the current place
+    if( $scope.$parent.selectedPlace ) {
+      var c = { type: "Feature",
+        geometry: $scope.$parent.selectedPlace.geometry_geojson };
+      $scope.selectedPlaceLayer.addGeoJson( c );
+      $scope.selectedPlaceLayer.setMap( $scope.map );
+    }
+    // draw the filter bounding box
+    else if( $scope.params.swlat && $scope.params.swlng &&
+        $scope.params.nelat && $scope.params.nelng ) {
+      // google.maps.Rectangle seems more reliable than using GeoJSON here
+      $scope.selectedPlaceLayer = new google.maps.Rectangle(
+        _.extend( { }, $scope.placeLayerStyle, {
+          map: $scope.map,
+          bounds: {
+            north: parseFloat( $scope.params.nelat ),
+            south: parseFloat( $scope.params.swlat ),
+            east: parseFloat( $scope.params.nelng ),
+            west: parseFloat( $scope.params.swlng )
+          }
+        })
+      );
+      // add an X marker in the center of the bounding box
+      if( $scope.$parent.mapBoundsIcon && $scope.searchedPlace ) {
+        xMarkerPosition = $scope.searchedPlace.geometry.location;
       }
-      // draw the filter bounding box
-      else if( $scope.params.swlat && $scope.params.swlng &&
-          $scope.params.nelat && $scope.params.nelng ) {
-        // google.maps.Rectangle seems more reliable than using GeoJSON here
-        $scope.selectedPlaceLayer = new google.maps.Rectangle(
-          _.extend( { }, $scope.placeLayerStyle, {
-            map: $scope.map,
-            bounds: {
-              north: parseFloat( $scope.params.nelat ),
-              south: parseFloat( $scope.params.swlat ),
-              east: parseFloat( $scope.params.nelng ),
-              west: parseFloat( $scope.params.swlng )
-            }
-          })
-        );
-        // add an X marker in the center of the bounding box
-        if( $scope.$parent.mapBoundsIcon && $scope.searchedPlace ) {
-          $scope.boundingBoxCenterIcon = new google.maps.Marker({
-            position: $scope.searchedPlace.geometry.location,
-            icon: {
-              url: "/mapMarkers/x.svg",
-              scaledSize: new google.maps.Size( 20, 20 ),
-              anchor: new google.maps.Point( 10, 10 ),
-            },
-            map: $scope.map
-          });
-        }
-      }
+    } else if( $scope.params.lat && $scope.params.lng ) {
+      xMarkerPosition = {
+        lat: parseFloat( $scope.params.lat ),
+        lng: parseFloat( $scope.params.lng )
+      };
+      $scope.selectedPlaceLayer = new google.maps.Circle(
+        _.extend( { }, $scope.placeLayerStyle, {
+          map: $scope.map,
+          radius: 10000,
+          center: xMarkerPosition
+        })
+      );
+    }
+    if( xMarkerPosition ) {
+      $scope.boundingBoxCenterIcon = new google.maps.Marker({
+        position: xMarkerPosition,
+        icon: {
+          url: "/mapMarkers/x.svg",
+          scaledSize: new google.maps.Size( 20, 20 ),
+          anchor: new google.maps.Point( 10, 10 ),
+        },
+        map: $scope.map
+      });
     }
     $scope.mapLayersInitialized = true;
     if( align ) {

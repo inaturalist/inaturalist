@@ -30,14 +30,14 @@
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng", "ng-click": "changeView('observations', 'map')",
+          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng && !params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('the_world') }}
           %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name }}"
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
-          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng", "ng-click": "changeView('observations', 'map')",
+          %span.geo.selected.ng-cloak{ "ng-if": "params.swlng || params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('bounding_box') }}
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
