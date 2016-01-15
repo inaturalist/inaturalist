@@ -237,7 +237,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
-    $scope.updateBrowserLocation({ replace: true })
   };
   $scope.updateBrowserLocation = function( options ) {
     options = options || { };
