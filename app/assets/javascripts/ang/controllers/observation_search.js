@@ -994,7 +994,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         // delay this a bit so the view has time to update
         setTimeout(function( ) {
           if( $scope.infoWindowCallbackStartTime !== time ) { return; }
-          if( !$scope.snippetInfoWindowObservation ) { return; }
           map.infoWindowSetContent( iw, latLng, $( "#infoWindowSnippet" ).html( ), options );
         }, 10)
       }
