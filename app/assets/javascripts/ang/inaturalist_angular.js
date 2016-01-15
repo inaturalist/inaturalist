@@ -26,6 +26,8 @@ function( $http, $rootScope ) {
       });
       if( iconic_taxa.length > 0 ) {
         params.iconic_taxa = iconic_taxa;
+      } else {
+        params.iconic_taxa = [ ];
       }
       keysToDelete.push( "_iconic_taxa" );
     }
