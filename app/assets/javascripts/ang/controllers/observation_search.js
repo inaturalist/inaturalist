@@ -70,6 +70,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     dateType: "any",
     page: 1
   };
+  if ( PREFERRED_PLACE && !$location.search( ).place_id ) {
+    $scope.defaultParams.place_id = PREFERRED_PLACE.id;
+    $location.search( { place_id: PREFERRED_PLACE.id } ).replace( );
+  }
   $scope.mapBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng( -80, -179 ),
     new google.maps.LatLng( 80, 179 ));
