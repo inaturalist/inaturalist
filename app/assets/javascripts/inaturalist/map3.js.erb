@@ -452,8 +452,8 @@ iNaturalist.Map.createMap = function(options) {
     }
   })
   map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
-
-  if( ! _.has( options, "disableFullscreen" ) ) {
+  
+  if ( !options.disableFullscreen ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   }
 
