@@ -150,6 +150,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // for example DateType will change with the different date options
     $scope.$watch( "params", function( ) {
       $scope.processedParams = shared.processParams( $scope.params, $scope.possibleFields );
+      if ( CURRENT_USER ) {
+        $scope.showingViewerObservations = (
+          ($scope.processedParams.user_id == CURRENT_USER.id) || 
+          ($scope.processedParams.user_id == CURRENT_USER.login)
+        );
+      }
     }, true);
     // changes in processedParams are what initiate searches
     $scope.$watch( "processedParams", function( before, after ) {
@@ -759,6 +765,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.hideInfowindow = function( ) {
     $rootScope.$emit( "hideInfowindow" );
   };
+  $scope.toggleShowViewerObservations = function( ) {
+    if ( !CURRENT_USER ) { return; };
+    if ( $scope.params.user_id == CURRENT_USER.id || $scope.params.user_id == CURRENT_USER.login ) {
+      $scope.params.user_id = null;
+    } else {
+      $scope.params.user_id = CURRENT_USER.login;
+    }
+  }
   $scope.preInitialize( );
 }]);
 

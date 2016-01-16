@@ -13,34 +13,42 @@
                 %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
                 {{ shared.t('wild') }}
             .checkbox
-              %label{"uib-tooltip" => "{{ shared.t('eligible_for_research_grade') }}", "tooltip-placement" => "right"}
-                %input{type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => ""}
+              %label{ "uib-tooltip" => "{{ shared.t('eligible_for_research_grade') }}", "tooltip-placement" => "right" }
+                %input{ type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => "" }
                 {{ shared.t('verifiable') }}
             .checkbox
               %label
-                %input{type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
+                %input{ type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'research'", "ng-false-value": "" }
                 {{ shared.t('research_grade') }}
             .checkbox
               %label
-                %input{type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
+                %input{ type: 'checkbox', value: 'research', "ng-model" => "params.quality_grade", "ng-true-value" => "'needs_id'", "ng-false-value": "" }
+                {{ shared.t('needs_id') }}
+            .checkbox
+              %label
+                %input{ type: 'checkbox', "ng-model" => "params.threatened", "ng-false-value" => ""}
                 {{ shared.t('threatened') }}
           .col-xs-6
             .checkbox
               %label
-                %input{type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
+                %input{ type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
                 {{ shared.t('introduced') }}
             .checkbox
               %label{ "uib-tooltip" => "{{ shared.t('has_one_or_more_faves') }}", "tooltip-placement" => "right" }
-                %input{type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
+                %input{ type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
                 {{ shared.t('popular') }}
             .checkbox
               %label
-                %input{type: 'checkbox', "ng-model" => "params.sounds", "ng-false-value" => ""}
+                %input{ type: 'checkbox', "ng-model" => "params.sounds", "ng-false-value" => "" }
                 {{ shared.t('has_sounds') }}
             .checkbox
               %label
-                %input{type: 'checkbox', "ng-model" => "params.photos", "ng-false-value" => ""}
+                %input{ type: 'checkbox', "ng-model" => "params.photos", "ng-false-value" => "" }
                 {{ shared.t('has_photos') }}
+            .checkbox{"ng-show" => "CURRENT_USER"}
+              %label
+                %input{ type: 'checkbox', "ng-model" => "showingViewerObservations", "ng-change" => "toggleShowViewerObservations( )" }
+                {{ shared.t('your_observations') }}
         .row
           .col-xs-12
             .form-group
@@ -53,13 +61,15 @@
             %label.sectionlabel
               {{ shared.t('categories') | capitalize:'title' }}
             #filters-categories.btn-group
-              - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia'}.each_with_index do |t, i|
-                %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}"}
+              - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia' || t.name == 'Chromista'}.sort_by(&:self_and_ancestor_ids).each_with_index do |t, i|
+                %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}", title: "{{ shared.t( 'all_taxa.#{t.common_name.name.parameterize.underscore}' ) }}" }
                   %i{:class => "icon-iconic-#{t.name.downcase}"}
+              %button{type: "button", :class => "btn btn-default iconic-taxon last", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => "unknown", "ng-model" => "params._iconic_taxa.unknown", title: "{{ shared.t( 'unknown' ) }}"}
+                %i{:class => "icon-iconic-unknown"}
         .row
           .col-xs-12
             %label.sectionlabel{for: 'params-hrank'}
-              {{ shared.t('rank') }}
+              {{ shared.t('rank') | capitalize:'title' }}
         #filters-ranks.row
           .col-xs-6
             %select#params-hrank.form-control{"ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}"}
@@ -78,7 +88,7 @@
         .row
           .col-xs-12
             %label.sectionlabel{for: 'params-order-by'}
-              {{ shared.t('sort_by') }}
+              {{ shared.t('sort_by') | capitalize:'title' }}
         .row
           .col-xs-6
             %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}"}
@@ -127,20 +137,20 @@
             .col-xs-4
               .form-group
                 %label{for: 'params-user-id'}
-                  {{ shared.t('person') }}
+                  {{ shared.t('person') | capitalize:'title' }}
                 .input-group
                   %span.input-group-addon.icon-person
                   %input#params-user-id.form-control{"ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('username_or_user_id') }}"}
               .form-group
                 %label{for: 'params-project-id'}
-                  {{ shared.t('project') }}
+                  {{ shared.t('project') | capitalize:'title' }}
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
                   %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('url_slug_or_id') }}", title: "{{ shared.t('url_slug_or_id') }}" }
             .col-xs-4
               .form-group
                 %label
-                  {{ shared.t('photo_licensing') }}
+                  {{ shared.t('photo_licensing') | capitalize:'title' }}
                 %select.form-control{"ng-model" => "params.photo_license"}
                   %option{value: ''}
                     {{ shared.t('all') }}

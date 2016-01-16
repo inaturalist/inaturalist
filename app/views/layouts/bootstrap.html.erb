@@ -84,7 +84,7 @@
       <% end -%>
       var CURRENT_USER;
       <% if logged_in? -%>
-        CURRENT_USER = { id: <%= current_user.id %> };
+        CURRENT_USER = { id: <%= current_user.id %>, login: '<%= current_user.login %>' };
       <% end -%>
     </script>
     <%= javascript_include_tag 'application_bundle' %>
