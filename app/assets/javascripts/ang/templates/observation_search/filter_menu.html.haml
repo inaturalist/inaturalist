@@ -45,7 +45,7 @@
               %label
                 %input{ type: 'checkbox', "ng-model" => "params.photos", "ng-false-value" => "" }
                 {{ shared.t('has_photos') }}
-            .checkbox{"ng-show" => "CURRENT_USER"}
+            .checkbox{"ng-show" => "currentUser"}
               %label
                 %input{ type: 'checkbox', "ng-model" => "showingViewerObservations", "ng-change" => "toggleShowViewerObservations( )" }
                 {{ shared.t('your_observations') }}

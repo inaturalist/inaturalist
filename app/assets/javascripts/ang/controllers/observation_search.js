@@ -52,6 +52,7 @@ application.config( [ "$locationProvider", function($locationProvider) {
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll", "$uibPosition",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {
+  $scope.currentUser = CURRENT_USER;
   $scope.shared = shared;
   $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
