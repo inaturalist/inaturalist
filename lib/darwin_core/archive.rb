@@ -104,6 +104,7 @@ module DarwinCore
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
       params[:quality_grade] = @opts[:quality]
+      params[:site_id] = @opts[:site_id]
       params
     end
 
