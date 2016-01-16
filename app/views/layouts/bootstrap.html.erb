@@ -82,6 +82,10 @@
       PREFERRED_PLACE = <%= json_escape (user_place || site_place).
         to_json(only: [:id, :name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
+      var CURRENT_USER;
+      <% if logged_in? -%>
+        CURRENT_USER = { id: <%= current_user.id %> };
+      <% end -%>
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

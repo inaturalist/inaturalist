@@ -231,16 +231,22 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
-    $scope.params = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    var initialParams = _.extend( { }, $scope.defaultParams, $location.search( ) );
     // setting _iconic_taxa for the iconic taxa filters, (e.g { Chromista: true })
-    if( $scope.params.iconic_taxa ) {
-      $scope.params._iconic_taxa = _.object( _.map( $scope.params.iconic_taxa.split(","),
+    if( initialParams.iconic_taxa ) {
+      initialParams._iconic_taxa = _.object( _.map( initialParams.iconic_taxa.split(","),
         function( n ) { return [ n, true ]; }
       ));
     }
-    if( PREFERRED_PLACE && _.isEqual( $scope.params, $scope.defaultParams ) ) {
-      $scope.params.place_id = PREFERRED_PLACE.id;
+    // on the bare /observations route, set the default user or site place_id
+    if( PREFERRED_PLACE && _.isEqual( initialParams, $scope.defaultParams ) ) {
+      initialParams.place_id = PREFERRED_PLACE.id;
     }
+    // use the current user's id as the basis for the `reviewed` param
+    if( !_.isUndefined( initialParams.reviewed ) && !initialParams.reviewed_by && CURRENT_USER ) {
+      initialParams.viewer_id = CURRENT_USER.id;
+    }
+    $scope.params = initialParams;
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
   };
