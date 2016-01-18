@@ -62,7 +62,6 @@ module Inaturalist
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
     config.i18n.enforce_available_locales = false
-    config.angular_templates.module_name = "ang/templates"
 
     # new for Rails 4.2 as per https://github.com/collectiveidea/delayed_job
     config.active_job.queue_adapter = :delayed_job

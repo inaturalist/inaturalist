@@ -17,3 +17,4 @@ Rails.application.config.i18n.fallbacks = [ :en ]
 # from and to locales for the translate gem (translation ui)
 Rails.application.config.from_locales = [:en, :es]
 Rails.application.config.to_locales = [:es, "es-MX".to_sym]
+I18n.extend(I18nExtensions)

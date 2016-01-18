@@ -1301,6 +1301,10 @@ module ApplicationHelper
     s.html_safe? ? result.html_safe : result
   end
 
+  def has_t?(*args)
+    I18n.has_t?(*args)
+  end
+
   def hyperlink_mentions(text)
     linked_text = text.dup
     linked_text.mentioned_users.each do |u|
