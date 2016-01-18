@@ -1,6 +1,6 @@
 var application = angular.module( "ObservationSearch", [
   "infinite-scroll",
-  "templates",
+  "ang/templates",
   "ehFilters", // angular-capitalize
   "iNatAPI",
   "ui.bootstrap",

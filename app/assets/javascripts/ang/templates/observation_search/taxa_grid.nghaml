@@ -6,7 +6,7 @@
           %i{ :class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}" }
         %div{ "ng-show" => "t.preferred_conservation_status", :class => "corner conservation-status {{ t.preferred_conservation_status }}", title: "{{ t.conservationStatus( ) | capitalize:'title' }}" }
           {{ t.preferred_conservation_status }}
-        %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.preferred_conservation_status", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.t( t.preferred_establishment_means ) | capitalize:'title' }}" }
+        %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.preferred_conservation_status", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", "ng-attr-title": "shared.t( t.preferred_establishment_means )" }
           {{ t.establishmentMeansCode( ) }}
         .photometa
           %span{ "ng-click" => "updateParams({ taxon_id: t.id, view: 'observations' })" }

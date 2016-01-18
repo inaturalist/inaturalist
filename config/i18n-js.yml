@@ -27,6 +27,6 @@
 #     only: "*"
 #
 
-fallbacks: true
+fallbacks: :default_locale
 translations:
   - file: "app/assets/javascripts/i18n/translations.js"
