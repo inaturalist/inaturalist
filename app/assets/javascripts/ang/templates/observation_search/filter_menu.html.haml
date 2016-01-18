@@ -12,6 +12,7 @@
               %label
                 %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
                 {{ shared.t('wild') }}
+                = "test"
             .checkbox
               %label{ "uib-tooltip" => "{{ shared.t('eligible_for_research_grade') }}", "tooltip-placement" => "right" }
                 %input{ type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => "" }
