@@ -119,6 +119,8 @@
             %span.date-type
               {{ shared.t('months') }}
               = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control input-sm", id: "filters-dates-month", multiple: "multiple"
+          %input{ type: "hidden", name: "taxon_ids[]" }
+          %input{ type: "hidden", name: "has[]" }
           %input{ type: "hidden", name: "created_d1" }
           %input{ type: "hidden", name: "created_d2" }
           %input{ type: "hidden", name: "not_in_project" }
@@ -126,6 +128,12 @@
           %input{ type: "hidden", name: "lng" }
           %input{ type: "hidden", name: "reviewed" }
           %input{ type: "hidden", name: "viewer_id" }
+          %input{ type: "hidden", name: "identified" }
+          %input{ type: "hidden", name: "created_on" }
+          %input{ type: "hidden", name: "captive" }
+          %input{ type: "hidden", name: "day" }
+          %input{ type: "hidden", name: "year" }
+          %input{ type: "hidden", name: "site_id" }
     .row
       .col-xs-12
         %button#filters-more-btn.btn.btn-link.collapsed{type: 'button', data: {toggle: 'collapse', target: '#more-filters'}, "aria-expanded" => "false", "aria-controls" => "more-filters"}
