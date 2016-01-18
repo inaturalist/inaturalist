@@ -1,6 +1,6 @@
 //= require angular/angular
 //= require angular-route/angular-route
-//= require angular-rails4-templates
+//= require angular-rails-templates
 //= require ngInfiniteScroll/build/ng-infinite-scroll.min
 //= require angular-capitalize/angular-capitalize
 //= require angular-capitalize/angular-capitalize-locale_pt-br
