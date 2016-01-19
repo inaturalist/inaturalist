@@ -62,7 +62,7 @@
               {{ shared.t('categories') | capitalize:'title' }}
             #filters-categories.btn-group
               - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia' || t.name == 'Chromista'}.sort_by(&:self_and_ancestor_ids).each_with_index do |t, i|
-                %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}", title: "{{ shared.t( 'all_taxa.#{t.common_name.name.parameterize.underscore}' ) }}" }
+                %button{type: "button", :class => "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => t.name, "ng-model" => "params._iconic_taxa.#{t.name}", title: "{{ shared.t( 'all_taxa.#{t.common_name(locale: :en).name.parameterize.underscore}' ) }}" }
                   %i{:class => "icon-iconic-#{t.name.downcase}"}
               %button{type: "button", :class => "btn btn-default iconic-taxon last", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => "unknown", "ng-model" => "params._iconic_taxa.unknown", title: "{{ shared.t( 'unknown' ) }}"}
                 %i{:class => "icon-iconic-unknown"}
