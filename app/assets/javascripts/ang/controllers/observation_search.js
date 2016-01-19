@@ -69,7 +69,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     order_by: "observations.id",
     order: "desc",
     dateType: "any",
-    page: 1
+    page: 1,
+    reviewed: ''
   };
   $scope.mapBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng( -80, -179 ),
