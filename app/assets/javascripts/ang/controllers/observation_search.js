@@ -69,6 +69,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     order_by: "observations.id",
     order: "desc",
     dateType: "any",
+    createdDateType: "any",
     page: 1,
     reviewed: ''
   };
@@ -265,7 +266,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     _.each( $scope.params, function( value, param ) {
       // don't show default params in the URL
       if( $scope.defaultParams.hasOwnProperty( param ) &&
-          value === $scope.defaultParams[ param ] && param !== "dateType" ) {
+          value === $scope.defaultParams[ param ] && param !== "dateType" && param !== "createdDateType" ) {
         return;
       }
       // assess view and subview params below
@@ -453,6 +454,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.params.dateType = 'range';
     } else if ( urlParams.month ) {
       $scope.params.dateType = 'month';
+    }
+    if ( urlParams.created_on ) {
+      $scope.params.createdDateType = 'exact';
+    } else if ( urlParams.created_d1 ) {
+      $scope.params.createdDateType = 'range';
     }
     $scope.currentView = $scope.currentView || $scope.defaultView;
     $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
@@ -757,6 +763,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete urlParams.order;
     delete urlParams.order_by;
     delete urlParams.dateType;
+    delete urlParams.createdDateType;
     delete urlParams.view;
     delete urlParams.subview;
     return $.param( urlParams );

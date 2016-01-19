@@ -524,12 +524,21 @@ inat-taxon { white-space: nowrap; }
 #show-filters {margin-bottom: 8px; }
 #filters-categories { margin-bottom: 5px;}
 #filters-ranks {margin-bottom: 10px;}
-.bootstrap #filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
-.bootstrap #filters-dates .form-control {
+.bootstrap #filters .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
+.bootstrap #filters .filters-dates .form-control {
   width: 100px; 
   display: inline-block;
 }
-.bootstrap #filters-dates #filters-dates-exact.form-control {width: 176px;}
+.bootstrap #filters .filters-dates .filters-dates-exact.form-control {width: 176px;}
+.date-type-range,
+.date-type-exact {
+  position: relative;
+  top: -3px;
+}
+.date-type-month {
+  position: relative;
+  top: -1px;
+}
 
 #filters .iconic-taxon {
   font-size: 30px;

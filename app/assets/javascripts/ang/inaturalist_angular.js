@@ -51,6 +51,22 @@ function( $http, $rootScope ) {
       }
       keysToDelete.push( "dateType" );
     }
+    if( params.createdDateType ) {
+      switch( params.createdDateType ) {
+        case 'exact':
+          keysToDelete = keysToDelete.concat([ "created_d1", "created_d2" ]);
+          break;
+        case 'range':
+          keysToDelete = keysToDelete.concat([ "created_on" ]);
+          break;
+        case 'month':
+          keysToDelete = keysToDelete.concat([ "created_on", "created_d1", "created_d2" ]);
+          break;
+        default:
+          keysToDelete = keysToDelete.concat([ "created_on", "created_d1", "created_d2" ]);
+      }
+      keysToDelete.push( "createdDateType" );
+    }
     if( possibleFields ) {
       var unknownFields = _.difference( _.keys( params ), possibleFields );
       _.each( unknownFields, function( f ) {
