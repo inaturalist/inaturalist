@@ -74,6 +74,17 @@
   line-height: 250px;
   font-size: 150px;
 }
+@media only screen and (max-width : 1024px)  {
+  #filters > h1 {
+    font-size: 2.2em;
+  }
+  #stats-container .statcol .stat-title {
+    font-size: 0.7em;
+  }
+  .bootstrap .container {
+    width: 100%;
+  }
+}
 @media (min-width: 768px) {
   .grid .photo {
     height: 157.5px;
