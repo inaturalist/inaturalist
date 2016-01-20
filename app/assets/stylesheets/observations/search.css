@@ -830,7 +830,10 @@ inat-taxon { white-space: nowrap; }
   line-height: 30px;
   padding: 0 9px;
 }
-#taxa-grid .photometa span:hover {
+#taxa-grid .photometa a {
+  color: white;
+}
+#taxa-grid .photometa:hover {
   cursor: pointer;
   text-decoration: underline;
 }

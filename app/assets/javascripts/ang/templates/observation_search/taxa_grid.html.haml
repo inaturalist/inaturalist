@@ -9,7 +9,7 @@
         %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.conservationStatus( )", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.taxonMeansTitle( t ) }}" }
           {{ t.establishmentMeansCode( ) }}
         .photometa
-          %span{ "ng-click" => "updateParams({ taxon_id: t.id, view: 'observations' })" }
+          %a{ "ng-href": "{{ extendBrowserLocation({ taxon_id: t.id, view: null }) }}", target: "_self"  }
             {{ shared.t( 'x_observations', { count: shared.numberWithCommas( t.resultCount ) } ) }}
           .pull-right
             .photo-license{ "uib-tooltip" => "{{ t.photoAttribution( ) }}", "tooltip-popup-delay" => 500 }

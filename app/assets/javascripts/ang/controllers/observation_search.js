@@ -270,6 +270,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
   };
+  $scope.extendBrowserLocation = function( options ) {
+    var params = _.extend( { }, $location.search( ), options );
+    params = _.omit( params, function( value, key, object ) {
+      return _.isEmpty( value) && !_.isBoolean( value ) && !_.isNumber( value );
+    });
+    return "?" + $.param( params );
+  };
   $scope.updateBrowserLocation = function( options ) {
     options = options || { };
     if( options.skipSetLocation ) { return; }
@@ -308,7 +315,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       // never show `viewer_id` in the browser location
       delete urlParams.viewer_id;
-      console.log(newParams);
       // prepare current settings to store to browser state history
       currentState = { params: urlParams, selectedPlace: $scope.selectedPlace,
         selectedTaxon: $scope.selectedTaxon,
