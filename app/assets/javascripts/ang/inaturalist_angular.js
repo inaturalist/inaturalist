@@ -140,7 +140,7 @@ function( $http, $rootScope, $filter ) {
 
   var backgroundIf = function( url ) {
     if( url ) {
-      return { "background-image": "url(" + url + ")" };
+      return { "background-image": "url('" + url + "')" };
     }
   };
 
