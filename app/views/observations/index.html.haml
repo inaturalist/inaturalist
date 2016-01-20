@@ -5,6 +5,7 @@
   = javascript_include_tag "angular_bundle"
   :javascript
     var ICONIC_TAXA = #{Taxon::ICONIC_TAXA_BY_ID.to_json};
+    var SELECTED_TAXON_ID = #{ params[:taxon_id] || "null" };
   = javascript_include_tag "ang/controllers/observation_search"
 - content_for :extracss do
   = stylesheet_link_tag "observations/search"

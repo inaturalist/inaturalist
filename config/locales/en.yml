@@ -1838,6 +1838,7 @@ en:
     opt out of this you will only reveive notifications about identifications
     of taxa that don't match the taxon in your own identification exactly.
   number_of_observations: Number of observations
+  number_selected: "# selected"
   numeric_: numeric
   noun_by_you: "%{noun} by you"
   obs: Obs
@@ -2706,6 +2707,8 @@ en:
   stats: Stats
   stats_title: Site Stats
   status: Status
+  status_globally: "%{status} Globally"
+  status_in_place: "%{status} in %{place}"
   still_no_luck?: Still no luck?
   still_needs_id?: Still needs ID?
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later

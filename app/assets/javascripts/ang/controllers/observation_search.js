@@ -68,10 +68,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     verifiable: true,
     order_by: "observations.id",
     order: "desc",
-    dateType: "any",
-    createdDateType: "any",
-    page: 1,
-    reviewed: ''
+    page: 1
   };
   $scope.mapBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng( -80, -179 ),
@@ -121,6 +118,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.setupTaxonAutocomplete( );
     $scope.setupBrowserStateBehavior( );
     $scope.filtersInitialized = true;
+    // someone searched with taxon_name, but no mathing taxon was found,
+    // so focus and click on the field to present the autocomplete results
+    if( $scope.params.taxon_name && !SELECTED_TAXON_ID ) {
+      $( "#filters input[name='taxon_name']" ).focus( );
+      $( "#filters input[name='taxon_name']" ).click( );
+    }
   };
   $scope.resetStats = function( ) {
     _.each([ "totalObservations", "totalSpecies", "totalObservers", "totalIdentifiers" ], function( k ) {
@@ -255,6 +258,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( !_.isUndefined( initialParams.reviewed ) && !initialParams.reviewed_by && CURRENT_USER ) {
       initialParams.viewer_id = CURRENT_USER.id;
     }
+    // a taxon_name param was provided, and a match was found,
+    // so use taxon_id and remove taxon_name
+    if( initialParams.taxon_name && SELECTED_TAXON_ID && !initialParams.taxon_id ) {
+      initialParams.taxon_id = SELECTED_TAXON_ID;
+      delete initialParams.taxon_name;
+    }
+    // months from URLs need to be turned into arrays
+    if( initialParams.month ) { initialParams.month = initialParams.month.split( "," ); }
     $scope.params = initialParams;
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
@@ -295,6 +306,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         if( $scope.defaultParams[ k ] === true && v !== true ) { v = "any"; }
         return v;
       });
+      // never show `viewer_id` in the browser location
+      delete urlParams.viewer_id;
+      console.log(newParams);
       // prepare current settings to store to browser state history
       currentState = { params: urlParams, selectedPlace: $scope.selectedPlace,
         selectedTaxon: $scope.selectedTaxon,

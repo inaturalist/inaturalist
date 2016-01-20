@@ -101,7 +101,7 @@
           {{ shared.t( 'date_observed' ) | capitalize:'title' }}
         .filters-dates
           %label.radio
-            %input{type: 'radio', name: 'date-type', value: 'any', "ng-model" => "params.dateType"}
+            %input{type: 'radio', name: 'date-type', "ng-model" => "params.dateType"}
               {{ shared.t('any') | capitalize }}
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
@@ -171,7 +171,7 @@
                 {{ shared.t( 'reviewed' ) }}
               .form-group
                 %label.radio-inline
-                  %input{type: 'radio', name: 'reviewed-any', value: '', "ng-model" => "params.reviewed"}
+                  %input{type: 'radio', name: 'reviewed-any', "ng-model" => "params.reviewed"}
                     {{ shared.t('any') | lowercase }}
                 %label.radio-inline
                   %input{type: 'radio', name: 'reviewed-yes', value: 'true', "ng-model" => "params.reviewed"}
@@ -184,7 +184,7 @@
                 {{ shared.t( 'date_added' ) | capitalize:'title' }}
               .filters-dates
                 %label.radio
-                  %input{type: 'radio', name: 'created-date-type', value: 'any', "ng-model" => "params.createdDateType"}
+                  %input{type: 'radio', name: 'created-date-type', "ng-model" => "params.createdDateType"}
                     {{ shared.t('any') | capitalize }}
                 %label.radio
                   %input{type: 'radio', name: 'created-date-type', value: 'exact', "ng-model" => "params.createdDateType"}

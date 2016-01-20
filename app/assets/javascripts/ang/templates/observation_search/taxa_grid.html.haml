@@ -4,9 +4,9 @@
       .thumbnail.borderless
         %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", "ng-style": "shared.backgroundIf( t.photo( ) )", target: "_self" }
           %i{ :class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}" }
-        %div{ "ng-show" => "t.preferred_conservation_status", :class => "corner conservation-status {{ t.preferred_conservation_status }}", title: "{{ t.conservationStatus( ) | capitalize:'title' }}" }
-          {{ t.preferred_conservation_status }}
-        %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.preferred_conservation_status", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.t( t.preferred_establishment_means ) | capitalize:'title' }}" }
+        %div{ "ng-show" => "t.conservationStatus( )", :class => "corner conservation-status {{ t.conservation_status.status }}", title: "{{ shared.taxonStatusTitle( t ) }}" }
+          {{ t.conservation_status.status }}
+        %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.conservationStatus( )", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.taxonMeansTitle( t ) }}" }
           {{ t.establishmentMeansCode( ) }}
         .photometa
           %span{ "ng-click" => "updateParams({ taxon_id: t.id, view: 'observations' })" }
