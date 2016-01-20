@@ -480,14 +480,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // once we set the views, the view params should be deleted
     delete $scope.params.view;
     delete $scope.params.subview;
-    // Put the URL params that correspond to observation fields in their own part of the scope
-    // If there's a more readable way to perform this simple task, please let me know.
-    $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
-      if( k.match(/(\w+):(\w+)/ ) ) {
-        memo[k] = v;
-      }
-      return memo;
-    }, { } );
+    $scope.setObservationFields( );
   };
   $scope.showNearbyPlace = function( place ) {
     $rootScope.$emit( "showNearbyPlace", place );
@@ -759,7 +752,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       }
       // make sure we don't set the location again when going back in history
       $scope.changeView( previousParams.view || $scope.defaultView,
-        previousParams.subview || $scope.defaultSubview, { skipSetLocation: true } )
+        previousParams.subview || $scope.defaultSubview, { skipSetLocation: true } );
+      $scope.setObservationFields( );
       if(!$scope.$$phase) { $scope.$digest( ); }
     };
   };
@@ -804,6 +798,17 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     } else {
       $scope.params.user_id = CURRENT_USER.login;
     }
+  };
+  $scope.setObservationFields = function( ) {
+    var urlParams = $location.search( );
+    // Put the URL params that correspond to observation fields in their own part of the scope
+    // If there's a more readable way to perform this simple task, please let me know.
+    $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
+      if( k.match(/(\w+):(\w+)/ ) ) {
+        memo[k] = v;
+      }
+      return memo;
+    }, { } );
   }
   $scope.removeObservationField = function( field ) {
     if( !$scope.params.observationFields ) {
@@ -814,10 +819,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     delete $scope.params.observationFields[ field ];
     return false;
-  }
+  };
   $scope.canShowObservationFields = function( ) {
     return ($scope.params.observationFields && !_.isEmpty( $scope.params.observationFields ))
-  }
+  };
   $scope.preInitialize( );
 }]);
 
