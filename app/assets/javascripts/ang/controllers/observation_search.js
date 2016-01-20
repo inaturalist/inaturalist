@@ -466,6 +466,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // once we set the views, the view params should be deleted
     delete $scope.params.view;
     delete $scope.params.subview;
+    // Put the URL params that correspond to observation fields in their own part of the scope
+    // If there's a more readable way to perform this simple task, please let me know.
+    $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
+      if( k.match(/(\w+):(\w+)/ ) ) {
+        memo[k] = v;
+      }
+      return memo;
+    }, { } );
   };
   $scope.showNearbyPlace = function( place ) {
     $rootScope.$emit( "showNearbyPlace", place );
@@ -533,7 +541,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           $( ".open" ).has( e.target ).length === 0 &&
           $( e.target ).parents('.ui-datepicker').length === 0 &&
           $( e.target ).parents('.ui-datepicker-header').length === 0 &&
-          $( e.target ).parents('.ui-multiselect-menu').length === 0
+          $( e.target ).parents('.ui-multiselect-menu').length === 0 &&
+          $( e.target ).parents('.observation-field').length === 0
         ) {
         $( "#filter-container" ).removeClass( "open" );
       };
@@ -781,6 +790,19 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     } else {
       $scope.params.user_id = CURRENT_USER.login;
     }
+  }
+  $scope.removeObservationField = function( field ) {
+    if( !$scope.params.observationFields ) {
+      return;
+    }
+    if ( !$scope.params.observationFields.hasOwnProperty( field ) ) {
+      return;
+    }
+    delete $scope.params.observationFields[ field ];
+    return false;
+  }
+  $scope.canShowObservationFields = function( ) {
+    return ($scope.params.observationFields && !_.isEmpty( $scope.params.observationFields ))
   }
   $scope.preInitialize( );
 }]);

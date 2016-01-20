@@ -119,11 +119,15 @@
             %span.date-type.date-type-month
               {{ shared.t('months') }}
               = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control input-sm", id: "filters-dates-month", multiple: "multiple"
+        #filters-observation-fields{ "ng-show" => "canShowObservationFields( )" }
+          %label.sectionlabel
+            {{ shared.t( "observation_fields" ) }}
+          %span.observation-field{ "ng-repeat" => "(k,v) in params.observationFields" }
+            {{ k }}={{ v }}
+            %button{ "ng-click" => "removeObservationField( k )" }
+              &times;
           %input{ type: "hidden", name: "taxon_ids[]" }
           %input{ type: "hidden", name: "has[]" }
-          / %input{ type: "hidden", name: "created_on" }
-          / %input{ type: "hidden", name: "created_d1" }
-          / %input{ type: "hidden", name: "created_d2" }
           %input{ type: "hidden", name: "not_in_project" }
           %input{ type: "hidden", name: "lat" }
           %input{ type: "hidden", name: "lng" }

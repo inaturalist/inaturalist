@@ -67,10 +67,26 @@ function( $http, $rootScope ) {
       }
       keysToDelete.push( "createdDateType" );
     }
+    if ( params.observationFields ) {
+      // remove all existing observation field params
+      _.each( _.keys( params ), function( k ) {
+        if ( k.match( /field:.+/ ) ) {
+          delete params[ k ];
+        }
+      })
+      // add the ones that are actually in the scope
+      _.each( params.observationFields, function( v, k ) {
+        params[k] = v;
+      });
+      // make sure we don't keep around this stuff from the scope
+      keysToDelete.push( "observationFields" );
+    }
     if( possibleFields ) {
       var unknownFields = _.difference( _.keys( params ), possibleFields );
       _.each( unknownFields, function( f ) {
-        delete params[ f ]
+        if ( !f.match( /field:.+/ ) ) {
+          delete params[ f ];
+        }
       });
     }
     _.each( _.keys( params ), function( k ) {
@@ -82,7 +98,9 @@ function( $http, $rootScope ) {
       }
     });
     _.each( keysToDelete, function( k ) {
-      delete params[ k ];
+      if ( !k.match( /field:.+/ ) ) {
+        delete params[ k ];
+      }
     });
     return params;
   };
