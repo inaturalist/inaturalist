@@ -323,6 +323,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       currentSearch = urlParams;
     }
     $scope.numFiltersSet = _.keys( currentSearch ).length
+    if ( currentSearch.taxon_id ) {
+      $scope.numFiltersSet -= 1;
+    }
+    if ( currentSearch.place_id ) {
+      $scope.numFiltersSet -= 1;
+    }
     if( options.browserStateOnly ) {
       $scope.initialBrowserState = currentState;
     } else {
