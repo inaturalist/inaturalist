@@ -133,7 +133,9 @@ function( $http, $rootScope, $filter ) {
       t( taxon.establishment_means.establishment_means ), "title" );
     if( taxon.establishment_means && taxon.establishment_means.place ) {
       title = t( "status_in_place", {
-        status: title, place: taxon.establishment_means.place.display_name });
+        status: $filter( "capitalize" )(
+          t( taxon.establishment_means.establishment_means, { locale: "en" }), "title" ),
+        place: taxon.establishment_means.place.display_name });
     }
     return title;
   };
