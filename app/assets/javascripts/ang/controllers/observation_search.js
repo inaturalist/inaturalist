@@ -322,13 +322,18 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
+    
     $scope.numFiltersSet = _.keys( currentSearch ).length
-    if ( currentSearch.taxon_id ) {
-      $scope.numFiltersSet -= 1;
+    var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id' ];
+    for (var i = skippableParams.length - 1; i >= 0; i--) {
+      if ( currentSearch[ skippableParams[i] ] ) {
+        $scope.numFiltersSet -= 1;
+      }
     }
-    if ( currentSearch.place_id ) {
-      $scope.numFiltersSet -= 1;
+    if ( currentSearch.iconic_taxa && currentSearch.iconic_taxa.split(',').length > 1 ) {
+      $scope.numFiltersSet += currentSearch.iconic_taxa.split(',').length - 1 ; 
     }
+
     if( options.browserStateOnly ) {
       $scope.initialBrowserState = currentState;
     } else {
