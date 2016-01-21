@@ -43,6 +43,21 @@ shared_examples_for "a PostsController" do
       json = JSON.parse(response.body)
       expect( json.detect{|p|  p['id'] == post.id } ).to be_blank
     end
+    it "should include project title" do
+      pu = ProjectUser.make!(user: user)
+      post = Post.make!(parent: pu.project, user: pu.project.user)
+      get :for_project_user, format: :json
+      json = JSON.parse(response.body)
+      post = json.detect{|p| p['id'] == post.id }
+      expect( post['parent']['title'] ).to eq pu.project.title
+    end
+    it "should include project icon_url" do
+      pu = ProjectUser.make!(user: user)
+      post = Post.make!(parent: pu.project, user: pu.project.user)
+      get :for_project_user, format: :json
+      json = JSON.parse(response.body)
+      expect( json.detect{|p| p['id'] == post.id }['parent']['icon_url'] ).to eq pu.project.icon_url
+    end
     describe "older_than" do
       let( :pu ) { ProjectUser.make!( user: user ) }
       let( :p1 ) { Post.make!( parent: pu.project, user: pu.project.user ) }

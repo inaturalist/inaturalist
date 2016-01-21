@@ -226,8 +226,12 @@ class PostsController < ApplicationController
       format.json do
         render json: @posts, :include => {
           user: {
-            only: [:id, :login], 
-            methods: [:user_icon_url, :medium_user_icon_url]
+            only: [ :id, :login ], 
+            methods: [ :user_icon_url, :medium_user_icon_url ]
+          },
+          parent: {
+            only: [ :id, :title ],
+            methods: [ :icon_url ]
           }
         }
       end
