@@ -2,8 +2,9 @@
   .row
     .col-xs-3{ "ng-repeat": "o in observations" }
       .thumbnail.borderless
-        %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.photo( ) ? '' : 'iconic'}}" }
-          %i{:class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}"}
+        %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.hasMedia( ) ? '' : 'iconic' }} {{ o.hasSound( ) ? 'sound' : '' }}" }
+          %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }
+          %i{ :class => "sound-icon fa fa-volume-up" }
         .caption
           %a.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}

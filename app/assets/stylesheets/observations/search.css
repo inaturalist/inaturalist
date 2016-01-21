@@ -49,24 +49,32 @@
   margin: 0px auto;
   text-align: center;
 }
-.grid .photo,
-.grid .photo:hover,
-.grid .photo:active,
-.grid .photo:visited,
-.grid .photo:link {
-  color: transparent;
+.grid .photo .icon, 
+.grid .photo:hover .icon,
+.grid .photo:active .icon,
+.grid .photo:visited .icon,
+.grid .photo:link .icon {
+  display: none;
 }
-.grid .photo.iconic,
-.grid .photo.iconic:hover,
-.grid .photo.iconic:active,
-.grid .photo.iconic:visited,
-.grid .photo.iconic:link {
+.grid .photo.iconic .icon,
+.grid .photo.iconic .icon:hover,
+.grid .photo.iconic .icon:active,
+.grid .photo.iconic .icon:visited,
+.grid .photo.iconic .icon:link {
   color: #eee;
+  display: inline-block;
+}
+.grid .photo .sound-icon { display: none; }
+.grid .photo.sound .sound-icon {
+  display: inline-block;
+  color: #aaa;
+  opacity: 0.8;
+  font-size: smaller;
 }
 .grid .photo {
   height: 120px;
-  line-height: 250px;
-  font-size: 150px;
+  line-height: 110px;
+  font-size: 80px;
 }
 @media only screen and (max-width : 1024px)  {
   #filters > h1 {
@@ -82,16 +90,21 @@
 @media (min-width: 768px) {
   .grid .photo {
     height: 157.5px;
+    line-height: 140px;
+    font-size: 120px;
   }
 }
 @media (min-width: 992px) {
   .grid .photo {
     height: 212.5px;
+    font-size: 180px;
   }
 }
 @media (min-width: 1200px) {
   .grid .photo {
     height: 262.5px;
+    line-height: 240px;
+    font-size: 210px;
   }
 }
 
@@ -474,11 +487,23 @@ inat-taxon.split-taxon .icon {display: none;}
   background-position: center;
   font-size: 80px;
   line-height: 86px;
-  color: transparent;
   text-align: center;
 }
-#obs-container .media-object.iconic {
+#obs-container .media-object .icon { display: none; }
+#obs-container .media-object.iconic .icon {
+  display: inline-block;
   color: #aaa;
+}
+#obs-container .media-object .sound-icon {
+  display: none;
+}
+#obs-container .media-object.sound .sound-icon {
+  display: inline-block;
+  color: #aaa;
+  opacity: 0.8;
+  font-size: smaller;
+  position: relative;
+  top: 3px;
 }
 #obs-container .media-left {
   padding: 0;
@@ -770,6 +795,16 @@ inat-taxon { white-space: nowrap; }
   font-size: 50px;
   line-height: 70px;
   color: #eee;
+}
+#result-table .img .sound-icon {
+  display: none;
+}
+#result-table .img.sound .sound-icon {
+  display: inline-block;
+  font-size: 50px;
+  line-height: 70px;
+  color: #eee;
+  opacity: 0.8;
 }
 #result-table .img .photo-count {
   position: absolute;

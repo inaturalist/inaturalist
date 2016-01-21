@@ -17,9 +17,11 @@
     %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching", "infinite-scroll-distance": 1 }
       %tr{ "ng-repeat": "o in observations" }
         %td
-          %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "img {{ o.photo( ) ? '' : 'iconic'}}" }
-            %i{:class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}"}
-            %span.photo-count.ng-cloak{"ng-show" => "o.photos.length > 1"} {{ o.photos.length }}
+          %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "img {{ o.hasMedia( ) ? '' : 'iconic'}} {{ o.hasSound( ) ? 'sound' : '' }}" }
+            %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }
+            %i{ :class => "sound-icon fa fa-volume-up" }
+            %span.photo-count.ng-cloak{ "ng-show" => "o.photos.length > 1" }
+              {{ o.photos.length }}
         %td
           %inat-taxon.split-taxon{ taxon: "o.taxon", url: "/observations/{{ o.id }}" }
           .meta
