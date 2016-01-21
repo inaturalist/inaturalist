@@ -322,6 +322,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
+    $scope.numFiltersSet = _.keys( currentSearch ).length
     if( options.browserStateOnly ) {
       $scope.initialBrowserState = currentState;
     } else {

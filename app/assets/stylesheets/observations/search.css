@@ -56,12 +56,6 @@
 .grid .photo:link {
   color: transparent;
 }
-/*.grid .photo { color: red; }
-.grid .photo:hover { color: blue; }
-.grid .photo:active { color: green; }
-.grid .photo:visited { color: yellow; }
-.grid .photo:link { color: deeppink; }*/
-
 .grid .photo.iconic,
 .grid .photo.iconic:hover,
 .grid .photo.iconic:active,
@@ -316,8 +310,27 @@ inat-taxon.split-taxon .icon {display: none;}
   background-color: #727272;
   border-color: #727272;
   color: #eee;
+  position: relative;
 }
 .bootstrap #filter-container > button:hover { color: white; }
+.bootstrap #filter-container > button.btn-default .badge {
+  background-color: #74ac00;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.bootstrap #filter-container .filter-changed,
+.bootstrap #filter-container .filter-changed label {
+  color: #74ac00;
+}
+#filter-container select.filter-changed,
+#filter-container button.filter-changed,
+#filter-container .form-control.filter-changed {
+  color: #74ac00;
+  border-color: #74ac00;
+  background-color: rgba(16, 172, 0, 0.1);
+}
 
 #filter-container .fa-sliders {
   font-size: 120%;
