@@ -224,7 +224,7 @@ class PostsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        render json: @posts, :include => {
+        json = @posts.as_json(:include => {
           user: {
             only: [ :id, :login ], 
             methods: [ :user_icon_url, :medium_user_icon_url ]
@@ -233,7 +233,15 @@ class PostsController < ApplicationController
             only: [ :id, :title ],
             methods: [ :icon_url ]
           }
-        }
+        })
+        json.each_with_index do |post, i|
+          json[i]['body'] = FakeView.formatted_user_text(
+            json[i]['body'],
+            tags: Post::ALLOWED_TAGS,
+            attributes: Post::ALLOWED_ATTRIBUTES
+          )
+        end
+        render json: json
       end
     end
   end

@@ -58,6 +58,13 @@ shared_examples_for "a PostsController" do
       json = JSON.parse(response.body)
       expect( json.detect{|p| p['id'] == post.id }['parent']['icon_url'] ).to eq pu.project.icon_url
     end
+    it "should not include disallowed tags like figure" do
+      pu = ProjectUser.make!(user: user)
+      post = Post.make!(parent: pu.project, user: pu.project.user, body: "<figure>foo</figure>")
+      get :for_project_user, format: :json
+      json = JSON.parse(response.body)
+      expect( json.detect{|p| p['id'] == post.id }['body'] ).not_to match /<figure>/
+    end
     describe "older_than" do
       let( :pu ) { ProjectUser.make!( user: user ) }
       let( :p1 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
