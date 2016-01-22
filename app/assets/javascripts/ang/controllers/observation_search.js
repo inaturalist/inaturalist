@@ -49,6 +49,10 @@ application.config( [ "$locationProvider", function($locationProvider) {
   });
 }]);
 
+if( TIMEZONE ) {
+  application.constant( "angularMomentConfig", { timezone: TIMEZONE });
+}
+
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll", "$uibPosition",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {

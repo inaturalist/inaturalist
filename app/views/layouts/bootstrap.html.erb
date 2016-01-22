@@ -86,6 +86,8 @@
       <% if logged_in? -%>
         CURRENT_USER = { id: <%= current_user.id %>, login: '<%= current_user.login %>' };
       <% end -%>
+      var TIMEZONE = "<%=
+        ActiveSupport::TimeZone[(current_user && current_user.time_zone) || Time.now.zone].tzinfo.name %>";
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

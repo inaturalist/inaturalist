@@ -224,7 +224,8 @@ module ElasticModel
   def self.date_details(datetime)
     return unless datetime
     return unless datetime.is_a?(Date) || datetime.is_a?(Time)
-    { day: datetime.day,
+    { date: datetime.to_date,
+      day: datetime.day,
       month: datetime.month,
       year: datetime.year,
       hour: datetime.respond_to?(:hour) ? datetime.hour : nil,

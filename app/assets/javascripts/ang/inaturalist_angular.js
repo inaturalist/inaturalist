@@ -222,11 +222,14 @@ function( $http, $rootScope, $filter ) {
 iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
   return {
     scope: {
-      date: '=',
+      time: "=",
+      date: "=",
+      timezone: "="
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
-        var date = moment(scope.date),
+        scope.timezone = scope.timezone || "UTC";
+        var date = moment(scope.time || scope.date).tz(scope.timezone),
             now = moment(new Date()),
             dateString;
         if (date.isSame(now, 'day')) {
@@ -239,7 +242,8 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
         return dateString;
       }
       scope.timeString = function() {
-        return moment(scope.date).format('LT');
+        if( !scope.time ) { return; }
+        return moment(scope.time).tz(scope.timezone).format("LT z");
       }
     },
     template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'
