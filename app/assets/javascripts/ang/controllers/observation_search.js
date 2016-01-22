@@ -324,7 +324,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     
     $scope.numFiltersSet = _.keys( currentSearch ).length
-    var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id' ];
+    var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id', 'swlat', 'swlng', 'nelat', 'nelng' ];
     for (var i = skippableParams.length - 1; i >= 0; i--) {
       if ( currentSearch[ skippableParams[i] ] ) {
         $scope.numFiltersSet -= 1;
