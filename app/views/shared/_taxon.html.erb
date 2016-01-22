@@ -4,7 +4,7 @@
   singular ||= false
   no_common ||= false
   place ||= nil
-  comname ||= common_taxon_name(taxon, place: place).try(:name) unless no_common
+  comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
   if taxon.species_or_lower?
     pieces = taxon.name.split
     sciname = if taxon.variety? && pieces.size == 3
