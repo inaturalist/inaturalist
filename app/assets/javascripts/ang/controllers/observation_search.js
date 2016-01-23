@@ -184,6 +184,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.place_id = $scope.selectedPlace.id;
       }
     } else {
+      $scope.alignMapOnSearch = false;
       $scope.params.place_id = "any";
     }
   });
