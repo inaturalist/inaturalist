@@ -251,7 +251,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       ));
     }
     // set the default user or site place_id
-    if( PREFERRED_PLACE ) {
+    if( PREFERRED_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
       initialParams.place_id = PREFERRED_PLACE.id;
     }
     // use the current user's id as the basis for the `reviewed` param

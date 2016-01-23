@@ -135,6 +135,9 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     }
     return params;
   };
+  var hasSpatialParams = function( params ) {
+    return params.place_id || params.latitude || params.lat || params.swlat;
+  };
   return {
     show: show,
     search: search,
@@ -143,6 +146,7 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     observers: observers,
     responseToInstances: responseToInstances,
     processParams: processParams,
-    processParamsForAPI: processParamsForAPI
+    processParamsForAPI: processParamsForAPI,
+    hasSpatialParams: hasSpatialParams
   };
 }]);
