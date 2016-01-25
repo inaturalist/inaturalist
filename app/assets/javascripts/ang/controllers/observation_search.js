@@ -288,7 +288,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     _.each( $scope.params, function( value, param ) {
       // don't show default params in the URL
       if( $scope.defaultParams.hasOwnProperty( param ) &&
-          value === $scope.defaultParams[ param ] && param !== "dateType" && param !== "createdDateType" ) {
+          value === $scope.defaultParams[ param ] ) {
         return;
       }
       // assess view and subview params below
@@ -319,8 +319,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       // never show `viewer_id` in the browser location
       delete urlParams.viewer_id;
-      // prepare current settings to store to browser state history
-      currentState = { params: urlParams, selectedPlace: $scope.selectedPlace,
+      // add to the state a few params that don't appear in the URL
+      var stateParams = _.extend( { }, urlParams, {
+        dateType: $scope.params.dateType,
+        createdDateType: $scope.params.createdDateType
+      });
+      // prepare current settings to store in browser state history
+      currentState = { params: stateParams, selectedPlace: $scope.selectedPlace,
         selectedTaxon: $scope.selectedTaxon,
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
         mapBoundsIcon: $scope.mapBoundsIcon };
@@ -805,6 +810,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete urlParams.createdDateType;
     delete urlParams.view;
     delete urlParams.subview;
+    delete urlParams.viewer_id;
     return $.param( urlParams );
   };
   $scope.showInfowindow = function( o ) {
