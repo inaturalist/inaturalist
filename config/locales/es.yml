@@ -757,6 +757,7 @@ es:
   commit: Guardar
   committed: Guardar
   committing: Guardando...
+  community_curated: Supervisado por la Comunidad
   community_id: 'Identificación de la <strong>comunidad</strong>:'
   community_id_at_species_or_lower?: ¿La ID de la Comunidad es como especie o inferior?
   community_moderation_settings: Configuración de la moderación de la comunidad
@@ -1086,6 +1087,7 @@ es:
   eg: ej.
   either: Cualquiera
   either_that_user_doesnt_exist_or: Ese usuario no existe o ya te encuentras siguiendolo.
+  eligible_for_research_grade: Elegible para grado de Investigación
   email: Correo
   email_addresses_description: Direcciones de correo separadas por coma, límite 60
     cada 30 días.
@@ -1161,6 +1163,7 @@ es:
     propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: Opciones de Facebook
   failed_to_repair_photo: 'No se pudo reparar la foto: %{errors}'
+  failed_to_find_your_location: No ha sido posible encontrar su localización.
   "false": "No"
   faq: Preguntas frecuentes
   Family: Familia
@@ -1211,6 +1214,7 @@ es:
   find_some_people_to_follow: Encontrar a algunas personas a seguir
   find_species: Encontrar especies
   find_suitable_observations: Encontrar observaciones apropiadas
+  find_your_current_location: Encontrar la localización actual
   first_confirmed_inat_observation: Primera observación %{site_name} confirmada
   first_connect_your_provider_account_to_your_site: 'Primero, connectar su cuenta
     %{provider} a %{site_name}:'
@@ -1283,6 +1287,7 @@ es:
   full_id_please: ¡ID por favor!
   full_id_please!: ¡Ayuda con nombre científico!
   full_id_please?: ¿ID por favor?
+  full_screen: Pantalla completa
   fungi:
     one: hongo
     other: hongos
@@ -1340,6 +1345,7 @@ es:
   guidelines: Directrices
   has_already_been_flagged_by: ya ha sido marcada por
   has_been: ha sido
+  has_one_or_more_faves: Tiene uno o más favoritos
   has_photos: tiene fotos
   has_sounds: tiene sonidos
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
@@ -1560,6 +1566,7 @@ es:
   latitude: Latitud
   latitude_in_decimals: Latitud en grados con decimales, ej. 38.123
   latitude_slash_y_coord_slash_northing: Latitud / y coord / norte
+  layers: Capas
   layout: Disposición
   leaderboard_for_x: Los más activos de %{x}
   leaderboards: Los más activos
@@ -1853,6 +1860,21 @@ es:
   mobile_apps_for: Las aplicaciones móviles para
   mobile_view_available: Vista para teléfonos móviles disponible
   mollusks: moluscos
+  momentjs:
+    shortRelativeTime:
+      future: en %s
+      past: '%s'
+      s: s
+      m: 1m
+      mm: '%dm'
+      h: 1h
+      hh: '%dh'
+      d: 1d
+      dd: '%dd'
+      M: 1m
+      MM: '%dm'
+      1: 1a
+      yy: '%da'
   mon: lun
   month: Mes
   months: Meses
@@ -2020,6 +2042,7 @@ es:
   no_one_posted_anything_yet: ¡Nadie ha ingresado nada todavía!
   no_ones_observed: Nadie ha observado
   no_photos: No hay fotos
+  no_places_available: No hay lugares disponibles
   no_places_selected: No se han seleccionado lugares
   no_post_yet: ¡No hay ingresos todavía!
   no_project_selected: No seleccionaste ningún proyecto
@@ -2453,6 +2476,8 @@ es:
   place_updated: ¡Lugar actualizado!
   placement: Colocación
   places: Lugares
+  places_added_by_members_of_the_community: Lugares añadidos por miembros de la comunidad
+  places_maintained_by_site_admins: Lugares mantenidos por administradores del sitio
   places_name:
     afghanistan: Afganistán
     africa: África
@@ -2637,7 +2662,9 @@ es:
     superorder: Superorden
     order: Orden
     suborder: Suborden
+    infraorder: infraorden
     superfamily: Superfamilia
+    epifamily: epifamilia
     family: Familia
     subfamily: Subfamilia
     supertribe: Supertribu
@@ -3918,6 +3945,8 @@ es:
   youve_seen_it_want_to: ¡Lo ha visto¿Desea
   youve_successfully_linked_your_provider_account: Has vinculado con éxito tu cuenta
     de %{provider}
+  zoom_in: Acercar Zoom
+  zoom_out: Alejar Zoom
   zoom_to_taxon_name: Acercar a %{taxonname}
   zoom_to_x: Ir a %{x}
   your_dashboard_helps_you: El tablero te ayuda a dar seguimiento a lo que está haciendo

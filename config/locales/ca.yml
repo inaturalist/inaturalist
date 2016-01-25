@@ -521,6 +521,7 @@ ca:
   black: negre
   blog_widget: Giny del blog
   blue: blau
+  blue_butterfly_etc: blau, papallona, etc.
   blue_icons_represent_political_units: Les icones blaves representen unitats polítiques
     com ara països o estats i entitats afins, i les icones verdes representen diferents
     tipus d'espais oberts, parcs i reserves. Si us hi apropeu, podreu veure llocs
@@ -746,6 +747,7 @@ ca:
   commit: Desa
   committed: Desa
   committing: Desant...
+  community_curated: Supervisat per la Comunitat
   community_id: 'ID de la <strong>Comunitat</strong>:'
   community_id_at_species_or_lower?: ID de la Comunitat a nivell específic o inferior?
   community_moderation_settings: Configuració de la Moderació de la Comunitat
@@ -1077,6 +1079,7 @@ ca:
   eg: ex.
   either: Qualsevol
   either_that_user_doesnt_exist_or: Aquest usuari no existeix o ja l'esteu seguint.
+  eligible_for_research_grade: Elegible per a grau de Recerca
   email: Correu
   email_addresses_description: 'Correus electrònics separats per coma; límit: 60 cada
     30 dies.'
@@ -1154,6 +1157,7 @@ ca:
     propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
   facebook_options: Opcions de Facebook
   failed_to_repair_photo: 'Ha fallat la reparació de la fotografia: %{errors}'
+  failed_to_find_your_location: No ha estat possible trobar la vostra localització
   "false": Fals
   faq: Preguntes freqüents
   Family: Família
@@ -1204,6 +1208,7 @@ ca:
   find_some_people_to_follow: Busqueu persones per seguir
   find_species: Busca espècies
   find_suitable_observations: Troba observacions adequades
+  find_your_current_location: Troba la vostra localització actual
   first_confirmed_inat_observation: Primera observació confirmada %{site_name}
   first_connect_your_provider_account_to_your_site: 'Primer, connecteu el compte de
     %{provider} a %{site_name}:'
@@ -1276,6 +1281,7 @@ ca:
   full_id_please: ID, si us plau!
   full_id_please!: ID, si us plau!
   full_id_please?: ID, si us plau.
+  full_screen: Pantalla complerta
   fungi:
     one: fong
     other: fongs
@@ -1335,6 +1341,7 @@ ca:
   guidelines: Directrius
   has_already_been_flagged_by: ja ha estat marcat per
   has_been: ha estat
+  has_one_or_more_faves: Té un o més favorits
   has_photos: té fotos
   has_sounds: té sons
   hasnt_contributed_any_observations: no heu fet cap observació en aquest projecte.
@@ -1552,6 +1559,7 @@ ca:
   latitude: Latitud
   latitude_in_decimals: Latitud en graus amb decimals, p. ex. 38.123
   latitude_slash_y_coord_slash_northing: Latitud / coord. Y / nord
+  layers: Capes
   layout: Disposició
   leaderboard_for_x: Els més actius de %{x}
   leaderboards: Els més actius
@@ -1848,6 +1856,21 @@ ca:
   mobile_apps_for: Les aplicacions mòbils per a
   mobile_view_available: Vista per a telèfon mòbil disponible
   mollusks: mol·luscs
+  momentjs:
+    shortRelativeTime:
+      future: a %s
+      past: '%s'
+      s: s
+      m: 1m
+      mm: '%dm'
+      h: 1h
+      hh: '%dh'
+      d: 1d
+      dd: '%dd'
+      M: 1m
+      MM: '%dm'
+      1: 1a
+      yy: '%da'
   mon: Dl.
   month: Mes
   months: Mesos
@@ -1904,6 +1927,7 @@ ca:
     culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
+  near: a prop
   near_threatened: gairebé amenaçat
   nearby: Propera
   nearby_observations: Observacions properes
@@ -2012,6 +2036,7 @@ ca:
   no_one_posted_anything_yet: Encara no s'ha introduït res!
   no_ones_observed: Ningú ha fet cap observació
   no_photos: No hi ha fotos
+  no_places_available: No hi ha llocs disponibles
   no_places_selected: No s'han seleccionat llocs
   no_post_yet: Encara no hi ha cap entrada!
   no_project_selected: No s'ha seleccionat cap projecte
@@ -2431,6 +2456,8 @@ ca:
   place_updated: Lloc actualitzat!
   placement: Col·locació
   places: Llocs
+  places_added_by_members_of_the_community: Llocs afegits per membres de la comunitat
+  places_maintained_by_site_admins: Llocs mantinguts per administradors del lloc
   places_name:
     afghanistan: Afganistan
     africa: Àfrica
@@ -2617,7 +2644,9 @@ ca:
     superorder: superordre
     order: ordre
     suborder: subordre
+    infraorder: infra-ordre
     superfamily: superfamília
+    epifamily: epifamília
     family: família
     subfamily: subfamília
     supertribe: supertribu
@@ -2824,6 +2853,7 @@ ca:
     d'espècies no observades a la llista del projecte
   select_one_or_more_photos: Selecciona una o més fotos
   select_none: No en seleccioneu cap
+  select_options: Seleccioneu opcions
   select_photos_from_your_photo_stream: Seleccioneu fotos de llocs de compartició
     de fotografies per convertir-les en observacions a %{site_name}. El nostre equip
     completarà la data, hora i ubicació de les metadades de la foto i intentarem buscar
@@ -3443,6 +3473,7 @@ ca:
     derivat de fonts externes
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina
     web font
+  url_slug_or_id: URL o ID, p.e. el-meu-projecte o 333
   US_states: Estats Units
   usage_stats: Estadístiques d'ús
   use_name_as_a_placeholder: Utilitza <span class="ac-placeholder">"%{name}"</span>
@@ -3885,6 +3916,8 @@ ca:
   youve_seen_it_want_to: Ho heu vist! Voleu
   youve_successfully_linked_your_provider_account: Heu enllaçat correctament amb el
     vostre compte de %{provider}
+  zoom_in: Apropar Zoom
+  zoom_out: Allunyar Zoom
   zoom_to_taxon_name: Apropar-se a %{taxonname}
   zoom_to_x: Zoom a %{x}
   your_dashboard_helps_you: El vostre tauler us ajuda a seguir l’activitat d'altres

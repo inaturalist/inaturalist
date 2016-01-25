@@ -808,6 +808,7 @@ fr:
   commit: Valider
   committed: Validé
   committing: Validation en cours…
+  community_curated: Communauté organisée
   community_id: 'ID de <strong>communauté</strong> :'
   community_id_at_species_or_lower?: ID de la communauté pour l’espèce ou en-dessous ?
   community_moderation_settings: Paramètres pour modérer la communauté
@@ -1151,6 +1152,7 @@ fr:
   either: Soit
   either_that_user_doesnt_exist_or: Cet utilisateur n’existe pas ou vous le suivez
     déjà.
+  eligible_for_research_grade: Éligible au niveau recherche
   email: Adresse électronique
   email_addresses_description: Adresses électroniques séparées par des virgules, limitées
     à 60 tous les 30 jours.
@@ -1227,6 +1229,7 @@ fr:
     cette photo reconfirme sa connexion à %{site_name_short}.
   facebook_options: Options de Facebook
   failed_to_repair_photo: 'Échec de réparation de la photo : %{errors}'
+  failed_to_find_your_location: Échec à la localisation de votre position.
   "false": Non
   faq: Foire aux questions
   Family: Famille
@@ -1280,6 +1283,7 @@ fr:
   find_some_people_to_follow: Trouver des personnes à suivre
   find_species: Trouver des espèces
   find_suitable_observations: Trouver des observations pertinentes
+  find_your_current_location: Trouver votre position actuelle
   first_confirmed_inat_observation: Première observation %{site_name} confirmée
   first_connect_your_provider_account_to_your_site: 'D’abord, connectez votre compte
     %{provider} à %{site_name} :'
@@ -1352,6 +1356,7 @@ fr:
   full_id_please: Identification, SVP!
   full_id_please!: Identification, SVP !
   full_id_please?: Identification, SVP ?
+  full_screen: Plein écran
   fungi:
     one: champignon
     other: champignons
@@ -1410,6 +1415,7 @@ fr:
   guidelines: Lignes directrices
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
   has_been: a été
+  has_one_or_more_faves: A un ou plusieurs favoris
   has_photos: a des photos
   has_sounds: a des sons
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
@@ -1638,6 +1644,7 @@ fr:
   latitude: Latitude
   latitude_in_decimals: Latitude en degrés décimaux, par ex. 38,123
   latitude_slash_y_coord_slash_northing: Latitude/coord. y/ordonnée
+  layers: Couches
   layout: Mise en page
   leaderboard_for_x: Classement de %{x}
   leaderboards: Classements
@@ -1940,6 +1947,21 @@ fr:
   mobile_apps_for: Applications mobiles pour
   mobile_view_available: Affichage mobile disponible
   mollusks: mollusques
+  momentjs:
+    shortRelativeTime:
+      future: en %s
+      past: '%s'
+      s: s
+      m: 1m
+      mm: '%dm'
+      h: 1h
+      hh: '%dh'
+      d: 1d
+      dd: '%dd'
+      M: 1m
+      MM: '%dm'
+      1: 1y
+      yy: '%dy'
   mon: Lun
   month: Mois
   months: Mois
@@ -2108,6 +2130,7 @@ fr:
   no_one_posted_anything_yet: Personne n’a encore rien publié!
   no_ones_observed: Personne n’a observé
   no_photos: Aucune photo
+  no_places_available: Aucun endroit disponible
   no_places_selected: Aucun lieu sélectionné.
   no_post_yet: Aucune note jusqu’à présent!
   no_project_selected: Aucun projet n’a été sélectionné
@@ -2538,6 +2561,8 @@ fr:
   place_updated: Lieu à jour!
   placement: Emplacement
   places: Lieux
+  places_added_by_members_of_the_community: Lieux ajoutés par des membres de la communauté
+  places_maintained_by_site_admins: Lieux entretenus par les administrateurs du site
   places_name:
     afghanistan: Afghanistan
     africa: Afrique
@@ -2726,7 +2751,9 @@ fr:
     superorder: super-ordre
     order: ordre
     suborder: sous-ordre
+    infraorder: sous-ordre
     superfamily: super-famille
+    epifamily: épifamille
     family: famille
     subfamily: sous-famille
     supertribe: super-tribu
@@ -3574,7 +3601,7 @@ fr:
   url_identifier_of_a_project_derived_from: URL/identifiant d&un projet dérivé d’une
     ressource externe
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
-  url_slug_or_id: mon-projet ou 333
+  url_slug_or_id: titre de l'URL ou identifiant, par exemple "mon-projet" ou 333
   US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
   use_name_as_a_placeholder: Utilisez <span class='ac-placeholder'>"%{name}"</span>
@@ -4043,6 +4070,8 @@ fr:
   youve_seen_it_want_to: Vous l’avez vu! Vous voulez
   youve_successfully_linked_your_provider_account: Vous avez bien lié votre compte
     %{provider}
+  zoom_in: Zoom avant
+  zoom_out: Zoom arrière
   zoom_to_taxon_name: Faites un zoom sur %{taxonname}
   zoom_to_x: faites un zoom sur %{x}
   your_dashboard_helps_you: Votre tableau de bord vous aide à suivre ce que font les
