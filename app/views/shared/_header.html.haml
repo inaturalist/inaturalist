@@ -16,9 +16,9 @@
       .subnav{:style => "display: none"}
         %ul
           %li
-            = form_tag(observations_path, :method => :get) do
+            = form_tag(observations_path, method: :get, enforce_utf8: false) do
               .clear.inline.buttonrow
-                = text_field_tag 'q', params[:q],                   |
+                = text_field_tag 'taxon_name', params[:taxon_name], |
                   :id => 'header_observations_q', :class => 'text', |
                   :placeholder => t(:search_obs)                    |
                 %button.default.button

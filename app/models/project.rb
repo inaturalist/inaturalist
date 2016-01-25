@@ -319,22 +319,6 @@ class Project < ActiveRecord::Base
     params
   end
 
-  def observations_search_url_params
-    params = observations_url_params
-    if params[:taxon_ids]
-      params[:taxon_id] = params[:taxon_ids].first
-      params[:taxon_ids] = nil
-    end
-    if params[:has] && params[:has].include?("photos")
-      params[:photos] = true
-    end
-    if params[:has] && params[:has].include?("sounds")
-      params[:sounds] = true
-    end
-    params[:has] = nil
-    params.compact
-  end
-
   def cached_slug
     slug
   end

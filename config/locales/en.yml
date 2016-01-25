@@ -251,20 +251,20 @@ en:
       phylum: Phylum
       species: Species
       order: Order
-    plants: Plants
-    animals: Animals
-    mollusks: Mollusks
     amphibians: Amphibians
+    animals: Animals
+    arachnids: Arachnids
+    birds: Birds
+    chromista: Chromista
+    fungi: Fungi
+    insects: Insects
     mammals: Mammals
+    mollusks: Mollusks
+    other_animals: Other Animals
+    plants: Plants
+    protozoans: Protozoans
     ray_finned_fishes: Ray-Finned Fishes
     reptiles: Reptiles
-    birds: Birds
-    insects: Insects
-    arachnids: Arachnids
-    fungi: Fungi
-    chromista: Chromista
-    protozoans: Protozoans
-    other_animals: Other Animals
     life: Life
     x_plantae: 
       one: "1 plant"
@@ -1838,6 +1838,7 @@ en:
     opt out of this you will only reveive notifications about identifications
     of taxa that don't match the taxon in your own identification exactly.
   number_of_observations: Number of observations
+  number_selected: "# selected"
   numeric_: numeric
   noun_by_you: "%{noun} by you"
   obs: Obs
@@ -2706,6 +2707,8 @@ en:
   stats: Stats
   stats_title: Site Stats
   status: Status
+  status_globally: "%{status} Globally"
+  status_in_place: "%{status} in %{place}"
   still_no_luck?: Still no luck?
   still_needs_id?: Still needs ID?
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
@@ -3361,11 +3364,9 @@ en:
   you_must_select_at_least_one_taxon: You must select at least one taxon
   you_must_select_dates_to_compare: You must select dates to compare
   you_must_specify_and_confirm_a_new_password: You must specify and confirm a new password.
-  your_name_was_saved: Your name was saved.
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_at_least_one_photo: You need to select at least one photo!
   you_need_to_select_some_observations_first: You need to select some observations first.
-  your_profile_was_successfully_updated: Your profile was successfully updated!
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_sure_delete_asset?: Are you sure you want to delete this asset?
@@ -3382,11 +3383,11 @@ en:
     You tried to do something you shouldn't, like edit
     someone else's data without permission.  Don't be evil.
   you_unlinked_your_provider_account: "You unlinked your %{provider} account"
+  you_would_get_the: "you would get the following tags:"
+  youll_need_to_link: You'll need to link
   youve_been_invited_to_join_this_project_html: |
     You've been invited to <a href="%{url}" class="readmore">join this project</a>
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
-  you_would_get_the: "you would get the following tags:"
-  youll_need_to_link: You'll need to link
   your: Your
   your_: Your
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
@@ -3406,6 +3407,7 @@ en:
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
   your_life_list: your life list!
   your_month_observations: your %{month} observations
+  your_name_was_saved: Your name was saved.
   your_new_password_is: Your new password is
   your_observation_will_get_shared_html: "Your observation will get shared on social networks if you leave these boxes checked. You can change your defaults by <a href='%{url}' target='_blank'>editing your account settings</a>. If you linked your Facebook or Twitter account before this feature was added, you may need to re-link to Twitter or Facebook from your account to get this working."
   your_observation_wont_get: "your observation won't get associated with other observations of this species, and your life list won't get updated."
@@ -3414,6 +3416,7 @@ en:
   your_photos_have_been_tagged: Your photos have been tagged!
   your_picasa_account: your Picasa sccount
   your_picasa_account_info: Your Picasa Account Information
+  your_profile_was_successfully_updated: Your profile was successfully updated!
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"

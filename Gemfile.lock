@@ -34,6 +34,16 @@ GIT
       i18n (~> 0.6)
 
 GIT
+  remote: git://github.com/gaslight/angular-rails4-templates
+  revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
+  ref: v0.1.5
+  specs:
+    angular-rails-templates (0.1.5)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
+
+GIT
   remote: git://github.com/inaturalist/riparian.git
   revision: 083846b15272cb8f4979d2bd331140fe868735cb
   specs:
@@ -181,10 +191,6 @@ GEM
       nokogiri
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
-    angular-rails-templates (0.2.0)
-      railties (>= 3.1)
-      sprockets (~> 2)
-      tilt
     apipie-rails (0.3.1)
       json
     archive-zip (0.7.0)
@@ -228,7 +234,7 @@ GEM
       sshkit (~> 1.2)
     capistrano-passenger (0.0.1)
       capistrano (~> 3.0)
-    capistrano-rails (1.1.2)
+    capistrano-rails (1.1.5)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-rvm (0.1.2)
@@ -668,7 +674,7 @@ DEPENDENCIES
   addressable
   airbrake
   ancestry
-  angular-rails-templates
+  angular-rails-templates!
   apipie-rails
   aws-sdk
   better_errors
@@ -755,7 +761,7 @@ DEPENDENCIES
   rspec-html-matchers
   rspec-rails
   sass (= 3.2.5)
-  sass-rails
+  sass-rails (= 5.0.1)
   savon
   selenium-webdriver
   simplecov

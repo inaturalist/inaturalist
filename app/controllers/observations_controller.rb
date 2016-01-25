@@ -91,11 +91,14 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-    showing_partial = ((partial = params[:partial]) && PARTIALS.include?(partial))
+    params = request.params
+    showing_partial = (params[:partial] && PARTIALS.include?(params[:partial]))
     # the new default /observations doesn't need any observations
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
-    unless request.format.html? &&!request.format.mobile? && !showing_partial
+    if request.format.html? &&!request.format.mobile? && !showing_partial
+      params = params
+    else
       h = observations_index_search(params)
       params = h[:params]
       search_params = h[:search_params]
@@ -108,7 +111,14 @@ class ObservationsController < ApplicationController
           pagination_headers_for(@observations)
           return render_observations_partial(params[:partial])
         end
-        render layout: "bootstrap"
+        # one of the few things we do in Rails. Look up the taxon_name param
+        unless params[:taxon_name].blank?
+          sn = params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase
+          if t = TaxonName.where("lower(name) = ?", sn).first.try(:taxon)
+            params[:taxon_id] = t.id
+          end
+        end
+        render layout: "bootstrap", locals: { params: params }
       end
 
       format.json do

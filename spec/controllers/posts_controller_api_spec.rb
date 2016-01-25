@@ -43,6 +43,68 @@ shared_examples_for "a PostsController" do
       json = JSON.parse(response.body)
       expect( json.detect{|p|  p['id'] == post.id } ).to be_blank
     end
+    it "should include project title" do
+      pu = ProjectUser.make!(user: user)
+      post = Post.make!(parent: pu.project, user: pu.project.user)
+      get :for_project_user, format: :json
+      json = JSON.parse(response.body)
+      post = json.detect{|p| p['id'] == post.id }
+      expect( post['parent']['title'] ).to eq pu.project.title
+    end
+    it "should include project icon_url" do
+      pu = ProjectUser.make!(user: user)
+      post = Post.make!(parent: pu.project, user: pu.project.user)
+      get :for_project_user, format: :json
+      json = JSON.parse(response.body)
+      expect( json.detect{|p| p['id'] == post.id }['parent']['icon_url'] ).to eq pu.project.icon_url
+    end
+    it "should not include disallowed tags like figure" do
+      pu = ProjectUser.make!(user: user)
+      post = Post.make!(parent: pu.project, user: pu.project.user, body: "<figure>foo</figure>")
+      get :for_project_user, format: :json
+      json = JSON.parse(response.body)
+      expect( json.detect{|p| p['id'] == post.id }['body'] ).not_to match /<figure>/
+    end
+    describe "older_than" do
+      let( :pu ) { ProjectUser.make!( user: user ) }
+      let( :p1 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
+      let( :p2 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
+      let( :p3 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
+      before do
+        expect( p1.published_at ).to be < p2.published_at
+        expect( p2.published_at ).to be < p3.published_at
+      end
+      it "should show posts older than the selected post" do
+        get :for_project_user, format: :json, older_than: p2.id
+        json = JSON.parse( response.body )
+        expect( json.detect{|p|  p[ 'id' ] == p1.id } ).not_to be_blank
+      end
+      it "should not show posts newer than the selected post" do
+        get :for_project_user, format: :json, older_than: p2.id
+        json = JSON.parse( response.body )
+        expect( json.detect{|p|  p[ 'id' ] == p3.id } ).to be_blank
+      end
+    end
+    describe "newer_than" do
+      let( :pu ) { ProjectUser.make!( user: user ) }
+      let( :p1 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
+      let( :p2 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
+      let( :p3 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
+      before do
+        expect( p1.published_at ).to be < p2.published_at
+        expect( p2.published_at ).to be < p3.published_at
+      end
+      it "should show posts newer than the selected post" do
+        get :for_project_user, format: :json, newer_than: p2.id
+        json = JSON.parse( response.body )
+        expect( json.detect{|p|  p[ 'id' ] == p3.id } ).not_to be_blank
+      end
+      it "should not show posts older than the selected post" do
+        get :for_project_user, format: :json, newer_than: p2.id
+        json = JSON.parse( response.body )
+        expect( json.detect{|p|  p[ 'id' ] == p1.id } ).to be_blank
+      end
+    end
   end
 end
 

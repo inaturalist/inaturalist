@@ -561,7 +561,7 @@ es-MX:
   case_plural: s
   casual: Casual
   catalogue_of_life: Catálogo de la Vida
-  categories: categorías
+  categories: Categorías
   cc_attribution_license: Licencia de Atribución de Creative Commons
   cc_by_description: Esta licencia permite a otros distribuir, mezclar, modificar
     y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito
@@ -737,6 +737,7 @@ es-MX:
   committed: Guardado
   committing: Guardando...
   community_id: 'Identificación de la <strong>comunidad</strong>:'
+  community_curated: Curadas por la comunidad
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: ¿Hay una identificación apoyada por la comunidad?
   compare_with: Compara con
@@ -1136,6 +1137,7 @@ es-MX:
   "false": "No"
   faq: Preguntas frecuentes
   Family: Familia
+  faves: favoritos
   favorite_taxa: Grupos de especies (taxa) favoritos
   favorites: Favoritos
   fblocale: es_LA
@@ -1183,6 +1185,7 @@ es-MX:
   find_some_people_to_follow: Sigue a algunas personas
   find_species: Encontrar especie
   find_suitable_observations: Encuentra observaciones adecuadas
+  find_your_current_location: Encuentra tu ubicación actual
   first_confirmed_inat_observation: Primera observacipón confirmada de %{site_name}
   first_connect_your_provider_account_to_your_site: 'Primero, conecta tu cuenta %{provider}
     a %{site_name}:'
@@ -1850,6 +1853,7 @@ es-MX:
   near_threatened: casi está en riesgo
   nearby_observations: Observaciones cercanas
   need_id_help?: ¿Necesitas ayuda para la identificación?
+  needs_id: necesita identificador
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de comprobación
@@ -1951,6 +1955,7 @@ es-MX:
   no_one_posted_anything_yet: ¡Nadie ha incluido nada aún!
   no_ones_observed: Nadie ha observado
   no_photos: No hay fotos
+  no_places_available: No hay lugares disponibles
   no_places_selected: No hay lugares seleccionados
   no_post_yet: ¡No hay notas aún!
   no_project_selected: No seleccionaste ningún proyecto
@@ -2239,6 +2244,7 @@ es-MX:
     de un sitio externo o %{site_name} no tiene permisos para mostrarla.
   photo_hosting_accounts: Cuentas que contienen fotos
   photo_integration: Integración de foto
+  photo_licensing: Licencia de la foto
   photo_urls_repaired: La URL de la foto fue reparada.
   photos: Fotos
   photos_or_sounds?: ¿Fotos o sonidos?
@@ -2619,7 +2625,7 @@ es-MX:
   required_field: Campo requerido
   required_columns_in_order: Columnas requeridas en orden
   research: Investigación
-  research_grade: Grado de investigación
+  research_grade: grado de investigación
   research_grade_expandable_html: G<span class='full'>rado</span> de I<span class='full'>nvestigación</span>
   research_grade_short_html: G<span class='full'>rado</span> de I<span class='full'>nv.</span>
   research_grade_observations_have: Las observaciones con "grado de Investigación"
@@ -2634,6 +2640,7 @@ es-MX:
   resolved_by: Resuelto por
   resolver_said_x_html: <span class="meta">%{resolver} dijo:</span> "%{x}"
   results: Resultados
+  reviewed: Revisada
   roadmap: camino
   role: Permiso
   rotate_left: Gira a la izquierda
@@ -2906,6 +2913,7 @@ es-MX:
   species_taxon_name: Especie/Grupo
   species_unknown: Especies desconocidas
   src: Fuente
+  standard: Predeterminadas
   start: Empezar
   start_a_new_list: Empieza una nueva lista
   start_a_new_project: Empieza un nuevo proyecto
@@ -3229,7 +3237,7 @@ es-MX:
     otras cosas que puedes hacer, como buscar y filtrar tus observaciones o editarlas
     en grupo, pero son fáciles de entender cuando las practicas.
   those_observations_no_longer_exist: Esas observaciones ya no existen.
-  threatened: En riesgo
+  threatened: en riesgo
   thu: Jue
   time_: Tiempo
   time_ago: hace %{time}

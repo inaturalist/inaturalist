@@ -32,7 +32,9 @@ before_install:
   - echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
 
 before_script:
+  - curl localhost:9200
   - sleep 15
+  - curl localhost:9200
   - ci/scripts/before_script.sh
 
 env:

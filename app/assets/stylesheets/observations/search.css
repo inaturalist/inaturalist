@@ -49,44 +49,62 @@
   margin: 0px auto;
   text-align: center;
 }
-.grid .photo,
-.grid .photo:hover,
-.grid .photo:active,
-.grid .photo:visited,
-.grid .photo:link {
-  color: transparent;
+.grid .photo .icon, 
+.grid .photo:hover .icon,
+.grid .photo:active .icon,
+.grid .photo:visited .icon,
+.grid .photo:link .icon {
+  display: none;
 }
-/*.grid .photo { color: red; }
-.grid .photo:hover { color: blue; }
-.grid .photo:active { color: green; }
-.grid .photo:visited { color: yellow; }
-.grid .photo:link { color: deeppink; }*/
-
-.grid .photo.iconic,
-.grid .photo.iconic:hover,
-.grid .photo.iconic:active,
-.grid .photo.iconic:visited,
-.grid .photo.iconic:link {
+.grid .photo.iconic .icon,
+.grid .photo.iconic .icon:hover,
+.grid .photo.iconic .icon:active,
+.grid .photo.iconic .icon:visited,
+.grid .photo.iconic .icon:link {
   color: #eee;
+  display: inline-block;
+}
+.grid .photo .sound-icon { display: none; }
+.grid .photo.sound .sound-icon {
+  display: inline-block;
+  color: #aaa;
+  opacity: 0.8;
+  font-size: smaller;
 }
 .grid .photo {
   height: 120px;
-  line-height: 250px;
-  font-size: 150px;
+  line-height: 110px;
+  font-size: 80px;
+}
+@media only screen and (max-width : 1024px)  {
+  #filters > h1 {
+    font-size: 2.2em;
+  }
+  #stats-container .statcol .stat-title {
+    font-size: 0.7em;
+  }
+  .bootstrap .container {
+    width: 100%;
+  }
 }
 @media (min-width: 768px) {
   .grid .photo {
     height: 157.5px;
+    line-height: 140px;
+    font-size: 120px;
   }
 }
 @media (min-width: 992px) {
   .grid .photo {
     height: 212.5px;
+    font-size: 180px;
   }
 }
 @media (min-width: 1200px) {
   .grid .photo {
     height: 262.5px;
+    line-height: 240px;
+    font-size: 210px;
   }
 }
 
@@ -305,8 +323,28 @@ inat-taxon.split-taxon .icon {display: none;}
   background-color: #727272;
   border-color: #727272;
   color: #eee;
+  position: relative;
 }
 .bootstrap #filter-container > button:hover { color: white; }
+.bootstrap #filter-container > button.btn-default .badge {
+  background-color: #74ac00;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.bootstrap #filter-container .filter-changed,
+.bootstrap #filter-container .filter-changed label {
+  color: #74ac00;
+  font-weight: bold;
+}
+#filter-container select.filter-changed,
+#filter-container button.filter-changed,
+#filter-container .form-control.filter-changed {
+  color: #74ac00;
+  border-color: #74ac00;
+  background-color: rgba(16, 172, 0, 0.1);
+}
 
 #filter-container .fa-sliders {
   font-size: 120%;
@@ -449,11 +487,23 @@ inat-taxon.split-taxon .icon {display: none;}
   background-position: center;
   font-size: 80px;
   line-height: 86px;
-  color: transparent;
   text-align: center;
 }
-#obs-container .media-object.iconic {
+#obs-container .media-object .icon { display: none; }
+#obs-container .media-object.iconic .icon {
+  display: inline-block;
   color: #aaa;
+}
+#obs-container .media-object .sound-icon {
+  display: none;
+}
+#obs-container .media-object.sound .sound-icon {
+  display: inline-block;
+  color: #aaa;
+  opacity: 0.8;
+  font-size: smaller;
+  position: relative;
+  top: 3px;
 }
 #obs-container .media-left {
   padding: 0;
@@ -499,7 +549,6 @@ inat-taxon.split-taxon .icon {display: none;}
 
 inat-taxon { white-space: nowrap; }
 
-#filters label {text-transform: capitalize;}
 .bootstrap label.sectionlabel {
   display: block;
   font-weight: bold;
@@ -514,12 +563,21 @@ inat-taxon { white-space: nowrap; }
 #show-filters {margin-bottom: 8px; }
 #filters-categories { margin-bottom: 5px;}
 #filters-ranks {margin-bottom: 10px;}
-.bootstrap #filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
-.bootstrap #filters-dates .form-control {
+.bootstrap #filters .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
+.bootstrap #filters .filters-dates .form-control {
   width: 100px; 
   display: inline-block;
 }
-.bootstrap #filters-dates #filters-dates-exact.form-control {width: 176px;}
+.bootstrap #filters .filters-dates .filters-dates-exact.form-control {width: 176px;}
+.date-type-range,
+.date-type-exact {
+  position: relative;
+  top: -3px;
+}
+.date-type-month {
+  position: relative;
+  top: -1px;
+}
 
 #filters .iconic-taxon {
   font-size: 30px;
@@ -531,7 +589,9 @@ inat-taxon { white-space: nowrap; }
   outline: none;
 }
 #filters .iconic-taxon.last {margin-right: 0;}
-
+.bootstrap #filters .radio label, .bootstrap #filters .checkbox label {
+  text-transform: lowercase;
+}
 #filters-body {
   padding: 10px 0px 15px;
 }
@@ -736,6 +796,16 @@ inat-taxon { white-space: nowrap; }
   line-height: 70px;
   color: #eee;
 }
+#result-table .img .sound-icon {
+  display: none;
+}
+#result-table .img.sound .sound-icon {
+  display: inline-block;
+  font-size: 50px;
+  line-height: 70px;
+  color: #eee;
+  opacity: 0.8;
+}
 #result-table .img .photo-count {
   position: absolute;
   right: 0;
@@ -809,7 +879,10 @@ inat-taxon { white-space: nowrap; }
   line-height: 30px;
   padding: 0 9px;
 }
-#taxa-grid .photometa span:hover {
+#taxa-grid .photometa a {
+  color: white;
+}
+#taxa-grid .photometa:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -911,3 +984,24 @@ inat-taxon { white-space: nowrap; }
   margin: 4px 1.5px;
 }
 .btn .glyphicon-minus { right: 1px; }
+
+#filters-observation-fields .observation-field,
+#filters-observation-fields .observation-field button {
+  border-radius: 3px;
+  color: white;
+}
+#filters-observation-fields .observation-field {
+  background-color: #999;
+  padding: 5px 28px 5px 5px;
+  position: relative;
+}
+#filters-observation-fields .observation-field button {
+  border: 0;
+  background-color: #ccc;
+  padding: 0px 5px;
+  position: absolute;
+  right: 2px;
+}
+#filters-observation-fields .observation-field button:hover {
+  background-color: #bbb;
+}

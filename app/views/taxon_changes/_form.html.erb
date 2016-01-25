@@ -15,8 +15,9 @@
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript">
     function addTaxonChangeTaxonField(markup) {
-      var index = $('#new_taxon_change_taxa').children().length
-      markup = markup.replace(/taxon_change_taxa_attributes\]\[0\]/g, "taxon_change_taxa_attributes]["+index+"]")
+      var index = $('#multiple_taxa .taxon_change_taxon').length
+      markup = markup.replace(/taxon_change_taxa_attributes\]\[\d+\]/g, "taxon_change_taxa_attributes]["+index+"]")
+      markup = markup.replace(/_taxon_change_taxa_attributes_\d+_/g, "_taxon_change_taxa_attributes_"+index+"_")
       $('#new_taxon_change_taxa').append(markup)
       $('#new_taxon_change_taxa input.text:last').simpleTaxonSelector({
         isActive: 'any',
