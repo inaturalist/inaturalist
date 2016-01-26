@@ -41,9 +41,8 @@ after_failure:
   - "cat /var/log/elasticsearch/elasticsearch.log"
 
 env:
-  - TESTFOLDER=spec/models
-  - TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
-  - TRAVIS_CI=true
+  - TRAVIS_CI=true TESTFOLDER=spec/models
+  - TRAVIS_CI=true TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
 
 script: "bundle exec rspec $TESTFOLDER"
 
