@@ -10,7 +10,7 @@ namespace :es do
   desc "Start elasticsearch in the forground"
   task :run => :environment do
     next if fail_unless_binaries_exists
-    puts "Elasticsearch is starting at #{ elasticsearch_url } ...\n"
+    puts "Elasticsearch is starting at #{ ElasticModel.elasticsearch_url } ...\n"
     puts "Kill this process to stop Elasticsearch"
     `elasticsearch/bin/elasticsearch`
   end
@@ -38,7 +38,7 @@ namespace :es do
 
   desc "Delete and rebuild all models in elasticsearch"
   task :rebuild => :environment do
-    success = wait_until_elasticsearch_is_running
+    success = ElasticModel.wait_until_elasticsearch_is_running
     if success
       elastic_models.each do |klass, opts|
         puts "Rebuilding #{klass}..."
@@ -57,13 +57,13 @@ end
 
 def start
   return if fail_unless_binaries_exists
-  unless elasticsearch_is_running?
+  unless ElasticModel.elasticsearch_is_running?
     puts "\nElasticsearch is starting up...\n"
     `elasticsearch/bin/elasticsearch -p #{ pid_path } -d`
   end
-  success = wait_until_elasticsearch_is_running
+  success = ElasticModel.wait_until_elasticsearch_is_running
   if success
-    puts "\nElasticsearch is now running at #{ elasticsearch_url }\n\n"
+    puts "\nElasticsearch is now running at #{ ElasticModel.elasticsearch_url }\n\n"
   else
     puts "\nElasticsearch failed to start\n\n"
   end
@@ -74,14 +74,6 @@ def stop
   if File.exists?(pid_path)
     `kill \`cat #{ pid_path }\``
   end
-end
-
-def elasticsearch_url
-  url = Taxon.__elasticsearch__.client.transport.options[:host]
-  unless url.starts_with?("http://")
-    url = "http://" + url
-  end
-  url
 end
 
 def elastic_models
@@ -112,30 +104,12 @@ def fail_unless_binaries_exists
   return false
 end
 
-def elasticsearch_is_running?
-  begin
-    response = Net::HTTP.get(URI.parse(elasticsearch_url))
-    return JSON.parse(response)["tagline"] == "You Know, for Search"
-  rescue
-  end
-  return false
-end
-
 def fail_unless_elasticsearch_is_running
-  unless elasticsearch_is_running?
+  unless ElasticModel.elasticsearch_is_running?
     puts "\nElasticsearch is not running. You might want to run `rake es:start`\n\n"
     return true
   end
   return false
-end
-
-def wait_until_elasticsearch_is_running(options={})
-  options[:timeout] ||= 30
-  start_time = Time.now
-  while !elasticsearch_is_running? && (Time.now - start_time <= options[:timeout])
-    sleep(1)
-  end
-  return elasticsearch_is_running?
 end
 
 def pid_path

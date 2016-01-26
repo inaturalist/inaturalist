@@ -43,6 +43,7 @@ after_failure:
 env:
   - TESTFOLDER=spec/models
   - TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
+  - TRAVIS_CI=true
 
 script: "bundle exec rspec $TESTFOLDER"
 

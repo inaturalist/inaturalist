@@ -67,7 +67,7 @@ class Observation < ActiveRecord::Base
       created_at_details: ElasticModel.date_details(created),
       created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
       updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
-      observed_on: datetime.blank? ? nil : datetime.to_date,
+      observed_on: datetime,
       observed_on_details: ElasticModel.date_details(datetime),
       time_observed_at: time_observed_at_in_zone,
       observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
