@@ -9,7 +9,18 @@
         = link_to t(:new_post), new_project_journal_post_path(@parent_slug), |
           :id => "newpostbutton", :class => "default button"                 |
   = render :partial => "shared/by_project_header_bootstrap", :locals => { :before => breadcrumbs, :after => tools, :model_name => "Journal", :project => @parent }
-- else # parent is not a project
+- elsif @parent.is_a?( Site )
+  #pageheader.col-md-12
+    = breadcrumbs
+    = link_to(image_tag(@site.logo_square.url(:thumb), :class => "parenticon"), @site)
+    %h2
+      = link_to @site.name, site_posts_path
+    %ul#subnav.clear
+      %li=t :official_blog
+    - if @site.editable_by?( current_user )
+      #tools.buttonrow
+        = link_to t(:new_post), new_site_post_path, id: "newpostbutton", :class => "default button"
+- else # parent is a user
   - tools = capture do
     - if logged_in? && current_user.login == @parent_display_name
       #tools.btn-grp

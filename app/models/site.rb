@@ -1,8 +1,9 @@
 class Site < ActiveRecord::Base
-  # attr_accessible :name, :flickr
-  has_many :observations, :inverse_of => :site
-  has_many :users, :inverse_of => :site
-  has_many :site_admins, :inverse_of => :site
+  has_many :observations, inverse_of: :site
+  has_many :users, inverse_of: :site
+  has_many :site_admins, inverse_of: :site
+  has_many :posts, as: :parent, dependent: :destroy
+  has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
 
   scope :live, -> { where(draft: false) }
   scope :drafts, -> { where(draft: true) }
@@ -198,5 +199,9 @@ class Site < ActiveRecord::Base
 
   def method_missing(method, *args, &block)
     preferences.keys.include?(method.to_s) ? preferences[method.to_s] : super
+  end
+
+  def editable_by?(user)
+    user && user.is_admin?
   end
 end

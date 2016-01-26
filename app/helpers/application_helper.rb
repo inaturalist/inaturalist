@@ -898,7 +898,14 @@ module ApplicationHelper
     when "ListedTaxon"
       image_tag("checklist-icon-color-32px.png", options)
     when "Post"
-      image_tag(resource.user.icon.url(:thumb), options.merge(:class => "usericon"))
+      case resource.parent_type
+      when "User"
+        image_tag(resource.user.icon.url(:thumb), options.merge(:class => "usericon"))
+      when "Project"
+        image_tag(resource.parent.icon.url(:thumb), options.merge(:class => "projecticon"))
+      else
+        image_tag(resource.parent.logo_square.url, options.merge(:class => "siteicon"))
+      end
     when "Place"
       image_tag(FakeView.image_url("icon-maps.png"), options)
     when "Taxon"
@@ -1261,8 +1268,10 @@ module ApplicationHelper
     return trip_path(post, options) if post.is_a?(Trip)
     if post.parent_type == "User"
       journal_post_path(post.user.login, post)
-    else
+    elsif post.parent_type == "Project"
       project_journal_post_path(post.parent.slug, post)
+    else
+      site_post_path(post)
     end
   end
 
@@ -1270,6 +1279,8 @@ module ApplicationHelper
     return edit_trip_path(post, options) if post.is_a?(Trip)
     if post.parent_type == "User"
       edit_journal_post_path(post.user.login, post)
+    elsif post.parent_type == "Site"
+      edit_site_post_path(post)
     else
       edit_project_journal_post_path(post.parent.slug, post)
     end

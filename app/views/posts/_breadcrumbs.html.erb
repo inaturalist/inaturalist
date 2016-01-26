@@ -1,15 +1,19 @@
 <div class="breadcrumbs">
   <% if @parent.is_a?(Project) %>
-  <%= link_to t(:back_to_x_journal, :user => @display_project.title),
-              project_journal_path(@parent_slug),
-              :class => 'back crumb' %>
-  <% elsif current_user and current_user.login == @display_user.login %>
-  <%= link_to t(:back_to_your_journal),
-              journal_by_login_path(current_user.login),
-              :class => 'back crumb' %>
+    <%= link_to t(:back_to_x_journal, :user => @parent.title),
+                project_journal_path(@parent_slug),
+                :class => 'back crumb' %>
+  <% elsif @parent.is_a?(Site) %>
+    <%= link_to t(:back_to_x_blog, x: @parent.name), site_posts_path, :class => 'back crumb' %>
   <% else %>
-  <%= link_to t(:back_to_x_journal, :user => @display_user.login),
-              journal_by_login_path(@display_user.login),
-              :class => 'back crumb' %>
+    <% if current_user && current_user.login == @parent.login %>
+      <%= link_to t(:back_to_your_journal),
+                  journal_by_login_path(current_user.login),
+                  :class => 'back crumb' %>
+    <% else %>
+      <%= link_to t(:back_to_x_journal, :user => @parent.login),
+                  journal_by_login_path(@parent.login),
+                  :class => 'back crumb' %>
+    <% end %>
   <% end %>
 </div><!-- /#breadcrumbs -->

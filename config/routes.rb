@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resources :sites
 
-
   id_param_pattern = %r(\d+([\w\-\%]*))
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
@@ -383,12 +382,16 @@ Rails.application.routes.draw do
     resources :flags
     collection do
       get :for_project_user
+      get :for_user
     end
   end
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex } do
+    resources :flags
+  end
+  resources :posts, as: "site_posts", path: "/blog" do
     resources :flags
   end
   resources :trips, :constraints => { :id => id_param_pattern } do

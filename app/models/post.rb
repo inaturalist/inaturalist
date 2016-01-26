@@ -82,6 +82,10 @@ class Post < ActiveRecord::Base
     s += ", by #{self.user.try(:login)}" unless options[:no_user]
     s
   end
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
   
   def draft?
     published_at.blank?
