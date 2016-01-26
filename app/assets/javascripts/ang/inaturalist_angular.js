@@ -15,96 +15,6 @@ function( $http, $rootScope, $filter ) {
     );
   };
 
-  var processParams = function( p, possibleFields ) {
-    var params = _.extend( { }, p );
-    // deal with iconic taxa
-    var keysToDelete = [ "taxon_name" ];
-    if( params._iconic_taxa ) {
-      var iconic_taxa = [ ];
-      angular.forEach( params._iconic_taxa, function( selected, name ) {
-        if( selected ) {
-          iconic_taxa.push( name )
-        }
-      });
-      if( iconic_taxa.length > 0 ) {
-        params.iconic_taxa = iconic_taxa;
-      } else {
-        params.iconic_taxa = [ ];
-      }
-      keysToDelete.push( "_iconic_taxa" );
-    }
-    // // date types
-    // // this looks and feels horrible, but I'm not sure what the angular way of doing it would be
-    switch( params.dateType ) {
-      case 'exact':
-        keysToDelete = keysToDelete.concat([ "d1", "d2", "month" ]);
-        break;
-      case 'range':
-        keysToDelete = keysToDelete.concat([ "on", "month" ]);
-        break;
-      case 'month':
-        keysToDelete = keysToDelete.concat([ "on", "d1", "d2" ]);
-        break;
-      default:
-        keysToDelete = keysToDelete.concat([ "on", "d1", "d2", "month" ]);
-    }
-    keysToDelete.push( "dateType" );
-    switch( params.createdDateType ) {
-      case 'exact':
-        keysToDelete = keysToDelete.concat([ "created_d1", "created_d2" ]);
-        break;
-      case 'range':
-        keysToDelete = keysToDelete.concat([ "created_on" ]);
-        break;
-      case 'month':
-        keysToDelete = keysToDelete.concat([ "created_on", "created_d1", "created_d2" ]);
-        break;
-      default:
-        keysToDelete = keysToDelete.concat([ "created_on", "created_d1", "created_d2" ]);
-    }
-    keysToDelete.push( "createdDateType" );
-    if ( params.observationFields ) {
-      // remove all existing observation field params
-      _.each( _.keys( params ), function( k ) {
-        if ( k.match( /field:.+/ ) ) {
-          delete params[ k ];
-        }
-      })
-      // add the ones that are actually in the scope
-      _.each( params.observationFields, function( v, k ) {
-        params[k] = v;
-      });
-      // make sure we don't keep around this stuff from the scope
-      keysToDelete.push( "observationFields" );
-    }
-    if( possibleFields ) {
-      var unknownFields = _.difference( _.keys( params ), possibleFields );
-      _.each( unknownFields, function( f ) {
-        if ( !f.match( /field:.+/ ) ) {
-          delete params[ f ];
-        }
-      });
-    }
-    _.each( _.keys( params ), function( k ) {
-      if( k == "verifiable" ) { return; }
-      // _.isEmpty returns true for ints and floats
-      if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )
-          && !_.isNumber( params[ k ] ) ) {
-        keysToDelete.push( k );
-      }
-    });
-    _.each( keysToDelete, function( k ) {
-      if ( !k.match( /field:.+/ ) ) {
-        delete params[ k ];
-      }
-    });
-    // use the current user's id as the basis for the `reviewed` param
-    if( !_.isUndefined( params.reviewed ) && !params.viewer_id && CURRENT_USER ) {
-      params.viewer_id = CURRENT_USER.id;
-    }
-    return params;
-  };
-
   var numberWithCommas = function( num ) {
     if( !_.isNumber( num ) ) { return num; }
     return num.toString( ).replace( /\B(?=(\d{3})+(?!\d))/g, "," );
@@ -205,7 +115,6 @@ function( $http, $rootScope, $filter ) {
   return {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
-    processParams: processParams,
     t: t,
     taxonStatusTitle: taxonStatusTitle,
     taxonMeansTitle: taxonMeansTitle,

@@ -8,6 +8,7 @@
 # Author: Federico Mugnaini
 # Author: Fringio
 # Author: Gianfranco
+# Author: JackLantern
 # Author: LauraCri
 # Author: Macofe
 # Author: Martinligabue
@@ -547,6 +548,7 @@ it:
   black: nero
   blog_widget: Blog widget
   blue: blu
+  blue_butterfly_etc: blu, farfalla, etc.
   blue_icons_represent_political_units: Le icone blu rappresentano unità politiche
     come paesi, stati, province, regioni e simili, mentre le icone verdi rappresentano
     i diversi tipi di spazi aperti (parchi, riserve). Zoomando sarà possibile vedere
@@ -766,6 +768,7 @@ it:
   commit: Conferma
   committed: Confermato
   committing: Conferma in corso...
+  community_curated: Curate dalla Community
   community_id: 'ID della <strong>Community</strong>:'
   community_id_at_species_or_lower?: ID della community a livello di specie o inferiore?
   community_moderation_settings: Impostazioni della Moderazione da parte della Community
@@ -1101,6 +1104,7 @@ it:
   eg: ad es.
   either: Sia
   either_that_user_doesnt_exist_or: Sia che l'utente non esista o tu li stia già seguendo.
+  eligible_for_research_grade: Qualificate per il Livello Ricerca
   email: Email
   email_addresses_description: indirizzi email separati da virgola, il limite è di
     60 ogni 30 giorni.
@@ -1177,6 +1181,7 @@ it:
     di quella foto ri-confermi la propria connessione a %{site_name_short}.
   facebook_options: Opzioni di Facebook
   failed_to_repair_photo: 'Errore nel riparare la foto: %{errors}'
+  failed_to_find_your_location: Impossibile trovare la tua posizione.
   "false": Falso
   faq: Domande frequenti
   Family: Famiglia
@@ -1228,6 +1233,7 @@ it:
   find_some_people_to_follow: Trova alcune persone da seguire
   find_species: Trova le Specie
   find_suitable_observations: Trova le osservazioni idonee
+  find_your_current_location: Trova la tua posizione corrente
   first_confirmed_inat_observation: Primae osservazione di %{site_name} confermata
   first_connect_your_provider_account_to_your_site: 'Per prima cosa, connetti il tuo
     %{provider} account a %{site_name}:'
@@ -1300,6 +1306,7 @@ it:
   full_id_please: ID per favore!
   full_id_please!: ID per favore!
   full_id_please?: ID per favore?
+  full_screen: A schermo intero
   fungi:
     one: fungo
     other: funghi
@@ -1358,6 +1365,7 @@ it:
   guidelines: Linee guida
   has_already_been_flagged_by: è già stato contrassegnato da
   has_been: è stato
+  has_one_or_more_faves: Ha una o più preferenze
   has_photos: ha foto
   has_sounds: ha suoni
   hasnt_contributed_any_observations: non ha contribuito con nessuna osservazione
@@ -1577,6 +1585,7 @@ it:
   latitude: Latitudine
   latitude_in_decimals: Latitudine in gradi decimali, ad esempio, 38.123
   latitude_slash_y_coord_slash_northing: Latitudine / coord y / nord
+  layers: Livelli
   layout: Layout
   leaderboard_for_x: Classifica per %{x}
   leaderboards: Classifiche
@@ -1872,6 +1881,21 @@ it:
   mobile_apps_for: App per dispositivi mobili per
   mobile_view_available: Visualizzazione per dispositivi mobili disponibile
   mollusks: molluschi
+  momentjs:
+    shortRelativeTime:
+      future: in % s
+      past: '% s'
+      s: sec
+      m: 1 min
+      mm: '%d min'
+      h: 1 ora
+      hh: '%d ore'
+      d: 1 g
+      dd: '%d g'
+      M: 1 mese
+      MM: '%d mesi'
+      1: 1 anno
+      yy: '%d anni'
   mon: Lun
   month: Mese
   months: Mesi
@@ -1928,6 +1952,7 @@ it:
     culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: Lat. NE
   ne_lon: Lon. NE
+  near: vicino
   near_threatened: Quasi Minacciata
   nearby: Nelle vicinanze
   nearby_observations: Osservazioni nelle vicinanze
@@ -2036,6 +2061,7 @@ it:
   no_one_posted_anything_yet: Nessuno ha ancora postato qualcosa!
   no_ones_observed: Nessuno ha osservato
   no_photos: Nessuna foto
+  no_places_available: Nessun luogo disponibile
   no_places_selected: Nessun luogo selezionato.
   no_post_yet: Ancora nessun post!
   no_project_selected: Nessun progetto selezionato
@@ -2224,7 +2250,7 @@ it:
   of_least_concern: Minor Preoccupazione
   offensive_inappropriate: offensivo / inappropriato
   offline_access_enabled: Accesso offline abilitato
-  on_: nella
+  on_: nella lista
   on_date: in data %{date}
   on_day: in data
   on_edit_date: in data %{editdate}
@@ -2461,6 +2487,8 @@ it:
   place_updated: Luogo aggiornato!
   placement: Posizione
   places: Luoghi
+  places_added_by_members_of_the_community: Luogo aggiunto dai membri della community
+  places_maintained_by_site_admins: Luoghi mantenuti dagli amministratori
   places_name:
     afghanistan: Afghanistan
     africa: Africa
@@ -2649,7 +2677,9 @@ it:
     superorder: superordine
     order: ordine
     suborder: sottordine
+    infraorder: infraordine
     superfamily: superfamiglia
+    epifamily: epi-familia
     family: famiglia
     subfamily: sottofamiglia
     supertribe: supertribù
@@ -2763,7 +2793,7 @@ it:
     la valutazione della qualità dei dati
   research_quality: Qualità Ricerca
   reset_search_filters: Resetta i filtri di ricerca
-  reset_your_password: Resetta la tua password
+  reset_your_password: Reimposta la tua password
   resolve: Risolvi
   resolve_this_flag: Risolvi questo contrassegno
   resolved: Risolta/e
@@ -2857,6 +2887,7 @@ it:
     visualizzate le specie non osservate nella lista del progetto
   select_one_or_more_photos: Seleziona una o più foto
   select_none: Deseleziona tutto
+  select_options: Seleziona le opzioni
   select_photos_from_your_photo_stream: Seleziona le immagini di un sito di condivisione
     foto da convertire in osservazioni %{site_name}
   select_photos_to_display: Seleziona le foto da visualizzare
@@ -3197,7 +3228,7 @@ it:
     l'email che hai utilizzato per creare il tuo account e noi ti manderemo il link
     per resettare la tua password.
   thats_not_a_real_date: Questa non è una data verosimile!
-  the: il (la)
+  the: l'
   the_admin_is_the_person_who: L'amministratore è la persona che ha creato il progetto.
     Possono fare le stesse code dei gestori e dei curatori, ma anche cancellare il
     progetto.
@@ -3375,8 +3406,8 @@ it:
   time_ago: '%{time} fa'
   title: titolo
   title_and_description: Titolo & Descrizione
-  titled_favorites_and_the_most_recent_additions: intitolato "Contenuto Preferito"
-    e le aggiunte più recenti appariranno in questo spazio.
+  titled_favorites_and_the_most_recent_additions: intitolata "Preferiti" e le aggiunte
+    più recenti appariranno in questo spazio.
   to: ad
   to_: in
   to_add_comments: per aggiungere commenti
@@ -3475,10 +3506,11 @@ it:
   url_identifier_of_a_project_derived_from: URL / identificatore di un progetto derivato
     da qualche risorsa esterna
   url_of_this_taxon_on_the_source_website: URL di questo taxon sul sito web sorgente
+  url_slug_or_id: URL o ID, ad esempio mio-progetto o 333
   US_states: Stati degli Stati Uniti
   usage_stats: Statistiche di utilizzo
   use_name_as_a_placeholder: Usa <span class='ac-placeholder'>"%{name}"</span> come
-    un marcatore di posizione
+    segnaposto
   use_this_form_to_create_a_new: Usa questo formulario per creare una bozza di modifica
     tassonomica descrivendo la divisione, l'unione o lo scambio proposti sui taxa
     attivi
@@ -3925,6 +3957,8 @@ it:
   youve_seen_it_want_to: L'hai visto! Vuoi
   youve_successfully_linked_your_provider_account: Hai collegato con successo il tuo
     account %{provider}
+  zoom_in: Zoom avanti
+  zoom_out: Zoom indietro
   zoom_to_taxon_name: Zoom su %{taxonname}
   zoom_to_x: Zoom su %{x}
   your_dashboard_helps_you: La tua bacheca ti permette di tenere sotto controllo cosa
