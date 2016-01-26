@@ -10,7 +10,7 @@ class PlaceGeometry < ActiveRecord::Base
              :dissolve_geometry_if_changed,
              :update_observations_places_later
 
-  after_destroy :destroy_observations_places
+  after_destroy :update_observations_places_later
 
   validates_presence_of :geom
   validate :validate_geometry
@@ -95,14 +95,9 @@ class PlaceGeometry < ActiveRecord::Base
     end
   end
 
-  def destroy_observations_places
-    ObservationsPlace.where(place_id: place_id).delete_all
-  end
-
   def update_observations_places_later
-    PlaceGeometry.
-      delay(unique_hash: { "PlaceGeometry::update_observations_places": id }).
-      update_observations_places(id)
+    Place.delay(unique_hash: { "Place::update_observations_places": place_id }).
+      update_observations_places(place_id)
   end
 
   def simplified_geom
@@ -128,17 +123,6 @@ class PlaceGeometry < ActiveRecord::Base
     end
     PlaceGeometry.where(id: id).
       select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
-  end
-
-  def self.update_observations_places(place_geometry_id)
-    if pg = PlaceGeometry.where(id: place_geometry_id).first
-      old_scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", pg.place_id)
-      Observation.update_observations_places(scope: old_scope)
-      Observation.elastic_index!(scope: old_scope)
-      scope = Observation.in_place(pg.place_id)
-      Observation.update_observations_places(scope: scope)
-      Observation.elastic_index!(scope: scope)
-    end
   end
 
 end
