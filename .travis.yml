@@ -37,6 +37,9 @@ before_script:
   - curl localhost:9200
   - ci/scripts/before_script.sh
 
+after_failure:
+  - "cat /var/log/elasticsearch/elasticsearch.log"
+
 env:
   - TESTFOLDER=spec/models
   - TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
