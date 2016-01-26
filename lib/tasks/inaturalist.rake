@@ -90,7 +90,20 @@ namespace :inaturalist do
                  "place_geo.geo_planet_place_types",
                  "ranks", "research", "asc", "desc",
                  "date_format.month", "momentjs", "endemic", "native", 
-                 "introduced", "casual" ]
+                 "introduced", "casual", "status_globally", "status_in_place",
+                 "number_selected",
+                 "all_taxa.animals",
+                 "all_taxa.birds",
+                 "all_taxa.amphibians",
+                 "all_taxa.reptiles",
+                 "all_taxa.mammals",
+                 "all_taxa.insects",
+                 "all_taxa.arachnids",
+                 "all_taxa.mollusks",
+                 "all_taxa.ray_finned_fishes",
+                 "all_taxa.plants",
+                 "all_taxa.fungi",
+                 "all_taxa.protozoans" ]
 
     # look for other keys in all javascript files
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|

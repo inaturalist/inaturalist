@@ -152,7 +152,7 @@ class ProjectsController < ApplicationController
         @observations_url_params = if @project.project_type == Project::BIOBLITZ_TYPE
           @project.observations_url_params
         else
-          {projects: [@project.slug]}
+          { projects: [@project.slug] }
         end
         @observations_url = observations_url(@observations_url_params)
         if logged_in? && @project_user.blank?

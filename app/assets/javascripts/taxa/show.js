@@ -193,7 +193,7 @@ $(document).ready(function(){
     allow_enter_submit: true,
     search_external: false,
     afterSelect: function( ui ) {
-      window.location.href = inaturalist.TAXON_ROOT_URL + ui.item.id;
+      window.location.href = "/taxa/" + ui.item.id;
     }
   });
 

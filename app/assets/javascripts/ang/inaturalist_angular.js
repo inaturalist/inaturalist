@@ -1,70 +1,18 @@
 var iNatAPI = angular.module( "iNatAPI", [ ]);
 
-iNatAPI.factory( "shared", [ "$http", "$rootScope",
-function( $http, $rootScope ) {
-  var basicGet = function( url ) {
+iNatAPI.factory( "shared", [ "$http", "$rootScope", "$filter",
+function( $http, $rootScope, $filter ) {
+  var basicGet = function( url, options ) {
+    options = options || { };
+    if( options.cache !== true) { options.cache = false; }
     // 20 second timeout
-    return $http.get( url, { cache: false, timeout: 20000 } ).then(
+    return $http.get( url, { cache: options.cache, timeout: 20000 } ).then(
       function( response ) {
         return response;
       }, function( errorResponse ) {
         // Handle error case
       }
     );
-  };
-
-  var processParams = function( p, possibleFields ) {
-    var params = _.extend( { }, p );
-    // deal with iconic taxa
-    var keysToDelete = [ ];
-    if( params._iconic_taxa ) {
-      var iconic_taxa = [ ];
-      angular.forEach( params._iconic_taxa, function( selected, name ) {
-        if( selected ) {
-          iconic_taxa.push( name )
-        }
-      });
-      if( iconic_taxa.length > 0 ) {
-        params.iconic_taxa = iconic_taxa;
-      }
-      keysToDelete.push( "_iconic_taxa" );
-    }
-    // date types
-    // this looks and feels horrible, but I'm not sure what the angular way of doing it would be
-    if( params.dateType ) {
-      switch( params.dateType ) {
-        case 'exact':
-          keysToDelete = keysToDelete.concat([ "d1", "d2", "month" ]);
-          break;
-        case 'range':
-          keysToDelete = keysToDelete.concat([ "on", "month" ]);
-          break;
-        case 'month':
-          keysToDelete = keysToDelete.concat([ "on", "d1", "d2" ]);
-          break;
-        default:
-          keysToDelete = keysToDelete.concat([ "on", "d1", "d2", "month" ]);
-      }
-      keysToDelete.push( "dateType" );
-    }
-    if( possibleFields ) {
-      var unknownFields = _.difference( _.keys( params ), possibleFields );
-      _.each( unknownFields, function( f ) {
-        delete params[ f ]
-      });
-    }
-    _.each( _.keys( params ), function( k ) {
-      if( k == "verifiable" ) { return; }
-      // _.isEmpty returns true for ints and floats
-      if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )
-          && !_.isNumber( params[ k ] ) ) {
-        keysToDelete.push( k );
-      }
-    });
-    _.each( keysToDelete, function( k ) {
-      delete params[ k ];
-    });
-    return params;
   };
 
   var numberWithCommas = function( num ) {
@@ -77,11 +25,36 @@ function( $http, $rootScope ) {
     return I18n.t( k, options );
   };
 
+  var taxonStatusTitle = function( taxon ) {
+    if( !taxon.conservation_status ) { return; }
+    var title = $filter( "capitalize" )( taxon.conservationStatus( ), "title" );
+    if( taxon.conservation_status && taxon.conservation_status.place ) {
+      title = t( "status_in_place", {
+        status: title, place: taxon.conservation_status.place.display_name });
+    } else {
+      title = t( "status_globally", { status: title });
+    }
+    return title;
+  };
+
+  var taxonMeansTitle = function( taxon ) {
+    if( !taxon.establishment_means ) { return; }
+    var title = $filter( "capitalize" )(
+      t( taxon.establishment_means.establishment_means ), "title" );
+    if( taxon.establishment_means && taxon.establishment_means.place ) {
+      title = t( "status_in_place", {
+        status: $filter( "capitalize" )(
+          t( taxon.establishment_means.establishment_means, { locale: "en" }), "title" ),
+        place: taxon.establishment_means.place.display_name });
+    }
+    return title;
+  };
+
   var backgroundIf = function( url ) {
     if( url ) {
-      return { "background-image": "url(" + url + ")" };
+      return { "background-image": "url('" + url + "')" };
     }
-  }
+  };
 
   var offsetCenter = function( options, callback ) {
     if( !options.map ) { return callback( ); }
@@ -142,8 +115,9 @@ function( $http, $rootScope ) {
   return {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
-    processParams: processParams,
     t: t,
+    taxonStatusTitle: taxonStatusTitle,
+    taxonMeansTitle: taxonMeansTitle,
     backgroundIf: backgroundIf,
     offsetCenter: offsetCenter,
     processPoints: processPoints,

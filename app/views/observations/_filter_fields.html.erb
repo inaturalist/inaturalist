@@ -313,7 +313,7 @@
   </div>
 </div>
 
-<% unless params[:month].blank? -%>
+<% if params[:month].is_a?(Array) && !params[:month].blank? -%>
   <div class="clear row upstacked radio">
     <div class="left">
       <div class="label">
@@ -321,7 +321,7 @@
       </div>
       <div class="left">
         <% (1..12).to_a.each do |i| -%>
-          <input type="checkbox" name="month[]" value="<%= i %>" id="month_<%= i %>" checked="<%= params[:month] && params[:month].include?(i) %>">
+          <input type="checkbox" name="month[]" value="<%= i %>" id="month_<%= i %>" checked="<%= params[:month] && params[:month].include?(i.to_s) %>">
           <label for="month_<%= i %>"><%= t("date_format.month.#{Date::MONTHNAMES[i].downcase}") %></label>
         <% end -%>
       </div>

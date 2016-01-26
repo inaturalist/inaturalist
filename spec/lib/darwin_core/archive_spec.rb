@@ -117,15 +117,31 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids.uniq.size ).to eq ids.size
   end
 
-
-  it "should not include private coordinates" do
+  it "should not include private coordinates by default" do
     o = make_research_grade_observation(geoprivacy: Observation::PRIVATE)
-    archive = DarwinCore::Archive.new(quality: "any")
+    archive = DarwinCore::Archive.new
     obs = CSV.read(archive.make_occurrence_data, headers: true).first
     expect( obs['id'] ).to eq o.id.to_s
-    # puts "obs['latitude']: #{obs['latitude']}"
-    # puts "o.private_latitude: #{o.private_latitude}"
-    expect( obs['latitude'] ).not_to eq o.private_latitude.to_s
-    expect( obs['longitude'] ).not_to eq o.private_longitude.to_s
+    expect( obs['decimalLatitude'] ).not_to eq o.private_latitude.to_s
+    expect( obs['decimalLongitude'] ).not_to eq o.private_longitude.to_s
+  end
+
+  it "should optionally include private coordinates" do
+    o = make_research_grade_observation(geoprivacy: Observation::PRIVATE)
+    archive = DarwinCore::Archive.new(private_coordinates: true)
+    obs = CSV.read(archive.make_occurrence_data, headers: true).first
+    expect( obs['id'] ).to eq o.id.to_s
+    expect( obs['decimalLatitude'] ).to eq o.private_latitude.to_s
+    expect( obs['decimalLongitude'] ).to eq o.private_longitude.to_s
+  end
+
+  it "should filter by site_id" do
+    site = Site.make!
+    in_site = make_research_grade_observation(site: site)
+    not_in_site = make_research_grade_observation
+    archive = DarwinCore::Archive.new(site_id: site.id)
+    obs = CSV.read(archive.make_occurrence_data, headers: true)
+    expect( obs.detect{|o| o['id'] == in_site.id.to_s} ).not_to be_nil
+    expect( obs.detect{|o| o['id'] == not_in_site.id.to_s} ).to be_nil
   end
 end

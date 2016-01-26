@@ -52,6 +52,7 @@ application.config( [ "$locationProvider", function($locationProvider) {
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll", "$uibPosition",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {
+  $scope.currentUser = CURRENT_USER;
   $scope.shared = shared;
   $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
@@ -67,7 +68,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     verifiable: true,
     order_by: "observations.id",
     order: "desc",
-    dateType: "any",
     page: 1
   };
   $scope.mapBounds = new google.maps.LatLngBounds(
@@ -118,6 +118,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.setupTaxonAutocomplete( );
     $scope.setupBrowserStateBehavior( );
     $scope.filtersInitialized = true;
+    // someone searched with taxon_name, but no mathing taxon was found,
+    // so focus and click on the field to present the autocomplete results
+    if( $scope.params.taxon_name && !SELECTED_TAXON_ID ) {
+      $( "#filters input[name='taxon_name']" ).focus( );
+      $( "#filters input[name='taxon_name']" ).click( );
+    }
   };
   $scope.resetStats = function( ) {
     _.each([ "totalObservations", "totalSpecies", "totalObservers", "totalIdentifiers" ], function( k ) {
@@ -129,11 +135,15 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if(!$scope.$$phase) { $scope.$digest( ); }
   };
   $scope.resetParams = function( ) {
+    var resetParams = _.extend( { }, $scope.defaultParams );
+    if( $scope.preferredPlaceObject ) {
+      resetParams.place_id = $scope.preferredPlaceObject.id;
+    }
     $scope.params = _.extend( { }, $scope.defaultParams );
     // reset taxon autocomplete
     $( "#filters input[name='taxon_name']" ).trigger( "resetAll" );
     // reset place autocomplete
-    $scope.selectedPlace = null;
+    $scope.selectedPlace = $scope.preferredPlaceObject;
     $scope.searchedPlace = null;
     $scope.placeSearch = null;
     $scope.closeFilters();
@@ -145,7 +155,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // params may change but not affect the results
     // for example DateType will change with the different date options
     $scope.$watch( "params", function( ) {
-      $scope.processedParams = shared.processParams( $scope.params, $scope.possibleFields );
+      $scope.processedParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
+      if ( CURRENT_USER ) {
+        $scope.showingViewerObservations = (
+          ($scope.processedParams.user_id == CURRENT_USER.id) || 
+          ($scope.processedParams.user_id == CURRENT_USER.login)
+        );
+      }
     }, true);
     // changes in processedParams are what initiate searches
     $scope.$watch( "processedParams", function( before, after ) {
@@ -168,7 +184,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.place_id = $scope.selectedPlace.id;
       }
     } else {
-      delete $scope.params.place_id;
+      $scope.alignMapOnSearch = false;
+      $scope.params.place_id = "any";
     }
   });
   $scope.initializeTaxonParams = function( ) {
@@ -201,6 +218,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
         if( places.length > 0 ) {
+          if( PREFERRED_PLACE && places[ 0 ].id === PREFERRED_PLACE.id ) {
+            $scope.preferredPlaceObject = places[ 0 ];
+          }
           $scope.filterByPlace( places[ 0 ] );
         }
         $scope.placeInitialized = true;
@@ -212,21 +232,51 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.mapBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng( $scope.params.swlat, $scope.params.swlng ),
             new google.maps.LatLng( $scope.params.nelat, $scope.params.nelng ));
+      } else if( $scope.params.lat && $scope.params.lng ) {
+        $scope.mapBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng( parseFloat( $scope.params.lat ) - 0.1,
+            parseFloat( $scope.params.lng ) - 0.1 ),
+          new google.maps.LatLng( parseFloat( $scope.params.lat ) + 0.1,
+            parseFloat( $scope.params.lng ) + 0.1 ));
       }
       $scope.placeInitialized = true;
     }
   };
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
-    $scope.params = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    var initialParams = _.extend( { }, $scope.defaultParams, $location.search( ) );
     // setting _iconic_taxa for the iconic taxa filters, (e.g { Chromista: true })
-    if( $scope.params.iconic_taxa ) {
-      $scope.params._iconic_taxa = _.object( _.map( $scope.params.iconic_taxa.split(","),
+    if( initialParams.iconic_taxa ) {
+      initialParams._iconic_taxa = _.object( _.map( initialParams.iconic_taxa.split(","),
         function( n ) { return [ n, true ]; }
       ));
     }
+    // set the default user or site place_id
+    if( PREFERRED_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
+      initialParams.place_id = PREFERRED_PLACE.id;
+    }
+    // use the current user's id as the basis for the `reviewed` param
+    if( !_.isUndefined( initialParams.reviewed ) && !initialParams.reviewed_by && CURRENT_USER ) {
+      initialParams.viewer_id = CURRENT_USER.id;
+    }
+    // a taxon_name param was provided, and a match was found,
+    // so use taxon_id and remove taxon_name
+    if( initialParams.taxon_name && SELECTED_TAXON_ID && !initialParams.taxon_id ) {
+      initialParams.taxon_id = SELECTED_TAXON_ID;
+      delete initialParams.taxon_name;
+    }
+    // months from URLs need to be turned into arrays
+    if( initialParams.month ) { initialParams.month = initialParams.month.split( "," ); }
+    $scope.params = initialParams;
     $scope.initializeTaxonParams( );
     $scope.initializePlaceParams( );
+  };
+  $scope.extendBrowserLocation = function( options ) {
+    var params = _.extend( { }, $location.search( ), options );
+    params = _.omit( params, function( value, key, object ) {
+      return _.isEmpty( value) && !_.isBoolean( value ) && !_.isNumber( value );
+    });
+    return "?" + $.param( params );
   };
   $scope.updateBrowserLocation = function( options ) {
     options = options || { };
@@ -235,7 +285,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     _.each( $scope.params, function( value, param ) {
       // don't show default params in the URL
       if( $scope.defaultParams.hasOwnProperty( param ) &&
-          value === $scope.defaultParams[ param ] && param !== "dateType" ) {
+          value === $scope.defaultParams[ param ] ) {
         return;
       }
       // assess view and subview params below
@@ -256,7 +306,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var currentState = { };
     var currentSearch = { };
     if( !_.isEmpty( newParams ) ) {
-      var urlParams = shared.processParams( _.object( newParams ), $scope.possibleFields );
+      var urlParams = ObservationsFactory.processParams( _.object( newParams ), $scope.possibleFields );
       urlParams = _.mapObject( urlParams, function( v, k ) {
         // arrays turned to comma-delimited lists for URLs
         if( _.isArray( v ) ) { return v.join(","); }
@@ -264,18 +314,41 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         if( $scope.defaultParams[ k ] === true && v !== true ) { v = "any"; }
         return v;
       });
-      // prepare current settings to store to browser state history
-      currentState = { params: urlParams, selectedPlace: $scope.selectedPlace,
+      // never show `viewer_id` in the browser location
+      delete urlParams.viewer_id;
+      // add to the state a few params that don't appear in the URL
+      var stateParams = _.extend( { }, urlParams, {
+        dateType: $scope.params.dateType,
+        createdDateType: $scope.params.createdDateType
+      });
+      // prepare current settings to store in browser state history
+      currentState = { params: stateParams, selectedPlace: $scope.selectedPlace,
         selectedTaxon: $scope.selectedTaxon,
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
+    
+    $scope.numFiltersSet = _.keys( currentSearch ).length
+    var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id', 'swlat', 'swlng', 'nelat', 'nelng' ];
+    for (var i = skippableParams.length - 1; i >= 0; i--) {
+      if ( currentSearch[ skippableParams[i] ] ) {
+        $scope.numFiltersSet -= 1;
+      }
+    }
+    if ( currentSearch.iconic_taxa && currentSearch.iconic_taxa.split(',').length > 1 ) {
+      $scope.numFiltersSet += currentSearch.iconic_taxa.split(',').length - 1 ; 
+    }
+
     if( options.browserStateOnly ) {
       $scope.initialBrowserState = currentState;
     } else {
       $location.state( currentState );
-      $location.search( currentSearch );
+      if( options.replace ) {
+        $location.search( currentSearch ).replace( );
+      } else {
+        $location.search( currentSearch );
+      }
     }
   };
   $scope.viewing = function( view, subview ) {
@@ -327,7 +400,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     options = options || { };
     $scope.updateBrowserLocation( options );
     $scope.resetStats( );
-    var processedParams = shared.processParams( _.extend( { },
+    var processedParams = ObservationsFactory.processParamsForAPI( _.extend( { },
       $scope.params, { page: $scope.pagination.page }, shared.localeParams( ) ),
       $scope.possibleFields);
     // recording there was some location in the search. That will be used
@@ -393,7 +466,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( $scope.pagination.finished === true ) { return; }
     $scope.pagination.page += 1;
     $scope.pagination.searching = true;
-    var processedParams = shared.processParams(
+    var processedParams = ObservationsFactory.processParamsForAPI(
       _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
       if( response.data.total_results <= ( response.data.page * response.data.per_page ) ) {
@@ -420,12 +493,18 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     } else if ( urlParams.month ) {
       $scope.params.dateType = 'month';
     }
+    if ( urlParams.created_on ) {
+      $scope.params.createdDateType = 'exact';
+    } else if ( urlParams.created_d1 ) {
+      $scope.params.createdDateType = 'range';
+    }
     $scope.currentView = $scope.currentView || $scope.defaultView;
     $scope.currentSubview = $scope.currentSubview || $scope.defaultSubview;
     $scope.changeView( $scope.currentView, $scope.currentSubview, { skipSetLocation: true } );
     // once we set the views, the view params should be deleted
     delete $scope.params.view;
     delete $scope.params.subview;
+    $scope.setObservationFields( );
   };
   $scope.showNearbyPlace = function( place ) {
     $rootScope.$emit( "showNearbyPlace", place );
@@ -454,6 +533,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.params.swlat = null;
     $scope.params.nelng = null;
     $scope.params.nelat = null;
+    $scope.params.lat = null;
+    $scope.params.lng = null;
     $scope.mapBounds = null;
     $scope.mapBoundsIcon = null;
     $scope.hideRedoSearch = false;
@@ -491,7 +572,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           $( ".open" ).has( e.target ).length === 0 &&
           $( e.target ).parents('.ui-datepicker').length === 0 &&
           $( e.target ).parents('.ui-datepicker-header').length === 0 &&
-          $( e.target ).parents('.ui-multiselect-menu').length === 0
+          $( e.target ).parents('.ui-multiselect-menu').length === 0 &&
+          $( e.target ).parents('.observation-field').length === 0
         ) {
         $( "#filter-container" ).removeClass( "open" );
       };
@@ -628,6 +710,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
+      search_external: false,
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
         $scope.selectedTaxon = new iNatModels.Taxon( result.item );
@@ -675,7 +758,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.taxon_id = state.params.taxon_id;
         $scope.initializeTaxonParams( );
       }
-      var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
+      var previousProcessedParams = ObservationsFactory.processParamsForAPI( previousParams, $scope.possibleFields );
       delete previousProcessedParams.view;
       delete previousProcessedParams.subview;
       // restoring state of iconic taxa filters, (e.g { Chromista: true })
@@ -693,7 +776,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       }
       // make sure we don't set the location again when going back in history
       $scope.changeView( previousParams.view || $scope.defaultView,
-        previousParams.subview || $scope.defaultSubview, { skipSetLocation: true } )
+        previousParams.subview || $scope.defaultSubview, { skipSetLocation: true } );
+      $scope.setObservationFields( );
       if(!$scope.$$phase) { $scope.$digest( ); }
     };
   };
@@ -703,7 +787,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       name = name.replace( "params.", "" );
       $scope.possibleFields.push( name );
     });
-    $scope.defaultProcessedParams = shared.processParams( $scope.defaultParams, $scope.possibleFields );
+    $scope.defaultProcessedParams = ObservationsFactory.processParamsForAPI( $scope.defaultParams, $scope.possibleFields );
   };
   $scope.paramsForUrl = function( ) {
     var urlParams = _.extend( { }, $scope.params );
@@ -720,8 +804,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete urlParams.order;
     delete urlParams.order_by;
     delete urlParams.dateType;
+    delete urlParams.createdDateType;
     delete urlParams.view;
     delete urlParams.subview;
+    delete urlParams.viewer_id;
     return $.param( urlParams );
   };
   $scope.showInfowindow = function( o ) {
@@ -729,6 +815,38 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.hideInfowindow = function( ) {
     $rootScope.$emit( "hideInfowindow" );
+  };
+  $scope.toggleShowViewerObservations = function( ) {
+    if ( !CURRENT_USER ) { return; };
+    if ( $scope.params.user_id == CURRENT_USER.id || $scope.params.user_id == CURRENT_USER.login ) {
+      $scope.params.user_id = null;
+    } else {
+      $scope.params.user_id = CURRENT_USER.login;
+    }
+  };
+  $scope.setObservationFields = function( ) {
+    var urlParams = $location.search( );
+    // Put the URL params that correspond to observation fields in their own part of the scope
+    // If there's a more readable way to perform this simple task, please let me know.
+    $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
+      if( k.match(/(\w+):(\w+)/ ) ) {
+        memo[k] = v;
+      }
+      return memo;
+    }, { } );
+  }
+  $scope.removeObservationField = function( field ) {
+    if( !$scope.params.observationFields ) {
+      return;
+    }
+    if ( !$scope.params.observationFields.hasOwnProperty( field ) ) {
+      return;
+    }
+    delete $scope.params.observationFields[ field ];
+    return false;
+  };
+  $scope.canShowObservationFields = function( ) {
+    return ($scope.params.observationFields && !_.isEmpty( $scope.params.observationFields ))
   };
   $scope.preInitialize( );
 }]);
@@ -957,16 +1075,19 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.infoWindowCallback( $scope.map, iw, latLng, o.id );
   });
   $rootScope.$on( "hideInfowindow", function( event, o ) {
+    $scope.snippetInfoWindowObservation = null;
     if( $scope.snippetInfoWindow ) {
       $scope.snippetInfoWindow.close( );
     }
-    $scope.snippetInfoWindowObservation = null;
   });
+  $scope.infoWindowCallbackStartTime;
   // callback method when an observation is clicked on the map
   // fetch the observation details, and render the snippet template
   $scope.infoWindowCallback = function( map, iw, latLng, observation_id, options ) {
     map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>" +
       I18n.t( "loading" ) + "</div>", options );
+    var time = new Date( ).getTime( );
+    $scope.infoWindowCallbackStartTime =  time;
     ObservationsFactory.show( observation_id ).then( function( response ) {
       observations = ObservationsFactory.responseToInstances( response );
       if( observations.length > 0 ) {
@@ -975,6 +1096,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
         // delay this a bit so the view has time to update
         setTimeout(function( ) {
+          if( $scope.infoWindowCallbackStartTime !== time ) { return; }
           map.infoWindowSetContent( iw, latLng, $( "#infoWindowSnippet" ).html( ), options );
         }, 10)
       }
@@ -984,7 +1106,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( !$scope.map ) { return };
     if( !$scope.$parent.parametersInitialized ) { return };
     window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
-    var layerParams = shared.processParams( $scope.params, $scope.possibleFields );
+    var layerParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
       mapStyle: _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ? "summary" : "colored_heatmap",
@@ -996,43 +1118,57 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.boundingBoxCenterIcon ) { $scope.boundingBoxCenterIcon.setMap( null ); }
     $scope.selectedPlaceLayer = null;
     $scope.boundingBoxCenterIcon = null;
-    if( $scope.$parent.selectedPlace || $scope.params.swlat ) {
-      $scope.selectedPlaceLayer = new google.maps.Data({ style: $scope.placeLayerStyle });
-      // draw the polygon for the current place
-      if( $scope.$parent.selectedPlace ) {
-        var c = { type: "Feature",
-          geometry: $scope.$parent.selectedPlace.geometry_geojson };
-        $scope.selectedPlaceLayer.addGeoJson( c );
-        $scope.selectedPlaceLayer.setMap( $scope.map );
+    var xMarkerPosition;
+    $scope.selectedPlaceLayer = new google.maps.Data({ style: $scope.placeLayerStyle });
+    // draw the polygon for the current place
+    if( $scope.$parent.selectedPlace ) {
+      var c = { type: "Feature",
+        geometry: $scope.$parent.selectedPlace.geometry_geojson };
+      $scope.selectedPlaceLayer.addGeoJson( c );
+      $scope.selectedPlaceLayer.setMap( $scope.map );
+    }
+    // draw the filter bounding box
+    else if( $scope.params.swlat && $scope.params.swlng &&
+        $scope.params.nelat && $scope.params.nelng ) {
+      // google.maps.Rectangle seems more reliable than using GeoJSON here
+      $scope.selectedPlaceLayer = new google.maps.Rectangle(
+        _.extend( { }, $scope.placeLayerStyle, {
+          map: $scope.map,
+          bounds: {
+            north: parseFloat( $scope.params.nelat ),
+            south: parseFloat( $scope.params.swlat ),
+            east: parseFloat( $scope.params.nelng ),
+            west: parseFloat( $scope.params.swlng )
+          }
+        })
+      );
+      // add an X marker in the center of the bounding box
+      if( $scope.$parent.mapBoundsIcon && $scope.searchedPlace ) {
+        xMarkerPosition = $scope.searchedPlace.geometry.location;
       }
-      // draw the filter bounding box
-      else if( $scope.params.swlat && $scope.params.swlng &&
-          $scope.params.nelat && $scope.params.nelng ) {
-        // google.maps.Rectangle seems more reliable than using GeoJSON here
-        $scope.selectedPlaceLayer = new google.maps.Rectangle(
-          _.extend( { }, $scope.placeLayerStyle, {
-            map: $scope.map,
-            bounds: {
-              north: parseFloat( $scope.params.nelat ),
-              south: parseFloat( $scope.params.swlat ),
-              east: parseFloat( $scope.params.nelng ),
-              west: parseFloat( $scope.params.swlng )
-            }
-          })
-        );
-        // add an X marker in the center of the bounding box
-        if( $scope.$parent.mapBoundsIcon && $scope.searchedPlace ) {
-          $scope.boundingBoxCenterIcon = new google.maps.Marker({
-            position: $scope.searchedPlace.geometry.location,
-            icon: {
-              url: "/mapMarkers/x.svg",
-              scaledSize: new google.maps.Size( 20, 20 ),
-              anchor: new google.maps.Point( 10, 10 ),
-            },
-            map: $scope.map
-          });
-        }
-      }
+    } else if( $scope.params.lat && $scope.params.lng ) {
+      xMarkerPosition = {
+        lat: parseFloat( $scope.params.lat ),
+        lng: parseFloat( $scope.params.lng )
+      };
+      $scope.selectedPlaceLayer = new google.maps.Circle(
+        _.extend( { }, $scope.placeLayerStyle, {
+          map: $scope.map,
+          radius: 10000,
+          center: xMarkerPosition
+        })
+      );
+    }
+    if( xMarkerPosition ) {
+      $scope.boundingBoxCenterIcon = new google.maps.Marker({
+        position: xMarkerPosition,
+        icon: {
+          url: "/mapMarkers/x.svg",
+          scaledSize: new google.maps.Size( 20, 20 ),
+          anchor: new google.maps.Point( 10, 10 ),
+        },
+        map: $scope.map
+      });
     }
     $scope.mapLayersInitialized = true;
     if( align ) {

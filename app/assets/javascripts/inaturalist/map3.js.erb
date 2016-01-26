@@ -452,8 +452,8 @@ iNaturalist.Map.createMap = function(options) {
     }
   })
   map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
-
-  if( ! _.has( options, "disableFullscreen" ) ) {
+  
+  if ( !options.disableFullscreen ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   }
 
@@ -904,6 +904,9 @@ var appendValidParamsToURL = function( url, options ) {
     if( _.contains( options.validParams, key ) ) {
       params[ key ] = value;
     }
+    if ( key.match( /field:\w+/ ) ) {
+      params[ key ] = value;
+    }
   });
   // build the proper paramater string for HTTP GET
   if( params ) {
@@ -1043,7 +1046,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   if( options.observation_id && typeof options.observation_id == "number" ) {
     options.featured_observation_id = options.observation_id;
   }
-  // these are the parameters that will be sent to the windshaft API
+  // these are the parameters that will be sent to the node API
   var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
     'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',
     'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
@@ -1052,7 +1055,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'project_ids', 'geoprivacy', 'on', 'created_on', 'viewer_id', 'reviewed',
     'featured_observation_id', 'threatened', 'introduced', 'endemic',
     'native', 'verifiable', 'popular', 'has', 'photos', 'sounds',
-    'photo_license', 'created_d1', 'created_d2', 'not_in_project' ];
+    'photo_license', 'created_d1', 'created_d2', 'not_in_project',
+    'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(

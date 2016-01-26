@@ -174,4 +174,17 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name(t.taxon_names, :place => p)).to eq tn_ca
     expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_gl
   end
+
+  it "should pick names based on the site's place even when a place isn't requested explicitly" do
+    california = Place.make!
+    oregon = Place.make!
+    tn_gl = TaxonName.make!(name: "bay tree", lexicon: "English", taxon: t)
+    tn_es = TaxonName.make!(name: "Laurel de California", lexicon: "Spanish", taxon: t)
+    tn_or = TaxonName.make!(name: "Oregon myrtle", lexicon: "English", taxon: t)
+    ptn_or = PlaceTaxonName.make!(taxon_name: tn_or, place: oregon)
+    t.reload
+    site = Site.make!( place: oregon )
+    stub_config( site_id: site.id )
+    expect(TaxonName.choose_common_name( t.taxon_names ) ).to eq tn_or
+  end
 end

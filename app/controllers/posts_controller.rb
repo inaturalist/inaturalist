@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show, :browse]
+  before_action :doorkeeper_authorize!, :only => [ :for_project_user ], :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index, :show, :browse], :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy ]
   before_filter :load_post, :only => load_only
   blocks_spam :only => load_only, :instance => :post
-  before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
+  before_filter :load_parent, :except => [:browse, :create, :update, :destroy, :for_project_user]
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
 
@@ -205,6 +206,43 @@ class PostsController < ApplicationController
     @posts = Post.not_flagged_as_spam.published.page(params[:page] || 1).order('published_at DESC')
     respond_to do |format|
       format.html
+    end
+  end
+
+  def for_project_user
+    @posts = Post.not_flagged_as_spam.published.
+      joins("JOIN project_users pu ON pu.user_id = #{current_user.id}").
+      where("pu.project_id = posts.parent_id AND posts.parent_type = 'Project'").
+      order("published_at DESC").
+      page(params[:page] || 1).
+      per_page(30)
+    if !params[:newer_than].blank? && ( newer_than_post = Post.find_by_id( params[:newer_than] ) )
+      @posts = @posts.where( "posts.published_at > ?", newer_than_post.published_at )
+    end
+    if !params[:older_than].blank? && ( older_than_post = Post.find_by_id( params[:older_than] ) )
+      @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
+    end
+    respond_to do |format|
+      format.json do
+        json = @posts.as_json(:include => {
+          user: {
+            only: [ :id, :login ], 
+            methods: [ :user_icon_url, :medium_user_icon_url ]
+          },
+          parent: {
+            only: [ :id, :title ],
+            methods: [ :icon_url ]
+          }
+        })
+        json.each_with_index do |post, i|
+          json[i]['body'] = FakeView.formatted_user_text(
+            json[i]['body'],
+            tags: Post::ALLOWED_TAGS,
+            attributes: Post::ALLOWED_ATTRIBUTES
+          )
+        end
+        render json: json
+      end
     end
   end
   

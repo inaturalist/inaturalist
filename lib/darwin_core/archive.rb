@@ -13,6 +13,7 @@ module DarwinCore
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
+      @opts[:private_coordinates] ||= false
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]
 
@@ -103,6 +104,7 @@ module DarwinCore
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
       params[:quality_grade] = @opts[:quality]
+      params[:site_id] = @opts[:site_id]
       params
     end
 
@@ -123,7 +125,7 @@ module DarwinCore
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
         observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
-          o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
+          o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
           csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
             o.send(method || field)
           end

@@ -122,8 +122,12 @@ class PlaceGeometry < ActiveRecord::Base
       else
         0.075
       end
+    if s = PlaceGeometry.where(id: id).
+             select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
+      return s
+    end
     PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
+      select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
   end
 
   def self.update_observations_places(place_geometry_id)

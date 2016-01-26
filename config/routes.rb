@@ -381,6 +381,9 @@ Rails.application.routes.draw do
   get 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
   resources :posts, :except => [:index], :constraints => { :id => id_param_pattern } do
     resources :flags
+    collection do
+      get :for_project_user
+    end
   end
   resources :posts,
     :as => 'journal_posts',
