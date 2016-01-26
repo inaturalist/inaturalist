@@ -409,7 +409,7 @@ class Observation < ActiveRecord::Base
         gte: d1.strftime("%F"),
         lte: d2.strftime("%F") }}
       if query_by_date
-        search_filters << date_filter
+        search_filters << { range: date_filter }
       else
         time_filter = { time_observed_at: {
           gte: d1.strftime("%FT%T%:z"),

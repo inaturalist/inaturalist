@@ -413,17 +413,17 @@ describe "Observation Index" do
 
     it "filters by d1 d2 dates" do
       expect( Observation.params_to_elastic_query({ d1: "2015-03-25", d2: "2015-06-20" }) ).to include(
-        filters: [ { "observed_on_details.date": { gte: "2015-03-25", lte: "2015-06-20" } } ] )
+        filters: [ { range: { "observed_on_details.date": { gte: "2015-03-25", lte: "2015-06-20" }}}])
     end
 
     it "defaults d2 date to now" do
       expect( Observation.params_to_elastic_query({ d1: "2015-03-25" }) ).to include(
-        filters: [ { "observed_on_details.date": { gte: "2015-03-25", lte: Time.now.strftime("%F") } } ] )
+        filters: [ { range: { "observed_on_details.date": { gte: "2015-03-25", lte: Time.now.strftime("%F") }}}])
     end
 
     it "defaults d1 date to 1800" do
       expect( Observation.params_to_elastic_query({ d2: "2015-06-20" }) ).to include(
-        filters: [ { "observed_on_details.date": { gte: "1800-01-01", lte: "2015-06-20" } } ] )
+        filters: [ { range: { "observed_on_details.date": { gte: "1800-01-01", lte: "2015-06-20" }}}])
     end
 
     it "filters by d1 d2 datetimes" do
