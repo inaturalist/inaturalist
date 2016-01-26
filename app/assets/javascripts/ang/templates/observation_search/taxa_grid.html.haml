@@ -10,7 +10,7 @@
           {{ t.establishmentMeansCode( ) }}
         .photometa
           %a{ "ng-href": "{{ extendBrowserLocation({ taxon_id: t.id, view: null }) }}", target: "_self"  }
-            {{ shared.t( 'x_observations', { count: shared.numberWithCommas( t.resultCount ) } ) }}
+            {{ shared.t( 'x_observations', { count: (t.resultCount == 1 ? t.resultCount : shared.numberWithCommas( t.resultCount ) ) } ) }}
           .pull-right
             .photo-license{ "uib-tooltip" => "{{ t.photoAttribution( ) }}", "tooltip-popup-delay" => 500 }
               {{ t.photoLicenseShort( ) }}
