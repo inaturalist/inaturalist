@@ -74,6 +74,16 @@ shared_examples_for "a PostsController" do
       json = JSON.parse(response.body)
       expect( json.detect{|p|  p['id'] == post.id } ).not_to be_blank
     end
+    it "should not include duplicate site posts if the user has joined several projects" do
+      s = Site.make!
+      3.times { ProjectUser.make!( user: user ) }
+      user.update_attributes( site: s )
+      expect( user.site_id ).to eq s.id
+      post = Post.make!( parent: s )
+      get :for_user, format: :json
+      json = JSON.parse(response.body)
+      expect( json.select{|p|  p['id'] == post.id }.size ).to eq 1
+    end
     it "should not include site posts from other sites" do
       s1 = Site.make!
       s2 = Site.make!

@@ -215,12 +215,19 @@ class PostsController < ApplicationController
   end
 
   def for_user
+    from_sql = <<-SQL
+      SELECT DISTINCT ON (posts.id) posts.*
+      FROM
+        posts
+          LEFT OUTER JOIN project_users pu ON pu.user_id = #{current_user.id}
+      WHERE
+        (pu.project_id = posts.parent_id AND posts.parent_type = 'Project')
+    SQL
+    unless current_user.site_id.blank?
+      from_sql << " OR (posts.parent_type = 'Site' AND posts.parent_id = #{current_user.site_id})"
+    end
     @posts = Post.not_flagged_as_spam.published.
-      joins("LEFT OUTER JOIN project_users pu ON pu.user_id = #{current_user.id}").
-      where(
-        "(pu.project_id = posts.parent_id AND posts.parent_type = 'Project')" + 
-        " OR " +
-        "(posts.parent_type = 'Site' AND posts.parent_id = ?)", current_user.site_id).
+      from( "(#{from_sql}) AS posts" ).
       order("published_at DESC").
       page(params[:page] || 1).
       per_page(30)
