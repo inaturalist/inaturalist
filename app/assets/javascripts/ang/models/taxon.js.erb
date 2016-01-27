@@ -7,7 +7,7 @@ iNatModels.Taxon = function( attrs ) {
   });
 };
 
-iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.to_json(only: [:id, :name, :rank]) %>;
+iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.sort.to_json(only: [:id, :name, :rank]) %>;
 
 iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
   var that = this
