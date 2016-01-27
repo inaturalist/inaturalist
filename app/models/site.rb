@@ -197,6 +197,10 @@ class Site < ActiveRecord::Base
     "<Site #{id} #{url}>"
   end
 
+  def respond_to?(method, include_all=false)
+    preferences.keys.include?(method.to_s) ? true : super
+  end
+
   def method_missing(method, *args, &block)
     preferences.keys.include?(method.to_s) ? preferences[method.to_s] : super
   end

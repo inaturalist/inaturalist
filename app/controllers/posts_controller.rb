@@ -246,7 +246,7 @@ class PostsController < ApplicationController
           },
           parent: {
             only: [ :id, :title, :name ],
-            methods: [ :icon_url ]
+            methods: [ :icon_url, :site_name_short ]
           }
         })
         json.each_with_index do |post, i|
