@@ -393,6 +393,13 @@ Rails.application.routes.draw do
   end
   resources :posts, as: "site_posts", path: "/blog" do
     resources :flags
+    collection do
+      get "archives/:year/:month" => "posts#archives", as: :archives_by_month, constraints: {
+        month: /\d{1,2}/, 
+        year: /\d{1,4}/
+      }
+      get :archives
+    end
   end
   resources :trips, :constraints => { :id => id_param_pattern } do
     member do

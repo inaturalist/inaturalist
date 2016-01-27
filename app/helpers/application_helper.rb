@@ -1267,11 +1267,46 @@ module ApplicationHelper
   def flexible_post_path(post, options = {})
     return trip_path(post, options) if post.is_a?(Trip)
     if post.parent_type == "User"
-      journal_post_path(post.user.login, post)
+      journal_post_path(post.user.login, post, options)
     elsif post.parent_type == "Project"
-      project_journal_post_path(post.parent.slug, post)
+      project_journal_post_path(post.parent.slug, post, options)
     else
-      site_post_path(post)
+      site_post_path(post, options)
+    end
+  end
+
+  def flexible_post_url(post, options = {})
+    return trip_url(post, options) if post.is_a?(Trip)
+    if post.parent_type == "User"
+      journal_post_url(post.user.login, post, options)
+    elsif post.parent_type == "Project"
+      project_journal_post_url(post.parent.slug, post, options)
+    else
+      site_post_url(post, options)
+    end
+  end
+
+  def post_parent_path( parent, options = {} )
+    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    case parent.class.name
+    when "Project"
+      project_journal_path( options.merge( project_id: parent_slug ) )
+    when "User"
+      journal_by_login_path( options.merge( login: parent_slug ) )
+    else
+      site_posts_path( options )
+    end
+  end
+
+  def post_archives_by_month_path( parent, year, month )
+    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    case parent.class.name
+    when "Project"
+      project_journal_archives_by_month_path( parent_slug, year, month )
+    when "User"
+      journal_archives_by_month_path( parent_slug, year, month )
+    else
+      archives_by_month_site_posts_path( year, month )
     end
   end
 
