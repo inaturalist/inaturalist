@@ -204,4 +204,11 @@ class Site < ActiveRecord::Base
   def editable_by?(user)
     user && user.is_admin?
   end
+
+  def icon_url
+    return nil unless logo_square.file?
+    url = logo_square.url
+    url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
+    url
+  end
 end

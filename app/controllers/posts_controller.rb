@@ -245,7 +245,7 @@ class PostsController < ApplicationController
             methods: [ :user_icon_url, :medium_user_icon_url ]
           },
           parent: {
-            only: [ :id, :title ],
+            only: [ :id, :title, :name ],
             methods: [ :icon_url ]
           }
         })
@@ -269,7 +269,6 @@ class PostsController < ApplicationController
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end
-
   end
   
   def load_parent

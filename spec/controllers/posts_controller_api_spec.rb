@@ -58,6 +58,24 @@ shared_examples_for "a PostsController" do
       json = JSON.parse(response.body)
       expect( json.detect{|p| p['id'] == post.id }['parent']['icon_url'] ).to eq pu.project.icon_url
     end
+    it "should include site name" do
+      site = Site.make!
+      user.update_attributes( site: site )
+      post = Post.make!( parent: site )
+      get :for_user, format: :json
+      json = JSON.parse(response.body)
+      json_post = json.detect{|p| p['id'] == post.id }
+      expect( json_post['parent']['name'] ).to eq site.name
+    end
+    it "should include site icon_url" do
+      site = Site.make!
+      user.update_attributes( site: site )
+      post = Post.make!( parent: site )
+      get :for_user, format: :json
+      json = JSON.parse(response.body)
+      json_post = json.detect{|p| p['id'] == post.id }
+      expect( json_post['parent']['icon_url'] ).to eq site.icon_url
+    end
     it "should not include disallowed tags like figure" do
       pu = ProjectUser.make!(user: user)
       post = Post.make!(parent: pu.project, user: pu.project.user, body: "<figure>foo</figure>")
