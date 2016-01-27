@@ -125,4 +125,10 @@ class PlaceGeometry < ActiveRecord::Base
       select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
   end
 
+  def self.update_observations_places(place_geometry_id)
+    if pg = PlaceGeometry.where(id: place_geometry_id).first
+      Place.update_observations_places(pg.place_id)
+    end
+  end
+
 end

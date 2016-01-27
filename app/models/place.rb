@@ -925,6 +925,7 @@ class Place < ActiveRecord::Base
   end
 
   def self.update_observations_places(place_id)
+    return if place_id.blank?
     start_time = Time.now
     # observations from existing denormalized records
     ids = Observation.joins(:observations_places).
