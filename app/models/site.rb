@@ -1,8 +1,9 @@
 class Site < ActiveRecord::Base
-  # attr_accessible :name, :flickr
-  has_many :observations, :inverse_of => :site
-  has_many :users, :inverse_of => :site
-  has_many :site_admins, :inverse_of => :site
+  has_many :observations, inverse_of: :site
+  has_many :users, inverse_of: :site
+  has_many :site_admins, inverse_of: :site
+  has_many :posts, as: :parent, dependent: :destroy
+  has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
 
   scope :live, -> { where(draft: false) }
   scope :drafts, -> { where(draft: true) }
@@ -196,7 +197,22 @@ class Site < ActiveRecord::Base
     "<Site #{id} #{url}>"
   end
 
+  def respond_to?(method, include_all=false)
+    preferences.keys.include?(method.to_s) ? true : super
+  end
+
   def method_missing(method, *args, &block)
     preferences.keys.include?(method.to_s) ? preferences[method.to_s] : super
+  end
+
+  def editable_by?(user)
+    user && user.is_admin?
+  end
+
+  def icon_url
+    return nil unless logo_square.file?
+    url = logo_square.url
+    url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
+    url
   end
 end
