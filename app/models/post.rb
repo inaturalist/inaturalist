@@ -45,6 +45,7 @@ class Post < ActiveRecord::Base
     iframe img li object ol p param pre small strong sub sup tt ul
     table tr td th
     audio source
+    div
   )
 
   ALLOWED_ATTRIBUTES = %w(

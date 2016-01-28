@@ -252,8 +252,10 @@ class PostsController < ApplicationController
         json.each_with_index do |post, i|
           json[i]['body'] = FakeView.formatted_user_text(
             json[i]['body'],
-            tags: Post::ALLOWED_TAGS,
-            attributes: Post::ALLOWED_ATTRIBUTES
+            PostScrubber.new(
+              tags: Post::ALLOWED_TAGS,
+              attributes: Post::ALLOWED_ATTRIBUTES
+            )
           )
         end
         render json: json

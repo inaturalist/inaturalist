@@ -62,7 +62,7 @@
 
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
-          = formatted_user_text(@trip.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
+          = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES))
           .small.text-muted.stacked
             =t :posted_by
             = succeed ',' do

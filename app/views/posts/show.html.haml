@@ -76,7 +76,7 @@
   .row
     .col-md-8
       .post
-        = formatted_user_text(@post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
+        = formatted_user_text(@post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES))
       #postmeta.description
         %span.label
           - t(:posted_on)
