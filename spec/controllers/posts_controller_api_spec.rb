@@ -167,3 +167,16 @@ describe PostsController, "devise authentication" do
   before { http_login(user) }
   it_behaves_like "a PostsController"
 end
+
+describe PostsController, "without authentication" do
+  describe "for_user" do
+    it "should return site posts" do
+      site = Site.make!
+      post = Post.make!( parent: site )
+      get :for_user, format: :json
+      json = JSON.parse(response.body)
+      json_post = json.detect{ |p| p['id'] == post.id }
+      expect( json_post ).not_to be_blank
+    end
+  end
+end
