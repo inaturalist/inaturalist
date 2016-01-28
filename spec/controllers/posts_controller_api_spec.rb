@@ -172,6 +172,7 @@ describe PostsController, "without authentication" do
   describe "for_user" do
     it "should return site posts" do
       site = Site.make!
+      stub_config( site_id: site.id )
       post = Post.make!( parent: site )
       get :for_user, format: :json
       json = JSON.parse(response.body)
