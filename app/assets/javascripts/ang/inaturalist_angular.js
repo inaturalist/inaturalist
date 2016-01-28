@@ -137,8 +137,7 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
-        scope.timezone = scope.timezone || "UTC";
-        var date = moment(scope.time || scope.date).tz(scope.timezone),
+        var date = moment(scope.date),
             now = moment(new Date()),
             dateString;
         if (date.isSame(now, 'day')) {
@@ -152,6 +151,7 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
       }
       scope.timeString = function() {
         if( !scope.time ) { return; }
+        scope.timezone = scope.timezone || "UTC";
         return moment(scope.time).tz(scope.timezone).format("LT z");
       }
     },
