@@ -1,44 +1,7 @@
 - content_for :title do
   = @title = @trip.title
 - content_for :extracss do
-  :css
-    .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
-      width: 170px;
-      height: 170px;
-    }
-    #sidenav {
-      width: 175px;
-      padding: 0;
-      background-color: #fff;
-    }
-    @media (min-width: 992px) {
-      #sidenav {
-        width: 210px;
-      }
-    }
-    @media (min-width: 1200px) {
-      #sidenav {
-        width: 275px;
-      }
-    }
-    #sidenav > li:first-child > a {
-      -webkit-border-radius: 6px 6px 0 0;
-      -moz-border-radius: 6px 6px 0 0;
-      border-radius: 6px 6px 0 0;
-    }
-    #sidenav > li:last-child > a {
-      -webkit-border-radius: 0 0 6px 6px;
-      -moz-border-radius: 0 0 6px 6px;
-      border-radius: 0 0 6px 6px;
-    }
-    #sidenav > li > a {
-      display: block;
-      width: 210px \9;
-      margin: 0 0 -1px;
-      padding: 8px 14px;
-      border: 1px solid #e5e5e5;
-    }
-    .observationcontrols {margin-top:10px;}
+  = stylesheet_link_tag "trips/show"
 - content_for :extrajs do
   :javascript
     $('.observationcontrols').observationControls()
@@ -53,6 +16,8 @@
     %li
       - if @trip.parent.is_a?(Project)
         = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
+      - elsif @trip.parent.is_a?(Site)
+        = link_to t(:x_blog, x: @trip.parent.name), site_posts_path
       - else
         = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
     %li.active
@@ -97,7 +62,7 @@
 
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
-          = formatted_user_text(@trip.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
+          = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES))
           .small.text-muted.stacked
             =t :posted_by
             = succeed ',' do

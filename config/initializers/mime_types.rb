@@ -13,3 +13,4 @@ Mime::Type.register_alias "text/javascript", :widget, %w( application/javascript
 # Mime::Type.register "application/pdf", :pdf
 Mime::Type.register "application/zip", :ngz
 # Mime::Type.register "application/atom+xml", :atom
+Mime::Type.register "text/calendar", :ics

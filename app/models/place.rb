@@ -19,7 +19,9 @@ class Place < ActiveRecord::Base
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
-  has_many :observations_places, :dependent => :delete_all
+  # do not destroy observations_places. That will happen
+  # in update_observations_places, from a callback in place_geometry
+  has_many :observations_places
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
@@ -920,6 +922,20 @@ class Place < ActiveRecord::Base
         Place.where(id: places)
       end
     end
+  end
+
+  def self.update_observations_places(place_id)
+    return if place_id.blank?
+    start_time = Time.now
+    # observations from existing denormalized records
+    ids = Observation.joins(:observations_places).
+      where("observations_places.place_id = ?", place_id).pluck(:id)
+    Observation.update_observations_places(ids: ids)
+    Observation.elastic_index!(ids: ids)
+    # observations not touched above that are in this place
+    ids = Observation.in_place(place_id).where("last_indexed_at < ?", start_time).pluck(:id)
+    Observation.update_observations_places(ids: ids)
+    Observation.elastic_index!(ids: ids)
   end
 
 end

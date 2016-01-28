@@ -45,6 +45,7 @@ class Post < ActiveRecord::Base
     iframe img li object ol p param pre small strong sub sup tt ul
     table tr td th
     audio source
+    div
   )
 
   ALLOWED_ATTRIBUTES = %w(
@@ -81,6 +82,10 @@ class Post < ActiveRecord::Base
     s = self.title || ""
     s += ", by #{self.user.try(:login)}" unless options[:no_user]
     s
+  end
+
+  def to_param
+    "#{id}-#{title.parameterize}"
   end
   
   def draft?

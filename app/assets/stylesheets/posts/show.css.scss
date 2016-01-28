@@ -1,0 +1,14 @@
+#pageheader .meta {display: block;float: right;margin-left: 1em;}
+#pageheader .breadcrumbs {float: left;width: auto;}
+#pageheader h2 {clear: left;}
+#postmeta {margin: 1em 0;}
+.observation .user {display: none;}
+.observations.infowindow .observation {width: 250px;}
+.observations.names .attribute {display: none;}
+.observations.names .attribute.icon,.observations.names .attribute.species_guess {display: block;}
+#sidecol .tabs {float: right;}
+#sidecol .tabs li {padding-top: 0;padding-bottom: 0;}
+#sidecol .tabs .selected {font-weight: bold;}
+.toggle_button {display: block;font-weight: bold;padding-left: 13px;background: center left url(#{ image_path('toggle_arrow_right.png') }) no-repeat;}
+.toggle_button.open {background: center left url(#{ image_path('toggle_arrow_up.png') }) no-repeat;}
+#map {width: 350px;height: 500px;}

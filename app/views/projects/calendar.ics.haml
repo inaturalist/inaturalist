@@ -12,10 +12,10 @@
     cal.event do |e|
       e.dtstart     = Icalendar::Values::DateTime.new(project.start_time, 'tzid' => tzid)
       e.dtend       = Icalendar::Values::DateTime.new(project.end_time, 'tzid' => tzid)
-      e.summary     = project.title
-      e.description = project.description
+      e.summary     = project.title.encode('UTF-8')
+      e.description = project.description.encode('UTF-8')
       e.ip_class    = "PUBLIC"
-      e.location    = project.place.display_name if project.place
+      e.location    = project.place.display_name.encode('UTF-8') if project.place
       e.url         = project_url(project)
     end
   end
