@@ -142,14 +142,11 @@ end
 def enable_elastic_indexing(*args)
   classes = [args].flatten
   classes.each do |klass|
-    begin
-      klass.__elasticsearch__.create_index!
-      klass.__elasticsearch__.refresh_index!
-      klass.send :after_save, :elastic_index!
-      klass.send :after_destroy, :elastic_delete!
-      klass.send :after_touch, :elastic_index!
-    rescue
-    end
+    klass.__elasticsearch__.create_index!
+    ElasticModel.wait_until_index_exists(klass.index_name)
+    klass.send :after_save, :elastic_index!
+    klass.send :after_destroy, :elastic_delete!
+    klass.send :after_touch, :elastic_index!
   end
 end
 
