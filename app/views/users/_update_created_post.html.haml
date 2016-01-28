@@ -5,7 +5,7 @@
   .post.clear.stacked{:id => id_for(post)}
     %h4= link_to(post.title, the_post_path)
     .readable.body.clear
-      = truncate_with_more(formatted_user_text(post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES), :length => 500)
+      = truncate_with_more(formatted_user_text(post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES)), :length => 500)
     .meta
       = t :posted_by
       = link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login))

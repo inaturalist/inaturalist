@@ -4,7 +4,7 @@
   :css
     tr.finished { text-decoration: line-through; }
     #calendar-buttons { margin-top: 15px; }
-    #calendar-buttons .btn { margin-right: 10px; }
+    #calendar-buttons .form-group { margin-left: 10px; }
     th.title { width: 40%; }
     th.start_time, th.end_time { width: 10%; }
     td.start_time, td.end_time { white-space: nowrap; }
@@ -20,11 +20,17 @@
     })
 .container
   #calendar-buttons.right
-    = form_tag url_for, method: :get do |f|
-      = link_to calendar_projects_url(format: 'ics'), :class => "btn btn-default" do
-        %i.fa.fa-calendar
-        =t :add_to_calendar
-      = text_field_tag :place_id, '', :placeholder => t(:filter_by_place), :description => t('views.users.edit.place_help_html'), :class => "placechooser", :data => {:place_id => @place.try(:id)}
+    = form_tag url_for, method: :get, :class => "form-inline" do |f|
+      .form-group
+        = text_field_tag :place_id, '', :placeholder => t(:filter_by_place), :description => t('views.users.edit.place_help_html'), :class => "placechooser", :data => {:place_id => @place.try(:id)}
+      .form-group
+        %label.checkbox{ title: t(:only_show_events_that_last_less_than_2_weeks ) }
+          = check_box_tag :eventsonly, true, @eventsonly, data: { autosubmit: true }
+          =t :events_only
+      .form-group
+        = link_to url_for_params(format: 'ics'), :class => "btn btn-default" do
+          %i.fa.fa-calendar
+          =t :add_to_calendar
   %h2=t :upcoming_bioblitzes
 
   %table.table.stacked

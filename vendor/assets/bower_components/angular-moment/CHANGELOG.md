@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.0.0-beta.3 - 2015-11-10
+
+- Support AngularJS 1.5.x 
+- Support for nw.js ([#196](https://github.com/urish/angular-moment/pull/196), contributed by [makkesk8](https://github.com/makkesk8))
+- Bugfix: `title` attribute does update when model changes ([#201](https://github.com/urish/angular-moment/pull/201), contributed by [stackia](https://github.com/stackia))
+
+## 1.0.0-beta.2 - 2015-09-20
+
+- Bugfix: Infinite digest loop when combining `am-time-ago` and `amTimezone` ([#178](https://github.com/urish/angular-moment/issues/178))
+- Bugfix: Cannot use angular-moment under webpack ([#108](https://github.com/urish/angular-moment/issues/108))
+- Add `amLocal` filter (see [#114](https://github.com/urish/angular-moment/issues/114))
+
+## 1.0.0-beta.1 - 2015-09-14
+
+!!! BREAKING CHANGE !!!
+
+Preprocessors, timezones and input format were removed from am-time-ago and all filters. Use the new `amFromUnix`, 
+`amUtc`, `amUtcOffset`, `amTimezone`, and `amParse` filters instead. 
+
+Examples:
+* `<time am-time-ago="myDate" am-format="YYYY-MM-DD">` becomes `<time am-time-ago="myDate|amParse:'YYYY-MM-DD'">`
+* `<time am-time-ago="myDate" am-preprocess="unix">` becomes `<time am-time-ago="myDate|amFromUnix">`
+* `{{myDate|amCalendar:'unix'}}` becomes `{{myDate|amFromUnix|amCalendar}}`
+* `{{myDate|amCalendar:null:'PDT'}}` becomes `{{myDate|amTimezone:'PDT'|amCalendar}}`
+
+The removal of the preprocessors also affects the other positional parameters of the `amTimeAgo`:
+ 
+`{{myDate|amTimeAgo:null:true:fromDate}}` becomes `{{myDate|amTimeAgo:true:fromDate}}`.
+
+For more information, please see [#174](https://github.com/urish/angular-moment/issues/174).
+
 ## 0.10.3 - 2015-09-05
 - Allow `amDateFormat` to work with custom formatted input date strings ([#162](https://github.com/urish/angular-moment/pull/162), contributed by [jblashka](https://github.com/jblashka))
 - `amAdd`, `amSubtract` - add/subtract a value from a given date ([#171](https://github.com/urish/angular-moment/pull/171), contributed by [nicholasruggeri](https://github.com/nicholasruggeri))
@@ -9,6 +40,7 @@
 - Look for `moment` on the `global` object ([#133](https://github.com/urish/angular-moment/pull/133), contributed by [kitbrennan90](https://github.com/kitbrennan90))
 - Add support to use UTC offset timezones in addition to named timezones ([#151](https://github.com/urish/angular-moment/pull/151), contributed by [DiegoZoracKy](https://github.com/DiegoZoracKy))
 - Add timezone parameter for amCalendar filter ([#152](https://github.com/urish/angular-moment/pull/152), contributed by [DiegoZoracKy](https://github.com/DiegoZoracKy))
+- Add `am-from` parameter to the `amTimeAgo` directive ([#145](https://github.com/urish/angular-moment/pull/145), contributed by [baleato](https://github.com/baleato))
 - Add `from` parameter to the `amTimeAgo` filter ([#146](https://github.com/urish/angular-moment/pull/146), contributed by [pipo02mix](https://github.com/pipo02mix))
 
 ## 0.10.1 - 2015-05-01

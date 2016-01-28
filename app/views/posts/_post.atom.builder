@@ -1,6 +1,4 @@
-url = (@parent.is_a?(Project) ? 
-       project_journal_post_url(:project_id => @parent_slug, :id => post) :
-       journal_post_url(:login => @parent_slug, :id => post)) 
+url = flexible_post_url( post )
 feed.entry(post, :url => url) do |entry|
   entry.title(post.title)
   entry.author do |author|

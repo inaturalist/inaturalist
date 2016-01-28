@@ -7,7 +7,7 @@
   @display_project ||= project
 #pageheader.col-md-12
   = before
-  = link_to image_tag(project.icon.url(:thumb), :alt => "#{h(project.title)} icon", :class => 'projecticon'), project
+  = link_to image_tag(project.icon.url(:thumb), :alt => "#{h(project.title)} icon", :class => 'parenticon projecticon'), project
   %h2
     = title
     = after_title

@@ -12,7 +12,7 @@
       %span.location{ title: "{{ o.displayPlace() }}" }
         .hidden-lg {{ o.displayPlace() | characters:6:true }}
         .visible-lg-inline-block {{ o.displayPlace() | characters:18:true }}
-      %span.date{ title: "{{ shared.t('observed_on') }} {{ o.observed_on }}" }
+      %span.date{ title: "{{ shared.t('observed_on') }} {{ o.time_observed_at || o.observed_on }}" }
         %span.hidden-lg {{ (o.observed_on | amDateFormat : 'l') || shared.t('unknown') }}
         %span.visible-lg-inline-block {{ (o.observed_on | amDateFormat : 'll') || shared.t('unknown') }}
     .meta.ng-cloak

@@ -7,7 +7,7 @@
   "main": "./angular-moment.js",
   "ignore": [],
   "dependencies": {
-    "angular": ">=1.2.0 <1.5.0",
+    "angular": ">=1.2.0 <1.6.0",
     "moment": ">=2.8.0 <2.11.0"
   },
   "devDependencies": {
@@ -18,15 +18,14 @@
     "type": "git",
     "url": "git://github.com/urish/angular-moment.git"
   },
-  "version": "0.10.3",
-  "_release": "0.10.3",
+  "version": "1.0.0-beta.3",
+  "_release": "1.0.0-beta.3",
   "_resolution": {
     "type": "version",
-    "tag": "0.10.3",
-    "commit": "07d373b7a2fd17ff25ab927ff7fcb0b53b2d13fd"
+    "tag": "1.0.0-beta.3",
+    "commit": "3b32174202a5b8923195d06ccef0a326ce9c20b3"
   },
   "_source": "git://github.com/urish/angular-moment.git",
-  "_target": "~0.10.3",
-  "_originalSource": "angular-moment",
-  "_direct": true
+  "_target": "1.0.0-beta.3",
+  "_originalSource": "angular-moment"
 }

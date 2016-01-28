@@ -67,7 +67,7 @@ class Observation < ActiveRecord::Base
       created_at_details: ElasticModel.date_details(created),
       created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
       updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
-      observed_on: datetime,
+      observed_on: datetime.blank? ? nil : datetime.to_date,
       observed_on_details: ElasticModel.date_details(datetime),
       time_observed_at: time_observed_at_in_zone,
       observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
@@ -399,20 +399,26 @@ class Observation < ActiveRecord::Base
     end
 
     if p[:d1] || p[:d2]
-      p[:d2] = Time.now if p[:d2] && p[:d2] > Time.now
-      search_filters << { bool: { should: [
-        { bool: { must: [
-          { range: { observed_on: {
-            gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } },
-          { exists: { field: "time_observed_at" } }
-        ] } },
-        { bool: { must: [
-          { range: { observed_on: {
-            gte: (p[:d1] || Time.new("1800")).to_date.to_s + "||/d",
-            lte: (p[:d2] || Time.now).to_date.to_s + "||/d" } } },
-          { missing: { field: "time_observed_at" } }
-        ] } }
-      ] }}
+      d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
+      d2 = DateTime.parse(p[:d2]) rescue Time.now
+      d2 = Time.now if d2 && d2 > Time.now
+      query_by_date = (
+        (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
+        (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
+      date_filter = { "observed_on_details.date": {
+        gte: d1.strftime("%F"),
+        lte: d2.strftime("%F") }}
+      if query_by_date
+        search_filters << { range: date_filter }
+      else
+        time_filter = { time_observed_at: {
+          gte: d1.strftime("%FT%T%:z"),
+          lte: d2.strftime("%FT%T%:z") } }
+        search_filters << { or: [
+          { and: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] },
+          { and: [ { range: date_filter }, { missing: { field: "time_observed_at" } } ] }
+        ] }
+      end
     end
     if p[:h1] && p[:h2]
       p[:h1] = p[:h1].to_i % 24
