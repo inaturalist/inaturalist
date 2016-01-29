@@ -162,6 +162,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // if any of the filters change we want to reset the page to 1.
       // when pagination, the page will change, so if the page doesn't
       // change, then the user is changing another filter, so go to page 1
+      if( _.isEqual( newValue, oldValue ) ) { return; }
       if( newValue.page === oldValue.page ) {
         $scope.params.page = 1;
       }
@@ -344,7 +345,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
-    
+
     $scope.numFiltersSet = _.keys( currentSearch ).length
     var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id',
       'swlat', 'swlng', 'nelat', 'nelng', 'page' ];
@@ -426,7 +427,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.showPages = function( ) {
     if( !$scope.searchingStopped( ) ) { return false; }
-    return $scope.observations.length > 0;
+    return $scope.pagination.total > $scope.pagination.perPage;
   };
   $scope.searchAndUpdateStats = function( options ) {
     if( $scope.searchDisabled ) { return true; }
