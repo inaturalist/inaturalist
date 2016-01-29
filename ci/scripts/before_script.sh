@@ -19,6 +19,7 @@ done
 
 echo "Setting up DB"
 RAILS_ENV=test bundle exec rake --trace db:setup
+RAILS_ENV=test bundle exec rake --trace db:migrate
 
 echo "Setting up ES"
 RAILS_ENV=test bundle exec rake --trace es:rebuild

@@ -1,0 +1,6 @@
+%p<>
+  = succeed "," do
+    = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
+%p<>
+  = raw t("views.emailer.users_updates_suspended.message", site_name: @site_name, login_url: login_url)
+= render "footer"

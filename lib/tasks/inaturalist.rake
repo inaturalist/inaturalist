@@ -59,9 +59,15 @@ namespace :inaturalist do
 
     # suspend subscriptions of users with no viewed updates
     Update.select(:subscriber_id).group(:subscriber_id).having("max(viewed_at) IS NULL").
-      order(:subscriber_id).pluck(:subscriber_id).in_groups_of(500, false) do |batch|
-      User.where(id: batch.compact).where(subscriptions_suspended_at: nil).
-        update_all(subscriptions_suspended_at: Time.now)
+      order(:subscriber_id).pluck(:subscriber_id).each_slice(500) do |batch|
+      # get this batch's users
+      users_to_suspend = User.where(id: batch.compact).where(subscriptions_suspended_at: nil)
+      # send them emails that we're suspending their subscriptions
+      users_to_suspend.each do |u|
+        Emailer.user_updates_suspended(u).deliver_now
+      end
+      # suspend their subscriptions
+      User.where(id: users_to_suspend.pluck(:id)).update_all(subscriptions_suspended_at: Time.now)
     end
   end
 
