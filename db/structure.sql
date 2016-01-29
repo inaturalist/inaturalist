@@ -3931,7 +3931,9 @@ CREATE TABLE users (
     site_id integer,
     place_id integer,
     spammer boolean,
-    spam_count integer DEFAULT 0
+    spam_count integer DEFAULT 0,
+    last_active date,
+    subscriptions_suspended_at timestamp without time zone
 );
 
 
@@ -7900,6 +7902,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150922215548');
 INSERT INTO schema_migrations (version) VALUES ('20151006230511');
 
 INSERT INTO schema_migrations (version) VALUES ('20151014213826');
+
+INSERT INTO schema_migrations (version) VALUES ('20151026184104');
 
 INSERT INTO schema_migrations (version) VALUES ('20151030205931');
 
