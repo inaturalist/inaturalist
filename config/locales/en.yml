@@ -493,11 +493,10 @@ en:
   but_we_didnt_add_this_observation_to_the_x_project: "But we didn't add this observation to the %{project} project because you didn't agree to the project terms."
   by: by
   by_adding_ids_to_observations: by adding IDs to observations
-  by_editedby: "by %{editedby}"
-  by_project_list: by project list
-  by_submittedby: "by %{submittedby}"
-  by_you: By you
   by_everyone: By everyone
+  by_project_list: by project list
+  by_user: "by %{user}"
+  by_you: By you
   calendar: Calendar
   can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
@@ -509,8 +508,10 @@ en:
   casual: casual
   catalogue_of_life: Catalogue of Life
   categories: categories
+  cc_0_description: "This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."
+  cc_0_name: No Copyright (CC0)
   cc_attribution_license: Creative Commons Attribution license
-  cc_by_description: "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."
+  cc_by_description: "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation."
   cc_by_name: Attribution
   cc_by_nc_description: "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don't have to license their derivative works on the same terms."
   cc_by_nc_name: Attribution-NonCommercial
@@ -707,9 +708,12 @@ en:
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
     all_rights_reserved: "(c) %{name}, all rights reserved"
     no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
+    no_rights_reserved: no rights reserved
+    no_rights_reserved_by: "%{name}, no rights reserved (%{license_name})"
     anonymous: anonymous
     public_domain: public domain
     copyright: copyright
+    no_copyright: no copyright (CC0)
     attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike License
     attribution_noncommercial_license: Attribution-NonCommercial License
     attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs License
@@ -1622,16 +1626,16 @@ en:
   momentjs:
     shortRelativeTime:
       future: "in %s"
-      past:   "%s"
+      past: "%s"
       s:  "s"
-      m:  "1m"
+      m:  "1min"
       mm: "%dm"
       h:  "1h"
       hh: "%dh"
       d:  "1d"
       dd: "%dd"
-      M:  "1m"
-      MM: "%dm"
+      M:  "1mo"
+      MM: "%dmo"
       y:  "1y"
       yy: "%dy"
   mon: Mon

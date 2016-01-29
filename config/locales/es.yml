@@ -563,11 +563,11 @@ es:
     al proyecto %{project}, porque no aceptaste los términos del proyecto.
   by: por
   by_adding_ids_to_observations: agregando identificaciones a las observaciones
-  by_editedby: por %{editedby}
+  by_everyone: De todos
   by_project_list: por lista de proyecto
   by_submittedby: por %{submittedby}
+  by_user: por %{user}
   by_you: Tuyas
-  by_everyone: De todos
   calendar: Calendario
   can_you_help_your_friends_id_these: ¿Puedes ayudar a identificar estas observaciones?
   cancel: Cancelar
@@ -839,6 +839,8 @@ es:
     attribution_sharealike_license: Atribución - Compartir bajo la misma licencia
     attribution_noderivs_license: Atribución - Sin obras derivadas
     gnu_free_documentation_license: Licencia gratuita de documentación GNU
+    no_rights_reserved: no hay derechos reservados
+    no_rights_reserved_by: "%{name}, no hay derechos reservados (%{license_name})"
   copyright_holder: Titular de los derechos de autor
   copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona
     distinta del observador y carece de atribución

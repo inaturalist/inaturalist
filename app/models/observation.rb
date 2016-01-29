@@ -92,6 +92,7 @@ class Observation < ActiveRecord::Base
   COMMUNITY_TAXON_SCORE_CUTOFF = (2.0 / 3)
   
   LICENSES = [
+    ["CC0", :cc_0_name, :cc_0_description],
     ["CC-BY", :cc_by_name, :cc_by_description],
     ["CC-BY-NC", :cc_by_nc_name, :cc_by_nc_description],
     ["CC-BY-SA", :cc_by_sa_name, :cc_by_sa_description],
@@ -103,7 +104,7 @@ class Observation < ActiveRecord::Base
   LICENSES.each do |code, name, description|
     const_set code.gsub(/\-/, '_'), code
   end
-  PREFERRED_LICENSES = [CC_BY, CC_BY_NC]
+  PREFERRED_LICENSES = [CC_BY, CC_BY_NC, CC0]
   CSV_COLUMNS = [
     "id", 
     "species_guess",
