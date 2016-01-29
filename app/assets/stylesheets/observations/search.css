@@ -1010,6 +1010,7 @@ inat-taxon { white-space: nowrap; }
 }
 #obs .pages {
   background: #efefef;
+  padding: 0;
 }
 #obs .pages ul {
   width: 100%;
@@ -1031,6 +1032,16 @@ inat-taxon { white-space: nowrap; }
   line-height: 45px;
   width: 100%;
 }
+#obs .pages .disabled a {
+  opacity: 0.5;
+}
+#obs .pages li:hover {
+  background-color: rgba(116, 172, 0, 0.3);
+}
+#obs .pages li.disabled:hover {
+  background-color: inherit
+}
+
 #obs .pages li:first-child {
   border-right: 1px solid white;
 }
