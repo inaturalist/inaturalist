@@ -24,12 +24,14 @@
             #map-legend-container
       .col-xs-4.col-xs-offset-8
         #obs
-          .div{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || pagination.searching", "infinite-scroll-parent": "true" }
+          .div{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || pagination.searching || pagination.stopped", "infinite-scroll-parent": "true" }
             %observation-snippet{ "ng-repeat": "o in observations", o: "o", "ng-mouseover": "showInfowindow( o )", "ng-mouseleave": "hideInfowindow( )" }
           .spinner.ng-cloak{ "ng-show": "pagination.searching" }
             %span.fa.fa-spin.fa-refresh
-          .noresults.text-muted{ "ng-show" => "observations.length == 0" }
+          .noresults.text-muted.ng-cloak{ "ng-show": "noObservations( )" }
             {{ shared.t( 'no_results_found' ) }}
+          .pages.col-xs-12.ng-cloak{ "ng-show": "showPages( )" }
+            %uib-pagination{ "ng-model": "pagination.page", "previous-text": "‹ Previous", "next-text": "Next ›", "total-items": "pagination.total", "items-per-page": "pagination.perPage", "max-size": 0, "ng-disabled": "!pagingInitialized" }
 #infoWindowSnippet
   .infowindow.obs-container
     %observation-snippet{ o: "infoWindowObservation" }

@@ -18,3 +18,7 @@
           %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}", target: "_self" }
             {{ u.login }}
         %td {{ shared.numberWithCommas( u.resultCount ) }}
+  .spinner.ng-cloak{ "ng-show": "pagination.searching" }
+    %span.fa.fa-spin.fa-refresh
+  .noresults.text-muted.ng-cloak{ "ng-show": "noIdentifiers( )" }
+    {{ shared.t( 'no_results_found' ) }}
