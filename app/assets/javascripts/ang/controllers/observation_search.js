@@ -49,6 +49,10 @@ application.config( [ "$locationProvider", function($locationProvider) {
   });
 }]);
 
+if( TIMEZONE ) {
+  application.constant( "angularMomentConfig", { timezone: TIMEZONE });
+}
+
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll", "$uibPosition",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {
@@ -155,7 +159,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // params may change but not affect the results
     // for example DateType will change with the different date options
     $scope.$watch( "params", function( ) {
-      $scope.processedParams = shared.processParams( $scope.params, $scope.possibleFields );
+      $scope.processedParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
       if ( CURRENT_USER ) {
         $scope.showingViewerObservations = (
           ($scope.processedParams.user_id == CURRENT_USER.id) || 
@@ -184,7 +188,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.place_id = $scope.selectedPlace.id;
       }
     } else {
-      delete $scope.params.place_id;
+      $scope.alignMapOnSearch = false;
+      $scope.params.place_id = "any";
     }
   });
   $scope.initializeTaxonParams = function( ) {
@@ -250,8 +255,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         function( n ) { return [ n, true ]; }
       ));
     }
-    // on the bare /observations route, set the default user or site place_id
-    if( PREFERRED_PLACE && _.isEqual( initialParams, $scope.defaultParams ) ) {
+    // set the default user or site place_id
+    if( PREFERRED_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
       initialParams.place_id = PREFERRED_PLACE.id;
     }
     // use the current user's id as the basis for the `reviewed` param
@@ -305,7 +310,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var currentState = { };
     var currentSearch = { };
     if( !_.isEmpty( newParams ) ) {
-      var urlParams = shared.processParams( _.object( newParams ), $scope.possibleFields );
+      var urlParams = ObservationsFactory.processParams( _.object( newParams ), $scope.possibleFields );
       urlParams = _.mapObject( urlParams, function( v, k ) {
         // arrays turned to comma-delimited lists for URLs
         if( _.isArray( v ) ) { return v.join(","); }
@@ -399,7 +404,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     options = options || { };
     $scope.updateBrowserLocation( options );
     $scope.resetStats( );
-    var processedParams = shared.processParams( _.extend( { },
+    var processedParams = ObservationsFactory.processParamsForAPI( _.extend( { },
       $scope.params, { page: $scope.pagination.page }, shared.localeParams( ) ),
       $scope.possibleFields);
     // recording there was some location in the search. That will be used
@@ -465,7 +470,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( $scope.pagination.finished === true ) { return; }
     $scope.pagination.page += 1;
     $scope.pagination.searching = true;
-    var processedParams = shared.processParams(
+    var processedParams = ObservationsFactory.processParamsForAPI(
       _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
       if( response.data.total_results <= ( response.data.page * response.data.per_page ) ) {
@@ -757,7 +762,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.taxon_id = state.params.taxon_id;
         $scope.initializeTaxonParams( );
       }
-      var previousProcessedParams = shared.processParams( previousParams, $scope.possibleFields );
+      var previousProcessedParams = ObservationsFactory.processParamsForAPI( previousParams, $scope.possibleFields );
       delete previousProcessedParams.view;
       delete previousProcessedParams.subview;
       // restoring state of iconic taxa filters, (e.g { Chromista: true })
@@ -786,7 +791,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       name = name.replace( "params.", "" );
       $scope.possibleFields.push( name );
     });
-    $scope.defaultProcessedParams = shared.processParams( $scope.defaultParams, $scope.possibleFields );
+    $scope.defaultProcessedParams = ObservationsFactory.processParamsForAPI( $scope.defaultParams, $scope.possibleFields );
   };
   $scope.paramsForUrl = function( ) {
     var urlParams = _.extend( { }, $scope.params );
@@ -1105,7 +1110,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( !$scope.map ) { return };
     if( !$scope.$parent.parametersInitialized ) { return };
     window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
-    var layerParams = shared.processParams( $scope.params, $scope.possibleFields );
+    var layerParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
       mapStyle: _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ? "summary" : "colored_heatmap",

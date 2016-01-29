@@ -144,7 +144,7 @@ $(document).on('click', 'input[data-loading-click][type=text], input[data-loadin
 
 $(document).on('change', '[data-autosubmit]', function() {
   $(this).parents('form').submit()
-})
+});
 
 function buildHelpTips() {
   if (typeof($().qtip) == "undefined") { return; }

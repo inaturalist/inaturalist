@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
-  before_action :doorkeeper_authorize!, :only => [ :for_project_user ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index, :show, :browse], :unless => lambda { authenticated_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :for_project_user, :for_user ], :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index, :show, :browse, :for_user ], :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy ]
   before_filter :load_post, :only => load_only
   blocks_spam :only => load_only, :instance => :post
-  before_filter :load_parent, :except => [:browse, :create, :update, :destroy, :for_project_user]
+  before_filter :load_parent, :except => [:browse, :for_project_user, :for_user]
   before_filter :load_new_post, :only => [:new, :create]
-  before_filter :author_required, :only => [:edit, :update, :destroy]
+  before_filter :owner_required, :only => [:create, :edit, :update, :destroy]
 
   layout "bootstrap"
   
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
     if @parent.is_a?(User)
       block_if_spammer(@parent) && return
-    else
+    elsif !@parent.is_a?(Site)
       block_if_spam(@parent) && return
     end
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
@@ -42,12 +42,15 @@ class PostsController < ApplicationController
   end
   
   def show
-    if params[:login].blank? && params[:project_id].blank?
-      if @post.parent_type == "User"
-        redirect_to journal_post_path(@parent.login, @post)
-      else
-        redirect_to project_journal_post_path(@parent, @post)
-      end
+    case @post.parent_type
+    when "User" && params[:login].blank?
+      redirect_to journal_post_path(@parent.login, @post)
+      return
+    when "Project" && params[:project_id].blank?
+      redirect_to project_journal_post_path(@parent, @post)
+      return
+    when "Site" && (params[:project_id] || params[:login])
+      redirect_to site_post_path(@post)
       return
     end
 
@@ -186,9 +189,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:notice] = t(:journal_post_deleted)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     project_journal_path(@post.parent.slug) :
-                     journal_by_login_path(@post.user.login))
+        redirect_to parent_path_for_post( @post )
       end
       format.json { head :no_content }
     end
@@ -210,9 +211,25 @@ class PostsController < ApplicationController
   end
 
   def for_project_user
+    for_user
+  end
+
+  def for_user
+    site_id = current_user.site_id if logged_in?
+    site_id ||= @site.try(:id) || CONFIG.site_id
+    from_sql = "posts"
+    where_sql = "(posts.parent_type = 'Site' AND posts.parent_id = #{site_id})"
+    if logged_in?
+      from_sql << " LEFT OUTER JOIN project_users pu ON pu.user_id = #{current_user.id}"
+      where_sql << " OR (pu.project_id = posts.parent_id AND posts.parent_type = 'Project')"
+    end
+    posts_sql = <<-SQL
+      SELECT DISTINCT ON (posts.id) posts.*
+      FROM #{ from_sql }
+      WHERE #{ where_sql }
+    SQL
     @posts = Post.not_flagged_as_spam.published.
-      joins("JOIN project_users pu ON pu.user_id = #{current_user.id}").
-      where("pu.project_id = posts.parent_id AND posts.parent_type = 'Project'").
+      from( "(#{ posts_sql }) AS posts" ).
       order("published_at DESC").
       page(params[:page] || 1).
       per_page(30)
@@ -230,15 +247,17 @@ class PostsController < ApplicationController
             methods: [ :user_icon_url, :medium_user_icon_url ]
           },
           parent: {
-            only: [ :id, :title ],
-            methods: [ :icon_url ]
+            only: [ :id, :title, :name ],
+            methods: [ :icon_url, :site_name_short ]
           }
         })
         json.each_with_index do |post, i|
           json[i]['body'] = FakeView.formatted_user_text(
             json[i]['body'],
-            tags: Post::ALLOWED_TAGS,
-            attributes: Post::ALLOWED_ATTRIBUTES
+            scrubber: PostScrubber.new(
+              tags: Post::ALLOWED_TAGS,
+              attributes: Post::ALLOWED_ATTRIBUTES
+            )
           )
         end
         render json: json
@@ -254,7 +273,6 @@ class PostsController < ApplicationController
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end
-
   end
   
   def load_parent
@@ -271,15 +289,29 @@ class PostsController < ApplicationController
     elsif logged_in? && current_user.login == params[:login]
       @display_user ||= current_user
       @parent ||= current_user
+    elsif params[:post] && params[:post][:parent_type] && params[:post][:parent_id]
+      @parent = case params[:post][:parent_type]
+      when "Project"
+        Project.find_by_id( params[:post][:parent_id] )
+      when "User"
+        User.find_by_id( params[:post][:parent_id] )
+      when "Site"
+        Site.find_by_id( params[:post][:parent_id] )
+      end
+    else
+      @parent ||= @site
     end
     return render_404 if @parent.blank?
     if @parent.is_a?(Project)
       @parent_display_name = @parent.title 
       @parent_slug = @parent.slug
+    elsif @parent.is_a?(Site)
+      @parent_display_name = @parent.name
+      @parent_slug = @parent.name.to_param
     else
       @parent_display_name = @parent.login
       @selected_user = @display_user
-      @parent_slug = @login = @selected_user.login
+      @parent_slug = @login = @parent.login
     end
     true
   end
@@ -300,22 +332,43 @@ class PostsController < ApplicationController
     true
   end
   
-  def author_required
-    return true if logged_in? && @post.user.id == current_user.id
-    return true if @post.parent.is_a?(Project) && @post.parent.curated_by?(current_user)
-    flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
-    redirect_to (@post.parent.is_a?(Project) ?
-                 project_journal_path(@post.parent.slug) :
-                 journal_by_login_path(@post.user.login))
+  def owner_required
+    return true if logged_in? && @post && @post.persisted? && @post.user.id == current_user.id
+    return true if @parent.is_a?( Project ) && @parent.curated_by?( current_user )
+    return true if @parent.is_a?( Site ) && @parent.editable_by?( current_user )
+    return true if @parent.is_a?( User ) && @parent == current_user
+    flash[:error] = t(:you_dont_have_permission_to_do_that)
+    case @parent.class.name
+    when "Project"
+      redirect_to project_journal_path( @parent.slug )
+    when "User"
+      redirect_to journal_by_login_path( @parent.login )
+    else
+      redirect_to root_path
+    end
+    false
   end
 
   def path_for_post(post)
     if post.parent.is_a? Project
       project_journal_post_path(post.parent.slug, post)
+    elsif post.parent.is_a? Site
+      site_post_path(post)
     elsif post.is_a? Trip
       trip_path(post)
     else
       journal_post_path(post.user.login, post)
+    end
+  end
+
+  def parent_path_for_post( post )
+    case post.parent_type
+    when "Project"
+      project_journal_path( post.parent.slug )
+    when "User"
+      journal_by_login_path( post.user.login )
+    else
+      site_posts_path
     end
   end
 
@@ -324,6 +377,8 @@ class PostsController < ApplicationController
       edit_project_journal_post_path(post.parent.slug, post)
     elsif post.is_a? Trip
       edit_trip_path(post)
+    elsif post.parent.is_a? Site
+      edit_site_post_path(post)
     else
       edit_journal_post_path(post.user.login, post)
     end

@@ -44,6 +44,9 @@ class Place < ActiveRecord::Base
   end
 
   def geom_in_elastic_index
+    # need to make sure Elasticsearch has refreshed with all
+    # changes before checking if this Place record exists
+    Place.__elasticsearch__.refresh_index!
     Place.elastic_search(where: { id: id },
       filters: [ { exists: { field: "geometry_geojson" } } ]).
       total_entries > 0

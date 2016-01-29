@@ -411,6 +411,83 @@ describe "Observation Index" do
         filters: [ { not: { term: { reviewed_by: u.id } } } ] )
     end
 
+    it "filters by d1 d2 dates" do
+      expect( Observation.params_to_elastic_query({ d1: "2015-03-25", d2: "2015-06-20" }) ).to include(
+        filters: [ { range: { "observed_on_details.date": { gte: "2015-03-25", lte: "2015-06-20" }}}])
+    end
+
+    it "defaults d2 date to now" do
+      expect( Observation.params_to_elastic_query({ d1: "2015-03-25" }) ).to include(
+        filters: [ { range: { "observed_on_details.date": { gte: "2015-03-25", lte: Time.now.strftime("%F") }}}])
+    end
+
+    it "defaults d1 date to 1800" do
+      expect( Observation.params_to_elastic_query({ d2: "2015-06-20" }) ).to include(
+        filters: [ { range: { "observed_on_details.date": { gte: "1800-01-01", lte: "2015-06-20" }}}])
+    end
+
+    it "filters by d1 d2 datetimes" do
+      time_filter = { time_observed_at: {
+        gte: "2015-03-25T01:23:45+00:00",
+        lte: "2015-04-25T03:33:33+00:00" } }
+      date_filter = { "observed_on_details.date": {
+        gte: "2015-03-25",
+        lte: "2015-04-25" } }
+      expect( Observation.params_to_elastic_query(
+        { d1: "2015-03-25T01:23:45", d2: "2015-04-25T03:33:33" }) ).to include({
+        filters: [{ or: [
+          { and: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] },
+          { and: [ { range: date_filter }, { missing: { field: "time_observed_at" } } ] }
+        ]}]
+      })
+    end
+
+    it "defaults d2 date to now" do
+      time_filter = { time_observed_at: {
+        gte: "2015-03-25T01:23:45+00:00",
+        lte: Time.now.strftime("%FT%T%:z") } }
+      date_filter = { "observed_on_details.date": {
+        gte: "2015-03-25",
+        lte: Time.now.strftime("%F") } }
+      expect( Observation.params_to_elastic_query({ d1: "2015-03-25T01:23:45" }) ).to include({
+        filters: [{ or: [
+          { and: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] },
+          { and: [ { range: date_filter }, { missing: { field: "time_observed_at" } } ] }
+        ]}]
+      })
+    end
+
+    it "defaults d1 date to 1800" do
+      time_filter = { time_observed_at: {
+        gte: "1800-01-01T00:00:00+00:00",
+        lte: "2015-04-25T03:33:33+00:00" } }
+      date_filter = { "observed_on_details.date": {
+        gte: "1800-01-01",
+        lte: "2015-04-25" } }
+      expect( Observation.params_to_elastic_query({ d2: "2015-04-25T03:33:33" }) ).to include({
+        filters: [{ or: [
+          { and: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] },
+          { and: [ { range: date_filter }, { missing: { field: "time_observed_at" } } ] }
+        ]}]
+      })
+    end
+
+    it "respects d1 d2 timezones" do
+      time_filter = { time_observed_at: {
+        gte: "2015-03-25T01:00:00+09:00",
+        lte: "2015-04-25T23:00:00-08:00" } }
+      date_filter = { "observed_on_details.date": {
+        gte: "2015-03-25",
+        lte: "2015-04-25" } }
+      expect( Observation.params_to_elastic_query(
+        { d1: "2015-03-25T01:00:00+09:00", d2: "2015-04-25T23:00:00-08:00" }) ).to include({
+        filters: [{ or: [
+          { and: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] },
+          { and: [ { range: date_filter }, { missing: { field: "time_observed_at" } } ] }
+        ]}]
+      })
+    end
+
     it "filters by h1 and h2" do
       expect( Observation.params_to_elastic_query({ h1: 8, h2: 10 }) ).to include(
         filters: [ { range: { "observed_on_details.hour" => { gte: 8, lte: 10 } } } ] )

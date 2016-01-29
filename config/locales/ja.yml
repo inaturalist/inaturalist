@@ -894,6 +894,7 @@ ja:
   full_id_please: IDお願い！
   full_id_please!: IDお願い！
   full_id_please?: IDお願い？
+  full_screen: 全画面表示
   fungi:
     one: 菌類
     other: 菌類
@@ -1068,6 +1069,7 @@ ja:
   latitude: 緯度
   latitude_in_decimals: 緯度（10進表記）（例：38.123）
   latitude_slash_y_coord_slash_northing: 緯度/y座標/北距
+  layers: レイヤー
   layout: レイアウト
   leaderboard_for_x: '%{x}の達人'
   leaderboards: リーダーボード
@@ -1262,6 +1264,18 @@ ja:
   mobile_apps_for: モバイルアプリ版の
   mobile_view_available: モバイル表示可
   mollusks: 軟体動物
+  momentjs:
+    shortRelativeTime:
+      past: '%s'
+      m: 1分
+      mm: '%dm'
+      h: 1時間
+      hh: '%dh'
+      d: 1日
+      dd: '%dd'
+      MM: '%dm'
+      1: 1年
+      yy: '%dy'
   mon: 月
   month: 月
   months_ago: '%{text}前'
@@ -2464,6 +2478,8 @@ ja:
   youre_viewing_all_observations: すべての観測記録を表示中
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示中
   youve_successfully_linked_your_provider_account: あなたの%{provider}アカウントと無事接続できました。
+  zoom_in: 拡大
+  zoom_out: 縮小
   none_of_the_people_you_follow_have_any_updates_yet: フォローしているユーザーから更新がありません。
   views:
     views: 閲覧回数

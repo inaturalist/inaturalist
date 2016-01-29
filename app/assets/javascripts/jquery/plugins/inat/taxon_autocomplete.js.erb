@@ -1,6 +1,6 @@
 var inaturalist = inaturalist || { };
 // sort iconic taxa so all apps use the same order and have identical assets
-inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.map{ |t|
+inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.sort.map{ |t|
   [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png") } ]
 }].to_json %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";

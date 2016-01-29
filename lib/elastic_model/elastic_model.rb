@@ -224,11 +224,56 @@ module ElasticModel
   def self.date_details(datetime)
     return unless datetime
     return unless datetime.is_a?(Date) || datetime.is_a?(Time)
-    { day: datetime.day,
+    { date: datetime.to_date,
+      day: datetime.day,
       month: datetime.month,
       year: datetime.year,
       hour: datetime.respond_to?(:hour) ? datetime.hour : nil,
       week: datetime.strftime("%V").to_i }
+  end
+
+  def self.elasticsearch_url
+    url = Taxon.__elasticsearch__.client.transport.options[:host]
+    unless url.starts_with?("http://")
+      url = "http://" + url
+    end
+    url
+  end
+
+  def self.elasticsearch_is_running?
+    begin
+      response = Net::HTTP.get(URI.parse(elasticsearch_url))
+      return JSON.parse(response)["tagline"] == "You Know, for Search"
+    rescue
+    end
+    return false
+  end
+
+  def self.wait_until_elasticsearch_is_running(options={})
+    options[:timeout] ||= 30
+    start_time = Time.now
+    while !elasticsearch_is_running? && (Time.now - start_time <= options[:timeout])
+      sleep(1)
+    end
+    return elasticsearch_is_running?
+  end
+
+  def self.index_exists?(index_name)
+    begin
+      response = Net::HTTP.get(URI.parse([ elasticsearch_url, index_name ].join("/")))
+      return JSON.parse(response)[index_name]["mappings"].is_a?(Hash)
+    rescue
+    end
+    return false
+  end
+
+  def self.wait_until_index_exists(index_name, options={})
+    options[:timeout] ||= 30
+    start_time = Time.now
+    while !index_exists?(index_name) && (Time.now - start_time <= options[:timeout])
+      sleep(1)
+    end
+    return index_exists?(index_name)
   end
 
 end

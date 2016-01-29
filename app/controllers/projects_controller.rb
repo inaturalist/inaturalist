@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
+    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count, :browse, :calendar ]
   load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
@@ -550,6 +550,9 @@ class ProjectsController < ApplicationController
       @place = Place.find(params[:place_id]) rescue nil
     end
     @projects = @projects.in_place(@place) if @place
+    if @eventsonly = params[:eventsonly].yesish?
+      @projects = @projects.where("(end_time - start_time) < '2 weeks'::interval")
+    end
     respond_to do |format|
       format.html do
         @projects = @projects.page(params[:page]).includes(:place)

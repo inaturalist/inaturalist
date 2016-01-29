@@ -39,9 +39,4 @@
         = render :partial => 'archives'
   #footercol.row
     .feeds
-      = link_to("Atom",                                                          |
-        (@parent.is_a?(Project) ?                                                |
-          project_journal_path(:project_id => @parent_slug, :format => 'atom') : |
-          journal_by_login_path(:login => @parent_slug, :format => 'atom')),     |
-        :class => 'atomlink')                                                    |
-
+      = link_to( "Atom", post_parent_path( @parent, format: "atom" ), :class => "atomlink" )
