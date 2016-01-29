@@ -85,6 +85,25 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).not_to include not_in_place.id
   end
 
+  it "should filter by license" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    o_cc_by_nd = make_research_grade_observation( license: Observation::CC_BY_ND )
+    archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY ] )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include o_cc_by.id
+    expect( ids ).not_to include o_cc_by_nd.id
+  end
+  it "should filter by multiple licenses" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    o_cc0 = make_research_grade_observation( license: Observation::CC0 )
+    o_cc_by_nd = make_research_grade_observation( license: Observation::CC_BY_ND )
+    archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY, Observation::CC0 ] )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include o_cc_by.id
+    expect( ids ).to include o_cc0.id
+    expect( ids ).not_to include o_cc_by_nd.id
+  end
+
   it "should only include research grade observations by default" do
     rg = make_research_grade_observation
     ni = make_research_grade_candidate_observation

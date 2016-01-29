@@ -13,6 +13,7 @@ module DarwinCore
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
+      @opts[:licenses] ||= "any"
       @opts[:private_coordinates] ||= false
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]
@@ -100,7 +101,7 @@ module DarwinCore
     end
 
     def observations_params
-      params = {license: 'any'}
+      params = { license: @opts[ :licenses ] }
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
       params[:quality_grade] = @opts[:quality]
