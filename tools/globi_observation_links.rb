@@ -40,7 +40,7 @@ while true do
       puts "\tobservation #{observation_id} doesn't exist, skipping..."
       next
     end
-    href = "http://www.globalbioticinteractions.org/#interactionType=interactsWith&accordingTo=#{FakeView.observation_url(observation_id)}"
+    href = "http://www.globalbioticinteractions.org/?interactionType=interactsWith&accordingTo=#{FakeView.observation_url(observation_id)}"
     existing = ObservationLink.where(observation_id: observation_id, href: href).first
     if existing
       existing.touch unless opts[:debug]
