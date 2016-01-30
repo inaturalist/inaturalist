@@ -159,10 +159,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // params may change but not affect the results
     // for example DateType will change with the different date options
     $scope.$watch( "params", function(newValue, oldValue ) {
+      if( _.isEqual( newValue, oldValue ) ) { return; }
       // if any of the filters change we want to reset the page to 1.
       // when pagination, the page will change, so if the page doesn't
       // change, then the user is changing another filter, so go to page 1
-      if( _.isEqual( newValue, oldValue ) ) { return; }
       if( newValue.page === oldValue.page ) {
         $scope.params.page = 1;
       }
@@ -576,7 +576,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     if ( urlParams.on ) {
       $scope.params.dateType = 'exact';
-    } else if ( urlParams.d1 || urlParams.d ) {
+    } else if ( urlParams.d1 || urlParams.d2 ) {
       $scope.params.dateType = 'range';
     } else if ( urlParams.month ) {
       $scope.params.dateType = 'month';
