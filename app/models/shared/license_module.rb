@@ -1,18 +1,21 @@
 module Shared::LicenseModule
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
+
+  CC_VERSION = "4.0"
+  CC0_VERSION = "1.0"
   
   LICENSE_INFO = {
-    0 => {:code => "C",                       :short => "(c)",          :name => "Copyright", :url => "http://en.wikipedia.org/wiki/Copyright"},
-    1 => {:code => Observation::CC_BY_NC_SA,  :short => "CC BY-NC-SA",  :name => "Attribution-NonCommercial-ShareAlike License", :url => "http://creativecommons.org/licenses/by-nc-sa/3.0/"},
-    2 => {:code => Observation::CC_BY_NC,     :short => "CC BY-NC",     :name => "Attribution-NonCommercial License", :url => "http://creativecommons.org/licenses/by-nc/3.0/"},
-    3 => {:code => Observation::CC_BY_NC_ND,  :short => "CC BY-NC-ND",  :name => "Attribution-NonCommercial-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nc-nd/3.0/"},
-    4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/3.0/"},
-    5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/3.0/"},
-    6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
-    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain", :url => "http://en.wikipedia.org/wiki/Public_domain"},
-    8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"},
-    9 => {:code => Observation::CC0,          :short => "CC0",          :name => "No Copyright", :url => "http://creativecommons.org/publicdomain/zero/1.0/"},
+    0 => {code: "C",                       short: "(c)",          name: "Copyright", url: "http://en.wikipedia.org/wiki/Copyright"},
+    1 => {code: Observation::CC_BY_NC_SA,  short: "CC BY-NC-SA",  name: "Creative Commons Attribution-NonCommercial-ShareAlike License", url: "http://creativecommons.org/licenses/by-nc-sa/#{CC_VERSION}/"},
+    2 => {code: Observation::CC_BY_NC,     short: "CC BY-NC",     name: "Creative Commons Attribution-NonCommercial License", url: "http://creativecommons.org/licenses/by-nc/#{CC_VERSION}/"},
+    3 => {code: Observation::CC_BY_NC_ND,  short: "CC BY-NC-ND",  name: "Creative Commons Attribution-NonCommercial-NoDerivs License", url: "http://creativecommons.org/licenses/by-nc-nd/#{CC_VERSION}/"},
+    4 => {code: Observation::CC_BY,        short: "CC BY",        name: "Creative Commons Attribution License", url: "http://creativecommons.org/licenses/by/#{CC_VERSION}/"},
+    5 => {code: Observation::CC_BY_SA,     short: "CC BY-SA",     name: "Creative Commons Attribution-ShareAlike License", url: "http://creativecommons.org/licenses/by-sa/#{CC_VERSION}/"},
+    6 => {code: Observation::CC_BY_ND,     short: "CC BY-ND",     name: "Creative Commons Attribution-NoDerivs License", url: "http://creativecommons.org/licenses/by-nd/#{CC_VERSION}/"},
+    7 => {code: "PD",                      short: "PD",           name: "Public domain", url: "http://en.wikipedia.org/wiki/Public_domain"},
+    8 => {code: "GFDL",                    short: "GFDL",         name: "GNU Free Documentation License", url: "http://www.gnu.org/copyleft/fdl.html"},
+    9 => {code: Observation::CC0,          short: "CC0",          name: "Creative Commons CC0 Universal Public Domain Dedication", url: "http://creativecommons.org/publicdomain/zero/#{CC0_VERSION}/"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
   LICENSE_INFO.each do |number, info|
@@ -103,6 +106,10 @@ module Shared::LicenseModule
     
     def license_code_for_number(number)
       LICENSE_INFO[number].try(:[], :code)
+    end
+
+    def license_name_for_code( code )
+      LICENSE_INFO[ license_number_for_code( code ) ].try(:[], :name)
     end
   end
 

@@ -1,5 +1,15 @@
 require "spec_helper"
 
+describe DarwinCore::Archive, "make_metadata" do
+  it "should include an archive license if specified" do
+    license = "CC0"
+    archive = DarwinCore::Archive.new( license: license )
+    xml = Nokogiri::XML( open( archive.make_metadata ) )
+    rights_elt = xml.at_xpath( "//intellectualRights" )
+    expect( rights_elt.to_s ).to match /#{ FakeView.url_for_license(license) }/
+  end
+end
+
 describe DarwinCore::Archive, "make_descriptor" do
   it "should include the Simple Multimedia extension" do
     archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
@@ -93,6 +103,7 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).to include o_cc_by.id
     expect( ids ).not_to include o_cc_by_nd.id
   end
+
   it "should filter by multiple licenses" do
     o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
     o_cc0 = make_research_grade_observation( license: Observation::CC0 )
@@ -102,6 +113,30 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).to include o_cc_by.id
     expect( ids ).to include o_cc0.id
     expect( ids ).not_to include o_cc_by_nd.id
+  end
+
+  it "should set the license to a URI" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY, Observation::CC0 ] )
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['license'] ).to match URI::URI_REF
+    end
+  end
+
+  it "should set CC license URI using the current version" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    archive = DarwinCore::Archive.new
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['license'] ).to match /\/#{ Shared::LicenseModule::CC_VERSION }\//
+    end
+  end
+
+  it "should set CC0 license URI using the current version" do
+    o_cc0 = make_research_grade_observation( license: Observation::CC0 )
+    archive = DarwinCore::Archive.new
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['license'] ).to match /\/#{ Shared::LicenseModule::CC0_VERSION }\//
+    end
   end
 
   it "should only include research grade observations by default" do

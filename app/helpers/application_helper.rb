@@ -896,9 +896,15 @@ module ApplicationHelper
     return nil if code.blank?
     if info = Photo::LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:last)
       info[:url]
+    elsif code == Observation::CC0
+      "https://creativecommons.org/publicdomain/zero/#{Shared::LicenseModule::CC0_VERSION}/"
     elsif code =~ /CC\-/
-      "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+      "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/#{Shared::LicenseModule::CC_VERSION}/"
     end
+  end
+
+  def license_name( license )
+    Shared::LicenseModule.license_name_for_code( license )
   end
   
   def update_image_for(update, options = {})
