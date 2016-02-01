@@ -220,20 +220,20 @@ gl:
       phylum: Filo
       species: Especie
       order: Orde
-    plants: Plantas
-    animals: Animais
-    mollusks: Moluscos
     amphibians: Anfibios
+    animals: Animais
+    arachnids: Arañas, alacráns e parentes
+    birds: Aves
+    chromista: Algas pardas e parentes
+    fungi: Fungos
+    insects: Insectos
     mammals: Mamíferos
+    mollusks: Moluscos
+    other_animals: Outros animais
+    plants: Plantas
+    protozoans: Protozoarios
     ray_finned_fishes: Peixes con aletas radiadas
     reptiles: Réptiles
-    birds: Aves
-    insects: Insectos
-    arachnids: Arañas, alacráns e parentes
-    fungi: Fungos
-    chromista: Algas pardas e parentes
-    protozoans: Protozoarios
-    other_animals: Outros animais
     life: Vida
     x_plantae:
       one: 1 pranta
@@ -3078,13 +3078,11 @@ gl:
   you_must_select_dates_to_compare: Debes seleccionar as datas que queres comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar e confirmar un novo
     contrasinal.
-  your_name_was_saved: O nome gardouse.
   you_need_to_have_linked_flickr_account: Debes ter unha conta de Flickr vinculada
     para etiquetar as túas fotos.
   you_need_to_select_at_least_one_photo: ¡Necesitas seleccionar polo menos unha foto!
   you_need_to_select_some_observations_first: Debes seleccionar algunhas observacións
     primeiro.
-  your_profile_was_successfully_updated: O teu perfil foi actualizado satisfactoriamente.
   you_retain_full_copyright: Es titular de todos os dereitos de autor sobre o teu
     contido á parte daqueles dereitos concedidos a %{site_name} segundo os nosos Termos
     de Servizo.
@@ -3102,10 +3100,10 @@ gl:
   you_sure_remove_taxon_from?: Estás seguro de que desexas quitar este taxón de %{list}?
   you_sure_remove_this_invitation?: Estás seguro de que desexas eliminar esta invitación?
   you_sure_remove_this_observation?: Estás seguro de que desexas eliminar esta observación?
-  youve_joined_the_x_project: Unícheste ao proxecto %{project_invitation} e engadíronse
-    as túas observacións
   you_would_get_the: Obterás as seguintes etiquetas
   youll_need_to_link: Deberás vincular
+  youve_joined_the_x_project: Unícheste ao proxecto %{project_invitation} e engadíronse
+    as túas observacións
   your: Ti
   your_: Ti
   your_account_has_been_verified: A túa conta de %{site_name} foi confirmada! Por
@@ -3125,6 +3123,7 @@ gl:
   your_inat_account_has_been_activated: A túa conta %{inat} foi activada.
   your_life_list: your life list!
   your_month_observations: Tus observaciones de %{month}
+  your_name_was_saved: O nome gardouse.
   your_new_password_is: O teu contrasinal novo é
   your_observation_will_get_shared_html: A túa observación será compartida con redes
     sociais se deixas estes cadros marcados. Podes cambiar por <a href='%{url}' target='_blank'>
@@ -3137,6 +3136,7 @@ gl:
   your_photos_have_been_tagged: ¡As túas fotos foron etiquetadas!
   your_picasa_account: A túa conta Picasa
   your_picasa_account_info: Información da túa conta Picasa
+  your_profile_was_successfully_updated: O teu perfil foi actualizado satisfactoriamente.
   your_should_recognize: Deberías recoñecer algunhas destas fotos
   your_site_account_has_been_created: A túa conta de %{site} foi creada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}

@@ -269,20 +269,20 @@ pt-BR:
       phylum: Filo
       species: Espécies
       order: Ordem
-    plants: Plantas
-    animals: Animais
-    mollusks: Moluscos
     amphibians: Anfíbios
+    animals: Animais
+    arachnids: Aracnídeos
+    birds: Aves
+    chromista: Chromista - algas pardas e parentes
+    fungi: Fungos
+    insects: Insetos
     mammals: Mamíferos
+    mollusks: Moluscos
+    other_animals: Outros Animais
+    plants: Plantas
+    protozoans: Protozoários
     ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
     reptiles: Répteis
-    birds: Aves
-    insects: Insetos
-    arachnids: Aracnídeos
-    fungi: Fungos
-    chromista: Chromista - algas pardas e parentes
-    protozoans: Protozoários
-    other_animals: Outros Animais
     life: Vida
     x_plantae:
       one: 1 planta
@@ -3666,13 +3666,11 @@ pt-BR:
   you_must_select_dates_to_compare: Você deve selecionar datas para comparar
   you_must_specify_and_confirm_a_new_password: Você deve especificar e confirmar uma
     nova senha.
-  your_name_was_saved: Seu nome foi salvo.
   you_need_to_have_linked_flickr_account: Você tem que ter uma conta do Flickr vinculada
     para marcar suas fotos.
   you_need_to_select_at_least_one_photo: Você deve selecionar ao menos uma foto!
   you_need_to_select_some_observations_first: Você tem que selecionar algumas observações
     primeiro.
-  your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   you_retain_full_copyright: Você possui total direito sobre o seu conteúdo a parte
     daqueles que são de direito concedido ao %{site_name} em nossos Termos de Serviço.
   you_retain_full_copyright_over_your_content: Você detém total direito sobre seu
@@ -3691,12 +3689,12 @@ pt-BR:
   you_sure_remove_this_observation?: Você tem certeza que deseja remover esta observação?
   you_tried_to_do_something_you_shouldnt: Você tentou fazer alguma coisa que não podia,
     como modificar os dados de outra pessoa sem permissão. Não seja maldoso.
+  you_would_get_the: você receberá as seguintes marcações
+  youll_need_to_link: Você vai precisar criar um link
   youve_been_invited_to_join_this_project_html: Você foi convidado para partipar deste
     <a href="%{url}" class="readmore">projeto</a>
   youve_joined_the_x_project: Você se juntou ao projeto %{project_invitation} e sua
     observação foi adicionada
-  you_would_get_the: você receberá as seguintes marcações
-  youll_need_to_link: Você vai precisar criar um link
   your: Suas
   your_: Suas
   your_account_has_been_verified: Sua conta %{site_name} foi verificada! Por favor
@@ -3717,6 +3715,7 @@ pt-BR:
   your_inat_account_has_been_activated: Sua conta %{inat} foi ativada.
   your_life_list: Sua life list!
   your_month_observations: suas observações de %{month}
+  your_name_was_saved: Seu nome foi salvo.
   your_new_password_is: Sua nova senha é
   your_observation_will_get_shared_html: Suas observações serão compartilhadas em
     redes sociais se você deixar estas caixas marcadas. Você pode modificar o padrão
@@ -3732,6 +3731,7 @@ pt-BR:
   your_photos_have_been_tagged: Suas fotos foram marcadas!
   your_picasa_account: sua conta do Picasa
   your_picasa_account_info: Informações da sua conta do Picasa
+  your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_should_recognize: Você deve reconhecer algumas destas fotos
   your_site_account_has_been_created: Sua conta %{site} foi criada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}

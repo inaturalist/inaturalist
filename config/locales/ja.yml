@@ -201,20 +201,20 @@ ja:
       phylum: 門
       species: 種
       order: 目
-    plants: 植物
-    animals: 動物
-    mollusks: 軟体動物
     amphibians: 両生類
+    animals: 動物
+    arachnids: クモ綱
+    birds: 鳥類
+    chromista: クロミスタ
+    fungi: 菌類
+    insects: 昆虫類
     mammals: 哺乳類
+    mollusks: 軟体動物
+    other_animals: その他の動物
+    plants: 植物
+    protozoans: 原生動物
     ray_finned_fishes: 条鰭綱
     reptiles: 爬虫類
-    birds: 鳥類
-    insects: 昆虫類
-    arachnids: クモ綱
-    fungi: 菌類
-    chromista: クロミスタ
-    protozoans: 原生動物
-    other_animals: その他の動物
     life: 生命
     x_plantae:
       one: 1個の植物
@@ -1251,6 +1251,7 @@ ja:
       range: 分布・生息区域
   map_tooltip: マップを表示
   map_for: マップ：
+  media: メディア
   medium: 中
   members: メンバー一覧
   merge: 統合
@@ -1365,6 +1366,7 @@ ja:
   no_colors_selected: 色は選択されていません
   no_comments_yet: まだコメントはありません
   no_countries_added_yet: まだ国は追加されていません
+  no_creative_commons_flickr_photo: Flickrにはタグ付けされたクリエイティブ・コモンズの写真がありません
   no_creative_commons_flickr_photos_tagged_x: Flickrには「%{x}」とタグ付けられたクリエイティブ・コモンズの写真がありません
   no_curators_set: キュレーター管理者が設定されていません
   no_curators_yet: キューレータ管理者はまだいません！
@@ -1432,6 +1434,7 @@ ja:
   none_of_the_people_you_follow_have_updates: フォローするユーザーから新着情報がありません
   not_completed: 未完成
   not_evaluated: 未評価
+  not_filtering: フィルターなし
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_finding_what_looking_for: お探しのもの見つかりませんか？
@@ -2438,10 +2441,8 @@ ja:
   you_must_have_a_header_row: 見出し行が必要です。
   you_must_select_a_csv_file_to_upload: アップロードするCSVファイルを選択する必要があります。
   you_must_select_at_least_one_taxon: 一つ以上の分類群を選択しなければなりません
-  your_name_was_saved: 名前が保存されました。
   you_need_to_select_at_least_one_photo: 写真を一つ以上選択しなければなりません
   you_need_to_select_some_observations_first: まずは観察記録を選択する必要があります
-  your_profile_was_successfully_updated: プロフィールは無事更新されました
   you_sure_delete_asset?: このアセットを削除して本当によろしいですか？
   you_sure_delete_comment?: このコメントを削除して本当によろしいですか？
   you_sure_delete_custom_field?: この専用フィールドを削除して本当によろしいですか？
@@ -2463,11 +2464,13 @@ ja:
   your_identification: あなたのID
   your_life_list: あなたのライフリスト！
   your_month_observations: あなたの%{month}の観察記録
+  your_name_was_saved: 名前が保存されました。
   your_new_password_is: 新しいパスワードは：
   your_observations: あなたの観察記録
   your_photos_have_been_tagged: あなたの写真はタグ付けされました！
   your_picasa_account: あなたのPicasaアカウント
   your_picasa_account_info: あなたのPicasaアカウント情報
+  your_profile_was_successfully_updated: プロフィールは無事更新されました
   your_should_recognize: こちらの写真のうち、いくつか見覚えありませんか
   your_site_account_has_been_created: あなたの%{site}アカウントは無事作成することができました。
   your_subscriptions: あなたの購読

@@ -290,21 +290,21 @@ fr:
       phylum: Embranchement
       species: Espèces
       order: Ordre
-    plants: Plantes
-    animals: Animaux
-    mollusks: Mollusques
     amphibians: Amphibiens
-    mammals: Mammifères
-    ray_finned_fishes: Poissons à nageoires rayonnées
-    reptiles: Reptiles
-    birds: Oiseaux
-    insects: Insectes
+    animals: Animaux
     arachnids: Arachnides
+    birds: Oiseaux
+    chromista: Chromista
     fungi: Champignons
     fungi_including_lichens: Champignons y compris les lichens
-    chromista: Chromista
-    protozoans: Protozoaires
+    insects: Insectes
+    mammals: Mammifères
+    mollusks: Mollusques
     other_animals: Autres animaux
+    plants: Plantes
+    protozoans: Protozoaires
+    ray_finned_fishes: Poissons à nageoires rayonnées
+    reptiles: Reptiles
     life: Êtres vivants
     x_plantae:
       one: 1 plante
@@ -542,6 +542,7 @@ fr:
   back_to_x_assessment: Retourner aux évaluations de %{project}
   back_to_x_history: Retourner à l’historique de %{x}
   back_to_x_journal: Retourner au journal de %{user}
+  back_to_x_blog: Retour au blog de %{x}
   back_to_x_observations: Retourner aux observations de %{user}
   back_to_your_lists: Retourner à vos listes
   back_to_your_journal: Retourner à votre journal
@@ -1195,6 +1196,7 @@ fr:
   event_in_progress: Activité en cours
   event_registration_url: URL d’inscription à l’activité
   event_url: URL de l’activité
+  events_only: Événements uniquement
   every_species_seen_by: Chaque espèce vue par
   everyone: tout le monde
   everyone_journal_posts: Notes de journal de tout le monde
@@ -2196,6 +2198,7 @@ fr:
     recevrez que les avertissements sur les identifiants de taxons qui ne correspondent
     pas exactement avec la vôtre.
   number_of_observations: Nombre d’observations
+  number_selected: n° sélectionné
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
   obs: Obs
@@ -2323,6 +2326,7 @@ fr:
   of_it_and_its_descendants: de lui et ses descendants
   of_least_concern: Préoccupation mineure
   offensive_inappropriate: injurieux/inapproprié
+  official_blog: Blog officiel
   offline_access_enabled: Accès hors ligne activé
   on_: le
   on_date: le %{date}
@@ -2357,6 +2361,8 @@ fr:
   only_receive_updates_about_this_taxon: Recevez uniquement des mises à jour sur ce
     taxon
   only_show_active_taxa: Aafficher que les taxons actifs
+  only_show_events_that_last_less_than_2_weeks: Afficher uniquement les événements
+    qui durent moins de deux semaines
   only_show_for_species_subspecies_varieties_etc: Aafficher que les espèces, sous-espèces,
     variétés, etc.
   only_show_taxa_fom_this_list: Afficher que des taxons à partir de cette liste
@@ -2741,7 +2747,7 @@ fr:
   range: Aire de répartition
   range_from: Aire de répartition de
   rank: Rang
-  rank: Rang
+  rank_position: Rang
   rank_restrictions: Restrictions de rang
   ranks:
     kingdom: règne
@@ -3173,6 +3179,8 @@ fr:
   stats: Statistiques
   stats_title: Statistiques du site
   status: État
+  status_globally: '%{status} globalement'
+  status_in_place: '%{status} dans %{place}'
   still_no_luck?: Toujours pas de chance?
   still_needs_id?: Y a-t-il encore besoin d'un identificateur 'ID" ?
   still_working_on_classifying_taxon: Travail encore en cours pour classifier ce taxon.
@@ -3841,6 +3849,7 @@ fr:
   would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: aimerait de l’aide pour identifier ceci
   x_admin: que %{login} administre
+  x_blog: Blog de %{x}
   x_deleted: '%{x} supprimé'
   x_does_not_exist: « %{x} » n’existe pas
   x_doesnt: '%{login} ne fait pas'
@@ -3969,13 +3978,11 @@ fr:
   you_must_select_dates_to_compare: Vous devez sélectionner les dates à comparer
   you_must_specify_and_confirm_a_new_password: Vous devez spécifier et confirmer un
     nouveau mot de passe.
-  your_name_was_saved: Votre nom a été enregistré.
   you_need_to_have_linked_flickr_account: Vous devez avoir un compte Flickr lié pour
     étiqueter vos photos.
   you_need_to_select_at_least_one_photo: Vous devez sélectionner au moins une photo!
   you_need_to_select_some_observations_first: Vous devez d’abord sélectionner des
     observations.
-  your_profile_was_successfully_updated: Votre profil a bien été mis à jour!
   you_retain_full_copyright: Vous conservez tous les droits sur votre contenu, mis
     à part les droits accordés à %{site_name} dans nos Conditions d’utilisation.
   you_retain_full_copyright_over_your_content: Vous conservez tous les droits sur
@@ -3999,12 +4006,12 @@ fr:
     Vous avez essayé de faire quelque chose que vous ne devriez pas, comme modifier
     les données de quelqu'un d'autre sans autorisation. Soyez gentil.
   you_unlinked_your_provider_account: Vous avez supprimé le lien de votre compte %{provider}
+  you_would_get_the: 'vous obtiendrez les étiquettes suivantes :'
+  youll_need_to_link: Vous devrez lier
   youve_been_invited_to_join_this_project_html: Vous avez été invité à <a href="%{url}"
     class="readmore">vous joindre à ce projet</a>
   youve_joined_the_x_project: Vous avez joint le projet %{project_invitation} et votre
     observation a été ajoutée
-  you_would_get_the: 'vous obtiendrez les étiquettes suivantes :'
-  youll_need_to_link: Vous devrez lier
   your: Votre
   your_: Votre
   your_account_has_been_verified: Votre compte %{site_name} a été vérifié! Veuillez
@@ -4026,6 +4033,7 @@ fr:
   your_inat_account_has_been_activated: Votre compte %{inat} a été activé.
   your_life_list: votre liste des êtres vivants!
   your_month_observations: vos observations de %{month}
+  your_name_was_saved: Votre nom a été enregistré.
   your_new_password_is: Votre nouveau mot de passe est
   your_observation_will_get_shared_html: Vos observations seront échangées sur les
     réseaux sociaux si vous laissez ces cases cochées. Vous pouvez changer vos paramètres
@@ -4042,6 +4050,7 @@ fr:
   your_photos_have_been_tagged: Vos photos ont été étiquetées!
   your_picasa_account: votre compte Picasa
   your_picasa_account_info: Les informations de votre compte Picasa
+  your_profile_was_successfully_updated: Votre profil a bien été mis à jour!
   your_should_recognize: Vous devriez reconnaître certaines de ces photos
   your_site_account_has_been_created: Votre compte %{site} a été créé.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}

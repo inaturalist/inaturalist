@@ -11,6 +11,7 @@
 # Author: JackLantern
 # Author: LauraCri
 # Author: Macofe
+# Author: Marsitown
 # Author: Martinligabue
 # Author: MattiaMen
 # Author: Nemo bis
@@ -241,7 +242,7 @@ it:
   add_your_own_observations_at: Aggiungi le tue osservazioni a %{site_name}
   add_your_photo: Aggiungi una foto
   add_your_photo_to: Aggiungi la tua foto a %{project}
-  added: Aggiunta
+  added: Aggiunte
   added!: Aggiunto!
   added_an: ha aggiunto una
   added_as_a_part_of: Aggiunto come parte di un
@@ -285,20 +286,21 @@ it:
       phylum: Phylum
       species: Specie
       order: Ordine
-    plants: Piante
-    animals: Animali
-    mollusks: Molluschi
     amphibians: Anfibi
+    animals: Animali
+    arachnids: Aracnidi
+    birds: Uccelli
+    chromista: Cromisti
+    fungi: Funghi
+    fungi_including_lichens: Funghi e Licheni
+    insects: Insetti
     mammals: Mammiferi
+    mollusks: Molluschi
+    other_animals: Altri Animali
+    plants: Piante
+    protozoans: Protozoi
     ray_finned_fishes: Attinopterigi
     reptiles: Rettili
-    birds: Uccelli
-    insects: Insetti
-    arachnids: Aracnidi
-    fungi: Funghi
-    chromista: Cromisti
-    protozoans: Protozoi
-    other_animals: Altri Animali
     life: Life
     x_plantae:
       one: 1 pianta
@@ -526,6 +528,7 @@ it:
   back_to_x_assessment: Torna alla valutazione di %{project}
   back_to_x_history: Torna alla cronologia di %{x}
   back_to_x_journal: Torna al diario di %{user}
+  back_to_x_blog: Torna al blog di %{x}
   back_to_x_observations: Torna alle osservazioni di %{user}
   back_to_your_lists: Torna alle tue liste
   back_to_your_journal: Torna al tuo diario
@@ -1146,6 +1149,7 @@ it:
   event_in_progress: Attività in corso
   event_registration_url: URL dell'iscrizione all'attività
   event_url: URL dell'attività
+  events_only: Solo gli eventi
   every_species_seen_by: Tutte le specie osservate da
   everyone: tutti
   everyone_journal_posts: Tutti i post del Diario
@@ -1883,8 +1887,8 @@ it:
   mollusks: molluschi
   momentjs:
     shortRelativeTime:
-      future: in % s
-      past: '% s'
+      future: in %s
+      past: '%s'
       s: sec
       m: 1 min
       mm: '%d min'
@@ -2023,7 +2027,7 @@ it:
   no_header_row: Senza riga di intestazione
   no_identifications_added:
     current_user: Non hai aggiunto identificazioni a nessuna delle osservazioni
-    user: '%{user} non ha aggiunto nessuno identificazione a nessuna delle osservazioni'
+    user: '%{user} non ha aggiunto nessuna identificazione a nessuna delle osservazioni'
   no_favorites_added:
     current_user: Non hai ancora aggiunto dei preferiti
     user: '%{user} non aggiunto ai preferiti'
@@ -2126,6 +2130,7 @@ it:
     che sono in accordo con le tue. Se lo deselezioni riceverai solo le notifiche
     delle identificazioni che non corrispondono esattamente al taxon della tua identificazione.
   number_of_observations: Numero di osservazioni
+  number_selected: '# selezionati'
   numeric_: numerico
   noun_by_you: tuoi/tue %{noun}
   obs: Osservazioni
@@ -2201,8 +2206,8 @@ it:
     Questo è un limite del nostro database che stiamo cercando di risolvere.
   observations_needing_curation: Osservazioni che hanno bisogno di revisione
   observations_obscured: Osservazioni (oscurate)
-  observations_observed_this_month: Osservazioni <em>osservate</em> questo mese, non
-    aggiunte questo mese. Vai fuori!
+  observations_observed_this_month: Si tratta delle osservazioni <em>fatte</em> questo
+    mese, non di quelle inserite. Vai fuori e fai più osservazioni!
   observations_of_taxon: Osservazioni di %{taxon_name}
   observations_on_inat_check_list: osservazioni su %{site_name}. I luoghi con checklist
     per cui è stata confermata almeno 1 osservazione all'interno dei suoi confini.
@@ -2249,6 +2254,7 @@ it:
   of_it_and_its_descendants: suo e dei suoi discendenti
   of_least_concern: Minor Preoccupazione
   offensive_inappropriate: offensivo / inappropriato
+  official_blog: Blog Ufficiale
   offline_access_enabled: Accesso offline abilitato
   on_: nella lista
   on_date: in data %{date}
@@ -2281,6 +2287,8 @@ it:
     azione.
   only_receive_updates_about_this_taxon: Ricevi aggiornamenti solo per questo taxon
   only_show_active_taxa: Mostra solo i taxa attivi
+  only_show_events_that_last_less_than_2_weeks: Mostra solo gli eventi che durano
+    meno di 2 settimane
   only_show_for_species_subspecies_varieties_etc: Mostra solo per specie, sottospecie,
     varietà, etc.
   only_show_taxa_fom_this_list: Mostra i taxa di questa lista
@@ -2351,15 +2359,15 @@ it:
   people_following_user: Persone stanno seguendo %{user}
   people_user_follows: Persone che %{user} segue
   people_added:
-    observation: Aggiunto un %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
+    observation: ha aggiunto un %{observation_link} di @vow_or_con{vow:anla} %{taxon_link}
     identification:
       with_observation: ha aggiunto una <strong>ID</strong> ad una %{observation_link}
         di %{user_link}
       without_observation: ha aggiunto una <strong>ID</strong>
     post: ha scritto un %{post_link}
     comment:
-      with_by: ha commentato l'@vow_or_con{vow:an|a} %{comment_subject_link} di %{by_link}
-      without_by: ha commentato l'@vow_or_con{vow:an|a} %{comment_subject_link}
+      with_by: ha commentato @vow_or_con{vow:un'|un} %{comment_subject_link} di %{by_link}
+      without_by: ha commentato @vow_or_con{vow:un'|un} %{comment_subject_link}
   person: persona
   personal_message: Messaggio personale
   personal_message_description: A nessuno piace ricevere e-mail da una macchina! Perché
@@ -2666,6 +2674,7 @@ it:
   range: Areale
   range_from: Areale da
   rank: Rango
+  rank_position: Rango
   rank_restrictions: Restrizioni del rango
   ranks:
     kingdom: regno
@@ -3091,6 +3100,8 @@ it:
   stats: Statistiche
   stats_title: Statistiche del sito
   status: Stato
+  status_globally: '%{status} a livello Globale'
+  status_in_place: '%{status} in %{place}'
   still_no_luck?: Ancora sfortunato?
   still_needs_id?: C'è ancora bisogno di ID?
   still_working_on_classifying_taxon: Stiamo ancora lavorando nella classificazione
@@ -3159,7 +3170,7 @@ it:
   taxon_assessments_are: |-
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
     Per esempio, una organizzazione conservazionistica regionale potrebbe usarle per organizzare le informazioni e sollecitare feedback sullo stato di diversi taxa minacciati nella regione.
-  taxon_change: modifica del taxon
+  taxon_change: modifiche di taxon
   taxon_deleted: Taxon eliminato.
   taxon_doesnt_have_a_range: Il Taxon non ha un areale definito
   taxon_drop: elimina taxon
@@ -3531,7 +3542,7 @@ it:
   user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
   user_added_x_observations_html: '%{user} ha aggiunto %{x} osservazioni'
   user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
-  user_faved_a_noun_by_owner: '%{user} nei preferiti %{noun} da %{owner}'
+  user_faved_a_noun_by_owner: '%{user} ha messo nei preferiti %{noun} di %{owner}'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_ids: '%{user} ha scelto di mantenere il controllo
     sui taxa associati alle loro osservazioni'
@@ -3740,6 +3751,7 @@ it:
   would_you_like_to: Ti piacerebbe
   would_like_some_help_identifying_this: vorresti qualche aiuto per identificare questo
   x_admin: '%{login} amministra'
+  x_blog: Il Blog di %{x}
   x_deleted: '%{x} elimitato'
   x_does_not_exist: '"%{x}" non esiste'
   x_doesnt: '%{login} non'
@@ -3861,12 +3873,10 @@ it:
   you_must_select_dates_to_compare: Devi selezionare le date da confrontare
   you_must_specify_and_confirm_a_new_password: Devi specificare e confermare una nuova
     password.
-  your_name_was_saved: Il tuo nome è stato salvato.
   you_need_to_have_linked_flickr_account: Devi aver collegato un account Flickr per
     etichettare le tue foto.
   you_need_to_select_at_least_one_photo: Devi selezionare almeno una foto!
   you_need_to_select_some_observations_first: Prima devi selezionare qualche osservazioni.
-  your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
   you_retain_full_copyright: Mantieni il pieno copyright sui tuoi contenuti tranne
     quelli concessi ad %{site_name} nei nostri Termini di Servizio.
   you_retain_full_copyright_over_your_content: Mantieni il pieno copyright sui tuoi
@@ -3886,12 +3896,12 @@ it:
   you_tried_to_do_something_you_shouldnt: Hai provato a fare qualcosa che non dovresti,
     come modificare i dati di qualcun altro senza permessi! Sii gentile!
   you_unlinked_your_provider_account: Hai scollegato il tuo account %{provider}
+  you_would_get_the: 'otterrai le seguenti etichette:'
+  youll_need_to_link: Devi collegare
   youve_been_invited_to_join_this_project_html: Sei stato invitato ad <a href="%{url}"
     class="readmore">unirti al progetto</a>
   youve_joined_the_x_project: Ti sei unito al progetto %{project_invitation} e la
     tua osservazione è stata aggiunta
-  you_would_get_the: 'otterrai le seguenti etichette:'
-  youll_need_to_link: Devi collegare
   your: Il tuo
   your_: La tua/Il tuo
   your_account_has_been_verified: Il tuo account %{site_name} è stato verificato!
@@ -3913,6 +3923,7 @@ it:
   your_inat_account_has_been_activated: Il tuo account %{inat} è stato attivato
   your_life_list: la tua lista degli esseri viventi!
   your_month_observations: Le tue osservazioni di %{month}
+  your_name_was_saved: Il tuo nome è stato salvato.
   your_new_password_is: La tua nuova password è
   your_observation_will_get_shared_html: Se lasci queste caselle barrate la tua osservazione
     sarà condivisa sui social network. Puoi cambiare le tue impostazioni predefinite
@@ -3928,6 +3939,7 @@ it:
   your_photos_have_been_tagged: Le tue foto sono state taggate!
   your_picasa_account: il tuo account Picasa
   your_picasa_account_info: Informazioni del tuo account Picasa
+  your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
   your_should_recognize: Dovresti riconosce alcune di queste foto
   your_site_account_has_been_created: Il tuo account %{site} è stato creato.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
