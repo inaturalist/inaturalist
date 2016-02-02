@@ -1,15 +1,19 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+def setup_taxon_merge
+  @input_taxon1 = Taxon.make!
+  @input_taxon2 = Taxon.make!
+  @output_taxon = Taxon.make!
+  @merge = TaxonMerge.make
+  @merge.add_input_taxon(@input_taxon1)
+  @merge.add_input_taxon(@input_taxon2)
+  @merge.add_output_taxon(@output_taxon)
+  @merge.save!
+end
+
 describe TaxonMerge, "commit" do
   before(:each) do
-    @input_taxon1 = Taxon.make!
-    @input_taxon2 = Taxon.make!
-    @output_taxon = Taxon.make!
-    @merge = TaxonMerge.make
-    @merge.add_input_taxon(@input_taxon1)
-    @merge.add_input_taxon(@input_taxon2)
-    @merge.add_output_taxon(@output_taxon)
-    @merge.save!
+    setup_taxon_merge
   end
 
   it "should not duplicate conservation status" do
@@ -90,5 +94,20 @@ describe TaxonMerge, "commit" do
     @merge.commit
     @output_taxon.reload
     @output_taxon.should be_is_active
+  end
+end
+
+describe TaxonMerge, "commit_records" do
+  before(:each) do
+    setup_taxon_merge
+  end
+  it "should add new identifications" do
+    ident = Identification.make!(:taxon => @input_taxon1)
+    @merge.commit_records
+    ident.reload
+    expect(ident).not_to be_current
+    new_ident = ident.observation.identifications.by(ident.user).order("id asc").last
+    expect(new_ident).not_to eq(ident)
+    expect(new_ident.taxon).to eq(@output_taxon)
   end
 end
