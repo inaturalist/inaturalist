@@ -272,20 +272,20 @@ es:
       phylum: Phylum
       species: Especie
       order: Orden
-    plants: Plantas
-    animals: Animales
-    mollusks: Moluscos
     amphibians: Anfibios
+    animals: Animales
+    arachnids: Arácnidos
+    birds: Aves
+    chromista: Algas pardas y parientes
+    fungi: Hongos
+    insects: Insectos
     mammals: Mamíferos
+    mollusks: Moluscos
+    other_animals: Otros animales
+    plants: Plantas
+    protozoans: Protozoarios
     ray_finned_fishes: Peces con aletas radiadas
     reptiles: Reptiles
-    birds: Aves
-    insects: Insectos
-    arachnids: Arácnidos
-    fungi: Hongos
-    chromista: Algas pardas y parientes
-    protozoans: Protozoarios
-    other_animals: Otros animales
     life: Vida
     x_plantae:
       one: 1 planta
@@ -2523,8 +2523,8 @@ es:
     united_states: Estados Unidos
     virgin_islands: Islas Vírgenes
     west_africa: África occidental
-  places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
   places_of_interest: Lugares de Interés
+  places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
@@ -3569,7 +3569,6 @@ es:
   valid_interrogation: ¿Válido?
   valid_options_are: Las opciones válidas son
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
-  verifiable: Verificable
   view: Ver
   view_all: Ver todo
   view_all_members: Ver todos los miembros
@@ -3725,7 +3724,6 @@ es:
   widget: Widget
   widget_code: Código de widget
   widget_for: Widget para
-  wild: salvaje
   will_be: será
   wikipedia_entry: Registro de Wikipedia
   wikipedia_taxobox_raquo: Ficha de taxón en Wikipedia &raquo;
@@ -3857,13 +3855,11 @@ es:
   you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva
     contraseña.
-  your_name_was_saved: El nombre fue guardado.
   you_need_to_have_linked_flickr_account: Debe tener una cuenta de Flickr vinculada
     para etiquetar sus fotos.
   you_need_to_select_at_least_one_photo: ¡Necesitas seleccionar al menos una foto!
   you_need_to_select_some_observations_first: Debe seleccionar algunas observaciones
     primero.
-  your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   you_retain_full_copyright: Usted mantiene todos los derechos de autor sobre su contenido
     aparte de aquellos derechos concedidos a %{site_name} en nuestros Términos de
     Servicio
@@ -3885,12 +3881,12 @@ es:
     Intentaste hacer algo que no deberías, como editar
     la información de alguien más sin permiso. No seas malvado.
   you_unlinked_your_provider_account: Has desvinculado tu cuenta de %{provider}
+  you_would_get_the: usted obtendrá las siguientes etiquetas
+  youll_need_to_link: Deberá vincular
   youve_been_invited_to_join_this_project_html: Has sido invitado a unirte a este
     <a href="%{url}" class="readmore">proyecto </a>
   youve_joined_the_x_project: Te has unido al proyecto %{project_invitation} y tus
     observaciones fueron añadidas
-  you_would_get_the: usted obtendrá las siguientes etiquetas
-  youll_need_to_link: Deberá vincular
   your: Tu
   your_: Usted
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor
@@ -3912,6 +3908,7 @@ es:
   your_inat_account_has_been_activated: Su cuenta %{inat} ha sido activada.
   your_life_list: your life list!
   your_month_observations: Tus observaciones de %{month}
+  your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Su nueva contraseña es
   your_observation_will_get_shared_html: Su observación será compartido con redes
     sociales si se deja estes cajas marcados. Puedes cambiar por <a href='%{url}'
@@ -3924,6 +3921,7 @@ es:
   your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
   your_picasa_account: Su cuenta Picasa
   your_picasa_account_info: Información de su cuenta Picasa
+  your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_should_recognize: Usted debería reconocer algunas de estas fotos
   your_site_account_has_been_created: Su cuenta de %{site} ha sido creada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}

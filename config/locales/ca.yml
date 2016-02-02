@@ -260,20 +260,20 @@ ca:
       phylum: Fílum
       species: Espècie
       order: Ordre
-    plants: Plantes
-    animals: Animals
-    mollusks: Mol·luscs
     amphibians: Amfibis
+    animals: Animals
+    arachnids: 'Aràcnids: Aranyes, alacrans i altres'
+    birds: Aus
+    chromista: Algues brunes i parents
+    fungi: Fongs
+    insects: Insectes
     mammals: Mamífers
+    mollusks: Mol·luscs
+    other_animals: Altres animals
+    plants: Plantes
+    protozoans: Protozous
     ray_finned_fishes: Peixos amb aletes radiades
     reptiles: Rèptils
-    birds: Aus
-    insects: Insectes
-    arachnids: 'Aràcnids: Aranyes, alacrans i altres'
-    fungi: Fongs
-    chromista: Algues brunes i parents
-    protozoans: Protozous
-    other_animals: Altres animals
     life: Vida
     x_plantae:
       one: 1 planta
@@ -3823,12 +3823,10 @@ ca:
   you_must_select_dates_to_compare: Heu de seleccionar les dates que vols comparar
   you_must_specify_and_confirm_a_new_password: Heu d'especificar i confirmar una nova
     contrasenya.
-  your_name_was_saved: El vostre nom s’ha desat.
   you_need_to_have_linked_flickr_account: Heu de vincular un compte de Flickr per
     etiquetar les vostres fotos.
   you_need_to_select_at_least_one_photo: Heu de seleccionar almenys una foto!
   you_need_to_select_some_observations_first: Primer heu de seleccionar les observacions.
-  your_profile_was_successfully_updated: El vostre perfil s’ha actualitzat satisfactòriament.
   you_retain_full_copyright: Tal com indiquen les nostres condicions de servei, sou
     el titular de tots els drets d'autor pel que fa al vostre contingut, a part d'aquells
     drets concedits a %{site_name}.
@@ -3850,12 +3848,12 @@ ca:
     Heu intentat fer quelcom que no hauríeu de fer, com editar la informació d'algú sense autorització.
     No ho feu!
   you_unlinked_your_provider_account: Heu desvinculat el vostre compte de %{provider}
+  you_would_get_the: Obtindreu les etiquetes següents
+  youll_need_to_link: Haureu de vincular
   youve_been_invited_to_join_this_project_html: Us han convidat a <a href="%{url}"
     class="readmore"> unir-vos a aquest projecte</a>
   youve_joined_the_x_project: Us heu unit al projecte %{project_invitation} i s’hi
     han afegit les seves observacions
-  you_would_get_the: Obtindreu les etiquetes següents
-  youll_need_to_link: Haureu de vincular
   your: El vostre
   your_: El vostre
   your_account_has_been_verified: S’ha confirmat el vostre compte d’%{site_name}!
@@ -3877,6 +3875,7 @@ ca:
   your_inat_account_has_been_activated: S’ha activat el vostre compte %{inat}.
   your_life_list: la vostra llista de vida!
   your_month_observations: Les vostres observacions de %{month}
+  your_name_was_saved: El vostre nom s’ha desat.
   your_new_password_is: La vostra nova contrasenya és
   your_observation_will_get_shared_html: Si no desmarqueu aquestes caselles, la vostra
     observació es compartirà a les xarxes socials. Podeu canviar per <a href='%{url}'
@@ -3889,6 +3888,7 @@ ca:
   your_photos_have_been_tagged: Les vostres fotos s’han etiquetat!
   your_picasa_account: El vostre compte de Picasa
   your_picasa_account_info: Informació del vostre compte de Picasa
+  your_profile_was_successfully_updated: El vostre perfil s’ha actualitzat satisfactòriament.
   your_should_recognize: Hauríeu de reconèixer algunes d'aquestes fotos
   your_site_account_has_been_created: S’ha creat el vostre compte de %{site}.
   your_site_needs_your_to_authorize_more_permissions_from_provider: 'Des d’%{site_name}

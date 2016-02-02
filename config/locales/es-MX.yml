@@ -257,21 +257,21 @@ es-MX:
       phylum: Filo
       species: Especie
       order: Orden
-    plants: Plantas
-    animals: Animales
-    mollusks: Moluscos
     amphibians: Anfibios
-    mammals: Mamíferos
-    ray_finned_fishes: Peces con aletas radiadas
-    reptiles: Reptiles
-    birds: Aves
-    insects: Insectos
+    animals: Animales
     arachnids: Arañas, alacranes y parientes
+    birds: Aves
+    chromista: Algas pardas y parientes
     fungi: Hongos
     fungi_including_lichens: Hongos Incluyendo Líquenes
-    chromista: Algas pardas y parientes
-    protozoans: Protozoarios
+    insects: Insectos
+    mammals: Mamíferos
+    mollusks: Moluscos
     other_animals: Otros animales
+    plants: Plantas
+    protozoans: Protozoarios
+    ray_finned_fishes: Peces con aletas radiadas
+    reptiles: Reptiles
     life: Vida
     x_plantae:
       one: 1 planta
@@ -518,7 +518,7 @@ es-MX:
   black: Negro
   blog_widget: Widget del blog
   blue: Azul
-  blue_butterfly_etc: "azul, mariposa, etc."
+  blue_butterfly_etc: azul, mariposa, etc.
   blue_icons_represent_political_units: Los íconos azules representan unidades políticas
     como países, estados y afines. Los íconos verdes representan diferentes tipos
     de espacios abiertos parques y reservas. Si haces un acercamiento, podrás ver
@@ -737,8 +737,8 @@ es-MX:
   commit: Guardar
   committed: Guardado
   committing: Guardando...
-  community_id: 'Identificación de la <strong>comunidad</strong>:'
   community_curated: Curadas por la comunidad
+  community_id: 'Identificación de la <strong>comunidad</strong>:'
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: ¿Hay una identificación apoyada por la comunidad?
   compare_with: Compara con
@@ -989,7 +989,7 @@ es-MX:
   dont_send_me_email: ¡No me envíen correo electrónico!
   dont_use_double_quotes: No uses "entre comillas" en ningún lado
   double_click_to_finish: (Con doble clic termina tu forma)
-  download: 'Descargar'
+  download: Descargar
   download_bulk_import_template_html: |-
     <a href="%{url}">Descarga la plantilla</a> para usarla en
     <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
@@ -1138,7 +1138,6 @@ es-MX:
   "false": "No"
   faq: Preguntas frecuentes
   Family: Familia
-  faves: favoritos
   favorite_taxa: Grupos de especies (taxa) favoritos
   favorites: Favoritos
   fblocale: es_LA
@@ -2395,8 +2394,8 @@ es-MX:
     united_states: Estados Unidos
     virgin_islands: Islas Vírgenes
     west_africa: África occidental
-  places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
   places_of_interest: Lugares de Interés
+  places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
   plants: Plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_add_this_observation_to: 'Porfavor añade esta observación a:'
@@ -2633,8 +2632,8 @@ es-MX:
     tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale
     para ver la evaluación de calidad de los datos.
   research_quality: Calidad de investigación
-  reset_your_password: Cambia tu contraseña
   reset_search_filters: Restablecer los filtros de búsqueda
+  reset_your_password: Cambia tu contraseña
   resolve: Resolver
   resolve_this_flag: Resolver esta advertencia
   resolved: Resuelta
@@ -3344,7 +3343,7 @@ es-MX:
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
     web fuente
-  url_slug_or_id: "mi-proyecto de oro 333"
+  url_slug_or_id: mi-proyecto de oro 333
   US_states: Estados de Estados Unidos
   usage_stats: Estadísticas de uso
   use_this_form_to_create_a_new: Usa esta forma para crear un cambio taxonómico en
@@ -3407,7 +3406,6 @@ es-MX:
   valid_interrogation: ¿Es válido?
   valid_options_are: Las opciones válidas son
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
-  verifiable: verificable
   view: Ver
   view_all: Ver todas
   view_all_members: Ver a todos los miembros
@@ -3561,7 +3559,6 @@ es-MX:
   widget: Widget
   widget_code: Código widget
   widget_for: Widget para
-  wild: salvaje
   will_be: será
   wikipedia_entry: entrada de wikipedia
   wikipedia_taxobox_raquo: Ficha de la especie o grupo en Wikipedia &raquo;
@@ -3691,13 +3688,11 @@ es-MX:
   you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva
     contraseña.
-  your_name_was_saved: El nombre fue guardado.
   you_need_to_have_linked_flickr_account: Necesitas tener enlazada tu cuenta Flickr
     para etiquetar tus fotos.
   you_need_to_select_at_least_one_photo: ¡Necesitas seleccionar al menos una foto!
   you_need_to_select_some_observations_first: Primero, necesitas seleccionar algunas
     observaciones.
-  your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   you_retain_full_copyright: Tú retienes los derechos de autor sobre tu contenido
     con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio.
   you_retain_full_copyright_over_your_content: Tu retienes los derechos de autor sobre
@@ -3720,12 +3715,12 @@ es-MX:
     Intentaste hacer algo que no deberías, como editar
     la información de alguien más sin permiso. No seas malvado.
   you_unlinked_your_provider_account: Desvinculaste tu cuenta de tu %{provider}
+  you_would_get_the: 'Obtendrás las siguientes etiquetas:'
+  youll_need_to_link: Necesitarás enlazar
   youve_been_invited_to_join_this_project_html: Has sido invitado a unirte a este
     <a href="%{url}" class="readmore">proyecto </a>
   youve_joined_the_x_project: Te has unido al proyecto %{project_invitation} y tus
     observaciones fueron añadidas
-  you_would_get_the: 'Obtendrás las siguientes etiquetas:'
-  youll_need_to_link: Necesitarás enlazar
   your: Tus
   your_: Tuyas
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor
@@ -3747,6 +3742,7 @@ es-MX:
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
   your_month_observations: Tus observaciones de %{month}
+  your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Tu nueva contraseña es
   your_observation_will_get_shared_html: Tu observación será compartida con redes
     sociales si dejas estas cajas marcadas. Puedes cambiar por <a href='%{url}' target='_blank'>editando
@@ -3760,6 +3756,7 @@ es-MX:
   your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
   your_picasa_account: Tu cuenta de Picasa
   your_picasa_account_info: La información de tu cuenta de Picasa
+  your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_should_recognize: Deberías reconocer algunas de estas fotos
   your_site_account_has_been_created: Tu cuenta %{site} ha sido creada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -3796,6 +3793,7 @@ es-MX:
     mientras tanto
   none_of_the_people_you_follow_have_any_updates_yet: ¡Ninguna de las personas que
     sigues han hecho actualizaciones, aún!
+  verifiable: verificable
   views:
     views: Vistas
     custom_projects:
@@ -4886,6 +4884,7 @@ es-MX:
       listed_taxon:
         occurrence_status_level: Estatus de ocurrencia
         establishment_means: Medio de establecimiento
+  wild: salvaje
   will_paginate:
     previous_label: '&#8592; Previo'
     next_label: Siguiente &#8594;

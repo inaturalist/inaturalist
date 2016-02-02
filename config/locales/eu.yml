@@ -239,20 +239,20 @@ eu:
       phylum: Filuma
       species: Espeziea
       order: Ordena
-    plants: Landareak
-    animals: Animaliak
-    mollusks: Moluskuak
     amphibians: Anfibioak
+    animals: Animaliak
+    arachnids: Armiarmak, eskorpioiak eta ahaideak
+    birds: Hegaztiak
+    chromista: Alga arreak eta ahaideak
+    fungi: Onddoak
+    insects: Intsektuak
     mammals: Ugaztunak
+    mollusks: Moluskuak
+    other_animals: Beste animalia batzuk
+    plants: Landareak
+    protozoans: Protozoarioak
     ray_finned_fishes: Arrainak hegal erradiatuekin
     reptiles: Narrastiak
-    birds: Hegaztiak
-    insects: Intsektuak
-    arachnids: Armiarmak, eskorpioiak eta ahaideak
-    fungi: Onddoak
-    chromista: Alga arreak eta ahaideak
-    protozoans: Protozoarioak
-    other_animals: Beste animalia batzuk
     life: Bizitza
     x_plantae:
       one: 1 landare
@@ -3190,13 +3190,11 @@ eu:
   you_must_select_dates_to_compare: Alderatu beharreko datak hautatu behar dituzu
   you_must_specify_and_confirm_a_new_password: Pasahitz berria zehaztu eta baieztatu
     behar duzu.
-  your_name_was_saved: Izena gorde egin da.
   you_need_to_have_linked_flickr_account: Flickr-eko kontua izan behar duzu lotuta
     argazkiak etiketatzeko.
   you_need_to_select_at_least_one_photo: Gutxienez argazki bat hautatu behar duzu!
   you_need_to_select_some_observations_first: Behaketa batzuk hautatu behar dituzu
     lehenik eta behin.
-  your_profile_was_successfully_updated: Zure profila behar bezala eguneratu da.
   you_retain_full_copyright: Edukiaren gaineko eskubide guztien jabe zara, %{site_name}
     guneari gure Zerbitzu Baldintzen arabera emandako eskubideena izan ezik.
   you_retain_full_copyright_over_your_content: Edukiaren gaineko eskubide osoen jabe
@@ -3213,10 +3211,10 @@ eu:
   you_sure_remove_taxon_from?: Ziur zaude taxon hau %{list}-tik ezabatu nahi duzula?
   you_sure_remove_this_invitation?: Ziur zaude gonbidapen hau ezabatu nahi duzula?
   you_sure_remove_this_observation?: Ziur zaude behaketa hau ezabatu nahi duzula?
-  youve_joined_the_x_project: '%{project_invitation} proiektuarekin bat egin duzu
-    eta zure behaketak gehitu dira'
   you_would_get_the: Etiketa hauek eskuratuko dituzu
   youll_need_to_link: Estekatu egin beharko duzu
+  youve_joined_the_x_project: '%{project_invitation} proiektuarekin bat egin duzu
+    eta zure behaketak gehitu dira'
   your: Zu
   your_: Zu
   your_account_has_been_verified: Zure %{site_name} kontua baieztatu egin da! Mesedez,
@@ -3237,6 +3235,7 @@ eu:
   your_inat_account_has_been_activated: Zure %{inat} kontua aktibatu egin da.
   your_life_list: your life list!
   your_month_observations: Tus observaciones de %{month}
+  your_name_was_saved: Izena gorde egin da.
   your_new_password_is: 'Zure pasahitz berria hau da:'
   your_observation_will_get_shared_html: 'Zure behaketa sare sozialekin partekatuko
     da lauki hauek markatuta uzten badituzu. Honengatik alda dezakezu: <a href=''%{url}''
@@ -3249,6 +3248,7 @@ eu:
   your_photos_have_been_tagged: Zure argazkiak etiketatu egin dira!
   your_picasa_account: Zure Picasa kontua
   your_picasa_account_info: Zure Picasa kontuaren informazioa
+  your_profile_was_successfully_updated: Zure profila behar bezala eguneratu da.
   your_should_recognize: Argazki hauetako batzuk ezagutu egin behar zenituzke
   your_site_account_has_been_created: Zure %{site} kontua sortu da.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}

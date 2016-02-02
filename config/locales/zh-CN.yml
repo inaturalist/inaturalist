@@ -237,20 +237,20 @@ zh-CN:
       phylum: 门
       species: 物种
       order: 排序
-    plants: 植物
-    animals: 动物
-    mollusks: 软体动物
     amphibians: 两栖动物
+    animals: 动物
+    arachnids: 蛛形类
+    birds: 鸟类
+    chromista: 色藻界
+    fungi: 真菌
+    insects: 昆虫
     mammals: 哺乳动物
+    mollusks: 软体动物
+    other_animals: 其他动物
+    plants: 植物
+    protozoans: 原生动物
     ray_finned_fishes: 条鳍鱼类
     reptiles: 爬行动物
-    birds: 鸟类
-    insects: 昆虫
-    arachnids: 蛛形类
-    fungi: 真菌
-    chromista: 色藻界
-    protozoans: 原生动物
-    other_animals: 其他动物
     life: 生命
     x_plantae:
       other: '%{count}个植物'
@@ -492,6 +492,8 @@ zh-CN:
   child_taxa: 子分类
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
+  choose_cc_licensed_photos_html: 从其他网站选择<a href="http://creativecommons.org/">开放</a>授权的照片，或从
+    %{site_name} 的观察中挑选一个。尝试选择<em>展示诊断特性</em>并且<em>看起来适合图标</em>的照片。<em>第一个为默认照片</em>。
   chose_columns: 选择列
   choose_files_from_your_computer: 从您的电脑中选择文件
   choose_from_your_lists: 从您的列表中选择
@@ -948,6 +950,7 @@ zh-CN:
   green: 绿色
   grey: 灰色
   grid: 格子
+  grid_tooltip: 显示网格预览
   group: 组
   guess_description: 猜 / 描述
   guides: 指南
@@ -1156,6 +1159,7 @@ zh-CN:
   list: 列表
   list_deleted: 列表已删除。
   list_saved: 列表已保存。
+  list_tooltip: 显示列表预览
   list_updated: 列表已更新！
   list_views:
     plain: 无格式
@@ -1231,6 +1235,7 @@ zh-CN:
       checklist_places: 检查表地点
       checklist_places_description: 此分类单元列出的地点
       range: 范围
+  map_tooltip: 显示地图预览
   map_for: 地图用于
   mark_as_reviewed: 标记为已复核
   maybe_your_signed_in_with: 也许您是使用您的 %{omniauth} 账户登录的？
@@ -1787,6 +1792,7 @@ zh-CN:
     sounds: 声音
     sounds_size_sound: '%{sounds_size} 段声音'
     sounds_size_sounds: '%{sounds_size} 段声音'
+    view_all_soundcount_sounds: 查看所有 %{sound_count} 声音
   source: 来源
   source_: 源：
   source_list:
@@ -2012,6 +2018,7 @@ zh-CN:
   view_contributions: 查看贡献
   view_details: 查看详情
   view_flags: 查看标记
+  view_flags_for_x_html: 查看用于 %{x} 的旗帜
   view_journal: 查看日记
   view_leaderboard: 查看排行榜
   view_leaderboard_from_last_month: 查看上个月的排行榜
@@ -2048,6 +2055,8 @@ zh-CN:
   view_taxon_page_for: 查看用于此事物的分类单元页面
   view_terms: 查看条款
   view_the: 查看%{action}&#59; %{link}
+  view_user_observations: 查看 %{user} 的观察
+  view_xs_journal: 查看 %{x} 的日记
   view_your_dashboard: 查看您的仪表板
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>查看您的控制面板</a>以获取更多更新
   view_your_calendar: 查看您的日历
@@ -2171,10 +2180,8 @@ zh-CN:
   you_must_select_at_least_one_taxon: 您必须选择至少一个类群
   you_must_select_dates_to_compare: 您必须选择日期以比较
   you_must_specify_and_confirm_a_new_password: 您必须指定一个新密码并确认它。
-  your_name_was_saved: 您的名字已保存。
   you_need_to_have_linked_flickr_account: 您需要连接一个Flickr账户才能标记您的照片。
   you_need_to_select_at_least_one_photo: 您需要选择至少一张照片！
-  your_profile_was_successfully_updated: 您的个人资料已成功更新！
   you_retain_full_copyright: 除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。
   you_retain_full_copyright_over_your_content: 除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。
   you_sure_delete_asset?: 您确定要删除此优点吗？
@@ -2202,12 +2209,14 @@ zh-CN:
   your_identification: 您的身份证明
   your_inat_account_has_been_activated: 您的%{inat}账户已被激活。
   your_life_list: 您的生命清单！
+  your_name_was_saved: 您的名字已保存。
   your_new_password_is: 您的新密码是
   your_observation_will_get_shared_html: 如果您勾选这些框的话，您的观察将被社交网络分享。您可通过<a href='%{url}'
     target='_blank'>编辑您的账户设置</a>更改您的默认值。如果您在此功能添加前连接了您的Facebook或Twitter账户，您可能需要重新连接您的账户与Twitter或Facebook以使其工作。
   your_photos_have_been_tagged: 您的照片已被标记！
   your_picasa_account: 您的Picasa账户
   your_picasa_account_info: 您的Picasa账户信息
+  your_profile_was_successfully_updated: 您的个人资料已成功更新！
   your_site_account_has_been_created: 您的%{site}账户已创建。
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
     需要您授权 %{provider} 使用更多权限：'
@@ -2389,11 +2398,7 @@ zh-CN:
             identifications, choose the lowest ranked taxon.
           </p>
       user_stats:
-        user_stats_desc: |-
-          用户统计are limited to a max of the top 500 by observation count
-          or species count, so the total listed is usually a bit more than
-          500, since the two lists probably don't contain the same users.
-          A value marked '*' means it wasn't in the top 500 for that stat.
+        user_stats_desc: 用户统计已限于根据观察计数或物种计数最多500条，因此总共列出的人时常略多于500个，这是因为两个列表可能不包含相同用户。标记“*”的值意味着它未出现在那个统计数据的前500名。
     observation_fields:
       about_editing_observation_fields_desc_html: |-
         <p class='ui'>您可以编辑此观察字段，因为您创建了它，或者您是网站馆长。如果您是网站馆长，请遵守以下规则</p>
@@ -2428,6 +2433,25 @@ zh-CN:
         bioblitz_create_a_new_place_html: '%{link}，确信它有一个边界，然后回到这里并重试。'
         custom_project_fields_means: 自定义项目标志，添加一些内容，及编辑CSS。
         icon_desc: 将被裁剪成正方形
+        observation_aggregation_desc_html: |-
+          <p class="description">
+            观察聚合将自动添加观察至您项目的地方边界，或添加至您项目的规则分类单元中。Since there's no way to remove many observations from a project
+            at a time, this is potentially dangerous, so please make sure you have
+            chosen the place and the taxon rules that you want, or you might end
+            up with a lot of extraneous data.
+          </p>
+          <p class="description">
+            The aggregator will only work if the following conditions are met:
+          </p>
+          <ol>
+            <li class="readable description">
+             Your project is associated with a small-to-mid-sized place (about
+             the size of Texas or Ukraine)
+            </li>
+            <li class="readable description">
+             OR your project only accepts observations of certain taxa
+            </li>
+          </ol>
         rules:
           wild: 野生的/训化的
           georeferenced: 有坐标
@@ -2456,6 +2480,12 @@ zh-CN:
             their <em>complete</em> email address, assuming we have that on
             file.
           </p>
+      members:
+        bioblitz_notice_html: |-
+          <strong>注意：</strong>这只是明确加入了此项目的人的列表。Since this is a bioblitz project and
+          stats are calculated for all observations added within the specified
+          place and time period, there may be many more participants than are
+          listed here.
       project_location_privacy_notice_html: |-
         <p>
         请注意项目馆长将可以查看在此项目中您观察中的任何私有或已掩盖位置，除非您解除授权，并且他们将可以添加您观察的任意内容至此项目，除非<a href="/users/edit">您更改您的设置</a>。You can also grant or revoke access to project

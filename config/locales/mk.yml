@@ -202,20 +202,20 @@ mk:
       phylum: Колено
       species: Вид
       order: Ред
-    plants: Растенија
-    animals: Животни
-    mollusks: Мекотелци
     amphibians: Водоземци
+    animals: Животни
+    arachnids: Пајаковидни
+    birds: Птици
+    chromista: Хромисти
+    fungi: Габи
+    insects: Инсекти
     mammals: Цицачи
+    mollusks: Мекотелци
+    other_animals: Други животни
+    plants: Растенија
+    protozoans: Праживотни
     ray_finned_fishes: Зракоперки
     reptiles: Влекачи
-    birds: Птици
-    insects: Инсекти
-    arachnids: Пајаковидни
-    fungi: Габи
-    chromista: Хромисти
-    protozoans: Праживотни
-    other_animals: Други животни
     life: Живот
     x_plantae:
       one: 1 растение
@@ -1817,7 +1817,6 @@ mk:
   yesterday_at: ', вчера во 16:00 ч.'
   you: вие
   you_admin: со кои раководите
-  your_profile_was_successfully_updated: Вашиот профил е успешно подновен!
   your_home: Ваша почетна
   your_id: Ваша назнака
   your_identification: Ваша назнака
@@ -1826,6 +1825,7 @@ mk:
   your_month_observations: вашите набљудувања во %{month}
   your_new_password_is: Вашата нова лозинка гласи
   your_observations: Ваши набљудувања
+  your_profile_was_successfully_updated: Вашиот профил е успешно подновен!
   your_world!: го вашиот свет!
   zoom_to_taxon_name: Приближи на %{taxonname}
   zoom_to_x: приближи на %{x}
