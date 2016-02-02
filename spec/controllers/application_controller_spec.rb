@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ApplicationController do
 
   describe "UnknownFormat" do
-    # I'm testing a feature implemented in the ApplicationController by using
+    # testing a feature implemented in the ApplicationController by using
     # the ObservationsController since there are no testable public-facing
     # actions in the ApplicationController
     describe ObservationsController do
@@ -49,6 +49,24 @@ describe ApplicationController do
       u.reload
       expect( session[:locale] ).to eq "fr"
       expect( u.locale ).to eq "fr"
+    end
+  end
+
+  describe WelcomeController do
+    describe "check_user_last_active" do
+      it "re-activate inactive users" do
+        user = User.make!(last_active: nil, subscriptions_suspended_at: Time.now)
+        expect( user.last_active ).to be_nil
+        expect( user.subscriptions_suspended_at ).to_not be_nil
+        http_login(user)
+        get :index
+        user.reload
+        # user's last_active date is set
+        expect( user.last_active ).to_not be_nil
+        # subscriptions are unsuspended
+        expect( user.subscriptions_suspended_at ).to be_nil
+      end
+
     end
   end
 

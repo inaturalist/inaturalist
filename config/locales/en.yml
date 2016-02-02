@@ -3037,6 +3037,7 @@ en:
   unlink_your_picasa_account: Unlink Your Picasa Account
   unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"
+  updates_suspension_email_subject: "%{prefix} Your subscriptions are on hold"
   updating: Updating...
   unprocessable: Unprocessable
   unpublish: Unpublish
@@ -4065,6 +4066,11 @@ en:
           name is not yet in the %{site_name} database, you'll need to add it
           before your bulk upload will work. Use the box at the bottom of the
           search page to do import new names.
+      users_updates_suspended:
+        message: |
+          You have been inactive on %{site_name} for a while, so we have suspended
+          your subscriptions. To resume getting updates on site activity, please
+          <a href="%{login_url}">log in to your account</a> again.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project

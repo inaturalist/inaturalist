@@ -119,6 +119,21 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def user_updates_suspended(user)
+    return if user.blank?
+    @user = user
+    set_locale
+    return if @user.email.blank?
+    return if @user.prefers_no_email?
+    return if @user.suspended?
+    @site_name = site_name
+    mail(set_site_specific_opts.merge(
+      to: @user.email,
+      subject: t(:updates_suspension_email_subject, prefix: subject_prefix)
+    ))
+    reset_locale
+  end
+
   # Send the user an email saying the bulk observation import encountered
   # an error.
   def bulk_observation_error(user, filename, error_details)
@@ -162,6 +177,14 @@ class Emailer < ActionMailer::Base
       "[#{site.name}]"
     else
       "[#{CONFIG.site_name}]"
+    end
+  end
+
+  def site_name
+    if site = @user.site
+      site.name
+    else
+      CONFIG.site_name
     end
   end
 
