@@ -816,66 +816,95 @@ module ApplicationHelper
   end
   
   def rights(record, options = {})
-    separator = options[:separator] || "<br/>"
-    if record.is_a? Observation
-      user_name = record.user.name
-      user_name = record.user.login if user_name.blank?
-      s = "&copy; #{user_name}"
-      if record.license.blank?
-        s += "#{separator}#{t(:all_rights_reserved)}"
-      else
-        s += separator
-        s += content_tag(:span) do
-          c = if options[:skip_image]
-            ""
-          else
-            link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
-          end
+    options[:separator] ||= "<br/>"
+    s = if record.is_a? Observation
+      rights_for_observation( record, options )
+    elsif record.is_a?(Photo) || record.is_a?(Sound)
+      rights_for_media( record, options )
+    elsif record.respond_to?(:attribution)
+      record.attribution
+    end
+    s ||= "&copy; #{user_name}"
+    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
+  end
+
+  def rights_for_observation( record, options = {} )
+    user_name = record.user.name
+    user_name = record.user.login if user_name.blank?
+    s = if record.license == Observation::CC0
+      t(:by_user, user: user_name)
+    else
+      "&copy; #{user_name}"
+    end
+    if record.license.blank?
+      s += "#{options[:separator]}#{t(:all_rights_reserved)}"
+    else
+      s += options[:separator]
+      s += content_tag(:span) do
+        c = if options[:skip_image]
+          ""
+        else
+          link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
+        end
+        if record.license == Observation::CC0
+          c + link_to(t('copyright.no_rights_reserved'), url_for_license(record.license))
+        else
           c + link_to(t(:some_rights_reserved), url_for_license(record.license))
         end
       end
-    elsif record.is_a?(Photo) || record.is_a?(Sound)
-      user_name = ""
-      user_name = record.native_realname if user_name.blank?
-      user_name = record.native_username if user_name.blank?
-      user_name = record.user.try(:name) if user_name.blank?
-      user_name = record.user.try(:login) if user_name.blank?
-      user_name = t(:unknown) if user_name.blank?
-      s = if record.copyrighted? || record.creative_commons?
-        "&copy; #{user_name}"
-      else
-        t('copyright.no_known_copyright_restrictions', :name => user_name, :license_name => t(:public_domain))
-      end
-
-      if record.copyrighted?
-        s += "#{separator}#{t(:all_rights_reserved)}"
-      elsif record.creative_commons?
-        s += separator
-        code = Photo.license_code_for_number(record.license)
-        url = url_for_license(code)
-        s += content_tag(:span) do
-          c = if options[:skip_image]
-            ""
-          else
-            link_to(image_tag("#{code}_small.png"), url) + " "
-          end
-          c.html_safe + link_to(t(:some_rights_reserved), url)
-        end
-      end
-    else
-      s = record.attribution if record.respond_to?(:attribution)
-      s ||= "&copy; #{user_name}"
     end
-    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
+  end
+
+  def rights_for_media( record, options = {} )
+    user_name = ""
+    user_name = record.native_realname if user_name.blank?
+    user_name = record.native_username if user_name.blank?
+    user_name = record.user.try(:name) if user_name.blank?
+    user_name = record.user.try(:login) if user_name.blank?
+    user_name = t(:unknown) if user_name.blank?
+    s = if record.copyrighted?
+      "&copy; #{user_name}"
+    elsif record.license_code == Observation::CC0
+      t(:by_user, user: user_name)
+    else
+      t('copyright.no_known_copyright_restrictions', name: user_name, license_name: t(:public_domain))
+    end
+
+    if record.all_rights_reserved?
+      s += "#{options[:separator]}#{t(:all_rights_reserved)}"
+    elsif record.creative_commons?
+      s += options[:separator]
+      code = Photo.license_code_for_number(record.license)
+      url = url_for_license(code)
+      s += content_tag(:span) do
+        c = if options[:skip_image]
+          ""
+        else
+          link_to(image_tag("#{code}_small.png"), url) + " "
+        end
+        license_blurb = if record.license_code == Observation::CC0
+          t("copyright.no_rights_reserved")
+        else
+          t(:some_rights_reserved)
+        end
+        c.html_safe + link_to(license_blurb, url)
+      end
+    end
   end
   
   def url_for_license(code)
     return nil if code.blank?
     if info = Photo::LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:last)
       info[:url]
+    elsif code == Observation::CC0
+      "https://creativecommons.org/publicdomain/zero/#{Shared::LicenseModule::CC0_VERSION}/"
     elsif code =~ /CC\-/
-      "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+      "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/#{Shared::LicenseModule::CC_VERSION}/"
     end
+  end
+
+  def license_name( license )
+    Shared::LicenseModule.license_name_for_code( license )
   end
   
   def update_image_for(update, options = {})

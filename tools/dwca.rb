@@ -24,6 +24,15 @@ will output licensed observations of taxon 123635 from place 14 to calflora.dwca
 will output taxon records with the EolMedia extension from a limited set of photo 
 licenses.
 
+
+  rails runner tools/dwca.rb \
+    -f public/taxa/CC-BY.dwca.zip \
+    --license CC-BY
+    --licenses CC-BY
+
+will output observation records that have the CC BY license, and will license
+the entire archive under a CC BY license.
+
 Options:
 EOS
   opt :path, "Path to archive", :type => :string, :short => "-f", :default => "public/observations/dwca.zip"
@@ -34,6 +43,8 @@ EOS
   opt :metadata, "Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.", :type => :string, :short => "-m", :default => "observations/gbif.eml.erb"
   opt :descriptor, "Path to descriptor template. Default: observations/gbif.descriptor.builder", :type => :string, :short => "-r", :default => "observations/gbif.descriptor.builder"
   opt :quality, "Quality grade of observation output.  This will also filter EolMedia exports. Options: research, casual, any.  Default: research.", :type => :string, :short => "-q", :default => "research"
+  opt :license, "Archive license that applies to the entire archive. Optional.", type: :string
+  opt :licenses, "Observation licenses", :type => :strings, :default => ["any"]
   opt :photo_licenses, "Photo licenses", :type => :strings, :default => ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer

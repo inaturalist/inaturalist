@@ -10,19 +10,19 @@ describe FlickrPhoto, "creation" do
     pending_flickr_setup do
       @non_cc_flickr_photo.user = nil
       @non_cc_flickr_photo.valid?
-      @non_cc_flickr_photo.errors[:license].should be_blank
+      expect(@non_cc_flickr_photo.errors[:license]).to be_blank
     end
   end
   
   it "should make a valid FlickrPhoto from a flickraw response" do
     pending_flickr_setup do
-      FlickrPhoto.new_from_flickraw(@cc_flickr_photo_response, :user => @user).should be_valid
+      expect(FlickrPhoto.new_from_flickraw(@cc_flickr_photo_response, :user => @user)).to be_valid
     end
   end
   
   it "should not be valid if the associated user didn't take the photo" do
     pending_flickr_setup do
-      FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => User.make!).should_not be_valid
+      expect(FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => User.make!)).not_to be_valid
     end
   end
 end
@@ -38,7 +38,7 @@ describe FlickrPhoto, "updating" do
       o.photos << @cc_flickr_photo
       @user.flickr_identity.destroy
       @cc_flickr_photo.reload
-      @cc_flickr_photo.should be_valid
+      expect(@cc_flickr_photo).to be_valid
     end
   end
 end
@@ -54,7 +54,7 @@ describe FlickrPhoto, "to_observation" do
   
   it "should create a valid observation" do
     pending_flickr_setup do
-      @cc_flickr_photo.to_observation.should be_valid
+      expect(@cc_flickr_photo.to_observation).to be_valid
     end
   end
 end
@@ -67,7 +67,7 @@ describe FlickrPhoto, "to_taxon" do
       @flickr_photo_hash["title"] = t.name
       r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
       fp = FlickrPhoto.new_from_api_response(r)
-      fp.to_taxon.should eq t
+      expect(fp.to_taxon).to eq t
     end
   end
 
@@ -77,7 +77,7 @@ describe FlickrPhoto, "to_taxon" do
       @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
       r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
       fp = FlickrPhoto.new_from_api_response(r)
-      fp.to_taxon.should eq tn.taxon
+      expect(fp.to_taxon).to eq tn.taxon
     end
   end
 end
