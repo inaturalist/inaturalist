@@ -27,7 +27,7 @@ licenses.
 
   rails runner tools/dwca.rb \
     -f public/taxa/CC-BY.dwca.zip \
-    --license CC-BY
+    --license CC-BY \
     --licenses CC-BY
 
 will output observation records that have the CC BY license, and will license

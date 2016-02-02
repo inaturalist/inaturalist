@@ -120,4 +120,13 @@ describe Photo do
     end
   end
 
+  describe "attribution_name" do
+    it "should not be blank even if the user's name is a blank string" do
+      u = User.make!( name: "" )
+      p = make_local_photo( user: u )
+      expect( u.name ).to eq ""
+      expect( p.attribution_name ).to eq u.login
+    end
+  end
+
 end

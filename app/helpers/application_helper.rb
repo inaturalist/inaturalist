@@ -832,12 +832,12 @@ module ApplicationHelper
     user_name = record.user.name
     user_name = record.user.login if user_name.blank?
     s = if record.license == Observation::CC0
-      t(:by_user, user: user_name)
+      I18n.t(:by_user, user: user_name)
     else
       "&copy; #{user_name}"
     end
     if record.license.blank?
-      s += "#{options[:separator]}#{t(:all_rights_reserved)}"
+      s += "#{options[:separator]}#{I18n.t(:all_rights_reserved)}"
     else
       s += options[:separator]
       s += content_tag(:span) do
@@ -847,9 +847,9 @@ module ApplicationHelper
           link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
         end
         if record.license == Observation::CC0
-          c + link_to(t('copyright.no_rights_reserved'), url_for_license(record.license))
+          c + link_to(I18n.t('copyright.no_rights_reserved'), url_for_license(record.license))
         else
-          c + link_to(t(:some_rights_reserved), url_for_license(record.license))
+          c + link_to(I18n.t(:some_rights_reserved), url_for_license(record.license))
         end
       end
     end
@@ -861,17 +861,17 @@ module ApplicationHelper
     user_name = record.native_username if user_name.blank?
     user_name = record.user.try(:name) if user_name.blank?
     user_name = record.user.try(:login) if user_name.blank?
-    user_name = t(:unknown) if user_name.blank?
+    user_name = I18n.t(:unknown) if user_name.blank?
     s = if record.copyrighted?
       "&copy; #{user_name}"
     elsif record.license_code == Observation::CC0
-      t(:by_user, user: user_name)
+      I18n.t(:by_user, user: user_name)
     else
-      t('copyright.no_known_copyright_restrictions', name: user_name, license_name: t(:public_domain))
+      I18n.t('copyright.no_known_copyright_restrictions', name: user_name, license_name: I18n.t(:public_domain))
     end
 
     if record.all_rights_reserved?
-      s += "#{options[:separator]}#{t(:all_rights_reserved)}"
+      s += "#{options[:separator]}#{I18n.t(:all_rights_reserved)}"
     elsif record.creative_commons?
       s += options[:separator]
       code = Photo.license_code_for_number(record.license)
@@ -883,9 +883,9 @@ module ApplicationHelper
           link_to(image_tag("#{code}_small.png"), url) + " "
         end
         license_blurb = if record.license_code == Observation::CC0
-          t("copyright.no_rights_reserved")
+          I18n.t("copyright.no_rights_reserved")
         else
-          t(:some_rights_reserved)
+          I18n.t(:some_rights_reserved)
         end
         c.html_safe + link_to(license_blurb, url)
       end
