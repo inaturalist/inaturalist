@@ -1005,3 +1005,47 @@ inat-taxon { white-space: nowrap; }
 #filters-observation-fields .observation-field button:hover {
   background-color: #bbb;
 }
+.pages {
+  text-align: center;
+}
+#obs .pages {
+  padding: 0;
+  height: 45px;
+}
+#obs .pages ul {
+  width: 100%;
+  margin: 0 0 -5px 0;
+  height: 45px;
+  line-height: 45px;
+}
+#obs .pages li {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+  float: left;
+  background: #efefef;
+}
+#obs .pages ul a {
+  border: 0;
+  padding: 0;
+  background-color: inherit;
+  color: #333;
+  line-height: 45px;
+  width: 100%;
+}
+#obs .pages a:hover {
+  opacity: 1;
+}
+#obs .pages .disabled a {
+  opacity: 0.5;
+}
+#obs .pages li:hover {
+  background: rgba(116, 172, 0, 0.15);
+}
+#obs .pages li.disabled:hover {
+  background: #efefef;
+}
+
+#obs .pages li:first-child {
+  border-right: 2px solid white;
+}

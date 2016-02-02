@@ -158,7 +158,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.watchParams = function( ) {
     // params may change but not affect the results
     // for example DateType will change with the different date options
-    $scope.$watch( "params", function( ) {
+    $scope.$watch( "params", function(newValue, oldValue ) {
+      if( _.isEqual( newValue, oldValue ) ) { return; }
+      // if any of the filters change we want to reset the page to 1.
+      // when pagination, the page will change, so if the page doesn't
+      // change, then the user is changing another filter, so go to page 1
+      if( newValue.page === oldValue.page ) {
+        $scope.params.page = 1;
+      }
       $scope.processedParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
       if ( CURRENT_USER ) {
         $scope.showingViewerObservations = (
@@ -170,6 +177,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // changes in processedParams are what initiate searches
     $scope.$watch( "processedParams", function( before, after ) {
       if( _.isEqual( before, after ) ) { return; }
+      // when paginating we do want to set processedParams, but we don't
+      // want to query for the stats again as they will stay the same
+      if( $scope.skipParamChange ) {
+        $scope.skipParamChange = false;
+        return;
+      }
       // we don't want to set the location on page load, it will already be set
       $scope.searchAndUpdateStats({ skipSetLocation: $scope.goingBack });
       $rootScope.$emit( "setMapLayers", $scope.alignMapOnSearch );
@@ -332,9 +345,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
     }
-    
+
     $scope.numFiltersSet = _.keys( currentSearch ).length
-    var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id', 'swlat', 'swlng', 'nelat', 'nelng' ];
+    var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id',
+      'swlat', 'swlng', 'nelat', 'nelng', 'page' ];
     for (var i = skippableParams.length - 1; i >= 0; i--) {
       if ( currentSearch[ skippableParams[i] ] ) {
         $scope.numFiltersSet -= 1;
@@ -370,9 +384,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.currentView = newView;
       // note: subview is being preserved on view changes
       if( newSubview ) { $scope.currentSubview = newSubview; }
-      if( $scope.observations && $scope.observations ) {
-        $scope.observations = $scope.observations.slice( 0, 40 );
-      }
       $scope.updateBrowserLocation( options );
     }
   };
@@ -394,34 +405,87 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( reinitializeTaxon ) { $scope.initializeTaxonParams( ); }
     }, timeout);
   };
+  $scope.searchingStopped = function( ) {
+    if( !$scope.pagination ) { return false; }
+    return $scope.pagination.stopped && !$scope.pagination.searching;
+  };
+  $scope.noObservations = function( ) {
+    if( !$scope.searchingStopped( ) ) { return false; }
+    return $scope.observations.length == 0;
+  };
+  $scope.noTaxa = function( ) {
+    if( !$scope.searchingStopped( ) ) { return false; }
+    return $scope.taxa.length == 0;
+  };
+  $scope.noIdentifiers = function( ) {
+    if( !$scope.searchingStopped( ) ) { return false; }
+    return $scope.identifiers.length == 0;
+  };
+  $scope.noObservers = function( ) {
+    if( !$scope.searchingStopped( ) ) { return false; }
+    return $scope.observers.length == 0;
+  };
+  $scope.showPages = function( ) {
+    if( !$scope.searchingStopped( ) ) { return false; }
+    return $scope.pagination.total > $scope.pagination.perPage;
+  };
   $scope.searchAndUpdateStats = function( options ) {
     if( $scope.searchDisabled ) { return true; }
-    $scope.pagination = { page: 1 };
+    $scope.params.page = $scope.params.page || 1;
+    $scope.pagingInitialized = false;
+    $scope.pagination = $scope.pagination || { };
+    $scope.pagination.page = $scope.params.page;
+    $scope.pagination.section = 1;
+    $scope.pagination.maxSections = 4;
+    $scope.pagination.perSection = 24;
+    $scope.pagination.perPage = $scope.pagination.maxSections * $scope.pagination.perSection;
+    $scope.pagination.searching = true;
+    $scope.pagination.stopped = false;
+    // important to note we're not resetting scope.pagination.total to 0,
+    // as that would cause ui.bootstrap to jump back to page 1
     $scope.numberTaxaShown = 15;
     $scope.numberIdentifiersShown = 15;
     $scope.numberObserversShown = 15;
     $scope.observersSort = "observationCount";
     options = options || { };
     $scope.updateBrowserLocation( options );
+    $scope.observations = [ ];
+    $scope.taxa = [ ];
+    $scope.identifiers = [ ];
+    $scope.observers = [ ];
     $scope.resetStats( );
     var processedParams = ObservationsFactory.processParamsForAPI( _.extend( { },
-      $scope.params, { page: $scope.pagination.page }, shared.localeParams( ) ),
+      $scope.params, shared.localeParams( ) ),
       $scope.possibleFields);
     // recording there was some location in the search. That will be used
     // to hide the `Redo Search` button until the map moves
     if( processedParams.place_id || processedParams.swlat ) {
       $scope.hideRedoSearch = true;
     }
+    var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
+    var searchParams = _.extend( { }, processedParams, {
+      page: $scope.apiPage( ),
+      per_page: $scope.pagination.perSection });
     // prevent slow searches from overwriting current results
     var thisSearchTime = new Date( ).getTime( );
     $scope.lastSearchTime = thisSearchTime;
-    ObservationsFactory.search( processedParams ).then( function( response ) {
+    ObservationsFactory.search( searchParams ).
+                        then( function( response ) {
       if( $scope.lastSearchTime != thisSearchTime ) { return; }
+      $scope.pagination.searching = false;
       thisSearchTime = new Date( ).getTime( );
       $scope.lastSearchTime = thisSearchTime;
       $scope.totalObservations = response.data.total_results;
+      $scope.pagination.total = response.data.total_results;
+      if( $scope.pagination.total === 0 ) {
+        $scope.totalSpecies = 0;
+        $scope.totalIdentifiers = 0;
+        $scope.totalObservers = 0;
+        $scope.pagination.stopped = true;
+        return;
+      }
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      ObservationsFactory.speciesCounts( processedParams ).then( function( response ) {
+      ObservationsFactory.speciesCounts( statsParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
         $scope.taxa = _.map( response.data.results, function( r ) {
@@ -430,7 +494,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           return t;
         });
       });
-      ObservationsFactory.identifiers( processedParams ).then( function( response ) {
+      ObservationsFactory.identifiers( statsParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalIdentifiers = response.data.total_results;
         $scope.identifiers = _.map( response.data.results, function( r ) {
@@ -439,7 +503,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           return u;
         });
       });
-      ObservationsFactory.observers( processedParams ).then( function( response ) {
+      ObservationsFactory.observers( statsParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalObservers = response.data.total_results;
         $scope.observers = _.map( response.data.results, function( r ) {
@@ -462,25 +526,45 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.showMoreObservers = function( ) {
     $scope.numberObserversShown += 20;
   };
+  $scope.apiPage = function( ) {
+    return ( ( $scope.pagination.page - 1 ) * $scope.pagination.maxSections ) + $scope.pagination.section;
+  };
   $scope.showMoreObservations = function( ) {
     $scope.pagination = $scope.pagination || { };
     if( !$scope.pagination.page ) { return; }
     if( !$scope.observations ) { return; }
     if( $scope.pagination.searching === true ) { return; }
-    if( $scope.pagination.finished === true ) { return; }
-    $scope.pagination.page += 1;
+    if( $scope.pagination.stopped === true ) { return; }
+    $scope.pagination.section += 1;
     $scope.pagination.searching = true;
     var processedParams = ObservationsFactory.processParamsForAPI(
-      _.extend( { }, $scope.params, { page: $scope.pagination.page } ), $scope.possibleFields);
+      _.extend( { }, $scope.params, shared.localeParams( ),
+        { page: $scope.apiPage( ), per_page: $scope.pagination.perSection } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
-      if( response.data.total_results <= ( response.data.page * response.data.per_page ) ) {
-        $scope.pagination.finished = true;
+      if( ( response.data.total_results <= ( response.data.page * response.data.per_page ) ) ||
+          ( $scope.pagination.section >= $scope.pagination.maxSections ) ) {
+        $scope.pagination.stopped = true;
       }
       $scope.observations = $scope.observations.concat(
         ObservationsFactory.responseToInstances( response ));
       $scope.pagination.searching = false;
     });
   };
+  $scope.$watch( "pagination.page", function( ) {
+    if( !$scope.pagingInitialized ) {
+      $scope.pagingInitialized = true;
+      return;
+    }
+    // if( !$scope.pagination ) { return; }
+    $anchorScroll( );
+    $scope.skipParamChange = true;
+    $scope.params.page = $scope.pagination.page;
+    $scope.updateBrowserLocation( );
+    $scope.observations = [ ];
+    $scope.pagination.section = 0;
+    $scope.pagination.stopped = false;
+    $scope.showMoreObservations( );
+  });
   $scope.matchUrlState = function( ) {
     var urlParams = $location.search( );
     if( $scope.params.view && _.contains( $scope.possibleViews, $scope.params.view ) ) {
@@ -492,7 +576,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     if ( urlParams.on ) {
       $scope.params.dateType = 'exact';
-    } else if ( urlParams.d1 ) {
+    } else if ( urlParams.d1 || urlParams.d2 ) {
       $scope.params.dateType = 'range';
     } else if ( urlParams.month ) {
       $scope.params.dateType = 'month';
@@ -804,7 +888,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     delete urlParams._iconic_taxa;
     delete urlParams.project_id;
-    delete urlParams.page;
     delete urlParams.order;
     delete urlParams.order_by;
     delete urlParams.dateType;
@@ -1113,7 +1196,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     var layerParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
-      mapStyle: _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ? "summary" : "colored_heatmap",
+      mapStyle: "colored_heatmap",
       observationLayers: [ layerParams ],
       infoWindowCallback: $scope.infoWindowCallback
     });

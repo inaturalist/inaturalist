@@ -5,7 +5,6 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
   };
   var search = function( params ) {
     var url = "//<%= CONFIG.node_api_host %>/observations";
-    params.per_page = 12;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
@@ -39,6 +38,7 @@ iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
     if( params.place_id == "any" ) {
       delete params.place_id;
     }
+    if( p.per_page ) { params.per_page = p.per_page; }
     return params;
   };
   // Normalizes an object literal of observation query parameters into

@@ -14,7 +14,7 @@
           {{ shared.t('place') | capitalize }}
         %th{ :class => "added sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy( 'observations.id' )" }
           {{ shared.t('added') | capitalize }}
-    %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching", "infinite-scroll-distance": 1 }
+    %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching || pagination.stopped", "infinite-scroll-distance": 1 }
       %tr{ "ng-repeat": "o in observations" }
         %td
           %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "img {{ o.hasMedia( ) ? '' : 'iconic'}} {{ o.hasSound( ) ? 'sound' : '' }}" }
@@ -50,5 +50,7 @@
           %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", time: "o.created_at",  }
   .spinner.ng-cloak{ "ng-show": "pagination.searching" }
     %span.fa.fa-spin.fa-refresh
-  .noresults.text-muted{ "ng-show" => "observations.length == 0" }
+  .noresults.text-muted.ng-cloak{ "ng-show" => "noObservations( )" }
     {{ shared.t( 'no_results_found' ) }}
+  .pages.col-xs-12.ng-cloak{ "ng-show": "showPages( )" }
+    %uib-pagination{ "ng-model": "pagination.page", "previous-text": "‹", "next-text": "›", "first-text": "«", "last-text": "»", "total-items": "pagination.total", "items-per-page": "pagination.perPage", "max-size": 10 }
