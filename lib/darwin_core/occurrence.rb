@@ -173,7 +173,7 @@ module DarwinCore
 
       def coordinateUncertaintyInMeters
         if coordinates_obscured?
-          positional_accuracy.to_i + Observation::M_TO_OBSCURE_THREATENED_TAXA
+          positional_accuracy.to_i + uncertainty_cell_diagonal_meters
         elsif !positional_accuracy.blank?
           positional_accuracy
         end

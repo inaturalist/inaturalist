@@ -74,6 +74,7 @@ class Observation < ActiveRecord::Base
   COORDINATE_REGEX = /[^\d\,]*?(#{FLOAT_REGEX})[^\d\,]*?/
   LAT_LON_SEPARATOR_REGEX = /[\,\s]\s*/
   LAT_LON_REGEX = /#{COORDINATE_REGEX}#{LAT_LON_SEPARATOR_REGEX}#{COORDINATE_REGEX}/
+  COORDINATE_UNCERTAINTY_CELL_SIZE = 0.2
 
   OPEN = "open"
   PRIVATE = "private"
@@ -1837,17 +1838,39 @@ class Observation < ActiveRecord::Base
   end
   
   def self.random_neighbor_lat_lon(lat, lon)
-    cell_size = 0.2
-    half_cell = cell_size / 2
-    # how many significant digits in the obscured coordinates (e.g. 5)
     precision = 10**5.0
     range = ((-1 * precision)..precision)
-    # doing a floor with intervals of 0.2, then adding 0.1
-    # so our origin is the center of a 0.2 square
-    base_lat = lat - (lat % cell_size) + half_cell
-    base_lon = lon - (lon % cell_size) + half_cell
+    half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+    base_lat, base_lon = base_lat_lon( lat, lon )
     [ base_lat + ((rand(range) / precision) * half_cell),
       base_lon + ((rand(range) / precision) * half_cell)]
+  end
+
+  def self.base_lat_lon( lat, lon )
+    half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+    # how many significant digits in the obscured coordinates (e.g. 5)
+    # doing a floor with intervals of 0.2, then adding 0.1
+    # so our origin is the center of a 0.2 square
+    base_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    base_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    [base_lat, base_lon]
+  end
+
+  def self.uncertainty_cell_diagonal_meters( lat, lon )
+    base_lat, base_lon = base_lat_lon( lat, lon )
+    lat_lon_distance_in_meters( 
+      base_lat, 
+      base_lon, 
+      base_lat+COORDINATE_UNCERTAINTY_CELL_SIZE,
+      base_lon+COORDINATE_UNCERTAINTY_CELL_SIZE
+    ).ceil
+  end
+
+  def uncertainty_cell_diagonal_meters
+    return nil unless georeferenced?
+    lat = private_latitude || latitude
+    lon = private_longitude || longitude
+    Observation.uncertainty_cell_diagonal_meters( lat, lon )
   end
   
   def places

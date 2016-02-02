@@ -189,6 +189,13 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs['decimalLongitude'] ).to eq o.private_longitude.to_s
   end
 
+  it "should report coordinateUncertaintyInMeters as the longest diagonal across the uncertainty cell" do
+    o = make_research_grade_observation(geoprivacy: Observation::OBSCURED)
+    archive = DarwinCore::Archive.new(private_coordinates: true)
+    obs = CSV.read(archive.make_occurrence_data, headers: true).first
+    expect( obs['coordinateUncertaintyInMeters'] ).to eq o.uncertainty_cell_diagonal_meters.to_s
+  end
+
   it "should filter by site_id" do
     site = Site.make!
     in_site = make_research_grade_observation(site: site)
