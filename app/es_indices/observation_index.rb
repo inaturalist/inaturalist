@@ -251,7 +251,6 @@ class Observation < ActiveRecord::Base
       { http_param: :id_please, es_field: "id_please" },
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
-      { http_param: :verifiable, es_field: "verifiable" },
       { http_param: :captive, es_field: "captive" }
     ].each do |filter|
       if p[ filter[:http_param] ].yesish?
@@ -273,6 +272,13 @@ class Observation < ActiveRecord::Base
       elsif p[ filter[:http_param] ].noish?
         search_filters << { not: f }
       end
+    end
+    if p[:verifiable].yesish?
+      search_filters << { terms: {
+        quality_grade: [ "research", "needs_id" ] } }
+    elsif p[:verifiable].noish?
+      search_filters << { not: { terms: {
+        quality_grade: [ "research", "needs_id" ] } } }
     end
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids

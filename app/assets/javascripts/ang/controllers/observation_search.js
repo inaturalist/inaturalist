@@ -1194,6 +1194,9 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( !$scope.$parent.parametersInitialized ) { return };
     window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
     var layerParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
+    if( _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ) {
+      layerParams.ttl = 86400;
+    }
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
       mapStyle: "colored_heatmap",

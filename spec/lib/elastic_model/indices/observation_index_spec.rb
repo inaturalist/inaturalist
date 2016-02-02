@@ -222,7 +222,6 @@ describe "Observation Index" do
         { http_param: :id_please, es_field: "id_please" },
         { http_param: :out_of_range, es_field: "out_of_range" },
         { http_param: :mappable, es_field: "mappable" },
-        { http_param: :verifiable, es_field: "verifiable" },
         { http_param: :captive, es_field: "captive" }
       ].each do |filter|
         expect( Observation.params_to_elastic_query({
@@ -248,6 +247,16 @@ describe "Observation Index" do
           filter[:http_param] => "false" }) ).to include(
             filters: [ { not: f } ] )
       end
+    end
+
+    it "filters by verifiable true" do
+      expect( Observation.params_to_elastic_query({ verifiable: "true" }) ).to include(
+        filters: [ { terms: { quality_grade: [ "research", "needs_id" ] } } ] )
+    end
+
+    it "filters by verifiable false" do
+      expect( Observation.params_to_elastic_query({ verifiable: "false" }) ).to include(
+        filters: [ { not: { terms: { quality_grade: [ "research", "needs_id" ] } } } ] )
     end
 
     it "filters by site_id" do
