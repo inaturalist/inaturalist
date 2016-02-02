@@ -84,7 +84,7 @@ class PostsController < ApplicationController
         else
           FakeView.image_url(@post.user.icon.url(:original))
         end
-        @shareable_description = FakeView.truncate(@post.body, :length => 1000) if @post.body
+        @shareable_description = FakeView.truncate(@post.body.html_safe, :length => 1000) if @post.body
         render "trips/show"
       end
       format.json { render json: @post }

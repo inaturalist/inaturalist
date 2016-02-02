@@ -3,7 +3,8 @@
     %meta{content: @google_webmaster_verification, name: "google-site-verification"}
   %meta{content: "website", property: "og:type"}
   %meta{content: SITE_NAME, property: "og:title"}
-  %meta{content: image_url(CONFIG.logo_icon_square_big), property: "og:image"}
+  - if @site
+    %meta{content: image_url(@site.logo_square.url), property: "og:image"}
   %meta{content: root_url, property: "og:url"}
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: SITE_NAME), property: "og:description"}
 - content_for(:title) do

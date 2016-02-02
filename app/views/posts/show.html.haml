@@ -21,7 +21,7 @@
     })
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
-  %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
+  %meta{:property => "og:description", :content => html_attributize(strip_tags(@shareable_description))}
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
