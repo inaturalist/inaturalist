@@ -24,17 +24,15 @@
     </abstract>
     <intellectualRights>
       <para>
-        Owner grants GBIF a worldwide, non-exclusive right to: (i) use,
-        reproduce, perform, display, archive, transmit and distribute the
-        Content (including any trademarks, tradenames and logos in the
-        Content) in electronic form in connection with the Site, (ii) allow
-        users of the Site to use, search, copy, download and transmit the
-        Content, and (iii) modify and reformat the Content, but solely to the
-        extent necessary and for the purposes of: (a) conforming to the format
-        and "look and feel" of the Site, and (b) creating snippets, headlines
-        or teasers consisting of selected lines or sections from the Content
-        to be displayed on the Site (or displayed on other websites owned by
-        GBIF for the purposes of directing traffic to the Site).
+        <% if @license %>
+          This work is licensed under a
+          <ulink url="<%= FakeView.url_for_license( @license ) %>">
+            <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+          </ulink>.
+        <% else %>
+          These data are licensed under a variety of Creative Commons licenses.
+          Please see individual records for their usage requirements
+        <% end %>
       </para>
     </intellectualRights>
     <!-- The distributionType URL is generally meant for informational purposes, and the "function" attribute should be set to "information". -->

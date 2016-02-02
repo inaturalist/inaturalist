@@ -10,37 +10,14 @@ class Photo < ActiveRecord::Base
   
   attr_accessor :api_response
   serialize :metadata
-  
-  # licensing extras
-  attr_accessor :make_license_default
-  attr_accessor :make_licenses_same
-  MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
+
+  include Shared::LicenseModule
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses,
              :index_observations
   after_destroy :create_deleted_photo
-  
-  COPYRIGHT = 0
-  NO_COPYRIGHT = 7
-  
-  LICENSE_INFO = {
-    0 => {:code => "C",                       :short => "(c)",          :name => "Copyright", :url => "http://en.wikipedia.org/wiki/Copyright"},
-    1 => {:code => Observation::CC_BY_NC_SA,  :short => "CC BY-NC-SA",  :name => "Attribution-NonCommercial-ShareAlike License", :url => "http://creativecommons.org/licenses/by-nc-sa/3.0/"},
-    2 => {:code => Observation::CC_BY_NC,     :short => "CC BY-NC",     :name => "Attribution-NonCommercial License", :url => "http://creativecommons.org/licenses/by-nc/3.0/"},
-    3 => {:code => Observation::CC_BY_NC_ND,  :short => "CC BY-NC-ND",  :name => "Attribution-NonCommercial-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nc-nd/3.0/"},
-    4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/3.0/"},
-    5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/3.0/"},
-    6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
-    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain", :url => "http://en.wikipedia.org/wiki/Public_domain"},
-    8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"}
-  }
-  LICENSE_NUMBERS = LICENSE_INFO.keys
-  LICENSE_INFO.each do |number, info|
-    const_set info[:code].upcase.gsub(/\-/, '_'), number
-    const_set info[:code].upcase.gsub(/\-/, '_') + "_CODE", info[:code]
-  end
 
   SQUARE = 75
   THUMB = 100
@@ -63,11 +40,11 @@ class Photo < ActiveRecord::Base
         "must be set if the photo wasn't added by an #{CONFIG.site_name_short} user.")
     end
   end
-  
+
   def set_license
     return true unless license.blank?
     return true unless user
-    self.license = Photo.license_number_for_code(user.preferred_photo_license)
+    self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
     true
   end
 
@@ -76,57 +53,6 @@ class Photo < ActiveRecord::Base
       self.send("#{c}=", read_attribute(c).to_s[0..254]) if read_attribute(c)
     end
     true
-  end
-  
-  # Return a string with attribution info about this photo
-  def attribution
-    if license == PD
-      I18n.t('copyright.no_known_copyright_restrictions', :name => attribution_name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
-    elsif open_licensed?
-      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license_short)
-    else
-      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
-    end
-  end
-
-  def attribution_name
-    if !native_realname.blank?
-      native_realname
-    elsif !native_username.blank?
-      native_username
-    elsif user
-      user.name.blank? ? user.login : user.name
-    else
-      I18n.t('copyright.anonymous')
-    end
-  end
-  
-  def license_short
-    LICENSE_INFO[license.to_i].try(:[], :short)
-  end
-  
-  def license_name
-    LICENSE_INFO[license.to_i].try(:[], :name)
-  end
-  
-  def license_code
-    LICENSE_INFO[license.to_i].try(:[], :code)
-  end
-  
-  def license_url
-    LICENSE_INFO[license.to_i].try(:[], :url)
-  end
-  
-  def copyrighted?
-    license.to_i == COPYRIGHT
-  end
-  
-  def creative_commons?
-    license.to_i > COPYRIGHT && license.to_i < NO_COPYRIGHT
-  end
-
-  def open_licensed?
-    license.to_i > COPYRIGHT && license != PD
   end
   
   # Try to choose a single taxon for this photo.  Only works if class has 
@@ -337,15 +263,6 @@ class Photo < ActiveRecord::Base
     photos.each do |photo|
       photo.destroy if photo.orphaned?
     end
-  end
-  
-  def self.license_number_for_code(code)
-    return COPYRIGHT if code.blank?
-    LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:first)
-  end
-  
-  def self.license_code_for_number(number)
-    LICENSE_INFO[number].try(:[], :code)
   end
   
   def self.default_json_options

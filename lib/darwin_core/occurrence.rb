@@ -35,6 +35,7 @@ module DarwinCore
       %w(order http://rs.tdwg.org/dwc/terms/order),
       %w(family http://rs.tdwg.org/dwc/terms/family),
       %w(genus http://rs.tdwg.org/dwc/terms/genus),
+      ['license', 'http://purl.org/dc/terms/license', nil, 'dwc_license'],
       %w(rights http://purl.org/dc/terms/rights),
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
     ]
@@ -172,7 +173,7 @@ module DarwinCore
 
       def coordinateUncertaintyInMeters
         if coordinates_obscured?
-          positional_accuracy.to_i + Observation::M_TO_OBSCURE_THREATENED_TAXA
+          positional_accuracy.to_i + uncertainty_cell_diagonal_meters
         elsif !positional_accuracy.blank?
           positional_accuracy
         end
@@ -226,13 +227,12 @@ module DarwinCore
         taxon.genus_name if taxon
       end
 
+      def dwc_license
+        FakeView.url_for_license( license ) || license
+      end
 
       def rights
-        s = "Copyright #{rightsHolder}"
-        unless license.blank?
-          s += ", licensed under a #{license_name} license: #{view.url_for_license(license)}"
-        end
-        s
+        FakeView.strip_tags( FakeView.rights( self ) )
       end
 
       def rightsHolder

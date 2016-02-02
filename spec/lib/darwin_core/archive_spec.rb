@@ -1,5 +1,15 @@
 require "spec_helper"
 
+describe DarwinCore::Archive, "make_metadata" do
+  it "should include an archive license if specified" do
+    license = "CC0"
+    archive = DarwinCore::Archive.new( license: license )
+    xml = Nokogiri::XML( open( archive.make_metadata ) )
+    rights_elt = xml.at_xpath( "//intellectualRights" )
+    expect( rights_elt.to_s ).to match /#{ FakeView.url_for_license(license) }/
+  end
+end
+
 describe DarwinCore::Archive, "make_descriptor" do
   it "should include the Simple Multimedia extension" do
     archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
@@ -85,6 +95,50 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).not_to include not_in_place.id
   end
 
+  it "should filter by license" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    o_cc_by_nd = make_research_grade_observation( license: Observation::CC_BY_ND )
+    archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY ] )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include o_cc_by.id
+    expect( ids ).not_to include o_cc_by_nd.id
+  end
+
+  it "should filter by multiple licenses" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    o_cc0 = make_research_grade_observation( license: Observation::CC0 )
+    o_cc_by_nd = make_research_grade_observation( license: Observation::CC_BY_ND )
+    archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY, Observation::CC0 ] )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include o_cc_by.id
+    expect( ids ).to include o_cc0.id
+    expect( ids ).not_to include o_cc_by_nd.id
+  end
+
+  it "should set the license to a URI" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY, Observation::CC0 ] )
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['license'] ).to match URI::URI_REF
+    end
+  end
+
+  it "should set CC license URI using the current version" do
+    o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
+    archive = DarwinCore::Archive.new
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['license'] ).to match /\/#{ Shared::LicenseModule::CC_VERSION }\//
+    end
+  end
+
+  it "should set CC0 license URI using the current version" do
+    o_cc0 = make_research_grade_observation( license: Observation::CC0 )
+    archive = DarwinCore::Archive.new
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['license'] ).to match /\/#{ Shared::LicenseModule::CC0_VERSION }\//
+    end
+  end
+
   it "should only include research grade observations by default" do
     rg = make_research_grade_observation
     ni = make_research_grade_candidate_observation
@@ -133,6 +187,13 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs['id'] ).to eq o.id.to_s
     expect( obs['decimalLatitude'] ).to eq o.private_latitude.to_s
     expect( obs['decimalLongitude'] ).to eq o.private_longitude.to_s
+  end
+
+  it "should report coordinateUncertaintyInMeters as the longest diagonal across the uncertainty cell" do
+    o = make_research_grade_observation(geoprivacy: Observation::OBSCURED)
+    archive = DarwinCore::Archive.new(private_coordinates: true)
+    obs = CSV.read(archive.make_occurrence_data, headers: true).first
+    expect( obs['coordinateUncertaintyInMeters'] ).to eq o.uncertainty_cell_diagonal_meters.to_s
   end
 
   it "should filter by site_id" do
