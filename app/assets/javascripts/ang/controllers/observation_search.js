@@ -83,6 +83,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.placeInitialized = false;
   $scope.filtersInitialized = false;
   $scope.parametersInitialized = false;
+  $scope.moreFiltersHidden = true;
+  $scope.moreFiltersToWatch = [ "params.user_id", "params.project_id", 
+    "params.photo_license", "params.reviewed", "params.created_on", 
+    "params.created_month", "params.created_d1", "params.created_d2",
+    "clickedMoreFiltersOpen" ];
 
   $scope.$watchGroup(['mapType', 'mapLabels', 'mapTerrain'], function() {
     $rootScope.$emit( "setMapType", $scope.mapType, $scope.mapLabels, $scope.mapTerrain );
@@ -159,19 +164,19 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // params may change but not affect the results
     // for example DateType will change with the different date options
     $scope.$watch( "params", function(newValue, oldValue ) {
-      if( _.isEqual( newValue, oldValue ) ) { return; }
-      // if any of the filters change we want to reset the page to 1.
-      // when pagination, the page will change, so if the page doesn't
-      // change, then the user is changing another filter, so go to page 1
-      if( newValue.page === oldValue.page ) {
-        $scope.params.page = 1;
-      }
       $scope.processedParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
       if ( CURRENT_USER ) {
         $scope.showingViewerObservations = (
           ($scope.processedParams.user_id == CURRENT_USER.id) || 
           ($scope.processedParams.user_id == CURRENT_USER.login)
         );
+      }
+      if( _.isEqual( newValue, oldValue ) ) { return; }
+      // if any of the filters change we want to reset the page to 1.
+      // when pagination, the page will change, so if the page doesn't
+      // change, then the user is changing another filter, so go to page 1
+      if( newValue.page === oldValue.page ) {
+        $scope.params.page = 1;
       }
     }, true);
     // changes in processedParams are what initiate searches
@@ -191,6 +196,30 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.goingBack = false;
     }, true);
   };
+  $scope.toggleMoreFilters = function( ) {
+    $scope.clickedMoreFiltersOpen = $scope.clickedMoreFiltersOpen == true ? false : true;
+  };
+  // watch more filters to dermine whether to show them or not
+  $scope.$watchGroup( $scope.moreFiltersToWatch, function(newValues, oldValues, scope) {
+    var pageInit = _.isEqual( newValues, oldValues );
+    if ( $scope.clickedMoreFiltersOpen ) {
+      scope.moreFiltersHidden = false;
+      return;
+    } else if ( $scope.clickedMoreFiltersOpen == false ) {
+      scope.moreFiltersHidden = true;
+      return;
+    }
+    var moreFiltersHidden = true;
+    _.each( scope.moreFiltersToWatch, function( f ) {
+      if ( newValues[ $scope.moreFiltersToWatch.indexOf( f ) ] ) {
+        moreFiltersHidden = false;
+      };
+    } );
+    if ( pageInit && $scope.clickedMoreFiltersOpen == null && !moreFiltersHidden ) {
+      $scope.clickedMoreFiltersOpen = true;
+    };
+    scope.moreFiltersHidden = moreFiltersHidden;
+  } );
   // watch for place selections, unselections
   $scope.$watch( "selectedPlace", function( ) {
     if( $scope.selectedPlace && $scope.selectedPlace.id ) {
@@ -932,9 +961,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete $scope.params.observationFields[ field ];
     return false;
   };
-  $scope.canShowObservationFields = function( ) {
-    return ($scope.params.observationFields && !_.isEmpty( $scope.params.observationFields ))
-  };
+
   $scope.preInitialize( );
 }]);
 
