@@ -67,4 +67,15 @@ class EolService
     @@service ||= new
     @@service.send(method, *args)
   end
+
+  # This is a temporary workaround until EOL fixes their data objects API. 
+  # See https://github.com/EOL/tramea/issues/137
+  def data_objects(*args)
+    options = args.last.is_a?(Hash) ? args.pop : {}
+    options[:images] = 1
+    options[:sounds] = 1
+    options[:text] = 1
+    options[:details] = 1
+    request('data_objects', *[args, options].flatten)
+  end
 end
