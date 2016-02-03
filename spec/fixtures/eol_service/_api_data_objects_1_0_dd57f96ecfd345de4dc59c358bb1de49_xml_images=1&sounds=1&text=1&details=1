@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response xmlns="http://www.eol.org/transfer/content/0.3" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dwc="http://rs.tdwg.org/dwc/dwcore/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:dwct="http://rs.tdwg.org/dwc/terms/" xsi:schemaLocation="http://www.eol.org/transfer/content/0.3 http://services.eol.org/schema/content_0_3.xsd">
+<taxon>
+  <dc:identifier>1278980</dc:identifier>
+  <dwc:ScientificName>Thamnophis sirtalis tetrataenia (Cope in Yarrow, 1875)</dwc:ScientificName>
+  <dwc:exemplar>false</dwc:exemplar>
+  <additionalInformation>
+    <dwct:Taxon>
+      <dc:identifier>4471504</dc:identifier>
+      <dwct:taxonID>http://eol.org/api/hierarchy_entries/1.0/52583481</dwct:taxonID>
+      <dwct:scientificName>Thamnophis sirtalis tetrataenia (Cope in Yarrow, 1875)</dwct:scientificName>
+      <dwct:nameAccordingTo>Species 2000 &amp; ITIS Catalogue of Life: April 2013</dwct:nameAccordingTo>
+      <dwct:taxonRank>Infraspecies</dwct:taxonRank>
+    </dwct:Taxon>
+    <dwct:Taxon>
+      <dc:identifier>202170</dc:identifier>
+      <dwct:taxonID>http://eol.org/api/hierarchy_entries/1.0/55895340</dwct:taxonID>
+      <dwct:scientificName>Thamnophis sirtalis tetrataenia (Cope in Yarrow, 1875)</dwct:scientificName>
+      <dwct:nameAccordingTo>Integrated Taxonomic Information System (ITIS)</dwct:nameAccordingTo>
+      <dwct:taxonRank>Subspecies</dwct:taxonRank>
+    </dwct:Taxon>
+    <dwct:Taxon>
+      <dc:identifier>202170</dc:identifier>
+      <dwct:taxonID>http://eol.org/api/hierarchy_entries/1.0/46560689</dwct:taxonID>
+      <dwct:scientificName>Thamnophis sirtalis tetrataenia (Cope in Yarrow, 1875)</dwct:scientificName>
+      <dwct:nameAccordingTo>Integrated Taxonomic Information System (ITIS)</dwct:nameAccordingTo>
+      <dwct:taxonRank>Subspecies</dwct:taxonRank>
+    </dwct:Taxon>
+  </additionalInformation>
+<dataObject>
+  <dc:identifier>dd57f96ecfd345de4dc59c358bb1de49</dc:identifier>
+<dataType>http://purl.org/dc/dcmitype/Text</dataType>
+<mimeType>text/html</mimeType>
+<agent homepage="http://www.natureserve.org/" role="provider">NatureServe</agent>
+<dc:language>en</dc:language>
+<license>http://creativecommons.org/licenses/by-nc/3.0/</license>
+<dcterms:rightsHolder>NatureServe</dcterms:rightsHolder>
+<dc:source>http://explorer.natureserve.org/servlet/NatureServe?searchName=Thamnophis+sirtalis+tetrataenia</dc:source>
+<subject>http://rs.tdwg.org/ontology/voc/SPMInfoItems#Distribution</subject>
+<dc:description>&lt;p&gt;&lt;strong&gt;Global Range&lt;/strong&gt;: San Mateo County and extreme northern Santa Cruz County, California; along coast from Sharp Park to Ano Nuevo and east into Santa Cruz Mountains in suitable habitat (California Department of Fish and Game 1990). Largest known population is near San Francisco International Airport (West of Bayshore property) (California Department of Fish and Game 1990); other significant populations occur at Ano Nuevo State Reserve, Pescadero Marsh Natural Preserve, San Francisco State Fish and Game Refuge, Sharp Park Golf Course, and Cascade Ranch (Matthews and Moseley 1990).</dc:description>
+<additionalInformation>
+  <vettedStatus>Trusted</vettedStatus>
+  <dataRating>2.5</dataRating>
+  <dataObjectVersionID>28820238</dataObjectVersionID>
+</additionalInformation>
+</dataObject>
+</taxon>
+</response>

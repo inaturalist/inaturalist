@@ -698,7 +698,7 @@ class Taxon < ActiveRecord::Base
         tags: name.gsub(' ', '').strip,
         per_page: options[:limit] - chosen_photos.size,
         license: '1,2,3,4,5,6', # CC licenses
-        extras: 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
+        extras: FlickrCache::EXTRAS,
         sort: 'relevance',
         safe_search: '1'
       }

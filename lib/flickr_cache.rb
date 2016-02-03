@@ -1,6 +1,7 @@
 class FlickrCache
 
   TIMEOUT = 10
+  EXTRAS = "date_upload,owner_name,url_sq,url_t,url_s,url_m,url_l,url_o,license"
 
   def self.fetch(flickraw, type, method, params={})
     # find or create the endpoint
