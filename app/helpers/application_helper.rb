@@ -692,7 +692,7 @@ module ApplicationHelper
   def append_observation_layers(map_tag_attrs, options = {})
     if options[:observation_layers]
       options[:observation_layers].each do |layer|
-        if observations = layer[:observations]
+        if observations = layer[:observations].compact
           layer[:observation_id] = observations.map(&:id).join(",")
           layer.delete(:observations)
         end
@@ -853,6 +853,7 @@ module ApplicationHelper
         end
       end
     end
+    s
   end
 
   def rights_for_media( record, options = {} )
@@ -890,6 +891,7 @@ module ApplicationHelper
         c.html_safe + link_to(license_blurb, url)
       end
     end
+    s
   end
   
   def url_for_license(code)

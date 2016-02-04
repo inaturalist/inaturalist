@@ -69,12 +69,12 @@ class FlickrPhoto < Photo
     
     # Set sizes
     if fp.respond_to?(:url_sq)
-      options[:square_url]   ||= fp.to_hash["url_sq"]
-      options[:thumb_url]    ||= fp.to_hash["url_t"]
-      options[:small_url]    ||= fp.to_hash["url_s"]
-      options[:medium_url]   ||= fp.to_hash["url_m"]
-      options[:large_url]    ||= fp.to_hash["url_l"]
-      options[:original_url] ||= fp.to_hash["url_o"]
+      options[:square_url]   ||= fp.url_sq
+      options[:thumb_url]    ||= fp.url_t
+      options[:small_url]    ||= fp.url_s
+      options[:medium_url]   ||= fp.url_m
+      options[:large_url]    ||= fp.url_l
+      options[:original_url] ||= fp.url_o
     end
     
     if options[:square_url].blank? && options.delete(:skip_sizes)

@@ -342,6 +342,7 @@
       <% else %>
         <ul id="places_list">
           <% for lt in @sorted_check_listed_taxa %>
+            <% next if lt.place.blank? -%>
             <li>
               <%= link_to t(lt.place.display_name, :default => lt.place.display_name), lt.place %>
               <% if logged_in? && lt.editable_by?(current_user) -%>
