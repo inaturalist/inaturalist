@@ -692,8 +692,8 @@ module ApplicationHelper
   def append_observation_layers(map_tag_attrs, options = {})
     if options[:observation_layers]
       options[:observation_layers].each do |layer|
-        if observations = layer[:observations].compact
-          layer[:observation_id] = observations.map(&:id).join(",")
+        if observations = layer[:observations]
+          layer[:observation_id] = observations.compact.map(&:id).join(",")
           layer.delete(:observations)
         end
       end
