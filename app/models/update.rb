@@ -30,6 +30,8 @@ class Update < ActiveRecord::Base
   scope :activity, -> { where(notification: "activity") }
   scope :mention, -> { where(notification: "mention") }
 
+  attr_accessor :skip_indexing
+
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
       "resource_id: #{resource_id} notifier_type: #{notifier_type} notifier_id: #{notifier_id}>"

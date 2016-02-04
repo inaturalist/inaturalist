@@ -217,28 +217,35 @@ module HasSubscribers
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)
           end
-
-          u = Update.new(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
-            :notification => notification)
+          # don't index the updates in ES just yet, we'll do it in bulk later
+          u = Update.new(subscriber: subscription.user, resource: subscribable, notifier: notifier,
+            notification: notification, skip_indexing: true)
           unless u.save
             Rails.logger.error "[ERROR #{Time.now}] Failed to save #{u}: #{u.errors.full_messages.to_sentence}"
           end
         end
       }
-      
-      if has_many_reflections.include?(subscribable_association.to_s)
-        notifier.send(subscribable_association).find_each(&updater_proc)
-      elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
-        updater_proc.call(notifier.send(subscribable_association))
-      elsif subscribable_association == :self
-        updater_proc.call(notifier)
-      else
-        subscribable = notifier.send(subscribable_association)
-        if subscribable.is_a?(Enumerable)
-          subscribable.each(&updater_proc)
-        elsif subscribable
-          updater_proc.call(subscribable)
+      Observation.connection.transaction do
+        if has_many_reflections.include?(subscribable_association.to_s)
+          notifier.send(subscribable_association).find_each(&updater_proc)
+        elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
+          updater_proc.call(notifier.send(subscribable_association))
+        elsif subscribable_association == :self
+          updater_proc.call(notifier)
+        else
+          subscribable = notifier.send(subscribable_association)
+          if subscribable.is_a?(Enumerable)
+            subscribable.each(&updater_proc)
+          elsif subscribable
+            updater_proc.call(subscribable)
+          end
         end
+      end
+      begin
+        # index updates for this notifier in bulk
+        Update.elastic_index!(scope: Update.where(notifier: notifier, notification: notification))
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+        raise e unless Rails.env.test?
       end
     end
 
