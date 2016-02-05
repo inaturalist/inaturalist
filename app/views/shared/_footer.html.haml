@@ -18,7 +18,7 @@
       .col-xs-2
         - unless site.blog_url.blank?
           %p
-            %a{ href: site.press_url }=t :our_blog
+            %a{ href: site.blog_url }=t :our_blog
         %p
           %a{ href: site.developers_url }=t :developers
         %p
@@ -26,15 +26,10 @@
         %p
           %a{ href: site.privacy_url }=t :privacy
       .col-xs-1
-        :ruby
-          pieces = []
-          pieces << link_to(t(:facebook), site.facebook_url, :class => "social-media-link facebook") unless site.facebook_url.blank?
-          pieces << link_to(t(:twitter), site.twitter_url, :class => "social-media-link twitter") unless site.twitter_url.blank?
-        - if pieces.blank?
-          &nbsp;
-        - else
-          - pieces.each do |link|
-            = link
+        - unless site.facebook_url.blank?
+          = link_to t(:facebook), site.facebook_url, :class => "social-media-link facebook"
+        - unless site.twitter_url.blank?
+          = link_to t(:twitter), site.twitter_url, :class => "social-media-link twitter"
       .col-xs-1
         &nbsp;
       = raw site.custom_footer if site.custom_footer
