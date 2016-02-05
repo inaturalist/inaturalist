@@ -27,25 +27,33 @@ class ObservationSweeper < ActionController::Caching::Sweeper
     ), :force => true)
     true
   end 
-  
+
   def expire_taxon_caches_for_observation(observation)
     return unless (observation.taxon_id_changed? || observation.latitude_changed?)
     if observation.taxon_id_was && (taxon_was = Taxon.find_by_id(observation.taxon_id_was))
-      expire_taxon_caches_for_taxon(taxon_was)
+      expire_taxon_caches_for_taxon_later(taxon_was)
     end
     
     if observation.taxon_id && (taxon_is = Taxon.find_by_id(observation.taxon_id))
-      expire_taxon_caches_for_taxon(taxon_is)
+      expire_taxon_caches_for_taxon_later(taxon_is)
     end
   end
-  
-  def expire_taxon_caches_for_taxon(t)
+
+  def expire_taxon_caches_for_taxon_later(t)
+    ObservationSweeper.
+      delay(unique_hash: { "ObservationSweeper::expire_taxon_caches_for_taxon": t.id }).
+      expire_taxon_caches_for_taxon(t.id)
+  end
+
+  def self.expire_taxon_caches_for_taxon(taxon_id)
+    taxon = Taxon.find_by_id(taxon_id)
+    return unless taxon
     ctrl = ActionController::Base.new
     I18N_SUPPORTED_LOCALES.each do |locale|
-      ctrl.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: t.to_param, locale: locale)
-      ctrl.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: t.id, locale: locale)
-      ctrl.send :expire_action, FakeView.url_for(controller: 'observations', action: 'of', id: t.id, format: "json", locale: locale)
-      ctrl.send :expire_action, FakeView.url_for(controller: 'observations', action: 'of', id: t.id, format: "geojson", locale: locale)
+      ctrl.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.to_param, locale: locale)
+      ctrl.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.id, locale: locale)
+      ctrl.send :expire_action, FakeView.url_for(controller: 'observations', action: 'of', id: taxon.id, format: "json", locale: locale)
+      ctrl.send :expire_action, FakeView.url_for(controller: 'observations', action: 'of', id: taxon.id, format: "geojson", locale: locale)
     end
   end
 end
