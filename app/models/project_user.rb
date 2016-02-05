@@ -1,7 +1,7 @@
 class ProjectUser < ActiveRecord::Base
   
   belongs_to :project
-  belongs_to :user
+  belongs_to :user, touch: true
   auto_subscribes :user, :to => :project
   
   after_save :check_role, :remove_updates, :subscribe_to_assessment_sections_later
