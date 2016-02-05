@@ -362,6 +362,9 @@ inat-taxon.split-taxon .icon {display: none;}
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
 #filter-container { margin-left: 10px; }
+#stats-container .col-xs-4 {
+  overflow: hidden;
+}
 #stats-container,
 #stats-container .statcol {
   height: 75px;

@@ -40,7 +40,7 @@
             {{ shared.t('the_world') }}
           %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
-            = "{{ selectedPlace.name }}"
+            = "{{ selectedPlace.name | characters:35 }}"
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng || params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
