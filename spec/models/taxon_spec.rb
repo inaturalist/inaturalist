@@ -442,6 +442,7 @@ describe Taxon, "tags_to_taxa" do
       expect(Taxon.tags_to_taxa([name, name.capitalize])).to be_blank
     end
   end
+
 end
 
 describe Taxon, "merging" do

@@ -86,6 +86,22 @@ describe LocalPhoto, "to_observation" do
     expect(o.taxon).to eq(t)
   end
 
+  it "should not set a taxon based on an invalid name in the tags if a valid synonym exists" do
+    p = LocalPhoto.make
+    p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
+    taxon_with_non_valid_name = Taxon.make!(rank: Taxon::SPECIES)
+    taxon_with_valid_name = Taxon.make!(name: "Cuthona abronia", rank: Taxon::SPECIES)
+    TaxonName.make!(
+      taxon: taxon_with_non_valid_name, 
+      name: taxon_with_valid_name.name, 
+      is_valid: false, 
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    p.extract_metadata
+    o = p.to_observation
+    expect( o.taxon ).to eq taxon_with_valid_name
+  end
+
   it "should not set a taxon from a blank title" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg"))

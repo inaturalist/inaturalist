@@ -186,8 +186,12 @@ class LocalPhoto < Photo
       end
     end
     unless metadata[:dc].blank?
-      photo_taxa = to_taxa
+      photo_taxa = to_taxa(valid: true)
       candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+      if candidate.blank?
+        photo_taxa = to_taxa
+        candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+      end
       if photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
         o.species_guess = candidate.name
       else
