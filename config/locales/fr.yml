@@ -596,11 +596,10 @@ fr:
     que vous n’avez pas accepté les modalités.
   by: par
   by_adding_ids_to_observations: en ajoutant les identifiants aux observations
-  by_user: par %{user}
-  by_project_list: par liste de projet
-  by_submittedby: par %{submittedby}
-  by_you: Par vous
   by_everyone: Par tout le monde
+  by_project_list: par liste de projet
+  by_user: par %{user}
+  by_you: Par vous
   calendar: Calendrier
   can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
@@ -882,7 +881,10 @@ fr:
     some_rights_reserved: certains droits réservés
     some_rights_reserved_by: (c) %{name}, certains droits réservés (%{license_short})
     all_rights_reserved: (c) %{name}, tous droits réservés
-    no_known_copyright_restrictions: '%{name}, aucune restriction de droit connue (%{license_name})'
+    no_known_copyright_restrictions: '%{name}, aucune restriction de droit connue
+      (%{license_name})'
+    no_rights_reserved: aucun droits réservés
+    no_rights_reserved_by: '%{name}, aucun droits réservés (%{license_name})'
     anonymous: anonyme
     public_domain: domaine public
     copyright: droit d’auteur
@@ -895,8 +897,6 @@ fr:
     attribution_sharealike_license: Licence d’attribution – Partage des conditions
     attribution_noderivs_license: Licence d’attribution – Pas de modifications
     gnu_free_documentation_license: Licence Documentation libre GNU
-    no_rights_reserved: aucun droits réservés
-    no_rights_reserved_by: "%{name}, aucun droits réservés (%{license_name})"
   copyright_holder: Détenteur des droits
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
