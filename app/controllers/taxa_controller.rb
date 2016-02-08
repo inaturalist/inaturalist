@@ -184,7 +184,7 @@ class TaxaController < ApplicationController
           group(:place_id, :taxon_id).
           where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
         @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.try(:place_type) || 0}.reverse
-        @places = @check_listed_taxa.map{ |lt| nil }.compact.uniq{ |p| p.id }
+        @places = @check_listed_taxa.map{ |lt| lt.place }.compact.uniq{ |p| p.id }
         @countries = @taxon.places.where(["place_type = ?", Place::PLACE_TYPE_CODES['Country']]).
           select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
         if @countries.size == 1 && @countries.first.code == 'US'
