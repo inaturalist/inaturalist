@@ -1,78 +1,43 @@
-$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
-
-@font-face { 
-  font-family: Whitney; 
-  src: asset-data-url('Whitney-Book-Pro.otf');
-}
-@font-face { 
-  font-family: Whitney; 
-  font-weight: bold;
-  src: asset-data-url('Whitney-Medium-Pro.otf');
-} 
-@font-face { 
-  font-family: Whitney; 
-  font-weight: 100;
-  src: asset-data-url('Whitney-Light-Pro.otf');
-} 
-@font-face { 
-  font-family: Whitney; 
-  font-weight: 600;
-  src: asset-data-url('Whitney-Semibold-Pro.otf');
-} 
-@font-face { 
-  font-family: Whitney; 
-  font-weight: 800;
-  src: asset-data-url('Whitney-Bold-Pro.otf');
-} 
-body {font-size: 75%;}
-body .bootstrap {
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  background-color: #ffffff;
-  font-family: $font-stack;
-}
-
-.bootstrap h1,
-.bootstrap h2,
-.bootstrap h3,
-.bootstrap h4,
-.bootstrap h5,
-.bootstrap h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #1A1A1A;
 }
 
-.bootstrap .readable, .bootstrap p { 
+.readable,
+p { 
   font-size: 100%;
   font-family: $font-stack;
 }
 
-.bootstrap a:hover { text-decoration: none; opacity: 0.8;}
-.bootstrap a:hover img { opacity: 1;}
+a:hover { text-decoration: none; opacity: 0.8;}
+a:hover img { opacity: 1;}
 
-.bootstrap .btn,
-.bootstrap .form-control,
+.btn,
+.form-control,
 .ac-select-thumb img {border-radius: 2px;}
-.bootstrap .btn-group-vertical > .btn:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child) {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
-.bootstrap .btn-group-vertical > .btn:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child) {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 
 .readable, p {line-height: 1.6em;}
-.bootstrap .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
-.bootstrap input.chooser {width: auto;}
-.bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
-.bootstrap .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
-.bootstrap .overlaycontrol li { line-height: 1; }
-.bootstrap .overlaycontrol label { display: inline-block; }
-.bootstrap .overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
-.bootstrap .gmapv3control label {margin-bottom: 0;}
-.bootstrap #map img, .bootstrap .latLonSelectorMap img, .bootstrap .taxonmap img {max-width: none;}
+.ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+input.chooser {width: auto;}
+.thumbnail.borderless { padding: 0; overflow:hidden;}
+.overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
+.overlaycontrol li { line-height: 1; }
+.overlaycontrol label { display: inline-block; }
+.overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
+.gmapv3control label {margin-bottom: 0;}
+#map img, .latLonSelectorMap img, .taxonmap img {max-width: none;}
 .box {border-radius: 6px;}
 .clear { display: inline-block; }   
 .clear:after, .container:after {
@@ -84,10 +49,10 @@ body .bootstrap {
 }
 * html .clear { height: 1%; }
 .clear { display: block; }
-.bootstrap input[type="text"].latLonSelectorInput,
-.bootstrap input[type="text"].hasDatepicker {margin-bottom:0;}
+input[type="text"].latLonSelectorInput,
+input[type="text"].hasDatepicker {margin-bottom:0;}
 
-.bootstrap .btn.disabled.loadingclick, .bootstrap .btn.loadingclick[disabled] {
+.btn.disabled.loadingclick, .btn.loadingclick[disabled] {
   background-image: image-url('spinner-small.gif');
   background-position: 5px 50%;
   background-repeat: no-repeat;
@@ -96,11 +61,11 @@ body .bootstrap {
   font-style: italic;
   background-color:white;
 }
-.bootstrap .photoSelector {padding: 0; border: 0 transparent;margin:0;}
-.bootstrap .photoSelector .view_photo {text-align: left;}
-.bootstrap .photoSelectorPhotos .photo img {width:100%;}
-.bootstrap .photoSelectorPhotos .photo label {margin-bottom: 0;}
-.bootstrap .photoSelectorSelected {
+.photoSelector {padding: 0; border: 0 transparent;margin:0;}
+.photoSelector .view_photo {text-align: left;}
+.photoSelectorPhotos .photo img {width:100%;}
+.photoSelectorPhotos .photo label {margin-bottom: 0;}
+.photoSelectorSelected {
   background-color: #eee; 
   padding:10px; 
   -webkit-border-radius: 6px;
@@ -108,23 +73,23 @@ body .bootstrap {
           border-radius: 6px;
   margin-bottom:10px;
 }
-.bootstrap .photoSelectorSelected .photo:nth-child(5n+5) {clear:left; margin-left:0;}
-.bootstrap .photoSelector .btn-group {margin-left: 10px;}
-.bootstrap .inlabel label {display:inline-block;}
+.photoSelectorSelected .photo:nth-child(5n+5) {clear:left; margin-left:0;}
+.photoSelector .btn-group {margin-left: 10px;}
+.inlabel label {display:inline-block;}
 
-.bootstrap .observations h4{display:none;margin:0;}
-.bootstrap .observations .label {
+.observations h4{display:none;margin:0;}
+.observations .label {
   background-color:transparent;
   padding:0;
   text-shadow:none;
 }
-.bootstrap .observationcontrols label {display:inline-block;}
+.observationcontrols label {display:inline-block;}
 .item_user {float: left;margin-right: 10px;}
 .item_content {float: left; }
 .comment_activity_item { margin-bottom: 20px; }
 #pageheader h2 {margin: 0; line-height: 1;}
-.bootstrap blockquote p {margin-bottom: inherit;}
-.bootstrap input.sortable-position { 
+blockquote p {margin-bottom: inherit;}
+input.sortable-position { 
   border-radius: 500px;
   color:white;
   font-weight: bold;
@@ -138,19 +103,16 @@ body .bootstrap {
   background-color: #ccc;
   margin-bottom:0;
 }
-.bootstrap ul.plain {list-style:none;}
+ul.plain {list-style:none;}
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
-.bootstrap .stacked, 
-.bootstrap .nav.nav-tabs,
-.bootstrap .nav.nav-pills {margin-bottom: 10px;}
-.bootstrap .unstacked {margin-bottom: 0px;}
-.bootstrap .overlaycontrol .ui-icon-layers {height: 22px; }
-
-// .bootstrap ul, .bootstrap ol {margin: inherit;}
-// .bootstrap ul.plain, .bootstrap ol.plain {margin-left: 10px;}
+.stacked, 
+.nav.nav-tabs,
+.nav.nav-pills {margin-bottom: 10px;}
+.unstacked {margin-bottom: 0px;}
+.overlaycontrol .ui-icon-layers {height: 22px; }
 
 // http://stackoverflow.com/questions/18329010/what-happened-to-nav-header-class
-.bootstrap .nav > li.nav-header {
+.nav > li.nav-header {
     cursor: default;
     font-size: 12px;
     font-weight: bold;
@@ -159,7 +121,7 @@ body .bootstrap {
 }
 img.borderless, .thumbnail.borderless { border: 0; }
 
-.bootstrap .modal-body {max-height: 400px; overflow-x: hidden; overflow-y: auto; }
+.modal-body {max-height: 400px; overflow-x: hidden; overflow-y: auto; }
 
 // The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
 // of our namespace div, so we need to re-apply these styles. Ugh.
@@ -180,28 +142,28 @@ img.borderless, .thumbnail.borderless { border: 0; }
   filter: alpha(opacity=50);
   opacity: .5;
 }
-.bootstrap .breadcrumb {margin-bottom: 0;}
+.breadcrumb {margin-bottom: 0;}
 .title-controls {margin-top: 20px;}
-.bootstrap .modal .container-fluid {padding-left: 0; padding-right: 0;}
+.modal .container-fluid {padding-left: 0; padding-right: 0;}
 
 .ui-front {z-index: 1051;}
-.bootstrap .accordion .panel-heading { padding: 0; }
-.bootstrap .accordion .panel-heading a { display: block; padding: 10px 15px; }
+.accordion .panel-heading { padding: 0; }
+.accordion .panel-heading a { display: block; padding: 10px 15px; }
 .errorExplanation {margin-top: 20px; }
 // http://stackoverflow.com/questions/18730116/twitter-bootstrap-3-0-how-do-i-badge-badge-important-now
-.bootstrap .label-as-badge {
+.label-as-badge {
   border-radius: 1em;
   font-size: 100%;
   padding: 3px 8px;
   display: inline-block;
 }
-.bootstrap .form-control.hasDatepicker,
-.bootstrap .form-control.latLonSelectorInput {display:inline-block;}
-.bootstrap .breadcrumb > li.prevnext:before { display: none; }
-.bootstrap .leaderboard-container thead .sorting_desc,
-.bootstrap .leaderboard-container thead .sorting_asc {padding-right: 20px; }
+.form-control.hasDatepicker,
+.form-control.latLonSelectorInput {display:inline-block;}
+.breadcrumb > li.prevnext:before { display: none; }
+.leaderboard-container thead .sorting_desc,
+.leaderboard-container thead .sorting_asc {padding-right: 20px; }
 
-.bootstrap mark { padding: 0; }
+mark { padding: 0; }
 
 .carousel-control .fa-chevron-left,
 .carousel-control .fa-chevron-right {
@@ -223,33 +185,33 @@ img.borderless, .thumbnail.borderless { border: 0; }
 .ac-select-thumb { float: none; display: inline-block; }
 .ac-select-thumb img { width: 32px; height: 32px; }
 
-.bootstrap textarea:focus,
-.bootstrap input[type="text"]:focus,
-.bootstrap input[type="password"]:focus,
-.bootstrap input[type="datetime"]:focus,
-.bootstrap input[type="datetime-local"]:focus,
-.bootstrap input[type="date"]:focus,
-.bootstrap input[type="month"]:focus,
-.bootstrap input[type="time"]:focus,
-.bootstrap input[type="week"]:focus,
-.bootstrap input[type="number"]:focus,
-.bootstrap input[type="email"]:focus,
-.bootstrap input[type="url"]:focus,
-.bootstrap input[type="search"]:focus,
-.bootstrap input[type="tel"]:focus,
-.bootstrap input[type="color"]:focus,
-.bootstrap .uneditable-input:focus,
-.bootstrap .btn:focus,
-.bootstrap .btn:active {   
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus,
+.btn:focus,
+.btn:active {   
   border-color: none;
   box-shadow: none;
   outline: 0 none;
 }
 
-.bootstrap .btn-group.btn-group-stateless .btn:focus,
-.bootstrap .btn-group.btn-group-stateless .btn:active,
-.bootstrap .btn-stateless.btn:focus,
-.bootstrap .btn-stateless.btn:active {
+.btn-group.btn-group-stateless .btn:focus,
+.btn-group.btn-group-stateless .btn:active,
+.btn-stateless.btn:focus,
+.btn-stateless.btn:active {
   background-color: white;
 }
 
