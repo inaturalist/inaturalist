@@ -107,9 +107,34 @@ h2{line-height:1;margin:0;float:left;}
 #projectstats .numerical.stat .count {line-height: 1;}
 #projectstats td {border:none; vertical-align:top;}
 #projectstats table {margin:0;}
-#projectstats .counts .stat {margin-bottom: 5px;}
+#projectstats .counts .stat {
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+#projectstats .counts .stat a.label {
+  color: #4f4f4f;
+  font-weight: bold;
+  font-size: 18px;
+}
+#projectstats .counts .stat a.label:after {
+  content: " \00BB";
+}
+#projectstats .counts .links {
+  margin-top: 20px;
+}
+#projectstats .counts .links a {
+  color: #2d2d2d;
+  font-size: 14px;
+  font-weight: bold;
+}
 #event.with_description {width: 50%; float: right; margin-left: 10px;}
 #bioblitz td {border: 0 transparent;}
 .invited {background-color: #FFF6BF;}
 #projectnav li.invited:hover {background-color: #fffdcd;}
 .sectioncount {margin: 4px 10px 0 10px;}
+#rtstats label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: black;
+  font-weight: normal;
+}
