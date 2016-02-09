@@ -904,7 +904,7 @@ var appendValidParamsToURL = function( url, options ) {
     if( _.contains( options.validParams, key ) ) {
       params[ key ] = value;
     }
-    if ( key.match( /field:\w+/ ) ) {
+    if ( key.match( /field[:%]\w+/ ) ) {
       params[ key ] = value;
     }
   });

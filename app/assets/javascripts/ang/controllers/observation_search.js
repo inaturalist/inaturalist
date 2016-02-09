@@ -946,7 +946,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // If there's a more readable way to perform this simple task, please let me know.
     $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
       if( k.match(/(\w+):(\w+)/ ) ) {
-        memo[k] = v;
+        // true represents a key with no value, so leave value undefined
+        k = decodeURIComponent(k).replace( /(%20|\+)/g, " ");
+        if( _.isString( v ) ) { v = v.replace( /(%20|\+)/g, " "); }
+        memo[k] = ( v === true ) ? undefined : v;
       }
       return memo;
     }, { } );
