@@ -29,11 +29,11 @@ iNatModels.Observation.prototype.photo = function( ) {
 
 iNatModels.Observation.prototype.hasMedia = function( ) {
   return this.photo( ) || this.hasSound( );
-}
+};
 
 iNatModels.Observation.prototype.hasSound = function( ) {
   return (this.sounds && this.sounds.length > 0);
-}
+};
 
 iNatModels.Observation.prototype.displayPlace = function( ) {
   if (this.place_guess) {

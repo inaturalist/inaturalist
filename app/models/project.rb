@@ -133,6 +133,7 @@ class Project < ActiveRecord::Base
                     automated: false
 
   def place_with_boundary
+    return if place_id.blank?
     unless PlaceGeometry.where(:place_id => place_id).exists?
       errors.add(:place_id, "must be set and have a boundary for a bioblitz")
     end
@@ -211,7 +212,11 @@ class Project < ActiveRecord::Base
   end
   
   def rule_place
-    project_observation_rules.where(operator: "observed_in_place?").first.try(:operand)
+    @rule_place ||= rule_places.first
+  end
+
+  def rule_places
+    @rule_places ||= project_observation_rules.where(operator: "observed_in_place?").map(&:operand).compact
   end
 
   def rule_taxon
@@ -219,7 +224,7 @@ class Project < ActiveRecord::Base
   end
 
   def rule_taxa
-    @rule_taxa ||= project_observation_rules.where(:operator => "in_taxon?").map(&:operand).compact
+    @rule_taxa ||= project_observation_rules.where(operator: "in_taxon?").map(&:operand).compact
   end
   
   def icon_url
@@ -258,12 +263,13 @@ class Project < ActiveRecord::Base
 
   def observations_matching_rules
     scope = Observation.all
+    place_ids = [ ]
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?"
         scope = scope.of(rule.operand)
       when "observed_in_place?"
-        scope = scope.in_place(rule.operand)
+        place_ids << rule.operand.try(:id) || rule.operand
       when "on_list?"
         scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
           joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
@@ -273,11 +279,14 @@ class Project < ActiveRecord::Base
         scope = scope.where("observations.geom IS NOT NULL")
       end
     end
+    unless place_ids.empty?
+      scope = scope.in_places(place_ids)
+    end
     scope
   end
 
   def observations_url_params
-    params = {:place_id => place_id}
+    params = { }
     if start_time && end_time
       if prefers_range_by_date?
         params.merge!(
@@ -289,11 +298,13 @@ class Project < ActiveRecord::Base
       end
     end
     taxon_ids = []
+    place_ids = [ place_id ]
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?"
         taxon_ids << rule.operand_id
       when "observed_in_place?"
+        place_ids << rule.operand_id
         # Ignore, we already added the place_id
       when "on_list?"
         params[:list_id] = project_list.id
@@ -314,8 +325,10 @@ class Project < ActiveRecord::Base
         params[:captive] = false
       end
     end
-    taxon_ids.compact.uniq!
+    taxon_ids = taxon_ids.compact.uniq
+    place_ids = place_ids.compact.uniq
     params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
+    params.merge!(place_id: place_ids) unless place_ids.blank?
     params
   end
 
@@ -627,6 +640,9 @@ class Project < ActiveRecord::Base
   def aggregation_allowed?
     return true if place && place.bbox_area < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
+    return true if project_observation_rules.where("operator IN (?)", %w(observed_in_place?)).map{ |r|
+      r.operand && r.operand.bbox_area < 141
+    }.uniq == [ true ]
     false
   end
 

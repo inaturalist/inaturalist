@@ -850,7 +850,7 @@ class ProjectsController < ApplicationController
     @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
     scope = @project.observations_matching_rules.
       by(current_user).
-      includes(:taxon, :project_observations).
+      joins(:project_observations).
       where("project_observations.id IS NULL OR project_observations.project_id != ?", @project)
     scope = scope.of(@taxon) if @taxon
     scope

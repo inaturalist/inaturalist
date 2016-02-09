@@ -229,7 +229,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.alignMapOnSearch = true;
         $scope.params.place_id = $scope.selectedPlace.id;
       }
-    } else {
+    } else if( !_.isArray( $scope.params.place_id) ) {
       $scope.alignMapOnSearch = false;
       $scope.params.place_id = "any";
     }
@@ -256,10 +256,17 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
   };
   $scope.initializePlaceParams = function( ) {
-    if( $scope.params.place_id ) {
+    $scope.params.place_id = $scope.params["place_id[]"] || $scope.params.place_id;
+    if( _.isString( $scope.params.place_id ) ) {
+      $scope.params.place_id = _.filter( $scope.params.place_id.split(","), _.identity );
+    }
+    if( _.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
+      $scope.params.place_id = $scope.params.place_id[0];
+    }
+    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
       $scope.params.place_id = parseInt( $scope.params.place_id );
     }
-    if( $scope.params.place_id ) {
+    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
       // load place name and polygon from ID
       PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
@@ -946,7 +953,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     // If there's a more readable way to perform this simple task, please let me know.
     $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
       if( k.match(/(\w+):(\w+)/ ) ) {
-        memo[k] = v;
+        // true represents a key with no value, so leave value undefined
+        k = k.replace( /(%20|\+)/g, " ");
+        if( _.isString( v ) ) { v = v.replace( /(%20|\+)/g, " "); }
+        memo[k] = ( v === true ) ? undefined : v;
       }
       return memo;
     }, { } );

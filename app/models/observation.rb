@@ -385,7 +385,13 @@ class Observation < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
     where("ST_Intersects(place_geometries.geom, observations.private_geom)")
   }
-  
+
+  # should use .select("DISTINCT observations.*")
+  scope :in_places, lambda {|place_ids|
+    joins("JOIN place_geometries ON place_geometries.place_id IN (#{place_ids.join(",")})").
+    where("ST_Intersects(place_geometries.geom, observations.private_geom)")
+  }
+
   scope :in_taxons_range, lambda {|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
