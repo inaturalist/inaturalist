@@ -45,8 +45,8 @@ en:
     one: "<span class='count'>1</span> observation"
     other: "<span class='count'>%{count}</span> observations"
   x_observations_link_html:
-    one: "<a href='%{url}'>1</a> observation"
-    other: "<a href='%{url}'>%{count}</a> observations"
+    one: "<a href='%{url}'>1 observation</a>"
+    other: "<a href='%{url}'>%{count} observations</a>"
   x_people:
     one: '1 person'
     other: '%{count} people'
@@ -66,8 +66,8 @@ en:
     one: "<span class='count'>1</span> species"
     other: "<span class='count'>%{count}</span> species"
   x_species_link_html:
-    one: "<a href='%{url}'>1</a> species"
-    other: "<a href='%{url}'>%{count}</a> species"
+    one: "<a href='%{url}'>1 species</a>"
+    other: "<a href='%{url}'>%{count} species</a>"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon observed"
     other: "<span class='count'>%{count}</span> taxa observed"

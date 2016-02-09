@@ -166,12 +166,14 @@
                 <%=t 'views.projects.show.bioblitz_results_desc_html' %>
               <% end %>
             </div>
-            <div class="stacked">
-              <%= link_to stats_observations_url(@observations_url_params.merge(refresh: true)), target: "_new" do %>
-                <%= t(:real_time_stats) %>
-                <i class="fa fa-external-link"></i>
-              <% end %>
-            </div>
+            <% if @project.project_type == Project::BIOBLITZ_TYPE && @project.event_in_progress? %>
+              <div class="stacked">
+                <%= link_to stats_observations_url(@observations_url_params.merge(refresh: true)), target: "_new" do %>
+                  <%= t(:real_time_stats) %>
+                  <i class="fa fa-external-link"></i>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         <% end %>
         <%= render :partial => "observations/real_time_stats", locals: {extra: extra} %>
@@ -179,7 +181,6 @@
     </div>
   <% end -%>
 
-  <%= separator %>
 </div>
 
 
