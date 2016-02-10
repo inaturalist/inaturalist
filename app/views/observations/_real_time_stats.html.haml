@@ -1,14 +1,16 @@
+- extra ||= nil
 .counts
   %label=t :totals
   .totalcount.stat.numerical
     .count ?
-    = t(:observations, :default => "observations").downcase
+    = link_to t(:observations, :default => "observations").downcase, "", :class => "label"
   .species.stat.numerical
     .count ?
-    = t(:species, :default => "species").downcase
+    = link_to t(:species, :default => "species").downcase, "", :class => "label"
   .people.stat.numerical
     .count ?
-    = t(:people, :default => "people").downcase
+    = link_to t(:people, :default => "people").downcase, "", :class => "label"
+  = extra
 .most_observations.stat
   %label=t :most_observations
   %table

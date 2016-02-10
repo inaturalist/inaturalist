@@ -138,7 +138,12 @@
   margin: 0 10px;
   font-weight: normal;
 }
-.container-fixed { margin: 0 auto; min-width: 980px; }
+.bootstrap .container.container-fixed { 
+  margin: 0 auto; 
+  padding: 0;
+  min-width: 950px;
+
+}
 #how [class*='col-'] {
   text-align: center;
   white-space: nowrap;
@@ -212,7 +217,7 @@
 #value embed { width: 99px; max-height: 80px; margin: 0 10px 0 auto; display:block;}
 #value .media-left { padding-right: 30px;}
 #value .second-col { margin-left: 15px; }
-#mobile embed { margin: 30px; max-height: 260px; width: 100%;}
+#mobile embed { margin: 30px; max-height: 260px; }
 #mobile .imgcol { background-color: #74ac00; height: 320px;}
 #mobile h1 {white-space: nowrap; }
 #mobile img {margin: 20px 25px 0 0; }
