@@ -596,11 +596,10 @@ fr:
     que vous n’avez pas accepté les modalités.
   by: par
   by_adding_ids_to_observations: en ajoutant les identifiants aux observations
-  by_user: par %{user}
-  by_project_list: par liste de projet
-  by_submittedby: par %{submittedby}
-  by_you: Par vous
   by_everyone: Par tout le monde
+  by_project_list: par liste de projet
+  by_user: par %{user}
+  by_you: Par vous
   calendar: Calendrier
   can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
@@ -613,14 +612,17 @@ fr:
   casual: occasionnel
   catalogue_of_life: Catalogue of Life
   categories: catégories
+  cc_0_description: Cette licence place votre travail dans le domaine public, de telle
+    sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder,
+    même pour des raisons commerciales, le tout sans demander de permission ou vous
+    accorder quelque crédit. C’est la plus accommodante des licences offertes. Recommandée
+    pour une dissémination maximale et l’utilisation de matériaux sous licence.
+  cc_0_name: Pas de droit d’auteur (CC0)
   cc_attribution_license: Licence d’attribution de Creative Commons
-  cc_by_description: |-
-    Cette licence permet aux autres de distribuer et d’améliorer votre travail,
-    d’y ajouter des éléments et d’en créer une nouvelle version, même à des
-    fins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit
-    pour la création initiale. Il s’agit de la licence la plus souple sur le
-    marché. Elle est recommandée aux fins de diffusion et d’utilisation de
-    matériel sous licence maximales.
+  cc_by_description: Cette licence permet aux autres de distribuer et d’améliorer
+    votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même
+    à des fins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit
+    pour la création initiale.
   cc_by_name: Attribution
   cc_by_nc_description: |-
     Cette licence permet aux autres de distribuer et d’améliorer votre travail,
@@ -882,10 +884,14 @@ fr:
     some_rights_reserved: certains droits réservés
     some_rights_reserved_by: (c) %{name}, certains droits réservés (%{license_short})
     all_rights_reserved: (c) %{name}, tous droits réservés
-    no_known_copyright_restrictions: '%{name}, aucune restriction de droit connue (%{license_name})'
+    no_known_copyright_restrictions: '%{name}, aucune restriction de droit connue
+      (%{license_name})'
+    no_rights_reserved: aucun droits réservés
+    no_rights_reserved_by: '%{name}, aucun droits réservés (%{license_name})'
     anonymous: anonyme
     public_domain: domaine public
     copyright: droit d’auteur
+    no_copyright: pas de droit d'auteur (CC0)
     attribution_noncommercial_sharealike_license: Licence d’attribution non commerciale
       pour échange sans modification
     attribution_noncommercial_license: Licence d’attribution non commerciale
@@ -895,8 +901,6 @@ fr:
     attribution_sharealike_license: Licence d’attribution – Partage des conditions
     attribution_noderivs_license: Licence d’attribution – Pas de modifications
     gnu_free_documentation_license: Licence Documentation libre GNU
-    no_rights_reserved: aucun droits réservés
-    no_rights_reserved_by: "%{name}, aucun droits réservés (%{license_name})"
   copyright_holder: Détenteur des droits
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
@@ -1956,14 +1960,14 @@ fr:
       future: en %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1min
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
-      MM: '%dm'
+      M: 1min
+      MM: '%dmo'
       1: 1y
       yy: '%dy'
   mon: Lun

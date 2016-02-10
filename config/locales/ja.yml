@@ -405,11 +405,10 @@ ja:
   bulk_import_of_filename_is_complete: '%{filename}の一括インポートが完了しました'
   by: '投稿者:'
   by_adding_ids_to_observations: 観察記録に同定を付ける
-  by_user: '%{user}による'
-  by_project_list: プロジェクトリストで
-  by_submittedby: '%{submittedby}より'
-  by_you: 自分の
   by_everyone: みんなの
+  by_project_list: プロジェクトリストで
+  by_user: '%{user}による'
+  by_you: 自分の
   calendar: カレンダー
   can_you_help_your_friends_id_these: 仲間の観察記録を同定しませんか？
   cancel: キャンセル
@@ -1268,12 +1267,14 @@ ja:
   momentjs:
     shortRelativeTime:
       past: '%s'
+      s: 秒
       m: 1分
       mm: '%dm'
       h: 1時間
       hh: '%dh'
       d: 1日
       dd: '%dd'
+      M: 1分
       MM: '%dm'
       1: 1年
       yy: '%dy'
@@ -1445,6 +1446,7 @@ ja:
   not_yet: まだ
   note: メモ
   number_of_observations: 観測記録数
+  number_selected: '# 選択済み'
   numeric_: 数値
   noun_by_you: あなたによる%{noun}
   obs: 不明瞭
@@ -1512,6 +1514,7 @@ ja:
     absent: 不在
   of_least_concern: 軽度懸念
   offensive_inappropriate: 不快／不適切
+  official_blog: 公式ブログ
   offline_access_enabled: オフラインアクセス対応
   on_your_life_list: 自分のライフリストに
   one_by_one: １個ずつ
@@ -2396,6 +2399,7 @@ ja:
   wondering_what_to_do_next: 次何しましょうか？よかったら
   would_you_like_to: よかったら
   would_like_some_help_identifying_this: は同定協力を依頼しています
+  x_blog: '%{x} のブログ'
   x_deleted: '%{x}は削除されました'
   x_does_not_exist: '%{x}は存在しません'
   x_journal: '%{user}さんのジャーナル'
