@@ -567,12 +567,16 @@ ca:
   casual: casual
   catalogue_of_life: Catàleg de la vida
   categories: categories
+  cc_0_description: Aquesta llicència allibera la seva obra a domini públic, de manera
+    que els altres poden copiar, modificar, distribuir i dur a terme el seu treball,
+    fins i tot amb finalitat comercial, sense demanar permís, o donar-li crèdit. Aquesta
+    és la llicència més lliure de les que s'ofereixen. Recomanat per a una màxima
+    difusió i ús de la llicència de materials.
+  cc_0_name: Sense drets d'autor (CC0)
   cc_attribution_license: Llicència de reconeixement de Creative Commons
   cc_by_description: Aquesta llicència permet que altres persones distribueixin, combinin,
     ajustin i facin creacions a partir dels vostres continguts, fins i tot amb finalitats
-    comercials, sempre que als crèdits n’esmentin el creador original. Aquesta és
-    la llicència més flexible de les que s’ofereixen. Recomanada per la màxima difusió
-    i l'ús de materials subjectes a llicència.
+    comercials, sempre que als crèdits n’esmentin el creador original.
   cc_by_name: Reconeixement
   cc_by_nc_description: Aquesta llicència permet a qualsevol persona mesclar, adaptar
     i crear a partir de la vostra obra, fins i tot amb una finalitat comercial, sempre
@@ -818,9 +822,12 @@ ca:
     all_rights_reserved: (c) %{name}, tots els drets reservats
     no_known_copyright_restrictions: '%{name}, sense restriccions de drets conegudes
       (%{license_name})'
+    no_rights_reserved: Cap dret reservat
+    no_rights_reserved_by: '%{name}, sense cap dret reservat (%{license_name})'
     anonymous: anònim
     public_domain: domini públic
     copyright: drets reservats
+    no_copyright: sense drets d'autor (CC0)
     attribution_noncommercial_sharealike_license: Reconeixement - No comercial Comparteix
       amb la mateixa llicència
     attribution_noncommercial_license: Reconeixement - No comercial
@@ -1863,14 +1870,14 @@ ca:
       future: a %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1 min
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
-      MM: '%dm'
+      M: 1 mes
+      MM: '%d mes'
       1: 1a
       yy: '%da'
   mon: Dl.

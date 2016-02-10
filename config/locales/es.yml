@@ -580,11 +580,15 @@ es:
   casual: casual
   catalogue_of_life: Catálogo de la Vida
   categories: categorías
+  cc_0_description: Esta licencia ofrece tu trabajo al dominio público, permite a
+    otros copiar, modificar, distribuir y construir en base en su trabajo, sin pedirle
+    o darle reconocimiento. Esta es la licencia más abierta ofrecida. Recomendada
+    para dar la máxima difusión y el uso de materiales sujetos a licencia.
+  cc_0_name: No hay derechos de Autor (CC0)
   cc_attribution_license: Licencia de atribución de Creative Commons
   cc_by_description: Esta licencia permite a otros distribuir, mezclar, ajustar y
     construir con base en su trabajo, incluso con fines comerciales, siempre y cuando
-    se de crédito para la creación original. Esta es la licencia ofrecida más amplia.
-    Recomendada para la máxima difusión y el uso de materiales sujetos a licencia.
+    se de crédito para la creación original.
   cc_by_name: Atribución
   cc_by_nc_description: Esta licencia permite a otros transformar, modificar, y construir
     sobre su trabajo de forma no comercial, y a pesar de sus nuevas obras deben también
@@ -833,6 +837,7 @@ es:
     anonymous: anónimo
     public_domain: dominio público
     copyright: derechos reservados
+    no_copyright: no hay derechos de autor (CC0)
     attribution_noncommercial_sharealike_license: Atribución - No Comercial Compartir
       bajo la Misma Licencia
     attribution_noncommercial_license: Atribución - No Comercial
@@ -1869,14 +1874,14 @@ es:
       future: en %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1 min
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
-      MM: '%dm'
+      M: 1 mes
+      MM: '%d mes'
       1: 1a
       yy: '%da'
   mon: lun

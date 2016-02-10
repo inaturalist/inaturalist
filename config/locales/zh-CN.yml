@@ -243,6 +243,7 @@ zh-CN:
     birds: 鸟类
     chromista: 色藻界
     fungi: 真菌
+    fungi_including_lichens: 真菌包括地衣
     insects: 昆虫
     mammals: 哺乳动物
     mollusks: 软体动物
@@ -442,6 +443,7 @@ zh-CN:
   casual: 变装
   catalogue_of_life: 生命目录（Catalogue of Life）
   categories: 分类
+  cc_0_name: 无版权（CC0）
   cc_attribution_license: 知识共享署名许可协议
   cc_by_name: 署名
   cc_by_nc_name: 署名-非商业性使用
@@ -587,9 +589,12 @@ zh-CN:
     some_rights_reserved_by: (c) %{name}，保留部分权利（%{license_short}）
     all_rights_reserved: 版权所有 (c) %{name}，保留所有权利
     no_known_copyright_restrictions: '%{name}，没有已知的版权限制（%{license_name}）'
+    no_rights_reserved: 不保留任何权利
+    no_rights_reserved_by: '%{name}，不保留任何权利（%{license_name}）'
     anonymous: 匿名
     public_domain: 公有领域
     copyright: 版权
+    no_copyright: 无版权（CC0）
     attribution_noncommercial_sharealike_license: 署名-非商业性使用-相同方式共享许可协议
     attribution_noncommercial_license: 署名-非商业性使用许可协议
     attribution_noncommercial_noderivs_license: 署名-非商业性使用-禁止演绎许可协议
@@ -1265,13 +1270,13 @@ zh-CN:
       future: 在 %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1分钟
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
+      M: 1分钟
       MM: '%dm'
       1: 1y
       yy: '%dy'
