@@ -83,7 +83,7 @@ h2{line-height:1;margin:0;float:left;}
   text-decoration: none;
 }
 #addbutton:hover {background-color: #f82714;}
-#addbutton small {font-size:12pt; letter-spacing: 0.25em;}
+#addbutton small {font-size:12pt;}
 #addbutton big {display:block;margin-top:3px;}
 #addbutton:after {
   content:"";
@@ -97,7 +97,9 @@ h2{line-height:1;margin:0;float:left;}
   border-width: 20px 20px 0 0;
 }
 #recent_observations .observationcontrols {margin-top:3px;}
-.observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+.observations.medium.grid .observation, 
+.observations.medium.grid .photos, 
+.observations.medium.grid .icon {
   width: 152px;
   height: 152px;
 }
