@@ -161,11 +161,13 @@
       <div id="rtstats" class="clear">
         <%- extra = capture do -%>
           <div class="links">
-            <div class="stacked">
-              <%= link_to_dialog t(:about), width: "60%" do %>
-                <%=t 'views.projects.show.bioblitz_results_desc_html' %>
-              <% end %>
-            </div>
+            <% if @project.project_type == Project::BIOBLITZ_TYPE %>
+              <div class="stacked">
+                <%= link_to_dialog t(:about), width: "60%" do %>
+                  <%=t 'views.projects.show.bioblitz_results_desc_html' %>
+                <% end %>
+              </div>
+            <% end %>
             <% if @project.project_type == Project::BIOBLITZ_TYPE && @project.event_in_progress? %>
               <div class="stacked">
                 <%= link_to stats_observations_url(@observations_url_params.merge(refresh: true)), target: "_new" do %>
