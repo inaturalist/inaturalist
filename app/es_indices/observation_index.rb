@@ -233,7 +233,7 @@ class Observation < ActiveRecord::Base
       { http_param: :month, es_field: "observed_on_details.month" },
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
-      { http_param: :place, es_field: "place_ids" },
+      { http_param: :place_id, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" }
     ].each do |filter|
       unless p[ filter[:http_param] ].blank?
@@ -561,12 +561,12 @@ class Observation < ActiveRecord::Base
         } } }
       }
     }
-    if params[:place]
+    if params[:place_id]
       # if a place condition is specified, return all results
       # from the place(s) specified, or where place is NULL
       status_condition[:nested][:query][:filtered][:filter] = { bool: { should: [
         { terms: { "taxon.statuses.place_id" =>
-          [ params[:place] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
+          [ params[:place_id] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
         { missing: { field: "taxon.statuses.place_id" } }
       ] } }
     else

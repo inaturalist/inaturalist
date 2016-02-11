@@ -118,6 +118,11 @@ class ObservationsController < ApplicationController
             params[:taxon_id] = t.id
           end
         end
+        if params[:apply_project_rules_for] &&
+           project = Project.find_by_id(params[:apply_project_rules_for])
+          params.merge!(project.observations_url_params(extended: true))
+          params.delete(:apply_project_rules_for)
+        end
         render layout: "bootstrap", locals: { params: params }
       end
 
@@ -2044,7 +2049,8 @@ class ObservationsController < ApplicationController
       stats_params[:place_id].blank? &&
       stats_params[:user_id].blank? &&
       stats_params[:on].blank? &&
-      stats_params[:created_on].blank?
+      stats_params[:created_on].blank? &&
+      stats_params[:apply_project_rules_for].blank?
     )
   end
   

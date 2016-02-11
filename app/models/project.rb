@@ -285,7 +285,7 @@ class Project < ActiveRecord::Base
     scope
   end
 
-  def observations_url_params
+  def observations_url_params(options = {})
     params = { }
     if start_time && end_time
       if prefers_range_by_date?
@@ -327,8 +327,12 @@ class Project < ActiveRecord::Base
     end
     taxon_ids = taxon_ids.compact.uniq
     place_ids = place_ids.compact.uniq
-    params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
-    params.merge!(place_id: place_ids) unless place_ids.blank?
+    if !options[:extended] && taxon_ids.count + place_ids.count >= 50
+      params = { apply_project_rules_for: self.id }
+    else
+      params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
+      params.merge!(place_id: place_ids) unless place_ids.blank?
+    end
     params
   end
 
@@ -655,7 +659,7 @@ class Project < ActiveRecord::Base
     added = 0
     fails = 0
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
-    params = observations_url_params.merge(per_page: 200, not_in_project: id)
+    params = observations_url_params(extended: true).merge(per_page: 200, not_in_project: id)
     # making sure we only look observations opdated since the last aggregation
     unless last_aggregated_at.nil?
       params[:updated_since] = last_aggregated_at.to_s

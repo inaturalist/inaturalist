@@ -16,7 +16,9 @@ module ObservationSearch
       when Site::OBSERVATIONS_FILTERS_SITE
         search_params[:site_id] = site.id if search_params[:site_id].blank?
       when Site::OBSERVATIONS_FILTERS_PLACE
-        search_params[:place] = site.place if search_params[:place_id].blank?
+        if search_params[:place_id].blank? && site.place
+          search_params[:place_id] = site.place.id
+        end
       when Site::OBSERVATIONS_FILTERS_BOUNDING_BOX
         if search_params[:nelat].blank? &&
             search_params[:nelng].blank? &&
@@ -171,6 +173,11 @@ module ObservationSearch
     # elastic_query (ES)
     def query_params(params)
       p = params.clone.symbolize_keys
+      unless p[:apply_project_rules_for].blank?
+        if p[:apply_project_rules_for] = Project.find_by_id(p[:apply_project_rules_for])
+          p.merge!(p[:apply_project_rules_for].observations_url_params(extended: true))
+        end
+      end
       if p[:swlat].blank? && p[:swlng].blank? && p[:nelat].blank? && p[:nelng].blank? && p[:BBOX]
         p[:swlng], p[:swlat], p[:nelng], p[:nelat] = p[:BBOX].split(',')
       end
@@ -318,10 +325,13 @@ module ObservationSearch
       scope = self
       viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
 
-      place_id = if params[:place_id].to_i > 0
-        params[:place_id]
-      elsif !params[:place_id].blank?
-        Place.find(params[:place_id]).try(:id) rescue 0
+      place_ids = [ ]
+      if params[:place_id].is_a?(Array)
+        place_ids = params[:place_id]
+      elsif params[:place_id].to_i > 0
+        place_ids << params[:place_id]
+      elsif !params[:place_id].blank? && p = Place.find(params[:place_id])
+        place_ids << p.id
       end
 
       # support bounding box queries
@@ -387,7 +397,7 @@ module ObservationSearch
       end
       scope = scope.by(params[:user_id]) if params[:user_id]
       scope = scope.in_projects(params[:projects]) if params[:projects]
-      scope = scope.in_place(place_id) unless params[:place_id].blank?
+      scope = scope.in_places(place_ids) unless place_ids.empty?
       scope = scope.created_on(params[:created_on]) if params[:created_on]
       scope = scope.out_of_range if params[:out_of_range] == 'true'
       scope = scope.in_range if params[:out_of_range] == 'false'
@@ -437,37 +447,37 @@ module ObservationSearch
 
       if !params[:cs].blank?
         scope = scope.joins(:taxon => :conservation_statuses).where("conservation_statuses.status IN (?)", [params[:cs]].flatten)
-        scope = if place_id.blank?
+        scope = if place_ids.empty?
           scope.where("conservation_statuses.place_id IS NULL")
         else
-          scope.where("conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL", place_id)
+          scope.where("conservation_statuses.place_id IN (?) OR conservation_statuses.place_id IS NULL", place_ids.join(","))
         end
       end
 
       if !params[:csi].blank?
         iucn_equivs = [params[:csi]].flatten.map{|v| Taxon::IUCN_CODE_VALUES[v.upcase]}.compact.uniq
         scope = scope.joins(:taxon => :conservation_statuses).where("conservation_statuses.iucn IN (?)", iucn_equivs)
-        scope = if place_id.blank?
+        scope = if place_ids.empty?
           scope.where("conservation_statuses.place_id IS NULL")
         else
-          scope.where("conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL", place_id)
+          scope.where("conservation_statuses.place_id IN (?) OR conservation_statuses.place_id IS NULL", place_ids.join(","))
         end
       end
 
       if !params[:csa].blank?
         scope = scope.joins(:taxon => :conservation_statuses).where("conservation_statuses.authority = ?", params[:csa])
-        scope = if place_id.blank?
+        scope = if place_ids.empty?
           scope.where("conservation_statuses.place_id IS NULL")
         else
-          scope.where("conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL", place_id)
+          scope.where("conservation_statuses.place_id IN (?) OR conservation_statuses.place_id IS NULL", place_ids.join(","))
         end
       end
 
       establishment_means = params[:establishment_means] || params[:em]
-      if !place_id.blank? && !establishment_means.blank?
+      if !place_ids.empty? && !establishment_means.blank?
         scope = scope.
           joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
-          where("listed_taxa.place_id = ?", place_id)
+          where("listed_taxa.place_id IN (?)", place_ids.join(","))
         scope = case establishment_means
         when ListedTaxon::NATIVE
           scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)

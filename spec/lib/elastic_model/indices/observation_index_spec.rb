@@ -200,7 +200,7 @@ describe "Observation Index" do
         { http_param: :observed_on_day, es_field: "observed_on_details.day" },
         { http_param: :observed_on_month, es_field: "observed_on_details.month" },
         { http_param: :observed_on_year, es_field: "observed_on_details.year" },
-        { http_param: :place, es_field: "place_ids" },
+        { http_param: :place_id, es_field: "place_ids" },
         { http_param: :site_id, es_field: "site_id" }
       ].each do |filter|
         # single values
@@ -542,7 +542,7 @@ describe "Observation Index" do
         complex_wheres: [ { nested: { path: "taxon.statuses", query: { filtered: {
           query: { bool: { must: [ { terms: { "taxon.statuses.status" => [ "testing" ]}}]}},
           filter: [ { missing: { field: "taxon.statuses.place_id" }}]}}}}])
-      expect( Observation.params_to_elastic_query({ cs: "testing", place: 6 }) ).to include(
+      expect( Observation.params_to_elastic_query({ cs: "testing", place_id: 6 }) ).to include(
         complex_wheres: [ { nested: { path: "taxon.statuses", query: { filtered: {
           query: { bool: { must: [ { terms: {"taxon.statuses.status" => [ "testing" ]}}]}},
           filter: { bool: { should: [
@@ -555,7 +555,7 @@ describe "Observation Index" do
         complex_wheres: [ { nested: { path: "taxon.statuses", query: { filtered: {
           query: { bool: { must: [ { terms: { "taxon.statuses.iucn" => [ 10 ]}}]}},
           filter: [ { missing: { field: "taxon.statuses.place_id" }}]}}}}])
-      expect( Observation.params_to_elastic_query({ csi: "LC", place: 6 }) ).to include(
+      expect( Observation.params_to_elastic_query({ csi: "LC", place_id: 6 }) ).to include(
         complex_wheres: [ { nested: { path: "taxon.statuses", query: { filtered: {
           query: { bool: { must: [ { terms: {"taxon.statuses.iucn" => [ 10 ]}}]}},
           filter: { bool: { should: [
@@ -568,7 +568,7 @@ describe "Observation Index" do
         complex_wheres: [ { nested: { path: "taxon.statuses", query: { filtered: {
           query: { bool: { must: [ { terms: { "taxon.statuses.authority" => [ "iucn" ]}}]}},
           filter: [ { missing: { field: "taxon.statuses.place_id" }}]}}}}])
-      expect( Observation.params_to_elastic_query({ csa: "IUCN", place: 6 }) ).to include(
+      expect( Observation.params_to_elastic_query({ csa: "IUCN", place_id: 6 }) ).to include(
         complex_wheres: [ { nested: { path: "taxon.statuses", query: { filtered: {
           query: { bool: { must: [ { terms: {"taxon.statuses.authority" => [ "iucn" ]}}]}},
           filter: { bool: { should: [

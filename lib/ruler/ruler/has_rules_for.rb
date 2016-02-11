@@ -21,7 +21,10 @@ module Ruler
         rules.group_by(&:operator).each do |operator, operator_rules|
           errors_for_operator = []
           operator_rules.each do |rule|
-            unless rule.validates?(self)
+            if rule.validates?(self)
+              # since only one of the group needs to pass, we can stop
+              break
+            else
               errors_for_operator << rule.terms
             end
           end

@@ -17,11 +17,9 @@ describe Observation do
         place: Place.make!)
       req_params = { }
       query_params = Observation.site_search_params(s, req_params)
-      expect( query_params[:place] ).to eq s.place
-      expect( query_params[:place_id] ).to be nil
+      expect( query_params[:place_id] ).to eq s.place.id
       req_params = { place_id: s.place.id + 1 }
       query_params = Observation.site_search_params(s, req_params)
-      expect( query_params[:place] ).to be nil
       expect( query_params[:place_id] ).to eq (s.place.id + 1)
     end
 
