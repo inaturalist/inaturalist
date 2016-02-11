@@ -35,11 +35,11 @@ zh-CN:
     one: 1篇日记文章
     other: '%{count} 篇日记文章'
   x_matching_taxa:
-    one: '%{count} 个匹配的分类'
+    one: 1 个匹配的分类
     other: '%{count} 个匹配的分类'
   x_matching_taxa_html:
-    one: o<span class="count">%{count}</span> 个匹配的分类群
-    other: o<span class="count">%{count}</span> 个匹配的分类群
+    one: <span class="count">1</span> 个匹配的分类单元
+    other: <span class="count">%{count}</span> 个匹配的分类群
   x_observations:
     one: 1 次观察
     other: '%{count} 次观察'
@@ -1805,11 +1805,11 @@ zh-CN:
     sounds_size_sounds: '%{sounds_size} 段声音'
     view_all_soundcount_sounds: 查看所有 %{sound_count} 声音
   source: 来源
-  source_: 源：
+  source_: 来源：
   source_list:
     ubio: uBio
     catalogue_of_life: 生命目录（Catalogue of Life）
-    inaturalist: NaturaLista
+    inaturalist: iNaturalist
     nzbrn_fungi: NZBRN真菌
     catalogue_of_life_2012_annual_checklist: 生命目录：2012年度检查表
   source_eg:
