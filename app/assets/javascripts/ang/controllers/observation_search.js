@@ -954,7 +954,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.params.observationFields = _.reduce( urlParams, function( memo, v, k ) {
       if( k.match(/(\w+):(\w+)/ ) ) {
         // true represents a key with no value, so leave value undefined
-        k = k.replace( /(%20|\+)/g, " ");
+        k = decodeURIComponent(k).replace( /(%20|\+)/g, " ");
         if( _.isString( v ) ) { v = v.replace( /(%20|\+)/g, " "); }
         memo[k] = ( v === true ) ? undefined : v;
       }

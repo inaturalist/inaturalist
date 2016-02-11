@@ -581,11 +581,10 @@ it:
     progetto.
   by: da
   by_adding_ids_to_observations: aggiungendo le ID alle osservazioni
-  by_user: da %{user}
-  by_project_list: per la lista del porogetto
-  by_submittedby: da %{submittedby}
-  by_you: Le mie
   by_everyone: Da tutti
+  by_project_list: per la lista del porogetto
+  by_user: da %{user}
+  by_you: Le mie
   calendar: Calendario
   can_you_help_your_friends_id_these: Puoi aiutare i tuoi amici a identificare questi?
   cancel: Annulla
@@ -594,16 +593,19 @@ it:
   cant_merge_a_taxon_with_itself: Impossibile unire un taxon con se stesso.
   captive_cultivated: In cattività / coltivato
   card: Carta
-  case_plural: .
   casual: casuale
   catalogue_of_life: Catalogue of Life
   categories: categorie
+  cc_0_description: Questa licenza rilascia il tuo lavoro nel pubblico dominio, in
+    modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro,
+    anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti.
+    Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione
+    e utilizzo dei materiali concessi in licenza.
+  cc_0_name: Nessun copyright (CC0)
   cc_attribution_license: Licenza di attribuzione dei Creative Commons
-  cc_by_description: Questa licenza consente agli altri utenti di distribuire, modificare,
-    ottimizzare e sviluppare il vostro lavoro, anche a fini commerciali, purché vi
-    accreditino quali autori della creazione originale. Questo è il tipo di licenza
-    più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali
-    concessi in licenza.
+  cc_by_description: Questa licenza consente ad altri di distribuire, modificare,
+    ottimizzare e sviluppare il tuo lavoro, anche a fini commerciali, purché ti accreditino
+    quale autore della creazione originale.
   cc_by_name: Attribuzione
   cc_by_nc_description: |-
     Questa licenza permette agli altri di modificare, migliorare ed integrare il vostro lavoro per scopi non
@@ -841,9 +843,12 @@ it:
     some_rights_reserved_by: (c) %{name}, alcuni diritti riservati (%{license_short})
     all_rights_reserved: (c) %{name}, tutti i diritti riservati
     no_known_copyright_restrictions: '%{name}, senza restrizioni del copyright (%{license_name})'
+    no_rights_reserved: nessun diritto riservato
+    no_rights_reserved_by: '%{name}, nessun diritto riservato (%{license_name})'
     anonymous: anonimo
     public_domain: dominio pubblico
     copyright: copyright
+    no_copyright: nessun copyright (CC0)
     attribution_noncommercial_sharealike_license: Licenza Attribuzione-Non Commerciale-Condividi
       allo Stesso Modo
     attribution_noncommercial_license: Licenza Attribuzione-Non Commerciale
@@ -2359,14 +2364,15 @@ it:
   people_following_user: Persone stanno seguendo %{user}
   people_user_follows: Persone che %{user} segue
   people_added:
-    observation: ha aggiunto un %{observation_link} di @vow_or_con{vow:anla} %{taxon_link}
+    observation: ha aggiunto un'%{observation_link} di @vow_or_con{vow:un(a)|un(a)}
+      %{taxon_link}
     identification:
       with_observation: ha aggiunto una <strong>ID</strong> ad una %{observation_link}
         di %{user_link}
       without_observation: ha aggiunto una <strong>ID</strong>
     post: ha scritto un %{post_link}
     comment:
-      with_by: ha commentato @vow_or_con{vow:un'|un} %{comment_subject_link} di %{by_link}
+      with_by: ha commentato @vow_or_con{vow:un'|un'}%{comment_subject_link} di %{by_link}
       without_by: ha commentato @vow_or_con{vow:un'|un} %{comment_subject_link}
   person: persona
   personal_message: Messaggio personale
@@ -2805,7 +2811,7 @@ it:
   reset_your_password: Reimposta la tua password
   resolve: Risolvi
   resolve_this_flag: Risolvi questo contrassegno
-  resolved: Risolta/e
+  resolved: Risolte
   resolved_by: Risolto da
   resolver_said_x_html: <span class="meta">%{resolver} ha detto,</span> "%{x}"
   results: risultati

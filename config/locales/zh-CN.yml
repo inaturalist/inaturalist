@@ -243,6 +243,7 @@ zh-CN:
     birds: 鸟类
     chromista: 色藻界
     fungi: 真菌
+    fungi_including_lichens: 真菌包括地衣
     insects: 昆虫
     mammals: 哺乳动物
     mollusks: 软体动物
@@ -391,6 +392,7 @@ zh-CN:
   back_to_x_assessment: 回到 %{project} 评价
   back_to_x_history: 回到 %{x} 历史
   back_to_x_journal: 回到 %{user} 的日记
+  back_to_x_blog: 返回至 %{x} 的博客
   back_to_x_observations: 回到 %{user} 的观察
   back_to_your_lists: 回到您的列表
   back_to_your_journal: 回到您的日记
@@ -428,11 +430,10 @@ zh-CN:
   bulk_import_of_filename_is_complete: '%{filename} 的大量导入完成'
   but_we_didnt_add_this_observation_to_the_x_project: 但我们不添加此观察至 %{project} 项目，因为您并未同意项目条款。
   by: 由
-  by_user: 由 %{user}
-  by_project_list: 依项目列表
-  by_submittedby: 由 %{submittedby}
-  by_you: 由您
   by_everyone: 由任何人
+  by_project_list: 依项目列表
+  by_user: 由 %{user}
+  by_you: 由您
   calendar: 日历
   can_you_help_your_friends_id_these: 您可以帮助您这些ID的朋友么？
   cancel: 取消
@@ -442,6 +443,7 @@ zh-CN:
   casual: 变装
   catalogue_of_life: 生命目录（Catalogue of Life）
   categories: 分类
+  cc_0_name: 无版权（CC0）
   cc_attribution_license: 知识共享署名许可协议
   cc_by_name: 署名
   cc_by_nc_name: 署名-非商业性使用
@@ -587,9 +589,12 @@ zh-CN:
     some_rights_reserved_by: (c) %{name}，保留部分权利（%{license_short}）
     all_rights_reserved: 版权所有 (c) %{name}，保留所有权利
     no_known_copyright_restrictions: '%{name}，没有已知的版权限制（%{license_name}）'
+    no_rights_reserved: 不保留任何权利
+    no_rights_reserved_by: '%{name}，不保留任何权利（%{license_name}）'
     anonymous: 匿名
     public_domain: 公有领域
     copyright: 版权
+    no_copyright: 无版权（CC0）
     attribution_noncommercial_sharealike_license: 署名-非商业性使用-相同方式共享许可协议
     attribution_noncommercial_license: 署名-非商业性使用许可协议
     attribution_noncommercial_noderivs_license: 署名-非商业性使用-禁止演绎许可协议
@@ -818,6 +823,7 @@ zh-CN:
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
   event_registration_url: 活动注册URL
   event_url: 活动URL
+  events_only: 仅活动
   everyone: 任何人
   everywhere: 任意地方
   exact_date: 具体日期
@@ -1264,13 +1270,13 @@ zh-CN:
       future: 在 %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1分钟
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
+      M: 1分钟
       MM: '%dm'
       1: 1y
       yy: '%dy'
@@ -1372,6 +1378,7 @@ zh-CN:
   note: 注释
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
+  number_selected: '# 已选择'
   numeric_: 数字
   noun_by_you: 由您做出的 %{noun}
   obs: 观察
@@ -1416,6 +1423,7 @@ zh-CN:
     doubtful: 可疑
     absent: 缺席
   of: 的
+  official_blog: 官方博客
   on_: 在
   on_date: 于 %{date}
   on_day: 于
@@ -1428,6 +1436,7 @@ zh-CN:
   only_files_with_10000_rows_at_a_time: 一次只能处理10000行的文件，请
   only_one_coordinate_system_per_file: 每个文件只能使用一个坐标系统，否则将发生错误的转换或显示。
   only_receive_updates_about_this_taxon: 只接受有关此分类单元的更新
+  only_show_events_that_last_less_than_2_weeks: 只显示最近不到2周内的活动
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   open: 打开
   open_description: 任何人可以查看观察，除非分类受到威胁。
@@ -1602,6 +1611,7 @@ zh-CN:
     west_africa: 西非
   places_of_interest: 名胜古迹
   plants: 植物
+  please_add_a_citation_for_this_change: 请为这次更改添加引用。
   please_confirm_your_inat_username: 请确认您在%{site_name}的用户名
   please_confirm_your_account_html: 请花一秒钟<a href="%{url}">确认您的账户</a>。
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
@@ -1655,6 +1665,7 @@ zh-CN:
   queued: 已入队列
   query: 查询
   range: 范围
+  rank_position: 排名
   ranks:
     class: 类
     subclass: 子集
@@ -1834,6 +1845,8 @@ zh-CN:
   stats: 统计
   stats_title: 网站统计
   status: 状态
+  status_globally: '%{status} 全球'
+  status_in_place: '%{status} 在 %{place}'
   still_no_luck?: 仍然不高兴？
   still_needs_id?: 仍然需要ID？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
@@ -2120,6 +2133,7 @@ zh-CN:
   would_you_like_to: 您是否想
   would_like_some_help_identifying_this: 需要一些人帮助识别此
   x_admin: '%{login}管理'
+  x_blog: '%{x} 的博客'
   x_deleted: '%{x}已删除'
   x_does_not_exist: “%{x}”不存在
   x_doesnt: '%{login} 不会'
@@ -2130,7 +2144,7 @@ zh-CN:
   x_journal_new_post: '%{user}的杂志 &middot; 新刊文'
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}状态'
-  x_sent_you_a_new_message_on_y_html: '%{x}在%{y}给您发送了一条新消息：'
+  x_sent_you_a_new_message_on_y_html: '%{x} 在 %{y} 给您发送了一条新消息：'
   x_site_is_a_social_network_for_naturalist: '%{site}是一个专为博物学家的社交网路！记录您对动植物的观察，与您的朋友和研究人员分享他们，并了解有关自然世界的那些事吧。'
   x_wrote_a_new_post_html: '%{x}写了一个新帖子'
   x_wrote_y_new_posts_html: '%{x}写了%{y}篇新贴子'

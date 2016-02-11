@@ -88,8 +88,8 @@ es:
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
   x_taxa_matching_current_filters:
-    one: 1 especie o grupo con los filtros seleccionados
-    other: '%{count} especies o grupos con los filtros seleccionados'
+    one: 1 taxón coincide con los filtros seleccionados
+    other: '%{count} taxones coinciden con los filtros seleccionados'
   a: un(a)
   a_: una
   a_community_for_naturalist: Una comunidad para naturalistas
@@ -142,9 +142,9 @@ es:
   add_a_new_observation_to_id_please!: ¡Añade una nueva observación a "ID por favor"!
   add_a_place_raquo: Añade un lugar &raquo;
   add_a_single_observation: Añade una sola observación
-  add_a_taxon: Añade una especie o grupo
+  add_a_taxon: Añadir un taxón
   add_all_your_matching_obs_of_this_taxon: Añade todas tus observaciones encontradas
-    de esa especie o grupo a este proyecto
+    de este taxón para este proyecto
   add_all_your_matching_obs_to_this_project: Añade todas las observaciones que coinciden
     a este proyecto
   add_an_assessment: Añade una evaluación
@@ -278,6 +278,7 @@ es:
     birds: Aves
     chromista: Algas pardas y parientes
     fungi: Hongos
+    fungi_including_lichens: Hongos incluídos líquenes
     insects: Insectos
     mammals: Mamíferos
     mollusks: Moluscos
@@ -404,8 +405,8 @@ es:
   are_you_sure_remove_curator: ¿Estás seguro que deseas quitar a %{user} como curador?
   are_you_sure_remove_from_project: ¿Estás seguro que deseas eliminar a %{user} de
     este proyecto?
-  are_you_sure_remove_taxon_from_list: ¿Estás seguro que deseas quitar esta especie
-    o grupo de la lista?
+  are_you_sure_remove_taxon_from_list: ¿Estás seguro que deseas quitar este taxón
+    de la lista?
   are_you_sure_remove_taxon_from_place: ¿Estás seguro que deseas quitar este taxón
     de la lista de verificación de %{place}?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: ¿Estás seguro?
@@ -432,8 +433,8 @@ es:
     esta foto?
   are_you_sure_you_want_to_delete_this_post: ¿Estás seguro que quieres borrar esta
     nota?
-  are_you_sure_you_want_to_delete_this_taxon_change: ¿Estás seguro que quieres borrar
-    este cambio en la especie o grupo?
+  are_you_sure_you_want_to_delete_this_taxon_change: ¿Estás seguro que quiere borrar
+    este cambio en el taxón?
   are_you_sure_you_want_to_remove_all_tags: ¿Estás seguro que deseas eliminar todas
     las etiquetas?
   are_you_sure_you_want_to_remove_curator: ¿Estás seguro que deseas quitar a %{user}
@@ -513,6 +514,7 @@ es:
   back_to_x_assessment: Regresa a las evaluaciones del %{project}
   back_to_x_history: Regresa a la historia de %{x}
   back_to_x_journal: Regresa al diario de %{user}
+  back_to_x_blog: Volver al blog de %{x}
   back_to_x_observations: Regresa a las observaciones de %{user}
   back_to_your_lists: Regresa a tus listas
   back_to_your_journal: Regresa a tu diario
@@ -565,7 +567,6 @@ es:
   by_adding_ids_to_observations: agregando identificaciones a las observaciones
   by_everyone: De todos
   by_project_list: por lista de proyecto
-  by_submittedby: por %{submittedby}
   by_user: por %{user}
   by_you: Tuyas
   calendar: Calendario
@@ -579,11 +580,15 @@ es:
   casual: casual
   catalogue_of_life: Catálogo de la Vida
   categories: categorías
+  cc_0_description: Esta licencia ofrece tu trabajo al dominio público, permite a
+    otros copiar, modificar, distribuir y construir en base en su trabajo, sin pedirle
+    o darle reconocimiento. Esta es la licencia más abierta ofrecida. Recomendada
+    para dar la máxima difusión y el uso de materiales sujetos a licencia.
+  cc_0_name: No hay derechos de Autor (CC0)
   cc_attribution_license: Licencia de atribución de Creative Commons
   cc_by_description: Esta licencia permite a otros distribuir, mezclar, ajustar y
     construir con base en su trabajo, incluso con fines comerciales, siempre y cuando
-    se de crédito para la creación original. Esta es la licencia ofrecida más amplia.
-    Recomendada para la máxima difusión y el uso de materiales sujetos a licencia.
+    se de crédito para la creación original.
   cc_by_name: Atribución
   cc_by_nc_description: Esta licencia permite a otros transformar, modificar, y construir
     sobre su trabajo de forma no comercial, y a pesar de sus nuevas obras deben también
@@ -827,9 +832,12 @@ es:
     all_rights_reserved: (c) %{name}, todos los derechos reservados
     no_known_copyright_restrictions: '%{name}, sin restricciones conocidas de derechos
       (%{license_name})'
+    no_rights_reserved: no hay derechos reservados
+    no_rights_reserved_by: '%{name}, no hay derechos reservados (%{license_name})'
     anonymous: anónimo
     public_domain: dominio público
     copyright: derechos reservados
+    no_copyright: no hay derechos de autor (CC0)
     attribution_noncommercial_sharealike_license: Atribución - No Comercial Compartir
       bajo la Misma Licencia
     attribution_noncommercial_license: Atribución - No Comercial
@@ -839,8 +847,6 @@ es:
     attribution_sharealike_license: Atribución - Compartir bajo la misma licencia
     attribution_noderivs_license: Atribución - Sin obras derivadas
     gnu_free_documentation_license: Licencia gratuita de documentación GNU
-    no_rights_reserved: no hay derechos reservados
-    no_rights_reserved_by: "%{name}, no hay derechos reservados (%{license_name})"
   copyright_holder: Titular de los derechos de autor
   copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona
     distinta del observador y carece de atribución
@@ -1130,6 +1136,7 @@ es:
   event_in_progress: Evento en curso
   event_registration_url: URL del registro del evento
   event_url: URL del evento
+  events_only: Solo eventos
   every_species_seen_by: Todas las especies vistas por
   everyone: todos
   everyone_journal_posts: Articulos en todos los diarios
@@ -1867,14 +1874,14 @@ es:
       future: en %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1 min
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
-      MM: '%dm'
+      M: 1 mes
+      MM: '%d mes'
       1: 1a
       yy: '%da'
   mon: lun
@@ -2110,6 +2117,7 @@ es:
     sobre aquellas identificaciones de taxones que no se correspondan exactamente
     con la suya.
   number_of_observations: Número de observaciones
+  number_selected: '# seleccionado'
   numeric_: numérico
   noun_by_you: '%{noun} por usted'
   obs: Obs
@@ -2239,6 +2247,7 @@ es:
   of_it_and_its_descendants: de él y sus descendientes
   of_least_concern: De preocupación menor
   offensive_inappropriate: ofensivo / inapropiado
+  official_blog: Blog oficial
   offline_access_enabled: El acceso sin conexión habilitada
   on_: en
   on_date: en %{date}
@@ -2271,6 +2280,8 @@ es:
   only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie
     o grupo
   only_show_active_taxa: Solo muestra especies activas
+  only_show_events_that_last_less_than_2_weeks: Mostrar solo eventos que duran menos
+    de 2 semanas
   only_show_for_species_subspecies_varieties_etc: Solo muestra el link para especies,
     subespecies, variedades, etc (de este grupo o especie).
   only_show_taxa_fom_this_list: Mostrar sólo los taxones de esta lista
@@ -3081,6 +3092,8 @@ es:
   stats: Estadísticas
   stats_title: Estadísticas del sitio
   status: Estado
+  status_globally: '%{status} Globalmente'
+  status_in_place: '%{status} en %{place}'
   still_no_luck?: ¿Sigues sin encontrarlo?
   still_needs_id?: ¿Todavía necesita identificador?
   still_working_on_classifying_taxon: Todavía trabajamos en la clasificación de este
@@ -3735,6 +3748,7 @@ es:
   would_like_some_help_identifying_this: le agradaría recibir ayuda identificando
     esto
   x_admin: '%{login} Administrador'
+  x_blog: Blog de %{x}
   x_deleted: '%{x} eliminado'
   x_does_not_exist: '"%{x}" no existe'
   x_doesnt: '%{login} no'

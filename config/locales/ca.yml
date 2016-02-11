@@ -83,7 +83,7 @@ ca:
   a_few_points_to_make_things_clear: Més informació per aclarir les coses
   a_flag_for_x: una marca de %{x}
   a_greasemonkey_script: un script de Greasemonkey
-  a_member_of_taxon_html: un membre de %{taxon}
+  a_member_of_taxon_html: un tipus de %{taxon}
   able_to_connect_flickr: Molt bé! L'hem pogut vincular al compte de Flickr.
   about: Sobre
   about_bioblitz_results: Sobre els resultats del bioblitz
@@ -266,6 +266,7 @@ ca:
     birds: Aus
     chromista: Algues brunes i parents
     fungi: Fongs
+    fungi_including_lichens: Fongs, incloent-hi les líquens
     insects: Insectes
     mammals: Mamífers
     mollusks: Mol·luscs
@@ -498,6 +499,7 @@ ca:
   back_to_x_assessment: Torna a les valoracions de %{project}
   back_to_x_history: Torna a la història %{x}
   back_to_x_journal: Torna al diari de %{user}
+  back_to_x_blog: Tornar al blog de %{x}
   back_to_x_observations: Torna a les observacions de %{user}
   back_to_your_lists: Torneu a les vostres llistes
   back_to_your_journal: Torneu al vostre diari
@@ -549,11 +551,10 @@ ca:
     afegir al projecte %{project}, perquè no heu acceptat les condicions del projecte.
   by: per
   by_adding_ids_to_observations: afegint ID a les observacions
-  by_user: per %{user}
-  by_project_list: per llista de projecte
-  by_submittedby: per %{submittedby}
-  by_you: Pròpies
   by_everyone: De tothom
+  by_project_list: per llista de projecte
+  by_user: per %{user}
+  by_you: Pròpies
   calendar: Calendari
   can_you_help_your_friends_id_these: Podeu ajudar a ID aquestes observacions?
   cancel: Cancel·la
@@ -566,12 +567,16 @@ ca:
   casual: casual
   catalogue_of_life: Catàleg de la vida
   categories: categories
+  cc_0_description: Aquesta llicència allibera la seva obra a domini públic, de manera
+    que els altres poden copiar, modificar, distribuir i dur a terme el seu treball,
+    fins i tot amb finalitat comercial, sense demanar permís, o donar-li crèdit. Aquesta
+    és la llicència més lliure de les que s'ofereixen. Recomanat per a una màxima
+    difusió i ús de la llicència de materials.
+  cc_0_name: Sense drets d'autor (CC0)
   cc_attribution_license: Llicència de reconeixement de Creative Commons
   cc_by_description: Aquesta llicència permet que altres persones distribueixin, combinin,
     ajustin i facin creacions a partir dels vostres continguts, fins i tot amb finalitats
-    comercials, sempre que als crèdits n’esmentin el creador original. Aquesta és
-    la llicència més flexible de les que s’ofereixen. Recomanada per la màxima difusió
-    i l'ús de materials subjectes a llicència.
+    comercials, sempre que als crèdits n’esmentin el creador original.
   cc_by_name: Reconeixement
   cc_by_nc_description: Aquesta llicència permet a qualsevol persona mesclar, adaptar
     i crear a partir de la vostra obra, fins i tot amb una finalitat comercial, sempre
@@ -817,9 +822,12 @@ ca:
     all_rights_reserved: (c) %{name}, tots els drets reservats
     no_known_copyright_restrictions: '%{name}, sense restriccions de drets conegudes
       (%{license_name})'
+    no_rights_reserved: Cap dret reservat
+    no_rights_reserved_by: '%{name}, sense cap dret reservat (%{license_name})'
     anonymous: anònim
     public_domain: domini públic
     copyright: drets reservats
+    no_copyright: sense drets d'autor (CC0)
     attribution_noncommercial_sharealike_license: Reconeixement - No comercial Comparteix
       amb la mateixa llicència
     attribution_noncommercial_license: Reconeixement - No comercial
@@ -1122,6 +1130,7 @@ ca:
   event_in_progress: Esdeveniment en curs
   event_registration_url: URL de Registre de l'esdeveniment
   event_url: URL de l'Esdeveniment
+  events_only: Només esdeveniments
   every_species_seen_by: Totes les espècies vistes per
   everyone: tots
   everyone_journal_posts: Articles a les revistes de qualsevol
@@ -1861,14 +1870,14 @@ ca:
       future: a %s
       past: '%s'
       s: s
-      m: 1m
+      m: 1 min
       mm: '%dm'
       h: 1h
       hh: '%dh'
       d: 1d
       dd: '%dd'
-      M: 1m
-      MM: '%dm'
+      M: 1 mes
+      MM: '%d mes'
       1: 1a
       yy: '%da'
   mon: Dl.
@@ -2097,6 +2106,7 @@ ca:
     que coincideixin amb la vostra. Si ho desactiveu només rebreu notificacions sobre
     identificacions de tàxons que no es corresponen exactament amb la vostra.
   number_of_observations: Nombre d'observacions
+  number_selected: '# seleccionat'
   numeric_: numèric
   noun_by_you: '%{noun} pròpies'
   obs: Obs
@@ -2218,6 +2228,7 @@ ca:
   of_it_and_its_descendants: d'ell i els seus descendents
   of_least_concern: De preocupació menor
   offensive_inappropriate: ofensiu/inadequat
+  official_blog: Blog oficial
   offline_access_enabled: Accés fora de línia activat
   on_: en
   on_date: el %{date}
@@ -2250,6 +2261,8 @@ ca:
     això.
   only_receive_updates_about_this_taxon: Només vull rebre notificacions d'aquest tàxon
   only_show_active_taxa: Mostra només tàxons actius
+  only_show_events_that_last_less_than_2_weeks: Només mostra els esdeveniments que
+    duren menys de 2 setmanes
   only_show_for_species_subspecies_varieties_etc: Només mostra l’enllaç per a espècies,
     subespècies, varietats, etc. (d'aquest grup o espècie).
   only_show_taxa_fom_this_list: Mostra només els tàxons d'aquesta llista
@@ -2319,16 +2332,15 @@ ca:
   people_following_user: Usuaris que segueixen %{user}
   people_user_follows: Usuaris %{user} Seguidors
   people_added:
-    observation: s'ha afegit una %{observation_link} de @vow_or_con{vow:un} %{taxon_link}
+    observation: ha afegit una %{observation_link} de @vow_or_con{vow:un} %{taxon_link}
     identification:
-      with_observation: s'ha afegit una <strong>ID</strong> a una %{observation_link}
+      with_observation: ha afegit una <strong>ID</strong> a una %{observation_link}
         de %{user_link}
       without_observation: afegida una <strong>ID</strong>
     post: ha fet un %{post_link}
     comment:
-      with_by: ha commentad en @vow_or_con{vow:un|una} %{comment_subject_link} por
-        %{by_link}
-      without_by: ha comentad a @vow_or_con{vow:un|una} %{comment_subject_link}
+      with_by: ha comentat @vow_or_con{vow:un|una} %{comment_subject_link} de %{by_link}
+      without_by: ha comentat @vow_or_con{vow:un|una} %{comment_subject_link}
   person: persona
   personal_message: Missatge personal
   personal_message_description: A ningú no li agrada rebre missatges automàtics. Hauríeu
@@ -2633,6 +2645,7 @@ ca:
   range: Interval
   range_from: Distribució de
   rank: Rang
+  rank_position: Classificació
   rank_restrictions: Classifica les restriccions
   ranks:
     kingdom: regne
@@ -2680,10 +2693,10 @@ ca:
   recent_atom_observations_by: Observacions recents de %{login} (Atom)
   recent_observations_by: Observacions recents de %{login}
   recent_updates: Actualitzacions recents
-  recently_active: Actiu recentment
-  recently_active_projects_from_everywhere: Projectes actiu recentment de qualsevol
+  recently_active: Actius recentment
+  recently_active_projects_from_everywhere: Projectes recentment actius de qualsevol
     lloc
-  recently_active_projects_from_place: Projectes actius recentment de %{place}
+  recently_active_projects_from_place: Projectes recentment actius de %{place}
   recently_created: Creat recentment
   recently_created_projects_from_everywhere: Projectes creats recentment de qualsevol
     lloc
@@ -3059,6 +3072,8 @@ ca:
   stats: Estadístiques
   stats_title: Estadístiques de la pàgina
   status: Estat
+  status_globally: '%{status} Globalment'
+  status_in_place: '%{status} a %{place}'
   still_no_luck?: Continueu sense trobar-ho?
   still_needs_id?: Encara necessita ID?
   still_working_on_classifying_taxon: Encara treballem en la classificació d'aquest
@@ -3704,6 +3719,7 @@ ca:
   would_you_like_to: Us agradaria
   would_like_some_help_identifying_this: voleu obtenir ajuda per identificar això
   x_admin: administra %{login}
+  x_blog: Blog de %{x}
   x_deleted: '%{x} s''ha suprimit'
   x_does_not_exist: '"%{x}" no existeix'
   x_doesnt: '%{login} no'
@@ -4869,7 +4885,7 @@ ca:
   errors:
     format: '%{attribute} %{message}'
     messages:
-      accepted: S'ha d'acceptar
+      accepted: s'ha d'acceptar
       blank: no pot estar en blanc
       confirmation: no coincideix amb la confirmació
       empty: no pot estar buit
