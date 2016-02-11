@@ -2133,7 +2133,10 @@ class ObservationsController < ApplicationController
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
-    @place = search_params[:place] unless search_params[:place].blank?
+    unless search_params[:place].blank? ||
+           (search_params[:place].is_a?(Array) && search_params[:place].length > 1)
+      @place = search_params[:place]
+    end
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
     @iconic_taxa = search_params[:iconic_taxa_instances]
