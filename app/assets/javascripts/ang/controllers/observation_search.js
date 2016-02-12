@@ -1230,7 +1230,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       I18n.t( "loading" ) + "</div>", options );
     var time = new Date( ).getTime( );
     $scope.infoWindowCallbackStartTime =  time;
-    ObservationsFactory.show( observation_id ).then( function( response ) {
+    ObservationsFactory.show( observation_id, shared.localeParams( ) ).then( function( response ) {
       observations = ObservationsFactory.responseToInstances( response );
       if( observations.length > 0 ) {
         $scope.infoWindowObservation = observations[ 0 ];
