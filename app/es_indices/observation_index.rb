@@ -7,7 +7,7 @@ class Observation < ActiveRecord::Base
     :indexed_project_ids_without_curator_id
 
   scope :load_for_index, -> { includes(
-    :user, :confirmed_reviews, :flags, :quality_metrics,
+    :user, :confirmed_reviews, :flags, :quality_metrics, :lists,
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
@@ -104,6 +104,7 @@ class Observation < ActiveRecord::Base
       project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
         project_observations.select{ |po| po.curator_identification_id.nil? }.
           map(&:project_id)).compact.uniq,
+      list_ids: lists.map(&:id).compact.uniq,
       reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
@@ -514,7 +515,7 @@ class Observation < ActiveRecord::Base
       { cached_votes_total: sort_order }
     when "id"
       { id: sort_order }
-    else "observations.id"
+    else
       { created_at: sort_order }
     end
 

@@ -669,6 +669,7 @@ class Project < ActiveRecord::Base
     list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
     total_entries = nil
+    last_observation_id = 0
     while true
       if options[:pidfile]
         unless File.exists?(options[:pidfile])
@@ -691,9 +692,12 @@ class Project < ActiveRecord::Base
         Observation.query(params).paginate(page: page, total_entries: total_entries,
           per_page: observations_url_params[:per_page])
       else
+        search_params = Observation.get_search_params(params)
         # setting list_id to nil because we would have used the DB above
         # if we could have, and ES can't handle list_ids
-        Observation.elastic_query(params.merge(page: page, list_id: nil))
+        search_params.merge!({ min_id: last_observation_id + 1,
+          list_id: nil, order_by: "id", order: "asc" })
+        Observation.page_of_results(search_params)
       end
       break if observations.blank?
       # caching total entries since it should be the same for each page
@@ -710,6 +714,7 @@ class Project < ActiveRecord::Base
           Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
         end
       end
+      last_observation_id = observations.last.id
       observations = nil
       page += 1
     end
