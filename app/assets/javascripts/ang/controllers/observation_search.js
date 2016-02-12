@@ -291,6 +291,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
     var initialParams = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    // turning the key taxon_ids[] into taxon_ids
+    if( initialParams["taxon_ids[]"] ) {
+      initialParams.taxon_ids = initialParams["taxon_ids[]"];
+      delete initialParams["taxon_ids[]"];
+    }
     // setting _iconic_taxa for the iconic taxa filters, (e.g { Chromista: true })
     if( initialParams.iconic_taxa ) {
       initialParams._iconic_taxa = _.object( _.map( initialParams.iconic_taxa.split(","),
