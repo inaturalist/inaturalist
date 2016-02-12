@@ -326,7 +326,7 @@ class ObservationsController < ApplicationController
         taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
         render :json => @observation.to_json(
           :viewer => current_user,
-          :methods => [:user_login, :iconic_taxon_name],
+          :methods => [:user_login, :iconic_taxon_name, :captive_flag],
           :include => {
             :user => User.default_json_options,
             :observation_field_values => {:include => {:observation_field => {:only => [:name]}}},

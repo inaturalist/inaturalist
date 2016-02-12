@@ -267,6 +267,29 @@ shared_examples_for "an ObservationsController" do
         expect( user['user_icon_url'] ).to eq voter.user_icon_url
       end
     end
+
+    it "captive_flag should match observer's vote if true" do
+      o = Observation.make!(user: user, captive_flag: true)
+      expect( o ).to be_captive
+      get :show, format: :json, id: o.id
+      r = JSON.parse( response.body )
+      expect( r['captive_flag'] ).to eq true
+    end
+
+    it "captive_flag should match observer's vote if false" do
+      o = Observation.make!(user: user, captive_flag: false)
+      expect( o ).not_to be_captive
+      get :show, format: :json, id: o.id
+      r = JSON.parse( response.body )
+      expect( r['captive_flag'] ).to eq false
+    end
+
+    it "captive_flag should be false if observer hasn't voted" do
+      o = Observation.make!( user: user )
+      get :show, format: :json, id: o.id
+      r = JSON.parse( response.body )
+      expect( r['captive_flag'] ).to eq false
+    end
   end
 
   describe "update" do

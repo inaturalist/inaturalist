@@ -57,8 +57,16 @@ class Observation < ActiveRecord::Base
 
   attr_accessor :twitter_sharing
   attr_accessor :facebook_sharing
+  
+  def captive_flag
+    @captive_flag ||= !quality_metrics.detect{|qm| 
+      qm.user_id == user_id && qm.metric == QualityMetric::WILD && !qm.agree?
+    }.nil?
+  end
 
-  attr_accessor :captive_flag
+  def captive_flag=(v)
+    @captive_flag = v
+  end
   attr_accessor :force_quality_metrics
 
   # custom project field errors
