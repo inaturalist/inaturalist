@@ -301,6 +301,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( PREFERRED_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
       initialParams.place_id = PREFERRED_PLACE.id;
     }
+    if( PREFERRED_SUBVIEW && !initialParams.subview ) {
+      $scope.currentSubview = PREFERRED_SUBVIEW;
+    }
     // use the current user's id as the basis for the `reviewed` param
     if( !_.isUndefined( initialParams.reviewed ) && !initialParams.reviewed_by && CURRENT_USER ) {
       initialParams.viewer_id = CURRENT_USER.id;
@@ -412,7 +415,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( newView != $scope.currentView || newSubview != $scope.currentSubview ) {
       $scope.currentView = newView;
       // note: subview is being preserved on view changes
-      if( newSubview ) { $scope.currentSubview = newSubview; }
+      if( newSubview ) {
+        $scope.currentSubview = newSubview;
+        updateSession({ prefers_observations_search_subview: newSubview });
+      }
       $scope.updateBrowserLocation( options );
     }
   };
@@ -987,9 +993,10 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   });
   $scope.setupMap = function( ) {
     if( $scope.map ) { return; }
+    var defaultMapType = PREFERRED_MAP_TYPE || google.maps.MapTypeId.LIGHT;
     $( "#map" ).taxonMap({
       urlCoords: true,
-      mapType: google.maps.MapTypeId.ROADMAP,
+      mapType: defaultMapType,
       showAllLayer: false,
       disableFullscreen: true,
       mapTypeControl: false,
@@ -1001,7 +1008,19 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.map = $( "#map" ).data( "taxonMap" );
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels);
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT, iNaturalist.Map.MapTypes.light);
-    $scope.map.setMapTypeId(iNaturalist.Map.MapTypes.LIGHT);
+    // preparing the mapType, Labels, and Terrain buttons initial state
+    // which can change depending on the user session/preferences
+    if( defaultMapType == google.maps.MapTypeId.SATELLITE ||
+        defaultMapType == google.maps.MapTypeId.HYBRID ) {
+      $scope.$parent.mapType = "satellite";
+    }
+    if( defaultMapType == iNaturalist.Map.MapTypes.LIGHT_NO_LABELS ||
+        defaultMapType == google.maps.MapTypeId.SATELLITE ) {
+      $scope.$parent.mapLabels = false;
+    }
+    if( defaultMapType == google.maps.MapTypeId.TERRAIN ) {
+      $scope.$parent.mapTerrain = true;
+    }
     // waiting a bit after creating the map to initialize the layers
     // to avoid issues with map aligning, letting the browser catch up
     setTimeout( function( ) {
@@ -1118,6 +1137,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       mapTypeId = mapLabels ? google.maps.MapTypeId.HYBRID : google.maps.MapTypeId.SATELLITE;
     }
     $scope.map.setMapTypeId(mapTypeId);
+    updateSession({ prefers_observations_search_map_type: mapTypeId });
   });
   $scope.lastMoveTime = 0;
   $scope.delayedOnMove = function( ) {
