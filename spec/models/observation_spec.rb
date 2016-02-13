@@ -289,6 +289,91 @@ describe Observation do
       o = Observation.make!(:place_guess => "94618-5555")
       expect(o.latitude).to be_blank
     end
+
+    describe "place_guess" do
+      let( :big_place ) do
+        make_place_with_geom(
+          wkt: "MULTIPOLYGON(((1 1,1 2,2 2,2 1,1 1)))",
+          admin_level: Place::COUNTRY_LEVEL
+        )
+      end
+      let( :small_place ) do
+        make_place_with_geom( 
+          # wkt: "MULTIPOLYGON(((1.2 1.2,1.2 1.8,1.8 1.8,1.8 1.2,1.2 1.2)))", 
+          wkt: "MULTIPOLYGON(((1.3 1.3,1.3 1.7,1.7 1.7,1.7 1.3,1.3 1.3)))", 
+          parent: big_place,
+          admin_level: Place::STATE_LEVEL
+        )
+      end
+      let( :user_place ) do
+        make_place_with_geom( 
+          wkt: "MULTIPOLYGON(((1.4 1.4,1.4 1.6,1.6 1.6,1.6 1.4,1.4 1.4)))", 
+          parent: small_place,
+        )
+      end
+      it "should be set based on coordinates" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        expect( o.place_guess ).to match /#{ small_place.name }/
+      end
+      it "should not be set without coordinates" do
+        o = Observation.make!
+        expect( o.latitude ).to be_blank
+        expect( o.place_guess ).to be_blank
+      end
+      it "should not be set if already set" do
+        o = Observation.make!(
+          latitude: small_place.latitude, 
+          longitude: small_place.longitude, 
+          place_guess: "Copperopolis"
+        )
+        expect( o.place_guess ).to eq "Copperopolis"
+      end
+      it "should include places with admin_level" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        expect( o.place_guess ).to match /#{ small_place.name }/
+        expect( o.place_guess ).to match /#{ big_place.name }/
+      end
+      it "should not include places without admin_level" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        expect( user_place.admin_level ).to be_blank
+        expect( o.place_guess ).not_to match /#{ user_place.name }/
+      end
+
+      it "should only use places that contain the public_positional_accuracy" do
+        swlat, swlng, nelat, nelng = small_place.bounding_box
+
+        place_left_side = lat_lon_distance_in_meters(swlat, swlng, nelat, swlng)
+        o = Observation.make!(
+          latitude: small_place.latitude,
+          longitude: small_place.longitude,
+          positional_accuracy: place_left_side + 10
+        )
+        expect( big_place ).to be_bbox_contains_lat_lng_acc(
+          o.latitude,
+          o.longitude,
+          o.positional_accuracy
+        )
+        expect( small_place ).not_to be_bbox_contains_lat_lng_acc(
+          o.latitude,
+          o.longitude,
+          o.positional_accuracy
+        )
+        expect( o.place_guess ).not_to match /#{ small_place.name }/
+        expect( o.place_guess ).to match /#{ big_place.name }/
+      end
+      it "should use codes when available" do
+        big_place.update_attributes(code: "USA")
+        o = Observation.make!(latitude: small_place.latitude, longitude: small_place.longitude)
+        expect( o.place_guess ).to match /#{ big_place.code }/
+        expect( o.place_guess ).not_to match /#{ big_place.name }/
+      end
+      it "should use names translated for the observer" do
+        big_place.update_attributes( name: "Mexico" )
+        user = User.make!( locale: "es-MX" )
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, user: user )
+        expect( o.place_guess ).to match /#{ I18n.t( big_place.name, locale: user.locale ) }/
+      end
+    end
   
     describe "quality_grade" do
       it "should default to casual" do
