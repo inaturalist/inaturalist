@@ -172,11 +172,7 @@ module DarwinCore
       end
 
       def coordinateUncertaintyInMeters
-        if coordinates_obscured?
-          positional_accuracy.to_i + uncertainty_cell_diagonal_meters
-        elsif !positional_accuracy.blank?
-          positional_accuracy
-        end
+        public_positional_accuracy
       end
 
       def identificationID

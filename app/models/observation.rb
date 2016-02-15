@@ -2318,11 +2318,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_public_positional_accuracy
     if coordinates_obscured?
-      if positional_accuracy.blank?
-        M_TO_OBSCURE_THREATENED_TAXA
-      else
-        [ positional_accuracy, M_TO_OBSCURE_THREATENED_TAXA, 0 ].max
-      end
+      [ positional_accuracy.to_i, uncertainty_cell_diagonal_meters, 0 ].max
     elsif !positional_accuracy.blank?
       positional_accuracy
     end
@@ -2341,7 +2337,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
-    return false if public_positional_accuracy && public_positional_accuracy > M_TO_OBSCURE_THREATENED_TAXA
+    return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
     return false if captive
     return false if inaccurate_location?
     true

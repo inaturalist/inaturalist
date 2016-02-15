@@ -2811,10 +2811,9 @@ describe Observation do
     end
 
     it "should not be mappable with a terrible accuracy" do
-      expect(
-        Observation.make!(latitude: 1.1, longitude: 2.2,
-          positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1)
-      ).not_to be_mappable
+      o = Observation.make!(latitude: 1.1, longitude: 2.2)
+      o.update_attributes( positional_accuracy: o.uncertainty_cell_diagonal_meters + 1 )
+      expect( o ).not_to be_mappable
     end
 
     it "should not be mappable if captive" do
@@ -2853,16 +2852,18 @@ describe Observation do
       expect(o.mappable?).to be false
     end
 
-    it "should default accuracy of obscured observations to M_TO_OBSCURE_THREATENED_TAXA" do
+    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
       o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
       expect(o.coordinates_obscured?).to be true
-      expect(o.calculate_public_positional_accuracy).to eq Observation::M_TO_OBSCURE_THREATENED_TAXA
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
     end
 
     it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2,
-        positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1)
-      expect(o.calculate_public_positional_accuracy).to eq Observation::M_TO_OBSCURE_THREATENED_TAXA + 1
+      lat, lon = [ 1.1, 2.2 ]
+      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
+        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
     end
 
     it "should set public accuracy to accuracy" do
