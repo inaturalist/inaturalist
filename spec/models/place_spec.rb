@@ -137,15 +137,32 @@ describe Place, "merging" do
     expect(merged_place).to be_valid
   end
   
-  it "should move all the reject's listed_taxa to the primary" do
-    @reject_listed_taxa.each do |listed_taxon|
-      next if @old_place_listed_taxa.map(&:taxon_id).include?(listed_taxon.taxon_id)
-      expect {
-        listed_taxon.reload
-      }.to_not raise_error ActiveRecord::RecordNotFound 
-      expect(listed_taxon.place_id).to eq @place.id
-      expect(listed_taxon.list_id).to eq @place.check_list_id
-    end
+  it "should move the reject's non-default lists to the keeper" do
+    keeper = Place.make!
+    reject = Place.make!
+    reject_list = CheckList.make!( place: reject )
+    reject_listed_taxon = reject_list.add_taxon( Taxon.make! )
+    keeper.merge( reject )
+    reject_list.reload
+    expect( reject_list.place ).to eq keeper
+  end
+  it "should set the place on the reject's non-default listed taxa to the keeper" do
+    keeper = Place.make!
+    reject = Place.make!
+    reject_list = CheckList.make!( place: reject )
+    reject_listed_taxon = reject_list.add_taxon( Taxon.make! )
+    keeper.merge( reject )
+    reject_listed_taxon.reload
+    expect( reject_listed_taxon.place ).to eq keeper
+  end
+  it "should move the reject's default listed taxa to the keeper" do
+    keeper = Place.make!
+    reject = Place.make!
+    reject_listed_taxon = reject.check_list.add_taxon( Taxon.make! )
+    keeper.merge( reject )
+    reject_listed_taxon.reload
+    expect( reject_listed_taxon.place ).to eq keeper
+    expect( reject_listed_taxon.list ).to eq keeper.check_list
   end
   
   it "should result in valid listed taxa (i.e. no duplicates)" do

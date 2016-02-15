@@ -722,10 +722,15 @@ class Place < ActiveRecord::Base
     self.name = temp_name
     
     # Move the mergee's listed_taxa to the target's default check list
-    additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
+    mergee.check_lists.each do |cl|
+      cl.update_attributes( place: self )
+      ListedTaxon.where( list_id: cl ).update_all( place_id: self )
+    end
     if check_list
-      ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
-        update_all(place_id: self, list_id: self.check_list.id)
+      ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )
+    elsif mergee.check_list.listed_taxa.count > 0
+      mergee.check_list.update_attributes( place_id: id, title: "MERGED #{mergee.check_list.title}")
+      ListedTaxon.where( list_id: mergee.check_list_id ).update_all( place_id: id )
     end
     
     # Keep reject geometry if keeper doesn't have one
