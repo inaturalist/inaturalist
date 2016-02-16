@@ -85,7 +85,7 @@ class TripsController < ApplicationController
         else
           FakeView.image_url(@trip.user.icon.url(:original))
         end
-        @shareable_description = FakeView.truncate(@trip.body.html_safe, :length => 1000) if @trip.body
+        @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
         @trip_taxa = Taxon.sort_by_ancestry(@trip.trip_taxa.includes(:taxon)) do |a,b|
           a.taxon.name <=> b.taxon.name
         end

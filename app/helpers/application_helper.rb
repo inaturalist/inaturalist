@@ -1390,4 +1390,14 @@ module ApplicationHelper
     linked_text
   end
 
+  def shareable_description( text )
+    return "" if text.blank?
+    truncate(
+      strip_tags(
+        text.gsub(/\s+/m, ' ')
+      ).strip, 
+      length: 1000
+    ).strip
+  end
+
 end
