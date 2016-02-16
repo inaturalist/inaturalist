@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Apflu
 # Author: Cgalindo
+# Author: Frog7301
 # Author: Jiang123aa
 # Author: Liuxinyu970226
 # Author: Peishanxu
@@ -35,11 +36,11 @@ zh-CN:
     one: 1篇日记文章
     other: '%{count} 篇日记文章'
   x_matching_taxa:
-    one: '%{count} 个匹配的分类'
+    one: 1 个匹配的分类
     other: '%{count} 个匹配的分类'
   x_matching_taxa_html:
-    one: o<span class="count">%{count}</span> 个匹配的分类群
-    other: o<span class="count">%{count}</span> 个匹配的分类群
+    one: <span class="count">1</span> 个匹配的分类单元
+    other: <span class="count">%{count}</span> 个匹配的分类群
   x_observations:
     one: 1 次观察
     other: '%{count} 次观察'
@@ -167,6 +168,7 @@ zh-CN:
   add_observations!: 添加观察！
   add_observations: 添加观察
   add_observations_from_list: 从列表中添加观察
+  add_observations_project: 在该项目中添加观察
   add_one: 添加一个！
   add_photos: 添加照片
   add_photos_to_this_observation: 添加照片至此观察
@@ -309,7 +311,7 @@ zh-CN:
   apply_to_selected: 申请选择
   apply_captive_cultivated: 应用俘虏 / 耕作
   apply_fields: 申请字段
-  apply_geoprivacy: 应用geoprivacy
+  apply_geoprivacy: 应用位置隐私
   apply_darr: 申请 &darr;
   appropriate?: 适当么？
   arachnids: 蛛形类
@@ -337,6 +339,7 @@ zh-CN:
   are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
   are_you_sure_you_want_to_delete_this_taxon_change: 您确定要删除此分类单元更改么？
   are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
+  are_you_sure_you_want_to_remove_curator: 您确定要移除作为馆长的 %{user} 么？
   are_you_sure_you_want_to_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
   are_you_sure_you_want_to_remove_manager: 您确定要移除作为经理的 %{user} 么？
   are_you_sure_you_want_to_remove_spammer: |-
@@ -443,11 +446,16 @@ zh-CN:
   casual: 变装
   catalogue_of_life: 生命目录（Catalogue of Life）
   categories: 分类
+  cc_0_description: 该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。
   cc_0_name: 无版权（CC0）
   cc_attribution_license: 知识共享署名许可协议
+  cc_by_description: 该许可协议允许其他人发行、修改、转换或以您的作品为基础进行创作，甚至商业目的，只要他们依您的原创进行创作的话。
   cc_by_name: 署名
+  cc_by_nc_description: 该许可协议允许其他人修改、转换或以您的作品为基础进行创作，但不能用于商业目的，并且虽然他们的新作品也必须基于您，及非商业性使用，但它们不需要依据相同条款授权他们的衍生作品。
   cc_by_nc_name: 署名-非商业性使用
+  cc_by_nc_nd_description: 该许可协议是六种主流许可协议中限制最大的，只允许其他人根据您的协议下载您的作品并与其他人分享，但他们不能以任何方式更改它，或以商业目的使用。
   cc_by_nc_nd_name: 署名-非商业性使用-禁止演绎
+  cc_by_nc_sa_description: 该许可协议允许其他人修改、转换或以本作品为基础进行创作，但不能用于商业目的，只要他们依您的作品创作，并使用相同条款授权他们的新作品的话。
   cc_by_nc_sa_name: 署名-非商业性使用-相同方式共享
   cc_by_nd_name: 署名-禁止演绎
   cc_by_sa_name: 署名-相同方式共享
@@ -541,6 +549,7 @@ zh-CN:
   community_curated: 社区策划
   community_id: <strong>社区</strong>ID：
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
+  community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
   compare_with: 比较
   comparing: 比较
@@ -844,6 +853,7 @@ zh-CN:
   facebook_account_not_linked: '%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。'
   facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
   facebook_options: Facebook选项
+  failed_to_repair_photo: 修复照片失败：%{errors}
   failed_to_find_your_location: 无法找到您的位置。
   "false": 假
   faq: 常见问题
@@ -889,6 +899,7 @@ zh-CN:
   flag_reason: '&ldquo;我正在标记这个%{record}，因为'
   flag_saved: 标记已保存。
   flag_saved_thanks: 标记已保存。感谢！
+  flag_this_photo: 标记这张照片
   flagged: 已标记
   flagged_thing_explanation: 用户已标记此 %{thing} 因为
   flagger: 标记者
@@ -919,10 +930,12 @@ zh-CN:
   from_a_place: 来自一个地方
   from_anywhere_change: 任何地点（<span class="button">更改</span>）
   from_eol_collection: 来自EOL收藏
+  from_in_this_place: 来自此地区
   from_list: 来自列表
   from_this: 来自此
   from_photos: 来自照片
   from_place: 来自地方
+  from_your_site_observations: 来自 %{site_name} 观察
   full_id_please: ID请！
   full_id_please!: ID请！
   full_id_please?: ID请？
@@ -934,11 +947,12 @@ zh-CN:
   gbif_occurrences: GBIF发现
   general: 常规
   generate_pdf: 生成 PDF
+  generate_widget: 生成小部件
   generating: 生成中……
   generating_mobile_archive: 生成移动存档
   Genus: 类
   genus_slash_species: '[类] / [物种]'
-  geoprivacy: Geoprivacy
+  geoprivacy: 位置隐私
   georeferenced: 有地理参考么？
   georeferenced?: 地理参考
   get_current_position: 获取当前位置
@@ -970,6 +984,8 @@ zh-CN:
   has_one_or_more_faves: 有一个或更多喜爱
   has_photos: 有照片
   has_sounds: 有声音
+  hate_me_facebook: 取消链接您的Facebook和 %{site_name} 账户
+  hate_me_flickr: 取消链接您的Flickr和 %{site_name} 账户
   heads_up: 小心
   hello: <test>
   help: 帮助
@@ -1009,9 +1025,11 @@ zh-CN:
   identotron: Identotron
   identotron_help: Identotron帮助
   ids: ID
+  ids_made_for_others: 由其他人做出的ID
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_you_dont_want_us_to_share_your_data: 如果您不希望我们分享您的数据
   if_you_use: 如果您使用
+  if_you_want_to_change_the_name: 如果您希望更改名称
   if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
   ignore: 忽略
   ignore_times: 忽略时间
@@ -1057,6 +1075,7 @@ zh-CN:
   iphone: iPhone
   is_a: 是一个
   is_an: 是一个
+  is_not_following_anyone: 未关注任何人。
   is_this_observation_offensive_html: 此观察是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性的么？
   is_this_offensive_html: 这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？
   is_this_place_a_duplicate: 此地点是否重复？
@@ -1641,6 +1660,7 @@ zh-CN:
   project: 项目
   project_created_on: 于%{date}创建此项目
   project_group_label: 组
+  project_journal_posts: 项目日记发布
   project_list_defaults:
     title: '%{owner_name}的清单'
   project_id: 项目 ID
@@ -1671,6 +1691,7 @@ zh-CN:
     subclass: 子集
     infraorder: 下目
     superfamily: 超科
+    epifamily: 更大的家庭
     family: 家庭
     subfamily: 亚科
     leaves: 离开
@@ -1785,6 +1806,7 @@ zh-CN:
   some_people: 有些人
   something: 一些事
   sorry_how_about_we_try_repeat: 对不起！您认为我们如何尝试并重复您在一些其他的物种名称数据库的搜索？如果我们找到一些方法，我们将保存它，这样您可以在下次找到它。
+  sorry_you_can_only_add_1000_at_a_time: 对不起，您每次只可以添加1000个。
   sort: 排序
   sort_by: 排序方式
   sorting_by: 排序方式
@@ -1805,11 +1827,11 @@ zh-CN:
     sounds_size_sounds: '%{sounds_size} 段声音'
     view_all_soundcount_sounds: 查看所有 %{sound_count} 声音
   source: 来源
-  source_: 源：
+  source_: 来源：
   source_list:
     ubio: uBio
     catalogue_of_life: 生命目录（Catalogue of Life）
-    inaturalist: NaturaLista
+    inaturalist: iNaturalist
     nzbrn_fungi: NZBRN真菌
     catalogue_of_life_2012_annual_checklist: 生命目录：2012年度检查表
   source_eg:
@@ -1873,6 +1895,7 @@ zh-CN:
   tagging: 正在添加标签……
   tags: 标签
   take_me_facebook: 是的，带我前往Facebook！
+  take_me_flickr!: 是的，带我去Flickr！
   taxa: 分类单元
   taxon: 类群
   taxon_ids: 分类单元ID
@@ -2120,6 +2143,7 @@ zh-CN:
   where_does_x_live: '%{taxa}居住在哪里？'
   where_were_they?: 他们在哪里？
   where_were_you?: 您在哪里？
+  which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
   white: 白色
   widget: 挂件
   widget_code: 挂件代码
@@ -2748,6 +2772,7 @@ zh-CN:
         format: '%n %u'
         units:
           byte:
+            one: 字节
             other: 字节
           gb: GB
           kb: KB
@@ -2818,7 +2843,7 @@ zh-CN:
         authority: 权威
         place_id: 地方
         url: URL
-        geoprivacy: Geoprivacy
+        geoprivacy: 位置隐私
         iucn: IUCN等价物
       guide:
         source_url: 来源URL
