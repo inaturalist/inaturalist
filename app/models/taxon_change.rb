@@ -123,7 +123,7 @@ class TaxonChange < ActiveRecord::Base
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
-      reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa.compact.map(&:id)).find_each do |record|
+      reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id)).find_each do |record|
         record_has_user = record.respond_to?(:user) && record.user
         if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
           Update.create(
