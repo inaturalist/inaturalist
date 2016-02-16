@@ -24,7 +24,14 @@
     .col-md-7
       = error_messages_for :post
       = f.text_field :title
-      = f.text_area :body, rows: 20
+      = f.text_area :body, rows: 20      
+      = f.form_field :formatting, label: t(:formatting), :class => "inline" do
+        %label.radio-inline{ title: t( "views.posts.formatting_simple_help" ) }
+          = radio_button_tag "post[preferred_formatting]", Post::FORMATTING_SIMPLE, post.preferred_formatting == Post::FORMATTING_SIMPLE
+          = t( Post::FORMATTING_SIMPLE )
+        %label.radio-inline{ title: t( "views.posts.formatting_none_help" ) }
+          = radio_button_tag "post[preferred_formatting]", Post::FORMATTING_NONE, post.preferred_formatting == Post::FORMATTING_NONE
+          = t( Post::FORMATTING_NONE )
       .stacked.small.meta
         %strong
           = t :allowed_html

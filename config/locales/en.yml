@@ -2597,6 +2597,7 @@ en:
   sign_up: Sign up
   sign_up_exclamation: Sign up!
   similar_species: Similar species
+  simple: Simple
   sign_in_exclamation: Sign in!
   single_observation: Single observation
   single_taxon: Single taxon (input for split/drop/stage, output for merge/swap)
@@ -4112,6 +4113,9 @@ en:
         check_list_note: "Note: check lists will be automatically disabled for very large places."
         coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.
         map_instruction: Use the polygon tool to draw the place boundary.
+    posts:
+      formatting_none_help: "No HTML inserted, just uses the tags you enter."
+      formatting_simple_help: "Automatically link URLs and insert line breaks."
     projects:
       curator_coordinate_access_desc_html: |
         Remember, <strong>project curators can add any of your observations to
