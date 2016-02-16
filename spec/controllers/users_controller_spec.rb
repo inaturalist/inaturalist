@@ -140,3 +140,20 @@ describe UsersController, "spam" do
     expect(response.response_code).to eq 403
   end
 end
+
+describe UsersController, "update_session" do
+  it "should set session attributes" do
+    session[:prefers_observations_search_subview] = "list"
+    get :update_session, prefers_observations_search_subview: "grid"
+    expect( session[:prefers_observations_search_subview] ).to eq "grid"
+  end
+
+  it "should save preferences for logged in users" do
+    user = User.make!(prefers_observations_search_subview: "list")
+    expect(user.prefers_observations_search_subview).to eq "list"
+    http_login(user)
+    get :update_session, prefers_observations_search_subview: "grid"
+    user.reload
+    expect(user.prefers_observations_search_subview).to eq "grid"
+  end
+end

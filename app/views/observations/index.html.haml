@@ -6,6 +6,12 @@
   :javascript
     var ICONIC_TAXA = #{Taxon::ICONIC_TAXA_BY_ID.to_json};
     var SELECTED_TAXON_ID = #{ params[:taxon_id] || "null" };
+    var PREFERRED_SUBVIEW = "#{
+      (logged_in? && current_user.prefers_observations_search_subview) ||
+      session[:prefers_observations_search_subview] }";
+    var PREFERRED_MAP_TYPE = "#{
+      (logged_in? && current_user.prefers_observations_search_map_type) ||
+      session[:prefers_observations_search_map_type] }";
   = javascript_include_tag "ang/controllers/observation_search"
 - content_for :extracss do
   = stylesheet_link_tag "observations/search"

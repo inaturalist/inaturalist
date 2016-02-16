@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :create, :update, :edit, :dashboard, :new_updates ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [:index, :show, :new, :create, :activate, :relationships, :search]
+    :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :relationships, :add_role, :remove_role, :set_spammer ]
   before_filter :find_user, :only => load_only
@@ -482,7 +482,8 @@ class UsersController < ApplicationController
   def update_session
     allowed_patterns = [
       /^show_quality_metrics$/,
-      /^user-seen-ann*/
+      /^user-seen-ann*/,
+      /^prefers_*/
     ]
     updates = params.select {|k,v|
       allowed_patterns.detect{|p| 
@@ -493,6 +494,9 @@ class UsersController < ApplicationController
       v = true if v.yesish?
       v = false if v.noish?
       session[k] = v
+      if k =~ /^prefers_/ && logged_in? && current_user.respond_to?(k)
+        current_user.update_attributes(k => v)
+      end
     end
     render :head => :no_content, :layout => false, :text => nil
   end

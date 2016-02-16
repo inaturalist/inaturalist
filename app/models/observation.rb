@@ -57,8 +57,16 @@ class Observation < ActiveRecord::Base
 
   attr_accessor :twitter_sharing
   attr_accessor :facebook_sharing
+  
+  def captive_flag
+    @captive_flag ||= !quality_metrics.detect{|qm| 
+      qm.user_id == user_id && qm.metric == QualityMetric::WILD && !qm.agree?
+    }.nil?
+  end
 
-  attr_accessor :captive_flag
+  def captive_flag=(v)
+    @captive_flag = v
+  end
   attr_accessor :force_quality_metrics
 
   # custom project field errors
@@ -316,6 +324,7 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
+              :set_place_guess_from_latlon,
               :set_iconic_taxon
   
   before_update :handle_id_please_on_update, :set_quality_grade
@@ -1638,6 +1647,27 @@ class Observation < ActiveRecord::Base
     end
     true
   end
+
+  def set_place_guess_from_latlon
+    return true unless place_guess.blank?
+    sys_places = system_places
+    return true if sys_places.blank?
+    sys_places_codes = sys_places.map(&:code)
+    first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?('US')
+      "#{sys_places[0].name} County"
+    else
+      I18n.t( sys_places[0].name, locale: user.locale, default: sys_places[0].name )
+    end
+    remaining_names = system_places[1..-1].map do |p|
+      if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?('US')
+        "#{p.name} County"
+      else
+        p.code.blank? ? I18n.t( p.name, locale: user.locale, default: p.name ) : p.code
+      end
+    end
+    self.place_guess = [first_name, remaining_names].flatten.join(', ')
+    true
+  end
   
   def set_license
     return true if license_changed? && license.blank?
@@ -1848,12 +1878,15 @@ class Observation < ActiveRecord::Base
     precision = 10**5.0
     range = ((-1 * precision)..precision)
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
-    base_lat, base_lon = base_lat_lon( lat, lon )
+    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
     [ base_lat + ((rand(range) / precision) * half_cell),
       base_lon + ((rand(range) / precision) * half_cell)]
   end
 
-  def self.base_lat_lon( lat, lon )
+  # 
+  # Coordinates of the southwest corner of the uncertainty cell for any given coordinates
+  # 
+  def self.uncertainty_cell_southwest_latlon( lat, lon )
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
     # how many significant digits in the obscured coordinates (e.g. 5)
     # doing a floor with intervals of 0.2, then adding 0.1
@@ -1863,8 +1896,12 @@ class Observation < ActiveRecord::Base
     [base_lat, base_lon]
   end
 
+  #
+  # Distance of a diagonal from corner to corner across the uncertainty cell
+  # for the given coordinates.
+  #
   def self.uncertainty_cell_diagonal_meters( lat, lon )
-    base_lat, base_lon = base_lat_lon( lat, lon )
+    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
     lat_lon_distance_in_meters( 
       base_lat, 
       base_lon, 
@@ -1873,6 +1910,10 @@ class Observation < ActiveRecord::Base
     ).ceil
   end
 
+  #
+  # Distance of a diagonal from corner to corner across the uncertainty cell
+  # for this observation's coordinates.
+  # 
   def uncertainty_cell_diagonal_meters
     return nil unless georeferenced?
     lat = private_latitude || latitude
@@ -1887,10 +1928,10 @@ class Observation < ActiveRecord::Base
     acc = public_positional_accuracy || private_positional_accuracy || positional_accuracy
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
 
-    # at present we use PostGIS GEOMETRY types, which are a bit stupid about
+    # At present we use PostGIS GEOMETRY types, which are a bit stupid about
     # things crossing the dateline, so we need to do an app-layer check.
     # Converting to the GEOGRAPHY type would solve this, in theory.
-    # Unfrotinately this does NOT solve the problem of failing to select 
+    # Unfortunately this does NOT solve the problem of failing to select 
     # legit geoms that cross the dateline. GEOGRAPHY would solve that too.
     candidates.select do |p| 
       # HACK: bbox_contains_lat_lng_acc uses rgeo, which despite having a
@@ -1906,17 +1947,17 @@ class Observation < ActiveRecord::Base
     end
   end
   
+  # For obscured coordinates only return default place types that weren't
+  # made by users. This is not ideal, but hopefully will get around honey
+  # pots.
   def public_places
     all_places = places
     return if all_places.blank?
     return all_places unless coordinates_obscured?
-    
-    # for obscured coordinates only return default place types that weren't
-    # made by users. This is not ideal, but hopefully will get around honey
-    # pots.
     system_places(:places => all_places)
   end
 
+  # The places that are theoretically controlled by site admins
   def system_places(options = {})
     all_places = options[:places] || places
     all_places.select do |p| 
@@ -2284,11 +2325,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_public_positional_accuracy
     if coordinates_obscured?
-      if positional_accuracy.blank?
-        M_TO_OBSCURE_THREATENED_TAXA
-      else
-        [ positional_accuracy, M_TO_OBSCURE_THREATENED_TAXA, 0 ].max
-      end
+      [ positional_accuracy.to_i, uncertainty_cell_diagonal_meters, 0 ].max
     elsif !positional_accuracy.blank?
       positional_accuracy
     end
@@ -2307,7 +2344,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
-    return false if public_positional_accuracy && public_positional_accuracy > M_TO_OBSCURE_THREATENED_TAXA
+    return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
     return false if captive
     return false if inaccurate_location?
     true
