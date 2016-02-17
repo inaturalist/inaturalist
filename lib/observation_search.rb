@@ -174,9 +174,18 @@ module ObservationSearch
     def query_params(params)
       p = params.clone.symbolize_keys
       unless p[:apply_project_rules_for].blank?
-        if p[:apply_project_rules_for] = Project.find_by_id(p[:apply_project_rules_for])
-          p.merge!(p[:apply_project_rules_for].observations_url_params(extended: true))
+        if proj = Project.find_by_id(p[:apply_project_rules_for])
+          p.merge!(proj.observations_url_params(extended: true))
         end
+        p.delete(:apply_project_rules_for)
+      end
+      unless p[:list_id].blank?
+        list = List.find_by_id(p[:list_id])
+        if list && list.taxon_ids.any?
+          p[:taxon_ids] ||= [ ]
+          p[:taxon_ids] += list.taxon_ids
+        end
+        p.delete(:list_id)
       end
       if p[:swlat].blank? && p[:swlng].blank? && p[:nelat].blank? && p[:nelng].blank? && p[:BBOX]
         p[:swlng], p[:swlat], p[:nelng], p[:nelat] = p[:BBOX].split(',')
@@ -211,7 +220,7 @@ module ObservationSearch
         p[:taxon_ids] = nil
       end
       if !p[:observations_taxon] && !p[:taxon_ids].blank?
-        p[:observations_taxon_ids] = [p[:taxon_ids]].flatten.join(',').split(',')
+        p[:observations_taxon_ids] = [p[:taxon_ids]].flatten.join(',').split(',').map(&:to_i)
         p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
       end
 

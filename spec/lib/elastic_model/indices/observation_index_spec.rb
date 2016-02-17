@@ -163,6 +163,21 @@ describe "Observation Index" do
         Observation::NON_ELASTIC_ATTRIBUTES.first => "anything") ).to be nil
     end
 
+    it "filters by project rules" do
+      project = Project.make!
+      rule = ProjectObservationRule.make!(operator: "identified?", ruler: project)
+      expect( Observation.params_to_elastic_query(apply_project_rules_for: project.id)).
+        to include( filters: [{ exists: { field: "taxon" } }])
+    end
+
+    it "filters by list taxa" do
+      list = List.make!
+      lt1 = ListedTaxon.make!(list: list, taxon: Taxon.make!)
+      lt2 = ListedTaxon.make!(list: list, taxon: Taxon.make!)
+      expect( Observation.params_to_elastic_query(list_id: list.id)).
+        to include( filters: [{ terms: { "taxon.ancestor_ids" => [ lt1.taxon_id, lt2.taxon_id ] } }])
+    end
+
     it "doesn't apply a site filter unless the site wants one" do
       s = Site.make!(preferred_site_observations_filter: nil)
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include( filters: [ ] )

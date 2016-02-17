@@ -240,7 +240,8 @@ class Observation < ActiveRecord::Base
   # note last_observation and first_observation on listed taxa will get reset 
   # by CheckList.refresh_with_observation
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
-  has_many :lists, -> { joins(:listed_taxa).distinct }, foreign_key: :taxon_id, primary_key: :taxon_id
+  has_many :taxa_listed_taxa, class_name: "ListedTaxon", foreign_key: :taxon_id
+  has_many :lists, through: :taxa_listed_taxa
   has_many :first_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
   has_many :first_check_listed_taxa, -> { where("listed_taxa.place_id IS NOT NULL") }, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
   
@@ -262,7 +263,7 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em list_id)
+  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
