@@ -2173,9 +2173,16 @@ class Observation < ActiveRecord::Base
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids)
     scope = scope.by(options[:user]) if options[:user]
     scope = scope.where("observations.id IN (?)", options[:records].to_a) unless options[:records].blank?
-    scope = scope.includes(:user)
+    scope = scope.includes(:user, :identifications)
     scope.find_each do |observation|
-      Identification.create(:user => observation.user, :observation => observation, :taxon => taxon, :taxon_change => taxon_change)
+      unless observation.identifications.detect{|i| i.user_id == observation.user_id && i.taxon_id == taxon.id}
+        Identification.create(
+          user: observation.user,
+          observation: observation,
+          taxon: taxon,
+          taxon_change: taxon_change
+        )
+      end
       yield(observation) if block_given?
     end
   end
