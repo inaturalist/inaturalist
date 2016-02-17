@@ -1057,7 +1057,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'native', 'verifiable', 'popular', 'has', 'photos', 'sounds',
     'photo_license', 'created_d1', 'created_d2', 'not_in_project',
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
-    'apply_project_rules_for' ];
+    'apply_project_rules_for', 'list_id' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(

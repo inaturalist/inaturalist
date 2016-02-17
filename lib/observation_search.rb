@@ -181,11 +181,15 @@ module ObservationSearch
       end
       unless p[:list_id].blank?
         list = List.find_by_id(p[:list_id])
-        if list && list.taxon_ids.any?
-          p[:taxon_ids] ||= [ ]
-          p[:taxon_ids] += list.taxon_ids
-        end
         p.delete(:list_id)
+        p[:taxon_ids] ||= [ ]
+        if list && list.taxon_ids.any?
+          p[:taxon_ids] += list.taxon_ids
+        else
+          # the list has no taxa, so no results. Set this
+          # params so the query returns nothing
+          p[:empty_set] = true
+        end
       end
       if p[:swlat].blank? && p[:swlng].blank? && p[:nelat].blank? && p[:nelng].blank? && p[:BBOX]
         p[:swlng], p[:swlat], p[:nelng], p[:nelat] = p[:BBOX].split(',')

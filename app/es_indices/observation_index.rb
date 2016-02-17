@@ -193,6 +193,8 @@ class Observation < ActiveRecord::Base
     current_user = options[:current_user] || params[:viewer]
     p = params[:_query_params_set] ? params : query_params(params)
     return nil unless Observation.able_to_use_elasticsearch?(p)
+    # one of the param initializing steps saw an impossible condition
+    return nil if p[:empty_set]
     p = site_search_params(options[:site], p)
     search_wheres = { }
     complex_wheres = [ ]
