@@ -2175,7 +2175,7 @@ class Observation < ActiveRecord::Base
     scope = scope.where("observations.id IN (?)", options[:records].to_a) unless options[:records].blank?
     scope = scope.includes(:user, :identifications)
     scope.find_each do |observation|
-      unless observation.identifications.detect{|i| i.user_id == observation.user_id && i.taxon_id == taxon.id}
+      if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
         Identification.create(
           user: observation.user,
           observation: observation,
