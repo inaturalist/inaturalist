@@ -289,6 +289,17 @@ describe TaxonSwap, "commit_records" do
       }.not_to raise_error
     }
   end
+
+  it "should not update records if input and output taxa are identical" do
+    tc = make_taxon_swap
+    o = Observation.make!( taxon: tc.input_taxon )
+    tc.input_taxon.merge(tc.output_taxon)
+    tc.reload
+    expect( tc.input_taxon ).to eq tc.output_taxon
+    expect( o.identifications.count ).to eq 1
+    tc.commit_records
+    expect( o.identifications.count ).to eq 1
+  end
 end
 
 def prepare_swap

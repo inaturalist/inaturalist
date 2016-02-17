@@ -115,6 +115,10 @@ class TaxonChange < ActiveRecord::Base
   # possible / desired by its owner, or generate an update for the owner notifying them of 
   # the change
   def commit_records( options = {} )
+    unless valid?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
+      return
+    end
     return if input_taxa.blank?
     Rails.logger.info "[INFO #{Time.now}] starting commit_records for #{self}"
     notified_user_ids = []
