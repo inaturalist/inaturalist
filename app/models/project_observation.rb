@@ -18,6 +18,7 @@ class ProjectObservation < ActiveRecord::Base
     :in_taxon?, 
     :observed_in_place?, 
     :on_list?,
+    :verifiable?,
     :wild?
   ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
@@ -310,6 +311,10 @@ class ProjectObservation < ActiveRecord::Base
 
   def wild?
     !captive?
+  end
+
+  def verifiable?
+    observation.verifiable?
   end
 
   def coordinates_shareable_by_project_curators?

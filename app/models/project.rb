@@ -243,7 +243,7 @@ class Project < ActiveRecord::Base
   end
 
   def matching_project_observation_rules
-    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced?)
+    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced? verifiable?)
     project_observation_rules.select{|rule| matching_operators.include?(rule.operator)}
   end
   
@@ -275,8 +275,11 @@ class Project < ActiveRecord::Base
           joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
       when "identified?"
         scope = scope.where("observations.taxon_id IS NOT NULL")
-      when "georeferenced"
+      when "georeferenced?"
         scope = scope.where("observations.geom IS NOT NULL")
+      when "verifiable?"
+        scope = scope.where("observations.quality_grade IN (?,?)",
+          Observation::NEEDS_ID, Observation::RESEARCH_GRADE)
       end
     end
     unless place_ids.empty?
@@ -305,7 +308,6 @@ class Project < ActiveRecord::Base
         taxon_ids << rule.operand_id
       when "observed_in_place?"
         place_ids << rule.operand_id
-        # Ignore, we already added the place_id
       when "on_list?"
         params[:list_id] = project_list.id
       when "identified?"
@@ -323,10 +325,15 @@ class Project < ActiveRecord::Base
         params[:captive] = true
       when "wild?"
         params[:captive] = false
+      when "verifiable?"
+        params[:verifiable] = true
       end
     end
     taxon_ids = taxon_ids.compact.uniq
     place_ids = place_ids.compact.uniq
+    # the new obs search sets some defaults we want to override
+    params[:verifiable] = "any" if !params[:verifiable]
+    params[:place_id] = "any" if place_ids.blank?
     if !options[:extended] && taxon_ids.count + place_ids.count >= 50
       params = { apply_project_rules_for: self.id }
     else
@@ -670,6 +677,7 @@ class Project < ActiveRecord::Base
     page = 1
     total_entries = nil
     last_observation_id = 0
+    search_params = Observation.get_search_params(params)
     while true
       if options[:pidfile]
         unless File.exists?(options[:pidfile])
@@ -684,23 +692,10 @@ class Project < ActiveRecord::Base
           raise ProjectAggregatorAlreadyRunning, msg
         end
       end
-      # the list filter will be ignored if the count is over the cap,
-      # so we might as well use the faster ES search in that case
-      # Might want to experiment with removing the cap, though
-      observations = if list && list.listed_taxa.count <= ObservationSearch::LIST_FILTER_SIZE_CAP
-        # using cached total_entries to avoid many COUNT(*)s on slow queries
-        Observation.query(params).paginate(page: page, total_entries: total_entries,
-          per_page: observations_url_params[:per_page])
-      else
-        search_params = Observation.get_search_params(params)
-        # setting list_id to nil because we would have used the DB above
-        # if we could have, and ES can't handle list_ids
-        search_params.merge!({ min_id: last_observation_id + 1,
-          list_id: nil, order_by: "id", order: "asc" })
-        Observation.page_of_results(search_params)
-      end
+      search_params.merge!({ min_id: last_observation_id + 1,
+        order_by: "id", order: "asc" })
+      observations = Observation.page_of_results(search_params)
       break if observations.blank?
-      # caching total entries since it should be the same for each page
       total_entries = observations.total_entries if page === 1
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|

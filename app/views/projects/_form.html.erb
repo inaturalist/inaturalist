@@ -5,7 +5,6 @@
   <%= google_maps_js %>
   <script type="text/javascript">
     var PROJECT = <%=json_escape @project.to_json.html_safe %>,
-        RULE_PLACE = <%=json_escape @project.rule_place.to_json.html_safe %>,
         PLACE = <%=json_escape @project.place.to_json(:methods => [:kml_url]).html_safe %>,
         SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
@@ -129,11 +128,16 @@
     </fieldset>
   </div>
 
-  <% if is_curator? -%>
-    <fieldset class="observationrules curatorsonly">
+  <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+    <fieldset class="observationrules">
       <legend><%= t(:observation_aggregation).titleize %></legend>
       <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
       <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
+      <% if @project.prefers_aggregation? -%>
+        <div class="column span-24">
+          <%= f.text_field :last_aggregated_at, value: f.object.last_aggregated_at ? f.object.last_aggregated_at.iso8601 : nil, description: t('views.projects.edit.last_aggregated_at_desc'), readonly: true, disabled: true %>
+        </div>
+      <% end -%>
     </fieldset>
   <% end -%>
 

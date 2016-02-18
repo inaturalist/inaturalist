@@ -468,6 +468,7 @@ en:
   before_you_can_contribute_your_observations: before you can contribute your observations.
   belives_this_is_a_comprehensive_list_of: believes this is a comprehensive list of
   bg_color: BG Color
+  bioblitz: Bioblitz
   birds: birds
   black: black
   blog_widget: Blog widget
@@ -994,6 +995,7 @@ en:
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   event_in_progress: Event in progress
   event_registration_url: Event registration URL
+  event_stats: Event Stats
   event_url: Event URL
   events_only: Events only
   every_species_seen_by: Every species seen by
@@ -1911,6 +1913,7 @@ en:
   observations_have_had_their_coordinates: "observations have had their coordinates shifted to a random point within %{km} km, either because the taxon is threatened or because the observer chose to obscure the coordinates."
   observations_it_may_take_a_few: observations.  It may take a few minutes. 
   observations_last500: Observations (last 500)
+  observations_last_aggregated: Observations last aggregated
   observations_map: Observations / Map
   observation_must_dotdotdot: Observation must...
   observations_near_a_place_are: |
@@ -2371,6 +2374,7 @@ en:
   read_our_getting_started_guide: read our Getting Started guide
   read_the_full_wikipedia: Read the full Wikipedia description
   ready_to_get_started?: "Ready to get started?"
+  real_time_stats: Real Time Stats
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -3004,6 +3008,7 @@ en:
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
   total: total
+  totals: totals
   total_members: Total members
   total_observations: Total observations
   total_unique_observers: Total unique observers
@@ -4167,6 +4172,8 @@ en:
           include a sign-up widget on your project page until your bioblitz
           begins.
         icon_desc: "Will be cropped to a square"
+        last_aggregated_at_desc: |
+          Time when the aggregator last finished adding observations to this project
         observation_aggregation_desc_html: |
           <p class="description">
             Observation aggregation will automatically add observations to your
@@ -4205,6 +4212,7 @@ en:
           in_taxon: be in taxon
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
+          verifiable: be verifiable
         start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: anyone
@@ -4717,6 +4725,7 @@ en:
         tracking_codes: Tracking codes
         source_url: Source URL
         start_time: Start time
+        last_aggregated_at: Observations last aggregated
       project_observation:
         user_id: Submitter
       place:

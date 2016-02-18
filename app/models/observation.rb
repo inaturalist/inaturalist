@@ -1169,7 +1169,11 @@ class Observation < ActiveRecord::Base
     # community_supported_id? && research_grade_candidate?
     quality_grade == RESEARCH_GRADE
   end
-  
+
+  def verifiable?
+    [ NEEDS_ID, RESEARCH_GRADE ].include?(quality_grade)
+  end
+
   def photos?
     observation_photos.loaded? ? ! observation_photos.empty? : observation_photos.exists?
   end

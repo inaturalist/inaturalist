@@ -3101,7 +3101,7 @@ describe Observation do
     it "can fetch lists through listed_taxa" do
       o = Observation.make!(taxon: Taxon.make!)
       3.times do
-        ListedTaxon.make!(list: List.make!, taxon: o.taxon)
+        ListedTaxon.make!(taxon: o.taxon)
       end
       expect( o.taxa_listed_taxa.count ).to be 3
       expect( o.taxa_listed_taxa.first.class ).to be ListedTaxon
