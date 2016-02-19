@@ -117,6 +117,7 @@ class Observation < ActiveRecord::Base
       identifications_count: num_identifications_by_others,
       comments: comments.map(&:as_indexed_json),
       comments_count: comments.size,
+      obscured: coordinates_obscured? || geoprivacy_obscured?,
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?

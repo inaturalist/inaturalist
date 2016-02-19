@@ -3103,6 +3103,12 @@ describe Observation do
       3.times do
         ListedTaxon.make!(taxon: o.taxon)
       end
+      pp o
+      pp o.taxon
+      pp o.taxa_listed_taxa
+      pp ListedTaxon.all
+      o.reload
+      pp o.taxa_listed_taxa
       expect( o.taxa_listed_taxa.count ).to be 3
       expect( o.taxa_listed_taxa.first.class ).to be ListedTaxon
       expect( o.lists.count ).to be 3
