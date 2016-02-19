@@ -69,7 +69,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $rootScope.mapLabels = true;
   $rootScope.mapTerrain = false;
   $scope.defaultParams = {
-    verifiable: true,
+    verifiable: "true",
     order_by: "observations.id",
     order: "desc",
     page: 1
