@@ -102,6 +102,7 @@ qqq:
     rank:
       kingdom: '{{Identical|Kingdom}}'
       class: '{{Identical|Class}}'
+      phylum: '{{Identical|Phylum}}'
       species: '{{Identical|Species}}'
       order: '{{Identical|Order}}'
     life: '{{Identical|Life}}'
@@ -364,6 +365,8 @@ qqq:
   from_licensed_site_observations: where site_name is the name of the site
   full_screen: '{{Identical|Full screen}}'
   general: '{{Identical|General}}'
+  geoprivacy: See [https://en.wiktionary.org/wiki/geoprivacy geoprivacy on Wiktionary]
+    for hints.
   getting_started: '{{Identical|Getting started}}'
   go: '{{Identical|Go}}'
   grant_role: where grant is removed/added and role is a role like admin
@@ -694,6 +697,7 @@ qqq:
   post: '{{Identical|Post}}'
   posts: '{{Identical|Post}}'
   preview_personal_message: where site is the site name
+  previewing: '{{Identical|Previewing}}'
   previous: '{{Identical|Previous}}'
   prev: '{{Identical|Prev}}'
   previous_page: '{{Identical|Previous page}}'
@@ -701,6 +705,7 @@ qqq:
   privacy_policy: '{{Identical|Privacy policy}}'
   private: '{{Identical|Private}}'
   processing: '{{Identical|Processing}}'
+  processing3p: '{{Identical|Processing}}'
   profile: '{{Identical|Profile}}'
   project: '{{Identical|Project}}'
   project_created_on: where date is a date
@@ -715,12 +720,20 @@ qqq:
   projects_in_x: where x is the name of a place
   public_coordinates_obscured_by: where distance is a number
   public_domain: '{{Identical|Public domain}}'
+  purple: '{{Identical|Purple}}'
   queued: '{{Identical|Queued}}'
   query: '{{Identical|Query}}'
   range: '{{Identical|Range}}'
+  rank: '{{Identical|Rank}}'
   rank_position: Rank, as in position in a list
   ranks:
+    kingdom: '{{Identical|Kingdom}}'
     class: '{{Identical|Class}}'
+    subclass: '{{Identical|Subclass}}'
+    order: '{{Identical|Order}}'
+    epifamily: See [[w:en:Biological classification]] for details.
+    family: '{{Identical|Family}}'
+    form: '{{Identical|Form}}'
   reason: '{{Identical|Reason}}'
   recent: '{{Identical|Recent}}'
   recent_atom_observations_by: where login is the name of a user
@@ -1225,6 +1238,8 @@ qqq:
         authority: '{{Identical|Authority}}'
         place_id: '{{Identical|Place}}'
         url: '{{Identical|URL}}'
+        geoprivacy: See [https://en.wiktionary.org/wiki/geoprivacy geoprivacy on Wiktionary]
+          for hints.
       project:
         description: '{{Identical|Description}}'
       place:
