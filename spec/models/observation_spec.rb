@@ -3096,23 +3096,4 @@ describe Observation do
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
   end
-
-  describe "lists" do
-    it "can fetch lists through listed_taxa" do
-      o = Observation.make!(taxon: Taxon.make!)
-      3.times do
-        ListedTaxon.make!(taxon: o.taxon)
-      end
-      pp o
-      pp o.taxon
-      pp o.taxa_listed_taxa
-      pp ListedTaxon.all
-      o.reload
-      pp o.taxa_listed_taxa
-      expect( o.taxa_listed_taxa.count ).to be 3
-      expect( o.taxa_listed_taxa.first.class ).to be ListedTaxon
-      expect( o.lists.count ).to be 3
-      expect( o.lists.first.class ).to be List
-    end
-  end
 end
