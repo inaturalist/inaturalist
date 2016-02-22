@@ -19,3 +19,4 @@
 //= require jquery/plugins/inat/datepicker
 //= require underscore.min
 //= require jquery.textcomplete
+//= require_tree ./ang/models

@@ -1,0 +1,57 @@
+- extra ||= nil
+%div{ "ng-app": "ProjectStats", "ng-controller": "ProjectStatsController",
+      "ng-init": "initParams({ project_id: #{ project.id }, place_id: 'any', verifiable: 'any' })" }
+  .counts
+    %label= t :totals
+    .totalcount.stat.numerical
+      .count
+        %a{ "ng-href": "{{ searchURL }}", "ng-bind": "observationsCount" }= "?"
+      %a.label{ "ng-href": "{{ searchURL }}" }= t(:observations)
+    .species.stat.numerical
+      .count
+        %a{ "ng-href": "{{ searchURL }}&view=species", "ng-bind": "speciesCount" }= "?"
+      %a.label{ "ng-href": "{{ searchURL }}&view=species" }= t(:species)
+    .people.stat.numerical
+      .count
+        %a{ "ng-href": "{{ searchURL }}&view=observers", "ng-bind": "observersCount" }= "?"
+      %a.label{ "ng-href": "{{ searchURL }}&view=observers" }= t(:people)
+    = extra
+  .most_observations.stat
+    %label= t :most_observations
+    %table
+      %tr{ "ng-hide": "observers.length > 0"}
+        %td.image= image_tag( "/attachment_defaults/users/icons/defaults/thumb.png" )
+        %td.user
+          .meta= t :unknown
+      %tr.ng-cloak{ "ng-repeat": "u in observers" }
+        %td.image
+          %user-icon{ u: "u" }
+        %td.user
+          %user-login{ u: "u" }
+          .meta{ "ng-bind-html": "userObservationsLink( u ) | sanitize" }
+  .most_species.stat
+    %label= t :most_species
+    %table
+      %tr{ "ng-hide": "speciesObservers.length > 0"}
+        %td.image= image_tag( "/attachment_defaults/users/icons/defaults/thumb.png" )
+        %td.user
+          .meta= t :unknown
+      %tr.ng-cloak{ "ng-repeat": "u in speciesObservers" }
+        %td.image
+          %user-icon{ u: "u" }
+        %td.user
+          %user-login{ u: "u" }
+          .meta{ "ng-bind-html": "userSpeciesLink( u ) | sanitize" }
+  .most_observed.stat
+    %label= t :most_observed_species
+    %table
+      %tr{ "ng-hide": "taxa.length > 0"}
+        %td.image= image_tag( "iconic_taxa/unknown-32px.png" )
+        %td.taxon
+          .meta= t :unknown
+      %tr.ng-cloak{ "ng-repeat": "t in taxa" }
+        %td.image{ "ng-bind-html": "t.photoTag( ) | sanitize" }
+        %td.taxon
+          %a.nobr{ "ng-href": "/taxa/{{ t.id }}" }
+            {{ t.preferred_common_name || t.english_common_name || t.name }}
+          .meta{ "ng-bind-html": "taxonObservationsLink( t ) | sanitize" }

@@ -25,6 +25,13 @@ iNatModels.Taxon.prototype.photo = function( ) {
   return this.default_photo ? this.default_photo.medium_url : this.default_photo_url;
 };
 
+iNatModels.Taxon.prototype.photoTag = function( ) {
+  if( this.default_photo ) {
+    return "<img src='"+ this.default_photo.square_url +"'/>";
+  }
+  return "<i class='icon icon-iconic-" + this.iconicTaxonName( ).toLowerCase( ) + "'/>";
+};
+
 iNatModels.Taxon.prototype.photoLicenseShort = function( ) {
   if( !this.default_photo ) return;
   if( !this.default_photo.license_code || this.default_photo.license_code == 'c' ) return '©';

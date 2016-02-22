@@ -21,11 +21,14 @@
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
   <%= javascript_include_tag 'map_bundle', 'projects/show' %>
+  <%= javascript_include_tag "angular_includes_bundle" %>
+  <%= javascript_include_tag "angular_bundle" %>
   <script type="text/javascript" charset="utf-8">
     var PRESERVE_VIEWPORT = <%= (@project.latitude && @project.zoom_level ? true : false).to_s %>,
-        OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
-        KML_ASSET_URLS = <%= @kml_assets.map{|a| a.asset.url}.inspect.html_safe %>
+        OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>,
+        KML_ASSET_URLS = <%= @kml_assets.map{|a| a.asset.url}.inspect.html_safe %>;
   </script>
+  <%= javascript_include_tag "ang/controllers/project_stats_controller" %>
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
@@ -78,7 +81,7 @@
         <big><%= t(:observations) %></big>
       <% end -%>
 
-      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+      <% if @project.bioblitz? -%>
         <div class="timespan">
           <%- start_time = @project.start_time.in_time_zone(@project.user.time_zone) %>
           <%- end_time = @project.end_time.in_time_zone(@project.user.time_zone) %>
@@ -125,7 +128,7 @@
 </div>
 
 <div id="bioblitz" class="column span-24 stacked">
-  <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+  <% if @project.bioblitz? -%>
     <% if !@project.event_url.blank? && !@project.event_started? -%>
       <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
         <% if @project.eventbrite_id -%>
@@ -149,10 +152,10 @@
     <% end -%>
   <% end %>
 
-  <% if (@project.project_type != Project::BIOBLITZ_TYPE) || @project.event_started? -%>
+  <% if !@project.bioblitz? || @project.event_started? -%>
     <div id="projectstats" class="stacked">
       <h2 class="stacked">
-        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <% if @project.bioblitz? -%>
           <%= @project.event_in_progress? ? t(:event_in_progress) : t(:event_stats) %>
         <% else %>
           <%=t :stats %>
@@ -161,14 +164,14 @@
       <div id="rtstats" class="clear">
         <%- extra = capture do -%>
           <div class="links">
-            <% if @project.project_type == Project::BIOBLITZ_TYPE %>
+            <% if @project.bioblitz? %>
               <div class="stacked">
                 <%= link_to_dialog t(:about), width: "60%" do %>
                   <%=t 'views.projects.show.bioblitz_results_desc_html' %>
                 <% end %>
               </div>
             <% end %>
-            <% if @project.project_type == Project::BIOBLITZ_TYPE && @project.event_in_progress? %>
+            <% if @project.bioblitz? && @project.event_in_progress? %>
               <div class="stacked">
                 <%= link_to stats_observations_url(@observations_url_params.merge(refresh: true)), target: "_new" do %>
                   <%= t(:real_time_stats) %>
@@ -178,7 +181,7 @@
             <% end %>
           </div>
         <% end %>
-        <%= render :partial => "observations/real_time_stats", locals: {extra: extra} %>
+        <%= render partial: "real_time_angular_stats", locals: { extra: extra, project: @project } %>
       </div>
     </div>
   <% end -%>
@@ -245,15 +248,14 @@
       <div class="clear">
         <h3 class="left">
           <%=t :recent_observations %>
-          <%= link_to t(:view_all), @project.project_type == Project::BIOBLITZ_TYPE ? @observations_url : project_observations_url(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+          <%= link_to t(:view_all), project_observations_url(@project), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
         </h3>
         <div class="right observationcontrols"></div>
       </div>
       <div class="observations medium grid">
         <%= loading %>
       </div>
-      <%= link_to t(:more_observations), @project.project_type == Project::BIOBLITZ_TYPE ? @observations_url : project_observations_url(@project),
-        :class => "readmore" %>
+      <%= link_to t(:more_observations), project_observations_url(@project), class: "readmore" %>
     </div>
   </div>
 </div>
@@ -312,18 +314,18 @@
             :rel => "nofollow" %>
         <% end -%>
       </div>
-      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+      <% if @project.bioblitz? -%>
         <div class="inner small meta upstacked">
           <%=t 'views.projects.show.project_observations_desc' %>
         </div>
       <% end -%>
     </li>
-    <% if @project.project_type != Project::BIOBLITZ_TYPE %>
+    <% if !@project.bioblitz? %>
       <li>
        <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
       </li>
     <% end -%>
-    <% if logged_in? && @project.project_type != Project::BIOBLITZ_TYPE -%>
+    <% if logged_in? && !@project.bioblitz? -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
@@ -341,7 +343,7 @@
     <% end -%>
   </ul>
   
-  <% unless @project.project_type == Project::BIOBLITZ_TYPE && !@project.event_started? %>
+  <% unless @project.bioblitz? && !@project.event_started? %>
     <h3><%=t :about %></h3>
     <%= truncate_with_more formatted_user_text(@project.description, 
       :tags => Post::ALLOWED_TAGS + %w(table tr td img p iframe div), 

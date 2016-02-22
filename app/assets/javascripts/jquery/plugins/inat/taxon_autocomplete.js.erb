@@ -18,14 +18,7 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
     return "<i class='fa fa-search'></i>";
   }
-  if( result.default_photo ) {
-    return "<img src='"+ result.default_photo.square_url +"'/>";
-  }
-  if( inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ] && inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name ) {
-    return "<i class='icon icon-iconic-"+inaturalist.ICONIC_TAXA[ result.iconic_taxon_id ].name.toLowerCase()+"'></i>";
-  } else {
-    return "<i class='icon icon-iconic-unknown'></i>";
-  }
+  return result.photoTag( );
 };
 
 // return the best name in the locale, or defaulting to EN
@@ -130,8 +123,8 @@ autocompleter.createWrappingDiv = function( field, options ) {
 };
 
 autocompleter.menuClosed = function( ) {
-  return ($("ul.ac-menu:visible").length == 0);
-}
+  return ( $("ul.ac-menu:visible").length == 0 );
+};
 
 $.fn.taxonAutocomplete = function( options ) {
   options = options || { };
@@ -181,7 +174,9 @@ $.fn.taxonAutocomplete = function( options ) {
               title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
             });
           }
-          response( results );
+          response( _.map( results, function( r ) {
+            return new iNatModels.Taxon( r );
+          }));
         }
       });
     },

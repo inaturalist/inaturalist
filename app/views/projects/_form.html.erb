@@ -80,7 +80,7 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
 
   <div class="column span-24">
-    <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
+    <fieldset id="bioblitz" style="<%= "display:none;" unless @project.bioblitz? %>">
       <legend><%=t :bioblitz %></legend>
       <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
       <div class="column span-12">
@@ -128,18 +128,22 @@
     </fieldset>
   </div>
 
-  <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-    <fieldset class="observationrules">
-      <legend><%= t(:observation_aggregation).titleize %></legend>
-      <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
-      <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
-      <% if @project.prefers_aggregation? -%>
-        <div class="column span-24">
-          <%= f.text_field :last_aggregated_at, value: f.object.last_aggregated_at ? f.object.last_aggregated_at.iso8601 : nil, description: t('views.projects.edit.last_aggregated_at_desc'), readonly: true, disabled: true %>
-        </div>
-      <% end -%>
-    </fieldset>
-  <% end -%>
+  <fieldset id="aggregation" class="observationrules" <% unless @project.bioblitz? -%>style="display:none"<% end -%>>
+    <legend><%= t(:observation_aggregation).titleize %></legend>
+    <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
+    <div id="last_aggregated_at" class="column span-24" <% unless @project.prefers_aggregation? -%>style="display:none"<% end -%>>
+      <div class="inlabel">
+        <label for="last_aggregated_at">
+          <%= t("activerecord.projects.last_aggregated_at") %>
+        </label>
+      </div>
+      <div class="description"><%= t("views.projects.edit.last_aggregated_at_desc") %></div>
+      <span class="static_value">
+        <%= f.object.last_aggregated_at ? f.object.last_aggregated_at.iso8601 : t("views.projects.edit.aggregation_pending") %>
+      </span>
+    </div>
+    <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
+  </fieldset>
 
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>

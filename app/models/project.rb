@@ -60,10 +60,10 @@ class Project < ActiveRecord::Base
   validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
     :message => "should look like a URL, e.g. #{CONFIG.site_url}",
     :allow_blank => true
-  validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
-  validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
-  validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
-  validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
+  validates_presence_of :start_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
+  validates_presence_of :end_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
+  validate :place_with_boundary, :if => lambda {|p| p.bioblitz? }
+  validate :one_year_time_span, :if => lambda {|p| p.bioblitz? }, :unless => "errors.any?"
   validate :aggregation_preference_allowed?
 
   def aggregation_preference_allowed?
@@ -655,6 +655,10 @@ class Project < ActiveRecord::Base
       r.operand && r.operand.bbox_area < 141
     }.uniq == [ true ]
     false
+  end
+
+  def bioblitz?
+    project_type == BIOBLITZ_TYPE
   end
 
   class ProjectAggregatorAlreadyRunning < StandardError; end

@@ -15,10 +15,8 @@
         %td.rank
           {{ $index + 1 }}
         %td
-          %a.user.userimage{ href: "/people/{{ u.login }}", "ng-style": "shared.backgroundIf( u.icon_url )", title: "{{ u.login }}", target: "_self" }
-            %i.icon-person{"ng-hide" => "u.icon_url"}
-          %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}", target: "_self" }
-            {{ u.login }}
+          %user-icon{ u: "u" }
+          %user-login{ u: "u" }
         %td{ :class => "{{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
           {{ shared.numberWithCommas( u.observationCount ) }}
         %td{ :class => "{{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }

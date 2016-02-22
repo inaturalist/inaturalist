@@ -384,7 +384,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       // prepare current settings to store in browser state history
       currentState = { params: stateParams, selectedPlace: $scope.selectedPlace,
-        selectedTaxon: $scope.selectedTaxon,
+        selectedTaxon: JSON.stringify($scope.selectedTaxon),
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
@@ -848,7 +848,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       search_external: false,
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
-        $scope.selectedTaxon = new iNatModels.Taxon( result.item );
+        $scope.selectedTaxon = result.item;
         $scope.params.taxon_id = result.item.id;
         $scope.searchAndUpdateStats( );
       },
@@ -863,8 +863,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.updateTaxonAutocomplete = function( ) {
     if( $scope.selectedTaxon ) {
-      var t = new iNatModels.Taxon( $scope.selectedTaxon );
-      $( "input[name='taxon_name']" ).trigger( "assignTaxon", t );
+      $( "input[name='taxon_name']" ).trigger( "assignTaxon", $scope.selectedTaxon );
     } else {
       $( "#filters input[name='taxon_name']" ).trigger( "search" );
     }
@@ -885,6 +884,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           new google.maps.LatLng( state.mapBounds.south, state.mapBounds.west ),
           new google.maps.LatLng( state.mapBounds.north, state.mapBounds.east ));
       } else { $scope.mapBounds = null };
+      // needed to serialize the taxon for storing in browser state
+      // so now turn it back into a Taxon object for comparison
+      if( state.selectedTaxon ) {
+        state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
+      }
       if( state.selectedTaxon != $scope.selectedTaxon ) {
         $scope.selectedTaxon = state.selectedTaxon;
         $scope.updateTaxonAutocomplete( );

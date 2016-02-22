@@ -182,7 +182,8 @@ $(document).ready(function() {
   $('input[name="project[prefers_place_boundary_visible]"]:visible').change()
   $('#project_project_type').change(function() {
     if ($(this).val() == 'bioblitz') {
-      $('#bioblitz').show()
+      $('#bioblitz').show( );
+      $('#aggregation').show( );
       $('#project_start_time, #project_end_time').attr('required', true)
       $('#project_start_time, #project_end_time').each(function () {
         if (!$(this).hasClass('hasDatepicker')) {
@@ -198,10 +199,18 @@ $(document).ready(function() {
         }
       })
     } else {
-      $('#bioblitz').hide()
+      $('#bioblitz').hide( );
+      $('#aggregation').hide( );
       $('#project_start_time, #project_end_time').attr('required', false)
     }
-  })
+  });
+  $( "#project_prefers_aggregation" ).change( function( ) {
+    if( $(this).attr( "checked" ) ) {
+      $( "#last_aggregated_at" ).show( );
+    } else {
+      $( "#last_aggregated_at" ).hide( );
+    }
+  });
   $('#project_start_time:visible, #project_end_time:visible').each(function () {
     $(this).attr('required', true)
     if (!$(this).hasClass('hasDatepicker')) {

@@ -23,7 +23,7 @@
     - if @project.icon.file?
       = image_tag @project.icon.url(:thumb), :style => "vertical-align: middle"
     = @title.html_safe
-- if @project.project_type == Project::BIOBLITZ_TYPE
+- if @project.bioblitz?
   .notice.box
     = t 'views.projects.members.bioblitz_notice_html'
 #members.column.span-24{:style => "margin-bottom: 10px"}

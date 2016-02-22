@@ -31,19 +31,12 @@ $(document).ready(function() {
       }
       var headers = r.getAllResponseHeaders()
       var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
-          totalEntries = matches[1],
-          url = OBSERVATIONS_URL.replace(/per_page=[^&]+/, '').replace(/page=[^&]+/, ''),
-          totalEntriesLink = $('<a>'+totalEntries+'</a>').attr('href', url)
-      if (totalEntries) {
-        $('.totalcount .count').html(totalEntriesLink)
+          totalEntries = matches[1];
+      if( totalEntries ) {
+        $('.totalcount .count a').text(totalEntries)
       }
     }
   })
-  $('#recent_observations .observationcontrols').observationControls({div: $('#recent_observations .observations'), skipMap: true})
-  $('#projectstats').observationUserStats({
-    url: '/observations/user_stats.json?limit=5&' + OBSERVATIONS_URL.split('?')[1]
-  })
-  $('#projectstats').observationTaxonStats({
-    url: '/observations/taxon_stats.json?' + OBSERVATIONS_URL.split('?')[1]
-  })
+  $('#recent_observations .observationcontrols').
+   observationControls({ div: $("#recent_observations .observations"), skipMap: true });
 })

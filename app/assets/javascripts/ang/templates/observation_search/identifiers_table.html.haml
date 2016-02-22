@@ -13,10 +13,8 @@
         %td.rank
           {{ shared.numberWithCommas( $index + 1 ) }}
         %td
-          %a.user.userimage{ href: "/people/{{ u.login }}", "ng-style": "shared.backgroundIf( u.icon_url )", title: "{{ u.login }}", target: "_self" }
-            %i.icon-person{"ng-hide" => "u.icon_url"}
-          %a{ href: "/people/{{ u.login }}", title: "{{ u.login }}", target: "_self" }
-            {{ u.login }}
+          %user-icon{ u: "u" }
+          %user-login{ u: "u" }
         %td {{ shared.numberWithCommas( u.resultCount ) }}
   .spinner.ng-cloak{ "ng-show": "pagination.searching" }
     %span.fa.fa-spin.fa-refresh
