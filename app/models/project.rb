@@ -23,6 +23,7 @@ class Project < ActiveRecord::Base
   
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
+  before_save :reset_last_aggregated_at
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   
@@ -254,7 +255,13 @@ class Project < ActiveRecord::Base
   def featured_at_utc
     featured_at.try(:utc)
   end
-  
+
+  def reset_last_aggregated_at
+    if start_time_changed? || end_time_changed?
+      self.last_aggregated_at = nil
+    end
+  end
+
   def tracking_code_allowed?(code)
     return false if code.blank?
     return false if tracking_codes.blank?

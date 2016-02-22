@@ -69,7 +69,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $rootScope.mapLabels = true;
   $rootScope.mapTerrain = false;
   $scope.defaultParams = {
-    verifiable: "true",
+    verifiable: true,
     order_by: "observations.id",
     order: "desc",
     page: 1
@@ -298,6 +298,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
     var initialParams = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    if( initialParams.verifiable === "true" ) {
+      initialParams.verifiable = true;
+    }
     // turning the key taxon_ids[] into taxon_ids
     if( initialParams["taxon_ids[]"] ) {
       initialParams.taxon_ids = initialParams["taxon_ids[]"];
@@ -493,7 +496,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.numberTaxaShown = 15;
     $scope.numberIdentifiersShown = 15;
     $scope.numberObserversShown = 15;
-    $scope.observersSort = "observationCount";
+    $scope.observersSort = "-observationCount";
     options = options || { };
     $scope.updateBrowserLocation( options );
     $scope.observations = [ ];

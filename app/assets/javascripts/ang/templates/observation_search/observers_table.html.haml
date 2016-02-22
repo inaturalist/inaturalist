@@ -6,20 +6,20 @@
           {{ shared.t( 'rank_position' )}}
         %th.user
           {{ shared.t( 'user' )}}
-        %th{ "ng-click": "observersSort = 'observationCount';", :class => "sortable sorting-desc {{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
+        %th{ "ng-click": "observersSort = '-observationCount';", :class => "sortable sorting-desc {{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
           {{ shared.t( 'observations' )}}
-        %th{ "ng-click": "observersSort = 'speciesCount';", :class => "sortable sorting-desc {{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
+        %th{ "ng-click": "observersSort = '-speciesCount';", :class => "sortable sorting-desc {{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
           {{ shared.t( 'species' )}}
     %tbody
-      %tr{ "ng-repeat": "u in observers | orderBy:observersSort:true | limitTo: numberObserversShown" }
+      %tr{ "ng-repeat": "u in observers | orderBy:[ observersSort, '+login' ] | limitTo: numberObserversShown" }
         %td.rank
           {{ $index + 1 }}
         %td
           %user-icon{ u: "u" }
           %user-login{ u: "u" }
-        %td{ :class => "{{ observersSort == 'observationCount' ? 'sorting' : '' }}" }
+        %td{ :class => "{{ observersSort == '-observationCount' ? 'sorting' : '' }}" }
           {{ shared.numberWithCommas( u.observationCount ) }}
-        %td{ :class => "{{ observersSort == 'speciesCount' ? 'sorting' : '' }}" }
+        %td{ :class => "{{ observersSort == '-speciesCount' ? 'sorting' : '' }}" }
           {{ shared.numberWithCommas( u.speciesCount ) }}
   .spinner.ng-cloak{ "ng-show": "pagination.searching" }
     %span.fa.fa-spin.fa-refresh
