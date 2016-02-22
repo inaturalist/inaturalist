@@ -122,29 +122,9 @@ ul.plain {list-style:none;}
 img.borderless, .thumbnail.borderless { border: 0; }
 
 .modal-body {max-height: 400px; overflow-x: hidden; overflow-y: auto; }
-
-// The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
-// of our namespace div, so we need to re-apply these styles. Ugh.
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000;
-}
-.modal-backdrop.fade {
-  filter: alpha(opacity=0);
-  opacity: 0;
-}
-.modal-backdrop.in {
-  filter: alpha(opacity=50);
-  opacity: .5;
-}
+.modal .container-fluid {padding-left: 0; padding-right: 0;}
 .breadcrumb {margin-bottom: 0;}
 .title-controls {margin-top: 20px;}
-.modal .container-fluid {padding-left: 0; padding-right: 0;}
 
 .ui-front {z-index: 1051;}
 .accordion .panel-heading { padding: 0; }

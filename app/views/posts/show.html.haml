@@ -21,7 +21,7 @@
     })
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
-  %meta{:property => "og:description", :content => html_attributize(strip_tags(@shareable_description))}
+  %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
@@ -76,7 +76,7 @@
   .row
     .col-md-8
       .post
-        = formatted_user_text(@post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES))
+        = formatted_user_text(@post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
       #postmeta.description
         %span.label
           - t(:posted_on)

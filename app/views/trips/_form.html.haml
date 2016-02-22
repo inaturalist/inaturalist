@@ -16,6 +16,8 @@
         .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:start_time, :default => "Start time")
         .col-md-6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:end_time, :default => "End time")
       = f.text_area :body, :class => "form-control", :label => t(:description), :placeholder => t(:describe_your_trip, :default => "Describe your trip!")
+      = f.radio_button :preferred_formatting, Post::FORMATTING_SIMPLE
+      = f.radio_button :preferred_formatting, Post::FORMATTING_NONE
     #location.col-md-6
       .stacked
         = f.text_field :place_id, :class => "form-control", :label => t(:location), :placeholder => t(:start_typing_place_name)

@@ -8,7 +8,7 @@
     $("#comment_body").textcompleteUsers( );
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
-  %meta{:property => "og:description", :content => html_attributize(strip_tags(@shareable_description))}
+  %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
@@ -62,7 +62,7 @@
 
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
-          = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES))
+          = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (@trip.preferred_formatting == Post::FORMATTING_NONE))
           .small.text-muted.stacked
             =t :posted_by
             = succeed ',' do

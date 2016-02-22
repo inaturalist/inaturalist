@@ -2873,6 +2873,15 @@ describe Observation do
     it "should set public accuracy to nil if accuracy is nil" do
       expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
     end
+
+    it "should be mappable for obscured" do
+      o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
+      expect( o ).to be_mappable
+    end
+    it "should be mappable for threatened taxa" do
+      o = make_observation_of_threatened
+      expect( o ).to be_mappable
+    end
   end
 
   describe "observations_places" do

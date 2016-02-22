@@ -1,15 +1,16 @@
 - extra ||= nil
+- url_params = @observations_url_params || request.query_parameters || {}
 .counts
   %label=t :totals
   .totalcount.stat.numerical
     .count ?
-    = link_to t(:observations, :default => "observations").downcase, "", :class => "label"
+    = link_to t(:observations, :default => "observations").downcase, observations_path(url_params), :class => "label"
   .species.stat.numerical
     .count ?
-    = link_to t(:species, :default => "species").downcase, "", :class => "label"
+    = link_to t(:species, :default => "species").downcase, taxa_observations_path(url_params), :class => "label"
   .people.stat.numerical
     .count ?
-    = link_to t(:people, :default => "people").downcase, "", :class => "label"
+    = link_to t(:people, :default => "people").downcase, user_stats_observations_path(url_params), :class => "label"
   = extra
 .most_observations.stat
   %label=t :most_observations

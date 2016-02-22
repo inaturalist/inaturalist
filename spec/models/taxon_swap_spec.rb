@@ -289,6 +289,31 @@ describe TaxonSwap, "commit_records" do
       }.not_to raise_error
     }
   end
+
+  it "should not update records if input and output taxa are identical" do
+    tc = make_taxon_swap
+    o = Observation.make!( taxon: tc.input_taxon )
+    tc.input_taxon.merge(tc.output_taxon)
+    tc.reload
+    expect( tc.input_taxon ).to eq tc.output_taxon
+    expect( o.identifications.count ).to eq 1
+    tc.commit_records
+    expect( o.identifications.count ).to eq 1
+  end
+
+  it "should not add in ID for the observer that matches the obs taxon if the observer has no matching ID" do
+    tc = make_taxon_swap
+    o = Observation.make!
+    t = tc.input_taxon
+    2.times do
+      Identification.make!( observation: o, taxon: t )
+    end
+    o.reload
+    expect( o.taxon ).to eq t
+    expect( o.identifications.by( o.user ) ).to be_blank
+    tc.commit_records
+    expect( o.identifications.by( o.user ) ).to be_blank
+  end
 end
 
 def prepare_swap

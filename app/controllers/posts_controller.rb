@@ -84,7 +84,7 @@ class PostsController < ApplicationController
         else
           FakeView.image_url(@post.user.icon.url(:original))
         end
-        @shareable_description = FakeView.truncate(@post.body.html_safe, :length => 1000) if @post.body
+        @shareable_description = FakeView.shareable_description(@post.body) if @post.body
         render "trips/show"
       end
       format.json { render json: @post }
@@ -252,12 +252,14 @@ class PostsController < ApplicationController
           }
         })
         json.each_with_index do |post, i|
+          ar_post = @posts.detect{|p| p.id == post['id'].to_i}
           json[i]['body'] = FakeView.formatted_user_text(
             json[i]['body'],
             scrubber: PostScrubber.new(
               tags: Post::ALLOWED_TAGS,
               attributes: Post::ALLOWED_ATTRIBUTES
-            )
+            ),
+            skip_simple_format: (ar_post.preferred_formatting == Post::FORMATTING_NONE)
           )
         end
         render json: json

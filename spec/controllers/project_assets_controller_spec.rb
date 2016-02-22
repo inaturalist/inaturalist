@@ -3,11 +3,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ProjectAssetsController, "new" do
   let(:project) { Project.make! }
   it "should not allow access to managers if project isn't trusted" do
-    project.should_not be_trusted
+    expect(project).not_to be_trusted
     pu = ProjectUser.make!(:project => project, :role => "manager")
     sign_in pu.user
     get :new, :project_id => project.id
-    response.should be_redirect
+    expect(response).to be_redirect
   end
   
   it "should not allow access to non-managers" do
@@ -15,7 +15,7 @@ describe ProjectAssetsController, "new" do
     u = User.make!
     sign_in u
     get :new, :project_id => project.id
-    response.should be_redirect
+    expect(response).to be_redirect
   end
 
   it "should allow access by managers if project trusted" do
@@ -23,13 +23,13 @@ describe ProjectAssetsController, "new" do
     pu = ProjectUser.make!(:project => project, :role => "manager")
     sign_in pu.user
     get :new, :project_id => project.id
-    response.should be_success
+    expect(response).to be_success
   end
 
   it "should allow access by admins" do
     u = make_admin
     sign_in u
     get :new, :project_id => project.id
-    response.should be_success
+    expect(response).to be_success
   end
 end

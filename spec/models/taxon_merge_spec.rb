@@ -113,4 +113,17 @@ describe TaxonMerge, "commit_records" do
     ident.reload
     expect( ident.observation.identifications.by( ident.observation.user ).count ).to eq 2
   end
+  it "should not add multiple identifications for the observer when run twice and the obs is still associated with the old taxon" do
+    o = make_research_grade_observation( taxon: @input_taxon1 )
+    expect( o.identifications.by( o.user ).count ).to eq 1
+    @merge.commit_records
+    5.times do
+      Identification.make!( observation: o, taxon: @input_taxon1 )
+    end
+    o.reload
+    expect( o.taxon ).to eq @input_taxon1
+    @merge.commit_records
+    o.reload
+    expect( o.identifications.by( o.user ).count ).to eq 2
+  end
 end
