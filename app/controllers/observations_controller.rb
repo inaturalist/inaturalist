@@ -333,7 +333,7 @@ class ObservationsController < ApplicationController
             :project_observations => {
               :include => {
                 :project => {
-                  :only => [:id, :title],
+                  :only => [:id, :title, :description],
                   :methods => [:icon_url]
                 }
               }

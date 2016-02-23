@@ -290,6 +290,14 @@ shared_examples_for "an ObservationsController" do
       r = JSON.parse( response.body )
       expect( r['captive_flag'] ).to eq false
     end
+
+    it "should include project observations with project descriptions" do
+      po = ProjectObservation.make!
+      get :show, format: :json, id: po.observation_id
+      r = JSON.parse( response.body )
+      expect( r["project_observations"] ).not_to be_blank
+      expect( r["project_observations"][0]["project"]["description"] ).to eq po.project.description
+    end
   end
 
   describe "update" do

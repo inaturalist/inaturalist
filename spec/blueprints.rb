@@ -234,6 +234,7 @@ end
 Project.blueprint do
   user { User.make! }
   title { Faker::Lorem.sentence }
+  description { Faker::Lorem.paragraph.truncate(255) }
 end
 
 ProjectInvitation.blueprint do
