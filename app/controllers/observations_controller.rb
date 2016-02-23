@@ -1407,6 +1407,10 @@ class ObservationsController < ApplicationController
     delayed_csv(path_for_csv, @project)
   end
   
+  def identify
+    render layout: "bootstrap"
+  end
+  
   def identotron
     @observation = Observation.find_by_id((params[:observation] || params[:observation_id]).to_i)
     @taxon = Taxon.find_by_id(params[:taxon].to_i)
