@@ -1280,21 +1280,28 @@ shared_examples_for "an ObservationsController" do
     before(:each) { enable_elastic_indexing( Observation, Place ) }
     after(:each) { disable_elastic_indexing( Observation, Place ) }
     before do
-      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
-      get :user_stats, :format => :json, :on => "2013-07-20"
-      @json = JSON.parse(response.body)
+      @o = Observation.make!(
+        observed_on_string: "2013-07-20",
+        taxon: Taxon.make!( rank: Taxon::SPECIES )
+      )
+      get :user_stats, format: :json, on: "2013-07-20"
+      @json = JSON.parse( response.body )
     end
 
     it "should include a total" do
-      expect(@json["total"].to_i).to be > 0
+      expect( @json["total"].to_i ).to be > 0
     end
 
     it "should include most_observations" do
-      expect(@json["most_observations"].size).to be > 0
+      expect( @json["most_observations"].size ).to be > 0
     end
 
     it "should include most_species" do
-      expect(@json["most_species"].size).to be > 0
+      expect( @json["most_species"].size ).to be > 0
+    end
+
+    it "should include user name" do
+      expect( @json["most_observations"][0]["user"]["name"] ).to eq @o.user.name
     end
   end
 

@@ -1734,7 +1734,7 @@ class ObservationsController < ApplicationController
       @user_ids = @user_counts.map{ |c| c["user_id"] } |
         @user_taxon_counts.map{ |c| c["user_id"] }
       @users = User.where(id: @user_ids).
-        select("id, login, icon_file_name, icon_updated_at, icon_content_type")
+        select("id, login, name, icon_file_name, icon_updated_at, icon_content_type")
       @users_by_id = @users.index_by(&:id)
     else
       @user_counts = [ ]
