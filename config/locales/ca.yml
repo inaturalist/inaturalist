@@ -57,6 +57,9 @@ ca:
   x_faves:
     one: 1 favorit
     other: '%{count} favorits'
+  x_people_like_this:
+    one: 1 persona li agrada aquest(a)
+    other: '%{count} persones els agrada aquest(a)'
   x_people_agree_html:
     one: <span class='count'>1</span> persona està d'acord
     other: <span class='count'>%{count}</span> persones estan d'acord
