@@ -654,6 +654,10 @@ class Project < ActiveRecord::Base
   def invite_only?
     preferred_membership_model == MEMBERSHIP_INVITE_ONLY
   end
+  
+  def users_can_add?
+    preferred_submission_model == SUBMISSION_BY_ANYONE
+  end
 
   def aggregation_allowed?
     return true if place && place.bbox_area < 141

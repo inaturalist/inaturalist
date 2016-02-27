@@ -75,12 +75,14 @@
           <%= truncate @project.title, :length => 55 %>
         <% end -%>
       </h1>
-
-      <%= link_to new_observation_path(:project_id => @project.id), :id => 'addbutton', :rel => "nofollow" do %>
-        <small><%= t(:add) %></small>
-        <big><%= t(:observations) %></big>
+      
+      <% if @project.users_can_add? && (!@project.invite_only? || @project_user) && (!@project.bioblitz? || @project.event_started?) -%>
+        <%= link_to new_observation_path(:project_id => @project.id), :id => 'addbutton', :rel => "nofollow" do %>
+          <small><%= t(:add) %></small>
+          <big><%= t(:observations) %></big>
+        <% end -%>
       <% end -%>
-
+      
       <% if @project.bioblitz? -%>
         <div class="timespan">
           <%- start_time = @project.start_time.in_time_zone(@project.user.time_zone) %>
@@ -118,7 +120,7 @@
       <% end -%>
     </h2>
     
-    <% if !@project.invite_only? || @project_user -%>
+    <% if @project.users_can_add? && (!@project.invite_only? || @project_user) && (!@project.bioblitz? || @project.event_started?) -%>
       <span class="right buttonrow">
         <%= link_to t(:add_observations_project), new_observation_path(:project_id => @project.id), 
           :class => 'last button default', :rel => "nofollow" %>
@@ -162,26 +164,7 @@
         <% end %>
       </h2>
       <div id="rtstats" class="clear">
-        <%- extra = capture do -%>
-          <div class="links">
-            <% if @project.bioblitz? %>
-              <div class="stacked">
-                <%= link_to_dialog t(:about), width: "60%" do %>
-                  <%=t 'views.projects.show.bioblitz_results_desc_html' %>
-                <% end %>
-              </div>
-            <% end %>
-            <% if @project.bioblitz? && @project.event_in_progress? %>
-              <div class="stacked">
-                <%= link_to stats_observations_url(@observations_url_params.merge(refresh: true)), target: "_new" do %>
-                  <%= t(:real_time_stats) %>
-                  <i class="fa fa-external-link"></i>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-        <%= render partial: "real_time_angular_stats", locals: { extra: extra, project: @project } %>
+        <%= render partial: "real_time_angular_stats", locals: { project: @project } %>
       </div>
     </div>
   <% end -%>
@@ -248,14 +231,14 @@
       <div class="clear">
         <h3 class="left">
           <%=t :recent_observations %>
-          <%= link_to t(:view_all), project_observations_url(@project), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
+          <%= link_to t(:view_all), observations_path({project_id: @project.slug, verifiable: "any"}), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
         </h3>
         <div class="right observationcontrols"></div>
       </div>
       <div class="observations medium grid">
         <%= loading %>
       </div>
-      <%= link_to t(:more_observations), project_observations_url(@project), class: "readmore" %>
+      <%= link_to t(:more_observations), observations_path({project_id: @project.slug, verifiable: "any"}), class: "readmore" %>
     </div>
   </div>
 </div>
@@ -296,29 +279,13 @@
         </div>
       </li>
     <% end -%>
-    <% if @project.curated_by?(current_user) && !@project.observations_url_params.blank? -%>
-      <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
-    <% end -%>
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
         <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
-        <% if @project.curated_by?(current_user) -%>
-          /
-          <%= link_to t(:all_csv), all_project_observations_url(@project, :format => 'csv'), 
-            :class => "delayedlink csvlink", 
-            "data-delayed-link-msg" => 
-              t(:please_hold_on_while_the_file),
-            :rel => "nofollow" %>
-        <% end -%>
       </div>
-      <% if @project.bioblitz? -%>
-        <div class="inner small meta upstacked">
-          <%=t 'views.projects.show.project_observations_desc' %>
-        </div>
-      <% end -%>
     </li>
     <% if !@project.bioblitz? %>
       <li>
@@ -342,7 +309,23 @@
       <% end -%>
     <% end -%>
   </ul>
-  
+  <% if @project.curated_by?(current_user) -%>
+    <ul id="projectnav" class="stacked curatorbox">
+      <li><div class="curatorlabel"><%=t :project_curator_tools %></div></li>
+      <% if !@project.observations_url_params.blank? -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path({not_matching_project_rules_for: @project.slug, project_id: @project.slug}), :class => "navlink" %></li>
+      <% end -%>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_with_private_coordinates)}".html_safe, all_project_observations_url(@project, :format => 'csv'), 
+          :class => "delayedlink navlink", 
+          "data-delayed-link-msg" => 
+            t(:please_hold_on_while_the_file),
+          :rel => "nofollow" %>
+      </li>
+      <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe, project_observations_url(@project), class: "navlink" %></li>
+    </ul>
+  <% end -%>
   <% unless @project.bioblitz? && !@project.event_started? %>
     <h3><%=t :about %></h3>
     <%= truncate_with_more formatted_user_text(@project.description, 
