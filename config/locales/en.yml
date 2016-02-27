@@ -1014,6 +1014,7 @@ en:
   explore_everyones_observations: Explore everyone's observations
   export: Export
   export_observations: Export observations
+  export_with_private_coordinates: Export with private coordinates
   exporting: "Exporting..."
   external_links: External Links
   extinct: EXTINCT
@@ -1059,6 +1060,7 @@ en:
   filling_out_your_profile: filling out your profile
   filter: Filter
   filter_by: Filter by
+  filter_by_curator_identification: Filter by curator identification
   filter_by_place: Filter by place
   filter_by_place_taxon_and_color: Filter by place, taxon, and color using the controls.
   filter_list_by_this_taxon: Filter list by this taxon
@@ -1077,6 +1079,7 @@ en:
   find_some_people_to_follow: "Find some people to follow"
   find_species: Find Species
   find_suitable_observations: Find suitable observations
+  find_unsuitable_observations: Find unsuitable observations
   find_your_current_location: Find your current location
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
@@ -1882,9 +1885,7 @@ en:
   observation_rules: Observation rules
   observation_rules_description: |
     You can choose rules to determine what observations can be added to this
-    project, like limiting observations to a certain place. Note: limiting to
-    places currently relies on %{site_name} Places, and can only limit
-    observations to the smallest rectangle that surrounds a place. If you have
+    project, like limiting observations to a certain place or taxon. If you have
     more than one rule for a type of rule, observations will be valid if
     either rule passes. For example, if you have the rules "must be in
     Amphibia" and "must be in Reptilia", then the project will accept
@@ -2283,6 +2284,7 @@ en:
   project_cover: Project cover
   project_created_on: created this project on %{date}
   project_curator_id: Project curator ID
+  project_curator_tools: Project curator tools
   project_curators: Project Curators
   project_group_label: Group
   project_group_description: Group the project belongs to
@@ -2314,8 +2316,7 @@ en:
   project_type_description: |
     Assessments and bioblitzes are special types of projects. Assessments are
     for collaborating on a set of species assessments, usually to gauge
-    conservation importance. Bioblitzes are events where people try to observe
-    as many species as possible in a given place for a given period of time.
+    conservation importance. Bioblitzes are events that have a specified beginning and end.
   project_user_cannot_be_found: Project user cannot be found
   project_user_was_invalid: "Project user was invalid: %{project_user}"
   project_was_successfully_created: Project was successfully created.
@@ -2831,7 +2832,7 @@ en:
   tell_the_world_a_little_about_yourself: Tell the world a little bit about yourself by
   terms: Terms
   terms_and_rules_html: "Terms &amp; Rules"
-  terms_new_users: Terms new users must agree to before joining this project.
+  terms_new_users: "If you add terms, new users must agree to them before joining this project."
   terms_of_service: Terms of Service
   terms_service: Terms of Service
   terrain: terrain
@@ -4161,12 +4162,9 @@ en:
         bioblitz_desc_html: |
           <p>
             A bioblitz is an event where participants try to observe as many
-            species as possible within a given place and time period. It's a fun
+            species as possible within time period. It's a fun
             way to introduce people to biodiversity while collecting valuable
-            data at the same time. Unlike normal projects, bioblitz projects
-            accumulate stats from <em>all</em> obervations made within the
-            specified time period and place, so observations don't need to be
-            added to the project to drive the project stats
+            data at the same time.
           </p>
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
@@ -4181,23 +4179,22 @@ en:
           Time when the aggregator last finished adding observations to this project
         observation_aggregation_desc_html: |
           <p class="description">
-            Observation aggregation will automatically add observations to your
-            project within your project's place boundary or of your project's rule
-            taxon. Since there's no way to remove many observations from a project
+            Observation aggregation will automatically add suitable observations to your
+            project as specified by your project rules. Since there's no way to remove many observations from a project
             at a time, this is potentially dangerous, so please make sure you have
             chosen the place and the taxon rules that you want, or you might end
-            up with a lot of extraneous data.
+            up with a lot of unsuitable observations to remove manually.
           </p>
           <p class="description">
             The aggregator will only work if the following conditions are met:
           </p>
           <ol>
             <li class="readable description">
-              Your project is associated with a small-to-mid-sized place (about
+              Your project has at least one 'must be observed in place' rule for a small-to-mid-sized place (about
               the size of Texas or Ukraine)
             </li>
             <li class="readable description">
-              OR your project only accepts observations of certain taxa
+              OR your project has at least one 'must be in taxon' rule
             </li>
           </ol>
         project_assets_desc_html: |
@@ -4251,13 +4248,6 @@ en:
             Membership in this project is by invitation only. If you'd like to
             join, please contact one of the curators below and request an
             invitation.
-      members:
-        bioblitz_notice_html: |
-          <strong>Note:</strong> this is only a list of people who have
-          explicitly joined this project. Since this is a bioblitz project and
-          stats are calculated for all observations added within the specified
-          place and time period, there may be many more participants than are
-          listed here.
       project_location_privacy_notice_html: |
         <p>
           Please be aware project curators will be able to see any private or
@@ -4328,10 +4318,6 @@ en:
           <p>
             To get started, <a href="%{url}" class="readmore">create a post</a>
           </p>
-        project_observations_desc: |
-          This only includes observations explictly added to this
-          project, not all observations recorded at the place and time of this
-          event.
         curated_checklist_desc: |
           This is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
