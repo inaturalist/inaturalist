@@ -41,6 +41,7 @@ class Project < ActiveRecord::Base
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+  preference :display_checklist, :boolean, :default => false
   preference :range_by_date, :boolean, :default => false
   preference :aggregation, :boolean, default: false
   

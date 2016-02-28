@@ -289,9 +289,9 @@
         <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
       </div>
     </li>
-    <% if !@project.bioblitz? %>
+    <% if @project.prefers_display_checklist? %>
       <li>
-       <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
+       <%= link_to "<span class='lead'>&raquo;</span> #{t(:project_list)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
       </li>
     <% end -%>
     <% if logged_in? && !@project.bioblitz? -%>

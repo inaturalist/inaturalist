@@ -924,7 +924,7 @@ class ProjectsController < ApplicationController
     else
       params[:project].delete(:featured_at)
     end
-    if params[:project][:project_type] != Project::BIOBLITZ_TYPE
+    if params[:project][:project_type] != Project::BIOBLITZ_TYPE && !current_user.is_curator?
       params[:project][:prefers_aggregation] = false
     end
     true
