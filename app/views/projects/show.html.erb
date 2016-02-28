@@ -231,14 +231,14 @@
       <div class="clear">
         <h3 class="left">
           <%=t :recent_observations %>
-          <%= link_to t(:view_all), observations_path({project_id: @project.slug, verifiable: "any"}), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
+          <%= link_to t(:view_all), observations_path(@observation_search_url_params), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
         </h3>
         <div class="right observationcontrols"></div>
       </div>
       <div class="observations medium grid">
         <%= loading %>
       </div>
-      <%= link_to t(:more_observations), observations_path({project_id: @project.slug, verifiable: "any"}), class: "readmore" %>
+      <%= link_to t(:more_observations), observations_path(@observation_search_url_params), class: "readmore" %>
     </div>
   </div>
 </div>
@@ -314,7 +314,7 @@
       <li><div class="curatorlabel"><%=t :project_curator_tools %></div></li>
       <% if !@project.observations_url_params.blank? -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path({not_matching_project_rules_for: @project.slug, project_id: @project.slug}), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path(@observation_search_url_params.merge(not_matching_project_rules_for: @project.slug)), :class => "navlink" %></li>
       <% end -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_with_private_coordinates)}".html_safe, all_project_observations_url(@project, :format => 'csv'), 
