@@ -272,6 +272,14 @@
         </span>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:your_membership, default: 'Your membership').capitalize}".html_safe, project_show_contributor_path(@project, @project_user.user.login), :class => "navlink" %>
       </li>
+      <% if @project_user_invitation && @project_user_invitation.pending? -%>
+        <li class="invited">
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
+          <div class="inner">
+            <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
+          </div>
+        </li>
+      <% end -%>
       <% if @project.users_can_add? && (!@project.invite_only? || @project_user) && (!@project.bioblitz? || @project.event_started?) -%>
         <li>
           <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %>
@@ -298,17 +306,6 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
-      <% end -%>
-      <% if @project_user_invitation && @project_user_invitation.pending? -%>
-        <li class="invited">
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
-          <div class="inner">
-            <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
-          </div>
-        </li>
-      <% end -%>
     <% end -%>
   </ul>
   <% if @project.curated_by?(current_user) -%>
@@ -326,6 +323,9 @@
           :rel => "nofollow" %>
       </li>
       <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe, project_observations_url(@project), class: "navlink" %></li>
+      <% if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
+      <% end -%>
     </ul>
   <% end -%>
   <% unless @project.bioblitz? && !@project.event_started? %>
