@@ -183,7 +183,6 @@ $(document).ready(function() {
   $('#project_project_type').change(function() {
     if ($(this).val() == 'bioblitz') {
       $('#bioblitz').show( );
-      $('#aggregation').show( );
       $('#project_start_time, #project_end_time').attr('required', true)
       $('#project_start_time, #project_end_time').each(function () {
         if (!$(this).hasClass('hasDatepicker')) {
@@ -200,7 +199,6 @@ $(document).ready(function() {
       })
     } else {
       $('#bioblitz').hide( );
-      $('#aggregation').hide( );
       $('#project_start_time, #project_end_time').attr('required', false)
     }
   });
