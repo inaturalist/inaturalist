@@ -1103,8 +1103,13 @@ qqq:
     abbr_month_names:
     - '{{notranslate}}'
     day_names:
-      5: '{{Identical|Friday}}'
-      6: '{{Identical|Saturday}}'
+    - '{{Identical|Sunday}}'
+    - '{{Identical|Monday}}'
+    - '{{Identical|Tuesday}}'
+    - '{{Identical|Wednesday}}'
+    - '{{Identical|Thursday}}'
+    - '{{Identical|Friday}}'
+    - '{{Identical|Saturday}}'
     formats:
       default: |-
         {{DataFormatRuby/en}}
