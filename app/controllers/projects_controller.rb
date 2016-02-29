@@ -9,7 +9,9 @@ class ProjectsController < ApplicationController
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| c.request.format == :widget}
 
-  before_action :doorkeeper_authorize!, :only => [ :by_login, :join, :leave ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, 
+    only: [ :by_login, :join, :leave, :members ],
+    if: lambda { authenticate_with_oauth? }
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 

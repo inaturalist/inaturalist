@@ -66,22 +66,27 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     errors = []
 
     # Parse the entire observation file looking for possible errors.
-    CSV.foreach(@observation_file, encoding: 'iso-8859-1:utf-8', headers: true) do |row|
-      next if skip_row?(row)
-      
-      # Look for the species and flag it if it's not found.
-      taxon = Taxon.single_taxon_for_name(row[0])
-      errors << BulkObservationException.new("Species not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
+    begin
+      CSV.foreach(@observation_file, encoding: 'iso-8859-1:utf-8', headers: true) do |row|
+        next if skip_row?(row)
+        
+        # Look for the species and flag it if it's not found.
+        taxon = Taxon.single_taxon_for_name(row[0])
+        errors << BulkObservationException.new("Species not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
 
-      # Check the validity of the observation
-      obs = new_observation(row)
-      errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors) unless obs.valid?
+        # Check the validity of the observation
+        obs = new_observation(row)
+        errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors) unless obs.valid?
 
-      # Increment the row count.
-      row_count = row_count + 1
+        # Increment the row count.
+        row_count = row_count + 1
 
-      # Stop if we have reached our max error count
-      break if errors.count >= MAX_ERROR_COUNT
+        # Stop if we have reached our max error count
+        break if errors.count >= MAX_ERROR_COUNT
+      end
+    rescue CSV::MalformedCSVError => e
+      line = e.message[/line (\d+)/, 1]
+      errors << BulkObservationException.new(e.message, line, [e])
     end
     if errors.count > 0
       raise BulkObservationException.new(
@@ -220,7 +225,11 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       end
     end
 
-    { :reason => exception.reason, :errors => errors.stringify_keys.sort_by { |k, v| k }, :field_options => field_options }
+    {
+      reason: exception.reason,
+      errors: errors.stringify_keys.sort_by { |k, v| k },
+      field_options: field_options
+    }
   end
 
   def max_attempts

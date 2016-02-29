@@ -2556,4 +2556,8 @@ class Observation < ActiveRecord::Base
     puts "Deleted #{deleted} observations in #{Time.now - start}s" if options[:debug]
   end
 
+  def self.index_observations_for_user(user_id)
+    Observation.elastic_index!( scope: Observation.by( user_id ) )
+  end
+
 end
