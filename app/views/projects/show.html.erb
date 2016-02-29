@@ -231,14 +231,14 @@
       <div class="clear">
         <h3 class="left">
           <%=t :recent_observations %>
-          <%= link_to t(:view_all), observations_path({project_id: @project.slug, verifiable: "any"}), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
+          <%= link_to t(:view_all), observations_path(@observation_search_url_params), class: "ui readmore", style: "font-size: 60%; margin-left: 5px" %>
         </h3>
         <div class="right observationcontrols"></div>
       </div>
       <div class="observations medium grid">
         <%= loading %>
       </div>
-      <%= link_to t(:more_observations), observations_path({project_id: @project.slug, verifiable: "any"}), class: "readmore" %>
+      <%= link_to t(:more_observations), observations_path(@observation_search_url_params), class: "readmore" %>
     </div>
   </div>
 </div>
@@ -272,12 +272,22 @@
         </span>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:your_membership, default: 'Your membership').capitalize}".html_safe, project_show_contributor_path(@project, @project_user.user.login), :class => "navlink" %>
       </li>
-      <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %>
-        <div class="inner">
-          <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
-        </div>
-      </li>
+      <% if @project_user_invitation && @project_user_invitation.pending? -%>
+        <li class="invited">
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
+          <div class="inner">
+            <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
+          </div>
+        </li>
+      <% end -%>
+      <% if @project.users_can_add? && (!@project.invite_only? || @project_user) && (!@project.bioblitz? || @project.event_started?) -%>
+        <li>
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %>
+          <div class="inner">
+            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
+          </div>
+        </li>
+      <% end -%>
     <% end -%>
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
@@ -287,26 +297,15 @@
         <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
       </div>
     </li>
-    <% if !@project.bioblitz? %>
+    <% if @project.prefers_display_checklist? %>
       <li>
-       <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
+       <%= link_to "<span class='lead'>&raquo;</span> #{t(:project_list)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
       </li>
     <% end -%>
     <% if logged_in? && !@project.bioblitz? -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
-      <% end -%>
-      <% if @project_user_invitation && @project_user_invitation.pending? -%>
-        <li class="invited">
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
-          <div class="inner">
-            <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
-          </div>
-        </li>
-      <% end -%>
     <% end -%>
   </ul>
   <% if @project.curated_by?(current_user) -%>
@@ -314,7 +313,7 @@
       <li><div class="curatorlabel"><%=t :project_curator_tools %></div></li>
       <% if !@project.observations_url_params.blank? -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path({not_matching_project_rules_for: @project.slug, project_id: @project.slug}), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path(@observation_search_url_params.merge(not_matching_project_rules_for: @project.slug)), :class => "navlink" %></li>
       <% end -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_with_private_coordinates)}".html_safe, all_project_observations_url(@project, :format => 'csv'), 
@@ -324,6 +323,9 @@
           :rel => "nofollow" %>
       </li>
       <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe, project_observations_url(@project), class: "navlink" %></li>
+      <% if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
+      <% end -%>
     </ul>
   <% end -%>
   <% unless @project.bioblitz? && !@project.event_started? %>

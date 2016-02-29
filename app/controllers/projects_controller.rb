@@ -151,6 +151,7 @@ class ProjectsController < ApplicationController
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         @observations_url_params = { projects: [@project.slug] }
         @observations_url = observations_url(@observations_url_params)
+        @observation_search_url_params = { place_id: "any", verifiable: "any", project_id: @project.slug }
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
@@ -923,7 +924,7 @@ class ProjectsController < ApplicationController
     else
       params[:project].delete(:featured_at)
     end
-    if params[:project][:project_type] != Project::BIOBLITZ_TYPE
+    if params[:project][:project_type] != Project::BIOBLITZ_TYPE && !current_user.is_curator?
       params[:project][:prefers_aggregation] = false
     end
     true

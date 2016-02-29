@@ -880,6 +880,7 @@ en:
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
+  display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
   do_you_know_where_this_species_lives: Do you know where this species lives?
@@ -2586,7 +2587,6 @@ en:
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_taxa_from_both: (show taxa from both lists)
-  show_the_total_number_of: "Show the total number of taxa on the project's list alongside the number of taxa observed."
   show_total_listed_taxa: Show total listed taxa
   showing_observations_by: showing observations by
   showing_one_to: Showing 1 - 
@@ -3848,9 +3848,8 @@ en:
           Note that you can only choose places that have boundaries.
       show:
         project_list_desc: |
-          Project check lists include taxa manually added by project curators,
-          observed taxa identified by project curators, and taxa verified by
-          research-grade observations added to the project.
+          Taxa manually added by project curators and taxa represented by
+          research-grade observations added to the project are listed on project lists.
     observations:
       copy_tip: "Add a new observation by copying this observation's date, place, photos, and observaiton fields."
       captive_help_html: |
@@ -4202,6 +4201,12 @@ en:
           <ol class="description">
             <li>Files ending in .logo.jpg, .logo.png, etc. will be used as the project's logo on the project page instead of the project icon</li>
             <li>KML and KMZ files will be added to the map on the project page</li>
+          </ol>
+        project_list_desc_html: |
+          <p class="description">You can create a custom project list of taxa and link it to your project. This can be useful to:</p>
+          <ol class="description">
+            <li>Restrict observations added to your project to those matching taxa on your list via the 'must be taxon on the project list' rule.</li>
+            <li>Keep track of how many taxa on your list have been checked off with observations added to the project</li>
           </ol>
         rules:
           captive: be captive/cultivated
