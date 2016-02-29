@@ -16,6 +16,9 @@
   min-height: 450px;
   display: inline-block;
 }
+#results > .container {
+  height: 0px;
+}
 #view-controls {
   position: absolute;
   z-index: 2;

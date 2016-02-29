@@ -181,14 +181,29 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
   }
 }]);
 
-iNatAPI.directive( "observationSnippet", [ "shared", function(shared) {
+iNatAPI.directive( "observationSnippet", [ "shared", function( shared ) {
   return {
-    scope: {
-      o: '='
-    },
+    scope: { o: "=" },
     link: function( scope ) {
       scope.shared = shared;
     },
     templateUrl: "ang/templates/shared/observation.html"
-  }
+  };
+}]);
+
+iNatAPI.directive( "userIcon", [ "shared", function( shared ) {
+  return {
+    scope: { u: "=" },
+    link: function( scope ) {
+      scope.shared = shared;
+    },
+    templateUrl: "ang/templates/shared/user_icon.html"
+  };
+}]);
+
+iNatAPI.directive( "userLogin", [ function( ) {
+  return {
+    scope: { u: "=" },
+    templateUrl: "ang/templates/shared/user_login.html"
+  };
 }]);

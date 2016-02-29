@@ -1970,3 +1970,21 @@ p.spam {
 }
 
 .preferred_curator_coordinate_access_field .status { display: inline; }
+
+user-icon .userimage {
+  border-radius: 120px;
+  width: 48px;
+  height: 48px;
+  line-height: 45px;
+  font-size: 32px;
+  background-size: cover;
+  background-position: center;
+  background-color: #aaa;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  display: block;
+}
+user-icon .icon-person:before {
+  font-size: 1.3em;
+}

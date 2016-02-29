@@ -58,6 +58,8 @@ class Taxon < ActiveRecord::Base
       statuses: conservation_statuses.map(&:as_indexed_json)
     }
     json[:ancestry] = json[:ancestor_ids].join(",")
+    json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
+      json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     unless options[:for_observation]
       json.merge!({
         created_at: created_at,

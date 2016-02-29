@@ -5,7 +5,6 @@
   <%= google_maps_js %>
   <script type="text/javascript">
     var PROJECT = <%=json_escape @project.to_json.html_safe %>,
-        RULE_PLACE = <%=json_escape @project.rule_place.to_json.html_safe %>,
         PLACE = <%=json_escape @project.place.to_json(:methods => [:kml_url]).html_safe %>,
         SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
@@ -81,7 +80,7 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
 
   <div class="column span-24">
-    <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
+    <fieldset id="bioblitz" style="<%= "display:none;" unless @project.bioblitz? %>">
       <legend><%=t :bioblitz %></legend>
       <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
       <div class="column span-12">
@@ -129,13 +128,22 @@
     </fieldset>
   </div>
 
-  <% if is_curator? -%>
-    <fieldset class="observationrules curatorsonly">
-      <legend><%= t(:observation_aggregation).titleize %></legend>
-      <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
-      <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
-    </fieldset>
-  <% end -%>
+  <fieldset id="aggregation" class="observationrules<% unless @project.bioblitz? || is_curator? -%> curatorsonly<% end -%>" <% unless @project.bioblitz? || is_curator? -%>style="display:none"<% end -%>>
+    <legend><%= t(:observation_aggregation).titleize %></legend>
+    <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
+    <div id="last_aggregated_at" class="column span-24" <% unless @project.prefers_aggregation? -%>style="display:none"<% end -%>>
+      <div class="inlabel">
+        <label for="last_aggregated_at">
+          <%= t("activerecord.projects.last_aggregated_at") %>
+        </label>
+      </div>
+      <div class="description"><%= t("views.projects.edit.last_aggregated_at_desc") %></div>
+      <span class="static_value">
+        <%= f.object.last_aggregated_at ? f.object.last_aggregated_at.iso8601 : t("views.projects.edit.aggregation_pending") %>
+      </span>
+    </div>
+    <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
+  </fieldset>
 
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
@@ -181,31 +189,17 @@
     <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
 
-  <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
-    <div class="column span-24">
-      <fieldset id="taxa">
-        <legend><%=t :checklist %></legend>
-        <%= f.check_box :prefers_count_from_list,
-            :label => t(:show_total_listed_taxa),
-            :label_after => true,
-            :description => t(:show_the_total_number_of) %>
-        <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
-      </fieldset>
-    </div>
+  <div class="column span-24">
+    <fieldset id="taxa">
+      <legend><%=t :project_list %></legend>
+      <%=t 'views.projects.edit.project_list_desc_html' %>
+      <%= f.check_box :prefers_display_checklist,
+          :label => t(:display_link_to_checklist),
+          :label_after => true %>
+    </fieldset>
+  </div>
     
-    <% if project.place && project.place.check_list %>
-      <div class="column span-24">
-        <fieldset class="unobserved-listings">
-          <legend><%=t :unobserved_listings %></legend>
-          <p class="description">
-            <%=t :select_how_unobserved_listings_are_displayed %>
-          </p>
-          <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
-          <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
-        </fieldset>
-      </div>
-    <% end %>
-
+  <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
     <fieldset id="project_assets">
       <legend><%=t :project_assets %></legend>
       <%=t 'views.projects.edit.project_assets_desc_html' %>

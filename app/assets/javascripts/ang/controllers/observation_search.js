@@ -229,7 +229,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.alignMapOnSearch = true;
         $scope.params.place_id = $scope.selectedPlace.id;
       }
-    } else {
+    } else if( !_.isArray( $scope.params.place_id) ) {
       $scope.alignMapOnSearch = false;
       $scope.params.place_id = "any";
     }
@@ -256,10 +256,17 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
   };
   $scope.initializePlaceParams = function( ) {
-    if( $scope.params.place_id ) {
+    $scope.params.place_id = $scope.params["place_id[]"] || $scope.params.place_id;
+    if( _.isString( $scope.params.place_id ) ) {
+      $scope.params.place_id = _.filter( $scope.params.place_id.split(","), _.identity );
+    }
+    if( _.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
+      $scope.params.place_id = $scope.params.place_id[0];
+    }
+    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
       $scope.params.place_id = parseInt( $scope.params.place_id );
     }
-    if( $scope.params.place_id ) {
+    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
       // load place name and polygon from ID
       PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
@@ -291,6 +298,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // set params from the URL and lookup any Taxon or Place selections
   $scope.setInitialParams = function( ) {
     var initialParams = _.extend( { }, $scope.defaultParams, $location.search( ) );
+    if( initialParams.verifiable === "true" ) {
+      initialParams.verifiable = true;
+    }
     // turning the key taxon_ids[] into taxon_ids
     if( initialParams["taxon_ids[]"] ) {
       initialParams.taxon_ids = initialParams["taxon_ids[]"];
@@ -377,7 +387,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       });
       // prepare current settings to store in browser state history
       currentState = { params: stateParams, selectedPlace: $scope.selectedPlace,
-        selectedTaxon: $scope.selectedTaxon,
+        selectedTaxon: JSON.stringify($scope.selectedTaxon),
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
@@ -486,7 +496,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.numberTaxaShown = 15;
     $scope.numberIdentifiersShown = 15;
     $scope.numberObserversShown = 15;
-    $scope.observersSort = "observationCount";
+    $scope.observersSort = "-observationCount";
     options = options || { };
     $scope.updateBrowserLocation( options );
     $scope.observations = [ ];
@@ -841,7 +851,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       search_external: false,
       taxon_id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
-        $scope.selectedTaxon = new iNatModels.Taxon( result.item );
+        $scope.selectedTaxon = result.item;
         $scope.params.taxon_id = result.item.id;
         $scope.searchAndUpdateStats( );
       },
@@ -856,8 +866,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.updateTaxonAutocomplete = function( ) {
     if( $scope.selectedTaxon ) {
-      var t = new iNatModels.Taxon( $scope.selectedTaxon );
-      $( "input[name='taxon_name']" ).trigger( "assignTaxon", t );
+      $( "input[name='taxon_name']" ).trigger( "assignTaxon", $scope.selectedTaxon );
     } else {
       $( "#filters input[name='taxon_name']" ).trigger( "search" );
     }
@@ -878,6 +887,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           new google.maps.LatLng( state.mapBounds.south, state.mapBounds.west ),
           new google.maps.LatLng( state.mapBounds.north, state.mapBounds.east ));
       } else { $scope.mapBounds = null };
+      // needed to serialize the taxon for storing in browser state
+      // so now turn it back into a Taxon object for comparison
+      if( state.selectedTaxon ) {
+        state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
+      }
       if( state.selectedTaxon != $scope.selectedTaxon ) {
         $scope.selectedTaxon = state.selectedTaxon;
         $scope.updateTaxonAutocomplete( );

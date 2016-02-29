@@ -261,7 +261,7 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em list_id)
+  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
@@ -394,7 +394,13 @@ class Observation < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
     where("ST_Intersects(place_geometries.geom, observations.private_geom)")
   }
-  
+
+  # should use .select("DISTINCT observations.*")
+  scope :in_places, lambda {|place_ids|
+    joins("JOIN place_geometries ON place_geometries.place_id IN (#{place_ids.join(",")})").
+    where("ST_Intersects(place_geometries.geom, observations.private_geom)")
+  }
+
   scope :in_taxons_range, lambda {|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
@@ -1161,7 +1167,11 @@ class Observation < ActiveRecord::Base
     # community_supported_id? && research_grade_candidate?
     quality_grade == RESEARCH_GRADE
   end
-  
+
+  def verifiable?
+    [ NEEDS_ID, RESEARCH_GRADE ].include?(quality_grade)
+  end
+
   def photos?
     observation_photos.loaded? ? ! observation_photos.empty? : observation_photos.exists?
   end

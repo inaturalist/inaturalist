@@ -117,6 +117,7 @@ class Observation < ActiveRecord::Base
       identifications_count: num_identifications_by_others,
       comments: comments.map(&:as_indexed_json),
       comments_count: comments.size,
+      obscured: coordinates_obscured? || geoprivacy_obscured?,
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
@@ -193,6 +194,8 @@ class Observation < ActiveRecord::Base
     current_user = options[:current_user] || params[:viewer]
     p = params[:_query_params_set] ? params : query_params(params)
     return nil unless Observation.able_to_use_elasticsearch?(p)
+    # one of the param initializing steps saw an impossible condition
+    return nil if p[:empty_set]
     p = site_search_params(options[:site], p)
     search_wheres = { }
     complex_wheres = [ ]
@@ -233,10 +236,10 @@ class Observation < ActiveRecord::Base
       { http_param: :month, es_field: "observed_on_details.month" },
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
-      { http_param: :place, es_field: "place_ids" },
+      { http_param: :place_id, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" }
     ].each do |filter|
-      unless p[ filter[:http_param] ].blank?
+      unless p[ filter[:http_param] ].blank? || p[ filter[:http_param] ] == "any"
         search_filters << { terms: { filter[:es_field] =>
           [ p[ filter[:http_param] ] ].flatten.map{ |v|
             ElasticModel.id_or_object(v) } } }
@@ -514,7 +517,7 @@ class Observation < ActiveRecord::Base
       { cached_votes_total: sort_order }
     when "id"
       { id: sort_order }
-    else "observations.id"
+    else
       { created_at: sort_order }
     end
 
@@ -561,12 +564,12 @@ class Observation < ActiveRecord::Base
         } } }
       }
     }
-    if params[:place]
+    if params[:place_id]
       # if a place condition is specified, return all results
       # from the place(s) specified, or where place is NULL
       status_condition[:nested][:query][:filtered][:filter] = { bool: { should: [
         { terms: { "taxon.statuses.place_id" =>
-          [ params[:place] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
+          [ params[:place_id] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
         { missing: { field: "taxon.statuses.place_id" } }
       ] } }
     else
