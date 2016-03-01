@@ -56,7 +56,7 @@ module DarwinCore
     end
 
     def make_metadata
-      m = DarwinCore::Metadata.new(@opts)
+      m = DarwinCore::Metadata.new(@opts.merge(uri: FakeView.observations_url(observations_params)))
       tmp_path = File.join(@work_path, "metadata.eml.xml")
       open(tmp_path, 'w') do |f|
         f << m.render(:file => @opts[:metadata])

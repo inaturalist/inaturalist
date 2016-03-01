@@ -19,7 +19,8 @@ module DarwinCore
       @extent     = scope.calculate(:extent, :geom)
       @start_date = scope.minimum(:observed_on)
       @end_date   = scope.maximum(:observed_on)
-      @license = options[:license]
+      @license    = options[:license]
+      @uri        = options[:uri]
     end
   end
 end

@@ -9,8 +9,8 @@
     system="http://gbif.org" 
     scope="system">
   <dataset>
-    <alternateIdentifier>http://www.inaturalist.org/observations?quality_grade=research</alternateIdentifier>
-    <title xml:lang="en">iNaturalist research-grade observations</title>
+    <alternateIdentifier><%=raw @uri %></alternateIdentifier>
+    <title xml:lang="en">iNaturalist Research-grade Observations</title>
     
     <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "creator", :data => @creator} %>
     <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "metadataProvider", :data => @metadata_provider} %>
