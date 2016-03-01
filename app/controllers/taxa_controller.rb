@@ -207,7 +207,7 @@ class TaxaController < ApplicationController
           @listed_taxa = ListedTaxon.joins(:list).
             where(taxon_id: @taxon, lists: { user_id: current_user })
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
-          @current_user_lists = current_user.lists.includes(:rules)
+          @current_user_lists = current_user.lists.includes(:rules).where("type IN ('LifeList', 'List')").limit(200)
           @lists_rejecting_taxon = @current_user_lists.select do |list|
             if list.is_a?(LifeList) && (rule = list.rules.detect{|rule| rule.operator == "in_taxon?"})
               !rule.validates?(@taxon)
@@ -814,7 +814,9 @@ class TaxaController < ApplicationController
       p.valid? ? nil : p.errors.full_messages
     end.flatten.compact
     @taxon.photos = photos
-    @taxon.save
+    unless @taxon.save
+      errors += "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+    end
     unless photos.count == 0
       Taxon.delay(:priority => INTEGRITY_PRIORITY).update_ancestor_photos(@taxon.id, photos.first.id)
     end
