@@ -137,6 +137,9 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
+        if( !scope.date ) {
+          return shared.t('unknown');
+        }
         var date = moment(scope.date),
             now = moment(new Date()),
             dateString;

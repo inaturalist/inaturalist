@@ -671,7 +671,8 @@ class User < ActiveRecord::Base
     user_id ||= "signed_on"
     site_name = options[:site].try(:name) || options[:site_name]
     site_name ||= user.site.try(:name) if user.is_a?(User)
-    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}"
+    version = ApplicationController::HEADER_VERSION
+    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}_#{version}"
   end
 
   def self.update_identifications_counter_cache(user_id)

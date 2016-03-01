@@ -33,9 +33,8 @@
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name", value: params[:taxon_name] }
             %input{ type: "hidden", name: "taxon_id" }
-            %span= t(:near, default: "near").capitalize
             %span#place-name-input
-              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
+              %input#place_name.form-control{ name: "place_name", placeholder: t(:location), type: "text", "ng-model": "placeSearch" }
               %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
   #stats-container
     .container.container-fixed
