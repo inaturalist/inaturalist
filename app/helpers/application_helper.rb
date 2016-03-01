@@ -1183,6 +1183,8 @@ module ApplicationHelper
       else ""
       end
       content_tag(:div, ofv.value.gsub(/\s/, ''), :class => css_class)
+    elsif ofv.observation_field.datatype == ObservationField::TEXT
+      formatted_user_text( ofv.value, skip_simple_format: true )
     else
       ofv.value
     end
