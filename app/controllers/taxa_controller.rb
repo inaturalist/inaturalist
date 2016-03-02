@@ -815,7 +815,7 @@ class TaxaController < ApplicationController
     end.flatten.compact
     @taxon.photos = photos
     unless @taxon.save
-      errors += "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+      errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
     end
     unless photos.count == 0
       Taxon.delay(:priority => INTEGRITY_PRIORITY).update_ancestor_photos(@taxon.id, photos.first.id)
