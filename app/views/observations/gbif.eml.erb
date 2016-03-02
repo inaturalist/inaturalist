@@ -9,7 +9,7 @@
     system="http://gbif.org" 
     scope="system">
   <dataset>
-    <alternateIdentifier><%=raw @uri %></alternateIdentifier>
+    <alternateIdentifier><![CDATA[<%=raw @uri %>]]></alternateIdentifier>
     <title xml:lang="en">iNaturalist Research-grade Observations</title>
     
     <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "creator", :data => @creator} %>
