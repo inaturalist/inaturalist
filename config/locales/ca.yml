@@ -57,6 +57,9 @@ ca:
   x_faves:
     one: 1 favorit
     other: '%{count} favorits'
+  x_people_like_this:
+    one: 1 persona li agrada aquest(a)
+    other: '%{count} persones els agrada aquest(a)'
   x_people_agree_html:
     one: <span class='count'>1</span> persona està d'acord
     other: <span class='count'>%{count}</span> persones estan d'acord
@@ -273,7 +276,7 @@ ca:
     other_animals: Altres animals
     plants: Plantes
     protozoans: Protozous
-    ray_finned_fishes: Peixos amb aletes radiades
+    ray_finned_fishes: Peixos ossis
     reptiles: Rèptils
     life: Vida
     x_plantae:
@@ -292,8 +295,8 @@ ca:
       one: 1 mamífer
       other: '%{count} mamífers'
     x_actinopterygii:
-      one: 1 peix amb aletes radiades
-      other: '%{count} peixos amb aletes radiades'
+      one: 1 peix ossi
+      other: '%{count} peixos ossis'
     x_reptilia:
       one: 1 rèptil
       other: '%{count} rèptils'
@@ -2210,7 +2213,7 @@ ca:
   observed_one: ha observat un(a)
   observer: Observador
   observers: Observadors
-  observer_short: Observador
+  observer_short: Obs.
   observing: observant
   occurence_status_describes_how: L'estat d'ocurrència indica el grau de presència
     o raresa d'un tàxon en una àrea determinada. Aneu a DarwinCore per <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus">
@@ -2673,7 +2676,7 @@ ca:
     variety: varietat
     form: forma
     leaves: fulles
-  ray_finned_fishes: peixos amb aletes radiades
+  ray_finned_fishes: peixos ossis
   re_apply_list_rules: Torna a aplicar les regles de la llista
   re_order_photos: Reordena fotos »
   read_our_getting_started_guide: llegeix la nostra Guia d'inici
