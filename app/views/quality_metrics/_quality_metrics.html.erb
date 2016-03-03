@@ -34,7 +34,7 @@
           <% end -%>
         </td>
       </tr>
-      <% unless (o.community_supported_id? && o.community_taxon_at_species_or_lower?) || !o.research_grade_candidate? %>
+      <% if o.research_grade_candidate? %>
         <tr>
           <td>
             <%=t :still_needs_id? %>
@@ -96,16 +96,22 @@
                     </strong>
                   <% end -%>
                 <% else %>
-                  <% if logged_in? -%>
-                    <% unless o.needs_id? %>
-                      <%= link_to t(:yes), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
+                  <% unless o.needs_id? && o.find_votes_for(vote_scope: :needs_id).length == 0 -%>
+                    <% if logged_in? -%>
+                      <%= link_to t(:yes), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                    <% else -%>
+                      <%= link_to t(:yes), login_path, :class => "inlineblock status" %>                      
                     <% end -%>
-                    <%= link_to t(:no), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id, vote: :no), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-                  <% else %>
-                    <% unless o.needs_id? %>
-                      <%= link_to t(:yes), login_path, :class => "inlineblock status" %> /
+                  <% end -%>
+                  <% unless (o.needs_id? && o.find_votes_for(vote_scope: :needs_id).length == 0) || ((o.community_supported_id? && o.community_taxon_at_species_or_lower?) && o.find_votes_for(vote_scope: :needs_id).length == 0) -%>
+                    /
+                  <% end -%>
+                  <% unless (o.community_supported_id? && o.community_taxon_at_species_or_lower?) && o.find_votes_for(vote_scope: :needs_id).length == 0 -%>
+                    <% if logged_in? -%>
+                      <%= link_to t(:no), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id, vote: :no), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                    <% else -%>
+                      <%= link_to t(:no), login_path, :class => "inlineblock status" %>                      
                     <% end -%>
-                    <%= link_to t(:no), login_path, :class => "inlineblock status" %>
                   <% end -%>
                 <% end -%>
               </div>
