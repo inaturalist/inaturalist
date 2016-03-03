@@ -12,7 +12,7 @@ module DarwinCore
       @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "gbif.eml.erb")
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
-      @opts[:photo_licenses] ||= ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
+      @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:licenses] ||= ["any"]
       @opts[:licenses] = @opts[:licenses].first if @opts[:licenses].size == 1
       @opts[:private_coordinates] ||= false

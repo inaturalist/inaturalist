@@ -78,6 +78,17 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
       expect( row['id'].to_i ).to eq o.taxon_id
     end
   end
+
+  it "should not include unlicensed photos by default" do
+    expect( p.license ).not_to eq Photo::COPYRIGHT
+    without_delay { p.update_attributes( license: Photo::COPYRIGHT ) }
+    expect( p.license ).to eq Photo::COPYRIGHT
+    expect( Photo.count ).to eq 1
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    csv = CSV.read(archive.make_simple_multimedia_data)
+    expect( csv.size ).to eq 1 # just the header
+  end
+
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
