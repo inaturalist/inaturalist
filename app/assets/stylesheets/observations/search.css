@@ -361,7 +361,7 @@ inat-taxon.split-taxon .icon {display: none;}
   width: 900px;
 }
 #filters .dropdown-menu { background-color: #eee; padding: 0px;}
-#filters .ac-chooser { display: inline-block; }
+.primary-filters .ac-chooser { display: inline-block; }
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
 #filter-container { margin-left: 10px; }
@@ -919,6 +919,7 @@ inat-taxon { white-space: nowrap; }
   padding-left: 5px;
   color: #ddd;
   background: #fff;
+  z-index: 2;
 }
 .searchclear.glyphicon:hover {
   color: #666;

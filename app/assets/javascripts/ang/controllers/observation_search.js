@@ -125,6 +125,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.setupPlaceSearchbox( );
     $scope.determineFieldNames( );
     $scope.setupTaxonAutocomplete( );
+    $scope.setupInatPlaceAutocomplete( );
     $scope.setupBrowserStateBehavior( );
     $scope.filtersInitialized = true;
     // someone searched with taxon_name, but no mathing taxon was found,
@@ -228,10 +229,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.mapBoundsIcon = null;
         $scope.alignMapOnSearch = true;
         $scope.params.place_id = $scope.selectedPlace.id;
+        $scope.updatePlaceAutocomplete( );
       }
     } else if( !_.isArray( $scope.params.place_id) ) {
       $scope.alignMapOnSearch = false;
       $scope.params.place_id = "any";
+      $scope.updatePlaceAutocomplete( );
     }
   });
   $scope.initializeTaxonParams = function( ) {
@@ -708,6 +711,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( !$( "#filter-container" ).is( e.target ) &&
           $( "#filter-container" ).has( e.target ).length === 0 &&
           $( ".open" ).has( e.target ).length === 0 &&
+          $( e.target ).closest('.ui-autocomplete').length === 0 &&
           $( e.target ).parents('.ui-datepicker').length === 0 &&
           $( e.target ).parents('.ui-datepicker-header').length === 0 &&
           $( e.target ).parents('.ui-multiselect-menu').length === 0 &&
@@ -849,7 +853,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       resetOnChange: false,
       bootstrapClear: true,
       search_external: false,
-      taxon_id_el: $( "#filters input[name='taxon_id']" ),
+      id_el: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
         $scope.selectedTaxon = result.item;
         $scope.params.taxon_id = result.item.id;
@@ -869,6 +873,30 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $( "input[name='taxon_name']" ).trigger( "assignTaxon", $scope.selectedTaxon );
     } else {
       $( "#filters input[name='taxon_name']" ).trigger( "search" );
+    }
+  };
+  $scope.setupInatPlaceAutocomplete = function( ) {
+    $( "input[name='inat_place_name']" ).placeAutocomplete({
+      resetOnChange: false,
+      bootstrapClear: true,
+      id_el: $( "#filters input[name='place_id']" ),
+      afterSelect: function( result ) {
+        $scope.filterByPlace( result.item );
+        if(!$scope.$$phase) { $scope.$digest( ); }
+      },
+      afterUnselect: function( ) {
+        $scope.removeSelectedPlace( );
+        if(!$scope.$$phase) { $scope.$digest( ); }
+      }
+    });
+  };
+  $scope.updatePlaceAutocomplete = function( ) {
+    if( $scope.selectedPlace ) {
+      $scope.selectedPlace.title = $scope.selectedPlace.display_name;
+      $( "input[name='inat_place_name']" ).
+        trigger( "assignSelection", $scope.selectedPlace );
+    } else {
+      $( "#filters input[name='inat_place_name']" ).trigger( "search" );
     }
   };
   $scope.setupBrowserStateBehavior = function( ) {

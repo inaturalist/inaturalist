@@ -15,7 +15,9 @@
 //= require application
 //= require inaturalist
 //= require jquery/plugins/inat/taxon_selectors
+//= require jquery/plugins/inat/generic_autocomplete
 //= require jquery/plugins/inat/taxon_autocomplete
+//= require jquery/plugins/inat/place_autocomplete
 //= require jquery/plugins/inat/datepicker
 //= require underscore.min
 //= require jquery.textcomplete
