@@ -155,7 +155,7 @@
           <% if o.appropriate? -%>
             <span class="good"><%=t :yes %></span>
             <div class="small meta">
-              <%= link_to t(:inappropriate), "/help#inappropriate" %>
+              <%= t(:inappropriate?) %>
               <div class="right">
                 <%= link_to t(:flag_this_observation), new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
               </div>
