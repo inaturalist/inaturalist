@@ -118,9 +118,10 @@ module DarwinCore
       
       preloads = [
         :taxon, 
-        {:user => :stored_preferences}, 
+        { user: :stored_preferences }, 
         :quality_metrics, 
-        :identifications
+        :identifications,
+        { observations_places: :place }
       ]
       
       start = Time.now
