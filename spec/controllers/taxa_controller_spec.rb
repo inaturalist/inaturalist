@@ -26,6 +26,11 @@ describe TaxaController do
       get :show, id: t.id, place_id: p.id
       expect(response.body).to be =~ /<h2>.*?#{tn2.name}.*?<\/h2>/m
     end
+
+    it "should 404 for absurdly large ids" do
+      get :show, id: "389299563_507aed5ae4_s.jpg"
+      expect( response ).to be_not_found
+    end
   end
 
   describe "merge" do

@@ -144,7 +144,14 @@ class TaxaController < ApplicationController
     if params[:entry] == 'widget'
       flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
     end
-    @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first if params[:id]
+    if params[:id]
+      begin
+        @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
+      rescue RangeError => e
+        Logstasher.write_exception(e, request: request, session: session, user: current_user)
+        nil
+      end
+    end
     return render_404 unless @taxon
     
     respond_to do |format|
