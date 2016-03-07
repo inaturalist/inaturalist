@@ -4078,10 +4078,12 @@ en:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Please check the spelling for each entry. If your spelling is
-          correct, please search on the species at %{search_taxa_url}. If the
+          correct, search for the species at %{search_taxa_url}. If the
           name is not yet in the %{site_name} database, you'll need to add it
-          before your bulk upload will work. Use the box at the bottom of the
-          search page to do import new names.
+          before your bulk upload will work. Use the box at the bottom of
+          the search page to import new names. If the name is present but
+          applies to multiple valid taxa, try to use a more or less specific
+          name that only matches a single taxon. 
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended

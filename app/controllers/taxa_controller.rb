@@ -214,7 +214,13 @@ class TaxaController < ApplicationController
           @listed_taxa = ListedTaxon.joins(:list).
             where(taxon_id: @taxon, lists: { user_id: current_user })
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
-          @current_user_lists = current_user.lists.includes(:rules).where("type IN ('LifeList', 'List')").limit(200)
+          @current_user_lists = current_user.lists.includes(:rules).
+            where("(type IN ('LifeList', 'List') OR type IS NULL)").
+            order("lower( lists.title )").
+            limit(200).to_a
+          if life_list_index = @current_user_lists.index{|l| l.id == current_user.life_list_id}
+            @current_user_lists.insert(0, @current_user_lists.delete_at( life_list_index ) )
+          end
           @lists_rejecting_taxon = @current_user_lists.select do |list|
             if list.is_a?(LifeList) && (rule = list.rules.detect{|rule| rule.operator == "in_taxon?"})
               !rule.validates?(@taxon)
