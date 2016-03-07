@@ -965,6 +965,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.params.user_id = CURRENT_USER.login;
     }
   };
+  $scope.canShowObservationFields = function( ) {
+    return ($scope.params.observationFields && _.size( $scope.params.observationFields ) > 0);
+  }
   $scope.setObservationFields = function( ) {
     var urlParams = $location.search( );
     // Put the URL params that correspond to observation fields in their own part of the scope
