@@ -91,12 +91,6 @@ autocompleter.taxonTemplate = function( result, fieldValue ) {
   return wrapperDiv;
 };
 
-autocompleter.selectedTaxonID = function( options ) {
-  options = options || { };
-  options.id_el = options.id_el || $("#taxon_id");
-  return options.id_el.val( );
-};
-
 autocompleter.createWrappingDiv = function( field, options ) {
   if( !field.parent().hasClass( "ac-chooser" ) ) {
     var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );
@@ -122,14 +116,12 @@ autocompleter.createWrappingDiv = function( field, options ) {
   }
 };
 
-autocompleter.menuClosed = function( ) {
-  return ( $("ul.ac-menu:visible").length == 0 );
-};
-
 $.fn.taxonAutocomplete = function( options ) {
   options = options || { };
+  options.id_el = options.id_el || $( "#taxon_id" );
   if( !options.id_el ) { return; }
   var field = this;
+  field.template = autocompleter.taxonTemplate;
   var source = function( request, response ) {
     $.ajax({
       url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete",
@@ -189,6 +181,11 @@ $.fn.taxonAutocomplete = function( options ) {
           if( ac.searchInProgress === thisSearch ) {
             ac.searchInProgress = false;
             ac.menu.element.empty( );
+            data = _.map( data, function( r ) {
+              var t = new iNatModels.Taxon( r );
+              t.preferred_common_name = t.preferredCommonName( iNaturalist.localeParams( ) );
+              return t;
+            });
             if( data.length == 0 ) {
               data.push({
                 type: "message",
@@ -202,6 +199,7 @@ $.fn.taxonAutocomplete = function( options ) {
               });
             }
             ac._suggest( data );
+            field.focus( );
           }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -211,6 +209,7 @@ $.fn.taxonAutocomplete = function( options ) {
       // this is the hacky way I'm preventing autocomplete from closing
       // the result list while the external search is happening
       ac.keepOpen = true;
+      setTimeout( function( ){ ac.keepOpen = false; }, 10 );
       e.preventDefault( );
       return false;
     }
@@ -222,7 +221,7 @@ $.fn.taxonAutocomplete = function( options ) {
     options.id_el.val( ui.item.id );
     // set the selection's thumbnail image
     field.wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
-    selectedTaxon = ui.item;
+    field.selection = ui.item;
     if( options.afterSelect ) { options.afterSelect( ui ); }
     return false;
   };
@@ -237,35 +236,16 @@ $.fn.taxonAutocomplete = function( options ) {
     li.addClass( "active" );
     return false;
   };
-  var renderItem = function( ul, item ) {
-    var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
-      append( autocompleter.taxonTemplate( item, field.val( ))).
-      appendTo( ul );
-    if( options.extra_class ) {
-      li.addClass( options.extra_class );
-    }
-    return li;
-  };
 
-  var ac = this.genericAutocomplete( _.extend( options, {
+  var ac = this.genericAutocomplete( _.extend( { }, {
+    extra_class: "taxon",
     source: source,
     select: select,
     focus: focus,
-    renderTemplate: autocompleter.taxonTemplate,
-    renderItem: renderItem,
     createWrappingDiv: autocompleter.createWrappingDiv
-  }));
-
-
-
-
+  }, options ));
   ac._close = function( event ) {
-    if( this.keepOpen ) {
-      // we wanted to keep the menu open and we have, but reset that
-      // option to it's default state of false very soon
-      setTimeout( function( ){ this.keepOpen = false; }, 10 );
-      return;
-    }
+    if( this.keepOpen ) { return; }
     if( this.menu.element.is( ":visible" ) ) {
       var that = this;
       that.menu.blur( );
@@ -279,44 +259,21 @@ $.fn.taxonAutocomplete = function( options ) {
       }, 10 );
     }
   };
-
-  field.bind( "assignTaxon", function( e, t ) {
+  field.bind( "assignSelection", function( e, t ) {
     options.id_el.val( t.id );
-    field.val( t.preferred_common_name || t.name );
+    t.title = t.preferred_common_name || t.name;
+    field.val( t.title );
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
-    selectedTaxon = t;
+    field.selection = t;
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
-  field.bind( "resetTaxonSelection", function( e ) {
+  field.bind( "resetSelection", function( e ) {
     if( options.id_el.val( ) !== null ) {
       options.id_el.val( null );
       field.wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
       if( options.afterUnselect ) { options.afterUnselect( ); }
     }
-    selectedTaxon = null;
+    field.selection = null;
   });
-  field.bind( "resetAll", function( e ) {
-    field.trigger( "resetTaxonSelection" );
-    field.val( null );
-    if( field.searchClear ) { $(field.searchClear).hide( ); }
-  });
-  if( options.allow_placeholders !== true ) {
-    field.blur( function( ) {
-      if( options.resetOnChange === false && selectedTaxon ) {
-        field.val( selectedTaxon.preferred_common_name ||
-          selectedTaxon.preferred_english_name || selectedTaxon.title );
-      }
-      // adding a small timeout to allow the autocomplete JS to make
-      // a selection or not before deciding if we need to clear the field
-      setTimeout( function( ) {
-        if( !autocompleter.selectedTaxonID( options ) && autocompleter.menuClosed( )) {
-          field.val( null );
-          field.trigger( "resetTaxonSelection" );
-          selectedTaxon = null;
-          if( field.searchClear ) { $(field.searchClear).hide( ); }
-        }
-      }, 20);
-    });
-  }
 };

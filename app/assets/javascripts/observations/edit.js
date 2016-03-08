@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('.species_guess').taxonAutocomplete({
-    taxon_id_el: $("#observation_taxon_id"),
+    id_el: $("#observation_taxon_id"),
     show_placeholder: true,
     allow_placeholders: true });
   $('.observed_on_string').iNatDatepicker();

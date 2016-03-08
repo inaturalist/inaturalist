@@ -19,14 +19,6 @@ genericAutocomplete.menuClosed = function( ) {
   return ( $("ul.ac-menu:visible").length == 0 );
 };
 
-genericAutocomplete.template = function( item ) {
-  var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
-  var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-  labelDiv.append( $( "<span/>" ).addClass( "title" ).
-    append( item.title ));
-  wrapperDiv.append( labelDiv );
-  return wrapperDiv;
-};
 
 genericAutocomplete.focus = function( e, ui ) {
   var ac = $(this).data( "uiAutocomplete" );
@@ -71,11 +63,43 @@ $.fn.genericAutocomplete = function( options ) {
     field.trigger( "resetSelection" );
     return false;
   });
+
+  field.select = function( e, ui ) {
+    // show the title in the text field
+    if( ui.item.id ) {
+      field.val( ui.item.title );
+    }
+    // set the hidden id field
+    options.id_el.val( ui.item.id );
+    if( options.afterSelect ) { options.afterSelect( ui ); }
+    e.preventDefault( );
+    return false;
+  };
+
+  field.template = field.template || function( item ) {
+    var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
+    var labelDiv = $( "<div/>" ).addClass( "ac-label" );
+    labelDiv.append( $( "<span/>" ).addClass( "title" ).
+      append( item.title ));
+    wrapperDiv.append( labelDiv );
+    return wrapperDiv;
+  };
+
+  field.renderItem = function( ul, item ) {
+    var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
+      append( field.template( item, field.val( ))).
+      appendTo( ul );
+    if( options.extra_class ) {
+      li.addClass( options.extra_class );
+    }
+    return li;
+  };
+
   var ac = field.autocomplete({
     minLength: 1,
     delay: 50,
     source: options.source,
-    select: options.select,
+    select: options.select || field.select,
     focus: options.focus || genericAutocomplete.focus
   }).data( "uiAutocomplete" );
   // modifying _move slightly to prevent scrolling with arrow
@@ -93,7 +117,7 @@ $.fn.genericAutocomplete = function( options ) {
     this.menu[ direction ]( e );
   };
   // custom simple _renderItem that gives the LI's class ac-result
-  ac._renderItem = options.renderItem || genericAutocomplete.renderItem;
+  ac._renderItem = field.renderItem;
   // custom simple _renderMenu that removes the ac-menu class
   ac._renderMenu = options.renderMenu || genericAutocomplete.renderMenu
   field.keydown( function( e ) {

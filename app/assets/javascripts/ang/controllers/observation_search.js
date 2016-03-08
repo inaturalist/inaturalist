@@ -244,14 +244,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( $scope.params.taxon_id ) {
       // load taxon auto name and photo for autocomplete. Send locale
       // params to we load the right taxon name for the users's prefs
-      TaxaFactory.show( $scope.params.taxon_id, shared.localeParams( ) ).then( function( response ) {
-        taxa = TaxaFactory.responseToInstances( response );
-        if( taxa.length > 0 ) {
-          $scope.selectedTaxon = taxa[ 0 ];
+      TaxaFactory.show( $scope.params.taxon_id, iNaturalist.localeParams( ) ).
+        then( function( response ) {
+          taxa = TaxaFactory.responseToInstances( response );
+          if( taxa.length > 0 ) {
+            $scope.selectedTaxon = taxa[ 0 ];
+          }
+          $scope.updateTaxonAutocomplete( );
+          $scope.taxonInitialized = true;
         }
-        $scope.updateTaxonAutocomplete( );
-        $scope.taxonInitialized = true;
-      });
+      );
     } else {
       // this will remove the autocomlete image since there's no taxon
       $scope.updateTaxonAutocomplete( );
@@ -389,8 +391,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         createdDateType: $scope.params.createdDateType
       });
       // prepare current settings to store in browser state history
-      currentState = { params: stateParams, selectedPlace: $scope.selectedPlace,
-        selectedTaxon: JSON.stringify($scope.selectedTaxon),
+      currentState = { params: stateParams,
+        selectedPlace: JSON.stringify( $scope.selectedPlace ),
+        selectedTaxon: JSON.stringify( $scope.selectedTaxon ),
         mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
         mapBoundsIcon: $scope.mapBoundsIcon };
       currentSearch = urlParams;
@@ -508,7 +511,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.observers = [ ];
     $scope.resetStats( );
     var processedParams = ObservationsFactory.processParamsForAPI( _.extend( { },
-      $scope.params, shared.localeParams( ) ),
+      $scope.params, iNaturalist.localeParams( ) ),
       $scope.possibleFields);
     // recording there was some location in the search. That will be used
     // to hide the `Redo Search` button until the map moves
@@ -591,7 +594,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.pagination.section += 1;
     $scope.pagination.searching = true;
     var processedParams = ObservationsFactory.processParamsForAPI(
-      _.extend( { }, $scope.params, shared.localeParams( ),
+      _.extend( { }, $scope.params, iNaturalist.localeParams( ),
         { page: $scope.apiPage( ), per_page: $scope.pagination.perSection } ), $scope.possibleFields);
     ObservationsFactory.search( processedParams ).then( function( response ) {
       if( ( response.data.total_results <= ( response.data.page * response.data.per_page ) ) ||
@@ -657,6 +660,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $rootScope.$emit( "hideNearbyPlace" );
     $scope.selectedPlace = place;
     $scope.removeSelectedBounds( );
+    $scope.updatePlaceAutocomplete( );
   };
   $scope.filterByBounds = function( ) {
     $rootScope.$emit( "hideNearbyPlace" );
@@ -870,7 +874,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.updateTaxonAutocomplete = function( ) {
     if( $scope.selectedTaxon ) {
-      $( "input[name='taxon_name']" ).trigger( "assignTaxon", $scope.selectedTaxon );
+      $( "input[name='taxon_name']" ).trigger( "assignSelection", $scope.selectedTaxon );
     } else {
       $( "#filters input[name='taxon_name']" ).trigger( "search" );
     }
@@ -903,6 +907,14 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     window.onpopstate = function( event ) {
       var state = _.extend( { }, event.state || $scope.initialBrowserState );
       var previousParams = _.extend( { }, $scope.defaultParams, state.params );
+      // needed to serialize some objects for storing in browser state
+      // so now turn them back into object instances for comparison
+      if( state.selectedTaxon ) {
+        state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
+      }
+      if( state.selectedPlace ) {
+        state.selectedPlace = new iNatModels.Place( JSON.parse( state.selectedPlace ) );
+      }
       // we could set place and taxon below, and that should not run searches
       $scope.searchDisabled = true;
       $scope.mapBoundsIcon = state.mapBoundsIcon;
@@ -915,11 +927,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           new google.maps.LatLng( state.mapBounds.south, state.mapBounds.west ),
           new google.maps.LatLng( state.mapBounds.north, state.mapBounds.east ));
       } else { $scope.mapBounds = null };
-      // needed to serialize the taxon for storing in browser state
-      // so now turn it back into a Taxon object for comparison
-      if( state.selectedTaxon ) {
-        state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
-      }
       if( state.selectedTaxon != $scope.selectedTaxon ) {
         $scope.selectedTaxon = state.selectedTaxon;
         $scope.updateTaxonAutocomplete( );
@@ -1272,7 +1279,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       I18n.t( "loading" ) + "</div>", options );
     var time = new Date( ).getTime( );
     $scope.infoWindowCallbackStartTime =  time;
-    ObservationsFactory.show( observation_id, shared.localeParams( ) ).then( function( response ) {
+    ObservationsFactory.show( observation_id, iNaturalist.localeParams( ) ).then( function( response ) {
       observations = ObservationsFactory.responseToInstances( response );
       if( observations.length > 0 ) {
         $scope.infoWindowObservation = observations[ 0 ];

@@ -78,6 +78,14 @@ var iNaturalist = window.iNaturalist = new function(){
     elt.css('top', top + 'px')
   }
 
+  this.localeParams = function( ) {
+    var localeParams = { locale: I18n.locale };
+    if( PREFERRED_PLACE ) {
+      localeParams.preferred_place_id = PREFERRED_PLACE.id;
+    }
+    return localeParams;
+  };
+
 }; // end of the iNaturalist singleton
 
 // Class properties
