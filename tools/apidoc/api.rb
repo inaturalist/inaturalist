@@ -221,7 +221,7 @@ pagination info, check the X headers in the response. You should see
 <code>X-Total-Entries</code>, <code>X-Page</code>, and 
 <code>X-Per-Page</code>. JSON
 and ATOM responses are what you'd expect, but DwC is 
-<a href='http://rs.tdwg.org/dwc/terms/simple/index.htm'>Simple Darin Core</a>, an
+<a href='http://rs.tdwg.org/dwc/terms/simple/index.htm'>Simple Darwin Core</a>, an
 XML schema for biodiversity data. iNat uses JSON responses internally quite a
 bit, so it will probably always be the most information-rich. The widget
 response is a JS snippet that inserts HTML.  It should be used
