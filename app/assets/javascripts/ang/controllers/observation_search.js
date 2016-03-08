@@ -126,6 +126,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.determineFieldNames( );
     $scope.setupTaxonAutocomplete( );
     $scope.setupInatPlaceAutocomplete( );
+    $scope.setupUserAutocomplete( );
+    $scope.setupProjectAutocomplete( );
     $scope.setupBrowserStateBehavior( );
     $scope.filtersInitialized = true;
     // someone searched with taxon_name, but no mathing taxon was found,
@@ -221,6 +223,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     };
     scope.moreFiltersHidden = moreFiltersHidden;
   } );
+  $scope.$watch( "params.user_id", function( ) {
+    $scope.updateUserAutocomplete( );
+  });
+  $scope.$watch( "params.project_id", function( ) {
+    $scope.updateProjectAutocomplete( );
+  });
   // watch for place selections, unselections
   $scope.$watch( "selectedPlace", function( ) {
     if( $scope.selectedPlace && $scope.selectedPlace.id ) {
@@ -901,6 +909,56 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         trigger( "assignSelection", $scope.selectedPlace );
     } else {
       $( "#filters input[name='inat_place_name']" ).trigger( "search" );
+    }
+  };
+  $scope.setupUserAutocomplete = function( ) {
+    $( "input[name='user_name']" ).userAutocomplete({
+      resetOnChange: false,
+      bootstrapClear: true,
+      id_el: $( "#filters input[name='user_id']" ),
+      afterSelect: function( result ) {
+        $scope.params.user_id = result.item.login;
+        if(!$scope.$$phase) { $scope.$digest( ); }
+      },
+      afterUnselect: function( ) {
+        $scope.params.user_id = null;
+        if(!$scope.$$phase) { $scope.$digest( ); }
+      }
+    });
+    $scope.updateUserAutocomplete( );
+  };
+  $scope.updateUserAutocomplete = function( ) {
+    if( $scope.params.user_id ) {
+      $( "input[name='user_name']" ).
+        trigger( "assignSelection",
+          { id: $scope.params.user_id, title: $scope.params.user_id } );
+    } else {
+      $( "#filters input[name='user_name']" ).trigger( "search" );
+    }
+  };
+  $scope.setupProjectAutocomplete = function( ) {
+    $( "input[name='project_name']" ).projectAutocomplete({
+      resetOnChange: false,
+      bootstrapClear: true,
+      id_el: $( "#filters input[name='project_id']" ),
+      afterSelect: function( result ) {
+        $scope.params.project_id = result.item.slug;
+        if(!$scope.$$phase) { $scope.$digest( ); }
+      },
+      afterUnselect: function( ) {
+        $scope.params.project_id = null;
+        if(!$scope.$$phase) { $scope.$digest( ); }
+      }
+    });
+    $scope.updateProjectAutocomplete( );
+  };
+  $scope.updateProjectAutocomplete = function( ) {
+    if( $scope.params.project_id ) {
+      $( "input[name='project_name']" ).
+        trigger( "assignSelection",
+          { id: $scope.params.project_id, title: $scope.params.project_id } );
+    } else {
+      $( "#filters input[name='project_name']" ).trigger( "search" );
     }
   };
   $scope.setupBrowserStateBehavior = function( ) {

@@ -68,6 +68,10 @@
   display: inline-block;
   width: 450px;
 }
+.ui-autocomplete .user .ac-label {
+  display: inline-block;
+  width: 450px;
+}
 .ui-autocomplete .ac-message .ac-label {
   padding: 0 0 0 12px;
   line-height: 36px;
@@ -76,7 +80,7 @@
 .ui-autocomplete .ac-placeholder {
   font-weight: bold;
 }
-.ui-autocomplete .ac-label .title {
+.ui-autocomplete .ac-label .title, .ui-autocomplete .ac-label .chooseritem {
   font-size: 1.1em;
   display: block;
 }

@@ -921,7 +921,11 @@ inat-taxon { white-space: nowrap; }
   background: #fff;
   z-index: 2;
 }
-.searchclear.glyphicon:hover {
+input.filter-changed + .searchclear.glyphicon {
+  background: none;
+  color: #bbb;
+}
+.searchclear.glyphicon:hover, input.filter-changed + .searchclear.glyphicon:hover {
   color: #666;
   cursor: pointer;
 }
