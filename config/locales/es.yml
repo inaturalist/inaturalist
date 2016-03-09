@@ -1110,7 +1110,6 @@ es:
   embed_this_assessment: Incrusta esta evaluación
   embed_widget_project: Insertar un widget para este proyecto en su página web
   enable_offline_access: Habilitar el acceso sin conexión
-  enable_offline_access_for_iphone: Habilitar el acceso sin conexión para iPhone
   end: Final
   endangered: en peligro
   endemic: endémica
@@ -1864,7 +1863,8 @@ es:
   message: Mensaje
   messages: Mensajes
   mixed_licenses: Licencia combinada
-  misleading_or_illegal_content_html: Contenido ilegal, engañoso, racial, étnico, etc.
+  misleading_or_illegal_content_html: Contenido ilegal, engañoso, racial, étnico,
+    etc.
   mobile_app_for: Aplicación móvil para
   mobile_apps_for: Las aplicaciones móviles para
   mobile_view_available: Vista para teléfonos móviles disponible
@@ -2927,8 +2927,6 @@ es:
     o sitio web!
   show_only: Mostrar solamente
   show_taxa_from_both: (mostrar taxones de ambas listas)
-  show_the_total_number_of: Muestra el número total de especies o grupos en las listas
-    de proyecos junto con el número de especies o grupos observados.
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
   showing_observations_by: Mostrando observaciones hechas por
   showing_one_to: Mostrando 1 -
@@ -4088,8 +4086,8 @@ es:
           hasta que lo publique.
       generating_mobile_archive_tip_html: Esto puede llevar un tiempo, así que prueba
         a actualizar esta página en unos pocos minutos.
-      mobile_downloads_tip_html: Esta guía se puede descargar en el
-        aplicación para el iPhone para uso sin conexión.
+      mobile_downloads_tip_html: Esta guía se puede descargar en el aplicación para
+        el iPhone para uso sin conexión.
       mobile_downloads_help_html: |-
         <p>
           Esto creará un archivo descargable de todos los datos y los contenidos multimedia asociados con esta guía para que los usuarios de iPhone puedan ver todo el contenido de la guía sin una conexión a Internet. Tomará unos minutos generar el archivo, pero una vez que se habilite el archivo se actualizará cada vez que cambies esta guía.
@@ -4706,12 +4704,6 @@ es:
         invite_only_description: La membresía en este proyecto es sólo por invitación.
           Si quieres unirte, por favor ponte en contacto con uno de los curadores
           y solicita una invitación.
-      members:
-        bioblitz_notice_html: <strong>Nota:</strong> esta es sólo una lista de gente
-          que se sumaron a este proyecto explícitamente. Dado que este es un proyecto
-          de "bioblitz" (evaluación rápida) y las estadísticas se calculan para todas
-          las observaciones agregadas dentro de un determinado lugar y periodo de
-          tiempo, puede haber muchos más participantes de los que se enumeran aquí.
       project_location_privacy_notice_html: |-
         <p>
          Por favor, date cuenta que los curadores de proyectos podrán ver cualquier ubicación privada o oscurecida de tus observaciones en este proyecto a menos que declines el permiso, y también podrán añadir cualquiera de tus observaciones a este proyecto a menos que cambies tu  <a href="/users/edit"> configuración</a>. También puedes conceder o revocar el acceso a las observaciones del proyecto caso por caso.
@@ -4766,9 +4758,6 @@ es:
           <p>
            Para empezar, <a href="%{url}" class="readmore">haga una publicación</a>
           </p>
-        project_observations_desc: |-
-          Este sólo incluye observaciones explícitas añadidas a este
-          proyecto, no todas las observaciones registradas en el lugar y tiempo de este eventos.
         curated_checklist_desc: |-
           Esta es la lista curada y conteo de taxa a partir de las observaciones explícitas añadidas a este proyecto, no son todas las observaciones registradas en el lugar y tiempo de este
           evento.
