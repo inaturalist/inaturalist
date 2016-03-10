@@ -23,6 +23,7 @@ module DarwinCore
       %w(decimalLatitude http://rs.tdwg.org/dwc/terms/decimalLatitude),
       %w(decimalLongitude http://rs.tdwg.org/dwc/terms/decimalLongitude),
       %w(coordinateUncertaintyInMeters http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters),
+      %w(countryCode http://rs.tdwg.org/dwc/terms/countryCode),
       %w(identificationID http://rs.tdwg.org/dwc/terms/identificationID),
       %w(dateIdentified http://rs.tdwg.org/dwc/terms/dateIdentified),
       %w(identificationRemarks http://rs.tdwg.org/dwc/terms/identificationRemarks),
@@ -173,6 +174,10 @@ module DarwinCore
 
       def coordinateUncertaintyInMeters
         public_positional_accuracy
+      end
+
+      def countryCode
+        observations_places.map(&:place).detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
       end
 
       def identificationID

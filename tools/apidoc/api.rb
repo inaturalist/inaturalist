@@ -157,7 +157,7 @@ authentication, but if you want to access data like unobscured coordinates on
 behalf of users or write data to iNat, you will need to make authenticated
 requests (see below).
 EOT
-  post "/comments", :auth_required => true do
+  post "/comments", auth_required: true do
     desc "Create comments. Comments are automatically associated with the signed in user."
     formats %w(json)
     param "comment[parent_type]" do
@@ -175,17 +175,17 @@ EOT
     end
   end
 
-  put "/comments/:id", :auth_required => true do
+  put "/comments/:id", auth_required: true do
     desc "Update a comment. Params are the same as POST /comments."
     formats %w(json)
   end
 
-  delete "/comments/:id", :auth_required => true do
+  delete "/comments/:id", auth_required: true do
     desc "Delete a comment."
     formats %w(json)
   end
 
-  post "/identifications", :auth_required => true do
+  post "/identifications", auth_required: true do
     desc "Create identifications. Identifications are automatically associated with the signed in user."
     formats %w(json)
     
@@ -204,12 +204,12 @@ EOT
     end
   end
 
-  put "/identifications/:id", :auth_required => true do
+  put "/identifications/:id", auth_required: true do
     desc "Update a identification. Params are the same as POST /identifications."
     formats %w(json)
   end
 
-  delete "/identifications/:id", :auth_required => true do
+  delete "/identifications/:id", auth_required: true do
     desc "Delete a identification."
     formats %w(json)
   end
@@ -450,7 +450,7 @@ EOT
     end
   end
 
-  post "/observations", :auth_required => true do
+  post "/observations", auth_required: true do
     desc <<-EOT
       Primary endpoint for creating observations. POST params can be specified
       for a single observation (e.g. observation[species_guess]) or as
@@ -861,7 +861,7 @@ EOT
     formats %w(json)
   end
 
-  put "/observations/:id", :auth_required => true do
+  put "/observations/:id", auth_required: true do
     desc <<-EOT
       Update a single observation. Not that since most HTTP clients do not
       support PUT requests, you can fake it be specifying a _method param.
@@ -903,7 +903,7 @@ EOT
     end
   end
 
-  delete "/observations/:id", :auth_required => true do
+  delete "/observations/:id", auth_required: true do
     desc "Delete an observation. Authenticated user must own the observation."
     formats %w(json)
     example do
@@ -1010,6 +1010,51 @@ EOT
 }
       EOJS
     end
+  end
+
+  post "/observations/:id/quality/:metric", auth_required: true do
+    desc <<-EOT
+      Vote on quality metrics for an observation. These allow any user to vote
+      on aspects of any observation's data quality.
+    EOT
+    formats %w(json)
+    param "id" do
+      desc "ID of observation being voted on."
+      values "Observation ID integer"
+    end
+    param "metric" do
+      desc <<-EOT
+        Aspect of data quality being voted on. Possible values are
+        <code>wild</code> (whether or not observation is of a wild vs. captive
+        / cultivated organism),
+        <code>location</code> (whether or not coordinates seem accurate), 
+        <code>date</code> (whether or not date seem accurate).
+      EOT
+      values %w(wild location date)
+    end
+    param "agree" do
+      desc <<-EOT
+        Whether the user is voting yes or no on this metric, e.g. if the
+        metric is <code>wild</code> and agree is <code>false</code>, the user
+        is voting that the observation is not of a wild organism, i.e. it is
+        captive or cultivated.
+      EOT
+      values %w(true false)
+    end
+  end
+
+  delete "/observations/:id/quality/:metric", auth_required: true do
+    desc <<-EOT
+      Remove the user's vote on a quality metric. Not the same as voting no.
+      Same <code>id</code> and <code>metric</code> params as <code>POST
+      /observations/:id/quality/:metric</code>
+    EOT
+    formats %w(json)
+  end
+  
+  put "/observations/:id/viewed_updates" do
+    desc "Mark updates associated with this observation (e.g. new comment notifications) as viewed. Response should be NO CONTENT."
+    formats %w(json)
   end
   
   get "/observations/:username" do
@@ -1133,11 +1178,6 @@ EOT
     end
   end
 
-  put "/observations/:id/viewed_updates" do
-    desc "Mark updates associated with this observation (e.g. new comment notifications) as viewed. Response should be NO CONTENT."
-    formats %w(json)
-  end
-
   get "/observation_fields" do
     desc <<-EOT
       List / search observation fields. ObservationFields are basically
@@ -1153,7 +1193,7 @@ EOT
     end
   end
 
-  post "/observation_field_values", :auth_required => true do
+  post "/observation_field_values", auth_required: true do
     desc <<-EOT
       Create a new observation field value. ObservationFields are basically
       typed data fields that users can attach to observation.
@@ -1175,17 +1215,17 @@ EOT
     end
   end
 
-  put "/observation_field_values/:id", :auth_required => true do
+  put "/observation_field_values/:id", auth_required: true do
     desc "Update an observation field value. Parans are the same as POST /observation_field_values"
     formats %w(json)
   end
 
-  delete "/observation_field_values/:id", :auth_required => true do
+  delete "/observation_field_values/:id", auth_required: true do
     desc "Delete observation field value."
     formats %w(json)
   end
 
-  post "/observation_photos", :auth_required => true do
+  post "/observation_photos", auth_required: true do
     desc <<-EOT
       Add photos to observations. This is only for iNat-hosted photos. For
       adding photos hosted on other services, see POST /observations and PUT
@@ -1451,7 +1491,7 @@ EOT
     desc "JS widget snippet of the top contributors to a project."
   end
 
-  get "/projects/user/:login", :auth_required => true do
+  get "/projects/user/:login", auth_required: true do
     desc <<-EOT
 Lists projects the user specified by <code>:login</code> has joined. Actually it lists our
 ProjectUser records, which represent membership in a project.
@@ -1532,17 +1572,17 @@ EOT
     end
   end
 
-  post "/projects/:id/join", :auth_required => true do
+  post "/projects/:id/join", auth_required: true do
     desc "Adds the authenticated user as a member of the project"
     formats %w(json)
   end
 
-  delete "/projects/:id/leave", :auth_required => true do
+  delete "/projects/:id/leave", auth_required: true do
     desc "Removes the authenticated user as a member of the project"
     formats %w(json)
   end
 
-  post "/project_observations", :auth_required => true do
+  post "/project_observations", auth_required: true do
     desc "Add observations to projects"
     formats %w(json)
     param "project_observation[observation_id]" do
@@ -1616,12 +1656,12 @@ EOT
     formats %w(json)
   end
 
-  get "/users/edit", :auth_required => true do
+  get "/users/edit", auth_required: true do
     desc "Retrieve user profile info. Response should be like <code>POST /users</code> above."
     formats %w(json)
   end
 
-  get "/users/new_updates", :auth_required => true do
+  get "/users/new_updates", auth_required: true do
     desc "Get info about new updates for the authenticated user, e.g. comments and identifications on their content."
     formats %w(json)
     param "resource_type" do

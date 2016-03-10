@@ -1,6 +1,7 @@
 class QualityMetricsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :return_here, :except => [:vote]
+  before_action :doorkeeper_authorize!, if: lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
+  before_filter :return_here, except: [:vote]
   before_filter :load_observation
   
   def vote

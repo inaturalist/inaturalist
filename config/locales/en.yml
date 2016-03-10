@@ -1304,6 +1304,7 @@ en:
   inactive_taxon_concepts_are:
     Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change.
     Outdated concepts are kept to maintain history and compatability with some partner sites.
+  inappropriate: Inappropriate?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
@@ -1627,7 +1628,10 @@ en:
   message: Message
   messages: Messages
   mixed_licenses: mixed licenses
-  misleading_or_illegal_content: "Misleading or illegal content, racial or ethnic slurs, etc."
+  misleading_or_illegal_content_html: |
+    Misleading or illegal content, racial or ethnic slurs, etc. For more on
+    our definition of "appropriate," see the 
+    <a href="/help#inappropriate">FAQ</a>.
   mobile_app_for: Mobile app for
   mobile_apps_for: Mobile apps for
   mobile_view_available: Mobile view available
@@ -2142,7 +2146,9 @@ en:
             Nearby_Intersection: Nearby Intersection
             nearby_intersection: nearby intersection
             Open_Space: Open Space
-            open_space: open_space
+            open_space: open space
+            Parish: Parish
+            parish: parish
             Point_of_Interest: Point of Interest
             point_of_interest: point of interest
             Postal_Code: Postal Code
@@ -3184,6 +3190,7 @@ en:
   view_post: View post
   view_observation: View observation
   view_observations: View observations
+  view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
   view_observations_raquo: "View observations &raquo;"
   view_on: View on
@@ -4073,10 +4080,12 @@ en:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Please check the spelling for each entry. If your spelling is
-          correct, please search on the species at %{search_taxa_url}. If the
+          correct, search for the species at %{search_taxa_url}. If the
           name is not yet in the %{site_name} database, you'll need to add it
-          before your bulk upload will work. Use the box at the bottom of the
-          search page to do import new names.
+          before your bulk upload will work. Use the box at the bottom of
+          the search page to import new names. If the name is present but
+          applies to multiple valid taxa, try to use a more or less specific
+          name that only matches a single taxon. 
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended

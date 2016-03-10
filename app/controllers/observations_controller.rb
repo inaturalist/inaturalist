@@ -2471,7 +2471,12 @@ class ObservationsController < ApplicationController
        :projects,
        { taxon: :taxon_names }])
     end
-    @observation = scope.first
+    @observation = begin
+      scope.first
+    rescue RangeError => e
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
+      nil
+    end
     render_404 unless @observation
   end
   

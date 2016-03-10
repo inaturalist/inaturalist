@@ -72,7 +72,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
         
         # Look for the species and flag it if it's not found.
         taxon = Taxon.single_taxon_for_name(row[0])
-        errors << BulkObservationException.new("Species not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
+        errors << BulkObservationException.new("Single taxon not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
 
         # Check the validity of the observation
         obs = new_observation(row)

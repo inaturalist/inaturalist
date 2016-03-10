@@ -229,4 +229,16 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs.detect{|o| o['id'] == in_site.id.to_s} ).not_to be_nil
     expect( obs.detect{|o| o['id'] == not_in_site.id.to_s} ).to be_nil
   end
+
+  it "should include countryCode" do
+    country = make_place_with_geom( code: "US", admin_level: Place::COUNTRY_LEVEL )
+    o = without_delay do
+      make_research_grade_observation( latitude: country.latitude, longitude: country.longitude )
+    end
+    expect( o.observations_places.map(&:place) ).to include country
+    archive = DarwinCore::Archive.new
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['countryCode'] ).to eq country.code
+    end
+  end
 end

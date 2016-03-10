@@ -92,6 +92,14 @@ describe User do
       expect(u.email).to eq "foo@bar.com"
       expect(u).to be_valid
     end
+
+    it "should allow time_zone to be nil" do
+      expect( User.make( time_zone: nil ) ).to be_valid
+    end
+
+    it "should not allow time_zone to be a blank string" do
+      expect( User.make( time_zone: "" ) ).not_to be_valid
+    end
   end
 
   describe "update" do

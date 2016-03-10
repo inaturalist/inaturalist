@@ -24,7 +24,7 @@
   = f.radio_button :flag, Flag::INAPPROPRIATE, 
     :label => t(:offensive_inappropriate),
     :label_after => true, 
-    :description => t(:misleading_or_illegal_content)
+    :description => t(:misleading_or_illegal_content_html)
   - if @object.is_a?(Photo)
     = f.radio_button :flag, Flag::COPYRIGHT_INFRINGEMENT, 
       :id => "flag_#{Flag::COPYRIGHT_INFRINGEMENT.underscore}",

@@ -802,24 +802,6 @@
       </div>
     <% end -%>
   </div>
-  
-  <% if @observation.flagged? %>
-    <div id="flaggings_heads_up" class="description">
-      <%=t :heads_up_this_observation_has_been_flagged %>
-      <%= link_to t(:view_flags), observation_flags_path(@observation) %>
-      |
-      <%= link_to t(:add_another_flag), new_observation_flag_path(@observation),
-                  :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
-    </div>
-  <% else %>
-    <p class="description ui">
-      <%= t(:is_this_observation_offensive_html) %>
-      <%= link_to t(:flag_this_observation), new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
-    </p>
-    <p class="description ui">
-      <%=t :you_think_observation_inacurate %>
-    </p>
-  <% end %>
 
   <div id="sharing">
     <div id="fb-root"></div>
