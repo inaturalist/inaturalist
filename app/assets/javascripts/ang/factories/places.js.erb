@@ -1,4 +1,4 @@
-iNatAPI.factory( "PlacesFactory", [ "shared", function( shared ) {
+iNatAPI.factory(  "PlacesFactory", [ "shared", function( shared ) {
   var show = function( id ) {
     var url = "//<%= CONFIG.node_api_host %>/places/" + id;
     return shared.basicGet( url );

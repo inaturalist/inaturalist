@@ -1,4 +1,4 @@
-var application = angular.module( "ObservationSearch", [
+var application =  angular.module( "ObservationSearch", [
   "infinite-scroll",
   "templates",
   "ehFilters", // angular-capitalize
