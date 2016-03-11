@@ -392,6 +392,9 @@ class Place < ActiveRecord::Base
       end
     end
     
+    if options[:user].is_a?(User)
+      place.user_id = options[:user].id
+    end
     place.save
     place
   end

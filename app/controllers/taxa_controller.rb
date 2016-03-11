@@ -796,7 +796,7 @@ class TaxaController < ApplicationController
     (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
       ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
       next if ydn_places.blank?
-      @places << Place.import_by_woeid(ydn_places.first.woeid)
+      @places << Place.import_by_woeid(ydn_places.first.woeid, user: current_user)
     end
     
     @listed_taxa = @places.map do |place| 

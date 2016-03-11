@@ -151,7 +151,7 @@ class PlacesController < ApplicationController
   
   def create
     if params[:woeid]
-      @place = Place.import_by_woeid(params[:woeid])
+      @place = Place.import_by_woeid(params[:woeid], user: current_user)
     else
       @place = Place.new(params[:place])
       @place.user = current_user
