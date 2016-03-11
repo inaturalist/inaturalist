@@ -257,7 +257,7 @@ class ObservationsController < ApplicationController
         
         @places = @observation.places
         
-        @project_observations = @observation.project_observations.limit(100).to_a
+        @project_observations = @observation.project_observations.joins(:project).limit(100).to_a
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         
         @comments_and_identifications = (@observation.comments.all + 

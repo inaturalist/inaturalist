@@ -237,13 +237,14 @@ $.fn.taxonAutocomplete = function( options ) {
     return false;
   };
 
-  var ac = this.genericAutocomplete( _.extend( { }, {
+  var ac = field.genericAutocomplete( _.extend( { }, {
     extra_class: "taxon",
     source: source,
     select: select,
     focus: focus,
     createWrappingDiv: autocompleter.createWrappingDiv
   }, options ));
+  if( !ac ) { return; }
   ac._close = function( event ) {
     if( this.keepOpen ) { return; }
     if( this.menu.element.is( ":visible" ) ) {

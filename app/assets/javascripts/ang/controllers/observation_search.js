@@ -723,7 +723,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       if( !$( "#filter-container" ).is( e.target ) &&
           $( "#filter-container" ).has( e.target ).length === 0 &&
           $( ".open" ).has( e.target ).length === 0 &&
-          $( e.target ).closest('.ui-autocomplete').length === 0 &&
+          $( e.target ).parents('.ui-autocomplete').length === 0 &&
           $( e.target ).parents('.ui-datepicker').length === 0 &&
           $( e.target ).parents('.ui-datepicker-header').length === 0 &&
           $( e.target ).parents('.ui-multiselect-menu').length === 0 &&
