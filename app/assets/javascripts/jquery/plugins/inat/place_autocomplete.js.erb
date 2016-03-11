@@ -1,0 +1,43 @@
+$.fn.placeAutocomplete = function( options ) {
+  options = options || { };
+  if( !options.id_el ) { return; }
+  var field = this;
+
+  field.template = function( item ) {
+    var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
+    var labelDiv = $( "<div/>" ).addClass( "ac-label" );
+    labelDiv.append( $( "<span/>" ).addClass( "title" ).
+      append( item.title ));
+    var type = item.placeTypeLabel( );
+    if( type ) {
+      labelDiv.append( $( "<span/>" ).addClass( "type" ).append( type ) );
+    }
+    wrapperDiv.append( labelDiv );
+    return wrapperDiv;
+  };
+
+  field.genericAutocomplete( _.extend( options, {
+    extra_class: "place",
+    source: function( request, response ) {
+      $.ajax({
+      url: "//<%= CONFIG.node_api_host %>/places/autocomplete",
+        dataType: "jsonp",
+        cache: true,
+        jsonpCallback: "placeAutocompleteCallback",
+        data: {
+          q: request.term,
+          per_page: 10,
+          geo: true,
+          order_by: "area"
+        },
+        success: function( data ) {
+          var results = data.results || [ ];
+          response( _.map( results, function( r ) {
+            r.title = r.display_name;
+            return new iNatModels.Place( r );
+          }));
+        }
+      });
+    }
+  }));
+};

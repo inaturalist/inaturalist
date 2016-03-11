@@ -18,6 +18,10 @@ class PlacesController < ApplicationController
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
+
+  protect_from_forgery unless: -> {
+    request.parameters[:action] == "autocomplete" && request.format.json? }
+
   
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
   
@@ -253,6 +257,7 @@ class PlacesController < ApplicationController
     @q = params[:q] || params[:term] || params[:item]
     @q = sanitize_query(@q.to_s.sanitize_encoding)
     site_place = @site.place if @site
+    params[:per_page] ||= 30
     if @q.blank?
       scope = if site_place
         Place.where(site_place.child_conditions)
@@ -260,7 +265,7 @@ class PlacesController < ApplicationController
         Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
       scope = scope.with_geom if params[:with_geom]
-      @places = scope.includes(:place_geometry_without_geom).limit(30).
+      @places = scope.includes(:place_geometry_without_geom).limit(params[:per_page]).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
       # search both the autocomplete and normal field
@@ -275,7 +280,8 @@ class PlacesController < ApplicationController
       @places = Place.elastic_paginate(
         where: search_wheres,
         fields: [ :id ],
-        sort: { bbox_area: "desc" })
+        sort: { bbox_area: "desc" },
+        per_page: params[:per_page])
       Place.preload_associations(@places, :place_geometry_without_geom)
     end
 
@@ -287,7 +293,8 @@ class PlacesController < ApplicationController
         @places.each_with_index do |place, i|
           @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item', :object => place)
         end
-        render :json => @places.to_json(:methods => [:html, :kml_url])
+        render json: @places.to_json(methods: [:html, :kml_url]),
+          callback: params[:callback]
       end
     end
   end

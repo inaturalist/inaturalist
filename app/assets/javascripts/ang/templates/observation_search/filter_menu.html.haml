@@ -161,13 +161,22 @@
                   {{ shared.t('person') | capitalize:'title' }}
                 .input-group
                   %span.input-group-addon.icon-person
-                  %input#params-user-id.form-control{ "ng-model" => "params.user_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('username_or_user_id') }}", "ng-class" => "{ 'filter-changed': params.user_id }" }
+                  %input.form-control{ placeholder: "{{ shared.t('username_or_user_id') }}", type: "search", name: "user_name", "ng-class" => "{ 'filter-changed': params.user_id }" }
+                  %input{ "ng-model" => "params.user_id", type: "hidden", name: "user_id" }
               .form-group
                 %label.sectionlabel{for: 'params-project-id'}
                   {{ shared.t('project') | capitalize:'title' }}
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
-                  %input#params-project-id.form-control{"ng-model" => "params.project_id", "ng-model-options" => "{debounce: 1000}", placeholder: "{{ shared.t('url_slug_or_id') }}", title: "{{ shared.t('url_slug_or_id') }}", "ng-class" => "{ 'filter-changed': params.project_id }" }
+                  %input.form-control{ placeholder: "{{ shared.t('url_slug_or_id') }}", type: "search", name: "project_name", title: "{{ shared.t('url_slug_or_id') }}", "ng-class" => "{ 'filter-changed': params.project_id }" }
+                  %input{ "ng-model" => "params.project_id", type: "hidden", name: "project_id" }
+              .form-group
+                %label.sectionlabel{for: "params-place-name"}
+                  {{ shared.t("place") | capitalize: "title" }}
+                .input-group
+                  %span.input-group-addon.fa.fa-globe
+                  %input.form-control{ placeholder: "{{ shared.t('place') }}", type: "search", name: "inat_place_name", "ng-class" => "{ 'filter-changed': selectedPlace }" }
+                  %input{ type: "hidden", name: "place_id" }
             .col-xs-4
               .form-group
                 %label.sectionlabel

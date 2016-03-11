@@ -6,9 +6,10 @@ class Project < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :title, analyzer: "ascii_snowball_analyzer"
-      indexes :title_autocomplete, analyzer: "keyword_autocomplete_analyzer",
-        search_analyzer: "keyword_analyzer"
+      indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
+        search_analyzer: "standard_analyzer"
       indexes :description, analyzer: "ascii_snowball_analyzer"
+      indexes :slug, analyzer: "keyword_analyzer"
       indexes :location, type: "geo_point", lat_lon: true
       indexes :geojson, type: "geo_shape"
     end
@@ -21,6 +22,7 @@ class Project < ActiveRecord::Base
       title: title,
       title_autocomplete: title,
       description: description,
+      slug: slug,
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
       place_ids: place ? place.self_and_ancestor_ids : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
