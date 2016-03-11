@@ -108,7 +108,7 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'git://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
-  gem 'newrelic_rpm'
+  gem 'newrelic_rpm', '~> 3.15.0'
 end
 
 group :test, :development, :prod_dev do

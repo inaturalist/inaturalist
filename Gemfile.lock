@@ -429,7 +429,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
     netrc (0.10.2)
-    newrelic_rpm (3.9.9.275)
+    newrelic_rpm (3.15.0.314)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     non-stupid-digest-assets (1.0.4)
@@ -734,7 +734,7 @@ DEPENDENCIES
   machinist
   mobile-fu!
   mocha
-  newrelic_rpm
+  newrelic_rpm (~> 3.15.0)
   nokogiri
   non-stupid-digest-assets
   objectify-xml
@@ -782,3 +782,6 @@ DEPENDENCIES
   xmp!
   ya2yaml
   yui-compressor
+
+BUNDLED WITH
+   1.10.6
