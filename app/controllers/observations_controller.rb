@@ -2128,8 +2128,10 @@ class ObservationsController < ApplicationController
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
-    unless search_params[:place].blank? ||
-           (search_params[:place].is_a?(Array) && search_params[:place].length > 1)
+    if search_params[:place].is_a?(Array) && search_params[:place].length == 1
+      search_params[:place] = search_params[:place].first
+    end
+    unless search_params[:place].blank? || search_params[:place].is_a?(Array)
       @place = search_params[:place]
     end
     @q = search_params[:q] unless search_params[:q].blank?
