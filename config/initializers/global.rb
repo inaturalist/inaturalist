@@ -58,7 +58,7 @@ class String
   end
 
   def mentioned_users
-    logins = scan(/(^|\s|>)@([\\\w][\\\w\\\-_]*)/).flatten
+    logins = scan(/(\B)@([\\\w][\\\w\\\-_]*)/).flatten
     return [ ] if logins.blank?
     User.where(login: logins).limit(500)
   end

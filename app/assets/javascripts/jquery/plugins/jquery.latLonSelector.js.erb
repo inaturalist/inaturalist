@@ -245,6 +245,7 @@
             $(accuracyField).change()
           }
           getMarker().setPosition(point);
+          getMarker().setMap($.fn.latLonSelector._map);
           $.fn.latLonSelector._map.setCenter(point)
           if ($.fn.latLonSelector._circle) {
             $.fn.latLonSelector._circle.setCenter(point)
