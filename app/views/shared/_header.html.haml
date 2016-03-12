@@ -83,7 +83,7 @@
           - CONFIG.choosable_locales.each do |l|
             %li
               %a{ href: set_locale_path(locale: l) }
-                = I18n.t("locales.#{l}")
+                = I18n.t("locales.#{l}", locale: l)
     - unless logged_in?
       %li.navtab.signedout
         .innertab
