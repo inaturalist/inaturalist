@@ -73,6 +73,17 @@
       .innertab
         = link_to t(:people), people_path
   %ul#usernav.navtabs
+    %li.navtab.locales
+      .innertab
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+          = I18n.locale.upcase
+          %i.fa.fa-angle-down
+      .subnav{:style => "display: none"}
+        %ul
+          - CONFIG.choosable_locales.each do |l|
+            %li
+              %a{ href: set_locale_path(locale: l) }
+                = I18n.t("locales.#{l}")
     - unless logged_in?
       %li.navtab.signedout
         .innertab

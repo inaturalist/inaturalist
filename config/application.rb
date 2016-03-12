@@ -84,6 +84,8 @@ Rack::Utils.multipart_part_limit = 2048
 # load SiteConfig class and config
 require "site_config"
 CONFIG = SiteConfig.load
+CONFIG.choosable_locales = [
+  "en", "es", "es-MX", "fr", "it", "ja", "mk", "pt-BR", "zh-CN" ]
 
 # flickr api keys - these need to be set before Flickraw gets included
 FLICKR_API_KEY = CONFIG.flickr.key
