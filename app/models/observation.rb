@@ -2561,7 +2561,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.refresh_es_index
-    Observation.__elasticsearch__.refresh_index!
+    Observation.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
 end
