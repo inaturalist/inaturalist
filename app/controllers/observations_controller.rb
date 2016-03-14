@@ -682,6 +682,7 @@ class ObservationsController < ApplicationController
           end
           render :json => json, :status => :unprocessable_entity
         else
+          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
@@ -863,6 +864,7 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json do
+          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :methods => [:user_login, :iconic_taxon_name],
@@ -925,7 +927,10 @@ class ObservationsController < ApplicationController
         redirect_to(observations_by_login_path(current_user.login))
       end
       format.xml  { head :ok }
-      format.json  { head :ok }
+      format.json do
+        Observation.refresh_es_index
+        head :ok
+      end
     end
   end
 

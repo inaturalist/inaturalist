@@ -2560,4 +2560,8 @@ class Observation < ActiveRecord::Base
     Observation.elastic_index!( scope: Observation.by( user_id ) )
   end
 
+  def self.refresh_es_index
+    Observation.__elasticsearch__.refresh_index!
+  end
+
 end
