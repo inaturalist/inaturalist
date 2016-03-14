@@ -4,6 +4,7 @@
 # Author: 0x010C
 # Author: Benjozork
 # Author: Cgalindo
+# Author: Cl3m3n7
 # Author: Element303
 # Author: Eric.LEWIN
 # Author: Gomoko
@@ -1067,6 +1068,8 @@ fr:
   did_you_photos_flickr?: Avez-vous mis des photos sur Flickr ?
   disagree: pas d’accord
   disconnect_provider: Déconnecter %{provider}
+  display_link_to_checklist: Afficher le lien vers la liste des projets depuis la
+    page du projet
   display_listings_added_by_curators: Afficher les listes ajoutées par les responsables
     de l’organisation
   display_listings_from_place: Afficher les listes du lieu
@@ -1173,7 +1176,7 @@ fr:
   embed_this_assessment: Intégrer cette évaluation
   embed_widget_project: Intégrer un widget pour ce projet sur votre site web
   enable_offline_access: Activer l’accès hors ligne
-  enable_offline_access_for_iphone: Activer l’accès hors ligne pour l’iPhone
+  enable_offline_access_for_mobile: Activer l'accès hors connexion pour mobile
   end: Fin
   endangered: en voie de disparition
   endemic: endémique
@@ -1200,6 +1203,7 @@ fr:
     plus d’information sur la terminologie</a>."
   event_in_progress: Activité en cours
   event_registration_url: URL d’inscription à l’activité
+  event_stats: Statistiques de l'évènement
   event_url: URL de l’activité
   events_only: Événements uniquement
   every_species_seen_by: Chaque espèce vue par
@@ -1219,6 +1223,7 @@ fr:
   explore_everyones_observations: Explorer les observations de tout le monde
   export: Exporter
   export_observations: Exporter les observations
+  export_with_private_coordinates: Exporter avec des coordonnées privées
   exporting: Exportation en cours…
   external_links: Liens externes
   extinct: disparue
@@ -1271,6 +1276,7 @@ fr:
   filling_out_your_profile: remplissant votre profil
   filter: Filtrer
   filter_by: Filtrer par
+  filter_by_curator_identification: Filtrer par identification du chef de projet
   filter_by_place: Filtrer par lieu
   filter_by_place_taxon_and_color: Filtrer par lieu, taxon et couleur au moyen des
     contrôles.
@@ -1291,6 +1297,7 @@ fr:
   find_some_people_to_follow: Trouver des personnes à suivre
   find_species: Trouver des espèces
   find_suitable_observations: Trouver des observations pertinentes
+  find_unsuitable_observations: Trouvez les observations inadaptées
   find_your_current_location: Trouver votre position actuelle
   first_confirmed_inat_observation: Première observation %{site_name} confirmée
   first_connect_your_provider_account_to_your_site: 'D’abord, connectez votre compte
@@ -1554,6 +1561,7 @@ fr:
     de vue taxonomique, soit en attente d’une modification de taxon. Les concepts
     obsolètes sont conservés aux fins d’historique et de compatibilité avec certains
     sites partenaires.
+  inappropriate: Inapproprié?
   inat_account_action: '%{site_name} &#58; Compte &#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} pense que c’est une liste
     complète de ce taxon dans ce lieu.'
@@ -1822,6 +1830,7 @@ fr:
   locale_description: La localisation détermine vos préférences de langue et de format
     de date.
   locales:
+    br: Breton
     ca: Catalan
     en: Anglais
     en-US: Anglais (États-Unis)
@@ -1831,6 +1840,8 @@ fr:
     fr: Français
     eu: Basque
     gl: Galicien
+    id: Indonésien
+    it: Italien
     mk: Macédonien
     pt: Portugais
     pt-BR: Portugais (Brésil)
@@ -1949,8 +1960,8 @@ fr:
   message: Message
   messages: Messages
   mixed_licenses: licences mixtes
-  misleading_or_illegal_content_html: Contenu trompeur ou illégal, insultes raciales ou
-    ethniques, etc.
+  misleading_or_illegal_content_html: Contenu trompeur ou illégal, insultes raciales
+    ou ethniques, etc.
   mobile_app_for: Application mobile pour
   mobile_apps_for: Applications mobiles pour
   mobile_view_available: Affichage mobile disponible
@@ -2275,6 +2286,7 @@ fr:
     ou parce que l’observateur a choisi de les masquer.
   observations_it_may_take_a_few: observations. Ça peut prendre quelques minutes.
   observations_last500: Observations (les 500 dernières)
+  observations_last_aggregated: Observations agrégées pour la dernière fois
   observations_map: Observations/carte
   observation_must_dotdotdot: L’observation doit…
   observations_near_a_place_are: Les observations « proches » d’un lieu se retrouvent
@@ -2689,6 +2701,7 @@ fr:
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
   project_curator_id: ID du responsable de l’organisation du projet
+  project_curator_tools: Outils du chef de projet
   project_curators: Responsables de l’organisation du projet
   project_group_label: Groupe
   project_group_description: Groupe duquel les projets font partie
@@ -2786,6 +2799,7 @@ fr:
   read_our_getting_started_guide: lisez notre Guide de démarrage
   read_the_full_wikipedia: Lire la description complète sur Wikipédia
   ready_to_get_started?: Prêt à démarrer?
+  real_time_stats: Statistiques en temps réel
   reason: Motif
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel
@@ -3016,8 +3030,6 @@ fr:
     votre propre blogue ou site web !
   show_only: 'Montrer seulement :'
   show_taxa_from_both: (afficher les taxons des deux listes)
-  show_the_total_number_of: Afficher le nombre total de taxons de la liste du projet
-    à côté du nombre de taxons observé.
   show_total_listed_taxa: Afficher le total des taxons répertoriés
   showing_observations_by: affichage des observations de
   showing_one_to: Affichage de 1 à
@@ -3033,6 +3045,7 @@ fr:
   sign_up: Inscrivez-vous
   sign_up_exclamation: Inscrivez-vous!
   similar_species: Espèces similaires
+  simple: Simple
   sign_in_exclamation: Inscrivez-vous!
   single_observation: Observation unique
   single_taxon: Taxon unique (entrée aux fins de séparation/suppression/organisation,
@@ -3536,6 +3549,7 @@ fr:
   top_5_identifiers: les 5 identificateurs les plus importants
   top_contributors: Collaborateurs les plus importants
   total: total
+  totals: totaux
   total_members: Total des membres
   total_observations: Total des observations
   total_unique_observers: Total des observateurs uniques
@@ -3724,6 +3738,7 @@ fr:
   view_post: Afficher le message
   view_observation: Afficher l’observation
   view_observations: Afficher toutes les observations
+  view_observation_flags: Afficher les observations
   view_observations_by_everyone: Afficher les observations de tout le monde
   view_observations_raquo: Afficher les observations &raquo;
   view_on: Afficher sur
@@ -4201,7 +4216,7 @@ fr:
       generating_mobile_archive_tip_html: Cette action peut prendre un peu de temps.
         Essayez de rafraîchir cette page dans quelques minutes.
       mobile_downloads_tip_html: Ce guide peut être téléchargé dans l’application
-        iPhone aux fins d’utilisation hors ligne.
+        mobile à de fins d’utilisation hors ligne.
       mobile_downloads_help_html: |-
         <p>Cette action créera une archive téléchargeable de toutes les données et médias
         Associés à ce guide, pour que les utilisateurs d’iPhone puissent voir tout le
@@ -4765,6 +4780,9 @@ fr:
         coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé
           une frontière ou téléchargé un KML.
         map_instruction: Utilisez l’outil polygone pour tracer la frontière du lieu.
+    posts:
+      formatting_simple_help: Lier automatiquement les Url et les insérer des sauts
+        de ligne.
     projects:
       curator_coordinate_access_desc_html: |-
         Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
@@ -4795,6 +4813,7 @@ fr:
         revoke_observations_desc: Si le seul motif que vous laissez est d’empêcher
           les superviseurs du projet de voir vos coordonnées privées.
       edit:
+        aggregation_pending: En attente d'aggrégation
         bioblitz_create_a_new_place_html: '%{link}, assurez-vous qu’il a une frontière,
           puis revenez ici et réessayez.'
         bioblitz_desc_html: |-
@@ -4858,6 +4877,7 @@ fr:
           in_taxon: être dans un taxon
           observed_in_place: être observé dans le lieu
           on_list: être d’un taxon de la liste du projet
+          verifiable: être vérifiable
         start_time_desc: 'Date de début de votre bioblitz. Format: AAAA-MM-JJThh:mm:ss±hh:mm'
         submission_models:
           any: n’importe qui
@@ -4891,13 +4911,6 @@ fr:
           Vous devez être invité à vous joindre à ce projet. Si vous voulez
           Joindre le projet, veuillez contacter un des responsables de l’organisation ci-dessous et demander une
           invitation.
-      members:
-        bioblitz_notice_html: |-
-          <strong>Remarque :</strong> il s’agit d’une liste des gens qui se sont
-          joint à ce projet de façon explicite. Comme c’est un projet de bioblitz et que les statistiques
-          sont calculées pour toutes les observations ajoutées dans le lieu et
-          la période de temps donnés, il peut y avoir beaucoup plus de participants que ce qui
-          est indiqué ici.
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement
@@ -4964,10 +4977,6 @@ fr:
           <p>
             Pour débuter, <a href="%{url}" class="readmore">créez une note</a>
           </p>
-        project_observations_desc: |-
-          Il s’agit des observations explicitement ajoutées à ce
-          projet et non de toutes les observations enregistrées dans ce lieu et au moment de
-          l’activité.
         curated_checklist_desc: |-
           Il s’agit de la liste de contrôle organisée et du nombre de taxons des observations explicitement ajoutées à ce
           projet, et non de toutes les observations enregistrées dans ce lieu et au moment de
@@ -5424,6 +5433,7 @@ fr:
         tracking_codes: Codes de suivi
         source_url: URL source
         start_time: Heure de début
+        last_aggregated_at: Observations agrégées pour la dernière fois
       project_observation:
         user_id: Auteur
       place:

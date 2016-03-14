@@ -270,6 +270,7 @@ id:
     birds: Burung
     chromista: Chromista
     fungi: Jamur
+    fungi_including_lichens: Jamur termasuk Lumut
     insects: Serangga
     mammals: Mamalia
     mollusks: Moluska
@@ -526,6 +527,7 @@ id:
   belives_this_is_a_comprehensive_list_of: percaya bahwa ini adalah daftar lengkap
     dalam
   bg_color: Warna latar
+  bioblitz: Bioblitz
   birds: Burung
   black: Hitam
   blog_widget: Blog widget
@@ -576,12 +578,16 @@ id:
   casual: Pekerja lepas
   catalogue_of_life: Katalog hidup
   categories: Kategori
+  cc_0_description: Lisensi ini melepaskan pekerjaan Anda ke dalam domain publik,
+    sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan
+    pekerjaan Anda, bahkan untuk tujuan komersial, semua tanpa meminta izin atau memberikan
+    kredit. Ini adalah lisensi yang paling akomidatif ditawarkan.Direkomendasikan
+    untuk penyebaran maksimum dan penggunaan bahan berlisensi.
+  cc_0_name: Tidak ada hak cipta (CC0)
   cc_attribution_license: Atribut lisensi yang kreatif dan umum
-  cc_by_description: Lisensi ini memungkinkan orang lain mendistribusikan, menggabungkan,
-    mengambil, dan membangun kerja Anda, bahkan secara komersial, selama mereka menggunakan
-    kredit Anda untuk pencipta aslinya. Ini adalah lisensi yang paling akomodatif
-    yang ditawarkan. Direkomendasikan untuk penyebaran maksimum dan penggunaan bahan
-    berlisensi.
+  cc_by_description: Lisensi ini membiarkan orang lain mendistribusikan, mencampur,
+    mengambil, dan membangun kerja Anda, bahkan secara komersial, selama mereka kredit
+    Anda untuk penciptaan asli.
   cc_by_name: Atribusi
   cc_by_nc_description: Lisensi ini memungkinkan orang lain menggabungkan, mengambil,
     dan membangun kerja Anda non-komersial, dan meskipun karya-karya baru mereka juga
@@ -818,9 +824,11 @@ id:
     all_rights_reserved: (c) %{name}, Semua dilindungi
     no_known_copyright_restrictions: '%{name}, pembatasan hak cipta tidak diketahui
       (%{license_name})'
+    no_rights_reserved: beberapa hak dilindungi
     anonymous: Anonimitas
     public_domain: Domain Umum
     copyright: Hak cipta
+    no_copyright: tidak ada hak cipta (CC0)
     attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike
       License
     attribution_noncommercial_license: Attribution-NonCommercial License
@@ -988,6 +996,7 @@ id:
   did_you_photos_flickr?: Apakah Anda menempatkan setiap foto di Flickr?
   disagree: Tidak setuju
   disconnect_provider: Koneksi terputus %{provider}
+  display_link_to_checklist: Tampilkan tautan ke daftar proyek dari halaman proyek
   display_listings_added_by_curators: Daftar layar ditambahkan oleh kurator
   display_listings_from_place: Daftar tampilan dari tempat
   do_you_know_where_this_species_lives: Apakah anda mengetahui dimana spesies tersebut
@@ -1085,7 +1094,7 @@ id:
   embed_this_assessment: Letakkan penilaian ini
   embed_widget_project: Letakkan widget untuk proyek ini pada website anda
   enable_offline_access: Perbolehkan akses offline
-  enable_offline_access_for_iphone: Perbolehkan akses offline untuk Iphone
+  enable_offline_access_for_mobile: Aktifkan akses offline untuk ponsel
   end: Selesai
   endangered: terancam punah
   endemic: endemik
@@ -1111,7 +1120,9 @@ id:
     information on terminology</a>."
   event_in_progress: Acara sedang berlangsung
   event_registration_url: Pendaftaran acara URL
+  event_stats: Statistik Acara
   event_url: Acara URL
+  events_only: Hanya acara
   every_species_seen_by: Setiap spesies dilihat oleh
   everyone: Semua orang
   everyone_journal_posts: Post jurnal semua orang
@@ -1129,6 +1140,7 @@ id:
   explore_everyones_observations: Jelajahi pengamatan semua orang
   export: Ekspor
   export_observations: Ekspor pengamatan
+  export_with_private_coordinates: Ekspor dengan koordinat pribadi
   exporting: Mengekspor...
   external_links: Pranala luar
   extinct: punah
@@ -1180,6 +1192,7 @@ id:
   filling_out_your_profile: mengisi profil Anda
   filter: Penyaring
   filter_by: Saring berdasarkan
+  filter_by_curator_identification: Saring dengan identifikasi kurator
   filter_by_place: Filter menurut lokasi
   filter_by_place_taxon_and_color: Menyaring berdasarkan tempat, takson, dan warna
     menggunakan kontrol.
@@ -1199,6 +1212,7 @@ id:
   find_some_people_to_follow: Cari seseorang untuk diikuti
   find_species: Cari spesies
   find_suitable_observations: Cari pengamatan yang cocok
+  find_unsuitable_observations: Temukan pengamatan yang tidak sesuai
   find_your_current_location: Cari lokasi Anda saat ini
   first_confirmed_inat_observation: Observasi yang pertama kali dikonfirmasi %{site_name}
   first_connect_your_provider_account_to_your_site: 'Pertama, Hubungkan akun anda
@@ -1447,6 +1461,7 @@ id:
   inactive_taxon_concepts_are: Konsep takson yang tidak aktif baik taksonomi yang
     usang atau yang sedang ditampilkan untuk perubahan takson. Konsep usang disimpan
     untuk mempertahankan sejarah dan kompatibilitas dengan beberapa situs mitra.
+  inappropriate: Tidak pantas?
   info: Info
   input_taxon: Masukkan takson
   insects: serangga
@@ -1512,6 +1527,7 @@ id:
   learn!: Pelajari!
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup
   learn_more: Pelajari lebih lanjut
+  learn_more_raquo: Pelajari lebih banyak&raquo
   learn_what_these_licenses_mean: Pelajari apa yang dimaksut dengan lisensi
   least_concern: kekhawatiran paling kecil
   leave_a_comment: Tinggalkan komentar
@@ -1596,6 +1612,7 @@ id:
   listing_announcement: Daftar Pengumuman
   listing_announcements: Daftar Pengumuman
   listing_lists: Pendaftaran daftar
+  listing_project_assets: Daftar aset_proyek
   listing_taxa: Pendaftaran taksa
   listing_taxon_names: Pendaftaran Nama Takson
   lists: Daftar
@@ -1617,6 +1634,7 @@ id:
   loading_wikipedia_description: Mengunggah deskripsi Wikipedia...
   locale_description: Lokal menetapkan bahasa dan tanggal preferensi format Anda
   locales:
+    br: Breton
     ca: Bahasa Catalan
     en: Bahasa Inggris
     en-US: Bahasa Inggris (United States)
@@ -1626,6 +1644,8 @@ id:
     fr: Bahasa Perancis
     eu: Bahasa Basque
     gl: Bahasa Galician
+    id: bahasa Indonesia
+    it: bahasa Italia
     mk: Bahasa Macedonian
     pt: Bahasa Portugis
     pt-BR: Bahasa Portugis (Brazil)
@@ -1654,6 +1674,7 @@ id:
   looks_like_no_species_in_guide: Sepertinya anda belum memiliki spesies pada panduan
     anda.
   lookup: Lihatlah
+  lookup_user_rarr: Lihatlah pengguna&rarr;
   low: rendah
   lowest_rank: Ranking terendah
   made_a: membuat sebuah
@@ -1667,10 +1688,96 @@ id:
   make_one: Membuat lagi?
   make_sure_the_default_photo_looks_good: Pastikan foto tersebut terlihat bagus pada
     ukuran besar.
+  make_taxonomic_flickr_tags_for_taxon_raquo: Buat tanda Flickr taksonomi untuk takson&raquo
+    ini;
+  make_this_the_primary_listing: Buat ini menjadi daftar utama
+  mammals: mamalia
+  manage_all_your_subscriptions: Kelola semua abonemen Anda
+  manage_names: Kelola nama
+  manage_your_project_invitations: Kelola undangan proyek Anda
+  managed: kelola
+  manager: Manajer
+  managers: Manajer-manajer
+  managers_can_do: Manajer dapat melakukan segala sesuatu yang kurator lakukan seperti
+    mengedit pengaturan proyek dan postingan tulisan proyek jurnal.
+  manually_create_new_place: Secara manual membuat tempat baru
+  map: Peta
+  map_legend: legenda peta
+  map_marker_size: ukuran penanda peta
+  maps:
+    overlays:
+      all_observations: Semua pengamatan
+      every_publicly_visible_observation: Setiap pengamatan terlihat oleh publik dibuat
+        dalam jaringan iNaturalist
+      featured_observations: Pilihan pengamatan
+      gbif_network: Jaringan GBIF
+      gbif_network_description: Catatan dari museum dan penyedia peristiwa lainnya
+        didistribusikan oleh Fasilitas Global Biodiversity Information
+      observations: Pengamatan
+      place_boundary: Batas lempeng
+      checklist_places: Daftar tempat
+      checklist_places_description: Tempat dimana takson ini telah terdaftar
+      range: Rentang
+  map_tooltip: Tunjukan tampilan peta
+  map_for: Peta untuk
+  mark_as_reviewed: Tandai sebagai telah ditinjau
+  matched_several_different_taxa: cocok dengan beberapa taksa yang berbeda
   media: Media
+  medium: Menengah
+  members: Anggota
+  mentions: Sebutan
+  merge: Gabungkan
+  merge_it_with_another_place: Gabungkan dengan tempat lainnya
+  merge_two_places_together: Menggabungkan dua tempat bersama-sama. Semua spesies
+    pada daftar periksa akan digabung, serta data geografis.
+  merging: Menggabungkan
+  merging_places: Menggabungkan tempat
+  message: Pesan
+  messages: Pesan
+  mixed_licenses: lisensi campuran
+  mobile_app_for: Aplikasi ponsel untuk
+  mobile_apps_for: Aplikasi ponsel untuk
+  mobile_view_available: Tampilan ponsel tersedia
+  mollusks: Moluska
+  momentjs:
+    shortRelativeTime:
+      s: s
+      m: 1 menit
+      h: 1 jam
+      d: 1 hari
+      M: 1 bulan
+      1: 1 tahun
+  mon: Senin
+  month: Bulan
   months: Bulan
+  more: Lainnya
+  more_fields: Bidang lainnya
   more_filters: Penyaringan lain
+  more_info: Info lainnya
+  more_info_title: Info lainnya
+  more_journal_posts: Postingan jurnal lainnya
+  more_observations: Pengamatan lainnya
+  most: Paling
+  most_agree: Paling setuju
+  most_disagree: Paling tidak setuju
+  most_observations: Sebagian besar pengamatan
+  most_species: Sebagian besar spesies
+  most_observed_species: sebagian besar spesies yang diamati
+  multiple_taxa_for_taxon_change: Beberapa taksa (masukan untuk bertukar/gabung. keluaran
+    untuk pemisahan)
+  multiple_taxon_ids_separated_by_commas: Beberapa takson IDs terpisah dengan koma,
+    contoh. 123,654
+  must_be_observed_in: harus diamati dalam
+  name: Nama
+  name_entered: Nama yang dimasukkan
+  name_of_the_place_you: nama untuk tempat yang kamu telah buat untuk pengamatan
   name_or_username: Nama pengguna
+  name_provider: Nama penyedia
+  name_providers:
+    col: Katalog hidup
+    ubio: uBio
+    nzor: Daftar Organisme New Zealand
+  named_based_url_might_change: Basis nama URLs dapat berubah, tapi ini tidak
   nearby: Sekitaran
   notify_me_about_redundant_identifications: Beritahu saya tentang mengkonfirmasikan
     identifikasi
