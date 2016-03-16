@@ -673,6 +673,56 @@ class Project < ActiveRecord::Base
     project_type == BIOBLITZ_TYPE
   end
 
+  def update_counts
+    update_users_observations_counts
+    update_users_taxa_counts
+  end
+
+  def update_users_observations_counts
+    results = project_observations.
+      joins(:observation).
+      joins(project: :project_users).
+      where("observations.user_id = project_users.user_id").
+      group("observations.user_id").
+      distinct.count("observations.id")
+    Project.transaction do
+      project_users.update_all(observations_count: 0)
+      results.each do |user_id, count|
+        ProjectUser.where(project_id: id, user_id: user_id).
+          update_all(observations_count: count)
+      end
+    end
+  end
+
+  def update_users_taxa_counts(options = {})
+    user_clause = options[:user_id] ? "AND o.user_id=#{ options[:user_id] }" : ""
+    results = Project.connection.execute("
+      SELECT o.user_id, count(DISTINCT COALESCE(i.taxon_id, o.taxon_id)) count
+      FROM project_observations po
+        JOIN observations o ON (po.observation_id=o.id)
+        JOIN project_users pu ON (o.user_id=pu.user_id and pu.project_id=#{ id })
+        LEFT OUTER JOIN taxa ot ON (ot.id = o.taxon_id)
+        LEFT OUTER JOIN identifications i ON (po.curator_identification_id = i.id)
+        LEFT OUTER JOIN taxa it ON (it.id = i.taxon_id)
+      WHERE
+        po.project_id = #{ id }
+        #{ user_clause }
+        AND (
+          -- observer's ident taxon is species or lower
+          ot.rank_level <= #{Taxon::SPECIES_LEVEL}
+          -- curator's ident taxon is species or lower
+          OR it.rank_level <= #{Taxon::SPECIES_LEVEL}
+        )
+      GROUP BY o.user_id")
+    Project.transaction do
+      project_users.update_all(taxa_count: 0) unless options[:user_id]
+      results.each do |r|
+        ProjectUser.where(project_id: id, user_id: r["user_id"]).
+          update_all(taxa_count: r["count"])
+      end
+    end
+  end
+
   class ProjectAggregatorAlreadyRunning < StandardError; end
 
   def aggregate_observations(options = {})
@@ -729,6 +779,7 @@ class Project < ActiveRecord::Base
       observations = nil
       page += 1
     end
+    update_counts
     update_attributes(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end
