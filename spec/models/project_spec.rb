@@ -392,6 +392,25 @@ describe Project do
       # the ProjectUser and User were updated AFTER the last aggregation
       expect( project.observations.count ).to eq 1
     end
+
+    it "updates project_users' observations and taxa counts" do
+      project.update_attributes(place: make_place_with_geom, trusted: true)
+      pu = ProjectUser.make!(project: project)
+      taxon = Taxon.make!(rank: "species")
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu.user, taxon: taxon)
+      expect( pu.observations_count ).to eq 0
+      expect( pu.taxa_count ).to eq 0
+      expect( project.observations.count ).to eq 0
+      project.aggregate_observations
+      project.reload
+      pu.reload
+      expect( project.observations.count ).to eq 2
+      expect( pu.observations_count ).to eq 2
+      expect( pu.taxa_count ).to eq 1
+    end
   end
 
   describe "aggregation_allowed?" do
@@ -464,6 +483,32 @@ describe Project do
       expect( po ).not_to be_valid
       po.save
       expect( po ).not_to be_persisted
+    end
+  end
+
+  describe "update_counts" do
+    before :each do
+      @p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_ANYONE)
+      @pu = ProjectUser.make!(project: @p)
+      taxon = Taxon.make!(rank: "species")
+      5.times do
+        ProjectObservation.make!(project: @p, user: @pu.user,
+          observation: Observation.make!(taxon: taxon, user: @pu.user))
+      end
+      taxon = Taxon.make!(rank: "species")
+      4.times do
+        ProjectObservation.make!(project: @p, user: @pu.user,
+          observation: Observation.make!(taxon: taxon, user: @pu.user))
+      end
+    end
+
+    it "should update counts for all project_users in a project" do
+      expect( @pu.observations_count ).to eq 0
+      expect( @pu.taxa_count ).to eq 0
+      @p.update_counts
+      @pu.reload
+      expect( @pu.observations_count ).to eq 9
+      expect( @pu.taxa_count ).to eq 2
     end
   end
 end
