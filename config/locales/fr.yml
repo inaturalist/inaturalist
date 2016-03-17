@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: 0x010C
 # Author: Benjozork
+# Author: C13m3n7
 # Author: Cgalindo
 # Author: Cl3m3n7
 # Author: Element303
@@ -67,8 +68,8 @@ fr:
     one: <span class='count'>1</span> observation
     other: <span class='count'>%{count}</span> observations
   x_observations_link_html:
-    one: <a href='%{url}'>1</a> observation
-    other: <a href='%{url}'>%{count}</a> observations
+    one: <a href='%{url}'>1 observation</a>
+    other: <a href='%{url}'>%{count} observations</a>
   x_people:
     one: 1 personne
     other: '%{count} personnes'
@@ -88,8 +89,8 @@ fr:
     one: <span class='count'>1</span> espèce
     other: <span class='count'>%{count}</span> espèces
   x_species_link_html:
-    one: <a href='%{url}'>1</a> espèce
-    other: <a href='%{url}'>%{count}</a> espèces
+    one: <a href='%{url}'>1 espèce</a>
+    other: <a href='%{url}'>%{count} espèces</a>
   x_taxa_observed_html:
     one: <span class='count'>1</span> taxon observé
     other: <span class='count'>%{count}</span> taxons observés
@@ -562,6 +563,7 @@ fr:
     observations.
   belives_this_is_a_comprehensive_list_of: pense que c’est une liste complète de
   bg_color: Couleur de fond
+  bioblitz: Bioblitz
   birds: oiseaux
   black: noir
   blog_widget: Widget de blogue
@@ -2252,8 +2254,7 @@ fr:
   observation_rules_description: |-
     Vous pouvez choisir les règles pour déterminer quelles observations peuvent
     être ajoutées au projet. Vous pouvez, par exemple, limiter les observations à
-    un certain lieu. Remarque : vous ne pouvez limiter les observations qu’aux
-    lieux d’%{site_name} et au plus petit rectangle entourant ce lieu. Si vous
+    un certain lieu ou taxon. Si vous
     avez plus d’une règle pour un type de règle, les observations seront valides
     si l’une ou l’autre des règles est respectée. Par exemple, si vous avez les
     règles « doit être dans les Amphibiens » et « doit être dans les Reptiles »,
@@ -2539,7 +2540,9 @@ fr:
       Nearby_Intersection: Croisement à proximité
       nearby_intersection: croisement à proximité
       Open_Space: Espace ouvert
-      open_space: open_space
+      open_space: espace ouvert
+      Parish: Commune
+      parish: commune
       Point_of_Interest: Point d’intérêt
       point_of_interest: point d’intérêt
       Postal_Code: Code postal
@@ -2736,8 +2739,7 @@ fr:
   project_type_description: Les évaluations et les bioblitz sont des types de projet
     spéciaux. Les évaluations servent à collaborer sur un ensemble d’évaluations d’espèces,
     en général pour estimer l’importance de leur conservation. Les bioblitz sont des
-    événements pendant lesquels des gens essayent d’observer autant d’espèces que
-    possible dans un lieu donné pendant une période donnée.
+    événements qui ont un début et une fin définis.
   project_user_cannot_be_found: L’utilisateur du projet ne peut pas être trouvé
   project_user_was_invalid: 'L’utilisateur du projet n’est pas valide : %{project_user}'
   project_was_successfully_created: Le projet a bien été créé.
@@ -3200,7 +3202,7 @@ fr:
   status_globally: '%{status} globalement'
   status_in_place: '%{status} dans %{place}'
   still_no_luck?: Toujours pas de chance?
-  still_needs_id?: Y a-t-il encore besoin d'un identificateur 'ID" ?
+  still_needs_id?: La communauté peut-elle confirmer/améliorer une ID ?
   still_working_on_classifying_taxon: Travail encore en cours pour classifier ce taxon.
     Revenez plus tard
   stop_editing: Arrêter la modification
@@ -3317,8 +3319,8 @@ fr:
     en
   terms: Conditions
   terms_and_rules_html: Conditions &amp; Règles
-  terms_new_users: Conditions que les nouveaux utilisateurs doivent accepter avant
-    de se joindre à ce projet.
+  terms_new_users: Si vous ajoutez des conditions, les nouveaux utilisateurs devront
+    les accepter avant de se joindre à ce projet.
   terms_of_service: Conditions d’utilisation
   terms_service: Conditions d’utilisation
   terrain: terrain
@@ -3589,6 +3591,7 @@ fr:
   unlink_your_picasa_account: Déconnecter votre compte Picasa
   unobserved_listings: Listes non observées
   updates_notification_email_subject: '%{prefix} Nouvelles mises à jour du %{date}'
+  updates_suspension_email_subject: '%{prefix} Vos abonnements sont en attente'
   updating: Mise à jour en cours…
   unprocessable: Non traitable
   unpublish: Dépublier
@@ -4219,7 +4222,7 @@ fr:
         mobile à de fins d’utilisation hors ligne.
       mobile_downloads_help_html: |-
         <p>Cette action créera une archive téléchargeable de toutes les données et médias
-        Associés à ce guide, pour que les utilisateurs d’iPhone puissent voir tout le
+        Associés à ce guide, pour que les utilisateurs de l’application mobile puissent voir tout le
         contenu du guide sans connexion Internet. La génération de
         l’archive prendra quelques minutes, mais une fois activée,
         elle sera mise à jour quand vous modifierez ce guide.</p>
@@ -4496,9 +4499,8 @@ fr:
           Notez que vous pouvez seulement choisir des lieux qui ont des frontières.
       show:
         project_list_desc: |-
-          Les listes de contrôle de projet comprennent les taxons ajoutés manuellement par les responsables de l’organisation du projet,
-          les taxons observés identifiés par les responsables de l’organisation du projet et les taxons confirmés par
-          les observations de calibre recherche ajoutée au projet.
+          Taxons ajoutés manuellement par les responsables de l’organisation du projet et les taxons représentés par
+          les observations de niveau recherche sont listés sur les listes du projet.
     observations:
       copy_tip: Ajoutez une nouvelle observation en copiant la date, le lieu, les
         photos et les champs de cette observation.
@@ -4735,9 +4737,16 @@ fr:
           sont maintenant en cours de traitement et seront bientôt sur le site.
       bulk_import_error:
         taxon_spelling_notice_html: |-
-          Veuillez vérifier l'orthographe de chaque entrée. Si votre orthographe est
-          correcte, merci de rechercher les espèces sur %{search_taxa_url}. Si le nom n'est pas encore dans la base de données %{site_name}, vous devez l'ajouter
-          avant votre envoi. Utilisez le formulaire au bas de la page de recherche pour importer de nouveaux noms.
+          Veuillez vérifier l’orthographe de chaque entrée. Si votre orthographe est
+          correcte, merci de rechercher les espèces sur %{search_taxa_url}. Si le nom n’est pas encore dans la base de données %{site_name}, vous devez l’ajouter
+          avant votre envoi. Utilisez le formulaire au bas de la page de recherche pour importer de nouveaux noms. Si le nom est présent mais
+          s’applique à plusieurs taxons valides, essayez d’utiliser un nom plus ou moins
+          spécifique qui ne correspond qu’à un seul taxon.
+      users_updates_suspended:
+        message: |-
+          Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
+          vos abonnements. Pour reprendre l’obtention des mises à jour de l’activité du site, veuillez
+          <a href="%{login_url}">vous connecter à votre compte</a> de nouveau.
     photos:
       inviter:
         automatically_add_to_project: Ajouter automatiquement au projet
@@ -4781,8 +4790,10 @@ fr:
           une frontière ou téléchargé un KML.
         map_instruction: Utilisez l’outil polygone pour tracer la frontière du lieu.
     posts:
-      formatting_simple_help: Lier automatiquement les Url et les insérer des sauts
-        de ligne.
+      formatting_none_help: Aucun HTML inséré, utilise uniquement les balises que
+        vous saisissez.
+      formatting_simple_help: Lier automatiquement les Url et insérer des sauts de
+        lignes.
     projects:
       curator_coordinate_access_desc_html: |-
         Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
@@ -4819,13 +4830,9 @@ fr:
         bioblitz_desc_html: |-
           <p>
             Un bioblitz est une activité durant laquelle les participants tentent d’observer autant
-            d’espèces que possible dans un lieu et une période de temps donnés. C’est une manière
+            d’espèces que possible dans une période de temps donnée. C’est une manière
             amusante d’initier les gens à la biodiversité tout en récoltant des données
-            précieuses. À la différence des projets normaux, les projets de bioblitz
-            accumulent des statistiques pour <em>toutes</em> les observations faites dans
-            la période de temps et le lieu indiqués, donc les participants n’ont pas besoin de
-            s’inscrire au projet ou d’ajouter explicitement leurs observations au
-            projet.
+            précieuses.
           </p>
         cover_desc: Image de bannière facultative qui apparaîtra en haut de votre
           page de projet. Elle doit faire 950px de large et moins de 400px de haut.
@@ -4839,25 +4846,26 @@ fr:
           inclurons un widget d’inscription sur votre page de projet jusqu’au début de
           votre bioblitz.
         icon_desc: Sera retaillé en un carré
+        last_aggregated_at_desc: Moment où l’agrégateur a terminé d’ajouter des observations
+          à ce projet
         observation_aggregation_desc_html: |-
           <p class="description">
-            L’agrégation d’observations ajoutera automatiquement vos observations à votre
-            projet dans les limites d’emplacement de votre projet ou de la règle de taxon de votre
-            projet. Comme il n’y a pas de moyen de supprimer plusieurs observations d’un projet
+            L’agrégation d’observations ajoutera automatiquement vos observations appropriées à votre
+            projet en accord avec ce que spécifient les règles de votre projet. Comme il n’y a pas de moyen de supprimer plusieurs observations d’un projet
             à la fois, c’est potentiellement dangereux ; veuillez donc vous assurer que vous avez
             choisi le lieu et les règles de taxon que vous voulez, ou vous pourriez vous retrouver
-            avec beaucoup de données supplémentaires.
+            avec beaucoup d’observations inappropriées à supprimer manuellement.
           </p>
           <p class="description">
             L’agrégateur ne fonctionnera que si les conditions suivantes sont remplies :
           </p>
           <ol>
             <li class="readable description">
-              Votre projet est associé avec un lieu de taille petite à moyenne (de la
+              Votre projet a au moins une règle 'doit observé sur place' pour un lieu de taille petite à moyenne (de la
               taille du Texas ou de l’Ukraine)
             </li>
             <li class="readable description">
-              OU votre projet n’accepte que les observations de certains taxons
+              OU votre projet a au moins une règle 'doit être dans le taxon'
             </li>
           </ol>
         project_assets_desc_html: |-
@@ -4865,6 +4873,12 @@ fr:
           <ol class="description">
             <li>Les fichiers finissant par .logo.jpg, .logo.png, etc., seront utilisés comme logo du projet sur la page du projet à la place de l’icône du projet</li>
             <li>Les fichiers KML et KMZ seront ajoutés à la carte de la page du projet</li>
+          </ol>
+        project_list_desc_html: |-
+          <p class="description">Vous pouvez créer une liste de projet personnalisée de taxons et la lier à votre projet. Cela peut être utile pour :</p>
+          <ol class="description">
+            <li>Restreindre les observations ajoutées à votre projet à celles qui correspondent aux taxons de votre liste via la règle 'doit être un taxon de la liste du projet'.</li>
+            <li>Garder trace de combien de taxons de votre liste ont été associés à des observations ajoutées au peojet</li>
           </ol>
         rules:
           captive: être captif/cultivé
