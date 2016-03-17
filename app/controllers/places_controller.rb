@@ -183,6 +183,12 @@ class PlacesController < ApplicationController
   end
   
   def edit
+    # Only the admin should be able to edit places with admin_level
+    unless @place.admin_level.nil? or current_user.is_admin?
+      redirect_to place_path(@place)
+      return
+    end
+    
     r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
     @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
