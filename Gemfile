@@ -124,7 +124,8 @@ end
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
-  gem "rspec-rails"
+  gem "rspec", "~> 3.4.0"
+  gem "rspec-rails", "~> 3.4.2"
   gem "rspec-html-matchers"
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
