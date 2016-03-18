@@ -1,5 +1,4 @@
 <%-
-  @site ||= Site.find_by_id(CONFIG.site_id)
   site = @user.site || @site
   site_logo_email_banner = site.logo_email_banner.url if site
   site_logo_email_banner ||= CONFIG.logo_email_banner 
