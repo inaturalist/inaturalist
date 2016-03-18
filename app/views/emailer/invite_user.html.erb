@@ -7,6 +7,38 @@
   custom_email_footer_leftside = @site ? @site.custom_email_footer_leftside : CONFIG.custom_email_footer_leftside
   custom_email_footer_rightside = @site ? @site.custom_email_footer_rightside : CONFIG.custom_email_footer_rightside
 -%>
+
+<%= render 'header' %>
+
+<p>
+<%=t :hi %>
+</p>
+
+<p>
+  <% if @personal_message and @personal_message != "" -%>
+    <%= @personal_message %>
+  <% else -%>
+    <%= t(:preview_personal_message, :site=>  CONFIG.site_name ) %>
+  <% end -%>
+</p>
+
+<p>
+<%=t :you_can_sign_free_at, :site_name => SITE_NAME %>
+</p>
+<p>
+<%= signup_url %>
+</p>
+<p>
+<%=t :check_out_my_observations_at %>
+</p>
+<p>
+<%= observations_url({user_id: @user.login, subview: "grid"}) -%>.
+</p>
+<p>
+- <%= @sending_user %>
+</p>
+
+
                       </td>
                     </tr>
                   </table>
@@ -92,7 +124,7 @@
                               <br>
                               <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
                               <br>
-                              <a href="<%= generic_edit_user_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
+                              <%= t(:mail_disclaimer, :site => CONFIG.info_email, :site_name => CONFIG.site_name) %>
                             </td>
                           </tr>
                         </table>

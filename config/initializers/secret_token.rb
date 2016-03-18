@@ -1,0 +1,1 @@
+Inaturalist::Application.config.secret_key_base = 'a5c9838fe74479f34342dad2db9ee1fbbee251590e600834ccab2fe9165bda3af0fabf41a72ac291af698208c61f48e7af2662bdb682c041524bb4a324fd6a3b'
