@@ -1,21 +1,37 @@
-console.log("[DEBUG] entry loaded");
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../../test';
-console.log("[DEBUG] document.getElementById('app'): ", document.getElementById('app'))
-ReactDOM.render(<App />, document.getElementById('app'));
+import "babel-polyfill";
+import thunkMiddleware from "redux-thunk";
+import { createStore, compose, applyMiddleware } from "redux";
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
 
-var CommentBox = React.createClass({
-  render: function() {
-    return (
-      <div className="commentBox">
-        Hello, world! I am a CommentBox.
-      </div>
-    );
-  }
-});
-ReactDOM.render(
-  <CommentBox />,
-  document.getElementById('content')
+import rootReducer from "./reducers/";
+import { fetchObservations, setConfig } from "./actions/";
+import App from "./components/app";
+
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(
+      thunkMiddleware
+    ),
+    // enable Redux DevTools if available
+    window.devToolsExtension ? window.devToolsExtension() : undefined
+  )
 );
-console.log("[DEBUG] foo");
+
+store.dispatch( setConfig( {
+  nodeApiHost: $( "[name='config:node_api_host']" ).attr( "content" ),
+  csrfParam: $( "[name='csrf-param']" ).attr( "content" ),
+  csrfToken: $( "[name='csrf-token']" ).attr( "content" )
+} ) );
+
+// retrieve initial set of observations
+store.dispatch( fetchObservations() );
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById( "app" )
+);

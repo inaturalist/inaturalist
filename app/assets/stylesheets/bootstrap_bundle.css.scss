@@ -30,14 +30,6 @@ $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
   src: asset-data-url('Whitney-Bold-Pro.otf');
 }
 body {font-size: 75%;}
-body .bootstrap {
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  background-color: #ffffff;
-  font-family: $font-stack;
-}
 // The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
 // of our namespace div, so we need to re-apply these styles. Ugh.
 .modal-backdrop {
@@ -58,7 +50,14 @@ body .bootstrap {
   opacity: .5;
 }
 .ui-front {z-index: 1051;}
-.bootstrap {
+.bootstrap,
+body > div > [role="dialog"] {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+  font-family: $font-stack;
   @import "bootstrap";
   .bootstrap-10 {
     @import "bootstrap-10";

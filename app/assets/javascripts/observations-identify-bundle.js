@@ -1,1 +1,1 @@
-//= require observations-identify.output
+//= require observations-identify-webpack
