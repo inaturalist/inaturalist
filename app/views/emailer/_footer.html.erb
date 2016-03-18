@@ -53,21 +53,25 @@
                                     <table border="0" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
                                       <tr>
                                         <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                                          <a href="<%= facebook_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
-                                            <img src="http://static.inaturalist.org/wiki_page_attachments/530-original.png" style="padding: 10px 10px 10px 10px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
-                                          </a>
+                                          <%- unless facebook_url.blank? %>
+                                            <a href="<%= facebook_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
+                                              <img src="http://static.inaturalist.org/wiki_page_attachments/530-original.png" style="padding: 10px 10px 10px 10px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
+                                            </a>
+                                          <%- end %>  
                                         </td>
                                         <td style="font-size: 0;line-height: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;" width="5">&nbsp;</td>
                                         <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                                          <a href="<%= twitter_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
-                                            <img src="http://static.inaturalist.org/wiki_page_attachments/529-original.png" style="padding: 10px 10px 10px 5px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
-                                          </a>
+                                          <%- unless twitter_url.blank? %>
+                                            <a href="<%= twitter_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
+                                              <img src="http://static.inaturalist.org/wiki_page_attachments/529-original.png" style="padding: 10px 10px 10px 5px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
+                                            </a>
+                                          <%- end %>
                                         </td>
                                       </tr>
                                     </table>
                                   </td>
                                   <td class="footerContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
-                                    <%- if blog_url %>
+                                    <%- unless blog_url.blank? %>
                                       <a href="<%= blog_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:check_out_our_blog) %></a>
                                     <%- end %>
                                   </td>
