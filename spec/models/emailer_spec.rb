@@ -55,14 +55,15 @@ describe Emailer, "updates_notification" do
   describe "with a site" do
     before do
       @site = Site.make!(:preferred_locale => "es-MX")
-      expect(@site.logo).to receive(:url).at_least(:once).and_return("foo.png")
+      expect(@site.logo_email_banner).to receive(:url).at_least(:once).and_return("foo.png")
       @user.site = @site
       @user.save!
     end
 
     it "should use the user's site logo" do
       mail = Emailer.updates_notification(@user, @user.updates.all)
-      mail.body.should match @site.logo.url
+      mail.body.should match @site.logo_email_banner.url
+      puts mail.body
     end
 
     it "should use the user's site url as the base url" do
@@ -118,7 +119,7 @@ describe Emailer, "invite" do
       :sender_name => "Admiral Akbar",
       :personal_message => "it's a twap"
     }
-    mail = Emailer.invite(address, params, user)
+    mail = Emailer.invite_user(address, params, user)
     mail.body.should_not be_blank
   end
 end
@@ -145,7 +146,7 @@ describe Emailer, "bulk_observation_success" do
   describe "with a site" do
     before do
       @site = Site.make!(:preferred_locale => "es-MX")
-      expect(@site.logo).to receive(:url).and_return("foo.png")
+      expect(@site.logo_email_banner).to receive(:url).and_return("foo.png")
       user.site = @site
       user.save!
     end
