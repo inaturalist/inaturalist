@@ -8,6 +8,21 @@
         PLACE = <%=json_escape @project.place.to_json(:methods => [:kml_url]).html_safe %>,
         SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
+    $( function( ) {
+      $("form.project_form input[type='submit']").confirmModal({
+        condition: function( ) {
+          return $("#project_prefers_aggregation").prop( "checked" );
+        },
+        text: function( ) {
+          var rules = $(".observationrules ul").clone( );
+          rules.find( "a" ).remove( );
+          var text = I18n.t( "you_are_setting_this_project_to_aggregate", {
+            rules: rules[0].outerHTML
+          });
+          return text;
+        }
+      });
+    });
   </script>
   <%= javascript_include_tag "observations/observation_fields",
                              'map_bundle',

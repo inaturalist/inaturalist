@@ -1551,6 +1551,54 @@ $.fn.isolatedScroll = function( ) {
   return this;
 };
 
+// used to provide a jquery-ui modal dialog confirmation
+// currently limited to submitting forms, but could easily
+// be extened to use with links
+$.fn.confirmModal = function( options ) {
+  var that = this;
+  that.on( "click", function( e, opts ) {
+    // `Proceed` will force click, and we want that to submit
+    if( opts && opts.forceSubmit ) { return; }
+    // don't show the modal unless the condition is met
+    if( _.isFunction( options.condition ) && !options.condition( ) ) { return; }
+    // skip the form submit
+    e.preventDefault( );
+
+    var dialogDiv = $( "<div/>" ).addClass( "dialog" );
+    // prepare Proceed/Cancel buttons
+    var confirm = $( "<input/>" ).addClass( "default button" ).
+      attr({ type: "button", value: I18n.t( "proceed" ) });
+    var cancel = $( "<input/>" ).addClass( "button" ).
+      attr({ type: "button", value: I18n.t( "cancel" ) });
+    // prepare Proceed/Cancel actions
+    confirm.on( "click", function( ) {
+      dialogDiv.dialog( "close" );
+      that.trigger( "click", { forceSubmit: true } );
+    });
+    cancel.on( "click", function( ) {
+      dialogDiv.dialog( "close" );
+    });
+
+    // populate and display the modal dialog
+    var buttonsDiv =  $( "<div/>" ).addClass( "foot" ).
+      append( confirm ).append( cancel );
+    if( options.preference ) {
+      buttonsDiv.append( $( "<input type='checkbox' id='silence' />" ));
+      buttonsDiv.append( $( "<label for='silence'>" ).
+        append( I18n.t( "do_not_show_this_message_again" ) ));
+    }
+    // text might be a method that is evaluated in real time
+    var text = _.isFunction( options.text ) ? options.text( ) : options.text; 
+    dialogDiv.append( $( "<p/>" ).append( text ) ).append( buttonsDiv );
+    $( document.body ).append( dialogDiv )
+    dialogDiv.dialog({ modal: true, title: I18n.t( "attention" ),
+      dialogClass: "confirm-modal", minWidth: 450, maxWidth: 600 });
+    dialogDiv.centerDialog( );
+    // just making sure nothing his highlighted, which looks weird
+    $( ":focus" ).blur( );
+  });
+};
+
 $(document).ready(function() {
   // tmp fixes for old views being used with bootstrap
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default');
