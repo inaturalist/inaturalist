@@ -73,7 +73,7 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
-      :default_url => FakeView.image_url("bird.png")
+      :default_url => ->(i){ FakeView.image_url("bird.png") }
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
@@ -92,7 +92,7 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_email_banner.:extension",
       :url => ":s3_alias_url",
-      :default_url => FakeView.image_url("inat_email_banner.png")
+      :default_url => ->(i){ FakeView.image_url("inat_email_banner.png") }
   else
     has_attached_file :logo_email_banner,
       :path => ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",

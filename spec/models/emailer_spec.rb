@@ -63,7 +63,6 @@ describe Emailer, "updates_notification" do
     it "should use the user's site logo" do
       mail = Emailer.updates_notification(@user, @user.updates.all)
       mail.body.should match @site.logo_email_banner.url
-      puts mail.body
     end
 
     it "should use the user's site url as the base url" do
