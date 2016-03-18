@@ -1,5 +1,5 @@
 <%-
-  site = @user.site || @site
+  @site = @user.site || Site.find_by_id(CONFIG.site_id)
   blog_url = @site ? @site.blog_url : CONFIG.blog_url
   twitter_url = @site ? @site.twitter_url : CONFIG.twitter_url
   facebook_url = @site ? @site.facebook_url : CONFIG.facebook_url
