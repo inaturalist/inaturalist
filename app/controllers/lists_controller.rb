@@ -29,6 +29,7 @@ class ListsController < ApplicationController
     @life_list = @selected_user.life_list
     @lists = @selected_user.lists.not_flagged_as_spam.
       order("#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}").
+      where("(type IN ('LifeList', 'List') OR type IS NULL)").
       paginate(:page => params[:page],
         :per_page => @prefs["per_page"])
     

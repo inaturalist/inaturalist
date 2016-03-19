@@ -12,7 +12,7 @@ module DarwinCore
       @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "gbif.eml.erb")
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
-      @opts[:photo_licenses] ||= ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
+      @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:licenses] ||= ["any"]
       @opts[:licenses] = @opts[:licenses].first if @opts[:licenses].size == 1
       @opts[:private_coordinates] ||= false
@@ -56,7 +56,7 @@ module DarwinCore
     end
 
     def make_metadata
-      m = DarwinCore::Metadata.new(@opts)
+      m = DarwinCore::Metadata.new(@opts.merge(uri: FakeView.observations_url(observations_params)))
       tmp_path = File.join(@work_path, "metadata.eml.xml")
       open(tmp_path, 'w') do |f|
         f << m.render(:file => @opts[:metadata])
@@ -118,9 +118,10 @@ module DarwinCore
       
       preloads = [
         :taxon, 
-        {:user => :stored_preferences}, 
+        { user: :stored_preferences }, 
         :quality_metrics, 
-        :identifications
+        :identifications,
+        { observations_places: :place }
       ]
       
       start = Time.now

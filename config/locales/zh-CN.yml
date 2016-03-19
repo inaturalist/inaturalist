@@ -234,11 +234,11 @@ zh-CN:
   all_species: 所有物种
   all_taxa:
     rank:
-      kingdom: 王国
-      class: 类
+      kingdom: 界
+      class: 纲
       phylum: 门
-      species: 物种
-      order: 排序
+      species: 种
+      order: 目
     amphibians: 两栖动物
     animals: 动物
     arachnids: 蛛形类
@@ -293,6 +293,7 @@ zh-CN:
   alphabetical_order: 按字母顺序
   amphibians: 两栖动物
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb没有任何有关此物种的信息。
+  amphibiaweb_taxonomy: AmphibiaWeb分类法
   an: 一个
   an_: 一个
   and: 和
@@ -521,6 +522,7 @@ zh-CN:
   clear_color_filters: 清除颜色过滤器
   clear_search: 清空搜索
   clear_shapes: 清除形状
+  click_add_an_observation_to_the_lower_right: 欢迎来到 %{site_name_short}！在右下方点击“添加观察”。如果您尚未登录/注册的话，您将被提示这样做
   click_the_map: <strong>点击地图</strong>以增加一个地点。
   code: 代码
   collapse_days: 折叠日子
@@ -830,6 +832,7 @@ zh-CN:
   establishment_means_describes_how: |-
     确立意思是描述如何在一个地区建立分类单元。
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
+  event_in_progress: 正在进行中的活动
   event_registration_url: 活动注册URL
   event_url: 活动URL
   events_only: 仅活动
@@ -847,6 +850,7 @@ zh-CN:
   exporting: 正在导出……
   external_links: 外部链接
   extinct: 灭绝
+  extra_properties: 额外属性
   extras: 附加
   facebook: 脸书
   facebook_account_information: 您的Facebook账户信息
@@ -1039,7 +1043,9 @@ zh-CN:
   import_from_other_photo_sites: 从其他照片网站导入
   import_from_photos: 从照片导入
   import_from_yahoo: 从Yahoo导入
+  import_observations: 导入观察
   import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
+  import_photos: 导入照片
   import_tags_from_csv: 从CSV导入标签
   importing: 正在导入...
   in: 于
@@ -1082,18 +1088,23 @@ zh-CN:
   it: 它
   it_has: 它有
   it_instead: 而不是它。
+  its_important_that_you: 点此链接对您而言是重要的
   iucn_red_list_status: IUCN红色名录状态
   january: 一月
   join: 加入
   join_and: 加入并
   join_inat: 加入 %{site_name} 吧！
   join_project: 加入这个项目
+  join_some_projects_and_invite_some_observations_html: 加入一些<a href='%{join_url}'>项目</a>，并<a
+    href='%{invite_url}'>邀请一些观察</a>
   join_this_project: 加入这个项目
   joined!: 已加入！
+  joined_any_projects: 已加入任何项目
   joining: 正在加入……
   journal: 杂志
   journal_post: 日记发布
   jpg_png_or_gif: JPG、PNG或GIF
+  jump_to_letter: 跳转至信件
   just_added!: 添加了！
   kml: KML
   kml_file_size_error: KML 大小必须小于 1 MB
@@ -1172,6 +1183,7 @@ zh-CN:
   link_your_facebook_account: 链接您的Facebook账户
   link_your_flickr_account: 链接您的Flickr账户
   link_your_flickr_account_with_inat: 将您的Flickr账户与 %{site_name} 链接
+  link_your_picasa_account: 链接您的Picasa账户
   linked_facebook: 您的%{site_name}账户目前已链接到您的Facebook账户。
   linked_facebook_automaticaly: 另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name}
     账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？
@@ -1199,9 +1211,11 @@ zh-CN:
       login: 由 %{login} 列举
   load: 加载
   loading: 正在载入...
+  loading_flickr_photos: 正在加载Flickr照片……
   loading_images: 正在加载图片...
   loading_map: 正在加载地图...
   loading_more_photos: 正在加载更多照片……
+  loading_tags: 正在加载标签……
   loading_wikipedia_description: 正在载入维基百科描述……
   locale_description: 区域设置您的语言和日期格式选项。
   locales:
@@ -1241,7 +1255,9 @@ zh-CN:
   made_a: 做一个
   main_content: 主内容
   make_one: 制作一个？
+  make_this_your_default_license: 将其作为您的默认 %{type} 许可协议
   mammals: 哺乳类
+  manage_names: 管理名称
   managed: 已管理
   manager: 经理
   managers: 经理
@@ -1280,6 +1296,7 @@ zh-CN:
   merging_places: 合并地点
   message: 消息
   messages: 消息
+  mixed_licenses: 混合许可协议
   mobile_app_for: 移动应用程序用于
   mobile_apps_for: 移动应用程序用于
   mobile_view_available: 移动外观可用
@@ -1313,6 +1330,7 @@ zh-CN:
   most: 多数
   most_agree: 多数同意
   most_disagree: 多数不同意
+  must_be_less_than_x_MB: 必须小于 %{x} MB
   must_have_x: 必须有 %{x}
   n_ago: '%{n}前'
   n_people_agrees: '%{amount} 个人同意'
@@ -1389,6 +1407,8 @@ zh-CN:
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: （无主题）
+  no_summary_from_wikipedia: 没有来自维基百科的概要
+  no_taxa: 无分类群
   no_x_this_y: 不是%{x}这个%{y}
   noble_curators: '%{site}的博物馆长'
   none: 无
@@ -1631,6 +1651,7 @@ zh-CN:
   places_of_interest: 名胜古迹
   plants: 植物
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
+  please_add_this_to_x_html: 请将此添加至 %{x}
   please_confirm_your_inat_username: 请确认您在%{site_name}的用户名
   please_confirm_your_account_html: 请花一秒钟<a href="%{url}">确认您的账户</a>。
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
@@ -1639,6 +1660,8 @@ zh-CN:
   possessive_user: '%{user}的'
   post: 帖子
   post_published: 贴子已发布！
+  posted_by: 发帖人：
+  posted_on: 发帖时间：
   posts: 帖子
   powered_by: 驱动方
   powered_by_inaturalist_open_source_software_html: 由<a href="https://github.com/inaturalist/inaturalist"
@@ -1647,6 +1670,7 @@ zh-CN:
   preview: 预览
   preview_personal_message: 我希望您和我一起加入 %{site}，这是一个您可以记录您对植物和动物的观察，保持追踪您的生命清单，并了解自然世界的网站！
   preview_your_message: 预览您的消息
+  previewing: 正在预览...
   previous: 上一步
   prev: 上一个
   previous_page: 上一页
@@ -1656,11 +1680,14 @@ zh-CN:
   private: 私有
   private_description: 坐标已从地图中完全隐藏，真坐标只对您和您添加观察的项目的馆长可见。带私有坐标的观察仍将被使用以验证地点核对表。
   processing: 处理中
+  processing3p: 处理中...
   profile: 个人信息
   project: 项目
   project_created_on: 于%{date}创建此项目
   project_group_label: 组
+  project_icon: 项目图标
   project_journal_posts: 项目日记发布
+  project_list: 项目列表
   project_list_defaults:
     title: '%{owner_name}的清单'
   project_id: 项目 ID
@@ -1682,19 +1709,38 @@ zh-CN:
   protozoans: 原生动物
   public_domain: 公有领域
   publish: 发布
+  purple: 紫色
   queued: 已入队列
   query: 查询
   range: 范围
+  rank: 排名
   rank_position: 排名
   ranks:
-    class: 类
-    subclass: 子集
+    kingdom: 界
+    phylum: 门
+    subphylum: 亚门
+    superclass: 总纲
+    class: 纲
+    subclass: 亚纲
+    superorder: 总目
+    order: 目
+    suborder: 亚目
     infraorder: 下目
-    superfamily: 超科
-    epifamily: 更大的家庭
-    family: 家庭
+    superfamily: 总科
+    epifamily: 领科
+    family: 科
     subfamily: 亚科
-    leaves: 离开
+    supertribe: 总族
+    tribe: 族
+    subtribe: 亚族
+    genus: 属
+    genushybrid: 属间杂种
+    species: 种
+    hybrid: 杂种
+    subspecies: 亚种
+    variety: 变种
+    form: 型
+    leaves: 叶片
   re_apply_list_rules: 重新应用列表规则
   reason: 原因
   reason_you_are_flagging_this_item: 您标记此项目的原因。
@@ -1729,6 +1775,7 @@ zh-CN:
   removed!: 已移除！
   removed_project_user: 已移除项目用户
   removing: 正在移除……
+  reorder_by_taxonomy: 按分类法重新排序
   repair_external_photos: 修补外部照片
   reply: 回复
   request_id_help: 请求ID帮助
@@ -1894,6 +1941,10 @@ zh-CN:
   table_of_contents: 目录
   tagging: 正在添加标签……
   tags: 标签
+  tags_like_taxonomy_binomial: 类似<code>taxonomy:binomial=Pseudacris crucifer</code>的标签是<a
+    href="http://www.flickr.com/help/tags#613430">机器标签</a>。They help engineers programmatically
+    make sense of your tags, and are required by some Flickr groups like the <a href="http://www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia
+    of Life Images</a> group.
   take_me_facebook: 是的，带我前往Facebook！
   take_me_flickr!: 是的，带我去Flickr！
   taxa: 分类单元
@@ -1911,6 +1962,9 @@ zh-CN:
   taxon_to_delete: 要删除的分类
   taxon_name_was_deleted: 类群名称已删除。
   taxon_was_successfully_created: 已成功创建分类。
+  taxonomic: 分类学
+  taxonomic_order: 分类排序
+  taxonomic_status: 分类状态
   tell_everyone_a_little_about_you: 向大家介绍你自己
   tell_the_world_a_little_about_yourself: 告诉世界有关您的一些东西，通过
   terms: 条款
@@ -2292,7 +2346,7 @@ zh-CN:
         guide_place_desc: 当搜索地点时，将您的指南与地点相关联会让人们找到它，并且如果设置了边界（例如“卡片”查看、分类单元页面等）的话，将在
           %{site_name} 上的地图中适当位置显示地点边界
         places_note: 注意：不是所有地点都检查带分类列表。如果您在通过分类查找地点时遇到问题，尝试选择更大的有行政区划的地区，例如国家、州、省或县。
-      mobile_downloads_tip_html: 此指南可以被下载到<a href="%{iphone_url}">iPhone应用</a>供离线使用。
+      mobile_downloads_tip_html: 此指南可以被下载到iPhone应用供离线使用。
       pdf_layouts:
         grid: 格子
         book: 图书
@@ -2637,13 +2691,13 @@ zh-CN:
       11: 11月
       12: 12月
     day_names:
-    - 周日
-    - 周一
-    - 周二
-    - 周三
-    - 周四
-    - 周五
-    - 周六
+    - 星期日
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
     formats:
       default: '%Y-%m-%d'
       long: '%Y年%B%d日'

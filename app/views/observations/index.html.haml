@@ -26,6 +26,7 @@
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t( 'filters' ) }}" }
               %i.fa.fa-sliders
+              = t(:filters)
               .ng-cloak
                 %span.badge{ "ng-show" => "numFiltersSet > 0" }
                   {{ numFiltersSet }}
@@ -33,9 +34,8 @@
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name", value: params[:taxon_name] }
             %input{ type: "hidden", name: "taxon_id" }
-            %span= t(:near, default: "near").capitalize
             %span#place-name-input
-              %input#place_name.form-control{ name: "place_name", placeholder: t(:place), type: "text", "ng-model": "placeSearch" }
+              %input#place_name.form-control{ name: "place_name", placeholder: t(:location), type: "text", "ng-model": "placeSearch" }
               %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
   #stats-container
     .container.container-fixed
@@ -84,10 +84,13 @@
             #subview-controls.btn-group
               %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
+                = t(:map)
               %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
+                = t(:grid)
               %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
+                = t(:list)
             #layer-control.btn-group.btn-group-stateless{ "ng-show": "viewing('observations', 'map')" }
               %button.btn.btn-default.btn-icon-stupidity.dropdown-toggle{ data: { toggle: "dropdown" } }
                 %i.icon-layers{ title: "{{ shared.t('layers') }}" }

@@ -8,6 +8,19 @@ describe DarwinCore::Archive, "make_metadata" do
     rights_elt = xml.at_xpath( "//intellectualRights" )
     expect( rights_elt.to_s ).to match /#{ FakeView.url_for_license(license) }/
   end
+
+  it "should include a contact from the default config" do
+    stub_config( {
+      contact: {
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name
+      }
+    } )
+    archive = DarwinCore::Archive.new
+    xml = Nokogiri::XML( open( archive.make_metadata ) )
+    contact_elt = xml.at_xpath( "//contact" )
+    expect( contact_elt.to_s ).to match /#{ CONFIG.contact.first_name }/
+  end
 end
 
 describe DarwinCore::Archive, "make_descriptor" do
@@ -65,6 +78,17 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
       expect( row['id'].to_i ).to eq o.taxon_id
     end
   end
+
+  it "should not include unlicensed photos by default" do
+    expect( p.license ).not_to eq Photo::COPYRIGHT
+    without_delay { p.update_attributes( license: Photo::COPYRIGHT ) }
+    expect( p.license ).to eq Photo::COPYRIGHT
+    expect( Photo.count ).to eq 1
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    csv = CSV.read(archive.make_simple_multimedia_data)
+    expect( csv.size ).to eq 1 # just the header
+  end
+
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
@@ -204,5 +228,17 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     obs = CSV.read(archive.make_occurrence_data, headers: true)
     expect( obs.detect{|o| o['id'] == in_site.id.to_s} ).not_to be_nil
     expect( obs.detect{|o| o['id'] == not_in_site.id.to_s} ).to be_nil
+  end
+
+  it "should include countryCode" do
+    country = make_place_with_geom( code: "US", admin_level: Place::COUNTRY_LEVEL )
+    o = without_delay do
+      make_research_grade_observation( latitude: country.latitude, longitude: country.longitude )
+    end
+    expect( o.observations_places.map(&:place) ).to include country
+    archive = DarwinCore::Archive.new
+    CSV.foreach(archive.make_occurrence_data, headers: true) do |row|
+      expect( row['countryCode'] ).to eq country.code
+    end
   end
 end

@@ -315,6 +315,11 @@ describe Observation do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
         expect( o.place_guess ).to match /#{ small_place.name }/
       end
+      it "should not change the coordinates when set based on coordinates" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        expect( o.latitude ).to eq small_place.latitude
+        expect( o.longitude ).to eq small_place.longitude
+      end
       it "should not be set without coordinates" do
         o = Observation.make!
         expect( o.latitude ).to be_blank

@@ -1043,7 +1043,7 @@ module ApplicationHelper
         else
           link_to(project.title, url_for_resource_with_host(project))
         end
-        if update.notification = Update::YOUR_OBSERVATIONS_ADDED
+        if update.notification == Update::YOUR_OBSERVATIONS_ADDED
           t(:project_curators_added_some_of_your_observations_html, url: project_url(resource), project: project.title)
         else
           t(:curators_changed_for_x_html, :x => title)
@@ -1183,6 +1183,8 @@ module ApplicationHelper
       else ""
       end
       content_tag(:div, ofv.value.gsub(/\s/, ''), :class => css_class)
+    elsif ofv.observation_field.datatype == ObservationField::TEXT
+      formatted_user_text( ofv.value, skip_simple_format: true )
     else
       ofv.value
     end
@@ -1385,7 +1387,8 @@ module ApplicationHelper
   def hyperlink_mentions(text)
     linked_text = text.dup
     linked_text.mentioned_users.each do |u|
-      linked_text.gsub!(/(^|\s|>)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+
+      linked_text.gsub!(/(\B)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
     end
     linked_text
   end

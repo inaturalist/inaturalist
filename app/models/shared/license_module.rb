@@ -22,7 +22,7 @@ module Shared::LicenseModule
     const_set info[:code].upcase.gsub(/\-/, '_'), number
     const_set info[:code].upcase.gsub(/\-/, '_') + "_CODE", info[:code]
   end
-  CC_LICNSES = [
+  CC_LICENSES = [
     CC_BY,
     CC_BY_NC,
     CC_BY_ND,
@@ -90,7 +90,7 @@ module Shared::LicenseModule
   end
   
   def creative_commons?
-    CC_LICNSES.include?( license.to_i )
+    CC_LICENSES.include?( license.to_i )
   end
 
   def open_licensed?

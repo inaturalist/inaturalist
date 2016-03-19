@@ -3,16 +3,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 shared_examples_for "a ProjectsController" do
   let(:user) { User.make! }
   let(:project) { Project.make! }
-  before(:each) do
-    @project_user = ProjectUser.make!(:user => user, :project => project)
-  end
-
-  it "should list joined projects" do
-    expect(project.users).to include(user)
-    get :by_login, :format => :json, :login => user.login
-    expect(response).to be_success
-    expect(response.body).to be =~ /#{project.title}/
-  end
 
   describe "join" do
     let(:unjoined_project) { Project.make! }
@@ -64,20 +54,46 @@ shared_examples_for "a ProjectsController" do
   end
 
   describe "members" do
+    let(:new_user) { User.make! }
     before do
-      sign_in User.make!
+      sign_in new_user
     end
     it "should include project members" do
+      pu = ProjectUser.make!( user: new_user, project: project )
       get :members, format: :json, id: project.id
       json = JSON.parse(response.body)
       user_ids = json.map{|pu| pu['user']['id']}
-      expect( user_ids ).to include @project_user.user_id
+      expect( user_ids ).to include pu.user_id
     end
     it "should include role" do
       get :members, format: :json, id: project.id
       json = JSON.parse(response.body)
       admin = json.detect{|pu| pu['user_id'] == project.user_id}
       expect( admin['role'] ).to eq ProjectUser::MANAGER
+    end
+  end
+
+  describe "by_login" do
+    let(:project) { Project.make! }
+    before do
+      sign_in user
+    end
+    it "should list joined projects" do
+      pu = ProjectUser.make!( user: user, project: project )
+      expect(project.users).to include(user)
+      get :by_login, :format => :json, :login => user.login
+      expect(response).to be_success
+      expect(response.body).to be =~ /#{project.title}/
+    end
+    it "should change when a user joins a project" do
+      expect( user.project_users.to_a ).to be_blank
+      get :by_login, format: :json, login: user.login, id: project.id
+      json = JSON.parse(response.body)
+      expect( json ).to be_blank
+      pu = ProjectUser.make!( user: user, project: project )
+      get :by_login, format: :json, login: user.login, id: project.id
+      json = JSON.parse(response.body)
+      expect( json.detect{|pu| pu['project_id'].to_i == project.id } ).not_to be_blank
     end
   end
 end

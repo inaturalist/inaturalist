@@ -23,6 +23,7 @@ class Project < ActiveRecord::Base
   
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
+  before_save :reset_last_aggregated_at
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   
@@ -40,6 +41,7 @@ class Project < ActiveRecord::Base
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+  preference :display_checklist, :boolean, :default => false
   preference :range_by_date, :boolean, :default => false
   preference :aggregation, :boolean, default: false
   
@@ -60,10 +62,10 @@ class Project < ActiveRecord::Base
   validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
     :message => "should look like a URL, e.g. #{CONFIG.site_url}",
     :allow_blank => true
-  validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
-  validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
-  validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
-  validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
+  validates_presence_of :start_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
+  validates_presence_of :end_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
+  validate :place_with_boundary, :if => lambda {|p| p.bioblitz? }
+  validate :one_year_time_span, :if => lambda {|p| p.bioblitz? }, :unless => "errors.any?"
   validate :aggregation_preference_allowed?
 
   def aggregation_preference_allowed?
@@ -133,6 +135,7 @@ class Project < ActiveRecord::Base
                     automated: false
 
   def place_with_boundary
+    return if place_id.blank?
     unless PlaceGeometry.where(:place_id => place_id).exists?
       errors.add(:place_id, "must be set and have a boundary for a bioblitz")
     end
@@ -211,7 +214,11 @@ class Project < ActiveRecord::Base
   end
   
   def rule_place
-    project_observation_rules.where(operator: "observed_in_place?").first.try(:operand)
+    @rule_place ||= rule_places.first
+  end
+
+  def rule_places
+    @rule_places ||= project_observation_rules.where(operator: "observed_in_place?").map(&:operand).compact
   end
 
   def rule_taxon
@@ -219,7 +226,7 @@ class Project < ActiveRecord::Base
   end
 
   def rule_taxa
-    @rule_taxa ||= project_observation_rules.where(:operator => "in_taxon?").map(&:operand).compact
+    @rule_taxa ||= project_observation_rules.where(operator: "in_taxon?").map(&:operand).compact
   end
   
   def icon_url
@@ -238,7 +245,7 @@ class Project < ActiveRecord::Base
   end
 
   def matching_project_observation_rules
-    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced?)
+    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced? verifiable?)
     project_observation_rules.select{|rule| matching_operators.include?(rule.operator)}
   end
   
@@ -249,7 +256,13 @@ class Project < ActiveRecord::Base
   def featured_at_utc
     featured_at.try(:utc)
   end
-  
+
+  def reset_last_aggregated_at
+    if start_time_changed? || end_time_changed?
+      self.last_aggregated_at = nil
+    end
+  end
+
   def tracking_code_allowed?(code)
     return false if code.blank?
     return false if tracking_codes.blank?
@@ -258,26 +271,33 @@ class Project < ActiveRecord::Base
 
   def observations_matching_rules
     scope = Observation.all
+    place_ids = [ ]
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?"
         scope = scope.of(rule.operand)
       when "observed_in_place?"
-        scope = scope.in_place(rule.operand)
+        place_ids << rule.operand.try(:id) || rule.operand
       when "on_list?"
         scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
           joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
       when "identified?"
         scope = scope.where("observations.taxon_id IS NOT NULL")
-      when "georeferenced"
+      when "georeferenced?"
         scope = scope.where("observations.geom IS NOT NULL")
+      when "verifiable?"
+        scope = scope.where("observations.quality_grade IN (?,?)",
+          Observation::NEEDS_ID, Observation::RESEARCH_GRADE)
       end
+    end
+    unless place_ids.empty?
+      scope = scope.in_places(place_ids)
     end
     scope
   end
 
-  def observations_url_params
-    params = {:place_id => place_id}
+  def observations_url_params(options = {})
+    params = { }
     if start_time && end_time
       if prefers_range_by_date?
         params.merge!(
@@ -289,12 +309,13 @@ class Project < ActiveRecord::Base
       end
     end
     taxon_ids = []
+    place_ids = [ place_id ]
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?"
         taxon_ids << rule.operand_id
       when "observed_in_place?"
-        # Ignore, we already added the place_id
+        place_ids << rule.operand_id
       when "on_list?"
         params[:list_id] = project_list.id
       when "identified?"
@@ -312,10 +333,21 @@ class Project < ActiveRecord::Base
         params[:captive] = true
       when "wild?"
         params[:captive] = false
+      when "verifiable?"
+        params[:verifiable] = true
       end
     end
-    taxon_ids.compact.uniq!
-    params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
+    taxon_ids = taxon_ids.compact.uniq
+    place_ids = place_ids.compact.uniq
+    # the new obs search sets some defaults we want to override
+    params[:verifiable] = "any" if !params[:verifiable]
+    params[:place_id] = "any" if place_ids.blank?
+    if !options[:extended] && taxon_ids.count + place_ids.count >= 50
+      params = { apply_project_rules_for: self.id }
+    else
+      params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
+      params.merge!(place_id: place_ids) unless place_ids.blank?
+    end
     params
   end
 
@@ -623,11 +655,72 @@ class Project < ActiveRecord::Base
   def invite_only?
     preferred_membership_model == MEMBERSHIP_INVITE_ONLY
   end
+  
+  def users_can_add?
+    preferred_submission_model == SUBMISSION_BY_ANYONE
+  end
 
   def aggregation_allowed?
     return true if place && place.bbox_area < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
+    return true if project_observation_rules.where("operator IN (?)", %w(observed_in_place?)).map{ |r|
+      r.operand && r.operand.bbox_area < 141
+    }.uniq == [ true ]
     false
+  end
+
+  def bioblitz?
+    project_type == BIOBLITZ_TYPE
+  end
+
+  def update_counts
+    update_users_observations_counts
+    update_users_taxa_counts
+  end
+
+  def update_users_observations_counts
+    results = project_observations.
+      joins(:observation).
+      joins(project: :project_users).
+      where("observations.user_id = project_users.user_id").
+      group("observations.user_id").
+      distinct.count("observations.id")
+    Project.transaction do
+      project_users.update_all(observations_count: 0)
+      results.each do |user_id, count|
+        ProjectUser.where(project_id: id, user_id: user_id).
+          update_all(observations_count: count)
+      end
+    end
+  end
+
+  def update_users_taxa_counts(options = {})
+    user_clause = options[:user_id] ? "AND o.user_id=#{ options[:user_id] }" : ""
+    results = Project.connection.execute("
+      SELECT o.user_id, count(DISTINCT COALESCE(i.taxon_id, o.taxon_id)) count
+      FROM project_observations po
+        JOIN observations o ON (po.observation_id=o.id)
+        JOIN project_users pu ON (o.user_id=pu.user_id and pu.project_id=#{ id })
+        LEFT OUTER JOIN taxa ot ON (ot.id = o.taxon_id)
+        LEFT OUTER JOIN identifications i ON (po.curator_identification_id = i.id)
+        LEFT OUTER JOIN taxa it ON (it.id = i.taxon_id)
+      WHERE
+        po.project_id = #{ id }
+        #{ user_clause }
+        AND (
+          -- observer's ident taxon is species or lower
+          ot.rank_level <= #{Taxon::SPECIES_LEVEL}
+          -- curator's ident taxon is species or lower
+          OR it.rank_level <= #{Taxon::SPECIES_LEVEL}
+        )
+      GROUP BY o.user_id")
+    Project.transaction do
+      project_users.update_all(taxa_count: 0) unless options[:user_id]
+      results.each do |r|
+        ProjectUser.where(project_id: id, user_id: r["user_id"]).
+          update_all(taxa_count: r["count"])
+      end
+    end
   end
 
   class ProjectAggregatorAlreadyRunning < StandardError; end
@@ -639,7 +732,7 @@ class Project < ActiveRecord::Base
     added = 0
     fails = 0
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
-    params = observations_url_params.merge(per_page: 200, not_in_project: id)
+    params = observations_url_params(extended: true).merge(per_page: 200, not_in_project: id)
     # making sure we only look observations opdated since the last aggregation
     unless last_aggregated_at.nil?
       params[:updated_since] = last_aggregated_at.to_s
@@ -649,6 +742,8 @@ class Project < ActiveRecord::Base
     list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
     total_entries = nil
+    last_observation_id = 0
+    search_params = Observation.get_search_params(params)
     while true
       if options[:pidfile]
         unless File.exists?(options[:pidfile])
@@ -663,20 +758,10 @@ class Project < ActiveRecord::Base
           raise ProjectAggregatorAlreadyRunning, msg
         end
       end
-      # the list filter will be ignored if the count is over the cap,
-      # so we might as well use the faster ES search in that case
-      # Might want to experiment with removing the cap, though
-      observations = if list && list.listed_taxa.count <= ObservationSearch::LIST_FILTER_SIZE_CAP
-        # using cached total_entries to avoid many COUNT(*)s on slow queries
-        Observation.query(params).paginate(page: page, total_entries: total_entries,
-          per_page: observations_url_params[:per_page])
-      else
-        # setting list_id to nil because we would have used the DB above
-        # if we could have, and ES can't handle list_ids
-        Observation.elastic_query(params.merge(page: page, list_id: nil))
-      end
+      search_params.merge!({ min_id: last_observation_id + 1,
+        order_by: "id", order: "asc" })
+      observations = Observation.page_of_results(search_params)
       break if observations.blank?
-      # caching total entries since it should be the same for each page
       total_entries = observations.total_entries if page === 1
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
@@ -690,9 +775,11 @@ class Project < ActiveRecord::Base
           Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
         end
       end
+      last_observation_id = observations.last.id
       observations = nil
       page += 1
     end
+    update_counts
     update_attributes(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end

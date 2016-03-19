@@ -26,7 +26,7 @@
   <body>
     <div id="bodywrapper">
       <% unless @headless -%>
-        <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => @site ? @site.name : SITE_NAME) do %>
+        <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
           <%= render :partial => 'shared/header' %>
         <% end %>
       <% end -%>

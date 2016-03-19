@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
 
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
+  after_save :index_parent
+  after_destroy :index_parent
 
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
   notifies_users :mentioned_users, on: :save, notification: "mention"
@@ -69,6 +71,12 @@ class Comment < ActiveRecord::Base
   def mentioned_users
     return [ ] unless body
     body.mentioned_users
+  end
+
+  def index_parent
+    if parent && parent.respond_to?(:elastic_index!)
+      parent.elastic_index!
+    end
   end
 
 end

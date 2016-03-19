@@ -82,6 +82,7 @@ function( $http, $rootScope, $filter ) {
   };
 
   var processPoints = function( geometry, callback, thisArg ) {
+    if( !geometry ) { return; }
     if( geometry instanceof google.maps.LatLng ) {
       callback.call( thisArg, geometry );
     } else if( geometry instanceof google.maps.Data.Point ) {
@@ -100,14 +101,6 @@ function( $http, $rootScope, $filter ) {
     return str.toLowerCase( ).lastIndexOf( pattern.toLowerCase( ), position ) === position;
   };
 
-  var localeParams = function( ) {
-    var localeParams = { locale: I18n.locale };
-    if( PREFERRED_PLACE ) {
-      localeParams.preferred_place_id = PREFERRED_PLACE.id;
-    }
-    return localeParams;
-  };
-
   var pp = function( obj ) {
     console.log( JSON.stringify( obj, null, "  " ) );
   };
@@ -122,7 +115,6 @@ function( $http, $rootScope, $filter ) {
     offsetCenter: offsetCenter,
     processPoints: processPoints,
     stringStartsWith: stringStartsWith,
-    localeParams: localeParams,
     pp: pp
   }
 }]);
@@ -137,6 +129,9 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
+        if( !scope.date ) {
+          return shared.t('unknown');
+        }
         var date = moment(scope.date),
             now = moment(new Date()),
             dateString;
@@ -181,14 +176,29 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
   }
 }]);
 
-iNatAPI.directive( "observationSnippet", [ "shared", function(shared) {
+iNatAPI.directive( "observationSnippet", [ "shared", function( shared ) {
   return {
-    scope: {
-      o: '='
-    },
+    scope: { o: "=" },
     link: function( scope ) {
       scope.shared = shared;
     },
     templateUrl: "ang/templates/shared/observation.html"
-  }
+  };
+}]);
+
+iNatAPI.directive( "userIcon", [ "shared", function( shared ) {
+  return {
+    scope: { u: "=" },
+    link: function( scope ) {
+      scope.shared = shared;
+    },
+    templateUrl: "ang/templates/shared/user_icon.html"
+  };
+}]);
+
+iNatAPI.directive( "userLogin", [ function( ) {
+  return {
+    scope: { u: "=" },
+    templateUrl: "ang/templates/shared/user_login.html"
+  };
 }]);

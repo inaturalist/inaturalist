@@ -130,6 +130,7 @@ class User < ActiveRecord::Base
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
+  before_save :set_time_zone
   before_save :whitelist_licenses
   before_create :set_locale
   after_save :update_observation_licenses
@@ -161,14 +162,15 @@ class User < ActiveRecord::Base
   email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
   bad_email_message = "should look like an email address.".freeze
   
-  validates_length_of       :login,    :within => MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
+  validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => login_regex, :message => bad_login_message
+  validates_format_of       :login,     with: login_regex, message: bad_login_message
 
-  validates_length_of       :name,     :maximum => 100, :allow_blank => true
+  validates_length_of       :name,      maximum: 100, allow_blank: true
 
-  validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
-  validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
+  validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
+  validates_length_of       :email,     within: 6..100, allow_blank: true
+  validates_length_of       :time_zone, minimum: 5, allow_nil: true
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -405,11 +407,17 @@ class User < ActiveRecord::Base
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
-    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
+    LifeList.delay(priority: USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
+    Observation.delay(priority: USER_INTEGRITY_PRIORITY).index_observations_for_user( id )
   end
 
   def set_locale
     self.locale ||= I18n.locale
+    true
+  end
+
+  def set_time_zone
+    self.time_zone = nil if time_zone.blank?
     true
   end
 
@@ -670,7 +678,8 @@ class User < ActiveRecord::Base
     user_id ||= "signed_on"
     site_name = options[:site].try(:name) || options[:site_name]
     site_name ||= user.site.try(:name) if user.is_a?(User)
-    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}"
+    version = ApplicationController::HEADER_VERSION
+    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}_#{version}"
   end
 
   def self.update_identifications_counter_cache(user_id)

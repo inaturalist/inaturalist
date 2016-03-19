@@ -1116,6 +1116,7 @@ es-MX:
   explore_everyones_observations: Explora las observaciones de todos
   export: Exporta
   export_observations: Exporta observaciones
+  export_with_private_coordinates: Exportar con coordenadas privadas
   exporting: Exportando...
   external_links: Enlaces externos
   extinct: Extinta
@@ -1168,6 +1169,7 @@ es-MX:
   filter_by: Filtro por
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando
     los controles.
+  filter_by_curator_identification: Filtrar por identificaciones de curador
   filter_list_by_this_taxon: Filtra la lista por este taxón
   filtering: Filtrando
   filtering_observations_that_pass_the: Observaciones filtradas que pasan los terminos
@@ -1184,6 +1186,7 @@ es-MX:
   find_some_people_to_follow: Sigue a algunas personas
   find_species: Encontrar especie
   find_suitable_observations: Encuentra observaciones adecuadas
+  find_unsuitable_observations:  Encuentra observaciones inadecuadas
   find_your_current_location: Encuentra tu ubicación actual
   first_confirmed_inat_observation: Primera observacipón confirmada de %{site_name}
   first_connect_your_provider_account_to_your_site: 'Primero, conecta tu cuenta %{provider}
@@ -1792,7 +1795,7 @@ es-MX:
   message: Mensaje
   messages: Mensajes
   mixed_licenses: Licencia combinada
-  misleading_or_illegal_content: Contenido ilegal, engañoso, racial, étnico, etc.
+  misleading_or_illegal_content_html: Contenido ilegal, engañoso, racial, étnico, etc.
   mobile_app_for: Aplicaciones móviles para
   mobile_apps_for: Aplicaciones móviles para
   mobile_view_available: Vista para móvil disponible
@@ -2456,6 +2459,7 @@ es-MX:
   project_cover: Portada del proyecto
   project_created_on: creó este proyecto el %{date}
   project_curator_id: Identificación del curador del proyecto
+  project_curator_tools: Herramientas para curadores del proyecto
   project_curators: Curadores del proyecto
   project_group_label: Grupo
   project_group_description: El grupo al que pertenece el proyecto
@@ -3268,6 +3272,7 @@ es-MX:
   total_observations: Total de observaciones
   total_unique_observers: Total de observadores únicos
   total_users: Total de usuarios,
+  totals: Totales
   "true": Sí
   trusted_project?: ¿Es un projecto verificicado?
   try_adding_species_form: Intenta añadir algunas especies utilizando el boton "Añadir
@@ -3740,6 +3745,7 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
+  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Tu nueva contraseña es
@@ -3876,7 +3882,7 @@ es-MX:
         Esto puede llevar un tiempo, así que prueba a actualizar esta página en unos pocos minutos.
       mobile_downloads_tip_html: |-
         <span class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</span>
-        Esta guía se puede descargar en el <a href="%{iphone_url}"> aplicación para el iPhone </ a> para uso sin conexión.
+        Esta guía se puede descargar en el aplicación para el iPhone para uso sin conexión.
       mobile_downloads_help_html: |-
         <p class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</p>
         <p>

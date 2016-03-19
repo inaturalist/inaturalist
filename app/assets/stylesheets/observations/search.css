@@ -16,6 +16,9 @@
   min-height: 450px;
   display: inline-block;
 }
+#results > .container {
+  height: 0px;
+}
 #view-controls {
   position: absolute;
   z-index: 2;
@@ -348,6 +351,7 @@ inat-taxon.split-taxon .icon {display: none;}
 
 #filter-container .fa-sliders {
   font-size: 120%;
+  margin-right: 5px;
 }
 #filter-container .fa-sliders:before {
   top: 1px;
@@ -358,10 +362,11 @@ inat-taxon.split-taxon .icon {display: none;}
   width: 900px;
 }
 #filters .dropdown-menu { background-color: #eee; padding: 0px;}
-#filters .ac-chooser { display: inline-block; }
+.primary-filters .ac-chooser { display: inline-block; }
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
 #filter-container { margin-left: 10px; }
+#place-name-input input { margin-left: 4px; }
 #stats-container .col-xs-4 {
   overflow: hidden;
 }
@@ -916,8 +921,13 @@ inat-taxon { white-space: nowrap; }
   padding-left: 5px;
   color: #ddd;
   background: #fff;
+  z-index: 2;
 }
-.searchclear.glyphicon:hover {
+input.filter-changed + .searchclear.glyphicon {
+  background: none;
+  color: #bbb;
+}
+.searchclear.glyphicon:hover, input.filter-changed + .searchclear.glyphicon:hover {
   color: #666;
   cursor: pointer;
 }
@@ -993,6 +1003,7 @@ inat-taxon { white-space: nowrap; }
 #filters-observation-fields .observation-field {
   background-color: #999;
   padding: 5px 28px 5px 5px;
+  margin-right: 10px;
   position: relative;
 }
 #filters-observation-fields .observation-field button {

@@ -81,7 +81,6 @@ describe BulkObservationFile, "import_file" do
   end
 
   it "should skip rows with leading pound sign" do
-    work_path = File.join(Dir::tmpdir, "import_file_test-#{Time.now.to_i}.csv")
     t = Taxon.make!
     File.open(@work_path, 'w') do |f|
       f << <<-CSV
@@ -95,6 +94,20 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
     bof.perform
     user.reload
     expect( user.observations.count ).to eq 1
+  end
+
+  it "should validate quotes in coordinates" do
+    File.open(@work_path, 'w') do |f|
+      t = Taxon.make!
+      f << <<-CSV
+species guess,Date,Description,Location,Latitude / y coord / northing,Longitude / x coord / easting,Tags,Geoprivacy
+#{t.name},2013-01-01 09:10:11,,1",1,,"List,Of,Tags",Private
+      CSV
+    end
+    bof = BulkObservationFile.new(@work_path, nil, nil, user)
+    user.observations.destroy_all
+    bof.perform
+    expect(user.observations).to be_blank
   end
   
   describe "with project" do

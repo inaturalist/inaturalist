@@ -51,7 +51,7 @@ $(document).ready(function() {
   $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
 
   $('#new_identification_form .species_guess').taxonAutocomplete({
-    taxon_id_el: $("input.ac_hidden_taxon_id"),
+    id_el: $("input.ac_hidden_taxon_id"),
     extra_class: "identification",
     afterSelect: function(wrapper) {
       var button = $('#new_identification_form').find('.default.button');

@@ -47,6 +47,9 @@ br:
   x_faves:
     one: 1 Pennroll
     other: '%{count} Pennrolloù'
+  x_people_like_this:
+    one: 1 den a blij an dra-mañ dezhañ
+    other: '%{count} tud a blij an dra-mañ dezho'
   x_people_agree_html:
     one: <span class="count">1</span> den a sav a-du
     other: <span class="count">%{count}</span> tud a sav a-du

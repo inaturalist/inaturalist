@@ -169,11 +169,13 @@ class Place < ActiveRecord::Base
     scope type.pluralize.underscore.to_sym, -> { where("place_type = ?", code) }
   end
 
+  CONTINENT_LEVEL = -1
   COUNTRY_LEVEL = 0
   STATE_LEVEL = 1
   COUNTY_LEVEL = 2
   TOWN_LEVEL = 3
-  ADMIN_LEVELS = [COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL]
+  PARK_LEVEL = 10
+  ADMIN_LEVELS = [CONTINENT_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -350,9 +352,10 @@ class Place < ActiveRecord::Base
   
   def editable_by?(user)
     return false if user.blank?
-    return true if user.is_curator?
+    return true if user.is_admin?
+    return true if user.is_curator? && admin_level.nil?
     return true if self.user_id == user.id
-    return false if [COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL].include?(admin_level)
+    return false if !admin_level.nil? && !user.is_admin?
     false
   end
   
@@ -392,6 +395,9 @@ class Place < ActiveRecord::Base
       end
     end
     
+    if options[:user].is_a?(User)
+      place.user_id = options[:user].id
+    end
     place.save
     place
   end

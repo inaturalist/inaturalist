@@ -20,7 +20,7 @@
       #actions.right
         - if @guide.downloadable?
           - if @guide.ngz.file?
-            .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.mobile_downloads_tip_html', :iphone_url => CONFIG.iphone_app_url), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
+            .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.mobile_downloads_tip_html'), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
               %i.fa-mobile.fa
               =t :offline_access_enabled
               - if @guide.editable_by?(current_user)
@@ -257,7 +257,7 @@
       .modal-content
         .modal-header
           %button.close{:type => "button", "data-dismiss" => "modal"} x
-          %h4=t :enable_offline_access_for_iphone
+          %h4=t :enable_offline_access_for_mobile
         = form_for @guide do |f|
           .modal-body
             .container-fluid

@@ -34,7 +34,91 @@
           <% end -%>
         </td>
       </tr>
-
+      <% if o.research_grade_candidate? %>
+        <tr>
+          <td>
+            <%=t :still_needs_id? %>
+          </td>
+          <td width="100%">
+            <% if score = o.needs_id_vote_score %>
+              <table width="100%">
+                <tr>
+                  <td>
+                    <% if score >= 0.5 -%>
+                      <span class="good"><%=t :yes %></span>
+                    <% else %>
+                      <%=t :yes %>
+                    <% end -%>
+                  </td>
+                  <td width="100%">
+                    <% for v in o.get_upvotes(vote_scope: :needs_id) %>
+                      <%= link_to user_image(v.user, title: v.user.login, alt: v.user.login), person_by_login_path(v.user.login) %>
+                    <% end %>
+                  </td>
+                  <td class="small meta"><%= (score * 100).round %>%</td>
+                </tr>
+                <tr>
+                  <td>
+                    <% if score >= 0.5 -%>
+                      <%=t :no %>
+                    <% else %>
+                      <span class="bad"><%=t :no %></span>
+                    <% end -%>
+                  </td>
+                  <td>
+                    <% for v in o.get_downvotes(vote_scope: :needs_id) %>
+                      <%= link_to user_image(v.user, title: v.user.login, alt: v.user.login), person_by_login_path(v.user.login) %>
+                    <% end %>
+                  </td>
+                  <td class="small meta percent"><%= ((1 - score) * 100).round %>%</td>
+                </tr>
+              </table>
+            <% else %>
+              <%= o.needs_id? ? t(:yes) : t(:no) %>
+            <% end %>
+            <div class="small meta">
+              <%= t(:what_do_you_think) %>
+              <div class="right">
+                <% if user_vote = o.find_votes_for(vote_scope: :needs_id).detect{|v| v.voter_id == current_user.try(:id)} -%>
+                  <% if user_vote.vote_flag? -%>
+                    <strong>
+                      <%=t :yes %>
+                      <%= link_to "(x)", unvote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "delete", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                    </strong>
+                    /
+                    <%= link_to t(:no), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id, vote: :no), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                  <% else %>
+                    <%= link_to t(:yes), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                    /
+                    <strong>
+                      <%= t(:no) %>
+                      <%= link_to "(x)", unvote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "delete", "data-loading-click" => '&nbsp;', :class => "inlineblock status quality_metric_vote_link" %>
+                    </strong>
+                  <% end -%>
+                <% else %>
+                  <% unless o.needs_id? && o.find_votes_for(vote_scope: :needs_id).length == 0 -%>
+                    <% if logged_in? -%>
+                      <%= link_to t(:yes), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                    <% else -%>
+                      <%= link_to t(:yes), login_path, :class => "inlineblock status" %>                      
+                    <% end -%>
+                  <% end -%>
+                  <% unless (o.needs_id? && o.find_votes_for(vote_scope: :needs_id).length == 0) || ((o.community_supported_id? && o.community_taxon_at_species_or_lower?) && o.find_votes_for(vote_scope: :needs_id).length == 0) -%>
+                    /
+                  <% end -%>
+                  <% unless (o.community_supported_id? && o.community_taxon_at_species_or_lower?) && o.find_votes_for(vote_scope: :needs_id).length == 0 -%>
+                    <% if logged_in? -%>
+                      <%= link_to t(:no), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id, vote: :no), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+                    <% else -%>
+                      <%= link_to t(:no), login_path, :class => "inlineblock status" %>                      
+                    <% end -%>
+                  <% end -%>
+                <% end -%>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end -%>
       <tr>
         <td><%= t(:observation_date?) %></td>
         <td>
@@ -70,92 +154,25 @@
         <td>
           <% if o.appropriate? -%>
             <span class="good"><%=t :yes %></span>
+            <div class="small meta">
+              <%= t(:inappropriate?) %>
+              <div class="right">
+                <%= link_to t(:flag_this_observation), new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
+              </div>
+            </div>
           <% else %>
             <%= t(:no) %>
             <% if o.flagged? -%>
               <div class="small meta">
-                <%= link_to t(:view_observationflags), observation_flags_path(o) %>
+                <%= link_to t(:view_observation_flags), observation_flags_path(o) %>
               </div>
             <% end -%>
-            <% if @flagged_photos -%>
+            <% if @flagged_photos.length > 0 -%>
               <div class="small meta">
                 <%=t :view_flags_for_x_html, :x => commas_and(@flagged_photos.map{|p| link_to("#{t :photo} #{p.id}", p.becomes(Photo))}) %>
               </div>
             <% end -%>
           <% end -%>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%=t :still_needs_id? %>
-        </td>
-        <td width="100%">
-          <% if score = o.needs_id_vote_score %>
-            <table width="100%">
-              <tr>
-                <td>
-                  <% if score >= 0.5 -%>
-                    <span class="good"><%=t :yes %></span>
-                  <% else %>
-                    <%=t :yes %>
-                  <% end -%>
-                </td>
-                <td width="100%">
-                  <% for v in o.get_upvotes(vote_scope: :needs_id) %>
-                    <%= link_to user_image(v.user, title: v.user.login, alt: v.user.login), person_by_login_path(v.user.login) %>
-                  <% end %>
-                </td>
-                <td class="small meta"><%= (score * 100).round %>%</td>
-              </tr>
-              <tr>
-                <td>
-                  <% if score >= 0.5 -%>
-                    <%=t :no %>
-                  <% else %>
-                    <span class="bad"><%=t :no %></span>
-                  <% end -%>
-                </td>
-                <td>
-                  <% for v in o.get_downvotes(vote_scope: :needs_id) %>
-                    <%= link_to user_image(v.user, title: v.user.login, alt: v.user.login), person_by_login_path(v.user.login) %>
-                  <% end %>
-                </td>
-                <td class="small meta percent"><%= ((1 - score) * 100).round %>%</td>
-              </tr>
-            </table>
-          <% else %>
-            <%= o.needs_id? ? t(:yes) : t(:no) %>
-          <% end %>
-          <div class="small meta">
-            <%= t(:what_do_you_think) %>
-            <div class="right">
-              <% if user_vote = o.find_votes_for(vote_scope: :needs_id).detect{|v| v.voter_id == current_user.try(:id)} -%>
-                <% if user_vote.vote_flag? -%>
-                  <strong>
-                    <%=t :yes %>
-                    <%= link_to "(x)", unvote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "delete", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-                  </strong>
-                  /
-                  <%= link_to t(:no), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id, vote: :no), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-                <% else %>
-                  <%= link_to t(:yes), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-                  /
-                  <strong>
-                    <%= t(:no) %>
-                    <%= link_to "(x)", unvote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "delete", "data-loading-click" => '&nbsp;', :class => "inlineblock status quality_metric_vote_link" %>
-                  </strong>
-                <% end -%>
-              <% else %>
-                <% if logged_in? -%>
-                  <%= link_to t(:yes), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
-                  <%= link_to t(:no), vote_path(resource_type: 'Observation', resource_id: o.id, scope: :needs_id, vote: :no), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-                <% else %>
-                  <%= link_to t(:yes), login_path, :class => "inlineblock status" %> /
-                  <%= link_to t(:no), login_path, :class => "inlineblock status" %>
-                <% end -%>
-              <% end -%>
-            </div>
-          </div>
         </td>
       </tr>
     </tbody>

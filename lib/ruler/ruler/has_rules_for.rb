@@ -21,13 +21,19 @@ module Ruler
         rules.group_by(&:operator).each do |operator, operator_rules|
           errors_for_operator = []
           operator_rules.each do |rule|
-            unless rule.validates?(self)
+            if rule.validates?(self)
+              # since only one of the group needs to pass, we can stop
+              break
+            else
               errors_for_operator << rule.terms
             end
           end
           next if errors_for_operator.blank?
           if operator_rules.size == 1
             errors[:base] << "Didn't pass rule: #{errors_for_operator.first}"
+          # FYI: if there are multiple rules with the same operator
+          # ONLY ONE of the rules with that operator must pass. For example
+          # if there are 10 place rules, the obs needs be in only 1
           elsif errors_for_operator.size == operator_rules.size
             errors[:base] << "Didn't pass rules: #{errors_for_operator.join(' OR ')}"
           end

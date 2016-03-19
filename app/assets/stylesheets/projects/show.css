@@ -159,6 +159,15 @@ h2{line-height:1;margin:0;float:left;}
 .invited {background-color: #FFF6BF;}
 #projectnav li.invited:hover {background-color: #fffdcd;}
 .sectioncount {margin: 4px 10px 0 10px;}
+.curatorbox {
+  background-color: #E9F3DA;
+}
+.curatorlabel {
+  display: block;
+  font-family: Georgia, Times, serif;
+  font-size: 140%;
+  padding: 0 10px;
+}
 #rtstats label {
   text-transform: capitalize;
   font-size: 16px;
@@ -179,3 +188,4 @@ h2{line-height:1;margin:0;float:left;}
 #projectstats .taxon a.scientific {
   font-style: italic;
 }
+

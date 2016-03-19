@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!,
+    only: [ :create, :update, :destroy ],
+    if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
@@ -84,6 +86,7 @@ class CommentsController < ApplicationController
           else
             @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
           end
+          Observation.refresh_es_index
           render :json => @comment.to_json(:methods => [:html])
         else
           render :status => :unprocessable_entity, :json => {:errors => @comment.errors.full_messages}
@@ -106,6 +109,7 @@ class CommentsController < ApplicationController
         redirect_to_parent
       end
       format.json do
+        Observation.refresh_es_index
         @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
         render :json => @comment.to_json(:methods => [:html])
       end
@@ -136,6 +140,7 @@ class CommentsController < ApplicationController
         redirect_back_or_default(parent)
       end
       format.js do
+        Observation.refresh_es_index
         head :ok
       end
     end

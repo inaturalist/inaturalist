@@ -257,7 +257,7 @@ class ObservationsController < ApplicationController
         
         @places = @observation.places
         
-        @project_observations = @observation.project_observations.limit(100).to_a
+        @project_observations = @observation.project_observations.joins(:project).limit(100).to_a
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         
         @comments_and_identifications = (@observation.comments.all + 
@@ -333,7 +333,7 @@ class ObservationsController < ApplicationController
             :project_observations => {
               :include => {
                 :project => {
-                  :only => [:id, :title],
+                  :only => [:id, :title, :description],
                   :methods => [:icon_url]
                 }
               }
@@ -682,6 +682,7 @@ class ObservationsController < ApplicationController
           end
           render :json => json, :status => :unprocessable_entity
         else
+          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
@@ -863,6 +864,7 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json do
+          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :methods => [:user_login, :iconic_taxon_name],
@@ -925,7 +927,10 @@ class ObservationsController < ApplicationController
         redirect_to(observations_by_login_path(current_user.login))
       end
       format.xml  { head :ok }
-      format.json  { head :ok }
+      format.json do
+        Observation.refresh_es_index
+        head :ok
+      end
     end
   end
 
@@ -1738,7 +1743,7 @@ class ObservationsController < ApplicationController
       @user_ids = @user_counts.map{ |c| c["user_id"] } |
         @user_taxon_counts.map{ |c| c["user_id"] }
       @users = User.where(id: @user_ids).
-        select("id, login, icon_file_name, icon_updated_at, icon_content_type")
+        select("id, login, name, icon_file_name, icon_updated_at, icon_content_type")
       @users_by_id = @users.index_by(&:id)
     else
       @user_counts = [ ]
@@ -2048,7 +2053,8 @@ class ObservationsController < ApplicationController
       stats_params[:place_id].blank? &&
       stats_params[:user_id].blank? &&
       stats_params[:on].blank? &&
-      stats_params[:created_on].blank?
+      stats_params[:created_on].blank? &&
+      stats_params[:apply_project_rules_for].blank?
     )
   end
   
@@ -2131,7 +2137,12 @@ class ObservationsController < ApplicationController
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
-    @place = search_params[:place] unless search_params[:place].blank?
+    if search_params[:place].is_a?(Array) && search_params[:place].length == 1
+      search_params[:place] = search_params[:place].first
+    end
+    unless search_params[:place].blank? || search_params[:place].is_a?(Array)
+      @place = search_params[:place]
+    end
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
     @iconic_taxa = search_params[:iconic_taxa_instances]
@@ -2471,7 +2482,12 @@ class ObservationsController < ApplicationController
        :projects,
        { taxon: :taxon_names }])
     end
-    @observation = scope.first
+    @observation = begin
+      scope.first
+    rescue RangeError => e
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
+      nil
+    end
     render_404 unless @observation
   end
   

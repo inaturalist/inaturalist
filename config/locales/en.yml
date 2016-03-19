@@ -468,6 +468,7 @@ en:
   before_you_can_contribute_your_observations: before you can contribute your observations.
   belives_this_is_a_comprehensive_list_of: believes this is a comprehensive list of
   bg_color: BG Color
+  bioblitz: Bioblitz
   birds: birds
   black: black
   blog_widget: Blog widget
@@ -879,6 +880,7 @@ en:
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
+  display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
   do_you_know_where_this_species_lives: Do you know where this species lives?
@@ -969,7 +971,7 @@ en:
   embed_this_assessment: Embed this assessment
   embed_widget_project: Embed a widget for this project on your website
   enable_offline_access: Enable offline access
-  enable_offline_access_for_iphone: Enable offline access for iPhone
+  enable_offline_access_for_mobile: Enable offline access for mobile
   end: End
   endangered: endangered
   endemic: endemic
@@ -994,6 +996,7 @@ en:
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   event_in_progress: Event in progress
   event_registration_url: Event registration URL
+  event_stats: Event Stats
   event_url: Event URL
   events_only: Events only
   every_species_seen_by: Every species seen by
@@ -1012,6 +1015,7 @@ en:
   explore_everyones_observations: Explore everyone's observations
   export: Export
   export_observations: Export observations
+  export_with_private_coordinates: Export with private coordinates
   exporting: "Exporting..."
   external_links: External Links
   extinct: EXTINCT
@@ -1057,6 +1061,7 @@ en:
   filling_out_your_profile: filling out your profile
   filter: Filter
   filter_by: Filter by
+  filter_by_curator_identification: Filter by curator identification
   filter_by_place: Filter by place
   filter_by_place_taxon_and_color: Filter by place, taxon, and color using the controls.
   filter_list_by_this_taxon: Filter list by this taxon
@@ -1075,6 +1080,7 @@ en:
   find_some_people_to_follow: "Find some people to follow"
   find_species: Find Species
   find_suitable_observations: Find suitable observations
+  find_unsuitable_observations: Find unsuitable observations
   find_your_current_location: Find your current location
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
@@ -1298,6 +1304,7 @@ en:
   inactive_taxon_concepts_are:
     Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change.
     Outdated concepts are kept to maintain history and compatability with some partner sites.
+  inappropriate: Inappropriate?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
@@ -1621,7 +1628,10 @@ en:
   message: Message
   messages: Messages
   mixed_licenses: mixed licenses
-  misleading_or_illegal_content: "Misleading or illegal content, racial or ethnic slurs, etc."
+  misleading_or_illegal_content_html: |
+    Misleading or illegal content, racial or ethnic slurs, etc. For more on
+    our definition of "appropriate," see the 
+    <a href="/help#inappropriate">FAQ</a>.
   mobile_app_for: Mobile app for
   mobile_apps_for: Mobile apps for
   mobile_view_available: Mobile view available
@@ -1880,9 +1890,7 @@ en:
   observation_rules: Observation rules
   observation_rules_description: |
     You can choose rules to determine what observations can be added to this
-    project, like limiting observations to a certain place. Note: limiting to
-    places currently relies on %{site_name} Places, and can only limit
-    observations to the smallest rectangle that surrounds a place. If you have
+    project, like limiting observations to a certain place or taxon. If you have
     more than one rule for a type of rule, observations will be valid if
     either rule passes. For example, if you have the rules "must be in
     Amphibia" and "must be in Reptilia", then the project will accept
@@ -1911,6 +1919,7 @@ en:
   observations_have_had_their_coordinates: "observations have had their coordinates shifted to a random point within %{km} km, either because the taxon is threatened or because the observer chose to obscure the coordinates."
   observations_it_may_take_a_few: observations.  It may take a few minutes. 
   observations_last500: Observations (last 500)
+  observations_last_aggregated: Observations last aggregated
   observations_map: Observations / Map
   observation_must_dotdotdot: Observation must...
   observations_near_a_place_are: |
@@ -2108,6 +2117,8 @@ en:
             county: county
             District: District
             district: district
+            Division: Division
+            division: division
             Drainage: Drainage
             drainage: drainage
             Estate: Estate
@@ -2128,6 +2139,8 @@ en:
             local_administrative_area: local administrative area
             Miscellaneous: Miscellaneous
             miscellaneous: miscellaneous
+            Municipality: Municipality
+            municipality: municipality
             Nationality: Nationality
             nationality: nationality
             Nearby_Building: Nearby Building
@@ -2135,7 +2148,9 @@ en:
             Nearby_Intersection: Nearby Intersection
             nearby_intersection: nearby intersection
             Open_Space: Open Space
-            open_space: open_space
+            open_space: open space
+            Parish: Parish
+            parish: parish
             Point_of_Interest: Point of Interest
             point_of_interest: point of interest
             Postal_Code: Postal Code
@@ -2280,6 +2295,7 @@ en:
   project_cover: Project cover
   project_created_on: created this project on %{date}
   project_curator_id: Project curator ID
+  project_curator_tools: Project curator tools
   project_curators: Project Curators
   project_group_label: Group
   project_group_description: Group the project belongs to
@@ -2311,8 +2327,7 @@ en:
   project_type_description: |
     Assessments and bioblitzes are special types of projects. Assessments are
     for collaborating on a set of species assessments, usually to gauge
-    conservation importance. Bioblitzes are events where people try to observe
-    as many species as possible in a given place for a given period of time.
+    conservation importance. Bioblitzes are events that have a specified beginning and end.
   project_user_cannot_be_found: Project user cannot be found
   project_user_was_invalid: "Project user was invalid: %{project_user}"
   project_was_successfully_created: Project was successfully created.
@@ -2371,6 +2386,7 @@ en:
   read_our_getting_started_guide: read our Getting Started guide
   read_the_full_wikipedia: Read the full Wikipedia description
   ready_to_get_started?: "Ready to get started?"
+  real_time_stats: Real Time Stats
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -2581,7 +2597,6 @@ en:
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_taxa_from_both: (show taxa from both lists)
-  show_the_total_number_of: "Show the total number of taxa on the project's list alongside the number of taxa observed."
   show_total_listed_taxa: Show total listed taxa
   showing_observations_by: showing observations by
   showing_one_to: Showing 1 - 
@@ -2723,7 +2738,7 @@ en:
   status_globally: "%{status} Globally"
   status_in_place: "%{status} in %{place}"
   still_no_luck?: Still no luck?
-  still_needs_id?: Still needs ID?
+  still_needs_id?: Community can confirm/improve ID?
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
@@ -2827,7 +2842,7 @@ en:
   tell_the_world_a_little_about_yourself: Tell the world a little bit about yourself by
   terms: Terms
   terms_and_rules_html: "Terms &amp; Rules"
-  terms_new_users: Terms new users must agree to before joining this project.
+  terms_new_users: "If you add terms, new users must agree to them before joining this project."
   terms_of_service: Terms of Service
   terms_service: Terms of Service
   terrain: terrain
@@ -3005,6 +3020,7 @@ en:
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
   total: total
+  totals: totals
   total_members: Total members
   total_observations: Total observations
   total_unique_observers: Total unique observers
@@ -3176,6 +3192,7 @@ en:
   view_post: View post
   view_observation: View observation
   view_observations: View observations
+  view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
   view_observations_raquo: "View observations &raquo;"
   view_on: View on
@@ -3576,10 +3593,10 @@ en:
       generating_mobile_archive_tip_html: |
         This can take a while, so try refreshing this page in a few minutes.
       mobile_downloads_tip_html: |
-        This guide can be downloaded to the <a href="%{iphone_url}">iPhone app</a> for offline use.
+        This guide can be downloaded to the mobile app for offline use.
       mobile_downloads_help_html: |
         <p>This will create a downloadable archive of all the data and media
-        associated with this guide so that iPhone users can view all the
+        associated with this guide so that mobile app users can view all the
         content in the guide without an Internet connection. It will take a
         few minutes to generate the archive, but once this is enabled the
         archive will update whenever you change this guide.</p>
@@ -3842,9 +3859,8 @@ en:
           Note that you can only choose places that have boundaries.
       show:
         project_list_desc: |
-          Project check lists include taxa manually added by project curators,
-          observed taxa identified by project curators, and taxa verified by
-          research-grade observations added to the project.
+          Taxa manually added by project curators and taxa represented by
+          research-grade observations added to the project are listed on project lists.
     observations:
       copy_tip: "Add a new observation by copying this observation's date, place, photos, and observaiton fields."
       captive_help_html: |
@@ -4066,10 +4082,12 @@ en:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Please check the spelling for each entry. If your spelling is
-          correct, please search on the species at %{search_taxa_url}. If the
+          correct, search for the species at %{search_taxa_url}. If the
           name is not yet in the %{site_name} database, you'll need to add it
-          before your bulk upload will work. Use the box at the bottom of the
-          search page to do import new names.
+          before your bulk upload will work. Use the box at the bottom of
+          the search page to import new names. If the name is present but
+          applies to multiple valid taxa, try to use a more or less specific
+          name that only matches a single taxon. 
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended
@@ -4150,17 +4168,15 @@ en:
         revoke_observations_desc: |
           If the only reason you're leaving is to stop project curators from viewing your private coordinates.
       edit:
+        aggregation_pending: Aggregation pending
         bioblitz_create_a_new_place_html: |
           %{link}, make sure it has a boundary, then come back here and try again.
         bioblitz_desc_html: |
           <p>
             A bioblitz is an event where participants try to observe as many
-            species as possible within a given place and time period. It's a fun
+            species as possible within time period. It's a fun
             way to introduce people to biodiversity while collecting valuable
-            data at the same time. Unlike normal projects, bioblitz projects
-            accumulate stats from <em>all</em> obervations made within the
-            specified time period and place, so observations don't need to be
-            added to the project to drive the project stats
+            data at the same time.
           </p>
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
@@ -4171,25 +4187,26 @@ en:
           include a sign-up widget on your project page until your bioblitz
           begins.
         icon_desc: "Will be cropped to a square"
+        last_aggregated_at_desc: |
+          Time when the aggregator last finished adding observations to this project
         observation_aggregation_desc_html: |
           <p class="description">
-            Observation aggregation will automatically add observations to your
-            project within your project's place boundary or of your project's rule
-            taxon. Since there's no way to remove many observations from a project
+            Observation aggregation will automatically add suitable observations to your
+            project as specified by your project rules. Since there's no way to remove many observations from a project
             at a time, this is potentially dangerous, so please make sure you have
             chosen the place and the taxon rules that you want, or you might end
-            up with a lot of extraneous data.
+            up with a lot of unsuitable observations to remove manually.
           </p>
           <p class="description">
             The aggregator will only work if the following conditions are met:
           </p>
           <ol>
             <li class="readable description">
-              Your project is associated with a small-to-mid-sized place (about
+              Your project has at least one 'must be observed in place' rule for a small-to-mid-sized place (about
               the size of Texas or Ukraine)
             </li>
             <li class="readable description">
-              OR your project only accepts observations of certain taxa
+              OR your project has at least one 'must be in taxon' rule
             </li>
           </ol>
         project_assets_desc_html: |
@@ -4197,6 +4214,12 @@ en:
           <ol class="description">
             <li>Files ending in .logo.jpg, .logo.png, etc. will be used as the project's logo on the project page instead of the project icon</li>
             <li>KML and KMZ files will be added to the map on the project page</li>
+          </ol>
+        project_list_desc_html: |
+          <p class="description">You can create a custom project list of taxa and link it to your project. This can be useful to:</p>
+          <ol class="description">
+            <li>Restrict observations added to your project to those matching taxa on your list via the 'must be taxon on the project list' rule.</li>
+            <li>Keep track of how many taxa on your list have been checked off with observations added to the project</li>
           </ol>
         rules:
           captive: be captive/cultivated
@@ -4209,6 +4232,7 @@ en:
           in_taxon: be in taxon
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
+          verifiable: be verifiable
         start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: anyone
@@ -4242,13 +4266,6 @@ en:
             Membership in this project is by invitation only. If you'd like to
             join, please contact one of the curators below and request an
             invitation.
-      members:
-        bioblitz_notice_html: |
-          <strong>Note:</strong> this is only a list of people who have
-          explicitly joined this project. Since this is a bioblitz project and
-          stats are calculated for all observations added within the specified
-          place and time period, there may be many more participants than are
-          listed here.
       project_location_privacy_notice_html: |
         <p>
           Please be aware project curators will be able to see any private or
@@ -4319,10 +4336,6 @@ en:
           <p>
             To get started, <a href="%{url}" class="readmore">create a post</a>
           </p>
-        project_observations_desc: |
-          This only includes observations explictly added to this
-          project, not all observations recorded at the place and time of this
-          event.
         curated_checklist_desc: |
           This is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
@@ -4721,6 +4734,7 @@ en:
         tracking_codes: Tracking codes
         source_url: Source URL
         start_time: Start time
+        last_aggregated_at: Observations last aggregated
       project_observation:
         user_id: Submitter
       place:
@@ -4825,3 +4839,4 @@ en:
     previous_label: "&#8592; Prev"
     next_label: "Next &#8594;"
     page_gap: "&hellip;"
+
