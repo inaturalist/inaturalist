@@ -4561,6 +4561,10 @@ es:
           aún no está en la base de datos de %{site_name}, deberás agregarlo antes
           para que funcione la subida masiva. Utiliza el cuadro en la parte inferior
           de la página de búsqueda para hacer la importación de nuevos nombres.
+      users_updates_suspended:
+        message: |
+          Has estado inactivo en %{site_name} por un tiempo, por lo que ha suspendido tus suscripciones. 
+          Para reanudar obtener actualizaciones sobre la actividad del sitio, por favor, <a href="%{login_url}">ingresa a tu cuenta</a> de nuevo.
     photos:
       inviter:
         automatically_add_to_project: Añadir automáticamente al proyecto
