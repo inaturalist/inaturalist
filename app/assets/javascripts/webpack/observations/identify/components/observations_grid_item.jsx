@@ -1,5 +1,4 @@
 import React, { PropTypes } from "react";
-import Observation from "../models/observation";
 
 const ObservationsGridItem = ( {
   observation: o,
@@ -55,7 +54,7 @@ const ObservationsGridItem = ( {
 };
 
 ObservationsGridItem.propTypes = {
-  observation: PropTypes.instanceOf( Observation ).isRequired,
+  observation: PropTypes.object.isRequired,
   onObservationClick: PropTypes.func
 };
 

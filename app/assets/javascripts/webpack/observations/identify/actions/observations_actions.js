@@ -1,4 +1,4 @@
-import fetch from "isomorphic-fetch";
+import inatjs from "inaturalistjs";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
 
@@ -10,19 +10,13 @@ function receiveObservations( observations ) {
 }
 
 function fetchObservations( params = {} ) {
-  return function ( dispatch, getState ) {
-    const nodeApiHost = getState().config.nodeApiHost;
-    // might also consider https://nodejs.org/api/querystring.html for this
-    let urlParams = $.param( params );
-    urlParams += "&verifiable=true";
-    return fetch( `//${nodeApiHost}/v1/observations?${urlParams}` )
+  // return function ( dispatch, getState ) {
+  return function ( dispatch ) {
+    // this will have to come back, but for now the defaults will work
+    // const nodeApiHost = getState().config.nodeApiHost
+    inatjs.observations.search( params )
       .then( response => {
-        console.log( "[DEBUG] response: ", response );
-        return response.json( );
-      } )
-      .then( json => {
-        console.log( "[DEBUG] json.results: ", json.results );
-        dispatch( receiveObservations( json.results ) );
+        dispatch( receiveObservations( response.results ) );
       } );
   };
 }

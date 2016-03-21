@@ -1,7 +1,6 @@
 import React, { PropTypes } from "react";
 import { Row, Col } from "react-bootstrap";
 import ObservationsGridItem from "./observations_grid_item";
-import Observation from "../models/observation";
 
 const ObservationsGrid = ( {
   observations,
@@ -25,7 +24,7 @@ Col.propTypes = {
 ObservationsGrid.propTypes = {
   // observations: PropTypes.array.isRequired,
   observations: PropTypes.arrayOf(
-    React.PropTypes.instanceOf( Observation )
+    React.PropTypes.object
   ).isRequired,
   onObservationClick: PropTypes.func
   // onModalClose: PropTypes.func
