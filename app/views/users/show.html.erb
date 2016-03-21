@@ -1,6 +1,7 @@
 <% content_for(:title) do %><%= @title = t(:users_profile, :user => @user.login) %><% end %>
 
 <% content_for(:extracss) do %>
+<%= stylesheet_link_tag "guides/show" %>
 <%= stylesheet_link_tag "taxa" %>
 <style type="text/css" media="screen">
   #medium_user_image { width:auto;}

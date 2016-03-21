@@ -20,6 +20,8 @@ class UsersController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
 
+  layout "bootstrap"
+
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
 
