@@ -139,7 +139,7 @@ class CommentsController < ApplicationController
         flash[:notice] = t(:comment_deleted)
         redirect_back_or_default(parent)
       end
-      format.js do
+      format.any(:js, :json) do
         Observation.refresh_es_index
         head :ok
       end

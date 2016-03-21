@@ -10,6 +10,9 @@
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
+    <% if logged_in? -%>
+      <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
+    <% end -%>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
     <% end -%>
