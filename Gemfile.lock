@@ -730,6 +730,7 @@ DEPENDENCIES
   irwi!
   jquery-rails
   json
+  jwt (~> 1.2.1)
   koala
   machinist
   mobile-fu!
@@ -784,4 +785,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

@@ -54,6 +54,7 @@ gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/Programatica/irwi.git'
 gem 'json'
 gem 'jquery-rails'
+gem 'jwt', '~> 1.2.1'
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
