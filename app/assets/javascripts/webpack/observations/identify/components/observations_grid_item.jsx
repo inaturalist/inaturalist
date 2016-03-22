@@ -1,28 +1,14 @@
 import React, { PropTypes } from "react";
+import SplitTaxon from "./split_taxon";
 
 const ObservationsGridItem = ( {
   observation: o,
   onObservationClick
 } ) => {
-  let taxonJSX;
+  let taxonJSX = I18n.t( "unknown" );
   if ( o.taxon && o.taxon !== null ) {
-    // TODO: make this a separate component
     taxonJSX = (
-      <div className="split-taxon">
-        <span className={`taxon ${o.taxon.rank} ${o.taxon.iconicTaxonName()} has-com-name`}>
-          <a
-            href={`/observations/${o.id}`}
-            className={`icon icon-iconic-${o.taxon.iconicTaxonName().toLowerCase()}`}
-          >
-          </a>
-          <a className="comname display-name" href={`/observations/${o.id}`}>
-            {o.taxon.preferred_common_name}
-          </a>
-          <a className="sciname" href={`/observations/${o.id}`}>
-            {o.taxon.name}
-          </a>
-        </span>
-      </div>
+      <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
     );
   }
   return (
@@ -44,8 +30,21 @@ const ObservationsGridItem = ( {
         <i className="sound-icon fa fa-volume-up" />
       </a>
       <div className="caption">
-        <a className="userimage" href="" title={o.user.icon_url}>
-          <i className="icon-person" />
+        <a
+          className="userimage"
+          href={`/people/${o.user_id}`}
+          title={o.user.login}
+          style={ {
+            backgroundImage: o.user.icon_url ? `url( '${o.user.icon_url}' )` : ""
+          } }
+          target="_self"
+        >
+          <i
+            className="icon-person"
+            style={ {
+              display: o.user.icon_url ? "none" : "inline"
+            } }
+          />
         </a>
         { taxonJSX }
       </div>

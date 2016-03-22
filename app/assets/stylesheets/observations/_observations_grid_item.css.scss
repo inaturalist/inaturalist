@@ -1,0 +1,129 @@
+.ObservationsGridItem {
+  position: relative;
+}
+.ObservationsGridItem .thumbnail {
+  margin-bottom: 30px;
+}
+.ObservationsGridItem .thumbnail {
+  position: relative;
+}
+.ObservationsGridItem .photo {
+  display: block;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 0px auto;
+  text-align: center;
+}
+.ObservationsGridItem .photo .icon, 
+.ObservationsGridItem .photo:hover .icon,
+.ObservationsGridItem .photo:active .icon,
+.ObservationsGridItem .photo:visited .icon,
+.ObservationsGridItem .photo:link .icon {
+  display: none;
+}
+.ObservationsGridItem .photo.iconic .icon,
+.ObservationsGridItem .photo.iconic .icon:hover,
+.ObservationsGridItem .photo.iconic .icon:active,
+.ObservationsGridItem .photo.iconic .icon:visited,
+.ObservationsGridItem .photo.iconic .icon:link {
+  color: #eee;
+  display: inline-block;
+}
+.ObservationsGridItem .photo .sound-icon { display: none; }
+.ObservationsGridItem .photo.sound .sound-icon {
+  display: inline-block;
+  color: #aaa;
+  opacity: 0.8;
+  font-size: smaller;
+}
+.ObservationsGridItem .photo {
+  height: 120px;
+  line-height: 110px;
+  font-size: 80px;
+}
+@media (min-width: 768px) {
+  .ObservationsGridItem .photo {
+    height: 157.5px;
+    line-height: 140px;
+    font-size: 120px;
+  }
+}
+@media (min-width: 992px) {
+  .ObservationsGridItem .photo {
+    height: 212.5px;
+    font-size: 180px;
+  }
+}
+@media (min-width: 1200px) {
+  .ObservationsGridItem .photo {
+    height: 262.5px;
+    line-height: 240px;
+    font-size: 210px;
+  }
+}
+
+.bootstrap-10 .ObservationsGridItem .photo {
+  height: 212px;
+  line-height: 180px;
+  font-size: 100px;
+}
+@media (min-width: 768px) {
+  .bootstrap-10 .ObservationsGridItem .photo {
+    height: 128px;
+    line-height: 98px;
+  }
+}
+@media (min-width: 992px) {
+  .bootstrap-10 .ObservationsGridItem .photo {
+    height: 172px;
+    line-height: 142px;
+    font-size: 150px;
+  }
+}
+@media (min-width: 1200px) {
+  .bootstrap-10 .ObservationsGridItem .photo {
+    height: 212px;
+    line-height: 180px;
+    font-size: 150px;
+  }
+}
+.ObservationsGridItem .caption {
+  height: 85px;
+  padding: 12px;
+}
+.ObservationsGridItem .title {
+  display: block;
+  margin-bottom: 3px
+}
+
+.ObservationsGridItem .userimage {
+  position: absolute;
+  right: 15px;
+  bottom: 65px;
+}
+.ObservationsGridItem .userimage {
+  border-radius: 120px;
+  width: 48px;
+  height: 48px;
+  line-height: 38px;
+  font-size: 32px;
+  background-size: cover;
+  background-position: center;
+  background-color: #aaa;
+  color: white;
+  text-align: center;
+  border: 2px solid white;
+  vertical-align: middle;
+}
+.ObservationsGridItem .userimage:hover,
+.ObservationsGridItem .userimage:active {opacity: 1; color: #eee;}
+.ObservationsGridItem .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
+.ObservationsGridItem .meta .comments i,
+.ObservationsGridItem .meta .identifications i {font-size: 110%;}
+.ObservationsGridItem .meta .pull-right {
+  position: relative;
+  top: 2px;
+}
+.ObservationsGridItem .favorites { margin-left: 5px;}
+.ObservationsGridItem .comments {margin-left: 5px;}
