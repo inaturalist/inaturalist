@@ -548,4 +548,19 @@ describe Identification do
       expect( Update.where(notifier: i).mention.first.subscriber ).to eq u
     end
   end
+
+  describe "run_update_curator_identification" do
+    it "indexes the observation in elasticsearch" do
+      o = Observation.make!
+      p = Project.make!
+      pu = ProjectUser.make!(user: o.user, project: p)
+      po = ProjectObservation.make!(observation: o, project: p)
+      i = Identification.make!(user: p.user, observation: o)
+      expect( Observation.page_of_results(project_id: p.id, pcid: true).
+        total_entries ).to eq 0
+      Identification.run_update_curator_identification(i)
+      expect( Observation.page_of_results(project_id: p.id, pcid: true).
+        total_entries ).to eq 1
+    end
+  end
 end
