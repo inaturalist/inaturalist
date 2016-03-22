@@ -10,11 +10,12 @@ function receiveObservations( observations ) {
 }
 
 function fetchObservations( params = {} ) {
-  return function ( dispatch, getState ) {
-    if( params.verifiable === undefined ) {
-      params.verifiable = true;
+  return function ( dispatch ) {
+    const apiParams = Object.assign( {}, params );
+    if ( apiParams.verifiable === undefined ) {
+      apiParams.verifiable = true;
     }
-    return iNaturalistJS.observations.search( params )
+    return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         console.log( "[DEBUG] response.results: ", response.results );
         dispatch( receiveObservations( response.results ) );

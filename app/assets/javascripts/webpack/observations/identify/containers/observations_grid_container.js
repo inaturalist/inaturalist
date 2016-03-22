@@ -3,11 +3,8 @@ import ObservationsGrid from "../components/observations_grid";
 import { showCurrentObservation } from "../actions";
 
 function mapStateToProps( state ) {
-  if ( !state.observations ) {
-    return { observations: [] };
-  }
   return {
-    observations: state.observations
+    observations: state.observations || []
   };
 }
 

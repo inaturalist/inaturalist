@@ -12,7 +12,7 @@ const ObservationsGridItem = ( {
         <span className={`taxon ${o.taxon.rank} ${o.taxon.iconicTaxonName()} has-com-name`}>
           <a
             href={`/observations/${o.id}`}
-            className={`icon icon-iconic-${o.taxon.iconicTaxonName().toString().toLowerCase()}`}
+            className={`icon icon-iconic-${o.taxon.iconicTaxonName().toLowerCase()}`}
           >
           </a>
           <a className="comname display-name" href={`/observations/${o.id}`}>
@@ -30,10 +30,10 @@ const ObservationsGridItem = ( {
       <a
         href={`/observations/${o.id}`}
         style={ {
-          backgroundImage: o.photo( ) ? `url( '${o.photo( )}' )` : ""
+          backgroundImage: o.photo( ) ? `url( '${o.photo( "medium" )}' )` : ""
         } }
         target="_self"
-        className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSound( ) ? "sound" : ""}`}
+        className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
         onClick={function ( e ) {
           e.preventDefault();
           onObservationClick( o );

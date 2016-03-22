@@ -22,12 +22,10 @@ Col.propTypes = {
   key: PropTypes.number
 };
 ObservationsGrid.propTypes = {
-  // observations: PropTypes.array.isRequired,
   observations: PropTypes.arrayOf(
     React.PropTypes.object
   ).isRequired,
   onObservationClick: PropTypes.func
-  // onModalClose: PropTypes.func
 };
 
 export default ObservationsGrid;
