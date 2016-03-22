@@ -910,7 +910,8 @@ describe Observation do
       o = Observation.make!
       t = Taxon.make!
       expect(t.observations_count).to eq(0)
-      o = without_delay {o.update_attributes(:taxon => t)}
+      o.update_attributes(:taxon => t)
+      Delayed::Worker.new.work_off
       t.reload
       expect(t.observations_count).to eq(1)
     end
@@ -920,7 +921,11 @@ describe Observation do
       p = without_delay { Taxon.make! }
       t = without_delay { Taxon.make!(:parent => p) }
       expect(p.observations_count).to eq 0
-      o = without_delay {o.update_attributes(:taxon => t)}
+      o.update_attributes(:taxon => t)
+      Delayed::Worker.new.work_off
+      p.reload
+      expect(p.observations_count).to eq 1
+      Observation.elastic_index!(ids: [ o.id ], delay: true)
       p.reload
       expect(p.observations_count).to eq 1
     end
