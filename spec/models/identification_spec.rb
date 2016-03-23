@@ -52,6 +52,27 @@ describe Identification, "creation" do
     expect(obs.taxon_id).to eq identification.taxon.id
   end
   
+  it "should add a taxon to its observation if it's someone elses identification" do
+    obs = Observation.make!
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).to eq identification.taxon.id
+    expect(obs.community_taxon).to be_blank
+  end
+  
+  it "shouldn't add a taxon to its observation if it's someone elses identification but the observation user rejects community IDs" do
+    u = User.make!(:prefers_community_taxa => false)
+    obs = Observation.make!(:user => u)
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+  end
+  
   it "should add a species_guess to a newly identified observation if the owner identified it and the species_guess was nil" do
     obs = Observation.make!
     taxon = Taxon.make!
@@ -109,6 +130,20 @@ describe Identification, "creation" do
     Identification.make!(:observation => obs)
     obs.reload
     expect(obs.num_identification_disagreements).to eq old_count
+  end
+  
+  it "should NOT increment the observations num_identification_agreements or num_identification_disagreements if theres just one ID" do
+    taxon = Taxon.make!
+    obs = Observation.make!
+    old_agreement_count = obs.num_identification_agreements
+    old_disagreement_count = obs.num_identification_disagreements
+    expect(obs.community_taxon).to be_blank
+    Identification.make!(:observation => obs, :taxon => taxon)
+    obs.reload
+    expect(obs.num_identification_agreements).to eq old_agreement_count
+    expect(obs.num_identification_disagreements).to eq old_disagreement_count
+    expect(obs.community_taxon).to be_blank
+    expect(obs.identifications.count).to eq 1
   end
   
   it "should consider an identification with a taxon that is a child of " + 
@@ -277,13 +312,13 @@ describe Identification, "deletion" do
   end
   
   before(:each) do
-    @observation = Observation.make!(:taxon => Taxon.make!)
+    @observation = Observation.make!(:taxon => Taxon.make!, :prefers_community_taxon => false)
     @unknown_obs = Observation.make!(:user => @observation.user)
     @identification = Identification.make!(:observation => @observation, :taxon => @observation.taxon)
   end
   
   it "should remove the taxon associated with the observation if it's the " +
-     "observer's identification" do
+     "observer's identification and obs does not prefers_community_taxon" do
     expect(@observation.taxon).not_to be(nil)
     expect(@observation.valid?).to be(true)
     @observation.reload
@@ -295,6 +330,23 @@ describe Identification, "deletion" do
     doomed_ident.destroy
     @observation.reload
     expect(@observation.taxon_id).to be(nil)
+  end
+  
+  it "should NOT remove the taxon associated with the observation if it's the " +
+     "observer's identification and obs prefers_community_taxon " do
+    @observation_prefers_community_taxon = Observation.make!(:taxon => Taxon.make!)
+    @identification_prefers_community_taxon = Identification.make!(:observation => @observation_prefers_community_taxon, :taxon => @observation_prefers_community_taxon.taxon)
+    expect(@observation_prefers_community_taxon.taxon).not_to be(nil)
+    expect(@observation_prefers_community_taxon.valid?).to be(true)
+    @observation_prefers_community_taxon.reload
+    expect(@observation_prefers_community_taxon.identifications.length).to be >= 1
+    doomed_ident = @observation_prefers_community_taxon.identifications.select do |ident| 
+      ident.user_id == @observation_prefers_community_taxon.user_id
+    end.first
+    expect(doomed_ident.user_id).to be(@observation_prefers_community_taxon.user_id)
+    doomed_ident.destroy
+    @observation_prefers_community_taxon.reload
+    expect(@observation_prefers_community_taxon.taxon_id).not_to be(nil)
   end
   
   it "should decrement the observation's num_identification_agreements if this was an agreement" do

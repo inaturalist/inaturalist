@@ -1470,13 +1470,13 @@ class Observation < ActiveRecord::Base
   def set_taxon_from_community_taxon
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     # obs opted out or user opted out
     elsif prefers_community_taxon == false || !user.prefers_community_taxa?
       owners_identification.try(:taxon_id)
     # implicitly opted in
     else
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats(:skip_save => true)
@@ -1830,6 +1830,8 @@ class Observation < ActiveRecord::Base
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
+        num_agreements = 0 if current_idents.count <= 1
+        num_disagreements = 0 if current_idents.count <= 1
       else
         num_agreements    = current_idents.select{|ident| ident.is_agreement?(:observation => self)}.size
         num_disagreements = current_idents.select{|ident| ident.is_disagreement?(:observation => self)}.size

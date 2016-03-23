@@ -118,12 +118,12 @@ class Identification < ActiveRecord::Base
     true
   end
   
-  # Update the observation if you're adding an ID to your own obs
+  # Update the observation
   def update_observation
     return true unless observation
     return true if skip_observation
     attrs = {}
-    if user_id == observation.user_id
+    if user_id == observation.user_id || (user_id != observation.user_id && !observation.community_taxon_rejected?)
       observation.skip_identifications = true
       # update the species_guess
       species_guess = observation.species_guess
@@ -133,8 +133,8 @@ class Identification < ActiveRecord::Base
       attrs = { species_guess: species_guess, taxon_id: taxon_id, iconic_taxon_id: taxon.iconic_taxon_id }
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
-          observation.id, self.user_id ] }
-      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+          observation.id, observation.user_id ] }
+      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
     end
     observation.identifications.reload
     observation.set_community_taxon(force: true)
@@ -244,6 +244,7 @@ class Identification < ActiveRecord::Base
     o = options[:observation] || observation
     return false if o.taxon_id.blank?
     return false if o.user_id == user_id
+    return false if o.identifications.count == 1
     return true if taxon_id == o.taxon_id
     taxon.in_taxon? o.taxon_id
   end
@@ -252,6 +253,7 @@ class Identification < ActiveRecord::Base
     return false if frozen?
     o = options[:observation] || observation
     return false if o.user_id == user_id
+    return false if o.identifications.count == 1
     !is_agreement?(options)
   end
   
