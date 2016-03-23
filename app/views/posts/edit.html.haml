@@ -10,21 +10,19 @@
     #pageheader.col-md-12
       .breadcrumbs
         %strong= link_to t(:back_to_post).html_safe, @post, :class => 'crumb'
-      / /#breadcrumbs
       %h2
         = t(:editing)
-        "#{@post.title}"
+        = @post.title
       .meta
         = t(:post) + ' ' + t(:from).downcase
-        - if @post.parent.is_a?(Project)
-          = link_to @post.parent.title, @post.parent
-          's journal
+        - if %w(Project Site).include?( @post.parent_type )
+          = link_to t(:x_journal, user: @post.parent.try_methods(:title, :name)), @post.parent
         - else
-          = link_to t(:your).downcase.singularize + ' ' + t(:journal).downcase, journal_by_login_path(current_user.login)
+          = link_to t(:x_journal, user: t(:your).downcase.singularize), journal_by_login_path(current_user.login)
   .row
     .col-md-12
       - if @preview
         #preview.box
-          %h3= t :preview
-          = render :partial => "post", :locals => { :post => @post }
+          %h3=t :preview
+          = render "post", post: @post
   = render "#{@post.class.name.underscore}_form"
