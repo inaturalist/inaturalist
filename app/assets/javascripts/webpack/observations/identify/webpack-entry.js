@@ -27,6 +27,12 @@ store.dispatch( setConfig( {
   apiToken: $( "[name='inaturalist-api-token']" ).attr( "content" )
 } ) );
 
+if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+  store.dispatch( setConfig( {
+    currentUser: CURRENT_USER
+  } ) );
+}
+
 // retrieve initial set of observations
 store.dispatch( fetchObservations() );
 

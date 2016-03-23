@@ -9,15 +9,16 @@ function receiveObservations( observations ) {
   };
 }
 
-function fetchObservations( params = {} ) {
-  return function ( dispatch ) {
-    const apiParams = Object.assign( {}, params );
-    if ( apiParams.verifiable === undefined ) {
-      apiParams.verifiable = true;
-    }
+function fetchObservations( ) {
+  return function ( dispatch, getState ) {
+    const s = getState();
+    const apiParams = Object.assign( {
+      verifiable: true,
+      reviewed: false,
+      viewer_id: s.config.currentUser ? s.config.currentUser.id : null
+    }, s.searchParams );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
-        console.log( "[DEBUG] response.results: ", response.results );
         dispatch( receiveObservations( response.results ) );
       } );
   };

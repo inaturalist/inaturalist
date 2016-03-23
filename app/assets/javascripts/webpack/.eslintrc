@@ -10,7 +10,9 @@
     "jquery": true
   },
   "globals": {
-    I18n: true
+    I18n: true,
+    CURRENT_USER: true,
+    PREFERRED_PLACE: true
   },
   // To give you an idea how to override rule options:
   // "rules": {

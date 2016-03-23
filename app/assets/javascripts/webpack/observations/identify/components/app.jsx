@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import SearchBar from "./search_bar";
 import StatsControl from "./stats_control";
 import ObservationsGridContainer from "../containers/observations_grid_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
+import SearchBarContainer from "../containers/search_bar_container";
 
 import SideBar from "./side_bar";
 
@@ -16,7 +16,7 @@ const App = () => (
     </Row>
     <Row>
       <Col xs={12}>
-        <SearchBar />
+        <SearchBarContainer />
       </Col>
     </Row>
     <Row>

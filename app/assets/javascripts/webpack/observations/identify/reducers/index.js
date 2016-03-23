@@ -3,7 +3,7 @@
   {
     config: {
       // configs, just key / values
-    }
+    },
     observations: [
       // observations API responses
     ],
@@ -12,18 +12,25 @@
       observation: {
         // observation
       }
+    },
+    searchParams: {
+      taxon_id: ...,
+      place_id: ...,
+      ...
     }
   }
 **/
 import { combineReducers } from "redux";
 import observations from "./observations_reducer";
 import currentObservation from "./current_observation_reducer";
-import config from "./config_reducer.js";
+import config from "./config_reducer";
+import searchParams from "./search_params_reducer";
 
 const rootReducer = combineReducers( {
   config,
   observations,
-  currentObservation
+  currentObservation,
+  searchParams
 } );
 
 export default rootReducer;
