@@ -34,6 +34,13 @@ class Observation < ActiveRecord::Base
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
+  WATCH_FIELDS_CHANGED_AT = {
+    geom: true,
+    observed_on: true,
+    place_guess: true,
+    public_positional_accuracy: true
+  }
+  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
