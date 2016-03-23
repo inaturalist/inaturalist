@@ -15119,6 +15119,34 @@ CREATE RULE geometry_columns_update AS
 -- PostgreSQL database dump complete
 --
 
+CREATE TABLE model_attribute_changes (
+    id integer NOT NULL,
+    model_type character varying,
+    model_id integer,
+    field_name character varying,
+    changed_at timestamp without time zone
+);
+
+CREATE SEQUENCE model_attribute_changes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE model_attribute_changes_id_seq OWNED BY model_attribute_changes.id;
+
+ALTER TABLE ONLY model_attribute_changes ALTER COLUMN id SET DEFAULT nextval('model_attribute_changes_id_seq'::regclass);
+
+ALTER TABLE ONLY model_attribute_changes
+    ADD CONSTRAINT model_attribute_changes_pkey PRIMARY KEY (id);
+
+CREATE INDEX index_model_attribute_changes_on_changed_at ON model_attribute_changes USING btree (changed_at);
+
+CREATE INDEX index_model_attribute_changes_on_model_id_and_field_name ON model_attribute_changes USING btree (model_id, field_name);
+
+
+
 SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20090820033338');
@@ -15682,4 +15710,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151228144302');
 INSERT INTO schema_migrations (version) VALUES ('20160104200015');
 
 INSERT INTO schema_migrations (version) VALUES ('20160317211729');
+
+INSERT INTO schema_migrations (version) VALUES ('20160323182801');
 
