@@ -2924,6 +2924,8 @@ en:
   there_were_problems_adding_your_observation_to_this_project: "There were problems adding your observation to this project: "
   there_were_problems_adding_that_observation_to_this_project: "There were problems adding that observation to this project: "
   there_were_problems_importing_that_place: "There were problems importing that place: %{place_error}"
+  there_were_problems_importing_that_place_geometry: |
+    There were problems importing that place geometry: %{error}
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_saving_those_colors: "There were some problems saving those colors: %{error}"
   there_were_some_problems_with: |
@@ -4802,6 +4804,10 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: is too large to import
         post:
           attributes:
             user:
