@@ -57,6 +57,10 @@ describe ProjectUser, "creation" do
 end
 
 describe ProjectUser do
+  before(:each) do
+    enable_elastic_indexing( Observation )
+  end
+  
   describe "update_taxa_counter_cache" do
     it "should set taxa_count to the number of observed species" do
       project_user = ProjectUser.make!
