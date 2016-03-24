@@ -73,6 +73,16 @@ describe Identification, "creation" do
     expect(obs.community_taxon).to be_blank
   end
   
+  it "shouldn't create an ID by the obs owner if someone else adds an ID" do
+    obs = Observation.make!
+    expect(obs.taxon_id).to be_blank
+    expect(obs.identifications.count).to eq 0
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).not_to be_blank
+    expect(obs.identifications.count).to eq 1
+  end
+  
   it "should add a species_guess to a newly identified observation if the owner identified it and the species_guess was nil" do
     obs = Observation.make!
     taxon = Taxon.make!

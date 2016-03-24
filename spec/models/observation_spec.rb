@@ -599,6 +599,7 @@ describe Observation do
       o = make_research_grade_observation
       Delayed::Job.delete_all
       stamp = Time.now
+      o = Observation.find(o.id)
       o.update_attributes(:taxon => Taxon.make!)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /CheckList.*refresh_with_observation/m
@@ -672,6 +673,7 @@ describe Observation do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         new_taxon = Taxon.make!
+        o = Observation.find(o.id)
         o.update_attributes(:taxon => new_taxon)
         expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
@@ -2616,14 +2618,16 @@ describe Observation do
 
 
     it "change should be triggered by changing the taxon" do
+      load_test_taxa
       o = Observation.make!
-      i1 = Identification.make!(:observation => o)
-      o.reload
+      i1 = Identification.make!(:observation => o, :taxon => @Animalia)
       expect(o.community_taxon).to be_blank
-      o.update_attributes(:taxon => i1.taxon)
+      o = Observation.find(o.id)
+      o.update_attributes(:taxon => @Plantae)
       expect(o.community_taxon).not_to be_blank
+      expect(o.identifications.count).to eq 2
     end
-
+    
     # it "change should trigger change in observation stats" do
 
     # end

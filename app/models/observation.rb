@@ -325,9 +325,9 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :set_iconic_taxon
-  
+
   before_update :handle_id_please_on_update, :set_quality_grade
-                 
+
   after_save :refresh_lists,
              :refresh_check_lists,
              :update_out_of_range_later,
@@ -1384,7 +1384,6 @@ class Observation < ActiveRecord::Base
     #   print n[:score].to_s.ljust(width)
     #   puts
     # end
-
     return unless node
     node[:taxon]
   end
