@@ -26,7 +26,7 @@ class LifeList < List
     if listed_taxon = listed_taxa.find_by_taxon_id(taxon_id)
       return listed_taxon
     end
-    ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon_id))
+    ListedTaxon.create(options.merge({list_id: self.id, taxon_id: taxon_id}))
   end
   
   #
@@ -137,6 +137,9 @@ class LifeList < List
     scope = scope.in_place(list.place) if list.place
     scope.select('DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id').
         where(conditions).each do |observation|
+          puts observation.taxon_id
+          puts observation.id
+          puts list
       list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
     end
   end

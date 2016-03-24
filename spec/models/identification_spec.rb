@@ -192,11 +192,13 @@ describe Identification, "creation" do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should incremement for an ident on someone else's observation, with delay" do
+      taxon = Taxon.make!
+      obs = Observation.make!(taxon: taxon)
       user = User.make!
       Delayed::Job.destroy_all
       expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 0
-      Identification.make!(user: user)
+      Identification.make!(user: user, observation: obs, taxon: taxon)
       expect( Delayed::Job.count ).to be > 1
       user.reload
       expect( user.identifications_count ).to eq 0

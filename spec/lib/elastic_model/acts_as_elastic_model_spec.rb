@@ -153,7 +153,6 @@ describe ActsAsElasticModel do
 
     describe "elastic_delete!" do
       it "deletes instances of a class from ES" do
-        enable_elastic_indexing( Observation )
         Observation.destroy_all
         obs = Observation.make!
         expect( Observation.count ).to eq 1
