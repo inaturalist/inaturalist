@@ -1,4 +1,5 @@
 import iNaturalistJS from "inaturalistjs";
+import { fetchObservationsStats } from "./observations_stats_actions";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
 
@@ -20,6 +21,7 @@ function fetchObservations( ) {
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         dispatch( receiveObservations( response.results ) );
+        dispatch( fetchObservationsStats( ) );
       } );
   };
 }

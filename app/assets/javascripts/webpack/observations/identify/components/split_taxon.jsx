@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import _ from "lodash";
+// import _ from "lodash";
 
 const SplitTaxon = ( { taxon, url } ) => {
   const taxonClass = ( ) => {
@@ -54,7 +54,7 @@ const SplitTaxon = ( { taxon, url } ) => {
       if ( taxon.preferred_common_name && taxon.rank_level > 10 ) {
         return (
           <span className="rank">
-            { _.capitalize( taxon.rank ) }
+            {/* _.capitalize( taxon.rank ) */}
           </span>
         );
       }

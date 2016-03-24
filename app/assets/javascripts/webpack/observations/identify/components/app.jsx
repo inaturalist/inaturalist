@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import StatsControl from "./stats_control";
+import StatsControlContainer from "../containers/stats_control_container";
 import ObservationsGridContainer from "../containers/observations_grid_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
 import SearchBarContainer from "../containers/search_bar_container";
@@ -21,7 +21,7 @@ const App = () => (
     </Row>
     <Row>
       <Col xs={12}>
-        <StatsControl />
+        <StatsControlContainer />
       </Col>
     </Row>
     <Row>

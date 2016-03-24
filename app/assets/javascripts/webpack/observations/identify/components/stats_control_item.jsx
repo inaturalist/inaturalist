@@ -5,7 +5,7 @@ const StatsControlItem = ( {
   value
 } ) => (
   <div className="stat">
-    <div className="stat-value">{value}</div>
+    <div className="stat-value">{value === undefined ? "--" : value}</div>
     <div className="stat-title">
       { title }
     </div>

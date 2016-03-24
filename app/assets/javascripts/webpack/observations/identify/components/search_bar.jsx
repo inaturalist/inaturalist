@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import { Input, Button } from "react-bootstrap";
+import TaxonAutocomplete from "./taxon_autocomplete";
 
 const SearchBar = ( {
   params,
@@ -7,11 +8,18 @@ const SearchBar = ( {
 } ) => (
   <form className="form-inline">
     {/* Taxon AutoComplete should really be it's own component that takes callbacks as props */}
-    <Input
-      type="search"
-      name="taxon_name"
-      className="form-control"
-      placeholder={ I18n.t( "species" ) }
+    <TaxonAutocomplete
+      bootstrapClear
+      searchExternal={false}
+      afterSelect={ function ( result ) {
+        // do we need to add selectedTaxon to the state? could it rest within some other reducer?
+        // $scope.selectedTaxon = result.item;
+        updateSearchParams( { taxon_id: result.item.id } );
+      } }
+      afterUnselect={ function ( ) {
+        // $scope.selectedTaxon = null;
+        updateSearchParams( { taxon_id: null } );
+      } }
     />
     {/* Same here */}
     <Input

@@ -6,7 +6,11 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import rootReducer from "./reducers/";
-import { fetchObservations, setConfig } from "./actions/";
+import {
+  fetchObservations,
+  fetchObservationsStats,
+  setConfig
+} from "./actions/";
 import App from "./components/app";
 
 const store = createStore(
@@ -35,6 +39,7 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 
 // retrieve initial set of observations
 store.dispatch( fetchObservations() );
+store.dispatch( fetchObservationsStats() );
 
 render(
   <Provider store={store}>
