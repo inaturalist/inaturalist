@@ -4,11 +4,11 @@ module Devise
   module Strategies
     class JsonWebToken < Base
       def valid?
-        !request.headers["Authorization"].nil?
+        claims
       end
 
       def authenticate!
-        if claims and user = User.find_by_id(claims.fetch("user_id"))
+        if claims && user = User.find_by_id(claims.fetch("user_id"))
           success! user
         else
           fail!
