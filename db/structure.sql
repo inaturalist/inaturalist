@@ -14958,6 +14958,12 @@ CREATE INDEX index_users_on_life_list_taxa_count ON users USING btree (life_list
 CREATE UNIQUE INDEX index_users_on_login ON users USING btree (login);
 
 
+-- Name: index_users_on_lower_login; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE INDEX index_users_on_lower_login ON users USING btree (lower((login)::text));
+
+
 --
 -- Name: index_users_on_observations_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
@@ -15713,3 +15719,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160317211729');
 
 INSERT INTO schema_migrations (version) VALUES ('20160323182801');
 
+INSERT INTO schema_migrations (version) VALUES ('20160324184344');

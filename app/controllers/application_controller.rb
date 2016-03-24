@@ -245,7 +245,7 @@ class ApplicationController < ActionController::Base
   def load_user_by_login
     @login = params[:login].to_s.downcase
     @selected_user =  @login.blank? ? nil :
-      User.where("lower(login) = ?", @login).first
+      User.where("lower(login) = ?", @login).take
     return render_404 unless @selected_user
   end
 
