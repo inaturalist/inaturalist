@@ -123,7 +123,7 @@ class Identification < ActiveRecord::Base
     return true unless observation
     return true if skip_observation
     attrs = {}
-    if user_id == observation.user_id || (user_id != observation.user_id && !observation.community_taxon_rejected?)
+    if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
       # update the species_guess
       species_guess = observation.species_guess
