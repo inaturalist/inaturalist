@@ -142,12 +142,6 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:taxon][:endemic] ).to be true
   end
 
-  it "sets verifiable" do
-    expect( Observation.make!.as_indexed_json[:verifiable] ).to be false
-    expect( make_research_grade_candidate_observation.
-      as_indexed_json[:verifiable] ).to be true
-  end
-
   it "indexes identifications" do
     o = Observation.make!
     Identification.where(observation_id: o.id).destroy_all

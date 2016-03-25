@@ -536,6 +536,34 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    if p[:changed_since] && p[:changed_fields]
+      if changedDate = DateTime.parse(p[:changed_since])
+        nested_query = {
+          nested: {
+            path: "field_change_times",
+            query: { filtered: { query: {
+              bool: {
+                must: [ { range: { "field_change_times.changed_at":
+                  { gte: changedDate.strftime("%F") }}}],
+                minimum_should_match: 1
+              }
+            }}}
+          }
+        }
+        # one of these fields must have changed (and have that recorded by Rails)
+        nested_query[:nested][:query][:filtered][:query][:bool][:should] = [{
+          terms: { "field_change_times.field_name": p[:changed_fields].split(",") }
+        }]
+        if p[:change_project_id]
+          # project curator ID must have changed for these projects
+          nested_query[:nested][:query][:filtered][:query][:bool][:should] << {
+            terms: { "field_change_times.project_id": p[:change_project_id].split(",") }
+          }
+        end
+        complex_wheres << nested_query
+      end
+    end
+
     if p[:popular].yesish?
       search_filters << { range: { cached_votes_total: { gte: 1 } } }
     elsif p[:popular].noish?
