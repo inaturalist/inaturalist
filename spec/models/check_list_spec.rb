@@ -156,7 +156,7 @@ describe CheckList, "refresh_with_observation" do
     
     lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
     lt.should_not be_auto_removable_from_check_list
-    
+    o = Observation.find(o.id)
     o.taxon = Taxon.make!
     o.save
     without_delay { CheckList.refresh_with_observation(o, :taxon_id => o.taxon_id, :taxon_id_was => @taxon.id) }
@@ -302,7 +302,7 @@ describe CheckList, "refresh_with_observation" do
     lt.last_observation_id.should_not be(o2.id)
     lt.observations_count.should eq 3
     
-    o2.reload
+    o2 = Observation.find(o2.id)
     o2.update_attributes(:taxon => Taxon.make!)
     without_delay { CheckList.refresh_with_observation(o2, :taxon_id_was => @taxon.id) }
     lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)

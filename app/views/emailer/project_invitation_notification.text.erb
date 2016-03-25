@@ -1,3 +1,5 @@
+<%= render :partial => 'header' %>
+
 <%= t(:user_invite_observation_to_project,
       :user=> @inviter.login, 
       :observation => @observation.to_plain_s(:no_user => true),

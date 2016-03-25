@@ -432,7 +432,6 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_cache_columns
     return unless taxon_id
-
     if cc = cache_columns
       self.first_observation_id, self.last_observation_id,
       self.observations_count, self.observations_month_counts = cc

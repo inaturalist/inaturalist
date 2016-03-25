@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     # Grab the monthly counts of all posts to show archives
     get_archives
     
-    if logged_in? && (current_user == @display_user || (@parent.is_a?(Project) && @parent.editable_by?(current_user)))
+    if @parent == current_user || (@parent.respond_to?(:editable_by?) && @parent.editable_by?(current_user))
       @drafts = scope.unpublished.order("created_at DESC")
     end
     
@@ -146,7 +146,7 @@ class PostsController < ApplicationController
       @post.attributes = params[:post]
       @preview = @post
       @observations ||= @post.observations.includes(:taxon, :photos)
-      return render(:action => 'edit')
+      return render(action: 'edit')
     end
     
     # This will actually perform the updates / deletions, so it needs to 
@@ -162,14 +162,10 @@ class PostsController < ApplicationController
         format.html do
           if @post.published_at
             flash[:notice] = t(:post_published)
-            redirect_to (@post.parent.is_a?(Project) ?
-                         project_journal_post_path(@post.parent.slug, @post) :
-                         journal_post_path(@post.user.login, @post))
+            redirect_to path_for_post(@post)
           else
             flash[:notice] = t(:draft_saved)
-            redirect_to (@post.parent.is_a?(Project) ?
-                         edit_project_journal_post_path(@post.parent.slug, @post) :
-                         edit_journal_post_path(@post.user.login, @post))
+            redirect_to edit_path_for_post(@post)
           end
         end
         format.json do

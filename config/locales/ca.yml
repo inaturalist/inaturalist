@@ -49,8 +49,8 @@ ca:
     one: <span class='count'>1</span> observació
     other: <span class='count'>%{count}</span> observacions
   x_observations_link_html:
-    one: <a href='%{url}'>1</a> observació
-    other: <a href='%{url}'>%{count}</a> observacions
+    one: <a href='%{url}'>1 observació</a>
+    other: <a href='%{url}'>%{count} observacions</a>
   x_people:
     one: 1 persona
     other: '%{count} persones'
@@ -522,6 +522,7 @@ ca:
   belives_this_is_a_comprehensive_list_of: creu que aquesta és una llista exhaustiva
     de
   bg_color: Color BG
+  bioblitz: Bioblitz
   birds: aus
   black: negre
   blog_widget: Giny del blog
@@ -1002,6 +1003,8 @@ ca:
   did_you_photos_flickr?: Heu pujat fotos a Flickr?
   disagree: en desacord
   disconnect_provider: Desconnecteu-vos de %{provider}
+  display_link_to_checklist: Mostrar un enllaç a la llista del projecte des de la
+    pàgina del projecte
   display_listings_added_by_curators: Mostrar llistats afegits pels supervisors
   display_listings_from_place: Mostrar llistes del lloc
   do_you_know_where_this_species_lives: Sabeu on viu aquesta espècie?
@@ -1106,7 +1109,7 @@ ca:
   embed_widget_project: Insereix un giny per a aquest projecte a la vostra pàgina
     web
   enable_offline_access: Permeteu l'accés fora de línia
-  enable_offline_access_for_iphone: Permeteu l'accés fora de línia amb iPhone
+  enable_offline_access_for_mobile: Permetre l'accés fora de línia per a mòbils
   end: Final
   endangered: en perill
   endemic: endèmica
@@ -1132,6 +1135,7 @@ ca:
     obtenir més informació de terminologia</a>.
   event_in_progress: Esdeveniment en curs
   event_registration_url: URL de Registre de l'esdeveniment
+  event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
   events_only: Només esdeveniments
   every_species_seen_by: Totes les espècies vistes per
@@ -1151,6 +1155,7 @@ ca:
   explore_everyones_observations: Llegiu les observacions de tots els usuaris.
   export: Exportar
   export_observations: Exporta observacions
+  export_with_private_coordinates: Exportació amb coordenades privades
   exporting: Exportant...
   external_links: Enllaços externs
   extinct: extint
@@ -1201,6 +1206,7 @@ ca:
   filling_out_your_profile: completeu el perfil
   filter: Filtre
   filter_by: Filtra per
+  filter_by_curator_identification: Filtre per identificació de l'administrador
   filter_by_place: Filtrar per lloc
   filter_by_place_taxon_and_color: Filtra per lloc, color, espècie o grup utilitzant
     els controls.
@@ -1220,6 +1226,7 @@ ca:
   find_some_people_to_follow: Busqueu persones per seguir
   find_species: Busca espècies
   find_suitable_observations: Troba observacions adequades
+  find_unsuitable_observations: Trobar observacions adequades
   find_your_current_location: Troba la vostra localització actual
   first_confirmed_inat_observation: Primera observació confirmada %{site_name}
   first_connect_your_provider_account_to_your_site: 'Primer, connecteu el compte de
@@ -1477,6 +1484,7 @@ ca:
   inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats
     o que han canviat el nom. Les categories inactives es conserven per mantenir la
     història de l'espècie o grup i la compatibilitat amb altres llocs.
+  inappropriate: Inadequat?
   inat_account_action: '%{site_name} : Compte : %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} creu que el llistat d''aquest
     tàxon en aquest lloc és complet.'
@@ -1738,6 +1746,7 @@ ca:
   locale_description: Locale permet configurar l'idioma i les preferències de format
     de la data.
   locales:
+    br: Bretó
     ca: Català
     en: Anglès
     en-US: Anglès (Estats Units)
@@ -1747,6 +1756,8 @@ ca:
     fr: Francès
     eu: Basc
     gl: Gallec
+    id: Indonesi
+    it: Italià
     mk: Macedònic
     pt: Portuguès
     pt-BR: Portuguès (Brasil)
@@ -1863,7 +1874,8 @@ ca:
   message: Missatge
   messages: Missatges
   mixed_licenses: Llicència combinada
-  misleading_or_illegal_content_html: Contingut il·legal, enganyós, racista, xenòfob, etc.
+  misleading_or_illegal_content_html: Contingut il·legal, enganyós, racista, xenòfob,
+    etc.
   mobile_app_for: Aplicació mòbil per a
   mobile_apps_for: Les aplicacions mòbils per a
   mobile_view_available: Vista per a telèfon mòbil disponible
@@ -2141,13 +2153,12 @@ ca:
   observation_removed_from_the_project: S'ha eliminat l'observació del projecte %{project}
   observation_rights_html: Observació %{rights}
   observation_rules: Normes d'observació
-  observation_rules_description: 'Podeu crear normes per determinar quines observacions
+  observation_rules_description: Podeu crear normes per determinar quines observacions
     poden afegir-se a aquest projecte, per exemple limitant les observacions a un
-    lloc determinat. Nota: Actualment la limitació de llocs es basa en Llocs d''%{site_name}
-    i només poden limitar-se les observacions al rectangle més petit que envolta un
-    lloc. Si teniu més d''una regla per a un tipus de regla, una observació serà vàlida
-    si compleix qualsevol regla. Per exemple si teniu la regla "ha de ser amfibi"
-    i "ha de ser rèptil", el projecte acceptarà les observacions d''amfibis O rèptils.'
+    lloc o tàxon determinats. Si teniu més d'una regla per a un tipus de regla, una
+    observació serà vàlida si compleix qualsevol regla. Per exemple si teniu la regla
+    "ha de ser amfibi" i "ha de ser rèptil", el projecte acceptarà les observacions
+    d'amfibis O rèptils.
   observation_was_deleted: L'observació es va esborrar.
   observation_would_like_some_help: '%{user} necessita una mica d''ajuda per identificar
     aquest element!'
@@ -2175,6 +2186,7 @@ ca:
     amenaçat com si és perquè l'observador ha triat enfosquir les coordenades.
   observations_it_may_take_a_few: observacions. Aquesta acció pot trigar uns minuts.
   observations_last500: Observacions (darreres 500)
+  observations_last_aggregated: Darreres observacions agregades
   observations_map: Observacions/mapa
   observation_must_dotdotdot: L'observació ha de...
   observations_near_a_place_are: Les observacions "properes" a un lloc es troben en
@@ -2317,7 +2329,7 @@ ca:
   other_annimals: Altres animals
   other_listings_of_this_taxon_for_this_place: Altres observacions d'aquesta espècie
     per a aquest lloc
-  our_blog: el nostre blog
+  our_blog: El nostre blog
   out_of_range: Fora del rang
   output_taxon: Tàxon de sortida
   owner: Propietari
@@ -2426,6 +2438,8 @@ ca:
       nearby_intersection: intersecció propera
       Open_Space: Espai obert
       open_space: espai obert
+      Parish: Districte
+      parish: districte
       Point_of_Interest: Punt d'interès
       point_of_interest: punt d'interès
       Postal_Code: Codi Postal
@@ -2585,6 +2599,7 @@ ca:
   project_cover: Coberta del Projecte
   project_created_on: va crear aquest projecte el %{date}
   project_curator_id: ID del supervisor del projecte
+  project_curator_tools: Eines de l'administrador del projecte
   project_curators: Supervisors del projecte
   project_group_label: Grup
   project_group_description: Grup al que pertany el projecte
@@ -2618,8 +2633,7 @@ ca:
   project_type_description: Valoracions i Bioblitzes són tipus especials de projectes.
     Les Valoracions son col·laboracions per a valorar l'estat d'un grup d'espècies,
     normalment d'importància per a la conservació. Els Bioblitzes són esdeveniments
-    on vàries persones intenten observar tantes espècies com els sigui possible en
-    un lloc i temps determinat.
+    que tenen un inici i final determinats.
   project_user_cannot_be_found: No s'ha trobat l'usuari del projecte
   project_user_was_invalid: 'L''usuari del projecte no és vàlid: %{project_user}'
   project_was_successfully_created: El projecte s'ha creat satisfactòriament.
@@ -2682,6 +2696,7 @@ ca:
   read_our_getting_started_guide: llegeix la nostra Guia d'inici
   read_the_full_wikipedia: Llegeix tota la descripció de Viquipèdia
   ready_to_get_started?: Llest per començar?
+  real_time_stats: Estadístiques en temps real
   reason: Raó
   reason_you_are_flagging_this_item: Raó per la qual esteu comunicant aquest contingut.
   receive_email_notifications_when_people_leave_you: Rebeu una notificació per correu
@@ -2911,8 +2926,6 @@ ca:
     blog o pàgina web!
   show_only: Mostra només
   show_taxa_from_both: (mostra un altre cop tàxons d'ambdues llistes)
-  show_the_total_number_of: Mostra el nombre total de tàxons a les llistes del projecte
-    junt al nombre de tàxon observats.
   show_total_listed_taxa: Mostra la llista total de tàxons
   showing_observations_by: Mostrant observacions fetes per
   showing_one_to: Mostrant 1 -
@@ -2928,6 +2941,7 @@ ca:
   sign_up: Registreu-vos
   sign_up_exclamation: Registreu-vos!
   similar_species: Espècies similars
+  simple: Senzill
   sign_in_exclamation: Inicieu sessió!
   single_observation: Observació simple
   single_taxon: Un tàxon (entrar per separar/eliminar/etapa, sortir per barrejar/intercanviar)
@@ -3078,7 +3092,7 @@ ca:
   status_globally: '%{status} Globalment'
   status_in_place: '%{status} a %{place}'
   still_no_luck?: Continueu sense trobar-ho?
-  still_needs_id?: Encara necessita ID?
+  still_needs_id?: La comunitat pot confirmar o millorar la ID?
   still_working_on_classifying_taxon: Encara treballem en la classificació d'aquest
     tàxon. Torneu a revisar-ho més endavant.
   stop_editing: Atura la modificació
@@ -3188,8 +3202,8 @@ ca:
   tell_the_world_a_little_about_yourself: Parleu-nos una mica de vosaltres
   terms: Termes
   terms_and_rules_html: Condicions i normes
-  terms_new_users: Els nous usuaris han d'acceptar aquestes condicions abans d'unir-se
-    al projecte.
+  terms_new_users: Si incorporeu condicions, els nous usuaris han d'acceptar-les abans
+    d'unir-se al projecte.
   terms_of_service: Condicions del servei
   terms_service: Condicions del servei
   terrain: terreny
@@ -3411,6 +3425,7 @@ ca:
   top_5_identifiers: Els 5 identificadors principals
   top_contributors: Col·laboradors més actius
   total: Total
+  totals: totals
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
   total_unique_observers: Nombre total d'observadors únics
@@ -3449,6 +3464,7 @@ ca:
   unlink_your_picasa_account: Desvinculeu el vostre compte de Picasa
   unobserved_listings: Llistats de No observats
   updates_notification_email_subject: '%{prefix} Noves actualitzacions %{date}'
+  updates_suspension_email_subject: '%{prefix} La vostra subscripció està en espera'
   updating: Actualitzant...
   unprocessable: No es pot processar
   unpublish: No publiquis
@@ -3598,6 +3614,7 @@ ca:
   view_post: Mostra introducció
   view_observation: Mostra observació
   view_observations: Mostra observacions
+  view_observation_flags: Veure marques de l'observació
   view_observations_by_everyone: Veure observacions de tothom
   view_observations_raquo: Mostra observacions »
   view_on: Mostra a
@@ -4038,11 +4055,11 @@ ca:
           editar-la fins que la publiqueu.
       generating_mobile_archive_tip_html: Això pot trigar una estona, així que proveu
         d'actualitzar aquesta pàgina més tard.
-      mobile_downloads_tip_html: Aquesta guia es pot descarregar a l'app
-        d'iPhone pel seu ús fora de línia.
+      mobile_downloads_tip_html: Aquesta guia es pot descarregar a l'app d'iPhone
+        pel seu ús fora de línia.
       mobile_downloads_help_html: |-
-        <p>Això crearà un arxiu descarregable de totes les dades i mitjans associats amb aquesta guia, de forma que els usuaris d'iPhone poden veure tot el contingut de la guia sense connexió a Internet. Necessitarà uns minuts per a generar l'arxiu, però quan aquesta opció està habilitada, l'arxiu s'actualitzarà cada vegada que canvieu aquesta guia.</p>
-        <p class="alert status">Si us plau, <strong>no habiliteu les descàrregues des del mòbil a menys que  en realitat, tingueu la intenció d'utilitzar-los. </strong> Representen una càrrega considerable pel nostre sistema.
+        <p>Això crearà un arxiu descarregable de totes les dades i mitjans associats amb aquesta guia, de forma que els usuaris de l'aplicació mòbil poguin veure tot el contingut de la guia sense connexió a Internet. Necessitarà uns minuts per a generar l'arxiu, però quan aquesta opció està habilitada, l'arxiu s'actualitzarà cada vegada que canvieu aquesta guia.</p>
+        <p class="alert status">Si us plau, <strong>no habiliteu les descàrregues des del mòbil a menys que  en realitat, tingueu la intenció d'utilitzar-les. </strong> Representen una càrrega considerable pel nostre sistema.
         </p>
       pdf_layouts:
         grid: Quadrícula
@@ -4266,10 +4283,9 @@ ca:
         place_desc: Emplena automàticament aquesta llista amb el tàxons observats
           en aquest lloc. Únicament podeu escollir llocs que no tenen límits.
       show:
-        project_list_desc: Les llistes de comprovació del projecte inclouen els tàxons
-          afegits manualment pels supervisors del projecte, els tàxons observats i
-          identificats pel supervisor del projecte, i els tàxons verificats a observacions
-          en grau de recerca afegides al projecte.
+        project_list_desc: Els tàxons afegits manualment pels supervisors del projecte
+          i els tàxons el que tenen observacions en grau de recerca es llisten a la
+          llista del projecte.
     observations:
       copy_tip: Afegeix una nova observació copiant-ne la data, el lloc, les fotos
         i els camps d'observació.
@@ -4444,7 +4460,11 @@ ca:
       bulk_import_error:
         taxon_spelling_notice_html: |-
           Comproveu l'ortografia de cada entrada. Si l'ortografia és correcte, cerqueu les espècies a %{search_taxa_url}. Si el
-          nom encara no està a la base de dades de %{site_name}, haureu d'afegir-lo abans de la càrrega massiva. Utilitzeu el quadre de la part inferior de la pàgina de cerca per fer la importació de noms nous.
+          nom encara no està a la base de dades de %{site_name}, haureu d'afegir-lo abans de la càrrega massiva. Utilitzeu el quadre de la part inferior de la pàgina de cerca per fer la importació de noms nous. Si el nom sí que està present però aplica a diversos tàxons vàlids, intenteu utilitzar un nom més o menys específic per què correspongui a un únic tàxon.
+      users_updates_suspended:
+        message: |-
+          Heu estat inactiu a %{site_name} per molt de temps, així que hem suspès les vostres subscripcions. Per continuar rebent actualitzacions sobre l'activitat del lloc, si us plau
+          <a href="%{login_url}">inicieu la sessió al vostre compte</a> de nou.
     photos:
       inviter:
         automatically_add_to_project: Afegeix automàticament al projecte
@@ -4482,6 +4502,9 @@ ca:
         coordinates_desc: Heu d'especificar les coordenades si no dibuixeu un límit
           o pugeu un arxiu KML.
         map_instruction: Utilitzeu l'eina de polígon per dibuixar el contorn del lloc.
+    posts:
+      formatting_none_help: Sense HTML inserit, només utilitza les etiquetes que introduïu.
+      formatting_simple_help: Enllaça URL automàticament i insereix salts de línia.
     projects:
       curator_coordinate_access_desc_html: Recordeu, <strong>els gestors del projecte
         poden afegir qualsevol de les vostres observacions al seu projecte</strong>
@@ -4511,11 +4534,12 @@ ca:
           és per evitar que els seus gestors puguin veure les vostres coordenades
           privades.
       edit:
+        aggregation_pending: Agregació pendent
         bioblitz_create_a_new_place_html: '%{link}, assegureu-vos que té un límit,
           després torneu enrere i torneu-ho a intentar.'
         bioblitz_desc_html: |-
           <p>
-          Un bioblitz és un esdeveniment on els participants intenten observar tantes espècies com els sigui possible en un lloc i temps determinat. És una forma divertida d'acostar la biodiversitat a la gent mentre s'obtenen dades molt útils. A diferència d'altres projectes normals, el projectes bioblitz acumulen estadístiques de <em>totes</em> les observacions fetes un un termini de temps i un lloc determinats, per tant no és necessari afegir-les al projecte per obtenir les seves estadístiques.
+          Un bioblitz és un esdeveniment on els participants intenten observar tantes espècies com els sigui possible en un temps determinat. És una forma divertida d'acostar la biodiversitat a la gent mentre s'obtenen dades molt útils.
           </p>
         cover_desc: Imatge del bàner opcional que apareixerà en la part superior de
           la pàgina del projecte. Ha de tenir 950 px d'amplada i menys de 400 px d’alçada.
@@ -4528,19 +4552,21 @@ ca:
           URL del servei de registre d'esdeveniments que esteu utilitzant per al teu bioblitz.
           Si es tracta d'un URL Eventbrite que inclou un identificador numèric, inclourem un giny d'inscripció a la seva pàgina de projecte fins que comenci el bioblitz.
         icon_desc: Es retallarà en un quadrat
+        last_aggregated_at_desc: Moment en què l'agregador va acabar d'afegir observacions
+          a aquest projecte
         observation_aggregation_desc_html: |-
           <p class="description">
-          L'agregació d'observacions afegeix observacions automàticament a projectes dins dels seus límits geogràfics o que encaixin amb els seus tàxons. Donat que no és possible eliminar moltes observacions d'un projecte al moment, això pot ser potencialment perillós, per tant assegura't que has escollit les regles del lloc i tàxons correctament, o podries acabar amb un munt de dades estranyes.
+          L'agregació d'observacions afegeix automàticament observacions adequades als vostres projectes que compleixin les seves condicions. Donat que no és possible eliminar moltes observacions d'un projecte al moment, això pot ser potencialment perillós, per tant assegura't que has escollit les regles del lloc i tàxons correctament, o podríeu acabar amb un munt de dades inútils que haureu d'esborrar manualmente.
           </p>
           <p class="description">
            L'agregador només funcionarà si es compleixen els següents requisits:
           </p>
           <ol>
            <li class="readable description">
-           El projecte està associat amb un territori relativament petit o mitjà (de la mida de Texas o Ucraïna)
+           El projecte ha de tenir, almenys, una regla que limiti les observacions a un territori relativament petit o mitjà (de la mida de Texas o Ucraïna)
           </li>
           <li class="readable description">
-          O només accepta observacions d'alguns tàxons
+          O limitar les observacions, almenys, a algun tàxon.
            </li>
           </ol>
         project_assets_desc_html: |-
@@ -4550,6 +4576,12 @@ ca:
           Els arxius que acaben en <code>.logo.jpg</code>, <code>.logo.png</code> etc. s’utilitzaran com a logotip del projecte a la pàgina del projecte en lloc de la icona de projecte
           </li>
           <li>Els arxius KML i KMZ s'afegiran al mapa a la pàgina del projecte</li>
+          </ol>
+        project_list_desc_html: |-
+          <p class="description">Podeu crear una llista personalitzada de tàxons per aquest projecte enllaçar-la. Això pot ser útil per:</p>
+          <ol class="description">
+           <li>Restringir les observacions que s'afegeixen al vostre projecte a aquelles en que hi coincideix el taxó amb la llista a través de la regla 'ha de ser espècie de la llista del projecte".</li>
+           <li>Fer el seguiment de quants tàxons de la llista han estat observats i afegits al projecte</li>
           </ol>
         rules:
           captive: captiva/conreada
@@ -4562,6 +4594,7 @@ ca:
           in_taxon: estar en el tàxon
           observed_in_place: ser observat en el seu lloc
           on_list: ser d'un tàxon de la llista del projecte
+          verifiable: ser verificable
         start_time_desc: 'Hora d''inicio del teu bioblitz. Format: AAAA-MM-DDThh:mm:ss±hh:mm'
         submission_models:
           any: qualsevol
@@ -4590,12 +4623,6 @@ ca:
         invite_only_description: La pertinença a aquest projecte és únicament per
           invitació. Si voleu unir-vos-hi, contacteu amb un dels administradors de
           sota i sol·liciteu-li una invitació.
-      members:
-        bioblitz_notice_html: <strong>Nota:</strong> això és només una llista de persones
-          que s'han unit explícitament a aquest projecte. Donat que es tracta d'un
-          projecte bioblitz i que les estadístiques es calculen per a totes les observacions
-          afegides entre les dates lloc i període de temps especificades, pot ser
-          que hi hagi més participants que els que s'enumeren aquí.
       project_location_privacy_notice_html: |-
         <p>
         Si us plau, tingueu en comte que els supervisors del projecte poden veure les ubicacions privades o enfosquides de les vostres observacions a aquest projecte llevat que hagueu revocat aquesta autorització, i afegir les vostres observacions a aquest projecte, llevat que <a href="/users/edit">ho canvieu a la vostra configuració</a>. També es pot concedir o revocar l'accés a les observacions del projecte cas per cas.
@@ -4638,9 +4665,6 @@ ca:
           <p>
            Per començar, <a href="%{url}" class="readmore">podeu crear una annotació</a>
           </p>
-        project_observations_desc: Aquest només inclou observacions explícitament
-          afegides a aquest projecte, no totes les observacions registrades en aquest
-          lloc i moment.
         curated_checklist_desc: Aquesta és la llista de comprovació gestionada i el
           compte de tàxons a partir de les observacions explícitament afegides a aquest
           projecte, no conté totes les observacions registrades en el lloc i al llarg
@@ -5084,6 +5108,7 @@ ca:
         tracking_codes: Codis de seguiment
         source_url: Adreça web de la font
         start_time: Hora d'inici
+        last_aggregated_at: Darreres observacions agregades
       project_observation:
         user_id: Autor
       place:

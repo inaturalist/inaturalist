@@ -531,15 +531,19 @@ describe "Observation Index" do
     end
 
     it "filters by updated_since" do
-      expect( Observation.params_to_elastic_query({ updated_since: "2015-10-31T00:00:00+00:00" }) ).to include(
-        filters: [ { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } } ] )
+      timeString = "2015-10-31T00:00:00+00:00"
+      timeObject = Chronic.parse(timeString)
+      expect( Observation.params_to_elastic_query({ updated_since: timeString }) ).to include(
+        filters: [ { range: { updated_at: { gte: timeObject } } } ] )
     end
 
     it "filters by updated_since OR aggregation_user_ids" do
+      timeString = "2015-10-31T00:00:00+00:00"
+      timeObject = Chronic.parse(timeString)
       expect( Observation.params_to_elastic_query({
-        updated_since: "2015-10-31T00:00:00+00:00", aggregation_user_ids: [ 1, 2 ] }) ).to include(
+        updated_since: timeString, aggregation_user_ids: [ 1, 2 ] }) ).to include(
         filters: [ { bool: { should: [
-          { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } },
+          { range: { updated_at: { gte: timeObject } } },
           { terms: { "user.id" => [1, 2] } } ] } } ] )
     end
 
