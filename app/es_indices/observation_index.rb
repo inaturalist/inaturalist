@@ -7,14 +7,16 @@ class Observation < ActiveRecord::Base
     :indexed_project_ids_without_curator_id
 
   scope :load_for_index, -> { includes(
-    :user, :confirmed_reviews, :flags, :quality_metrics,
+    :user, :confirmed_reviews, :flags,
+    :model_attribute_changes,
+    { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user ] },
-    { comments: [ :user ] } ) }
+    { identifications: :user },
+    { comments: :user } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -38,6 +40,8 @@ class Observation < ActiveRecord::Base
         indexes :value, analyzer: "keyword_analyzer"
       end
       indexes :non_owner_ids, type: :nested do
+      end
+      indexes :field_change_times, type: :nested do
       end
       indexes :comments do
         indexes :body, analyzer: "ascii_snowball_analyzer"
@@ -87,7 +91,6 @@ class Observation < ActiveRecord::Base
       geoprivacy: geoprivacy,
       faves_count: cached_votes_total,
       cached_votes_total: cached_votes_total,
-      verifiable: research_grade_candidate?,
       num_identification_agreements: num_identification_agreements,
       num_identification_disagreements: num_identification_disagreements,
       identifications_most_agree:
@@ -118,6 +121,7 @@ class Observation < ActiveRecord::Base
       comments: comments.map(&:as_indexed_json),
       comments_count: comments.size,
       obscured: coordinates_obscured? || geoprivacy_obscured?,
+      field_change_times: field_changes_to_index,
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
@@ -605,6 +609,28 @@ class Observation < ActiveRecord::Base
       ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = t.establishment_means_in_place?(
       "endemic", places)
+  end
+
+  # returns an array of change hashes:
+  #   [ { field_name: "geom", changed_at: ... },
+  #     { field_name: "curator_identification_id",
+  #       project_id: 1, changed_at: ... } ]
+  def field_changes_to_index
+    # get all the changes for this observation
+    changes = model_attribute_changes.map do |c|
+      { field_name: c.field_name, changed_at: c.changed_at }
+    end
+    # get all the project curator IDs for this obs
+    if project_observations_with_changes.length > 0
+      changes += project_observations_with_changes.map do |po|
+        po.model_attribute_changes.map do |c|
+          return unless c.field_name == "curator_identification_id"
+          { field_name: "project_curator_id", project_id: po.project_id,
+              changed_at: c.changed_at }
+        end
+      end.flatten.compact
+    end
+    changes
   end
 
 end
