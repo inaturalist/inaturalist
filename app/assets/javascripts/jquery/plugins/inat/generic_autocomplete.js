@@ -138,7 +138,7 @@ $.fn.genericAutocomplete = function( options ) {
     // the value of the field so we don't need to reset the selection
     nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
       34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
-    if( _.contains( nonCharacters, key ) ) { return; }
+    if( _.includes( nonCharacters, key ) ) { return; }
     field.trigger( "resetSelection" );
   });
   field.keyup( function( e ) {

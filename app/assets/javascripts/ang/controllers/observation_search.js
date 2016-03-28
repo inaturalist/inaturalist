@@ -631,11 +631,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   });
   $scope.matchUrlState = function( ) {
     var urlParams = $location.search( );
-    if( $scope.params.view && _.contains( $scope.possibleViews, $scope.params.view ) ) {
+    if( $scope.params.view && _.includes( $scope.possibleViews, $scope.params.view ) ) {
       $scope.currentView = urlParams.view;
     }
     if( $scope.possibleSubviews[ "observations" ] &&
-        _.contains( $scope.possibleSubviews[ "observations" ], $scope.params.subview ) ) {
+        _.includes( $scope.possibleSubviews[ "observations" ], $scope.params.subview ) ) {
       $scope.currentSubview = $scope.params.subview;
     }
     if ( urlParams.on ) {

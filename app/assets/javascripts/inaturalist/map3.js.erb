@@ -901,7 +901,7 @@ var appendValidParamsToURL = function( url, options ) {
   _.each( options, function( value, key ) {
     if( options.endpoint === "grid" ) { key = key.replace("grid_", ""); }
     if( options.endpoint === "points" ) { key = key.replace("point_", ""); }
-    if( _.contains( options.validParams, key ) ) {
+    if( _.includes( options.validParams, key ) ) {
       params[ key ] = value;
     }
     if ( key.match( /field[:%]\w+/ ) ) {

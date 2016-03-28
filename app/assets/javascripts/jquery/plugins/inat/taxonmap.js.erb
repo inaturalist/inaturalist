@@ -21,18 +21,18 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.mapStyle = options.mapStyle || $(elt).data('map-style');
   options.zoomLevel = options.zoomLevel || parseInt( $(elt).data('zoom-level') );
   options.minZoom = options.minZoom || parseInt( $(elt).data('min-zoom') );
-  options.urlCoords = $(elt).data('url-coords');
+  options.urlCoords = options.urlCoords || $(elt).data('url-coords');
   options.disableFullscreen = ((options.disableFullscreen || $(elt).data('disable-fullscreen')) === true);
-  options.showRange = $(elt).data('show-range');
-  options.minX = $(elt).data('min-x');
-  options.minY = $(elt).data('min-y');
-  options.maxX = $(elt).data('max-x');
-  options.maxY = $(elt).data('max-y');
+  options.showRange = options.showRange || $(elt).data('show-range');
+  options.minX = options.minX || $(elt).data('min-x');
+  options.minY = options.minY || $(elt).data('min-y');
+  options.maxX = options.maxX || $(elt).data('max-x');
+  options.maxY = options.maxY || $(elt).data('max-y');
   options.flagLetters = $(elt).data('flag-letters');
   options.observations = options.observations || $(elt).data('observations');
-  options.observationLayers = $(elt).data('observation-layers');
-  options.placeLayers = $(elt).data('place-layers');
-  options.taxonLayers = $(elt).data('taxon-layers');
+  options.observationLayers = options.observationLayers || $(elt).data('observation-layers');
+  options.placeLayers = options.placeLayers || $(elt).data('place-layers');
+  options.taxonLayers = options.taxonLayers || $(elt).data('taxon-layers');
   options.mapTypeControl = (options.mapTypeControl !== false && $(elt).data('map-type-control') !== true);
   options.zoomControl = (options.zoomControl !== false && $(elt).data('zoom-control') !== false);
   options.overlayMenu = (options.overlayMenu !== false && $(elt).data('overlay-menu') !== false);
@@ -59,7 +59,10 @@ inatTaxonMap.setup = function ( elt, options ) {
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
-      return jQuery.parseJSON( observation );
+      if ( typeof( observation) === "string" ) {
+        return jQuery.parseJSON( observation );
+      }
+      return observation;
     });
   }
   if (options.zoomLevel === 0) {

@@ -1,1 +1,16 @@
 @import '_observations_grid_item';
+.btn-checkbox {
+  display: inline-block;
+}
+.btn-checkbox .checkbox {
+  margin: 7px 10px 7px 0px;
+}
+
+.bootstrap .ObservationModal .modal-footer .secondary-actions,
+body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions {
+  text-align: left;
+}
+
+.ObservationModal .taxon-map {
+  height: 100px;
+}
