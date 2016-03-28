@@ -9334,6 +9334,38 @@ ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
 
 
 --
+-- Name: model_attribute_changes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE model_attribute_changes (
+    id integer NOT NULL,
+    model_type character varying,
+    model_id integer,
+    field_name character varying,
+    changed_at timestamp without time zone
+);
+
+
+--
+-- Name: model_attribute_changes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE model_attribute_changes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: model_attribute_changes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE model_attribute_changes_id_seq OWNED BY model_attribute_changes.id;
+
+
+--
 -- Name: oauth_access_grants; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12093,6 +12125,13 @@ ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY model_attribute_changes ALTER COLUMN id SET DEFAULT nextval('model_attribute_changes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY oauth_access_grants ALTER COLUMN id SET DEFAULT nextval('oauth_access_grants_id_seq'::regclass);
 
 
@@ -12796,6 +12835,14 @@ ALTER TABLE ONLY lists
 
 ALTER TABLE ONLY messages
     ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: model_attribute_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY model_attribute_changes
+    ADD CONSTRAINT model_attribute_changes_pkey PRIMARY KEY (id);
 
 
 --
@@ -13794,6 +13841,20 @@ CREATE INDEX index_messages_on_user_id_and_from_user_id ON messages USING btree 
 --
 
 CREATE INDEX index_messages_on_user_id_and_to_user_id_and_read_at ON messages USING btree (user_id, to_user_id, read_at);
+
+
+--
+-- Name: index_model_attribute_changes_on_changed_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_model_attribute_changes_on_changed_at ON model_attribute_changes USING btree (changed_at);
+
+
+--
+-- Name: index_model_attribute_changes_on_model_id_and_field_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_model_attribute_changes_on_model_id_and_field_name ON model_attribute_changes USING btree (model_id, field_name);
 
 
 --
@@ -14958,7 +15019,8 @@ CREATE INDEX index_users_on_life_list_taxa_count ON users USING btree (life_list
 CREATE UNIQUE INDEX index_users_on_login ON users USING btree (login);
 
 
--- Name: index_users_on_lower_login; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+-- Name: index_users_on_lower_login; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_users_on_lower_login ON users USING btree (lower((login)::text));
@@ -15124,34 +15186,6 @@ CREATE RULE geometry_columns_update AS
 --
 -- PostgreSQL database dump complete
 --
-
-CREATE TABLE model_attribute_changes (
-    id integer NOT NULL,
-    model_type character varying,
-    model_id integer,
-    field_name character varying,
-    changed_at timestamp without time zone
-);
-
-CREATE SEQUENCE model_attribute_changes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE model_attribute_changes_id_seq OWNED BY model_attribute_changes.id;
-
-ALTER TABLE ONLY model_attribute_changes ALTER COLUMN id SET DEFAULT nextval('model_attribute_changes_id_seq'::regclass);
-
-ALTER TABLE ONLY model_attribute_changes
-    ADD CONSTRAINT model_attribute_changes_pkey PRIMARY KEY (id);
-
-CREATE INDEX index_model_attribute_changes_on_changed_at ON model_attribute_changes USING btree (changed_at);
-
-CREATE INDEX index_model_attribute_changes_on_model_id_and_field_name ON model_attribute_changes USING btree (model_id, field_name);
-
-
 
 SET search_path TO "$user",public;
 
@@ -15720,3 +15754,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160317211729');
 INSERT INTO schema_migrations (version) VALUES ('20160323182801');
 
 INSERT INTO schema_migrations (version) VALUES ('20160324184344');
+
