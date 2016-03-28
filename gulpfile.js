@@ -15,10 +15,10 @@ gulp.task("watch", function() {
   fatalLevel = 'off';
   gulp.watch([
     // all js files in the webpack dir
-    "app/assets/javascripts/webpack/**/*.js",
+    "app/webpack/**/*.js",
 
     // all jsx files in the webback dir
-    "app/assets/javascripts/webpack/**/*.jsx"
+    "app/webpack/**/*.jsx"
   ], ["webpack"]);
 });
 

@@ -1,19 +1,18 @@
 var path = require('path'),
-    assets_path = path.join('app', 'assets', 'javascripts'),
-    webpack_assets_path = path.join('app', 'assets', 'javascripts', 'webpack');
+    webpack_assets_path = path.join('app', 'webpack');
 
 var config = {
-  context: path.resolve(assets_path),
+  context: path.resolve(webpack_assets_path),
   // entry: './webpack/entry.js',
   entry: {
     // list out the various bundles we need to make for different apps
-    'observations-identify': './webpack/observations/identify/webpack-entry'
+    'observations-identify': './observations/identify/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
     // for inclusion in the asset pipeline, make app/assets/javascripts/[name]-bundle.js
     filename: '[name]-webpack.js',
-    path: path.resolve(assets_path)
+    path: path.resolve(__dirname, "../assets/javascripts"),
   },
   // externals: {
   //   jquery: 'var jQuery'
