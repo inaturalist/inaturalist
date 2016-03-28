@@ -1072,7 +1072,6 @@ es-MX:
   embed_this_assessment: Incluye la evaluación
   embed_widget_project: Incluye el widget para este proyecto en tu sitio web
   enable_offline_access: Habilita el acceso sin conexión
-  enable_offline_access_for_iphone: Habilita el acceso sin conexión para iPhone
   end: Fin
   endangered: En peligro
   endemic: endémica
@@ -1167,9 +1166,9 @@ es-MX:
   filling_out_your_profile: Llenando tu perfil
   filter: Filtro
   filter_by: Filtro por
+  filter_by_curator_identification: Filtrar por identificaciones de curador
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando
     los controles.
-  filter_by_curator_identification: Filtrar por identificaciones de curador
   filter_list_by_this_taxon: Filtra la lista por este taxón
   filtering: Filtrando
   filtering_observations_that_pass_the: Observaciones filtradas que pasan los terminos
@@ -1186,7 +1185,7 @@ es-MX:
   find_some_people_to_follow: Sigue a algunas personas
   find_species: Encontrar especie
   find_suitable_observations: Encuentra observaciones adecuadas
-  find_unsuitable_observations:  Encuentra observaciones inadecuadas
+  find_unsuitable_observations: Encuentra observaciones inadecuadas
   find_your_current_location: Encuentra tu ubicación actual
   first_confirmed_inat_observation: Primera observacipón confirmada de %{site_name}
   first_connect_your_provider_account_to_your_site: 'Primero, conecta tu cuenta %{provider}
@@ -1795,7 +1794,8 @@ es-MX:
   message: Mensaje
   messages: Mensajes
   mixed_licenses: Licencia combinada
-  misleading_or_illegal_content_html: Contenido ilegal, engañoso, racial, étnico, etc.
+  misleading_or_illegal_content_html: Contenido ilegal, engañoso, racial, étnico,
+    etc.
   mobile_app_for: Aplicaciones móviles para
   mobile_apps_for: Aplicaciones móviles para
   mobile_view_available: Vista para móvil disponible
@@ -2770,8 +2770,6 @@ es-MX:
     blog o sitio web!
   show_only: Muestra solo
   show_taxa_from_both: (Muestra taxa de las dos listas otra vez)
-  show_the_total_number_of: Muestra el número total de especies o grupos en las listas
-    de proyecos junto con el número de especies o grupos observados.
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
   showing_observations_by: Mostrando observaciones hechas por
   showing_one_to: Mostrando 1 -
@@ -3268,11 +3266,11 @@ es-MX:
   top_5_identifiers: Los 5 identificadores principales
   top_contributors: Los principales contribuyentes
   total: Total
+  totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
   total_unique_observers: Total de observadores únicos
   total_users: Total de usuarios,
-  totals: Totales
   "true": Sí
   trusted_project?: ¿Es un projecto verificicado?
   try_adding_species_form: Intenta añadir algunas especies utilizando el boton "Añadir
@@ -3745,7 +3743,6 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
-  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Tu nueva contraseña es
@@ -4475,12 +4472,6 @@ es-MX:
         invite_only_description: "Miembros de este proyecto estan solo por invitación.
           Si deseas unirte,\npor favor contacta alguno de estos curadores y solicitales
           una \ninvitación."
-      members:
-        bioblitz_notice_html: "<strong>Nota:</strong> esta solo es una lista de la
-          comunidad que \nexplicitamente se ha unido a este proyecto. Dado que es
-          un \nproyecto bioblitz y las estadísticas son calculadas de todas las \nobservaciones
-          añadidas a un lugar específico y en un periodo de timepo,\npuede haber mas
-          participantes que loslistados aquí."
       project_location_privacy_notice_html: "<p>\n  Ten en cuenta que los curadores
         del proyecto podrán ver cualquier \n  coordenada oscurecida o privada de tus
         observaciones a menos que \n  quites este permios, y ellos podrán añadir cualquiera
@@ -4538,9 +4529,6 @@ es-MX:
           <p>
             Para empezar, <a href="%{url}" class="readmore">crea un comentario</a>
           </p>
-        project_observations_desc: |-
-          Esto solo incluye observaciones explicitamente añadidas al proyecto, no todas
-          las observaciones registradas en el lugar y tiempo de este evento.
         curated_checklist_desc: "Esta es la lista curada y el conteo de las especies
           o grupos añadidos explicitamente \na este proyecto, no todas las observaciones
           registradas en el tiempo y lugar \nde este evento."

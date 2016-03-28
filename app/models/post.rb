@@ -46,7 +46,7 @@ class Post < ActiveRecord::Base
 
   ALLOWED_TAGS = %w(
     a abbr acronym b blockquote br cite code dl dt em embed h1 h2 h3 h4 h5 h6 hr i
-    iframe img li object ol p param pre small strong sub sup tt ul
+    iframe img li object ol p param pre s small strike strong sub sup tt ul
     table tr td th
     audio source
     div

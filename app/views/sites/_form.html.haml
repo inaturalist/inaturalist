@@ -26,9 +26,13 @@
         = f.file_field :logo_square
         = image_tag @record.logo_square.url, :class => 'img-responsive'
       .col-md-3
+        = f.file_field :logo_email_banner
+        = image_tag @record.logo_email_banner.url, :class => 'img-responsive'
+      .col-md-3
         = f.file_field :stylesheet
         = link_to @record.stylesheet.url, @record.stylesheet.url if @record.stylesheet?
-      .col-md-3
+    .row
+      .col-md-12
         = f.text_area :homepage_data
   - for grp, prefs in @pref_groups
     %fieldset
