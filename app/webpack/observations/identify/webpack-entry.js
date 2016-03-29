@@ -26,7 +26,7 @@ const store = createStore(
 );
 
 store.dispatch( setConfig( {
-  nodeApiHost: $( "[name='config:node_api_host']" ).attr( "content" ),
+  nodeApiHost: $( "[name='config:inaturalist_api_host']" ).attr( "content" ),
   csrfParam: $( "[name='csrf-param']" ).attr( "content" ),
   csrfToken: $( "[name='csrf-token']" ).attr( "content" ),
   apiToken: $( "[name='inaturalist-api-token']" ).attr( "content" )
