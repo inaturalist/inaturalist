@@ -7,15 +7,18 @@ class Emailer < ActionMailer::Base
   default :from =>     "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
           :reply_to => CONFIG.noreply_email
   
-  def invite(address, params, user) 
+  def invite_user(address, params, user) 
     Invite.create(:user => user, :invite_address => address)
     @user = user
     @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
     @personal_message = params[:personal_message]
+    set_locale
     @sending_user = params[:sender_name]
-    mail(set_site_specific_opts.merge(:to => address)) do |format|
-      format.text
-    end
+    mail(set_site_specific_opts.merge(
+      :to => address,
+      :subject => @subject
+    ))
+    reset_locale
   end
   
   def project_invitation_notification(project_invitation)

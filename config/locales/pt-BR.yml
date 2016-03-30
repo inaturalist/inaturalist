@@ -6,6 +6,7 @@
 # Author: Cgalindo
 # Author: Fasouzafreitas
 # Author: Julianagatti
+# Author: Luk3
 # Author: Vonmatter
 # Author: Walesson
 ---
@@ -1105,7 +1106,6 @@ pt-BR:
   embed_this_assessment: Inserir esta avaliação em seu site
   embed_widget_project: Inserir um widget para este projeto em seu site
   enable_offline_access: Habilite acesso offline
-  enable_offline_access_for_iphone: Habilite acesso offline para iPhone
   end: Fim
   endangered: em perigo
   endemic: endêmica
@@ -1827,8 +1827,9 @@ pt-BR:
   message: Mensagem
   messages: Mensagens
   mixed_licenses: licenças combinadas
-  misleading_or_illegal_content_html: Conteúdo ilegal ou falso, insultos étnicos e raciais,
-    etc.
+  misleading_or_illegal_content_html: Conteúdo ilegal ou falso, insultos étnicos e
+    raciais, etc. Para mais sobre nossa definição de "apropriado", veja as <a href="/help#inappropriate">Perguntas
+    frequentes</a>.
   mobile_app_for: Aplicativo de celular para
   mobile_apps_for: Aplicativos de celulares para
   mobile_view_available: Modo de visualização disponível para celulares
@@ -2775,8 +2776,6 @@ pt-BR:
     blog ou site!
   show_only: 'Mostrar somente:'
   show_taxa_from_both: (exibir táxons de ambas as listas)
-  show_the_total_number_of: Exibir o número total de táxons na lista deste projeto
-    ao lado do número de táxons observado.
   show_total_listed_taxa: Exibir a lista total de espécies
   showing_observations_by: exibindo observações por
   showing_one_to: Exibindo 1 -
@@ -3836,8 +3835,8 @@ pt-BR:
           até que você publique.
       generating_mobile_archive_tip_html: Isto pode levar algum tempo, então tente
         atualizar esta página em alguns minutos.
-      mobile_downloads_tip_html: Você pode baixar esta guia para seu aplicativo
-        do iPhone para ser utilizada offline.
+      mobile_downloads_tip_html: Este guia pode ser baixado para o aplicativo móvel
+        para ser utilizado offline.
       mobile_downloads_help_html: |-
         <p>Isto irá criar um arquivo para download de todos os dados e mídia associados a este guia, desta forma todos os usuários de iPhone poderão acessar o guia mesmo sem conexão a internet. O arquivo será gerado após alguns minutos, mas após habilitar esta opção o arquivo será atualizado automaticamente e qualquer alteração no guia será incluída.</p>
         <p class="alert error status">
@@ -4366,12 +4365,6 @@ pt-BR:
         invite_only_description: A participação neste projeto como membro só pode
           ser feita através de convite. Se você deseja entrar no grupo. por favor
           contate um dos administradores abaixo e solicite um convite.
-      members:
-        bioblitz_notice_html: <strong>Nota:</strong> esta é somente uma lista de pessoas
-          que entraram neste projeto explicitamente. Como este é um projeto bioblitz
-          e as estatísticas são calculadas com todas as observações adicionadas neste
-          local e períodos específicos, pode ser que existam muitos outros participantes
-          que não estão listados aqui.
       show:
         bioblitz_results_desc_html: "<p>\n  Diferente de projetos regulares, as bioblitz
           divulgam o status do evento abaixo de\n  <em>todas</em> observações naquele
@@ -4393,9 +4386,6 @@ pt-BR:
           \n  moderada do projeto, faça questão de garantir que seus participantes
           entrem no projeto \n  e adicionem as observações deles como fariam em um
           projeto normal.\n</p>"
-        project_observations_desc: Serão incluídas apenas observações submetidas especificamente
-          a este projeto, e não contempla os demais registros realizados ainda que
-          na mesma data, horário e local.
         curated_checklist_desc: Esta é a lista de verificação moderada e a lista de
           contagem dos táxons de observações explicitas adicionadas à esta projeto,
           nem todas as observações foram gravadas neste local e neste período do evento.

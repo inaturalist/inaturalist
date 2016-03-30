@@ -574,6 +574,7 @@ en:
   check_list_source: Source <span class="meta">(optional)</span>
   check_lists_for: "Other Check Lists for %{place}"
   check_out_my_observations_at:  If you want, you can check out my observations at
+  check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_out_your_life_list: Check out your Life List
   check_this_box_if: |
@@ -705,6 +706,7 @@ en:
   copy_and_paste_the_following_code_to: Copy and paste the following code to embed this assessment into another web page.
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copy_guide_taxon_to: Copy guide taxon to...
+  
   copyright:
     some_rights_reserved: some rights reserved        
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
@@ -967,6 +969,7 @@ en:
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_addresses_to_receive_invites: Email addresses to receive invites
+  email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_settings: Email settings
   embed: 'Embed'
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
@@ -1278,6 +1281,7 @@ en:
   ignore: ignore
   ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
+  imperiled: Imperiled
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
   import_as_an_observation: Import as an observation
@@ -2925,6 +2929,8 @@ en:
   there_were_problems_adding_your_observation_to_this_project: "There were problems adding your observation to this project: "
   there_were_problems_adding_that_observation_to_this_project: "There were problems adding that observation to this project: "
   there_were_problems_importing_that_place: "There were problems importing that place: %{place_error}"
+  there_were_problems_importing_that_place_geometry: |
+    There were problems importing that place geometry: %{error}
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_saving_those_colors: "There were some problems saving those colors: %{error}"
   there_were_some_problems_with: |
@@ -3080,6 +3086,7 @@ en:
   update_search: Update search
   update_selected_taxa: Update selected taxa
   update_subscription: Update subscription
+  update_subscription_preferences: update subscription preferences
   update_x_selected_taxa: 
     one: "Update 1 selected taxon"
     other: "Update %{count} selected taxa"
@@ -4810,6 +4817,10 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: is too large to import
         post:
           attributes:
             user:

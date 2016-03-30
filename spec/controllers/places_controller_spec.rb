@@ -13,6 +13,89 @@ describe PlacesController do
       }.to change(Place, :count).by(1)
       expect(Place.last.place_type).to be_blank
     end
+
+    it "creates places with geojson" do
+      user = User.make!
+      sign_in user
+      post :create, place: {
+        name: "Test geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson
+      p = Place.last
+      expect( p.name ).to eq "Test geojson"
+      expect( p.place_geometry ).to_not be_nil
+    end
+
+    it "does not allow non admins to create huge places" do
+      user = User.make!
+      sign_in user
+      post :create, place: {
+        name: "Test non-admin geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson(:huge)
+      p = Place.last
+      expect( p.name ).to eq "Test non-admin geojson"
+      expect( p.place_geometry ).to be_nil
+    end
+
+    it "allows admins to create huge places" do
+      user = make_admin
+      sign_in user
+      post :create, place: {
+        name: "Test admin geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson(:huge)
+      p = Place.last
+      expect( p.name ).to eq "Test admin geojson"
+      expect( p.place_geometry ).to_not be_nil
+    end
+  end
+
+  describe "update" do
+    it "updates places with geojson" do
+      user = User.make!
+      p = Place.make!(user: user)
+      sign_in user
+      put :update, id: p.id, place: {
+        name: "Test geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson
+      p = Place.last
+      expect( p.name ).to eq "Test geojson"
+      expect( p.place_geometry ).to_not be_nil
+    end
+
+    it "does not allow non admins to create huge places" do
+      user = User.make!
+      p = Place.make!(user: user)
+      sign_in user
+      put :update, id: p.id, place: {
+        name: "Test non-admin geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson(:huge)
+      p = Place.last
+      expect( p.name ).to eq "Test non-admin geojson"
+      expect( p.place_geometry ).to be_nil
+    end
+
+    it "allows admins to create huge places" do
+      user = make_admin
+      p = Place.make!(user: user)
+      sign_in user
+      put :update, id: p.id, place: {
+        name: "Test admin geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson(:huge)
+      p = Place.last
+      expect( p.name ).to eq "Test admin geojson"
+      expect( p.place_geometry ).to_not be_nil
+    end
   end
 
   describe "destroy" do
@@ -192,3 +275,22 @@ end
 #     response.should_not be_page_cached
 #   end
 # end
+
+def test_place_geojson(size = :default)
+  coords = if size == :default
+    [[ [0,0], [0,1], [1,1], [1,0], [0,0] ]]
+  elsif size == :huge
+    [[ [0,0], [0,60], [60,60], [60,0], [0,0] ]]
+  end
+  {
+    type: "FeatureCollection",
+    features: [{
+      type: "Feature",
+      properties: { },
+      geometry: {
+        type: "Polygon",
+        coordinates: coords
+      }
+    }]
+  }.to_json
+end

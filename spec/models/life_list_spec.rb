@@ -69,6 +69,7 @@ describe LifeList do
       @list = LifeList.make!
       @list.build_taxon_rule(@parent)
       @list.save!
+      enable_elastic_indexing( Observation )
     end
   
     it "should add new taxa to the list" do

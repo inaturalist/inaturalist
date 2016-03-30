@@ -162,6 +162,8 @@ class UsersController < ApplicationController
           flag.save!
         end
         @user.unsuspend!
+      else
+        @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
     redirect_to :back

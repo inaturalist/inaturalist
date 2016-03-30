@@ -1,3 +1,4 @@
+= render "header"
 %p<>
   = succeed "," do
     = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)

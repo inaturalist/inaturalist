@@ -1,3 +1,5 @@
+= render 'header'
+
 %div{:style => "color: #777;"}=t :user_invited_you_to_join_html, :user => link_to_user(@sender)
 %table{:cellpadding => 10}
   %tr
