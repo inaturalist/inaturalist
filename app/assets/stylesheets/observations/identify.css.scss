@@ -1,4 +1,5 @@
-@import '_observations_grid_item';
+@import "_observations_grid_item";
+@import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 .btn-checkbox {
   display: inline-block;
 }
@@ -13,4 +14,27 @@ body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions 
 
 .ObservationModal .taxon-map {
   height: 100px;
+}
+
+
+$image-gallery-height: 380px;
+.ObservationModal .image-gallery,
+.ObservationModal .image-gallery-content {
+  height: $image-gallery-height;
+  background-color: #eee;
+  position: relative;
+}
+.ObservationModal .image-gallery-content img {
+  height: $image-gallery-height;
+  display: block;
+  margin: 0 auto;
+  width: auto;
+}
+.ObservationModal .image-gallery-thumbnails {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
+  padding-bottom: 10px;
+  z-index: 1;
 }

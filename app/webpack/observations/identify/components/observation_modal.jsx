@@ -11,6 +11,7 @@ import CommentFormContainer from "../containers/comment_form_container";
 import SplitTaxon from "./split_taxon";
 import TaxonMap from "./taxon_map";
 import _ from "lodash";
+import ImageGallery from "react-image-gallery";
 
 const ObservationModal = ( {
   onClose,
@@ -19,7 +20,8 @@ const ObservationModal = ( {
   toggleReviewed,
   toggleCaptive,
   reviewedByCurrentUser,
-  captiveByCurrentUser
+  captiveByCurrentUser,
+  images
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -35,12 +37,10 @@ const ObservationModal = ( {
         <Grid fluid>
           <Row>
             <Col xs={8}>
-              <a href={ `/observations/${observation.id}` }>
-                <img
-                  src={observation.photo( )}
-                  style={ { width: "100%" } }
-                />
-              </a>
+              <ImageGallery
+                items={images}
+                showThumbnails={images.length > 1}
+              />
             </Col>
             <Col xs={4}>
               <TaxonMap
@@ -114,7 +114,8 @@ ObservationModal.propTypes = {
   toggleReviewed: PropTypes.func,
   toggleCaptive: PropTypes.func,
   reviewedByCurrentUser: PropTypes.bool,
-  captiveByCurrentUser: PropTypes.bool
+  captiveByCurrentUser: PropTypes.bool,
+  images: PropTypes.array
 };
 
 export default ObservationModal;

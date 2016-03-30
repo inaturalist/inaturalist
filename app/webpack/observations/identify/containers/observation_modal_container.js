@@ -3,9 +3,17 @@ import ObservationModal from "../components/observation_modal";
 import { hideCurrentObservation } from "../actions";
 
 function mapStateToProps( state ) {
+  let images;
+  if ( state.currentObservation.observation ) {
+    images = state.currentObservation.observation.photos.map( ( photo ) => ( {
+      original: photo.photoUrl( "large" ),
+      thumbnail: photo.photoUrl( "thumb" )
+    } ) );
+  }
   return {
     observation: state.currentObservation.observation,
     visible: state.currentObservation.visible,
+    images,
     // TODO i think the process of adding the currentObservation to the state
     // needs to load these extra bits of data
     reviewedByCurrentUser: false,
