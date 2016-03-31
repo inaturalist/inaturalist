@@ -398,6 +398,7 @@ en:
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   associated_observations: Associated observations
   associated_taxa: Associated taxa
+  attention: Attention
   you_sure_delete_list: Are you sure you want to delete this list?
   you_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from the list?"
   asc: asc
@@ -885,8 +886,10 @@ en:
   display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
+  do_not_show_this_message_again: Do not show this message again
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
+  do_you_want_to_proceed: Do you want to proceed?
   does_the_location_seem_accurate: "Does the location seem accurate?"
   does_the_date_seem_accurate: "Does the date seem accurate?"
   doesnt_have_default_photo: doesn't have a default photo yet.
@@ -2287,6 +2290,7 @@ en:
   privacy_policy: Privacy Policy
   private: private
   private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  proceed: Proceed
   processing: Processing
   processing3p: "Processing..."
   profile: Profile
@@ -3352,6 +3356,9 @@ en:
     You are not editing any guides. <a href="/guides/new">Add one</a>
   you_are_already_a_member_of_this_project: "You're already a member of this project!"
   you_are_no_longer_following_x: "You are no longer following %{friend}."
+  you_are_setting_this_project_to_aggregate: |
+    You are setting this project to aggregate all observations matching the
+    following rules: %{rules} Do you want to proceed?
   you_are_subscribed_to: "You're subscribed to "
   you_arent_a_member_of_that_project: You aren't a member of that project.
   you_arent_following_that_person: "You aren't following that person."
@@ -3432,6 +3439,11 @@ en:
   your_: Your
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
+  your_coarser_id: |
+    Your coarser ID of <span class='taxon'>%{coarser_taxon_name}</span> implies that you
+    disagree with the existing finer ID of
+    <span class='taxon'>%{finer_taxon_name}</span>. Is this what you want to do?<br><br>
+    <a href='/pages/getting+started' target='_blank'>Learn more about how identifications work &raquo;</a>
   your_comment_was_saved: Your content was saved
   your_contributions_to_project: "Your contributions to %{project_title}"
   your_default: your default
