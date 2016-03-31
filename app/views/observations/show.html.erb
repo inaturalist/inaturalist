@@ -79,6 +79,7 @@
         OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
           :force_coordinate_visibility => @coordinates_viewable,
           :include => [ {:user => {:only => :login} }, :taxon, :iconic_taxon ]).html_safe %>;
+    var showIDConfirmation = <%= (logged_in? && current_user.prefers_skip_coarer_id_modal) ? "false" : "true" %>;
 </script>
 <% end %>
 

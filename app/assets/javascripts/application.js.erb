@@ -1582,8 +1582,14 @@ $.fn.confirmModal = function( options ) {
     // populate and display the modal dialog
     var buttonsDiv =  $( "<div/>" ).addClass( "foot" ).
       append( confirm ).append( cancel );
-    if( options.preference ) {
-      buttonsDiv.append( $( "<input type='checkbox' id='silence' />" ));
+    if( options.silencePreference ) {
+      var checkbox = $( "<input type='checkbox' id='silence' />" );
+      checkbox.on( "click", function( ) {
+        var pref = { };
+        pref[ options.silencePreference ] = true;
+        updateSession( pref );
+      });
+      buttonsDiv.append( checkbox );
       buttonsDiv.append( $( "<label for='silence'>" ).
         append( I18n.t( "do_not_show_this_message_again" ) ));
     }
