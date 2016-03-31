@@ -121,10 +121,14 @@
         <%= render "shared/taxon", 
           :taxon => @observation.taxon, 
           :link_url => @observation.taxon %>
-      <%- elsif !@observation.species_guess.blank? -%>
-        <%= @observation.species_guess -%>
       <%- else -%>
-        <%=t :something %>
+        <%=t :unknown %>
+        <%- if !@observation.species_guess.blank? -%>
+          <span class="placeholder">
+            
+            (<%=t :placeholder %>: <%= truncate(@observation.species_guess, length: 50) -%>)
+          </span>
+        <% end -%>
       <% end -%>
     </span>
     <span class="observedby">
