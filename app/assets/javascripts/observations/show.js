@@ -249,7 +249,7 @@ $(document).ready(function() {
   $('#identification_body').textcompleteUsers( );
 
   if( showIDConfirmation ) {
-    $("#new_identification input[type='submit']").confirmModal({
+    $("#new_identification").confirmModal({
       silencePreference: "prefers_skip_coarer_id_modal",
       condition: function( ) {
         var obs = window.observation;

@@ -9,7 +9,7 @@
         SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
     $( function( ) {
-      $("form.project_form input[type='submit']").confirmModal({
+      $("form.project_form").confirmModal({
         condition: function( ) {
           return $("#project_prefers_aggregation").prop( "checked" );
         },

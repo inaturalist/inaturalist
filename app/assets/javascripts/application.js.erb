@@ -1556,7 +1556,8 @@ $.fn.isolatedScroll = function( ) {
 // be extened to use with links
 $.fn.confirmModal = function( options ) {
   var that = this;
-  that.on( "click", function( e, opts ) {
+  var action = $(this).is("form") ? "submit" : "click";
+  that.on( action, function( e, opts ) {
     // `Proceed` will force click, and we want that to submit
     if( opts && opts.forceSubmit ) { return; }
     // don't show the modal unless the condition is met
@@ -1573,7 +1574,7 @@ $.fn.confirmModal = function( options ) {
     // prepare Proceed/Cancel actions
     confirm.on( "click", function( ) {
       dialogDiv.dialog( "close" );
-      that.trigger( "click", { forceSubmit: true } );
+      that.trigger( action, { forceSubmit: true } );
     });
     cancel.on( "click", function( ) {
       dialogDiv.dialog( "close" );
@@ -1586,7 +1587,7 @@ $.fn.confirmModal = function( options ) {
       var checkbox = $( "<input type='checkbox' id='silence' />" );
       checkbox.on( "click", function( ) {
         var pref = { };
-        pref[ options.silencePreference ] = true;
+        pref[ options.silencePreference ] = $(this).is(":checked");
         updateSession( pref );
       });
       buttonsDiv.append( checkbox );
