@@ -1,3 +1,9 @@
+/*
+
+  
+*/
+
+
 var inatTaxonMap = { };
 
 (function($) {
@@ -38,22 +44,22 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.overlayMenu = (options.overlayMenu !== false && $(elt).data('overlay-menu') !== false);
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
   options.showAllLayer = options.showAllLayer != null ? options.showAllLayer : $(elt).data('show-all-layer');
-  options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
+  options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label') || I18n.t("maps.overlays.featured_observations");
   options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
   options.placeLayerDescription = options.placeLayerDescription || $(elt).data('place-layer-description');
-  options.taxonRangeLayerLabel = options.taxonRangeLayerLabel || $(elt).data('taxon-range-layer-label');
+  options.taxonRangeLayerLabel = options.taxonRangeLayerLabel || $(elt).data('taxon-range-layer-label') || I18n.t("maps.overlays.range");
   options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');
-  options.taxonPlacesLayerLabel = options.taxonPlacesLayerLabel || $(elt).data('taxon-places-layer-label');
+  options.taxonPlacesLayerLabel = options.taxonPlacesLayerLabel || $(elt).data('taxon-places-layer-label') || I18n.t("maps.overlays.checklist_places");
   options.taxonPlacesLayerDescription = options.taxonPlacesLayerDescription || $(elt).data('taxon-places-layer-description');
-  options.taxonPlacesLayerHover = options.taxonPlacesLayerHover || $(elt).data('taxon-places-layer-hover');
-  options.taxonObservationsLayerLabel = options.taxonObservationsLayerLabel || $(elt).data('taxon-observations-layer-label');
+  options.taxonPlacesLayerHover = options.taxonPlacesLayerHover || $(elt).data('taxon-places-layer-hover') || I18n.t("maps.overlays.checklist_places_description");
+  options.taxonObservationsLayerLabel = options.taxonObservationsLayerLabel || $(elt).data('taxon-observations-layer-label') || I18n.t("maps.overlays.observations");
   options.taxonObservationsLayerDescription = options.taxonObservationsLayerDescription || $(elt).data('taxon-observations-layer-description');  
   options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label') || I18n.t('maps.overlays.all_observations');
-  options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description');
+  options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description') || I18n.t("maps.overlays.every_publicly_visible_observation");
   options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label') || I18n.t('gbif_occurrences');
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
-  options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
+  options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover') || I18n.t("maps.overlays.gbif_network_description");
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   // turn the observations JSON into proper JavaScript objects
@@ -194,7 +200,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
 inatTaxonMap.addTaxonLayers = function( map, options ) {
   if( options.taxonLayers ) {
     _.each( options.taxonLayers, function( layer ) {
-      if( layer.places ) {
+      if( layer.places && layer.taxon ) {
         layerOptions = _.isObject( layer.places ) ?
           layer.places : { };
         map.addTaxonPlacesLayer( _.defaults( layerOptions, {

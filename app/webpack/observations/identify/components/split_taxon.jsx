@@ -63,7 +63,7 @@ const SplitTaxon = ( { taxon, url } ) => {
     return (
       <a
         className={`sciname ${taxon.rank} ${taxon.preferred_common_name ? "" : "display-name"}`}
-        href="{{ url }}"
+        href={ url }
         target="_self"
       >
         { taxonRank( ) }

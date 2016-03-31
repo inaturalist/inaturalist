@@ -495,7 +495,12 @@ iNaturalist.Map.createObservationIcon = function(options) {
     var iconSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONS' : 'ICONS'
     var iconicTaxonIconsSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONIC_TAXON_ICONS' : 'ICONIC_TAXON_ICONS'
     var iconicTaxonName = options.observation.iconic_taxon_name
-    if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
+    if (!iconicTaxonName && options.observation.iconic_taxon) {
+      iconicTaxonName = options.observation.iconic_taxon.name;
+    }
+    if (!iconicTaxonName && options.observation.taxon) {
+      iconicTaxonName = options.observation.taxon.iconic_taxon_name;
+    }
     if (iconicTaxonName) {
       iconPath = _.clone( iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName] );
       if( options.observation.quality_grade != "research" ) {
@@ -819,6 +824,12 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
       .attr("name", options.taxon.name);
     var primaryName = options.taxon.common_name ?
       options.taxon.common_name.name : options.taxon.to_styled_s;
+    if ( !primaryName ) {
+      primaryName = options.taxon.preferred_common_name;
+    }
+    if ( !primaryName ) {
+      primaryName = options.taxon.name;
+    }
     // prepare the label for the input, the taxon's scientific Name
     taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
     // append the checkbox and label

@@ -30,7 +30,7 @@ const ObservationModal = ( {
     <Modal show={visible} onHide={onClose} bsSize="large" className="ObservationModal">
       <Modal.Header closeButton>
         <Modal.Title>
-          <SplitTaxon taxon={observation.taxon} />
+          <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -54,6 +54,7 @@ const ObservationModal = ( {
                 zoomLevel={ observation.map_scale || 8 }
                 mapTypeControl={false}
                 zoomControl={false}
+                showAccuracy
               />
               <CommentFormContainer observation={observation} />
             </Col>
