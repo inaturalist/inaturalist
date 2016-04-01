@@ -48,8 +48,8 @@ zh-CN:
     one: <span class='count'>1</span> 次观察
     other: <span class='count'>%{count}</span> 次观察
   x_observations_link_html:
-    one: <a href='%{url}'>1</a> 次观察
-    other: <a href='%{url}'>%{count}</a> 次观察
+    one: <a href='%{url}'>1 次观察</a>
+    other: <a href='%{url}'>%{count} 次观察</a>
   x_people:
     one: 1 个人
     other: '%{count} 个人'
@@ -69,8 +69,8 @@ zh-CN:
     one: <span class='count'>1</span> 种物种
     other: <span class='count'>%{count}</span> 种物种
   x_species_link_html:
-    one: <a href='%{url}'>1</a> 种物种
-    other: <a href='%{url}'>%{count}</a> 种物种
+    one: <a href='%{url}'>1 种物种</a>
+    other: <a href='%{url}'>%{count} 种物种</a>
   x_taxa_observed_html:
     one: <span class='count'>1</span>个分类单元已观察
     other: <span class='count'>%{count}</span>个分类单元已观察
@@ -346,6 +346,7 @@ zh-CN:
   are_you_sure_you_want_to_remove_spammer: |-
     您确定您认为此用户可信吗？
     如果如此，他们所有垃圾邮件标志将会被去除。
+  are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
   are_you_sure_you_want_to_remove_this_taxon: 您确定要移除此分类单元么？
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
@@ -413,6 +414,7 @@ zh-CN:
   before_you_can_contribute_your_observations: 在您可以贡献您的观察前。
   belives_this_is_a_comprehensive_list_of: 相信这是该事物的综合列表：
   bg_color: 背景颜色
+  bioblitz: Bioblitz
   birds: 鸟
   black: 黑色
   blog_widget: 博客小部件
@@ -749,6 +751,7 @@ zh-CN:
   did_you_photos_flickr?: 您在Flickr上放照片了么？
   disagree: 不同意
   disconnect_provider: 取消连接 %{provider}
+  display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
   do_you_know_where_this_species_lives: 您知道这个物种住在哪里吗？
   does_the_location_seem_accurate: 位置看起来精确么？
   doesnt_have_default_photo: 尚无默认的照片。
@@ -816,6 +819,7 @@ zh-CN:
   embed: 嵌入
   embed_widget_project: 在您的网站嵌入到此项目的小部件
   enable_offline_access: 启用离线访问
+  enable_offline_access_for_mobile: 为移动设备启用离线访问
   end: 结束
   endangered: 濒临灭绝
   endemic: 地方性
@@ -834,6 +838,7 @@ zh-CN:
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
   event_in_progress: 正在进行中的活动
   event_registration_url: 活动注册URL
+  event_stats: 活动统计
   event_url: 活动URL
   events_only: 仅活动
   everyone: 任何人
@@ -847,6 +852,7 @@ zh-CN:
   expand_updates: 展开更新
   explore!: 探索！
   export: 导出
+  export_with_private_coordinates: 带私有坐标导出
   exporting: 正在导出……
   external_links: 外部链接
   extinct: 灭绝
@@ -890,6 +896,7 @@ zh-CN:
   find_photos: 查找照片
   find_places: 找到地点
   find_species: 查找物种
+  find_unsuitable_observations: 查找不适当的观察
   find_your_current_location: 找到您当前的位置
   first_observer: 第一个观察者
   first_report: 第一份报告
@@ -996,6 +1003,7 @@ zh-CN:
   help_faq: 帮助 / 常见问题
   help_out!: 帮个忙！
   helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
+  here_are_3_examples: 这里是3个格式良好数据的例子
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi: 嗨，
   hi_user: 您好，%{user}
@@ -1058,6 +1066,7 @@ zh-CN:
   in_the_past_week: 在上周
   inactive: 不活跃
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
+  inappropriate: 不适当？
   inat_account_action: '%{site_name} &#58; 账户 &#58; %{action_name}'
   inat_user_profile: '%{site_name}：%{user}的详细资料'
   inat_will_be_back_on: '%{site_name} 将会回到它的脚/翅膀/鱼鳍/触手/伪足上'
@@ -1219,6 +1228,7 @@ zh-CN:
   loading_wikipedia_description: 正在载入维基百科描述……
   locale_description: 区域设置您的语言和日期格式选项。
   locales:
+    br: 布列塔尼语
     ca: 加泰罗尼亚语
     en: 英语
     en-US: 英语（美国）
@@ -1228,6 +1238,8 @@ zh-CN:
     fr: 法语
     eu: 巴斯克语
     gl: 加利西亚语
+    id: 印尼语
+    it: 意大利语
     mk: 马其顿语
     pt: 葡萄牙语
     pt-BR: 葡萄牙语（巴西）
@@ -1297,6 +1309,7 @@ zh-CN:
   message: 消息
   messages: 消息
   mixed_licenses: 混合许可协议
+  misleading_or_illegal_content_html: 误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href="/help#inappropriate">常见问题</a>。
   mobile_app_for: 移动应用程序用于
   mobile_apps_for: 移动应用程序用于
   mobile_view_available: 移动外观可用
@@ -1576,6 +1589,9 @@ zh-CN:
       miscellaneous: 杂项
       Nationality: 国籍
       nationality: 国籍
+      open_space: 开放空间
+      Parish: 教区
+      parish: 教区
       Point_of_Interest: 兴趣点
       Province: 省
       province: 省
@@ -1684,6 +1700,7 @@ zh-CN:
   profile: 个人信息
   project: 项目
   project_created_on: 于%{date}创建此项目
+  project_curator_tools: 项目馆长工具
   project_group_label: 组
   project_icon: 项目图标
   project_journal_posts: 项目日记发布
@@ -1742,6 +1759,7 @@ zh-CN:
     form: 型
     leaves: 叶片
   re_apply_list_rules: 重新应用列表规则
+  real_time_stats: 实时统计
   reason: 原因
   reason_you_are_flagging_this_item: 您标记此项目的原因。
   receive_email_notifications_when_people_leave_you: 接受电子邮件通知有关
@@ -1844,6 +1862,7 @@ zh-CN:
   sign_up!: 注册！
   sign_up: 注册
   sign_up_exclamation: 注册！
+  simple: 简单
   sign_in_exclamation: 登录！
   single_observation: 单一观察
   sizes: 尺寸
@@ -1917,7 +1936,7 @@ zh-CN:
   status_globally: '%{status} 全球'
   status_in_place: '%{status} 在 %{place}'
   still_no_luck?: 仍然不高兴？
-  still_needs_id?: 仍然需要ID？
+  still_needs_id?: 社群可以确认/改进ID么？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
   stop_editing: 停止编辑
   stop_updating_position: 停止更新位置
@@ -1969,6 +1988,7 @@ zh-CN:
   tell_the_world_a_little_about_yourself: 告诉世界有关您的一些东西，通过
   terms: 条款
   terms_and_rules_html: 条款和规则
+  terms_new_users: 如果您添加条款，新用户必须在加入该项目前同意这些条款。
   terms_of_service: 服务条款
   terms_service: 服务条款
   terrain: 地形
@@ -1983,6 +2003,7 @@ zh-CN:
   the_community_agrees_location_doesnt: 社区同意<strong>位置看起来不正确</strong>（例如大洋中的猴子，办公大楼中的河马等）。
   the_community_agrees_organism_isnt: 社区同意<strong>有机体不是野生的/自然的</strong>（例如：俘虏、人工种植或智能外星人）
   the_list: 列表
+  the_name_of_the_taxon_including_space: 分类单元名称，包括物种和亚种的空间。<br/><br/> <strong>示例：</strong><br/>
   the_people_of_inat: '%{site_name}的人'
   the_project: 项目
   the_species_listed_below_were_not_found_in_the_site_database: 下列物种未在%{site_name}数据库中找到。
@@ -2021,6 +2042,7 @@ zh-CN:
   top_5_identifiers: 前5个标识符
   top_contributors: 顶尖贡献者
   total: 总计
+  totals: 总计
   total_members: 成员总数
   total_observations: 总计观察
   total_unique_observers: 总计独立观察者
@@ -2051,6 +2073,7 @@ zh-CN:
   unknown_rank: （未知排名）
   unlink_your_picasa_account: 取消链接您的Picasa账户
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
+  updates_suspension_email_subject: '%{prefix} 您的订阅目前暂停'
   updating: 正在更新...
   unprocessable: 不可加工
   unpublish: 取消发布
@@ -2131,6 +2154,7 @@ zh-CN:
   view_non_mobile_site: 查看非移动网站
   view_post: 查看帖子
   view_observation: 查看观察
+  view_observation_flags: 查看观察标记
   view_on: 查看在
   view_on_amphibiaweb: 在AmphibiaWeb上查看
   view_on_flickr: 在Flickr上查看
@@ -2346,7 +2370,16 @@ zh-CN:
         guide_place_desc: 当搜索地点时，将您的指南与地点相关联会让人们找到它，并且如果设置了边界（例如“卡片”查看、分类单元页面等）的话，将在
           %{site_name} 上的地图中适当位置显示地点边界
         places_note: 注意：不是所有地点都检查带分类列表。如果您在通过分类查找地点时遇到问题，尝试选择更大的有行政区划的地区，例如国家、州、省或县。
-      mobile_downloads_tip_html: 此指南可以被下载到iPhone应用供离线使用。
+      mobile_downloads_tip_html: 此指南可以被下载到移动应用供离线使用。
+      mobile_downloads_help_html: |-
+        <p>这将创建一个可供下载的，与此指南有关的所有数据和媒体存档，这样移动应用程序用户可以查看所有指南中的内容，而不需要网络连接。It will take a
+        few minutes to generate the archive, but once this is enabled the
+        archive will update whenever you change this guide.</p>
+        <p class="alert status">
+          Please <strong>do not enable offline mobile downloads unless you
+          actually intend to use them.</strong> They represent a considerable
+          burden on our system.
+        </p>
       pdf_layouts:
         grid: 格子
         book: 图书
@@ -2507,8 +2540,10 @@ zh-CN:
       bulk_import_success:
         success_message: 您 %{filename} 的大量导入已成功。您的观察现正在处理，很快将出现在网站上。
       bulk_import_error:
-        taxon_spelling_notice_html: 请检查每条记录的拼写。如果您的拼写正确，请在 %{search_taxa_url} 搜索物种。如果名称尚未存在于
-          %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。
+        taxon_spelling_notice_html: 请检查每条记录的拼写。如果您的拼写正确，则在 %{search_taxa_url} 寻找物种。如果名称尚未存在于
+          %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。如果名称已提供，但被应用到多个有效的分类群的话，尝试使用或多或少只匹配单一分类单元的专用名。
+      users_updates_suspended:
+        message: 您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
     photos:
       inviter:
         automatically_add_to_project: 自动添加到项目
@@ -2520,6 +2555,9 @@ zh-CN:
         you_can_help_out_by: 您可以帮助改善我们的地方数据，通过
       new:
         check_list_note: 注意：对非常大的地方的检查列表将被自动禁用。
+    posts:
+      formatting_none_help: 未插入HTML，直接使用您输入的标签。
+      formatting_simple_help: 自动链接URL并插入换行符。
     projects:
       edit:
         bioblitz_create_a_new_place_html: '%{link}，确信它有一个边界，然后回到这里并重试。'
@@ -2551,6 +2589,7 @@ zh-CN:
           has_a_photo: 有一个照片
           has_a_sound: 有一段声音
           identified: 被认证
+          verifiable: 可证实
         start_time_desc: 您的生物寻找计划的开始时间。格式：YYYY-MM-DDThh:mm:ss±hh:mm
         submission_models:
           any: 任何人
@@ -2572,12 +2611,6 @@ zh-CN:
             their <em>complete</em> email address, assuming we have that on
             file.
           </p>
-      members:
-        bioblitz_notice_html: |-
-          <strong>注意：</strong>这只是明确加入了此项目的人的列表。Since this is a bioblitz project and
-          stats are calculated for all observations added within the specified
-          place and time period, there may be many more participants than are
-          listed here.
       project_location_privacy_notice_html: |-
         <p>
         请注意项目馆长将可以查看在此项目中您观察中的任何私有或已掩盖位置，除非您解除授权，并且他们将可以添加您观察的任意内容至此项目，除非<a href="/users/edit">您更改您的设置</a>。You can also grant or revoke access to project

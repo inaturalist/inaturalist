@@ -154,6 +154,7 @@ class Taxon < ActiveRecord::Base
     'sub-family'      => 'subfamily',
     'gen'             => 'genus',
     'sp'              => 'species',
+    'spp'             => 'species',
     'infraspecies'    => 'subspecies',
     'ssp'             => 'subspecies',
     'sub-species'     => 'subspecies',

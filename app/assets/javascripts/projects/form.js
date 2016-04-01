@@ -193,7 +193,8 @@ $(document).ready(function() {
             separator: 'T',
             showSecond: false,
             showTimezone: false,
-            maxDate: null
+            maxDate: "+1Y",
+            yearRange: "c-100:c+1"
           })
         }
       })

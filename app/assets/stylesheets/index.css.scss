@@ -1989,3 +1989,42 @@ user-icon .icon-person:before {
   font-size: 1.3em;
 }
 
+.ui-dialog.confirm-modal {
+  padding: 3px;
+}
+.ui-dialog.confirm-modal .ui-dialog-titlebar {
+  font-size: 15px;
+}
+.ui-dialog.confirm-modal p {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 13px;
+}
+.ui-dialog.confirm-modal p .taxon {
+  font-weight: bold;
+}
+.ui-dialog.confirm-modal ul {
+  margin: 15px 0px 15px 30px;
+}
+.ui-dialog.confirm-modal li {
+  list-style-type: none;
+}
+.ui-dialog.confirm-modal .foot {
+  margin-top: 20px;
+  display: block;
+}
+.ui-dialog.confirm-modal .foot .button {
+  margin-bottom: 18px;
+}
+.ui-dialog.confirm-modal .foot input[type='checkbox'] {
+  margin-left: 10px;
+}
+.ui-dialog.confirm-modal .foot label {
+  font-weight: normal;
+  line-height: 30px;
+}
+.ui-dialog.confirm-modal .ui-dialog-content {
+  overflow: visible;
+}
+.ui-dialog.confirm-modal * {
+  outline: none;
+}

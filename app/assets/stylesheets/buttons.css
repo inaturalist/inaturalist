@@ -129,7 +129,8 @@ button.default:hover {
 .button.default:hover, 
 input[type='button'].default:hover,
 input.button.default:hover,
-button.default:hover {
+button.default:hover,
+.ui-dialog.confirm-modal button:hover {
   color: white;
 }
 

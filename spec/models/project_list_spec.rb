@@ -27,7 +27,7 @@ describe ProjectList, "refresh_with_observation" do
     ProjectList.refresh_with_observation(o)
     pl.reload
     pl.taxon_ids.should include(o.taxon_id) #
-    
+    o = Observation.find(o.id)
     o.update_attributes(:taxon => t2)
     i = Identification.make!(:observation => o, :taxon => t2)
     Observation.set_quality_grade(o.id)

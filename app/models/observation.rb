@@ -34,6 +34,13 @@ class Observation < ActiveRecord::Base
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
+  WATCH_FIELDS_CHANGED_AT = {
+    geom: true,
+    observed_on: true,
+    place_guess: true,
+    public_positional_accuracy: true
+  }
+  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
@@ -246,6 +253,8 @@ class Observation < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :project_observations_with_changes, -> {
+    joins(:model_attribute_changes) }, class_name: "ProjectObservation"
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
@@ -325,9 +334,9 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :set_iconic_taxon
-  
+
   before_update :handle_id_please_on_update, :set_quality_grade
-                 
+
   after_save :refresh_lists,
              :refresh_check_lists,
              :update_out_of_range_later,
@@ -1384,7 +1393,6 @@ class Observation < ActiveRecord::Base
     #   print n[:score].to_s.ljust(width)
     #   puts
     # end
-
     return unless node
     node[:taxon]
   end
@@ -1470,13 +1478,13 @@ class Observation < ActiveRecord::Base
   def set_taxon_from_community_taxon
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     # obs opted out or user opted out
     elsif prefers_community_taxon == false || !user.prefers_community_taxa?
       owners_identification.try(:taxon_id)
     # implicitly opted in
     else
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats(:skip_save => true)
@@ -1830,6 +1838,8 @@ class Observation < ActiveRecord::Base
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
+        num_agreements = 0 if current_idents.count <= 1
+        num_disagreements = 0 if current_idents.count <= 1
       else
         num_agreements    = current_idents.select{|ident| ident.is_agreement?(:observation => self)}.size
         num_disagreements = current_idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
