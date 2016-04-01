@@ -79,6 +79,7 @@
         OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
           :force_coordinate_visibility => @coordinates_viewable,
           :include => [ {:user => {:only => :login} }, :taxon, :iconic_taxon ]).html_safe %>;
+    var showIDConfirmation = <%= (logged_in? && current_user.prefers_skip_coarer_id_modal) ? "false" : "true" %>;
 </script>
 <% end %>
 
@@ -121,10 +122,14 @@
         <%= render "shared/taxon", 
           :taxon => @observation.taxon, 
           :link_url => @observation.taxon %>
-      <%- elsif !@observation.species_guess.blank? -%>
-        <%= @observation.species_guess -%>
       <%- else -%>
-        <%=t :something %>
+        <%=t :unknown %>
+        <%- if !@observation.species_guess.blank? -%>
+          <span class="placeholder">
+            
+            (<%=t :placeholder %>: <%= truncate(@observation.species_guess, length: 50) -%>)
+          </span>
+        <% end -%>
       <% end -%>
     </span>
     <span class="observedby">

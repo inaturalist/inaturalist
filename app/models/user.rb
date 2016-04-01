@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
   preference :location_details, :boolean, default: false
   preference :redundant_identification_notifications, :boolean, default: true
+  preference :skip_coarer_id_modal, default: false
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -170,7 +171,7 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
-  validates_length_of       :time_zone, minimum: 5, allow_nil: true
+  validates_length_of       :time_zone, minimum: 4, allow_nil: true
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
