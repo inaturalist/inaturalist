@@ -253,6 +253,8 @@ class Observation < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :project_observations_with_changes, -> {
+    joins(:model_attribute_changes) }, class_name: "ProjectObservation"
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
