@@ -1,18 +1,31 @@
-import { SHOW_CURRENT_OBSERVATION, HIDE_CURRENT_OBSERVATION } from "../actions";
+import {
+  SHOW_CURRENT_OBSERVATION,
+  HIDE_CURRENT_OBSERVATION,
+  RECEIVE_CURRENT_OBSERVATION
+} from "../actions";
 
 const currentObservationReducer = ( state = { visible: false }, action ) => {
-  if ( action.type === SHOW_CURRENT_OBSERVATION ) {
-    return {
-      visible: true,
-      observation: action.observation
-    };
-  } else if ( action.type === HIDE_CURRENT_OBSERVATION ) {
-    return {
-      visible: false,
-      observation: state.observation
-    };
+  switch ( action.type ) {
+    case SHOW_CURRENT_OBSERVATION:
+      return {
+        visible: true,
+        observation: action.observation
+      };
+    case HIDE_CURRENT_OBSERVATION:
+      return {
+        visible: false,
+        observation: state.observation
+      };
+    case RECEIVE_CURRENT_OBSERVATION:
+      console.log( "[DEBUG] received current, observation.identifications: ",
+        action.observation.identifications );
+      return {
+        visible: true,
+        observation: action.observation
+      };
+    default:
+      return state;
   }
-  return state;
 };
 
 export default currentObservationReducer;

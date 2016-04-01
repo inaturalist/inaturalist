@@ -7,11 +7,14 @@ import {
   Button,
   Input
 } from "react-bootstrap";
+import DiscussionList from "./discussion_list";
 import CommentFormContainer from "../containers/comment_form_container";
+import IdentificationFormContainer from "../containers/identification_form_container";
 import SplitTaxon from "./split_taxon";
 import TaxonMap from "./taxon_map";
 import _ from "lodash";
 import ImageGallery from "react-image-gallery";
+import moment from "moment";
 
 const ObservationModal = ( {
   onClose,
@@ -31,6 +34,16 @@ const ObservationModal = ( {
       <Modal.Header closeButton>
         <Modal.Title>
           <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
+          <span>
+            <span className="datebit">
+              <label>{ I18n.t( "observed" ) }:</label>
+              { moment( observation.observed_on ).format( "L" ) }
+            </span>
+            <span className="datebit">
+              <label>{ I18n.t( "updated" ) }:</label>
+              { moment( observation.updated_at ).format( "L" ) }
+            </span>
+          </span>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -55,8 +68,11 @@ const ObservationModal = ( {
                 mapTypeControl={false}
                 zoomControl={false}
                 showAccuracy
+                className="stacked"
               />
+              <DiscussionList observation={observation} />
               <CommentFormContainer observation={observation} />
+              <IdentificationFormContainer observation={observation} />
             </Col>
           </Row>
         </Grid>

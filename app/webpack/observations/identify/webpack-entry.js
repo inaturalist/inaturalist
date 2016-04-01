@@ -13,6 +13,11 @@ import {
   setConfig
 } from "./actions/";
 import App from "./components/app";
+import moment from "moment";
+
+moment.locale( I18n.locale, {
+  relativeTime: I18n.translations[I18n.locale].momentjs.shortRelativeTime
+} );
 
 const store = createStore(
   rootReducer,

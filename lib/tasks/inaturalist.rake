@@ -119,7 +119,7 @@ namespace :inaturalist do
                  "all_taxa.protozoans" ]
 
     # look for other keys in all javascript files
-    Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
+    scanner_proc = Proc.new do |f|
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if f == output_path
@@ -129,6 +129,8 @@ namespace :inaturalist do
         all_keys += results.map{ |r| r[2].chomp(".") }
       end
     end
+    Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("app/webpack/**/*")).each(&scanner_proc)
 
     # look for keys in angular expressions in all templates
     Dir.glob(Rails.root.join("app/views/**/*")).each do |f|

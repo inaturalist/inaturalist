@@ -7,6 +7,15 @@
   margin: 7px 10px 7px 0px;
 }
 
+.SplitTaxon {
+  display: inline-block;
+  font-size: 90%;
+}
+.SplitTaxon .taxon .display-name {
+  color: black;
+  font-size: 110%;
+}
+
 .bootstrap .ObservationModal .modal-footer .secondary-actions,
 body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions {
   text-align: left;
@@ -37,4 +46,44 @@ $image-gallery-height: 380px;
   background-color: rgba(0,0,0,0.2);
   padding-bottom: 10px;
   z-index: 1;
+}
+.ObservationModal .modal-title {
+  font-size: 16px;
+}
+.ObservationModal .modal-title .datebit {
+  color: #ddd;
+  margin-left: 10px;
+  font-size: 14px;
+}
+.ObservationModal .modal-title .datebit label {
+  margin-right: 5px;
+}
+.ObservationModal .modal-title .datebit:first-child:after {
+  content: "•";
+  margin-left: 10px;
+}
+.ObservationModal .modal-body {
+  background-color: #eee;
+}
+.ObservationModal .modal-footer .form-group {
+  margin-bottom: 0;
+}
+
+
+.DiscussionListItem {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+.DiscussionListItem .identification {
+  display: flex;
+}
+.DiscussionListItem .identification .taxon-image {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.DiscussionListItem .identification .SplitTaxon {
+  flex: 2;
+  padding: 5px;
 }

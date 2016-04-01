@@ -64,7 +64,7 @@
     zoomLevel: 8
   }
 */
-import React from "react";
+import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 
 class TaxonMap extends React.Component {
@@ -74,9 +74,13 @@ class TaxonMap extends React.Component {
   }
   render( ) {
     return (
-      <div className="taxon-map" style={ { minHeight: "10px" } } />
+      <div className={`taxon-map ${this.props.className}`} style={ { minHeight: "10px" } } />
     );
   }
 }
+
+TaxonMap.propTypes = {
+  className: PropTypes.string
+};
 
 export default TaxonMap;

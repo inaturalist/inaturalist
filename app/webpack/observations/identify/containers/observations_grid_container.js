@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ObservationsGrid from "../components/observations_grid";
-import { showCurrentObservation } from "../actions";
+import { showCurrentObservation, fetchCurrentObservation } from "../actions";
 
 function mapStateToProps( state ) {
   return {
@@ -12,6 +12,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     onObservationClick: ( observation ) => {
       dispatch( showCurrentObservation( observation ) );
+      dispatch( fetchCurrentObservation( observation ) );
     }
   };
 }
