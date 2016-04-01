@@ -7,8 +7,9 @@ import { Button } from "react-bootstrap";
 // https://github.com/erikras/redux-form if this approach ends up getting
 // complicated.
 
-const CommentForm = ( { observation, onSubmitComment } ) => (
+const CommentForm = ( { observation, onSubmitComment, className } ) => (
   <form
+    className={`CommentForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
       onSubmitComment( {
@@ -26,7 +27,8 @@ const CommentForm = ( { observation, onSubmitComment } ) => (
 
 CommentForm.propTypes = {
   observation: PropTypes.object,
-  onSubmitComment: PropTypes.func.isRequired
+  onSubmitComment: PropTypes.func.isRequired,
+  className: PropTypes.string
 };
 
 export default CommentForm;

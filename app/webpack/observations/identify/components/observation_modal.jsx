@@ -29,6 +29,18 @@ const ObservationModal = ( {
   if ( !observation ) {
     return <div></div>;
   }
+
+  const scrollSidebarToForm = ( selector, e ) => {
+
+    const sidebar = $( e.target ).parents( ".ObservationModal" )
+      .find( ".sidebar" );
+    $( "form", sidebar ).hide( );
+    const target = $( e.target ).parents( ".ObservationModal" )
+      .find( selector );
+    $( target ).show( );
+    $( sidebar ).scrollTo( target );
+  };
+
   return (
     <Modal show={visible} onHide={onClose} bsSize="large" className="ObservationModal">
       <Modal.Header closeButton>
@@ -55,7 +67,7 @@ const ObservationModal = ( {
                 showThumbnails={images.length > 1}
               />
             </Col>
-            <Col xs={4}>
+            <Col xs={4} className="sidebar">
               <TaxonMap
                 taxonLayers={[{
                   taxon: observation.taxon,
@@ -71,8 +83,8 @@ const ObservationModal = ( {
                 className="stacked"
               />
               <DiscussionList observation={observation} />
-              <CommentFormContainer observation={observation} />
-              <IdentificationFormContainer observation={observation} />
+              <CommentFormContainer observation={observation} className="collapse" />
+              <IdentificationFormContainer observation={observation} className="collapse" />
             </Col>
           </Row>
         </Grid>
@@ -107,10 +119,10 @@ const ObservationModal = ( {
               </Button>
             </Col>
             <Col xs={4}>
-              <Button>
+              <Button onClick={ function ( e ) { scrollSidebarToForm( ".IdentificationForm", e ); } }>
                 { I18n.t( "add_id" ) }
               </Button>
-              <Button>
+              <Button onClick={ function ( e ) { scrollSidebarToForm( ".CommentForm", e ); } }>
                 { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
               <Button>

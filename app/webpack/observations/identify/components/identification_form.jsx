@@ -1,8 +1,9 @@
 import React, { PropTypes } from "react";
 import { Button } from "react-bootstrap";
 
-const IdentificationForm = ( { observation, onSubmitIdentification } ) => (
+const IdentificationForm = ( { observation, onSubmitIdentification, className } ) => (
   <form
+    className={`IdentificationForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
       onSubmitIdentification( {
@@ -21,7 +22,8 @@ const IdentificationForm = ( { observation, onSubmitIdentification } ) => (
 
 IdentificationForm.propTypes = {
   observation: PropTypes.object,
-  onSubmitIdentification: PropTypes.func.isRequired
+  onSubmitIdentification: PropTypes.func.isRequired,
+  className: PropTypes.string
 };
 
 export default IdentificationForm;
