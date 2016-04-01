@@ -1254,6 +1254,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
 
 google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, options ) {
   options = options || { };
+  iw.close( );
   if( options.pixelOffset ) {
     // proper window placement for non-obscured markers
     iw.setOptions({ pixelOffset: options.pixelOffset });
