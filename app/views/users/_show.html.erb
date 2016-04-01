@@ -1,24 +1,99 @@
+<%= render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" } %>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <% if @selected_user.icon? -%>
+          <h1><%= user_image @user, :size => "medium", :width => "100%", :class => "img-thumbnail img-responsive" %></h1>
+        <% end -%>
+        <% if is_me?(@user) %>
+          <p>
+            <%= link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user), :class => "btn btn-primary btn-lg btn-group-justified" -%>
+          </p>
+        <% end %>
       </div>
+    </div>
+    <%= render :partial => 'glance' %>
+    
+    <% if logged_in? && (current_user.is_admin? || current_user.is_curator?) %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle  nav-justified" type="button" id="dropdownMenu1" data-toggle="dropdown" style="text-align:left"><span class="glyphicon glyphicon-wrench"></span> Admin Tools
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="width:100%">
+              <% if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator? %>
+                <% if @user.active? %>
+                  <li>
+                    <%= link_to t(:suspend_user), suspend_user_path(@user) %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to t(:unsuspend_user), unsuspend_user_path(@user)%>
+                  </li>
+                <% end %>
+              <% end %>
+              
+              <% if current_user.is_curator? && !@user.is_admin? %>
+                <% if @user.is_curator? %>
+                  <li>
+                    <%= link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post %>
+                  </li>
+                <% end %>
+              <% end %>
+              
+              <% if is_admin? %>
+                <li>
+                  <%= link_to t(:curate_user), curate_users_path(:id => @user.id) %>
+                </li>
+              <% end %>
+              
+              <% if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? %>
+                <li role="separator" class="divider"></li>
+                <% unless @user.spammer? %>
+                  <li>
+                    <%= link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post %>
+                  </li>
+                <% end %>
+                <% unless @user.known_non_spammer? %>
+                  <li>
+                    <%= link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) } %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>         
       </div>
-      </div>
+    <% end %>  
+  </div> 
 
-<%= render :partial => "shared/by_login_header", :locals => { :model_name => "Profile" } %>
-
-<div id="profilecol" class="column span-16">
-  <div class="readable description">
+  <div class="col-md-8"  style="background-color:white">
+    <h1>
+      <%= @user.name.blank? ? @user.login : @user.name %>
+      
+      <% if @user.is_admin? || @user.is_curator?-%>
+        <small><%= @user.is_admin? ? t(:admin) : t(:curator) %></small>
+        <small>
+          <%= link_to help_path(:anchor => "curators") do %>
+            <span class="glyphicon glyphicon glyphicon-question-sign"></span>
+          <% end %>            
+        </small>
+      <% end -%>
+    </h1> 
+       
     <% if @user.description.blank? %>
       <% if is_me?(@selected_user) -%>
-        <div id="nodescription" class="clear small ui box">
-          <div class="stacked">
-            <strong><%= t(:tell_the_world_a_little_about_yourself) %> <%= link_to_function t(:filling_out_your_profile), "" %>!</strong>
-          </div>
+        <div id="nodescription" class="well">
+          <p>
+            <%= link_to_function t(:tell_the_world_a_little_about_yourself).html_safe, "", :class => "btn btn-primary btn-default" -%>
+          </p>
           <div class="more">
             <%= t(:do_you_study_nematodes_worlds_foremost_expert_barnacle) %>
           </div>
@@ -34,39 +109,38 @@
         <%= t(:user_is_a_naturalist, :user => @user.login) %>
       <% end -%>
     <% else %>
-      <%= formatted_user_text(@user.description) %>
-      <% if is_me?(@user) %>
-        <%= link_to t(:edit_your_profile), edit_person_path(current_user), :class => "small ui" -%>
-      <% end %>
+      <%- @description = formatted_user_text(@user.description) %>
+      <p class="lead">
+        <%= stripped_first_paragraph_of_text(@description) %>
+      </p>
+      <%= remaining_paragraphs_of_text(@description) %>
     <% end %>
-  </div>
-
-  <%= separator %>
-
-  <div class="stacked clear">
-    <h3>
-      <%= t(:some_people_that) %>
-      <%= is_me?(@user) ? t(:youre_following) : t(:user_follows, :user => "#{h @user.login}") %>
+  
+    <h3 class="page-header">
+      <%=t :following.capitalize %> <%= t(:x_people, :count => @user.friendships.count) %>
     </h3>
-
     <% unless @followees.blank? %>
-      <div class="clear">
-        <% @followees.each do |friend| %>
-          <div class="stacked column span-5">
-            <%= link_to(
-                  image_tag(friend.icon.url(:thumb), :class => 'left usericon'),
-                  person_by_login_path(friend.login)) %>
-            <div class="column span-3">
-              <%= link_to friend.login, person_by_login_path(friend.login), :class => "readable nobr" %>
-              <br/>
-              <%= link_to("<span class='count'>#{friend.observations.count}</span> #{t(:observations).downcase}".html_safe, observations_by_login_path(friend.login)) %>
+      <div class="row">
+        <% @followees[0..7].each do |friend| %>
+          <div class="col-md-3">
+            <div class="media">
+              <div class="media-left">
+                <%= link_to(
+                      image_tag(friend.icon.url(:thumb), :class => 'left usericon', :width => 40),
+                      person_by_login_path(friend.login)) %>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading"><%= link_to friend.login, person_by_login_path(friend.login) %></h4>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                <%= link_to friend.observations.count, observations_by_login_path(friend.login) %>
+              </div>
             </div>
           </div>
         <% end %>
       </div>
-      <div class="clear">
-        <%= link_to t(:view_all), following_by_login_path(@user.login), :class => "readmore" %>
-      </div>
+      <p id="view_more_btn_container">
+        <%= link_to t(:view_all), following_by_login_path(@user.login), :class => "btn btn-sm btn-default"%>
+      </p>
     <% else %>
       <% if is_me?(@user) %>
         <p><%= raw t(:youre_not_following_anyone, observations_path: observations_path, people_path: people_path ) %></p>
@@ -74,102 +148,33 @@
         <p><%= @user.login %> <%= t(:is_not_following_anyone).downcase %></p>
       <% end %>
     <% end %>
-  </div>
-
-  <% unless @favorite_listed_taxa.blank? -%>
-    <%= separator %>
-    <div class="clear">
-      <h3>
-        <%= possessive @selected_user, :capitalize => true %>
-        <%= link_to t(:favorite_taxa), @favorites_list %>
-      </h3>
-      <div class="clear taxa grid">
-        <% for listed_taxon in @favorite_listed_taxa %>
-          <%= render :partial => "taxa/taxon", :object => listed_taxon.taxon, :locals => {
-            :link_image => true,
-            :link_name => true,
-            :image_options => {:size => "thumb"},
-            :extra_class => cycle('first', '', '', '', 'last')
-          } %>
+  
+    <% unless @favorite_listed_taxa.blank? -%>
+      <h3 class="page-header">Favorite Taxa</h3>
+      <div class="row">
+        <% for listed_taxon in @favorite_listed_taxa[0..7] %>
+          <div class="col-md-3">
+            <%- taxon = listed_taxon.taxon %>
+            <div class="thumbnail"> 
+              <%= taxon_image(taxon) %>
+              <div class="caption">
+                <%= render(:partial => 'shared/taxon', :object => taxon) %>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
-      <div class="clear">
-        <%= link_to t(:view_all), @favorites_list, :class => "readmore" %>
+      <p id="view_more_btn_container">
+        <%= link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"%>
+      </p>
+    <% end -%>
+    
+    <% if @favorites_list.blank? && is_me?(@selected_user) -%>
+      <div class="well" style="text-align: center;">
+        <%= t(:want_to_show_off_some_of_your_favorite_taxa) %>
+        <%= link_to t(:create_a_list), new_list_path(:title => t(:favorites)) %>
+        <%= t(:titled_favorites_and_the_most_recent_additions) %>
       </div>
-    </div>
-  <% end -%>
-
-  <% if @favorites_list.blank? && is_me?(@selected_user) -%>
-    <%= separator %>
-    <div class="quiet box" style="text-align: center;">
-      <%= t(:want_to_show_off_some_of_your_favorite_taxa) %>
-      <%= link_to t(:create_a_list), new_list_path(:title => t(:favorites)) %>
-      <%= t(:titled_favorites_and_the_most_recent_additions) %>
-    </div>
-  <% end -%>
-</div>
-
-<div class="last column span-8">
-
-  <% if @selected_user.icon? -%>
-    <div id="medium_user_image" class="quiet box inlineblock">
-      <%= user_image @user, :size => "medium" %>
-    </div>
-  <% end -%>
-
-  <% unless @selected_user.name.blank? -%>
-    <p class="description">
-    <%=t :aka %> <%= @selected_user.name %>
-    </p>
-  <% end -%>
-  <%= render :partial => 'glance' %>
-
-  <% if is_me?(@user) %>
-    <ul class="readable leafylist">
-      <li><%= link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user) -%></li>
-    </ul>
-  <% end %>
-
-</div>
-
-<% if logged_in? && (current_user.is_admin? || current_user.is_curator?) %>
-  <div class="right clear ui description">
-    <%-
-      pieces = []
-      if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
-        pieces << if @user.active?
-          link_to(t(:suspend_user), suspend_user_path(@user))
-        else
-          link_to(t(:unsuspend_user), unsuspend_user_path(@user))
-        end
-      end
-
-      if current_user.is_curator? && !@user.is_admin?
-        pieces << if @user.is_curator?
-          link_to(t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete)
-        else
-          link_to(t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post)
-        end
-      end
-
-      pieces << link_to(t(:curate_user), curate_users_path(:id => @user.id)) if is_admin?
-    -%>
-    <%= pieces.join(" | ").html_safe %>
+    <% end -%>
   </div>
-
-  <div class="right clear ui description">
-    <%-
-      pieces = []
-      if current_user.is_curator? && !is_me?(@user) && !@user.is_admin?
-        unless @user.spammer?
-          pieces << link_to(t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post)
-        end
-        unless @user.known_non_spammer?
-          pieces << link_to(t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false),
-            method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) } )
-        end
-      end
-    -%>
-    <%= pieces.join(" | ").html_safe %>
-  </div>
-<% end %>
+</div>

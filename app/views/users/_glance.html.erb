@@ -2,31 +2,30 @@
   user ||= @user
   extra ||= nil
 %>
-<ul class="readable description leafylist">
-  <li><%= link_to t(:x_observations, :count => user.observations_count), observations_by_login_path(user.login) %></li>
-  <li><%= link_to t(:x_species, :count => user.life_list_taxa_count), user.life_list %></li>
-  <li><%= link_to t(:x_lists, :count => user.lists.count), lists_by_login_path(user.login) %></li>
-  <% if user.journal_posts_count > 0 -%>
-    <li><%= link_to t(:x_journal_posts, :count => user.journal_posts_count), journal_by_login_path(user.login) %></li>
-  <% end -%>
-  <% if user.identifications_count > 0 -%>
-    <li><%= link_to t(:x_identifications, :count => user.identifications_count), identifications_by_login_path(user.login) %></li>
-  <% end -%>
-  <% if user.followers.count > 0 -%>
-    <li><%= link_to t(:x_followers, :count => user.followers.count), followers_by_login_path(user.login) %></li>
-  <% end -%>
-  <% if user.friendships.count > 0 %>
-    <li>
-      <%=t :following %>
-      <%= link_to t(:x_people, :count => user.friendships.count), following_by_login_path(user.login) %>
-    </li>
-  <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="list-group"> 
+      <%= link_to observations_by_login_path(user.login), :class => "list-group-item" do %>
+          <span class="badge"><%= user.observations_count %></span><span class="glyphicon glyphicon-eye-open"></span>&nbsp;<%= t(:observations) %>
+      <% end %>
+      <%= link_to user.life_list, :class => 'list-group-item' do %>
+          <span class="badge"><%= user.life_list_taxa_count %></span><span class="glyphicon glyphicon-leaf"></span>&nbsp;<%= t(:species) %>
+      <% end %>      
+      <%= link_to identifications_by_login_path(user.login), :class => 'list-group-item' do %>
+          <span class="badge"><%= user.identifications_count %></span><span class="glyphicon glyphicon-bookmark"></span>&nbsp;<%= t(:identifications) %>
+      <% end %>
+      <%= link_to journal_by_login_path(user.login), :class => 'list-group-item' do %>
+          <span class="badge"><%= user.journal_posts_count %></span><span class="glyphicon glyphicon-book"></span>&nbsp;<%= t(:journal_posts) %>
+      <% end %>
+      <%= link_to lists_by_login_path(user.login), :class => 'list-group-item' do %>
+          <span class="badge"><%= user.lists.count %></span><span class="glyphicon glyphicon-list"></span>&nbsp;<%= t(:lists) %>
+      <% end %>
+      <%= link_to followers_by_login_path(user.login), :class => 'list-group-item' do %>
+          <span class="badge"><%= user.followers.count %></span><span class="glyphicon glyphicon-user"></span>&nbsp;<%= t(:followers) %>
+      <% end %>
 
-  <% if user.is_admin? -%>
-    <li><%= user.login %> <%=t :is_an %> <%= link_to t(:admin).downcase, help_path(:anchor => "curators") %></li>
-  <% elsif user.is_curator? %>
-    <li><%= user.login %> <%=t :is_a %> <%= link_to t(:curator).downcase, help_path(:anchor => "curators") %></li>
-  <% end -%>
-  
-  <%= extra %>
-</ul>
+      <%= extra %>
+    </div>
+  </div>
+</div>
+    

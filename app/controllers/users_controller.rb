@@ -20,8 +20,6 @@ class UsersController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
 
-  layout "bootstrap"
-
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
 
@@ -301,6 +299,7 @@ class UsersController < ApplicationController
         @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
+        render layout: "bootstrap"
       end
       format.json { render :json => @selected_user.to_json(User.default_json_options) }
       format.mobile
