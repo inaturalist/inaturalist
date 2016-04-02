@@ -74,13 +74,14 @@ class TaxonMap extends React.Component {
   }
   render( ) {
     return (
-      <div className={`taxon-map ${this.props.className}`} style={ { minHeight: "10px" } } />
+      <div className={`TaxonMap ${this.props.className}`} style={ { minHeight: "10px" } } />
     );
   }
 }
 
 TaxonMap.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  observations: PropTypes.array
 };
 
 export default TaxonMap;

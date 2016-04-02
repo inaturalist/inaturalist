@@ -17,8 +17,6 @@ const currentObservationReducer = ( state = { visible: false }, action ) => {
         observation: state.observation
       };
     case RECEIVE_CURRENT_OBSERVATION:
-      console.log( "[DEBUG] received current, observation.identifications: ",
-        action.observation.identifications );
       return {
         visible: true,
         observation: action.observation

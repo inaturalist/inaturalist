@@ -1,20 +1,23 @@
 // skip_uglifier
 import "babel-polyfill";
+import moment from "moment";
 import thunkMiddleware from "redux-thunk";
-import { createStore, compose, applyMiddleware } from "redux";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-
+import { createStore, compose, applyMiddleware } from "redux";
+import { bindShortcuts } from "redux-shortcuts";
 import rootReducer from "./reducers/";
 import {
   fetchObservations,
   fetchObservationsStats,
-  setConfig
+  setConfig,
+  showNextObservation,
+  showPrevObservation
 } from "./actions/";
 import App from "./components/app";
-import moment from "moment";
 
+// Use custom relative times for moment
 moment.locale( I18n.locale, {
   relativeTime: I18n.translations[I18n.locale].momentjs.shortRelativeTime
 } );
@@ -39,6 +42,11 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
     currentUser: CURRENT_USER
   } ) );
 }
+
+bindShortcuts(
+  ["right", showNextObservation],
+  ["left", showPrevObservation]
+)( store.dispatch );
 
 // retrieve initial set of observations
 store.dispatch( fetchObservations() );

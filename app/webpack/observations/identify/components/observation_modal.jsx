@@ -69,6 +69,7 @@ const ObservationModal = ( {
             </Col>
             <Col xs={4} className="sidebar">
               <TaxonMap
+                key={`map-for-${observation.id}`}
                 taxonLayers={[{
                   taxon: observation.taxon,
                   observations: { observation_id: observation.id },
@@ -119,7 +120,9 @@ const ObservationModal = ( {
               </Button>
             </Col>
             <Col xs={4}>
-              <Button onClick={ function ( e ) { scrollSidebarToForm( ".IdentificationForm", e ); } }>
+              <Button
+                onClick={ function ( e ) {scrollSidebarToForm( ".IdentificationForm", e ); } }
+              >
                 { I18n.t( "add_id" ) }
               </Button>
               <Button onClick={ function ( e ) { scrollSidebarToForm( ".CommentForm", e ); } }>

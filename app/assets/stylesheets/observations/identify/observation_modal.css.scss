@@ -1,0 +1,78 @@
+.bootstrap .ObservationModal .modal-footer .secondary-actions,
+body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions {
+  text-align: left;
+}
+
+.ObservationModal .TaxonMap {
+  height: 100px;
+}
+
+
+$image-gallery-height: 380px;
+.ObservationModal .image-gallery {
+  background-color: #eee;
+}
+.ObservationModal .image-gallery-content {
+  position: relative
+}
+.ObservationModal .image-gallery,
+.ObservationModal .image-gallery-content,
+.ObservationModal .sidebar {
+  height: $image-gallery-height;
+}
+.ObservationModal .image-gallery-content img {
+  height: $image-gallery-height;
+  display: block;
+  margin: 0 auto;
+  width: auto;
+}
+.ObservationModal .image-gallery-thumbnails {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
+  padding-bottom: 10px;
+  z-index: 1;
+}
+.ObservationModal .sidebar {
+  overflow: scroll;
+}
+.ObservationModal .modal-title {
+  font-size: 16px;
+}
+.ObservationModal .modal-title .datebit {
+  color: #ddd;
+  margin-left: 10px;
+  font-size: 14px;
+}
+.ObservationModal .modal-title .datebit label {
+  margin-right: 5px;
+}
+.ObservationModal .modal-title .datebit:first-child:after {
+  content: "•";
+  margin-left: 10px;
+}
+.ObservationModal .modal-body {
+  background-color: #eee;
+  min-height: $image-gallery-height + 30px;
+}
+.ObservationModal .modal-footer .form-group {
+  margin-bottom: 0;
+}
+.DiscussionListItem {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+.DiscussionListItem .identification {
+  display: flex;
+}
+.DiscussionListItem .identification .taxon-image {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.DiscussionListItem .identification .SplitTaxon {
+  flex: 2;
+  padding: 5px;
+}
