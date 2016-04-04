@@ -3026,7 +3026,7 @@ describe Observation do
     end
   end
 
-  describe "random_neighbor_lat_lon" do
+  describe "random_neighbor_lat_lon", disabled: ENV["TRAVIS_CI"] do
     it "randomizes values within a 0.2 degree square" do
       lat_lons = [ [ 0, 0 ], [ 0.001, 0.001 ], [ 0.199, 0.199 ] ]
       values = [ ]
