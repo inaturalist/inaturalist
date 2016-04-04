@@ -1,0 +1,33 @@
+#wrapper {
+  min-height: initial;
+}
+#bodywrapper:after {
+  height: 220px;
+}
+.uploader {
+  width: 100%;
+  border-style: dashed;
+  border-radius: 5px;
+  border-width: 2px;
+  min-height: 300px;
+}
+#app{
+}
+.card {
+  border: 1px dashed gray;
+  padding: 0.5rem 1rem;
+  marginBottom: .5rem;
+  backgroundColor: white;
+  cursor: move;
+  margin: 10px;
+  display: inline-block;
+  width: 300px;
+}
+.card img {
+  max-width: 150px;
+  max-height: 150px;
+}
+.cell {
+  width: 300px;
+  display: inline;
+}

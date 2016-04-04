@@ -1415,6 +1415,10 @@ class ObservationsController < ApplicationController
   def identify
     render layout: "bootstrap"
   end
+
+  def uploader
+    render layout: "bootstrap"
+  end
   
   def identotron
     @observation = Observation.find_by_id((params[:observation] || params[:observation_id]).to_i)
