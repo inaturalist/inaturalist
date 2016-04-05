@@ -21,6 +21,7 @@
         = link_to new_message_path(:to => @selected_user.login), :class => 'btn btn-primary btn-xs' do
           %span.glyphicon.glyphicon-envelope>
           \&nbsp;#{t(:message)}
+        \&nbsp;
         = friend_button current_user, @selected_user, {:id => 'follow_button'}
     -else
       = title

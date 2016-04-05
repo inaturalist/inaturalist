@@ -121,23 +121,17 @@
     </h3>
     <% unless @followees.blank? %>
       <div class="row">
-        <% @followees[0..7].each do |friend| %>
-          <div class="col-md-3">
-            <div class="media">
-              <div class="media-left">
-                <%= link_to(
-                      image_tag(friend.icon.url(:thumb), :class => 'left usericon', :width => 40),
-                      person_by_login_path(friend.login)) %>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading"><%= link_to friend.login, person_by_login_path(friend.login) %></h4>
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                <%= link_to friend.observations.count, observations_by_login_path(friend.login) %>
-              </div>
-            </div>
-          </div>
+        <% @followees[0..3].each do |friend| %>
+          <%= render(:partial => 'followees', :locals => {:friend => friend}) %>
         <% end %>
       </div>
+      <% if @followees.count > 4 -%>
+        <div class="row" id="followee-row">
+          <% @followees[4..7].each do |friend| %>
+            <%= render(:partial => 'followees', :locals => {:friend => friend}) %>
+          <% end %>
+        </div>
+      <% end %>
       <p id="view_more_btn_container">
         <%= link_to t(:view_all), following_by_login_path(@user.login), :class => "btn btn-sm btn-default"%>
       </p>
@@ -152,18 +146,17 @@
     <% unless @favorite_listed_taxa.blank? -%>
       <h3 class="page-header">Favorite Taxa</h3>
       <div class="row">
-        <% for listed_taxon in @favorite_listed_taxa[0..7] %>
-          <div class="col-md-3">
-            <%- taxon = listed_taxon.taxon %>
-            <div class="thumbnail"> 
-              <%= taxon_image(taxon) %>
-              <div class="caption">
-                <%= render(:partial => 'shared/taxon', :object => taxon) %>
-              </div>
-            </div>
-          </div>
+        <% for listed_taxon in @favorite_listed_taxa[0..3] %>
+          <%= render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon}) %>
         <% end %>
       </div>
+      <% if @favorite_listed_taxa.count > 4 -%>
+        <div class="row">
+          <% for listed_taxon in @favorite_listed_taxa[4..7] %>
+            <%= render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon}) %>
+          <% end %>
+        </div>
+      <% end %>
       <p id="view_more_btn_container">
         <%= link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"%>
       </p>
