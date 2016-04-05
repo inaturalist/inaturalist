@@ -1,4 +1,4 @@
-%ul.nav.nav-tabs.subnav
+%ul.nav.nav-tabs.user-subnav
   - if logged_in? && current_user.id == user.id
     %li{:class => ('active' if current_page?(:controller => "users", :action => "dashboard"))}
       = link_to home_path do
