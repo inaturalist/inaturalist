@@ -1,4 +1,4 @@
-%ul.nav.nav-tabs
+%ul.nav.nav-tabs.subnav
   - if logged_in? && current_user.id == user.id
     %li{:class => ('active' if current_page?(:controller => "users", :action => "dashboard"))}
       = link_to home_path do
@@ -10,7 +10,7 @@
       \&nbsp;#{t(:profile)}
   %li{:class => ('active' if current_page?(:controller => :observations, :action => :by_login))}
     = link_to observations_by_login_path(user.login) do
-      %span.glyphicon.glyphicon-eye-open>
+      %i.fa.fa-binoculars>
       \&nbsp;#{t(:observations)}
   %li{:class => ('active' if controller.is_a?(CalendarsController))}
     = link_to calendar_path(user.login) do
@@ -18,7 +18,7 @@
       \&nbsp;#{t(:calendar)}
   %li{:class => ('active' if current_page?(:controller => :identifications, :action => :by_login))}
     = link_to identifications_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-bookmark>
+      %i.icon.icon-identification>
       \&nbsp;#{t(:ids)}
   %li{:class => ('active' if current_page?(:controller => :lists, :action => :by_login))}
     = link_to lists_by_login_path(user.login) do

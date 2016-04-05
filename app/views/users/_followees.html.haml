@@ -6,5 +6,6 @@
         person_by_login_path(friend.login))                                          |
     .media-body
       %h4.media-heading= link_to friend.login, person_by_login_path(friend.login)
-      %span.glyphicon.glyphicon-eye-open{"aria-hidden" => "true"}
+      / %span.glyphicon.glyphicon-eye-open{"aria-hidden" => "true"}
+      %i.fa.fa-binoculars{"aria-hidden" => "true"}
       = link_to friend.observations.count, observations_by_login_path(friend.login)
