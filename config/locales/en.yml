@@ -2848,7 +2848,7 @@ en:
   taxonomic_tags_for_flickr: Taxonomic Tags for Flickr
   taxonomic_tree_browser: Taxonomic Tree Browser
   tell_everyone_a_little_about_you: Tell everyone a little about yourself
-  tell_the_world_a_little_about_yourself: Tell the world a little bit about yourself by
+  tell_the_world_a_little_about_yourself: Tell us about yourself
   terms: Terms
   terms_and_rules_html: "Terms &amp; Rules"
   terms_new_users: "If you add terms, new users must agree to them before joining this project."
@@ -2991,6 +2991,9 @@ en:
   this_taxon_name_was_originally_imported: "This taxon name was originally imported from an external name provider:"
   this_taxon_was_originally_imported_from: "This taxon was originally imported from an external name provider:"
   this_tool_is_experimental: This tool is experimental, so please
+  this_user_has_been_suspended: This user has been suspended
+  this_user_has_been_suspended_message: |
+    If this is your account and you think this was done by mistake, please <a href="mailto:%{email}">contact us</a>.
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
   this_will_refresh_listed_taxa: This will refresh the listed taxa on this list. This may take a while so please use sparingly and on small checklists
   this_will_re_apply_all_list_rules: |
@@ -4462,7 +4465,7 @@ en:
           agree with the community.
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
-        this_user_was_banned: This user was banned
+        this_user_was_banned: This user was suspended
     welcome:
       index:
         welcome_message_html: |
