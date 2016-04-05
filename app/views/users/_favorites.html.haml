@@ -1,0 +1,6 @@
+- taxon = listed_taxon.taxon
+.col-md-3
+  .thumbnail
+    = image_tag(taxon_image_url(taxon), {width: '150px'}).force_encoding('utf-8')
+    .caption
+      = render(:partial => 'shared/taxon', :object => taxon, :locals => {:truncate => true})

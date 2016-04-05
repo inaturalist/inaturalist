@@ -70,28 +70,28 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to t(:stop_following_user, :user => potential_friend.login), 
+    unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
       url_options.merge(:remove_friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
         :datatype => "json",
         :method => :put,
         :id => dom_id(potential_friend, 'unfriend_link'),
-        :class => "unfriend_link",
+        :class => "btn btn-primary btn-xs unfriend_link",
         :style => already_friends ? "" : "display:none"
       )
-    friend_link = link_to t(:follow_user, :user=> potential_friend.login), 
+    friend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:follow_user, :user=> potential_friend.login)}".html_safe, 
       url_options.merge(:friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
         :method => :put,
         :datatype => "json",
         :id => dom_id(potential_friend, 'friend_link'),
-        :class => "friend_link",
+        :class => "btn btn-primary btn-xs friend_link",
         :style => (!already_friends && user != potential_friend) ? "" : "display:none"
       )
     
-    content_tag :span, (friend_link + unfriend_link).html_safe, :class => "friend_button"
+    content_tag :span, (friend_link + unfriend_link).html_safe
   end
   
   def char_wrap(text, len)
@@ -274,6 +274,19 @@ module ApplicationHelper
       photo.native_page_url,
       link_options
     )
+  end
+  
+  def stripped_first_paragraph_of_text(text)
+    return text if text.blank?
+    text = text.split("\n\n")[0]
+    text = strip_tags(text)
+  end
+  
+  def remaining_paragraphs_of_text(text)
+    return text if text.blank?
+    paragraphs = text.split("\n\n")
+    text = paragraphs[1..paragraphs.length].join("\n\n")
+    Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
   
   def formatted_user_text(text, options = {})
