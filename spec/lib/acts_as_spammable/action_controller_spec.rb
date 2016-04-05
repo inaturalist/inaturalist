@@ -30,7 +30,7 @@ describe ObservationsController, type: :controller do
   it "returns a 403 when spammer content is viewed by average users" do
     get :show, id: spammer_content.id
     expect(response.response_code).to eq 403
-    expect(response.body).to match /This user was banned/
+    expect(response.body).to match /This user was suspended/
   end
 
   it "adds a flash message when spammer content is viewed by curators" do
