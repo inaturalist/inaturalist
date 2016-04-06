@@ -252,6 +252,10 @@ class Project < ActiveRecord::Base
   def project_observations_count
     project_observations.count
   end
+
+  def posts_count
+    posts.count
+  end
   
   def featured_at_utc
     featured_at.try(:utc)

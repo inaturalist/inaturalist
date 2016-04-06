@@ -96,6 +96,16 @@ shared_examples_for "a ProjectsController" do
       expect( json.detect{|pu| pu['project_id'].to_i == project.id } ).not_to be_blank
     end
   end
+
+  describe "show" do
+    it "should include posts_count" do
+      p = Project.make!
+      post = Post.make!( parent: p )
+      get :show, format: :json, id: p.slug
+      json = JSON.parse( response.body )
+      expect( json["posts_count"] ).to eq 1
+    end
+  end
 end
 
 describe ProjectsController, "oauth authentication" do
