@@ -17,7 +17,7 @@ class TaxonAutocomplete extends React.Component {
 
   render( ) {
     return (
-      <span>
+      <span className="TaxonAutocomplete">
         <Input
           type="search"
           name="taxon_name"

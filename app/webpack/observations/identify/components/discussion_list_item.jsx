@@ -51,7 +51,7 @@ const DiscussionListItem = ( {
         <a href={`/people/${user.login}`}>
           {user.login}
         </a>'s { identification ? I18n.t( "identification" ) : I18n.t( "comment" ) }
-        <span className="date pull-right">
+        <span className="date pull-right" title={createdAt}>
           { moment( createdAt ).fromNow( ) }
         </span>
       </div>

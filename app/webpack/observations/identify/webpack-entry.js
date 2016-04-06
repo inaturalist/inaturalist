@@ -33,10 +33,6 @@ const store = createStore(
   )
 );
 
-store.dispatch( setConfig( {
-  nodeApiHost: $( "[name='config:inaturalist_api_host']" ).attr( "content" )
-} ) );
-
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER

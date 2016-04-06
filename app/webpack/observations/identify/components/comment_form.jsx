@@ -17,6 +17,8 @@ const CommentForm = ( { observation, onSubmitComment, className } ) => (
         parent_id: observation.id,
         body: e.target.elements.body.value
       } );
+      $( e.target.elements.body ).val( );
+      $( e.target ).hide( );
     }}
   >
     <h2>Add a Comment</h2>

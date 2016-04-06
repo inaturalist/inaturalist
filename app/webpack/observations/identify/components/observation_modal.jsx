@@ -31,15 +31,38 @@ const ObservationModal = ( {
   }
 
   const scrollSidebarToForm = ( selector, e ) => {
-
     const sidebar = $( e.target ).parents( ".ObservationModal" )
       .find( ".sidebar" );
     $( "form", sidebar ).hide( );
     const target = $( e.target ).parents( ".ObservationModal" )
       .find( selector );
     $( target ).show( );
+    $( ":input:visible:first", target ).focus( );
     $( sidebar ).scrollTo( target );
   };
+
+  // skipping map until we can work out the memory issues
+  let taxonMap;
+  const includeMap = false;
+  if ( includeMap ) {
+    taxonMap = (
+      <TaxonMap
+        key={`map-for-${observation.id}`}
+        taxonLayers={[{
+          taxon: observation.taxon,
+          observations: { observation_id: observation.id },
+          places: { disabled: true },
+          gbif: { disabled: true }
+        }] }
+        observations={[observation]}
+        zoomLevel={ observation.map_scale || 8 }
+        mapTypeControl={false}
+        zoomControl={false}
+        showAccuracy
+        className="stacked"
+      />
+    );
+  }
 
   return (
     <Modal show={visible} onHide={onClose} bsSize="large" className="ObservationModal">
@@ -68,21 +91,7 @@ const ObservationModal = ( {
               />
             </Col>
             <Col xs={4} className="sidebar">
-              <TaxonMap
-                key={`map-for-${observation.id}`}
-                taxonLayers={[{
-                  taxon: observation.taxon,
-                  observations: { observation_id: observation.id },
-                  places: { disabled: true },
-                  gbif: { disabled: true }
-                }] }
-                observations={[observation]}
-                zoomLevel={ observation.map_scale || 8 }
-                mapTypeControl={false}
-                zoomControl={false}
-                showAccuracy
-                className="stacked"
-              />
+              {taxonMap}
               <DiscussionList observation={observation} />
               <CommentFormContainer observation={observation} className="collapse" />
               <IdentificationFormContainer observation={observation} className="collapse" />

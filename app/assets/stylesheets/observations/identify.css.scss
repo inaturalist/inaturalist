@@ -17,3 +17,31 @@
   font-size: 110%;
 }
 
+.ac-chooser {
+  display: flex;
+  position: relative;
+}
+.ac-select-thumb {
+  line-height: 2.1;
+}
+.ui-autocomplete-input {
+  flex: 2;
+}
+body > div > [role="dialog"] .searchclear.glyphicon,
+.searchclear.glyphicon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding-left: 5px;
+  color: #ddd;
+  background: #fff;
+  z-index: 2;
+}
+input.filter-changed + .searchclear.glyphicon {
+  background: none;
+  color: #bbb;
+}
+.searchclear.glyphicon:hover, input.filter-changed + .searchclear.glyphicon:hover {
+  color: #666;
+  cursor: pointer;
+}

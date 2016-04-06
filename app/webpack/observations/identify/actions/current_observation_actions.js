@@ -26,9 +26,11 @@ function receiveCurrentObservation( observation ) {
   };
 }
 
-function fetchCurrentObservation( observation ) {
-  return function ( dispatch ) {
-    return iNaturalistJS.observations.fetch( [observation.id] )
+function fetchCurrentObservation( observation = null ) {
+  return function ( dispatch, getState ) {
+    const s = getState();
+    const obs = observation || s.currentObservation.observation;
+    return iNaturalistJS.observations.fetch( [obs.id] )
       .then( response => {
         dispatch( receiveCurrentObservation( response.results[0] ) );
       } );
