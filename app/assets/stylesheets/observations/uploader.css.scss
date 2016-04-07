@@ -1,0 +1,122 @@
+#wrapper {
+  min-height: initial;
+}
+#bodywrapper:after {
+  height: 220px;
+}
+.uploader {
+  margin: 0px 20px;
+}
+#imageGrid {
+  border-style: dashed;
+  border-radius: 5px;
+  border-width: 2px;
+  min-height: 350px;
+}
+#imageGrid .intro {
+  text-align: center;
+  height: 300px;
+  padding-top: 10%;
+  font-size: 1.3em;
+}
+.uploader button .glyphicon {
+  margin-left: 10px;
+  top: 3px;
+  font-size: 0.9em;
+}
+.uploader.hover #imageGrid {
+  border-style: solid;
+  background-color: #eee;
+}
+.uploader.populated #imageGrid {
+  border-style: solid;
+}
+.uploader.hover .intro .start {
+  display: none;
+}
+.uploader .intro .hover {
+  display: none;
+}
+.uploader .intro .hover p {
+  line-height: 150px;
+}
+.uploader.hover .intro .hover {
+  display: block;
+}
+.card {
+  background-color: white;
+  margin: 10px;
+  display: inline-block;
+  width: 200px;
+  border: 1px solid #666;
+  padding: 5px;
+  border-radius: 5px;
+}
+.card .move {
+  float: left;
+  font-size: 15px;
+  margin: -13px 0px 0px -13px;
+  opacity: 0.2;
+  cursor: move;
+}
+.card .move:hover {
+  opacity: 1;
+}
+.card .close {
+  font-size: 15px;
+  margin: -13px -13px 0px 0px;
+}
+.card .head {
+  height: 10px;
+}
+.card .image {
+  width: 100%;
+  height: 130px;
+  line-height: 130px;
+  text-align: center;
+  clear: right;
+}
+.card .image .placeholder {
+  border-style: dashed;
+  border-radius: 5px;
+  border-width: 1px;
+  width: 80px;
+  height: 100px;
+  margin: auto;
+}
+.card .image img {
+  max-height: 126px;
+  max-width: 172px;
+  border: 3px solid #bbb;
+}
+#imageGrid .card input {
+  display: inline-block;
+}
+
+#imageGrid .ac-chooser input {
+  width: 150px;
+}
+.cell {
+  display: inline;
+}
+.card.selected {
+  border: 3px solid #ff0080;
+  padding: 3px;
+}
+.uploader .conrol-menu {
+  margin-bottom: 20px;
+}
+.cellDropzone {
+  display: inline;
+}
+.cellDropzone.hover .card {
+  border: 4px solid green;
+  padding: 2px;
+}
+.leftColumn .ac-chooser .ac-select-thumb {
+  position: absolute;
+}
+.leftColumn .ac-chooser input[name="taxon_name"] {
+  margin-left: 40px;
+  width: 85%;
+}

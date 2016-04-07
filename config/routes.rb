@@ -154,7 +154,7 @@ Rails.application.routes.draw do
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
-  resources :photos, :only => [:show, :update, :destroy] do
+  resources :photos, :only => [:show, :update, :destroy, :create] do
     resources :flags
     collection do
       get 'repair' => :fix
@@ -186,6 +186,7 @@ Rails.application.routes.draw do
       get :export
       get :map
       get :identify
+      get :uploader
     end
     member do
       put :viewed_updates

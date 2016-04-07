@@ -1415,6 +1415,10 @@ class ObservationsController < ApplicationController
   def identify
     render layout: "bootstrap"
   end
+
+  def uploader
+    render layout: "bootstrap"
+  end
   
   def identotron
     @observation = Observation.find_by_id((params[:observation] || params[:observation_id]).to_i)
@@ -2059,6 +2063,10 @@ class ObservationsController < ApplicationController
   end
   
   def retrieve_photos(photo_list = nil, options = {})
+    puts "XXXXXXXXXXX"
+    pp photo_list
+    pp options
+    puts "XXXXXXXXXXX"
     return [] if photo_list.blank?
     photo_list = photo_list.values if photo_list.is_a?(Hash)
     photo_list = [photo_list] unless photo_list.is_a?(Array)

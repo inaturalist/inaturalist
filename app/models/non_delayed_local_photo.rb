@@ -1,5 +1,5 @@
 #encoding: utf-8
-class LocalPhoto < Photo
+class NonDelayedLocalPhoto < Photo
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
   
@@ -45,7 +45,6 @@ class LocalPhoto < Photo
     )
   end
 
-  process_in_background :file
   # we want to grab metadata from remote photos so make sure
   # to pull the metadata from the true original, i.e. before
   # post_processing which creates thumbnails
@@ -61,7 +60,7 @@ class LocalPhoto < Photo
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
-  attr_accessor :rotation, :skip_delay
+  attr_accessor :rotation
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file

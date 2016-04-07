@@ -6,7 +6,8 @@ var config = {
   // entry: './webpack/entry.js',
   entry: {
     // list out the various bundles we need to make for different apps
-    'observations-identify': './observations/identify/webpack-entry'
+    'observations-identify': './observations/identify/webpack-entry',
+    'observations-uploader': './observations/uploader/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js

@@ -13,8 +13,13 @@
     "jsx-loader": "^0.13.2",
     "lodash": "^4.6.1",
     "moment": "^2.12.0",
+    "ramda": "^0.20.1",
     "react": "^0.14.7",
+    "react-addons-update": "*",
     "react-bootstrap": "^0.28.4",
+    "react-dnd": "*",
+    "react-dnd-html5-backend": "*",
+    "react-dropzone": "*",
     "react-dom": "^0.14.7",
     "react-image-gallery": "^0.5.12",
     "react-redux": "^4.4.1",
@@ -25,7 +30,13 @@
     "webpack": "^1.12.14",
     "webpack-stream": "^3.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "^2.6.0",
+    "eslint-config-airbnb": "*",
+    "eslint-plugin-react": "*",
+    "estraverse-fb": "*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/inaturalist/inaturalist.git"

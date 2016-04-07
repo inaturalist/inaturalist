@@ -11,7 +11,8 @@ class TaxonAutocomplete extends React.Component {
       search_external: this.props.searchExternal,
       id_el: $( "input[name='taxon_id']", domNode ),
       afterSelect: this.props.afterSelect,
-      afterUnselect: this.props.afterUnselect
+      afterUnselect: this.props.afterUnselect,
+      initialSelection: this.props.initialSelection
     } );
   }
 
@@ -36,7 +37,8 @@ TaxonAutocomplete.propTypes = {
   bootstrapClear: PropTypes.bool,
   searchExternal: PropTypes.bool,
   afterSelect: PropTypes.func,
-  afterUnselect: PropTypes.func
+  afterUnselect: PropTypes.func,
+  initialSelection: PropTypes.object
 };
 
 export default TaxonAutocomplete;
