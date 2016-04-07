@@ -7,8 +7,8 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import reducer from "./reducers";
-// import Uploader from "./containers/uploader";
-import App from "./containers/app";
+import Uploader from "./containers/uploader";
+// import AppContainer from "./containers/app_container";
 // import Sortable from "./containers/sortable";
 
 const store = createStore(
@@ -24,7 +24,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <App />
+    <Uploader />
   </Provider>,
   document.getElementById( "app" )
 );
