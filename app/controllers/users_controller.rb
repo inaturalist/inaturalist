@@ -348,11 +348,12 @@ class UsersController < ApplicationController
           order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
-          @flags = Flag.order("id desc").where("resolved = ?", false).
+          @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
             includes(:user, :resolver, :comments).limit(5)
           @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
             includes(:taxon_names).limit(5).active
         end
+        render layout: "bootstrap"
       end
       format.mobile
     end
@@ -408,7 +409,7 @@ class UsersController < ApplicationController
             :crypted_password, :salt, :old_preferences, :activation_code,
             :remember_token, :last_ip, :suspended_at, :suspension_reason,
             :icon_content_type, :icon_file_name, :icon_file_size,
-            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url
+            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url, :latitude, :longitude
           ],
           :methods => [
             :user_icon_url, :medium_user_icon_url, :original_user_icon_url

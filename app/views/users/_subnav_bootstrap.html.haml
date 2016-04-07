@@ -1,10 +1,10 @@
 %ul.nav.nav-tabs
   - if logged_in? && current_user.id == user.id
-    %li{:class => ('active' if current_page?(:controller => "users", :action => "dashboard"))}
+    %li{:class => ('active' if controller.controller_name=="users" && controller.action_name=="dashboard")}
       = link_to home_path do
         %span.glyphicon.glyphicon-home>
         \&nbsp;#{t(:home)}
-  %li{:class => ('active' if controller.controller_name=="users")}
+  %li{:class => ('active' if controller.controller_name=="users" && controller.action_name=="show")}
     = link_to person_by_login_path(:login => user.login) do
       %span.glyphicon.glyphicon-user>
       \&nbsp;#{t(:profile)}

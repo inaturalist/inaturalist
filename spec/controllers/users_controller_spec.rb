@@ -1,13 +1,28 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe UsersController, "create" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
+  it "should set the last_ip on create" do
+    user = User.make!
+    sign_in user
+    get :dashboard
+    expect(@user.last_ip).not_to be_blank
+  end
+end
+
 describe UsersController, "dashboard" do
   before(:each) { enable_elastic_indexing(Update) }
   after(:each) { disable_elastic_indexing(Update) }
   it "should be accessible when signed in" do
     user = User.make!
+    puts "ok"
     sign_in user
+    puts "ok"
     get :dashboard
+    puts "ok"
     expect(response).to be_success
+    puts "ok"
   end
 end
 
