@@ -328,6 +328,10 @@ class UsersController < ApplicationController
     if params[:filter] == "you"
       wheres[:resource_owner_id] = current_user.id
     end
+    
+    follower_ids = Observation.elastic_user_observation_counts(Observation.params_to_elastic_query({ verifiable: true, lat: 37.700199, lng: -122.405998, d1: 3.months.ago.to_s, d2: Time.now }), 10)[:counts].map{|u| u["user_id"]}
+    @followers = User.where("id IN (?)", follower_ids)
+    
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
     @updates = Update.load_additional_activity_updates(@pagination_updates)

@@ -131,7 +131,7 @@
               </div>        
             </div>
           <% end -%>
-        
+      
           <% if current_user.friendships.count == 0 -%>
             <div class="panel panel-success">
               <div class="panel-heading">
@@ -140,80 +140,9 @@
               </div>
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="media">
-                      <div class="media-left"> <a href="#"> <img class="media-object img-circle" width="40" height="40" src="http://thinkmoredesign.com/inat/Getting_Started/img/taxa02.jpg" alt="..."> </a> </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">moon_child</h4>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 3,987
-                      </div>
-                    </div>
-                  </div>
+                  <% @followers.each do |friend| %>
+                    <%= render(:partial => 'followees', :locals => {:friend => friend}) %>
+                  <% end %>
                 </div>
 
               </div>

@@ -13,9 +13,6 @@ class User < ActiveRecord::Base
          :encryptable, :encryptor => :restful_authentication_sha1
   handle_asynchronously :send_devise_notification
   
-  geocoded_by :last_ip
-  after_validation :geocode
-  
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
   attr_accessor :skip_registration_email
@@ -146,7 +143,11 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-
+  geocoded_by :last_ip
+  after_validation :geocode
+  before_save :ip_hack
+  before_save :geocode_hack
+  
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
     :message => "must be JPG, PNG, or GIF"
@@ -433,7 +434,17 @@ class User < ActiveRecord::Base
     end
     true
   end
-
+  
+  def geocode_hack
+    source = "http://getcitydetails.geobytes.com/GetCityDetails?fqcn=#{self.last_ip}"
+    resp = Net::HTTP.get_response(URI.parse(source))
+    data = resp.body
+    result = JSON.parse(data)
+    self.latitude = result["geobyteslatitude"].to_f
+    self.longitude = result["geobyteslongitude"].to_f
+    true
+  end
+  
   def published_name
     name.blank? ? login : name
   end
