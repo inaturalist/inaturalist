@@ -92,13 +92,13 @@
       <% if is_me?(@selected_user) -%>
         <div id="nodescription" class="well">
           <p>
-            <%= link_to_function t(:tell_the_world_a_little_about_yourself).html_safe, "", :class => "btn btn-primary btn-default" -%>
+            <%= link_to t(:tell_the_world_a_little_about_yourself).html_safe, generic_edit_user_path, :class => "btn btn-primary btn-default" %>
           </p>
           <div class="more">
             <%= t(:do_you_study_nematodes_worlds_foremost_expert_barnacle) %>
           </div>
           <%= form_for @selected_user, :html => {:style => "display: none"} do |f| %>
-            <%= f.text_area :description, :style => "width: 590px; height: 100px;", :placeholder => t(:describe_your_interest_in_nature), :class => "stacked" %>
+            <%= f.text_area :description, placeholder: t(:describe_your_interest_in_nature), :class => "stacked form-control" %>
             <div class="actions">
               <%= f.submit t(:save), :class => "default button", "data-loading-click" => true %>
               <a href="#" class="button cancellink"><%= t(:cancel) %></a>
