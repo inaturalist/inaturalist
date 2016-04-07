@@ -105,7 +105,8 @@
   	  </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="updates">  
-          <% if current_user.friendships.count == 0 -%>
+          <p><%= current_user.last_ip %>, <%= current_user.latitude %>, <%= current_user.longitude %>, <%= current_user.login %></p>
+          <% if current_user.observations_count == 0 -%>
             <div class="panel panel-success">
               <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

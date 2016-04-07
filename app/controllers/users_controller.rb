@@ -63,7 +63,6 @@ class UsersController < ApplicationController
     if success && @user.errors.empty?
       flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => CONFIG.site_name)
       self.current_user = @user
-      @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
     else
       respond_to do |format|

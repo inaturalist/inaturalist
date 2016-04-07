@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
          :encryptable, :encryptor => :restful_authentication_sha1
   handle_asynchronously :send_devise_notification
   
+  geocoded_by :last_ip
+  after_validation :geocode
+  
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
   attr_accessor :skip_registration_email

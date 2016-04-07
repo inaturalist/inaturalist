@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       if resource.active_for_authentication?
+        resource.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
         respond_with(resource) do |format|
