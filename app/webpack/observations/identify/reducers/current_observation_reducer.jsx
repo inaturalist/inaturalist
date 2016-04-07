@@ -17,13 +17,13 @@ const currentObservationReducer = ( state = {}, action ) => {
       } );
     case HIDE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
-        visible: false,
-        observation: state.observation
+        visible: false
       } );
     case RECEIVE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
-        visible: true,
-        observation: action.observation
+        observation: action.observation,
+        captiveByCurrentUser: action.captiveByCurrentUser,
+        reviewedByCurrentUser: action.reviewedByCurrentUser
       } );
     case ADD_COMMENT:
       return Object.assign( {}, state, {

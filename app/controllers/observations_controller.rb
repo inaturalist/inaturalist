@@ -1946,7 +1946,10 @@ class ObservationsController < ApplicationController
     user_reviewed
     respond_to do |format|
       format.html { redirect_to @observation }
-      format.json { head :no_content }
+      format.json do
+        Observation.refresh_es_index
+        head :no_content
+      end
     end
   end
 

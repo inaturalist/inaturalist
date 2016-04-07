@@ -3,27 +3,30 @@ import ObservationModal from "../components/observation_modal";
 import {
   hideCurrentObservation,
   addIdentification,
-  addComment
+  addComment,
+  toggleCaptive,
+  toggleReviewed
 } from "../actions";
 
 function mapStateToProps( state ) {
   let images;
-  if ( state.currentObservation.observation ) {
-    images = state.currentObservation.observation.photos.map( ( photo ) => ( {
+  const observation = state.currentObservation.observation;
+  if ( observation ) {
+    images = observation.photos.map( ( photo ) => ( {
       original: photo.photoUrl( "large" ),
       thumbnail: photo.photoUrl( "thumb" )
     } ) );
   }
   return {
-    observation: state.currentObservation.observation,
+    observation,
     visible: state.currentObservation.visible,
     images,
     commentFormVisible: state.currentObservation.commentFormVisible,
     identificationFormVisible: state.currentObservation.identificationFormVisible,
     // TODO i think the process of adding the currentObservation to the state
     // needs to load these extra bits of data
-    reviewedByCurrentUser: false,
-    captiveByCurrentUser: false
+    reviewedByCurrentUser: state.currentObservation.reviewedByCurrentUser,
+    captiveByCurrentUser: state.currentObservation.captiveByCurrentUser
   };
 }
 
@@ -32,13 +35,11 @@ function mapDispatchToProps( dispatch ) {
     onClose: ( ) => {
       dispatch( hideCurrentObservation( ) );
     },
-    toggleCaptive: ( observation, captive ) => {
-      console.log( "[DEBUG] toggleCaptive, observation: ", observation, ", captive: ", captive );
-      // TODO dispatch( toggleQualityMetric( observation, "captive", captive ) );
+    toggleCaptive: ( ) => {
+      dispatch( toggleCaptive( ) );
     },
-    toggleReviewed: ( observation, reviewed ) => {
-      console.log( "[DEBUG] toggleCaptive, observation: ", observation, ", reviewed: ", reviewed );
-      // TODO dispatch( toggleQualityMetric( observation, "captive", captive ) );
+    toggleReviewed: ( ) => {
+      dispatch( toggleReviewed( ) );
     },
     addIdentification: ( ) => {
       dispatch( addIdentification( ) );

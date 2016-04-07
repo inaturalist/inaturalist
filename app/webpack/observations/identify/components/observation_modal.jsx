@@ -126,23 +126,23 @@ const ObservationModal = ( {
       <Modal.Footer>
         <Grid fluid>
           <Row>
-            <Col xs={8} className="secondary-actions">
+            <Col xs={6} className="secondary-actions">
               <Input
                 type="checkbox"
-                label={ I18n.t( "captive_cultivated" ) }
+                label={ `${I18n.t( "captive_cultivated" )} [z]` }
                 checked={ captiveByCurrentUser }
-                onChange={function ( e ) {
-                  toggleCaptive( observation, e.target.checked );
+                onChange={function ( ) {
+                  toggleCaptive( );
                 }}
                 groupClassName="btn-checkbox"
               />
               <Input
                 type="checkbox"
                 groupClassName="btn-checkbox"
-                label={ I18n.t( "reviewed" ) }
+                label={ `${I18n.t( "reviewed" )} [r]` }
                 checked={ reviewedByCurrentUser }
-                onChange={function ( e ) {
-                  toggleReviewed( observation, e.target.checked );
+                onChange={function ( ) {
+                  toggleReviewed( );
                 }}
               />
               <Button
@@ -152,15 +152,21 @@ const ObservationModal = ( {
                 { I18n.t( "link" ) }
               </Button>
             </Col>
-            <Col xs={4}>
+            <Col xs={6}>
               <Button onClick={ function ( ) { addIdentification( ); } } >
                 { I18n.t( "add_id" ) }
+                &nbsp;
+                [i]
               </Button>
               <Button onClick={ function ( ) { addComment( ); } }>
                 { _.capitalize( I18n.t( "comment" ) ) }
+                &nbsp;
+                [c]
               </Button>
-              <Button>
+              <Button className={ observation.taxon ? "" : "collapse"}>
                 { _.capitalize( I18n.t( "agree" ) ) }
+                &nbsp;
+                [a]
               </Button>
             </Col>
           </Row>

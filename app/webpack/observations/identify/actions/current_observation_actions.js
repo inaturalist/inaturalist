@@ -21,10 +21,12 @@ function hideCurrentObservation( ) {
   return { type: HIDE_CURRENT_OBSERVATION };
 }
 
-function receiveCurrentObservation( observation ) {
+function receiveCurrentObservation( observation, captiveByCurrentUser, reviewedByCurrentUser ) {
   return {
     type: RECEIVE_CURRENT_OBSERVATION,
-    observation
+    observation,
+    captiveByCurrentUser,
+    reviewedByCurrentUser
   };
 }
 
@@ -32,9 +34,26 @@ function fetchCurrentObservation( observation = null ) {
   return function ( dispatch, getState ) {
     const s = getState();
     const obs = observation || s.currentObservation.observation;
+    const currentUser = s.config.currentUser;
     return iNaturalistJS.observations.fetch( [obs.id] )
       .then( response => {
-        dispatch( receiveCurrentObservation( response.results[0] ) );
+        const newObs = response.results[0];
+        let captiveByCurrentUser = false;
+        if ( currentUser && newObs && newObs.quality_metrics ) {
+          const userQualityMetric = _.find( newObs.quality_metrics, ( qm ) => (
+            qm.user.id === currentUser.id && qm.metric === "wild"
+          ) );
+          if ( userQualityMetric ) {
+            captiveByCurrentUser = !userQualityMetric.agree;
+          }
+        }
+        let reviewedByCurrentUser = false;
+        if ( currentUser && newObs ) {
+          reviewedByCurrentUser = newObs.reviewed_by.indexOf( currentUser.id ) > -1;
+        }
+        dispatch(
+          receiveCurrentObservation( newObs, captiveByCurrentUser, reviewedByCurrentUser )
+        );
       } );
   };
 }
@@ -42,15 +61,17 @@ function fetchCurrentObservation( observation = null ) {
 function showNextObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation } = getState();
-    if ( !currentObservation.visible ) {
-      return;
+    let nextObservation;
+    if ( currentObservation.visible ) {
+      let nextIndex = _.findIndex( observations, ( o ) => (
+        o.id === currentObservation.observation.id
+      ) );
+      if ( nextIndex === null || nextIndex === undefined ) { return; }
+      nextIndex += 1;
+      nextObservation = observations[nextIndex];
+    } else {
+      nextObservation = currentObservation.observation || observations[0];
     }
-    let nextIndex = _.findIndex( observations, ( o ) => (
-      o.id === currentObservation.observation.id
-    ) );
-    if ( nextIndex === null || nextIndex === undefined ) { return; }
-    nextIndex += 1;
-    const nextObservation = observations[nextIndex];
     if ( nextObservation ) {
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
@@ -89,6 +110,56 @@ function addComment( ) {
   };
 }
 
+function toggleQualityMetric( observation, metric, agree ) {
+  return ( dispatch ) => {
+    const params = {
+      id: observation.id,
+      metric
+    };
+    if ( agree ) {
+      iNaturalistJS.observations.deleteQualityMetric( params ).then(
+        ( ) => {
+          dispatch( fetchCurrentObservation( ) );
+        }
+      );
+    } else {
+      params.agree = "false";
+      iNaturalistJS.observations.setQualityMetric( params ).then(
+        ( ) => {
+          dispatch( fetchCurrentObservation( ) );
+        }
+      );
+    }
+  };
+}
+
+function toggleCaptive( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const observation = s.currentObservation.observation;
+    const agree = s.currentObservation.captiveByCurrentUser;
+    dispatch( toggleQualityMetric( observation, "wild", agree ) );
+  };
+}
+
+function toggleReviewed( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const observation = s.currentObservation.observation;
+    const reviewed = s.currentObservation.reviewedByCurrentUser;
+    const params = { id: observation.id };
+    if ( reviewed ) {
+      iNaturalistJS.observations.review( params ).then( ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      } );
+    } else {
+      iNaturalistJS.observations.unreview( params ).then( ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      } );
+    }
+  };
+}
+
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
@@ -105,5 +176,8 @@ export {
   showNextObservation,
   showPrevObservation,
   addComment,
-  addIdentification
+  addIdentification,
+  toggleQualityMetric,
+  toggleCaptive,
+  toggleReviewed
 };

@@ -15,7 +15,9 @@ import {
   showNextObservation,
   showPrevObservation,
   addComment,
-  addIdentification
+  addIdentification,
+  toggleCaptive,
+  toggleReviewed
 } from "./actions/";
 import App from "./components/app";
 
@@ -45,7 +47,9 @@ bindShortcuts(
   ["right", showNextObservation],
   ["left", showPrevObservation],
   ["i", addIdentification],
-  ["c", addComment]
+  ["c", addComment],
+  ["z", toggleCaptive],
+  ["r", toggleReviewed]
 )( store.dispatch );
 
 // retrieve initial set of observations
