@@ -145,7 +145,6 @@ class User < ActiveRecord::Base
   after_destroy :create_deleted_user
   geocoded_by :last_ip
   after_validation :geocode
-  before_save :ip_hack
   before_save :geocode_hack
   
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
