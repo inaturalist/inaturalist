@@ -5,19 +5,20 @@ import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
 import ObsCard from "../models/obs_card";
 
-
 const mapStateToProps = ( state ) => state.dragDropZone;
 
 const mapDispatchToProps = ( dispatch ) => ( {
-  onDrop: ( files ) => {
+  onDrop: ( files, e ) => {
+    // skip drops onto cards
+    if ( $( ".card" ).has( e.nativeEvent.target ).length > 0 ) { return; }
     const obsCards = { };
-    var i = 0;
-    var startTime = new Date( ).getTime( );
+    let i = 0;
+    const startTime = new Date( ).getTime( );
     files.forEach( f => {
       i += 1;
       const obsCard = new ObsCard( {
         id: ( startTime + i ),
-        name: f.name,
+        description: f.name,
         preview: f.preview,
         lastModified: f.lastModified,
         lastModifiedDate: f.lastModifiedDate,
@@ -32,11 +33,19 @@ const mapDispatchToProps = ( dispatch ) => ( {
     dispatch( actions.appendObsCards( obsCards ) );
     dispatch( actions.uploadImages( ) );
   },
-  nameChange: ( obsCard, e ) => {
-    dispatch( actions.updateObsCard( obsCard, { name: e.target.value } ) );
-  },
-  descriptionChange: ( obsCard, e ) => {
-    dispatch( actions.updateObsCard( obsCard, { description: e.target.value } ) );
+  onCardDrop: ( files, e, obsCard ) => {
+    const f = files[0];
+    dispatch( actions.updateObsCard( obsCard, {
+      description: f.name,
+      preview: f.preview,
+      lastModified: f.lastModified,
+      lastModifiedDate: f.lastModifiedDate,
+      size: f.size,
+      type: f.type,
+      file: f,
+      upload_state: "pending",
+      dispatch
+    } ) );
   },
   updateObsCard: ( obsCard, updates ) => {
     dispatch( actions.updateObsCard( obsCard, updates ) );

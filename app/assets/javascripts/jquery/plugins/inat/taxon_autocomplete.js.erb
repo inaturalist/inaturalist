@@ -277,4 +277,7 @@ $.fn.taxonAutocomplete = function( options ) {
     }
     field.selection = null;
   });
+  if( options.initialSelection ) {
+    field.trigger( "assignSelection", options.initialSelection );
+  }
 };

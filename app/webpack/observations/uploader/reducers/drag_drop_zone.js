@@ -28,32 +28,29 @@ const dragDropZone = ( state = defaultState, action ) => {
     }
 
     case types.UPDATE_SELECTED_OBS_CARDS: {
-      var afterSelect = Object.assign( { }, state.obsCards );
+      let modified = Object.assign( { }, state.obsCards );
       for ( const id in state.selectedObsCards ) {
-        afterSelect = update( afterSelect, {
+        modified = update( modified, {
           [id]: { $merge: action.attrs }
         } );
       }
-      return Object.assign( { }, state, { obsCards: afterSelect,
-        selectedObsCards: _.pick( afterSelect, ( v, k ) => {
-          return state.selectedObsCards[k];
-        } )
+      return Object.assign( { }, state, { obsCards: modified,
+        selectedObsCards: _.pick( modified, ( v, k ) => ( state.selectedObsCards[k] ) )
       } );
     }
 
     case types.SELECT_OBS_CARDS: {
-      const afterSelect = Object.assign( { }, state.obsCards );
-      for ( const k in afterSelect ) {
-        if ( action.ids[afterSelect[k].id] ) {
-          afterSelect[k].selected = true;
+      const modified = Object.assign( { }, state.obsCards );
+      for ( const k in modified ) {
+        if ( action.ids[modified[k].id] ) {
+          modified[k].selected = true;
         } else {
-          afterSelect[k].selected = false;
+          modified[k].selected = false;
         }
       }
-      return Object.assign( { }, state, { obsCards: afterSelect,
-        selectedObsCards: _.pick( afterSelect, ( v, k ) => {
-          return action.ids[k];
-        } ) } );
+      return Object.assign( { }, state, { obsCards: modified,
+        selectedObsCards: _.pick( modified, ( v, k ) => ( action.ids[k] ) )
+        } );
     }
 
     case types.REMOVE_OBS_CARD: {

@@ -7,15 +7,12 @@ const ObsCard = class ObsCard {
   }
 
   upload( ) {
-    this.dispatch( actions.updateObsCard( this, {
-      description: "uploading", upload_state: "uploading" } ) );
+    this.dispatch( actions.updateObsCard( this, { upload_state: "uploading" } ) );
     inatjs.photos.create( { file: this.file }, { same_origin: true } ).then( r => {
-      this.dispatch( actions.updateObsCard( this, {
-        description: "uploaded", upload_state: "uploaded", photo: r } ) );
+      this.dispatch( actions.updateObsCard( this, { upload_state: "uploaded", photo: r } ) );
     } ).catch( e => {
       console.log( "Upload failed:", e );
-      this.dispatch( actions.updateObsCard( this, {
-        description: "failed", upload_state: "failed" } ) );
+      this.dispatch( actions.updateObsCard( this, { upload_state: "failed" } ) );
     } );
   }
 };

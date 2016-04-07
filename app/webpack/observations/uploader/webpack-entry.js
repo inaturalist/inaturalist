@@ -8,8 +8,6 @@ import { Provider } from "react-redux";
 
 import reducer from "./reducers";
 import Uploader from "./containers/uploader";
-// import AppContainer from "./containers/app_container";
-// import Sortable from "./containers/sortable";
 
 const store = createStore(
   reducer,

@@ -1988,3 +1988,25 @@ user-icon .userimage {
 user-icon .icon-person:before {
   font-size: 1.3em;
 }
+
+
+.ac-chooser {
+  position: relative;
+}
+.ac-chooser .searchclear.glyphicon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding-left: 5px;
+  color: #ddd;
+  background: #fff;
+  z-index: 2;
+}
+input.filter-changed + .searchclear.glyphicon {
+  background: none;
+  color: #bbb;
+}
+.searchclear.glyphicon:hover, input.filter-changed + .searchclear.glyphicon:hover {
+  color: #666;
+  cursor: pointer;
+}

@@ -1,11 +1,12 @@
 import React, { PropTypes, Component } from "react";
 import { Grid, Row, Col, Button, Glyphicon } from "react-bootstrap";
 import Dropzone from "react-dropzone";
+import inatjs from "inaturalistjs";
 import ObsCardComponent from "./obs_card_component";
+import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
 
 class DragDropZone extends Component {
   componentDidUpdate( ) {
-    console.log(Object.keys( this.props.obsCards ).length);
     if ( Object.keys( this.props.obsCards ).length > 0 ) {
       $( "#imageGrid" ).selectable( { filter: ".card",
         cancel: ".glyphicon, input, button",
@@ -19,7 +20,6 @@ class DragDropZone extends Component {
   }
 
   onOpenClick( ) {
-    console.log(this);
     this.refs.dropzone.open( );
   }
 
@@ -32,7 +32,7 @@ class DragDropZone extends Component {
   }
 
   render( ) {
-    const { onDrop, updateObsCard, removeObsCard, updateSelectedObsCards,
+    const { onDrop, updateObsCard, removeObsCard, updateSelectedObsCards, onCardDrop,
       obsCards, submitObservations, createBlankObsCard, selectedObsCards } = this.props;
     let leftColumn;
     let menu;
@@ -44,27 +44,40 @@ class DragDropZone extends Component {
       className += " populated";
       let multiMenu;
       if ( Object.keys( selectedObsCards ).length > 0 ) {
-        let uniqDescriptions = _.uniq( _.map( selectedObsCards, c => {
-          return c.description;
-        } ) );
+        const uniqDescriptions = _.uniq( _.map( selectedObsCards, c => c.description ) );
+        const uniqSelectedTaxa = _.uniq( _.map( selectedObsCards, c => c.selected_taxon ) );
+        let initialSelection = ( uniqSelectedTaxa.length === 1 ) ? uniqSelectedTaxa[0] : undefined;
         let value;
         let placeholder = "Enter description";
         if ( uniqDescriptions.length > 1 ) {
-          console.log(uniqDescriptions);
-          placeholder = "Edit multiple";
+          placeholder = "Edit multiple descriptions";
         } else if ( uniqDescriptions.length === 1 ) {
           value = uniqDescriptions[0];
         }
         multiMenu = (
-          <input type="text" placeholder={ placeholder } value={ value }
-            onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-          />
+          <div>
+            <TaxonAutocomplete
+              bootstrapClear
+              searchExternal={false}
+              initialSelection={ initialSelection }
+              afterSelect={ function ( result ) {
+                updateSelectedObsCards( { taxon_id: result.item.id,
+                  selected_taxon: new inatjs.Taxon( result.item ) } );
+              } }
+              afterUnselect={ function ( ) {
+                updateSelectedObsCards( { taxon_id: undefined, selected_taxon: undefined } );
+              } }
+            />
+            <input type="text" placeholder={ placeholder } value={ value }
+              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+            />
+          </div>
         );
       } else {
         multiMenu = "Select photos";
       }
       leftColumn = (
-        <Col xs={ 3 }>
+        <Col xs={ 3 } className="leftColumn">
           { multiMenu }
         </Col>
       );
@@ -117,14 +130,12 @@ class DragDropZone extends Component {
             { leftColumn }
             <Col xs={ mainColumnSpan } id="imageGrid">
               <div>
-                { _.map( obsCards, ( obsCard, k ) => (
+                { _.map( obsCards, ( obsCard ) => (
                     <ObsCardComponent key={obsCard.id}
                       obsCard={obsCard}
-                      nameChange={ e =>
-                        updateObsCard( obsCard, { name: e.target.value } ) }
+                      onCardDrop={onCardDrop}
+                      updateObsCard={ updateObsCard }
                       removeObsCard={ ( ) => removeObsCard( obsCard ) }
-                      descriptionChange={ e =>
-                        updateObsCard( obsCard, { description: e.target.value } ) }
                     />
                 ) ) }
               </div>
@@ -146,7 +157,8 @@ DragDropZone.propTypes = {
   submitObservations: PropTypes.func,
   createBlankObsCard: PropTypes.func,
   selectObsCards: PropTypes.func,
-  updateSelectedObsCards: PropTypes.func
+  updateSelectedObsCards: PropTypes.func,
+  onCardDrop: PropTypes.func
 };
 
 export default DragDropZone;

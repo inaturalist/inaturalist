@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react";
 import { DragSource, DropTarget } from "react-dnd";
 import { pipe } from "ramda";
+import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
+import Dropzone from "react-dropzone";
 
 const cardSource = {
   beginDrag( props ) {
@@ -15,7 +17,7 @@ const cardTarget = {
 
     if ( dropResult ) {
       console.log(
-        `You dropped ${item.obsCard.name} into ${dropResult.obsCard.name}!`
+        `You dropped ${item.obsCard.description} into ${dropResult.obsCard.description}!`
       );
     }
   }
@@ -36,8 +38,8 @@ function collectDrop( connect, monitor ) {
   };
 }
 
-const ObsCardComponent = ( { obsCard, nameChange, descriptionChange, connectDropTarget,
-                 connectDragSource, isOver, isDragging, removeObsCard } ) => {
+const ObsCardComponent = ( { obsCard, connectDropTarget, onCardDrop,
+                 connectDragSource, isOver, isDragging, removeObsCard, updateObsCard } ) => {
   let className = "card ui-selectee";
   if ( isDragging ) {
     className += " dragging";
@@ -59,6 +61,9 @@ const ObsCardComponent = ( { obsCard, nameChange, descriptionChange, connectDrop
     img = ( <div className="placeholder" /> );
   }
   return (
+    <Dropzone className="cellDropzone" disableClick disablePreview onDrop={
+      ( f, e ) => onCardDrop( f, e, obsCard ) } activeClassName="hover"
+    >
     <div className="cell" key={ obsCard.id }>
       {
         connectDropTarget( connectDragSource(
@@ -72,28 +77,40 @@ const ObsCardComponent = ( { obsCard, nameChange, descriptionChange, connectDrop
             <div className="image">
               { img }
             </div>
-            <input type="text" placeholder="Add a title"
-              value={ obsCard.name } onChange={ nameChange }
+            <TaxonAutocomplete key={ obsCard.selected_taxon ? obsCard.selected_taxon.id : undefined }
+              bootstrapClear
+              searchExternal={false}
+              initialSelection={ obsCard.selected_taxon }
+              afterSelect={ function ( result ) {
+                updateObsCard( obsCard, { taxon_id: result.item.id, selected_taxon: result.item } );
+              } }
+              afterUnselect={ function ( ) {
+                if ( obsCard.taxon_id ) {
+                  updateObsCard( obsCard, { taxon_id: undefined, selected_taxon: undefined } );
+                }
+              } }
             />
             <input type="textarea" placeholder="Add a description"
-              value={ obsCard.description } onChange={ descriptionChange }
+              value={ obsCard.description } onChange={ e =>
+                updateObsCard( obsCard, { description: e.target.value } ) }
             />
           </div>
         ) )
       }
-  </div>
+    </div>
+      </Dropzone>
   );
 };
 
 ObsCardComponent.propTypes = {
   obsCard: PropTypes.object,
-  nameChange: PropTypes.func,
   removeObsCard: PropTypes.func,
-  descriptionChange: PropTypes.func,
   connectDropTarget: PropTypes.func,
   connectDragSource: PropTypes.func,
   isOver: PropTypes.bool,
-  isDragging: PropTypes.bool
+  isDragging: PropTypes.bool,
+  updateObsCard: PropTypes.func,
+  onCardDrop: PropTypes.func
 };
 
 export default pipe(
