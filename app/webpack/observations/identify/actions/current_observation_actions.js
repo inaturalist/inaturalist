@@ -7,6 +7,8 @@ const FETCH_CURRENT_OBSERVATION = "fetch_current_observation";
 const RECEIVE_CURRENT_OBSERVATION = "receive_current_observation";
 const SHOW_NEXT_OBSERVATION = "show_next_observation";
 const SHOW_PREV_OBSERVATION = "show_prev_observation";
+const ADD_IDENTIFICATION = "add_identification";
+const ADD_COMMENT = "add_comment";
 
 function showCurrentObservation( observation ) {
   return {
@@ -75,6 +77,18 @@ function showPrevObservation( ) {
   };
 }
 
+function addIdentification( ) {
+  return {
+    type: ADD_IDENTIFICATION
+  };
+}
+
+function addComment( ) {
+  return {
+    type: ADD_COMMENT
+  };
+}
+
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
@@ -82,10 +96,14 @@ export {
   RECEIVE_CURRENT_OBSERVATION,
   SHOW_NEXT_OBSERVATION,
   SHOW_PREV_OBSERVATION,
+  ADD_COMMENT,
+  ADD_IDENTIFICATION,
   showCurrentObservation,
   hideCurrentObservation,
   fetchCurrentObservation,
   receiveCurrentObservation,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  addComment,
+  addIdentification
 };

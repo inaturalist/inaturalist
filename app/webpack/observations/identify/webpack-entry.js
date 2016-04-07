@@ -13,7 +13,9 @@ import {
   fetchObservationsStats,
   setConfig,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  addComment,
+  addIdentification
 } from "./actions/";
 import App from "./components/app";
 
@@ -41,7 +43,9 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 
 bindShortcuts(
   ["right", showNextObservation],
-  ["left", showPrevObservation]
+  ["left", showPrevObservation],
+  ["i", addIdentification],
+  ["c", addComment]
 )( store.dispatch );
 
 // retrieve initial set of observations

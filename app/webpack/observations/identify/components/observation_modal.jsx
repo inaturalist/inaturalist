@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import ReactDOM from "react-dom";
 import {
   Modal,
   Grid,
@@ -24,22 +25,15 @@ const ObservationModal = ( {
   toggleCaptive,
   reviewedByCurrentUser,
   captiveByCurrentUser,
-  images
+  images,
+  commentFormVisible,
+  identificationFormVisible,
+  addIdentification,
+  addComment
 } ) => {
   if ( !observation ) {
     return <div></div>;
   }
-
-  const scrollSidebarToForm = ( selector, e ) => {
-    const sidebar = $( e.target ).parents( ".ObservationModal" )
-      .find( ".sidebar" );
-    $( "form", sidebar ).hide( );
-    const target = $( e.target ).parents( ".ObservationModal" )
-      .find( selector );
-    $( target ).show( );
-    $( ":input:visible:first", target ).focus( );
-    $( sidebar ).scrollTo( target );
-  };
 
   // skipping map until we can work out the memory issues
   let taxonMap;
@@ -64,8 +58,20 @@ const ObservationModal = ( {
     );
   }
 
+  const scrollSidebarToForm = ( form ) => {
+    const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
+    const target = $( form );
+    $( ":input:visible:first", form ).focus( );
+    $( sidebar ).scrollTo( target );
+  };
+
   return (
-    <Modal show={visible} onHide={onClose} bsSize="large" className="ObservationModal">
+    <Modal
+      show={visible}
+      onHide={onClose}
+      bsSize="large"
+      className="ObservationModal"
+    >
       <Modal.Header closeButton>
         <Modal.Title>
           <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
@@ -93,8 +99,26 @@ const ObservationModal = ( {
             <Col xs={4} className="sidebar">
               {taxonMap}
               <DiscussionList observation={observation} />
-              <CommentFormContainer observation={observation} className="collapse" />
-              <IdentificationFormContainer observation={observation} className="collapse" />
+              <CommentFormContainer
+                observation={observation}
+                className={commentFormVisible ? "" : "collapse"}
+                ref={ function ( elt ) {
+                  const domNode = ReactDOM.findDOMNode( elt );
+                  if ( domNode && commentFormVisible ) {
+                    scrollSidebarToForm( domNode );
+                  }
+                } }
+              />
+              <IdentificationFormContainer
+                observation={observation}
+                className={identificationFormVisible ? "" : "collapse"}
+                ref={ function ( elt ) {
+                  const domNode = ReactDOM.findDOMNode( elt );
+                  if ( domNode && identificationFormVisible ) {
+                    scrollSidebarToForm( domNode );
+                  }
+                } }
+              />
             </Col>
           </Row>
         </Grid>
@@ -129,12 +153,10 @@ const ObservationModal = ( {
               </Button>
             </Col>
             <Col xs={4}>
-              <Button
-                onClick={ function ( e ) {scrollSidebarToForm( ".IdentificationForm", e ); } }
-              >
+              <Button onClick={ function ( ) { addIdentification( ); } } >
                 { I18n.t( "add_id" ) }
               </Button>
-              <Button onClick={ function ( e ) { scrollSidebarToForm( ".CommentForm", e ); } }>
+              <Button onClick={ function ( ) { addComment( ); } }>
                 { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
               <Button>
@@ -151,12 +173,16 @@ const ObservationModal = ( {
 ObservationModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   observation: PropTypes.object,
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool,
   toggleReviewed: PropTypes.func,
   toggleCaptive: PropTypes.func,
   reviewedByCurrentUser: PropTypes.bool,
   captiveByCurrentUser: PropTypes.bool,
-  images: PropTypes.array
+  images: PropTypes.array,
+  commentFormVisible: PropTypes.bool,
+  identificationFormVisible: PropTypes.bool,
+  addIdentification: PropTypes.func,
+  addComment: PropTypes.func
 };
 
 export default ObservationModal;

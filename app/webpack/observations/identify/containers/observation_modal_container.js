@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import ObservationModal from "../components/observation_modal";
-import { hideCurrentObservation } from "../actions";
+import {
+  hideCurrentObservation,
+  addIdentification,
+  addComment
+} from "../actions";
 
 function mapStateToProps( state ) {
   let images;
@@ -14,6 +18,8 @@ function mapStateToProps( state ) {
     observation: state.currentObservation.observation,
     visible: state.currentObservation.visible,
     images,
+    commentFormVisible: state.currentObservation.commentFormVisible,
+    identificationFormVisible: state.currentObservation.identificationFormVisible,
     // TODO i think the process of adding the currentObservation to the state
     // needs to load these extra bits of data
     reviewedByCurrentUser: false,
@@ -33,6 +39,12 @@ function mapDispatchToProps( dispatch ) {
     toggleReviewed: ( observation, reviewed ) => {
       console.log( "[DEBUG] toggleCaptive, observation: ", observation, ", reviewed: ", reviewed );
       // TODO dispatch( toggleQualityMetric( observation, "captive", captive ) );
+    },
+    addIdentification: ( ) => {
+      dispatch( addIdentification( ) );
+    },
+    addComment: ( ) => {
+      dispatch( addComment( ) );
     }
   };
 }
