@@ -252,6 +252,10 @@ class Project < ActiveRecord::Base
   def project_observations_count
     project_observations.count
   end
+
+  def posts_count
+    posts.count
+  end
   
   def featured_at_utc
     featured_at.try(:utc)
@@ -661,7 +665,7 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
-    return true if place && place.bbox_area < 141
+    return true if place && place.bbox_area.to_f < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
     return true if project_observation_rules.where("operator IN (?)", %w(observed_in_place?)).map{ |r|
       r.operand && r.operand.bbox_area < 141

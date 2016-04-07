@@ -144,22 +144,24 @@
     <% end %>
   
     <% unless @favorite_listed_taxa.blank? -%>
-      <h3 class="page-header">Favorite Taxa</h3>
-      <div class="row">
-        <% for listed_taxon in @favorite_listed_taxa[0..3] %>
-          <%= render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon}) %>
-        <% end %>
-      </div>
-      <% if @favorite_listed_taxa.count > 4 -%>
+      <div id="favorites">
+        <h3 class="page-header">Favorite Taxa</h3>
         <div class="row">
-          <% for listed_taxon in @favorite_listed_taxa[4..7] %>
+          <% for listed_taxon in @favorite_listed_taxa[0..3] %>
             <%= render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon}) %>
           <% end %>
         </div>
-      <% end %>
-      <p id="view_more_btn_container">
-        <%= link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"%>
-      </p>
+        <% if @favorite_listed_taxa.count > 4 -%>
+          <div class="row">
+            <% for listed_taxon in @favorite_listed_taxa[4..7] %>
+              <%= render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon}) %>
+            <% end %>
+          </div>
+        <% end %>
+        <p id="view_more_btn_container">
+          <%= link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"%>
+        </p>
+      </div>
     <% end -%>
     
     <% if @favorites_list.blank? && is_me?(@selected_user) -%>

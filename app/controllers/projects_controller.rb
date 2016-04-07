@@ -173,6 +173,7 @@ class ProjectsController < ApplicationController
         ])
         opts[:methods] << :project_observations_count
         opts[:methods] << :list_observed_and_total
+        opts[:methods] << :posts_count
 
         render :json => @project.as_json(opts)
       end

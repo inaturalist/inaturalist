@@ -13,7 +13,8 @@
   before ||= nil
   after ||= nil
   after_title ||= nil
-#col-md-12
+.col-md-12
+  = before
   %h1
     = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
     -if controller.controller_name=="users" && ( controller.action_name=="show" || controller.action_name=="dashboard" )
@@ -28,4 +29,4 @@
       = title
       = after_title
   = render :partial => 'users/subnav_bootstrap', :locals => { :user => @selected_user }
-  
+  = after

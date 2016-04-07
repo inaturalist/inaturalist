@@ -6,24 +6,35 @@
   <div class="col-md-12">
     <div class="list-group"> 
       <%= link_to observations_by_login_path(user.login), :class => "list-group-item" do %>
-          <span class="badge"><%= user.observations_count %></span><span class="glyphicon glyphicon-eye-open"></span>&nbsp;<%= t(:observations) %>
+          <span class="badge"><%= user.observations_count %></span>
+          <i class="fa fa-binoculars"></i>
+          <%= t(:observations) %>
       <% end %>
       <%= link_to user.life_list, :class => 'list-group-item' do %>
-          <span class="badge"><%= user.life_list_taxa_count %></span><span class="glyphicon glyphicon-leaf"></span>&nbsp;<%= t(:species) %>
+          <span class="badge"><%= user.life_list_taxa_count %></span>
+          <span class="glyphicon glyphicon-leaf"></span>
+          <%= t(:species) %>
       <% end %>      
       <%= link_to identifications_by_login_path(user.login), :class => 'list-group-item' do %>
-          <span class="badge"><%= user.identifications_count %></span><span class="glyphicon glyphicon-bookmark"></span>&nbsp;<%= t(:identifications) %>
+          <span class="badge"><%= user.identifications_count %></span>
+          <i class="icon icon-identification"></i>
+          <%= t(:identifications) %>
       <% end %>
       <%= link_to journal_by_login_path(user.login), :class => 'list-group-item' do %>
-          <span class="badge"><%= user.journal_posts_count %></span><span class="glyphicon glyphicon-book"></span>&nbsp;<%= t(:journal_posts) %>
+          <span class="badge"><%= user.journal_posts_count %></span>
+          <span class="glyphicon glyphicon-book"></span>
+          <%= t(:journal_posts) %>
       <% end %>
       <%= link_to lists_by_login_path(user.login), :class => 'list-group-item' do %>
-          <span class="badge"><%= user.lists.count %></span><span class="glyphicon glyphicon-list"></span>&nbsp;<%= t(:lists) %>
+          <span class="badge"><%= user.lists.count %></span>
+          <span class="glyphicon glyphicon-list"></span>
+          <%= t(:lists) %>
       <% end %>
       <%= link_to followers_by_login_path(user.login), :class => 'list-group-item' do %>
-          <span class="badge"><%= user.followers.count %></span><span class="glyphicon glyphicon-user"></span>&nbsp;<%= t(:followers) %>
+          <span class="badge"><%= user.followers.count %></span>
+          <span class="glyphicon glyphicon-user"></span>
+          <%= t(:followers) %>
       <% end %>
-
       <%= extra %>
     </div>
   </div>
