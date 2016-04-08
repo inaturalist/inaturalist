@@ -192,6 +192,7 @@ Rails.application.routes.draw do
       put :viewed_updates
       patch :update_fields
       post :review
+      delete :review, as: "unreview"
     end
   end
 

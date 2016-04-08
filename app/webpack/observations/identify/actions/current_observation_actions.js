@@ -139,6 +139,18 @@ function toggleCaptive( ) {
     const s = getState( );
     const observation = s.currentObservation.observation;
     const agree = s.currentObservation.captiveByCurrentUser;
+
+    // Not sure if this is the right thing to do here. I'm mainly doing it so
+    // the captive checkbox changes immediately in response to clicks OR the
+    // keyboard shortcut. Is it necessary to update the entire observation
+    // modal for that? Probably not. I could add a separate action for just
+    // the checkbox, but that seems like overkill.
+    dispatch( receiveCurrentObservation(
+      observation,
+      !s.currentObservation.captiveByCurrentUser,
+      s.currentObservation.reviewedByCurrentUser
+    ) );
+
     dispatch( toggleQualityMetric( observation, "wild", agree ) );
   };
 }
@@ -149,12 +161,17 @@ function toggleReviewed( ) {
     const observation = s.currentObservation.observation;
     const reviewed = s.currentObservation.reviewedByCurrentUser;
     const params = { id: observation.id };
+    dispatch( receiveCurrentObservation(
+      observation,
+      s.currentObservation.captiveByCurrentUser,
+      !reviewed
+    ) );
     if ( reviewed ) {
-      iNaturalistJS.observations.review( params ).then( ( ) => {
+      iNaturalistJS.observations.unreview( params ).then( ( ) => {
         dispatch( fetchCurrentObservation( ) );
       } );
     } else {
-      iNaturalistJS.observations.unreview( params ).then( ( ) => {
+      iNaturalistJS.observations.review( params ).then( ( ) => {
         dispatch( fetchCurrentObservation( ) );
       } );
     }
