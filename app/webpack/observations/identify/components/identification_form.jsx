@@ -19,7 +19,7 @@ const IdentificationForm = ( {
       // this doesn't feel right... somehow submitting an ID should alter
       // the app state and this stuff should flow three here as props
       $( "input[name='taxon_name']", e.target ).trigger( "resetAll" );
-      $( e.target.elements.body ).val( "" );
+      $( e.target.elements.body ).val( null );
     }}
   >
     <h2>Add an Identification</h2>
