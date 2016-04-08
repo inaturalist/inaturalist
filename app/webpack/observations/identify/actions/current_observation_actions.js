@@ -9,6 +9,7 @@ const SHOW_NEXT_OBSERVATION = "show_next_observation";
 const SHOW_PREV_OBSERVATION = "show_prev_observation";
 const ADD_IDENTIFICATION = "add_identification";
 const ADD_COMMENT = "add_comment";
+const LOADING_DISCUSSION_ITEM = "loading_discussion_item";
 
 function showCurrentObservation( observation ) {
   return {
@@ -160,6 +161,10 @@ function toggleReviewed( ) {
   };
 }
 
+function loadingDiscussionItem( ) {
+  return { type: LOADING_DISCUSSION_ITEM };
+}
+
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
@@ -169,6 +174,7 @@ export {
   SHOW_PREV_OBSERVATION,
   ADD_COMMENT,
   ADD_IDENTIFICATION,
+  LOADING_DISCUSSION_ITEM,
   showCurrentObservation,
   hideCurrentObservation,
   fetchCurrentObservation,
@@ -179,5 +185,6 @@ export {
   addIdentification,
   toggleQualityMetric,
   toggleCaptive,
-  toggleReviewed
+  toggleReviewed,
+  loadingDiscussionItem
 };

@@ -29,7 +29,8 @@ const ObservationModal = ( {
   commentFormVisible,
   identificationFormVisible,
   addIdentification,
-  addComment
+  addComment,
+  loadingDiscussionItem
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -99,6 +100,9 @@ const ObservationModal = ( {
             <Col xs={4} className="sidebar">
               {taxonMap}
               <DiscussionList observation={observation} />
+              <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
+                <i className="fa fa-spin fa-refresh"></i>
+              </center>
               <CommentFormContainer
                 observation={observation}
                 className={commentFormVisible ? "" : "collapse"}
@@ -188,7 +192,8 @@ ObservationModal.propTypes = {
   commentFormVisible: PropTypes.bool,
   identificationFormVisible: PropTypes.bool,
   addIdentification: PropTypes.func,
-  addComment: PropTypes.func
+  addComment: PropTypes.func,
+  loadingDiscussionItem: PropTypes.bool
 };
 
 export default ObservationModal;

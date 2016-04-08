@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import IdentificationForm from "../components/identification_form";
-import { postIdentification, fetchCurrentObservation } from "../actions";
+import {
+  postIdentification,
+  fetchCurrentObservation,
+  loadingDiscussionItem
+} from "../actions";
 
 // ownProps contains data passed in through the "tag", so in this case
 // <IdentificationFormContainer observation={foo} />
@@ -13,6 +17,7 @@ function mapStateToProps( state, ownProps ) {
 function mapDispatchToProps( dispatch ) {
   return {
     onSubmitIdentification: ( identification ) => {
+      dispatch( loadingDiscussionItem( ) );
       dispatch( postIdentification( identification ) )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ) );

@@ -3,7 +3,8 @@ import {
   HIDE_CURRENT_OBSERVATION,
   RECEIVE_CURRENT_OBSERVATION,
   ADD_COMMENT,
-  ADD_IDENTIFICATION
+  ADD_IDENTIFICATION,
+  LOADING_DISCUSSION_ITEM
 } from "../actions";
 
 const currentObservationReducer = ( state = {}, action ) => {
@@ -23,7 +24,8 @@ const currentObservationReducer = ( state = {}, action ) => {
       return Object.assign( {}, state, {
         observation: action.observation,
         captiveByCurrentUser: action.captiveByCurrentUser,
-        reviewedByCurrentUser: action.reviewedByCurrentUser
+        reviewedByCurrentUser: action.reviewedByCurrentUser,
+        loadingDiscussionItem: false
       } );
     case ADD_COMMENT:
       return Object.assign( {}, state, {
@@ -34,6 +36,12 @@ const currentObservationReducer = ( state = {}, action ) => {
       return Object.assign( {}, state, {
         identificationFormVisible: true,
         commentFormVisible: false
+      } );
+    case LOADING_DISCUSSION_ITEM:
+      return Object.assign( {}, state, {
+        identificationFormVisible: false,
+        commentFormVisible: false,
+        loadingDiscussionItem: true
       } );
     default:
       return state;

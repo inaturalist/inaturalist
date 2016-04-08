@@ -45,3 +45,8 @@ input.filter-changed + .searchclear.glyphicon {
   color: #666;
   cursor: pointer;
 }
+
+.loading .fa-refresh {
+  font-size: 2em;
+  color: #aaa;
+}
