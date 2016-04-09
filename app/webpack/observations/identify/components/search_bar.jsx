@@ -13,11 +13,9 @@ const SearchBar = ( {
       searchExternal={false}
       afterSelect={ function ( result ) {
         // do we need to add selectedTaxon to the state? could it rest within some other reducer?
-        // $scope.selectedTaxon = result.item;
         updateSearchParams( { taxon_id: result.item.id } );
       } }
       afterUnselect={ function ( ) {
-        // $scope.selectedTaxon = null;
         updateSearchParams( { taxon_id: null } );
       } }
     />

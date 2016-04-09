@@ -4,7 +4,8 @@ import {
   RECEIVE_CURRENT_OBSERVATION,
   ADD_COMMENT,
   ADD_IDENTIFICATION,
-  LOADING_DISCUSSION_ITEM
+  LOADING_DISCUSSION_ITEM,
+  RECEIVE_OBSERVATIONS
 } from "../actions";
 
 const currentObservationReducer = ( state = {}, action ) => {
@@ -43,6 +44,8 @@ const currentObservationReducer = ( state = {}, action ) => {
         commentFormVisible: false,
         loadingDiscussionItem: true
       } );
+    case RECEIVE_OBSERVATIONS:
+      return Object.assign( { }, state, { observation: null } );
     default:
       return state;
   }
