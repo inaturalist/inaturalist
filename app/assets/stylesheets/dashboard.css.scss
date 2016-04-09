@@ -87,3 +87,20 @@
 .updatebody .curatorupdate .image_and_content .image {background-color: transparent; height: auto;}
 .tabs .active {font-weight:bold;}
 #owner_filter li:first-child {padding-left: 0;}
+
+#observe .scaledimg {
+  width: 100%;
+  min-height: 150px;
+  background-size: cover;
+  background-position: center;
+}
+
+.panel-footer .btn
+{
+  margin-right: 0.5em;
+}
+
+.glyphicon-info-sign
+{
+  color: #337ab7;
+}

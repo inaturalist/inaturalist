@@ -1,6 +1,8 @@
-- taxon = listed_taxon.taxon
+- taxon ||= listed_taxon.taxon
 .col-md-3
   .thumbnail
     %div.scaledimg{ style: "background-image: url('#{taxon_image_url(taxon, size: "medium")}')" }
     .caption
-      = render(:partial => 'shared/taxon', :object => taxon, :locals => {:truncate => true})
+      = link_to taxon_path(taxon) do
+        = render(:partial => 'shared/taxon', :object => taxon, :locals => {:truncate => true})
+      

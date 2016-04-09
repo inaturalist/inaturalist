@@ -57,7 +57,10 @@ class User < ActiveRecord::Base
   preference :location_details, :boolean, default: false
   preference :redundant_identification_notifications, :boolean, default: true
   preference :skip_coarer_id_modal, default: false
-
+  preference :hide_observe_onboarding, default: false
+  preference :hide_follow_onboarding, default: false
+  preference :hide_activity_onboarding, default: false
+  preference :hide_getting_started_onboarding, default: false
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -143,8 +146,6 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-  geocoded_by :last_ip
-  after_validation :geocode
   before_save :geocode_hack
   
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -433,15 +434,26 @@ class User < ActiveRecord::Base
     end
     true
   end
-  
+    
   def geocode_hack
     source = "http://getcitydetails.geobytes.com/GetCityDetails?fqcn=#{self.last_ip}"
-    resp = Net::HTTP.get_response(URI.parse(source))
-    data = resp.body
-    result = JSON.parse(data)
-    self.latitude = result["geobyteslatitude"].to_f
-    self.longitude = result["geobyteslongitude"].to_f
-    true
+    begin
+      resp = Net::HTTP.get_response(URI.parse(source))
+      data = resp.body
+      begin
+        result = JSON.parse(data)
+        latitude = result["geobyteslatitude"].blank? ? nil : result["geobyteslatitude"].to_f
+        longitude = result["geobyteslongitude"].blank? ? nil : result["geobyteslongitude"].to_f
+      rescue
+        latitude = nil
+        longitude = nil
+      end
+    rescue
+      latitude = nil
+      longitude = nil
+    end
+    self.latitude = latitude
+    self.longitude = longitude
   end
   
   def published_name

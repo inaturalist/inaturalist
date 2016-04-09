@@ -11,7 +11,10 @@ class Users::SessionsController < Devise::SessionsController
     throw(:warden) unless resource
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    resource.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+    last_ip = request.env['REMOTE_ADDR']
+    last_ip = request.env["HTTP_X_FORWARDED_FOR"] if last_ip.split(".")[0..1].join(".") == "10.183"
+    last_ip = request.env["HTTP_X_CLUSTER_CLIENT_IP"] if last_ip.split(".")[0..1].join(".") == "10.183"
+    resource.update_attribute(:last_ip, last_ip)
     respond_to do |format|
       format.any(:html, :mobile) do
         if session[:return_to]

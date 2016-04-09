@@ -101,6 +101,20 @@ en:
   about_these_licenses: About these licenses
   about_this_map: About This Map
   about_this_project: About this Project
+  about_updates_lead: |
+    %{site_name} updates you when there's activity on your observations and when the people you follow post observations.
+  about_updates_rest: |
+    <p>
+      Activity on your observations might include comments, identifications, or faves from the %{site_name} community. Or 
+      maybe someone added your observation to a project or annotated it with additional fields.
+    </p>
+    <p>
+      When you follow people, you'll be updated when they post observations or publish journal posts.
+    </p>
+    <p>
+      You can also recieve updates on observations of specific organisms or places by subscribing to them.
+      Or you can join projects to be updated when they publish project journal posts.
+    </p>
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
@@ -465,6 +479,7 @@ en:
   batch_operations: Batch Operations
   beacuse_we_recently_changed_auth_system: Because we recently changed our user authentication system, it was necessary for your password to be reset.
   because: because
+  because_of: because of
   before_importing_photos: before importing photos
   before_you_can_contribute_your_observations: before you can contribute your observations.
   belives_this_is_a_comprehensive_list_of: believes this is a comprehensive list of
@@ -1128,6 +1143,8 @@ en:
   flickr_tags: Flickr Tags
   flickr_youre_all_set: "You're all set to start exploring %{site_name}"
   fluid: fluid
+  follow_some_active_naturalists: Follow Some Active Naturalists 
+  follow_some_nearby_naturalists: Follow Some Nearby Naturalists
   follow_us: Follow us on
   follow_us_on: Follow us on
   follow_user: "Follow %{user}"
@@ -1136,6 +1153,8 @@ en:
   for: for
   for_a_taxon: for a taxon
   for_a_widget_showing_recent_observations_from: For a widget showing recent observations from %{place_name}, check out the
+  for_inspiration_local: "For some inspiration, here are some nearby organisms to observe..."
+  for_inspiration_global: "For some inspiration, here's whats being observed around the world..."
   for_more_information: for more information.
   forgot_your_password: Forgot your password?
   fri: Fri
@@ -1176,6 +1195,7 @@ en:
   get_current_position: Get current position
   get_started_raquo: "Get started &raquo;"
   getting_started: Getting Started
+  getting_started_guide: Getting Started Guide
   give_it_some_detail: Give it some detail!
   global_conservation_status: "Global conservation status:"
   global_names: Global names
@@ -1414,6 +1434,8 @@ en:
   legacy_authentication_notice_html: |
     Looks like you're using a password from an older version of this website.
     Please remember to <a href="%{url}">change your password</a> for the new version.
+  lets_get_started_by_posting_some_observations: Let's Get Started by Posting Some Observations
+  let_us_walk_you_through: Let us walk you through the main features of this site.
   lexicon: Lexicon
   lexicons:
     scientific_names: Scientific Names
@@ -1585,9 +1607,11 @@ en:
   make_this_your_default_license: "Make this your default %{type} license"
   make_this_the_primary_listing: "Make this the primary listing"
   mammals: mammals
+  manage: Manage
   manage_all_your_subscriptions: Manage all your subscriptions
   manage_names: Manage names
   manage_your_project_invitations: Manage your project invitations
+  manage_subscriptions: Manage Subscriptions
   managed: managed
   manager: Manager
   managers: Managers
@@ -2761,6 +2785,10 @@ en:
   submit: Submit
   submit_comment: Submit comment
   submitted: Submitted
+  subscribe_to_a_taxon: Subscribe to a Taxon
+  subscribe_to_a_place: Subscribe to a Place
+  subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
+  subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
   subscribe_to_places_to: |
                             Subscribe to places to receive updates about new observations made
                             there.  Updates from people you follow and things you've commented
@@ -2889,6 +2917,8 @@ en:
      its taxon in a place, the Identotron will show a notice.
   the_list: the list
   the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.<br/><br/> <strong>Example:</strong><br/>
+  the_next_step: |-
+    The next step is to get outside and observe an individual organism. Pick something wild and take a clear, full frame photo. If you already have a photo of something wild, <a href="%{new_observation_path}">add it now</a>.
   the_observation_form_looks: "The observation form looks like this:"
   the_observation_has_date: the observation <strong>has a date</strong>
   the_observation_has_photo: the observation <strong>has a photo</strong>
@@ -2944,16 +2974,15 @@ en:
   these_are_items_people_on: |
     These are items people on the site have flagged for curation. Spam
     comments should be deleted and users who add spam should be suspended (go
-    to their profile page and click "Suspend user" in the lower right to
+    to their profile page and click 'Suspend user' in the lower right to
     prevent them from logging in). Other flagged items should only be deleted
     if they are clearly hateful, illegal, etc. Rudeness, offensive language,
     etc, should be handled with a polite comment. Repeat offenders should be
-    reported to a site admin or
+    reported to a site admin or %{email}
   these_are_taxa_that: |
     These are taxa that %{site} couldn't automatically add to our taxonomic
     tree for some reason. You can add them to the tree by editing the taxon
-    and choosing a parent record. For example, the parent of <i>Homo
-    sapiens</i> would be the genus <i>Homo</i>. You might also want to check
+    and choosing a parent record. For example, the parent of Homo sapiens would be the genus Homo. You might also want to check
     for synonymous taxa and merge them.
   these_arent_necessarily_relevant_to: "These aren't necessarily relevant to this project. Please check the"
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
@@ -3352,7 +3381,7 @@ en:
     to deal with all these issues, but if you have the time to check
     some of them out, we'd appreciate all the help we can get. If
     you have any questions about curating content or don't want to
-    be a curator anymore, please contact us at
+    be a curator anymore, please contact us at %{email}
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
   you_are_now_following_x: "You are now following %{friend_user}."
   you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
@@ -3371,6 +3400,10 @@ en:
   you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: |
     You can also <a href="%{project_settings_url}">change your settings for this project</a> 
     or <a href="/users/edit#projects">change your global settings</a>.
+  you_can_also_use: |-
+    You can also use %{site_name} mobile apps to share your observation with the community. 
+    You'll be updated with any feedback on your observations from the community in the form of comments or identifications.  
+    Who knows what you'll discover!
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
   you_can_change_your_new_passwd_after_logging_in: "You can change your new password after logging in here:"
   you_can_choose_observations_associated: You can choose observations to associate with this journal post.
@@ -3435,10 +3468,12 @@ en:
     someone else's data without permission.  Don't be evil.
   you_unlinked_your_provider_account: "You unlinked your %{provider} account"
   you_would_get_the: "you would get the following tags:"
+  youll_be_updated: You'll be updated when the people you follow post observations
   youll_need_to_link: You'll need to link
   youve_been_invited_to_join_this_project_html: |
     You've been invited to <a href="%{url}" class="readmore">join this project</a>
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
+  youve_got_updates: You've got updates!
   your: Your
   your_: Your
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
