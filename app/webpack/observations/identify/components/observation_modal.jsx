@@ -30,7 +30,9 @@ const ObservationModal = ( {
   identificationFormVisible,
   addIdentification,
   addComment,
-  loadingDiscussionItem
+  loadingDiscussionItem,
+  agreeWithCurrentObservation,
+  currentUserIdentification
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -64,6 +66,13 @@ const ObservationModal = ( {
     const target = $( form );
     $( ":input:visible:first", form ).focus( );
     $( sidebar ).scrollTo( target );
+  };
+
+  const showAgree = ( ) => {
+    if ( !currentUserIdentification ) {
+      return observation.taxon;
+    }
+    return ( observation.taxon && observation.taxon.id !== currentUserIdentification.taxon.id );
   };
 
   return (
@@ -167,7 +176,12 @@ const ObservationModal = ( {
                 &nbsp;
                 [c]
               </Button>
-              <Button className={ observation.taxon ? "" : "collapse"}>
+              <Button
+                className={ showAgree( ) ? "" : "collapse"}
+                onClick={ function ( ) {
+                  agreeWithCurrentObservation( );
+                } }
+              >
                 { _.capitalize( I18n.t( "agree" ) ) }
                 &nbsp;
                 [a]
@@ -193,7 +207,9 @@ ObservationModal.propTypes = {
   identificationFormVisible: PropTypes.bool,
   addIdentification: PropTypes.func,
   addComment: PropTypes.func,
-  loadingDiscussionItem: PropTypes.bool
+  loadingDiscussionItem: PropTypes.bool,
+  agreeWithCurrentObservation: PropTypes.func,
+  currentUserIdentification: PropTypes.object
 };
 
 export default ObservationModal;

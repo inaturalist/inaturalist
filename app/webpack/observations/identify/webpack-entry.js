@@ -9,13 +9,14 @@ import { createStore, compose, applyMiddleware } from "redux";
 import { bindShortcuts } from "redux-shortcuts";
 import rootReducer from "./reducers/";
 import {
+  addComment,
+  addIdentification,
+  agreeWithCurrentObservation,
   fetchObservations,
   fetchObservationsStats,
   setConfig,
   showNextObservation,
   showPrevObservation,
-  addComment,
-  addIdentification,
   toggleCaptive,
   toggleReviewed
 } from "./actions/";
@@ -49,7 +50,8 @@ bindShortcuts(
   ["i", addIdentification],
   ["c", addComment],
   ["z", toggleCaptive],
-  ["r", toggleReviewed]
+  ["r", toggleReviewed],
+  ["a", agreeWithCurrentObservation]
 )( store.dispatch );
 
 // retrieve initial set of observations

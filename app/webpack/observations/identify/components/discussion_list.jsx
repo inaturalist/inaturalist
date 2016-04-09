@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import DiscussionListItem from "./discussion_list_item";
+import DiscussionListItemContainer from "../containers/discussion_list_item_container";
 
 const DiscussionList = ( { observation } ) => {
   let items = ( observation.comments || [] ).map( ( c ) =>
@@ -17,7 +17,7 @@ const DiscussionList = ( { observation } ) => {
   return (
     <div className="DiscussionList">
       {items.map( ( item ) => (
-        <DiscussionListItem
+        <DiscussionListItemContainer
           className="stacked"
           key={`${item.className}-${item.id}`}
           user={item.user}

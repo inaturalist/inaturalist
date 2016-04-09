@@ -5,7 +5,8 @@ import {
   addIdentification,
   addComment,
   toggleCaptive,
-  toggleReviewed
+  toggleReviewed,
+  agreeWithCurrentObservation
 } from "../actions";
 
 function mapStateToProps( state ) {
@@ -36,6 +37,9 @@ function mapDispatchToProps( dispatch ) {
     },
     addComment: ( ) => {
       dispatch( addComment( ) );
+    },
+    agreeWithCurrentObservation: ( ) => {
+      dispatch( agreeWithCurrentObservation( ) );
     }
   };
 }

@@ -9,7 +9,8 @@ const DiscussionListItem = ( {
   body,
   createdAt,
   identification,
-  className
+  className,
+  agreeWith
 } ) => {
   let ident;
   if ( identification ) {
@@ -30,7 +31,7 @@ const DiscussionListItem = ( {
       taxonImageTag = <i className="icon icon-iconic-unknown"></i>;
     }
     ident = (
-      <div className="identification">
+      <div className={identification.current ? "identification" : "identification outdated"}>
         { taxonImageTag }
         <SplitTaxon
           taxon={t}
@@ -38,7 +39,15 @@ const DiscussionListItem = ( {
           url={`/taxa/${t.id}`}
         />
         <div className="actions">
-          <Button bsSize="small">
+          <Button
+            bsSize="small"
+            onClick={ function ( ) {
+              agreeWith( {
+                observation_id: identification.observation_id,
+                taxon_id: identification.taxon.id
+              } );
+            } }
+          >
             { _.capitalize( I18n.t( "agree" ) ) }
           </Button>
         </div>
@@ -71,7 +80,8 @@ DiscussionListItem.propTypes = {
     PropTypes.object
   ] ),
   identification: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  agreeWith: PropTypes.func
 };
 
 export default DiscussionListItem;

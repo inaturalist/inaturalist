@@ -22,13 +22,11 @@ function hideCurrentObservation( ) {
   return { type: HIDE_CURRENT_OBSERVATION };
 }
 
-function receiveCurrentObservation( observation, captiveByCurrentUser, reviewedByCurrentUser ) {
-  return {
+function receiveCurrentObservation( observation, others ) {
+  return Object.assign( { }, others, {
     type: RECEIVE_CURRENT_OBSERVATION,
-    observation,
-    captiveByCurrentUser,
-    reviewedByCurrentUser
-  };
+    observation
+  } );
 }
 
 function fetchCurrentObservation( observation = null ) {
@@ -52,8 +50,18 @@ function fetchCurrentObservation( observation = null ) {
         if ( currentUser && newObs ) {
           reviewedByCurrentUser = newObs.reviewed_by.indexOf( currentUser.id ) > -1;
         }
+        let currentUserIdentification;
+        if ( currentUser && newObs && newObs.identifications ) {
+          currentUserIdentification = _.find(
+            newObs.identifications, ( ident ) => ( ident.user.id === currentUser.id )
+          );
+        }
         dispatch(
-          receiveCurrentObservation( newObs, captiveByCurrentUser, reviewedByCurrentUser )
+          receiveCurrentObservation( newObs, {
+            captiveByCurrentUser,
+            reviewedByCurrentUser,
+            currentUserIdentification
+          } )
         );
       } );
   };

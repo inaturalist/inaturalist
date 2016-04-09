@@ -26,7 +26,8 @@ const currentObservationReducer = ( state = {}, action ) => {
         observation: action.observation,
         captiveByCurrentUser: action.captiveByCurrentUser,
         reviewedByCurrentUser: action.reviewedByCurrentUser,
-        loadingDiscussionItem: false
+        loadingDiscussionItem: false,
+        currentUserIdentification: action.currentUserIdentification
       } );
     case ADD_COMMENT:
       return Object.assign( {}, state, {
