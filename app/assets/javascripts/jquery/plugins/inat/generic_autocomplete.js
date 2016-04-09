@@ -116,6 +116,21 @@ $.fn.genericAutocomplete = function( options ) {
     }
     this.menu[ direction ]( e );
   };
+  ac._close = function( event ) {
+    if( this.keepOpen ) { return; }
+    if( this.menu.element.is( ":visible" ) ) {
+      var that = this;
+      that.menu.blur( );
+      // delaying the close slightly so that the keydown callback below
+      // happens before the menu has disappeared. So the return key
+      // doesn't automatically submit the form unless we want that
+      setTimeout( function( ){
+        that.menu.element.hide( );
+        that.isNewMenu = true;
+        that._trigger( "close", event );
+      }, 10 );
+    }
+  };
   // custom simple _renderItem that gives the LI's class ac-result
   ac._renderItem = field.renderItem;
   // custom simple _renderMenu that removes the ac-menu class

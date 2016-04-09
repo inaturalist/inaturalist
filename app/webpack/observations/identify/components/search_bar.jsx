@@ -1,13 +1,13 @@
 import React, { PropTypes } from "react";
 import { Input, Button } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
+import PlaceAutocomplete from "./place_autocomplete";
 
 const SearchBar = ( {
   params,
   updateSearchParams
 } ) => (
-  <form className="form-inline">
-    {/* Taxon AutoComplete should really be it's own component that takes callbacks as props */}
+  <form className="SearchBar form-inline">
     <TaxonAutocomplete
       bootstrapClear
       searchExternal={false}
@@ -21,12 +21,13 @@ const SearchBar = ( {
         updateSearchParams( { taxon_id: null } );
       } }
     />
-    {/* Same here */}
-    <Input
-      type="text"
-      name="place_name"
-      className="form-control"
-      placeholder={ I18n.t( "place" ) }
+    <PlaceAutocomplete
+      afterSelect={ function ( result ) {
+        updateSearchParams( { place_id: result.item.id } );
+      } }
+      afterUnselect={ function ( ) {
+        updateSearchParams( { place_id: null } );
+      } }
     />
     <Button bsStyle="primary">{ I18n.t( "go" ) }</Button>
     <Button>{ I18n.t( "filters" ) }</Button>
