@@ -1,4 +1,3 @@
-// skip_uglifier
 import "babel-polyfill";
 import moment from "moment";
 import thunkMiddleware from "redux-thunk";

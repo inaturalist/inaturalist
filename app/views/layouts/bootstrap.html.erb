@@ -98,7 +98,7 @@
       var btn = $.fn.button.noConflict()
       $.fn.btn = btn
     </script>
-    <%= google_maps_js libraries: %w(places geometry) %>
+    <%= google_maps_js libraries: %w(places geometry drawing) %>
     <%= javascript_include_tag "map_bundle" %>
     <%= yield :extrajs %>
     <% if logged_in? -%>

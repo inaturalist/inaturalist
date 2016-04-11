@@ -1,4 +1,3 @@
-// skip_uglifier
 import "babel-polyfill";
 import thunkMiddleware from "redux-thunk";
 import { createStore, compose, applyMiddleware } from "redux";

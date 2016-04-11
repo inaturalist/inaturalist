@@ -480,6 +480,7 @@ GEM
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
+    puma (3.4.0)
     rack (1.6.4)
     rack-mobile-detect (0.4.0)
       rack
@@ -749,6 +750,7 @@ DEPENDENCIES
   paperclip (= 4.2.1)
   pg
   preferences!
+  puma
   rack-google-analytics!
   rails (~> 4.2.6)
   rails-observers

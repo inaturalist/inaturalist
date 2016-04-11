@@ -807,7 +807,6 @@ module ApplicationHelper
       :center => "#{o.latitude},#{o.longitude}",
       :zoom => o.map_scale || 7,
       :size => '200x200',
-      :sensor => 'false',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
       :port => false,
       :key => CONFIG.google.simple_key
@@ -1255,10 +1254,8 @@ module ApplicationHelper
   end
 
   def google_maps_js(options = {})
-    sensor = options[:sensor] ? 'true' : 'false'
     libraries = options[:libraries] || []
-    params = "sensor=#{sensor}"
-    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
+    params = "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
 

@@ -1,12 +1,13 @@
+import _ from "lodash";
 import * as types from "../constants/constants";
 import update from "react-addons-update";
-import ObsCard from "../models/obs_card";
 
 const defaultState = {
   obsCards: { },
   numberOfUploads: 0,
-  maximumNumberOfUploads: 2,
-  selectedObsCards: { }
+  maximumNumberOfUploads: 3,
+  selectedObsCards: { },
+  saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 }
 };
 
 const dragDropZone = ( state = defaultState, action ) => {
@@ -27,6 +28,18 @@ const dragDropZone = ( state = defaultState, action ) => {
       } );
     }
 
+    case types.UPDATE_OBS_CARD_FILE: {
+      if ( state.obsCards[action.obsCard.id] === undefined ||
+           state.obsCards[action.obsCard.id].files[action.file.id] === undefined ) {
+        return state;
+      }
+      return update( state, {
+        obsCards: { [action.obsCard.id]: {
+          files: { [action.file.id]: { $merge: action.attrs } }
+        } }
+      } );
+    }
+
     case types.UPDATE_SELECTED_OBS_CARDS: {
       let modified = Object.assign( { }, state.obsCards );
       for ( const id in state.selectedObsCards ) {
@@ -35,45 +48,84 @@ const dragDropZone = ( state = defaultState, action ) => {
         } );
       }
       return Object.assign( { }, state, { obsCards: modified,
-        selectedObsCards: _.pick( modified, ( v, k ) => ( state.selectedObsCards[k] ) )
+        selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
       } );
     }
 
     case types.SELECT_OBS_CARDS: {
-      const modified = Object.assign( { }, state.obsCards );
+      let modified = Object.assign( { }, state.obsCards );
       for ( const k in modified ) {
         if ( action.ids[modified[k].id] ) {
-          modified[k].selected = true;
-        } else {
-          modified[k].selected = false;
+          if ( !modified[k].selected ) {
+            modified = update( modified, {
+              [k]: { $merge: { selected: true } }
+            } );
+          }
+        } else if ( modified[k].selected ) {
+          modified = update( modified, {
+            [k]: { $merge: { selected: false } }
+          } );
         }
       }
       return Object.assign( { }, state, { obsCards: modified,
-        selectedObsCards: _.pick( modified, ( v, k ) => ( action.ids[k] ) )
-        } );
+        selectedObsCards: _.pick( modified, _.keys( action.ids ) )
+      } );
+    }
+
+    case types.SELECT_ALL: {
+      let modified = Object.assign( { }, state.obsCards );
+      _.each( modified, c => (
+        modified = update( modified, {
+          [c.id]: { $merge: { selected: true } }
+        } )
+      ) );
+      return Object.assign( { }, state, { obsCards: modified,
+        selectedObsCards: modified
+      } );
     }
 
     case types.REMOVE_OBS_CARD: {
       const cards = Object.assign( { }, state.obsCards );
       const ids = Object.assign( { }, state.selectedIDs );
       delete cards[action.obsCard.id];
-      delete cards[action.obsCard.id];
       delete ids[action.obsCard.id];
       return Object.assign( { }, state, { obsCards: cards, selectedIDs: ids } );
     }
 
-    case types.SUBMIT_OBSERVATIONS: {
-      return update( state, {
-        uploaderStatus: { $set: "uploading" }
+    case types.REMOVE_SELECTED: {
+      const modified = Object.assign( { }, state.obsCards );
+      _.each( state.selectedObsCards, ( v, id ) => ( delete modified[id] ) );
+      return Object.assign( { }, state, { obsCards: modified,
+        selectedObsCards: { }
       } );
     }
 
     case types.CREATE_BLANK_OBS_CARD: {
-      const afterAdd = Object.assign( { }, state.obsCards );
-      const blankObsCard = new ObsCard( { id: new Date( ).getTime( ) } );
-      afterAdd[blankObsCard.id] = blankObsCard;
-      return Object.assign( { }, state, { obsCards: afterAdd } );
+      return update( state, { obsCards: {
+        [action.obsCard.id]: { $set: action.obsCard }
+      } } );
     }
+
+    case types.SET_STATE: {
+      let modified = Object.assign( { }, state );
+      _.each( action.attrs, ( val, attr ) => {
+        modified = update( modified, {
+          [attr]: { $set: val }
+        } );
+      } );
+      return modified;
+    }
+
+    case types.UPDATE_STATE: {
+      let modified = Object.assign( { }, state );
+      _.each( action.attrs, ( val, attr ) => {
+        modified = update( modified, {
+          [attr]: { $merge: val }
+        } );
+      } );
+      return modified;
+    }
+
     default:
       return state;
   }
