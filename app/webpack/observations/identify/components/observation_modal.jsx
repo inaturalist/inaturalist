@@ -102,8 +102,11 @@ const ObservationModal = ( {
           <Row>
             <Col xs={8}>
               <ImageGallery
+                key={`map-for-${observation.id}`}
                 items={images}
                 showThumbnails={images.length > 1}
+                lazyLoad={false}
+                server
               />
             </Col>
             <Col xs={4} className="sidebar">

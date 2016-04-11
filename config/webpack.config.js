@@ -27,7 +27,10 @@ var config = {
     loaders: [
       // run everything through babel. See .babelrc for babel-specific
       // configs, include react defaults that allow it to deal with jsx
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader',
+      {
+        test: /\.jsx?$/, 
+        exclude: /node_modules/,
+        loader: 'babel-loader',
         query: { presets: [ "es2015", "react" ] }
       }
     ]

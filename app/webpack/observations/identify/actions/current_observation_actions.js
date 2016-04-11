@@ -153,11 +153,10 @@ function toggleCaptive( ) {
     // keyboard shortcut. Is it necessary to update the entire observation
     // modal for that? Probably not. I could add a separate action for just
     // the checkbox, but that seems like overkill.
-    dispatch( receiveCurrentObservation(
-      observation,
-      !s.currentObservation.captiveByCurrentUser,
-      s.currentObservation.reviewedByCurrentUser
-    ) );
+    dispatch( receiveCurrentObservation( observation, {
+      captiveByCurrentUser: !s.currentObservation.captiveByCurrentUser,
+      reviewedByCurrentUser: s.currentObservation.reviewedByCurrentUser
+    } ) );
 
     dispatch( toggleQualityMetric( observation, "wild", agree ) );
   };
@@ -169,11 +168,10 @@ function toggleReviewed( ) {
     const observation = s.currentObservation.observation;
     const reviewed = s.currentObservation.reviewedByCurrentUser;
     const params = { id: observation.id };
-    dispatch( receiveCurrentObservation(
-      observation,
-      s.currentObservation.captiveByCurrentUser,
-      !reviewed
-    ) );
+    dispatch( receiveCurrentObservation( observation, {
+      captiveByCurrentUser: s.currentObservation.captiveByCurrentUser,
+      reviewedByCurrentUser: !reviewed
+    } ) );
     if ( reviewed ) {
       iNaturalistJS.observations.unreview( params ).then( ( ) => {
         dispatch( fetchCurrentObservation( ) );
