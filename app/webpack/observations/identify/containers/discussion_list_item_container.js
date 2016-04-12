@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import DiscussionListItem from "../components/discussion_list_item";
-import { postIdentification } from "../actions";
+import { postIdentification, fetchCurrentObservation } from "../actions";
 
 function mapStateToProps( ) {
   return {};
@@ -9,7 +9,10 @@ function mapStateToProps( ) {
 function mapDispatchToProps( dispatch ) {
   return {
     agreeWith: ( params ) => {
-      dispatch( postIdentification( params ) );
+      dispatch( postIdentification( params ) )
+        .then( ( ) => {
+          dispatch( fetchCurrentObservation( ) );
+        } );
     }
   };
 }
