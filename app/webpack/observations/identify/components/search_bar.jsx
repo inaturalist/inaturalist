@@ -11,6 +11,7 @@ const SearchBar = ( {
     <TaxonAutocomplete
       bootstrapClear
       searchExternal={false}
+      resetOnChange={false}
       afterSelect={ function ( result ) {
         // do we need to add selectedTaxon to the state? could it rest within some other reducer?
         updateSearchParams( { taxon_id: result.item.id } );

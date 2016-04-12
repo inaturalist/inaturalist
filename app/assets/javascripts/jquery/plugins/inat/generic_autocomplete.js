@@ -181,7 +181,7 @@ $.fn.genericAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
-    if( options.id_el.val( ).toString().trim() !== "" ) {
+    if( options.id_el.val( ) !== null ) {
       options.id_el.val( null );
       if( options.afterUnselect ) { options.afterUnselect( ); }
     }

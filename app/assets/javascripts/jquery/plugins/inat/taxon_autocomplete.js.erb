@@ -255,10 +255,8 @@ $.fn.taxonAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
-    if( options.id_el.val( ).toString().trim() !== "" ) {
-      options.id_el.val( null );
+    if( options.id_el.val( ) !== null ) {
       field.wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
-      if( options.afterUnselect ) { options.afterUnselect( ); }
     }
     field.selection = null;
   });
