@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-  before_save :geocode_hack
+  before_save :get_lat_lon_from_ip, :if => :last_ip_changed?
   
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
@@ -176,8 +176,6 @@ class User < ActiveRecord::Base
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 4, allow_nil: true
-  geocoded_by :last_ip
-  after_validation :geocode, :if => :last_ip_changed?
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -435,20 +433,26 @@ class User < ActiveRecord::Base
     true
   end
     
-  def geocode_hack
-    source = "http://getcitydetails.geobytes.com/GetCityDetails?fqcn=#{self.last_ip}"
+  def get_lat_lon_from_ip
+    url = URI.parse('http://geoip.inaturalist.org/')
+    http = Net::HTTP.new(url.host, url.port)
+    http.read_timeout = 0.1
+    http.open_timeout = 0.1
     begin
-      resp = Net::HTTP.get_response(URI.parse(source))
+      resp = http.start() {|http|
+        http.get("/v1/geoip?ip=#{self.last_ip}")
+      }
       data = resp.body
       begin
         result = JSON.parse(data)
-        latitude = result["geobyteslatitude"].blank? ? nil : result["geobyteslatitude"].to_f
-        longitude = result["geobyteslongitude"].blank? ? nil : result["geobyteslongitude"].to_f
+        ll = result["results"]["ll"]
+        latitude = ll[0]
+        longitude = ll[1]
       rescue
         latitude = nil
         longitude = nil
       end
-    rescue
+    rescue Timeout::Error => e
       latitude = nil
       longitude = nil
     end
