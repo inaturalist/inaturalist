@@ -440,7 +440,7 @@ class User < ActiveRecord::Base
     http.open_timeout = 0.1
     begin
       resp = http.start() {|http|
-        http.get("/v1/geoip?ip=#{self.last_ip}")
+        http.get("/?ip=#{self.last_ip}")
       }
       data = resp.body
       begin
