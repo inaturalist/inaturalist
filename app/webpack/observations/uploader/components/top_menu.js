@@ -4,7 +4,7 @@ import { Row, Col, Button, Glyphicon } from "react-bootstrap";
 class TopMenu extends Component {
 
   render( ) {
-    const { createBlankObsCard, removeSelected, selectAll,
+    const { createBlankObsCard, confirmRemoveSelected, selectAll,
       submitObservations, fileChooser, count } = this.props;
     return (
       <Row>
@@ -17,7 +17,7 @@ class TopMenu extends Component {
             Add
             <Glyphicon glyph="plus" />
           </Button>
-          <Button bsStyle="primary" bsSize="large" onClick={ removeSelected }>
+          <Button bsStyle="primary" bsSize="large" onClick={ confirmRemoveSelected }>
             Remove
             <Glyphicon glyph="minus" />
           </Button>
@@ -39,7 +39,7 @@ class TopMenu extends Component {
 
 TopMenu.propTypes = {
   createBlankObsCard: PropTypes.func,
-  removeSelected: PropTypes.func,
+  confirmRemoveSelected: PropTypes.func,
   selectAll: PropTypes.func,
   submitObservations: PropTypes.func,
   fileChooser: PropTypes.func,

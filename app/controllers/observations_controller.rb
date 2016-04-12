@@ -1419,6 +1419,7 @@ class ObservationsController < ApplicationController
   end
 
   def uploader
+    @minimal_header = true
     render layout: "bootstrap"
   end
   

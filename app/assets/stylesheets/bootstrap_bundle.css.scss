@@ -7,27 +7,27 @@
 $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
 @font-face { 
   font-family: Whitney; 
-  src: asset-data-url('Whitney-Book-Pro.otf');
+  src: url('/assets/Whitney-Book-Pro.otf') format("opentype");
 }
 @font-face { 
   font-family: Whitney; 
   font-weight: bold;
-  src: asset-data-url('Whitney-Medium-Pro.otf');
+  src: url('/assets/Whitney-Medium-Pro.otf') format("opentype");
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 100;
-  src: asset-data-url('Whitney-Light-Pro.otf');
+  src: url('/assets/Whitney-Light-Pro.otf') format("opentype");
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 600;
-  src: asset-data-url('Whitney-Semibold-Pro.otf');
+  src: url('/assets/Whitney-Semibold-Pro.otf') format("opentype");
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 800;
-  src: asset-data-url('Whitney-Bold-Pro.otf');
+  src: url('/assets/Whitney-Bold-Pro.otf') format("opentype");
 }
 body {font-size: 75%;}
 // The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde

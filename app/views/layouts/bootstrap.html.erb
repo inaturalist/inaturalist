@@ -99,9 +99,9 @@
       $.fn.btn = btn
     </script>
     <%= google_maps_js libraries: %w(places geometry drawing) %>
-    <%= javascript_include_tag "map_bundle" %>
+    <%= javascript_include_tag "map_bundle" unless @minimal_header %>
     <%= yield :extrajs %>
-    <% if logged_in? -%>
+    <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setTimeout(getUpdatesCount, 1000)
