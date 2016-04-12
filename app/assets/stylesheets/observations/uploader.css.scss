@@ -122,6 +122,9 @@
 #imageGrid .card input {
   display: inline-block;
 }
+.card textarea {
+  resize: none;
+}
 .uploader .form-group, .uploader .rw-datetimepicker {
   margin-bottom: 5px;
 }
@@ -191,7 +194,7 @@
   margin: 0px 3px;
   padding: 4px;
 }
-.modal.status .modal-dialog {
+.modal.status .modal-dialog, .modal.remove .modal-dialog {
   margin-top: 200px;
 }
 .modal.status h3 {
@@ -210,4 +213,16 @@
 }
 .pac-container {
   z-index: 1100;
+}
+.modal.remove .modal-dialog {
+  width: 450px;
+}
+.modal.remove .text {
+  line-height: 34px;
+  font-size: 1.3em;
+  display: inline-block;
+  margin-left: 10px;
+}
+.modal.remove .buttons {
+  float: right;
 }

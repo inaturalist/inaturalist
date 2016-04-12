@@ -1,5 +1,5 @@
 import _ from "lodash";
-import inatjs from "inaturalistjs";
+import inaturalistjs from "inaturalistjs";
 import actions from "../actions/actions";
 
 const ObsCard = class ObsCard {
@@ -29,7 +29,7 @@ const ObsCard = class ObsCard {
   upload( file, dispatch ) {
     if ( !this.files[file.id] ) { return; }
     dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploading" } ) );
-    inatjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
+    inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
       dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploaded", photo: r } ) );
     } ).catch( e => {
       console.log( "Upload failed:", e );
@@ -56,7 +56,7 @@ const ObsCard = class ObsCard {
     if ( this.date ) { params.observation.observed_on_string = this.date; }
     const photoIDs = _.compact( _.map( this.files, f => ( f.photo.id ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
-    inatjs.observations.create( params, { same_origin: true } ).then( ( ) => {
+    inaturalistjs.observations.create( params, { same_origin: true } ).then( ( ) => {
       dispatch( actions.updateObsCard( this, { save_state: "saved" } ) );
     } ).catch( e => {
       console.log( "Save failed:", e );

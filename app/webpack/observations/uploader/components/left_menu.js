@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from "react";
 import { Button, Input, Glyphicon } from "react-bootstrap";
 import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
 import { DateTimePicker } from "react-widgets";
-import inatjs from "inaturalistjs";
+import inaturalistjs from "inaturalistjs";
 
 class LeftMenu extends Component {
 
@@ -70,7 +70,7 @@ class LeftMenu extends Component {
           initialSelection={ commonSelectedTaxon }
           afterSelect={ function ( result ) {
             updateSelectedObsCards( { taxon_id: result.item.id,
-              selected_taxon: new inatjs.Taxon( result.item ) } );
+              selected_taxon: new inaturalistjs.Taxon( result.item ) } );
           } }
           afterUnselect={ ( ) => {
             updateSelectedObsCards( { taxon_id: undefined, selected_taxon: undefined } );

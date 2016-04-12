@@ -65,6 +65,7 @@ class ObsCardComponent extends Component {
   constructor( props, context ) {
     super( props, context );
     this.openLocationChooser = this.openLocationChooser.bind( this );
+    this.selectCard = this.selectCard.bind( this );
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -90,9 +91,13 @@ class ObsCardComponent extends Component {
     } } );
   }
 
+  selectCard( ) {
+    this.props.selectObsCards( { [this.props.obsCard.id]: true } );
+  }
+
   render( ) {
     const { obsCard, connectDropTarget, onCardDrop, connectDragPreview, isDragging,
-      connectDragSource, isOver, removeObsCard, updateObsCard } = this.props;
+      connectDragSource, isOver, confirmRemoveObsCard, updateObsCard } = this.props;
     let className = "card ui-selectee";
     if ( isDragging ) { className += " dragging"; }
     if ( isOver ) { className += " dragOver"; }
@@ -143,7 +148,7 @@ class ObsCardComponent extends Component {
                   <span className="glyphicon glyphicon-record" aria-hidden="true"></span>
                 </div>
               ) }
-              <div className="close" onClick={ removeObsCard }>
+              <div className="close" onClick={ confirmRemoveObsCard }>
                 <span className="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
               </div>
               <div className="image">
@@ -166,13 +171,13 @@ class ObsCardComponent extends Component {
                 } }
               />
               <DateTimePicker key={ obsCard.date } defaultValue={ obsCard.date } onChange={ e =>
-                  updateObsCard( obsCard, { date: e } ) }
+                updateObsCard( obsCard, { date: e } ) }
               />
-              <Input type="text" buttonAfter={globe} value={
-                obsCard.latitude &&
+              <Input type="text" buttonAfter={globe} onClick={ this.selectCard }
+                value={ obsCard.latitude &&
                   `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` }
               />
-              <Input type="textarea" placeholder="Add a description"
+              <Input type="textarea" placeholder="Add a description" onClick={ this.selectCard }
                 value={ obsCard.description } onChange={ e =>
                   updateObsCard( obsCard, { description: e.target.value } ) }
               />
@@ -187,7 +192,7 @@ class ObsCardComponent extends Component {
 
 ObsCardComponent.propTypes = {
   obsCard: PropTypes.object,
-  removeObsCard: PropTypes.func,
+  confirmRemoveObsCard: PropTypes.func,
   connectDropTarget: PropTypes.func,
   connectDragSource: PropTypes.func,
   connectDragPreview: PropTypes.func,
@@ -196,7 +201,8 @@ ObsCardComponent.propTypes = {
   updateObsCard: PropTypes.func,
   onCardDrop: PropTypes.func,
   mergeObsCards: PropTypes.func,
-  setState: PropTypes.func
+  setState: PropTypes.func,
+  selectObsCards: PropTypes.func
 };
 
 export default pipe(

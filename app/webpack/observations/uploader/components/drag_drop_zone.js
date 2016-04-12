@@ -6,6 +6,7 @@ import LocationChooser from "./location_chooser";
 import StatusModal from "./status_modal";
 import LeftMenu from "./left_menu";
 import TopMenu from "./top_menu";
+import RemoveModal from "./remove_modal";
 import _ from "lodash";
 
 class DragDropZone extends Component {
@@ -14,6 +15,7 @@ class DragDropZone extends Component {
     super( props, context );
     this.fileChooser = this.fileChooser.bind( this );
     this.selectObsCards = this.selectObsCards.bind( this );
+    this.unselectAll = this.unselectAll.bind( this );
   }
 
   componentDidUpdate( ) {
@@ -22,9 +24,12 @@ class DragDropZone extends Component {
         cancel: ".glyphicon, input, button, .input-group-addon, " +
           ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
         selecting: this.selectObsCards,
-        unselecting: this.selectObsCards
+        unselecting: this.selectObsCards,
+        distance: 10
       } );
       $( "#imageGrid" ).selectable( "enable" );
+      $( "#imageGrid" ).unbind( "click" );
+      $( "#imageGrid" ).on( "click", this.unselectAll );
     } else {
       $( "#imageGrid" ).selectable( "disable" );
     }
@@ -42,11 +47,17 @@ class DragDropZone extends Component {
     this.props.selectObsCards( selectedIDs );
   }
 
+  unselectAll( e ) {
+    if ( $( ".card" ).has( e.target || e.nativeEvent.target ).length > 0 ) { return; }
+    this.props.selectObsCards( {} );
+  }
+
   render( ) {
-    const { onDrop, updateObsCard, removeObsCard, onCardDrop, updateSelectedObsCards,
+    const { onDrop, updateObsCard, confirmRemoveObsCard, onCardDrop, updateSelectedObsCards,
       obsCards, submitObservations, createBlankObsCard, selectedObsCards, locationChooser,
       selectAll, removeSelected, mergeObsCards, saveStatus, saveCounts, setState,
-      updateState } = this.props;
+      updateState, removeModal, confirmRemoveSelected, removeObsCard,
+      selectObsCards } = this.props;
     let leftColumn;
     let intro;
     let mainColumnSpan = 12;
@@ -97,7 +108,7 @@ class DragDropZone extends Component {
           <Grid fluid>
             <TopMenu
               createBlankObsCard={ createBlankObsCard }
-              removeSelected={ removeSelected }
+              confirmRemoveSelected={ confirmRemoveSelected }
               selectAll={ selectAll }
               submitObservations={ submitObservations }
               fileChooser={ this.fileChooser }
@@ -113,7 +124,8 @@ class DragDropZone extends Component {
                       onCardDrop={ onCardDrop }
                       updateObsCard={ updateObsCard }
                       mergeObsCards={ mergeObsCards }
-                      removeObsCard={ ( ) => removeObsCard( obsCard ) }
+                      selectObsCards={ selectObsCards }
+                      confirmRemoveObsCard={ ( ) => confirmRemoveObsCard( obsCard ) }
                       setState={ setState }
                     />
                   ) ) }
@@ -125,6 +137,12 @@ class DragDropZone extends Component {
         </Dropzone>
         <StatusModal show={saveStatus === "saving"} saveCounts={saveCounts}
           total={obsCardsArray.length} className="status"
+        />
+        <RemoveModal
+          setState={ setState }
+          removeObsCard={ removeObsCard }
+          removeSelected={ removeSelected }
+          { ...removeModal }
         />
         <LocationChooser
           setState={ setState }
@@ -142,6 +160,7 @@ DragDropZone.propTypes = {
   onDrop: PropTypes.func.isRequired,
   updateObsCard: PropTypes.func,
   removeObsCard: PropTypes.func,
+  confirmRemoveObsCard: PropTypes.func,
   obsCards: PropTypes.object,
   selectedObsCards: PropTypes.object,
   submitObservations: PropTypes.func,
@@ -155,8 +174,10 @@ DragDropZone.propTypes = {
   saveStatus: PropTypes.string,
   saveCounts: PropTypes.object,
   locationChooser: PropTypes.object,
+  removeModal: PropTypes.object,
   setState: PropTypes.func,
-  updateState: PropTypes.func
+  updateState: PropTypes.func,
+  confirmRemoveSelected: PropTypes.func
 };
 
 export default DragDropZone;

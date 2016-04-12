@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Modal, Button, Input } from "react-bootstrap";
 import { GoogleMapLoader, GoogleMap, Circle, SearchBox } from "react-google-maps";
@@ -28,6 +29,9 @@ class LocationChooser extends Component {
     this.close = this.close.bind( this );
     this.save = this.save.bind( this );
     this.handlePlacesChanged = this.handlePlacesChanged.bind( this );
+    this.updateLatitude = this.updateLatitude.bind( this );
+    this.updateLongitude = this.updateLongitude.bind( this );
+    this.updateRadius = this.updateRadius.bind( this );
   }
 
   handleMapClick( event ) {
@@ -39,7 +43,7 @@ class LocationChooser extends Component {
         lng: latLng.lng()
       },
       bounds: this._googleMapComponent.getBounds( ),
-      radius: ( 1 / Math.pow( 2, zoom ) ) * 5000000
+      radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 5000000 )
     } } );
   }
 
@@ -65,7 +69,6 @@ class LocationChooser extends Component {
   }
 
   handlePlacesChanged( ) {
-    console.log("DLKFSDLFN");
     const places = this.refs.searchbox.getPlaces();
     if ( places.length > 0 ) {
       const geometry = places[0].geometry;
@@ -75,8 +78,8 @@ class LocationChooser extends Component {
         const lat = geometry.location.lat( );
         const lng = geometry.location.lng( );
         this._googleMapComponent.fitBounds( new google.maps.LatLngBounds(
-          new google.maps.LatLng( lat - 0.1, lng - 0.1 ),
-          new google.maps.LatLng( lat + 0.1, lng + 0.1 ) ) );
+          new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
+          new google.maps.LatLng( lat + 0.001, lng + 0.001 ) ) );
       }
       const zoom = this._googleMapComponent.getZoom( );
       this.props.updateState( { locationChooser: {
@@ -85,9 +88,40 @@ class LocationChooser extends Component {
           lng: geometry.location.lng( )
         },
         bounds: this._googleMapComponent.getBounds( ),
-        radius: ( 1 / Math.pow( 2, zoom ) ) * 10000000
+        radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 10000000 )
       } } );
     }
+  }
+
+  updateLatitude( e ) {
+    if ( !e.target.value || _.isNaN( Number( e.target.value ) ) ) { return; }
+    const zoom = this._googleMapComponent.getZoom( );
+    this.props.updateState( { locationChooser: {
+      center: {
+        lat: Number( e.target.value ),
+        lng: this.props.center ? this.props.center.lng : 0
+      },
+      radius: this.radius || Math.round( ( 1 / Math.pow( 2, zoom ) ) * 10000000 )
+    } } );
+  }
+
+  updateLongitude( e ) {
+    if ( !e.target.value || _.isNaN( Number( e.target.value ) ) ) { return; }
+    const zoom = this._googleMapComponent.getZoom( );
+    this.props.updateState( { locationChooser: {
+      center: {
+        lat: this.props.center ? this.props.center.lng : 0,
+        lng: Number( e.target.value )
+      },
+      radius: this.radius || Math.round( ( 1 / Math.pow( 2, zoom ) ) * 10000000 )
+    } } );
+  }
+
+  updateRadius( e ) {
+    if ( !e.target.value || _.isNaN( Number( e.target.value ) ) ) { return; }
+    this.props.updateState( { locationChooser: {
+      radius: Number( e.target.value )
+    } } );
   }
 
   render() {
@@ -133,9 +167,15 @@ class LocationChooser extends Component {
               </GoogleMap>
             }
           />
-          <Input type="text" label="Latitude" value={this.props.center && this.props.center.lat} />
-          <Input type="text" label="Longitude" value={this.props.center && this.props.center.lng} />
-          <Input type="text" label="Radius" value={this.props.center && this.props.radius} />
+          <Input type="text" label="Latitude" value={this.props.center && this.props.center.lat}
+            onChange={this.updateLatitude}
+          />
+          <Input type="text" label="Longitude" value={this.props.center && this.props.center.lng}
+            onChange={this.updateLongitude}
+          />
+          <Input type="text" label="Radius" value={this.props.center && this.props.radius}
+            onChange={this.updateRadius}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={ this.close }>Cancel</Button>

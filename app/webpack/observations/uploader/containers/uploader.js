@@ -75,6 +75,12 @@ const mapDispatchToProps = ( dispatch ) => ( {
   },
   updateState: ( attrs ) => {
     dispatch( actions.updateState( attrs ) );
+  },
+  confirmRemoveSelected: ( ) => {
+    dispatch( actions.confirmRemoveSelected( ) );
+  },
+  confirmRemoveObsCard: ( obsCard ) => {
+    dispatch( actions.confirmRemoveObsCard( obsCard ) );
   }
 } );
 

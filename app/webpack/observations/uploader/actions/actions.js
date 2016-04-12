@@ -33,6 +33,26 @@ const actions = class actions {
     return { type: types.UPDATE_SELECTED_OBS_CARDS, attrs };
   }
 
+  static confirmRemoveSelected( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      dispatch( actions.setState( { removeModal: {
+        show: true,
+        count: _.keys( s.dragDropZone.selectedObsCards ).length
+      } } ) );
+    };
+  }
+
+  static confirmRemoveObsCard( obsCard ) {
+    return function ( dispatch ) {
+      dispatch( actions.setState( { removeModal: {
+        show: true,
+        count: 1,
+        obsCard
+      } } ) );
+    };
+  }
+
   static removeSelected( ) {
     return { type: types.REMOVE_SELECTED };
   }
