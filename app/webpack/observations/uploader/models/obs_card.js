@@ -15,7 +15,9 @@ const ObsCard = class ObsCard {
       zoom: null,
       latitude: null,
       longitude: null,
-      accuracy: null
+      accuracy: null,
+      tags: [],
+      observation_field_values: []
     };
     Object.assign( this, defaultAttrs, attrs );
   }
@@ -30,10 +32,42 @@ const ObsCard = class ObsCard {
     );
   }
 
+  syncMetadataWithPhoto( p, dispatch ) {
+    const updates = { };
+    const obs = p.to_observation;
+    console.log(p);
+    console.log(obs);
+    console.log(this);
+    if ( !this.date && obs.time_observed_at ) {
+      updates.date = new Date( obs.time_observed_at );
+    }
+    if ( !this.latitude && obs.latitude && obs.longitude ) {
+      updates.latitude = parseFloat( obs.latitude );
+      updates.longitude = parseFloat( obs.longitude );
+      updates.accuracy = 2;
+    }
+    if ( !this.locality_notes && obs.place_guess ) {
+      updates.locality_notes = obs.place_guess;
+    }
+    if ( !this.taxon_id && obs.taxon_id ) {
+      updates.taxon_id = obs.taxon_id;
+    }
+    if ( this.observation_field_values.length === 0 && obs.observation_field_values ) {
+      updates.observation_field_values = obs.observation_field_values;
+    }
+    if ( this.tags.length === 0 && obs.tag_list ) {
+      updates.tags = obs.tag_list;
+    }
+    if ( Object.keys( updates ).length > 0 ) {
+      dispatch( actions.updateObsCard( this, updates ) );
+    }
+  }
+
   upload( file, dispatch ) {
     if ( !this.files[file.id] ) { return; }
     dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploading" } ) );
     inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
+      this.syncMetadataWithPhoto( r, dispatch );
       dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploaded", photo: r } ) );
     } ).catch( e => {
       console.log( "Upload failed:", e );
@@ -55,7 +89,9 @@ const ObsCard = class ObsCard {
         longitude: this.longitude,
         positional_accuracy: this.accuracy,
         geoprivacy: this.geoprivacy,
-        place_guess: this.locality_notes
+        place_guess: this.locality_notes,
+        observation_field_values_attributes: this.observation_field_values,
+        tag_list: this.tags.join( "," )
       }
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }

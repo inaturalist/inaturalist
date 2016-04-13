@@ -269,7 +269,11 @@ class PhotosController < ApplicationController
       if @photo.save
         @photo.reload
         format.html { redirect_to observations_path }
-        format.json { render json: @photo.as_json }
+        format.json { render json: @photo.as_json(include: {
+          to_observation: {
+            include: :observation_field_values, methods: [ :tag_list ]
+          } } )
+        }
       else
         format.html { redirect_to observations_path }
         format.json { render json: @photo.errors, status: :unprocessable_entity }

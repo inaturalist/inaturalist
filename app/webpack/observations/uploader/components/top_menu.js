@@ -7,10 +7,9 @@ class TopMenu extends Component {
   render( ) {
     const { createBlankObsCard, confirmRemoveSelected, selectAll,
       submitObservations, fileChooser, count, selectedObsCards } = this.props;
-    console.log(selectedObsCards);
     return (
-      <Row>
-        <Col cs="12" className="conrol-menu">
+      <Row className="control-menu">
+        <Col cs="12">
           <Button bsStyle="primary" bsSize="large" onClick={ createBlankObsCard }>
             New/Blank
             <Glyphicon glyph="file" />

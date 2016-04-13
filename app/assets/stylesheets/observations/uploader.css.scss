@@ -8,25 +8,41 @@
 }
 #wrapper {
   min-height: initial;
+  background: none;
+  min-height: 500px;
+}
+#bodywrapper {
+  margin-bottom: 0px;
+  background: #E4E4E4;
 }
 #bodywrapper:after {
-  height: 220px;
+  height: 0px;
+}
+#header {
+  margin-bottom: 0px;
 }
 .uploader {
-  margin: 0px 20px;
   min-width: 1000px;
 }
-.conrol-menu button {
+.control-menu {
+  background: #fff;
+  padding: 20px;
+}
+.control-menu button {
   margin: 0px 3px;
 }
-.conrol-menu button.save {
+.control-menu button.save {
   float: right;
 }
-
+.control-menu button .glyphicon, .intro button .glyphicon {
+  margin-left: 10px;
+  top: 3px;
+  font-size: 0.9em;
+}
+.row.body {
+  display: flex;
+}
 #imageGrid {
-  border-style: dashed;
-  border-radius: 5px;
-  border-width: 2px;
   min-height: 350px;
 }
 #imageGrid .intro {
@@ -34,21 +50,6 @@
   height: 300px;
   padding-top: 10%;
   font-size: 1.3em;
-}
-.conrol-menu button .glyphicon, .intro button .glyphicon {
-  margin-left: 10px;
-  top: 3px;
-  font-size: 0.9em;
-}
-.card button .glyphicon, .leftColumn button .glyphicon {
-  top: 3px;
-}
-.uploader.hover #imageGrid {
-  border-style: solid;
-  background-color: #eee;
-}
-.uploader.populated #imageGrid {
-  border-style: solid;
 }
 .uploader.hover .intro .start {
   display: none;
@@ -73,6 +74,9 @@
 }
 .card.blank {
   border: 1px solid #666;
+}
+.card button .glyphicon, .leftColumn button .glyphicon {
+  top: 3px;
 }
 .card .move {
   float: left;
@@ -138,9 +142,6 @@
   border: 3px solid #ff0080;
   padding: 3px;
 }
-.uploader .conrol-menu {
-  margin-bottom: 20px;
-}
 .cellDropzone {
   display: inline-block;
 }
@@ -162,6 +163,9 @@
 .leftColumn .ac-chooser input[name="taxon_name"] {
   margin-left: 40px;
   width: 85%;
+}
+.leftColumn h4.empty {
+  font-style: italic;
 }
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
   top: 231px !important;
@@ -245,4 +249,7 @@
 }
 .modal.remove .buttons {
   float: right;
+}
+div.fixed:before {
+  content: "<div id='thebefore'></div>"
 }

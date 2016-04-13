@@ -236,7 +236,6 @@ class LocationChooser extends Component {
         </Modal.Header>
         <Modal.Body>
           <GoogleMapLoader
-            key="loader"
             containerElement={
               <div
                 { ...this.props }
@@ -247,7 +246,7 @@ class LocationChooser extends Component {
               <GoogleMap
                 ref="map"
                 defaultZoom={ this.props.zoom || 1 }
-                defaultCenter={ this.props.center || { lat: 30, lng: 15 } }
+                defaultCenter={ this.props.center || center || { lat: 30, lng: 15 } }
                 onClick={ this.handleMapClick }
                 options={{ streetViewControl: false }}
               >
