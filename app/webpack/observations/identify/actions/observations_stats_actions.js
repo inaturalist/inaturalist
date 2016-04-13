@@ -13,29 +13,41 @@ function fetchObservationsStats( ) {
   return function ( dispatch, getState ) {
     const s = getState();
     const apiParams = Object.assign( {
-      verifiable: true,
-      reviewed: false,
       viewer_id: s.config.currentUser ? s.config.currentUser.id : null
     }, s.searchParams );
-    apiParams.quality_grade = "needs_id";
-    iNaturalistJS.observations.search( apiParams )
+    const needsIdParams = Object.assign( {}, apiParams, { quality_grade: "needs_id" } );
+    iNaturalistJS.observations.search( needsIdParams )
       .then( response => {
         dispatch( updateObservationsStats( {
           needsId: response.total_results
         } ) );
       } );
-    apiParams.quality_grade = "research";
-    iNaturalistJS.observations.search( apiParams )
+    const researchParams = Object.assign( {}, apiParams, { quality_grade: "research" } );
+    iNaturalistJS.observations.search( researchParams )
       .then( response => {
         dispatch( updateObservationsStats( {
           research: response.total_results
         } ) );
       } );
-    apiParams.quality_grade = "casual";
-    iNaturalistJS.observations.search( apiParams )
+    const casualParams = Object.assign( {}, apiParams, { quality_grade: "casual" } );
+    iNaturalistJS.observations.search( casualParams )
       .then( response => {
         dispatch( updateObservationsStats( {
           casual: response.total_results
+        } ) );
+      } );
+    const reviewedParams = Object.assign( {}, apiParams, { reviewed: true } );
+    iNaturalistJS.observations.search( reviewedParams )
+      .then( response => {
+        dispatch( updateObservationsStats( {
+          reviewed: response.total_results
+        } ) );
+      } );
+    const anyReviewedParams = Object.assign( {}, apiParams, { reviewed: "any" } );
+    iNaturalistJS.observations.search( anyReviewedParams )
+      .then( response => {
+        dispatch( updateObservationsStats( {
+          total: response.total_results
         } ) );
       } );
   };

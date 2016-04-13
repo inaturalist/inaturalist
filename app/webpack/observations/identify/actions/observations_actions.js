@@ -14,8 +14,6 @@ function fetchObservations( ) {
   return function ( dispatch, getState ) {
     const s = getState();
     const apiParams = Object.assign( {
-      verifiable: true,
-      reviewed: false,
       viewer_id: s.config.currentUser ? s.config.currentUser.id : null
     }, s.searchParams );
     return iNaturalistJS.observations.search( apiParams )

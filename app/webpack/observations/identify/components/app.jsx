@@ -24,11 +24,11 @@ const App = () => (
         <StatsControlContainer />
       </Col>
     </Row>
-    <Row>
+    <Row className="mainrow">
       <Col xs={9}>
         <ObservationsGridContainer />
       </Col>
-      <Col xs={3}>
+      <Col xs={3} className="sidebar-col">
         <SideBar />
       </Col>
     </Row>

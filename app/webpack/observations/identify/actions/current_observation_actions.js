@@ -1,5 +1,6 @@
 import iNaturalistJS from "inaturalistjs";
 import _ from "lodash";
+import { fetchObservationsStats } from "./observations_stats_actions";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -175,10 +176,12 @@ function toggleReviewed( ) {
     if ( reviewed ) {
       iNaturalistJS.observations.unreview( params ).then( ( ) => {
         dispatch( fetchCurrentObservation( ) );
+        dispatch( fetchObservationsStats( ) );
       } );
     } else {
       iNaturalistJS.observations.review( params ).then( ( ) => {
         dispatch( fetchCurrentObservation( ) );
+        dispatch( fetchObservationsStats( ) );
       } );
     }
   };

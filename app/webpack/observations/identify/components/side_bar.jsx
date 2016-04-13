@@ -1,11 +1,11 @@
 import React from "react";
-import ProgressChart from "./progress_chart";
+import ProgressChartContainer from "../containers/progress_chart_container";
 import BulkActions from "./bulk_actions";
 import IdentifierStats from "./identifier_stats";
 
 const SideBar = () => (
   <div className="SideBar">
-    <ProgressChart />
+    <ProgressChartContainer />
     <BulkActions />
     <IdentifierStats />
   </div>

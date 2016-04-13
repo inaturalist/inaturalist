@@ -1,5 +1,6 @@
 @import "identify/observations_grid_item";
 @import "identify/observation_modal";
+@import "identify/progress_chart";
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 .btn-checkbox {
   display: inline-block;
@@ -51,7 +52,22 @@ input.filter-changed + .searchclear.glyphicon {
   color: #aaa;
 }
 
-
 .identification.outdated {
   text-decoration: line-through;
+}
+
+.mainrow {
+  background-color: #EFEFEF;
+}
+
+.ObservationsGrid {
+  padding-top: 30px;
+}
+
+.bootstrap .sidebar-col {
+  padding: 0px;
+}
+.SideBar {
+  padding: 15px;
+  background-color: #DDDDDD;
 }

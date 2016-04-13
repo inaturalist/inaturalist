@@ -6,7 +6,7 @@ const ObservationsGrid = ( {
   observations,
   onObservationClick
 } ) => (
-  <Row>
+  <Row className="ObservationsGrid">
     {observations.map( ( observation ) => (
       <Col xs={3} key={observation.id}>
         <ObservationsGridItem
