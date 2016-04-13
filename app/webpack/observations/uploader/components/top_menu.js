@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Row, Col, Button, Glyphicon } from "react-bootstrap";
 
@@ -5,10 +6,10 @@ class TopMenu extends Component {
 
   render( ) {
     const { createBlankObsCard, confirmRemoveSelected, selectAll,
-      submitObservations, fileChooser, count } = this.props;
+      submitObservations, fileChooser, count, selectedObsCards } = this.props;
     return (
-      <Row>
-        <Col cs="12" className="conrol-menu">
+      <Row className="control-menu">
+        <Col cs="12">
           <Button bsStyle="primary" bsSize="large" onClick={ createBlankObsCard }>
             New/Blank
             <Glyphicon glyph="file" />
@@ -17,11 +18,13 @@ class TopMenu extends Component {
             Add
             <Glyphicon glyph="plus" />
           </Button>
-          <Button bsStyle="primary" bsSize="large" onClick={ confirmRemoveSelected }>
+          <Button bsStyle="primary" bsSize="large" onClick={ confirmRemoveSelected }
+            disabled={ _.keys( selectedObsCards ).length === 0 }
+          >
             Remove
             <Glyphicon glyph="minus" />
           </Button>
-          <Button bsStyle="primary" bsSize="large" onClick={ selectAll }>
+          <Button bsStyle="primary" bsSize="large" onClick={ selectAll } disabled={ count === 0 }>
             Select All
             <Glyphicon glyph="asterisk" />
           </Button>
@@ -41,6 +44,7 @@ TopMenu.propTypes = {
   createBlankObsCard: PropTypes.func,
   confirmRemoveSelected: PropTypes.func,
   selectAll: PropTypes.func,
+  selectedObsCards: PropTypes.object,
   submitObservations: PropTypes.func,
   fileChooser: PropTypes.func,
   count: PropTypes.number

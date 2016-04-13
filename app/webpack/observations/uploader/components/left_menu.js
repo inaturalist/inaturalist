@@ -15,15 +15,19 @@ class LeftMenu extends Component {
   }
 
   openLocationChooser( ) {
-    let center;
+    let lat;
+    let lng;
     let radius;
     let zoom;
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonRadius = this.commonValue( "accuracy" );
     const commonZoom = this.commonValue( "zoom" );
+    const commonGeoprivacy = this.commonValue( "geoprivacy" );
+    const commonNotes = this.commonValue( "locality_notes" );
     if ( commonLat && commonLng && commonRadius ) {
-      center = { lat: commonLat, lng: commonLng };
+      lat = commonLat;
+      lng = commonLng;
       radius = commonRadius;
       zoom = commonZoom;
     }
@@ -31,7 +35,10 @@ class LeftMenu extends Component {
       open: true,
       zoom,
       radius,
-      center
+      lat,
+      lng,
+      notes: commonNotes,
+      geoprivacy: commonGeoprivacy
     } } );
   }
 
@@ -62,37 +69,49 @@ class LeftMenu extends Component {
         <Glyphicon glyph="globe" />
       </Button>
     );
+    let menu;
+    if ( count === 0 ) {
+      menu = <h4 className="empty">Select observations to edit...</h4>;
+    } else {
+      menu = (
+        <div>
+          <h4>Editing {count} observations</h4>
+          <TaxonAutocomplete
+            bootstrapClear
+            searchExternal={false}
+            initialSelection={ commonSelectedTaxon }
+            afterSelect={ function ( result ) {
+              updateSelectedObsCards( { taxon_id: result.item.id,
+                selected_taxon: new inaturalistjs.Taxon( result.item ) } );
+            } }
+            afterUnselect={ ( ) => {
+              updateSelectedObsCards( { taxon_id: undefined, selected_taxon: undefined } );
+            } }
+          />
+          <DateTimePicker key={ `datetime:${count}` }key={ commonDate } defaultValue={ commonDate }
+            onChange={ e => updateSelectedObsCards( { date: e } ) }
+          />
+          <Input key={ `location:${count}` } type="text" buttonAfter={ globe } readOnly
+            value={ commonLat && commonLng &&
+              `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` }
+          />
+          <Input key={ `description:${count}` } type="textarea"
+            placeholder={ descriptionPlaceholder } value={ commonDescription }
+            onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+          />
+        </div>
+      );
+    }
     return (
       <div id="multiMenu" key={ `multiMenu:${count}` }>
-        <TaxonAutocomplete
-          bootstrapClear
-          searchExternal={false}
-          initialSelection={ commonSelectedTaxon }
-          afterSelect={ function ( result ) {
-            updateSelectedObsCards( { taxon_id: result.item.id,
-              selected_taxon: new inaturalistjs.Taxon( result.item ) } );
-          } }
-          afterUnselect={ ( ) => {
-            updateSelectedObsCards( { taxon_id: undefined, selected_taxon: undefined } );
-          } }
-        />
-        <DateTimePicker key={ `datetime:${count}` }key={ commonDate } defaultValue={ commonDate }
-          onChange={ e => updateSelectedObsCards( { date: e } ) }
-        />
-        <Input key={ `location:${count}` }type="text" buttonAfter={ globe } value={
-          commonLat && commonLng &&
-            `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` }
-        />
-        <Input key={ `description:${count}` } type="textarea"
-          placeholder={ descriptionPlaceholder } value={ commonDescription }
-          onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-        />
+        {menu}
       </div>
     );
   }
 }
 
 LeftMenu.propTypes = {
+  obsCards: PropTypes.object,
   selectedObsCards: PropTypes.object,
   updateSelectedObsCards: PropTypes.func,
   setState: PropTypes.func

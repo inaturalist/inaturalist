@@ -433,7 +433,8 @@ form .field .description { margin-bottom: 0.5em;}
 }
 #header .subnav.rightsubnav {
   left: auto;
-  right: -2px;
+  right: 0px;
+  border-right: 0px;
   padding-left: 10px;
   padding-right: 12px;
 }

@@ -20,7 +20,6 @@ const mapDispatchToProps = ( dispatch ) => ( {
       const id = ( startTime + i );
       const obsCard = new ObsCard( { id } );
       obsCard.files[id] = DroppedFile.fromFile( f, id );
-      obsCard.date = obsCard.files[id].lastModifiedDate;
       obsCards[obsCard.id] = obsCard;
       i += 1;
     } );

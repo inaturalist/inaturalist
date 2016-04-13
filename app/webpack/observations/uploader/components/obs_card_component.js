@@ -74,20 +74,17 @@ class ObsCardComponent extends Component {
   }
 
   openLocationChooser( ) {
-    let center;
-    if ( this.props.obsCard.latitude ) {
-      center = {
-        lat: this.props.obsCard.latitude,
-        lng: this.props.obsCard.longitude
-      };
-    }
     this.props.setState( { locationChooser: {
       open: true,
+      lat: this.props.obsCard.latitude,
+      lng: this.props.obsCard.longitude,
       radius: this.props.obsCard.accuracy,
       obsCard: this.props.obsCard,
       zoom: this.props.obsCard.zoom,
+      center: this.props.obsCard.center,
       bounds: this.props.obsCard.bounds,
-      center
+      geoprivacy: this.props.obsCard.geoprivacy,
+      notes: this.props.obsCard.locality_notes
     } } );
   }
 
@@ -173,7 +170,7 @@ class ObsCardComponent extends Component {
               <DateTimePicker key={ obsCard.date } defaultValue={ obsCard.date } onChange={ e =>
                 updateObsCard( obsCard, { date: e } ) }
               />
-              <Input type="text" buttonAfter={globe} onClick={ this.selectCard }
+              <Input type="text" buttonAfter={globe} onClick={ this.selectCard } readOnly
                 value={ obsCard.latitude &&
                   `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` }
               />

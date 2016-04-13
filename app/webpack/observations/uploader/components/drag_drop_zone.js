@@ -20,18 +20,25 @@ class DragDropZone extends Component {
 
   componentDidUpdate( ) {
     if ( Object.keys( this.props.obsCards ).length > 0 ) {
+      if ( this.props.saveStatus !== "saving" ) {
+        window.onbeforeunload = ( ) =>
+          "These observations have not been uploaded yet.";
+      } else {
+        window.onbeforeunload = undefined;
+      }
+      $( "body" ).unbind( "click" );
+      $( "body" ).on( "click", this.unselectAll );
       $( "#imageGrid" ).selectable( { filter: ".card",
         cancel: ".glyphicon, input, button, .input-group-addon, " +
           ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
         selecting: this.selectObsCards,
         unselecting: this.selectObsCards,
-        distance: 10
+        distance: 0
       } );
       $( "#imageGrid" ).selectable( "enable" );
-      $( "#imageGrid" ).unbind( "click" );
-      $( "#imageGrid" ).on( "click", this.unselectAll );
     } else {
       $( "#imageGrid" ).selectable( "disable" );
+      window.onbeforeunload = undefined;
     }
   }
 
@@ -48,7 +55,10 @@ class DragDropZone extends Component {
   }
 
   unselectAll( e ) {
-    if ( $( ".card" ).has( e.target || e.nativeEvent.target ).length > 0 ) { return; }
+    if ( $( ".card, #multiMenu, button, .modal" ).
+           has( e.target || e.nativeEvent.target ).length > 0 ) {
+      return;
+    }
     this.props.selectObsCards( {} );
   }
 
@@ -62,25 +72,18 @@ class DragDropZone extends Component {
     let intro;
     let mainColumnSpan = 12;
     let className = "uploader";
-    const obsCardsArray = Object.values( obsCards );
-    if ( obsCardsArray.length > 0 ) {
+    const cardCount = Object.keys( obsCards ).length;
+    if ( cardCount > 0 ) {
       mainColumnSpan = 9;
       className += " populated";
-      let leftMenu;
-      if ( Object.keys( selectedObsCards ).length > 0 ) {
-        leftMenu = (
+      leftColumn = (
+        <Col xs={ 3 } className="leftColumn">
           <LeftMenu
+            count={cardCount}
             setState={this.props.setState}
             selectedObsCards={this.props.selectedObsCards}
             updateSelectedObsCards={this.props.updateSelectedObsCards}
           />
-        );
-      } else {
-        leftMenu = "Select photos";
-      }
-      leftColumn = (
-        <Col xs={ 3 } className="leftColumn">
-          { leftMenu }
         </Col>
       );
     } else {
@@ -89,7 +92,7 @@ class DragDropZone extends Component {
           <div className="start">
             <p>Drag and drop some photos</p>
             <p>or</p>
-            <Button bsStyle="primary" bsSize="large" onClick={ () => this.onOpenClick( ) }>
+            <Button bsStyle="primary" bsSize="large" onClick={ ( ) => this.fileChooser( ) }>
               Choose photos
               <Glyphicon glyph="upload" />
             </Button>
@@ -102,19 +105,25 @@ class DragDropZone extends Component {
     }
     return (
       <div>
-        <Dropzone ref="dropzone" onDrop={ onDrop } className={ className } activeClassName="hover"
-          disableClick disablePreview
+        <Dropzone
+          ref="dropzone"
+          onDrop={ onDrop }
+          className={ className }
+          activeClassName="hover"
+          disableClick
+          disablePreview
         >
           <Grid fluid>
             <TopMenu
               createBlankObsCard={ createBlankObsCard }
               confirmRemoveSelected={ confirmRemoveSelected }
               selectAll={ selectAll }
+              selectedObsCards={ selectedObsCards }
               submitObservations={ submitObservations }
               fileChooser={ this.fileChooser }
-              count={ obsCardsArray.length }
+              count={ cardCount }
             />
-            <Row>
+            <Row className="body">
               { leftColumn }
               <Col xs={ mainColumnSpan } id="imageGrid">
                 <div>
@@ -135,8 +144,10 @@ class DragDropZone extends Component {
             </Row>
           </Grid>
         </Dropzone>
-        <StatusModal show={saveStatus === "saving"} saveCounts={saveCounts}
-          total={obsCardsArray.length} className="status"
+        <StatusModal
+          show={ saveStatus === "saving" }
+          saveCounts={ saveCounts }
+          total={ cardCount } className="status"
         />
         <RemoveModal
           setState={ setState }
@@ -145,6 +156,7 @@ class DragDropZone extends Component {
           { ...removeModal }
         />
         <LocationChooser
+          obsCards={ obsCards }
           setState={ setState }
           updateObsCard={ updateObsCard }
           updateState={ updateState }
