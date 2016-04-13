@@ -20,16 +20,16 @@ class DragDropZone extends Component {
 
   componentDidUpdate( ) {
     if ( Object.keys( this.props.obsCards ).length > 0 ) {
+      // $( "#imageGrid" ).unbind( "click" );
+      // $( "#imageGrid" ).on( "click", this.unselectAll );
       $( "#imageGrid" ).selectable( { filter: ".card",
         cancel: ".glyphicon, input, button, .input-group-addon, " +
           ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
         selecting: this.selectObsCards,
         unselecting: this.selectObsCards,
-        distance: 10
+        distance: 0
       } );
       $( "#imageGrid" ).selectable( "enable" );
-      $( "#imageGrid" ).unbind( "click" );
-      $( "#imageGrid" ).on( "click", this.unselectAll );
     } else {
       $( "#imageGrid" ).selectable( "disable" );
     }
@@ -89,7 +89,7 @@ class DragDropZone extends Component {
           <div className="start">
             <p>Drag and drop some photos</p>
             <p>or</p>
-            <Button bsStyle="primary" bsSize="large" onClick={ () => this.onOpenClick( ) }>
+            <Button bsStyle="primary" bsSize="large" onClick={ ( ) => this.fileChooser( ) }>
               Choose photos
               <Glyphicon glyph="upload" />
             </Button>
@@ -110,6 +110,7 @@ class DragDropZone extends Component {
               createBlankObsCard={ createBlankObsCard }
               confirmRemoveSelected={ confirmRemoveSelected }
               selectAll={ selectAll }
+              selectedObsCards={ selectedObsCards }
               submitObservations={ submitObservations }
               fileChooser={ this.fileChooser }
               count={ obsCardsArray.length }
@@ -145,6 +146,7 @@ class DragDropZone extends Component {
           { ...removeModal }
         />
         <LocationChooser
+          obsCards={ obsCards }
           setState={ setState }
           updateObsCard={ updateObsCard }
           updateState={ updateState }

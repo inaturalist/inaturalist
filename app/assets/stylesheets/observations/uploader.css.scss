@@ -201,15 +201,35 @@
   margin: 20px;
   text-align: center;
 }
+.modal.location .modal-dialog {
+  width: 700px;
+}
 .modal.location .modal-body {
   height: 400px;
+  padding: 10px;
+}
+.modal.location .modal-header {
+  padding: 10px 10px 5px 10px;
 }
 .modal.location .form-group {
   display: inline-block;
+  margin: 0px 10px;
 }
 .modal.location .form-group input {
-  width: 100px;
-  display: inline-block;
+  width: 80px;
+}
+.modal.location .form-group input.notes {
+  width: 160px;
+}
+.modal.location .map {
+  height: 310px;
+}
+.modal.location .form {
+  margin-top: 10px;
+  display: flex;
+}
+.modal.location .form option {
+  height: 0px;
 }
 .pac-container {
   z-index: 1100;

@@ -6,12 +6,16 @@ const ObsCard = class ObsCard {
   constructor( attrs ) {
     const defaultAttrs = {
       id: new Date( ).getTime( ),
+      save_state: "pending",
+      geoprivacy: "open",
       files: { },
       date: null,
       taxon_id: null,
-      save_state: "pending",
       bounds: null,
-      zoom: null
+      zoom: null,
+      latitude: null,
+      longitude: null,
+      accuracy: null
     };
     Object.assign( this, defaultAttrs, attrs );
   }
@@ -49,7 +53,9 @@ const ObsCard = class ObsCard {
         description: this.description,
         latitude: this.latitude,
         longitude: this.longitude,
-        positional_accuracy: this.accuracy
+        positional_accuracy: this.accuracy,
+        geoprivacy: this.geoprivacy,
+        place_guess: this.locality_notes
       }
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }

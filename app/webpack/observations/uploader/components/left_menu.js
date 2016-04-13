@@ -15,15 +15,19 @@ class LeftMenu extends Component {
   }
 
   openLocationChooser( ) {
-    let center;
+    let lat;
+    let lng;
     let radius;
     let zoom;
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonRadius = this.commonValue( "accuracy" );
     const commonZoom = this.commonValue( "zoom" );
+    const commonGeoprivacy = this.commonValue( "geoprivacy" );
+    const commonNotes = this.commonValue( "locality_notes" );
     if ( commonLat && commonLng && commonRadius ) {
-      center = { lat: commonLat, lng: commonLng };
+      lat = commonLat;
+      lng = commonLng;
       radius = commonRadius;
       zoom = commonZoom;
     }
@@ -31,7 +35,10 @@ class LeftMenu extends Component {
       open: true,
       zoom,
       radius,
-      center
+      lat,
+      lng,
+      notes: commonNotes,
+      geoprivacy: commonGeoprivacy
     } } );
   }
 
@@ -79,8 +86,8 @@ class LeftMenu extends Component {
         <DateTimePicker key={ `datetime:${count}` }key={ commonDate } defaultValue={ commonDate }
           onChange={ e => updateSelectedObsCards( { date: e } ) }
         />
-        <Input key={ `location:${count}` }type="text" buttonAfter={ globe } value={
-          commonLat && commonLng &&
+        <Input key={ `location:${count}` } type="text" buttonAfter={ globe } readOnly
+          value={ commonLat && commonLng &&
             `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` }
         />
         <Input key={ `description:${count}` } type="textarea"
