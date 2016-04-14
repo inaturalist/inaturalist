@@ -3,14 +3,19 @@ import {
   loadingDiscussionItem,
   fetchCurrentObservation
 } from "./current_observation_actions";
+import { fetchObservationsStats } from "./observations_stats_actions";
 
 const POST_IDENTIFICATION = "post_identification";
 
 function postIdentification( params ) {
-  return function ( ) {
+  return function ( dispatch ) {
     const body = Object.assign( {}, params );
     body.user_id = 1;
-    return inatjs.identifications.create( body );
+    return inatjs.identifications.create( body )
+      .then( response => {
+        dispatch( fetchObservationsStats( ) );
+        return response;
+      } );
   };
 }
 
