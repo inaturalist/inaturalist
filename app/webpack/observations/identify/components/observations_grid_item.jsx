@@ -11,8 +11,12 @@ const ObservationsGridItem = ( {
       <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
     );
   }
+  let wrapperClass = "thumbnail borderless ObservationsGridItem";
+  if ( o.reviewedByCurrentUser ) {
+    wrapperClass += " reviewed";
+  }
   return (
-    <div className="thumbnail borderless ObservationsGridItem">
+    <div className={wrapperClass}>
       <a
         href={`/observations/${o.id}`}
         style={ {

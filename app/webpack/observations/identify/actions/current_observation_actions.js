@@ -1,6 +1,7 @@
 import iNaturalistJS from "inaturalistjs";
 import _ from "lodash";
 import { fetchObservationsStats } from "./observations_stats_actions";
+import { updateObservationInCollection } from "./observations_actions";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -57,6 +58,10 @@ function fetchCurrentObservation( observation = null ) {
             newObs.identifications, ( ident ) => ( ident.user.id === currentUser.id )
           );
         }
+        dispatch( updateObservationInCollection( newObs, {
+          captiveByCurrentUser,
+          reviewedByCurrentUser
+        } ) );
         dispatch(
           receiveCurrentObservation( newObs, {
             captiveByCurrentUser,
