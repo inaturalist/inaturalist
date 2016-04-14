@@ -45,11 +45,15 @@ const actions = class actions {
 
   static confirmRemoveObsCard( obsCard ) {
     return function ( dispatch ) {
-      dispatch( actions.setState( { removeModal: {
-        show: true,
-        count: 1,
-        obsCard
-      } } ) );
+      if ( obsCard.blank( ) ) {
+        dispatch( { type: types.REMOVE_OBS_CARD, obsCard } );
+      } else {
+        dispatch( actions.setState( { removeModal: {
+          show: true,
+          count: 1,
+          obsCard
+        } } ) );
+      }
     };
   }
 
