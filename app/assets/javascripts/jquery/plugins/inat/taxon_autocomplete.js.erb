@@ -129,7 +129,7 @@ $.fn.taxonAutocomplete = function( options ) {
       cache: true,
       data: {
         q: request.term,
-        per_page: 10,
+        per_page: options.per_page || 10,
         locale: I18n.locale,
         preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
       },
@@ -166,7 +166,8 @@ $.fn.taxonAutocomplete = function( options ) {
       var thisSearch = Math.random();
       ac.searchInProgress = thisSearch;
       $.ajax({
-        url: "/taxa/search.json?per_page=10&include_external=1&partial=elastic&q=" + field.val( ),
+        url: "/taxa/search.json?per_page="+ options.per_page +
+          "&include_external=1&partial=elastic&q=" + field.val( ),
         dataType: "json",
         beforeSend: function(XMLHttpRequest) {
           // replace 'search external' with a loading indicator

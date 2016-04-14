@@ -1,4 +1,3 @@
-@import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 @import "../../../../node_modules/react-widgets/dist/css/react-widgets";
 @font-face {
@@ -26,10 +25,10 @@
 }
 .control-menu {
   background: #fff;
-  padding: 20px;
+  padding: 10px;
 }
 .control-menu button {
-  margin: 0px 3px;
+  margin: 0px 5px;
 }
 .control-menu button.save {
   float: right;
@@ -43,13 +42,17 @@
   display: flex;
 }
 #imageGrid {
-  min-height: 350px;
+  min-height: 450px;
 }
 #imageGrid .intro {
   text-align: center;
   height: 300px;
   padding-top: 10%;
   font-size: 1.3em;
+}
+.uploader.hover {
+  opacity: 0.5;
+  cursor: copy;
 }
 .uploader.hover .intro .start {
   display: none;
@@ -65,7 +68,7 @@
 }
 .card {
   background-color: white;
-  margin: 10px;
+  margin: 5px;
   display: inline-block;
   width: 200px;
   border: 1px solid #666;
@@ -81,14 +84,14 @@
 .card .move {
   float: left;
   font-size: 15px;
-  margin: -13px 0px 0px -13px;
+  margin: -13px 0px -13px -13px;
   opacity: 0.2;
   cursor: move;
   display: none;
 }
 .card .close {
   font-size: 15px;
-  margin: -13px -13px 0px 0px;
+  margin: -13px -13px -13px 0px;
   display: none;
 }
 .cellDropzone:hover .move, .cellDropzone:hover .close {
@@ -104,6 +107,8 @@
   width: 100%;
   height: 130px;
   text-align: center;
+  padding: 0px 4px;
+  margin-bottom: 4px;
 }
 .card .image .placeholder {
   border-style: dashed;
@@ -116,12 +121,7 @@
 .card .image img {
   max-height: 126px;
   max-width: 172px;
-  border: 3px solid #bbb;
   width: auto;
-}
-.card .image-gallery-slides {
-  height: 130px;
-  line-height: 130px;
 }
 #imageGrid .card input {
   display: inline-block;
@@ -183,20 +183,38 @@
   background: pink;
   z-index: 2;
 }
-.card .image-gallery-left-nav,
-.card .image-gallery-right-nav {
-  font-size: 3em;
+.card .carousel .item {
+  height: 130px;
+  line-height: 130px;
+  width: 100%;
 }
-.card .image-gallery-content .image-gallery-left-nav:before,
-.card .image-gallery-content .image-gallery-right-nav:before {
-  padding: 0px 15px;
+.card .carousel .carousel-control {
+  background: none;
 }
-.card .image-gallery-bullets {
+.card .carousel .carousel-control span {
+  font-size: 20px;
+  margin-top: -10px;
+}
+.card .carousel .carousel-indicators {
   bottom: 0px;
+  margin-bottom: 5px;
 }
-.card .image-gallery-bullets .image-gallery-bullet {
-  margin: 0px 3px;
-  padding: 4px;
+.card .carousel .carousel-indicators li {
+  border: 1px solid #E4E4E4;
+  box-shadow: 0 1px 0 #222;
+}
+.card .carousel .carousel-indicators li:hover {
+  background: #fff;
+}
+.card .carousel .item.next, .card .carousel .item.active {
+  display: inline-block;
+}
+.card .carousel .item.left, .card .carousel .item.right {
+  float: none;
+  margin: 0px auto;
+}
+.card .carousel .item img {
+  display: inline-block;
 }
 .modal.status .modal-dialog, .modal.remove .modal-dialog {
   margin-top: 200px;
@@ -214,6 +232,19 @@
 }
 .modal.location .modal-header {
   padding: 10px 10px 5px 10px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background: #337ab7;
+}
+.modal.location .modal-header h4 {
+  color: white;
+}
+.modal.location .modal-footer {
+  text-align: center;
+}
+.modal.location .modal-footer button {
+  min-width: 100px;
+  margin: 0px 20px;
 }
 .modal.location .form-group {
   display: inline-block;
@@ -223,7 +254,7 @@
   width: 80px;
 }
 .modal.location .form-group input.notes {
-  width: 160px;
+  width: 220px;
 }
 .modal.location .map {
   height: 310px;

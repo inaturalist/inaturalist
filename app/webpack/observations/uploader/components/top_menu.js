@@ -10,25 +10,25 @@ class TopMenu extends Component {
     return (
       <Row className="control-menu">
         <Col cs="12">
-          <Button bsStyle="primary" bsSize="large" onClick={ createBlankObsCard }>
+          <Button bsStyle="default" onClick={ createBlankObsCard }>
             New/Blank
             <Glyphicon glyph="file" />
           </Button>
-          <Button bsStyle="primary" bsSize="large" onClick={ fileChooser }>
+          <Button bsStyle="default" onClick={ fileChooser }>
             Add
             <Glyphicon glyph="plus" />
           </Button>
-          <Button bsStyle="primary" bsSize="large" onClick={ confirmRemoveSelected }
+          <Button bsStyle="default" onClick={ confirmRemoveSelected }
             disabled={ _.keys( selectedObsCards ).length === 0 }
           >
             Remove
             <Glyphicon glyph="minus" />
           </Button>
-          <Button bsStyle="primary" bsSize="large" onClick={ selectAll } disabled={ count === 0 }>
+          <Button bsStyle="default" onClick={ selectAll } disabled={ count === 0 }>
             Select All
             <Glyphicon glyph="asterisk" />
           </Button>
-          <Button className="save" bsStyle="primary" bsSize="large" onClick={ submitObservations }
+          <Button className="save" bsStyle="success" onClick={ submitObservations }
             disabled={ count === 0 }
           >
             Submit{ count > 0 ? ` ${count} observations` : "" }

@@ -16,6 +16,7 @@ const ObsCard = class ObsCard {
       latitude: null,
       longitude: null,
       accuracy: null,
+      species_guess: null,
       tags: [],
       observation_field_values: []
     };
@@ -28,16 +29,14 @@ const ObsCard = class ObsCard {
       !this.description &&
       !this.date &&
       !this.taxon_id &&
-      !this.latitude
+      !this.latitude &&
+      !this.species_guess
     );
   }
 
   syncMetadataWithPhoto( p, dispatch ) {
     const updates = { };
     const obs = p.to_observation;
-    console.log(p);
-    console.log(obs);
-    console.log(this);
     if ( !this.date && obs.time_observed_at ) {
       updates.date = new Date( obs.time_observed_at );
     }
@@ -95,6 +94,7 @@ const ObsCard = class ObsCard {
       }
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
+    else if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
     if ( this.date ) { params.observation.observed_on_string = this.date; }
     const photoIDs = _.compact( _.map( this.files, f => ( f.photo.id ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }

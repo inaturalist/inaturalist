@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Modal, Button, Input } from "react-bootstrap";
-import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
+import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker, InfoWindow } from "react-google-maps";
 
 
 class LocationChooser extends Component {
@@ -72,7 +72,7 @@ class LocationChooser extends Component {
       lng: latLng.lng( ),
       center: this.refs.map.getCenter( ),
       bounds: this.refs.map.getBounds( ),
-      radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 5000000 )
+      radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 2000000 )
     } } );
   }
 
@@ -195,6 +195,12 @@ class LocationChooser extends Component {
         markers.push(
           <Marker key={`marker${c.id}`}
             position={{ lat: c.latitude, lng: c.longitude }}
+            icon={{
+              path: "M -4,-4 4,4 M 4,-4 -4,4",
+              strokeColor: "#337ab7",
+              strokeWeight: 4,
+              scale: 1
+            }}
           />
         );
         circles.push(
@@ -203,12 +209,13 @@ class LocationChooser extends Component {
             radius={c.accuracy}
             onClick={ this.handleMapClick }
             options={{
-              strokeColor: "#000000",
-              strokeOpacity: 0.5,
-              fillColor: "#ffffff",
-              fillOpacity: 0.2
+              strokeColor: "#337ab7",
+              strokeOpacity: 0.6,
+              fillColor: "#337ab7",
+              fillOpacity: 0.35
             }}
-          />
+          >
+          </Circle>
         );
       }
     } );
@@ -232,7 +239,7 @@ class LocationChooser extends Component {
     return (
       <Modal show={ this.props.open } className="location" onHide={ this.close }>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{ this.props.notes || "Location" }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <GoogleMapLoader

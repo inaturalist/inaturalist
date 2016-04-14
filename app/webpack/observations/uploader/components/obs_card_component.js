@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
-import { Badge, Glyphicon, Input, Button } from "react-bootstrap";
-import ImageGallery from "react-image-gallery";
+import { Badge, Glyphicon, Input, Button, Carousel, CarouselItem } from "react-bootstrap";
 import { pipe } from "ramda";
 import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
 import Dropzone from "react-dropzone";
@@ -104,7 +103,7 @@ class ObsCardComponent extends Component {
     let badge;
     const filesArray = _.values( obsCard.files );
     const galleryImages = _.compact( _.map( filesArray, f => (
-      f.photo && { original: f.photo.small_url }
+      f.photo && f.photo.small_url
     ) ) );
     const photo = filesArray.length > 0 ? filesArray[0] : undefined;
     if ( photo && photo.upload_state === "pending" ) {
@@ -115,13 +114,18 @@ class ObsCardComponent extends Component {
       img = ( <div className="placeholder" /> );
     } else if ( photo && photo.upload_state === "uploaded" && photo.photo ) {
       badge = ( <Badge>{ filesArray.length }</Badge> );
-      // img = ( <img src={ photo.photo.small_url } /> );
       img = (
-        <ImageGallery
-          showThumbnails={ false }
-          showBullets={ galleryImages.length > 1 }
-          items={ galleryImages }
-        />
+        <Carousel
+          interval={ 0 }
+          controls={ galleryImages.length > 1 }
+          indicators={ galleryImages.length > 1 }
+        >
+          { galleryImages.map( i => (
+            <CarouselItem>
+              <img src={ i } />
+            </CarouselItem>
+          ) ) }
+        </Carousel>
       );
     } else {
       img = ( <div className="placeholder" /> );
@@ -131,6 +135,9 @@ class ObsCardComponent extends Component {
         <Glyphicon glyph="globe" />
       </Button>
     );
+    let locationText = obsCard.locality_notes ||
+      ( obsCard.latitude &&
+      `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` );
     return (
       <Dropzone className="cellDropzone" disableClick disablePreview onDrop={
         ( f, e ) => onCardDrop( f, e, obsCard ) } activeClassName="hover"
@@ -154,25 +161,29 @@ class ObsCardComponent extends Component {
               </div>
               <TaxonAutocomplete key={ obsCard.selected_taxon && obsCard.selected_taxon.id }
                 bootstrapClear
-                searchExternal={false}
+                searchExternal
+                showPlaceholder
+                allowPlaceholders
+                perPage={ 6 }
                 initialSelection={ obsCard.selected_taxon }
-                afterSelect={ function ( result ) {
+                initialTaxonID={ obsCard.taxon_id }
+                afterSelect={ result =>
                   updateObsCard( obsCard,
-                    { taxon_id: result.item.id, selected_taxon: result.item } );
-                } }
-                afterUnselect={ function ( ) {
+                    { taxon_id: result.item.id, selected_taxon: result.item } )
+                }
+                afterUnselect={ ( ) => {
                   if ( obsCard.taxon_id ) {
                     updateObsCard( obsCard,
                       { taxon_id: undefined, selected_taxon: undefined } );
                   }
-                } }
+                }}
+                onChange={ e => updateObsCard( obsCard, { species_guess: e.target.value } ) }
               />
               <DateTimePicker key={ obsCard.date } defaultValue={ obsCard.date } onChange={ e =>
                 updateObsCard( obsCard, { date: e } ) }
               />
               <Input type="text" buttonAfter={globe} onClick={ this.selectCard } readOnly
-                value={ obsCard.latitude &&
-                  `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` }
+                value={ locationText }
               />
               <Input type="textarea" placeholder="Add a description" onClick={ this.selectCard }
                 value={ obsCard.description } onChange={ e =>

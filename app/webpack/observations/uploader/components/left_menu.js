@@ -60,6 +60,7 @@ class LeftMenu extends Component {
     const commonDate = this.commonValue( "date" );
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
+    const commonNotes = this.commonValue( "locality_notes" );
     let descriptionPlaceholder = "Enter description";
     if ( uniqDescriptions.length > 1 ) {
       descriptionPlaceholder = "Edit multiple descriptions";
@@ -70,6 +71,9 @@ class LeftMenu extends Component {
       </Button>
     );
     let menu;
+    let locationText = commonNotes ||
+      ( commonLat && commonLng &&
+      `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
     if ( count === 0 ) {
       menu = <h4 className="empty">Select observations to edit...</h4>;
     } else {
@@ -78,6 +82,8 @@ class LeftMenu extends Component {
           <h4>Editing {count} observations</h4>
           <TaxonAutocomplete
             bootstrapClear
+            searchExternal
+            showPlaceholder
             searchExternal={false}
             initialSelection={ commonSelectedTaxon }
             afterSelect={ function ( result ) {
@@ -92,8 +98,7 @@ class LeftMenu extends Component {
             onChange={ e => updateSelectedObsCards( { date: e } ) }
           />
           <Input key={ `location:${count}` } type="text" buttonAfter={ globe } readOnly
-            value={ commonLat && commonLng &&
-              `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` }
+            value={ locationText }
           />
           <Input key={ `description:${count}` } type="textarea"
             placeholder={ descriptionPlaceholder } value={ commonDescription }

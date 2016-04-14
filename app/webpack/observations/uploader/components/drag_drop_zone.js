@@ -28,16 +28,16 @@ class DragDropZone extends Component {
       }
       $( "body" ).unbind( "click" );
       $( "body" ).on( "click", this.unselectAll );
-      $( "#imageGrid" ).selectable( { filter: ".card",
+      $( ".uploader" ).selectable( { filter: ".card",
         cancel: ".glyphicon, input, button, .input-group-addon, " +
           ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
         selecting: this.selectObsCards,
         unselecting: this.selectObsCards,
         distance: 0
       } );
-      $( "#imageGrid" ).selectable( "enable" );
+      $( ".uploader" ).selectable( "enable" );
     } else {
-      $( "#imageGrid" ).selectable( "disable" );
+      $( ".uploader" ).selectable( "disable" );
       window.onbeforeunload = undefined;
     }
   }
@@ -55,8 +55,10 @@ class DragDropZone extends Component {
   }
 
   unselectAll( e ) {
-    if ( $( ".card, #multiMenu, button, .modal" ).
-           has( e.target || e.nativeEvent.target ).length > 0 ) {
+    const ignore = ".card, #multiMenu, button, .modal";
+    const target = e.target || e.nativeEvent.target;
+    if ( $( ignore ).has( target ).length > 0 ||
+         $( target ).is( ignore ) ) {
       return;
     }
     this.props.selectObsCards( {} );
