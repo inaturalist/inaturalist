@@ -6,7 +6,9 @@ import {
   addComment,
   toggleCaptive,
   toggleReviewed,
-  agreeWithCurrentObservation
+  agreeWithCurrentObservation,
+  showNextObservation,
+  showPrevObservation
 } from "../actions";
 
 function mapStateToProps( state ) {
@@ -40,6 +42,12 @@ function mapDispatchToProps( dispatch ) {
     },
     agreeWithCurrentObservation: ( ) => {
       dispatch( agreeWithCurrentObservation( ) );
+    },
+    showNextObservation: ( ) => {
+      dispatch( showNextObservation( ) );
+    },
+    showPrevObservation: ( ) => {
+      dispatch( showPrevObservation( ) );
     }
   };
 }

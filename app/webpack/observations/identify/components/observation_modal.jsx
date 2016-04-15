@@ -32,7 +32,9 @@ const ObservationModal = ( {
   addComment,
   loadingDiscussionItem,
   agreeWithCurrentObservation,
-  currentUserIdentification
+  currentUserIdentification,
+  showNextObservation,
+  showPrevObservation
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -82,6 +84,12 @@ const ObservationModal = ( {
       bsSize="large"
       className="ObservationModal"
     >
+      <Button className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
+        &lsaquo;
+      </Button>
+      <Button className="next nav-button" onClick={ function ( ) { showNextObservation( ); } }>
+        &rsaquo;
+      </Button>
       <Modal.Header closeButton>
         <Modal.Title>
           <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
@@ -107,6 +115,7 @@ const ObservationModal = ( {
                 showThumbnails={images.length > 1}
                 lazyLoad={false}
                 server
+                showNav={false}
               />
             </Col>
             <Col xs={4} className="sidebar">
@@ -212,7 +221,9 @@ ObservationModal.propTypes = {
   addComment: PropTypes.func,
   loadingDiscussionItem: PropTypes.bool,
   agreeWithCurrentObservation: PropTypes.func,
-  currentUserIdentification: PropTypes.object
+  currentUserIdentification: PropTypes.object,
+  showNextObservation: PropTypes.func,
+  showPrevObservation: PropTypes.func
 };
 
 export default ObservationModal;
