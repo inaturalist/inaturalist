@@ -1087,7 +1087,7 @@
                 <li>
                   <% if notification == "committed" %>
                     <div class="timeline-badge warning"><i class="glyphicon glyphicon glyphicon-random"></i></div>
-                  <% elsif (notification == "new_observations" && resource.class.name == place) %>
+                  <% elsif (notification == "new_observations" && resource.class.name == "place") %>
                     <div class="timeline-badge success"><i class="glyphicon glyphicon-map-marker"></i></div>
                   <%- else %>
                     <div class="timeline-badge plain">
