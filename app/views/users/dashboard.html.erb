@@ -3,6 +3,308 @@
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
+  <style>
+  
+
+
+  .timeline {
+  	list-style: none;
+  	padding: 20px 0 20px 0;
+  	position: relative;
+  }
+  .timeline:before {
+  	top: 0;
+  	bottom: 0;
+  	position: absolute;
+  	content: " ";
+  	width: 3px;
+  	background-color: #eeeeee;
+  	margin-left: 25px;
+  }
+
+
+  .timeline_mini > ul.timeline > li {}
+  .timeline_mini > ul.timeline:before > li {
+  	top: 0;
+  	bottom: 0;
+  	position: absolute;
+  	content: " ";
+  	width: 3px;
+  	background-color: #fff;
+  	margin-left: 25px;
+	
+	
+  }
+
+  .timeline > li {
+  	margin-bottom: 20px;
+  	position: relative;
+  }
+  .timeline > li:before, .timeline > li:after {
+  	content: " ";
+  	display: table;
+  }
+  .timeline > li:after {
+  	clear: both;
+  }
+  .timeline > li:before, .timeline > li:after {
+  	content: " ";
+  	display: table;
+  }
+  .timeline > li:after {
+  	clear: both;
+  }
+  .timeline > li > .timeline-panel {
+  	float: left;
+  	border: 1px solid #d4d4d4;
+  	border-radius: 2px;
+  	padding: 20px;
+  	position: relative;
+  	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  	margin-left: 10%;
+  	width: 90%
+  }
+
+  .timeline_mini > .timeline-panel {
+  	float: left;
+  	background-color: #eee;
+  	border: 1px solid #d4d4d4;
+  	border-radius: 2px;
+  	padding: 20px;
+  	position: relative;
+  	margin-left: 10%;
+  	width: 90%
+  }
+  /* Udder****************************************** */
+
+  .timeline > li > .timeline-panel:before {
+  	position: absolute;
+  	top: 26px;
+  	right: -15px;
+  	display: inline-block;
+  	border-top: 15px solid transparent;
+  	border-left: 15px solid #ccc;
+  	border-right: 0 solid #ccc;
+  	border-bottom: 15px solid transparent;
+  	content: " ";
+  }
+  .timeline > li > .timeline-panel:after {
+  	position: absolute;
+  	top: 27px;
+  	right: -14px;
+  	display: inline-block;
+  	border-top: 14px solid transparent;
+  	border-left: 14px solid #fff;
+  	border-right: 0 solid #fff;
+  	border-bottom: 14px solid transparent;
+  	content: " ";
+  }
+  .timeline > li > .timeline-panel:before {
+  	border-left-width: 0;
+  	border-right-width: 15px;
+  	left: -15px;
+  	right: auto;
+  }
+  .timeline > li > .timeline-panel:after {
+  	border-left-width: 0;
+  	border-right-width: 14px;
+  	left: -14px;
+  	right: auto;
+  }
+
+
+
+  /* Badge************************************* */
+
+  .timeline > li > .timeline-badge {
+  	color: #fff;
+  	width: 50px;
+  	height: 50px;
+  	line-height: 50px;
+  	font-size: 1.4em;
+  	text-align: center;
+  	position: absolute;
+  	top: 16px;
+  	margin-left: 0;
+  	background-color: #999999;
+  	z-index: 100;
+  	border-top-right-radius: 50%;
+  	border-top-left-radius: 50%;
+  	border-bottom-right-radius: 50%;
+  	border-bottom-left-radius: 50%;
+  }
+  .timeline > li > .timeline-badge > img {
+  	width: 50px;
+  	height: 50px;
+  }
+  .sub-badge {
+  	color: #fff;
+  	width: 35px;
+  	height: 35px;
+  	line-height: 37px;
+  	font-size: 1.2em;
+  	text-align: center;
+  	position: absolute;
+  	top: 86px;
+  	margin-left: 9px;
+  	background-color: #c6c6c6;
+  	z-index: 100;
+  	border-top-right-radius: 50%;
+  	border-top-left-radius: 50%;
+  	border-bottom-right-radius: 50%;
+  	border-bottom-left-radius: 50%;
+  }
+  .timeline-badge.primary {
+  	background-color: #2e6da4 !important;
+  }
+  .timeline-badge.success {
+  	background-color: #3f903f !important;
+  }
+  .timeline-badge.warning {
+  	background-color: #f0ad4e !important;
+  }
+  .timeline-badge.danger {
+  	background-color: #d9534f !important;
+  }
+  .timeline-badge.info {
+  	background-color: #5bc0de !important;
+  }
+  /* Panel Content************************************* */
+
+  
+  h2.timeline-title {
+  	margin-top: 0;
+  	color: inherit;
+  	font-size: 1em;
+  	margin-bottom: 18px
+  }
+  .timeline-title > .time {
+  	float: right!important;
+  	color: #777;
+  	font-size: 75%;
+  	padding-right: 10px;
+  	border-right: 1px solid #ddd;
+  	margin-right: 10px;
+  }
+  /*.timeline-title > .time:before {
+  	font-family: 'Glyphicons Halflings';
+  	content: "\e023";
+  }*/
+  .timeline-title > a > .glyphicon {
+  	font-size: 1em;
+  	line-height: 10px;
+  	color: #777
+  }
+  /*.timeline-body > p, .timeline-body > ul {
+  	margin-bottom: 0;
+  }
+  */
+
+  .timeline-body > p + p {
+  	margin-top: 10px;
+  }
+
+  .timeline-body > p:last-child, .timeline-footer	 > p:last-child {
+    margin-bottom:0;
+  }
+
+
+  .timeline-body > ul {
+    margin-bottom:10px;
+  }
+
+
+  .scientific_name {
+  	font-size: .8em;
+  	font-weight: normal;
+  	color: gray
+  }
+
+
+  /* Panel Content > Media Body ************************************* */
+
+  .media-body > p > button {
+  	margin-right: 10px;
+  }
+  .timeline-body .media-body > h3 {
+  	font-size: 1.4em;
+  	margin-top: 3px
+  }
+  .timeline-body .media-left > a > img {
+  	width: 120px;
+  	height: 120px;
+  }
+  .media-body > ul, .media-body > ul > li {
+  	margin-left: 0;
+  	margin-bottom: 2px;
+  	padding-left: 0;
+  	list-style: none;
+  	list-style-type: none
+  }
+  div.media-body > ul > li {
+  	padding-left: 0;
+  	list-style: none;
+  	list-style-type: none
+  }
+  div.media-body > ul {
+  	margin-bottom: 10px
+  }
+  .timeline-footer {
+  	margin-top: 10px;
+  	padding: 0 0 0 0
+  }
+  .timeline-footer > button {
+  	margin-right: 10px
+  }
+
+  .thumbnail > h3 {
+  	font-size:14px;
+  	line-height:20px;
+  	margin:0;
+  	padding:5px
+  }
+
+
+  /* Panel Content > Update Type Specific ************************************* */
+
+  li.role_change > .timeline-badge {
+  	border-top-right-radius: 100%;
+  	border-top-left-radius: 100%;
+  	border-bottom-right-radius: 100%;
+  	border-bottom-left-radius: 100%;
+  }
+  li.taxon_change > .timeline-panel > .timeline-body {
+  	padding: 10px 10px 0 10px;
+  	margin-bottom: 20px;
+  	border: 1px solid transparent;
+  	border-radius: 4px;
+  	background: #eee;
+  }
+
+
+
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row {
+  	margin-right:-5px;
+  	margin-left:-5px;
+	
+  }
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul
+  {
+      list-style:none;
+      margin-left: -40px;
+  }
+
+
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row  > ul > li.col-md-3 {
+  padding:0 5px;
+
+  }
+
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row  > ul > li.col-md-3 > a > .thumbnail {
+  margin-bottom:10px;
+  }
+  </style>
 <% end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -193,6 +495,561 @@
               </div>
             </div>                
           <% end -%> 
+          
+          <ul class="timeline">
+            <li class="journal_post">
+              <div class="timeline-badge warning">
+                <img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic01.jpg" class="img-circle padding" alt=""/>
+              </div>
+              <div class="sub-badge">
+                <i class="glyphicon glyphicon-pencil"></i>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i>  6:32 am</span><a href="#">carrieseltzer</a> wrote a new post</h2>
+                </div>
+                <div class="timeline-body">
+                  <h3>Spring Is Here!</h3>
+                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindurea quium dia nois paga. Sapien in monti ce receita de bolis, mais bolis eu num gostis.</p>
+                  <div id="expand01" class="collapse out" style="margin-top:10px">
+                    <p>Morbi tincidunt ac lectus id auctor. Vivamus eu nulla vulputate, lobortis nibh vitae, rutrum turpis. Donec rutrum, augue vestibulum bibendum vestibulum, leo quam aliquet elit, sed hendrerit velit augue a turpis. Morbi tincidunt ac lectus id auctor. Vivamus eu nulla vulputate, lobortis nibh vitae, rutrum turpis. Donec rutrum, augue vestibulum bibendum vestibulum, leo quam aliquet elit, sed hendrerit velit augue a turpis.</p>
+                  </div>
+                  <p class="more"><a href="#" type="button" class="" data-toggle="collapse" data-target="#expand01">More...</a></p>
+                </div>
+                <div class="timeline-footer">
+                  <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand01">Expand</button>
+                  <button type="button" class="btn btn-sm btn-primary" >Read</button>
+                </div>
+              </div>
+            </li>
+            <li class="taxon_change">
+              <div class="timeline-badge warning"><i class="glyphicon glyphicon-random"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span> Taxon swapped affecting Bombus griseocollis (Committed by: <a href="#">loarie</a>)</h2>
+                </div>
+                <div class="timeline-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Taxon</th>
+                        <th>Replacement Taxon</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#">Garden Snail</a> (Cornu aspersum [inactive])</td>
+                        <td><a href="#">Garden Snail</a> (Sceloporus occidentalis)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="timeline-footer">
+                  <button type="button" class="btn btn-sm btn-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-default">Update Your Content</button>
+                  <a href=""><i class="glyphicon glyphicon-info-sign"></i> About Taxon Changes</a> </div>
+              </div>
+            </li>
+            <li class="project_invite">
+              <div class="timeline-badge warning"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic01.jpg" class="img-circle padding" alt=""/></div>
+              <div class="sub-badge"><i class="glyphicon glyphicon-send"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span><a href="#">carrieseltzer</a> invited you to join a project</h2>
+                </div>
+                <div class="timeline-body">
+                  <div class="media">
+                    <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" alt="..."> </a> </div>
+                    <div class="media-body">
+                      <h3>The Birds of Golden Gate Park</h3>
+                      <p>Discover and track the birds found in Golden Gate Park, San Francisco, CA! Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra...</p>
+                      <p>
+                        <button type="button" class="btn btn-sm btn-primary" >Join Project</button>
+                        <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand01">About this Project</button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="role_change">
+              <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa.jpg" alt=""/></div>
+              <div class="sub-badge"><i class="glyphicon glyphicon-user"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span>Role change(s) for <a href="#">Project of Randomness</a></h2>
+                </div>
+                <div class="timeline-body">
+                  <ul>
+                    <li><a href="#">sarahsnail</a> is now a <strong>manager</strong></li>
+                    <li><a href="#">inarainara</a> is now a <strong>curator</strong></li>
+                  </ul>
+                  <div class="timeline-footer">
+                  <p class="alert alert-info">Just a reminder, project curators can see the private and obscured coordinates of observations you add to this project.</p>
+                </div>
+                </div>
+              </div>
+            </li>
+            <li class="observation_added">
+              <div class="timeline-badge warning"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic02.jpg" class="img-circle padding" alt=""/></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span> <a href="#">kueda</a> added an observation</h2>
+                </div>
+                <div class="timeline-body">
+                  <div class="media">
+                    <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa01.jpg" alt="..."> </a> </div>
+                    <div class="media-body">
+                      <h3>Umber Skipper <span class="scientific_name">(Poanes melane)</span></h3>
+                      <ul>
+                        <li><i class="glyphicon glyphicon-calendar"></i> Apr 3, 2016 | <i class="glyphicon glyphicon-map-marker"></i> Mount Diablo State Park, Clayton, CA, US (Google, OSM)</li>
+                        <li>1 ID <span>Research Grade</span></li>
+                      </ul>
+                      <p>
+                        <button type="button" class="btn btn-sm btn-primary" >View</button>
+                        <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand01">View All From This Location</button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="observation_added">
+              <div class="timeline-badge warning"><img src="http://thinkmoredesign.com/inat/Dashboard/img/136-REC_Logo1.jpg" class="padding" alt=""/></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span>  Your observation have been added to <a href="#">ASC Roadkill Observations</a> by <a href="">loarie</a></h2>
+                </div>
+                <div class="timeline-body">
+                  <div class="media">
+                    <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa01.jpg" alt="..."> </a> </div>
+                    <div class="media-body">
+                      <h3>Umber Skipper <span class="scientific_name">(Poanes melane)</span></h3>
+                      <ul>
+                        <li><i class="glyphicon glyphicon-calendar"></i> Apr 3, 2016 | <i class="glyphicon glyphicon-map-marker"></i> Mount Diablo State Park, Clayton, CA, US (Google, OSM)</li>
+                        <li>1 ID <span>Research Grade</span></li>
+                      </ul>
+                      <p>
+                        <button type="button" class="btn btn-sm btn-primary" >View</button>
+                        <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand01">View All From This Location</button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>        
+            <li class="observation_multiple_added">
+              <div class="timeline-badge warning"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic02.jpg" class="img-circle padding" alt=""/></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span> <a href="#">kueda</a> added 9 observations</h2>
+                </div>
+                <div class="timeline-body">
+                  <div class="row" >
+                    <ul>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row collapse out"  id="expand03">
+                    <ul>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="timeline-footer">
+                    <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand03">Preview</button>
+                    <button type="button" class="btn btn-sm btn-primary" >View All</button>
+                  </div>
+              </div>  
+            </li>        
+            <li class="observation_multiple_added">
+              <div class="timeline-badge success"><i class="glyphicon glyphicon-map-marker"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span> New observations from <a href="#">Africa</a></h2>
+                </div>
+                <div class="timeline-body">
+                  <div class="row" >
+                      <ul>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  <div class="row collapse out"  id="expand03">
+                      <ul>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="col-md-3">
+                          <a href="#">
+                            <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                              <h3>Butterflies </h3>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="timeline-footer">
+                  <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand03">Preview</button>
+                  <button type="button" class="btn btn-sm btn-primary" >View All</button>
+                </div>
+              </div>
+            </li>
+            <li class="observation_multiple_added">
+              <div class="timeline-badge warning"><img src="http://thinkmoredesign.com/inat/Dashboard/img/136-REC_Logo1.jpg" class=" padding" alt=""/></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span> Your observations have been added to <a href="#">ASC Roadkill Observations</a> by <a href="">loarie</a></h2>
+                </div>
+                <div class="timeline-body">
+                  <div class="row" >
+                    <ul>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row collapse out"  id="expand04">
+                    <ul>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="col-md-3">
+                        <a href="#">
+                          <div class="thumbnail"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" class="img-responsive" alt="...">
+                            <h3>Butterflies </h3>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="timeline-footer">
+                  <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand04">Preview</button>
+                  <button type="button" class="btn btn-sm btn-primary" >View All</button> <a href=""><i class="glyphicon glyphicon-cog"></i> Project Settings</a> | <a href=""><i class="glyphicon glyphicon-cog"></i>  Global Project Settings</a>
+                </div>
+              </div>
+            </li>        
+            <li class="observation_comment">
+              <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/taxa01.jpg" alt=""/></div>
+              <div class="sub-badge"><i class="glyphicon glyphicon-bookmark"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h2 class="timeline-title"><a class="pull-right" href="#"><span class="glyphicon glyphicon-cog" style="" aria-hidden="true"></span></a><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span>ID added to your <a href="#">observation</a> by <a href="">carrieseltzer</a></h2>
+                </div>
+                <div class="timeline-body">
+                  <div id="expand05" class="timline_mini collapse out"> 
+                    <ul class="timeline">
+                        <li class="observation_comment">
+                          <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic03.jpg" alt="" class="img-circle padding" /></div>
+                          <div class="timeline-panel" style="background-color: #EFEFEF; box-shadow:none">
+                            <div class="timeline-heading">
+                              <h2 class="timeline-title"><span class="time"> 6:32 am</span><span style="font-weight:normal; color:gray">You added an ID</span></h2>
+                            </div>
+                            <div class="timeline-body">
+                              <div class="media">
+                                <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa02.jpg" alt="..." style="width:50px; height:50px"> </a> </div>
+                                <div class="media-body">
+                                  <h3 style="line-height:40px">Butterflies <span class="scientific_name">(Poanes melane)</span>  <span class="label label-default pull-right">Refined</span></h3>               
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>      
+                        <li class="observation_comment">
+                          <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic02.jpg" alt="" class="img-circle padding" /></div>
+                          <div class="timeline-panel" style="background-color: #EFEFEF; box-shadow:none">
+                            <div class="timeline-heading">
+                              <h2 class="timeline-title"><span class="time"><i class="glyphicon glyphicon-time"></i> 6:32 am</span><span style="font-weight:normal; color:gray"><a href="">kueda</a> commented</span></h2>
+                            </div>
+                            <div class="timeline-body">
+                              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+                            </div>
+                          </div>
+                        </li>    
+                        <li class="observation_comment">
+                                <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic03.jpg" alt="" class="img-circle padding" /></div>
+                                <div class="timeline-panel" style="background-color: #EFEFEF; box-shadow:none">
+                                  <div class="timeline-heading">
+                                    <h2 class="timeline-title"><span class="time"> 6:32 am</span><span style="font-weight:normal; color:gray">You added an ID</span></h2>
+                                  </div>
+                                  <div class="timeline-body">
+                                    <div class="media">
+                                      <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa01.jpg" alt="..." style="width:50px; height:50px"> </a> </div>
+                                      <div class="media-body">
+                                        <h3 style="line-height:40px">Umber Skipper <span class="scientific_name">(Poanes melane)</span>  <button type="button" class="btn btn-sm btn-default pull-right" >Agree</button></h3> 
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>    
+                        <li class="observation_comment">
+                                <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic02.jpg" alt="" class="img-circle padding" /></div>
+                                <div class="timeline-panel" style="background-color: #EFEFEF; box-shadow:none">
+                                  <div class="timeline-heading">
+                                    <h2 class="timeline-title"><span class="time"> 6:32 am</span><span style="font-weight:normal; color:gray"><a href="">kueda</a> added an ID</span></h2>
+                                  </div>
+                                  <div class="timeline-body">
+                                    <div class="media">
+                                      <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa01.jpg" alt="..." style="width:50px; height:50px"> </a> </div>
+                                      <div class="media-body">
+                                        <h3 style="line-height:40px">Umber Skipper <span class="scientific_name">(Poanes melane)</span></h3>               
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>   
+                        <li class="observation_comment">
+                                <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic01.jpg" alt="" class="img-circle padding" /></div>
+                                <div class="timeline-panel"  style="background-color: #EFEFEF; box-shadow:none">
+                                  <div class="timeline-heading">
+                                    <h2 class="timeline-title"><span class="time"> 6:32 am</span><span style="font-weight:normal; color:gray"><a href="">carrieseltzer</a> added a field</span></h2>
+                                  </div>
+                                  <div class="timeline-body">
+                                    <ul>
+                                      <li><strong>Field:</strong> <a href="">Insect life stage</a></li>       
+                                      <li><strong>Value:</strong> adult </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </li>        
+                        <li class="observation_comment">
+                          <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic01.jpg" alt="" class="img-circle padding" /></div>
+                          <div class="timeline-panel"  style="background-color: #EFEFEF; box-shadow:none">
+                            <div class="timeline-heading">
+                              <h2 class="timeline-title"><span class="time"> 6:32 am</span><span style="font-weight:normal; color:gray"><a href="">carrieseltzer</a> added to faves</span></h2>
+                            </div>
+                            <div class="media-body">
+                              <h3><i class="glyphicon glyphicon-star"></i> Faved!</h3> 
+                            </div>
+                          </div>
+                        </li>                 
+                      </ul>       
+                  </div>       
+                  <ul class="timeline" style="margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0">
+                      <li class="observation_comment">
+                        <div class="timeline-badge"><img src="http://thinkmoredesign.com/inat/Dashboard/img/profile_pic01.jpg" alt="" class="img-circle padding" /></div>
+                        <div class="timeline-panel" style="background-color: #EFEFEF; box-shadow:none">
+                          <div class="timeline-heading">
+                            <h2 class="timeline-title"><span class="time"> 6:32 am</span><span style="font-weight:normal; color:gray"><a href=""></a> added an ID</span></h2>
+                          </div>
+                          <div class="timeline-body">
+                            <div class="media">
+                              <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="http://thinkmoredesign.com/inat/Dashboard/img/taxa01.jpg" alt="..." style="width:50px; height:50px"> </a> </div>
+                              <div class="media-body">
+                                <h3 style="line-height:40px">Umber Skipper <span class="scientific_name">(Poanes melane)</span></h3>
+                              </div>
+                              <p style="margin-top:10px">elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gos</p>
+                            </div>              
+                          </div>
+                        </div>
+                      </li>                            
+                    </ul>             
+                </div>            
+                <div class="timeline-footer">
+                  <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand05">Expand</button>
+                  <button type="button" class="btn btn-sm btn-primary" >Read</button>
+                </div> 
+              </div>
+            </li>            
+            <li>
+              <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Starter Template</h4>
+                </div>
+                <div class="timeline-body">
+                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+                  <p>Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          
           
           <% unless @updates.blank? -%>
             <% unless current_user.prefers_hide_activity_onboarding -%>
@@ -453,3 +1310,4 @@
     
   </div>
 </div>
+
