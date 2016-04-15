@@ -40,7 +40,7 @@ const ObservationModal = ( {
 
   // skipping map until we can work out the memory issues
   let taxonMap;
-  const includeMap = false;
+  const includeMap = true;
   if ( includeMap ) {
     taxonMap = (
       <TaxonMap
