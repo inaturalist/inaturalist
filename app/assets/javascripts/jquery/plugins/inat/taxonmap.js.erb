@@ -279,7 +279,7 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
       letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   _.each(options.observations, function( o ) {
-    if( o ) { return; }
+    if( !o ) { return; }
     var icon_div = $('#observation-'+ o.id +' .icon').get(0);
     if (!((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude))) {
       if( options.appendMarkerToList ) {
