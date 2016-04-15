@@ -164,6 +164,9 @@
   .timeline-badge.warning {
   	background-color: #f0ad4e !important;
   }
+  .timeline-badge.plain {
+  	background-color: #ffffff !important;
+  }
   .timeline-badge.danger {
   	background-color: #d9534f !important;
   }
@@ -1065,71 +1068,100 @@
                 <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity">Got it!</a></div>
               </div>                
             <% end -%>
-            <% for key, updates in @grouped_updates %>
-              <%-
-                resource_type, resource_id, notification = key
-                resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
-                  @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
-                else
-                  updates.last.resource
-                end
-                notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
-                  @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
-                else
-                  updates.last.notifier
-                end
-                is_mention = (notification == "mention")
-              -%>
-              <div class="update clear stacked <%= 'activity' if updates.last.notification == 'activity' %> <%= 'new' if updates.detect{|u| !u.new_record? && u.viewed_at.blank?} && updates.last.resource_owner_id == current_user.id %>">
-                <div class="updateresource">
-                  <%= link_to update_image_for(updates.last), resource %>
-                </div>
-                <div class="updatebody">
-                  <div class="updateheader meta stacked">
-                    <div class="right small">
-                      <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
-                      <%- if is_mention %>
-                        <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
-                          "#", class: "subscriptionsettings", "data-gear-text" => I18n.t("edit_your_default_settings"),
-                          "data-gear-url" => generic_edit_user_url %>
-                      <%- else %>
-                        <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
-                          edit_subscription_by_resource_path(resource_type, resource_id),
-                          class: "subscriptionsettings" %>
-                      <%- end %>
-                    </div>
-                    <%= update_tagline_for(updates.last, :count => updates.size) %>
-                  </div>
-                  <% if notification == "activity" || is_mention -%>
-                    <div class="updatecontent">
-                      <% for u in updates %>
-                        <%-
-                          notifier = nil
-                          if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-                            notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-                          end
-                          notifier ||= u.notifier
-                        -%>
-                        <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
-                          <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
-                        </div>
-                      <% end %>
-                      <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",
-                              resource, :class => "readmore" %>
-                    </div>
-                  <% else %>
-                    <%= 
-                      begin
-                        render :partial => "#{resource_type.underscore.pluralize}/update_#{notification}", 
-                          :object => resource, :locals => {:updates => updates, :resource => resource}
-                        rescue ActionView::MissingTemplate, Errno::ENOENT
-                        "#{resource_type} #{notification}"
+            <ul class="timeline">
+              <% for key, updates in @grouped_updates %>
+                <%-
+                  resource_type, resource_id, notification = key
+                  resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
+                    @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
+                  else
+                    updates.last.resource
+                  end
+                  notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
+                    @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
+                  else
+                    updates.last.notifier
+                  end
+                  is_mention = (notification == "mention")
+                -%>
+                <li>
+                  <% if notification == "committed" %>
+                    <div class="timeline-badge warning"><i class="glyphicon glyphicon glyphicon-random"></i></div>
+                  <% elsif (notification == "new_observations" && resource.class.name == place) %>
+                    <div class="timeline-badge success"><i class="glyphicon glyphicon-map-marker"></i></div>
+                  <%- else %>
+                    <div class="timeline-badge plain">
+                      <%= link_to update_image_for(updates.last, :style => "max-width:48px;"), resource %>
+                    </div>                    
+                  <%- end %>
+                  <% if ["activity","curator_change","invited","created_post"].include? notification %>
+                    <%- 
+                      case notification
+                      when "activity"
+                        glytype = "bookmark"
+                      when "curator_change"
+                        glytype = "user"
+                      when "invited"
+                        glytype = "send"
+                      when "created_post"
+                        glytype = "pencil"
                       end
                     -%>
-                  <% end -%>
-                </div>
-              </div>
-            <% end %>
+                    <div class="sub-badge">
+                      <i class="glyphicon glyphicon-<%= glytype %>"></i>
+                    </div>
+                  <%- end %>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h2 class="timeline-title">
+                        <%- if is_mention %>
+                          <%= link_to generic_edit_user_url, class: "pull-right" do %>
+                            <span class="glyphicon glyphicon-cog"></span>
+                          <%- end %>
+                        <%- else %>
+                          <%= link_to edit_subscription_by_resource_path(resource_type, resource_id), class: "pull-right" do %>
+                            <span class="glyphicon glyphicon-cog"></span>
+                          <%- end %>
+                        <%- end %>
+                        <span class="time" title="<%= updates.last.sort_by_date.iso8601 %>">
+                          <i class="glyphicon glyphicon-time"></i>  <%= compact_date(updates.last.sort_by_date) %>
+                        </span>
+                        <%= update_tagline_for(updates.last, :count => updates.size) %>
+                      </h2>
+                    </div>
+                    <div class="timeline-body">
+                      <% if notification == "activity" || is_mention -%>
+                        <div class="updatecontent">
+                          <% for u in updates %>
+                            <%-
+                              notifier = nil
+                              if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
+                                notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
+                              end
+                              notifier ||= u.notifier
+                            -%>
+                            <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
+                              <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
+                            </div>
+                          <% end %>
+                          <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",
+                                  resource, :class => "readmore" %>
+                        </div>
+                      <% else %>
+                        <%= 
+                          begin
+                            render :partial => "#{resource_type.underscore.pluralize}/update_#{notification}", 
+                              :object => resource, :locals => {:updates => updates, :resource => resource}
+                            rescue ActionView::MissingTemplate, Errno::ENOENT
+                            "#{resource_type} #{notification}"
+                          end
+                        -%>
+                      <% end -%>
+                    </div>
+                  </div>
+                </li>
+              <% end -%>
+            </ul>
             <script type="text/javascript" charset="utf-8">
               $('.observationcontrols').observationControls()
             </script>

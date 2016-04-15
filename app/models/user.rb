@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-  before_save :get_lat_lon_from_ip, :if => :last_ip_changed?
+  before_save :get_lat_lon_from_ip
   
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
