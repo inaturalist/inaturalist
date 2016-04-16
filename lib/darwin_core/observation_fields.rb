@@ -2,12 +2,12 @@ module DarwinCore
   class ObservationFields
 
     TERMS = [
-      ['occurrenceID', 'http://rs.tdwg.org/dwc/terms/occurrenceID', nil, 'observation_id'],
+      ['id', 'id', nil, 'observation_id'],
       ['identifier', 'http://purl.org/dc/terms/identifier', nil, 'id'],
-      %w(fieldName http://www.inaturalist.org/terms/fieldName),
-      %w(fieldID http://www.inaturalist.org/terms/fieldID),
-      %w(value http://www.inaturalist.org/terms/value),
-      %w(dataType http://www.inaturalist.org/terms/dataType),
+      %w(fieldName fieldName),
+      %w(fieldID fieldID),
+      %w(value value),
+      %w(dataType dataType),
       %w(created http://purl.org/dc/terms/created),
       %w(modified http://purl.org/dc/terms/modified),
     ]
