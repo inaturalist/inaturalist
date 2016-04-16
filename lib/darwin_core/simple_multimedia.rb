@@ -1,5 +1,6 @@
 module DarwinCore
   class SimpleMultimedia
+    include Helpers
 
     TERMS = [
       ['id', 'id', nil, 'core_id'],
