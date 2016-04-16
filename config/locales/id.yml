@@ -367,7 +367,7 @@ id:
   announcements: Pengumuman
   any: semua
   apply_to_selected: Berlaku untuk yang sudah dipilih
-  apply_captive_cultivated: berlaku untuk ditangkap / dibudidayakan
+  apply_captive_cultivated: berlaku untuk ditangkarkan / dibudidayakan
   apply_fields: terapkan bidang
   apply_geoprivacy: Terapkan geoprivacy
   apply_darr: Apply &darr;
@@ -514,14 +514,14 @@ id:
   back_to_your_observations: Kembali ke pengamatan anda
   back_to_your_profile: Kembali ke profil anda
   back_to_your_projects: Kembali ke proyek anda
-  batch: Sejumlah
+  batch: Jamak
   batch_edit: Sejumlah perubahan
   batch_edit_taxa_for_x_html: Perubahan taksa sejumlah %{x}
   batch_operations: Beberapa operasi
   beacuse_we_recently_changed_auth_system: Karena kami baru saja mengubah sistem otentikasi
     pengguna Anda, hal itu perlu bagi sandi Anda diatur ulang.
   because: Karena
-  before_importing_photos: sebelum memasukkan Foto
+  before_importing_photos: sebelum memasukkan foto
   before_you_can_contribute_your_observations: sebelum Anda dapat mengkontribusikan
     pengamatan Anda.
   belives_this_is_a_comprehensive_list_of: percaya bahwa ini adalah daftar lengkap
@@ -548,7 +548,7 @@ id:
     amati
   brief_description_of_what_you_saw: Deskripsi singkat tentang apa yang Anda amati
   brown: Coklat
-  browse: Jelajahi
+  browse: Telusuri
   browse_all_projects: Mencari semua proyek
   browse_all_species: Mencari semua spesies
   browse_projects: Jelajahi proyek
@@ -761,7 +761,7 @@ id:
   community_supported_id: ID komunitas pendukung?
   compare_with: Dibandingkan dengan
   comparing: Membandingkan
-  comparing_list_to_list: MEmbandingkan %{list1} dengan %{list2}
+  comparing_list_to_list: Membandingkan %{list1} dengan %{list2}
   comparing_versions_x_and_y: Versi pembanding %{x} dan %{y}
   comparing_observations_from: membandingkan %{user} observasi dari %{dates}
   compiled_by_name: Disusun oleh %{name}
@@ -1026,7 +1026,7 @@ id:
   draft_: Rancangan
   draft_saved: Rancangan tersimpan!
   drafts: Rancangan
-  edit: Rubah
+  edit: Ubah
   edit_a_batch_of_observations: Menrubah sejumlah observasi
   edit_account_settings_and_profile: Rubah pengaturan akun &amp; profil
   edit_assessment: Merubah penilaian
@@ -1284,9 +1284,9 @@ id:
   from_place: Dari tempat
   from_your_site_observations: Dari %{site_name} observasi
   from_licensed_site_observations: Dari pengamtan berlisensi %{site_name}
-  full_id_please: Tolong masukkan identitas anda!
-  full_id_please!: Tolong masukkan identitas anda!
-  full_id_please?: Tolong masukkan identitas anda?
+  full_id_please: Butuh ID!
+  full_id_please!: Butuh ID!
+  full_id_please?: Butuh identifikasi?
   full_screen: Layar penuh
   gbif_occurrences: Kemunculan GBIF
   general: Umum
@@ -1518,7 +1518,7 @@ id:
   last_confirmed_observation: Pengamatan yang telah dikonfirmasi
   last_observation: Pengamatan terakhir
   last_seen: Terakhir dilihat
-  lat: Tahun
+  lat: Lintang
   latitude: Garis Lintang
   latitude_in_decimals: Garis lintang pada angka desimal, contoh 38. 123
   latitude_slash_y_coord_slash_northing: Garis lintang / koordinat y / utara
@@ -1772,7 +1772,7 @@ id:
   name: Nama
   name_entered: Nama yang dimasukkan
   name_llaves: '[NAMA]'
-  name_of_the_place_you: nama untuk tempat yang kamu telah buat untuk pengamatan
+  name_of_the_place_you: Lokasi pengamatan
   name_or_username: Nama pengguna
   name_provider: Nama penyedia
   name_providers:
@@ -2919,7 +2919,7 @@ id:
   suspend_user: menangguhkan pengguna
   sync: Sync?
   sync_with_eol: Sync dengan EOL
-  sync_obs_with_photo_metadata: Sync pengamatandengan metadata foto?
+  sync_obs_with_photo_metadata: Sync pengamatan dengan metadata foto?
   synonyms: Sinonim
   table: Tabel
   table_of_contents: Daftar isi
@@ -3339,17 +3339,18 @@ id:
   were_currently_down_for: Kami saat ini sedang bermasalah untuk
   what: Apa
   what_color_was_it: Warna apakah itu?
-  what_did_you_see: Apa yang Anda lihat?
+  what_did_you_see: Apa yang dilihat?
+  what_did_you_see?: <em>Apa</em> yang dilihat?
   what_do_you_think: Apa yang anda pikirkan?
   what_do_you_want_to_list: Apa yang anda inginkah untuk daftar?
   what_to_keep: Hal untuk disimpan
   what_want_to_list?: Apa yang anda inginkah untuk daftar?
   when: Kapan
-  when_did_you_see_it?: Kapan anda melihat itu?
+  when_did_you_see_it?: Kapan anda melihat?
   where: Dimana
   where_did_you_see_it: Dimana anda melihat itu?
   where_were_they?: Dimanakah mereka?
-  where_were_you?: Darimakah saja Anda?
+  where_were_you?: Dimanakah anda?
   which_projects_can_add_your_observations?: Proyek yang mana yang dapat ditambahkan
     pada pengamatan anda?
   white: putih
@@ -3477,11 +3478,14 @@ id:
   your_activation_code_was_missing: Kode aktivasi Anda hilang. Ikuti URL dari email
     Anda.
   your_comment_was_saved: Konten anda telah disimpan
+  your_default: Standar anda
+  your_default_time_zone: Zona waktu standar anda
   your_drafts: Berkas anda
   your_email_address: Alamat email anda
   your_flickr_account: Akun Flickr anda
   your_flickr_photos_have_been_tagged: Foto Flickr anda telah di tag!
-  your_home: Beranda Anda
+  your_hard_drive: Perangkat keras anda
+  your_home: Beranda
   your_id: ID Anda
   your_identification: Identifikasi Anda
   your_life_list: daftar hidup anda!
@@ -3507,8 +3511,8 @@ id:
   youve_opted_out_of_community_ids_for_this_obs: Memilih keluar dari identifikasikomunitas
     untuk pengamatan ini
   youve_seen_it_want_to: Anda telah melihat itu! Ingin untuk
-  zoom_in: Perbesar
-  zoom_out: Perkecil
+  zoom_in: Perdekat
+  zoom_out: Perjauh
   here_are_some_things_you_can_do_in_the_meantime: 'Berikut adalah beberapa hal yang
     dapat Anda lakukan sementara itu:'
   none_of_the_people_you_follow_have_any_updates_yet: Belum ada satupun orang yang
