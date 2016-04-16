@@ -67,24 +67,27 @@ module DarwinCore
     def make_descriptor
       extensions = []
       if @opts[:extensions]
-        if @opts[:extensions].detect{|e| e == "EolMedia"}
-          extensions << {
-            :row_type => "http://eol.org/schema/media/Document",
-            :file_location => "media.csv",
-            :terms => DarwinCore::EolMedia::TERMS
-          }
-        elsif @opts[:extensions].detect{|e| e == "SimpleMultimedia"}
-          extensions << {
-            row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
-            file_location: "images.csv",
-            terms: DarwinCore::SimpleMultimedia::TERMS
-          }
-        elsif @opts[:extensions].detect{|e| e == "ObservationFields"}
-          extensions << {
-            row_type: "http://www.inaturalist.org/observation_fields",
-            file_location: "observation_fields.csv",
-            terms: DarwinCore::ObservationFields::TERMS
-          }
+        @opts[:extensions].each do |e|
+          case e
+          when "EolMedia"
+            extensions << {
+              :row_type => "http://eol.org/schema/media/Document",
+              :file_location => "media.csv",
+              :terms => DarwinCore::EolMedia::TERMS
+            }
+          when "SimpleMultimedia"
+            extensions << {
+              row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
+              file_location: "images.csv",
+              terms: DarwinCore::SimpleMultimedia::TERMS
+            }
+          when "ObservationFields"
+            extensions << {
+              row_type: "http://www.inaturalist.org/observation_fields",
+              file_location: "observation_fields.csv",
+              terms: DarwinCore::ObservationFields::TERMS
+            }
+          end
         end
       end
       d = DarwinCore::Descriptor.new(:core => @opts[:core], :extensions => extensions)

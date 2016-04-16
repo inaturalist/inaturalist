@@ -36,6 +36,13 @@ describe DarwinCore::Archive, "make_descriptor" do
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://www.inaturalist.org/observation_fields'
   end
+  it "should include multiple extensions" do
+    archive = DarwinCore::Archive.new(extensions: %w(ObservationFields SimpleMultimedia))
+    xml = Nokogiri::XML(open(archive.make_descriptor))
+    row_types = xml.xpath('//xmlns:extension').map{|elt| elt['rowType']}
+    expect( row_types ).to include 'http://www.inaturalist.org/observation_fields'
+    expect( row_types ).to include 'http://rs.gbif.org/terms/1.0/Multimedia'
+  end
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
