@@ -258,7 +258,7 @@ class GuideTaxon < ActiveRecord::Base
       :common_names => true,
       :images => 5, 
       :maps => 5, 
-      :text => subjects.size == 0 ? 5 : subjects.size * 5,
+      :texts => subjects.size == 0 ? 5 : subjects.size * 5,
       :details => true}
     page_request_params[:subjects] = if subjects.blank?
       "overview"
