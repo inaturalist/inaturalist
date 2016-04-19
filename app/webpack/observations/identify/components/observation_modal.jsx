@@ -57,9 +57,11 @@ const ObservationModal = ( {
         observations={[obsForMap]}
         zoomLevel={ obsForMap.map_scale || 8 }
         mapTypeControl={false}
-        zoomControl={false}
         showAccuracy
         className="stacked"
+        disableFullscreen
+        showAllLayer={false}
+        overlayMenu={false}
       />
     );
   }
