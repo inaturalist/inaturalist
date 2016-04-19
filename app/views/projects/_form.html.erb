@@ -11,7 +11,8 @@
     $( function( ) {
       $("form.project_form").confirmModal({
         condition: function( ) {
-          return $("#project_prefers_aggregation").prop( "checked" );
+          return $("#aggregation").is(":visible") &&
+            $("#project_prefers_aggregation").prop( "checked" );
         },
         text: function( ) {
           var rules = $(".observationrules ul").clone( );
@@ -20,6 +21,12 @@
             rules: rules[0].outerHTML
           });
           return text;
+        },
+        onCancel: function( ) {
+          var button = $( "input[name='commit']" );
+          button.enable( );
+          button.removeClass( "description" );
+          button.attr( "value", button.data( "originalValue" ) );
         }
       });
     });

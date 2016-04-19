@@ -140,4 +140,12 @@ describe ProjectsController, "update" do
     project.reload
     expect( project ).not_to be_prefers_aggregation
   end
+  it "should not allow a non-curator to turn off observation aggregation" do
+    project.update_attributes(place: make_place_with_geom, prefers_aggregation: true)
+    expect( project ).to be_aggregation_allowed
+    expect( project ).to be_prefers_aggregation
+    put :update, id: project.id, project: {prefers_aggregation: false}
+    project.reload
+    expect( project ).to be_prefers_aggregation
+  end
 end

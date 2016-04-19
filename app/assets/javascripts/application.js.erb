@@ -1578,6 +1578,9 @@ $.fn.confirmModal = function( options ) {
     });
     cancel.on( "click", function( ) {
       dialogDiv.dialog( "close" );
+      if( _.isFunction( options.onCancel ) ) {
+        options.onCancel( );
+      }
     });
 
     // populate and display the modal dialog
@@ -1601,7 +1604,7 @@ $.fn.confirmModal = function( options ) {
     dialogDiv.dialog({ modal: true, title: I18n.t( "attention" ),
       dialogClass: "confirm-modal", minWidth: 450, maxWidth: 600 });
     dialogDiv.centerDialog( );
-    // just making sure nothing his highlighted, which looks weird
+    // just making sure nothing is highlighted, which looks weird
     $( ":focus" ).blur( );
   });
 };
