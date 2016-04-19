@@ -81,22 +81,30 @@ inatTaxonMap.fit = function( elt ) {
 
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
-  var map = iNaturalist.Map.createMap( $.extend( true, { }, options, {
-    div: elt,
-    mapTypeControl: (options.mapTypeControl !== false),
-    minZoom: options.minZoom,
-    disableFullscreen: options.disableFullscreen,
-    backgroundColor: '#E3EAF6',
-    zoomControl: (options.zoomControl !== false),
-    styles: [
-      {
-        stylers: [
-          {lightness: 50},
-          {saturation: -50}
+  var map,
+      mapOptions = $.extend( true, { }, {
+        mapTypeControl: (options.mapTypeControl !== false),
+        minZoom: options.minZoom,
+        backgroundColor: '#E3EAF6',
+        zoomControl: (options.zoomControl !== false),
+        styles: [
+          {
+            stylers: [
+              {lightness: 50},
+              {saturation: -50}
+            ]
+          }
         ]
-      }
-    ]
-  }));
+      } );
+  if ( $(elt).data('taxonMap') ) {
+    map = $(elt).data('taxonMap');
+    map.setOptions( mapOptions );
+  } else {
+    map = iNaturalist.Map.createMap( $.extend( true, { }, mapOptions, {
+      div: elt,
+      disableFullscreen: options.disableFullscreen
+    } ) );
+  }
 
   var preserveViewport = options.preserveViewport
   if (options.minX) {
@@ -120,11 +128,11 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     map.setMapTypeId(options.mapType)
   }
   // Create the custom control (but don't show it yet)
-  if( options.overlayMenu ) {
+  if( options.overlayMenu && !map._overlayControl) {
     map._overlayControl = new iNaturalist.OverlayControl(map);
   }
 
-  if( options.showLegend ) {
+  if( options.showLegend && !map._legend ) {
     // Create the DIV to hold the control and call the CenterControl() constructor
     // passing in this DIV.
     var legendControlDiv = document.createElement('div');
@@ -134,9 +142,16 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     // Create the DIV to hold the control and call the CenterControl() constructor
     // passing in this DIV.
     var legendDiv = document.createElement('div');
-    var legend = new iNaturalist.Legend(legendDiv, map);
+    map._legend = new iNaturalist.Legend(legendDiv, map);
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
   }
+
+  // Clear out all existing overlays so we can add new ones
+  map.removeAllLayers( );
+  if ( map._overlayControl ) {
+    map._overlayControl.removeAll( );
+  }
+  map.removeObservations( );
 
   // All Observations layer
   if( options.showAllLayer ) {
@@ -160,7 +175,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   // these are the observations that need Google Maps-style flags
   inatTaxonMap.addObservationsToMap( map, options, preserveViewport);
   var coord;
-  if ( options.urlCoords ) {
+  if ( options.urlCoords && !map.setUrlHashCoordDragendListener ) {
     function setUrlHashCoord() {
       var coords = window.map.getCenter(),
           x = preciseRound(coords.lng(), 3),
@@ -173,8 +188,8 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))});
       return { lat: bits[1], lng: bits[2], zoom: bits[0] };
     }
-    google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
-    google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
+    map.setUrlHashCoordDragendListener = google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
+    map.setUrlHashCoordZoomChangedListener = google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
     var coord = getUrlHashCoord();
     if (coord.lat) {
       setTimeout(function() {
