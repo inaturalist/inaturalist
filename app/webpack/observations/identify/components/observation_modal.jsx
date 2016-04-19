@@ -44,17 +44,18 @@ const ObservationModal = ( {
   let taxonMap;
   const includeMap = true;
   if ( includeMap ) {
+    const obsForMap = Object.assign( {}, observation );
     taxonMap = (
       <TaxonMap
-        key={`map-for-${observation.id}`}
+        key={`map-for-${obsForMap.id}`}
         taxonLayers={[{
-          taxon: observation.taxon,
-          observations: { observation_id: observation.id },
+          taxon: obsForMap.taxon,
+          observations: { observation_id: obsForMap.id },
           places: { disabled: true },
           gbif: { disabled: true }
         }] }
-        observations={[observation]}
-        zoomLevel={ observation.map_scale || 8 }
+        observations={[obsForMap]}
+        zoomLevel={ obsForMap.map_scale || 8 }
         mapTypeControl={false}
         zoomControl={false}
         showAccuracy
