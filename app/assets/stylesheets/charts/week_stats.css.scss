@@ -1,0 +1,64 @@
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+.line {
+  fill: none;
+  stroke: #e56b25;
+  stroke-width: 1.5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.record circle {
+  fill: white;
+  stroke: #e56b25;
+}
+
+.record text.rank {
+  fill: #e56b25;
+  font: 5px sans-serif;
+}
+
+.focus circle {
+  fill: white;
+  stroke: #e56b25;
+}
+
+.focus text.rank {
+  fill: #e56b25;
+  font: 5px sans-serif;
+}
+
+.focus text.title {
+  font: 7px sans-serif;
+}
+
+.focus text.obscount {
+  font: 7px sans-serif;
+}
+
+.focus text.topobserver {
+  text-transform: uppercase;
+  font: 5px sans-serif;
+}
+
+.focus text.login {
+  font: 6px sans-serif;
+}
+
+.focus .rect {
+  fill: white;
+  stroke: black;
+}
