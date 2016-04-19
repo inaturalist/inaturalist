@@ -56,6 +56,10 @@ class TaxonChangesController < ApplicationController
         @swaps_by_taxon_id[taxon.id] << swap
       end
     end
+
+    respond_to do |format|
+      format.html
+    end
   end
   
   def show
@@ -63,6 +67,9 @@ class TaxonChangesController < ApplicationController
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
       end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id}
+    end
+    respond_to do |format|
+      format.html
     end
   end
   
@@ -75,6 +82,9 @@ class TaxonChangesController < ApplicationController
     @output_taxa = Taxon.where("id in (?)", params[:output_taxon_ids])
     @input_taxa.each {|t| @taxon_change.add_input_taxon(t)} unless @input_taxa.blank?
     @output_taxa.each {|t| @taxon_change.add_output_taxon(t)} unless @output_taxa.blank?
+    respond_to do |format|
+      format.html
+    end
   end
   
   def create
@@ -97,6 +107,9 @@ class TaxonChangesController < ApplicationController
   
   def edit
     @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update

@@ -1246,6 +1246,9 @@ class ObservationsController < ApplicationController
     if @site && @site.site_only_users
       @top_identifiers = @top_identifiers.where(:site_id => @site)
     end
+    respond_to do |format|
+      format.html
+    end
   end
   
   # Renders observation components as form fields for inclusion in 
