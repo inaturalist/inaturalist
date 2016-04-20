@@ -5,19 +5,12 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
-import { bindShortcuts } from "redux-shortcuts";
+import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import rootReducer from "./reducers/";
 import {
-  addComment,
-  addIdentification,
-  agreeWithCurrentObservation,
   fetchObservations,
   fetchObservationsStats,
-  setConfig,
-  showNextObservation,
-  showPrevObservation,
-  toggleCaptive,
-  toggleReviewed
+  setConfig
 } from "./actions/";
 import App from "./components/app";
 
@@ -43,15 +36,7 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   } ) );
 }
 
-bindShortcuts(
-  ["right", showNextObservation],
-  ["left", showPrevObservation],
-  ["i", addIdentification],
-  ["c", addComment],
-  ["z", toggleCaptive],
-  ["r", toggleReviewed],
-  ["a", agreeWithCurrentObservation]
-)( store.dispatch );
+setupKeyboardShortcuts( store.dispatch );
 
 // retrieve initial set of observations
 store.dispatch( fetchObservations() );
