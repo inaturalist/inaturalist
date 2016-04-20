@@ -463,6 +463,7 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :summary
+      get :observation_weeks
     end
   end
 
