@@ -4,9 +4,6 @@
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
   <style>
-  
-
-
   .timeline {
   	list-style: none;
   	padding: 20px 0 20px 0;
@@ -21,21 +18,17 @@
   	background-color: #eeeeee;
   	margin-left: 25px;
   }
-
-
-  .timeline_mini > ul.timeline > li {}
-  .timeline_mini > ul.timeline:before > li {
-  	top: 0;
-  	bottom: 0;
-  	position: absolute;
-  	content: " ";
-  	width: 3px;
-  	background-color: #fff;
-  	margin-left: 25px;
-	
-	
+  timeline_mini > ul.timeline > li {
   }
-
+  timeline_mini > ul.timeline:before > li {
+   top: 0;
+   bottom: 0;
+   position: absolute;
+   content: " ";
+   width: 3px;
+   background-color: #fff;
+   margin-left: 25px;
+  }
   .timeline > li {
   	margin-bottom: 20px;
   	position: relative;
@@ -58,14 +51,13 @@
   	float: left;
   	border: 1px solid #d4d4d4;
   	border-radius: 2px;
-  	padding: 20px;
+  	padding: 0;
   	position: relative;
   	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   	margin-left: 10%;
   	width: 90%
   }
-
   .timeline_mini > .timeline-panel {
   	float: left;
   	background-color: #eee;
@@ -80,24 +72,24 @@
 
   .timeline > li > .timeline-panel:before {
   	position: absolute;
-  	top: 26px;
-  	right: -15px;
+  	top: 11px;
+  	right: -16px;
   	display: inline-block;
-  	border-top: 15px solid transparent;
-  	border-left: 15px solid #ccc;
+  	border-top: 10px solid transparent;
+  	border-left: 10px solid #ccc;
   	border-right: 0 solid #ccc;
-  	border-bottom: 15px solid transparent;
+  	border-bottom: 10px solid transparent;
   	content: " ";
   }
   .timeline > li > .timeline-panel:after {
   	position: absolute;
-  	top: 27px;
-  	right: -14px;
+  	top: 12px;
+  	right: -15px;
   	display: inline-block;
-  	border-top: 14px solid transparent;
-  	border-left: 14px solid #fff;
-  	border-right: 0 solid #fff;
-  	border-bottom: 14px solid transparent;
+  	border-top: 9px solid transparent;
+  	border-left: 9px solid #f2f2f2;
+  	border-right: 0 solid #f2f2f2;
+  	border-bottom: 10px solid transparent;
   	content: " ";
   }
   .timeline > li > .timeline-panel:before {
@@ -112,22 +104,18 @@
   	left: -14px;
   	right: auto;
   }
-
-
-
   /* Badge************************************* */
 
   .timeline > li > .timeline-badge {
   	color: #fff;
   	width: 50px;
   	height: 50px;
-  	line-height: 50px;
+  	line-height: 49px;
   	font-size: 1.4em;
   	text-align: center;
   	position: absolute;
-  	top: 16px;
+  	top: 0;
   	margin-left: 0;
-  	background-color: #999999;
   	z-index: 100;
   	border-top-right-radius: 50%;
   	border-top-left-radius: 50%;
@@ -139,16 +127,16 @@
   	height: 50px;
   }
   .sub-badge {
-  	color: #fff;
-  	width: 35px;
-  	height: 35px;
-  	line-height: 37px;
-  	font-size: 1.2em;
+  	color: gray;
+  	width: 30px;
+  	height: 30px;
+  	line-height: 30px;
+  	font-size: 1em;
   	text-align: center;
   	position: absolute;
-  	top: 86px;
-  	margin-left: 9px;
-  	background-color: #c6c6c6;
+  	top: 66px;
+  	margin-left: 11px;
+  	background-color: #eee;
   	z-index: 100;
   	border-top-right-radius: 50%;
   	border-top-left-radius: 50%;
@@ -164,9 +152,6 @@
   .timeline-badge.warning {
   	background-color: #f0ad4e !important;
   }
-  .timeline-badge.plain {
-  	background-color: #ffffff !important;
-  }
   .timeline-badge.danger {
   	background-color: #d9534f !important;
   }
@@ -175,12 +160,14 @@
   }
   /* Panel Content************************************* */
 
-  
+
   h2.timeline-title {
-  	margin-top: 0;
+  	background-color: #f2f2f2;
+  	font-weight: normal;
+  	margin: 0;
   	color: inherit;
   	font-size: 1em;
-  	margin-bottom: 18px
+  	padding: 15px
   }
   .timeline-title > .time {
   	float: right!important;
@@ -190,14 +177,13 @@
   	border-right: 1px solid #ddd;
   	margin-right: 10px;
   }
-  /*.timeline-title > .time:before {
-  	font-family: 'Glyphicons Halflings';
-  	content: "\e023";
-  }*/
   .timeline-title > a > .glyphicon {
   	font-size: 1em;
   	line-height: 10px;
   	color: #777
+  }
+  .timeline-body {
+  	padding: 15px 15px 15px 15px;
   }
   /*.timeline-body > p, .timeline-body > ul {
   	margin-bottom: 0;
@@ -207,36 +193,35 @@
   .timeline-body > p + p {
   	margin-top: 10px;
   }
-
-  .timeline-body > p:last-child, .timeline-footer	 > p:last-child {
-    margin-bottom:0;
+  .timeline-body > p:last-child, .timeline-footer > p:last-child, .timeline-body > p:last-child, .timeline-footer > table:last-child{
+  	margin-bottom: 0;
   }
-
-
   .timeline-body > ul {
-    margin-bottom:10px;
+  	margin-bottom: 10px;
   }
-
-
   .scientific_name {
   	font-size: .8em;
   	font-weight: normal;
   	color: gray
   }
-
-
   /* Panel Content > Media Body ************************************* */
 
   .media-body > p > button {
-  	margin-right: 10px;
+  	margin: 0 10px 0 0;
   }
-  .timeline-body .media-body > h3 {
+
+  .media-body > p:last-child  {
+  	margin-bottom: 0;
+  }
+  .media-body > h3 {
   	font-size: 1.4em;
-  	margin-top: 3px
+  	margin-top: 3px;
+  	margin-bottom: 5px
   }
-  .timeline-body .media-left > a > img {
+  .media-left > a > img {
   	width: 120px;
   	height: 120px;
+  	margin-right: 5px
   }
   .media-body > ul, .media-body > ul > li {
   	margin-left: 0;
@@ -253,60 +238,108 @@
   div.media-body > ul {
   	margin-bottom: 10px
   }
+  /*.more {
+  	margin-top:15px
+	
+  }
+  */
+
+
+
+  /* Panel Content > Footer ************************************* */
+
   .timeline-footer {
-  	margin-top: 10px;
-  	padding: 0 0 0 0
+  	margin-top: 0;
+  	padding: 0 15px 15px 15px
   }
   .timeline-footer > button {
   	margin-right: 10px
   }
-
   .thumbnail > h3 {
-  	font-size:14px;
-  	line-height:20px;
-  	margin:0;
-  	padding:5px
+  	font-size: 14px;
+  	line-height: 20px;
+  	margin: 0;
+  	padding: 5px
   }
+  /* Panel Content Type Specific ************************************* */
 
-
-  /* Panel Content > Update Type Specific ************************************* */
-
-  li.role_change > .timeline-badge {
-  	border-top-right-radius: 100%;
-  	border-top-left-radius: 100%;
-  	border-bottom-right-radius: 100%;
-  	border-bottom-left-radius: 100%;
+  li.journal_post > .timeline-panel > .timeline-body h3 {
+  	margin-top: 0;
   }
-  li.taxon_change > .timeline-panel > .timeline-body {
-  	padding: 10px 10px 0 10px;
-  	margin-bottom: 20px;
+  li.taxon_change > timeline-body > div {
   	border: 1px solid transparent;
   	border-radius: 4px;
-  	background: #eee;
   }
-
-
-
   li.observation_multiple_added > .timeline-panel > .timeline-body > .row {
-  	margin-right:-5px;
-  	margin-left:-5px;
-	
+  	margin-right: -5px;
+  	margin-left: -5px;
   }
-  li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul
-  {
-      list-style:none;
-      margin-left: -40px;
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul {
+  	list-style: none;
+  	margin-left: -40px;
+  }
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > li.col-md-3 {
+  	padding: 0 5px;
+  }
+  li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > li.col-md-3 > a > .thumbnail {
+  	margin-bottom: 10px;
+  }
+
+  .timeline > .role_change > .timeline-badge img, .timeline > .project_observation_added > .timeline-badge img  {
+  	border-top-right-radius: 5%;
+  	border-top-left-radius: 5%;
+  	border-bottom-right-radius: 5%;
+  	border-bottom-left-radius: 5%;
+  }
+
+  .table {
+  	margin-bottom:0
+  }
+
+  button.btn_expand {background-color:#eee}
+  button.btn_expand.collapsed .expand_active {display:none; }
+  button.btn_expand.collapsed .expand_inactive {display:block; }
+  button.btn_expand .expand_active {display:block;}
+  button.btn_expand .expand_inactive {display:none;}
+
+
+
+
+   /*@media (max-width: 767px) {
+
+
+
+  ul.timeline:before {
+  	left: 40px;
   }
 
 
-  li.observation_multiple_added > .timeline-panel > .timeline-body > .row  > ul > li.col-md-3 {
-  padding:0 5px;
 
+  ul.timeline > li > .timeline-panel {
+  	width: calc(100% - 90px);
+  	width: -moz-calc(100% - 90px);
+  	width: -webkit-calc(100% - 90px);
   }
-
-  li.observation_multiple_added > .timeline-panel > .timeline-body > .row  > ul > li.col-md-3 > a > .thumbnail {
-  margin-bottom:10px;
+  ul.timeline > li > .timeline-badge {
+  	left: 15px;
+  	margin-left: 0;
+  	top: 16px;
   }
+  ul.timeline > li > .timeline-panel {
+  	float: right;
+  }
+  ul.timeline > li > .timeline-panel:before {
+  	border-left-width: 0;
+   	left: -15px;
+  	right: auto;
+  }
+  ul.timeline > li > .timeline-panel:after {
+  	border-left-width: 0;
+  	border-right-width: 14px;
+  	left: -14px;
+  	right: auto;
+  }
+  */
   </style>
 <% end -%>
 
@@ -1087,7 +1120,7 @@
                 <li>
                   <% if notification == "committed" %>
                     <div class="timeline-badge warning"><i class="glyphicon glyphicon glyphicon-random"></i></div>
-                  <% elsif (notification == "new_observations" && resource.class.name == "place") %>
+                  <% elsif (notification == "new_observations" && resource.class.name == "Place") %>
                     <div class="timeline-badge success"><i class="glyphicon glyphicon-map-marker"></i></div>
                   <%- else %>
                     <div class="timeline-badge plain">

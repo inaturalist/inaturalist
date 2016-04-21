@@ -111,9 +111,9 @@
     <% else %>
       <%- @description = formatted_user_text(@user.description) %>
       <p class="lead">
-        <%= stripped_first_paragraph_of_text(@description) %>
+        <%= stripped_first_paragraph_of_text(@description, "\n\n") %>
       </p>
-      <%= remaining_paragraphs_of_text(@description) %>
+      <%= remaining_paragraphs_of_text(@description, "\n\n") %>
     <% end %>
   
     <h3 class="page-header">
