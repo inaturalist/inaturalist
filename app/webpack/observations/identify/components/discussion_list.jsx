@@ -4,8 +4,15 @@ import DiscussionListItemContainer from "../containers/discussion_list_item_cont
 const DiscussionList = ( { observation } ) => {
   let items = ( observation.comments || [] ).map( ( c ) =>
     Object.assign( c, { className: "Comment", key: `Comment-${c.id}` } ) );
-  items = items.concat( ( observation.identifications || [] ).map( ( i ) =>
-    Object.assign( i, { className: "Identification", key: `Identification-${i.id}` } ) ) );
+  const taxonIds = new Set( );
+  items = items.concat( ( observation.identifications || [] ).map( ( i ) => {
+    const hideAgree = taxonIds.has( i.taxon.id );
+    taxonIds.add( i.taxon.id );
+    return Object.assign( i, {
+      className: "Identification",
+      hideAgree
+    } );
+  } ) );
   items = items.sort( ( a, b ) => {
     if ( a.created_at < b.created_at ) {
       return -1;
@@ -24,6 +31,7 @@ const DiscussionList = ( { observation } ) => {
           body={item.body}
           createdAt={item.created_at}
           identification={item.className === "Identification" ? item : null}
+          hideAgree={item.hideAgree ? true : null}
         />
       ) ) }
     </div>

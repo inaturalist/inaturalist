@@ -10,7 +10,8 @@ const DiscussionListItem = ( {
   createdAt,
   identification,
   className,
-  agreeWith
+  agreeWith,
+  hideAgree
 } ) => {
   let ident;
   if ( identification ) {
@@ -28,19 +29,14 @@ const DiscussionListItem = ( {
         </i>
       );
     } else {
-      taxonImageTag = <i className="icon icon-iconic-unknown"></i>;
+      taxonImageTag = <i className="taxon-image icon icon-iconic-unknown"></i>;
     }
-    ident = (
-      <div className={identification.current ? "identification" : "identification outdated"}>
-        { taxonImageTag }
-        <SplitTaxon
-          taxon={t}
-          noParens
-          url={`/taxa/${t.id}`}
-        />
+    let actions;
+    if ( !hideAgree ) {
+      actions = (
         <div className="actions">
           <Button
-            bsSize="small"
+            bsSize="xsmall"
             onClick={ function ( ) {
               agreeWith( {
                 observation_id: identification.observation_id,
@@ -51,6 +47,17 @@ const DiscussionListItem = ( {
             { _.capitalize( I18n.t( "agree" ) ) }
           </Button>
         </div>
+      );
+    }
+    ident = (
+      <div className={identification.current ? "identification" : "identification outdated"}>
+        { taxonImageTag }
+        <SplitTaxon
+          taxon={t}
+          noParens
+          url={`/taxa/${t.id}`}
+        />
+        { actions }
       </div>
     );
   }
@@ -81,7 +88,8 @@ DiscussionListItem.propTypes = {
   ] ),
   identification: PropTypes.object,
   className: PropTypes.string,
-  agreeWith: PropTypes.func
+  agreeWith: PropTypes.func,
+  hideAgree: PropTypes.bool
 };
 
 export default DiscussionListItem;
