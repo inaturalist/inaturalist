@@ -441,7 +441,7 @@ it:
   are_you_sure_you_want_to_commit_this_change: Sei sicuro di applicare queata modifica?
     L'operazione non può essere annullata.
   are_you_sure_you_want_to_delete_this: Sei sicuro di voler cancellare questo elemento?
-  are_you_sure_you_want_to_delete_this_assessment?: Sei sicuro di volere eliminare
+  are_you_sure_you_want_to_delete_this_assessment?: Sei sicuro di volere cancellare
     la valutazione?
   are_you_sure_you_want_to_delete_this_photo?: Sei sicuro di voler cancellare questa
     foto?
@@ -449,7 +449,7 @@ it:
     post?
   are_you_sure_you_want_to_delete_this_taxon_change: Sei sicuro di voler annullare
     la modifica a questo taxon?
-  are_you_sure_you_want_to_remove_all_tags: Sei sicuro di voler eliminare tutte le
+  are_you_sure_you_want_to_remove_all_tags: Sei sicuro di voler cancellare tutte le
     etichette?
   are_you_sure_you_want_to_remove_curator: Sei sicuro di voler rimuovere %{user} dai
     curarori?
@@ -460,7 +460,7 @@ it:
   are_you_sure_you_want_to_remove_spammer: |-
     Sei certo di considerare questo utente affidabile
     Qualsiasi avviso di spam sul suo contenuto sarà risolta.
-  are_you_sure_you_want_to_remove_these_x_taxa?: Sei sicuro di voler eliminare questi
+  are_you_sure_you_want_to_remove_these_x_taxa?: Sei sicuro di voler cancellare questi
     %{x} taxa?
   are_you_sure_you_want_to_remove_this_invitation: Sei sicuro di voler rimuovere questo
     invito?
@@ -2288,7 +2288,7 @@ it:
   only_accepts_taxa: accetta solo taxa
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli
     utenti dal progetto
-  only_country_state_and_county: Per ora solo stati, regioni e provincie sono visualizzabili.
+  only_country_state_and_county: Per ora solo nazioni, stati e regioni sono visualizzabili.
     Ingrandisci per vedere i luoghi più piccoli.
   only_curators_can_add_edit_scientific_names: Solo i curatori possono aggiungere/modificare
     i nomi scientifici.
@@ -2443,7 +2443,7 @@ it:
       drainage: bacino
       Estate: Tenuta
       estate: tenuta
-      Historical_County: Provincia Storica
+      Historical_County: Regione storica
       historical_county: provincia storica
       Historical_State: Stato Storico
       historical_state: stato storico
@@ -4361,8 +4361,8 @@ it:
           l'URL della ricerca di osservazioni
         taxon_extras_help_html: 'Nota: queste colonne rallenteranno la creazione della
           tua esportazione'
-        geo_help_html: Campi relativi a città, contee, stati, nazioni basati sulle
-          coordinate. Qualora queste tipologie iano inapplicabili, saranno utilizzati
+        geo_help_html: Campi relativi a città, regioni, stati, nazioni basati sulle
+          coordinate. Qualora queste tipologie siano inapplicabili, saranno utilizzati
           analoghi livelli di suddivisioni amministrative.
         be_patient: Sii paziente, questa operazione può durare alcuni minuti. Se dura
           troppo, puoi
@@ -4585,7 +4585,7 @@ it:
           essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo
           con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
         admin_level_desc: Deve essere impostato solo per confini politici. Con riferimento
-          agli USA, 0 = nazione, 1 = stato, 2 = contea, 3 = città
+          agli USA, 0 = nazione, 1 = stato, 2 = regione, 3 = città
       index:
         adding_new_places: aggiungendo nuovi luoghi
         confirming_identifications: confermando le identificazioni aggiungendo ID
