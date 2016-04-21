@@ -44,7 +44,9 @@ const ObservationModal = ( {
   let taxonMap;
   const includeMap = true;
   if ( includeMap ) {
-    const obsForMap = Object.assign( {}, observation );
+    const obsForMap = Object.assign( {}, observation, {
+      coordinates_obscured: observation.obscured
+    } );
     taxonMap = (
       <TaxonMap
         key={`map-for-${obsForMap.id}`}
