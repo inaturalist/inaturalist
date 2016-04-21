@@ -26,7 +26,7 @@ function agreeWithCurrentObservation( ) {
     return dispatch(
       postIdentification( { observation_id: o.id, taxon_id: o.taxon.id } )
     ).then( ( ) => {
-      dispatch( fetchCurrentObservation( ) );
+      dispatch( fetchCurrentObservation( o ) );
     } );
   };
 }

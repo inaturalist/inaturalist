@@ -14,13 +14,13 @@ function mapStateToProps( state, ownProps ) {
   };
 }
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitIdentification: ( identification ) => {
       dispatch( loadingDiscussionItem( ) );
       dispatch( postIdentification( identification ) )
         .then( ( ) => {
-          dispatch( fetchCurrentObservation( ) );
+          dispatch( fetchCurrentObservation( ownProps.observation ) );
         } );
     }
   };

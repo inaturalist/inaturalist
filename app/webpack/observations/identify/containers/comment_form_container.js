@@ -14,12 +14,12 @@ function mapStateToProps( state, ownProps ) {
   };
 }
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitComment: ( comment ) => {
       dispatch( loadingDiscussionItem( ) );
       dispatch( postComment( comment ) ).then( ( ) => {
-        dispatch( fetchCurrentObservation( ) );
+        dispatch( fetchCurrentObservation( ownProps.observation ) );
       } );
     }
   };

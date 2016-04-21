@@ -62,10 +62,10 @@ function fetchCurrentObservation( observation = null ) {
           captiveByCurrentUser,
           reviewedByCurrentUser
         } ) );
-        const currenState = getState();
+        const currentState = getState();
         if (
-          currenState.currentObservation.observation &&
-          currenState.currentObservation.observation.id === obs.id
+          currentState.currentObservation.observation &&
+          currentState.currentObservation.observation.id === obs.id
         ) {
           dispatch(
             receiveCurrentObservation( newObs, {
@@ -140,14 +140,14 @@ function toggleQualityMetric( observation, metric, agree ) {
     if ( agree ) {
       iNaturalistJS.observations.deleteQualityMetric( params ).then(
         ( ) => {
-          dispatch( fetchCurrentObservation( ) );
+          dispatch( fetchCurrentObservation( observation ) );
         }
       );
     } else {
       params.agree = "false";
       iNaturalistJS.observations.setQualityMetric( params ).then(
         ( ) => {
-          dispatch( fetchCurrentObservation( ) );
+          dispatch( fetchCurrentObservation( observation ) );
         }
       );
     }
@@ -186,12 +186,12 @@ function toggleReviewed( ) {
     } ) );
     if ( reviewed ) {
       iNaturalistJS.observations.unreview( params ).then( ( ) => {
-        dispatch( fetchCurrentObservation( ) );
+        dispatch( fetchCurrentObservation( observation ) );
         dispatch( fetchObservationsStats( ) );
       } );
     } else {
       iNaturalistJS.observations.review( params ).then( ( ) => {
-        dispatch( fetchCurrentObservation( ) );
+        dispatch( fetchCurrentObservation( observation ) );
         dispatch( fetchObservationsStats( ) );
       } );
     }
