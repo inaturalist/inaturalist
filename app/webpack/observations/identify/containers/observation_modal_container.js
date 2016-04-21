@@ -17,7 +17,7 @@ function mapStateToProps( state ) {
   if ( observation ) {
     images = observation.photos.map( ( photo ) => ( {
       original: photo.photoUrl( "large" ),
-      thumbnail: photo.photoUrl( "thumb" )
+      thumbnail: photo.photoUrl( "square" )
     } ) );
   }
   return Object.assign( {}, { images }, state.currentObservation );

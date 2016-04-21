@@ -14,7 +14,7 @@ import IdentificationFormContainer from "../containers/identification_form_conta
 import SplitTaxon from "./split_taxon";
 import TaxonMap from "./taxon_map";
 import _ from "lodash";
-import ImageGallery from "react-image-gallery";
+import ZoomableImageGallery from "./zoomable_image_gallery";
 import moment from "moment";
 
 const ObservationModal = ( {
@@ -114,7 +114,7 @@ const ObservationModal = ( {
         <Grid fluid>
           <Row>
             <Col xs={8}>
-              <ImageGallery
+              <ZoomableImageGallery
                 key={`map-for-${observation.id}`}
                 items={images}
                 showThumbnails={images.length > 1}
