@@ -5,7 +5,7 @@ import { Input } from "react-bootstrap";
 class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, ...this.props, {
+    const opts = Object.assign( {}, this.props, {
       idEl: $( "input[name='place_id']", domNode )
     } );
     $( "input[name='place_name']", domNode ).placeAutocomplete( opts );

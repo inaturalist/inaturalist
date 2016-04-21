@@ -12,7 +12,7 @@ class TaxonAutocomplete extends React.Component {
 
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, ...this.props, {
+    const opts = Object.assign( {}, this.props, {
       idEl: $( "input[name='taxon_id']", domNode )
     } );
     $( "input[name='taxon_name']", domNode ).taxonAutocomplete( opts );
