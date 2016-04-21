@@ -62,13 +62,19 @@ function fetchCurrentObservation( observation = null ) {
           captiveByCurrentUser,
           reviewedByCurrentUser
         } ) );
-        dispatch(
-          receiveCurrentObservation( newObs, {
-            captiveByCurrentUser,
-            reviewedByCurrentUser,
-            currentUserIdentification
-          } )
-        );
+        const currenState = getState();
+        if (
+          currenState.currentObservation.observation &&
+          currenState.currentObservation.observation.id === obs.id
+        ) {
+          dispatch(
+            receiveCurrentObservation( newObs, {
+              captiveByCurrentUser,
+              reviewedByCurrentUser,
+              currentUserIdentification
+            } )
+          );
+        }
       } );
   };
 }
