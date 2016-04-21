@@ -21,6 +21,7 @@ const SearchBar = ( {
       } }
     />
     <PlaceAutocomplete
+      resetOnChange={false}
       afterSelect={ function ( result ) {
         updateSearchParams( { place_id: result.item.id } );
       } }

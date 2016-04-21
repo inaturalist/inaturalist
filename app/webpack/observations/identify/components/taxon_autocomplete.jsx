@@ -12,18 +12,10 @@ class TaxonAutocomplete extends React.Component {
 
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    $( "input[name='taxon_name']", domNode ).taxonAutocomplete( {
-      resetOnChange: this.props.resetOnChange,
-      bootstrapClear: this.props.bootstrapClear,
-      search_external: this.props.searchExternal,
-      allow_placeholders: this.props.allowPlaceholders,
-      show_placeholder: this.props.showPlaceholder,
-      per_page: this.props.perPage,
-      id_el: $( "input[name='taxon_id']", domNode ),
-      afterSelect: this.props.afterSelect,
-      afterUnselect: this.props.afterUnselect,
-      initialSelection: this.props.initialSelection
+    const opts = Object.assign( {}, ...this.props, {
+      idEl: $( "input[name='taxon_id']", domNode )
     } );
+    $( "input[name='taxon_name']", domNode ).taxonAutocomplete( opts );
     this.fetchTaxon( );
   }
 

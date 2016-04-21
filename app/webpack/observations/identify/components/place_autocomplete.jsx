@@ -5,14 +5,10 @@ import { Input } from "react-bootstrap";
 class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    $( "input[name='place_name']", domNode ).placeAutocomplete( {
-      resetOnChange: this.props.resetOnChange,
-      bootstrapClear: this.props.bootstrapClear,
-      id_el: $( "input[name='place_id']", domNode ),
-      afterSelect: this.props.afterSelect,
-      afterUnselect: this.props.afterUnselect,
-      initialSelection: this.props.initialSelection
+    const opts = Object.assign( {}, ...this.props, {
+      idEl: $( "input[name='place_id']", domNode )
     } );
+    $( "input[name='place_name']", domNode ).placeAutocomplete( opts );
   }
 
   render( ) {

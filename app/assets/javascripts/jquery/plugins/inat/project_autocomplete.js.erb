@@ -1,10 +1,10 @@
 $.fn.projectAutocomplete = function( options ) {
   options = options || { };
-  if( !options.id_el ) { return; }
+  if( !options.idEl ) { return; }
   var field = this;
 
   field.genericAutocomplete( _.extend( options, {
-    extra_class: "user",
+    extraClass: "user",
     source: function( request, response ) {
       $.ajax({
       url: "//<%= CONFIG.node_api_host %>/projects/autocomplete",

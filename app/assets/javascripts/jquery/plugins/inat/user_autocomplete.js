@@ -1,6 +1,6 @@
 $.fn.userAutocomplete = function( options ) {
   options = options || { };
-  if( !options.id_el ) { return; }
+  if( !options.idEl ) { return; }
   var field = this;
 
   field.template = function( item ) {

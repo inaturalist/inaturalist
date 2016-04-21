@@ -864,8 +864,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "#filters input[name='taxon_name']" ).taxonAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
-      search_external: false,
-      id_el: $( "#filters input[name='taxon_id']" ),
+      searchExternal: false,
+      idEl: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
         $scope.selectedTaxon = result.item;
         $scope.params.taxon_id = result.item.id;
@@ -891,7 +891,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "input[name='inat_place_name']" ).placeAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
-      id_el: $( "#filters input[name='place_id']" ),
+      idEl: $( "#filters input[name='place_id']" ),
       afterSelect: function( result ) {
         $scope.filterByPlace( result.item );
         if(!$scope.$$phase) { $scope.$digest( ); }
@@ -915,7 +915,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "input[name='user_name']" ).userAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
-      id_el: $( "#filters input[name='user_id']" ),
+      idEl: $( "#filters input[name='user_id']" ),
       afterSelect: function( result ) {
         $scope.params.user_id = result.item.login;
         if(!$scope.$$phase) { $scope.$digest( ); }
@@ -940,7 +940,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "input[name='project_name']" ).projectAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
-      id_el: $( "#filters input[name='project_id']" ),
+      idEl: $( "#filters input[name='project_id']" ),
       afterSelect: function( result ) {
         $scope.params.project_id = result.item.slug;
         if(!$scope.$$phase) { $scope.$digest( ); }

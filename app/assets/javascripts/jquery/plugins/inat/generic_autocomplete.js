@@ -47,7 +47,7 @@ genericAutocomplete.renderMenu = function( ul, items ) {
 $.fn.genericAutocomplete = function( options ) {
   options = options || { };
   var field = this;
-  if( !options.id_el ) { return; }
+  if( !options.idEl ) { return; }
   if( !field || field.length < 1 ) { return; }
   var createWrappingDiv = options.createWrappingDiv ||
     genericAutocomplete.createWrappingDiv;
@@ -70,7 +70,7 @@ $.fn.genericAutocomplete = function( options ) {
       field.val( ui.item.title );
     }
     // set the hidden id field
-    options.id_el.val( ui.item.id );
+    options.idEl.val( ui.item.id );
     if( options.afterSelect ) { options.afterSelect( ui ); }
     e.preventDefault( );
     return false;
@@ -89,8 +89,8 @@ $.fn.genericAutocomplete = function( options ) {
     var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
       append( field.template( item, field.val( ))).
       appendTo( ul );
-    if( options.extra_class ) {
-      li.addClass( options.extra_class );
+    if( options.extraClass ) {
+      li.addClass( options.extraClass );
     }
     return li;
   };
@@ -139,8 +139,8 @@ $.fn.genericAutocomplete = function( options ) {
     var key = e.keyCode || e.which;
     // return key
     if( key === 13 ) {
-      // allow submit when AC menu is closed, or always if allow_enter_submit
-      if( options.allow_enter_submit || genericAutocomplete.menuClosed( )) {
+      // allow submit when AC menu is closed, or always if allowEnterSubmit
+      if( options.allowEnterSubmit || genericAutocomplete.menuClosed( )) {
         field.closest( "form" ).submit( );
       }
       return false;
@@ -175,14 +175,14 @@ $.fn.genericAutocomplete = function( options ) {
     }
   });
   field.bind( "assignSelection", function( e, s ) {
-    options.id_el.val( s.id );
+    options.idEl.val( s.id );
     field.val( s.title );
     field.selection = s;
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
-    if( options.id_el.val( ) !== null ) {
-      options.id_el.val( null );
+    if( options.idEl.val( ) !== null ) {
+      options.idEl.val( null );
       if( options.afterUnselect ) { options.afterUnselect( ); }
     }
     field.selection = null;
@@ -192,7 +192,7 @@ $.fn.genericAutocomplete = function( options ) {
     field.val( null );
     if( field.searchClear ) { $(field.searchClear).hide( ); }
   });
-  if( options.allow_placeholders !== true ) {
+  if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {
       if( options.resetOnChange === false && field.selection ) {
         field.val( field.selection.title );
@@ -200,7 +200,7 @@ $.fn.genericAutocomplete = function( options ) {
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field
       setTimeout( function( ) {
-        if( !options.id_el.val( ) && genericAutocomplete.menuClosed( ) ) {
+        if( !options.idEl.val( ) && genericAutocomplete.menuClosed( ) ) {
           field.val( null );
           field.trigger( "resetSelection" );
           if( field.searchClear ) { $(field.searchClear).hide( ); }
