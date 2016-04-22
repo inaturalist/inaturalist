@@ -32,6 +32,7 @@ const ProgressChart = ( {
       <div className="counts">
         { reviewed }
         /
+        <wbr />
         { reviewed + unreviewed }
       </div>
       { I18n.t( "reviewed" ) }
