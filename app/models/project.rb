@@ -834,7 +834,7 @@ class Project < ActiveRecord::Base
 
   def sane_destroy
     project_observations.delete_all
-    posts.select("id, parent_type, parent_id, user_id)").find_each(&:destroy)
+    posts.select("id, parent_type, parent_id, user_id").find_each(&:destroy)
     destroy
   end
 end
