@@ -149,3 +149,18 @@ describe ProjectsController, "update" do
     expect( project ).to be_prefers_aggregation
   end
 end
+
+describe ProjectsController, "destroy" do
+  let( :project ) { Project.make! }
+  before do
+    sign_in project.user
+  end
+  it "should not actually destroy the project" do
+    delete :destroy, id: project.id
+    expect( Project.find_by_id( project.id ) ).not_to be_blank
+  end
+  it "should queue a job to destroy the project" do
+    delete :destroy, id: project.id
+    expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
+  end
+end

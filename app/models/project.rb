@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
-  has_many :project_observations, :dependent => :destroy
+  has_many :project_observations, :dependent => :delete_all
   has_many :project_invitations, :dependent => :destroy
   has_many :project_user_invitations, :dependent => :delete_all
   has_many :users, :through => :project_users
@@ -13,8 +13,8 @@ class Project < ActiveRecord::Base
   has_one :project_list, :dependent => :destroy
   has_many :listed_taxa, :through => :project_list
   has_many :taxa, :through => :listed_taxa
-  has_many :project_assets, :dependent => :destroy
-  has_one :custom_project, :dependent => :destroy
+  has_many :project_assets, :dependent => :delete_all
+  has_one :custom_project, :dependent => :delete
   has_many :project_observation_fields, -> { order("position") }, :dependent => :destroy, :inverse_of => :project
   has_many :observation_fields, :through => :project_observation_fields
   has_many :posts, :as => :parent, :dependent => :destroy
@@ -830,5 +830,11 @@ class Project < ActiveRecord::Base
     File.delete(pidfile) if File.exists?(pidfile) && !e.is_a?(ProjectAggregatorAlreadyRunning)
     Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
     raise e
+  end
+
+  def sane_destroy
+    project_observations.delete_all
+    posts.select("id, parent_type, parent_id, user_id)").find_each(&:destroy)
+    destroy
   end
 end

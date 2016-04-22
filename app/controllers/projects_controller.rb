@@ -235,7 +235,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.destroy
+    @project.delay( priority: USER_INTEGRITY_PRIORITY ).sane_destroy
     
     respond_to do |format|
       format.html do
