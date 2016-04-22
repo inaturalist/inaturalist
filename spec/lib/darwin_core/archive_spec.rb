@@ -36,6 +36,12 @@ describe DarwinCore::Archive, "make_descriptor" do
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://www.inaturalist.org/observation_fields'
   end
+  it "should include the ProjectObservations extension" do
+    archive = DarwinCore::Archive.new(extensions: %w(ProjectObservations))
+    xml = Nokogiri::XML(open(archive.make_descriptor))
+    extension_elt = xml.at_xpath('//xmlns:extension')
+    expect( extension_elt['rowType'] ).to eq 'http://www.inaturalist.org/project_observations'
+  end
   it "should include multiple extensions" do
     archive = DarwinCore::Archive.new(extensions: %w(ObservationFields SimpleMultimedia))
     xml = Nokogiri::XML(open(archive.make_descriptor))
@@ -138,6 +144,45 @@ describe DarwinCore::Archive, "make_observation_fields_data" do
     ofv1 = ObservationFieldValue.make!( observation: make_research_grade_observation )
     archive = DarwinCore::Archive.new(extensions: %w(ObservationFields), taxon: ofv1.observation.taxon )
     csv = CSV.read(archive.make_observation_fields_data, headers: true)
+    expect( csv.size ).to eq 1
+  end
+end
+
+describe DarwinCore::Archive, "make_project_observations_data" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
+  let(:o) { make_research_grade_observation }
+  let(:po) {
+    po = ProjectObservation.make!( observation: o )
+    DarwinCore::ProjectObservations.adapt( po, observation: o )
+  }
+
+  before do
+    expect( po ).to be_valid
+    expect( po.observation ).to eq o
+  end
+
+  it "should add rows to the file" do
+    archive = DarwinCore::Archive.new(extensions: %w(ProjectObservations))
+    expect( CSV.read(archive.make_project_observations_data).size ).to be > 1
+    CSV.foreach( archive.make_project_observations_data, headers: true ) do |row|
+      expect( row['projectID'] ).to eq FakeView.project_url( po.project_id )
+      expect( row['projectTitle'] ).to eq po.project.title
+    end
+  end
+
+  it "should set the first column to the observation_id" do
+    archive = DarwinCore::Archive.new(extensions: %w(ProjectObservations))
+    csv = CSV.read(archive.make_project_observations_data, headers: true)
+    row = csv.first
+    expect( row[0] ).to eq o.id.to_s
+  end
+
+  it "should only export observation field values for observations matching the params" do
+    po1 = ProjectObservation.make!( observation: make_research_grade_observation )
+    archive = DarwinCore::Archive.new(extensions: %w(ProjectObservations), taxon: po1.observation.taxon )
+    csv = CSV.read(archive.make_project_observations_data, headers: true)
     expect( csv.size ).to eq 1
   end
 end

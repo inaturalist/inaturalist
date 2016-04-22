@@ -87,6 +87,12 @@ module DarwinCore
               file_location: "observation_fields.csv",
               terms: DarwinCore::ObservationFields::TERMS
             }
+          when "ProjectObservations"
+            extensions << {
+              row_type: "http://www.inaturalist.org/project_observations",
+              file_location: "project_observations.csv",
+              terms: DarwinCore::ProjectObservations::TERMS
+            }
           end
         end
       end
@@ -254,6 +260,27 @@ module DarwinCore
           observation.observation_field_values.each do |ofv|
             DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
             csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
+          end
+        end
+      end
+      
+      tmp_path
+    end
+
+    def make_project_observations_data
+      headers = DarwinCore::ProjectObservations::TERM_NAMES
+      fname = "project_observations.csv"
+      tmp_path = File.join(@work_path, fname)
+      
+      params = observations_params
+      preloads = [ { project_observations: :project } ]
+      
+      CSV.open(tmp_path, 'w') do |csv|
+        csv << headers
+        observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
+          observation.project_observations.each do |po|
+            DarwinCore::ProjectObservations.adapt(po, core: @opts[:core])
+            csv << DarwinCore::ProjectObservations::TERMS.map{|field, uri, default, method| po.send(method || field)}
           end
         end
       end
