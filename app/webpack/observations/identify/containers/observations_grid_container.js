@@ -4,7 +4,7 @@ import { showCurrentObservation, fetchCurrentObservation } from "../actions";
 
 function mapStateToProps( state ) {
   return {
-    observations: state.observations || []
+    observations: state.observations.results || []
   };
 }
 

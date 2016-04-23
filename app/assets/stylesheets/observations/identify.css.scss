@@ -71,3 +71,33 @@ input.filter-changed + .searchclear.glyphicon {
   padding: 15px;
   background-color: #DDDDDD;
 }
+
+.PaginationControl {
+  margin-bottom: 20px;
+}
+
+.rc-pagination { padding: 0; }
+.rc-pagination li,
+.rc-pagination li a {
+  display: inline-block;
+}
+.rc-pagination li a {
+  border: 1px solid #aaa;
+  background-color: white;
+  padding: 3px 5px;
+  text-align: center;
+  width: 2em;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.rc-pagination-next a:before {
+  content: "\2192"
+}
+.rc-pagination-prev a:before {
+  content: "\2190"
+}
+.rc-pagination-disabled a,
+.rc-pagination-disabled:hover a {
+  opacity: 0.5;
+  cursor: default;
+}

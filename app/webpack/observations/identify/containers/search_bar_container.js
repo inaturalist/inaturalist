@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     updateSearchParams: ( params ) => {
-      dispatch( updateSearchParams( params ) );
+      dispatch( updateSearchParams( Object.assign( {}, params, { page: 1 } ) ) );
       dispatch( fetchObservations( ) );
     }
   };

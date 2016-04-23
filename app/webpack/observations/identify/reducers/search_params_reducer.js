@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH_PARAMS } from "../actions";
+import { UPDATE_SEARCH_PARAMS, RECEIVE_OBSERVATIONS } from "../actions";
 
 const searchParamsReducer = ( state = {
   reviewed: false,
@@ -12,6 +12,11 @@ const searchParamsReducer = ( state = {
 }, action ) => {
   if ( action.type === UPDATE_SEARCH_PARAMS ) {
     return Object.assign( {}, state, action.params );
+  } else if ( action.type === RECEIVE_OBSERVATIONS ) {
+    return Object.assign( {}, state, {
+      page: action.page,
+      perPage: action.perPage
+    } );
   }
   return state;
 };

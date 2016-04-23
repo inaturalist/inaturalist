@@ -84,14 +84,14 @@ function showNextObservation( ) {
     const { observations, currentObservation } = getState();
     let nextObservation;
     if ( currentObservation.visible ) {
-      let nextIndex = _.findIndex( observations, ( o ) => (
+      let nextIndex = _.findIndex( observations.results, ( o ) => (
         o.id === currentObservation.observation.id
       ) );
       if ( nextIndex === null || nextIndex === undefined ) { return; }
       nextIndex += 1;
-      nextObservation = observations[nextIndex];
+      nextObservation = observations.results[nextIndex];
     } else {
-      nextObservation = currentObservation.observation || observations[0];
+      nextObservation = currentObservation.observation || observations.results[0];
     }
     if ( nextObservation ) {
       dispatch( showCurrentObservation( nextObservation ) );
@@ -106,12 +106,12 @@ function showPrevObservation( ) {
     if ( !currentObservation.visible ) {
       return;
     }
-    let prevIndex = _.findIndex( observations, ( o ) => (
+    let prevIndex = _.findIndex( observations.results, ( o ) => (
       o.id === currentObservation.observation.id
     ) );
     if ( prevIndex === null || prevIndex === undefined ) { return; }
     prevIndex -= 1;
-    const prevObservation = observations[prevIndex];
+    const prevObservation = observations.results[prevIndex];
     if ( prevObservation ) {
       dispatch( showCurrentObservation( prevObservation ) );
       dispatch( fetchCurrentObservation( prevObservation ) );

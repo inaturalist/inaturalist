@@ -44,7 +44,8 @@ $flowedDim: 150px;
 .flowed .ObservationsGridItem {
   width: $flowedDim;
   float: left;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 .flowed .ObservationsGridItem .photo {
   width: $flowedDim;

@@ -4,11 +4,8 @@ import { fetchObservationsStats } from "./observations_stats_actions";
 const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
 
-function receiveObservations( observations ) {
-  return {
-    type: RECEIVE_OBSERVATIONS,
-    observations
-  };
+function receiveObservations( results ) {
+  return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
 }
 
 function fetchObservations( ) {
@@ -19,14 +16,20 @@ function fetchObservations( ) {
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         const obs = response.results.map( ( o ) => {
-          if ( currentUserId && !o.reviewed_by.indexOf( currentUserId ) ) {
+          if ( currentUserId && o.reviewed_by.indexOf( currentUserId ) > -1 ) {
             // eslint complains about this, but if you create a new object
             // with Object.assign you lose all the Observation model stuff
-            o.reviewdByCurrentUser = true;
+            o.reviewedByCurrentUser = true;
           }
           return o;
         } );
-        dispatch( receiveObservations( obs ) );
+        dispatch( receiveObservations( {
+          totalResults: response.total_results,
+          page: response.page,
+          perPage: response.per_page,
+          totalPages: Math.ceil( response.total_results / response.per_page ),
+          results: obs
+        } ) );
         dispatch( fetchObservationsStats( ) );
       } );
   };
