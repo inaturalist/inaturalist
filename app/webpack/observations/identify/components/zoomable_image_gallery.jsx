@@ -3,12 +3,15 @@ import ImageGallery from "react-image-gallery";
 import EasyZoom from "EasyZoom/dist/easyzoom";
 
 class ZoomableImageGallery extends ImageGallery {
+
   componentDidMount() {
     super.componentDidMount( );
+    const props = this.props;
     const domNode = ReactDOM.findDOMNode( this );
     $( ".image-gallery-slide img", domNode ).wrap( function ( ) {
       const standardImgUrl = $( this ).attr( "src" );
-      return `<div class="easyzoom"><a href="${standardImgUrl}"></a></div>`;
+      const zoomImgUrl = props.items.find( ( i ) => ( i.original === standardImgUrl ) ).zoom;
+      return `<div class="easyzoom"><a href="${zoomImgUrl || standardImgUrl}"></a></div>`;
     } );
     $( ".image-gallery-slide .easyzoom", domNode ).easyZoom( {
       onShow( ) {

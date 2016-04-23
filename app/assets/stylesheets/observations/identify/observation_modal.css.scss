@@ -104,6 +104,18 @@ $image-gallery-height: 380px;
   right: -100px;
 }
 
+
+.ObservationModal .easyzoom-flyout {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+.ObservationModal .easyzoom-flyout img {
+  vertical-align: bottom;
+}
 .ObservationModal .image-gallery-content .easyzoom-flyout img {
   height: auto;
   width: auto;
@@ -114,9 +126,11 @@ $image-gallery-height: 380px;
   visibility: hidden;
 }
 
+
 .easyzoom,
 .easyzoom > a {
   display: inline-block;
+  width: 100%;
 }
 body > div > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
