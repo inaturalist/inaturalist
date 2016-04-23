@@ -101,3 +101,10 @@ input.filter-changed + .searchclear.glyphicon {
   opacity: 0.5;
   cursor: default;
 }
+.rc-pagination-jump-prev a:after,
+.rc-pagination-jump-next a:after {
+  content: "...";
+}
+li.rc-pagination-item-active a {
+  border-color: black;
+}
