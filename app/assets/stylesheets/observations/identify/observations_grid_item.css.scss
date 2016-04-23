@@ -40,26 +40,36 @@
   opacity: 0.8;
   font-size: smaller;
 }
-.ObservationsGridItem .photo {
+$flowedDim: 150px;
+.flowed .ObservationsGridItem {
+  width: $flowedDim;
+  float: left;
+  margin-right: 10px;
+}
+.flowed .ObservationsGridItem .photo {
+  width: $flowedDim;
+  height: $flowedDim;
+}
+.gridded .ObservationsGridItem .photo {
   height: 120px;
   line-height: 110px;
   font-size: 80px;
 }
 @media (min-width: 768px) {
-  .ObservationsGridItem .photo {
+  .gridded .ObservationsGridItem .photo {
     height: 157.5px;
     line-height: 140px;
     font-size: 120px;
   }
 }
 @media (min-width: 992px) {
-  .ObservationsGridItem .photo {
+  .gridded .ObservationsGridItem .photo {
     height: 212.5px;
     font-size: 180px;
   }
 }
 @media (min-width: 1200px) {
-  .ObservationsGridItem .photo {
+  .gridded .ObservationsGridItem .photo {
     height: 262.5px;
     line-height: 240px;
     font-size: 210px;

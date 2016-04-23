@@ -4,17 +4,19 @@ import ObservationsGridItem from "./observations_grid_item";
 
 const ObservationsGrid = ( {
   observations,
-  onObservationClick
+  onObservationClick,
+  grid
 } ) => (
-  <Row className="ObservationsGrid">
-    {observations.map( ( observation ) => (
-      <Col xs={3} key={observation.id}>
+  <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"}`}>
+    <Col xs={12}>
+      {observations.map( ( observation ) => (
         <ObservationsGridItem
+          key={observation.id}
           observation={observation}
           onObservationClick={onObservationClick}
         />
-      </Col>
-    ) ) };
+      ) ) }
+    </Col>
   </Row>
 );
 
@@ -25,7 +27,8 @@ ObservationsGrid.propTypes = {
   observations: PropTypes.arrayOf(
     React.PropTypes.object
   ).isRequired,
-  onObservationClick: PropTypes.func
+  onObservationClick: PropTypes.func,
+  grid: PropTypes.bool
 };
 
 export default ObservationsGrid;
