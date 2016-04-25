@@ -864,7 +864,7 @@ class Taxon < ActiveRecord::Base
     w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
     
-    if summary = w.summary(wname)
+    if summary = w.summary(wname, options)
       pre_trunc = summary
       summary = summary.split[0..75].join(' ')
       summary += '...' if pre_trunc > summary

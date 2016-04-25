@@ -880,7 +880,7 @@ class TaxaController < ApplicationController
   
   def refresh_wikipedia_summary
     begin
-      summary = @taxon.set_wikipedia_summary
+      summary = @taxon.set_wikipedia_summary(force_update: true)
     rescue Timeout::Error => e
       error_text = e.message
     end
