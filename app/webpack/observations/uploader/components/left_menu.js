@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Button, Input, Glyphicon } from "react-bootstrap";
+import { Button, Input, Glyphicon, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
 import inaturalistjs from "inaturalistjs";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
@@ -71,10 +71,41 @@ class LeftMenu extends Component {
         <Glyphicon glyph="globe" />
       </Button>
     );
-    let menu;
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
+    const commonTags = this.commonValue( "tags" );
+    let taglist;
+    if ( commonTags && commonTags.length > 0 ) {
+      taglist = (
+        <div className="tags">
+          <h5>Tags:</h5>
+          <div className="taglist">
+            { _.map( commonTags, t => (
+              <Badge className="tag">{ t }</Badge>
+            ) ) }
+          </div>
+        </div>
+      );
+    }
+    let ofvlist;
+    const commonOfvs = this.commonValue( "observation_field_values" );
+    if ( commonOfvs && commonOfvs.length > 0 ) {
+      ofvlist = (
+        <div className="tags">
+          <h5>Custom Field Values:</h5>
+          <div className="taglist">
+            { _.map( commonOfvs, t => (
+              <Badge className="tag">
+                <span className="field">{ `${t.observation_field.name}:` }</span>
+                { `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}` }
+              </Badge>
+            ) ) }
+          </div>
+        </div>
+      );
+    }
+    let menu;
     if ( count === 0 ) {
       menu = <h4 className="empty">Select observations to edit...</h4>;
     } else {
@@ -123,6 +154,8 @@ class LeftMenu extends Component {
             value="true"
             onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
           />
+          { taglist }
+          { ofvlist }
         </div>
       );
     }

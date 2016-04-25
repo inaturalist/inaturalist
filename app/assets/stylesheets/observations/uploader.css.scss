@@ -115,6 +115,19 @@
   h4.empty {
     font-style: italic;
   }
+  h5 {
+    margin-bottom: 3px;
+  }
+  .taglist {
+    .badge {
+      margin-left: 5px;
+      font-weight: 100;
+    }
+    .field {
+      font-weight: 500;
+      margin-right: 3px;
+    }
+  }
   .checkbox {
     label {
       padding: 0px;

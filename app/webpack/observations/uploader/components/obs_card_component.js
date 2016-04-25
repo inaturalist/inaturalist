@@ -13,7 +13,10 @@ import FileGallery from "./file_gallery";
 momentLocalizer( moment );
 
 const cardSource = {
-  beginDrag( props ) {
+  beginDrag( props, monitor, component ) {
+    if ( component.refs.datetime ) {
+      component.refs.datetime.close( );
+    }
     props.setState( { draggingProps: props } );
     return props;
   },
@@ -180,6 +183,7 @@ class ObsCardComponent extends Component {
               />
               <DateTimeFieldWrapper
                 key={ `datetime${obsCard.selected_date}`}
+                ref="datetime"
                 defaultText={ obsCard.date }
                 onChange={ dateString =>
                   updateObsCard( obsCard, { date: dateString } )

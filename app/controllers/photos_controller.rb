@@ -271,7 +271,9 @@ class PhotosController < ApplicationController
         format.html { redirect_to observations_path }
         format.json { render json: @photo.as_json(include: {
           to_observation: {
-            include: :observation_field_values, methods: [ :tag_list ]
+            include: { observation_field_values:
+              { include: :observation_field, methods: :taxon } },
+            methods: [ :tag_list ]
           } } )
         }
       else

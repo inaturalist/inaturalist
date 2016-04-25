@@ -5,11 +5,19 @@ import moment from "moment";
 
 class DateTimeFieldWrapper extends Component {
 
-  componentDidMount( ) {
-    // the datetime picker prevents a card drag preview without this
-    if ( this.refs.datetime ) { this.refs.datetime.closePicker( ); }
+  constructor( props, context ) {
+    super( props, context );
+    this.close = this.close.bind( this );
   }
 
+  componentDidMount( ) {
+    // the datetime picker prevents a card drag preview without this
+    this.close( );
+  }
+
+  close( ) {
+    if ( this.refs.datetime ) { this.refs.datetime.closePicker( ); }
+  }
   render( ) {
     return (
       <DateTimeField
