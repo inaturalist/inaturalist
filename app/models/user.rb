@@ -166,6 +166,9 @@ class User < ActiveRecord::Base
   validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
   validates_format_of       :login,     with: login_regex, message: bad_login_message
+  validates_exclusion_of    :login,     in: %w(password new edit create update delete destroy)
+
+  validates_exclusion_of    :password,     in: %w(password)
 
   validates_length_of       :name,      maximum: 100, allow_blank: true
 
