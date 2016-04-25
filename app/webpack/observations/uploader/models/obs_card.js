@@ -1,6 +1,7 @@
 import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
 import actions from "../actions/actions";
+import moment from "moment";
 
 const ObsCard = class ObsCard {
   constructor( attrs ) {
@@ -34,11 +35,29 @@ const ObsCard = class ObsCard {
     );
   }
 
+  uploadedFiles( ) {
+    return _.filter( this.files, f => f.upload_state === "uploaded" );
+  }
+
+  momentDate( ) {
+    let m;
+    if ( this.date &&
+         this.date.match( /\d{2}\/\d{2}\/\d{2}(\d{2})? \d{1,2}:\d{2} [AP]M [-+]\d{1,2}:\d{2}/ ) ) {
+      const d = new Date( this.date );
+      m = d && moment( d );
+      if ( m && m.isValid( ) ) {
+        return m;
+      }
+    }
+    return undefined;
+  }
+
   syncMetadataWithPhoto( p, dispatch ) {
     const updates = { };
     const obs = p.to_observation;
     if ( !this.date && obs.time_observed_at ) {
-      updates.date = new Date( obs.time_observed_at );
+      updates.date = moment( new Date( obs.time_observed_at ) ).format( "MM/DD/YY h:mm A ZZ" );
+      updates.selected_date = updates.date;
     }
     if ( !this.latitude && obs.latitude && obs.longitude ) {
       updates.latitude = parseFloat( obs.latitude );

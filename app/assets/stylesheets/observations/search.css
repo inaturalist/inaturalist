@@ -7,6 +7,9 @@
 #bodywrapper {
   margin-bottom: -202px;
 }
+#bodywrapper:after {
+  height: 180px;
+}
 #wrapper {
   margin-bottom: 0px;
 }

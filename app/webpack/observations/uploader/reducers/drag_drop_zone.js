@@ -1,13 +1,18 @@
 import _ from "lodash";
 import * as types from "../constants/constants";
 import update from "react-addons-update";
+import ObsCard from "../models/obs_card";
 
 const defaultState = {
   obsCards: { },
   numberOfUploads: 0,
   maximumNumberOfUploads: 3,
-  selectedObsCards: { },
-  saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 }
+  saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 },
+  locationChooser: { show: false },
+  removeModal: { show: false },
+  confirmModal: { show: false },
+  photoViewer: { show: false },
+  selectedObsCards: { }
 };
 
 const dragDropZone = ( state = defaultState, action ) => {
@@ -42,11 +47,11 @@ const dragDropZone = ( state = defaultState, action ) => {
 
     case types.UPDATE_SELECTED_OBS_CARDS: {
       let modified = Object.assign( { }, state.obsCards );
-      for ( const id in state.selectedObsCards ) {
+      _.each( state.selectedObsCards, c => {
         modified = update( modified, {
-          [id]: { $merge: action.attrs }
+          [c.id]: { $merge: action.attrs }
         } );
-      }
+      } );
       return Object.assign( { }, state, { obsCards: modified,
         selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
       } );
@@ -101,8 +106,9 @@ const dragDropZone = ( state = defaultState, action ) => {
     }
 
     case types.CREATE_BLANK_OBS_CARD: {
+      const obsCard = new ObsCard( );
       return update( state, { obsCards: {
-        [action.obsCard.id]: { $set: action.obsCard }
+        [obsCard.id]: { $set: obsCard }
       } } );
     }
 

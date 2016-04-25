@@ -6,9 +6,8 @@
   src: url('/fonts/rw-widgets.eot?#iefix') format('embedded-opentype'), url('/fonts/rw-widgets.woff2') format('woff2'), url('/fonts/rw-widgets.woff') format('woff'), url('/fonts/rw-widgets.ttf') format('truetype'), url('/fonts/rw-widgets.svg#glyphicons_halflingsregular') format('svg');
 }
 #wrapper {
-  min-height: initial;
+  min-height: 100%;
   background: none;
-  min-height: 500px;
 }
 #bodywrapper {
   margin-bottom: 0px;
@@ -20,268 +19,401 @@
 #header {
   margin-bottom: 0px;
 }
-.uploader {
-  min-width: 1000px;
-}
-.control-menu {
-  background: #fff;
-  padding: 10px;
-}
-.control-menu button {
-  margin: 0px 5px;
-}
-.control-menu button.save {
-  float: right;
-}
 .control-menu button .glyphicon, .intro button .glyphicon {
   margin-left: 10px;
   top: 3px;
   font-size: 0.9em;
+}
+.control-menu {
+  background: #fff;
+  padding: 10px;
+  height: 55px;
+  button {
+    margin: 0px 5px;
+    &.save {
+      float: right;
+    }
+  }
 }
 .row.body {
   display: flex;
 }
 #imageGrid {
   min-height: 450px;
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  .intro {
+    text-align: center;
+    height: 300px;
+    padding-top: 7%;
+    font-size: 1.3em;
+    .drag_or_choose {
+      padding-bottom: 30px;
+    }
+    .dropdown {
+      border-top: 1px dashed;
+      padding: 30px 150px 0px;
+    }
+    .dropdown-menu {
+      margin: 0px 150px;
+    }
+  }
+  .card input {
+    display: inline-block;
+  }
+  .ac-chooser input {
+    width: 150px;
+    padding-right: 25px;
+  }
 }
-#imageGrid .intro {
-  text-align: center;
-  height: 300px;
-  padding-top: 10%;
-  font-size: 1.3em;
+.uploader {
+  min-width: 1000px;
+  &.populated {
+    #imageGrid > div {
+      flex: 1;
+      flex-direction: column;
+      display: inline;
+    }
+  }
+  &.hover {
+    opacity: 0.7;
+    cursor: copy;
+    .intro {
+      .start {
+        display: none;
+      }
+      .hover {
+        display: block;
+      }
+    }
+    #multiMenu, .control-menu > div {
+      display: none;
+    }
+  }
+  .form-group, .rw-datetimepicker, .input-group {
+    margin-bottom: 5px;
+  }
+  .intro .hover {
+    display: none;
+    p {
+      line-height: 150px;
+    }
+  }
 }
-.uploader.hover {
-  opacity: 0.5;
-  cursor: copy;
-}
-.uploader.hover .intro .start {
-  display: none;
-}
-.uploader .intro .hover {
-  display: none;
-}
-.uploader .intro .hover p {
-  line-height: 150px;
-}
-.uploader.hover .intro .hover {
-  display: block;
+.leftColumn {
+  width: 250px;
+  .ac-chooser {
+    .ac-select-thumb {
+      position: absolute;
+    }
+    input[name="taxon_name"] {
+      margin-left: 40px;
+      width: 85%;
+    }
+  }
+  h4.empty {
+    font-style: italic;
+  }
+  .checkbox {
+    label {
+      padding: 0px;
+    }
+    input[type="checkbox"] {
+      position: relative;
+      margin: 0px 5px 0px 5px;
+    }
+  }
 }
 .card {
   background-color: white;
   margin: 5px;
-  display: inline-block;
   width: 200px;
   border: 1px solid #666;
   padding: 5px;
   border-radius: 5px;
+  cursor: -webkit-grab; cursor: -moz-grab;
+
+  &:hover {
+    border: 2px solid #666;
+    padding: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+    .close, .zoom {
+      display: block;
+    }
+  }
+  .close, .zoom {
+    display: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+
+  &.selected {
+    border: 2px solid rgba(255, 0, 128, 1);
+    padding: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  & > .close {
+    font-size: 20px;
+    margin: -15px -15px -15px 0px;
+  }
+
+  .head {
+    height: 10px;
+  }
+
+  .image {
+    width: 100%;
+    height: 130px;
+    text-align: center;
+    padding: 0px 4px;
+    margin-bottom: 4px;
+    position: relative;
+
+    .placeholder {
+      margin: auto;
+    }
+
+    .placeholder  .glyphicon , .item >  .glyphicon{
+      line-height: 120px;
+      font-size: 90px;
+      opacity: 0.07;
+    }
+
+    img {
+      max-height: 115px;
+      max-width: 172px;
+      width: auto;
+    }
+
+    .zoom {
+      position: absolute;
+      bottom: 25px;
+      line-height: 20px;
+      right: 32px;
+      opacity: 0.5;
+    }
+  }
+
+  .carousel {
+    .item {
+      height: 130px;
+      line-height: 130px;
+      width: 100%;
+      &.next, &.active {
+        display: inline-block;
+      }
+      &.left, &.right {
+        float: none;
+        margin: 0px auto;
+      }
+    }
+    .photoDrag {
+      display: inline-block;
+      line-height: initial;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.4);
+      margin-left: -1px;
+
+      &:hover {
+        border: 1px solid rgba(255, 0, 128, 0.3);
+        padding: 0px;
+      }
+      &.drag {
+        border: 1px solid rgba(255, 0, 128, 0.7);
+        padding: 0px;
+      }
+      img {
+        display: inline-block;
+      }
+      .close {
+        line-height: 20px;
+        color: black;
+        float: right;
+        width: 0;
+        height: 0;
+        margin: 2px 17px 0px -17px;
+        font-size: 15px;
+        opacity: 0.5;
+      }
+    }
+    .carousel-control {
+      background: none;
+      height: 50px;
+      margin-top: 40px;
+      span {
+        font-size: 20px;
+        margin-top: -10px;
+      }
+    }
+    .carousel-indicators {
+      bottom: 0px;
+      margin-bottom: 5px;
+      li {
+        border: 1px solid #E4E4E4;
+        box-shadow: 0 1px 0 #222;
+        &:hover {
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
 }
-.card.blank {
-  border: 1px solid #666;
+
+.date .input-group-addon {
+  padding: 6px 11px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
 }
+
 .card button .glyphicon, .leftColumn button .glyphicon {
   top: 3px;
 }
-.card .move {
+
+
+.cellDropzone {
   float: left;
-  font-size: 15px;
-  margin: -13px 0px -13px -13px;
-  opacity: 0.2;
-  cursor: move;
-  display: none;
 }
-.card .close {
-  font-size: 15px;
-  margin: -13px -13px -13px 0px;
-  display: none;
-}
-.cellDropzone:hover .move, .cellDropzone:hover .close {
-  display: block;
-}
-.card .move:hover, .card .close:hover {
-  opacity: 1;
-}
-.card .head {
-  height: 10px;
-}
-.card .image {
-  width: 100%;
-  height: 130px;
-  text-align: center;
-  padding: 0px 4px;
-  margin-bottom: 4px;
-}
-.card .image .placeholder {
-  border-style: dashed;
-  border-radius: 5px;
-  border-width: 1px;
-  width: 80px;
-  height: 100px;
-  margin: auto;
-}
-.card .image img {
-  max-height: 126px;
-  max-width: 172px;
-  width: auto;
-}
-#imageGrid .card input {
-  display: inline-block;
-}
-.card textarea {
-  resize: none;
-}
-.uploader .form-group, .uploader .rw-datetimepicker {
-  margin-bottom: 5px;
-}
-#imageGrid .ac-chooser input {
-  width: 150px;
-  padding-right: 25px;
-}
-.cell {
-  display: inline;
-}
-.card.selected {
-  border: 3px solid #ff0080;
+.cellDropzone.hover .card, .cellDropzone .card.dragOver {
+  border: 3px solid green;
   padding: 3px;
 }
-.cellDropzone {
-  display: inline-block;
-}
-.cellDropzone.hover .card {
-  border: 4px solid green;
-  padding: 2px;
-}
-.cellDropzone.hover .card.dragging {
-  border: 4px solid red;
-  padding: 2px;
+.cellDropzone .card.dragging {
+  border: 3px solid red;
+  padding: 3px;
   cursor: no-drop;
-}
-.uploader .leftColumn {
-  width: 250px;
-}
-.leftColumn .ac-chooser .ac-select-thumb {
-  position: absolute;
-}
-.leftColumn .ac-chooser input[name="taxon_name"] {
-  margin-left: 40px;
-  width: 85%;
-}
-.leftColumn h4.empty {
-  font-style: italic;
-}
-.bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
-  top: 231px !important;
-  left: auto !important;
-  right: auto !important;
 }
 #multiMenu {
   position: fixed;
   top: 120px;
   width: 220px;
+  cursor: auto;
 }
 .image .badge {
   position: absolute;
   display: block;
-  background: pink;
   z-index: 2;
 }
-.card .carousel .item {
-  height: 130px;
-  line-height: 130px;
-  width: 100%;
+.modal {
+  &.location {
+    .modal-header {
+      .glyphicon {
+        font-size: 0.9em;
+        margin-right: 5px;
+      }
+    }
+    .modal-dialog {
+      width: 700px;
+    }
+    .modal-body {
+      height: 400px;
+      padding: 10px;
+    }
+    .modal-header {
+      padding: 10px 10px 5px 10px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      background: #337ab7;
+
+      h4 {
+        color: white;
+      }
+    }
+    .modal-footer {
+      text-align: center;
+      button {
+        min-width: 100px;
+        margin: 0px 20px;
+      }
+    }
+    .form-group {
+      display: inline-block;
+      margin: 0px 10px;
+      input {
+        width: 80px;
+        &.notes {
+          width: 220px;
+        }
+      }
+    }
+  }
+  .map {
+    height: 310px;
+  }
+  .form {
+    margin-top: 10px;
+    display: flex;
+    option {
+      height: 0px;
+    }
+  }
+
+  &.confirm {
+    .modal-dialog {
+      width: 450px;
+      margin-top: 150px;
+    }
+    .text {
+      line-height: 28px;
+      font-size: 1.3em;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .modal-footer {
+      padding: 10px;
+      .buttons {
+        text-align: center;
+      }
+      button {
+        min-width: 100px;
+        margin: 0px 10px;
+      }
+    }
+  }
+
+  &.status .modal-dialog, &.remove .modal-dialog {
+    margin-top: 200px;
+  }
+
+  &.status {
+    h3 {
+      margin: 20px;
+      text-align: center;
+    }
+  }
 }
-.card .carousel .carousel-control {
-  background: none;
-}
-.card .carousel .carousel-control span {
-  font-size: 20px;
-  margin-top: -10px;
-}
-.card .carousel .carousel-indicators {
-  bottom: 0px;
-  margin-bottom: 5px;
-}
-.card .carousel .carousel-indicators li {
-  border: 1px solid #E4E4E4;
-  box-shadow: 0 1px 0 #222;
-}
-.card .carousel .carousel-indicators li:hover {
-  background: #fff;
-}
-.card .carousel .item.next, .card .carousel .item.active {
-  display: inline-block;
-}
-.card .carousel .item.left, .card .carousel .item.right {
-  float: none;
-  margin: 0px auto;
-}
-.card .carousel .item img {
-  display: inline-block;
-}
-.modal.status .modal-dialog, .modal.remove .modal-dialog {
-  margin-top: 200px;
-}
-.modal.status h3 {
-  margin: 20px;
-  text-align: center;
-}
-.modal.location .modal-dialog {
-  width: 700px;
-}
-.modal.location .modal-body {
-  height: 400px;
-  padding: 10px;
-}
-.modal.location .modal-header {
-  padding: 10px 10px 5px 10px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: #337ab7;
-}
-.modal.location .modal-header h4 {
-  color: white;
-}
-.modal.location .modal-footer {
-  text-align: center;
-}
-.modal.location .modal-footer button {
-  min-width: 100px;
-  margin: 0px 20px;
-}
-.modal.location .form-group {
-  display: inline-block;
-  margin: 0px 10px;
-}
-.modal.location .form-group input {
-  width: 80px;
-}
-.modal.location .form-group input.notes {
-  width: 220px;
-}
-.modal.location .map {
-  height: 310px;
-}
-.modal.location .form {
-  margin-top: 10px;
-  display: flex;
-}
-.modal.location .form option {
-  height: 0px;
-}
+
 .pac-container {
   z-index: 1100;
 }
-.modal.remove .modal-dialog {
-  width: 450px;
-}
-.modal.remove .text {
-  line-height: 34px;
-  font-size: 1.3em;
-  display: inline-block;
-  margin-left: 10px;
-}
-.modal.remove .buttons {
-  float: right;
-}
 div.fixed:before {
   content: "<div id='thebefore'></div>"
+}
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
+  position: absolute;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  height: auto;
+  margin-top: 37px;
+  td span {
+    height: auto;
+  }
+  &:before {
+    right: 110px;
+  }
+  &:after {
+    right: 111px;
+  }
 }

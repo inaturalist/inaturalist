@@ -1,59 +1,53 @@
 import React, { PropTypes, Component } from "react";
-import { Modal, Button } from "react-bootstrap";
+import ConfirmModal from "./confirm_modal";
 
 class RemoveModal extends Component {
 
   constructor( props, context ) {
     super( props, context );
-    this.close = this.close.bind( this );
-    this.remove = this.remove.bind( this );
+    this.onConfirm = this.onConfirm.bind( this );
+    this.onClose = this.onClose.bind( this );
   }
 
-  close( ) {
-    this.props.setState( { removeModal: { open: false, count: this.props.count } } );
-  }
-
-  remove( ) {
+  onConfirm( ) {
     if ( this.props.count === 1 && this.props.obsCard ) {
       this.props.removeObsCard( this.props.obsCard );
-    } else if ( this.props.count > 1 ) {
+    } else if ( this.props.count > 0 ) {
       this.props.removeSelected( );
     }
-    this.close( );
+    this.props.updateState( { removeModal: { show: false } } );
+  }
+
+  onClose( ) {
+    this.props.updateState( { removeModal: { show: false } } );
   }
 
   render( ) {
-    const { show } = this.props;
-    let modalMessage;
+    let message;
     if ( this.props.count > 1 ) {
-      modalMessage = `Remove ${this.props.count} observations?`;
+      message = `Remove ${this.props.count} observations?`;
     } else {
-      modalMessage = "Remove 1 observation?";
+      message = "Remove 1 observation?";
     }
     return (
-      <Modal show={ show } className="remove">
-        <Modal.Body>
-          <div className="text">
-            { modalMessage }
-          </div>
-          <div className="buttons">
-            <Button bsStyle="danger" onClick={this.remove}>Remove</Button>
-            <Button bsStyle="default" onClick={this.close}>Cancel</Button>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <ConfirmModal
+        message={ message }
+        onConfirm={ this.onConfirm }
+        onClose={ this.onClose }
+        confirmClass="danger"
+        confirmText="Remove"
+        { ...this.props }
+      />
     );
   }
 }
 
 RemoveModal.propTypes = {
-  show: PropTypes.bool,
   count: PropTypes.number,
   obsCard: PropTypes.object,
-  onConfirm: PropTypes.func,
-  setState: PropTypes.func,
   removeObsCard: PropTypes.func,
-  removeSelected: PropTypes.func
+  removeSelected: PropTypes.func,
+  updateState: PropTypes.func
 };
 
 export default RemoveModal;

@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Modal, Button, Input } from "react-bootstrap";
-import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker, InfoWindow } from "react-google-maps";
+import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
+import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
 
 
 class LocationChooser extends Component {
@@ -35,7 +35,7 @@ class LocationChooser extends Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.open && !prevProps.open && !this.props.center ) {
+    if ( this.props.show && !prevProps.show && !this.props.center ) {
       setTimeout( this.fitCircles, 10 );
     }
   }
@@ -77,7 +77,7 @@ class LocationChooser extends Component {
   }
 
   close( ) {
-    this.props.setState( { locationChooser: { open: false } } );
+    this.props.setState( { locationChooser: { show: false } } );
   }
 
   save( ) {
@@ -214,8 +214,7 @@ class LocationChooser extends Component {
               fillColor: "#337ab7",
               fillOpacity: 0.35
             }}
-          >
-          </Circle>
+          />
         );
       }
     } );
@@ -236,10 +235,14 @@ class LocationChooser extends Component {
         />
       );
     }
+    const glyph = this.props.notes && ( <Glyphicon glyph="map-marker" /> );
     return (
-      <Modal show={ this.props.open } className="location" onHide={ this.close }>
+      <Modal show={ this.props.show } className="location" onHide={ this.close }>
         <Modal.Header closeButton>
-          <Modal.Title>{ this.props.notes || "Location" }</Modal.Title>
+          <Modal.Title>
+            { glyph }
+            { this.props.notes || "Location" }
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <GoogleMapLoader
@@ -303,7 +306,7 @@ class LocationChooser extends Component {
 }
 
 LocationChooser.propTypes = {
-  open: PropTypes.bool,
+  show: PropTypes.bool,
   default: PropTypes.object,
   obsCard: PropTypes.object,
   obsCards: PropTypes.object,

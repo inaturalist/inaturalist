@@ -178,6 +178,7 @@ $.fn.genericAutocomplete = function( options ) {
     options.idEl.val( s.id );
     field.val( s.title );
     field.selection = s;
+    if( options.afterSelect ) { options.afterSelect( { item: s } ); }
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {

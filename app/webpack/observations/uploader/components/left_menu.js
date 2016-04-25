@@ -2,8 +2,8 @@ import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Button, Input, Glyphicon } from "react-bootstrap";
 import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
-import { DateTimePicker } from "react-widgets";
 import inaturalistjs from "inaturalistjs";
+import DateTimeFieldWrapper from "./date_time_field_wrapper";
 
 class LeftMenu extends Component {
 
@@ -23,8 +23,6 @@ class LeftMenu extends Component {
     const commonLng = this.commonValue( "longitude" );
     const commonRadius = this.commonValue( "accuracy" );
     const commonZoom = this.commonValue( "zoom" );
-    const commonGeoprivacy = this.commonValue( "geoprivacy" );
-    const commonNotes = this.commonValue( "locality_notes" );
     if ( commonLat && commonLng && commonRadius ) {
       lat = commonLat;
       lng = commonLng;
@@ -32,18 +30,19 @@ class LeftMenu extends Component {
       zoom = commonZoom;
     }
     this.props.setState( { locationChooser: {
-      open: true,
+      show: true,
       zoom,
       radius,
       lat,
       lng,
-      notes: commonNotes,
-      geoprivacy: commonGeoprivacy
+      notes: this.commonValue( "locality_notes" ),
+      geoprivacy: this.commonValue( "geoprivacy" )
     } } );
   }
 
   valuesOf( attr ) {
-    return _.chain( this.props.selectedObsCards ).map( attr ).uniq( ).value( );
+    return _.uniqBy( _.map( this.props.selectedObsCards, c => c[attr] ),
+      a => a && ( a.id || a ) );
   }
 
   commonValue( attr ) {
@@ -53,9 +52,11 @@ class LeftMenu extends Component {
 
   render( ) {
     const { updateSelectedObsCards, selectedObsCards } = this.props;
-    const count = _.keys( selectedObsCards ).length;
+    const keys = _.keys( selectedObsCards );
+    const count = keys.length;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
+    const commonSpeciesGuess = this.commonValue( "species_guess" );
     const commonSelectedTaxon = this.commonValue( "selected_taxon" );
     const commonDate = this.commonValue( "date" );
     const commonLat = this.commonValue( "latitude" );
@@ -79,36 +80,54 @@ class LeftMenu extends Component {
     } else {
       menu = (
         <div>
-          <h4>Editing {count} observations</h4>
+          <h4>Editing {count} observation{count > 1 ? "s" : ""}</h4>
           <TaxonAutocomplete
+            key={ `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.id}` }
             bootstrapClear
             searchExternal
             showPlaceholder
-            searchExternal={false}
+            allowPlaceholders
+            perPage={ 6 }
+            value={ ( commonSelectedTaxon && commonSelectedTaxon.id ) ?
+              commonSelectedTaxon.title : commonSpeciesGuess }
             initialSelection={ commonSelectedTaxon }
             afterSelect={ function ( result ) {
-              updateSelectedObsCards( { taxon_id: result.item.id,
+              updateSelectedObsCards( {
+                taxon_id: result.item.id,
                 selected_taxon: new inaturalistjs.Taxon( result.item ) } );
             } }
             afterUnselect={ ( ) => {
-              updateSelectedObsCards( { taxon_id: undefined, selected_taxon: undefined } );
+              updateSelectedObsCards( {
+                taxon_id: undefined,
+                selected_taxon: undefined } );
             } }
+            onChange={ e => updateSelectedObsCards( {
+              species_guess: e.target.value, selected_species_guess: e.target.value
+            } ) }
           />
-          <DateTimePicker key={ `datetime:${count}` }key={ commonDate } defaultValue={ commonDate }
-            onChange={ e => updateSelectedObsCards( { date: e } ) }
+          <DateTimeFieldWrapper
+            defaultText={ commonDate }
+            onChange={ dateString => updateSelectedObsCards(
+              { date: dateString, selected_date: dateString } ) }
           />
-          <Input key={ `location:${count}` } type="text" buttonAfter={ globe } readOnly
-            value={ locationText }
+          <Input type="text" buttonAfter={ globe } readOnly
+            value={ locationText } onClick={ this.openLocationChooser }
           />
-          <Input key={ `description:${count}` } type="textarea"
+          <Input type="textarea"
             placeholder={ descriptionPlaceholder } value={ commonDescription }
             onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+          />
+          <Input type="checkbox"
+            label="Captive or cultivated"
+            checked={ this.commonValue( "captive" ) }
+            value="true"
+            onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
           />
         </div>
       );
     }
     return (
-      <div id="multiMenu" key={ `multiMenu:${count}` }>
+      <div id="multiMenu">
         {menu}
       </div>
     );
