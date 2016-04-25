@@ -71,7 +71,8 @@ class DragDropZone extends Component {
           ".input-group-addon, #multiMenu, " +
           ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
         selecting: this.selectObsCards,
-        unselecting: this.selectObsCards
+        unselecting: this.selectObsCards,
+        distance: 1
       } );
       $( ".uploader" ).selectable( "enable" );
     } else {
