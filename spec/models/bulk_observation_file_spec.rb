@@ -23,13 +23,13 @@ describe BulkObservationFile, "import_file" do
   end
 
   it "should create an observation with the right species_guess" do
-    bof = BulkObservationFile.new(@work_path, user)
+    bof = BulkObservationFile.new(@work_path, user.id)
     bof.perform
     expect(user.observations.last.species_guess).to eq @Calypte_anna.name
   end
 
   it "should create an observation with a geom" do
-    bof = BulkObservationFile.new(@work_path, user)
+    bof = BulkObservationFile.new(@work_path, user.id)
     bof.perform
     expect(user.observations.last.geom).not_to be_blank
   end
@@ -49,7 +49,7 @@ describe BulkObservationFile, "import_file" do
         "open"
       ]
     end
-    bof = BulkObservationFile.new(@work_path, user)
+    bof = BulkObservationFile.new(@work_path, user.id)
     user.observations.destroy_all
     bof.perform
     expect(user.observations).to be_blank
@@ -73,7 +73,7 @@ describe BulkObservationFile, "import_file" do
       csv << ['','','','','','','']
       csv << ['','','','','','','']
     end
-    bof = BulkObservationFile.new(@work_path, user)
+    bof = BulkObservationFile.new(@work_path, user.id)
     user.observations.destroy_all
     bof.perform
     user.reload
@@ -89,7 +89,7 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
 # Buteo jamaicensis,2013-01-01 09:10:11,,1,1,,"List,Of,Tags",Private
       CSV
     end
-    bof = BulkObservationFile.new(@work_path, user)
+    bof = BulkObservationFile.new(@work_path, user.id)
     user.observations.destroy_all
     bof.perform
     user.reload
@@ -104,7 +104,7 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
 #{t.name},2013-01-01 09:10:11,,1",1,,"List,Of,Tags",Private
       CSV
     end
-    bof = BulkObservationFile.new(@work_path, user)
+    bof = BulkObservationFile.new(@work_path, user.id)
     user.observations.destroy_all
     bof.perform
     expect(user.observations).to be_blank
@@ -116,12 +116,12 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
       @project = @project_user.project
     end
     it "should add to project" do
-      bof = BulkObservationFile.new(@work_path, @project_user.user, project_id: @project.id)
+      bof = BulkObservationFile.new(@work_path, @project_user.user_id, project_id: @project.id)
       bof.perform
       expect(@project_user.user.observations.last.projects).to include(@project)
     end
     it "should not add an extra identification" do
-      bof = BulkObservationFile.new(@work_path, @project_user.user, project_id: @project.id)
+      bof = BulkObservationFile.new(@work_path, @project_user.user_id, project_id: @project.id)
       bof.perform
       expect(@project_user.user.observations.last.identifications.count).to eq 1
     end
@@ -149,7 +149,7 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
           ''
         ]
       end
-      bof = BulkObservationFile.new(@work_path, user, project_id: @project.id)
+      bof = BulkObservationFile.new(@work_path, user.id, project_id: @project.id)
       user.observations.destroy_all
       bof.perform
       user.reload
@@ -183,7 +183,7 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
     end
 
     it "should create an observation with a geom" do
-      bof = BulkObservationFile.new(@work_path, user, coord_system: proj4_nzmg)
+      bof = BulkObservationFile.new(@work_path, user.id, coord_system: proj4_nzmg)
       bof.perform
       expect(user.observations.last.geom).not_to be_blank
     end
@@ -203,7 +203,7 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
           "open"
         ]
       end
-      bof = BulkObservationFile.new(work_path, user, coord_system: proj4_nzmg)
+      bof = BulkObservationFile.new(work_path, user.id, coord_system: proj4_nzmg)
       user.observations.destroy_all
       bof.perform
       expect(user.observations).to be_blank

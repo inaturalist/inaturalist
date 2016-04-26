@@ -999,7 +999,7 @@ class ObservationsController < ApplicationController
     # Send the filename to a background processor
     bof = BulkObservationFile.new(
       path,
-      current_user,
+      current_user.id,
       project_id: params[:upload][:project_id], 
       coord_system: proj4
     )

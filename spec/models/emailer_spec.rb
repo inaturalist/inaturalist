@@ -159,7 +159,7 @@ end
 describe Emailer, "bulk_observation_error" do
   it "should mention the error reasons" do
     user = User.make!
-    bof = BulkObservationFile.new(nil, user)
+    bof = BulkObservationFile.new(nil, user.id)
     o = Observation.new
     expect(o).not_to be_valid
     e = BulkObservationFile::BulkObservationException.new(
