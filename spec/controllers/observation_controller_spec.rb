@@ -552,8 +552,9 @@ describe ObservationsController, "new_bulk_csv" do
   let(:headers) do
     %w(taxon_name date_observed description place_name latitude longitude tags geoprivacy)
   end
+  let(:user) { User.make! }
   before do
-    sign_in User.make!
+    sign_in user
   end
   it "should not allow you to enqueue the same file twice" do
     Delayed::Job.delete_all
@@ -586,5 +587,29 @@ describe ObservationsController, "new_bulk_csv" do
     expect( Delayed::Job.count ).to eq 1
     post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
     expect( Delayed::Job.count ).to eq 2
+  end
+
+  it "should create observations" do
+    Delayed::Job.delete_all
+    Observation.by( user ).destroy_all
+    expect( Observation.by( user ).count ).to eq 0
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        '37.7693',
+        '-122.46565',
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    Taxon.make!( name: "Homo sapiens" )
+    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    Delayed::Worker.new.work_off
+    expect( Observation.by( user ).count ).to eq 1
   end
 end
