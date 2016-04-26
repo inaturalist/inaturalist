@@ -18,9 +18,9 @@ describe Emailer, "updates_notification" do
   
   it "should work when recipient has a blank locale" do
     @user.update_attributes(:locale => "")
-    @user.updates.all.should_not be_blank
+    expect(@user.updates.all).not_to be_blank
     mail = Emailer.updates_notification(@user, @user.updates.all)
-    mail.body.should_not be_blank
+    expect(mail.body).not_to be_blank
   end
 
   it "should use common names for a user's place" do
@@ -28,13 +28,13 @@ describe Emailer, "updates_notification" do
     t = Taxon.make!
     tn_default = TaxonName.make!(:taxon => t, :lexicon => TaxonName::LEXICONS[:ENGLISH])
     tn_local = TaxonName.make!(:taxon => t, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    t.common_name.name.should eq tn_default.name
+    expect(t.common_name.name).to eq tn_default.name
     ptn = PlaceTaxonName.make!(:taxon_name => tn_local, :place => p)
     @user.update_attributes(:place_id => p.id)
     identification = without_delay { Identification.make!(:taxon => t, :observation => @observation) }
     mail = Emailer.updates_notification(@user, @user.updates.all)
-    mail.body.should =~ /#{tn_local.name}/
-    mail.body.should_not =~ /#{tn_default.name}/
+    expect(mail.body).to match /#{tn_local.name}/
+    expect(mail.body).not_to match /#{tn_default.name}/
   end
 
   it "sends updates on observation field values, in all languages" do
@@ -62,24 +62,24 @@ describe Emailer, "updates_notification" do
 
     it "should use the user's site logo" do
       mail = Emailer.updates_notification(@user, @user.updates.all)
-      mail.body.should match @site.logo_email_banner.url
+      expect(mail.body).to match @site.logo_email_banner.url
     end
 
     it "should use the user's site url as the base url" do
       mail = Emailer.updates_notification(@user, @user.updates.all)
-      mail.body.should match @site.url
+      expect(mail.body).to match @site.url
     end
 
     it "should default to the user's site locale if the user has no locale" do
       @user.update_attributes(:locale => "")
       mail = Emailer.updates_notification(@user, @user.updates.all)
-      mail.body.should match /Nuevas actualizaciones/
+      expect(mail.body).to match /Nuevas actualizaciones/
     end
 
     it "should include site name in subject" do
       @user.update_attributes(:locale => "")
       mail = Emailer.updates_notification(@user, @user.updates.all)
-      mail.subject.should match @site.name
+      expect(mail.subject).to match @site.name
     end
   end
 end
@@ -88,7 +88,7 @@ describe Emailer, "new_message" do
   it "should work" do
     m = make_message
     mail = Emailer.new_message(m)
-    mail.body.should_not be_blank
+    expect(mail.body).not_to be_blank
   end
 
   it "should not deliver flagged messages" do
@@ -99,14 +99,14 @@ describe Emailer, "new_message" do
     f = m.flags.create(:flag => "spam")
     m.reload
     mail = Emailer.new_message(m)
-    mail.body.should be_blank
+    expect(mail.body).to be_blank
   end
 
   it "should not deliver if from_user is suspended" do
     m = make_message
     m.from_user.suspend!
     mail = Emailer.new_message(m)
-    mail.body.should be_blank
+    expect(mail.body).to be_blank
   end
 end
 
@@ -119,7 +119,7 @@ describe Emailer, "invite" do
       :personal_message => "it's a twap"
     }
     mail = Emailer.invite_user(address, params, user)
-    mail.body.should_not be_blank
+    expect(mail.body).not_to be_blank
   end
 end
 
@@ -128,9 +128,9 @@ describe Emailer, "project_user_invitation" do
     pui = ProjectUserInvitation.make!
     pui.user.destroy
     pui.reload
-    pui.user.should be_blank
+    expect(pui.user).to be_blank
     mail = Emailer.project_user_invitation(pui)
-    mail.body.should_not be_blank
+    expect(mail.body).not_to be_blank
   end
 end
 
@@ -138,8 +138,8 @@ describe Emailer, "bulk_observation_success" do
   let(:user) { User.make! }
   it "should mention the filename" do
     mail = Emailer.bulk_observation_success(user, "the_filename")
-    mail.body.should =~ /the_filename/
-    mail.subject.should =~ /the_filename/
+    expect(mail.body).to match /the_filename/
+    expect(mail.subject).to match /the_filename/
   end
 
   describe "with a site" do
@@ -151,7 +151,7 @@ describe Emailer, "bulk_observation_success" do
     end
     it "should include the site name" do
       mail = Emailer.bulk_observation_success(user, "the_filename")
-      mail.body.should =~ /#{@site.name}/
+      expect(mail.body).to match /#{@site.name}/
     end
   end
 end
@@ -159,9 +159,9 @@ end
 describe Emailer, "bulk_observation_error" do
   it "should mention the error reasons" do
     user = User.make!
-    bof = BulkObservationFile.new(nil, nil, nil, user)
+    bof = BulkObservationFile.new(nil, user)
     o = Observation.new
-    o.should_not be_valid
+    expect(o).not_to be_valid
     e = BulkObservationFile::BulkObservationException.new(
       "failed to process", 
       1, 
@@ -169,7 +169,7 @@ describe Emailer, "bulk_observation_error" do
     )
     errors = bof.collate_errors(e)
     mail = Emailer.bulk_observation_error(user, "the_filename", errors)
-    mail.subject.should =~ /the_filename/
-    mail.body.should =~ /failed to process/
+    expect(mail.subject).to match /the_filename/
+    expect(mail.body).to match /failed to process/
   end
 end
