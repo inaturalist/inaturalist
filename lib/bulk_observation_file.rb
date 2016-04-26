@@ -1,5 +1,5 @@
 # Custom DelayedJob task for the bulk upload functionality.
-class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_system, :user)
+class BulkObservationFile
   class BulkObservationException < StandardError
     attr_reader :reason, :row_count, :errors, :tag
 
@@ -20,18 +20,16 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
   IMPORT_BATCH_SIZE = 1000
   MAX_ERROR_COUNT   = 100
 
-  attr_accessor :observation_file, :project, :coord_system, :user, :csv_options, :custom_field_count
-
-  def initialize(observation_file, project_id, coord_system, user)
+  def initialize(observation_file, user, options = {})
     @observation_file = observation_file
-    @coord_system     = coord_system
+    @coord_system     = options[:coord_system]
     @user             = user
 
     # Try to load the specified project.
-    if project_id.blank?
+    if options[:project_id].blank?
       @project = nil
     else
-      @project = Project.find_by_id(project_id)
+      @project = Project.find_by_id(options[:project_id])
       if @project.nil?
         e = BulkObservationException.new('Specified project not found')
         Emailer.delay.bulk_observation_error(user, File.basename(observation_file), e).deliver_now
@@ -161,7 +159,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
 
     # If a coordinate system other than WGS84 is in use
     # set the correct fields for transformation.
-    if @coord_system.nil? || @coord_system == 'wgs84'
+    if @coord_system.nil?
       obs.latitude  = row[4]
       obs.longitude = row[5]
     else

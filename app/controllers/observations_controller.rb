@@ -990,12 +990,18 @@ class ObservationsController < ApplicationController
     FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
+    unless CONFIG.coordinate_systems.blank? || params[:upload][:coordinate_system].blank?
+      if coordinate_system = CONFIG.coordinate_systems[params[:upload][:coordinate_system]]
+        proj4 = coordinate_system.proj4
+      end
+    end
+
     # Send the filename to a background processor
     bof = BulkObservationFile.new(
-      path, 
-      params[:upload][:project_id], 
-      params[:upload][:coordinate_system], 
-      current_user
+      path,
+      current_user,
+      project_id: params[:upload][:project_id], 
+      coord_system: proj4
     )
     Delayed::Job.enqueue(
       bof, 
