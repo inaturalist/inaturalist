@@ -1678,6 +1678,10 @@ en:
   most_observed_species: Most observed species
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
+  must_be_observed_after: |
+    must be observed after %{operand}
+  must_be_observed_before: |
+    must be observed before %{operand}
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
@@ -4838,6 +4842,11 @@ en:
           attributes:
             user_id:
               must_be_curator: must be a curator of this project
+            observation_id:
+              must_be_observed_after: |
+                must be observed after %{time}
+              must_be_observed_before: |
+                must be observed before %{time}
   i18n:
     inflections:
       :@vow_or_con:

@@ -166,7 +166,19 @@ class Project < ActiveRecord::Base
       super
     end
   end
-  
+
+  def preferred_start_date_or_time
+    return unless start_time
+    time = start_time.in_time_zone(user.time_zone)
+    prefers_range_by_date? ? Date.parse(time.iso8601.split('T').first) : time
+  end
+
+  def preferred_end_date_or_time
+    return unless end_time
+    time = end_time.in_time_zone(user.time_zone)
+    prefers_range_by_date? ? Date.parse(time.iso8601.split('T').first) : time
+  end
+
   def strip_title
     self.title = title.strip
     true
@@ -240,15 +252,6 @@ class Project < ActiveRecord::Base
     project_observation_rules.map{|por| por.terms}.join('|')
   end
 
-  def matching_project_observation_rule_terms
-    matching_project_observation_rules.map{|por| por.terms}.join('|')
-  end
-
-  def matching_project_observation_rules
-    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced? verifiable?)
-    project_observation_rules.select{|rule| matching_operators.include?(rule.operator)}
-  end
-  
   def project_observations_count
     project_observations.count
   end
@@ -273,43 +276,19 @@ class Project < ActiveRecord::Base
     tracking_codes.split(',').map{|c| c.strip}.include?(code)
   end
 
-  def observations_matching_rules
-    scope = Observation.all
-    place_ids = [ ]
-    project_observation_rules.each do |rule|
-      case rule.operator
-      when "in_taxon?"
-        scope = scope.of(rule.operand)
-      when "observed_in_place?"
-        place_ids << rule.operand.try(:id) || rule.operand
-      when "on_list?"
-        scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
-          joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
-      when "identified?"
-        scope = scope.where("observations.taxon_id IS NOT NULL")
-      when "georeferenced?"
-        scope = scope.where("observations.geom IS NOT NULL")
-      when "verifiable?"
-        scope = scope.where("observations.quality_grade IN (?,?)",
-          Observation::NEEDS_ID, Observation::RESEARCH_GRADE)
-      end
-    end
-    unless place_ids.empty?
-      scope = scope.in_places(place_ids)
-    end
-    scope
-  end
-
   def observations_url_params(options = {})
     params = { }
     if start_time && end_time
       if prefers_range_by_date?
         params.merge!(
-          d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
-          d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
+          d1: preferred_start_date_or_time.to_s,
+          d2: preferred_end_date_or_time.to_s
         )
       else
-        params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+        params.merge!(
+          d1: preferred_start_date_or_time.iso8601,
+          d2: preferred_end_date_or_time.iso8601
+        )
       end
     end
     taxon_ids = []

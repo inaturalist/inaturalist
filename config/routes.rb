@@ -262,8 +262,6 @@ Rails.application.routes.draw do
 
   resources :projects do
     member do
-      post :add_matching, :as => :add_matching_to
-      get :preview_matching, :as => :preview_matching_for
       get :invite, :as => :invite_to
       get :confirm_leave
     end

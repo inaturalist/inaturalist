@@ -16,11 +16,12 @@ class ProjectObservation < ActiveRecord::Base
     :has_media?,
     :identified?, 
     :in_taxon?, 
-    :observed_in_place?, 
+    :observed_in_place?,
     :on_list?,
     :verifiable?,
     :wild?
   ], :unless => "errors.any?"
+  validate :observed_in_bioblitz_time_range?
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
   preference :curator_coordinate_access, :boolean, default: nil
@@ -165,7 +166,19 @@ class ProjectObservation < ActiveRecord::Base
     errors.add :observation_id, "must be made by a project member or an invited user"
     false
   end
-  
+
+  def observed_in_bioblitz_time_range?
+    if project && observation && project.bioblitz?
+      if project.start_time && !observed_after?(project.preferred_start_date_or_time)
+        errors.add :observation_id, :must_be_observed_after,
+          time: I18n.l(project.preferred_start_date_or_time)
+      elsif project.end_time && !observed_before?(project.preferred_end_date_or_time)
+        errors.add :observation_id, :must_be_observed_before,
+          time: I18n.l(project.preferred_end_date_or_time)
+      end
+    end
+  end
+
   def refresh_project_list
     return true if observation.blank? || observation.taxon_id.blank? || observation.bulk_import
     Project.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
@@ -327,6 +340,28 @@ class ProjectObservation < ActiveRecord::Base
   def removable_by?(usr)
     return true if [user_id, observation.user_id].include?(usr.id)
     return true if project.curated_by?(usr)
+    false
+  end
+
+  def observed_after?(time = nil)
+    obs_time = observation.time_observed_at_in_zone || observation.observed_on
+    return false if !obs_time
+    if project.prefers_range_by_date?
+      return true if time && obs_time.to_date >= time.to_date
+    else
+      return true if time && obs_time >= time
+    end
+    false
+  end
+
+  def observed_before?(time = nil)
+    obs_time = observation.time_observed_at_in_zone || observation.observed_on
+    return false if !obs_time
+    if project.prefers_range_by_date?
+      return true if time && obs_time.to_date <= time.to_date
+    else
+      return true if time && obs_time <= time
+    end
     false
   end
 

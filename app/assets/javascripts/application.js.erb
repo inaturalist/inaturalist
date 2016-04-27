@@ -357,7 +357,6 @@ $(document).ready(function() {
     })
   }, 1000)
 
-  $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
 
   var menuCloseInitiated;
@@ -1075,47 +1074,6 @@ $(document).on('ajax:before', '.project_user_invitation .acceptlink', function()
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
 })
-
-$(document).on('click', '.add_matching_link', function(e) {
-  var link = this,
-      url = $(this).attr('href').replace(/add_matching/, 'preview_matching'),
-      projectId = url.match(/projects\/(.+?)\/preview_matching/)[1]
-  e.preventDefault()
-  e.stopImmediatePropagation()
-  $('#add_matching_link_dialog').remove()
-  var dialog = $('<div></div>').attr('id', 'add_matching_link_dialog')
-    .addClass('dialog')
-    .html('<div class="loading status">' + I18n.t('loading') + '</div>')
-  $.ajax({url: url, type: 'get'})
-    .success(function(data) { dialog.html(data) })
-    .fail(function() {
-      dialog.dialog('close')
-      showJoinProjectDialog(projectId, {originalInput: link})
-    })
-  $(document.body).append(dialog)
-  dialog.dialog({modal: true, title: "Add matching observations to project", width: 400, height: 400})
-  return false  
-})
-
-function remoteDialog(url, options) {
-  var options = options || {},
-      dialogId = url.replace(/[^A-z0-9]+/g, '-').replace(/^\W+/, ''),
-      dialog = $('#'+dialogId)
-  if (dialog.length == 0) {
-    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
-    dialog.attr('id', dialogId)
-    dialog.load(url)
-    dialog.dialog({
-      modal: true,
-      title: options.title,
-      width: 760,
-      minHeight: 300
-    })
-  } else {
-    $(dialog).dialog('open')
-  }
-  return false
-}
 
 function showJoinProjectDialog(projectId, options) {
   options = options || {}

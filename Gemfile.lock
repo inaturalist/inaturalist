@@ -121,13 +121,6 @@ GIT
     gdata (1.1.2)
 
 GIT
-  remote: git://github.com/rightscale/right_aws.git
-  revision: f7669e0636c12b68798de332cf92f86e5092e022
-  specs:
-    right_aws (3.1.0)
-      right_http_connection (>= 1.2.5)
-
-GIT
   remote: https://github.com/kueda/mobile-fu.git
   revision: 0c8b184cbef00c17e47e0c7947575d3b95cdc66d
   specs:
@@ -531,7 +524,6 @@ GEM
       rgeo (~> 0.3)
     rgeo-geojson (0.3.1)
       rgeo (~> 0.3)
-    right_http_connection (1.5.0)
     rinku (1.7.3)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -755,8 +747,6 @@ DEPENDENCIES
   rest-client
   rgeo
   rgeo-geojson
-  right_aws!
-  right_http_connection
   rinku
   riparian!
   rspec (~> 3.4.0)

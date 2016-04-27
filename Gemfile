@@ -76,8 +76,6 @@ gem 'rails-observers'
 gem 'rakismet'
 gem 'RedCloth'
 gem 'rest-client', :require => 'rest_client'
-gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
-gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
