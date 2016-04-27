@@ -58,6 +58,8 @@ function fetchCurrentObservation( observation = null ) {
             newObs.identifications, ( ident ) => ( ident.user.id === currentUser.id )
           );
         }
+        newObs.currentUserAgrees = currentUserIdentification &&
+          currentUserIdentification.taxon_id === newObs.taxon_id;
         dispatch( updateObservationInCollection( newObs, {
           captiveByCurrentUser,
           reviewedByCurrentUser
@@ -174,14 +176,14 @@ function toggleCaptive( ) {
   };
 }
 
-function toggleReviewed( ) {
+function toggleReviewed( optionalObs = null ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const observation = s.currentObservation.observation;
-    const reviewed = s.currentObservation.reviewedByCurrentUser;
+    const observation = optionalObs || s.currentObservation.observation;
+    const reviewed = observation.reviewedByCurrentUser;
     const params = { id: observation.id };
     dispatch( receiveCurrentObservation( observation, {
-      captiveByCurrentUser: s.currentObservation.captiveByCurrentUser,
+      captiveByCurrentUser: observation.captiveByCurrentUser,
       reviewedByCurrentUser: !reviewed
     } ) );
     if ( reviewed ) {

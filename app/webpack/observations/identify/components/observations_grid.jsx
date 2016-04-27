@@ -5,6 +5,8 @@ import ObservationsGridItem from "./observations_grid_item";
 const ObservationsGrid = ( {
   observations,
   onObservationClick,
+  toggleReviewed,
+  onAgree,
   grid
 } ) => (
   <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"}`}>
@@ -14,6 +16,8 @@ const ObservationsGrid = ( {
           key={observation.id}
           observation={observation}
           onObservationClick={onObservationClick}
+          toggleReviewed={toggleReviewed}
+          onAgree={onAgree}
         />
       ) ) }
     </Col>
@@ -28,6 +32,8 @@ ObservationsGrid.propTypes = {
     React.PropTypes.object
   ).isRequired,
   onObservationClick: PropTypes.func,
+  onAgree: PropTypes.func,
+  toggleReviewed: PropTypes.func,
   grid: PropTypes.bool
 };
 

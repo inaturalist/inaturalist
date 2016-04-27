@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import ObservationsGrid from "../components/observations_grid";
-import { showCurrentObservation, fetchCurrentObservation } from "../actions";
+import {
+  showCurrentObservation,
+  fetchCurrentObservation,
+  toggleReviewed,
+  agreeWithObservaiton
+} from "../actions";
 
 function mapStateToProps( state ) {
   return {
@@ -13,6 +18,12 @@ function mapDispatchToProps( dispatch ) {
     onObservationClick: ( observation ) => {
       dispatch( showCurrentObservation( observation ) );
       dispatch( fetchCurrentObservation( observation ) );
+    },
+    toggleReviewed: ( observation ) => {
+      dispatch( toggleReviewed( observation ) );
+    },
+    onAgree: ( observation ) => {
+      dispatch( agreeWithObservaiton( observation ) );
     }
   };
 }

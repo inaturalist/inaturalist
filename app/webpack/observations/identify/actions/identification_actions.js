@@ -19,20 +19,26 @@ function postIdentification( params ) {
   };
 }
 
-function agreeWithCurrentObservation( ) {
-  return function ( dispatch, getState ) {
-    const o = getState( ).currentObservation.observation;
+function agreeWithObservaiton( observation ) {
+  return function ( dispatch ) {
     dispatch( loadingDiscussionItem( ) );
     return dispatch(
-      postIdentification( { observation_id: o.id, taxon_id: o.taxon.id } )
+      postIdentification( { observation_id: observation.id, taxon_id: observation.taxon.id } )
     ).then( ( ) => {
-      dispatch( fetchCurrentObservation( o ) );
+      dispatch( fetchCurrentObservation( observation ) );
     } );
+  };
+}
+
+function agreeWithCurrentObservation( ) {
+  return function ( dispatch, getState ) {
+    return agreeWithObservaiton( getState( ).currentObservation.observation );
   };
 }
 
 export {
   postIdentification,
   POST_IDENTIFICATION,
+  agreeWithObservaiton,
   agreeWithCurrentObservation
 };

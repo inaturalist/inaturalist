@@ -12,12 +12,14 @@ const observationsReducer = ( state = { results: [] }, action ) => {
   } else if ( action.type === UPDATE_OBSERVATION_IN_COLLECTION ) {
     const newState = Object.assign( {}, state, {
       results: _.cloneDeep( state.results ).map( ( obs ) => {
-        if ( obs.id === action.observation.id ) {
-          _.forOwn( action.changes, ( v, k ) => {
-            obs[k] = v;
-          } );
+        if ( obs.id !== action.observation.id ) {
+          return obs;
         }
-        return obs;
+        const newObs = _.cloneDeep( action.observation );
+        _.forOwn( action.changes, ( v, k ) => {
+          newObs[k] = v;
+        } );
+        return newObs;
       } )
     } );
     return newState;

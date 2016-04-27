@@ -1,9 +1,12 @@
 import React, { PropTypes } from "react";
+import { Button, ButtonGroup } from "react-bootstrap";
 import SplitTaxon from "./split_taxon";
 
 const ObservationsGridItem = ( {
   observation: o,
-  onObservationClick
+  onObservationClick,
+  onAgree,
+  toggleReviewed
 } ) => {
   let taxonJSX = I18n.t( "unknown" );
   if ( o.taxon && o.taxon !== null ) {
@@ -15,6 +18,14 @@ const ObservationsGridItem = ( {
   if ( o.reviewedByCurrentUser ) {
     wrapperClass += " reviewed";
   }
+  let numReviewers = o.reviewed_by.length;
+  if ( o.reviewed_by.indexOf( o.user.id ) >= 0 ) {
+    numReviewers = numReviewers - 1;
+  }
+  let numAgrees = o.num_identification_agreements;
+  // let numAgrees = o.non_owner_ids
+  //   .map( ident => ( ident.taxon_id === o.taxon_id ? 1 : 0 ) )
+  //   .reduce( ( prev, curr ) => ( prev + curr ), 0 );
   return (
     <div className={wrapperClass}>
       <a
@@ -51,6 +62,30 @@ const ObservationsGridItem = ( {
           />
         </a>
         { taxonJSX }
+        <ButtonGroup className="controls">
+          <Button
+            bsSize="xs"
+            bsStyle={o.currentUserAgrees ? "success" : "default"}
+            disabled={ !o.taxon || o.currentUserAgrees}
+            title="Agree with current taxon"
+            onClick={ ( ) => {
+              onAgree( o );
+            } }
+          >
+            <i className="fa fa-check">
+            </i> { numAgrees }
+          </Button>
+          <Button
+            bsSize="xs"
+            title="Toggle reviewed"
+            onClick={ ( ) => {
+              toggleReviewed( o );
+            } }
+          >
+            <i className={`fa fa-${o.reviewedByCurrentUser ? "eye-slash" : "eye"}`}>
+            </i> { numReviewers }
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   );
@@ -58,7 +93,9 @@ const ObservationsGridItem = ( {
 
 ObservationsGridItem.propTypes = {
   observation: PropTypes.object.isRequired,
-  onObservationClick: PropTypes.func
+  onObservationClick: PropTypes.func,
+  onAgree: PropTypes.func,
+  toggleReviewed: PropTypes.func
 };
 
 export default ObservationsGridItem;
