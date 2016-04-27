@@ -58,7 +58,7 @@ class TaxonMerge < TaxonChange
       output_taxon.colors << input_taxon.colors if output_taxon.colors.blank?
 
       # Move input child taxa to the output taxon
-      input_taxon.children.each { |child| child.move_to_child_of( output_taxon ) }
+      move_input_children_to_output( input_taxon )
     end
     super
   end

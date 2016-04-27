@@ -230,4 +230,33 @@ class TaxonChange < ActiveRecord::Base
     end
   end
 
+  def move_input_children_to_output( it )
+    if it.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == it.rank
+      it.children.each do |child|
+        tc = TaxonSwap.new(
+          user: user,
+          change_group: (change_group || "#{self.class.name}-#{id}-children"),
+          source: source,
+          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}"
+        )
+        tc.add_input_taxon( child )
+        output_child_name = child.name.sub( it.name, output_taxon.name)
+        unless output_child = output_taxon.children.detect{|c| c.name == output_child_name }
+          output_child = Taxon.new(
+            name: output_child_name,
+            rank: child.rank,
+            is_active: false
+          )
+          output_child.save!
+          output_child.update_attributes( parent: output_taxon )
+        end
+        tc.add_output_taxon( output_child )
+        tc.save!
+        tc.commit
+      end
+    else
+      it.children.each { |child| child.move_to_child_of( output_taxon ) }
+    end
+  end
+
 end
