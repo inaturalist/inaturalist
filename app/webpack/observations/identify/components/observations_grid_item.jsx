@@ -95,6 +95,7 @@ const ObservationsGridItem = ( {
           >
             <Button
               bsSize="xs"
+              bsStyle={o.reviewedByCurrentUser ? "success" : "default"}
               onClick={ ( ) => {
                 toggleReviewed( o );
               } }
