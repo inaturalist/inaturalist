@@ -52,6 +52,7 @@ body {font-size: 75%;}
 .ui-front {z-index: 1051;}
 .bootstrap,
 body > div > [role="dialog"] {
+  position: relative;
   margin: 0;
   font-size: 14px;
   line-height: 20px;

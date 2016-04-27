@@ -1,5 +1,10 @@
 import React, { PropTypes } from "react";
-import { Button, ButtonGroup } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  OverlayTrigger,
+  Tooltip
+} from "react-bootstrap";
 import SplitTaxon from "./split_taxon";
 
 const ObservationsGridItem = ( {
@@ -26,6 +31,8 @@ const ObservationsGridItem = ( {
   // let numAgrees = o.non_owner_ids
   //   .map( ident => ( ident.taxon_id === o.taxon_id ? 1 : 0 ) )
   //   .reduce( ( prev, curr ) => ( prev + curr ), 0 );
+  const agreeTooltip = <Tooltip id={`agree-tooltip-${o.id}`}>Agree with current taxon</Tooltip>;
+  const reviewTooltip = <Tooltip id={`review-tooltip-${o.id}`}>Toggle reviewed</Tooltip>;
   return (
     <div className={wrapperClass}>
       <a
@@ -63,28 +70,39 @@ const ObservationsGridItem = ( {
         </a>
         { taxonJSX }
         <ButtonGroup className="controls">
-          <Button
-            bsSize="xs"
-            bsStyle={o.currentUserAgrees ? "success" : "default"}
-            disabled={ !o.taxon || o.currentUserAgrees}
-            title="Agree with current taxon"
-            onClick={ ( ) => {
-              onAgree( o );
-            } }
+          <OverlayTrigger
+            placement="bottom"
+            overlay={agreeTooltip}
+            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
           >
-            <i className="fa fa-check">
-            </i> { numAgrees }
-          </Button>
-          <Button
-            bsSize="xs"
-            title="Toggle reviewed"
-            onClick={ ( ) => {
-              toggleReviewed( o );
-            } }
+            <Button
+              id={`agree-btn-${o.id}`}
+              bsSize="xs"
+              bsStyle={o.currentUserAgrees ? "success" : "default"}
+              disabled={ !o.taxon || o.currentUserAgrees}
+              onClick={ ( ) => {
+                onAgree( o );
+              } }
+            >
+              <i className="fa fa-check">
+              </i> { numAgrees }
+            </Button>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={reviewTooltip}
+            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
           >
-            <i className={`fa fa-${o.reviewedByCurrentUser ? "eye-slash" : "eye"}`}>
-            </i> { numReviewers }
-          </Button>
+            <Button
+              bsSize="xs"
+              onClick={ ( ) => {
+                toggleReviewed( o );
+              } }
+            >
+              <i className={`fa fa-${o.reviewedByCurrentUser ? "eye-slash" : "eye"}`}>
+              </i> { numReviewers }
+            </Button>
+          </OverlayTrigger>
         </ButtonGroup>
       </div>
     </div>
