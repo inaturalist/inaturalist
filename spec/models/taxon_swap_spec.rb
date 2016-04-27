@@ -124,6 +124,16 @@ describe TaxonSwap, "commit" do
     @output_taxon.reload
     expect(@output_taxon).to be_is_active
   end
+
+  it "should move children from the input to the output taxon" do
+    child = Taxon.make!( parent: @input_taxon )
+    descendant = Taxon.make!( parent: child )
+    @swap.commit
+    child.reload
+    descendant.reload
+    expect( child.parent ).to eq @output_taxon
+    expect( descendant.ancestor_ids ).to include @output_taxon.id
+  end
 end
 
 describe TaxonSwap, "commit_records" do
