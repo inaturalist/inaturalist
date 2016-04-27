@@ -87,6 +87,22 @@ describe TaxonMerge, "commit" do
     @output_taxon.reload
     expect(@output_taxon).to be_is_active
   end
+
+  it "should move children from the input to the output taxon" do
+    child1 = Taxon.make!( parent: @input_taxon1 )
+    descendant1 = Taxon.make!( parent: child1 )
+    child2 = Taxon.make!( parent: @input_taxon2 )
+    descendant2 = Taxon.make!( parent: child2 )
+    @merge.commit
+    child1.reload
+    child2.reload
+    descendant1.reload
+    descendant2.reload
+    expect( child1.parent ).to eq @output_taxon
+    expect( descendant1.ancestor_ids ).to include @output_taxon.id
+    expect( child2.parent ).to eq @output_taxon
+    expect( descendant2.ancestor_ids ).to include @output_taxon.id
+  end
 end
 
 describe TaxonMerge, "commit_records" do
