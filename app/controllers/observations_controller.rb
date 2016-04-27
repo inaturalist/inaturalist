@@ -1793,8 +1793,11 @@ class ObservationsController < ApplicationController
     p = options.blank? ? params : options
     p.permit(
       :captive_flag,
+      :coordinate_system,
       :description,
       :force_quality_metrics,
+      :geo_x,
+      :geo_y,
       :geoprivacy,
       :iconic_taxon_id,
       :id_please,
@@ -1802,9 +1805,9 @@ class ObservationsController < ApplicationController
       :license,
       :location_is_exact,
       :longitude,
-      :map_scale,
       :make_license_default,
       :make_licenses_same,
+      :map_scale,
       :oauth_application_id,
       :observed_on_string,
       :place_guess,
