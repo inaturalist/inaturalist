@@ -9,32 +9,36 @@ import PaginationControlContainer from "../containers/pagination_control_contain
 import SideBar from "./side_bar";
 
 const App = () => (
-  <Grid fluid>
-    <Row>
-      <Col xs={12}>
-        <h2>Identify</h2>
-      </Col>
-    </Row>
-    <Row>
-      <Col xs={12}>
-        <SearchBarContainer />
-      </Col>
-    </Row>
-    <Row>
-      <Col xs={12}>
-        <StatsControlContainer />
-      </Col>
-    </Row>
-    <Row className="mainrow">
-      <Col xs={9}>
-        <ObservationsGridContainer />
-        <PaginationControlContainer />
-      </Col>
-      <Col xs={3} className="sidebar-col">
-        <SideBar />
-      </Col>
-    </Row>
-    <ObservationModalContainer />
-  </Grid>
+  <div id="Identify">
+    <Grid>
+      <Row>
+        <Col xs={12}>
+          <h2>Identify</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <SearchBarContainer />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <StatsControlContainer />
+        </Col>
+      </Row>
+    </Grid>
+    <Grid fluid>
+      <Row className="mainrow">
+        <Col xs={9} className="main-col">
+          <ObservationsGridContainer />
+          <PaginationControlContainer />
+        </Col>
+        <Col xs={3} className="sidebar-col">
+          <SideBar />
+        </Col>
+      </Row>
+      <ObservationModalContainer />
+    </Grid>
+  </div>
 );
 export default App;

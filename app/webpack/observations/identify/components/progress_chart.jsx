@@ -15,7 +15,7 @@ const ProgressChart = ( {
         data: {
           columns: [
             ["reviewed", reviewed],
-            ["unreviewed", unreviewed]
+            ["unreviewed", unreviewed <= 0 ? 1 : unreviewed]
           ],
           type: "donut"
         },
@@ -30,10 +30,10 @@ const ProgressChart = ( {
     />
     <div className="title">
       <div className="counts">
-        { reviewed }
+        { I18n.toNumber( reviewed, { precision: 0 } ) }
         /
         <wbr />
-        { reviewed + unreviewed }
+        { I18n.toNumber( reviewed + unreviewed, { precision: 0 } ) }
       </div>
       { I18n.t( "reviewed" ) }
     </div>

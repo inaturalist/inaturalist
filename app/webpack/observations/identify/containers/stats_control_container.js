@@ -1,14 +1,21 @@
 import { connect } from "react-redux";
 import StatsControl from "../components/stats_control";
+import { updateSearchParams, fetchObservations } from "../actions";
 
 function mapStateToProps( state ) {
   return {
-    stats: state.observationsStats
+    stats: state.observationsStats,
+    currentQualityGrade: state.searchParams.quality_grade
   };
 }
 
-function mapDispatchToProps( ) {
-  return {};
+function mapDispatchToProps( dispatch ) {
+  return {
+    updateQualityGrade: ( qualityGrade ) => {
+      dispatch( updateSearchParams( { quality_grade: qualityGrade } ) );
+      dispatch( fetchObservations( ) );
+    }
+  };
 }
 
 const StatsControlContainer = connect(

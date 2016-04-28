@@ -2,6 +2,7 @@
 @import "identify/observation_modal";
 @import "identify/progress_chart";
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
+@import "../colors";
 .btn-checkbox {
   display: inline-block;
 }
@@ -57,6 +58,15 @@ input.filter-changed + .searchclear.glyphicon {
 }
 
 .mainrow {
+  background-color: #DDDDDD;
+}
+
+.mainrow,
+.main-col {
+  box-shadow: inset 0px 10px 10px -10px #aaa;
+}
+
+.mainrow .main-col {
   background-color: #EFEFEF;
 }
 
@@ -69,7 +79,6 @@ input.filter-changed + .searchclear.glyphicon {
 }
 .SideBar {
   padding: 15px;
-  background-color: #DDDDDD;
 }
 
 .PaginationControl {
@@ -107,4 +116,31 @@ input.filter-changed + .searchclear.glyphicon {
 }
 li.rc-pagination-item-active a {
   border-color: black;
+}
+
+.SearchBar {
+  margin-bottom: 20px;
+}
+
+.StatsControl {
+  padding-left: 15px;
+}
+.bootstrap .statcol {
+  cursor: pointer;
+  padding: 0;
+}
+.statcol .stat-value {
+  font-size: 24px;
+  overflow: hidden;
+}
+.statcol .stat {
+  text-transform: capitalize;
+  padding: 5px 10px;
+}
+.statcol {
+  border-bottom: 4px solid transparent;
+  border-right: 1px solid #ccc;
+}
+.statcol.active {
+  border-bottom: 4px solid $inat-green;
 }

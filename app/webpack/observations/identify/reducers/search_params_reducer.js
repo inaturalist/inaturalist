@@ -3,6 +3,7 @@ import { UPDATE_SEARCH_PARAMS, RECEIVE_OBSERVATIONS } from "../actions";
 const searchParamsReducer = ( state = {
   reviewed: false,
   verifiable: true,
+  quality_grade: "needs_id",
   // This is a hack to get around our node API's cache control settings, since
   // it defaults to something, and we hit obs search repeatedly for stats. A
   // better approach might be to have a separate endpoints that delivers these

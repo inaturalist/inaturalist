@@ -10,7 +10,11 @@ const PaginationControl = ( {
   current,
   totalResults
 } ) => (
-  <div className="PaginationControl text-center">
+  <div
+    className={
+      `PaginationControl text-center ${totalResults <= perPage ? "collapse" : ""}`
+    }
+  >
     <Button onClick={loadMore} className={`stacked ${visible ? "" : "collapse"}`}>
       Load More
     </Button>

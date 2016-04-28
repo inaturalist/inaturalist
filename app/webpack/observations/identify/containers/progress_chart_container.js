@@ -3,7 +3,7 @@ import ProgressChart from "../components/progress_chart";
 
 function mapStateToProps( state ) {
   const reviewed = state.observationsStats.reviewed || 0;
-  const total = state.observationsStats.total || 1;
+  const total = state.observationsStats.total || 0;
   return {
     reviewed,
     unreviewed: total - reviewed
