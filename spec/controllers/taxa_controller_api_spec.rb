@@ -45,8 +45,8 @@ shared_examples_for "a TaxaController" do
       p.check_list.add_taxon(taxon_in_place)
       get :search, format: :json, places: p.id.to_s
       json = JSON.parse(response.body)
-      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
-      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+      expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).to be_blank
+      expect(json.detect{|t| t['id'] == taxon_in_place.id}).not_to be_blank
     end
 
     it "returns results in the configured place" do
@@ -58,8 +58,8 @@ shared_examples_for "a TaxaController" do
       expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
       get :search, format: :json, q: "disco"
       json = JSON.parse(response.body)
-      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
-      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+      expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).to be_blank
+      expect(json.detect{|t| t['id'] == taxon_in_place.id}).not_to be_blank
     end
 
     it "returns all results when there are none in the configured place" do
@@ -70,8 +70,8 @@ shared_examples_for "a TaxaController" do
       expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
       get :search, format: :json, q: "nonsense"
       json = JSON.parse(response.body)
-      json.detect{|t| t['id'] == taxon_not_in_place.id}.should_not be_blank
-      json.detect{|t| t['id'] == taxon2_not_in_place.id}.should_not be_blank
+      expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).not_to be_blank
+      expect(json.detect{|t| t['id'] == taxon2_not_in_place.id}).not_to be_blank
     end
 
     it "filters by is_active=true" do

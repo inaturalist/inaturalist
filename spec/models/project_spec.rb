@@ -511,4 +511,14 @@ describe Project do
       expect( @pu.taxa_count ).to eq 2
     end
   end
+
+  describe "sane_destroy" do
+    it "should delete the project" do
+      p = Project.make!
+      3.times { ProjectObservation.make!( project: p ) }
+      3.times { ProjectUser.make!( project: p ) }
+      p.sane_destroy
+      expect( Project.find_by_id( p.id ) ).to be_blank
+    end
+  end
 end

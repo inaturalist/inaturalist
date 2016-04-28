@@ -173,6 +173,7 @@ class ProjectsController < ApplicationController
         ])
         opts[:methods] << :project_observations_count
         opts[:methods] << :list_observed_and_total
+        opts[:methods] << :posts_count
 
         render :json => @project.as_json(opts)
       end
@@ -234,7 +235,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.destroy
+    @project.delay( priority: USER_INTEGRITY_PRIORITY ).sane_destroy
     
     respond_to do |format|
       format.html do
@@ -757,59 +758,6 @@ class ProjectsController < ApplicationController
     return
   end
 
-  def preview_matching
-    @observations = scope_for_add_matching.page(1).per_page(10)
-    if @project_user
-      render :layout => false
-    else
-      render :unprocessable_entity
-    end
-  end
-
-  def add_matching
-    unless @project.users.where("users.id = ?", current_user).exists?
-      msg = t(:you_must_be_a_member_of_this_project_to_do_that)
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_back_or_default(@project)
-        end
-        format.json { render :json => {:error => msg} }
-      end
-      return
-    end
-
-    added = 0
-    failed = 0
-    scope_for_add_matching.find_each do |observation|
-      next if observation.project_observations.detect{|po| po.project_id == @project.id}
-      pi = ProjectObservation.new(:observation => observation, :project => @project)
-      if pi.save
-        added += 1
-      else
-        failed += 1
-      end
-    end
-
-    msg = if added == 0 && failed > 0
-      "Failed to add all #{failed} matching observation(s) to #{@project.title}. Try adding observations individually to see error messages"
-    elsif failed > 0
-      "Added #{added} matching observation(s) to #{@project.title}, failed to add #{failed}. Try adding the rest individually to see error messages."
-    else
-      "Added #{added} matching observation(s) to #{@project.title}"
-    end
-
-    respond_to do |format|
-      format.html do
-        flash[:notice] = msg
-        redirect_back_or_default(@project)
-      end
-      format.json do
-        render :json => {:msg => msg}
-      end
-    end
-  end
-  
   def search
     if @site && (@site_place = @site.place)
       @place = @site.place unless params[:everywhere].yesish?
@@ -844,16 +792,6 @@ class ProjectsController < ApplicationController
   end
   
   private
-
-  def scope_for_add_matching
-    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
-    scope = @project.observations_matching_rules.
-      by(current_user).
-      joins(:project_observations).
-      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project)
-    scope = scope.of(@taxon) if @taxon
-    scope
-  end
   
   def load_project
     @project = Project.find(params[:id]) rescue nil
@@ -927,7 +865,7 @@ class ProjectsController < ApplicationController
       params[:project].delete(:featured_at)
     end
     if params[:project][:project_type] != Project::BIOBLITZ_TYPE && !current_user.is_curator?
-      params[:project][:prefers_aggregation] = false
+      params[:project].delete(:prefers_aggregation)
     end
     true
   end

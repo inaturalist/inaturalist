@@ -67,18 +67,33 @@ module DarwinCore
     def make_descriptor
       extensions = []
       if @opts[:extensions]
-        if @opts[:extensions].detect{|e| e == "EolMedia"}
-          extensions << {
-            :row_type => "http://eol.org/schema/media/Document",
-            :file_location => "media.csv",
-            :terms => DarwinCore::EolMedia::TERMS
-          }
-        elsif @opts[:extensions].detect{|e| e == "SimpleMultimedia"}
-          extensions << {
-            row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
-            file_location: "images.csv",
-            terms: DarwinCore::SimpleMultimedia::TERMS
-          }
+        @opts[:extensions].each do |e|
+          case e
+          when "EolMedia"
+            extensions << {
+              :row_type => "http://eol.org/schema/media/Document",
+              :file_location => "media.csv",
+              :terms => DarwinCore::EolMedia::TERMS
+            }
+          when "SimpleMultimedia"
+            extensions << {
+              row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
+              file_location: "images.csv",
+              terms: DarwinCore::SimpleMultimedia::TERMS
+            }
+          when "ObservationFields"
+            extensions << {
+              row_type: "http://www.inaturalist.org/observation_fields",
+              file_location: "observation_fields.csv",
+              terms: DarwinCore::ObservationFields::TERMS
+            }
+          when "ProjectObservations"
+            extensions << {
+              row_type: "http://www.inaturalist.org/project_observations",
+              file_location: "project_observations.csv",
+              terms: DarwinCore::ProjectObservations::TERMS
+            }
+          end
         end
       end
       d = DarwinCore::Descriptor.new(:core => @opts[:core], :extensions => extensions)
@@ -224,6 +239,48 @@ module DarwinCore
           observation.observation_photos.each do |op|
             DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
             csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+          end
+        end
+      end
+      
+      tmp_path
+    end
+
+    def make_observation_fields_data
+      headers = DarwinCore::ObservationFields::TERM_NAMES
+      fname = "observation_fields.csv"
+      tmp_path = File.join(@work_path, fname)
+      
+      params = observations_params
+      preloads = [ { observation_field_values: :observation_field } ]
+      
+      CSV.open(tmp_path, 'w') do |csv|
+        csv << headers
+        observations_in_batches(params, preloads, label: 'make_observation_fields_data') do |observation|
+          observation.observation_field_values.each do |ofv|
+            DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
+            csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
+          end
+        end
+      end
+      
+      tmp_path
+    end
+
+    def make_project_observations_data
+      headers = DarwinCore::ProjectObservations::TERM_NAMES
+      fname = "project_observations.csv"
+      tmp_path = File.join(@work_path, fname)
+      
+      params = observations_params
+      preloads = [ { project_observations: :project } ]
+      
+      CSV.open(tmp_path, 'w') do |csv|
+        csv << headers
+        observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
+          observation.project_observations.each do |po|
+            DarwinCore::ProjectObservations.adapt(po, core: @opts[:core])
+            csv << DarwinCore::ProjectObservations::TERMS.map{|field, uri, default, method| po.send(method || field)}
           end
         end
       end

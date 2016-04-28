@@ -169,7 +169,7 @@ class TaxaController < ApplicationController
         end
         if @place
           @conservation_status = @conservation_statuses.detect do |cs|
-            cs.place_id == @place.id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+            @place.self_and_ancestor_ids.include?( cs.place_id ) && cs.iucn > Taxon::IUCN_LEAST_CONCERN
           end
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
@@ -880,7 +880,7 @@ class TaxaController < ApplicationController
   
   def refresh_wikipedia_summary
     begin
-      summary = @taxon.set_wikipedia_summary
+      summary = @taxon.set_wikipedia_summary(force_update: true)
     rescue Timeout::Error => e
       error_text = e.message
     end

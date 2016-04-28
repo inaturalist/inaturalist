@@ -112,11 +112,14 @@ class GuideRangesController < ApplicationController
       eol_page_id = pages.at('entry/id').try(:content)
     end
     return if eol_page_id.blank?
-    page = eol.page(eol_page_id, :text => 0, :images => 0, :sounds => 0, :videos => 0, :maps => 50, :subjects => "all", :details => true)
+    page = eol.page(eol_page_id, :texts => 0, :images => 0, :sounds => 0, :videos => 0, :maps => 50, :subjects => "all", :details => true)
     page.remove_namespaces!
-    page.search('dataObject').map do |data_object|
-      GuideRange.new_from_eol_data_object(data_object)
-    end
+    page.search('dataObject').map {|data_object|
+      Rails.logger.debug "[DEBUG] data_object: #{data_object}"
+      gr = GuideRange.new_from_eol_data_object(data_object)
+      # gr.valid? ? gr : nil
+      gr
+    }.compact
   rescue Timeout::Error => e
     []
   end
