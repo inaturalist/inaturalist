@@ -32,7 +32,7 @@ function agreeWithObservaiton( observation ) {
 
 function agreeWithCurrentObservation( ) {
   return function ( dispatch, getState ) {
-    return agreeWithObservaiton( getState( ).currentObservation.observation );
+    return dispatch( agreeWithObservaiton( getState( ).currentObservation.observation ) );
   };
 }
 
