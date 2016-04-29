@@ -113,7 +113,14 @@ class GuideSectionsController < ApplicationController
       eol_page_id = pages.at('entry/id').try(:content)
     end
     return if eol_page_id.blank?
-    page = eol.page(eol_page_id, :text => 50, :subjects => "all", :details => true)
+    page = eol.page(eol_page_id,
+      images_per_page: 0,
+      maps_per_page: 0,
+      texts_per_page: 50,
+      videos_per_page: 0,
+      sounds_per_page: 0,
+      subjects: "all",
+      details: true)
     page.remove_namespaces!
     TaxonDescribers::Eol.data_objects_from_page(page).to_a.uniq.map do |data_object|
       GuideSection.new_from_eol_data_object(data_object)

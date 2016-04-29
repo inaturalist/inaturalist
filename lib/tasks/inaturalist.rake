@@ -104,7 +104,7 @@ namespace :inaturalist do
                  "ranks", "research", "asc", "desc",
                  "date_format.month", "momentjs", "endemic", "native", 
                  "introduced", "casual", "status_globally", "status_in_place",
-                 "number_selected",
+                 "number_selected", "you_are_setting_this_project_to_aggregate",
                  "all_taxa.animals",
                  "all_taxa.birds",
                  "all_taxa.amphibians",

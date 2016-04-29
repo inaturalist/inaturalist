@@ -38,7 +38,7 @@ class Observation < ActiveRecord::Base
     geom: true,
     observed_on: true,
     place_guess: true,
-    public_positional_accuracy: true
+    positional_accuracy: true
   }
   include FieldsChangedAt
   include Ambidextrous
@@ -253,6 +253,8 @@ class Observation < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :project_observations_with_changes, -> {
+    joins(:model_attribute_changes) }, class_name: "ProjectObservation"
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
@@ -293,13 +295,15 @@ class Observation < ActiveRecord::Base
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
-  validates_inclusion_of :coordinate_system,
-    :in => proc { CONFIG.coordinate_systems.to_h.keys.map(&:to_s) },
-    :message => "'%{value}' is not a valid coordinate system",
-    :allow_blank => true,
-    :if => lambda {|o|
-      CONFIG.coordinate_systems
-    }
+  validate do
+    unless coordinate_system.blank?
+      begin
+        RGeo::CoordSys::Proj4.new( coordinate_system )
+      rescue RGeo::Error::UnsupportedOperation
+        errors.add( :coordinate_system, "is not a valid Proj4 string" )
+      end
+    end
+  end
   # See /config/locale/en.yml for field labels for `geo_x` and `geo_y`
   validates_numericality_of :geo_x,
     :allow_blank => true,
@@ -2166,7 +2170,7 @@ class Observation < ActiveRecord::Base
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new(CONFIG.coordinate_systems.send(self.coordinate_system.to_sym).proj4)
+      from = RGeo::CoordSys::Proj4.new(self.coordinate_system)
 
       # ... to WGS84
       to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)
@@ -2512,6 +2516,22 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  def last_changed(params={})
+    changes = field_changes_to_index
+    # only consider the fields requested
+    if params[:changed_fields] && fields = params[:changed_fields].split(",")
+      changes = changes.select{ |c| fields.include?(c[:field_name]) }
+    end
+    # ignore any projects other than those selected
+    if params[:change_project_id]
+      changes = changes.select do |c|
+        c[:project_id].blank? || c[:project_id] == params[:change_project_id]
+      end
+    end
+    # return the max of the remaining dates
+    field_changes_to_index.map{ |c| c[:changed_at] }.max
   end
 
   # Show count of all faves on this observation. cached_votes_total stores the

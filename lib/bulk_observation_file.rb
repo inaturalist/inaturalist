@@ -1,5 +1,5 @@
 # Custom DelayedJob task for the bulk upload functionality.
-class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_system, :user)
+class BulkObservationFile
   class BulkObservationException < StandardError
     attr_reader :reason, :row_count, :errors, :tag
 
@@ -20,25 +20,32 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
   IMPORT_BATCH_SIZE = 1000
   MAX_ERROR_COUNT   = 100
 
-  attr_accessor :observation_file, :project, :coord_system, :user, :csv_options, :custom_field_count
-
-  def initialize(observation_file, project_id, coord_system, user)
+  def initialize(observation_file, user_id, options = {})
     @observation_file = observation_file
-    @coord_system     = coord_system
-    @user             = user
+    @coord_system     = options[:coord_system]
+    @user_id          = user_id
+    @project_id       = options[:project_id]
 
     # Try to load the specified project.
-    if project_id.blank?
-      @project = nil
+    if @project_id.blank?
+      project = nil
     else
-      @project = Project.find_by_id(project_id)
-      if @project.nil?
+      project = Project.find_by_id( @project_id )
+      if project.nil?
         e = BulkObservationException.new('Specified project not found')
         Emailer.delay.bulk_observation_error(user, File.basename(observation_file), e).deliver_now
       end
     end
 
-    @custom_field_count = @project.nil? ? 0 : @project.observation_fields.size
+    @custom_field_count = project.nil? ? 0 : project.observation_fields.size
+  end
+
+  def user
+    @user ||= User.find_by_id( @user_id )
+  end
+
+  def project
+    @project ||= Project.find_by_id( @project_id )
   end
 
   def perform
@@ -50,14 +57,14 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       import_file
 
       # Email uploader to say that the upload has finished.
-      Emailer.bulk_observation_success(@user, File.basename(@observation_file)).deliver_now
+      Emailer.bulk_observation_success(user, File.basename(@observation_file)).deliver_now
     rescue BulkObservationException => e
       # Collate the errors into a hash for emailing
       error_details = collate_errors(e)
 
       # puts "error_details: #{error_details.inspect}"
       # Email the uploader with exception details
-      Emailer.bulk_observation_error(@user, File.basename(@observation_file), error_details).deliver_now
+      Emailer.bulk_observation_error(user, File.basename(@observation_file), error_details).deliver_now
     end
   end
 
@@ -128,18 +135,18 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       end
 
       # Add all of the observations to the project if a project was specified
-      if @project
+      if project
         observations.each do |obs|
-          @project.project_observations.create(:observation => obs)
+          project.project_observations.create(:observation => obs)
         end
 
         # Manually update counter caches.
-        ProjectUser.update_observations_counter_cache_from_project_and_user(@project.id, @user.id)
-        ProjectUser.update_taxa_counter_cache_from_project_and_user(@project.id, @user.id)
-        Project.update_observed_taxa_count(@project.id)
+        ProjectUser.update_observations_counter_cache_from_project_and_user(project.id, user.id)
+        ProjectUser.update_taxa_counter_cache_from_project_and_user(project.id, user.id)
+        Project.update_observed_taxa_count(project.id)
 
         # Do a mass refresh of the project taxa.
-        Project.refresh_project_list(@project.id,
+        Project.refresh_project_list(project.id,
           taxa: observations.collect(&:taxon_id).uniq,
           add_new_taxa: true)
       end
@@ -149,19 +156,19 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
 
   def new_observation(row)
     obs = Observation.new(
-      :user               => @user,
+      :user               => user,
       :species_guess      => row[0],
       :observed_on_string => row[1],
       :description        => row[2],
       :place_guess        => row[3],
-      :time_zone          => @user.time_zone,
+      :time_zone          => user.time_zone,
       :tag_list           => row[6],
       :geoprivacy         => row[7],
     )
 
     # If a coordinate system other than WGS84 is in use
     # set the correct fields for transformation.
-    if @coord_system.nil? || @coord_system == 'wgs84'
+    if @coord_system.nil?
       obs.latitude  = row[4]
       obs.longitude = row[5]
     else
@@ -171,8 +178,8 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     end
 
     # Are we adding to a specific project?
-    unless @project.nil?
-      @project.project_observation_fields.each do |pof|
+    unless project.nil?
+      project.project_observation_fields.each do |pof|
         value = row[pof.observation_field.name]
         if value.blank?
           if pof.required

@@ -208,3 +208,9 @@ input[type="color"]:focus,
 .form-group input[type="checkbox"] {
   margin-right: 5px;
 }
+
+.nav-tabs.user-subnav .glyphicon,
+.nav-tabs.user-subnav .fa,
+.nav-tabs.user-subnav .icon {
+  margin-right: 0.3em;
+}

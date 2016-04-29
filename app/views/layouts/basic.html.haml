@@ -1,0 +1,11 @@
+!!! 5
+%html
+  %head
+    %title
+      = CONFIG.site_name
+      - if content_for?(:title)
+        &middot;
+        = yield(:title)
+    = yield :extrahead
+  %body
+    = content_for?(:content) ? yield(:content) : yield

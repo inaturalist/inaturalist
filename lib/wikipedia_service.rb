@@ -19,9 +19,9 @@ class WikipediaService < MetaService
     "#{self.base_url}/wiki/#{title}"
   end
 
-  def summary(title)
+  def summary(title, options = {})
     summary = query_results = parsed = nil
-    parsed = parse(:page => title, :redirects => true).at('text').try(:inner_text)
+    parsed = parse(options.merge(page: title, redirects: true)).at('text').try(:inner_text)
     return unless parsed
     hxml = Nokogiri::HTML(HTMLEntities.new.decode(parsed))
     hxml.search('table').remove

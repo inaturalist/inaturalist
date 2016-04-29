@@ -992,12 +992,18 @@ class ObservationsController < ApplicationController
     FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
+    unless CONFIG.coordinate_systems.blank? || params[:upload][:coordinate_system].blank?
+      if coordinate_system = CONFIG.coordinate_systems[params[:upload][:coordinate_system]]
+        proj4 = coordinate_system.proj4
+      end
+    end
+
     # Send the filename to a background processor
     bof = BulkObservationFile.new(
-      path, 
-      params[:upload][:project_id], 
-      params[:upload][:coordinate_system], 
-      current_user
+      path,
+      current_user.id,
+      project_id: params[:upload][:project_id], 
+      coord_system: proj4
     )
     Delayed::Job.enqueue(
       bof, 
@@ -1247,6 +1253,9 @@ class ObservationsController < ApplicationController
     set_up_instance_variables(search_params)
     if @site && @site.site_only_users
       @top_identifiers = @top_identifiers.where(:site_id => @site)
+    end
+    respond_to do |format|
+      format.html
     end
   end
   
@@ -1796,8 +1805,11 @@ class ObservationsController < ApplicationController
     p = options.blank? ? params : options
     p.permit(
       :captive_flag,
+      :coordinate_system,
       :description,
       :force_quality_metrics,
+      :geo_x,
+      :geo_y,
       :geoprivacy,
       :iconic_taxon_id,
       :id_please,
@@ -1805,9 +1817,9 @@ class ObservationsController < ApplicationController
       :license,
       :location_is_exact,
       :longitude,
-      :map_scale,
       :make_license_default,
       :make_licenses_same,
+      :map_scale,
       :oauth_application_id,
       :observed_on_string,
       :place_guess,

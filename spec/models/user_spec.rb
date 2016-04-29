@@ -10,7 +10,8 @@ bad_logins = [
   "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
   'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 
   'period.', 'm', 
-  'this_is_the_longest_login_ever_written_by_man'
+  'this_is_the_longest_login_ever_written_by_man',
+  "password", "new"
 ]
 
 describe User do
@@ -163,8 +164,8 @@ describe User do
   end
   describe 'disallows illegitimate logins:' do
     bad_logins.each do |login_str|
-      it "'#{login_str}'" do
-        expect(User.make(login: login_str)).not_to be_valid
+      it login_str do
+        expect( User.make(login: login_str) ).not_to be_valid
       end
     end
   end

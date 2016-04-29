@@ -214,12 +214,6 @@
   <% end %>
 
   <div id="observations">
-    <% if false && logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
-      <div class="right add_matching_link inlineblock">
-        <%= render 'project_invitations/import_button' %>
-      </div>
-    <% end -%>
-
     <% if @project.project_type == Project::ASSESSMENT_TYPE -%>
       <div class="stacked">
         <%= render :partial => 'project_assessments' %>

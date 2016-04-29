@@ -22,6 +22,7 @@ class GuideRange < ActiveRecord::Base
     :default_url => "/attachment_defaults/local_photos/:style.png"
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
+  validates_presence_of :thumb_url
     
   def to_s
     "<GuideRange #{id}>"

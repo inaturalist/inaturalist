@@ -522,8 +522,8 @@ class Place < ActiveRecord::Base
     self.nelat = geom.envelope.upper_corner.y
     if geom.spans_dateline?
       self.longitude = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
-      self.swlng = geom.points.map(&:x).select{|x| x > 0}.min
-      self.nelng = geom.points.map(&:x).select{|x| x < 0}.max
+      self.swlng = geom.points.map(&:x).select{|x| x > 0 || x < -180}.min
+      self.nelng = geom.points.map(&:x).select{|x| x < 0 || x > 180}.max
     else
       self.swlng = geom.envelope.lower_corner.x
       self.nelng = geom.envelope.upper_corner.x

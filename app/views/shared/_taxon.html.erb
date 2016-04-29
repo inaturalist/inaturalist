@@ -38,6 +38,8 @@
   if named_ancestor == true
     named_ancestor = taxon.ancestors.reverse.detect{|t| !t.common_name.blank?}
   end
+  truncate ||= false
+  trunclength = truncate ? 23 : 500
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>
@@ -62,11 +64,14 @@
   <span class="<%= taxon_class %>">
     <span class="comname <%= 'display_name' if named_ancestor %>">
       <% if link_url %>
-        <%= link_to(singular ? comname.singularize : comname, link_url) %>
+        <%= link_to(singular ? truncate(comname.singularize, length: trunclength) : truncate(comname, length: trunclength), link_url) %>
       <% else %>
-        <%= singular ? comname.singularize : comname %>
+        <%= singular ? truncate(comname.singularize, length: trunclength) : truncate(comname, length: trunclength) %>
       <% end %>
     </span>
+    <% if truncate %>
+      <br/>
+    <% end %>
     <span class="othernames">
       <% if include_parens %>
         (<%= sciname.html_safe %>)

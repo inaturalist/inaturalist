@@ -1,3 +1,4 @@
+<% site = @site || CONFIG %>
 <div id="footer" class="clear">
   <ul class="stacked">
     <li><%= link_to t(:home), root_path %></li>
@@ -16,20 +17,20 @@
   </ul>
   <div id="footer_text" class="stacked">
 
-    <a href="<%= CONFIG.about_url %>"><%= t(:about_x, :x => SITE_NAME) %></a> &nbsp;
-    <a href="<%= CONFIG.help_url %>"><%=t(:help)%></a> &nbsp;
-    <a href="<%= CONFIG.terms_url %>"> <%= t(:terms_of_service) %></a> &nbsp;
-    <a href="<%= CONFIG.privacy_url %>"><%= t(:privacy_policy) %></a> &nbsp;
+    <a href="<%= site.about_url %>"><%= t(:about_x, :x => SITE_NAME) %></a> &nbsp;
+    <a href="<%= site.help_url %>"><%=t(:help)%></a> &nbsp;
+    <a href="<%= site.terms_url %>"> <%= t(:terms_of_service) %></a> &nbsp;
+    <a href="<%= site.privacy_url %>"><%= t(:privacy_policy) %></a> &nbsp;
     <p class="description">
       <%= t(:follow_us_on) %>
       <%=raw [
-        link_to('Twitter', CONFIG.twitter.try(:url)),
-        link_to('Facebook', CONFIG.facebook.try(:url))
+        link_to('Twitter', site.twitter_url),
+        link_to('Facebook', site.facebook_url)
       ].join('  <span class="meta">&amp;</span> ') %>
     </p>
     <p>
-      <a href="<%= CONFIG.iphone_app_url %>"><img src="<%= asset_path("apple_app_store.png") %>"></a> &nbsp;
-      <a href="<%= CONFIG.android_app_url %>"><img src="<%= asset_path("android_market.png") %>"></a>
+      <a href="<%= site.iphone_app_url %>"><img src="<%= asset_path("apple_app_store.png") %>"></a> &nbsp;
+      <a href="<%= site.android_app_url %>"><img src="<%= asset_path("android_market.png") %>"></a>
     </p>
   </div>
 

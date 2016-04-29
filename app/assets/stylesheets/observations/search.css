@@ -675,6 +675,13 @@ inat-taxon { white-space: nowrap; }
 .btn .glyphicon {
   top: 3px;
 }
+#view-controls .btn .glyphicon {
+  top: 2px;
+}
+#subview-controls .btn-default, .btn.places {
+  padding: 7px 12px 5px;
+}
+
 #view-controls.open .btn-default.places {
   color: #fff;
   background: #f16f3a;

@@ -346,6 +346,7 @@ zh-CN:
   are_you_sure_you_want_to_remove_spammer: |-
     您确定您认为此用户可信吗？
     如果如此，他们所有垃圾邮件标志将会被去除。
+  are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
   are_you_sure_you_want_to_remove_this_taxon: 您确定要移除此分类单元么？
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
@@ -630,6 +631,9 @@ zh-CN:
   create_an_account: 创建一个账户
   create_new_taxon: 创建一个新分类单元
   create_observations: 创建观察
+  create_observations_by_uploading_photos_to: |-
+    通过上传照片至 %{place} 创建观察。当您上传 %{place} 时将尝试从照片中摘取GPS坐标和日期/时间。
+    要入门，
   created: 已创建
   created_by: 创建由
   created_on: 创建于
@@ -2368,6 +2372,44 @@ zh-CN:
           href="http://eol.org/info/252" target="_blank">收藏</a>。如果您希望从EOL收藏导入物种，请在此粘贴那个收藏的URL。
         guide_place_desc: 当搜索地点时，将您的指南与地点相关联会让人们找到它，并且如果设置了边界（例如“卡片”查看、分类单元页面等）的话，将在
           %{site_name} 上的地图中适当位置显示地点边界
+        import_tags_from_csv_help_html: |-
+          <p>
+            上传包含用于此指南的分类群标签的CSV文件。您的CSV文件看起来应该像这样：
+          </p>
+          <table class="table">
+            <tbody>
+             <tr>
+               <th>名字</th>
+               <th>颜色</th>
+               <th>手臂数量</th>
+               <th></th>
+             </tr>
+             <tr>
+               <td>智人</td>
+               <td></td>
+               <td>2</td>
+               <td>两足动物</td>
+             </tr>
+             <tr>
+               <td>火狐</td>
+               <td>红|黑</td>
+               <td>0</td>
+               <td>四肢动物</td>
+             </tr>
+            </tbody>
+          </table>
+          <p>
+            The first row starts with "Name" followed by the tag
+            predicates/categories. Then each following row starts with the
+            name of taxon, followed by tags corresponding predicate the top
+            of the column. In this example, <i>Homo sapiens</i> gets the
+            tags <code>bipedal</code> and <code>Number of hands=2</code>,
+            and <i>Vulpes vulpes</i> gets <code>quadripedal</code>,
+            <code>color=red</code>, <code>color=black</code>, and
+            <code>Number of hands=0</code>. Blanks will be ignored, and you
+            can add multiple lines per taxon. You can also add multiple
+            values per cell separated by the pipe character.
+          </p>
         places_note: 注意：不是所有地点都检查带分类列表。如果您在通过分类查找地点时遇到问题，尝试选择更大的有行政区划的地区，例如国家、州、省或县。
       mobile_downloads_tip_html: 此指南可以被下载到移动应用供离线使用。
       mobile_downloads_help_html: |-
@@ -2440,10 +2482,12 @@ zh-CN:
         how_can_i_get_help_identifying_what_i_saw?: 我如何帮助您识别我看见的东西？
         can_i_add_photos_without_a_flickr_account?: 我可以不用Flickr账户就添加图片么？
         we_also_support_picasa_html: 我们也支持Picasa：<a href="%{url}">配置您的Picasa账户&raquo;</a>
+        we_also_support_uploading_photos: 我们也支持直接上传照片至 %{site_name}，但它可能有点慢，所以我们每次只允许上传一个照片。如果您已经使用这些设备的话，使用Flickr或Picasa可能会更快。
         what_are_tags?: 标签在哪？
         can_i_include_my_observations_on_my_blog?: 我可以在我自己的博客网站上包含我的 %{site_name}
           观察么？
         photos_attached_to_observations_should_be: 附加于观察的照片应该是在观察期间独自观察到的图片。如果您记录了一棵树的观察，一天后回到这里拍了一张照片，请为此照片添加一个新的观察，因为它代表了一棵树的不同时间点。
+        please_do_not_upload_pictures_you_didnt_take_html: 请<em>不要上传不是您制作的图片</em>，除非您从摄影师手中获得了权限。在未获得作者授权的情况下发布受版权保护作品是非法的，并且所有摄影师默认均拥有对他们照片的完整版权。如果照片指的是您观察的东西，有人将其拍下并且您已获得其发布授权，您应该同样在观察描述中注释摄影师的姓名。
         what_is_geoprivacy?: 什么是geoprivacy？
         note_that_curators_of: 注意无论您的geoprivacy设置如何，个别项目的监护人都总是可以查看坐标，因此如果您关心谁拥有访问坐标的权限，您应该确保您信任您参与的项目的监护人。
         when_coordinates_are_obscured_it_means_that: |-
@@ -2549,11 +2593,14 @@ zh-CN:
         automatically_id_the_new_obs_as: 自动ID新观察作为
         dont_forget_the_invite_link_placeholder: 不要忘记 {{INVITE_LINK}} 占位符
     places:
+      edit:
+        complex_boundary_note_html: 此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
       index:
         adding_new_places: 正在添加新地点
         you_can_help_out_by: 您可以帮助改善我们的地方数据，通过
       new:
         check_list_note: 注意：对非常大的地方的检查列表将被自动禁用。
+        coordinates_desc: 如果您不画出边界或上传KML的话，您必须指定坐标。
     posts:
       formatting_none_help: 未插入HTML，直接使用您输入的标签。
       formatting_simple_help: 自动链接URL并插入换行符。

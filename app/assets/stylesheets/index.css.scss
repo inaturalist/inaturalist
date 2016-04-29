@@ -1795,7 +1795,6 @@ ul.plain {list-style:none;margin:0;padding:0}
 .colorfield.brown   { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
 .colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
 
-.project_invitation_extra {margin-top: 1px;}
 .project_invitation .box {margin: 0;}
 .wiki_page_actions {list-style: none;margin:0;}
 .wiki_page_actions li {display:inline; margin-left: 5px;}
@@ -1992,7 +1991,6 @@ user-icon .icon-person:before {
   font-size: 1.3em;
 }
 
-
 .ac-chooser {
   position: relative;
 }
@@ -2012,4 +2010,43 @@ input.filter-changed + .searchclear.glyphicon {
 .searchclear.glyphicon:hover, input.filter-changed + .searchclear.glyphicon:hover {
   color: #666;
   cursor: pointer;
+}
+.ui-dialog.confirm-modal {
+  padding: 3px;
+}
+.ui-dialog.confirm-modal .ui-dialog-titlebar {
+  font-size: 15px;
+}
+.ui-dialog.confirm-modal p {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 13px;
+}
+.ui-dialog.confirm-modal p .taxon {
+  font-weight: bold;
+}
+.ui-dialog.confirm-modal ul {
+  margin: 15px 0px 15px 30px;
+}
+.ui-dialog.confirm-modal li {
+  list-style-type: none;
+}
+.ui-dialog.confirm-modal .foot {
+  margin-top: 20px;
+  display: block;
+}
+.ui-dialog.confirm-modal .foot .button {
+  margin-bottom: 18px;
+}
+.ui-dialog.confirm-modal .foot input[type='checkbox'] {
+  margin-left: 10px;
+}
+.ui-dialog.confirm-modal .foot label {
+  font-weight: normal;
+  line-height: 30px;
+}
+.ui-dialog.confirm-modal .ui-dialog-content {
+  overflow: visible;
+}
+.ui-dialog.confirm-modal * {
+  outline: none;
 }

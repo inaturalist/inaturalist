@@ -1083,7 +1083,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'photo_license', 'created_d1', 'created_d2', 'not_in_project',
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
     'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
-    'taxon_ids' ];
+    'taxon_ids', 'changed_fields', 'changed_since', 'change_project_id' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -1279,6 +1279,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
 
 google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, options ) {
   options = options || { };
+  iw.close( );
   if( options.pixelOffset ) {
     // proper window placement for non-obscured markers
     iw.setOptions({ pixelOffset: options.pixelOffset });
