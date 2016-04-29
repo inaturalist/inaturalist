@@ -134,6 +134,35 @@ describe TaxonSwap, "commit" do
     expect( child.parent ).to eq @output_taxon
     expect( descendant.ancestor_ids ).to include @output_taxon.id
   end
+
+  describe "should make swaps for all children when swapping a" do
+    it "genus" do
+      @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla", rank_level: Taxon::GENUS_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris", rank_level: Taxon::GENUS_LEVEL )
+      child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      @swap.commit
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      expect( child.parent ).to eq @input_taxon
+      child_swap = child.taxon_change_taxa.first.taxon_change
+      expect( child_swap ).not_to be_blank
+      expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
+      expect( child_swap.output_taxon.parent ).to eq @output_taxon
+    end
+    it "species" do
+      @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
+      child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      @swap.commit
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      expect( child.parent ).to eq @input_taxon
+      child_swap = child.taxon_change_taxa.first.taxon_change
+      expect( child_swap ).not_to be_blank
+      expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla foo"
+      expect( child_swap.output_taxon.parent ).to eq @output_taxon
+    end
+  end
 end
 
 describe TaxonSwap, "commit_records" do
