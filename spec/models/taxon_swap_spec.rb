@@ -128,7 +128,7 @@ describe TaxonSwap, "commit" do
   it "should move children from the input to the output taxon" do
     child = Taxon.make!( parent: @input_taxon )
     descendant = Taxon.make!( parent: child )
-    @swap.commit
+    without_delay { @swap.commit }
     child.reload
     descendant.reload
     expect( child.parent ).to eq @output_taxon
@@ -138,7 +138,7 @@ describe TaxonSwap, "commit" do
   it "should not move inactive children from the input to the output taxon" do
     child = Taxon.make!( parent: @input_taxon, is_active: false )
     descendant = Taxon.make!( parent: child, is_active: false )
-    @swap.commit
+    without_delay { @swap.commit }
     child.reload
     descendant.reload
     expect( child.parent ).to eq @input_taxon
@@ -151,7 +151,7 @@ describe TaxonSwap, "commit" do
       @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris", rank_level: Taxon::GENUS_LEVEL )
       child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
       [@input_taxon, @output_taxon, child].each(&:reload)
-      @swap.commit
+      without_delay { @swap.commit }
       [@input_taxon, @output_taxon, child].each(&:reload)
       expect( child.parent ).to eq @input_taxon
       child_swap = child.taxon_change_taxa.first.taxon_change
@@ -164,7 +164,7 @@ describe TaxonSwap, "commit" do
       @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
       child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
       [@input_taxon, @output_taxon, child].each(&:reload)
-      @swap.commit
+      without_delay { @swap.commit }
       [@input_taxon, @output_taxon, child].each(&:reload)
       expect( child.parent ).to eq @input_taxon
       child_swap = child.taxon_change_taxa.first.taxon_change

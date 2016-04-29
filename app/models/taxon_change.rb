@@ -212,7 +212,7 @@ class TaxonChange < ActiveRecord::Base
 
   def commit_records_later
     return true unless committed_on_changed? && committed?
-    delay(:priority => NOTIFICATION_PRIORITY).commit_records
+    delay(:priority => USER_PRIORITY).commit_records
     true
   end
 
@@ -231,6 +231,9 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def move_input_children_to_output( target_input_taxon )
+    unless target_input_taxon.is_a?( Taxon )
+      target_input_taxon = Taxon.find_by_id( target_input_taxon )
+    end
     if target_input_taxon.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == target_input_taxon.rank
       target_input_taxon.children.active.each do |child|
         tc = TaxonSwap.new(

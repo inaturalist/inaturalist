@@ -93,7 +93,7 @@ describe TaxonMerge, "commit" do
     descendant1 = Taxon.make!( parent: child1 )
     child2 = Taxon.make!( parent: @input_taxon2 )
     descendant2 = Taxon.make!( parent: child2 )
-    @merge.commit
+    without_delay { @merge.commit }
     child1.reload
     child2.reload
     descendant1.reload
@@ -112,7 +112,7 @@ describe TaxonMerge, "commit" do
       child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
       child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SPECIES, name: "Rana clamitans", rank_level: Taxon::SPECIES_LEVEL )
       [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
-      @merge.commit
+      without_delay { @merge.commit }
       [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
       expect( child1.parent ).to eq @input_taxon1
       expect( child2.parent ).to eq @input_taxon2
@@ -132,7 +132,7 @@ describe TaxonMerge, "commit" do
       child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Hyla regilla foo", rank_level: Taxon::SPECIES_LEVEL )
       child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SPECIES, name: "Rana clamitans foo", rank_level: Taxon::SPECIES_LEVEL )
       [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
-      @merge.commit
+      without_delay { @merge.commit }
       [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
       expect( child1.parent ).to eq @input_taxon1
       expect( child2.parent ).to eq @input_taxon2

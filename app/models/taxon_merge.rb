@@ -58,7 +58,7 @@ class TaxonMerge < TaxonChange
       output_taxon.colors << input_taxon.colors if output_taxon.colors.blank?
 
       # Move input child taxa to the output taxon
-      move_input_children_to_output( input_taxon )
+      delay( priority: USER_PRIORITY ).move_input_children_to_output( input_taxon.id )
     end
     super
   end
