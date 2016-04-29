@@ -232,7 +232,7 @@ class TaxonChange < ActiveRecord::Base
 
   def move_input_children_to_output( it )
     if it.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == it.rank
-      it.children.each do |child|
+      it.children.active.each do |child|
         tc = TaxonSwap.new(
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
@@ -255,7 +255,7 @@ class TaxonChange < ActiveRecord::Base
         tc.commit
       end
     else
-      it.children.each { |child| child.move_to_child_of( output_taxon ) }
+      it.children.active.each { |child| child.move_to_child_of( output_taxon ) }
     end
   end
 

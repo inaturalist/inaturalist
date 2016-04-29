@@ -135,6 +135,16 @@ describe TaxonSwap, "commit" do
     expect( descendant.ancestor_ids ).to include @output_taxon.id
   end
 
+  it "should not move inactive children from the input to the output taxon" do
+    child = Taxon.make!( parent: @input_taxon, is_active: false )
+    descendant = Taxon.make!( parent: child, is_active: false )
+    @swap.commit
+    child.reload
+    descendant.reload
+    expect( child.parent ).to eq @input_taxon
+    expect( descendant.ancestor_ids ).to include @input_taxon.id
+  end
+
   describe "should make swaps for all children when swapping a" do
     it "genus" do
       @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla", rank_level: Taxon::GENUS_LEVEL )
