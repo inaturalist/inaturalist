@@ -1,8 +1,10 @@
+import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
+const UPDATE_ALL_LOCAL = "update_all_local";
 
 function receiveObservations( results ) {
   return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
@@ -46,10 +48,38 @@ function updateObservationInCollection( observation, changes ) {
   };
 }
 
+function updateAllLocal( changes ) {
+  return { type: UPDATE_ALL_LOCAL, changes };
+}
+
+function reviewAll( ) {
+  return function ( dispatch, getState ) {
+    dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
+    _.forEach( getState( ).observations.results, ( o ) => {
+      iNaturalistJS.observations.review( { id: o.id } );
+    } );
+    dispatch( fetchObservationsStats( ) );
+  };
+}
+
+function unreviewAll( ) {
+  return function ( dispatch, getState ) {
+    dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
+    _.forEach( getState( ).observations.results, ( o ) => {
+      iNaturalistJS.observations.unreview( { id: o.id } );
+    } );
+    dispatch( fetchObservationsStats( ) );
+  };
+}
+
 export {
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
+  UPDATE_ALL_LOCAL,
   receiveObservations,
   fetchObservations,
-  updateObservationInCollection
+  updateObservationInCollection,
+  reviewAll,
+  unreviewAll,
+  updateAllLocal
 };

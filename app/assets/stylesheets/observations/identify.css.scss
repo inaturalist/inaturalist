@@ -145,3 +145,12 @@ li.rc-pagination-item-active a {
 .statcol.active {
   border-bottom: 4px solid $inat-green;
 }
+
+.BulkActions button.btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding-left: 0;
+  padding-right: 0;
+  border: 0;
+}
