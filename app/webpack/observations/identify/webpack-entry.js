@@ -7,10 +7,13 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import rootReducer from "./reducers/";
+import { normalizeParams } from "./reducers/search_params_reducer";
 import {
   fetchObservations,
   fetchObservationsStats,
-  setConfig
+  setConfig,
+  updateSearchParams,
+  updateSearchParamsFromPop
 } from "./actions/";
 import App from "./components/app";
 
@@ -37,6 +40,17 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 }
 
 setupKeyboardShortcuts( store.dispatch );
+
+// set state from initial url search and listen for changes
+const newParams = normalizeParams(
+  $.deparam( window.location.search.replace( /^\?/, "" ) )
+);
+store.dispatch( updateSearchParams( newParams ) );
+window.onpopstate = ( e ) => {
+  store.dispatch( updateSearchParamsFromPop( e.state ) );
+  store.dispatch( fetchObservations() );
+  store.dispatch( fetchObservationsStats() );
+};
 
 // retrieve initial set of observations
 store.dispatch( fetchObservations() );

@@ -4,8 +4,6 @@ import { fetchObservations, updateSearchParams } from "../actions";
 
 function mapStateToProps( state ) {
   return {
-    // observation: state.currentObservation.observation,
-    // visible: state.currentObservation.visible
     params: state.searchParams
   };
 }

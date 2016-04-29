@@ -10,7 +10,7 @@ function mapStateToProps( state ) {
     visible: !state.searchParams.reviewed,
     totalResults: state.observations.totalResults,
     current: state.searchParams.page,
-    perPage: state.searchParams.perPage
+    perPage: state.searchParams.per_page
   };
 }
 

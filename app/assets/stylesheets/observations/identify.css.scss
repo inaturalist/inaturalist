@@ -72,6 +72,7 @@ input.filter-changed + .searchclear.glyphicon {
 
 .ObservationsGrid {
   padding-top: 30px;
+  min-height: 500px;
 }
 
 .bootstrap .sidebar-col {
@@ -95,7 +96,7 @@ input.filter-changed + .searchclear.glyphicon {
   background-color: white;
   padding: 3px 5px;
   text-align: center;
-  width: 2em;
+  min-width: 2em;
   margin: 0 5px;
   cursor: pointer;
 }

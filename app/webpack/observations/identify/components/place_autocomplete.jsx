@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Input } from "react-bootstrap";
+import inaturalistjs from "inaturalistjs";
 
 class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
@@ -9,6 +10,36 @@ class PlaceAutocomplete extends React.Component {
       idEl: $( "input[name='place_id']", domNode )
     } );
     $( "input[name='place_name']", domNode ).placeAutocomplete( opts );
+    this.fetchPlace( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( this.props.initialPlaceID &&
+         this.props.initialPlaceID !== prevProps.initialPlaceID ) {
+      this.fetchPlace( );
+    }
+  }
+
+  fetchPlace( ) {
+    if ( this.props.initialPlaceID ) {
+      inaturalistjs.places.fetch( this.props.initialPlaceID ).then( r => {
+        if ( r.results.length > 0 ) {
+          this.updatePlace( { place: r.results[0] } );
+        }
+      } );
+    }
+  }
+
+  updatePlace( options = { } ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    if ( options.place ) {
+      $( "input[name='place_name']", domNode ).
+        trigger( "assignSelection", Object.assign(
+          {},
+          options.place,
+          { title: options.place.display_name }
+        ) );
+    }
   }
 
   render( ) {
@@ -32,7 +63,8 @@ PlaceAutocomplete.propTypes = {
   bootstrapClear: PropTypes.bool,
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
-  initialSelection: PropTypes.object
+  initialSelection: PropTypes.object,
+  initialPlaceID: PropTypes.number
 };
 
 export default PlaceAutocomplete;
