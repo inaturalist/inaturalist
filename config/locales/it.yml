@@ -2288,7 +2288,7 @@ it:
   only_accepts_taxa: accetta solo taxa
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli
     utenti dal progetto
-  only_country_state_and_county: Per ora solo nazioni, stati e regioni sono visualizzabili.
+  only_country_state_and_county: Per ora solo nazioni, regioni e provincie sono visualizzabili.
     Ingrandisci per vedere i luoghi più piccoli.
   only_curators_can_add_edit_scientific_names: Solo i curatori possono aggiungere/modificare
     i nomi scientifici.
@@ -2435,7 +2435,7 @@ it:
       continent: continente
       Country: Nazione
       country: nazione
-      County: Contea
+      County: Provincia
       county: contea
       District: Distretto
       district: distretto
@@ -2443,11 +2443,11 @@ it:
       drainage: bacino
       Estate: Tenuta
       estate: tenuta
-      Historical_County: Regione storica
+      Historical_County: Provincia storica
       historical_county: provincia storica
-      Historical_State: Stato Storico
+      Historical_State: Regione storica
       historical_state: stato storico
-      Historical_Town: Cittadina Storica
+      Historical_Town: Comune storico
       historical_town: cittadina ttorica
       Intersection: Incrocio
       intersection: incrocio
@@ -2479,7 +2479,7 @@ it:
       region: regione
       Sports_Team: Team Sportivo
       sports_team: team sportivo
-      State: Stato
+      State: Regione
       state: stato
       Street: Via
       street: via
@@ -2493,7 +2493,7 @@ it:
       territory: territorio
       Time_Zone: Fuso Orario
       time_zone: 'fuso orario:'
-      Town: Cittadina
+      Town: Comune
       town: cittadina
       Undefined: Non definito
       undefined: non definito
@@ -3115,7 +3115,7 @@ it:
   start_typing_place_name: Inizia a digitare il nome di un luogo...
   start_typing_taxon_name: Inizia a digitare il nome del taxon...
   start_typing_someones_name: Inizia a digitare il nome di qualcuno...
-  states: Stati
+  states: Regioni
   stats: Statistiche
   stats_title: Statistiche del sito
   status: Stato
@@ -4361,9 +4361,9 @@ it:
           l'URL della ricerca di osservazioni
         taxon_extras_help_html: 'Nota: queste colonne rallenteranno la creazione della
           tua esportazione'
-        geo_help_html: Campi relativi a città, regioni, stati, nazioni basati sulle
-          coordinate. Qualora queste tipologie siano inapplicabili, saranno utilizzati
-          analoghi livelli di suddivisioni amministrative.
+        geo_help_html: Campi relativi a comuni, provincie, regioni, nazioni basati
+          sulle coordinate. Qualora queste tipologie siano inapplicabili, saranno
+          utilizzati analoghi livelli di suddivisioni amministrative.
         be_patient: Sii paziente, questa operazione può durare alcuni minuti. Se dura
           troppo, puoi
         check_back: Se ricarichi questa pagina più tardi, il tuo export dovrebbe comparire
@@ -4585,7 +4585,7 @@ it:
           essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo
           con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
         admin_level_desc: Deve essere impostato solo per confini politici. Con riferimento
-          agli USA, 0 = nazione, 1 = stato, 2 = regione, 3 = città
+          agli USA, 0 = nazione, 1 = regione, 2 = provincia, 3 = comune
       index:
         adding_new_places: aggiungendo nuovi luoghi
         confirming_identifications: confermando le identificazioni aggiungendo ID
