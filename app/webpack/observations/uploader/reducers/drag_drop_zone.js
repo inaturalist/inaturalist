@@ -28,9 +28,15 @@ const dragDropZone = ( state = defaultState, action ) => {
       if ( state.obsCards[action.obsCard.id] === undefined ) {
         return state;
       }
-      return update( state, {
+      let newState = update( state, {
         obsCards: { [action.obsCard.id]: { $merge: action.attrs } }
       } );
+      if ( state.selectedObsCards[action.obsCard.id] ) {
+        newState = update( newState, {
+          selectedObsCards: { [action.obsCard.id]: { $set: newState.obsCards[action.obsCard.id] } }
+        } );
+      }
+      return newState;
     }
 
     case types.UPDATE_OBS_CARD_FILE: {
@@ -38,11 +44,17 @@ const dragDropZone = ( state = defaultState, action ) => {
            state.obsCards[action.obsCard.id].files[action.file.id] === undefined ) {
         return state;
       }
-      return update( state, {
+      let newState = update( state, {
         obsCards: { [action.obsCard.id]: {
           files: { [action.file.id]: { $merge: action.attrs } }
         } }
       } );
+      if ( state.selectedObsCards[action.obsCard.id] ) {
+        newState = update( newState, {
+          selectedObsCards: { [action.obsCard.id]: { $set: newState.obsCards[action.obsCard.id] } }
+        } );
+      }
+      return newState;
     }
 
     case types.UPDATE_SELECTED_OBS_CARDS: {

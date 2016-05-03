@@ -35,8 +35,17 @@ const ObsCard = class ObsCard {
     );
   }
 
+  nonUploadedFiles( ) {
+    return _.filter( this.files, f =>
+      f.upload_state === "uploading" || f.upload_state === "pending" );
+  }
+
   uploadedFiles( ) {
     return _.filter( this.files, f => f.upload_state === "uploaded" );
+  }
+
+  uploadedFileIDs( ) {
+    return _.map( this.uploadedFiles( ), f => f.id );
   }
 
   momentDate( ) {
@@ -56,7 +65,7 @@ const ObsCard = class ObsCard {
     const updates = { };
     const obs = p.to_observation;
     if ( !this.date && obs.time_observed_at ) {
-      updates.date = moment( new Date( obs.time_observed_at ) ).format( "MM/DD/YY h:mm A ZZ" );
+      updates.date = moment.parseZone( obs.time_observed_at ).format( "MM/DD/YY h:mm A ZZ" );
       updates.selected_date = updates.date;
     }
     if ( !this.latitude && obs.latitude && obs.longitude ) {

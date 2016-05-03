@@ -7,6 +7,8 @@ class DateTimeFieldWrapper extends Component {
 
   constructor( props, context ) {
     super( props, context );
+    this.onClick = this.onClick.bind( this );
+    this.onChange = this.onChange.bind( this );
     this.close = this.close.bind( this );
   }
 
@@ -15,9 +17,27 @@ class DateTimeFieldWrapper extends Component {
     this.close( );
   }
 
+  onClick( ) {
+    if ( this.refs.datetime ) {
+      this.refs.datetime.onClick( );
+    }
+  }
+
+  onChange( e, inputValue ) {
+    const eInt = parseInt( e, 10 );
+    if ( e && eInt ) {
+      const pickedDate = new Date( eInt );
+      if ( pickedDate ) {
+        inputValue = moment.parseZone( pickedDate ).format( "MM/DD/YY h:mm A ZZ" );
+      }
+    }
+    this.props.onChange( inputValue );
+  }
+
   close( ) {
     if ( this.refs.datetime ) { this.refs.datetime.closePicker( ); }
   }
+
   render( ) {
     return (
       <DateTimeField
@@ -26,26 +46,10 @@ class DateTimeFieldWrapper extends Component {
         defaultText={ this.props.defaultText || "" }
         inputFormat="MM/DD/YY h:mm A ZZ"
         inputProps={ {
-          onClick: () => {
-            if ( this.refs.datetime ) {
-              this.refs.datetime.onClick( );
-              const domNode = ReactDOM.findDOMNode( this.refs.datetime );
-              $( "input", domNode ).focus( );
-            }
-          }
+          className: "form-control input-sm",
+          placeholder: "Add Date/Time"
         }}
-        onChange={ e => {
-          const domNode = ReactDOM.findDOMNode( this.refs.datetime );
-          let inputValue = $( "input", domNode ).val( );
-          const eInt = parseInt( e, 10 );
-          if ( e && eInt ) {
-            const pickedDate = new Date( eInt );
-            if ( pickedDate ) {
-              inputValue = moment( pickedDate ).format( "MM/DD/YY h:mm A ZZ" );
-            }
-          }
-          this.props.onChange( inputValue );
-        } }
+        onChange={ this.onChange }
       />
     );
   }
@@ -53,6 +57,7 @@ class DateTimeFieldWrapper extends Component {
 
 DateTimeFieldWrapper.propTypes = {
   onChange: PropTypes.func,
+  onSelection: PropTypes.func,
   defaultText: PropTypes.string
 };
 

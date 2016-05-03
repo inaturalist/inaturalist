@@ -13,10 +13,9 @@ autocompleter.capitalize = function( s ) {
   return s[0].toUpperCase( ) + s.slice( 1 );
 };
 
-// return the taxon's photo, or it's iconic taxon icon, or use the unknown icon
 autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
-    return "<i class='fa fa-search'></i>";
+    return;
   }
   return result.photoTag( );
 };
@@ -42,86 +41,107 @@ autocompleter.appendMatchedTerm = function( result, fieldValue ) {
   result.title += " (" + autocompleter.capitalize( result.matched_term ) + ")";
 };
 
-autocompleter.taxonTemplate = function( result, fieldValue ) {
-  autocompleter.setTitle( result );
-  if( result.title && result.name != result.title ) {
-    if( result.rank_level <= 10 ) {
-      result.subtitle = "<i>" + result.name + "</i>";
-    } else {
-      result.subtitle = result.name;
-    }
-  }
-  autocompleter.appendMatchedTerm( result, fieldValue );
-  if( result.rank && ( result.rank_level > 10 || !result.subtitle )) {
-    result.subtitle =
-      autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
-      ( result.subtitle ? " " + result.subtitle : "" );
-  }
-
-  result.defaultPhoto = autocompleter.defaultPhotoForResult( result );
-  var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "data-taxon-id", result.id ).
-    attr( "data-type", result.type );
-  var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
-  if( result.defaultPhoto ) {
-    $( result.defaultPhoto ).appendTo( thumbDiv );
-  }
-  var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-  labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
-  labelDiv.append( $( "<span/>" ).addClass( "subtitle" ).
-    append( result.subtitle ));
-  // anything w/o an ID is some kind of message or non-result UI
-  if( !result.id) {
-    wrapperDiv.addClass( "ac-message" );
-    if( result.type == "search_external" ) {
-      labelDiv.find( ".title" ).addClass( "linky" );
-    }
-    // JQuery autocomplete need an <a> tag in order to
-    // consider the row active and clickable.
-    labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
-  }
-  if( result.id ) {
-    var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
-      attr( "href", "/taxa/" + result.id );
-    $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
-    wrapperDiv.append( rightElement );
-  }
-  wrapperDiv.append( thumbDiv );
-  wrapperDiv.append( labelDiv );
-  wrapperDiv.append( rightElement );
-  return wrapperDiv;
-};
-
-autocompleter.createWrappingDiv = function( field, options ) {
-  if( !field.parent().hasClass( "ac-chooser" ) ) {
-    var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );
-    field.wrap( wrappingDiv );
-    if( options.thumbnail !== false ) {
-      // render the initial thumbnail of existing result, or the unknown icon
-      var photo = autocompleter.defaultPhotoForResult({
-        default_photo_url: field.data( "default-photo-url" ),
-        iconic_taxon_id: field.data( "iconic-taxon-id" ) });
-      var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" );
-      if( photo ) {
-        thumbDiv.append( $( photo ) );
-      }
-      field.parent( ).prepend( thumbDiv );
-      if( options.bootstrapClear ) {
-        var removeIcon = $( "<span/>" ).addClass( "searchclear glyphicon glyphicon-remove-circle" );
-        field.parent( ).append( removeIcon );
-        removeIcon.on( "click", function( ) {
-          field.trigger( "resetAll" );
-        });
-      }
-    }
-  }
-};
 
 $.fn.taxonAutocomplete = function( options ) {
   options = options || { };
   options.idEl = options.idEl || $( "#taxon_id" );
   if( !options.idEl ) { return; }
   var field = this;
-  field.template = autocompleter.taxonTemplate;
+
+  var setPhoto = function( thumbDiv, photo ) {
+    if( photo ) {
+      thumbDiv.addClass( "has-photo" );
+      thumbDiv.html( photo );
+    } else {
+      thumbDiv.removeClass( "has-photo" );
+      if ( options.bootstrap ) {
+        thumbDiv.html( "<span class='glyphicon glyphicon-search' /> ");
+      } else {
+        thumbDiv.html( "<i class='fa fa-search' /> ");
+      }
+    }
+  };
+
+  field.template = function( result, fieldValue ) {
+    autocompleter.setTitle( result );
+    if( result.title && result.name != result.title ) {
+      if( result.rank_level <= 10 ) {
+        result.subtitle = "<i>" + result.name + "</i>";
+      } else {
+        result.subtitle = result.name;
+      }
+    }
+    autocompleter.appendMatchedTerm( result, fieldValue );
+    if( result.rank && ( result.rank_level > 10 || !result.subtitle )) {
+      result.subtitle =
+        autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
+        ( result.subtitle ? " " + result.subtitle : "" );
+    }
+
+    result.defaultPhoto = autocompleter.defaultPhotoForResult( result );
+    var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "data-taxon-id", result.id ).
+      attr( "data-type", result.type );
+    var thumbDiv = $( "<div/>" ).addClass( "ac-thumb" );
+    setPhoto( thumbDiv, result.defaultPhoto );
+    var labelDiv = $( "<div/>" ).addClass( "ac-label" );
+    labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
+    labelDiv.append( $( "<span/>" ).addClass( "subtitle" ).
+      append( result.subtitle ));
+    // anything w/o an ID is some kind of message or non-result UI
+    if( !result.id) {
+      wrapperDiv.addClass( "ac-message" );
+      if( result.type == "search_external" ) {
+        labelDiv.find( ".title" ).addClass( "linky" );
+      }
+      // JQuery autocomplete need an <a> tag in order to
+      // consider the row active and clickable.
+      labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
+    }
+    if( result.id ) {
+      var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
+        attr( "href", "/taxa/" + result.id );
+      $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
+      wrapperDiv.append( rightElement );
+    }
+    wrapperDiv.append( thumbDiv );
+    wrapperDiv.append( labelDiv );
+    wrapperDiv.append( rightElement );
+    return wrapperDiv;
+  };
+
+  var createWrappingDiv = function( field, options ) {
+    if( !field.parent().hasClass( "ac-chooser" ) ) {
+      var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );
+      if( options.bootstrap ) {
+        wrappingDiv.addClass( "input-group" );
+      }
+      field.wrap( wrappingDiv );
+      if( options.thumbnail !== false ) {
+        // render the initial thumbnail of existing result, or the unknown icon
+        var photo = autocompleter.defaultPhotoForResult({
+          default_photo_url: field.data( "default-photo-url" ),
+          iconic_taxon_id: field.data( "iconic-taxon-id" ) });
+        var thumbDiv = $( "<div/>" ).addClass( "ac-select-thumb" );
+        if( options.bootstrap ) {
+          thumbDiv.addClass( "input-group-addon" );
+        }
+        if ( options.small ) {
+          thumbDiv.addClass( "input-sm" );
+        }
+        setPhoto( thumbDiv, photo );
+        field.parent( ).prepend( thumbDiv );
+        if( options.bootstrap || options.bootstrapClear ) {
+          var removeIcon = $( "<span/>" ).addClass( "searchclear glyphicon glyphicon-remove-circle" );
+          field.parent( ).append( removeIcon );
+          removeIcon.on( "click", function( ) {
+            field.trigger( "resetAll" );
+          });
+        }
+      }
+    }
+  };
+
+
   var source = function( request, response ) {
     $.ajax({
       url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete",
@@ -221,7 +241,8 @@ $.fn.taxonAutocomplete = function( options ) {
     // set the hidden taxon_id
     options.idEl.val( ui.item.id );
     // set the selection's thumbnail image
-    field.wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
+    var thumb = field.wrappingDiv.find(".ac-select-thumb")
+    thumb.html( ui.item.defaultPhoto );
     field.selection = ui.item;
     if( options.afterSelect ) { options.afterSelect( ui ); }
     return false;
@@ -243,21 +264,21 @@ $.fn.taxonAutocomplete = function( options ) {
     source: source,
     select: select,
     focus: focus,
-    createWrappingDiv: autocompleter.createWrappingDiv
+    createWrappingDiv: createWrappingDiv
   }, options ));
   if( !ac ) { return; }
   field.bind( "assignSelection", function( e, t ) {
     options.idEl.val( t.id );
     t.title = t.preferred_common_name || t.name;
     field.val( t.title );
-    var photo = autocompleter.defaultPhotoForResult(t)
-    field.wrappingDiv.find(".ac-select-thumb").html( photo );
+    var photo = autocompleter.defaultPhotoForResult( t );
+    setPhoto( field.wrappingDiv.find(".ac-select-thumb"), photo );
     field.selection = t;
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
     if( options.idEl.val( ) !== null ) {
-      field.wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
+      setPhoto( field.wrappingDiv.find(".ac-select-thumb") );
     }
     field.selection = null;
   });

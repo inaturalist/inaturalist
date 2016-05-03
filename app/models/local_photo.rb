@@ -36,16 +36,21 @@ class LocalPhoto < Photo
       s3_host_alias: CONFIG.s3_host,
       bucket: CONFIG.s3_bucket,
       path: "photos/:id/:style.:extension",
-      url: ":s3_alias_url"
+      url: ":s3_alias_url",
+      only_process: [ :original, :large ]
     )
   else
     has_attached_file :file, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension"
+      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+      only_process: [ :original, :large ]
     )
   end
 
-  process_in_background :file
+  process_in_background :file,
+    only_process: [ :medium, :small, :thumb, :square ],
+    processing_image_url: :processing_image_fallback
+
   # we want to grab metadata from remote photos so make sure
   # to pull the metadata from the true original, i.e. before
   # post_processing which creates thumbnails
@@ -127,7 +132,9 @@ class LocalPhoto < Photo
       url = reference_file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
+    unless new_record?
+      updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
+    end
     Photo.where(id: id).update_all(updates)
     true
   end

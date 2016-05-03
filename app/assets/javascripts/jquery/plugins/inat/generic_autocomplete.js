@@ -174,11 +174,14 @@ $.fn.genericAutocomplete = function( options ) {
       $(this).autocomplete( "search", $(this).val( ));
     }
   });
-  field.bind( "assignSelection", function( e, s ) {
+  field.bind( "assignSelection", function( e, s, opts ) {
+    opts = opts || { };
     options.idEl.val( s.id );
     field.val( s.title );
     field.selection = s;
-    if( options.afterSelect ) { options.afterSelect( { item: s } ); }
+    if( opts.callback !== false ) {
+      if( options.afterSelect ) { options.afterSelect( { item: s } ); }
+    }
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {

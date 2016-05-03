@@ -1,17 +1,19 @@
+import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Grid, Row, Col, Button, Glyphicon, DropdownButton, MenuItem } from "react-bootstrap";
+import { Grid, Row, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { DropTarget } from "react-dnd";
 import { pipe } from "ramda";
-import ObsCardComponent from "./obs_card_component";
-import LocationChooser from "./location_chooser";
-import StatusModal from "./status_modal";
-import LeftMenu from "./left_menu";
-import TopMenu from "./top_menu";
 import ConfirmModal from "./confirm_modal";
-import RemoveModal from "./remove_modal";
+import LeftMenu from "./left_menu";
+import LocationChooser from "./location_chooser";
+import ObsCardComponent from "./obs_card_component";
+import OpeningActionMenu from "./opening_action_menu";
 import PhotoViewer from "./photo_viewer";
-import _ from "lodash";
+import RemoveModal from "./remove_modal";
+import StatusModal from "./status_modal";
+import TopMenu from "./top_menu";
+import HeaderUserMenu from "./header_user_menu";
 
 const photoTarget = {
   drop( props, monitor, component ) {
@@ -40,45 +42,61 @@ class DragDropZone extends Component {
     this.selectObsCards = this.selectObsCards.bind( this );
     this.unselectAll = this.unselectAll.bind( this );
     this.selectCard = this.selectCard.bind( this );
+    this.resize = this.resize.bind( this );
+    this.setDragEnter = this.setDragEnter.bind( this );
+    this.setDragLeave = this.setDragLeave.bind( this );
+    this.selectNone = this.selectNone.bind( this );
+  }
+
+  componentDidMount( ) {
+    this.resize( );
+    $( window ).on( "resize", this.resize );
+    $( "body" ).unbind( "keydown keyup click" );
+    $( "body" ).on( "keydown", e => {
+      if ( e.which === 91 ) {
+        this.props.setState( { commandKeyPressed: true } );
+      } else if ( e.which === 16 ) {
+        this.props.setState( { shiftKeyPressed: true } );
+      }
+    } );
+    $( "body" ).on( "keyup", e => {
+      if ( e.which === 91 ) {
+        this.props.setState( { commandKeyPressed: false } );
+      } else if ( e.which === 16 ) {
+        this.props.setState( { shiftKeyPressed: false } );
+      }
+    } );
+    $( "body" ).on( "click", this.unselectAll );
+    $( ".uploader" ).selectable( { filter: ".card",
+      cancel: ".card, .glyphicon, input, button, .input-group-addon, " +
+        ".input-group-addon, " +
+        ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
+      selected: this.selectObsCards,
+      unselected: this.selectObsCards,
+      start: () => $( "body" ).off( "click" ),
+      stop: () => setTimeout( () => $( "body" ).on( "click", this.unselectAll ), 100 ),
+      distance: 1
+    } );
   }
 
   componentDidUpdate( ) {
-    if ( Object.keys( this.props.obsCards ).length > 0 ) {
-      if ( this.props.saveStatus !== "saving" ) {
-        window.onbeforeunload = ( ) =>
-          "These observations have not been uploaded yet.";
-      } else {
-        window.onbeforeunload = undefined;
-      }
-      $( "body" ).unbind( "keydown keyup click" );
-      $( "body" ).on( "keydown", e => {
-        if ( e.which === 91 ) {
-          this.props.setState( { commandKeyPressed: true } );
-        } else if ( e.which === 16 ) {
-          this.props.setState( { shiftKeyPressed: true } );
-        }
-      } );
-      $( "body" ).on( "keyup", e => {
-        if ( e.which === 91 ) {
-          this.props.setState( { commandKeyPressed: false } );
-        } else if ( e.which === 16 ) {
-          this.props.setState( { shiftKeyPressed: false } );
-        }
-      } );
-      $( "body" ).on( "click", this.unselectAll );
-      $( ".uploader" ).selectable( { filter: ".card",
-        cancel: ".card, .glyphicon, input, button, .input-group-addon, " +
-          ".input-group-addon, #multiMenu, " +
-          ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
-        selecting: this.selectObsCards,
-        unselecting: this.selectObsCards,
-        distance: 1
-      } );
-      $( ".uploader" ).selectable( "enable" );
+    this.resize( );
+    const count = Object.keys( this.props.obsCards ).length;
+    $( ".uploader" ).selectable( count > 0 ? "enable" : "disable" );
+    if ( count > 0 && this.props.saveStatus !== "saving" ) {
+      window.onbeforeunload = ( ) =>
+        "These observations have not been uploaded yet.";
     } else {
-      $( ".uploader" ).selectable( "disable" );
       window.onbeforeunload = undefined;
     }
+  }
+
+  setDragEnter( ) {
+    this.props.setState( { fileDragging: true } );
+  }
+
+  setDragLeave( ) {
+    this.props.setState( { fileDragging: false } );
   }
 
   closeAutocompletes( e ) {
@@ -95,7 +113,23 @@ class DragDropZone extends Component {
     this.refs.dropzone.open( );
   }
 
-  selectObsCards( ) {
+  resize( ) {
+    this.resizeElement( $( ".uploader" ) );
+    this.resizeElement( $( "#imageGrid" ) );
+  }
+
+  resizeElement( el ) {
+    const topOffset = el.offset( ).top;
+    const height = $( window ).height( );
+    const difference = height - topOffset;
+    if ( difference > 450 ) {
+      el.css( "min-height", difference );
+    }
+  }
+
+  selectObsCards( e ) {
+    e.preventDefault( );
+    e.stopPropagation( );
     const selectedIDs = { };
     $( ".card.ui-selecting, .card.ui-selected" ).each( function ( ) {
       selectedIDs[$( this ).data( "id" )] = true;
@@ -104,14 +138,19 @@ class DragDropZone extends Component {
   }
 
   unselectAll( e ) {
-    const ignore = "a, .card, #multiMenu, button, .modal, .bootstrap-datetimepicker-widget, " +
-      ".ui-autocomplete";
+    const ignore = "a, .card, button, .modal, " +
+      ".bootstrap-datetimepicker-widget, .ui-autocomplete, #react-images-container, " +
+      ".navbar .select, input, .form-group";
     const target = e.target || e.nativeEvent.target;
     if ( $( ignore ).has( target ).length > 0 ||
          $( target ).is( ignore ) ) {
       return;
     }
-    this.props.selectObsCards( {} );
+    this.selectNone( );
+  }
+
+  selectNone( ) {
+    this.props.selectObsCards( { } );
   }
 
   selectCard( obsCard ) {
@@ -153,84 +192,103 @@ class DragDropZone extends Component {
       draggingProps, confirmModal, confirmRemoveFile, photoViewer, photoIsOver } = this.props;
     let leftColumn;
     let intro;
-    let mainColumnSpan = 12;
     let className = "uploader";
     if ( draggingProps && draggingProps.obsCard ) { className += " hover"; }
     if ( photoIsOver ) { className += " photoOver"; }
     const cardCount = Object.keys( obsCards ).length;
     if ( cardCount > 0 ) {
-      mainColumnSpan = 9;
       className += " populated";
       const keys = _.keys( selectedObsCards );
       const countSelected = _.keys( selectedObsCards ).length;
       const first = keys[0];
       leftColumn = (
-        <Col xs={ 3 } className="leftColumn">
+        <Col className="col-fixed-240 leftColumn">
           <LeftMenu
             key={ `leftmenu${countSelected}${first}` }
-            count={cardCount}
-            setState={this.props.setState}
-            selectedObsCards={this.props.selectedObsCards}
-            updateSelectedObsCards={this.props.updateSelectedObsCards}
+            count={ cardCount }
+            setState={ this.props.setState }
+            selectedObsCards={ this.props.selectedObsCards }
+            updateSelectedObsCards={ this.props.updateSelectedObsCards }
           />
         </Col>
       );
     } else {
-      intro = (
-        <div className="intro">
-          <div className="start">
-            <div className="drag_or_choose">
-              <p>Drag and drop some photos</p>
-              <p>or</p>
-              <Button bsStyle="primary" bsSize="large" onClick={ ( ) => this.fileChooser( ) }>
-                Choose photos
-                <Glyphicon glyph="upload" />
-              </Button>
-            </div>
-            <DropdownButton bsStyle="default" title="More Import Options" id="more_imports">
-              <MenuItem href="/observations/import#csv_import">CSV</MenuItem>
-              <MenuItem href="/observations/import#photo_import">From Flickr</MenuItem>
-              <MenuItem divider />
-              <MenuItem header>Import Sounds</MenuItem>
-              <MenuItem href="/observations/import#sound_import">From SoundCloud</MenuItem>
-            </DropdownButton>
-          </div>
-          <div className="hover">
-            <p>Drop it</p>
-          </div>
-        </div>
-      );
+      intro = ( <OpeningActionMenu fileChooser={ this.fileChooser } /> );
     }
+    const countSelected = _.keys( selectedObsCards ).length;
+    const countSelectedPending =
+      _.sum( _.map( selectedObsCards, c => c.nonUploadedFiles().length ) );
+    const countPending = _.sum( _.map( obsCards, c => c.nonUploadedFiles().length ) );
     return (
       <div onClick={ this.closeAutocompletes }>
         <Dropzone
           ref="dropzone"
           onDrop={ onDrop }
+          onDragEnter={ this.setDragEnter }
+          onDragLeave={ this.setDragLeave }
           className={ className }
           activeClassName="hover"
           disableClick
           disablePreview
           accept="image/*"
         >
+          <nav className="navbar navbar-default">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <button
+                  type="button"
+                  className="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#header-user-menu"
+                  aria-expanded="false"
+                >
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                <a href="/" className="navbar-brand" alt="iNaturalist.org">
+                  <img src="http://static.inaturalist.org/sites/1-logo.png?1433365372" />
+                </a>
+              </div>
+              <HeaderUserMenu user={ CURRENT_USER } />
+            </div>
+          </nav>
+          <TopMenu
+            key={ `topMenu${cardCount}${countSelected}` }
+            createBlankObsCard={ createBlankObsCard }
+            confirmRemoveSelected={ confirmRemoveSelected }
+            selectAll={ selectAll }
+            selectNone={ this.selectNone }
+            selectedObsCards={ selectedObsCards }
+            trySubmitObservations={ trySubmitObservations }
+            combineSelected={ combineSelected }
+            fileChooser={ this.fileChooser }
+            countTotal={ cardCount }
+            countSelected={ countSelected }
+            countSelectedPending={ countSelectedPending }
+            countPending={ countPending }
+          />
           <Grid fluid>
-            <TopMenu
-              createBlankObsCard={ createBlankObsCard }
-              confirmRemoveSelected={ confirmRemoveSelected }
-              selectAll={ selectAll }
-              selectedObsCards={ selectedObsCards }
-              trySubmitObservations={ trySubmitObservations }
-              combineSelected={ combineSelected }
-              fileChooser={ this.fileChooser }
-              countTotal={ cardCount }
-              countSelected={ _.keys( selectedObsCards ).length }
-            />
-            <Row className="body">
+            <div className="row-fluid">
+              <Col md={ 12 }>
+                <Row>
+                  { intro }
+                </Row>
+              </Col>
+            </div>
+          </Grid>
+          <Grid fluid>
+            <div className="row-fluid">
               { leftColumn }
-                <Col xs={ mainColumnSpan } id="imageGrid">
-                  { this.props.connectDropTarget(
-                    <div>
+              { this.props.connectDropTarget(
+                <div id="imageGrid" className="col-offset-290 col-md-12">
+                  <Row>
+                    <ul className="obs">
                       { _.map( obsCards, obsCard => (
-                        <ObsCardComponent key={ obsCard.id }
+                        <ObsCardComponent
+                          key={ obsCard.id }
+                          ref={ `obsCard${obsCard.id}` }
                           obsCard={ obsCard }
                           onCardDrop={ onCardDrop }
                           updateObsCard={ updateObsCard }
@@ -247,11 +305,11 @@ class DragDropZone extends Component {
                           confirmRemoveFile={ confirmRemoveFile }
                         />
                       ) ) }
-                    </div>
-                  ) }
-                  { intro }
-                </Col>
-            </Row>
+                    </ul>
+                  </Row>
+                </div>
+              ) }
+            </div>
           </Grid>
         </Dropzone>
         <StatusModal
@@ -289,38 +347,38 @@ class DragDropZone extends Component {
 }
 
 DragDropZone.propTypes = {
-  onDrop: PropTypes.func.isRequired,
-  updateObsCard: PropTypes.func,
-  removeObsCard: PropTypes.func,
-  confirmRemoveObsCard: PropTypes.func,
-  obsCards: PropTypes.object,
-  selectedObsCards: PropTypes.object,
-  trySubmitObservations: PropTypes.func,
-  createBlankObsCard: PropTypes.func,
-  selectObsCards: PropTypes.func,
-  updateSelectedObsCards: PropTypes.func,
-  onCardDrop: PropTypes.func,
-  selectAll: PropTypes.func,
-  removeSelected: PropTypes.func,
-  mergeObsCards: PropTypes.func,
-  saveStatus: PropTypes.string,
-  saveCounts: PropTypes.object,
-  locationChooser: PropTypes.object,
-  removeModal: PropTypes.object,
-  confirmModal: PropTypes.object,
-  setState: PropTypes.func,
-  updateState: PropTypes.func,
-  confirmRemoveSelected: PropTypes.func,
-  connectDropTarget: PropTypes.func,
-  movePhoto: PropTypes.func,
-  newCardFromPhoto: PropTypes.func,
-  draggingProps: PropTypes.object,
   combineSelected: PropTypes.func,
   commandKeyPressed: PropTypes.bool,
-  shiftKeyPressed: PropTypes.bool,
+  confirmModal: PropTypes.object,
   confirmRemoveFile: PropTypes.func,
+  confirmRemoveObsCard: PropTypes.func,
+  confirmRemoveSelected: PropTypes.func,
+  connectDropTarget: PropTypes.func,
+  createBlankObsCard: PropTypes.func,
+  draggingProps: PropTypes.object,
+  locationChooser: PropTypes.object,
+  mergeObsCards: PropTypes.func,
+  movePhoto: PropTypes.func,
+  newCardFromPhoto: PropTypes.func,
+  obsCards: PropTypes.object,
+  onCardDrop: PropTypes.func,
+  onDrop: PropTypes.func.isRequired,
+  photoIsOver: PropTypes.bool,
   photoViewer: PropTypes.object,
-  photoIsOver: PropTypes.bool
+  removeModal: PropTypes.object,
+  removeObsCard: PropTypes.func,
+  removeSelected: PropTypes.func,
+  saveCounts: PropTypes.object,
+  saveStatus: PropTypes.string,
+  selectAll: PropTypes.func,
+  selectedObsCards: PropTypes.object,
+  selectObsCards: PropTypes.func,
+  setState: PropTypes.func,
+  shiftKeyPressed: PropTypes.bool,
+  trySubmitObservations: PropTypes.func,
+  updateObsCard: PropTypes.func,
+  updateSelectedObsCards: PropTypes.func,
+  updateState: PropTypes.func
 };
 
 export default pipe(

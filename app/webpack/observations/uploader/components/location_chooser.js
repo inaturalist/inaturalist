@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
 import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
-
+var lastCenterChange = new Date().getTime();
 
 class LocationChooser extends Component {
 
@@ -32,6 +32,9 @@ class LocationChooser extends Component {
     this.update = this.update.bind( this );
     this.fitCircles = this.fitCircles.bind( this );
     this.reverseGeocode = this.reverseGeocode.bind( this );
+    this.radiusChanged = this.radiusChanged.bind( this );
+    this.centerChanged = this.centerChanged.bind( this );
+    this.moveCircle = this.moveCircle.bind( this );
   }
 
   componentDidUpdate( prevProps ) {
@@ -66,14 +69,40 @@ class LocationChooser extends Component {
   handleMapClick( event ) {
     const latLng = event.latLng;
     const zoom = this.refs.map.getZoom( );
-    this.reverseGeocode( latLng.lat( ), latLng.lng( ) );
+    const radius = Math.round( ( 1 / Math.pow( 2, zoom ) ) * 2000000 );
+    this.moveCircle( latLng, radius, { geocode: true } );
+  }
+
+  moveCircle( center, radius, options = { } ) {
     this.props.updateState( { locationChooser: {
-      lat: latLng.lat( ),
-      lng: latLng.lng( ),
+      lat: center.lat( ),
+      lng: center.lng( ),
       center: this.refs.map.getCenter( ),
       bounds: this.refs.map.getBounds( ),
-      radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 2000000 )
+      radius
     } } );
+    if ( options.geocode ) {
+      this.reverseGeocode( center.lat( ), center.lng( ) );
+    }
+  }
+
+  radiusChanged( ) {
+    const circleState = this.refs.circle.state.circle;
+    this.moveCircle( circleState.center, circleState.radius );
+  }
+
+  centerChanged( ) {
+    const time = new Date().getTime();
+    if ( time - lastCenterChange > 900 ) {
+      const goTime = time;
+      lastCenterChange = goTime;
+      setTimeout( () => {
+        if ( goTime === lastCenterChange ) {
+          const circleState = this.refs.circle.state.circle;
+          this.moveCircle( circleState.center, circleState.radius, { geocode: true } );
+        }
+      }, 1000 );
+    }
   }
 
   close( ) {
@@ -224,6 +253,8 @@ class LocationChooser extends Component {
           center={ center }
           radius={ Number( this.props.radius ) }
           onClick={ this.handleMapClick }
+          onRadiusChanged={ this.radiusChanged }
+          onCenterChanged={ this.centerChanged }
           options={{
             strokeColor: "#DF0101",
             strokeOpacity: 0.8,

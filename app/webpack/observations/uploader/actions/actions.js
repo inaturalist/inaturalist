@@ -50,7 +50,7 @@ const actions = class actions {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
       // skip drops onto cards
-      if ( $( ".cellDropzone" ).has( e.nativeEvent.target ).length > 0 ) { return; }
+      if ( $( "ul.obs li" ).has( e.nativeEvent.target ).length > 0 ) { return; }
       const obsCards = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -96,10 +96,13 @@ const actions = class actions {
   static confirmRemoveSelected( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      dispatch( actions.setState( { removeModal: {
-        show: true,
-        count: _.keys( s.dragDropZone.selectedObsCards ).length
-      } } ) );
+      const count = _.keys( s.dragDropZone.selectedObsCards ).length;
+      if ( count > 0 ) {
+        dispatch( actions.setState( { removeModal: {
+          show: true,
+          count
+        } } ) );
+      }
     };
   }
 
@@ -128,16 +131,17 @@ const actions = class actions {
     };
   }
 
-  static mergeObsCards( obsCards ) {
+  static mergeObsCards( obsCards, targetCard ) {
     return function ( dispatch ) {
       const ids = _.keys( obsCards );
-      const minID = parseInt( _.min( ids ), 10 );
-      const mergedFiles = Object.assign( { }, obsCards[minID].files );
+      const targetIDString = targetCard ? targetCard.id : _.min( ids );
+      const targetID = parseInt( targetIDString, 10 );
+      const mergedFiles = Object.assign( { }, obsCards[targetID].files );
 
       let i = 0;
       const startTime = new Date( ).getTime( );
       _.each( obsCards, c => {
-        if ( c.id !== minID ) {
+        if ( c.id !== targetID ) {
           _.each( c.files, f => {
             const id = ( startTime + i );
             mergedFiles[id] = new DroppedFile( Object.assign( { }, f, { id } ) );
@@ -146,15 +150,18 @@ const actions = class actions {
           dispatch( { type: types.REMOVE_OBS_CARD, obsCard: c } );
         }
       } );
-      dispatch( actions.updateObsCard( obsCards[minID], { files: mergedFiles } ) );
-      dispatch( actions.selectObsCards( { [minID]: true } ) );
+      dispatch( actions.updateObsCard( obsCards[targetID], { files: mergedFiles } ) );
+      dispatch( actions.selectObsCards( { [targetID]: true } ) );
     };
   }
 
   static combineSelected( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      dispatch( actions.mergeObsCards( s.dragDropZone.selectedObsCards ) );
+      const count = _.keys( s.dragDropZone.selectedObsCards ).length;
+      if ( count > 1 ) {
+        dispatch( actions.mergeObsCards( s.dragDropZone.selectedObsCards ) );
+      }
     };
   }
 

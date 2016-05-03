@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from "react";
 import { DragSource } from "react-dnd";
 import { pipe } from "ramda";
-import { Glyphicon } from "react-bootstrap";
 
 const photoSource = {
   beginDrag( props ) {
@@ -37,13 +36,7 @@ class Photo extends Component {
       <div>
         { this.props.connectDragSource(
           <div className={ className }>
-            <div className="close">
-              <Glyphicon glyph="remove-sign"
-                onClick={ () =>
-                  this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }
-              />
-            </div>
-            <img src={ this.props.src } />
+            <img className="img-thumbnail" src={ this.props.file.photo.large_url } />
           </div>
         ) }
       </div>
@@ -56,6 +49,7 @@ Photo.propTypes = {
   obsCard: PropTypes.object,
   file: PropTypes.object,
   setState: PropTypes.func,
+  updateCard: PropTypes.func,
   confirmRemoveFile: PropTypes.func,
   draggingProps: PropTypes.object,
   connectDragSource: PropTypes.func,

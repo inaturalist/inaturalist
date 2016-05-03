@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from "react";
+import ReactDOM from "react-dom";
 import { DragSource, DropTarget } from "react-dnd";
-import { Glyphicon, Input, Button } from "react-bootstrap";
+import { Glyphicon, Input, FormGroup, InputGroup, FormControl } from "react-bootstrap";
 import { pipe } from "ramda";
 import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
 import Dropzone from "react-dropzone";
@@ -13,6 +14,9 @@ import FileGallery from "./file_gallery";
 momentLocalizer( moment );
 
 const cardSource = {
+  canDrag( props ) {
+    return props.obsCard.nonUploadedFiles( ).length === 0;
+  },
   beginDrag( props, monitor, component ) {
     if ( component.refs.datetime ) {
       component.refs.datetime.close( );
@@ -38,7 +42,7 @@ const cardTarget = {
     if ( dropResult && item.obsCard.id !== props.obsCard.id ) {
       props.mergeObsCards( _.fromPairs(
         _.map( [item.obsCard, dropResult.obsCard], c => [c.id, c] )
-      ) );
+      ), dropResult.obsCard );
     }
   }
 };
@@ -117,91 +121,129 @@ class ObsCardComponent extends Component {
     const { obsCard, cardDropTarget, onCardDrop, cardIsDragging, draggingProps,
       cardIsOver, confirmRemoveObsCard, updateObsCard, setState, selectCard,
       photoDropTarget, cardDragSource, confirmRemoveFile, photoIsOver } = this.props;
-    let className = "card ui-selectee";
+    let className = "cellDropzone thumbnail card ui-selectee";
     if ( cardIsDragging ) { className += " dragging"; }
     if ( cardIsOver || photoIsOver ) { className += " dragOver"; }
     if ( obsCard.selected ) { className += " selected ui-selecting"; }
-    if ( obsCard.blank( ) ) { className += " blank"; }
-    let globe = (
-      <Button onClick={ this.openLocationChooser }>
-        <Glyphicon glyph="globe" />
-      </Button>
-    );
     let locationText = obsCard.locality_notes ||
       ( obsCard.latitude &&
       `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` );
-    return (
-      <Dropzone
-        className="cellDropzone"
-        disableClick
-        disablePreview
-        onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
-        activeClassName="hover"
-        accept="image/*"
-        key={ obsCard.id }
-      >
-        <div className="cell">
-        {
-          cardDropTarget( photoDropTarget( cardDragSource(
-            <div
-              className={ className }
-              data-id={ obsCard.id }
-              onClick={ () => selectCard( obsCard ) }
-            >
-              <div className="close" onClick={ confirmRemoveObsCard }>
-                <Glyphicon glyph="remove-sign" />
-              </div>
-              <FileGallery
-                obsCard={ obsCard }
-                setState={ setState }
-                draggingProps={ draggingProps }
-                updateObsCard={ updateObsCard }
-                confirmRemoveFile={ confirmRemoveFile }
-              />
-              <TaxonAutocomplete
-                key={ `taxonac${obsCard.selected_species_guess}${obsCard.selected_taxon && obsCard.selected_taxon.id}` }
-                bootstrapClear
-                searchExternal
-                showPlaceholder
-                allowPlaceholders
-                perPage={ 6 }
-                value={ ( obsCard.selected_taxon && obsCard.selected_taxon.id ) ?
-                  obsCard.selected_taxon.title : obsCard.species_guess }
-                initialSelection={ obsCard.selected_taxon }
-                initialTaxonID={ obsCard.taxon_id }
-                afterSelect={ result =>
+    let captiveMarker;
+    if ( obsCard.captive ) {
+      captiveMarker = (
+        <button
+          className="label-captive"
+          alt="captive / cultivated"
+        >C</button>
+      );
+    }
+    return cardDropTarget( photoDropTarget( cardDragSource(
+      <li onClick={ () => selectCard( obsCard ) }>
+        <Dropzone
+          className={ className }
+          data-id={ obsCard.id }
+          disableClick
+          disablePreview
+          onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
+          activeClassName="hover"
+          accept="image/*"
+          key={ obsCard.id }
+        >
+          { captiveMarker }
+          <button className="btn-close" onClick={ confirmRemoveObsCard }>
+            <Glyphicon glyph="remove" />
+          </button>
+          <FileGallery
+            obsCard={ obsCard }
+            setState={ setState }
+            draggingProps={ draggingProps }
+            updateObsCard={ updateObsCard }
+            confirmRemoveFile={ confirmRemoveFile }
+          />
+          <div className="caption">
+            <p className="photo-count">1/2</p>
+            <TaxonAutocomplete
+              key={ `taxonac${obsCard.selected_species_guess}` +
+                `${obsCard.selected_taxon && obsCard.selected_taxon.id}` }
+              small
+              bootstrap
+              searchExternal
+              showPlaceholder
+              allowPlaceholders
+              perPage={ 6 }
+              value={ ( obsCard.selected_taxon && obsCard.selected_taxon.id ) ?
+                obsCard.selected_taxon.title : obsCard.species_guess }
+              initialSelection={ obsCard.selected_taxon }
+              initialTaxonID={ obsCard.taxon_id }
+              afterSelect={ result =>
+                updateObsCard( obsCard,
+                  { taxon_id: result.item.id, selected_taxon: result.item } )
+              }
+              afterUnselect={ ( ) => {
+                if ( obsCard.taxon_id ) {
                   updateObsCard( obsCard,
-                    { taxon_id: result.item.id, selected_taxon: result.item } )
+                    { taxon_id: undefined, selected_taxon: undefined } );
                 }
-                afterUnselect={ ( ) => {
-                  if ( obsCard.taxon_id ) {
-                    updateObsCard( obsCard,
-                      { taxon_id: undefined, selected_taxon: undefined } );
+              }}
+              onChange={ e => updateObsCard( obsCard, { species_guess: e.target.value } ) }
+            />
+            <DateTimeFieldWrapper
+              key={ `datetime${obsCard.selected_date}`}
+              ref="datetime"
+              defaultText={ obsCard.date }
+              onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
+              onSelection={ dateString =>
+                updateObsCard( obsCard, { date: dateString, selected_date: dateString } )
+              }
+            />
+            <div className="input-group"
+              onClick= { () => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onClick( );
+                }
+              } }
+            >
+              <div className="input-group-addon input-sm">
+                <Glyphicon glyph="calendar" />
+              </div>
+              <input
+                type="text"
+                className="form-control input-sm"
+                value={ obsCard.date }
+                onChange= { e => {
+                  if ( this.refs.datetime ) {
+                    this.refs.datetime.onChange( undefined, e.target.value );
                   }
-                }}
-                onChange={ e => updateObsCard( obsCard, { species_guess: e.target.value } ) }
-              />
-              <DateTimeFieldWrapper
-                key={ `datetime${obsCard.selected_date}`}
-                ref="datetime"
-                defaultText={ obsCard.date }
-                onChange={ dateString =>
-                  updateObsCard( obsCard, { date: dateString } )
-                }
-              />
-              <Input type="text" buttonAfter={globe} onClick={ this.openLocationChooser }
-                value={ locationText } readOnly
-              />
-              <Input type="textarea" placeholder="Add a description"
-                value={ obsCard.description } onChange={ e =>
-                  updateObsCard( obsCard, { description: e.target.value } ) }
+                } }
+                placeholder="Date"
               />
             </div>
-          ) ) )
-        }
-        </div>
-      </Dropzone>
-    );
+            <div className="input-group"
+              onClick={ this.openLocationChooser }
+            >
+              <div className="input-group-addon input-sm">
+                <Glyphicon glyph="map-marker" />
+              </div>
+              <input
+                type="text"
+                className="form-control input-sm"
+                value={ locationText }
+                placeholder="Location"
+                readOnly
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                placeholder="Description"
+                className="form-control input-sm"
+                value={ obsCard.description }
+                onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
+              />
+            </div>
+          </div>
+        </Dropzone>
+      </li>
+    ) ) );
   }
 }
 

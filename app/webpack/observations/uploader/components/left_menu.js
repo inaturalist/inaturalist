@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Button, Input, Glyphicon, Badge } from "react-bootstrap";
+import { Input, Glyphicon, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
 import inaturalistjs from "inaturalistjs";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
@@ -62,15 +62,10 @@ class LeftMenu extends Component {
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
-    let descriptionPlaceholder = "Enter description";
+    let descriptionPlaceholder = "Description";
     if ( uniqDescriptions.length > 1 ) {
       descriptionPlaceholder = "Edit multiple descriptions";
     }
-    let globe = (
-      <Button onClick={ this.openLocationChooser }>
-        <Glyphicon glyph="globe" />
-      </Button>
-    );
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
@@ -79,10 +74,10 @@ class LeftMenu extends Component {
     if ( commonTags && commonTags.length > 0 ) {
       taglist = (
         <div className="tags">
-          <h5>Tags:</h5>
+          Tags:
           <div className="taglist">
             { _.map( commonTags, t => (
-              <Badge className="tag">{ t }</Badge>
+              <Badge className="tag" key={ t }>{ t }</Badge>
             ) ) }
           </div>
         </div>
@@ -93,63 +88,102 @@ class LeftMenu extends Component {
     if ( commonOfvs && commonOfvs.length > 0 ) {
       ofvlist = (
         <div className="tags">
-          <h5>Custom Field Values:</h5>
+          Custom Field Values:
           <div className="taglist">
-            { _.map( commonOfvs, t => (
-              <Badge className="tag">
+            { _.map( commonOfvs, t => {
+              const key = `${t.observation_field.name}` +
+                `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}`;
+              return ( <Badge className="tag" key={ key }>
                 <span className="field">{ `${t.observation_field.name}:` }</span>
                 { `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}` }
-              </Badge>
-            ) ) }
+              </Badge> );
+            } ) }
           </div>
         </div>
       );
     }
     let menu;
     if ( count === 0 ) {
-      menu = <h4 className="empty">Select observations to edit...</h4>;
+      menu = "Select observations to edit...";
     } else {
+      let text = `Editing ${count} observation${count > 1 ? "s" : ""}:`;
       menu = (
         <div>
-          <h4>Editing {count} observation{count > 1 ? "s" : ""}</h4>
+          { text }
+          <br />
+          <br />
           <TaxonAutocomplete
-            key={ `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.id}` }
-            bootstrapClear
+            key={
+              `multitaxonac${commonSpeciesGuess}${commonSelectedTaxon && commonSelectedTaxon.id}` }
+            bootstrap
             searchExternal
             showPlaceholder
-            allowPlaceholders
             perPage={ 6 }
-            value={ ( commonSelectedTaxon && commonSelectedTaxon.id ) ?
-              commonSelectedTaxon.title : commonSpeciesGuess }
+            value={ commonSpeciesGuess }
             initialSelection={ commonSelectedTaxon }
             afterSelect={ function ( result ) {
               updateSelectedObsCards( {
                 taxon_id: result.item.id,
-                selected_taxon: new inaturalistjs.Taxon( result.item ) } );
+                selected_taxon: new inaturalistjs.Taxon( result.item ),
+                species_guess: result.item.title } );
             } }
             afterUnselect={ ( ) => {
               updateSelectedObsCards( {
                 taxon_id: undefined,
                 selected_taxon: undefined } );
             } }
-            onChange={ e => updateSelectedObsCards( {
-              species_guess: e.target.value, selected_species_guess: e.target.value
-            } ) }
           />
           <DateTimeFieldWrapper
+            ref="datetime"
             defaultText={ commonDate }
             onChange={ dateString => updateSelectedObsCards(
               { date: dateString, selected_date: dateString } ) }
           />
-          <Input type="text" buttonAfter={ globe } readOnly
-            value={ locationText } onClick={ this.openLocationChooser }
-          />
-          <Input type="textarea"
-            placeholder={ descriptionPlaceholder } value={ commonDescription }
-            onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-          />
+          <div className="input-group">
+            <div className="input-group-addon">
+              <Glyphicon glyph="calendar" />
+            </div>
+            <input
+              type="text"
+              onClick= { () => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onClick( );
+                }
+              } }
+              className="form-control"
+              value={ commonDate }
+              onChange= { e => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onChange( undefined, e.target.value );
+                }
+              } }
+              placeholder="Date"
+            />
+          </div>
+          <div className="input-group"
+            onClick={ this.openLocationChooser }
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="map-marker" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ locationText }
+              placeholder="Location"
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              placeholder={ descriptionPlaceholder }
+              className="form-control"
+              value={ commonDescription }
+              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+            />
+          </div>
           <Input type="checkbox"
-            label="Captive or cultivated"
+            label="Captive / Cultivated"
             checked={ this.commonValue( "captive" ) }
             value="true"
             onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
@@ -160,7 +194,7 @@ class LeftMenu extends Component {
       );
     }
     return (
-      <div id="multiMenu">
+      <div className="left-col-padding">
         {menu}
       </div>
     );

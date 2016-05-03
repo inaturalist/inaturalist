@@ -906,7 +906,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( $scope.selectedPlace ) {
       $scope.selectedPlace.title = $scope.selectedPlace.display_name;
       $( "input[name='inat_place_name']" ).
-        trigger( "assignSelection", $scope.selectedPlace );
+        trigger( "assignSelection", [ $scope.selectedPlace, { callback: false } ] );
     } else {
       $( "#filters input[name='inat_place_name']" ).trigger( "search" );
     }
@@ -1110,7 +1110,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.map ) { return; }
     var defaultMapType = PREFERRED_MAP_TYPE || google.maps.MapTypeId.LIGHT;
     $( "#map" ).taxonMap({
-      urlCoords: true,
+      urlCoords: false,
       mapType: defaultMapType,
       showAllLayer: false,
       disableFullscreen: true,

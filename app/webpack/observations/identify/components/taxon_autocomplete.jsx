@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
-import { Input } from "react-bootstrap";
 import inaturalistjs from "inaturalistjs";
 
 class TaxonAutocomplete extends React.Component {
@@ -26,6 +25,11 @@ class TaxonAutocomplete extends React.Component {
     }
   }
 
+  componentWillUnmount( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( "input[name='taxon_name']", domNode ).autocomplete( "destroy" );
+  }
+
   fetchTaxon( ) {
     if ( this.props.initialTaxonID ) {
       inaturalistjs.taxa.fetch( this.props.initialTaxonID ).then( r => {
@@ -46,26 +50,30 @@ class TaxonAutocomplete extends React.Component {
 
   render( ) {
     return (
-      <span className="TaxonAutocomplete">
-        <Input
-          type="search"
-          name="taxon_name"
-          value={this.props.value}
-          className="form-control"
-          onChange={this.props.onChange}
-          placeholder={ I18n.t( "species" ) }
-          autoComplete="off"
-        />
-        <Input type="hidden" name="taxon_id" />
-      </span>
+      <div className="TaxonAutocomplete">
+        <div className="form-group">
+          <input type="hidden" name="taxon_id" />
+          <input
+            type="text"
+            name="taxon_name"
+            value={ this.props.value }
+            className={ `form-control ${this.props.small && "input-sm"}` }
+            onChange={ this.props.onChange }
+            placeholder="Species Name"
+            autoComplete="off"
+          />
+        </div>
+      </div>
     );
   }
 }
 
 TaxonAutocomplete.propTypes = {
   onChange: PropTypes.func,
+  small: PropTypes.bool,
   resetOnChange: PropTypes.bool,
   bootstrapClear: PropTypes.bool,
+  bootstrap: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,
   allowPlaceholders: PropTypes.bool,
