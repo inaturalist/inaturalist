@@ -9,6 +9,7 @@ class DateTimeFieldWrapper extends Component {
     this.onClick = this.onClick.bind( this );
     this.onChange = this.onChange.bind( this );
     this.close = this.close.bind( this );
+    this.pickerState = this.pickerState.bind( this );
   }
 
   componentDidMount( ) {
@@ -36,6 +37,11 @@ class DateTimeFieldWrapper extends Component {
 
   close( ) {
     if ( this.refs.datetime ) { this.refs.datetime.closePicker( ); }
+  }
+
+  pickerState( ) {
+    if ( this.refs.datetime ) { return this.refs.datetime.state; }
+    return undefined;
   }
 
   render( ) {

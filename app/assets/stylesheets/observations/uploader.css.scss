@@ -464,6 +464,9 @@ ul.obs > li .card {
   &:after {
     right: 111px;
   }
+  .btn {
+    box-shadow: none;
+  }
 }
 
 // Google location search autocomplete results

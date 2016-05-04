@@ -186,7 +186,6 @@ class DragDropZone extends Component {
     if ( photoIsOver ) { className += " photoOver"; }
     const cardCount = Object.keys( obsCards ).length;
     if ( cardCount > 0 ) {
-      className += " populated";
       const keys = _.keys( selectedObsCards );
       const countSelected = _.keys( selectedObsCards ).length;
       const first = keys[0];

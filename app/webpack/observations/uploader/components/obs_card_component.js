@@ -9,7 +9,6 @@ import momentLocalizer from "react-widgets/lib/localizers/moment";
 import _ from "lodash";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-import inaturalistjs from "inaturalistjs";
 
 momentLocalizer( moment );
 
@@ -18,9 +17,7 @@ const cardSource = {
     return props.obsCard.nonUploadedFiles( ).length === 0;
   },
   beginDrag( props, monitor, component ) {
-    if ( component.refs.datetime ) {
-      component.refs.datetime.close( );
-    }
+    component.closeDatepicker( );
     props.setState( { draggingProps: props } );
     return props;
   },
@@ -88,6 +85,8 @@ class ObsCardComponent extends Component {
   constructor( props, context ) {
     super( props, context );
     this.openLocationChooser = this.openLocationChooser.bind( this );
+    this.closeDatepicker = this.closeDatepicker.bind( this );
+    this.onDragEnter = this.onDragEnter.bind( this );
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -100,6 +99,20 @@ class ObsCardComponent extends Component {
         Object.keys( nextProps.obsCard.files ).length ||
       !_.isMatch( this.props.obsCard, nextProps.obsCard ) );
     return b;
+  }
+
+  onDragEnter( ) {
+    const pickerState = this.refs.datetime.pickerState( );
+    // if the datepicker is open
+    if ( pickerState && pickerState.showPicker ) {
+      // close it
+      this.refs.datetime.close( );
+      // and send this card's dropzone a fake drop event to reset it
+      this.refs.dropzone.onDrop( {
+        dataTransfer: { files: [] },
+        preventDefault: () => { }
+      } );
+    }
   }
 
   openLocationChooser( ) {
@@ -115,6 +128,12 @@ class ObsCardComponent extends Component {
       geoprivacy: this.props.obsCard.geoprivacy,
       notes: this.props.obsCard.locality_notes
     } } );
+  }
+
+  closeDatepicker( ) {
+    if ( this.refs.datetime ) {
+      this.refs.datetime.close( );
+    }
   }
 
   render( ) {
@@ -141,11 +160,13 @@ class ObsCardComponent extends Component {
     return cardDropTarget( photoDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
         <Dropzone
+          ref="dropzone"
           className={ className }
           data-id={ obsCard.id }
           disableClick
           disablePreview
           onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
+          onDragEnter={ this.onDragEnter }
           activeClassName="hover"
           accept="image/*"
           key={ obsCard.id }
