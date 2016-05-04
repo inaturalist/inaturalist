@@ -8,25 +8,33 @@ class OpeningActionMenu extends Component {
       <div className="intro">
         <div className="start">
           <div className="drag_or_choose">
-            <p>Drag and drop some photos</p>
-            <p>or</p>
+            <p>{ I18n.t( "drag_and_drop_some_photos" ) }</p>
+            <p>{ I18n.t( "or" ) }</p>
             <Button bsStyle="primary" bsSize="large" onClick={ this.props.fileChooser }>
-              Choose photos
+              { I18n.t( "choose_photos" ) }
               <Glyphicon glyph="upload" />
             </Button>
           </div>
-          <DropdownButton bsStyle="default" title="More Import Options" id="more_imports">
-            <MenuItem href="/observations/import#csv_import">CSV</MenuItem>
+          <DropdownButton
+            bsStyle="default"
+            title={ I18n.t( "more_import_options" ) }
+            id="more_imports"
+          >
+            <MenuItem href="/observations/import#csv_import">
+              { I18n.t( "csv" ) }
+            </MenuItem>
             <MenuItem href="/observations/import#photo_import">
-              From Flickr, Facebook, etc.
+              { I18n.t( "from_flickr_facebook_etc" ) }
             </MenuItem>
             <MenuItem divider />
-            <MenuItem header>Import Sounds</MenuItem>
-            <MenuItem href="/observations/import#sound_import">From SoundCloud</MenuItem>
+            <MenuItem header>{ I18n.t( "import_sounds" ) }</MenuItem>
+            <MenuItem href="/observations/import#sound_import">
+              { I18n.t( "from_soundcloud" ) }
+            </MenuItem>
           </DropdownButton>
         </div>
         <div className="hover">
-          <p>Drop it</p>
+          <p>{ I18n.t( "drop_it" ) }</p>
         </div>
       </div>
     );

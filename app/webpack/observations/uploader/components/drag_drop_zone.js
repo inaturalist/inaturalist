@@ -82,8 +82,7 @@ class DragDropZone extends Component {
     const count = Object.keys( this.props.obsCards ).length;
     $( ".uploader" ).selectable( count > 0 ? "enable" : "disable" );
     if ( count > 0 && this.props.saveStatus !== "saving" ) {
-      window.onbeforeunload = ( ) =>
-        "These observations have not been uploaded yet.";
+      window.onbeforeunload = ( ) => I18n.t( "these_observations_have_not_been_uploaded_yet" );
     } else {
       window.onbeforeunload = undefined;
     }
@@ -235,8 +234,8 @@ class DragDropZone extends Component {
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
                 </button>
-                <a href="/" className="navbar-brand" alt="iNaturalist.org">
-                  <img src="http://static.inaturalist.org/sites/1-logo.png?1433365372" />
+                <a href="/" className="navbar-brand" title={ SITE.name } alt={ SITE.name }>
+                  <img src={ SITE.logo } />
                 </a>
               </div>
               <HeaderUserMenu user={ CURRENT_USER } />

@@ -133,7 +133,8 @@ class ObsCardComponent extends Component {
       captiveMarker = (
         <button
           className="label-captive"
-          alt="captive / cultivated"
+          title={ I18n.t( "captive_cultivated" ) }
+          alt={ I18n.t( "captive_cultivated" ) }
         >C</button>
       );
     }
@@ -208,7 +209,7 @@ class ObsCardComponent extends Component {
                     this.refs.datetime.onChange( undefined, e.target.value );
                   }
                 } }
-                placeholder="Date"
+                placeholder={ I18n.t( "date_" ) }
               />
             </div>
             <div className="input-group"
@@ -221,13 +222,13 @@ class ObsCardComponent extends Component {
                 type="text"
                 className="form-control input-sm"
                 value={ locationText }
-                placeholder="Location"
+                placeholder={ I18n.t( "location" ) }
                 readOnly
               />
             </div>
             <div className="form-group">
               <textarea
-                placeholder="Description"
+                placeholder={ I18n.t( "description" ) }
                 className="form-control input-sm"
                 value={ obsCard.description }
                 onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }

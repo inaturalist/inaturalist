@@ -23,19 +23,14 @@ class RemoveModal extends Component {
   }
 
   render( ) {
-    let message;
-    if ( this.props.count > 1 ) {
-      message = `Remove ${this.props.count} observations?`;
-    } else {
-      message = "Remove 1 observation?";
-    }
+    let message = I18n.t( "remove_observations", { count: this.props.count || 1 } );
     return (
       <ConfirmModal
         message={ message }
         onConfirm={ this.onConfirm }
         onClose={ this.onClose }
         confirmClass="danger"
-        confirmText="Remove"
+        confirmText={ I18n.t( "remove" ) }
         { ...this.props }
       />
     );

@@ -21,19 +21,19 @@ class HeaderUserMenu extends Component {
               <span className="caret"></span>
             </a>
             <ul className="dropdown-menu">
-              <li><a href="/home">Dashboard</a></li>
-              <li><a href={ `/observations/${user.login}` }>Observations</a></li>
-              <li><a href="/observations/add">&nbsp;↳ Add</a></li>
-              <li><a href="/observations/import">&nbsp;↳ Import</a></li>
-              <li><a href={ `/calendar/${user.login}` }>&nbsp;↳ Calendar</a></li>
-              <li><a href={ `/faves/${user.login}` }>Favorites</a></li>
-              <li><a href={ `/lists/${user.login}` }>Lists</a></li>
-              <li><a href={ `/journals/${user.login}` }>Journal</a></li>
-              <li><a href="messages">Messages</a></li>
-              <li><a href={ `/${user.login}` }>Profile</a></li>
-              <li><a href={ `/${user.login}/edit` }>Account</a></li>
+              <li><a href="/home">{ I18n.t( "dashboard" ) }</a></li>
+              <li><a href={ `/observations/${user.login}` }>{ I18n.t( "observations" ) }</a></li>
+              <li><a href="/observations/add">&nbsp;↳ { I18n.t( "add" ) }</a></li>
+              <li><a href="/observations/import">&nbsp;↳ { I18n.t( "import" ) }</a></li>
+              <li><a href={ `/calendar/${user.login}` }>&nbsp;↳ { I18n.t( "calendar" ) }</a></li>
+              <li><a href={ `/faves/${user.login}` }>{ I18n.t( "favorites" ) }</a></li>
+              <li><a href={ `/lists/${user.login}` }>{ I18n.t( "lists" ) }</a></li>
+              <li><a href={ `/journals/${user.login}` }>{ I18n.t( "journal" ) }</a></li>
+              <li><a href="messages">{ I18n.t( "messages" ) }</a></li>
+              <li><a href={ `/${user.login}` }>{ I18n.t( "profile" ) }</a></li>
+              <li><a href={ `/${user.login}/edit` }>{ I18n.t( "account" ) }</a></li>
               <li role="separator" className="divider"></li>
-              <li><a href="/logout">Sign Out</a></li>
+              <li><a href="/logout">{ I18n.t( "sign_out" ) }</a></li>
             </ul>
           </li>
         </ul>

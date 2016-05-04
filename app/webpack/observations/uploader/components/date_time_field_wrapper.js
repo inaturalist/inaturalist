@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from "react";
-import ReactDOM from "react-dom";
 import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment";
 
@@ -24,14 +23,15 @@ class DateTimeFieldWrapper extends Component {
   }
 
   onChange( e, inputValue ) {
+    let value = inputValue;
     const eInt = parseInt( e, 10 );
     if ( e && eInt ) {
       const pickedDate = new Date( eInt );
       if ( pickedDate ) {
-        inputValue = moment.parseZone( pickedDate ).format( "MM/DD/YY h:mm A ZZ" );
+        value = moment.parseZone( pickedDate ).format( "YYYY/MM/DD h:mm A ZZ" );
       }
     }
-    this.props.onChange( inputValue );
+    this.props.onChange( value );
   }
 
   close( ) {
@@ -43,12 +43,7 @@ class DateTimeFieldWrapper extends Component {
       <DateTimeField
         ref="datetime"
         maxDate={ moment( ) }
-        defaultText={ this.props.defaultText || "" }
-        inputFormat="MM/DD/YY h:mm A ZZ"
-        inputProps={ {
-          className: "form-control input-sm",
-          placeholder: "Add Date/Time"
-        }}
+        inputFormat="YYYY/MM/DD h:mm A ZZ"
         onChange={ this.onChange }
       />
     );

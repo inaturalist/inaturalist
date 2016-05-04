@@ -43,10 +43,6 @@ class TaxonAutocomplete extends React.Component {
       this.updateWithSelection( t );
     } );
     this.inputElement( ).bind( "resetSelection", ( ) => {
-      console.log("resetSelection");
-      console.log(this.inputValue( ));
-      console.log(this.idElement( ));
-      console.log(this.idElement( ).val( ));
       if ( this.idElement( ).val( ) ) {
         this.thumbnailElement( ).css( { "background-image": "none" } );
         this.thumbnailElement( ).html(
@@ -139,7 +135,7 @@ class TaxonAutocomplete extends React.Component {
         ReactDOMServer.renderToString( this.itemIcon( item ) ) );
     }
     this.inputElement( ).selection = item;
-    if ( this.props.afterSelect ) { this.props.afterSelect( { item: item } ); }
+    if ( this.props.afterSelect ) { this.props.afterSelect( { item } ); }
   }
 
   source( request, response ) {
@@ -276,7 +272,7 @@ class TaxonAutocomplete extends React.Component {
           <span className="subtitle">{ r.subtitle }</span>
         </div>
         <a target="_blank" href={ `/taxa/${r.id}` }>
-          <div className="ac-view">View</div>
+          <div className="ac-view">{ I18n.t( "view" ) }</div>
         </a>
       </div>
     );
@@ -289,11 +285,11 @@ class TaxonAutocomplete extends React.Component {
           <Glyphicon glyph="search" />
         </div>
         <div className="ac-label">
-          <span className="title">
-            Use <span className="ac-placeholder">"{string}"</span> as a placeholder
-          </span>
-          <span className="subtitle"></span>
-          <a href="#"></a>
+          <span className="title" dangerouslySetInnerHTML={
+            { __html: I18n.t( "use_name_as_a_placeholder", { name: string } ) } }
+          />
+          <span className="subtitle" />
+          <a href="#" />
         </div>
       </div>
     );
@@ -307,10 +303,10 @@ class TaxonAutocomplete extends React.Component {
         </div>
         <div className="ac-label">
           <span className="title linky">
-            Search external name providers
+            { I18n.t( "search_external_name_providers" ) }
           </span>
-          <span className="subtitle"></span>
-          <a href="#"></a>
+          <span className="subtitle" />
+          <a href="#" />
         </div>
       </div>
     );
@@ -344,26 +340,24 @@ class TaxonAutocomplete extends React.Component {
   render( ) {
     const smallClass = this.props.small ? "input-sm" : "";
     return (
-      <div className="TaxonAutocomplete">
-        <div className="form-group">
-          <input type="hidden" name="taxon_id" />
-          <div className={ `ac-chooser input-group ${this.props.small && "small"}` }>
-            <div className={ `ac-select-thumb input-group-addon ${smallClass}` }>
-              <Glyphicon glyph="search" />
-            </div>
-            <input
-              type="text"
-              name="taxon_name"
-              value={ this.props.value }
-              className={ `form-control ${smallClass}` }
-              onChange={ this.props.onChange }
-              placeholder="Species Name"
-              autoComplete="off"
-            />
-            <Glyphicon className="searchclear" glyph="remove-circle"
-              onClick={ () => this.inputElement( ).trigger( "resetAll" ) }
-            />
+      <div className="form-group TaxonAutocomplete">
+        <input type="hidden" name="taxon_id" />
+        <div className={ `ac-chooser input-group ${this.props.small && "small"}` }>
+          <div className={ `ac-select-thumb input-group-addon ${smallClass}` }>
+            <Glyphicon glyph="search" />
           </div>
+          <input
+            type="text"
+            name="taxon_name"
+            value={ this.props.value }
+            className={ `form-control ${smallClass}` }
+            onChange={ this.props.onChange }
+            placeholder={ I18n.t( "species_name_cap" ) }
+            autoComplete="off"
+          />
+          <Glyphicon className="searchclear" glyph="remove-circle"
+            onClick={ () => this.inputElement( ).trigger( "resetAll" ) }
+          />
         </div>
       </div>
     );

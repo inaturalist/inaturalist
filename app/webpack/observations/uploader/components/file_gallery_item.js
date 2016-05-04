@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Badge, Glyphicon, Button } from "react-bootstrap";
+import { Glyphicon } from "react-bootstrap";
 import Photo from "./photo";
 
 class FileGalleryItem extends Component {

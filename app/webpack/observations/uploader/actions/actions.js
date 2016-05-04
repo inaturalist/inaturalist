@@ -170,8 +170,8 @@ const actions = class actions {
       dispatch( actions.setState( { confirmModal: {
         show: true,
         confirmClass: "danger",
-        confirmText: "Remove",
-        message: "Are you sure you want to remove this photo?",
+        confirmText: I18n.t( "remove" ),
+        message: I18n.t( "are_you_sure_remove_photo" ),
         onConfirm: () => dispatch( actions.removeFile( file, obsCard ) )
       } } ) );
     };
@@ -239,9 +239,8 @@ const actions = class actions {
           dispatch( actions.setState( { confirmModal: {
             show: true,
             hideCancel: true,
-            confirmText: "OK",
-            message:
-              "You appear to be offline. Please try again when you are connected to the Internet."
+            confirmText: I18n.t( "ok" ),
+            message: I18n.t( "you_appear_offline_try_again" )
           } } ) );
         }
       } );
@@ -260,11 +259,9 @@ const actions = class actions {
       if ( failed ) {
         dispatch( actions.setState( { confirmModal: {
           show: true,
-          cancelText: "Go Back",
-          confirmText: "Continue",
-          message:
-            "You are submitting observations without photos and taxon names. " +
-            "These observations will very difficult to accurately identify",
+          cancelText: I18n.t( "go_back" ),
+          confirmText: I18n.t( "continue" ),
+          message: I18n.t( "you_are_submitting_obs_without_photos_and_names" ),
           onConfirm: () => {
             setTimeout( () =>
               dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
@@ -282,17 +279,16 @@ const actions = class actions {
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
         if ( !failed && c.uploadedFiles( ).length > 0 &&
-             ( !c.date || !c.latitude && !c.locality_notes ) ) {
+             ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
           failed = true;
         }
       } );
       if ( failed ) {
         dispatch( actions.setState( { confirmModal: {
           show: true,
-          cancelText: "Go Back",
-          confirmText: "Continue",
-          message:
-            "You are submitting observations with photos but without date or location",
+          cancelText: I18n.t( "go_back" ),
+          confirmText: I18n.t( "continue" ),
+          message: I18n.t( "you_are_submitting_obs_with_photos_no_date" ),
           onConfirm: () => {
             dispatch( actions.submitObservations( ) );
           }

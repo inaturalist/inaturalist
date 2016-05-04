@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Glyphicon, Carousel, CarouselItem } from "react-bootstrap";
+import { Glyphicon, Carousel } from "react-bootstrap";
 import FileGalleryItem from "./file_gallery_item";
 
 class FileGallery extends Component {
@@ -25,7 +25,7 @@ class FileGallery extends Component {
           indicators={ false }
         >
           { _.map( this.props.obsCard.files, f => (
-            <Carousel.Item key={ `file${f.id}${count}` } animateIn animateOut>
+            <Carousel.Item key={ `file${f.id}${count}` }>
               <FileGalleryItem
                 obsCard={ this.props.obsCard }
                 file={ f }

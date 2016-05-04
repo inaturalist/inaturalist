@@ -87,8 +87,10 @@ class LocationChooser extends Component {
   }
 
   radiusChanged( ) {
-    const circleState = this.refs.circle.state.circle;
-    this.moveCircle( circleState.center, circleState.radius );
+    if ( this.refs.circle ) {
+      const circleState = this.refs.circle.state.circle;
+      this.moveCircle( circleState.center, circleState.radius );
+    }
   }
 
   centerChanged( ) {
@@ -106,7 +108,7 @@ class LocationChooser extends Component {
   }
 
   close( ) {
-    this.props.setState( { locationChooser: { show: false } } );
+    this.props.updateState( { locationChooser: { show: false } } );
   }
 
   save( ) {
@@ -132,13 +134,15 @@ class LocationChooser extends Component {
     const geocoder = new google.maps.Geocoder;
     geocoder.geocode( { location: { lat, lng } }, ( results, status ) => {
       if ( status === google.maps.GeocoderStatus.OK ) {
-        if ( results[1] ) {
+        if ( results[0] ) {
           results.reverse( );
           const neighborhood = _.find( results, r => _.includes( r.types, "neighborhood" ) );
           const locality = _.find( results, r => _.includes( r.types, "locality" ) );
           const sublocality = _.find( results, r => _.includes( r.types, "sublocality" ) );
-          const level2 = _.find( results, r => _.includes( r.types, "administrative_area_level_2" ) );
-          const level1 = _.find( results, r => _.includes( r.types, "administrative_area_level_1" ) );
+          const level2 = _.find( results, r =>
+            _.includes( r.types, "administrative_area_level_2" ) );
+          const level1 = _.find( results, r =>
+            _.includes( r.types, "administrative_area_level_1" ) );
           let locationName;
           if ( neighborhood ) {
             locationName = neighborhood.formatted_address;
@@ -272,7 +276,7 @@ class LocationChooser extends Component {
         <Modal.Header closeButton>
           <Modal.Title>
             { glyph }
-            { this.props.notes || "Location" }
+            { this.props.notes || I18n.t( "location" ) }
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -296,7 +300,7 @@ class LocationChooser extends Component {
                   onPlacesChanged={ this.handlePlacesChanged }
                   controlPosition={ google.maps.ControlPosition.TOP_LEFT }
                   ref="searchbox"
-                  placeholder="Search for a location"
+                  placeholder={ I18n.t( "search_for_a_location" ) }
                   style={ LocationChooser.searchboxStyle( ) }
                 />
                 { markers }
@@ -305,31 +309,57 @@ class LocationChooser extends Component {
             }
           />
           <div className="form">
-            <Input key="lat" type="text" label="Latitude:" value={ this.props.lat }
+            <Input
+              key="lat"
+              type="text"
+              label={ I18n.t( "latitude" ) }
+              value={ this.props.lat }
               onChange={ e => this.update( "lat", e ) }
             />
-            <Input key="lng" type="text" label="Longitude:" value={ this.props.lng }
+            <Input
+              key="lng"
+              type="text"
+              label={ I18n.t( "longitude" ) }
+              value={ this.props.lng }
               onChange={ e => this.update( "lng", e ) }
             />
-            <Input key="radius" type="text" label="Accuracy (m):" value={ this.props.radius }
+            <Input
+              key="radius"
+              type="text"
+              label={ I18n.t( "accuracy_m" ) }
+              value={ this.props.radius }
               onChange={ e => this.update( "radius", e ) }
             />
-            <Input key="geoprivacy" type="select" label="Geoprivacy:" value={ this.props.geoprivacy }
+            <Input
+              key="geoprivacy"
+              type="select"
+              label={ I18n.t( "geoprivacy" ) }
+              value={ this.props.geoprivacy }
               onChange={ e => this.update( "geoprivacy", e ) }
             >
-              <option value="open">open</option>
-              <option value="obscured">obscured</option>
-              <option value="private">private</option>
+              <option value="open">{ I18n.t( "open" ) }</option>
+              <option value="obscured">{ I18n.t( "obscured" ) }</option>
+              <option value="private">{ I18n.t( "private" ) }</option>
             </Input>
-            <Input className="notes" key="notes" type="text"
-              label="Locality Notes:" value={ this.props.notes }
+            <Input
+              className="notes"
+              key="notes"
+              type="text"
+              label={ I18n.t( "locality_notes" ) }
+              value={ this.props.notes }
               onChange={ e => this.update( "notes", e ) }
             />
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ this.close }>Cancel</Button>
-          <Button onClick={ this.save } bsStyle="primary" disabled={ !canSave }>Save</Button>
+          <Button onClick={ this.close }>{ I18n.t( "cancel" ) }</Button>
+          <Button
+            onClick={ this.save }
+            bsStyle="primary"
+            disabled={ !canSave }
+          >
+            { I18n.t( "save" ) }
+          </Button>
         </Modal.Footer>
       </Modal>
     );

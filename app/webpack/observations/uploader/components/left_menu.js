@@ -62,9 +62,9 @@ class LeftMenu extends Component {
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
-    let descriptionPlaceholder = "Description";
+    let descriptionPlaceholder = I18n.t( "description" );
     if ( uniqDescriptions.length > 1 ) {
-      descriptionPlaceholder = "Edit multiple descriptions";
+      descriptionPlaceholder = I18n.t( "edit_multiple_descriptions" );
     }
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
@@ -74,7 +74,7 @@ class LeftMenu extends Component {
     if ( commonTags && commonTags.length > 0 ) {
       taglist = (
         <div className="tags">
-          Tags:
+          { I18n.t( "tags" ) }
           <div className="taglist">
             { _.map( commonTags, t => (
               <Badge className="tag" key={ t }>{ t }</Badge>
@@ -88,7 +88,7 @@ class LeftMenu extends Component {
     if ( commonOfvs && commonOfvs.length > 0 ) {
       ofvlist = (
         <div className="tags">
-          Custom Field Values:
+          { I18n.t( "custom_field_values" ) }
           <div className="taglist">
             { _.map( commonOfvs, t => {
               const key = `${t.observation_field.name}` +
@@ -104,9 +104,9 @@ class LeftMenu extends Component {
     }
     let menu;
     if ( count === 0 ) {
-      menu = "Select observations to edit...";
+      menu = I18n.t( "select_observations_to_edit" );
     } else {
-      let text = `Editing ${count} observation${count > 1 ? "s" : ""}:`;
+      let text = I18n.t( "editing_observations", { count } );
       menu = (
         <div>
           { text }
@@ -145,7 +145,7 @@ class LeftMenu extends Component {
                   this.refs.datetime.onChange( undefined, e.target.value );
                 }
               } }
-              placeholder="Date"
+              placeholder={ I18n.t( "date_" ) }
             />
           </div>
           <div className="input-group"
@@ -158,7 +158,7 @@ class LeftMenu extends Component {
               type="text"
               className="form-control"
               value={ locationText }
-              placeholder="Location"
+              placeholder={ I18n.t( "location" ) }
               readOnly
             />
           </div>
@@ -171,7 +171,7 @@ class LeftMenu extends Component {
             />
           </div>
           <Input type="checkbox"
-            label="Captive / Cultivated"
+            label={ I18n.t( "captive_cultivated" ) }
             checked={ this.commonValue( "captive" ) }
             value="true"
             onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
