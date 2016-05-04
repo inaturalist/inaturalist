@@ -368,7 +368,11 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_ID', Taxon::ICONIC_TAXA.index_by(&:id))
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
-  
+
+  def to_ary
+    nil
+  end
+
   # Callbacks ###############################################################
   
   def handle_after_move

@@ -43,8 +43,6 @@ class DragDropZone extends Component {
     this.unselectAll = this.unselectAll.bind( this );
     this.selectCard = this.selectCard.bind( this );
     this.resize = this.resize.bind( this );
-    this.setDragEnter = this.setDragEnter.bind( this );
-    this.setDragLeave = this.setDragLeave.bind( this );
     this.selectNone = this.selectNone.bind( this );
   }
 
@@ -89,14 +87,6 @@ class DragDropZone extends Component {
     } else {
       window.onbeforeunload = undefined;
     }
-  }
-
-  setDragEnter( ) {
-    this.props.setState( { fileDragging: true } );
-  }
-
-  setDragLeave( ) {
-    this.props.setState( { fileDragging: false } );
   }
 
   closeAutocompletes( e ) {
@@ -224,8 +214,6 @@ class DragDropZone extends Component {
         <Dropzone
           ref="dropzone"
           onDrop={ onDrop }
-          onDragEnter={ this.setDragEnter }
-          onDragLeave={ this.setDragLeave }
           className={ className }
           activeClassName="hover"
           disableClick

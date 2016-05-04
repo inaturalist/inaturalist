@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Input, Glyphicon, Badge } from "react-bootstrap";
-import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
+import TaxonAutocomplete from "./taxon_autocomplete";
 import inaturalistjs from "inaturalistjs";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 
@@ -114,24 +114,12 @@ class LeftMenu extends Component {
           <br />
           <TaxonAutocomplete
             key={
-              `multitaxonac${commonSpeciesGuess}${commonSelectedTaxon && commonSelectedTaxon.id}` }
+              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.id}` }
             bootstrap
             searchExternal
             showPlaceholder
             perPage={ 6 }
-            value={ commonSpeciesGuess }
             initialSelection={ commonSelectedTaxon }
-            afterSelect={ function ( result ) {
-              updateSelectedObsCards( {
-                taxon_id: result.item.id,
-                selected_taxon: new inaturalistjs.Taxon( result.item ),
-                species_guess: result.item.title } );
-            } }
-            afterUnselect={ ( ) => {
-              updateSelectedObsCards( {
-                taxon_id: undefined,
-                selected_taxon: undefined } );
-            } }
           />
           <DateTimeFieldWrapper
             ref="datetime"

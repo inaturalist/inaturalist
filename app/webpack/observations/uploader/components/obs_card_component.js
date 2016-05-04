@@ -1,15 +1,15 @@
 import React, { PropTypes, Component } from "react";
-import ReactDOM from "react-dom";
 import { DragSource, DropTarget } from "react-dnd";
-import { Glyphicon, Input, FormGroup, InputGroup, FormControl } from "react-bootstrap";
+import { Glyphicon } from "react-bootstrap";
 import { pipe } from "ramda";
-import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
+import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
 import moment from "moment";
 import momentLocalizer from "react-widgets/lib/localizers/moment";
 import _ from "lodash";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
+import inaturalistjs from "inaturalistjs";
 
 momentLocalizer( moment );
 
@@ -163,29 +163,22 @@ class ObsCardComponent extends Component {
           <div className="caption">
             <p className="photo-count">1/2</p>
             <TaxonAutocomplete
-              key={ `taxonac${obsCard.selected_species_guess}` +
-                `${obsCard.selected_taxon && obsCard.selected_taxon.id}` }
+              key={
+                `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.id}` }
               small
               bootstrap
               searchExternal
               showPlaceholder
               allowPlaceholders
               perPage={ 6 }
-              value={ ( obsCard.selected_taxon && obsCard.selected_taxon.id ) ?
-                obsCard.selected_taxon.title : obsCard.species_guess }
               initialSelection={ obsCard.selected_taxon }
               initialTaxonID={ obsCard.taxon_id }
-              afterSelect={ result =>
+              afterSelect={ r =>
                 updateObsCard( obsCard,
-                  { taxon_id: result.item.id, selected_taxon: result.item } )
+                  { taxon_id: r.item.id,
+                    selected_taxon: r.item,
+                    species_guess: r.item.title } )
               }
-              afterUnselect={ ( ) => {
-                if ( obsCard.taxon_id ) {
-                  updateObsCard( obsCard,
-                    { taxon_id: undefined, selected_taxon: undefined } );
-                }
-              }}
-              onChange={ e => updateObsCard( obsCard, { species_guess: e.target.value } ) }
             />
             <DateTimeFieldWrapper
               key={ `datetime${obsCard.selected_date}`}

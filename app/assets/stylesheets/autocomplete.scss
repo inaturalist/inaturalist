@@ -50,6 +50,9 @@
   width: 30px;
   height: 30px;
 }
+.ui-autocomplete .ac-message .ac-thumb .glyphicon {
+  top: 2px;
+}
 .ui-autocomplete .ac-result {
   list-style: none;
 }
@@ -76,6 +79,11 @@
   padding: 0 0 0 12px;
   line-height: 36px;
   width: 300px;
+}
+.ui-autocomplete .ac-message .ac-label .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .ui-autocomplete .ac-placeholder {
   font-weight: bold;
@@ -121,6 +129,7 @@
 .ac-thumb i,
 .ac-select-thumb i {
   font-size: 24px;
+  line-height: 1px;
   vertical-align: middle;
 }
 .ac-result.place .ac-label {
@@ -146,7 +155,10 @@
   padding-left: 5px;
   color: #ddd;
   background: #fff;
-  z-index: 2;
+  z-index: 3;
+}
+.ac-chooser .small .searchclear.glyphicon {
+  top: 8px;
 }
 input.filter-changed + .searchclear.glyphicon {
   background: none;

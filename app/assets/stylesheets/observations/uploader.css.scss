@@ -153,11 +153,11 @@ ul.obs li {
   list-style: none;
   margin: 0px;
   &:hover {
-    .btn-close, .btn-close-photo, .btn-enlarge {
-      display: block;
-    }
     .card {
       box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
+      .btn-close, .btn-close-photo, .btn-enlarge {
+        display: block;
+      }
     }
   }
 }
@@ -424,7 +424,10 @@ ul.obs li .card {
   width: 100%;
   .ac-select-thumb {
     float: inherit;
+    padding: 0px;
+    width: 39px;
     &.input-sm {
+      width: 33px;
       img {
         width: 30px;
         height: 30px;

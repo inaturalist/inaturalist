@@ -76,7 +76,7 @@ $.fn.genericAutocomplete = function( options ) {
     return false;
   };
 
-  field.template = field.template || function( item ) {
+  field.template = options.template || field.template || function( item ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     labelDiv.append( $( "<span/>" ).addClass( "title" ).
