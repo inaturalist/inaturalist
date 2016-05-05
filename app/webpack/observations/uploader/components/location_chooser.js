@@ -53,7 +53,7 @@ class LocationChooser extends Component {
             lat: c.latitude,
             lng: c.longitude
           },
-          radius: c.accuracy
+          radius: c.accuracy || 0
         } ) );
       }
     } );
@@ -239,7 +239,7 @@ class LocationChooser extends Component {
         circles.push(
           <Circle key={`circle${c.id}`}
             center={{ lat: c.latitude, lng: c.longitude }}
-            radius={c.accuracy}
+            radius={c.accuracy || 0}
             onClick={ this.handleMapClick }
             options={{
               strokeColor: "#337ab7",
@@ -338,7 +338,7 @@ class LocationChooser extends Component {
               onChange={ e => this.update( "geoprivacy", e ) }
             >
               <option value="open">{ I18n.t( "open" ) }</option>
-              <option value="obscured">{ I18n.t( "obscured" ) }</option>
+              <option value="obscured">{ I18n.t( "obscured_" ) }</option>
               <option value="private">{ I18n.t( "private" ) }</option>
             </Input>
             <Input

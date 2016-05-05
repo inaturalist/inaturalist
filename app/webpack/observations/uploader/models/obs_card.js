@@ -71,7 +71,6 @@ const ObsCard = class ObsCard {
     if ( !this.latitude && obs.latitude && obs.longitude ) {
       updates.latitude = parseFloat( obs.latitude );
       updates.longitude = parseFloat( obs.longitude );
-      updates.accuracy = 2;
     }
     if ( !this.locality_notes && obs.place_guess ) {
       updates.locality_notes = obs.place_guess;
@@ -118,7 +117,8 @@ const ObsCard = class ObsCard {
         geoprivacy: this.geoprivacy,
         place_guess: this.locality_notes,
         observation_field_values_attributes: this.observation_field_values,
-        tag_list: this.tags.join( "," )
+        tag_list: this.tags.join( "," ),
+        captive_flag: this.captive
       }
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
