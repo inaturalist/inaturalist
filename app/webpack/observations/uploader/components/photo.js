@@ -5,12 +5,10 @@ import { pipe } from "ramda";
 const photoSource = {
   beginDrag( props ) {
     props.setState( { draggingProps: props } );
-    props.updateObsCard( props.obsCard, { cardIsDragging: true } );
     return props;
   },
   endDrag( props ) {
     props.setState( { draggingProps: null } );
-    props.updateObsCard( props.obsCard, { cardIsDragging: false } );
     return props;
   }
 };
@@ -49,7 +47,6 @@ Photo.propTypes = {
   obsCard: PropTypes.object,
   file: PropTypes.object,
   setState: PropTypes.func,
-  updateCard: PropTypes.func,
   confirmRemoveFile: PropTypes.func,
   draggingProps: PropTypes.object,
   connectDragSource: PropTypes.func,

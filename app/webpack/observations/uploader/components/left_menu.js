@@ -2,7 +2,6 @@ import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Input, Glyphicon, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
-import inaturalistjs from "inaturalistjs";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 
 class LeftMenu extends Component {
@@ -12,6 +11,11 @@ class LeftMenu extends Component {
     this.valuesOf = this.valuesOf.bind( this );
     this.commonValue = this.commonValue.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
+  }
+
+  shouldComponentUpdate( nextProps ) {
+    if ( this.props.reactKey === nextProps.reactKey ) { return false; }
+    return true;
   }
 
   openLocationChooser( ) {
@@ -56,7 +60,6 @@ class LeftMenu extends Component {
     const count = keys.length;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
-    const commonSpeciesGuess = this.commonValue( "species_guess" );
     const commonSelectedTaxon = this.commonValue( "selected_taxon" );
     const commonDate = this.commonValue( "date" );
     const commonLat = this.commonValue( "latitude" );
@@ -114,30 +117,48 @@ class LeftMenu extends Component {
           <br />
           <TaxonAutocomplete
             key={
-              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.id}` }
+              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
             bootstrap
             searchExternal
             showPlaceholder
             perPage={ 6 }
             initialSelection={ commonSelectedTaxon }
+            afterSelect={ r => {
+              if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
+                updateSelectedObsCards(
+                  { taxon_id: r.item.id,
+                    selected_taxon: r.item,
+                    species_guess: r.item.title } );
+              }
+            } }
+            afterUnselect={ ( ) => {
+              if ( commonSelectedTaxon ) {
+                updateSelectedObsCards(
+                  { taxon_id: null,
+                    selected_taxon: null,
+                    species_guess: null } );
+              }
+            } }
           />
           <DateTimeFieldWrapper
             ref="datetime"
-            defaultText={ commonDate }
+            key={ `multidate${commonDate}` }
+            reactKey={ `multidate${commonDate}` }
             onChange={ dateString => updateSelectedObsCards(
               { date: dateString, selected_date: dateString } ) }
           />
-          <div className="input-group">
+          <div className="input-group"
+            onClick= { ( ) => {
+              if ( this.refs.datetime ) {
+                this.refs.datetime.onClick( );
+              }
+            } }
+          >
             <div className="input-group-addon">
               <Glyphicon glyph="calendar" />
             </div>
             <input
               type="text"
-              onClick= { () => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onClick( );
-                }
-              } }
               className="form-control"
               value={ commonDate }
               onChange= { e => {
@@ -193,7 +214,8 @@ LeftMenu.propTypes = {
   obsCards: PropTypes.object,
   selectedObsCards: PropTypes.object,
   updateSelectedObsCards: PropTypes.func,
-  setState: PropTypes.func
+  setState: PropTypes.func,
+  reactKey: PropTypes.string
 };
 
 export default LeftMenu;

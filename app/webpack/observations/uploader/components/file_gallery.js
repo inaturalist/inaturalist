@@ -23,6 +23,8 @@ class FileGallery extends Component {
           interval={ 0 }
           controls={ count > 1 }
           indicators={ false }
+          onSlideEnd={ ( ) => this.props.updateObsCard( this.props.obsCard,
+            { galleryIndex: this.refs.carousel.state.activeIndex + 1 } ) }
         >
           { _.map( this.props.obsCard.files, f => (
             <Carousel.Item key={ `file${f.id}${count}` }>
@@ -31,7 +33,6 @@ class FileGallery extends Component {
                 file={ f }
                 setState={ this.props.setState }
                 draggingProps={ this.props.draggingProps }
-                updateObsCard={ this.props.updateObsCard }
                 confirmRemoveFile={ this.props.confirmRemoveFile }
               />
             </Carousel.Item>

@@ -127,7 +127,7 @@ class DragDropZone extends Component {
   }
 
   unselectAll( e ) {
-    const ignore = "a, .card, button, .modal, " +
+    const ignore = "a, .card, button, .modal, span.title, .leftColumn, " +
       ".bootstrap-datetimepicker-widget, .ui-autocomplete, #react-images-container, " +
       ".navbar .select, input, .form-group";
     const target = e.target || e.nativeEvent.target;
@@ -135,10 +135,16 @@ class DragDropZone extends Component {
          $( target ).is( ignore ) ) {
       return;
     }
+    // some targets will be gone by this point, like taxon autocomplete results
+    // don't count those as unselecting
+    if ( $( "body" ).has( target ).length === 0 ) {
+      return;
+    }
     this.selectNone( );
   }
 
   selectNone( ) {
+    $( "input, textarea" ).blur( );
     this.props.selectObsCards( { } );
   }
 
@@ -188,11 +194,13 @@ class DragDropZone extends Component {
     if ( cardCount > 0 ) {
       const keys = _.keys( selectedObsCards );
       const countSelected = _.keys( selectedObsCards ).length;
+      const lastUpdate = _.max( _.map( selectedObsCards, c => c.updatedAt ) );
       const first = keys[0];
+      const leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
       leftColumn = (
         <Col className="col-fixed-240 leftColumn">
           <LeftMenu
-            key={ `leftmenu${countSelected}${first}` }
+            reactKey={ leftMenuKey }
             count={ cardCount }
             setState={ this.props.setState }
             selectedObsCards={ this.props.selectedObsCards }
@@ -242,6 +250,7 @@ class DragDropZone extends Component {
           </nav>
           <TopMenu
             key={ `topMenu${cardCount}${countSelected}` }
+            reactKey={ `topMenu${cardCount}${countSelected}` }
             createBlankObsCard={ createBlankObsCard }
             confirmRemoveSelected={ confirmRemoveSelected }
             selectAll={ selectAll }

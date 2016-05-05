@@ -17,6 +17,11 @@ class DateTimeFieldWrapper extends Component {
     this.close( );
   }
 
+  shouldComponentUpdate( nextProps ) {
+    if ( this.props.reactKey === nextProps.reactKey ) { return false; }
+    return true;
+  }
+
   onClick( ) {
     if ( this.refs.datetime ) {
       this.refs.datetime.onClick( );
@@ -48,6 +53,7 @@ class DateTimeFieldWrapper extends Component {
     return (
       <DateTimeField
         ref="datetime"
+        key="datetime"
         maxDate={ moment( ) }
         inputFormat="YYYY/MM/DD h:mm A ZZ"
         onChange={ this.onChange }
@@ -59,7 +65,7 @@ class DateTimeFieldWrapper extends Component {
 DateTimeFieldWrapper.propTypes = {
   onChange: PropTypes.func,
   onSelection: PropTypes.func,
-  defaultText: PropTypes.string
+  reactKey: PropTypes.string
 };
 
 export default DateTimeFieldWrapper;

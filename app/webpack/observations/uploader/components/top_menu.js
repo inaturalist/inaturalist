@@ -4,6 +4,11 @@ import { Glyphicon, MenuItem,
 
 class TopMenu extends Component {
 
+  shouldComponentUpdate( nextProps ) {
+    if ( this.props.reactKey === nextProps.reactKey ) { return false; }
+    return true;
+  }
+
   render( ) {
     const { createBlankObsCard, confirmRemoveSelected, selectAll, combineSelected,
       trySubmitObservations, fileChooser, countTotal, countSelected, selectNone,
@@ -83,7 +88,8 @@ TopMenu.propTypes = {
   countTotal: PropTypes.number,
   countSelected: PropTypes.number,
   countSelectedPending: PropTypes.number,
-  countPending: PropTypes.number
+  countPending: PropTypes.number,
+  reactKey: PropTypes.string
 };
 
 export default TopMenu;

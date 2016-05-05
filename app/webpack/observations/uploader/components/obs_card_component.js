@@ -4,13 +4,9 @@ import { Glyphicon } from "react-bootstrap";
 import { pipe } from "ramda";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
-import moment from "moment";
-import momentLocalizer from "react-widgets/lib/localizers/moment";
 import _ from "lodash";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-
-momentLocalizer( moment );
 
 const cardSource = {
   canDrag( props ) {
@@ -94,6 +90,7 @@ class ObsCardComponent extends Component {
       this.props.photoIsOver !== nextProps.photoIsOver ||
       this.props.cardIsDragging !== nextProps.cardIsDragging ||
       this.props.cardIsOver !== nextProps.cardIsOver ||
+      this.props.obsCard.galleryIndex !== nextProps.obsCard.galleryIndex ||
       this.props.selected_species_guess !== nextProps.selected_species_guess ||
       Object.keys( this.props.obsCard.files ).length !==
         Object.keys( nextProps.obsCard.files ).length ||
@@ -157,6 +154,11 @@ class ObsCardComponent extends Component {
         >C</button>
       );
     }
+    let photoCount;
+    const fileCount = _.size( obsCard.files );
+    if ( fileCount > 1 ) {
+      photoCount = `${obsCard.galleryIndex || 1}/${fileCount}`;
+    }
     return cardDropTarget( photoDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
         <Dropzone
@@ -183,29 +185,40 @@ class ObsCardComponent extends Component {
             confirmRemoveFile={ confirmRemoveFile }
           />
           <div className="caption">
-            <p className="photo-count">1/2</p>
+            <p className="photo-count">
+              { photoCount || "\u00a0" }
+            </p>
             <TaxonAutocomplete
               key={
-                `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.id}` }
+                `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.title}` }
               small
               bootstrap
               searchExternal
               showPlaceholder
-              allowPlaceholders
               perPage={ 6 }
               initialSelection={ obsCard.selected_taxon }
               initialTaxonID={ obsCard.taxon_id }
-              afterSelect={ r =>
-                updateObsCard( obsCard,
-                  { taxon_id: r.item.id,
-                    selected_taxon: r.item,
-                    species_guess: r.item.title } )
-              }
+              afterSelect={ r => {
+                if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
+                  updateObsCard( obsCard,
+                    { taxon_id: r.item.id,
+                      selected_taxon: r.item,
+                      species_guess: r.item.title } );
+                }
+              } }
+              afterUnselect={ ( ) => {
+                if ( obsCard.selected_taxon ) {
+                  updateObsCard( obsCard,
+                    { taxon_id: null,
+                      selected_taxon: null,
+                      species_guess: null } );
+                }
+              } }
             />
             <DateTimeFieldWrapper
               key={ `datetime${obsCard.selected_date}`}
+              reactKey={ `datetime${obsCard.selected_date}`}
               ref="datetime"
-              defaultText={ obsCard.date }
               onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
               onSelection={ dateString =>
                 updateObsCard( obsCard, { date: dateString, selected_date: dateString } )

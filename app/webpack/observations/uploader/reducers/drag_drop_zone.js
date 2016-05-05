@@ -28,6 +28,8 @@ const dragDropZone = ( state = defaultState, action ) => {
       if ( state.obsCards[action.obsCard.id] === undefined ) {
         return state;
       }
+      if ( action.attrs.files ) { action.attrs.galleryIndex = 1; }
+      action.attrs.updatedAt = new Date( ).getTime( );
       let newState = update( state, {
         obsCards: { [action.obsCard.id]: { $merge: action.attrs } }
       } );
@@ -58,6 +60,7 @@ const dragDropZone = ( state = defaultState, action ) => {
     }
 
     case types.UPDATE_SELECTED_OBS_CARDS: {
+      action.attrs.updatedAt = new Date( ).getTime( );
       let modified = Object.assign( { }, state.obsCards );
       _.each( state.selectedObsCards, c => {
         modified = update( modified, {

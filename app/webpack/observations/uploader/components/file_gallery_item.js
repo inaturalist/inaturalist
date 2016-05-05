@@ -69,7 +69,6 @@ FileGalleryItem.propTypes = {
   obsCard: PropTypes.object,
   file: PropTypes.object,
   setState: PropTypes.func,
-  updateCard: PropTypes.func,
   confirmRemoveFile: PropTypes.func,
   draggingProps: PropTypes.object,
   connectDragSource: PropTypes.func,

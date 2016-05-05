@@ -146,7 +146,9 @@ $.fn.genericAutocomplete = function( options ) {
       return false;
     }
     if( field.searchClear ) {
-      field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
+      setTimeout( function( ) {
+        field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
+      }, 1 );
     }
     if( field.val( ) && options.resetOnChange === false ) { return; }
     // keys like arrows, tab, shift, caps-lock, etc. won't change

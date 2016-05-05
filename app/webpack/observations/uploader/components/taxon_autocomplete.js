@@ -42,6 +42,7 @@ class TaxonAutocomplete extends React.Component {
       }
       this.updateWithSelection( t );
     } );
+    this.inputElement( ).unbind( "resetSelection" );
     this.inputElement( ).bind( "resetSelection", ( ) => {
       if ( this.idElement( ).val( ) ) {
         this.thumbnailElement( ).css( { "background-image": "none" } );
@@ -157,6 +158,7 @@ class TaxonAutocomplete extends React.Component {
           !this.idElement( ).val( ) &&
           this.inputValue( ) ) {
         results.unshift( {
+          id: 0,
           type: "placeholder",
           title: this.inputValue( )
         } );
@@ -204,6 +206,7 @@ class TaxonAutocomplete extends React.Component {
             }
             if ( this.props.showPlaceholder && this.inputValue( ) ) {
               data.unshift( {
+                id: 0,
                 type: "placeholder",
                 title: this.inputValue( )
               } );
