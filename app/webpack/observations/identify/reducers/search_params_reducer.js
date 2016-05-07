@@ -11,6 +11,9 @@ const DEFAULT_PARAMS = {
   quality_grade: "needs_id",
   page: 1,
   per_page: 30,
+  iconic_taxa: [],
+  order_by: "observations.id",
+  order: "desc",
   // This is a hack to get around our node API's cache control settings, since
   // it defaults to something, and we hit obs search repeatedly for stats. A
   // better approach might be to have a separate endpoints that delivers these
@@ -34,16 +37,46 @@ const normalizeParams = ( params ) => {
     // coerce boolean-ish strings to booleans
     if ( newParams[k] === "true" ) newValue = true;
     else if ( newParams[k] === "false" ) newValue = false;
-    // coarece integerish strings to numbers
+    // coerce integerish strings to numbers
     if (
       typeof( newValue ) === "string"
       && parseInt( newValue, 10 ) > 0
     ) {
       newValue = parseInt( newValue, 10 );
     }
+    // coerce arrayish strings to arrays
+    if ( typeof( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
+      newValue = newValue.split( "," );
+    }
     newParams[k] = newValue;
   } );
   return newParams;
+};
+
+const setUrl = ( newState ) => {
+  const urlState = {};
+  _.forEach( newState, ( v, k ) => {
+    // don't put defaults in the URL
+    if ( DEFAULT_PARAMS[k] !== undefined && DEFAULT_PARAMS[k] === v ) {
+      return;
+    }
+    if ( _.isArray( v ) && v.length === 0 ) {
+      return;
+    }
+    let newVal = v;
+    if ( _.isArray( v ) ) {
+      newVal = v.join( "," );
+    }
+    urlState[k] = newVal;
+  } );
+  const title = `Identify: ${$.param( urlState )}`;
+  const newUrl = [
+    window.location.origin,
+    window.location.pathname,
+    _.isEmpty( urlState ) ? "" : "?",
+    _.isEmpty( urlState ) ? "" : $.param( urlState )
+  ].join( "" );
+  history.pushState( urlState, title, newUrl );
 };
 
 const searchParamsReducer = ( state = DEFAULT_PARAMS, action ) => {
@@ -71,23 +104,9 @@ const searchParamsReducer = ( state = DEFAULT_PARAMS, action ) => {
   if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
     return newState;
   }
-  const urlState = {};
-  _.forEach( newState, ( v, k ) => {
-    if ( DEFAULT_PARAMS[k] !== undefined && DEFAULT_PARAMS[k] === v ) {
-      return;
-    }
-    urlState[k] = v;
-  } );
-  const title = `Identify: ${$.param( urlState )}`;
-  const newUrl = [
-    window.location.origin,
-    window.location.pathname,
-    _.isEmpty( urlState ) ? "" : "?",
-    _.isEmpty( urlState ) ? "" : $.param( urlState )
-  ].join( "" );
-  history.pushState( urlState, title, newUrl );
+  setUrl( newState );
   return newState;
 };
 
 export default searchParamsReducer;
-export { normalizeParams };
+export { normalizeParams, DEFAULT_PARAMS };

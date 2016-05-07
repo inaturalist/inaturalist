@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import { Input, Button } from "react-bootstrap";
+import FiltersButton from "./filters_button";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import PlaceAutocomplete from "./place_autocomplete";
 
@@ -30,8 +31,9 @@ const SearchBar = ( {
         updateSearchParams( { place_id: null } );
       } }
     />
-    <Button bsStyle="primary">{ I18n.t( "go" ) }</Button>
-    <Button>{ I18n.t( "filters" ) }</Button>
+    <Button bsStyle="primary">
+      { I18n.t( "go" ) }
+    </Button> <FiltersButton params={params} updateSearchParams={updateSearchParams} />
     <Input
       type="checkbox"
       label={ I18n.t( "reviewed" ) }

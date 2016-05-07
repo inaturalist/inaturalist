@@ -1,6 +1,7 @@
 @import "identify/observations_grid_item";
 @import "identify/observation_modal";
 @import "identify/progress_chart";
+@import "identify/filters_button";
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 @import "../colors";
 .btn-checkbox {
@@ -153,4 +154,11 @@ li.rc-pagination-item-active a {
   padding-left: 0;
   padding-right: 0;
   border: 0;
+}
+
+.bootstrap .FiltersButton .dropdown-menu {
+  left: -400px;
+}
+.bootstrap .FiltersButton .checkbox {
+  display: block;
 }

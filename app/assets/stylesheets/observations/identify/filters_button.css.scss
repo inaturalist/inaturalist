@@ -1,0 +1,158 @@
+$bg-color: #727272;
+$changed-color: #74ac00;
+
+.bootstrap .FiltersButton .container > button.btn-default {
+  background-color: $bg-color;
+  border-color: $bg-color;
+  color: #eee;
+  position: relative;
+}
+.bootstrap .FiltersButton .container > button:hover { color: white; }
+.bootstrap .FiltersButton .container > button.btn-default .badge {
+  background-color: $changed-color;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.bootstrap .FiltersButton .container .filter-changed,
+.bootstrap .FiltersButton .container .filter-changed label {
+  color: $changed-color;
+  font-weight: bold;
+}
+.FiltersButton .container select.filter-changed,
+.FiltersButton .container button.filter-changed,
+.FiltersButton .container .form-control.filter-changed,
+.FiltersButton .container .form-control.filter-changed {
+  color: $changed-color !important;
+  border-color: $changed-color !important;
+  background-color: rgba(16, 172, 0, 0.1) !important;
+}
+
+/* FORM-INLINE OVERRIDES: embedding the button in a form-inline really screws things up */
+.form-inline .FiltersButton .form-control {
+  width: 100%;
+  display: block;
+}
+.form-inline .FiltersButton .radio input[type=radio],
+.form-inline .FiltersButton .checkbox input[type=checkbox] {
+  position: absolute;
+  margin-left: -20px;
+}
+.form-inline .FiltersButton .checkbox label {
+  padding-left: 20px;
+}
+
+
+.FiltersButton .container .fa-sliders {
+  font-size: 120%;
+  margin-right: 5px;
+}
+.FiltersButton .container .fa-sliders:before {
+  top: 1px;
+  position: relative;
+}
+
+.FiltersButton .container {
+  width: 900px;
+}
+.FiltersButton .dropdown-menu { background-color: #eee; padding: 0px;}
+
+/* DATES */
+.FiltersButton .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
+.FiltersButton .filters-dates .form-control {
+  width: 100px; 
+  display: inline-block;
+}
+.FiltersButton .filters-dates .filters-dates-exact.form-control {width: 176px;}
+.FiltersButton .date-type-range,
+.FiltersButton .date-type-exact {
+  position: relative;
+  top: -3px;
+}
+.FiltersButton .date-type-month {
+  position: relative;
+  top: -1px;
+}
+
+/* ICONIC TAXA */
+.FiltersButton .iconic-taxon {
+  margin: 0 5px 5px 0;
+  padding: 0px 6px;
+  font-size: 26.4px;
+}
+.FiltersButton .btn.iconic-taxon:focus {
+  outline: none;
+  background-color: white;
+}
+.FiltersButton .btn.iconic-taxon.active:focus {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.FiltersButton .iconic-taxon.last {margin-right: 0;}
+#filters-body {
+  padding: 10px 0px 15px;
+}
+#filters-footer {
+  background-color: #ddd;
+  padding: 10px 0;
+}
+#filters-footer .btn {margin-left: 12px;}
+#filters-footer .btn:first-child {margin-left: 0px;}
+#filters-footer .btn-default { border-color: #aaa; }
+#feeds .btn {padding-left: 0; padding-right: 0; color: #333;}
+#feeds .btn:hover { text-decoration: none; }
+#feeds .btn:hover span { text-decoration: underline; }
+
+#filters-center-col {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+#filters-more-btn {padding:0;margin: 12px 0;}
+#filters-more-btn .fa-caret-up { display: inline;}
+#filters-more-btn .fa-caret-down { display: none;}
+#filters-more-btn.collapsed .fa-caret-up { display: none; }
+#filters-more-btn.collapsed .fa-caret-down { display: inline; }
+
+.dropdown-menu.places {
+  width: 500px;
+  left: 0px;
+  background: #f16f3a;
+  color: #fff;
+  line-height: 1.2em;
+}
+.dropdown-menu.places .col-xs-6:first-child {
+  border-right: 1px solid rgba(0, 0, 0, .15);
+}
+.dropdown-menu.places h4 {
+  font-size: 17px;
+  color: rgba(0, 0, 0, .6);
+  text-transform: uppercase;
+}
+.dropdown-menu.places .glyphicon-map-marker {
+  font-size: 0.8em;
+  margin-right: 3px;
+}
+.dropdown-menu.places .place {
+  cursor: pointer;
+  margin-bottom: 8px;
+  text-indent: -7px;
+  margin-left: 14px;
+}
+.dropdown-menu.places .name {
+  font-weight: 700;
+}
+.dropdown-menu.places .place:hover {
+  text-decoration: underline;
+}
+.dropdown-menu.places .place:hover .type {
+  text-decoration: underline;
+  color: #fff;
+}
+.dropdown-menu.places .place .type {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-left: 5px;
+  color: rgba(0, 0, 0, .5);
+}
