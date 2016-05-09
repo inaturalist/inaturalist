@@ -37,4 +37,5 @@
         methods: [ :logo ],                             |
         include: { place: { only: [ :id, :name ] } }    |
       ).html_safe };                                    |
-    = content_for?(:delayed_js) ? yield(:delayed_js) : yield
+    - if content_for?(:delayed_js)
+      = yield(:delayed_js)

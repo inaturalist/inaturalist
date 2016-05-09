@@ -50,6 +50,14 @@ class StatsController < ApplicationController
     render json: observation_weeks_data
   end
 
+  def bioblitz
+    if project = Project.find_by_id(params[:project_id])
+      @project_id = project.id
+      @project_title = project.title
+      @place_id = project.rule_place.try(:id)
+    end
+    render layout: "basic"
+  end
 
   private
 
