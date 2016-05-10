@@ -1,95 +1,104 @@
 $bg-color: #727272;
 $changed-color: #74ac00;
 
-.bootstrap .FiltersButton .container > button.btn-default {
+.FiltersButtonPopover.popover .popover-content {
+  padding: 0;
+}
+.FiltersButtonPopover .FiltersButtonFooter {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.popover .FiltersButtonContainer > button.btn-default {
   background-color: $bg-color;
   border-color: $bg-color;
   color: #eee;
   position: relative;
 }
-.bootstrap .FiltersButton .container > button:hover { color: white; }
-.bootstrap .FiltersButton .container > button.btn-default .badge {
+.popover .FiltersButtonContainer > button:hover { color: white; }
+.popover .FiltersButtonContainer > button.btn-default .badge {
   background-color: $changed-color;
   position: absolute;
   top: -10px;
   right: -10px;
 }
 
-.bootstrap .FiltersButton .container .filter-changed,
-.bootstrap .FiltersButton .container .filter-changed label {
+.popover .FiltersButtonContainer .filter-changed,
+.popover .FiltersButtonContainer .filter-changed label {
   color: $changed-color;
   font-weight: bold;
 }
-.FiltersButton .container select.filter-changed,
-.FiltersButton .container button.filter-changed,
-.FiltersButton .container .form-control.filter-changed,
-.FiltersButton .container .form-control.filter-changed {
+.FiltersButtonContainer select.filter-changed,
+.FiltersButtonContainer button.filter-changed,
+.FiltersButtonContainer .form-control.filter-changed,
+.FiltersButtonContainer .form-control.filter-changed {
   color: $changed-color !important;
   border-color: $changed-color !important;
   background-color: rgba(16, 172, 0, 0.1) !important;
 }
 
 /* FORM-INLINE OVERRIDES: embedding the button in a form-inline really screws things up */
-.form-inline .FiltersButton .form-control {
+.form-inline .FiltersButtonContainer .form-control {
   width: 100%;
   display: block;
 }
-.form-inline .FiltersButton .radio input[type=radio],
-.form-inline .FiltersButton .checkbox input[type=checkbox] {
+.form-inline .FiltersButtonContainer .radio input[type=radio],
+.form-inline .FiltersButtonContainer .checkbox input[type=checkbox] {
   position: absolute;
   margin-left: -20px;
 }
-.form-inline .FiltersButton .checkbox label {
+.form-inline .FiltersButtonContainer .checkbox label {
   padding-left: 20px;
 }
 
 
-.FiltersButton .container .fa-sliders {
+.FiltersButtonContainer .fa-sliders {
   font-size: 120%;
   margin-right: 5px;
 }
-.FiltersButton .container .fa-sliders:before {
-  top: 1px;
-  position: relative;
-}
+// .FiltersButtonContainer .container .fa-sliders:before {
+//   top: 1px;
+//   position: relative;
+// }
 
-.FiltersButton .container {
-  width: 900px;
+.popover .FiltersButtonContainer {
+  width: 900px !important;
 }
-.FiltersButton .dropdown-menu { background-color: #eee; padding: 0px;}
+.popover.FiltersButtonPopover[role="tooltip"] { background-color: #eee; padding: 0px; }
+.popover.FiltersButtonPopover[role="tooltip"] .arrow:after { border-bottom-color: #eee; }
 
 /* DATES */
-.FiltersButton .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
-.FiltersButton .filters-dates .form-control {
+.FiltersButtonContainer .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
+.FiltersButtonContainer .filters-dates .form-control {
   width: 100px; 
   display: inline-block;
 }
-.FiltersButton .filters-dates .filters-dates-exact.form-control {width: 176px;}
-.FiltersButton .date-type-range,
-.FiltersButton .date-type-exact {
+.FiltersButtonContainer .filters-dates .filters-dates-exact.form-control {width: 176px;}
+.FiltersButtonContainer .date-type-range,
+.FiltersButtonContainer .date-type-exact {
   position: relative;
   top: -3px;
 }
-.FiltersButton .date-type-month {
+.FiltersButtonContainer .date-type-month {
   position: relative;
   top: -1px;
 }
 
 /* ICONIC TAXA */
-.FiltersButton .iconic-taxon {
+.popover .FiltersButtonContainer .iconic-taxon {
   margin: 0 5px 5px 0;
   padding: 0px 6px;
-  font-size: 26.4px;
+  font-size: 27.3px;
 }
-.FiltersButton .btn.iconic-taxon:focus {
+.FiltersButtonContainer .btn.iconic-taxon:focus {
   outline: none;
   background-color: white;
 }
-.FiltersButton .btn.iconic-taxon.active:focus {
+.FiltersButtonContainer .btn.iconic-taxon.active:focus {
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
           box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
-.FiltersButton .iconic-taxon.last {margin-right: 0;}
+.FiltersButtonContainer .iconic-taxon.last {margin-right: 0;}
 #filters-body {
   padding: 10px 0px 15px;
 }
