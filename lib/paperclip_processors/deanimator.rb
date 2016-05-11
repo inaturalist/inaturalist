@@ -2,7 +2,7 @@
 module Paperclip
   class Deanimator < Thumbnail
     def transformation_command
-      if @attachment.original_filename.to_s =~ /\.gif/
+      if @attachment.original_filename.to_s =~ /\.gif/ || @attachment.content_type == "image/gif"
         super + [" -delete 1--1"]
       else
         super
