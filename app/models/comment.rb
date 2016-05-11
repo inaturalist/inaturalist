@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
   belongs_to :user
 
-  validates_length_of :body, within: 1..5000, message: "can't be blank"
+  validates_length_of :body, within: 1..5000
   validates_presence_of :parent
 
   after_create :update_parent_counter_cache
