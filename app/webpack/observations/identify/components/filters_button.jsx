@@ -13,23 +13,17 @@ class FiltersButton extends React.Component {
   render() {
     const { params, updateSearchParams } = this.props;
     const paramsForUrl = ( ) => {
-      console.log( "[DEBUG] paramsForUrl" );
-      // TODO
-      return "";
+      // TODO filter out params that only apply to this component
+      return window.location.search.replace( /^\?/, "" );
     };
     const closeFilters = ( ) => {
-      console.log( "[DEBUG] closeFilters" );
-      // TODO
-      return "";
+      // yes it's a horrible hack
+      $( ".FiltersButton" ).click( );
     };
-    const resetParams = ( ) => {
-      console.log( "[DEBUG] resetParams" );
-      // TODO
-      return "";
-    };
+    const resetParams = ( ) => updateSearchParams( DEFAULT_PARAMS );
     const numFiltersSet = ( ) => {
-      console.log( "[DEBUG] numFiltersSet" );
-      return "";
+      const diffs = _.difference( _.values( params ), _.values( DEFAULT_PARAMS ) );
+      return diffs.length > 0 ? diffs.length.toString() : "";
     };
     const filterCheckbox = ( checkbox ) => {
       const checkedVal = ( checkbox.checked || true );
@@ -105,6 +99,7 @@ class FiltersButton extends React.Component {
             if ( _.includes( params.iconic_taxa, t.name ) ) {
               newIconicTaxa = _.without( params.iconic_taxa, t.name );
             } else {
+              console.log( "[DEBUG] params.iconic_taxa: ", params.iconic_taxa );
               newIconicTaxa = params.iconic_taxa.map( n => n );
               newIconicTaxa.push( t.name );
             }
@@ -140,8 +135,8 @@ class FiltersButton extends React.Component {
             { [
               { param: "wild" },
               { param: "verifiable", label: "verifiable", unchecked: "any" },
-              { param: "quality_grade", label: "research_grade", checked: "research" },
-              { param: "quality_grade", label: "needs_id", checked: "needs_id" },
+              { param: "quality_grade", label: "research_grade", checked: "research", unchecked: "any" },
+              { param: "quality_grade", label: "needs_id", checked: "needs_id", unchecked: "any" },
               { param: "threatened" }
             ].map( filterCheckbox ) }
           </Col>
@@ -214,6 +209,7 @@ class FiltersButton extends React.Component {
             <select
               id="params-hrank"
               className={`form-control ${params.hrank ? "filter-changed" : ""}`}
+              defaultValue={params.hrank}
               onChange={ e => updateSearchParams( { hrank: e.target.value } ) }
             >
               <option value="">
@@ -230,6 +226,7 @@ class FiltersButton extends React.Component {
             <select
               id="params-lrank"
               className={`form-control ${params.lrank ? "filter-changed" : ""}`}
+              defaultValue={params.lrank}
               onChange={ e => updateSearchParams( { lrank: e.target.value } ) }
             >
               <option value="">
@@ -627,10 +624,10 @@ class FiltersButton extends React.Component {
           </div>
           <Row id="filters-footer" className="FiltersButtonFooter">
             <Col xs="12">
-              <Button bsStyle="primary" onClick={ closeFilters( ) }>
+              <Button bsStyle="primary" onClick={ () => closeFilters( ) }>
                 { _.capitalize( I18n.t( "update_search" ) ) }
               </Button>
-              <Button onClick={ resetParams( ) }>
+              <Button onClick={ ( ) => resetParams( ) }>
                 { _.capitalize( I18n.t( "reset_search_filters" ) ) }
               </Button>
               <div id="feeds" className="pull-right">
@@ -664,10 +661,11 @@ class FiltersButton extends React.Component {
     return (
       <OverlayTrigger
         trigger="click"
+        rootClose
         placement="bottom"
         overlay={popover}
       >
-        <Button bsRole="toggle" bsStyle="default">
+        <Button bsRole="toggle" bsStyle="default" className="FiltersButton">
           <i className="fa fa-sliders"></i> { I18n.t( "filters" ) }
           &nbsp;
           <span className="badge">

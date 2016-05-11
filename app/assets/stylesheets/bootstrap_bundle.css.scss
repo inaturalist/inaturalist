@@ -51,7 +51,8 @@ body {font-size: 75%;}
 }
 
 // popovers have the same problem
-body > div > .popover[role="tooltip"] {
+body > div > .popover[role="tooltip"],
+body > div > div > .popover[role="tooltip"] {
   position: absolute;
   top: 0;
   left: 0;
@@ -187,7 +188,8 @@ body > div > .popover[role="tooltip"] {
 .ui-front {z-index: 1051;}
 .bootstrap,
 body > div > [role="dialog"],
-body > div > .popover {
+body > div > .popover,
+body > div > div > .popover {
   position: relative;
   margin: 0;
   font-size: 14px;

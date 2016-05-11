@@ -48,6 +48,9 @@ const normalizeParams = ( params ) => {
     if ( typeof( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
       newValue = newValue.split( "," );
     }
+    if ( k === "iconic_taxa" && typeof( newValue ) === "string" ) {
+      newValue = [newValue];
+    }
     newParams[k] = newValue;
   } );
   return newParams;
