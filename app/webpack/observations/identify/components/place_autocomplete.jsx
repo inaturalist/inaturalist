@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
-import { Input } from "react-bootstrap";
 import inaturalistjs from "inaturalistjs";
 
 class PlaceAutocomplete extends React.Component {
@@ -44,14 +43,14 @@ class PlaceAutocomplete extends React.Component {
 
   render( ) {
     return (
-      <span className="PlaceAutocomplete">
-        <Input
+      <span className="PlaceAutocomplete form-group">
+        <input
           type="search"
           name="place_name"
           className="form-control"
           placeholder={ I18n.t( "place" ) }
         />
-        <Input type="hidden" name="place_id" />
+        <input type="hidden" name="place_id" />
       </span>
     );
   }

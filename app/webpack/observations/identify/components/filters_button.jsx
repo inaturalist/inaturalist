@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import { Button, OverlayTrigger, Popover, Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import { DEFAULT_PARAMS } from "../reducers/search_params_reducer";
+import PlaceAutocomplete from "./place_autocomplete";
 
 class FiltersButton extends React.Component {
   constructor( props ) {
@@ -466,11 +467,15 @@ class FiltersButton extends React.Component {
           </label>
           <div className="input-group">
             <span className="input-group-addon fa fa-globe"></span>
-            <input
-              className={`form-control ${params.place_id ? "filter-changed" : ""}`}
-              placeholder={ I18n.t( "place" ) }
-              type="search"
-              name="inat_place_name"
+            <PlaceAutocomplete
+              resetOnChange={false}
+              initialPlaceID={params.place_id}
+              afterSelect={ function ( result ) {
+                updateSearchParams( { place_id: result.item.id } );
+              } }
+              afterUnselect={ function ( ) {
+                updateSearchParams( { place_id: null } );
+              } }
             />
             <input type="hidden" name="place_id" />
           </div>
@@ -590,7 +595,7 @@ class FiltersButton extends React.Component {
       </Col>
     );
     const moreFilters = (
-      <div id="more-filters" className={this.state.moreFiltersHidden ? "collapse" : ""}>
+      <div id="more-filters" className={this.state.moreFiltersHidden ? "hidden" : ""}>
         <Row>
           { moreLeftCol }
           { moreCenterCol }
@@ -630,7 +635,7 @@ class FiltersButton extends React.Component {
               <Button onClick={ ( ) => resetParams( ) }>
                 { _.capitalize( I18n.t( "reset_search_filters" ) ) }
               </Button>
-              <div id="feeds" className="pull-right">
+              <div id="feeds" className="feeds pull-right">
                 <a
                   className="btn btn-link" href={`/observations.atom?${paramsForUrl( )}`}
                   target="_self"

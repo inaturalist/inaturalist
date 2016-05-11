@@ -165,3 +165,12 @@ $changed-color: #74ac00;
   margin-left: 5px;
   color: rgba(0, 0, 0, .5);
 }
+
+.FiltersButtonFooter .feeds i {
+  margin-right: 5px;
+}
+
+// get auto-complete menus to appear above a popover
+.ui-front {
+  z-index: 1060;
+}
