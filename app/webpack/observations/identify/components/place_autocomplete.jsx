@@ -47,7 +47,7 @@ class PlaceAutocomplete extends React.Component {
         <input
           type="search"
           name="place_name"
-          className="form-control"
+          className={`form-control ${this.props.className}`}
           placeholder={ I18n.t( "place" ) }
         />
         <input type="hidden" name="place_id" />
@@ -63,7 +63,8 @@ PlaceAutocomplete.propTypes = {
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   initialSelection: PropTypes.object,
-  initialPlaceID: PropTypes.number
+  initialPlaceID: PropTypes.number,
+  className: PropTypes.string
 };
 
 export default PlaceAutocomplete;

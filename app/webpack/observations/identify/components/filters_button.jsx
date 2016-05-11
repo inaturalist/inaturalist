@@ -3,12 +3,16 @@ import { Button, OverlayTrigger, Popover, Grid, Row, Col } from "react-bootstrap
 import _ from "lodash";
 import { DEFAULT_PARAMS } from "../reducers/search_params_reducer";
 import PlaceAutocomplete from "./place_autocomplete";
+import ProjectAutocomplete from "./project_autocomplete";
+import UserAutocomplete from "./user_autocomplete";
 
 class FiltersButton extends React.Component {
   constructor( props ) {
     super( props );
+    const params = props.params;
+    const diffs = _.difference( _.values( params ), _.values( DEFAULT_PARAMS ) );
     this.state = {
-      moreFiltersHidden: true
+      moreFiltersHidden: diffs.length === 0
     };
   }
   render() {
@@ -100,7 +104,6 @@ class FiltersButton extends React.Component {
             if ( _.includes( params.iconic_taxa, t.name ) ) {
               newIconicTaxa = _.without( params.iconic_taxa, t.name );
             } else {
-              console.log( "[DEBUG] params.iconic_taxa: ", params.iconic_taxa );
               newIconicTaxa = params.iconic_taxa.map( n => n );
               newIconicTaxa.push( t.name );
             }
@@ -436,11 +439,17 @@ class FiltersButton extends React.Component {
           </label>
           <div className="input-group">
             <span className="input-group-addon icon-person"></span>
-            <input
-              className={`form-control ${params.user_id ? "filter-changed" : ""}`}
-              placeholder={ I18n.t( "username_or_user_id" ) }
-              type="search"
-              name="user_name"
+            <UserAutocomplete
+              resetOnChange={false}
+              initialUserID={params.user_id}
+              bootstrapClear
+              className={params.user_id ? "filter-changed" : ""}
+              afterSelect={ function ( result ) {
+                updateSearchParams( { user_id: result.item.id } );
+              } }
+              afterUnselect={ function ( ) {
+                updateSearchParams( { user_id: null } );
+              } }
             />
             <input value={ params.user_id } type="hidden" name="user_id" />
           </div>
@@ -451,12 +460,17 @@ class FiltersButton extends React.Component {
           </label>
           <div className="input-group">
             <span className="input-group-addon fa fa-briefcase"></span>
-            <input
-              className={`form-control ${params.project_id ? "filter-changed" : ""}`}
-              placeholder={ I18n.t( "url_slug_or_id" ) }
-              type="search"
-              name="project_name"
-              title={ I18n.t( "url_slug_or_id" ) }
+            <ProjectAutocomplete
+              resetOnChange={false}
+              initialProjectID={params.project_id}
+              bootstrapClear
+              className={params.project_id ? "filter-changed" : ""}
+              afterSelect={ function ( result ) {
+                updateSearchParams( { project_id: result.item.id } );
+              } }
+              afterUnselect={ function ( ) {
+                updateSearchParams( { project_id: null } );
+              } }
             />
             <input value={ params.project_id } type="hidden" name="project_id" />
           </div>
@@ -470,6 +484,8 @@ class FiltersButton extends React.Component {
             <PlaceAutocomplete
               resetOnChange={false}
               initialPlaceID={params.place_id}
+              bootstrapClear
+              className={params.place_id ? "filter-changed" : ""}
               afterSelect={ function ( result ) {
                 updateSearchParams( { place_id: result.item.id } );
               } }
