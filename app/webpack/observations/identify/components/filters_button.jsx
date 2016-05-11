@@ -507,6 +507,7 @@ class FiltersButton extends React.Component {
           <select
             className={`form-control ${params.photo_license ? "filter-changed" : ""}`}
             value={ params.photo_license }
+            onChange={ e => updateSearchParams( { photo_license: e.target.value } ) }
           >
             <option value="">{ I18n.t( "all" ) }</option>
             {licenses.map( ( code ) => (
@@ -521,26 +522,29 @@ class FiltersButton extends React.Component {
           <label className="radio-inline">
             <input
               type="radio"
-              name="reviewed-any"
+              name="reviewed"
               defaultChecked={params.reviewed === undefined || params.reviewed === null}
+              onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
             />
             { I18n.t( "any" ).toLowerCase( ) }
           </label>
           <label className="radio-inline">
             <input
               type="radio"
-              name="reviewed-yes"
+              name="reviewed"
               value="true"
               defaultChecked={params.reviewed === true}
+              onClick={ ( ) => updateSearchParams( { reviewed: true } ) }
             />
             { I18n.t( "yes" ).toLowerCase( ) }
           </label>
           <label className="radio-inline">
             <input
               type="radio"
-              name="reviewed-no"
+              name="reviewed"
               value="false"
               defaultChecked={params.reviewed === false}
+              onClick={ ( ) => updateSearchParams( { reviewed: false } ) }
             />
             { I18n.t( "no" ).toLowerCase( ) }
           </label>

@@ -35,8 +35,8 @@ const normalizeParams = ( params ) => {
     }
     let newValue = v;
     // coerce boolean-ish strings to booleans
-    if ( newParams[k] === "true" ) newValue = true;
-    else if ( newParams[k] === "false" ) newValue = false;
+    if ( newValue === "true" ) newValue = true;
+    else if ( newValue === "false" ) newValue = false;
     // coerce integerish strings to numbers
     if (
       typeof( newValue ) === "string"
