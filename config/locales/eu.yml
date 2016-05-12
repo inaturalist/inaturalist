@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: An13sa
+# Author: Asierog
 # Author: Cgalindo
 # Author: Macofe
 # Author: Sator
@@ -207,6 +208,8 @@ eu:
   added_identifications_to: ez diozu identifikaziorik gehitu inoren oharrei.
   added_on: 'Egun honetan gehitua:'
   added_to: 'Honetarako gehituta:'
+  added_to_favorites: Gustukoetara gehitua
+  added_to_favorites_html: <a href="%{url}">Gustukoetara</a> gehitua
   adding: Gehitzen...
   adding_observations: Oharrak gehitu
   adding_to_your_life_list: Zure bizitzako zerrendara gehituta
@@ -331,6 +334,7 @@ eu:
   announcements: Iragarkiak
   any: Edozein
   apply_to_selected: Hautatutakoei aplikatu
+  apply_geoprivacy: Geopribatasuna aplikatu
   apply_darr: Aplikatu ↓
   apply_these_settings_to_all: Ezarpen hauek beheko ohar guztiei aplikatu
   appropriate?: Egokia?
@@ -493,11 +497,10 @@ eu:
   catalogue_of_life: Bizitzako katalogoa
   categories: kategoriak
   cc_attribution_license: Creative Commons-eko esleipen-lizentzia
-  cc_by_description: Lizentzia honek beste pertsona batzuei beren lanetik abiatuta
+  cc_by_description: Lizentzia honek beste pertsona batzuei zure lanetik abiatuta
     banatzea, konbinatzea, doitzea eta eraikitzea ahalbidetzen die, baita merkataritzako
-    xedeekin ere, kredituetan beren sorkuntza originala aipatzen duten heinean, betiere.
-    Hau da eskainitako lizentzien artean malguena. Ahalik eta hedapen handienerako
-    eta lizentziari lotutako materialen erabilerarako gomendatzen da.
+    xedeekin ere, kredituetan beren sorkuntza originalagatik aipatzen zaituzten heinean,
+    betiere.
   cc_by_name: Esleipena
   cc_by_nc_description: Lizentzia honek birbanaketa (merkataritzakoa eta ez-merkataritzakoa)
     ahalbidetzen du, aldaketarik gabe eta osotasunean, kredituekin, banatzen bada,
