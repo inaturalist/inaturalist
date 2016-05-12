@@ -31,8 +31,6 @@ html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
 body {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   color: white;
-  min-width: 770px !important;
-  min-height: 450px;
   background-color: black;
 }
 #app {
@@ -66,7 +64,6 @@ body {
     opacity: 1;
   }
 }
-
 #main-container {
   transition: background-color 2s ease;
   &.phase1 {
@@ -85,13 +82,6 @@ body {
     background-color: rgba(0, 0, 0, 0.9);
   }
 }
-nav {
-  height: 10%;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.container-fluid {
-  min-width: 770px !important;
-}
 .col-md-5 {
   width: 41.66666667% !important;
   float: left;
@@ -99,57 +89,58 @@ nav {
 .col-md-6 {
   width: 50% !important;
   float: left;
+  padding: 1vw;
+  margin: 0;
+}
+.container-fluid {
+  margin: 0;
+  padding: 0;
 }
 .navbar {
-  min-height: 30px;
-  padding: 1.5%;
-  .navbar-nav {
-    width: 20%;
-  }
+  min-height: 0px;
+  height: 5vw;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1vw 0;
   .navbar-left {
     text-align: center;
+    margin: 0;
+    padding: 0 2vw;
+    width: 20vw;
   }
   .navbar-right {
-    text-align: right;
-    margin: 0px;
-    width: 10%;
-  }
-  a {
-    padding: 0;
+    text-align: center;
     margin: 0;
-  }
-  img {
-    height: 100%;
-    max-width: 100%;
+    padding: 0 2vw;
+    width: 10vw;
   }
   .navbar-title {
     font-weight: 100;
-    margin: 0px;
-    font-size: 4vh;
-    line-height: 5vh;
-    min-width: 70%;
-    padding-left: 3%;
+    font-size: 2vw;
+    line-height: 3.2vw;
+    margin: 0;
+    width: 69vw;
+    padding: 0 2vw;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     border-left: 1px solid rgba(255,255,255,0.25);
     .dates {
       text-transform: uppercase;
-      font-size: 2.5vh;
+      font-size: 1.4vw;
       opacity: 0.85;
-      padding-left: 3vh;
+      padding-left: 1.7vw;
     }
   }
-}
-.content {
-  height: 90%;
+  img {
+    height: 100%;
+    max-width: 100%;
+    vertical-align: top;
+  }
 }
 .slide {
   position: absolute;
   width: 100%;
-  min-width: 770px !important;
-  height: 88%;
-  padding-right: 30px;
+  height: 50vw;
   display: none;
 }
 
@@ -167,22 +158,22 @@ nav {
     }
   }
   .value {
-    font-size: 5.5vh;
-    line-height: 1;
-    display: block;
+    font-size: 3.1vw;
     font-weight: 700;
+    line-height: 1;
+    height: 60%;
   }
   .stat {
     text-transform: uppercase;
     font-weight: 100;
-    font-size: 3vh;
-    line-height: 1.5;
+    font-size: 1.7vw;
+    height: 40%;
   }
   .row-fluid {
     height: 24%;
     margin: 1%;
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 2.8vh 2vw;
+    padding: 1.5vw 2vw;
   }
   .container-fluid {
     margin: 10% 5% 10% 20%;
@@ -195,7 +186,7 @@ nav {
     }
     .row-fluid {
       height: 19%;
-      padding: 2.1vh 2vw;
+      padding: 1.2vw 2vw;
     }
   }
 }
@@ -204,8 +195,9 @@ nav {
   text-align: center;
   h2 {
     font-weight: 100;
-    font-size: 5vh;
+    font-size: 2.8vw;
     text-transform: uppercase;
+    margin: 2vw;
   }
   .chart {
     height: 80%;
@@ -215,18 +207,18 @@ nav {
       height: 100%;
       display: flex;
       flex-direction: column-reverse;
-      padding: 2%;
+      padding: 1.2vw;
       i.icon {
-        font-size: 7vh;
-        line-height: 4vh;
-        margin-top: 1vh;
+        font-size: 3.9vw;
+        line-height: 2.3vw;
+        margin-top: 0.6vw;
       }
       .value {
-        font-size: 2.5vh;
-        line-height: 4vh;
+        font-size: 1.5vw;
+        line-height: 2.24vw;
       }
       .taxon {
-        font-size: 2.7vh;
+        font-size: 1.5vw;
         font-weight: 200;
         margin: 0px -30%;
         color: rgba(255, 255, 255, 0.7);
@@ -264,19 +256,19 @@ nav {
       width: 100%;
       background: rgba(0,0,0,0.65);
       padding: 2% 15% 2% 4%;
-      font-size: 2.7vh;
-      line-height: 4.5vh;
+      font-size: 1.5vw;
+      line-height: 2.5vw;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .user-icon {
-      height: 5vh;
-      width: 5vh;
+      height: 2.8vw;
+      width: 2.8vw;
       border: 1px solid white;
-      border-radius: 5vh;
-      bottom: 3vh;
-      right: 2vh;
+      border-radius: 2.8vw;
+      bottom: 1.7vw;
+      right: 1vw;
       position: absolute;
       background-size: cover;
       background-repeat: no-repeat;
@@ -284,8 +276,8 @@ nav {
       background-color: #AAAAAA;
       text-align: center;
       i {
-        font-size: 3.5vh;
-        line-height: 5.9vh;
+        font-size: 2vw;
+        line-height: 3.3vw;
       }
     }
   }
@@ -293,10 +285,10 @@ nav {
 
 .people-slide {
   .heading {
-    height: 10%;
-    line-height: 10vh;
+    height: 4vw;
+    line-height: 5.6vw;
     border-bottom: 1px solid rgba(255,255,255,0.5);
-    font-size: 2.7vh;
+    font-size: 1.5vw;
     text-transform: uppercase;
     font-weight: 500;
   }
@@ -317,22 +309,22 @@ nav {
       background-position-x: center;
       background-position-y: 20%;
       i {
-        font-size: 23vh;
+        font-size: 12.8vw;
         opacity: 0.6;
       }
     }
     .meta {
-      padding: 5%;
+      padding: 1vw;
       .name, .count {
         display: block;
-        font-size: 2.8vh;
+        font-size: 1.5vw;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
       .count {
         color: rgba(255,255,255,0.75);
-        font-size: 2.5vh;
+        font-size: 1.4vw;
      }
     }
   }
@@ -340,10 +332,10 @@ nav {
 
 .species-slide {
   .heading {
-    height: 15%;
-    line-height: 9vh;
+    height: 4vw;
+    line-height: 5vw;
     border-bottom: 1px solid rgba(255,255,255,0.5);
-    font-size: 2.5vh;
+    font-size: 1.5vw;
     text-transform: uppercase;
     font-weight: 500;
   }
@@ -357,7 +349,6 @@ nav {
   .top > div, .bottom-half > div {
     height: 100%;
   }
-
   .species {
     width: 15.6%;
     height: 85%;
@@ -373,22 +364,22 @@ nav {
       background-position-y: 20%;
       background-color: rgba(255,255,255,0.2);
       i {
-        font-size: 18vh;
-        line-height: 31vh;
+        font-size: 10vw;
+        line-height: 17.4vw;
       }
     }
     .meta {
-      padding: 4%;
+      padding: 0.8vw;
       .name, .count {
         display: block;
-        font-size: 2.8vh;
+        font-size: 1.6vw;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
       .count {
         color: rgba(255,255,255,0.75);
-        font-size: 2.5vh;
+        font-size: 1.5vw;
       }
     }
   }
@@ -405,36 +396,33 @@ nav {
       float: left;
       width: 32%;
       i {
-        font-size: 10vh;
-        line-height: 18vh;
+        font-size: 5.6vw;
+        line-height: 10vw;
       }
     }
     .meta {
-      padding-left: 35%;
+      padding-left: 37%;
     }
   }
 }
 
 .top-projects-slide {
-  & > div {
-    height: 100%;
-  }
   .center {
     width: 100% !important;
   }
   table {
     height: 95%;
     font-weight: 100;
-    font-size: 3.1vh;
+    font-size: 1.7vw;
     th {
       font-weight: 600;
-      font-size: 2vh;
+      font-size: 1.1vw;
       text-transform: uppercase;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
     }
     td {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 1.5%;
+      border-top: 1px solid rgba(255,255,255,0.1) !important;
+      padding: 0.5vw !important;
       margin: 0px;
       white-space: nowrap;
       overflow: hidden;
@@ -442,8 +430,9 @@ nav {
       vertical-align: middle !important;
       &.index {
         text-align: center;
-        font-size: 4vh;
+        font-size: 2.2vw;
         font-weight: 200;
+        width: 3vw;
       }
       &.index, &.observations, &.species {
         text-overflow: initial;

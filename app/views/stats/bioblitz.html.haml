@@ -3,6 +3,7 @@
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
   = stylesheet_link_tag "bioblitz"
   %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
+  %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
     NPS_OVERALL_ID = #{ @overall_id };
     NPS_UMBRELLA_PROJECTS = #{ @umbrella_projects.to_json };

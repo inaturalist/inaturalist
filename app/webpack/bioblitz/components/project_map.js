@@ -100,10 +100,10 @@ class ProjectMap extends Component {
       }
       parksStat = (
         <div className="row-fluid">
-          <span className="value">
+          <div className="value">
             { parksCount }
-          </span>
-          <span className="stat">Parks</span>
+          </div>
+          <div className="stat">Parks</div>
         </div>
       );
     }
@@ -114,28 +114,28 @@ class ProjectMap extends Component {
         <div className="left map-stats">
           <div className="container-fluid">
             <div className="row-fluid">
-              <span className="value">
+              <div className="value">
                 { Number( this.props.overallStats.observations ).toLocaleString( ) || "---" }
-              </span>
-              <span className="stat">Observations</span>
+              </div>
+              <div className="stat">Observations</div>
             </div>
             <div className="row-fluid">
-              <span className="value">
+              <div className="value">
                 { Number( this.props.overallStats.species ).toLocaleString( ) || "---" }
-              </span>
-              <span className="stat">Species</span>
+              </div>
+              <div className="stat">Species</div>
             </div>
             <div className="row-fluid">
-              <span className="value">
+              <div className="value">
                 { Number( this.props.overallStats.identifiers ).toLocaleString( ) || "---" }
-              </span>
-              <span className="stat">Identifiers</span>
+              </div>
+              <div className="stat">Identifiers</div>
             </div>
             <div className="row-fluid">
-              <span className="value">
+              <div className="value">
                 { Number( this.props.overallStats.observers ).toLocaleString( ) || "---" }
-              </span>
-              <span className="stat">Observers</span>
+              </div>
+              <div className="stat">Observers</div>
             </div>
             { parksStat }
           </div>
