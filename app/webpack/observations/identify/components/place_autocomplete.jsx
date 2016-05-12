@@ -43,7 +43,7 @@ class PlaceAutocomplete extends React.Component {
 
   render( ) {
     return (
-      <span className="PlaceAutocomplete form-group">
+      <span className="PlaceAutocomplete">
         <input
           type="search"
           name="place_name"

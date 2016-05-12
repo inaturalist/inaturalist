@@ -43,7 +43,7 @@ class ProjectAutocomplete extends React.Component {
 
   render( ) {
     return (
-      <span className="ProjectAutocomplete form-group">
+      <span className="ProjectAutocomplete">
         <input
           type="search"
           name="project_title"

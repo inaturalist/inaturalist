@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
-import { Button, OverlayTrigger, Popover, Grid, Row, Col } from "react-bootstrap";
+import ReactDOM from "react-dom";
+import { Button, Popover, Overlay, Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import { DEFAULT_PARAMS } from "../reducers/search_params_reducer";
 import PlaceAutocomplete from "./place_autocomplete";
@@ -12,10 +13,38 @@ class FiltersButton extends React.Component {
     const params = props.params;
     const diffs = _.difference( _.values( params ), _.values( DEFAULT_PARAMS ) );
     this.state = {
-      moreFiltersHidden: diffs.length === 0
+      moreFiltersHidden: diffs.length === 0,
+      show: false
     };
+    this.clickOffEventNamespace = "click.FiltersButtonClickOff";
   }
-  render() {
+
+  componentDidMount( ) {
+    const that = this;
+    $( "body" ).on( this.clickOffEventNamespace, e => {
+      if ( !$( ".FiltersButtonWrapper" ).is( e.target ) &&
+          $( ".FiltersButtonWrapper" ).has( e.target ).length === 0 &&
+          $( ".in" ).has( e.target ).length === 0 &&
+          $( e.target ).parents( ".ui-autocomplete " ).length === 0 &&
+          $( e.target ).parents( ".ui-datepicker " ).length === 0 &&
+          $( e.target ).parents( ".ui-datepicker-header " ).length === 0 &&
+          $( e.target ).parents( ".ui-multiselect-menu " ).length === 0 &&
+          $( e.target ).parents( ".observation-field " ).length === 0
+        ) {
+        that.setState( { show: !that.state.show } );
+      }
+    } );
+  }
+
+  componentWillUnmount( ) {
+    $( "body" ).unbind( this.clickOffEventNamespace );
+  }
+
+  toggle( ) {
+    this.setState( { show: !this.state.show } );
+  }
+
+  render( ) {
     const { params, updateSearchParams } = this.props;
     const paramsForUrl = ( ) => {
       // TODO filter out params that only apply to this component
@@ -624,80 +653,94 @@ class FiltersButton extends React.Component {
       </div>
     );
     const popover = (
-      <Popover id="FiltersButtonPopover" className="FiltersButtonPopover">
-        <Grid className="FiltersButtonContainer">
-          <div id="filters-body">
-            { mainFilters }
-            <Row>
-              <Col xs="12">
-                <Button
-                  id="filters-more-btn"
-                  bsStyle="link"
-                  className={this.state.moreFiltersHidden ? "collapsed" : ""}
-                  onClick={() => {
-                    this.setState( { moreFiltersHidden: !this.state.moreFiltersHidden } );
-                  }}
-                >
-                  { _.capitalize( I18n.t( "more_filters" ) ) }
-                  &nbsp;
-                  <i className="fa fa-caret-down"></i>
-                  <i className="fa fa-caret-up"></i>
-                </Button>
-                { moreFilters }
-              </Col>
-            </Row>
-          </div>
-          <Row id="filters-footer" className="FiltersButtonFooter">
+      <Grid className="FiltersButtonContainer">
+        <div id="filters-body">
+          { mainFilters }
+          <Row>
             <Col xs="12">
-              <Button bsStyle="primary" onClick={ () => closeFilters( ) }>
-                { _.capitalize( I18n.t( "update_search" ) ) }
+              <Button
+                id="filters-more-btn"
+                bsStyle="link"
+                className={this.state.moreFiltersHidden ? "collapsed" : ""}
+                onClick={ ( ) => {
+                  this.setState( { moreFiltersHidden: !this.state.moreFiltersHidden } );
+                }}
+              >
+                { _.capitalize( I18n.t( "more_filters" ) ) }
+                &nbsp;
+                <i className="fa fa-caret-down"></i>
+                <i className="fa fa-caret-up"></i>
               </Button>
-              <Button onClick={ ( ) => resetParams( ) }>
-                { _.capitalize( I18n.t( "reset_search_filters" ) ) }
-              </Button>
-              <div id="feeds" className="feeds pull-right">
-                <a
-                  className="btn btn-link" href={`/observations.atom?${paramsForUrl( )}`}
-                  target="_self"
-                >
-                  <i className="fa fa-rss"></i>
-                  <span>{ I18n.t( "atom" ) }</span>
-                </a>
-                <a
-                  className="btn btn-link" href={`/observations.kml?${paramsForUrl( )}`}
-                  target="_self"
-                >
-                  <i className="fa fa-globe"></i>
-                  <span>{ I18n.t( "kml" ) }</span>
-                </a>
-                <a
-                  className="btn btn-link" href={`/observations/export?${paramsForUrl( )}`}
-                  target="_self"
-                >
-                  <i className="fa fa-download"></i>
-                  <span>{ I18n.t( "download" ) }</span>
-                </a>
-              </div>
+              { moreFilters }
             </Col>
           </Row>
-        </Grid>
-      </Popover>
+        </div>
+        <Row id="filters-footer" className="FiltersButtonFooter">
+          <Col xs="12">
+            <Button bsStyle="primary" onClick={ () => closeFilters( ) }>
+              { _.capitalize( I18n.t( "update_search" ) ) }
+            </Button>
+            <Button onClick={ ( ) => resetParams( ) }>
+              { _.capitalize( I18n.t( "reset_search_filters" ) ) }
+            </Button>
+            <div id="feeds" className="feeds pull-right">
+              <a
+                className="btn btn-link" href={`/observations.atom?${paramsForUrl( )}`}
+                target="_self"
+              >
+                <i className="fa fa-rss"></i>
+                <span>{ I18n.t( "atom" ) }</span>
+              </a>
+              <a
+                className="btn btn-link" href={`/observations.kml?${paramsForUrl( )}`}
+                target="_self"
+              >
+                <i className="fa fa-globe"></i>
+                <span>{ I18n.t( "kml" ) }</span>
+              </a>
+              <a
+                className="btn btn-link" href={`/observations/export?${paramsForUrl( )}`}
+                target="_self"
+              >
+                <i className="fa fa-download"></i>
+                <span>{ I18n.t( "download" ) }</span>
+              </a>
+            </div>
+          </Col>
+        </Row>
+      </Grid>
     );
     return (
-      <OverlayTrigger
-        trigger="click"
-        rootClose
-        placement="bottom"
-        overlay={popover}
-      >
-        <Button bsRole="toggle" bsStyle="default" className="FiltersButton">
+      <span className="FiltersButtonWrapper">
+        <Button
+          bsRole="toggle"
+          bsStyle="default"
+          className="FiltersButton"
+          ref="target"
+          onClick={ ( ) => this.toggle( ) }
+        >
           <i className="fa fa-sliders"></i> { I18n.t( "filters" ) }
           &nbsp;
           <span className="badge">
             { numFiltersSet( ) }
           </span>
         </Button>
-      </OverlayTrigger>
+        <Overlay
+          show={this.state.show}
+          onHide={ ( ) => this.setState( { show: false } ) }
+          container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+          placement="bottom"
+          target={ ( ) => ReactDOM.findDOMNode( this.refs.target ) }
+        >
+          <Popover
+            id="FiltersButtonPopover"
+            className="FiltersButtonPopover"
+            placement="bottom"
+          >
+            {popover}
+          </Popover>
+        </Overlay>
+      </span>
     );
   }
 }

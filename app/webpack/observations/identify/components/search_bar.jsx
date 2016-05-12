@@ -21,16 +21,18 @@ const SearchBar = ( {
         updateSearchParams( { taxon_id: null } );
       } }
     />
-    <PlaceAutocomplete
-      resetOnChange={false}
-      initialPlaceID={params.place_id}
-      afterSelect={ function ( result ) {
-        updateSearchParams( { place_id: result.item.id } );
-      } }
-      afterUnselect={ function ( ) {
-        updateSearchParams( { place_id: null } );
-      } }
-    />
+    <span className="form-group">
+      <PlaceAutocomplete
+        resetOnChange={false}
+        initialPlaceID={params.place_id}
+        afterSelect={ function ( result ) {
+          updateSearchParams( { place_id: result.item.id } );
+        } }
+        afterUnselect={ function ( ) {
+          updateSearchParams( { place_id: null } );
+        } }
+      />
+    </span>
     <Button bsStyle="primary">
       { I18n.t( "go" ) }
     </Button> <FiltersButton params={params} updateSearchParams={updateSearchParams} />

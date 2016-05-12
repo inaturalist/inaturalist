@@ -203,3 +203,7 @@ body > div > div > .popover {
   }
   @import 'bootstrap-inat';
 }
+
+.bootstrap .popover {
+  font-family: $font-stack;
+}

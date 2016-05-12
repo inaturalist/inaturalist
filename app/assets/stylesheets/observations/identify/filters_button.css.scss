@@ -1,6 +1,9 @@
 $bg-color: #727272;
 $changed-color: #74ac00;
 
+.FiltersButtonPopover.popover {
+  max-width: none;
+}
 .FiltersButtonPopover.popover .popover-content {
   padding: 0;
 }
@@ -49,6 +52,10 @@ $changed-color: #74ac00;
 }
 .form-inline .FiltersButtonContainer .checkbox label {
   padding-left: 20px;
+}
+.form-inline .FiltersButtonContainer .form-group {
+  margin-left: 0;
+  margin-bottom: 15px;
 }
 
 
@@ -173,4 +180,10 @@ $changed-color: #74ac00;
 // get auto-complete menus to appear above a popover
 .ui-front {
   z-index: 1060;
+}
+
+.bootstrap label.sectionlabel {
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
 }

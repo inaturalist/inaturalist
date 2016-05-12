@@ -13,15 +13,15 @@ class UserAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialuserID &&
-         this.props.initialuserID !== prevProps.initialuserID ) {
+    if ( this.props.initialUserID &&
+         this.props.initialUserID !== prevProps.initialUserID ) {
       this.fetchUser( );
     }
   }
 
   fetchUser( ) {
-    if ( this.props.initialuserID ) {
-      inaturalistjs.users.fetch( this.props.initialuserID ).then( r => {
+    if ( this.props.initialUserID ) {
+      inaturalistjs.users.fetch( this.props.initialUserID ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateUser( { user: r.results[0] } );
         }
@@ -36,7 +36,7 @@ class UserAutocomplete extends React.Component {
         trigger( "assignSelection", Object.assign(
           {},
           options.user,
-          { title: options.user.title }
+          { title: options.user.login }
         ) );
     }
   }
@@ -63,7 +63,10 @@ UserAutocomplete.propTypes = {
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   initialSelection: PropTypes.object,
-  initialuserID: PropTypes.number,
+  initialUserID: React.PropTypes.oneOfType( [
+    React.PropTypes.string,
+    React.PropTypes.number
+  ] ),
   className: PropTypes.string
 };
 
