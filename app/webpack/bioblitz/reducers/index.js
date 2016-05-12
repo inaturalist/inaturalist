@@ -2,19 +2,55 @@ import _ from "lodash";
 import update from "react-addons-update";
 import * as types from "../constants/constants";
 
-// 487 cape cod
-// 411 herps of texas
-// 6435 death valley
-
 const defaultState = {
-  projectID: $( "#app" ).data( "project-id" ) || 6435,
-  projectTitle: $( "#app" ).data( "project-title" ) || "Death Valley National Park",
-  placeID: $( "#app" ).data( "place-id" ) || 4504,
+  overallID: NPS_OVERALL_ID,
+  umbrellaProjects: NPS_UMBRELLA_PROJECTS,
+  umbrellaSubProjects: NPS_UMBRELLA_SUB_PROJECTS,
+  allSubProjects: NPS_ALL_SUB_PROJECTS,
+  project: NPS_UMBRELLA_PROJECTS[0],
+  slideshowUmbrellaIndex: 0,
+  slideshowSubProjectIndex: null,
+  umbrellaProject: null,
+  slideshowIndex: 0,
   overallStats: { },
   iconicTaxaCounts: { },
   iconicTaxaSpeciesCounts: { },
   peopleStats: { },
-  speciesStats: { }
+  speciesStats: { },
+  overallProjectSlideshowOrder: [
+    { slide: ".umbrella-map-slide", duration: 6000 },
+    { slide: ".iconic-taxa-slide", duration: 6000 },
+    { slide: ".iconic-taxa-species-slide", duration: 6000 },
+    { slide: ".people-slide", duration: 6000 },
+    { slide: ".species-slide", duration: 6000 },
+    { slide: ".photos-slide", duration: 6000 },
+    { slide: ".top-projects-slide", duration: 6000 }
+  ],
+  subProjectSlideshowOrder: [
+    { slide: ".subproject-map-slide", duration: 6000 },
+    { slide: ".iconic-taxa-slide", duration: 6000 },
+    { slide: ".iconic-taxa-species-slide", duration: 6000 },
+    { slide: ".people-slide", duration: 6000 },
+    { slide: ".species-slide", duration: 6000 },
+    { slide: ".photos-slide", duration: 6000 }
+  ]
+  // overallProjectSlideshowOrder: [
+  //   { slide: ".umbrella-map-slide", duration: 15000 },
+  //   { slide: ".iconic-taxa-slide", duration: 20000 },
+  //   { slide: ".iconic-taxa-species-slide", duration: 20000 },
+  //   { slide: ".people-slide", duration: 25000 },
+  //   { slide: ".species-slide", duration: 30000 },
+  //   { slide: ".photos-slide", duration: 25000 },
+  //   { slide: ".top-projects-slide", duration: 30000 }
+  // ],
+  // subProjectSlideshowOrder: [
+  //   { slide: ".subproject-map-slide", duration: 15000 },
+  //   { slide: ".iconic-taxa-slide", duration: 20000 },
+  //   { slide: ".iconic-taxa-species-slide", duration: 20000 },
+  //   { slide: ".people-slide", duration: 25000 },
+  //   { slide: ".species-slide", duration: 30000 },
+  //   { slide: ".photos-slide", duration: 20000 }
+  // ]
 };
 
 const bioblitz = ( state = defaultState, action ) => {

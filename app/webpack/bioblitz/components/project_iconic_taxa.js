@@ -4,12 +4,27 @@ import NodeAPI from "../models/node_api";
 
 class ProjectIconicTaxa extends Component {
 
+  constructor( props, context ) {
+    super( props, context );
+    this.reloadData = this.reloadData.bind( this );
+  }
+
   componentDidMount( ) {
-    NodeAPI.fetch( `observations/iconic_taxa_counts?per_page=10&project_id=${this.props.projectID}` ).
+    this.reloadData( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.project.id !== this.props.project.id ) {
+      this.reloadData( );
+    }
+  }
+
+  reloadData( ) {
+    NodeAPI.fetch(
+      `observations/iconic_taxa_counts?per_page=10&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.setState( { iconicTaxaCounts: json } );
-      } ).
-      catch( e => console.log( e ) );
+      } ).catch( e => console.log( e ) );
   }
 
   render( ) {
@@ -39,7 +54,7 @@ class ProjectIconicTaxa extends Component {
       );
     }
     return (
-      <div className="slide vertical-barchart" id="iconic-taxa-slide">
+      <div className="slide vertical-barchart iconic-taxa-slide">
         { graph }
         <h2>Observations by category</h2>
       </div>
@@ -48,8 +63,7 @@ class ProjectIconicTaxa extends Component {
 }
 
 ProjectIconicTaxa.propTypes = {
-  projectID: PropTypes.number,
-  placeID: PropTypes.number,
+  project: PropTypes.object,
   iconicTaxaCounts: PropTypes.object,
   setState: PropTypes.func
 };

@@ -4,12 +4,27 @@ import NodeAPI from "../models/node_api";
 
 class ProjectIconicTaxaSpecies extends Component {
 
+  constructor( props, context ) {
+    super( props, context );
+    this.reloadData = this.reloadData.bind( this );
+  }
+
   componentDidMount( ) {
-    NodeAPI.fetch( `observations/iconic_taxa_species_counts?per_page=0&project_id=${this.props.projectID}` ).
+    this.reloadData( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.project.id !== this.props.project.id ) {
+      this.reloadData( );
+    }
+  }
+
+  reloadData( ) {
+    NodeAPI.fetch(
+      `observations/iconic_taxa_species_counts?per_page=0&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.setState( { iconicTaxaSpeciesCounts: json } );
-      } ).
-      catch( e => console.log( e ) );
+      } ).catch( e => console.log( e ) );
   }
 
   render( ) {
@@ -39,7 +54,7 @@ class ProjectIconicTaxaSpecies extends Component {
       );
     }
     return (
-      <div className="slide vertical-barchart" id="iconic-taxa-species-slide">
+      <div className="slide vertical-barchart iconic-taxa-species-slide">
         { graph }
         <h2>Species by category</h2>
       </div>
@@ -48,8 +63,7 @@ class ProjectIconicTaxaSpecies extends Component {
 }
 
 ProjectIconicTaxaSpecies.propTypes = {
-  projectID: PropTypes.number,
-  placeID: PropTypes.number,
+  project: PropTypes.object,
   iconicTaxaSpeciesCounts: PropTypes.object,
   setState: PropTypes.func
 };

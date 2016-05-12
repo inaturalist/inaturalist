@@ -4,22 +4,37 @@ import NodeAPI from "../models/node_api";
 
 class ProjectSpecies extends Component {
 
+  constructor( props, context ) {
+    super( props, context );
+    this.reloadData = this.reloadData.bind( this );
+  }
+
   componentDidMount( ) {
-    NodeAPI.fetch( `observations/species_counts?per_page=6&project_id=${this.props.projectID}&place_id=${this.props.placeID}` ).
+    this.reloadData( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.project.id !== this.props.project.id ) {
+      this.reloadData( );
+    }
+  }
+
+  reloadData( ) {
+    NodeAPI.fetch(
+      `observations/species_counts?per_page=6&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.updateState( { speciesStats: { all: json } } );
-      } ).
-      catch( e => console.log( e ) );
-    NodeAPI.fetch( `observations/species_counts?per_page=4&project_id=${this.props.projectID}&place_id=${this.props.placeID}&threatened=true` ).
+      } ).catch( e => console.log( e ) );
+    NodeAPI.fetch(
+      `observations/species_counts?per_page=4&project_id=${this.props.project.id}&threatened=true&ttl=600` ).
       then( json => {
         this.props.updateState( { speciesStats: { threatened: json } } );
-      } ).
-      catch( e => console.log( e ) );
-    NodeAPI.fetch( `observations/species_counts?per_page=4&project_id=${this.props.projectID}&place_id=${this.props.placeID}&introduced=true` ).
+      } ).catch( e => console.log( e ) );
+    NodeAPI.fetch(
+      `observations/species_counts?per_page=4&project_id=${this.props.project.id}&introduced=true&ttl=600` ).
       then( json => {
         this.props.updateState( { speciesStats: { introduced: json } } );
-      } ).
-      catch( e => console.log( e ) );
+      } ).catch( e => console.log( e ) );
   }
 
   render( ) {
@@ -34,7 +49,9 @@ class ProjectSpecies extends Component {
             if ( r.taxon.default_photo ) {
               style = { backgroundImage: `url('${r.taxon.default_photo.medium_url}')` };
             } else {
-              placeholder = ( <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } /> );
+              placeholder = (
+                <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } />
+              );
             }
             return (
               <div key={ `species${r.taxon.id}` } className="species">
@@ -62,7 +79,9 @@ class ProjectSpecies extends Component {
             if ( r.taxon.default_photo ) {
               style = { backgroundImage: `url('${r.taxon.default_photo.medium_url}')` };
             } else {
-              placeholder = ( <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } /> );
+              placeholder = (
+                <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } />
+              );
             }
             return (
               <div key={ `introduced${r.taxon.id}` } className="species">
@@ -90,7 +109,9 @@ class ProjectSpecies extends Component {
             if ( r.taxon.default_photo ) {
               style = { backgroundImage: `url('${r.taxon.default_photo.medium_url}')` };
             } else {
-              placeholder = ( <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } /> );
+              placeholder = (
+                <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } />
+              );
             }
             return (
               <div key={ `threatened${r.taxon.id}` } className="species">
@@ -108,7 +129,7 @@ class ProjectSpecies extends Component {
       );
     }
     return (
-      <div className="slide row-fluid" id="species-slide">
+      <div className="slide row-fluid species-slide">
         <div className="col-md-12 top">
           { species }
         </div>
@@ -124,8 +145,7 @@ class ProjectSpecies extends Component {
 }
 
 ProjectSpecies.propTypes = {
-  projectID: PropTypes.number,
-  placeID: PropTypes.number,
+  project: PropTypes.object,
   speciesStats: PropTypes.object,
   updateState: PropTypes.func
 };

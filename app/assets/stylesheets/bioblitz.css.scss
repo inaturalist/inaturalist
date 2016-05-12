@@ -8,7 +8,20 @@
     background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
-
+@font-face {
+  font-family: Whitney;
+  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
+}
+@font-face {
+  font-family: Whitney;
+  font-weight: 100;
+  src: url('/fonts/Whitney-Light-Pro.otf') format("opentype");
+}
+@font-face {
+  font-family: Whitney;
+  font-weight: 700;
+  src: url('/fonts/Whitney-Semibold-Pro.otf') format("opentype");
+}
 html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
 .row-fluid > div, .stats-bar {
   height: 100%;
@@ -17,82 +30,132 @@ html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
 }
 body {
   @include linearGradient(#4c30ae, #a25bc6);
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   color: white;
+  min-width: 770px !important;
+  min-height: 450px;
 }
 nav {
   height: 10%;
   background-color: rgba(255, 255, 255, 0.1);
 }
-.navbar-nav {
-  width: 20%;
+.container-fluid {
+  min-width: 770px !important;
 }
-.navbar-right {
-  text-align: right;
-  margin: 0px;
-  width: 10%;
+.col-md-5 {
+  width: 41.66666667% !important;
+  float: left;
+}
+.col-md-6 {
+  width: 50% !important;
+  float: left;
+}
+.navbar {
+  min-height: 30px;
+  padding: 1.5%;
+  .navbar-nav {
+    width: 20%;
+  }
+  .navbar-left {
+    text-align: center;
+  }
+  .navbar-right {
+    text-align: right;
+    margin: 0px;
+    width: 10%;
+  }
+  a {
+    padding: 0;
+    margin: 0;
+  }
+  img {
+    height: 100%;
+    max-width: 100%;
+  }
+  .navbar-title {
+    font-weight: 100;
+    margin: 0px;
+    font-size: 4vh;
+    line-height: 5vh;
+    min-width: 70%;
+    padding-left: 3%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    .dates {
+      text-transform: uppercase;
+      font-size: 2.5vh;
+      opacity: 0.85;
+      padding-left: 3vh;
+    }
+  }
 }
 .content {
   height: 90%;
 }
-.navbar a {
-  padding: 3%;
-  margin: 0;
-}
-.navbar img {
-  height: 100%;
-  max-width: 100%;
-}
-.navbar-title {
-  font-weight: 100;
-  margin: 0px;
-  font-size: 7vh;
-  min-width: 60%;
-  margin-left: 3%;
-  white-space: nowrap;
-}
 .slide {
   position: absolute;
   width: 100%;
+  min-width: 770px !important;
   height: 88%;
   padding-right: 30px;
+  display: none;
 }
-#map {
-  height: 100%;
-  background: transparent;
-  width: 100%;
-}
-.map-stats {
-  letter-spacing: 0.1em;
+
+.map-slide {
+  .left {
+    width: 29%;
+    float: left;
+  }
+  .right {
+    width: 71%;
+    & > div {
+      height: 100%;
+      width: 100%;
+      background: transparent;
+    }
+  }
   .value {
-    font-size: 6vh;
+    font-size: 5.5vh;
+    line-height: 1;
     display: block;
-    font-weight: 600;
+    font-weight: 700;
   }
   .stat {
     text-transform: uppercase;
     font-weight: 100;
     font-size: 3vh;
+    line-height: 1.5;
   }
   .row-fluid {
     height: 24%;
     margin: 1%;
     background-color: rgba(255, 255, 255, 0.1);
-    padding-left: 5%;
+    padding: 2.8vh 2vw;
   }
   .container-fluid {
     margin: 10% 5% 10% 20%;
     padding: 0;
     height: 70%;
   }
+  &.umbrella-map-slide {
+    .container-fluid {
+      height: 80%;
+    }
+    .row-fluid {
+      height: 19%;
+      padding: 2.1vh 2vw;
+    }
+  }
 }
+
 .vertical-barchart {
   text-align: center;
   h2 {
     font-weight: 100;
     font-size: 5vh;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
   .chart {
     height: 80%;
@@ -106,54 +169,86 @@ nav {
       i.icon {
         font-size: 7vh;
         line-height: 4vh;
+        margin-top: 1vh;
       }
       .value {
-        font-size: 2vh;
+        font-size: 2.5vh;
+        line-height: 4vh;
       }
       .taxon {
-        font-size: 2.5vh;
+        font-size: 2.7vh;
         font-weight: 200;
-        letter-spacing: 0.1em;
         margin: 0px -30%;
-        opacity: 0.7;
+        color: rgba(255, 255, 255, 0.7);
       }
     }
     .bar {
       background-color: white;
-      @include linearGradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
+      @include linearGradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.15));
     }
   }
 }
 
-#photos-slide {
+.photos-slide {
   img {
     width: 20%;
     float: left;
   }
   & > div {
     height: 100%;
-    & > div {
-      height: 30%;
-      width: 19%;
-      margin: 0.5%;
-      float: left;
+  }
+  .cell {
+    height: 30%;
+    width: 19%;
+    margin: 0.5%;
+    float: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+    position: relative;
+    .caption {
+      position: absolute;
+      bottom: 0px;
+      height: 20%;
+      width: 100%;
+      background: rgba(0,0,0,0.65);
+      padding: 2% 15% 2% 4%;
+      font-size: 2.7vh;
+      line-height: 4.5vh;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-icon {
+      height: 5vh;
+      width: 5vh;
+      border: 1px solid white;
+      border-radius: 5vh;
+      bottom: 3vh;
+      right: 2vh;
+      position: absolute;
       background-size: cover;
       background-repeat: no-repeat;
-      background-position-x: center;
-      background-position-y: top;
+      background-position: center;
+      background-color: #AAAAAA;
+      text-align: center;
+      i {
+        font-size: 3.5vh;
+        line-height: 5.9vh;
+      }
     }
   }
 }
 
-#people-slide {
+.people-slide {
   .heading {
     height: 10%;
     line-height: 10vh;
     border-bottom: 1px solid rgba(255,255,255,0.5);
-    font-size: 3vh;
+    font-size: 2.7vh;
     text-transform: uppercase;
-    font-weight: 100;
-    letter-spacing: 0.05em;
+    font-weight: 500;
   }
   .half {
     height: 85%;
@@ -163,7 +258,7 @@ nav {
     height: 49%;
     margin: 0.5%;
     float: left;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(255,255,255,0.1);
     .image {
       text-align: center;
       height: 70%;
@@ -181,26 +276,26 @@ nav {
       .name, .count {
         display: block;
         font-size: 2.8vh;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .count {
-        font-weight: 100;
-        opacity: 0.8;
+        color: rgba(255,255,255,0.75);
         font-size: 2.5vh;
-       letter-spacing: 0.05em;
      }
     }
   }
 }
 
-#species-slide {
+.species-slide {
   .heading {
     height: 15%;
     line-height: 9vh;
     border-bottom: 1px solid rgba(255,255,255,0.5);
     font-size: 2.5vh;
     text-transform: uppercase;
-    font-weight: 100;
-    letter-spacing: 0.05em;
+    font-weight: 500;
   }
   .top {
     height: 50%;
@@ -226,22 +321,24 @@ nav {
       background-repeat: no-repeat;
       background-position-x: center;
       background-position-y: 20%;
+      background-color: rgba(255,255,255,0.2);
       i {
-        font-size: 23vh;
-        opacity: 0.6;
+        font-size: 18vh;
+        line-height: 31vh;
       }
     }
     .meta {
-      padding: 2%;
+      padding: 4%;
       .name, .count {
         display: block;
         font-size: 2.8vh;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .count {
-        font-weight: 100;
-        opacity: 0.8;
+        color: rgba(255,255,255,0.75);
         font-size: 2.5vh;
-        letter-spacing: 0.05em;
       }
     }
   }
@@ -251,15 +348,105 @@ nav {
     }
     .species {
       width: 49%;
-      height: 40%;
+      height: 38%;
     }
     .image {
       height: 100%;
       float: left;
       width: 32%;
+      i {
+        font-size: 10vh;
+        line-height: 18vh;
+      }
     }
     .meta {
       padding-left: 35%;
     }
+  }
+}
+
+.top-projects-slide {
+  & > div {
+    height: 100%;
+  }
+  .center {
+    width: 100% !important;
+  }
+  table {
+    height: 95%;
+    font-weight: 100;
+    font-size: 3.1vh;
+    th {
+      font-weight: 600;
+      font-size: 2vh;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    td {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.5%;
+      margin: 0px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle !important;
+      &.index {
+        text-align: center;
+        font-size: 4vh;
+        font-weight: 200;
+      }
+      &.index, &.observations, &.species {
+        text-overflow: initial;
+      }
+    }
+  }
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
+
+
+@media (min-width: 1px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav>li {
+    float: left;
+    margin: 0;
+  }
+  .navbar-right {
+    float: right!important;
+    margin-right: -15px;
+  }
+  .container-fluid>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+    float: left;
   }
 }

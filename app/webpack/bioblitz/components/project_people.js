@@ -4,17 +4,32 @@ import NodeAPI from "../models/node_api";
 
 class ProjectPeople extends Component {
 
+  constructor( props, context ) {
+    super( props, context );
+    this.reloadData = this.reloadData.bind( this );
+  }
+
   componentDidMount( ) {
-    NodeAPI.fetch( `observations/identifiers?per_page=6&project_id=${this.props.projectID}` ).
+    this.reloadData( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.project.id !== this.props.project.id ) {
+      this.reloadData( );
+    }
+  }
+
+  reloadData( ) {
+    NodeAPI.fetch(
+      `observations/identifiers?per_page=6&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.updateState( { peopleStats: { identifiers: json } } );
-      } ).
-      catch( e => console.log( e ) );
-    NodeAPI.fetch( `observations/observers?per_page=6&project_id=${this.props.projectID}` ).
+      } ).catch( e => console.log( e ) );
+    NodeAPI.fetch(
+      `observations/observers?per_page=6&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.updateState( { peopleStats: { observers: json } } );
-      } ).
-      catch( e => console.log( e ) );
+      } ).catch( e => console.log( e ) );
   }
 
   render( ) {
@@ -27,7 +42,7 @@ class ProjectPeople extends Component {
             let style;
             let placeholder;
             if ( r.user.icon_url ) {
-              style = { backgroundImage: `url('${r.user.icon_url.replace( "medium", "original" )}')` };
+              style = { backgroundImage: `url('${r.user.icon_url}')` };
             } else {
               placeholder = ( <i className="icon-person" /> );
             }
@@ -75,7 +90,7 @@ class ProjectPeople extends Component {
       );
     }
     return (
-      <div className="slide row-fluid" id="people-slide">
+      <div className="slide row-fluid people-slide">
         <div className="col-md-6">
           { observers }
         </div>
@@ -88,8 +103,7 @@ class ProjectPeople extends Component {
 }
 
 ProjectPeople.propTypes = {
-  projectID: PropTypes.number,
-  placeID: PropTypes.number,
+  project: PropTypes.object,
   peopleStats: PropTypes.object,
   updateState: PropTypes.func
 };
