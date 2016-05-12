@@ -31,6 +31,16 @@ class Slideshow extends Component {
     if ( next.slide === ".umbrella-map-slide" ) {
       this.refs.umbrellaMap.reloadData( );
     }
+    const nextColor = `color${( this.props.colorIndex )}`;
+    if ( !$( "#app" ).hasClass( nextColor ) ) {
+      $( "#app" ).removeClass( );
+      $( "#app" ).addClass( `color${( this.props.colorIndex )}` );
+    }
+    if ( next.slide === ".top-projects-slide" ) {
+      $( "#app" ).addClass( "top-projects" );
+    }
+    $( "#main-container" ).removeClass( );
+    $( "#main-container" ).addClass( `phase${( this.props.slideshowIndex )}` );
     setTimeout( ( ) => {
       $( next.slide ).fadeOut( 2000 );
       const nextIndex = this.props.slideshowIndex + 1;
@@ -38,11 +48,13 @@ class Slideshow extends Component {
         this.props.setState( { slideshowIndex: nextIndex } );
         this.nextSlide( );
       } else {
+        $( "#app" ).addClass( "transition" );
         setTimeout( ( ) => {
           if ( isUmbrella ) {
             this.props.setState( {
               slideshowIndex: 0,
               slideshowSubProjectIndex: 0,
+              colorIndex: ( this.props.colorIndex + 1 ) % this.props.countColors,
               umbrellaProject: this.props.project,
               project: _.values( this.props.umbrellaSubProjects[this.props.project.id] )[0],
               overallStats: { },
@@ -63,6 +75,7 @@ class Slideshow extends Component {
                   slideshowUmbrellaIndex: nextUmbrellaIndex,
                   slideshowIndex: 0,
                   slideshowSubProjectIndex: null,
+                  colorIndex: ( this.props.colorIndex + 1 ) % this.props.countColors,
                   umbrellaProject: null,
                   project: this.props.umbrellaProjects[nextUmbrellaIndex],
                   overallStats: { },
@@ -79,6 +92,7 @@ class Slideshow extends Component {
                 slideshowSubProjectIndex: nextSubprojectIndex,
                 project: _.values( this.props.umbrellaSubProjects[
                   this.props.umbrellaProject.id] )[nextSubprojectIndex],
+                colorIndex: ( this.props.colorIndex + 1 ) % this.props.countColors,
                 overallStats: { },
                 iconicTaxaCounts: { },
                 iconicTaxaSpeciesCounts: { },
@@ -88,7 +102,7 @@ class Slideshow extends Component {
               this.nextSlide( );
             }
           }
-        }, 2000 );
+        }, 1000 );
       }
     }, next.duration );
   }
@@ -113,6 +127,8 @@ Slideshow.propTypes = {
   project: PropTypes.object,
   umbrellaProject: PropTypes.object,
   setState: PropTypes.func,
+  colorIndex: PropTypes.number,
+  countColors: PropTypes.number,
   allSubProjects: PropTypes.array,
   slideshowIndex: PropTypes.number,
   umbrellaProjects: PropTypes.array,

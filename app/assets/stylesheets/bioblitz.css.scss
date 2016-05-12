@@ -29,11 +29,61 @@ html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
   display: block;
 }
 body {
-  @include linearGradient(#4c30ae, #a25bc6);
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   color: white;
   min-width: 770px !important;
   min-height: 450px;
+  background-color: black;
+}
+#app {
+  transition: opacity 1.5s ease;
+  @include linearGradient(#A52317, #CF632D);
+  &.transition {
+    opacity: 0 !important;
+  }
+  &.color0 {
+    @include linearGradient(#A52317, #CF632D);
+    opacity: 1;
+  }
+  &.color1 {
+    @include linearGradient(#412BAB, #A45BC6);
+    opacity: 1;
+  }
+  &.color2 {
+    @include linearGradient(#15685B, #5CA451);
+    opacity: 1;
+  }
+  &.color3 {
+    @include linearGradient(#293492, #50A3B7);
+    opacity: 1;
+  }
+  &.color4 {
+    @include linearGradient(#981939, #C75C99);
+    opacity: 1;
+  }
+  &.top-projects {
+    @include linearGradient(#09012D, #385F6D);
+    opacity: 1;
+  }
+}
+
+#main-container {
+  transition: background-color 2s ease;
+  &.phase1 {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  &.phase2 {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  &.phase3 {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  &.phase4 {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  &.phase5 {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
 }
 nav {
   height: 10%;
@@ -401,35 +451,6 @@ nav {
     }
   }
 }
-
-.example-appear {
-  opacity: 0.01;
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transition: opacity 1000ms ease-in;
-}
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 1000ms ease-in;
-}
-
-
 
 @media (min-width: 1px) {
   .navbar-nav {

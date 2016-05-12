@@ -15,7 +15,7 @@ class Bioblitz extends Component {
       dateRange += `(${start} - ${end})`;
     }
     return (
-      <div>
+      <div id="main-container">
         <nav className="navbar">
           <div className="container-fluid">
             <div className="nav navbar-nav navbar-left">

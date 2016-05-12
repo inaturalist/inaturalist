@@ -12,6 +12,8 @@ const defaultState = {
   slideshowSubProjectIndex: null,
   umbrellaProject: null,
   slideshowIndex: 0,
+  colorIndex: 0,
+  countColors: 5,
   overallStats: { },
   iconicTaxaCounts: { },
   iconicTaxaSpeciesCounts: { },
