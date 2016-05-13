@@ -315,7 +315,7 @@ body {
       }
     }
     .meta {
-      padding: 1vw;
+      padding: 0.7vw;
       .name, .count {
         display: block;
         font-size: 1.6vw;
@@ -420,6 +420,7 @@ body {
       font-size: 1.5vw;
       text-transform: uppercase;
       border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+      padding: 0 !important;
     }
     td {
       border-top: 1px solid rgba(255,255,255,0.2) !important;
