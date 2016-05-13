@@ -34,7 +34,7 @@ body {
   background-color: black;
 }
 #app {
-  transition: opacity 1.5s ease;
+  transition: opacity 1.8s ease;
   @include linearGradient(#A52317, #CF632D);
   &.transition {
     opacity: 0 !important;
@@ -102,10 +102,9 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 1vw 0;
   .navbar-left {
-    text-align: center;
+    text-align: left;
     margin: 0;
     padding: 0 2vw;
-    width: 20vw;
   }
   .navbar-right {
     text-align: center;
@@ -126,9 +125,9 @@ body {
     border-left: 1px solid rgba(255,255,255,0.25);
     .dates {
       text-transform: uppercase;
-      font-size: 1.4vw;
+      font-size: 1.5vw;
       opacity: 0.85;
-      padding-left: 1.7vw;
+      padding-left: 2vw;
     }
   }
   img {
@@ -141,6 +140,7 @@ body {
   position: absolute;
   width: 100%;
   height: 50vw;
+  padding: 0 1vw;
   display: none;
 }
 
@@ -214,11 +214,11 @@ body {
         margin-top: 0.6vw;
       }
       .value {
-        font-size: 1.5vw;
+        font-size: 1.6vw;
         line-height: 2.24vw;
       }
       .taxon {
-        font-size: 1.5vw;
+        font-size: 1.6vw;
         font-weight: 200;
         margin: 0px -30%;
         color: rgba(255, 255, 255, 0.7);
@@ -238,6 +238,7 @@ body {
   }
   & > div {
     height: 100%;
+    padding: 0.8vw;
   }
   .cell {
     height: 30%;
@@ -256,7 +257,7 @@ body {
       width: 100%;
       background: rgba(0,0,0,0.65);
       padding: 2% 15% 2% 4%;
-      font-size: 1.5vw;
+      font-size: 1.6vw;
       line-height: 2.5vw;
       white-space: nowrap;
       overflow: hidden;
@@ -287,8 +288,8 @@ body {
   .heading {
     height: 4vw;
     line-height: 5.6vw;
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    font-size: 1.5vw;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 1.6vw;
     text-transform: uppercase;
     font-weight: 500;
   }
@@ -317,14 +318,14 @@ body {
       padding: 1vw;
       .name, .count {
         display: block;
-        font-size: 1.5vw;
+        font-size: 1.6vw;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
       .count {
         color: rgba(255,255,255,0.75);
-        font-size: 1.4vw;
+        font-size: 1.5vw;
      }
     }
   }
@@ -334,8 +335,8 @@ body {
   .heading {
     height: 4vw;
     line-height: 5vw;
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    font-size: 1.5vw;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 1.6vw;
     text-transform: uppercase;
     font-weight: 500;
   }
@@ -369,7 +370,7 @@ body {
       }
     }
     .meta {
-      padding: 0.8vw;
+      padding: 0.7vw;
       .name, .count {
         display: block;
         font-size: 1.6vw;
@@ -379,7 +380,7 @@ body {
       }
       .count {
         color: rgba(255,255,255,0.75);
-        font-size: 1.5vw;
+        font-size: 1.6vw;
       }
     }
   }
@@ -416,12 +417,12 @@ body {
     font-size: 1.7vw;
     th {
       font-weight: 600;
-      font-size: 1.1vw;
+      font-size: 1.5vw;
       text-transform: uppercase;
-      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+      border-bottom: 1px solid rgba(255,255,255,0.2) !important;
     }
     td {
-      border-top: 1px solid rgba(255,255,255,0.1) !important;
+      border-top: 1px solid rgba(255,255,255,0.2) !important;
       padding: 0.5vw !important;
       margin: 0px;
       white-space: nowrap;

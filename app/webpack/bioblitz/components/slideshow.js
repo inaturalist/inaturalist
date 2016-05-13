@@ -102,7 +102,7 @@ class Slideshow extends Component {
               this.nextSlide( );
             }
           }
-        }, 1000 );
+        }, 1500 );
       }
     }, next.duration );
   }
