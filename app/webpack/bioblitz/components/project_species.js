@@ -46,8 +46,11 @@ class ProjectSpecies extends Component {
           { _.map( this.props.speciesStats.all.results, r => {
             let style;
             let placeholder;
+            let prefetch;
             if ( r.taxon.default_photo ) {
-              style = { backgroundImage: `url('${r.taxon.default_photo.medium_url}')` };
+              const photo = r.taxon.default_photo.medium_url;
+              style = { backgroundImage: `url('${photo}')` };
+              prefetch = ( <link rel="prefetch" href={ photo } /> );
             } else {
               placeholder = (
                 <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } />
@@ -55,6 +58,7 @@ class ProjectSpecies extends Component {
             }
             return (
               <div key={ `species${r.taxon.id}` } className="species">
+                { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
@@ -76,8 +80,11 @@ class ProjectSpecies extends Component {
           { _.map( this.props.speciesStats.introduced.results, r => {
             let style;
             let placeholder;
+            let prefetch;
             if ( r.taxon.default_photo ) {
-              style = { backgroundImage: `url('${r.taxon.default_photo.medium_url}')` };
+              const photo = r.taxon.default_photo.medium_url;
+              style = { backgroundImage: `url('${photo}')` };
+              prefetch = ( <link rel="prefetch" href={ photo } /> );
             } else {
               placeholder = (
                 <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } />
@@ -85,6 +92,7 @@ class ProjectSpecies extends Component {
             }
             return (
               <div key={ `introduced${r.taxon.id}` } className="species">
+                { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
@@ -106,8 +114,11 @@ class ProjectSpecies extends Component {
           { _.map( this.props.speciesStats.threatened.results, r => {
             let style;
             let placeholder;
+            let prefetch;
             if ( r.taxon.default_photo ) {
-              style = { backgroundImage: `url('${r.taxon.default_photo.medium_url}')` };
+              const photo = r.taxon.default_photo.medium_url;
+              style = { backgroundImage: `url('${photo}')` };
+              prefetch = ( <link rel="prefetch" href={ photo } /> );
             } else {
               placeholder = (
                 <i className={ `icon icon-iconic-${r.taxon.iconic_taxon_name.toLowerCase( )}` } />
@@ -115,6 +126,7 @@ class ProjectSpecies extends Component {
             }
             return (
               <div key={ `threatened${r.taxon.id}` } className="species">
+                { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>

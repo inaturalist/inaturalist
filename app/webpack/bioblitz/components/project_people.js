@@ -41,13 +41,17 @@ class ProjectPeople extends Component {
           { _.map( this.props.peopleStats.observers.results, r => {
             let style;
             let placeholder;
+            let prefetch;
             if ( r.user.icon_url ) {
-              style = { backgroundImage: `url('${r.user.icon_url}')` };
+              const icon = r.user.icon_url;
+              style = { backgroundImage: `url('${icon}')` };
+              prefetch = ( <link rel="prefetch" href={ icon } /> );
             } else {
               placeholder = ( <i className="icon-person" /> );
             }
             return (
               <div key={ `observer${r.user.id}` } className="person">
+                { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
                   <span className="name">{ r.user.login }</span>
@@ -69,13 +73,17 @@ class ProjectPeople extends Component {
           { _.map( this.props.peopleStats.identifiers.results, r => {
             let style;
             let placeholder;
+            let prefetch;
             if ( r.user.icon_url ) {
-              style = { backgroundImage: `url('${r.user.icon_url.replace( "medium", "original" )}')` };
+              const icon = r.user.icon_url;
+              style = { backgroundImage: `url('${icon}')` };
+              prefetch = ( <link rel="prefetch" href={ icon } /> );
             } else {
               placeholder = ( <i className="icon-person" /> );
             }
             return (
               <div key={ `observer${r.user.id}` } className="person">
+                { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
                   <span className="name">{ r.user.login }</span>

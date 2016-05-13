@@ -72,6 +72,7 @@ class StatsController < ApplicationController
       group(:id).
       order("count(po.observation_id) desc")
 
+    # prepare the data needed for the slideshow
     all_project_data = Hash[ projs.map{ |p|
       [ p.id,
         {
@@ -86,17 +87,22 @@ class StatsController < ApplicationController
         }
       ]
     }]
+    # hard-coding umbrella project places
     all_project_data[6810][:place_id] = 0
-    all_project_data[6810][:slideshow_count] = 1
     all_project_data[7109][:place_id] = 46
-    all_project_data[7109][:slideshow_count] = 1
     all_project_data[7110][:place_id] = 5
-    all_project_data[7110][:slideshow_count] = 1
     all_project_data[7107][:place_id] = 51727
-    all_project_data[7107][:slideshow_count] = 1
     all_project_data[6790][:place_id] = 43
-    all_project_data[6790][:slideshow_count] = 1
 
+    # setting the number of slides to show per umbrella project
+    umbrella_project_ids.each do |id|
+      all_project_data[id][:slideshow_count] = 1
+    end
+    # the overall project shows 5 slides
+    all_project_data[@overall_id][:slideshow_count] = 5
+
+    # the overall project shows any non-umbrella project not already
+    # shown under an umbrella project
     sub_project_ids[@overall_id] = all_project_data.keys -
       all_project_ids - sub_project_ids.keys
 

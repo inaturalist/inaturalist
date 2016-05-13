@@ -35,8 +35,11 @@ class ProjectPhotos extends Component {
           { _.map( this.props.photos.results, r => {
             let style;
             let placeholder;
+            let prefetch;
             if ( r.user.icon_url ) {
-              style = { backgroundImage: `url('${r.user.icon_url.replace( "medium", "original" )}')` };
+              const icon = r.user.icon_url.replace( "medium", "original" );
+              style = { backgroundImage: `url('${icon}')` };
+              prefetch = ( <link rel="prefetch" href={ icon } /> );
             } else {
               placeholder = ( <i className="icon-person" /> );
             }
@@ -44,6 +47,7 @@ class ProjectPhotos extends Component {
               <div className="cell" key={ `photo${r.id}` } style={
                 { backgroundImage: `url('${r.photos[0].url.replace( "square", "large" )}')` } }
               >
+                { prefetch }
                 <div className="caption">
                   { r.taxon ? ( r.taxon.preferred_common_name || r.taxon.name ) : "Unknown" }
                 </div>

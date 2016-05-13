@@ -34,7 +34,7 @@ body {
   background-color: black;
 }
 #app {
-  transition: opacity 1.8s ease;
+  transition: opacity 2s ease;
   @include linearGradient(#A52317, #CF632D);
   &.transition {
     opacity: 0 !important;
@@ -105,6 +105,7 @@ body {
     text-align: left;
     margin: 0;
     padding: 0 2vw;
+    width: 18vw;
   }
   .navbar-right {
     text-align: center;
@@ -289,9 +290,10 @@ body {
     height: 4vw;
     line-height: 5.6vw;
     border-bottom: 1px solid rgba(255,255,255,0.2);
-    font-size: 1.6vw;
+    font-size: 1.7vw;
     text-transform: uppercase;
     font-weight: 500;
+    margin: 0 1.5% 0.5% 0.5%
   }
   .half {
     height: 85%;
@@ -309,6 +311,7 @@ body {
       background-repeat: no-repeat;
       background-position-x: center;
       background-position-y: 20%;
+      background-color: rgba(255,255,255,0.2);
       i {
         font-size: 12.8vw;
         opacity: 0.6;
@@ -336,9 +339,10 @@ body {
     height: 4vw;
     line-height: 5vw;
     border-bottom: 1px solid rgba(255,255,255,0.2);
-    font-size: 1.6vw;
+    font-size: 1.7vw;
     text-transform: uppercase;
     font-weight: 500;
+    margin: 0 1% 0.5% 0.5%
   }
   .top {
     height: 50%;
@@ -355,7 +359,7 @@ body {
     height: 85%;
     margin: 0.5%;
     float: left;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(255,255,255,0.1);
     .image {
       text-align: center;
       height: 70%;
@@ -370,7 +374,7 @@ body {
       }
     }
     .meta {
-      padding: 0.7vw;
+      padding: 0.3vw 0.6vw;
       .name, .count {
         display: block;
         font-size: 1.6vw;
@@ -402,7 +406,7 @@ body {
       }
     }
     .meta {
-      padding-left: 37%;
+      padding-left: 35%;
     }
   }
 }

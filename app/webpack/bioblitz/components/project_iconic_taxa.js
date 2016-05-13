@@ -41,6 +41,7 @@ class ProjectIconicTaxa extends Component {
             let name = r.taxon.preferred_common_name;
             if ( r.taxon.id === 47170 ) { name = "Fungi"; }
             if ( r.taxon.id === 47178 ) { name = "Fishes"; }
+            if ( r.taxon.id === 48222 ) { name = "Chromista"; }
             return (
               <div key={ r.taxon.id } style={ { width: `${width}%` } }>
                 <span className="taxon">{ name }</span>
