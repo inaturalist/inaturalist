@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Input } from "react-bootstrap";
 
 // The approach of getting the form values from the event object here is based
 // on some feedback from DrMike in https://discord.gg/0ZcbPKXt5bZ6au5t. It's
@@ -20,8 +20,8 @@ const CommentForm = ( { observation, onSubmitComment, className } ) => (
       $( e.target.elements.body ).val( null );
     }}
   >
-    <h2>Add a Comment</h2>
-    <textarea name="body" className="form-control"></textarea>
+    <h3>{ I18n.t( "add_a_comment" ) }</h3>
+    <Input type="textarea" name="body" className="form-control" />
     <Button type="submit">Save</Button>
   </form>
 );

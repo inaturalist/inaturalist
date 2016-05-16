@@ -7,6 +7,7 @@ const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
 const FETCH_CURRENT_OBSERVATION = "fetch_current_observation";
 const RECEIVE_CURRENT_OBSERVATION = "receive_current_observation";
+const UPDATE_CURRENT_OBSERVATION = "update_current_observation";
 const SHOW_NEXT_OBSERVATION = "show_next_observation";
 const SHOW_PREV_OBSERVATION = "show_prev_observation";
 const ADD_IDENTIFICATION = "add_identification";
@@ -28,6 +29,14 @@ function receiveCurrentObservation( observation, others ) {
   return Object.assign( { }, others, {
     type: RECEIVE_CURRENT_OBSERVATION,
     observation
+  } );
+}
+
+function updateCurrentObservation( observation, updates ) {
+  return Object.assign( { }, {
+    type: UPDATE_CURRENT_OBSERVATION,
+    observation,
+    updates
   } );
 }
 
@@ -161,17 +170,9 @@ function toggleCaptive( ) {
     const s = getState( );
     const observation = s.currentObservation.observation;
     const agree = s.currentObservation.captiveByCurrentUser;
-
-    // Not sure if this is the right thing to do here. I'm mainly doing it so
-    // the captive checkbox changes immediately in response to clicks OR the
-    // keyboard shortcut. Is it necessary to update the entire observation
-    // modal for that? Probably not. I could add a separate action for just
-    // the checkbox, but that seems like overkill.
-    dispatch( receiveCurrentObservation( observation, {
-      captiveByCurrentUser: !s.currentObservation.captiveByCurrentUser,
-      reviewedByCurrentUser: s.currentObservation.reviewedByCurrentUser
+    dispatch( updateCurrentObservation( observation, {
+      captiveByCurrentUser: !s.currentObservation.captiveByCurrentUser
     } ) );
-
     dispatch( toggleQualityMetric( observation, "wild", agree ) );
   };
 }
@@ -182,8 +183,7 @@ function toggleReviewed( optionalObs = null ) {
     const observation = optionalObs || s.currentObservation.observation;
     const reviewed = observation.reviewedByCurrentUser;
     const params = { id: observation.id };
-    dispatch( receiveCurrentObservation( observation, {
-      captiveByCurrentUser: observation.captiveByCurrentUser,
+    dispatch( updateCurrentObservation( observation, {
       reviewedByCurrentUser: !reviewed
     } ) );
     if ( reviewed ) {
@@ -225,5 +225,6 @@ export {
   toggleQualityMetric,
   toggleCaptive,
   toggleReviewed,
-  loadingDiscussionItem
+  loadingDiscussionItem,
+  updateCurrentObservation
 };

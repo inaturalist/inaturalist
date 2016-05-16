@@ -22,7 +22,7 @@ const IdentificationForm = ( {
       $( e.target.elements.body ).val( null );
     }}
   >
-    <h2>Add an Identification</h2>
+    <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
     <Input type="textarea" name="body" className="form-control" />
     <Button type="submit">Save</Button>

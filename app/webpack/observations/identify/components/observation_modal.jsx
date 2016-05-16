@@ -6,7 +6,10 @@ import {
   Row,
   Col,
   Button,
-  Input
+  Input,
+  OverlayTrigger,
+  Popover,
+  Tooltip
 } from "react-bootstrap";
 import DiscussionList from "./discussion_list";
 import CommentFormContainer from "../containers/comment_form_container";
@@ -157,51 +160,105 @@ const ObservationModal = ( {
         <Grid fluid>
           <Row>
             <Col xs={6} className="secondary-actions">
+              <OverlayTrigger
+                trigger="hover"
+                placement="top"
+                overlay={
+                  <Popover title="Keyboard Shortcuts" id="keyboard-shortcuts-popover">
+                    <dl className="keyboard-shortcuts">
+                      <dt>z</dt>
+                      <dd>{ I18n.t( "organism_appears_captive_cultivated" ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>r</dt>
+                      <dd>{ I18n.t( "mark_as_reviewed" ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>i</dt>
+                      <dd>{ I18n.t( "add_id" ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>c</dt>
+                      <dd>{ _.capitalize( I18n.t( "comment" ) ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>&larr;</dt>
+                      <dd>{ I18n.t( "previous" ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>&rarr;</dt>
+                      <dd>{ I18n.t( "next" ) }</dd>
+                    </dl>
+                  </Popover>
+                }
+              >
+                <Button>
+                  <i className="fa fa-keyboard-o"></i>
+                </Button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="link-btn-tooltip">
+                    { I18n.t( "view_observation" ) }
+                  </Tooltip>
+                }
+                container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+              >
+                <Button
+                  href={`/observations/${observation.id}`}
+                  target="_blank"
+                >
+                  <i className="fa fa-link"></i>
+                </Button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                trigger="hover"
+                overlay={
+                  <Tooltip id="captive-btn-tooltip">
+                    { I18n.t( "organism_appears_captive_cultivated" ) }
+                  </Tooltip>
+                }
+                container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+              >
+                <div className="captive-checkbox-wrapper">
+                  <Input
+                    type="checkbox"
+                    label={ I18n.t( "captive_cultivated" ) }
+                    defaultChecked={ captiveByCurrentUser }
+                    onChange={function ( ) {
+                      toggleCaptive( );
+                    }}
+                    groupClassName="btn-checkbox"
+                  />
+                </div>
+              </OverlayTrigger>
+            </Col>
+            <Col xs={6}>
               <Input
                 type="checkbox"
-                label={ `${I18n.t( "captive_cultivated" )} [z]` }
-                checked={ captiveByCurrentUser }
-                onChange={function ( ) {
-                  toggleCaptive( );
-                }}
                 groupClassName="btn-checkbox"
-              />
-              <Input
-                type="checkbox"
-                groupClassName="btn-checkbox"
-                label={ `${I18n.t( "reviewed" )} [r]` }
-                checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                label={ I18n.t( "reviewed" ) }
+                defaultChecked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
                 onChange={function ( ) {
                   toggleReviewed( );
                 }}
               />
-              <Button
-                href={`/observations/${observation.id}`}
-                bsStyle="link"
-              >
-                { I18n.t( "link" ) }
+              <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
+                <i className="icon-identification"></i> { I18n.t( "add_id" ) }
               </Button>
-            </Col>
-            <Col xs={6}>
-              <Button onClick={ function ( ) { addIdentification( ); } } >
-                { I18n.t( "add_id" ) }
-                &nbsp;
-                [i]
-              </Button>
-              <Button onClick={ function ( ) { addComment( ); } }>
-                { _.capitalize( I18n.t( "comment" ) ) }
-                &nbsp;
-                [c]
+              <Button bsStyle="primary" onClick={ function ( ) { addComment( ); } }>
+                <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
               <Button
+                bsStyle="primary"
                 className={ showAgree( ) ? "" : "collapse"}
                 onClick={ function ( ) {
                   agreeWithCurrentObservation( );
                 } }
               >
-                { _.capitalize( I18n.t( "agree" ) ) }
-                &nbsp;
-                [a]
+                <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
               </Button>
             </Col>
           </Row>

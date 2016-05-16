@@ -5,7 +5,8 @@ import {
   ADD_COMMENT,
   ADD_IDENTIFICATION,
   LOADING_DISCUSSION_ITEM,
-  RECEIVE_OBSERVATIONS
+  RECEIVE_OBSERVATIONS,
+  UPDATE_CURRENT_OBSERVATION
 } from "../actions";
 
 const currentObservationReducer = ( state = {}, action ) => {
@@ -23,12 +24,17 @@ const currentObservationReducer = ( state = {}, action ) => {
       } );
     case RECEIVE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
-        observation: action.observation,
+        observation: Object.assign( { }, action.observation, {
+          captiveByCurrentUser: action.captiveByCurrentUser,
+          reviewedByCurrentUser: action.reviewedByCurrentUser
+        } ),
         captiveByCurrentUser: action.captiveByCurrentUser,
         reviewedByCurrentUser: action.reviewedByCurrentUser,
         loadingDiscussionItem: false,
         currentUserIdentification: action.currentUserIdentification
       } );
+    case UPDATE_CURRENT_OBSERVATION:
+      return Object.assign( {}, state, action.updates );
     case ADD_COMMENT:
       return Object.assign( {}, state, {
         commentFormVisible: true,
