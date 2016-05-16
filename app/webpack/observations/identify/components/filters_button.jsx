@@ -47,10 +47,7 @@ class FiltersButton extends React.Component {
 
   render( ) {
     const { params, updateSearchParams } = this.props;
-    const paramsForUrl = ( ) => {
-      // TODO filter out params that only apply to this component
-      return window.location.search.replace( /^\?/, "" );
-    };
+    const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
       $( ".FiltersButton" ).click( );
@@ -63,7 +60,10 @@ class FiltersButton extends React.Component {
     const filterCheckbox = ( checkbox ) => {
       const checkedVal = ( checkbox.checked || true );
       return (
-        <div className="checkbox" key={`filters-${checkbox.param}-${checkbox.label}`}>
+        <div
+          className={`checkbox ${params[checkbox.param] ? "filter-changed" : ""}`}
+          key={`filters-${checkbox.param}-${checkbox.label}`}
+        >
           <label>
             <input
               type="checkbox"
@@ -265,7 +265,7 @@ class FiltersButton extends React.Component {
                 { _.capitalize( I18n.t( "low" ) ) }
               </option>
               { visibleRanks.map( rank => (
-                <option key={`params-hrank-${rank}`} value={rank}>
+                <option key={`params-lrank-${rank}`} value={rank}>
                   { _.capitalize( I18n.t( `ranks.${rank}` ) ) }
                 </option>
               ) ) }
