@@ -20,7 +20,16 @@ class FiltersButton extends React.Component {
     this.clickOffEventNamespace = "click.FiltersButtonClickOff";
   }
 
-  componentDidMount( ) {
+  toggle( ) {
+    if ( this.state.show ) {
+      this.hide( );
+      return;
+    }
+    this.show( );
+  }
+
+  show( ) {
+    this.setState( { show: true } );
     const that = this;
     $( "body" ).on( this.clickOffEventNamespace, e => {
       if ( !$( ".FiltersButtonWrapper" ).is( e.target ) &&
@@ -32,17 +41,14 @@ class FiltersButton extends React.Component {
           $( e.target ).parents( ".ui-multiselect-menu " ).length === 0 &&
           $( e.target ).parents( ".observation-field " ).length === 0
         ) {
-        that.setState( { show: !that.state.show } );
+        that.hide( );
       }
     } );
   }
 
-  componentWillUnmount( ) {
+  hide( ) {
+    this.setState( { show: false } );
     $( "body" ).unbind( this.clickOffEventNamespace );
-  }
-
-  toggle( ) {
-    this.setState( { show: !this.state.show } );
   }
 
   render( ) {
