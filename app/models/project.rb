@@ -83,6 +83,12 @@ class Project < ActiveRecord::Base
     where("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
     order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
+  scope :featured_near_point, lambda {|latitude, longitude|
+    latitude = latitude.to_f
+    longitude = longitude.to_f
+    featured.where("projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
+    order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) END")
+  }
   scope :from_source_url, lambda {|url| where(:source_url => url) }
   scope :in_place, lambda{|place|
     place = Place.find(place) unless place.is_a?(Place) rescue nil
@@ -262,6 +268,10 @@ class Project < ActiveRecord::Base
   
   def featured_at_utc
     featured_at.try(:utc)
+  end
+
+  def featured?
+    !featured_at.blank?
   end
 
   def reset_last_aggregated_at
