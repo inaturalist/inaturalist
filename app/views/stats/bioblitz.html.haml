@@ -1,0 +1,18 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
+  = stylesheet_link_tag "bioblitz"
+  %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
+  %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
+  :javascript
+    NPS_OVERALL_ID = #{ @overall_id };
+    NPS_UMBRELLA_PROJECTS = #{ @umbrella_projects.to_json };
+    NPS_UMBRELLA_SUB_PROJECTS = #{ @sub_projects.to_json };
+    NPS_ALL_SUB_PROJECTS = #{ @all_sub_projects.to_json };
+#app.color0
+- content_for :delayed_js do
+  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"
+  = javascript_include_tag "bioblitz-webpack"
+  = javascript_include_tag "http://getbootstrap.com/dist/js/bootstrap.min.js"
+  = stylesheet_link_tag "fontastic-icons"

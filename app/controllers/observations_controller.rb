@@ -1428,9 +1428,7 @@ class ObservationsController < ApplicationController
   end
 
   def uploader
-    @minimal_header = true
-    @footless = true
-    render layout: "bootstrap"
+    render layout: "basic"
   end
   
   def identotron

@@ -76,7 +76,7 @@ $.fn.genericAutocomplete = function( options ) {
     return false;
   };
 
-  field.template = field.template || function( item ) {
+  field.template = options.template || field.template || function( item ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     labelDiv.append( $( "<span/>" ).addClass( "title" ).
@@ -146,7 +146,9 @@ $.fn.genericAutocomplete = function( options ) {
       return false;
     }
     if( field.searchClear ) {
-      field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
+      setTimeout( function( ) {
+        field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
+      }, 1 );
     }
     if( field.val( ) && options.resetOnChange === false ) { return; }
     // keys like arrows, tab, shift, caps-lock, etc. won't change
@@ -174,11 +176,11 @@ $.fn.genericAutocomplete = function( options ) {
       $(this).autocomplete( "search", $(this).val( ));
     }
   });
-  field.bind( "assignSelection", function( e, s ) {
+  field.bind( "assignSelection", function( e, s, opts ) {
+    opts = opts || { };
     options.idEl.val( s.id );
     field.val( s.title );
     field.selection = s;
-    if( options.afterSelect ) { options.afterSelect( { item: s } ); }
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {

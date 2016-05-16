@@ -50,6 +50,72 @@ class StatsController < ApplicationController
     render json: observation_weeks_data
   end
 
+  def bioblitz
+    group_name = "2016 National Parks BioBlitz"
+    @overall_id = 6810
+    umbrella_project_ids = [ 6810, 7109, 7110, 7107, 6790 ]
+    sub_project_ids = {
+      6810 => [ ],
+      7109 => [ 6818, 6846, 6864, 7026, 6832, 7069, 6859 ],
+      7110 => [ 6835, 6833, 6840, 7298, 6819, 7299, 6815,
+        6814, 7025, 7281, 6816, 7302, 7301, 6822 ],
+      7107 => [ 6824, 6465, 6478 ],
+      6790 => [ 6850, 6851, 7167, 6852, 7168 ] # 7169
+    }
+    all_project_ids = sub_project_ids.map{ |k,v| v }.flatten +
+      sub_project_ids.keys
+
+    projs = Project.select("projects.*, count(po.observation_id)").
+      joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
+      where("projects.group=? OR projects.id=? OR projects.id IN (?)",
+        group_name, params[:project_id], all_project_ids).
+      group(:id).
+      order("count(po.observation_id) desc")
+
+    # prepare the data needed for the slideshow
+    all_project_data = Hash[ projs.map{ |p|
+      [ p.id,
+        {
+          id: p.id,
+          title: p.title.sub("2016 National Parks BioBlitz - ", ""),
+          start_time: p.start_time,
+          end_time: p.end_time,
+          place_id: p.rule_place.try(:id),
+          observation_count: p.count,
+          in_progress: p.event_in_progress?,
+          species_count: project_species_count(p.id) || 0
+        }
+      ]
+    }]
+    # hard-coding umbrella project places
+    all_project_data[6810][:place_id] = 0
+    all_project_data[7109][:place_id] = 46
+    all_project_data[7110][:place_id] = 5
+    all_project_data[7107][:place_id] = 51727
+    all_project_data[6790][:place_id] = 43
+
+    # setting the number of slides to show per umbrella project
+    umbrella_project_ids.each do |id|
+      all_project_data[id][:slideshow_count] = 1
+    end
+    # the overall project shows 5 slides
+    all_project_data[@overall_id][:slideshow_count] = 5
+
+    # the overall project shows any non-umbrella project not already
+    # shown under an umbrella project
+    sub_project_ids[@overall_id] = all_project_data.keys -
+      all_project_ids - sub_project_ids.keys
+
+    @umbrella_projects = umbrella_project_ids.
+      map{ |id| all_project_data[id] }.compact
+
+    @sub_projects = Hash[ sub_project_ids.
+      map{ |k,v| [ k, v.map{ |id| all_project_data[id] }.compact ] } ]
+
+    @all_sub_projects = all_project_data.reject{ |k,v| @sub_projects[k] }.values
+
+    render layout: "basic"
+  end
 
   private
 
@@ -123,6 +189,17 @@ class StatsController < ApplicationController
         week_rank: r.week_rank,
         observer_count: r.observer_count
       }
+    end
+  end
+
+  def project_species_count(project_id)
+    uri = URI("http://" + CONFIG.node_api_host +
+      "/observations/species_counts?project_id=#{project_id}&per_page=0&ttl=300")
+    timed_out = Timeout::timeout(5) do
+      response = Net::HTTP.get_response(uri)
+      if response.code == "200" && json = JSON.parse(response.body)
+        return json["total_results"]
+      end
     end
   end
 

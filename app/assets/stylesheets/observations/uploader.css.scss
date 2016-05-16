@@ -1,81 +1,112 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
-@import "../../../../node_modules/react-widgets/dist/css/react-widgets";
-@font-face {
-  font-family: 'RwWidgets';
-  src: url('/fonts/rw-widgets.eot');
-  src: url('/fonts/rw-widgets.eot?#iefix') format('embedded-opentype'), url('/fonts/rw-widgets.woff2') format('woff2'), url('/fonts/rw-widgets.woff') format('woff'), url('/fonts/rw-widgets.ttf') format('truetype'), url('/fonts/rw-widgets.svg#glyphicons_halflingsregular') format('svg');
+
+
+body {
+  background-color: #eee;
 }
-#wrapper {
-  min-height: 100%;
-  background: none;
+.input-group.date {
+  display: none;
 }
-#bodywrapper {
-  margin-bottom: 0px;
-  background: #E4E4E4;
+.input-group, .form-group {
+  margin: 10px 0;
 }
-#bodywrapper:after {
-  height: 0px;
+.form-control[readonly] {
+  background-color: white;
 }
-#header {
-  margin-bottom: 0px;
+
+
+
+// Navbar
+
+.nav_add_obs {
+  padding-top: 0;
+  margin-top: -20px;
+  margin-left: -10px;
+  border-top: 0;
+  background-color: white;
+  .navbar-right {
+    margin-right: 0px;
+  }
+  #add_photos > div {
+    display: inline;
+  }
+  .select {
+    margin-top:6px;
+    border-left:1px solid #e7e7e7;
+    margin-left:10px;
+    padding-left:10px;
+    &.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+    }
+  }
+  .glyphicon, input[type="checkbox"] {
+    margin-right: 4px;
+  }
 }
-.control-menu button .glyphicon, .intro button .glyphicon {
-  margin-left: 10px;
-  top: 3px;
-  font-size: 0.9em;
+
+.profile-pic {
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  margin: 0 5px 0 0
 }
-.control-menu {
-  background: #fff;
+.dropdown .dropdown-profile {
   padding: 10px;
-  height: 55px;
-  button {
-    margin: 0px 5px;
-    &.save {
-      float: right;
+}
+
+
+
+// No-image intro menu
+
+.intro {
+  text-align: center;
+  height: 300px;
+  padding-top: 7%;
+  font-size: 1.3em;
+  .drag_or_choose {
+    padding-bottom: 30px;
+  }
+  .dropdown {
+    border-top: 1px dashed;
+    padding: 30px 150px 0px;
+  }
+  .dropdown-menu {
+    margin: 0px 150px;
+  }
+  button .glyphicon {
+    margin-left: 10px;
+    top: 3px;
+    font-size: 0.9em;
+  }
+  .hover {
+    display: none;
+    p {
+      line-height: 150px;
     }
   }
 }
-.row.body {
-  display: flex;
-}
-#imageGrid {
-  min-height: 450px;
-  flex: 1;
-  flex-direction: column;
-  display: flex;
-  .intro {
-    text-align: center;
-    height: 300px;
-    padding-top: 7%;
-    font-size: 1.3em;
-    .drag_or_choose {
-      padding-bottom: 30px;
-    }
-    .dropdown {
-      border-top: 1px dashed;
-      padding: 30px 150px 0px;
-    }
-    .dropdown-menu {
-      margin: 0px 150px;
-    }
+
+
+
+// Main content structure
+
+.row-fluid {
+  .col-fixed-240 {
+    width: 240px;
+    position: fixed;
   }
-  .card input {
-    display: inline-block;
+  .col-offset-290 {
+    padding-left: 290px;
+    position: inherit;
   }
-  .ac-chooser input {
-    width: 150px;
-    padding-right: 25px;
+  .left-col-padding {
+    padding-left: 5px
   }
 }
+
 .uploader {
-  min-width: 1000px;
-  &.populated {
-    #imageGrid > div {
-      flex: 1;
-      flex-direction: column;
-      display: inline;
-    }
-  }
+  min-width: 800px;
   &.hover {
     opacity: 0.7;
     cursor: copy;
@@ -87,236 +118,218 @@
         display: block;
       }
     }
-    #multiMenu, .control-menu > div {
-      display: none;
-    }
-  }
-  .form-group, .rw-datetimepicker, .input-group {
-    margin-bottom: 5px;
-  }
-  .intro .hover {
-    display: none;
-    p {
-      line-height: 150px;
+    .left-col-padding, .nav_add_obs > div {
+      opacity: 0;
     }
   }
 }
+
 .leftColumn {
-  width: 250px;
-  .ac-chooser {
-    .ac-select-thumb {
-      position: absolute;
-    }
-    input[name="taxon_name"] {
-      margin-left: 40px;
-      width: 85%;
-    }
-  }
-  h4.empty {
-    font-style: italic;
-  }
-  h5 {
-    margin-bottom: 3px;
-  }
   .taglist {
+    margin-bottom: 10px;
     .badge {
       margin-left: 5px;
-      font-weight: 100;
+      font-weight: 300;
+      letter-spacing: 0.3px;
     }
     .field {
-      font-weight: 500;
+      font-weight: 600;
       margin-right: 3px;
-    }
-  }
-  .checkbox {
-    label {
-      padding: 0px;
-    }
-    input[type="checkbox"] {
-      position: relative;
-      margin: 0px 5px 0px 5px;
+      letter-spacing: normal;
     }
   }
 }
-.card {
-  background-color: white;
-  margin: 5px;
-  width: 200px;
-  border: 1px solid #666;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: -webkit-grab; cursor: -moz-grab;
 
+
+
+// Card grid
+
+ul.obs {
+  padding: 0;
+  margin: 0
+}
+ul.obs > li {
+  float: left;
+  list-style: none;
+  margin: 0px;
   &:hover {
-    border: 2px solid #666;
-    padding: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
-    .close, .zoom {
-      display: block;
+    .card {
+      box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
+      .btn-close, .btn-close-photo, .btn-enlarge {
+        display: block;
+      }
     }
   }
-  .close, .zoom {
-    display: none;
-    cursor: pointer;
-    &:hover {
-      opacity: 1 !important;
-    }
+}
+ul.obs > li .card {
+  margin: 6px;
+  width: 220px;
+  position: relative;
+  &.ui-selecting {
+    box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
   }
-
-
   &.selected {
-    border: 2px solid rgba(255, 0, 128, 1);
-    padding: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 3px rgba(116, 172, 0, 1);
   }
-
-  & > .close {
-    font-size: 20px;
-    margin: -15px -15px -15px 0px;
+  &.dragging {
+    box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
   }
-
-  .head {
-    height: 10px;
+  &.hover, &.dragOver {
+    box-shadow: 0 0 0 5px rgba(116, 172, 0, 1);
   }
-
-  .image {
-    width: 100%;
-    height: 130px;
+  &.dragOver.dragging {
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.8);
+  }
+  textarea {
+    resize: none;
+  }
+  .photoDrag {
+    cursor: -webkit-grab; cursor: -moz-grab;
+    line-height: 1px;
+  }
+  .caption {
+    padding: 0 9px;
+  }
+  .img-container img {
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+  }
+  .photo-count {
     text-align: center;
-    padding: 0px 4px;
-    margin-bottom: 4px;
-    position: relative;
-
-    .placeholder {
-      margin: auto;
-    }
-
-    .placeholder  .glyphicon , .item >  .glyphicon{
+    font-size: 11px;
+    margin: 5px 0 0 0;
+    color: #3d3d3d;
+  }
+  .btn-close,.btn-close-photo {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    font-size: 10px;
+    background-color: #555;
+    border: 0;
+    border-radius: 22px;
+    height: 22px;
+    width: 22px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+    outline: none;
+  }
+  .btn-close {
+    right: -7px;
+    top: -10px;
+  }
+  .label-captive {
+    position: absolute;
+    color: white;
+    left: 0px;
+    top: 0px;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: orange;
+    border: 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 24px;
+    width: 24px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    z-index: 2;
+    outline: none;
+  }
+  .btn-close-photo {
+    right: 1px;
+    top: 1px;
+  }
+  .btn-enlarge {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    background-color: #5D5D5D;
+    border: 0;
+    border-radius: 2px;
+    height: 28px;
+    width: 28px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0.8;
+    right: 5px;
+    bottom: 5px;
+    display: none;
+    outline: none;
+  }
+  .btn-enlarge:hover {
+    opacity: 1.0;
+  }
+  .btn-close-photo:hover, .btn-close:hover {
+    background-color: red;
+  }
+  .img-container {
+    text-align: center;
+    height: 120px;
+    line-height: 120px;
+    .placeholder .glyphicon {
       line-height: 120px;
-      font-size: 90px;
+      font-size: 100px;
       opacity: 0.07;
     }
-
+    .gallery-item > .glyphicon {
+      line-height: 120px;
+      font-size: 40px;
+      opacity: 0.07;
+    }
     img {
-      max-height: 115px;
-      max-width: 172px;
+      max-height: 105px;
+      max-width: 160px;
       width: auto;
     }
-
-    .zoom {
-      position: absolute;
-      bottom: 25px;
-      line-height: 20px;
-      right: 32px;
-      opacity: 0.5;
-    }
-  }
-
-  .carousel {
-    .item {
-      height: 130px;
-      line-height: 130px;
-      width: 100%;
-      &.next, &.active {
+    .carousel {
+      .carousel-control {
+        background: none;
+        height: 50px;
+        margin-top: 40px;
+        text-shadow: none;
+        opacity: 1;
+        width: 7%;
+        span {
+          font-size: 14px;
+          margin-top: -10px;
+        }
+        .glyphicon-chevron-right, .glyphicon-chevron-left {
+          color: #555;
+          &:hover {
+            color: black;
+          }
+        }
+      }
+      .gallery-item {
         display: inline-block;
+        position: relative;
+        .zoom {
+          bottom: 0px;
+          right: 0px;
+        }
       }
-      &.left, &.right {
-        float: none;
-        margin: 0px auto;
-      }
-    }
-    .photoDrag {
-      display: inline-block;
-      line-height: initial;
-      cursor: pointer;
-      box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.4);
-      margin-left: -1px;
-
-      &:hover {
-        border: 1px solid rgba(255, 0, 128, 0.3);
-        padding: 0px;
-      }
-      &.drag {
-        border: 1px solid rgba(255, 0, 128, 0.7);
-        padding: 0px;
-      }
-      img {
-        display: inline-block;
-      }
-      .close {
-        line-height: 20px;
-        color: black;
-        float: right;
-        width: 0;
-        height: 0;
-        margin: 2px 17px 0px -17px;
-        font-size: 15px;
-        opacity: 0.5;
-      }
-    }
-    .carousel-control {
-      background: none;
-      height: 50px;
-      margin-top: 40px;
-      span {
-        font-size: 20px;
-        margin-top: -10px;
-      }
-    }
-    .carousel-indicators {
-      bottom: 0px;
-      margin-bottom: 5px;
-      li {
-        border: 1px solid #E4E4E4;
-        box-shadow: 0 1px 0 #222;
-        &:hover {
-          background: #fff;
+      .item.next, .item.prev, .item.left, .item.right {
+        .btn-close-photo, .btn-enlarge {
+          display: none !important;
         }
       }
     }
   }
-
-  textarea {
-    resize: none;
-  }
 }
 
-.date .input-group-addon {
-  padding: 6px 11px;
-  background: #fff;
-  color: #333;
-  cursor: pointer;
-}
-
-.card button .glyphicon, .leftColumn button .glyphicon {
-  top: 3px;
+#react-images-container .figureShadow--jss-0-5 {
+  box-shadow: none;
 }
 
 
-.cellDropzone {
-  float: left;
-}
-.cellDropzone.hover .card, .cellDropzone .card.dragOver {
-  border: 3px solid green;
-  padding: 3px;
-}
-.cellDropzone .card.dragging {
-  border: 3px solid red;
-  padding: 3px;
-  cursor: no-drop;
-}
-#multiMenu {
-  position: fixed;
-  top: 120px;
-  width: 220px;
-  cursor: auto;
-}
-.image .badge {
-  position: absolute;
-  display: block;
-  z-index: 2;
-}
+// Model dialogs
+
 .modal {
   &.location {
     .modal-header {
@@ -355,7 +368,7 @@
       input {
         width: 80px;
         &.notes {
-          width: 220px;
+          width: 200px;
         }
       }
     }
@@ -406,11 +419,36 @@
   }
 }
 
-.pac-container {
-  z-index: 1100;
+
+
+// Included components
+
+.ac-chooser {
+  width: 100%;
+  .ac-select-thumb {
+    float: inherit;
+    padding: 0px;
+    width: 39px;
+    &.input-sm {
+      width: 33px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &:contains('img') {
+      border: none;
+      background: none;
+    }
+    &.has-photo {
+      border: none;
+      background: none;
+      padding: 0px;
+    }
+  }
 }
-div.fixed:before {
-  content: "<div id='thebefore'></div>"
+.ui-autocomplete .ac-result {
+  font-size: 0.9em;
 }
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
   position: absolute;
@@ -428,5 +466,72 @@ div.fixed:before {
   }
   &:after {
     right: 111px;
+  }
+  .btn {
+    box-shadow: none;
+  }
+}
+
+// Google location search autocomplete results
+.pac-container {
+  z-index: 1100;
+}
+
+
+
+// Removing navbar collapse feature of responsive bootstrap
+
+@media (min-width: 1px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav>li {
+    float: left;
+    margin: 0;
+  }
+  .navbar-right {
+    float: right!important;
+    margin-right: -15px;
+  }
+  .container-fluid>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+    float: left;
+  }
+  .navbar-form {
+    width: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .navbar-toggle {
+    display: none;
+  }
+  .navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+  }
+  .navbar-right .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  .dropdown-menu {
+    position: absolute !important;
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
   }
 }

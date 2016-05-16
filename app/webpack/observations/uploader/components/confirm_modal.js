@@ -30,7 +30,7 @@ class ConfirmModal extends Component {
     if ( !this.props.hideCancel ) {
       cancel = (
         <Button bsStyle="default" onClick={ this.close }>
-          { this.props.cancelText || "Cancel" }
+          { this.props.cancelText || I18n.t( "cancel" ) }
         </Button>
       );
     }
@@ -45,7 +45,7 @@ class ConfirmModal extends Component {
          <div className="buttons">
             { cancel }
             <Button bsStyle={ this.props.confirmClass || "primary" } onClick={ this.confirm }>
-              { this.props.confirmText || "Confirm" }
+              { this.props.confirmText || I18n.t( "confirm" ) }
             </Button>
           </div>
         </Modal.Footer>

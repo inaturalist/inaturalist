@@ -69,7 +69,8 @@ gem 'omniauth-soundcloud'
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "4.2.1"
-gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
+gem 'delayed_paperclip', git: 'git://github.com/jrgifford/delayed_paperclip.git',
+  ref: '8f11882ee945bf56affe8df4f591e5171581aac3'
 gem 'pg'
 gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'

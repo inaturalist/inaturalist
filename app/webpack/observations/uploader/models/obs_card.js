@@ -35,8 +35,17 @@ const ObsCard = class ObsCard {
     );
   }
 
+  nonUploadedFiles( ) {
+    return _.filter( this.files, f =>
+      f.upload_state === "uploading" || f.upload_state === "pending" );
+  }
+
   uploadedFiles( ) {
     return _.filter( this.files, f => f.upload_state === "uploaded" );
+  }
+
+  uploadedFileIDs( ) {
+    return _.map( this.uploadedFiles( ), f => f.id );
   }
 
   momentDate( ) {
@@ -56,13 +65,12 @@ const ObsCard = class ObsCard {
     const updates = { };
     const obs = p.to_observation;
     if ( !this.date && obs.time_observed_at ) {
-      updates.date = moment( new Date( obs.time_observed_at ) ).format( "MM/DD/YY h:mm A ZZ" );
+      updates.date = moment.parseZone( obs.time_observed_at ).format( "YYYY/MM/DD h:mm A ZZ" );
       updates.selected_date = updates.date;
     }
     if ( !this.latitude && obs.latitude && obs.longitude ) {
       updates.latitude = parseFloat( obs.latitude );
       updates.longitude = parseFloat( obs.longitude );
-      updates.accuracy = 2;
     }
     if ( !this.locality_notes && obs.place_guess ) {
       updates.locality_notes = obs.place_guess;
@@ -109,7 +117,8 @@ const ObsCard = class ObsCard {
         geoprivacy: this.geoprivacy,
         place_guess: this.locality_notes,
         observation_field_values_attributes: this.observation_field_values,
-        tag_list: this.tags.join( "," )
+        tag_list: this.tags.join( "," ),
+        captive_flag: this.captive
       }
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }

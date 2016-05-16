@@ -265,22 +265,24 @@ class PhotosController < ApplicationController
     @photo = LocalPhoto.new(file: params[:file],
       user: current_user, mobile: is_mobile_app?)
     respond_to do |format|
-      Delayed::Worker.delay_jobs = false
       if @photo.save
         @photo.reload
         format.html { redirect_to observations_path }
-        format.json { render json: @photo.as_json(include: {
+        format.json do
+          json = @photo.as_json(include: {
           to_observation: {
             include: { observation_field_values:
               { include: :observation_field, methods: :taxon } },
             methods: [ :tag_list ]
           } } )
-        }
+          json[:original_url] = @photo.file.url(:original)
+          json[:large_url] = @photo.file.url(:large)
+          render json: json
+        end
       else
         format.html { redirect_to observations_path }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
-      Delayed::Worker.delay_jobs = true
     end
   end
 

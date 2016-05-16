@@ -9,9 +9,10 @@ class StatusModal extends Component {
     let modalMessage;
     const savingCount = ( saveCounts.saving + saveCounts.saved + saveCounts.failed );
     if ( ( saveCounts.pending + saveCounts.saving ) === 0 ) {
-      modalMessage = "Going to your observations...";
+      modalMessage = I18n.t( "going_to_your_observations" );
     } else {
-      modalMessage = `Saving ${savingCount || 1} of ${total} observations...`;
+      modalMessage = I18n.t( "saving_num_of_count_observations",
+        { num: savingCount, count: total } );
     }
     return (
       <Modal show={ show } className="status">

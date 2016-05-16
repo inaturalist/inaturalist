@@ -37,8 +37,8 @@ const mapDispatchToProps = ( dispatch ) => ( {
   selectObsCards: ( ids ) => {
     dispatch( actions.selectObsCards( ids ) );
   },
-  mergeObsCards: ( obsCards ) => {
-    dispatch( actions.mergeObsCards( obsCards ) );
+  mergeObsCards: ( obsCards, targetCard ) => {
+    dispatch( actions.mergeObsCards( obsCards, targetCard ) );
   },
   setState: ( attrs ) => {
     dispatch( actions.setState( attrs ) );

@@ -1110,7 +1110,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.map ) { return; }
     var defaultMapType = PREFERRED_MAP_TYPE || google.maps.MapTypeId.LIGHT;
     $( "#map" ).taxonMap({
-      urlCoords: true,
+      urlCoords: false,
       mapType: defaultMapType,
       showAllLayer: false,
       disableFullscreen: true,

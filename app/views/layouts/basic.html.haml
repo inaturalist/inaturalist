@@ -6,6 +6,36 @@
       - if content_for?(:title)
         &middot;
         = yield(:title)
+    = favicon_link_tag
+    = csrf_meta_tag
+    - if logged_in?
+      %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
     = yield :extrahead
   %body
     = content_for?(:content) ? yield(:content) : yield
+    %script{ type: "text/javascript" }
+      if( I18n === undefined ) { var I18n = { }; }
+      I18n.defaultLocale = "en";
+      I18n.locale = "#{ I18n.locale }";
+      I18n.fallbacks = true;
+      - site_place = @site && @site.place
+      - user_place = current_user && current_user.place
+      var PREFERRED_PLACE;
+      - if place = (user_place || site_place)
+        PREFERRED_PLACE = #{ json_escape (user_place || site_place). |
+          to_json(only: [:id, :name, :place_type],                   |
+          methods: [:ancestor_place_ids]).html_safe };               |
+      var CURRENT_USER;
+      - if logged_in?
+        CURRENT_USER = {                                |
+          id: #{ current_user.id },                     |
+          login: "#{ current_user.login }",             |
+          icon: "#{ current_user.icon.url(:thumb) }" }; |
+      var TIMEZONE = "#{ Time.zone.tzinfo.name }";
+      var SITE = #{ @site.to_json(                      |
+        only: [ :id, :name, :logo ],                    |
+        methods: [ :logo ],                             |
+        include: { place: { only: [ :id, :name ] } }    |
+      ).html_safe };                                    |
+    - if content_for?(:delayed_js)
+      = yield(:delayed_js)

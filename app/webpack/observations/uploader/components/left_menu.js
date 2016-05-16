@@ -1,8 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Button, Input, Glyphicon, Badge } from "react-bootstrap";
-import TaxonAutocomplete from "../../identify/components/taxon_autocomplete";
-import inaturalistjs from "inaturalistjs";
+import { Input, Glyphicon, Badge } from "react-bootstrap";
+import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 
 class LeftMenu extends Component {
@@ -12,6 +11,11 @@ class LeftMenu extends Component {
     this.valuesOf = this.valuesOf.bind( this );
     this.commonValue = this.commonValue.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
+  }
+
+  shouldComponentUpdate( nextProps ) {
+    if ( this.props.reactKey === nextProps.reactKey ) { return false; }
+    return true;
   }
 
   openLocationChooser( ) {
@@ -56,21 +60,15 @@ class LeftMenu extends Component {
     const count = keys.length;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
-    const commonSpeciesGuess = this.commonValue( "species_guess" );
     const commonSelectedTaxon = this.commonValue( "selected_taxon" );
     const commonDate = this.commonValue( "date" );
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
-    let descriptionPlaceholder = "Enter description";
+    let descriptionPlaceholder = I18n.t( "description" );
     if ( uniqDescriptions.length > 1 ) {
-      descriptionPlaceholder = "Edit multiple descriptions";
+      descriptionPlaceholder = I18n.t( "edit_multiple_descriptions" );
     }
-    let globe = (
-      <Button onClick={ this.openLocationChooser }>
-        <Glyphicon glyph="globe" />
-      </Button>
-    );
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
@@ -79,10 +77,10 @@ class LeftMenu extends Component {
     if ( commonTags && commonTags.length > 0 ) {
       taglist = (
         <div className="tags">
-          <h5>Tags:</h5>
+          { I18n.t( "tags" ) }
           <div className="taglist">
             { _.map( commonTags, t => (
-              <Badge className="tag">{ t }</Badge>
+              <Badge className="tag" key={ t }>{ t }</Badge>
             ) ) }
           </div>
         </div>
@@ -93,63 +91,108 @@ class LeftMenu extends Component {
     if ( commonOfvs && commonOfvs.length > 0 ) {
       ofvlist = (
         <div className="tags">
-          <h5>Custom Field Values:</h5>
+          { I18n.t( "custom_field_values" ) }
           <div className="taglist">
-            { _.map( commonOfvs, t => (
-              <Badge className="tag">
+            { _.map( commonOfvs, t => {
+              const key = `${t.observation_field.name}` +
+                `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}`;
+              return ( <Badge className="tag" key={ key }>
                 <span className="field">{ `${t.observation_field.name}:` }</span>
                 { `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}` }
-              </Badge>
-            ) ) }
+              </Badge> );
+            } ) }
           </div>
         </div>
       );
     }
     let menu;
     if ( count === 0 ) {
-      menu = <h4 className="empty">Select observations to edit...</h4>;
+      menu = I18n.t( "select_observations_to_edit" );
     } else {
+      let text = I18n.t( "editing_observations", { count } );
       menu = (
         <div>
-          <h4>Editing {count} observation{count > 1 ? "s" : ""}</h4>
+          { text }
+          <br />
+          <br />
           <TaxonAutocomplete
-            key={ `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.id}` }
-            bootstrapClear
+            key={
+              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
+            bootstrap
             searchExternal
             showPlaceholder
-            allowPlaceholders
             perPage={ 6 }
-            value={ ( commonSelectedTaxon && commonSelectedTaxon.id ) ?
-              commonSelectedTaxon.title : commonSpeciesGuess }
             initialSelection={ commonSelectedTaxon }
-            afterSelect={ function ( result ) {
-              updateSelectedObsCards( {
-                taxon_id: result.item.id,
-                selected_taxon: new inaturalistjs.Taxon( result.item ) } );
+            afterSelect={ r => {
+              if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
+                updateSelectedObsCards(
+                  { taxon_id: r.item.id,
+                    selected_taxon: r.item,
+                    species_guess: r.item.title } );
+              }
             } }
             afterUnselect={ ( ) => {
-              updateSelectedObsCards( {
-                taxon_id: undefined,
-                selected_taxon: undefined } );
+              if ( commonSelectedTaxon ) {
+                updateSelectedObsCards(
+                  { taxon_id: null,
+                    selected_taxon: null,
+                    species_guess: null } );
+              }
             } }
-            onChange={ e => updateSelectedObsCards( {
-              species_guess: e.target.value, selected_species_guess: e.target.value
-            } ) }
           />
           <DateTimeFieldWrapper
-            defaultText={ commonDate }
+            ref="datetime"
+            key={ `multidate${commonDate}` }
+            reactKey={ `multidate${commonDate}` }
             onChange={ dateString => updateSelectedObsCards(
               { date: dateString, selected_date: dateString } ) }
           />
-          <Input type="text" buttonAfter={ globe } readOnly
-            value={ locationText } onClick={ this.openLocationChooser }
-          />
-          <Input type="textarea"
-            placeholder={ descriptionPlaceholder } value={ commonDescription }
-            onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-          />
+          <div className="input-group"
+            onClick= { ( ) => {
+              if ( this.refs.datetime ) {
+                this.refs.datetime.onClick( );
+              }
+            } }
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="calendar" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ commonDate }
+              onChange= { e => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onChange( undefined, e.target.value );
+                }
+              } }
+              placeholder={ I18n.t( "date_" ) }
+            />
+          </div>
+          <div className="input-group"
+            onClick={ this.openLocationChooser }
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="map-marker" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ locationText }
+              placeholder={ I18n.t( "location" ) }
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              placeholder={ descriptionPlaceholder }
+              className="form-control"
+              value={ commonDescription }
+              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+            />
+          </div>
           <Input type="checkbox"
-            label="Captive or cultivated"
+            label={ I18n.t( "captive_cultivated" ) }
             checked={ this.commonValue( "captive" ) }
             value="true"
             onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
@@ -160,7 +203,7 @@ class LeftMenu extends Component {
       );
     }
     return (
-      <div id="multiMenu">
+      <div className="left-col-padding">
         {menu}
       </div>
     );
@@ -171,7 +214,8 @@ LeftMenu.propTypes = {
   obsCards: PropTypes.object,
   selectedObsCards: PropTypes.object,
   updateSelectedObsCards: PropTypes.func,
-  setState: PropTypes.func
+  setState: PropTypes.func,
+  reactKey: PropTypes.string
 };
 
 export default LeftMenu;
