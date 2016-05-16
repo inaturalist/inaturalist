@@ -16,7 +16,8 @@ function mapStateToProps( state ) {
   const observation = state.currentObservation.observation;
   if ( observation ) {
     images = observation.photos.map( ( photo ) => ( {
-      original: photo.photoUrl( "large" ),
+      original: photo.photoUrl( "medium" ),
+      zoom: photo.photoUrl( "original" ),
       thumbnail: photo.photoUrl( "square" )
     } ) );
   }
