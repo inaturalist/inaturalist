@@ -3,11 +3,18 @@ import update from "react-addons-update";
 import * as types from "../constants/constants";
 
 const defaultState = {
-  overallID: NPS_OVERALL_ID,
-  umbrellaProjects: NPS_UMBRELLA_PROJECTS,
-  umbrellaSubProjects: NPS_UMBRELLA_SUB_PROJECTS,
-  allSubProjects: NPS_ALL_SUB_PROJECTS,
-  project: NPS_UMBRELLA_PROJECTS[0],
+  /* global SLIDESHOW_PROJECT */
+  /* global NPS_OVERALL_ID */
+  /* global NPS_UMBRELLA_PROJECTS */
+  /* global NPS_UMBRELLA_SUB_PROJECTS */
+  /* global NPS_ALL_SUB_PROJECTS */
+  /* global NPS_UMBRELLA_PROJECTS */
+  singleProject: SLIDESHOW_PROJECT,
+  overallID: ( typeof NPS_OVERALL_ID === "undefined" ) ? null : NPS_OVERALL_ID,
+  umbrellaProjects: ( typeof NPS_UMBRELLA_PROJECTS === "undefined" ) ? null : NPS_UMBRELLA_PROJECTS,
+  umbrellaSubProjects: ( typeof NPS_UMBRELLA_SUB_PROJECTS === "undefined" ) ? null : NPS_UMBRELLA_SUB_PROJECTS,
+  allSubProjects: ( typeof NPS_ALL_SUB_PROJECTS === "undefined" ) ? null : NPS_ALL_SUB_PROJECTS,
+  project: SLIDESHOW_PROJECT || NPS_UMBRELLA_PROJECTS[0],
   slideshowUmbrellaIndex: 0,
   slideshowSubProjectIndex: null,
   umbrellaProject: null,
@@ -56,7 +63,7 @@ const defaultState = {
   // ]
 };
 
-const bioblitz = ( state = defaultState, action ) => {
+const reducer = ( state = defaultState, action ) => {
   switch ( action.type ) {
 
     case types.SET_STATE: {
@@ -84,4 +91,4 @@ const bioblitz = ( state = defaultState, action ) => {
   }
 };
 
-export default bioblitz;
+export default reducer;

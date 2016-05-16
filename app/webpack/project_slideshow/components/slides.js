@@ -16,7 +16,7 @@ const baseStats = {
   speciesStats: { }
 };
 
-class Slideshow extends Component {
+class Slides extends Component {
 
   constructor( props, context ) {
     super( props, context );
@@ -108,6 +108,7 @@ class Slideshow extends Component {
   }
 
   currentProjectIsUmbrella( ) {
+    if ( this.props.singleProject ) { return false; }
     return this.props.umbrellaSubProjects[this.props.project.id];
   }
 
@@ -121,6 +122,7 @@ class Slideshow extends Component {
   }
 
   nextSubprojectInUmbrella( ) {
+    if ( this.props.singleProject ) { return false; }
     const isUmbrella = this.props.umbrellaSubProjects[this.props.project.id];
     let umbrellaProject = this.props.umbrellaProject;
     if ( !this.props.umbrellaProject && isUmbrella ) {
@@ -149,6 +151,7 @@ class Slideshow extends Component {
   }
 
   nextUmbrellaProject( ) {
+    if ( this.props.singleProject ) { return false; }
     const nextUmbrellaIndex = this.props.slideshowUmbrellaIndex + 1;
     if ( nextUmbrellaIndex < this.props.umbrellaProjects.length ) {
       return {
@@ -176,8 +179,9 @@ class Slideshow extends Component {
   }
 }
 
-Slideshow.propTypes = {
+Slides.propTypes = {
   project: PropTypes.object,
+  singleProject: PropTypes.object,
   umbrellaProject: PropTypes.object,
   setState: PropTypes.func,
   colorIndex: PropTypes.number,
@@ -193,4 +197,4 @@ Slideshow.propTypes = {
   slidesShownForUmbrella: PropTypes.number
 };
 
-export default Slideshow;
+export default Slides;

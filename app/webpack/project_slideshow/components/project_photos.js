@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
-import NodeAPI from "../models/node_api";
+import Util from "../models/util";
 
 class ProjectPhotos extends Component {
 
@@ -20,7 +20,8 @@ class ProjectPhotos extends Component {
   }
 
   reloadData( ) {
-    NodeAPI.fetch(
+    /* eslint no-console: 0 */
+    Util.nodeApiFetch(
       `observations/?per_page=15&project_id=${this.props.project.id}` +
       "&photos=true&sounds=false&order_by=votes&ttl=600" ).
       then( json => {

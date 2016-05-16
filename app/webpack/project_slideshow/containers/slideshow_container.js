@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Bioblitz from "../components/bioblitz";
+import Slideshow from "../components/slideshow";
 import actions from "../actions/actions";
 
 const mapStateToProps = ( state ) => state;
@@ -15,9 +15,9 @@ const mapDispatchToProps = ( dispatch ) => ( {
 
 } );
 
-const BioblitzContainer = connect(
+const SlideshowContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( Bioblitz );
+)( Slideshow );
 
-export default BioblitzContainer;
+export default SlideshowContainer;

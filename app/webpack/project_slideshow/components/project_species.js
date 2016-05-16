@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
-import NodeAPI from "../models/node_api";
+import Util from "../models/util";
 
 class ProjectSpecies extends Component {
 
@@ -20,17 +20,18 @@ class ProjectSpecies extends Component {
   }
 
   reloadData( ) {
-    NodeAPI.fetch(
+    /* eslint no-console: 0 */
+    Util.nodeApiFetch(
       `observations/species_counts?per_page=6&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.updateState( { speciesStats: { all: json } } );
       } ).catch( e => console.log( e ) );
-    NodeAPI.fetch(
+    Util.nodeApiFetch(
       `observations/species_counts?per_page=4&project_id=${this.props.project.id}&threatened=true&ttl=600` ).
       then( json => {
         this.props.updateState( { speciesStats: { threatened: json } } );
       } ).catch( e => console.log( e ) );
-    NodeAPI.fetch(
+    Util.nodeApiFetch(
       `observations/species_counts?per_page=4&project_id=${this.props.project.id}&introduced=true&ttl=600` ).
       then( json => {
         this.props.updateState( { speciesStats: { introduced: json } } );
@@ -63,7 +64,7 @@ class ProjectSpecies extends Component {
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
                   <span className="count">
-                    { Number( r.count ).toLocaleString( ) } Observations
+                    { Util.numberWithCommas( r.count ) } Observations
                   </span>
                 </div>
               </div>
@@ -97,7 +98,7 @@ class ProjectSpecies extends Component {
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
                   <span className="count">
-                    { Number( r.count ).toLocaleString( ) } Observations
+                    { Util.numberWithCommas( r.count ) } Observations
                   </span>
                 </div>
               </div>
@@ -131,7 +132,7 @@ class ProjectSpecies extends Component {
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
                   <span className="count">
-                    { Number( r.count ).toLocaleString( ) } Observations
+                    { Util.numberWithCommas( r.count ) } Observations
                   </span>
                 </div>
               </div>

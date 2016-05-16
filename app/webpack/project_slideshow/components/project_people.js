@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
-import NodeAPI from "../models/node_api";
+import Util from "../models/util";
 
 class ProjectPeople extends Component {
 
@@ -20,12 +20,13 @@ class ProjectPeople extends Component {
   }
 
   reloadData( ) {
-    NodeAPI.fetch(
+    /* eslint no-console: 0 */
+    Util.nodeApiFetch(
       `observations/identifiers?per_page=6&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.updateState( { peopleStats: { identifiers: json } } );
       } ).catch( e => console.log( e ) );
-    NodeAPI.fetch(
+    Util.nodeApiFetch(
       `observations/observers?per_page=6&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.updateState( { peopleStats: { observers: json } } );
@@ -56,7 +57,7 @@ class ProjectPeople extends Component {
                 <div className="meta">
                   <span className="name">{ r.user.login }</span>
                   <span className="count">
-                    { Number( r.observation_count ).toLocaleString( ) } Observations
+                    { Util.numberWithCommas( r.observation_count ) } Observations
                   </span>
                 </div>
               </div>
@@ -88,7 +89,7 @@ class ProjectPeople extends Component {
                 <div className="meta">
                   <span className="name">{ r.user.login }</span>
                   <span className="count">
-                    { Number( r.count ).toLocaleString( ) } Identifications
+                    { Util.numberWithCommas( r.count ) } Identifications
                   </span>
                 </div>
               </div>

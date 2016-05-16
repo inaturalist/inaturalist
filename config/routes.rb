@@ -268,6 +268,7 @@ Rails.application.routes.draw do
     member do
       get :invite, :as => :invite_to
       get :confirm_leave
+      get :stats_slideshow
     end
     collection do
       get :calendar
@@ -466,6 +467,7 @@ Rails.application.routes.draw do
       get :index
       get :summary
       get :observation_weeks
+      get :nps_bioblitz
     end
   end
 

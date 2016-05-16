@@ -1,7 +1,7 @@
 import fetch from "isomorphic-fetch";
 
-const NodeAPI = class ObsCard {
-  static fetch( path ) {
+const Util = class ObsCard {
+  static nodeApiFetch( path ) {
     return fetch( `http://api.inaturalist.org/v1/${path}`, { method: "GET" } ).
       then( response => {
         if ( response.status >= 200 && response.status < 300 ) {
@@ -17,6 +17,11 @@ const NodeAPI = class ObsCard {
         return text;
       } );
   }
+
+  static numberWithCommas( num ) {
+    if ( !num && num !== 0 ) { return ""; }
+    return Number( num ).toLocaleString( );
+  }
 };
 
-export default NodeAPI;
+export default Util;
