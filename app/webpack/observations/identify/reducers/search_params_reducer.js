@@ -22,6 +22,8 @@ const DEFAULT_PARAMS = {
   ttl: -1
 };
 
+const HIDDEN_PARAMS = ["dateType", "createdDateType"];
+
 const normalizeParams = ( params ) => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
@@ -56,18 +58,15 @@ const normalizeParams = ( params ) => {
     newParams[k] = newValue;
   } );
 
-  // if ( newParams.on || newParams.dateType === "exact" ) {
   if ( newParams.dateType === "exact" ) {
     newParams.dateType = "exact";
     delete newParams.d1;
     delete newParams.d2;
     delete newParams.month;
-  // } else if ( newParams.d1 || newParams.d2 || newParams.dateType === "range" ) {
   } else if ( newParams.d1 || newParams.dateType === "range" ) {
     newParams.dateType = "range";
     delete newParams.on;
     delete newParams.month;
-  // } else if ( newParams.month || newParams.dateType === "month" ) {
   } else if ( newParams.dateType === "month" ) {
     newParams.dateType = "month";
     delete newParams.d1;
@@ -81,16 +80,16 @@ const normalizeParams = ( params ) => {
     delete newParams.month;
   }
 
-  if ( newParams.created_on ) {
+  if ( newParams.createdDateType === "exact" ) {
     newParams.createdDateType = "exact";
     delete newParams.created_d1;
     delete newParams.created_d2;
     delete newParams.created_month;
-  } else if ( newParams.created_d1 || newParams.created_d2 ) {
+  } else if ( newParams.createdDateType === "range" ) {
     newParams.createdDateType = "range";
     delete newParams.created_on;
     delete newParams.created_month;
-  } else if ( newParams.month ) {
+  } else if ( newParams.createdDateType === "month" ) {
     newParams.createdDateType = "month";
     delete newParams.created_d1;
     delete newParams.created_d2;
@@ -110,6 +109,9 @@ const setUrl = ( newState ) => {
   _.forEach( newState, ( v, k ) => {
     // don't put defaults in the URL
     if ( DEFAULT_PARAMS[k] !== undefined && DEFAULT_PARAMS[k] === v ) {
+      return;
+    }
+    if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {
       return;
     }
     if ( _.isArray( v ) && v.length === 0 ) {

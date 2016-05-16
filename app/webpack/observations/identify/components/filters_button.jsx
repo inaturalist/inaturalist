@@ -498,62 +498,7 @@ class FiltersButton extends React.Component {
         <label className="sectionlabel">
           { _.capitalize( I18n.t( "date_added" ) ) }
         </label>
-        <div className="filters-dates">
-          <label className="radio">
-            <input type="radio" name="created-date-type" defaultChecked={ !params.createdDateType } />
-            { _.capitalize( I18n.t( "any" ) ) }
-          </label>
-          <label className="radio">
-            <input
-              type="radio"
-              name="created-date-type"
-              value="exact"
-              defaultChecked={ params.createdDateType === "exact" }
-            />
-            <span className="date-type date-type-exact">
-              { I18n.t( "exact_date" ) }
-              <input
-                className={
-                  `filters-dates-exact form-control input-sm date-picker ${params.created_on ? "filter-changed" : ""}`
-                }
-                type="text"
-                placeholder="YYYY-MM-DD"
-                value={ params.created_on }
-                onClick={ ( ) => updateSearchParams( { createdDateType: "exact" } ) }
-                onChange={ e => updateSearchParams( { created_on: e.target.value } ) }
-              />
-            </span>
-          </label>
-          <label className="radio">
-            <input
-              type="radio"
-              name="created-date-type"
-              value="range"
-              defaultChecked={ params.createdDateType === "range" }
-            />
-            <span className="date-type date-type-range">
-              { I18n.t( "range" ) }
-              <input
-                className={
-                  `form-control input-sm.date-picker ${params.created_d1 ? "filter-changed" : ""}`
-                }
-                type="text"
-                placeholder={ I18n.t( "start" ) }
-                onClick={ ( ) => updateSearchParams( { createdDateType: "range" } ) }
-                onChange={ e => updateSearchParams( { created_d1: e.target.value } ) }
-              />
-              <input
-                className={
-                  `form-control input-sm.date-picker ${params.created_d2 ? "filter-changed" : ""}`
-                }
-                type="text"
-                placeholder={ I18n.t( "end" ) }
-                onClick={ ( ) => updateSearchParams( { createdDateType: "range" } ) }
-                onChange={ e => updateSearchParams( { created_d2: e.target.value } ) }
-              />
-            </span>
-          </label>
-        </div>
+        <DateFilters params={params} updateSearchParams={updateSearchParams} prefix="created" />
       </Col>
     );
     const moreFilters = (
