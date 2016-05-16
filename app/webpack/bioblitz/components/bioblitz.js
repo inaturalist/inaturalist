@@ -19,10 +19,14 @@ class Bioblitz extends Component {
         <nav className="navbar">
           <div className="container-fluid">
             <div className="nav navbar-nav navbar-left">
-              <img src="/logo-inat.svg" />
+              <a href="/">
+                <img src="/logo-inat.svg" />
+              </a>
             </div>
             <div className="nav navbar-nav navbar-title">
-              { this.props.project.title }
+              <a href={ `/projects/${this.props.project.slug}` }>
+                { this.props.project.title }
+              </a>
               <span className="dates">
                 { dateRange }
               </span>

@@ -8,104 +8,157 @@ import ProjectSpecies from "./project_species";
 import ProjectPhotos from "./project_photos";
 import TopProjects from "./top_projects";
 
+const baseStats = {
+  overallStats: { },
+  iconicTaxaCounts: { },
+  iconicTaxaSpeciesCounts: { },
+  peopleStats: { },
+  speciesStats: { }
+};
+
 class Slideshow extends Component {
 
   constructor( props, context ) {
     super( props, context );
-    this.nextSlide = this.nextSlide.bind( this );
+    this.showCurrentSlide = this.showCurrentSlide.bind( this );
+    this.currentProjectIsUmbrella = this.currentProjectIsUmbrella.bind( this );
+    this.currentProjectSlideshowOrders = this.currentProjectSlideshowOrders.bind( this );
+    this.setNextSlide = this.setNextSlide.bind( this );
+    this.nextColorIndex = this.nextColorIndex.bind( this );
+    this.nextSubprojectInUmbrella = this.nextSubprojectInUmbrella.bind( this );
+    this.nextUmbrellaProject = this.nextUmbrellaProject.bind( this );
   }
 
   componentDidMount( ) {
-    this.nextSlide( );
+    this.showCurrentSlide( );
   }
 
-  nextSlide( ) {
-    const isUmbrella = this.props.umbrellaSubProjects[this.props.project.id];
-    const slideOrders = isUmbrella ?
-      this.props.overallProjectSlideshowOrder : this.props.subProjectSlideshowOrder;
-    const next = slideOrders[this.props.slideshowIndex];
-    $( next.slide ).fadeIn( 2000 );
-    if ( next.slide === ".subproject-map-slide" ) {
+  setNextSlide( ) {
+    const nextIndex = this.props.slideshowIndex + 1;
+    if ( this.currentProjectSlideshowOrders( )[nextIndex] ) {
+      // showing the next slide in this project's slideshow
+      this.props.setState( { slideshowIndex: nextIndex } );
+      this.showCurrentSlide( );
+    } else {
+      // transitioning from one project to another
+      $( "#app" ).addClass( "transition" );
+      setTimeout( ( ) => {
+        const nextSubproject = this.nextSubprojectInUmbrella( );
+        if ( nextSubproject ) {
+          this.props.setState( Object.assign( {
+            slideshowIndex: 0,
+            slideshowSubProjectIndex: nextSubproject.subprojectIndex,
+            colorIndex: this.nextColorIndex( ),
+            slidesShownForUmbrella: ( this.props.slidesShownForUmbrella || 0 ) + 1,
+            umbrellaProject: this.props.umbrellaProject || this.props.project,
+            project: nextSubproject.subproject
+          }, baseStats ) );
+          this.showCurrentSlide( );
+        } else {
+          const nextUmbrella = this.nextUmbrellaProject( );
+          if ( nextUmbrella ) {
+            this.props.setState( Object.assign( {
+              slideshowUmbrellaIndex: nextUmbrella.umbrellaProjectIndex,
+              slideshowIndex: 0,
+              slideshowSubProjectIndex: null,
+              colorIndex: this.nextColorIndex( ),
+              umbrellaProject: null,
+              project: nextUmbrella.umbrellaProject
+            }, baseStats ) );
+            this.showCurrentSlide( );
+          } else {
+            // there is no next slide, we've shown them all
+            // reload the page to fetch new date and start over
+            window.location.reload( false );
+          }
+        }
+      }, 1500 );
+    }
+  }
+
+  showCurrentSlide( ) {
+    const current = this.currentProjectSlideshowOrders( )[this.props.slideshowIndex];
+    // fade in the next slide in this project's slideshow
+    $( current.slide ).fadeIn( 2000 );
+    // if the slide is a map slide, need to refresh it now that it's longer hidden
+    if ( current.slide === ".subproject-map-slide" ) {
       this.refs.map.reloadData( );
     }
-    if ( next.slide === ".umbrella-map-slide" ) {
+    if ( current.slide === ".umbrella-map-slide" ) {
       this.refs.umbrellaMap.reloadData( );
     }
+    // apply this slides color, which will transition in as the slide fades in
     const nextColor = `color${( this.props.colorIndex )}`;
     if ( !$( "#app" ).hasClass( nextColor ) ) {
       $( "#app" ).removeClass( );
       $( "#app" ).addClass( `color${( this.props.colorIndex )}` );
     }
-    if ( next.slide === ".top-projects-slide" ) {
+    // top project slides use their own custom colors
+    if ( current.slide === ".top-projects-slide" ) {
       $( "#app" ).addClass( "top-projects" );
     }
+    // apply the phase class, which determines how dark the slide background is
     $( "#main-container" ).removeClass( );
     $( "#main-container" ).addClass( `phase${( this.props.slideshowIndex )}` );
     setTimeout( ( ) => {
-      $( next.slide ).fadeOut( 2000 );
-      const nextIndex = this.props.slideshowIndex + 1;
-      if ( slideOrders[nextIndex] ) {
-        this.props.setState( { slideshowIndex: nextIndex } );
-        this.nextSlide( );
-      } else {
-        $( "#app" ).addClass( "transition" );
-        setTimeout( ( ) => {
-          if ( isUmbrella ) {
-            this.props.setState( {
-              slideshowIndex: 0,
-              slideshowSubProjectIndex: 0,
-              colorIndex: ( this.props.colorIndex + 1 ) % this.props.countColors,
-              umbrellaProject: this.props.project,
-              project: _.values( this.props.umbrellaSubProjects[this.props.project.id] )[0],
-              overallStats: { },
-              iconicTaxaCounts: { },
-              iconicTaxaSpeciesCounts: { },
-              peopleStats: { },
-              speciesStats: { }
-            } );
-            this.nextSlide( );
-          } else {
-            const nextSubprojectIndex = this.props.slideshowSubProjectIndex + 1;
-            if ( nextSubprojectIndex > this.props.umbrellaProject.slideshow_count - 1 ) {
-              const nextUmbrellaIndex = this.props.slideshowUmbrellaIndex + 1;
-              if ( nextUmbrellaIndex > this.props.umbrellaProjects.length - 1 ) {
-                window.location.reload(false);
-              } else {
-                this.props.setState( {
-                  slideshowUmbrellaIndex: nextUmbrellaIndex,
-                  slideshowIndex: 0,
-                  slideshowSubProjectIndex: null,
-                  colorIndex: ( this.props.colorIndex + 1 ) % this.props.countColors,
-                  umbrellaProject: null,
-                  project: this.props.umbrellaProjects[nextUmbrellaIndex],
-                  overallStats: { },
-                  iconicTaxaCounts: { },
-                  iconicTaxaSpeciesCounts: { },
-                  peopleStats: { },
-                  speciesStats: { }
-                } );
-                this.nextSlide( );
-              }
-            } else {
-              this.props.setState( {
-                slideshowIndex: 0,
-                slideshowSubProjectIndex: nextSubprojectIndex,
-                project: _.values( this.props.umbrellaSubProjects[
-                  this.props.umbrellaProject.id] )[nextSubprojectIndex],
-                colorIndex: ( this.props.colorIndex + 1 ) % this.props.countColors,
-                overallStats: { },
-                iconicTaxaCounts: { },
-                iconicTaxaSpeciesCounts: { },
-                peopleStats: { },
-                speciesStats: { }
-              } );
-              this.nextSlide( );
-            }
-          }
-        }, 1500 );
-      }
-    }, next.duration );
+      // after slide.duration ms, fade out this slide and set up the next one
+      $( current.slide ).fadeOut( 2000 );
+      this.setNextSlide( );
+    }, current.duration );
   }
+
+  currentProjectIsUmbrella( ) {
+    return this.props.umbrellaSubProjects[this.props.project.id];
+  }
+
+  currentProjectSlideshowOrders( ) {
+    return this.currentProjectIsUmbrella( ) ?
+      this.props.overallProjectSlideshowOrder : this.props.subProjectSlideshowOrder;
+  }
+
+  nextColorIndex( ) {
+    return ( this.props.colorIndex + 1 ) % this.props.countColors;
+  }
+
+  nextSubprojectInUmbrella( ) {
+    const isUmbrella = this.props.umbrellaSubProjects[this.props.project.id];
+    let umbrellaProject = this.props.umbrellaProject;
+    if ( !this.props.umbrellaProject && isUmbrella ) {
+      umbrellaProject = this.props.project;
+    }
+    if ( !umbrellaProject ) { return false; }
+    // we've shown enough slides for this umbrella already
+    if ( this.props.slidesShownForUmbrella >= umbrellaProject.slideshow_count ) {
+      return false;
+    }
+    let nextSubproject;
+    let nextSubprojectIndex = ( this.props.slideshowSubProjectIndex === null ) ?
+      -1 : this.props.slideshowSubProjectIndex;
+    while ( !nextSubproject ) {
+      nextSubprojectIndex += 1;
+      const projectAtIndex = _.values( this.props.umbrellaSubProjects[
+        umbrellaProject.id] )[nextSubprojectIndex];
+      // there are no more projects in this umbrella to show - stop
+      if ( !projectAtIndex ) { break; }
+      // there are no observations in this subproject - skip it
+      if ( !projectAtIndex.observation_count ) { continue; }
+      nextSubproject = projectAtIndex;
+      return { subproject: nextSubproject, subprojectIndex: nextSubprojectIndex };
+    }
+    return false;
+  }
+
+  nextUmbrellaProject( ) {
+    const nextUmbrellaIndex = this.props.slideshowUmbrellaIndex + 1;
+    if ( nextUmbrellaIndex < this.props.umbrellaProjects.length ) {
+      return {
+        umbrellaProject: this.props.umbrellaProjects[nextUmbrellaIndex],
+        umbrellaProjectIndex: nextUmbrellaIndex
+      };
+    }
+    return false;
+  }
+
 
   render( ) {
     return (
@@ -136,7 +189,8 @@ Slideshow.propTypes = {
   slideshowUmbrellaIndex: PropTypes.number,
   slideshowSubProjectIndex: PropTypes.number,
   subProjectSlideshowOrder: PropTypes.array,
-  overallProjectSlideshowOrder: PropTypes.array
+  overallProjectSlideshowOrder: PropTypes.array,
+  slidesShownForUmbrella: PropTypes.number
 };
 
 export default Slideshow;

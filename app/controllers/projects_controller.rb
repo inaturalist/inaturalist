@@ -66,9 +66,13 @@ class ProjectsController < ApplicationController
       end
       format.json do
         scope = Project.all
-        scope = scope.featured if params[:featured]
+        if params[:featured] && params[:latitude]
+          scope = scope.featured_near_point( params[:latitude], params[:longitude] )
+        else
+          scope = scope.featured if params[:featured]
+          scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+        end
         scope = scope.in_group(params[:group]) if params[:group]
-        scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
         opts = Project.default_json_options.merge(:include => [

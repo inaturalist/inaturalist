@@ -78,6 +78,7 @@ class StatsController < ApplicationController
         {
           id: p.id,
           title: p.title.sub("2016 National Parks BioBlitz - ", ""),
+          slug: p.slug,
           start_time: p.start_time,
           end_time: p.end_time,
           place_id: p.rule_place.try(:id),
@@ -106,11 +107,15 @@ class StatsController < ApplicationController
     sub_project_ids[@overall_id] = all_project_data.keys -
       all_project_ids - sub_project_ids.keys
 
+    # deleting any empty umbrella projects
     @umbrella_projects = umbrella_project_ids.
-      map{ |id| all_project_data[id] }.compact
+      map{ |id| all_project_data[id] }.compact.
+      delete_if{ |p| p[:observation_count] == 0 }
 
-    @sub_projects = Hash[ sub_project_ids.
-      map{ |k,v| [ k, v.map{ |id| all_project_data[id] }.compact ] } ]
+    # randomizing subprojects
+    @sub_projects = Hash[ sub_project_ids.map{ |umbrella_id,subproject_ids|
+      [ umbrella_id, subproject_ids.shuffle.map{ |id| all_project_data[id] }.compact ]
+    } ]
 
     @all_sub_projects = all_project_data.reject{ |k,v| @sub_projects[k] }.values
 

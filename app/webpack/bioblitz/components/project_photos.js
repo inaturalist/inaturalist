@@ -21,7 +21,8 @@ class ProjectPhotos extends Component {
 
   reloadData( ) {
     NodeAPI.fetch(
-      `observations/?per_page=15&project_id=${this.props.project.id}&photos=true&sounds=false&ttl=600` ).
+      `observations/?per_page=15&project_id=${this.props.project.id}` +
+      "&photos=true&sounds=false&order_by=votes&ttl=600" ).
       then( json => {
         this.props.setState( { photos: json } );
       } ).catch( e => console.log( e ) );
