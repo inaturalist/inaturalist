@@ -6,6 +6,7 @@ import { DEFAULT_PARAMS } from "../reducers/search_params_reducer";
 import PlaceAutocomplete from "./place_autocomplete";
 import ProjectAutocomplete from "./project_autocomplete";
 import UserAutocomplete from "./user_autocomplete";
+import DateFilters from "./date_filters";
 
 class FiltersButton extends React.Component {
   constructor( props ) {
@@ -110,8 +111,6 @@ class FiltersButton extends React.Component {
       { value: "observed_on", default: "date observed", key: "date_observed" },
       { value: "votes", default: "faves", key: "faves" }
     ];
-    const monthNames = ( "january february march april may june july august " +
-      "september october november december" ).split( " " );
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0
     );
@@ -323,93 +322,7 @@ class FiltersButton extends React.Component {
         <label className="sectionlabel">
           { _.capitalize( I18n.t( "date_observed" ) ) }
         </label>
-        <div className="filters-dates">
-          <label className="radio">
-            <input
-              type="radio"
-              name="date-type"
-              value=""
-              defaultChecked={ !params.dateType }
-              onChange={ e => updateSearchParams( { dateType: e.target.value } ) }
-            />
-            { _.capitalize( I18n.t( "any" ) ) }
-          </label>
-          <label className="radio">
-            <input
-              type="radio"
-              name="date-type"
-              value="exact"
-              defaultChecked={ params.dateType === "exact" }
-              onChange={ e => updateSearchParams( { dateType: e.target.value } ) }
-            />
-            <span className="date-type date-type-exact">
-              { I18n.t( "exact_date" ) }
-              <input
-                className={
-                  `filters-dates-exact form-control input-sm date-picker ${params.on ? "filter-changed" : ""}`
-                }
-                type="text"
-                placeholder="YYYY-MM-DD"
-                onClick={ ( ) => updateSearchParams( { dateType: "exact" } ) }
-                onChange={ e => updateSearchParams( { on: e.target.value } ) }
-              />
-            </span>
-          </label>
-          <label className="radio">
-            <input
-              type="radio"
-              name="date-type"
-              value="range"
-              defaultChecked={ params.dateType === "range" }
-            />
-            <span className="date-type date-type-range">
-              { I18n.t( "range" ) }
-              <input
-                className={
-                  `form-control.input-sm.date-picker ${params.d1 ? "filter-changed" : ""}`
-                }
-                type="text"
-                placeholder={ I18n.t( "start" ) }
-                onClick={ ( ) => updateSearchParams( { dateType: "range" } ) }
-                onChange={ e => updateSearchParams( { d1: e.target.value } ) }
-              />
-              <input
-                className={
-                  `form-control.input-sm.date-picker ${params.d2 ? "filter-changed" : ""}`
-                }
-                type="text"
-                placeholder={ I18n.t( "end" ) }
-                onClick={ ( ) => updateSearchParams( { dateType: "range" } ) }
-                onChange={ e => updateSearchParams( { d2: e.target.value } ) }
-              />
-            </span>
-          </label>
-          <label className="radio">
-            <input
-              type="radio"
-              name="date-type"
-              value="month"
-              defaultChecked={ params.dateType === "month" }
-            />
-            <span className="date-type date-type-month">
-              { I18n.t( "months" ) }
-              <select
-                className={`form-control input-sm ${params.month ? "filter-changed" : ""}`}
-                id="filters-dates-month"
-                multiple="multiple"
-              >
-                { monthNames.map( month => {
-                  const i = monthNames.indexOf( month );
-                  return (
-                    <option value={i} key={`filters-dates-month-${i}`}>
-                      { I18n.t( `date_format.month.${month}` ) }
-                    </option>
-                  );
-                } ) }
-              </select>
-            </span>
-          </label>
-        </div>
+        <DateFilters params={params} updateSearchParams={updateSearchParams} />
         <div
           id="filters-observation-fields"
           className={ canShowObservationFields( ) ? "" : "collapse" }

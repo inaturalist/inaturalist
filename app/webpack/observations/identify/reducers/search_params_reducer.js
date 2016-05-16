@@ -40,12 +40,14 @@ const normalizeParams = ( params ) => {
     // coerce integerish strings to numbers
     if (
       typeof( newValue ) === "string"
-      && parseInt( newValue, 10 ) > 0
+      && newValue.match( /^\d+$/ )
     ) {
       newValue = parseInt( newValue, 10 );
     }
     // coerce arrayish strings to arrays
-    if ( typeof( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
+    if ( k === "month" && !_.isArray( newValue ) ) {
+      newValue = newValue.toString( ).split( "," ).map( m => parseInt( m, 10 ) );
+    } else if ( typeof( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
       newValue = newValue.split( "," );
     }
     if ( k === "iconic_taxa" && typeof( newValue ) === "string" ) {
@@ -53,6 +55,53 @@ const normalizeParams = ( params ) => {
     }
     newParams[k] = newValue;
   } );
+
+  // if ( newParams.on || newParams.dateType === "exact" ) {
+  if ( newParams.dateType === "exact" ) {
+    newParams.dateType = "exact";
+    delete newParams.d1;
+    delete newParams.d2;
+    delete newParams.month;
+  // } else if ( newParams.d1 || newParams.d2 || newParams.dateType === "range" ) {
+  } else if ( newParams.d1 || newParams.dateType === "range" ) {
+    newParams.dateType = "range";
+    delete newParams.on;
+    delete newParams.month;
+  // } else if ( newParams.month || newParams.dateType === "month" ) {
+  } else if ( newParams.dateType === "month" ) {
+    newParams.dateType = "month";
+    delete newParams.d1;
+    delete newParams.d2;
+    delete newParams.on;
+  } else {
+    delete newParams.dateType;
+    delete newParams.on;
+    delete newParams.d1;
+    delete newParams.d2;
+    delete newParams.month;
+  }
+
+  if ( newParams.created_on ) {
+    newParams.createdDateType = "exact";
+    delete newParams.created_d1;
+    delete newParams.created_d2;
+    delete newParams.created_month;
+  } else if ( newParams.created_d1 || newParams.created_d2 ) {
+    newParams.createdDateType = "range";
+    delete newParams.created_on;
+    delete newParams.created_month;
+  } else if ( newParams.month ) {
+    newParams.createdDateType = "month";
+    delete newParams.created_d1;
+    delete newParams.created_d2;
+    delete newParams.created_on;
+  } else {
+    delete newParams.createdDateType;
+    delete newParams.created_on;
+    delete newParams.created_d1;
+    delete newParams.created_d2;
+    delete newParams.created_month;
+  }
   return newParams;
 };
 

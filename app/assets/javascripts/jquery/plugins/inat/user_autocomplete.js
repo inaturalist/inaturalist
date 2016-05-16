@@ -24,7 +24,6 @@ $.fn.userAutocomplete = function( options ) {
           order: "activity"
         },
         success: function( data ) {
-          console.log(data);
           response( _.map( data, function( r ) {
             r.id = r.login;
             r.title = r.login;

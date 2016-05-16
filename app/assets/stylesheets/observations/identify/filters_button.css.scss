@@ -77,14 +77,13 @@ $changed-color: #74ac00;
 /* DATES */
 .FiltersButtonContainer .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
 .FiltersButtonContainer .filters-dates .form-control {
-  width: 100px; 
   display: inline-block;
 }
 .FiltersButtonContainer .filters-dates .filters-dates-exact.form-control {width: 176px;}
 .FiltersButtonContainer .date-type-range,
 .FiltersButtonContainer .date-type-exact {
   position: relative;
-  top: -3px;
+  // top: -3px;
 }
 .FiltersButtonContainer .date-type-month {
   position: relative;
