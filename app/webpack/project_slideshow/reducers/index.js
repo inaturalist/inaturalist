@@ -19,7 +19,7 @@ const defaultState = {
   slideshowSubProjectIndex: null,
   umbrellaProject: null,
   slideshowIndex: 0,
-  colorIndex: 0,
+  colorIndex: _.random( 4 ),
   slidesShownForUmbrella: 0,
   countColors: 5,
   overallStats: { },

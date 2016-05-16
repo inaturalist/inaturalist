@@ -35,7 +35,6 @@ body {
 }
 #app {
   transition: opacity 2s ease;
-  @include linearGradient(#A52317, #CF632D);
   &.transition {
     opacity: 0 !important;
   }
