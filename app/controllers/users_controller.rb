@@ -1,6 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :edit, :dashboard, :new_updates ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!,
+    only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
+    if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
@@ -517,6 +519,10 @@ class UsersController < ApplicationController
       end
     end
     render :head => :no_content, :layout => false, :text => nil
+  end
+
+  def api_token
+    render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
   end
 
 protected

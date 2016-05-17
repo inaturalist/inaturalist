@@ -16,6 +16,7 @@ config/smtp.yml
 config/settings.yml
 config/tilestache.cfg
 config/schedule.rb
+config/puma.rb
 coverage/
 log/*
 cache/
@@ -54,3 +55,8 @@ notes.txt
 xmp.xml
 
 config/environments/development.rb
+
+app/assets/javascripts/observations-identify-webpack.js
+app/assets/javascripts/observations-uploader-webpack.js
+app/assets/javascripts/project-slideshow-webpack.js
+

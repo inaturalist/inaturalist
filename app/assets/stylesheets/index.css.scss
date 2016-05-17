@@ -433,7 +433,8 @@ form .field .description { margin-bottom: 0.5em;}
 }
 #header .subnav.rightsubnav {
   left: auto;
-  right: -2px;
+  right: 0px;
+  border-right: 0px;
   padding-left: 10px;
   padding-right: 12px;
 }
@@ -1182,6 +1183,8 @@ a.csvlink{background-image:image-url('silk/table.png');}
 }
 .taxon.has-com-name .sciname:before { content: '('; display: inline-block; }
 .taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
+.taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
+.taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
 .taxon .sciname .rank:after {content: ' ';}
 
 /* Users table */

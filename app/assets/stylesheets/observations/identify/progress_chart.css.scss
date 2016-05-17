@@ -1,0 +1,32 @@
+@import "../../colors";
+
+.ProgressChart {
+  position: relative;
+}
+.ProgressChart .c3-shape {
+  cursor: default !important;
+}
+.ProgressChart .c3-arc-unreviewed {
+  fill: #C1C1C1 !important;
+}
+.ProgressChart .c3-arc-reviewed {
+  fill: $inat-green !important;
+}
+.ProgressChart .title {
+  position: absolute;
+  width: 100%;
+  top: 41%;
+  padding: 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #888;
+}
+.ProgressChart .counts {
+  color: $inat-green;
+  font-size: 26px;
+  line-height: 26px;
+  font-weight: bold;
+  max-width: 130px;
+  margin: 0 auto;
+  text-align: center;
+}

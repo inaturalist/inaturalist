@@ -54,7 +54,10 @@ class Project < ActiveRecord::Base
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
   preference :membership_model, :string, :default => MEMBERSHIP_OPEN
-  
+
+  NPS_BIOBLITZ_PROJECT_NAME = "2016 National Parks Bioblitz - NPS Servicewide"
+  NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
+
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
   validates_length_of :title, :within => 1..100
@@ -826,4 +829,17 @@ class Project < ActiveRecord::Base
     posts.select("id, parent_type, parent_id, user_id").find_each(&:destroy)
     destroy
   end
+
+  def node_api_species_count
+    uri = URI("http://" + CONFIG.node_api_host +
+      "/observations/species_counts?project_id=#{self.id}&per_page=0&ttl=300")
+    timed_out = Timeout::timeout(5) do
+      response = Net::HTTP.get_response(uri)
+      if response.code == "200" && json = JSON.parse(response.body)
+        return json["total_results"]
+      end
+    end
+    0
+  end
+
 end

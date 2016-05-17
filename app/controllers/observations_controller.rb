@@ -20,7 +20,9 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy, :viewed_updates, :update_fields ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!,
+    only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
+    if: lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -1421,6 +1423,14 @@ class ObservationsController < ApplicationController
     delayed_csv(path_for_csv, @project)
   end
   
+  def identify
+    render layout: "bootstrap"
+  end
+
+  def upload
+    render layout: "basic"
+  end
+
   def identotron
     @observation = Observation.find_by_id((params[:observation] || params[:observation_id]).to_i)
     @taxon = Taxon.find_by_id(params[:taxon].to_i)
@@ -1950,7 +1960,10 @@ class ObservationsController < ApplicationController
     user_reviewed
     respond_to do |format|
       format.html { redirect_to @observation }
-      format.json { head :no_content }
+      format.json do
+        Observation.refresh_es_index
+        head :no_content
+      end
     end
   end
 
@@ -2041,8 +2054,12 @@ class ObservationsController < ApplicationController
     return unless logged_in?
     review = ObservationReview.where(observation_id: @observation.id,
       user_id: current_user.id).first_or_create
-    review.update_attributes({ user_added: true,
-      reviewed: (params[:reviewed] === "false") ? false : true })
+    reviewed = if request.delete?
+      false
+    else
+      params[:reviewed] === "false" ? false : true
+    end
+    review.update_attributes({ user_added: true, reviewed: reviewed })
     review.observation.elastic_index!
   end
 

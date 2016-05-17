@@ -16,7 +16,8 @@ class ProjectsController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count, :browse, :calendar ]
+    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
+      :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
@@ -35,7 +36,7 @@ class ProjectsController < ApplicationController
     'title' => 'lower(title)',
     'created' => 'id'
   }
-  
+
   def index
     respond_to do |format|
       format.html do
@@ -794,7 +795,32 @@ class ProjectsController < ApplicationController
       format.html
     end
   end
-  
+
+  def stats_slideshow
+    if @project.title == Project::NPS_BIOBLITZ_PROJECT_NAME
+      return redirect_to nps_bioblitz_stats_path
+    end
+    # must have a place and one observation with a photo
+    if (!@project.place && !@project.rule_place) ||
+      !Observation.joins(:projects).
+        where("projects.id=? AND observations.observation_photos_count > 0", @project.id).
+        exists?
+      return redirect_to project_path(@project)
+    end
+    @slideshow_project = {
+      id: @project.id,
+      title: @project.title.sub("2016 National Parks BioBlitz - ", ""),
+      slug: @project.slug,
+      start_time: @project.start_time,
+      end_time: @project.end_time,
+      place_id: (@project.place || @project.rule_place).try(:id),
+      observation_count: @project.observations.count,
+      in_progress: @project.event_in_progress?,
+      species_count: @project.node_api_species_count || 0
+    }
+    render layout: "basic"
+  end
+
   private
   
   def load_project

@@ -56,7 +56,8 @@ GIT
 
 GIT
   remote: git://github.com/jrgifford/delayed_paperclip.git
-  revision: da42152039dd3e3ff5afc1cd1458c460d7fd3c33
+  revision: 8f11882ee945bf56affe8df4f591e5171581aac3
+  ref: 8f11882ee945bf56affe8df4f591e5171581aac3
   specs:
     delayed_paperclip (2.9.1)
       paperclip (>= 3.3)
@@ -473,6 +474,7 @@ GEM
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
+    puma (3.4.0)
     rack (1.6.4)
     rack-mobile-detect (0.4.0)
       rack
@@ -723,6 +725,7 @@ DEPENDENCIES
   irwi!
   jquery-rails
   json
+  jwt (~> 1.2.1)
   koala
   machinist
   mobile-fu!
@@ -740,6 +743,7 @@ DEPENDENCIES
   paperclip (= 4.2.1)
   pg
   preferences!
+  puma
   rack-google-analytics!
   rails (~> 4.2.6)
   rails-observers

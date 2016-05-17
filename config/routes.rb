@@ -133,6 +133,7 @@ Rails.application.routes.draw do
   get '/users/curation' => 'users#curation', :as => :curate_users
   get '/users/updates_count' => 'users#updates_count', :as => :updates_count
   get '/users/new_updates' => 'users#new_updates', :as => :new_updates
+  get '/users/api_token' => 'users#api_token', :as => :api_token
   
   resources :users, :except => [:new, :create] do
     resources :flags
@@ -153,7 +154,7 @@ Rails.application.routes.draw do
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
-  resources :photos, :only => [:show, :update, :destroy] do
+  resources :photos, :only => [:show, :update, :destroy, :create] do
     resources :flags
     collection do
       get 'repair' => :fix
@@ -184,11 +185,13 @@ Rails.application.routes.draw do
       get :phylogram
       get :export
       get :map
+      get :identify
     end
     member do
       put :viewed_updates
       patch :update_fields
       post :review
+      delete :review, as: "unreview"
     end
   end
 
@@ -264,6 +267,7 @@ Rails.application.routes.draw do
     member do
       get :invite, :as => :invite_to
       get :confirm_leave
+      get :stats_slideshow
     end
     collection do
       get :calendar
@@ -462,6 +466,7 @@ Rails.application.routes.draw do
       get :index
       get :summary
       get :observation_weeks
+      get :nps_bioblitz
     end
   end
 

@@ -19,7 +19,7 @@
   <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
   <select name="search_on" id="search_on">
     <option value="" class="description"><%=t :search_all_fields %></option>
-    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names"><%=t :species_name %></option>
+    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names"><%=t :species_names %></option>
     <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags"> <%=t :tags %> </option>
     <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description"> <%=t :description %> </option>
     <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place"><%=t :place_name %></option>

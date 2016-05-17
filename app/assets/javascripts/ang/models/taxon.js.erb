@@ -11,7 +11,7 @@ iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.sort.to_json(only: [:id, :
 
 iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
   var that = this
-  var iconicTaxon = _.detect(iNatModels.Taxon.ICONIC_TAXA, function(t) { 
+  var iconicTaxon = _.find(iNatModels.Taxon.ICONIC_TAXA, function(t) {
     return t.id == that.iconic_taxon_id;
   });
   if (iconicTaxon) {
@@ -113,7 +113,7 @@ iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
           return ptn.place_id === options.preferredPlace.id; })) {
         nameInPlace = n.name;
       } else if( _.find( n.place_taxon_names, function( ptn ) {
-          return _.contains( options.preferredPlace.ancestor_place_ids, ptn.place_id ); })) {
+          return _.includes( options.preferredPlace.ancestor_place_ids, ptn.place_id ); })) {
         nameInAncestorPlace = n.name;
       }
     }

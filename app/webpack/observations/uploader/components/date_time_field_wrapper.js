@@ -1,0 +1,83 @@
+import React, { PropTypes, Component } from "react";
+import DateTimeField from "react-bootstrap-datetimepicker";
+import moment from "moment";
+
+class DateTimeFieldWrapper extends Component {
+
+  constructor( props, context ) {
+    super( props, context );
+    this.onClick = this.onClick.bind( this );
+    this.onChange = this.onChange.bind( this );
+    this.close = this.close.bind( this );
+    this.pickerState = this.pickerState.bind( this );
+  }
+
+  componentDidMount( ) {
+    // the datetime picker prevents a card drag preview without this
+    this.close( );
+  }
+
+  shouldComponentUpdate( nextProps ) {
+    if ( this.props.reactKey === nextProps.reactKey ) { return false; }
+    return true;
+  }
+
+  onClick( ) {
+    if ( this.refs.datetime ) {
+      this.refs.datetime.onClick( );
+    }
+  }
+
+  onChange( e, inputValue ) {
+    let value = inputValue;
+    const eInt = parseInt( e, 10 );
+    if ( e && eInt ) {
+      const pickedDate = new Date( eInt );
+      if ( pickedDate ) {
+        value = moment.parseZone( pickedDate ).format( "YYYY/MM/DD h:mm A ZZ" );
+      }
+    }
+    this.props.onChange( value );
+  }
+
+  close( ) {
+    if ( this.refs.datetime ) { this.refs.datetime.closePicker( ); }
+  }
+
+  pickerState( ) {
+    if ( this.refs.datetime ) { return this.refs.datetime.state; }
+    return undefined;
+  }
+
+  render( ) {
+    return (
+      <DateTimeField
+        ref="datetime"
+        key="datetime"
+        mode={this.props.mode}
+        size={this.props.size}
+        maxDate={ moment( ) }
+        defaultText={ this.props.defaultText || "" }
+        inputFormat="YYYY/MM/DD h:mm A ZZ"
+        onChange={ this.onChange }
+      />
+    );
+  }
+}
+
+DateTimeFieldWrapper.propTypes = {
+  onChange: PropTypes.func,
+  onSelection: PropTypes.func,
+  reactKey: PropTypes.string,
+  defaultText: PropTypes.string,
+  mode: PropTypes.string,
+  inputFormat: PropTypes.string,
+  size: PropTypes.string,
+  dateTime: PropTypes.oneOfType( [
+    React.PropTypes.string,
+    React.PropTypes.number,
+    React.PropTypes.object
+  ] )
+};
+
+export default DateTimeFieldWrapper;
