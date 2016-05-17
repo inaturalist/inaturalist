@@ -19,7 +19,8 @@ class ZoomableImageGallery extends ImageGallery {
       },
       onHide( ) {
         this.$link.removeClass( "easyzoom-zoomed" );
-      }
+      },
+      loadingNotice: I18n.t( "loading" )
     } );
   }
 }

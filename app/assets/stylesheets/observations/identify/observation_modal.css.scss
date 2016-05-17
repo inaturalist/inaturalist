@@ -135,6 +135,23 @@ body > div > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
 }
 
+.easyzoom.is-loading img {
+  cursor: progress;
+}
+
+.easyzoom-notice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 150;
+  width: 10em;
+  margin: -1em 0 0 -5em;
+  line-height: 2em;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+
 body > div > [role="dialog"] .btn-checkbox label {
   margin: 0;
 }
