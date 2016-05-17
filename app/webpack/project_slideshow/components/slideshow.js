@@ -15,8 +15,10 @@ class Slideshow extends Component {
       dateRange += `(${start} - ${end})`;
     }
     let npsLogo;
+    let natGeoLogo;
     if ( !this.props.singleProject ) {
       npsLogo = ( <img src="/logo-nps.svg" /> );
+      natGeoLogo = ( <img src="/logo-natgeo.svg" /> );
     }
     return (
       <div id="main-container">
@@ -37,6 +39,9 @@ class Slideshow extends Component {
             </div>
             <div className="nav navbar-nav navbar-right">
               { npsLogo }
+            </div>
+            <div className="nav navbar-nav navbar-right natgeo">
+              { natGeoLogo }
             </div>
           </div>
         </nav>

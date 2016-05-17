@@ -36,7 +36,7 @@ class ProjectMap extends Component {
     if ( !this.props.project.place_id ) {
       $.ajax( {
         dataType: "json",
-        url: "/us.geojson",
+        url: "/assets/us.geojson",
         success: data => {
           const f = { type: "Feature", geometry: data.features[0].geometry };
           const myStyle = {

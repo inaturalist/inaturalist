@@ -109,15 +109,19 @@ body {
   .navbar-right {
     text-align: center;
     margin: 0;
-    padding: 0 2vw;
-    width: 10vw;
+    padding: 0 2vw 0 0;
+    width: 8vw;
+    &.natgeo {
+      width: 14vw;
+      padding: 0;
+    }
   }
   .navbar-title {
     font-weight: 100;
     font-size: 2vw;
     line-height: 3.2vw;
     margin: 0;
-    width: 69vw;
+    width: 62vw;
     padding: 0 2vw;
     white-space: nowrap;
     overflow: hidden;

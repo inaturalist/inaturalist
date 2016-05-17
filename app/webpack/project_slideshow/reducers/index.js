@@ -10,10 +10,14 @@ const defaultState = {
   /* global NPS_ALL_SUB_PROJECTS */
   /* global NPS_UMBRELLA_PROJECTS */
   singleProject: SLIDESHOW_PROJECT,
-  overallID: ( typeof NPS_OVERALL_ID === "undefined" ) ? null : NPS_OVERALL_ID,
-  umbrellaProjects: ( typeof NPS_UMBRELLA_PROJECTS === "undefined" ) ? null : NPS_UMBRELLA_PROJECTS,
-  umbrellaSubProjects: ( typeof NPS_UMBRELLA_SUB_PROJECTS === "undefined" ) ? null : NPS_UMBRELLA_SUB_PROJECTS,
-  allSubProjects: ( typeof NPS_ALL_SUB_PROJECTS === "undefined" ) ? null : NPS_ALL_SUB_PROJECTS,
+  overallID: ( typeof NPS_OVERALL_ID === "undefined" ) ? null :
+    NPS_OVERALL_ID,
+  umbrellaProjects: ( typeof NPS_UMBRELLA_PROJECTS === "undefined" ) ? null :
+    NPS_UMBRELLA_PROJECTS,
+  umbrellaSubProjects: ( typeof NPS_UMBRELLA_SUB_PROJECTS === "undefined" ) ? null :
+    NPS_UMBRELLA_SUB_PROJECTS,
+  allSubProjects: ( typeof NPS_ALL_SUB_PROJECTS === "undefined" ) ? null :
+    NPS_ALL_SUB_PROJECTS,
   project: SLIDESHOW_PROJECT || NPS_UMBRELLA_PROJECTS[0],
   slideshowUmbrellaIndex: 0,
   slideshowSubProjectIndex: null,
