@@ -16,7 +16,9 @@ const currentObservationReducer = ( state = {}, action ) => {
         visible: true,
         observation: action.observation,
         commentFormVisible: false,
-        identificationFormVisible: false
+        identificationFormVisible: false,
+        captiveByCurrentUser: action.observation.captiveByCurrentUser,
+        reviewedByCurrentUser: action.observation.reviewedByCurrentUser
       } );
     case HIDE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
