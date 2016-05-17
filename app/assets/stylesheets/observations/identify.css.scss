@@ -163,3 +163,43 @@ li.rc-pagination-item-active a {
 .bootstrap .FiltersButton .checkbox {
   display: block;
 }
+
+
+.quality_grade {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 2px 0px 1px 10px;
+  position: relative;
+  font-size: 12px !important;
+  line-height: 17px !important;
+  z-index: 1;
+  margin-right: 20px;
+}
+.quality_grade:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 10px solid #ddd;
+  border-right-width: 5px;
+  border-right-color: transparent;
+  right: -15px;
+  z-index: -1;
+}
+
+.quality_grade.needs_id {
+  background-color: $needs-id-yellow;
+  color: $needs-id-yellow-light;
+}
+.quality_grade.needs_id:after {
+  border-color: $needs-id-yellow;
+  border-right-color: transparent;
+}
+.quality_grade.research {
+  background-color: $inat-green;
+  color:white;
+}
+.quality_grade.research:after {
+  border-color: $inat-green;
+  border-right-color: transparent;
+}

@@ -1,5 +1,15 @@
 @import "../../colors";
 
+body > div > [role="dialog"] .modal-title {
+  line-height: 10px;
+}
+body > div > [role="dialog"] .modal-header .close {
+  margin-top: 0;
+}
+.ObservationModal .modal-title .SplitTaxon {
+  line-height: 20px;
+}
+
 .bootstrap .ObservationModal .modal-footer .secondary-actions,
 body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions {
   text-align: left;
@@ -51,7 +61,7 @@ $image-gallery-height: 380px;
   font-size: 16px;
 }
 .ObservationModal .modal-title .datebit {
-  color: #ddd;
+  color: #bbb;
   margin-left: 10px;
   font-size: 14px;
   text-transform: uppercase;
@@ -175,4 +185,3 @@ dl.keyboard-shortcuts,
   display: inline-block;
   margin-left: 10px;
 }
-

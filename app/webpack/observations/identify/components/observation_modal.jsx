@@ -80,9 +80,16 @@ const ObservationModal = ( {
 
   const showAgree = ( ) => {
     if ( !currentUserIdentification ) {
-      return observation.taxon;
+      return typeof( observation.taxon ) === "object";
     }
     return ( observation.taxon && observation.taxon.id !== currentUserIdentification.taxon.id );
+  };
+
+  const qualityGrade = ( ) => {
+    if ( observation.quality_grade === "research" ) {
+      return _.capitalize( I18n.t( "research_grade" ) );
+    }
+    return _.capitalize( I18n.t( observation.quality_grade ) );
   };
 
   return (
@@ -101,11 +108,12 @@ const ObservationModal = ( {
       <Modal.Header closeButton>
         <Modal.Title>
           <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
-          <span>
-            <span className="datebit">
-              <label>{ I18n.t( "observed" ) }:</label>
-              { moment( observation.observed_on ).format( "L" ) }
-            </span>
+          <span className="datebit">
+            <label>{ I18n.t( "observed" ) }:</label>
+            { moment( observation.observed_on ).format( "L" ) }
+          </span>
+          <span className={`pull-right quality_grade ${observation.quality_grade}`}>
+            { qualityGrade( ) }
           </span>
         </Modal.Title>
       </Modal.Header>
@@ -230,19 +238,17 @@ const ObservationModal = ( {
                 }
                 container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <label
-                  className={
-                    `btn btn-default btn-checkbox btn-captive ${captiveByCurrentUser ? "checked" : ""}`
-                  }
-                >
-                  <input
+                <div className="captive-checkbox-wrapper">
+                  <Input
                     type="checkbox"
+                    label={ I18n.t( "captive_cultivated" ) }
                     checked={ captiveByCurrentUser }
                     onChange={function ( ) {
                       toggleCaptive( );
                     }}
-                  /> { I18n.t( "captive_cultivated" ) }
-                </label>
+                    groupClassName="btn-checkbox"
+                  />
+                </div>
               </OverlayTrigger>
             </Col>
             <Col xs={6}>
@@ -267,7 +273,7 @@ const ObservationModal = ( {
               </Button>
               <Button
                 bsStyle="primary"
-                className={ showAgree( ) ? "" : "collapse"}
+                disabled={ !showAgree( ) }
                 onClick={ function ( ) {
                   agreeWithCurrentObservation( );
                 } }
