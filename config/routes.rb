@@ -186,7 +186,6 @@ Rails.application.routes.draw do
       get :export
       get :map
       get :identify
-      get :uploader
     end
     member do
       put :viewed_updates

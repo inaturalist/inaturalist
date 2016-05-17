@@ -11,7 +11,7 @@ iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.sort.to_json(only: [:id, :
 
 iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
   var that = this
-  var iconicTaxon = _.find(iNatModels.Taxon.ICONIC_TAXA, function(t) { 
+  var iconicTaxon = _.find(iNatModels.Taxon.ICONIC_TAXA, function(t) {
     return t.id == that.iconic_taxon_id;
   });
   if (iconicTaxon) {
