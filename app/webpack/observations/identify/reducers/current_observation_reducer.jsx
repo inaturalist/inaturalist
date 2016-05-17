@@ -34,7 +34,9 @@ const currentObservationReducer = ( state = {}, action ) => {
         currentUserIdentification: action.currentUserIdentification
       } );
     case UPDATE_CURRENT_OBSERVATION:
-      return Object.assign( {}, state, action.updates );
+      return Object.assign( {}, state, {
+        observation: Object.assign( {}, state.observation, action.updates )
+      }, action.updates );
     case ADD_COMMENT:
       return Object.assign( {}, state, {
         commentFormVisible: true,

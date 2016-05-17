@@ -45,7 +45,7 @@ $image-gallery-height: 380px;
   text-align: center;
 }
 .ObservationModal .sidebar {
-  overflow: scroll;
+  overflow-y: auto;
 }
 .ObservationModal .modal-title {
   font-size: 16px;

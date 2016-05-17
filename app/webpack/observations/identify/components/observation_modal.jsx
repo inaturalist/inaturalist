@@ -226,7 +226,7 @@ const ObservationModal = ( {
                   <Input
                     type="checkbox"
                     label={ I18n.t( "captive_cultivated" ) }
-                    defaultChecked={ captiveByCurrentUser }
+                    checked={ captiveByCurrentUser }
                     onChange={function ( ) {
                       toggleCaptive( );
                     }}
@@ -240,7 +240,7 @@ const ObservationModal = ( {
                 type="checkbox"
                 groupClassName="btn-checkbox"
                 label={ I18n.t( "reviewed" ) }
-                defaultChecked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
                 onChange={function ( ) {
                   toggleReviewed( );
                 }}
