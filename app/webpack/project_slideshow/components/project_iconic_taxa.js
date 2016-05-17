@@ -38,7 +38,7 @@ class ProjectIconicTaxa extends Component {
       graph = (
         <div className="chart">
           { _.map( categories, r => {
-            const height = ( r.count / maxValue ) * 100;
+            const height = ( r.count / maxValue ) * 75;
             let name = r.taxon.preferred_common_name;
             if ( r.taxon.id === 47170 ) { name = "Fungi"; }
             if ( r.taxon.id === 47178 ) { name = "Fishes"; }

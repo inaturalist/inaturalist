@@ -105,15 +105,15 @@ body {
     margin: 0;
     padding: 0 2vw;
     width: 15vw;
+    height: 3vw;
   }
   .navbar-right {
     text-align: center;
     margin: 0;
+    width: 7vw;
     padding: 0 2vw 0 0;
-    width: 8vw;
     &.natgeo {
-      width: 14vw;
-      padding: 0;
+      width: 12vw;
     }
   }
   .navbar-title {
@@ -121,8 +121,8 @@ body {
     font-size: 2vw;
     line-height: 3.2vw;
     margin: 0;
-    width: 62vw;
-    padding: 0 2vw;
+    width: 65vw;
+    padding: 0 0 0 2vw;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -214,8 +214,10 @@ body {
     & > div {
       float: left;
       height: 100%;
+      display: -webkit-flex;
       display: flex;
       flex-direction: column-reverse;
+      -webkit-flex-direction: column-reverse;
       padding: 1.2vw;
       i.icon {
         font-size: 3.9vw;

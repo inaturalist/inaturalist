@@ -37,11 +37,11 @@ class Slideshow extends Component {
                 { dateRange }
               </span>
             </div>
-            <div className="nav navbar-nav navbar-right">
-              { npsLogo }
-            </div>
             <div className="nav navbar-nav navbar-right natgeo">
               { natGeoLogo }
+            </div>
+            <div className="nav navbar-nav navbar-right">
+              { npsLogo }
             </div>
           </div>
         </nav>
