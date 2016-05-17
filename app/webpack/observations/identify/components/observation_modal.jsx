@@ -106,10 +106,6 @@ const ObservationModal = ( {
               <label>{ I18n.t( "observed" ) }:</label>
               { moment( observation.observed_on ).format( "L" ) }
             </span>
-            <span className="datebit">
-              <label>{ I18n.t( "updated" ) }:</label>
-              { moment( observation.updated_at ).format( "L" ) }
-            </span>
           </span>
         </Modal.Title>
       </Modal.Header>
@@ -139,6 +135,12 @@ const ObservationModal = ( {
                   const domNode = ReactDOM.findDOMNode( elt );
                   if ( domNode && commentFormVisible ) {
                     scrollSidebarToForm( domNode );
+                    if (
+                      $( "textarea", domNode ).val() === ""
+                      && $( ".IdentificationForm textarea" ).val() !== ""
+                    ) {
+                      $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
+                    }
                   }
                 } }
               />
@@ -149,6 +151,12 @@ const ObservationModal = ( {
                   const domNode = ReactDOM.findDOMNode( elt );
                   if ( domNode && identificationFormVisible ) {
                     scrollSidebarToForm( domNode );
+                    if (
+                      $( "textarea", domNode ).val() === ""
+                      && $( ".CommentForm textarea" ).val() !== ""
+                    ) {
+                      $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
+                    }
                   }
                 } }
               />
@@ -222,34 +230,40 @@ const ObservationModal = ( {
                 }
                 container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <div className="captive-checkbox-wrapper">
-                  <Input
+                <label
+                  className={
+                    `btn btn-default btn-checkbox btn-captive ${captiveByCurrentUser ? "checked" : ""}`
+                  }
+                >
+                  <input
                     type="checkbox"
-                    label={ I18n.t( "captive_cultivated" ) }
                     checked={ captiveByCurrentUser }
                     onChange={function ( ) {
                       toggleCaptive( );
                     }}
-                    groupClassName="btn-checkbox"
-                  />
-                </div>
+                  /> { I18n.t( "captive_cultivated" ) }
+                </label>
               </OverlayTrigger>
             </Col>
             <Col xs={6}>
-              <Input
-                type="checkbox"
-                groupClassName="btn-checkbox"
-                label={ I18n.t( "reviewed" ) }
-                checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
-                onChange={function ( ) {
-                  toggleReviewed( );
-                }}
-              />
-              <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
-                <i className="icon-identification"></i> { I18n.t( "add_id" ) }
-              </Button>
+              <label
+                className={
+                  `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                }
+              >
+                <input
+                  type="checkbox"
+                  checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                  onChange={function ( ) {
+                    toggleReviewed( );
+                  }}
+                /> { I18n.t( "reviewed" ) }
+              </label>
               <Button bsStyle="primary" onClick={ function ( ) { addComment( ); } }>
                 <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
+              </Button>
+              <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
+                <i className="icon-identification"></i> { I18n.t( "add_id" ) }
               </Button>
               <Button
                 bsStyle="primary"

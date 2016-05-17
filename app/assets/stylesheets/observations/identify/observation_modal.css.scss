@@ -54,13 +54,10 @@ $image-gallery-height: 380px;
   color: #ddd;
   margin-left: 10px;
   font-size: 14px;
+  text-transform: uppercase;
 }
 .ObservationModal .modal-title .datebit label {
   margin-right: 5px;
-}
-.ObservationModal .modal-title .datebit:first-child:after {
-  content: "•";
-  margin-left: 10px;
 }
 .ObservationModal .modal-body {
   background-color: #eee;
@@ -138,9 +135,8 @@ body > div > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
 }
 
-.btn-captive i {
-  font-size: 19px;
-  line-height: 0;
+body > div > [role="dialog"] .btn-checkbox label {
+  margin: 0;
 }
 body > div > [role="dialog"] .btn-default.btn-checkbox.checked {
   background-color: $inat-green;
