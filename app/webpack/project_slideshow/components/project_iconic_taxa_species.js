@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
-import NodeAPI from "../models/node_api";
+import Util from "../models/util";
 
 class ProjectIconicTaxaSpecies extends Component {
 
@@ -20,7 +20,8 @@ class ProjectIconicTaxaSpecies extends Component {
   }
 
   reloadData( ) {
-    NodeAPI.fetch(
+    /* eslint no-console: 0 */
+    Util.nodeApiFetch(
       `observations/iconic_taxa_species_counts?per_page=0&project_id=${this.props.project.id}&ttl=600` ).
       then( json => {
         this.props.setState( { iconicTaxaSpeciesCounts: json } );
@@ -47,7 +48,7 @@ class ProjectIconicTaxaSpecies extends Component {
                 <span className="taxon">{ name }</span>
                 <i className={ `icon icon-iconic-${r.taxon.name.toLowerCase( )}` } />
                 <div className="bar" style={ { height: `${height}%` } } />
-                <span className="value">{ Number( r.count ).toLocaleString( ) }</span>
+                <span className="value">{ Util.numberWithCommas( r.count ) }</span>
               </div>
             );
           } ) }

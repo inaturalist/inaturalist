@@ -35,7 +35,6 @@ body {
 }
 #app {
   transition: opacity 2s ease;
-  @include linearGradient(#A52317, #CF632D);
   &.transition {
     opacity: 0 !important;
   }
@@ -110,15 +109,19 @@ body {
   .navbar-right {
     text-align: center;
     margin: 0;
-    padding: 0 2vw;
-    width: 10vw;
+    padding: 0 2vw 0 0;
+    width: 8vw;
+    &.natgeo {
+      width: 14vw;
+      padding: 0;
+    }
   }
   .navbar-title {
     font-weight: 100;
     font-size: 2vw;
     line-height: 3.2vw;
     margin: 0;
-    width: 69vw;
+    width: 62vw;
     padding: 0 2vw;
     white-space: nowrap;
     overflow: hidden;
@@ -380,7 +383,7 @@ body {
       }
     }
     .meta {
-      padding: 0.3vw 0.6vw;
+      padding: 0.4vw 0.6vw;
       .name, .count {
         display: block;
         font-size: 1.6vw;
@@ -450,6 +453,13 @@ body {
       }
       &.index, &.observations, &.species {
         text-overflow: initial;
+      }
+      &.title div {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30vw;
       }
     }
   }

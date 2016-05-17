@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from "react";
-import Slideshow from "./slideshow";
+import Slides from "./slides";
 import moment from "moment";
 
-class Bioblitz extends Component {
+class Slideshow extends Component {
 
   render( ) {
     let dateRange = "";
@@ -13,6 +13,12 @@ class Bioblitz extends Component {
       const start = moment( this.props.project.start_time ).format( "M/D/YY" );
       const end = moment( this.props.project.end_time ).format( "M/D/YY" );
       dateRange += `(${start} - ${end})`;
+    }
+    let npsLogo;
+    let natGeoLogo;
+    if ( !this.props.singleProject ) {
+      npsLogo = ( <img src="/logo-nps.svg" /> );
+      natGeoLogo = ( <img src="/logo-natgeo.svg" /> );
     }
     return (
       <div id="main-container">
@@ -32,21 +38,25 @@ class Bioblitz extends Component {
               </span>
             </div>
             <div className="nav navbar-nav navbar-right">
-              <img src="/logo-nps.svg" />
+              { npsLogo }
+            </div>
+            <div className="nav navbar-nav navbar-right natgeo">
+              { natGeoLogo }
             </div>
           </div>
         </nav>
         <div className="container-fluid content">
-          <Slideshow { ...this.props } />
+          <Slides { ...this.props } />
         </div>
       </div>
     );
   }
 }
 
-Bioblitz.propTypes = {
+Slideshow.propTypes = {
   project: PropTypes.object,
+  singleProject: PropTypes.object,
   setState: PropTypes.func
 };
 
-export default Bioblitz;
+export default Slideshow;

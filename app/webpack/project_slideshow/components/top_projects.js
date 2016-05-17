@@ -1,9 +1,11 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
+import Util from "../models/util";
 
 class TopProjects extends Component {
 
   render( ) {
+    if ( this.props.singleProject ) return ( <div/> );
     let index = 0;
     let subProjects;
     let secondColumn;
@@ -20,9 +22,11 @@ class TopProjects extends Component {
       return (
         <tr key={ `project${p.id}` }>
           <td className="index">{ index }</td>
-          <td className="title">{ p.title }</td>
-          <td className="observations">{ Number( p.observation_count ).toLocaleString( ) }</td>
-          <td className="species">{ Number( p.species_count ).toLocaleString( ) }</td>
+          <td className="title">
+            <div>{ p.title }</div>
+          </td>
+          <td className="observations">{ Util.numberWithCommas( p.observation_count ) }</td>
+          <td className="species">{ Util.numberWithCommas( p.species_count ) }</td>
         </tr>
       );
     } );
@@ -72,6 +76,7 @@ class TopProjects extends Component {
 
 TopProjects.propTypes = {
   project: PropTypes.object,
+  singleProject: PropTypes.object,
   overallID: PropTypes.number,
   allSubProjects: PropTypes.array,
   umbrellaSubProjects: PropTypes.object

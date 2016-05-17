@@ -50,8 +50,7 @@ class StatsController < ApplicationController
     render json: observation_weeks_data
   end
 
-  def bioblitz
-    group_name = "2016 National Parks BioBlitz"
+  def nps_bioblitz
     @overall_id = 6810
     umbrella_project_ids = [ 6810, 7109, 7110, 7107, 6790 ]
     sub_project_ids = {
@@ -68,7 +67,7 @@ class StatsController < ApplicationController
     projs = Project.select("projects.*, count(po.observation_id)").
       joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
       where("projects.group=? OR projects.id=? OR projects.id IN (?)",
-        group_name, params[:project_id], all_project_ids).
+        Project::NPS_BIOBLITZ_GROUP_NAME, params[:project_id], all_project_ids).
       group(:id).
       order("count(po.observation_id) desc")
 
@@ -84,7 +83,7 @@ class StatsController < ApplicationController
           place_id: p.rule_place.try(:id),
           observation_count: p.count,
           in_progress: p.event_in_progress?,
-          species_count: project_species_count(p.id) || 0
+          species_count: p.node_api_species_count
         }
       ]
     }]
@@ -194,17 +193,6 @@ class StatsController < ApplicationController
         week_rank: r.week_rank,
         observer_count: r.observer_count
       }
-    end
-  end
-
-  def project_species_count(project_id)
-    uri = URI("http://" + CONFIG.node_api_host +
-      "/observations/species_counts?project_id=#{project_id}&per_page=0&ttl=300")
-    timed_out = Timeout::timeout(5) do
-      response = Net::HTTP.get_response(uri)
-      if response.code == "200" && json = JSON.parse(response.body)
-        return json["total_results"]
-      end
     end
   end
 

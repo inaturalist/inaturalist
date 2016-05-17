@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import NodeAPI from "../models/node_api";
+import Util from "../models/util";
 
 class ProjectMap extends Component {
 
@@ -11,10 +11,9 @@ class ProjectMap extends Component {
   reloadData( ) {
     const time = new Date( ).getTime( );
     const mapID = `map${time}${this.props.umbrella}`;
-    let className;
-    if ( this.props.umbrella ) { className = ".umbrella-map-slide"; }
-    else { className = ".subproject-map-slide"; }
+    const className = this.props.umbrella ? ".umbrella-map-slide" : ".subproject-map-slide";
     $( `${className} .right` ).html( `<div id='${mapID}' />` );
+    /* global L */
     const map = L.map( mapID, {
       scrollWheelZoom: false,
       center: [37.166889, -95.966873],
@@ -37,7 +36,7 @@ class ProjectMap extends Component {
     if ( !this.props.project.place_id ) {
       $.ajax( {
         dataType: "json",
-        url: "/us.geojson",
+        url: "/assets/us.geojson",
         success: data => {
           const f = { type: "Feature", geometry: data.features[0].geometry };
           const myStyle = {
@@ -46,6 +45,7 @@ class ProjectMap extends Component {
             opacity: 0.7,
             stroke: false
           };
+          /* eslint new-cap: 0 */
           const boundary = new L.geoJson( [f], myStyle );
           boundary.addTo( map );
           map.fitBounds( boundary.getBounds( ), { padding: [10, 10] } );
@@ -69,19 +69,20 @@ class ProjectMap extends Component {
         }
       } );
     }
-    NodeAPI.fetch( `observations?per_page=0&project_id=${this.props.project.id}` ).
+    /* eslint no-console: 0 */
+    Util.nodeApiFetch( `observations?per_page=0&project_id=${this.props.project.id}` ).
       then( json => this.props.updateState(
         { overallStats: { observations: json.total_results } } ) ).
       catch( e => console.log( e ) );
-    NodeAPI.fetch( `observations/species_counts?per_page=0&project_id=${this.props.project.id}` ).
+    Util.nodeApiFetch( `observations/species_counts?per_page=0&project_id=${this.props.project.id}` ).
       then( json => this.props.updateState(
         { overallStats: { species: json.total_results } } ) ).
       catch( e => console.log( e ) );
-    NodeAPI.fetch( `observations/identifiers?per_page=0&project_id=${this.props.project.id}` ).
+    Util.nodeApiFetch( `observations/identifiers?per_page=0&project_id=${this.props.project.id}` ).
       then( json => this.props.updateState(
         { overallStats: { identifiers: json.total_results } } ) ).
       catch( e => console.log( e ) );
-    NodeAPI.fetch( `observations/observers?per_page=0&project_id=${this.props.project.id}` ).
+    Util.nodeApiFetch( `observations/observers?per_page=0&project_id=${this.props.project.id}` ).
       then( json => this.props.updateState(
         { overallStats: { observers: json.total_results } } ) ).
       catch( e => console.log( e ) );
@@ -90,7 +91,7 @@ class ProjectMap extends Component {
   render( ) {
     let className = "slide row-fluid map-slide";
     let parksStat;
-    if ( this.props.umbrella ) {
+    if ( this.props.umbrella && !this.props.singleProject ) {
       className += " umbrella";
       let parksCount;
       if ( this.props.project.id === this.props.overallID ) {
@@ -107,33 +108,32 @@ class ProjectMap extends Component {
         </div>
       );
     }
-    if ( this.props.umbrella ) { className += " umbrella-map-slide"; }
-    else { className += " subproject-map-slide"; }
+    className += this.props.umbrella ? " umbrella-map-slide" : " subproject-map-slide";
     return (
       <div className={ className }>
         <div className="left map-stats">
           <div className="container-fluid">
             <div className="row-fluid">
               <div className="value">
-                { Number( this.props.overallStats.observations ).toLocaleString( ) || "---" }
+                { Util.numberWithCommas( this.props.overallStats.observations ) }
               </div>
               <div className="stat">Observations</div>
             </div>
             <div className="row-fluid">
               <div className="value">
-                { Number( this.props.overallStats.species ).toLocaleString( ) || "---" }
+                { Util.numberWithCommas( this.props.overallStats.species ) }
               </div>
               <div className="stat">Species</div>
             </div>
             <div className="row-fluid">
               <div className="value">
-                { Number( this.props.overallStats.identifiers ).toLocaleString( ) || "---" }
+                { Util.numberWithCommas( this.props.overallStats.identifiers ) }
               </div>
               <div className="stat">Identifiers</div>
             </div>
             <div className="row-fluid">
               <div className="value">
-                { Number( this.props.overallStats.observers ).toLocaleString( ) || "---" }
+                { Util.numberWithCommas( this.props.overallStats.observers ) }
               </div>
               <div className="stat">Observers</div>
             </div>
@@ -149,6 +149,7 @@ class ProjectMap extends Component {
 
 ProjectMap.propTypes = {
   project: PropTypes.object,
+  singleProject: PropTypes.object,
   overallStats: PropTypes.object,
   updateState: PropTypes.func,
   umbrellaSubProjects: PropTypes.object,

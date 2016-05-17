@@ -6,7 +6,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import reducer from "./reducers";
-import BioblitzContainer from "./containers/bioblitz_container";
+import SlideshowContainer from "./containers/slideshow_container";
 
 const store = createStore(
   reducer,
@@ -21,7 +21,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <BioblitzContainer />
+    <SlideshowContainer />
   </Provider>,
   document.getElementById( "app" )
 );
