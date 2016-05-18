@@ -72,21 +72,26 @@ class StatsController < ApplicationController
       order("count(po.observation_id) desc")
 
     # prepare the data needed for the slideshow
-    all_project_data = Hash[ projs.map{ |p|
-      [ p.id,
-        {
-          id: p.id,
-          title: p.title.sub("2016 National Parks BioBlitz - ", ""),
-          slug: p.slug,
-          start_time: p.start_time,
-          end_time: p.end_time,
-          place_id: p.rule_place.try(:id),
-          observation_count: p.count,
-          in_progress: p.event_in_progress?,
-          species_count: p.node_api_species_count
-        }
-      ]
-    }]
+    begin
+      all_project_data = Hash[ projs.map{ |p|
+        [ p.id,
+          {
+            id: p.id,
+            title: p.title.sub("2016 National Parks BioBlitz - ", ""),
+            slug: p.slug,
+            start_time: p.start_time,
+            end_time: p.end_time,
+            place_id: p.rule_place.try(:id),
+            observation_count: p.count,
+            in_progress: p.event_in_progress?,
+            species_count: p.node_api_species_count
+          }
+        ]
+      }]
+    rescue
+      sleep(2)
+      return redirect_to :nps_bioblitz_stats
+    end
     # hard-coding umbrella project places
     all_project_data[6810][:place_id] = 0
     all_project_data[7109][:place_id] = 46
