@@ -4,6 +4,7 @@ class StatsController < ApplicationController
   before_filter :load_params
   caches_action :summary, expires_in: 1.hour
   caches_action :observation_weeks_json, expires_in: 1.day
+  caches_action :nps_bioblitz, expires_in: 5.minutes
 
   def index
     respond_to do |format|
