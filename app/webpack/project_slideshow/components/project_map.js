@@ -16,8 +16,8 @@ class ProjectMap extends Component {
     /* global L */
     const map = L.map( mapID, {
       scrollWheelZoom: false,
-      center: [37.166889, -95.966873],
-      zoom: 4,
+      center: [39.833333, -98.5838815],
+      zoom: 14,
       zoomControl: false,
       attributionControl: false
     } );

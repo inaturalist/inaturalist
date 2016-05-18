@@ -33,20 +33,20 @@ const defaultState = {
   speciesStats: { },
   overallProjectSlideshowOrder: [
     { slide: ".umbrella-map-slide", duration: 15000 },
-    { slide: ".iconic-taxa-slide", duration: 20000 },
-    { slide: ".iconic-taxa-species-slide", duration: 20000 },
-    { slide: ".people-slide", duration: 25000 },
-    { slide: ".species-slide", duration: 30000 },
+    { slide: ".iconic-taxa-slide", duration: 15000 },
+    { slide: ".iconic-taxa-species-slide", duration: 15000 },
+    { slide: ".people-slide", duration: 20000 },
+    { slide: ".species-slide", duration: 25000 },
     { slide: ".photos-slide", duration: 25000 },
-    { slide: ".top-projects-slide", duration: 30000 }
+    { slide: ".top-projects-slide", duration: 20000 }
   ],
   subProjectSlideshowOrder: [
     { slide: ".subproject-map-slide", duration: 15000 },
-    { slide: ".iconic-taxa-slide", duration: 20000 },
-    { slide: ".iconic-taxa-species-slide", duration: 20000 },
-    { slide: ".people-slide", duration: 25000 },
-    { slide: ".species-slide", duration: 30000 },
-    { slide: ".photos-slide", duration: 20000 }
+    { slide: ".iconic-taxa-slide", duration: 15000 },
+    { slide: ".iconic-taxa-species-slide", duration: 15000 },
+    { slide: ".people-slide", duration: 20000 },
+    { slide: ".species-slide", duration: 25000 },
+    { slide: ".photos-slide", duration: 25000 }
   ]
 };
 

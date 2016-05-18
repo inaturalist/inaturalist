@@ -12,7 +12,11 @@ class Slideshow extends Component {
       }
       const start = moment( this.props.project.start_time ).format( "M/D/YY" );
       const end = moment( this.props.project.end_time ).format( "M/D/YY" );
-      dateRange += `(${start} - ${end})`;
+      if ( start === end ) {
+        dateRange += `(${start})`;
+      } else {
+        dateRange += `(${start} - ${end})`;
+      }
     }
     let npsLogo;
     let natGeoLogo;

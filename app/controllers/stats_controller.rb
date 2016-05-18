@@ -59,7 +59,7 @@ class StatsController < ApplicationController
       7110 => [ 6835, 6833, 6840, 7298, 6819, 7299, 6815,
         6814, 7025, 7281, 6816, 7302, 7301, 6822 ],
       7107 => [ 6824, 6465, 6478 ],
-      6790 => [ 6850, 6851, 7167, 6852, 7168 ] # 7169
+      6790 => [ 6850, 6851, 7167, 6852, 7168, 7169 ]
     }
     all_project_ids = sub_project_ids.map{ |k,v| v }.flatten +
       sub_project_ids.keys
@@ -99,6 +99,7 @@ class StatsController < ApplicationController
       all_project_data[id][:slideshow_count] = 1
     end
     # the overall project shows 5 slides
+    all_project_data[@overall_id][:title] = "NPS Servicewide"
     all_project_data[@overall_id][:slideshow_count] = 5
 
     # the overall project shows any non-umbrella project not already
