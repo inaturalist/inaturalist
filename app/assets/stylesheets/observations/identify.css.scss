@@ -147,14 +147,9 @@ li.rc-pagination-item-active a {
 .statcol.active {
   border-bottom: 4px solid $inat-green;
 }
-
-.BulkActions button.btn {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding-left: 0;
-  padding-right: 0;
-  border: 0;
+.BulkActions { margin-bottom: 20px; }
+.BulkActions .btn-group-justified > .btn {
+  width: 50%;
 }
 
 .bootstrap .FiltersButton .dropdown-menu {
@@ -202,4 +197,31 @@ li.rc-pagination-item-active a {
 .quality_grade.research:after {
   border-color: $inat-green;
   border-right-color: transparent;
+}
+
+.IdentifierStats .details a {
+  display: block;
+  font-weight: bold;
+}
+.IdentifierStats ol {
+  padding: 0;
+}
+.IdentifierStats li {
+  display: flex;
+  margin-bottom: 10px;
+  position: relative;
+}
+.IdentifierStats .UserImage {
+  margin-right: 5px;
+}
+.IdentifierStats .position {
+  position: absolute;
+  left: -3px;
+  bottom: -2px;
+  background-color: orange;
+  color: white;
+  line-height: 10px;
+  font-size: 10px;
+  padding: 3px 4px;
+  box-shadow: 0 1px 3px #333;
 }

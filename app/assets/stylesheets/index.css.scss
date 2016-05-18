@@ -15,6 +15,7 @@ body {
 }
 html, body {height: 100%;}
 #bodywrapper {min-height: 100%; margin-bottom: -196px;}
+#bodywrapper.no-footer-gap {margin-bottom: -260px;}
 #bodywrapper:after {
   content: "";
   display: block;

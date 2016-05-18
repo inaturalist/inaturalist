@@ -1,3 +1,4 @@
+@import "../../users/_user_image";
 .ObservationsGridItem {
   position: relative;
 }
@@ -111,25 +112,12 @@ $flowedDim: 150px;
   margin-bottom: 3px
 }
 
-.ObservationsGridItem .userimage {
+.ObservationsGridItem .UserImage {
   position: absolute;
   right: 10px;
   bottom: 75px;
-  border-radius: 120px;
-  width: 40px;
-  height: 40px;
-  line-height: 38px;
-  font-size: 32px;
-  background-size: cover;
-  background-position: center;
-  background-color: #aaa;
-  color: white;
-  text-align: center;
-  border: 2px solid white;
-  vertical-align: middle;
 }
-.ObservationsGridItem .userimage:hover,
-.ObservationsGridItem .userimage:active {opacity: 1; color: #eee;}
+
 .ObservationsGridItem .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
 .ObservationsGridItem .meta .comments i,
 .ObservationsGridItem .meta .identifications i {font-size: 110%;}

@@ -6,6 +6,7 @@ import {
   Tooltip
 } from "react-bootstrap";
 import SplitTaxon from "./split_taxon";
+import UserImage from "./user_image"
 
 const ObservationsGridItem = ( {
   observation: o,
@@ -52,22 +53,7 @@ const ObservationsGridItem = ( {
         <i className="sound-icon fa fa-volume-up" />
       </a>
       <div className="caption">
-        <a
-          className="userimage"
-          href={`/people/${o.user_id}`}
-          title={o.user.login}
-          style={ {
-            backgroundImage: o.user.icon_url ? `url( '${o.user.icon_url}' )` : ""
-          } }
-          target="_self"
-        >
-          <i
-            className="icon-person"
-            style={ {
-              display: o.user.icon_url ? "none" : "inline"
-            } }
-          />
-        </a>
+        <UserImage user={ o.user } />
         { taxonJSX }
         <ButtonGroup className="controls">
           <OverlayTrigger

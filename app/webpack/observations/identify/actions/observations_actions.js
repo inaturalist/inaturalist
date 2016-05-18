@@ -1,6 +1,7 @@
 import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
+import { fetchIdentifiers } from "./identifiers_actions";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
@@ -36,6 +37,7 @@ function fetchObservations( ) {
           results: obs
         } ) );
         dispatch( fetchObservationsStats( ) );
+        dispatch( fetchIdentifiers( ) );
       } );
   };
 }

@@ -63,9 +63,9 @@ function fetchCurrentObservation( observation = null ) {
         }
         let currentUserIdentification;
         if ( currentUser && newObs && newObs.identifications ) {
-          currentUserIdentification = _.find(
-            newObs.identifications, ( ident ) => ( ident.user.id === currentUser.id )
-          );
+          currentUserIdentification = _.find( newObs.identifications, ( ident ) => (
+            ident.user.id === currentUser.id && ident.current
+          ) );
         }
         newObs.currentUserAgrees = currentUserIdentification &&
           currentUserIdentification.taxon_id === newObs.taxon_id;

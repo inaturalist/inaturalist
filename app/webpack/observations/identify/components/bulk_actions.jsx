@@ -1,28 +1,49 @@
 import React, { PropTypes } from "react";
-import { Button } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  OverlayTrigger,
+  Tooltip
+} from "react-bootstrap";
 
 const BulkActions = ( {
   reviewAll,
   unreviewAll
 } ) => (
-  <ul className="BulkActions plain">
-    <li>
-      <Button
-        bsStyle="link"
-        onClick={ ( ) => { reviewAll(); } }
+  <div className="BulkActions">
+    <ButtonGroup justified>
+      <OverlayTrigger
+        placement="bottom"
+        overlay={
+          <Tooltip id="review-all-btn-tooltip">
+            { I18n.t( "views.observations.identify.review_all_tooltip" ) }
+          </Tooltip>
+        }
+        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
       >
-        Review All
-      </Button>
-    </li>
-    <li>
-      <Button
-        bsStyle="link"
-        onClick={ ( ) => { unreviewAll(); } }
+        <Button
+          onClick={ ( ) => { reviewAll(); } }
+        >
+          { I18n.t( "review_all" ) }
+        </Button>
+      </OverlayTrigger>
+      <OverlayTrigger
+        placement="bottom"
+        overlay={
+          <Tooltip id="unreview-all-btn-tooltip">
+            { I18n.t( "views.observations.identify.unreview_all_tooltip" ) }
+          </Tooltip>
+        }
+        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
       >
-        Unreview All
-      </Button>
-    </li>
-  </ul>
+        <Button
+          onClick={ ( ) => { unreviewAll(); } }
+        >
+          { I18n.t( "unreview_all" ) }
+        </Button>
+      </OverlayTrigger>
+    </ButtonGroup>
+  </div>
 );
 
 BulkActions.propTypes = {

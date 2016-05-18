@@ -2519,6 +2519,7 @@ en:
   resolved_by: Resolved by
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   results: results
+  review_all: Review All
   review_verb: Review
   reviewed: Reviewed
   roadmap: roadmap
@@ -3120,6 +3121,7 @@ en:
   unprocessable: Unprocessable
   unpublish: Unpublish
   unreview: Unreview
+  unreview_all: Unreview All
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
@@ -4003,6 +4005,9 @@ en:
         tag_list: Comma-separated list of tags
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
+      identify:
+          review_all_tooltip: "Mark all observations on the page as reviewed"
+          unreview_all_tooltip: "Remove reviewed status for all observations on the page"
       import:
         coordinate_systems_help: |
           %{site_name} accepts coordinates using several different coordinate

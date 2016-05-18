@@ -31,13 +31,15 @@ import observationsStats from "./observations_stats_reducer";
 import currentObservation from "./current_observation_reducer";
 import config from "./config_reducer";
 import searchParams from "./search_params_reducer";
+import identifiers from "./identifiers_reducer";
 
 const rootReducer = combineReducers( {
   config,
   observations,
   observationsStats,
   currentObservation,
-  searchParams
+  searchParams,
+  identifiers
 } );
 
 export default rootReducer;
