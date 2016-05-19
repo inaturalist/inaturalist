@@ -4356,11 +4356,10 @@ es:
           los taxones enumerados pertenecientes a lugares dentro de este lugar. Podrías estar deshaciendo un montón de trabajo.
         description_html: "Esto cambiará los medios de establecimiento de <em>todos
           </em> los listados de este taxón en todos los descendientes de los lugares
-          de \n<a href=\"<span class=\" notranslate\"=\"\" translate=\"no\">%{place_url}\">%</span>{place_name}</a>
-          <strong>\"%{establishment_means}\"</strong>. Sólo los curadores pueden utilizar
-          esta herramienta. Cambiando el medio de establecimiento de \"introducido\"
-          tendrá aproximadamente el mismo efecto, pero no va a cambiar los valores
-          existentes, sólo rellenará los vacíos."
+          de \n<a href=\"%{place_url}\">%{place_name}</a> <strong>\"%{establishment_means}\"</strong>.
+          Sólo los curadores pueden utilizar esta herramienta. Cambiando el medio
+          de establecimiento de \"introducido\" tendrá aproximadamente el mismo efecto,
+          pero no va a cambiar los valores existentes, sólo rellenará los vacíos."
     lists:
       new:
         place_desc: |-

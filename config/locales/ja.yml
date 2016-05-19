@@ -91,6 +91,7 @@ ja:
   add_a_flag: フラグを追加
   add_a_link_raquo: リンクを追加 &raquo;
   add_a_name: 名前を追加
+  add_a_new_change_group: 新規変更グループを追加
   add_a_new_observation_to_id_please!: ID依頼の新規観察記録を追加
   add_a_place_raquo: 場所を追加 &raquo;
   add_a_single_observation: 1件のの観測記録を追加
@@ -598,6 +599,7 @@ ja:
   create_a_new_field: 新規フィールドを作成
   create_a_new_place: 新規場所を作成
   create_a_new_taxon: 新規分類群を作成
+  create_a_query: クエリーを作成
   create_an_account: アカウント作成
   create_new_taxon: 新規タクソン作成
   create_observations: 観測記録を作成
@@ -821,6 +823,7 @@ ja:
   event_registration_url: イベント登録URL
   event_stats: イベントの統計情報
   event_url: イベントURL
+  events_only: イベントのみ
   every_species_seen_by: 次のユーザが観察したすべての種：
   everyone: 全てのユーザー
   everyone_journal_posts: みんなのジャーナル投稿
@@ -1604,6 +1607,7 @@ ja:
   observationcounts_refreshed: 観察記録数更新済
   observed: 観察済
   observed_by: 観測者：
+  observed_in_place?: 観察場所：
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
@@ -2139,6 +2143,7 @@ ja:
   show_observations_from: 次のユーザの観察記録を表示：
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたホームページで紹介しよう！
   show_only: '表示限定:'
+  show_total_listed_taxa: リストのすべての分類群を表示
   showing_observations_by: 次のユーザの観察記録を表示中：
   showing_taxa_from_place: '%{place}からの分類群を表示中'
   show_taxa_from_place: '%{place}からの分類群を表示'
@@ -2485,6 +2490,7 @@ ja:
   user_follows: '%{user}がフォローしているユーザー'
   user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
   user_invited_you_to_join_html: '%{user}から招待が届いています：'
+  user_invited_your_x_to_a_project_html: '%{user}があなたの%{x}をプロジェクトに招待しました'
   user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
   user_is_a_naturalist: '%{user}はナチュラリストです！'
   user_s: '%{user}の'
@@ -2705,6 +2711,7 @@ ja:
   youre_following: フォロー中：
   youre_viewing_all_observations: すべての観測記録を表示中
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示中
+  youve_seen_it_want_to: 観察済です！よかったら、
   youve_successfully_linked_your_provider_account: あなたの%{provider}アカウントと無事接続できました。
   zoom_in: 拡大
   zoom_out: 縮小
@@ -2751,7 +2758,10 @@ ja:
         longitude: 公開経度
         private_latitude: 非公開緯度（観察記録が非公開または不明瞭な場合）
         user_login: 観察者のユーザネーム
+        created_at: 観察記録の作成日時
+        updated_at: 観察記録の最新更新日時
         quality_grade: この観察記録のデータ品質レベル。詳しくはヘルプをご覧ください。
+        license: 観察記録のユーザー指定ライセンス
         url: 観測記録のURL
         image_url: デフォルト画像のURL
         tag_list: カンマ区切りのタグリスト
