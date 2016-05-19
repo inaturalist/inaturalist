@@ -34,7 +34,7 @@ const IdentifierStats = ( {
                 <UserImage user={ item.user } />
                 <div className="details">
                   <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
-                  { I18n.t( "x_identifications", { count: item.count } ) }
+                  { I18n.t( "x_ids", { count: item.count } ) }
                 </div>
               </li>
             ) ) }
@@ -50,7 +50,7 @@ const IdentifierStats = ( {
                 <UserImage user={ item.user } />
                 <div className="details">
                   <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
-                  { I18n.t( "x_identifications", { count: item.count } ) }
+                  { I18n.t( "x_ids", { count: item.count } ) }
                 </div>
               </li>
             ) ) }

@@ -13,7 +13,10 @@ function receiveIdentifiers( response ) {
 function fetchIdentifiers( ) {
   return function ( dispatch, getState ) {
     const s = getState();
-    const apiParams = Object.assign( { }, s.searchParams, { reviewed: "any" } );
+    const apiParams = Object.assign( { }, s.searchParams, {
+      reviewed: "any",
+      quality_grade: "any"
+    } );
     return inatjs.observations.identifiers( apiParams )
       .then( response => dispatch( receiveIdentifiers( response ) ) );
   };
