@@ -30,7 +30,7 @@ const DateFilters = ( {
           name={`${prefix}-date-type`}
           defaultChecked={ !params[dateTypeField] }
           onChange={ ( ) => {
-            updateSearchParams( { [dateTypeField]: null } );
+            updateSearchParams( { [dateTypeField]: "any" } );
           } }
         />
         { _.capitalize( I18n.t( "any" ) ) }
