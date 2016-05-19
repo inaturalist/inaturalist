@@ -67,7 +67,9 @@ class FiltersButton extends React.Component {
       const checkedVal = ( checkbox.checked || true );
       return (
         <div
-          className={`checkbox ${params[checkbox.param] ? "filter-changed" : ""}`}
+          className={
+            `checkbox ${params[checkbox.param] && params[checkbox.param] === checkedVal ? "filter-changed" : ""}`
+          }
           key={`filters-${checkbox.param}-${checkbox.label}`}
         >
           <label>

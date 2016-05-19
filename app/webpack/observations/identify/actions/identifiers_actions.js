@@ -1,4 +1,5 @@
 import inatjs from "inaturalistjs";
+import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_IDENTIFIERS = "receive_identifiers";
 const UPDATE_IDENTIFIERS = "update_identifiers";
@@ -21,7 +22,7 @@ function updateIdentifiers( updates ) {
 function fetchIdentifiers( ) {
   return function ( dispatch, getState ) {
     const s = getState();
-    const apiParams = Object.assign( { }, s.searchParams, {
+    const apiParams = Object.assign( { }, paramsForSearch( s.searchParams ), {
       reviewed: "any",
       quality_grade: "any"
     } );

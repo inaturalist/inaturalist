@@ -2,6 +2,7 @@ import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
+import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
@@ -15,7 +16,8 @@ function fetchObservations( ) {
   return function ( dispatch, getState ) {
     const s = getState();
     const currentUserId = s.config.currentUser ? s.config.currentUser.id : null;
-    const apiParams = Object.assign( { viewer_id: currentUserId }, s.searchParams );
+    const apiParams = Object.assign( { viewer_id: currentUserId },
+      paramsForSearch( s.searchParams ) );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         let obs = response.results;

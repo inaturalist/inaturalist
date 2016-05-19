@@ -1,4 +1,5 @@
 import iNaturalistJS from "inaturalistjs";
+import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const UPDATE_OBSERVATIONS_STATS = "update_observations_stats";
 
@@ -14,7 +15,7 @@ function fetchObservationsStats( ) {
     const s = getState();
     const apiParams = Object.assign( {
       viewer_id: s.config.currentUser ? s.config.currentUser.id : null
-    }, s.searchParams );
+    }, paramsForSearch( s.searchParams ) );
     const needsIdParams = Object.assign( {}, apiParams, { quality_grade: "needs_id" } );
     iNaturalistJS.observations.search( needsIdParams )
       .then( response => {

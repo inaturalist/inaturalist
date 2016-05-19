@@ -34,7 +34,9 @@ class DateTimeFieldWrapper extends Component {
     if ( e && eInt ) {
       const pickedDate = new Date( eInt );
       if ( pickedDate ) {
-        value = moment.parseZone( pickedDate ).format( "YYYY/MM/DD h:mm A ZZ" );
+        value = moment
+          .parseZone( pickedDate )
+          .format( this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ" );
       }
     }
     this.props.onChange( value );
@@ -58,7 +60,7 @@ class DateTimeFieldWrapper extends Component {
         size={this.props.size}
         maxDate={ moment( ) }
         defaultText={ this.props.defaultText || "" }
-        inputFormat="YYYY/MM/DD h:mm A ZZ"
+        inputFormat={this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ"}
         onChange={ this.onChange }
       />
     );

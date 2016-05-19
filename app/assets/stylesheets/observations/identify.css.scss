@@ -213,12 +213,16 @@ li.rc-pagination-item-active a {
 }
 .IdentifierStats .UserImage {
   margin-right: 5px;
+  min-width: 40px;
+}
+.IdentifierStats .details {
+  overflow: hidden;
 }
 .IdentifierStats .position {
   position: absolute;
   left: -3px;
   bottom: -2px;
-  background-color: #f0ad4e;
+  background-color: orange;
   color: white;
   line-height: 10px;
   font-size: 10px;

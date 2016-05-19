@@ -24,6 +24,7 @@ const DEFAULT_PARAMS = {
 
 const HIDDEN_PARAMS = ["dateType", "createdDateType"];
 
+// Coerce params into a consistent format for update the state
 const normalizeParams = ( params ) => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
@@ -57,39 +58,66 @@ const normalizeParams = ( params ) => {
     }
     newParams[k] = newValue;
   } );
+  if ( !newParams.dateType ) {
+    if ( newParams.on ) {
+      newParams.dateType = "exact";
+    } else if ( newParams.d1 || newParams.d2 ) {
+      newParams.dateType = "range";
+    } else if ( newParams.month ) {
+      newParams.dateType = "month";
+    }
+  }
+  if ( !newParams.createdDateType ) {
+    if ( newParams.created_on ) {
+      newParams.createdDateType = "exact";
+    } else if ( newParams.created_d1 || newParams.created_d2 ) {
+      newParams.createdDateType = "range";
+    } else if ( newParams.created_month ) {
+      newParams.createdDateType = "month";
+    }
+  }
+  return newParams;
+};
 
-  if ( newParams.dateType === "exact" ) {
-    newParams.dateType = "exact";
+// Filter search params for use in API requests
+const paramsForSearch = ( params ) => {
+  const newParams = {};
+  _.forEach( params, ( v, k ) => {
+    if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {
+      return;
+    }
+    if ( _.isArray( v ) && v.length === 0 ) {
+      return;
+    }
+    newParams[k] = v;
+  } );
+  if ( params.dateType === "exact" ) {
     delete newParams.d1;
     delete newParams.d2;
     delete newParams.month;
-  } else if ( newParams.d1 || newParams.dateType === "range" ) {
-    newParams.dateType = "range";
+  } else if ( params.dateType === "range" ) {
     delete newParams.on;
     delete newParams.month;
-  } else if ( newParams.dateType === "month" ) {
-    newParams.dateType = "month";
+  } else if ( params.dateType === "month" ) {
     delete newParams.d1;
     delete newParams.d2;
     delete newParams.on;
   } else {
-    delete newParams.dateType;
     delete newParams.on;
     delete newParams.d1;
     delete newParams.d2;
     delete newParams.month;
   }
-
-  if ( newParams.createdDateType === "exact" ) {
+  if ( params.createdDateType === "exact" ) {
     newParams.createdDateType = "exact";
     delete newParams.created_d1;
     delete newParams.created_d2;
     delete newParams.created_month;
-  } else if ( newParams.createdDateType === "range" ) {
+  } else if ( params.createdDateType === "range" ) {
     newParams.createdDateType = "range";
     delete newParams.created_on;
     delete newParams.created_month;
-  } else if ( newParams.createdDateType === "month" ) {
+  } else if ( params.createdDateType === "month" ) {
     newParams.createdDateType = "month";
     delete newParams.created_d1;
     delete newParams.created_d2;
@@ -105,23 +133,13 @@ const normalizeParams = ( params ) => {
 };
 
 const setUrl = ( newState ) => {
+  // don't put defaults in the URL
   const urlState = {};
-  _.forEach( newState, ( v, k ) => {
-    // don't put defaults in the URL
+  _.forEach( paramsForSearch( newState ), ( v, k ) => {
     if ( DEFAULT_PARAMS[k] !== undefined && DEFAULT_PARAMS[k] === v ) {
       return;
     }
-    if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {
-      return;
-    }
-    if ( _.isArray( v ) && v.length === 0 ) {
-      return;
-    }
-    let newVal = v;
-    if ( _.isArray( v ) ) {
-      newVal = v.join( "," );
-    }
-    urlState[k] = newVal;
+    urlState[k] = v;
   } );
   const title = `Identify: ${$.param( urlState )}`;
   const newUrl = [
@@ -163,4 +181,4 @@ const searchParamsReducer = ( state = DEFAULT_PARAMS, action ) => {
 };
 
 export default searchParamsReducer;
-export { normalizeParams, DEFAULT_PARAMS };
+export { normalizeParams, DEFAULT_PARAMS, paramsForSearch };
