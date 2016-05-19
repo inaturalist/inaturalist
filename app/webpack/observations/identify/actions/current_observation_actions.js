@@ -169,10 +169,14 @@ function toggleCaptive( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const observation = s.currentObservation.observation;
-    const agree = s.currentObservation.captiveByCurrentUser;
+    const agree = observation.captiveByCurrentUser;
     dispatch( updateCurrentObservation( observation, {
-      captiveByCurrentUser: !s.currentObservation.captiveByCurrentUser
+      captiveByCurrentUser: !observation.captiveByCurrentUser,
+      reviewedByCurrentUser: true
     } ) );
+    if ( !observation.reviewedByCurrentUser ) {
+      iNaturalistJS.observations.review( { id: observation.id } );
+    }
     dispatch( toggleQualityMetric( observation, "wild", agree ) );
   };
 }
