@@ -124,7 +124,7 @@ const ObservationModal = ( {
               <ZoomableImageGallery
                 key={`map-for-${observation.id}`}
                 items={images}
-                showThumbnails={images.length > 1}
+                showThumbnails={images && images.length > 1}
                 lazyLoad={false}
                 server
                 showNav={false}

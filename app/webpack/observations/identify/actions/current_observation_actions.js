@@ -183,7 +183,15 @@ function toggleReviewed( optionalObs = null ) {
     const observation = optionalObs || s.currentObservation.observation;
     const reviewed = observation.reviewedByCurrentUser;
     const params = { id: observation.id };
-    dispatch( updateCurrentObservation( observation, {
+    if (
+      s.currentObservation.observation &&
+      observation.id === s.currentObservation.observation.id
+    ) {
+      dispatch( updateCurrentObservation( observation, {
+        reviewedByCurrentUser: !reviewed
+      } ) );
+    }
+    dispatch( updateObservationInCollection( observation, {
       reviewedByCurrentUser: !reviewed
     } ) );
     if ( reviewed ) {

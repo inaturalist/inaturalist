@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
@@ -25,11 +26,11 @@ const currentObservationReducer = ( state = {}, action ) => {
         visible: false
       } );
     case RECEIVE_CURRENT_OBSERVATION:
+      const obs = _.cloneDeep( action.observation );
+      obs.captiveByCurrentUser = action.captiveByCurrentUser;
+      obs.reviewedByCurrentUser = action.reviewedByCurrentUser;
       return Object.assign( {}, state, {
-        observation: Object.assign( { }, action.observation, {
-          captiveByCurrentUser: action.captiveByCurrentUser,
-          reviewedByCurrentUser: action.reviewedByCurrentUser
-        } ),
+        observation: obs,
         captiveByCurrentUser: action.captiveByCurrentUser,
         reviewedByCurrentUser: action.reviewedByCurrentUser,
         loadingDiscussionItem: false,

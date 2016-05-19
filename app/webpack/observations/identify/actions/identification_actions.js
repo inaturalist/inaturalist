@@ -4,6 +4,7 @@ import {
   fetchCurrentObservation
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
+import { fetchIdentifiers } from "./identifiers_actions";
 
 const POST_IDENTIFICATION = "post_identification";
 
@@ -14,6 +15,7 @@ function postIdentification( params ) {
     return inatjs.identifications.create( body )
       .then( response => {
         dispatch( fetchObservationsStats( ) );
+        dispatch( fetchIdentifiers( ) );
         return response;
       } );
   };

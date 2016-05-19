@@ -18,6 +18,10 @@
   background-position: center;
   margin: 0px auto;
   text-align: center;
+  position: relative;
+}
+.ObservationsGridItem a.photo {
+  opacity: 1;
 }
 .ObservationsGridItem .photo .icon, 
 .ObservationsGridItem .photo:hover .icon,
@@ -151,3 +155,41 @@ $flowedDim: 150px;
   white-space: nowrap;
 }
 
+.ObservationsGridItem .reviewed-notice {
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  background-color: rgba( 0, 0, 0, 0.5 );
+  color: white;
+  z-index: 1;
+}
+.ObservationsGridItem:hover .reviewed-notice,
+.ObservationsGridItem .reviewed-notice.reviewed {
+  display: block;
+}
+.ObservationsGridItem .reviewed-notice label {
+  font-weight: normal;
+  margin: 0;
+}
+
+.ObservationsGridItem .magnifier {
+  display: none;
+  background-color: rgba( 0, 0, 0, 0.5 );
+  color: white;
+  font-size: 20px;
+  z-index: 1;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+.ObservationsGridItem .photo:hover .magnifier {
+  display: block;
+}
