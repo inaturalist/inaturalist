@@ -64,7 +64,7 @@ class ProjectSpecies extends Component {
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
                   <span className="count">
-                    { Util.numberWithCommas( r.count ) } Observations
+                    { I18n.t( "x_observations_", { count: r.count } ) }
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@ class ProjectSpecies extends Component {
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
                   <span className="count">
-                    { Util.numberWithCommas( r.count ) } Observations
+                    { I18n.t( "x_observations_", { count: r.count } ) }
                   </span>
                 </div>
               </div>
@@ -132,7 +132,7 @@ class ProjectSpecies extends Component {
                 <div className="meta">
                   <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
                   <span className="count">
-                    { Util.numberWithCommas( r.count ) } Observations
+                    { I18n.t( "x_observations_", { count: r.count } ) }
                   </span>
                 </div>
               </div>

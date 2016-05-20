@@ -57,7 +57,7 @@ class ProjectPeople extends Component {
                 <div className="meta">
                   <span className="name">{ r.user.login }</span>
                   <span className="count">
-                    { Util.numberWithCommas( r.observation_count ) } Observations
+                  { I18n.t( "x_observations_", { count: r.observation_count } ) }
                   </span>
                 </div>
               </div>
@@ -89,7 +89,7 @@ class ProjectPeople extends Component {
                 <div className="meta">
                   <span className="name">{ r.user.login }</span>
                   <span className="count">
-                    { Util.numberWithCommas( r.count ) } Identifications
+                    { I18n.t( "x_identifications_", { count: r.count } ) }
                   </span>
                 </div>
               </div>

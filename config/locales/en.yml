@@ -26,6 +26,9 @@ en:
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_:
+    one: '1 Identification'
+    other: '%{count} Identifications'
   x_ids:
     one: '1 ID'
     other: '%{count} IDs'
@@ -44,6 +47,9 @@ en:
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
+  x_observations_:
+    one: "1 Observation"
+    other: "%{count} Observations"
   x_observations_html:
     one: "<span class='count'>1</span> observation"
     other: "<span class='count'>%{count}</span> observations"
