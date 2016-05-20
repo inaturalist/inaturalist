@@ -139,8 +139,15 @@ $.fn.genericAutocomplete = function( options ) {
     var key = e.keyCode || e.which;
     // return key
     if( key === 13 ) {
-      // allow submit when AC menu is closed, or always if allowEnterSubmit
-      if( options.allowEnterSubmit || genericAutocomplete.menuClosed( )) {
+      // Absolutely prevent form submission if preventEnterSubmit has been
+      // explicitly set, or allow submit when AC menu is closed, or always if
+      // allowEnterSubmit. So the default behavior is for ENTER to select an
+      // option when the menu is open but not submit the form, and if the menu
+      // is closed and the input has focus, ENTER *will* submit the form
+      if(
+        !options.preventEnterSubmit
+        && ( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) )
+      ) {
         field.closest( "form" ).submit( );
       }
       return false;
