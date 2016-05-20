@@ -198,7 +198,7 @@ const actions = class actions {
       dispatch( actions.updateObsCard( toObsCard, { files: toFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
-      if ( fromCard.blank( ) ) {
+      if ( fromCard.blank( ) || !fromCard.modified ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };

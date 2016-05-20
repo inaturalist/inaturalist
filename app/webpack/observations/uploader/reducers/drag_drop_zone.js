@@ -28,10 +28,18 @@ const dragDropZone = ( state = defaultState, action ) => {
       if ( state.obsCards[action.obsCard.id] === undefined ) {
         return state;
       }
-      if ( action.attrs.files ) { action.attrs.galleryIndex = 1; }
-      action.attrs.updatedAt = new Date( ).getTime( );
+      const attrs = action.attrs;
+      // reset the gallery to the first photo when a new photo is added
+      if ( action.attrs.files ) { attrs.galleryIndex = 1; }
+      const keys = _.keys( attrs );
+      if ( _.difference( keys, ["save_state"] ).length > 0 &&
+           attrs.modified !== false ) {
+        attrs.modified = true;
+      }
+      attrs.updatedAt = new Date( ).getTime( );
+
       let newState = update( state, {
-        obsCards: { [action.obsCard.id]: { $merge: action.attrs } }
+        obsCards: { [action.obsCard.id]: { $merge: attrs } }
       } );
       if ( state.selectedObsCards[action.obsCard.id] ) {
         newState = update( newState, {

@@ -45,10 +45,12 @@ class ProjectPhotos extends Component {
             } else {
               placeholder = ( <i className="icon-person" /> );
             }
+            let photoUrl = r.photos[0].url.replace( "square", "large" );
             return (
               <div className="cell" key={ `photo${r.id}` } style={
-                { backgroundImage: `url('${r.photos[0].url.replace( "square", "large" )}')` } }
+                { backgroundImage: `url('${photoUrl}')` } }
               >
+                <link rel="prefetch" href={ photoUrl } />
                 { prefetch }
                 <div className="caption">
                   { r.taxon ? ( r.taxon.preferred_common_name || r.taxon.name ) : "Unknown" }

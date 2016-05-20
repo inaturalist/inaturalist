@@ -85,7 +85,7 @@ const ObsCard = class ObsCard {
       updates.tags = obs.tag_list;
     }
     if ( Object.keys( updates ).length > 0 ) {
-      dispatch( actions.updateObsCard( this, updates ) );
+      dispatch( actions.updateObsCard( this, Object.assign( updates, { modified: false } ) ) );
     }
   }
 

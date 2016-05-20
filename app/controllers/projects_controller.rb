@@ -807,17 +807,23 @@ class ProjectsController < ApplicationController
         exists?
       return redirect_to project_path(@project)
     end
-    @slideshow_project = {
-      id: @project.id,
-      title: @project.title.sub("2016 National Parks BioBlitz - ", ""),
-      slug: @project.slug,
-      start_time: @project.start_time,
-      end_time: @project.end_time,
-      place_id: (@project.place || @project.rule_place).try(:id),
-      observation_count: @project.observations.count,
-      in_progress: @project.event_in_progress?,
-      species_count: @project.node_api_species_count || 0
-    }
+    begin
+      @slideshow_project = {
+        id: @project.id,
+        title: @project.title.sub("2016 National Parks BioBlitz - ", ""),
+        slug: @project.slug,
+        start_time: @project.start_time,
+        end_time: @project.end_time,
+        place_id: (@project.place || @project.rule_place).try(:id),
+        observation_count: @project.observations.count,
+        in_progress: @project.event_in_progress?,
+        species_count: @project.node_api_species_count || 0
+      }
+    rescue
+      sleep(2)
+      return redirect_to stats_slideshow_project_path(@project)
+    end
+
     render layout: "basic"
   end
 
