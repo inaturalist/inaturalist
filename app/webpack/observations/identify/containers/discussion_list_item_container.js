@@ -3,7 +3,9 @@ import DiscussionListItem from "../components/discussion_list_item";
 import {
   postIdentification,
   fetchCurrentObservation,
-  loadingDiscussionItem
+  loadingDiscussionItem,
+  fetchObservationsStats,
+  fetchIdentifiers
 } from "../actions";
 
 function mapStateToProps( state, ownProps ) {
@@ -24,6 +26,8 @@ function mapDispatchToProps( dispatch ) {
       dispatch( postIdentification( params ) )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ) );
+          dispatch( fetchObservationsStats( ) );
+          dispatch( fetchIdentifiers( ) );
         } );
     }
   };

@@ -3,7 +3,9 @@ import IdentificationForm from "../components/identification_form";
 import {
   postIdentification,
   fetchCurrentObservation,
-  loadingDiscussionItem
+  loadingDiscussionItem,
+  fetchObservationsStats,
+  fetchIdentifiers
 } from "../actions";
 
 // ownProps contains data passed in through the "tag", so in this case
@@ -21,6 +23,8 @@ function mapDispatchToProps( dispatch, ownProps ) {
       dispatch( postIdentification( identification ) )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ownProps.observation ) );
+          dispatch( fetchObservationsStats( ) );
+          dispatch( fetchIdentifiers( ) );
         } );
     }
   };

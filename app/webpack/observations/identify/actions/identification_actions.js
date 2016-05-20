@@ -9,15 +9,10 @@ import { fetchIdentifiers } from "./identifiers_actions";
 const POST_IDENTIFICATION = "post_identification";
 
 function postIdentification( params ) {
-  return function ( dispatch ) {
+  return function ( ) {
     const body = Object.assign( {}, params );
     body.user_id = 1;
-    return inatjs.identifications.create( body )
-      .then( response => {
-        dispatch( fetchObservationsStats( ) );
-        dispatch( fetchIdentifiers( ) );
-        return response;
-      } );
+    return inatjs.identifications.create( body );
   };
 }
 
@@ -34,6 +29,8 @@ function agreeWithObservaiton( observation ) {
       postIdentification( { observation_id: observation.id, taxon_id: observation.taxon.id } )
     ).then( ( ) => {
       dispatch( fetchCurrentObservation( observation ) );
+      dispatch( fetchObservationsStats( ) );
+      dispatch( fetchIdentifiers( ) );
     } );
   };
 }
