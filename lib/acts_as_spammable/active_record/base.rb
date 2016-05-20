@@ -26,8 +26,8 @@ module ActiveRecord
           user_responsible && user_responsible.known_non_spammer? }
         unless options[:automated] === false
           after_save :check_for_spam, unless: proc {
-            user_responsible && user_responsible.known_non_spammer? ||
-            options[:checks_spam_unless] && self.send(options[:checks_spam_unless]) }
+            (user_responsible && user_responsible.known_non_spammer?) ||
+            (options[:checks_spam_unless] && self.send(options[:checks_spam_unless])) }
         end
 
         scope :flagged_as_spam,
