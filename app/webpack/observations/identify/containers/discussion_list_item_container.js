@@ -12,9 +12,9 @@ function mapStateToProps( state, ownProps ) {
       ownProps.identification.current &&
       state.config.currentUser &&
       state.config.currentUser.id === ownProps.identification.user.id;
-    return { hideAgree };
+    return { hideAgree, currentUser: state.config.currentUser };
   }
-  return {};
+  return { currentUser: state.config.currentUser };
 }
 
 function mapDispatchToProps( dispatch ) {

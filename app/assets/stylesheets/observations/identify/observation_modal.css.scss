@@ -1,4 +1,5 @@
 @import "../../colors";
+@import "user_text";
 
 body > div > [role="dialog"] .modal-title {
   line-height: 10px;
@@ -81,6 +82,17 @@ $image-gallery-height: 380px;
   border: 1px solid #ccc;
   background-color: white;
 }
+.DiscussionListItem .controls {
+  visibility: hidden;
+}
+.DiscussionListItem:hover .controls {
+  visibility: visible;
+}
+.DiscussionListItem .controls a {
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: smaller;
+ }
 .DiscussionListItem .identification {
   display: flex;
 }

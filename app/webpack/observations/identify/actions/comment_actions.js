@@ -10,7 +10,14 @@ function postComment( params ) {
   };
 }
 
+function deleteComment( comment ) {
+  return function ( ) {
+    return inatjs.comments.delete( comment );
+  };
+}
+
 export {
   postComment,
-  POST_COMMENT
+  POST_COMMENT,
+  deleteComment
 };

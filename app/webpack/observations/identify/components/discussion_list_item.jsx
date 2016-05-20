@@ -1,8 +1,9 @@
 import React, { PropTypes } from "react";
 import moment from "moment";
-import SplitTaxon from "./split_taxon";
 import { Button } from "react-bootstrap";
 import _ from "lodash";
+import SplitTaxon from "./split_taxon";
+import UserText from "./user_text";
 
 const DiscussionListItem = ( {
   user,
@@ -11,7 +12,10 @@ const DiscussionListItem = ( {
   identification,
   className,
   agreeWith,
-  hideAgree
+  hideAgree,
+  onEdit,
+  onDelete,
+  currentUser
 } ) => {
   let ident;
   if ( identification ) {
@@ -61,6 +65,15 @@ const DiscussionListItem = ( {
       </div>
     );
   }
+  let controls;
+  if ( currentUser.id === user.id ) {
+    controls = (
+      <div className="controls">
+        <a onClick={ ( ) => onEdit( ) }>{ I18n.t( "edit" ) }</a>
+        <a onClick={ onDelete }>{ I18n.t( "delete" ) }</a>
+      </div>
+    );
+  }
   return (
     <div className={`DiscussionListItem ${className}`}>
       <div className="clear">
@@ -68,13 +81,12 @@ const DiscussionListItem = ( {
           {user.login}
         </a>'s { identification ? I18n.t( "identification" ) : I18n.t( "comment" ) }
         <span className="date pull-right" title={createdAt}>
-          { moment( createdAt ).fromNow( ) }
+          { moment( createdAt ).local( ).fromNow( ) }
         </span>
       </div>
       { ident }
-      <div className="body">
-        { body }
-      </div>
+      <UserText text={body} className="body" />
+      { controls }
     </div>
   );
 };
@@ -89,7 +101,10 @@ DiscussionListItem.propTypes = {
   identification: PropTypes.object,
   className: PropTypes.string,
   agreeWith: PropTypes.func,
-  hideAgree: PropTypes.bool
+  hideAgree: PropTypes.bool,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  currentUser: PropTypes.object
 };
 
 export default DiscussionListItem;

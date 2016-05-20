@@ -11,14 +11,15 @@ import {
   Popover,
   Tooltip
 } from "react-bootstrap";
-import DiscussionList from "./discussion_list";
+import _ from "lodash";
+import moment from "moment";
+import DiscussionListContainer from "../containers/discussion_list_container";
 import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SplitTaxon from "./split_taxon";
 import TaxonMap from "./taxon_map";
-import _ from "lodash";
+import UserText from "./user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
-import moment from "moment";
 
 const ObservationModal = ( {
   onClose,
@@ -132,7 +133,8 @@ const ObservationModal = ( {
             </Col>
             <Col xs={4} className="sidebar">
               {taxonMap}
-              <DiscussionList observation={observation} />
+              <UserText text={observation.description} truncate={100} className="stacked" />
+              <DiscussionListContainer observation={observation} />
               <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                 <i className="fa fa-spin fa-refresh"></i>
               </center>

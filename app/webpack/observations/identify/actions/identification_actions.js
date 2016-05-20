@@ -21,6 +21,12 @@ function postIdentification( params ) {
   };
 }
 
+function deleteIdentification( ident ) {
+  return function ( ) {
+    return inatjs.identifications.delete( ident );
+  };
+}
+
 function agreeWithObservaiton( observation ) {
   return function ( dispatch ) {
     dispatch( loadingDiscussionItem( ) );
@@ -42,5 +48,6 @@ export {
   postIdentification,
   POST_IDENTIFICATION,
   agreeWithObservaiton,
-  agreeWithCurrentObservation
+  agreeWithCurrentObservation,
+  deleteIdentification
 };

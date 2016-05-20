@@ -1,16 +1,22 @@
 import React, { PropTypes } from "react";
 import DiscussionListItemContainer from "../containers/discussion_list_item_container";
 
-const DiscussionList = ( { observation } ) => {
-  let items = ( observation.comments || [] ).map( ( c ) =>
-    Object.assign( c, { className: "Comment", key: `Comment-${c.id}` } ) );
+const DiscussionList = ( { observation, onDelete } ) => {
+  let items = ( observation.comments || [] ).map( ( c ) => (
+    Object.assign( c, {
+      className: "Comment",
+      key: `Comment-${c.id}`,
+      editUrl: `/comments/${c.id}/edit`
+    } )
+  ) );
   const taxonIds = new Set( );
   items = items.concat( ( observation.identifications || [] ).map( ( i ) => {
     const hideAgree = taxonIds.has( i.taxon.id );
     taxonIds.add( i.taxon.id );
     return Object.assign( i, {
       className: "Identification",
-      hideAgree
+      hideAgree,
+      editUrl: `/identifications/${i.id}/edit`
     } );
   } ) );
   items = items.sort( ( a, b ) => {
@@ -32,6 +38,14 @@ const DiscussionList = ( { observation } ) => {
           createdAt={item.created_at}
           identification={item.className === "Identification" ? item : null}
           hideAgree={item.hideAgree ? true : null}
+          onEdit={ ( ) => {
+            window.open( item.editUrl, "_blank" );
+          } }
+          onDelete={ ( ) => {
+            if ( confirm( I18n.t( "are_you_sure?" ) ) ) {
+              onDelete( item );
+            }
+          } }
         />
       ) ) }
     </div>
@@ -39,7 +53,8 @@ const DiscussionList = ( { observation } ) => {
 };
 
 DiscussionList.propTypes = {
-  observation: PropTypes.object.isRequired
+  observation: PropTypes.object.isRequired,
+  onDelete: PropTypes.func
 };
 
 export default DiscussionList;
