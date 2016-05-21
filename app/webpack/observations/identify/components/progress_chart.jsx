@@ -6,10 +6,16 @@ const ProgressChart = ( {
 } ) => (
   <div className="ProgressChart">
     <div className="title">
-      <span className="count">{ I18n.toNumber( reviewed, { precision: 0 } ) }</span> Observations Reviewed
+      <span className="count">
+        { I18n.toNumber( reviewed, { precision: 0 } ) }
+      </span> Observations Reviewed
     </div>
     <div className="chart">
-      <div className="value" style={ { width: `${reviewed / unreviewed * 100}%` } }></div>
+      <div
+        className="value"
+        style={ { width: `${( reviewed / ( reviewed + unreviewed ) ) * 100}%` } }
+      >
+      </div>
     </div>
     <div className="footer">
       0

@@ -5,7 +5,6 @@ import IdentifierStatsContainer from "../containers/identifier_stats_container";
 const SideBar = () => (
   <div className="SideBar">
     <ProgressChartContainer />
-    <hr />
     <IdentifierStatsContainer />
   </div>
 );
