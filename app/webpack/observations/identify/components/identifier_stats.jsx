@@ -1,8 +1,4 @@
 import React, { PropTypes } from "react";
-import { Row, Col } from "react-bootstrap";
-import _ from "lodash";
-import inflection from "lodash-inflection";
-_.mixin( inflection );
 import UserImage from "./user_image";
 
 const IdentifierStats = ( {
@@ -19,49 +15,36 @@ const IdentifierStats = ( {
   } else if ( users.length === 0 ) {
     content = <div className="text-center text-muted">{ I18n.t( "no_matching_users" ) }</div>;
   } else {
-    const mid = Math.ceil( users.length / 2 );
-    const col1 = users.slice( 0, mid );
-    const col2 = users.slice( mid, users.length );
     content = (
-      <Row>
-        <Col xs="6">
-          <ol>
-            {col1.map( ( item, i ) => (
-              <li
-                key={`identifier-${item.user.id}`}
-              >
-                <span className="position">{ _.ordinalize( i + 1 ) }</span>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>{ I18n.t( "rank" ) }</th>
+            <th colSpan={2} className="identifications">{ I18n.t( "identifications" ) }</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map( ( item, i ) => (
+            <tr
+              key={`identifier-${item.user.id}`}
+            >
+              <td className="position">{ i + 1 }</td>
+              <td className="user">
                 <UserImage user={ item.user } />
-                <div className="details">
-                  <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
-                  { I18n.t( "x_ids", { count: item.count } ) }
-                </div>
-              </li>
-            ) ) }
-          </ol>
-        </Col>
-        <Col xs="6">
-          <ol>
-            {col2.map( ( item, i ) => (
-              <li
-                key={`identifier-${item.user.id}`}
-              >
-                <span className="position">{ _.ordinalize( i + mid + 1 ) }</span>
-                <UserImage user={ item.user } />
-                <div className="details">
-                  <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
-                  { I18n.t( "x_ids", { count: item.count } ) }
-                </div>
-              </li>
-            ) ) }
-          </ol>
-        </Col>
-      </Row>
+                <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
+              </td>
+              <td className="identifications">
+                { I18n.toNumber( item.count, { precision: 0 } ) }
+              </td>
+            </tr>
+          ) ) }
+        </tbody>
+      </table>
     );
   }
   return (
     <div className="IdentifierStats">
-      <h4>Leaderboard for Current Filters</h4>
+      <h4>Top Identifiers</h4>
       { content }
     </div>
   );

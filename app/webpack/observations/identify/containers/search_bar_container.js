@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import SearchBar from "../components/search_bar";
-import { fetchObservations, updateSearchParams } from "../actions";
+import { fetchObservations, updateSearchParams, reviewAll } from "../actions";
 
 function mapStateToProps( state ) {
   return {
@@ -10,6 +10,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
+    reviewAll: ( ) => {
+      dispatch( reviewAll( ) );
+    },
     updateSearchParams: ( params ) => {
       dispatch( updateSearchParams( Object.assign( {}, params, { page: 1 } ) ) );
       dispatch( fetchObservations( ) );

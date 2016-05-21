@@ -6,7 +6,8 @@ import PlaceAutocomplete from "./place_autocomplete";
 
 const SearchBar = ( {
   params,
-  updateSearchParams
+  updateSearchParams,
+  reviewAll
 } ) => (
   <form className="SearchBar form-inline">
     <TaxonAutocomplete
@@ -44,13 +45,22 @@ const SearchBar = ( {
         updateSearchParams( { reviewed: e.target.checked } );
       }}
     />
+    <div className="pull-right">
+      <Button
+        bsStyle="primary"
+        onClick={ ( ) => reviewAll( ) }
+      >
+        <i className="fa fa-eye-slash"></i> Mark All as Reviewed
+      </Button>
+    </div>
   </form>
 );
 
 
 SearchBar.propTypes = {
   params: PropTypes.object,
-  updateSearchParams: PropTypes.func
+  updateSearchParams: PropTypes.func,
+  reviewAll: PropTypes.func
 };
 
 export default SearchBar;

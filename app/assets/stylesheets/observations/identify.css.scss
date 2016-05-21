@@ -199,33 +199,31 @@ li.rc-pagination-item-active a {
   border-right-color: transparent;
 }
 
-.IdentifierStats .details a {
-  display: block;
-  font-weight: bold;
-}
-.IdentifierStats ol {
-  padding: 0;
-}
-.IdentifierStats li {
-  display: flex;
-  margin-bottom: 10px;
-  position: relative;
-}
 .IdentifierStats .UserImage {
   margin-right: 5px;
   min-width: 40px;
 }
-.IdentifierStats .details {
-  overflow: hidden;
+.bootstrap .IdentifierStats .table > thead > tr > th,
+.bootstrap .IdentifierStats .table > tbody > tr > td {
+  border-color: #aaa;
 }
-.IdentifierStats .position {
-  position: absolute;
-  left: -3px;
-  bottom: -2px;
-  background-color: orange;
-  color: white;
-  line-height: 10px;
-  font-size: 10px;
-  padding: 3px 4px;
-  box-shadow: 0 1px 3px #333;
+.bootstrap .IdentifierStats .table > thead > tr > th {
+  color: #aaa;
+  text-transform: uppercase;
+  font-size: smaller;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.bootstrap .IdentifierStats .table > tbody > tr > td {
+  line-height: 40px;
+}
+.IdentifierStats .identifications {
+  text-align: right;
+}
+.IdentifierStats .user {
+  white-space: nowrap;
+  width: 100%;
+}
+.IdentifierStats .user a {
+  color: #333;
 }
