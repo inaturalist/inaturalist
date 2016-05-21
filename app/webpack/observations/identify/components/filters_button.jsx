@@ -232,7 +232,7 @@ class FiltersButton extends React.Component {
                 { name: "Plantae", label: "plants" },
                 { name: "Fungi", label: "fungi" },
                 { name: "Protozoa", label: "protozoans" },
-                { name: "Unknown", label: "unknown" }
+                { name: "unknown", label: "unknown" }
               ].map( iconicTaxonButton ) }
             </div>
           </Col>

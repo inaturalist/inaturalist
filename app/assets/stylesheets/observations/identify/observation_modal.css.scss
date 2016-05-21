@@ -81,6 +81,7 @@ $image-gallery-height: 380px;
   padding: 10px;
   border: 1px solid #ccc;
   background-color: white;
+  position: relative;
 }
 .DiscussionListItem .controls {
   visibility: hidden;
@@ -90,7 +91,7 @@ $image-gallery-height: 380px;
 }
 .DiscussionListItem .controls a {
   cursor: pointer;
-  margin-right: 5px;
+  margin: 0 5px;
   font-size: smaller;
  }
 .DiscussionListItem .identification {

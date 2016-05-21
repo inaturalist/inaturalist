@@ -68,10 +68,11 @@ const DiscussionListItem = ( {
   let controls;
   if ( currentUser.id === user.id ) {
     controls = (
-      <div className="controls">
+      <span className="controls">
         <a onClick={ ( ) => onEdit( ) }>{ I18n.t( "edit" ) }</a>
+        &middot;
         <a onClick={ onDelete }>{ I18n.t( "delete" ) }</a>
-      </div>
+      </span>
     );
   }
   return (
@@ -80,13 +81,13 @@ const DiscussionListItem = ( {
         <a href={`/people/${user.login}`}>
           {user.login}
         </a>'s { identification ? I18n.t( "identification" ) : I18n.t( "comment" ) }
+        { controls }
         <span className="date pull-right" title={createdAt}>
           { moment( createdAt ).local( ).fromNow( ) }
         </span>
       </div>
       { ident }
       <UserText text={body} className="body" />
-      { controls }
     </div>
   );
 };
