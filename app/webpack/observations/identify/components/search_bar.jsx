@@ -7,7 +7,9 @@ import PlaceAutocomplete from "./place_autocomplete";
 const SearchBar = ( {
   params,
   updateSearchParams,
-  reviewAll
+  reviewAll,
+  unreviewAll,
+  allReviewed
 } ) => (
   <form className="SearchBar form-inline">
     <TaxonAutocomplete
@@ -47,10 +49,12 @@ const SearchBar = ( {
     />
     <div className="pull-right">
       <Button
-        bsStyle="primary"
-        onClick={ ( ) => reviewAll( ) }
+        bsStyle={allReviewed ? "primary" : "default"}
+        onClick={ ( ) => ( allReviewed ? unreviewAll( ) : reviewAll( ) ) }
       >
-        <i className="fa fa-eye-slash"></i> Mark All as Reviewed
+        <i
+          className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
+        ></i> { allReviewed ? "Mark All as Unreviewed" : "Mark All as Reviewed" }
       </Button>
     </div>
   </form>
@@ -60,7 +64,9 @@ const SearchBar = ( {
 SearchBar.propTypes = {
   params: PropTypes.object,
   updateSearchParams: PropTypes.func,
-  reviewAll: PropTypes.func
+  reviewAll: PropTypes.func,
+  unreviewAll: PropTypes.func,
+  allReviewed: PropTypes.bool
 };
 
 export default SearchBar;

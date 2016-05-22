@@ -2,6 +2,7 @@ import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
+import { setConfig } from "./config_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
@@ -62,21 +63,29 @@ function updateAllLocal( changes ) {
 
 function reviewAll( ) {
   return function ( dispatch, getState ) {
+    dispatch( setConfig( { allReviewed: true } ) );
     dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
-    _.forEach( getState( ).observations.results, ( o ) => {
-      iNaturalistJS.observations.review( { id: o.id } );
-    } );
-    dispatch( fetchObservationsStats( ) );
+    // B/c this was new to me, Promise.all takes an array of Promises and
+    // creates another Promise that is fulfilled if all the promises in the
+    // array are fulfilled. So here, we only want to fetch the obs stats after
+    // all the obs were reviewed. From
+    // http://www.html5rocks.com/en/tutorials/es6/promises/. I'm not *really*
+    // sure this is a better user experience than the herky-jerkiness of
+    // updating the stats after each request, so this might not last, but now
+    // I know how to do this
+    Promise.all(
+      getState( ).observations.results.map( o => iNaturalistJS.observations.review( o ) )
+    ).then( ( ) => dispatch( fetchObservationsStats( ) ) );
   };
 }
 
 function unreviewAll( ) {
   return function ( dispatch, getState ) {
+    dispatch( setConfig( { allReviewed: false } ) );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
-    _.forEach( getState( ).observations.results, ( o ) => {
-      iNaturalistJS.observations.unreview( { id: o.id } );
-    } );
-    dispatch( fetchObservationsStats( ) );
+    Promise.all(
+      getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( o ) )
+    ).then( ( ) => dispatch( fetchObservationsStats( ) ) );
   };
 }
 

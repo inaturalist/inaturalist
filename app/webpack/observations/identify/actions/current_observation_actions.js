@@ -1,5 +1,6 @@
 import iNaturalistJS from "inaturalistjs";
 import _ from "lodash";
+import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 
@@ -204,6 +205,7 @@ function toggleReviewed( optionalObs = null ) {
       reviewedByCurrentUser: !reviewed
     } ) );
     if ( reviewed ) {
+      dispatch( setConfig( { allReviewed: false } ) );
       iNaturalistJS.observations.unreview( params ).then( ( ) => {
         dispatch( fetchCurrentObservation( observation ) );
         dispatch( fetchObservationsStats( ) );
