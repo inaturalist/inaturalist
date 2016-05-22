@@ -15,15 +15,19 @@ function receiveObservations( results ) {
 function fetchObservations( ) {
   return function ( dispatch, getState ) {
     const s = getState();
-    const currentUserId = s.config.currentUser ? s.config.currentUser.id : null;
-    const apiParams = Object.assign( { viewer_id: currentUserId },
-      paramsForSearch( s.searchParams ) );
+    const currentUser = s.config.currentUser ? s.config.currentUser : null;
+    const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
+    const apiParams = Object.assign( {
+      viewer_id: currentUser.id,
+      preferred_place_id: preferredPlace.id,
+      locale: I18n.locale
+    }, paramsForSearch( s.searchParams ) );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         let obs = response.results;
-        if ( currentUserId ) {
+        if ( currentUser.id ) {
           obs = response.results.map( ( o ) => {
-            if ( o.reviewed_by.indexOf( currentUserId ) > -1 ) {
+            if ( o.reviewed_by.indexOf( currentUser.id ) > -1 ) {
               // eslint complains about this, but if you create a new object
               // with Object.assign you lose all the Observation model stuff
               o.reviewedByCurrentUser = true;

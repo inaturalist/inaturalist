@@ -39,6 +39,12 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   } ) );
 }
 
+if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
+  store.dispatch( setConfig( {
+    preferredPlace: PREFERRED_PLACE
+  } ) );
+}
+
 setupKeyboardShortcuts( store.dispatch );
 
 // set state from initial url search and listen for changes

@@ -15,6 +15,7 @@
 }
 .ProgressChart .value {
   background-color: $inat-green;
+  transition: width 0.5s;
 }
 .ProgressChart .footer {
   color: #888;

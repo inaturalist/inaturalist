@@ -45,7 +45,12 @@ function fetchCurrentObservation( observation = null ) {
     const s = getState();
     const obs = observation || s.currentObservation.observation;
     const currentUser = s.config.currentUser;
-    return iNaturalistJS.observations.fetch( [obs.id] )
+    const preferredPlace = s.config.preferredPlace;
+    const params = {
+      preferred_place_id: preferredPlace ? preferredPlace.id : null,
+      locale: I18n.locale
+    };
+    return iNaturalistJS.observations.fetch( [obs.id], params )
       .then( response => {
         const newObs = response.results[0];
         let captiveByCurrentUser = false;
