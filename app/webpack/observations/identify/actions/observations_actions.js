@@ -20,7 +20,7 @@ function fetchObservations( ) {
     const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
     const apiParams = Object.assign( {
       viewer_id: currentUser.id,
-      preferred_place_id: preferredPlace.id,
+      preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale
     }, paramsForSearch( s.searchParams ) );
     return iNaturalistJS.observations.search( apiParams )
