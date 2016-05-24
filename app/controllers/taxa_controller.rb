@@ -177,6 +177,7 @@ class TaxaController < ApplicationController
         if @place
           @listed_taxon = @taxon.listed_taxa.joins(:place).includes(:place).
             where(place_id: @place.self_and_ancestor_ids).
+            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).
             order("(places.ancestry || '/' || places.id) DESC, establishment_means").first
         end
         
