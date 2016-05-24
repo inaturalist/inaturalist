@@ -180,6 +180,8 @@ GEM
     airbrake (4.1.0)
       builder
       multi_json
+    airbrussh (1.0.2)
+      sshkit (>= 1.6.1, != 1.7.0)
     akami (1.2.2)
       gyoku (>= 0.4.0)
       nokogiri
@@ -218,14 +220,16 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    capistrano (3.3.5)
-      capistrano-stats (~> 1.1.0)
+    capistrano (3.5.0)
+      airbrussh (>= 1.0.0)
+      capistrano-harrow
       i18n
       rake (>= 10.0.0)
-      sshkit (~> 1.3)
+      sshkit (>= 1.9.0)
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-harrow (0.5.1)
     capistrano-passenger (0.0.1)
       capistrano (~> 3.0)
     capistrano-rails (1.1.5)
@@ -234,7 +238,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano-stats (1.1.1)
     capistrano3-delayed-job (1.3.0)
       capistrano (>= 3.0.0)
     capybara (2.4.4)
@@ -263,7 +266,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    colorize (0.7.5)
     columnize (0.9.0)
     commander (4.3.5)
       highline (~> 1.7.2)
@@ -421,7 +423,7 @@ GEM
     naught (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.2)
+    net-ssh (3.1.1)
     netrc (0.10.2)
     newrelic_rpm (3.15.0.314)
     nokogiri (1.6.7.2)
@@ -600,8 +602,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sshkit (1.6.1)
-      colorize (>= 0.7.0)
+    sshkit (1.10.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statsd-ruby (1.2.1)
@@ -780,4 +781,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.11.2
+   1.12.0
