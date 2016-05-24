@@ -8,7 +8,7 @@ class OpeningActionMenu extends Component {
       <div className="intro">
         <div className="start">
           <div className="drag_or_choose">
-            <p>{ I18n.t( "drag_and_drop_some_photos" ) }</p>
+            <h1>{ I18n.t( "drag_and_drop_some_photos" ) }</h1>
             <p>{ I18n.t( "or" ) }</p>
             <Button bsStyle="primary" bsSize="large" onClick={ this.props.fileChooser }>
               { I18n.t( "choose_photos" ) }

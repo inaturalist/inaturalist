@@ -928,7 +928,7 @@ en:
   draft_: Draft
   draft_saved: Draft saved!
   drafts: Drafts
-  drag_and_drop_some_photos: Drag and drop some photos
+  drag_and_drop_some_photos: Drag & drop some photos
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
@@ -974,8 +974,8 @@ en:
   editing_observation_field: Editing observation field
   editing_observation_id: "Editing Observation %{obs_id}"
   editing_observations:
-    one: Editing 1 observation
-    other: Editing %{count} observations
+    one: 'Editing <span class="count">1</span> observation:'
+    other: 'Editing <span class="count">%{count}</span> observations:'
   editing_project: Editing %{project}
   editing_project_asset: Editing Project Asset for
   editing_subscription_to_x_html: "Editing subscription to %{x}"

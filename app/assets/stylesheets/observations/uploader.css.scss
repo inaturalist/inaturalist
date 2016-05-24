@@ -62,13 +62,16 @@ body {
 .intro {
   text-align: center;
   height: 300px;
-  padding-top: 7%;
+  padding-top: 6%;
   font-size: 1.3em;
   .drag_or_choose {
     padding-bottom: 30px;
+    p {
+      padding: 20px 0;
+    }
   }
   .dropdown {
-    border-top: 1px dashed;
+    border-top: 1px dashed #a7a7a7;
     padding: 30px 150px 0px;
   }
   .dropdown-menu {
@@ -125,6 +128,13 @@ body {
 }
 
 .leftColumn {
+  .head {
+    font-size: 18px;
+    font-weight: 400;
+    .count {
+      font-weight: bold;
+    }
+  }
   .taglist {
     margin-bottom: 10px;
     .badge {
@@ -185,7 +195,6 @@ ul.obs > li .card {
   }
   .photoDrag {
     cursor: -webkit-grab; cursor: -moz-grab;
-    line-height: 1px;
   }
   .caption {
     padding: 0 9px;
@@ -241,8 +250,8 @@ ul.obs > li .card {
     outline: none;
   }
   .btn-close-photo {
-    right: 1px;
-    top: 1px;
+    right: -3px;
+    top: 0px;
   }
   .btn-enlarge {
     position: absolute;
@@ -270,31 +279,32 @@ ul.obs > li .card {
   }
   .img-container {
     text-align: center;
-    height: 120px;
-    line-height: 120px;
+    height: 144px;
+    line-height: 144px;
     .placeholder .glyphicon {
-      line-height: 120px;
+      line-height: 144px;
       font-size: 100px;
       opacity: 0.07;
     }
     .gallery-item > .glyphicon {
-      line-height: 120px;
+      line-height: 144px;
       font-size: 40px;
       opacity: 0.07;
     }
     img {
-      max-height: 105px;
-      max-width: 160px;
+      max-height: 142px;
+      max-width: 180px;
       width: auto;
+      margin-bottom: 10px;
     }
     .carousel {
       .carousel-control {
         background: none;
         height: 50px;
-        margin-top: 40px;
+        margin-top: 45px;
         text-shadow: none;
         opacity: 1;
-        width: 7%;
+        width: 1%;
         span {
           font-size: 14px;
           margin-top: -10px;

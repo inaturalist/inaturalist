@@ -107,12 +107,13 @@ class LeftMenu extends Component {
     }
     let menu;
     if ( count === 0 ) {
-      menu = I18n.t( "select_observations_to_edit" );
+      menu = ( <span className="head">{ I18n.t( "select_observations_to_edit" )} </span> );
     } else {
-      let text = I18n.t( "editing_observations", { count } );
       menu = (
         <div>
-          { text }
+          <span className="head" dangerouslySetInnerHTML={
+            { __html: I18n.t( "editing_observations", { count } ) } }
+          />
           <br />
           <br />
           <TaxonAutocomplete
