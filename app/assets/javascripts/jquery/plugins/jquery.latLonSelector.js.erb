@@ -529,7 +529,7 @@
       // provide a viewport that is tiny, just around a specific location,
       // e.g. if you search for "pt reyes national seashore" it zooms in on
       // the bear valley visitor's center instead of the whole park. This used
-      // to work fine but Google seems to have changed in late 2016.
+      // to work fine but Google seems to have changed in late 2015.
       if (viewport && result.geometry.bounds) {
         var accuracy = $.fn.latLonSelector.boundsToAccuracy(viewport, point)
         $.fn.latLonSelector.setAccuracy(accuracy, {lat: point.lat(), lng: point.lng()})
