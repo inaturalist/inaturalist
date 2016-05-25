@@ -38,7 +38,9 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :taxon_schemes, :through => :taxon_scheme_taxa
   has_many :lists, :through => :listed_taxa
-  has_many :places, :through => :listed_taxa
+  has_many :places,
+    -> { where( "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ) },
+    through: :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy

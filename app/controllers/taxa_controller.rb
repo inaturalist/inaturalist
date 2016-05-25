@@ -187,7 +187,13 @@ class TaxaController < ApplicationController
         @iconic_taxa = Taxon::ICONIC_TAXA
         
         @check_listed_taxa = ListedTaxon.page(1).
-          select("min(listed_taxa.id) AS id, listed_taxa.place_id, listed_taxa.taxon_id, min(listed_taxa.list_id) AS list_id, min(establishment_means) AS establishment_means").
+          select("
+            min(listed_taxa.id) AS id,
+            listed_taxa.place_id,
+            listed_taxa.taxon_id,
+            min(listed_taxa.list_id) AS list_id,
+            min(establishment_means) AS establishment_means,
+            max(occurrence_status_level) AS occurrence_status_level").
           includes(:place, :list).
           group(:place_id, :taxon_id).
           where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
