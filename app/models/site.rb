@@ -213,6 +213,7 @@ class Site < ActiveRecord::Base
   preference :natureserve_key, :string
   preference :custom_logo, :text
   preference :custom_footer, :text
+  preference :custom_secondary_footer, :text
   preference :custom_email_footer_leftside, :text
   preference :custom_email_footer_rightside, :text
 
