@@ -16,7 +16,8 @@ class ProjectsController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count, :browse, :calendar ]
+    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
+      :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
@@ -35,7 +36,7 @@ class ProjectsController < ApplicationController
     'title' => 'lower(title)',
     'created' => 'id'
   }
-  
+
   def index
     respond_to do |format|
       format.html do
@@ -66,9 +67,13 @@ class ProjectsController < ApplicationController
       end
       format.json do
         scope = Project.all
-        scope = scope.featured if params[:featured]
+        if params[:featured] && params[:latitude]
+          scope = scope.featured_near_point( params[:latitude], params[:longitude] )
+        else
+          scope = scope.featured if params[:featured]
+          scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+        end
         scope = scope.in_group(params[:group]) if params[:group]
-        scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
         opts = Project.default_json_options.merge(:include => [
@@ -235,7 +240,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.destroy
+    @project.delay( priority: USER_INTEGRITY_PRIORITY ).sane_destroy
     
     respond_to do |format|
       format.html do
@@ -758,59 +763,6 @@ class ProjectsController < ApplicationController
     return
   end
 
-  def preview_matching
-    @observations = scope_for_add_matching.page(1).per_page(10)
-    if @project_user
-      render :layout => false
-    else
-      render :unprocessable_entity
-    end
-  end
-
-  def add_matching
-    unless @project.users.where("users.id = ?", current_user).exists?
-      msg = t(:you_must_be_a_member_of_this_project_to_do_that)
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_back_or_default(@project)
-        end
-        format.json { render :json => {:error => msg} }
-      end
-      return
-    end
-
-    added = 0
-    failed = 0
-    scope_for_add_matching.find_each do |observation|
-      next if observation.project_observations.detect{|po| po.project_id == @project.id}
-      pi = ProjectObservation.new(:observation => observation, :project => @project)
-      if pi.save
-        added += 1
-      else
-        failed += 1
-      end
-    end
-
-    msg = if added == 0 && failed > 0
-      "Failed to add all #{failed} matching observation(s) to #{@project.title}. Try adding observations individually to see error messages"
-    elsif failed > 0
-      "Added #{added} matching observation(s) to #{@project.title}, failed to add #{failed}. Try adding the rest individually to see error messages."
-    else
-      "Added #{added} matching observation(s) to #{@project.title}"
-    end
-
-    respond_to do |format|
-      format.html do
-        flash[:notice] = msg
-        redirect_back_or_default(@project)
-      end
-      format.json do
-        render :json => {:msg => msg}
-      end
-    end
-  end
-  
   def search
     if @site && (@site_place = @site.place)
       @place = @site.place unless params[:everywhere].yesish?
@@ -843,18 +795,39 @@ class ProjectsController < ApplicationController
       format.html
     end
   end
-  
-  private
 
-  def scope_for_add_matching
-    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
-    scope = @project.observations_matching_rules.
-      by(current_user).
-      joins(:project_observations).
-      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project)
-    scope = scope.of(@taxon) if @taxon
-    scope
+  def stats_slideshow
+    if @project.title == Project::NPS_BIOBLITZ_PROJECT_NAME
+      return redirect_to nps_bioblitz_stats_path
+    end
+    # must have a place and one observation with a photo
+    if (!@project.place && !@project.rule_place) ||
+      !Observation.joins(:projects).
+        where("projects.id=? AND observations.observation_photos_count > 0", @project.id).
+        exists?
+      return redirect_to project_path(@project)
+    end
+    begin
+      @slideshow_project = {
+        id: @project.id,
+        title: @project.title.sub("2016 National Parks BioBlitz - ", ""),
+        slug: @project.slug,
+        start_time: @project.start_time,
+        end_time: @project.end_time,
+        place_id: (@project.place || @project.rule_place).try(:id),
+        observation_count: @project.observations.count,
+        in_progress: @project.event_in_progress?,
+        species_count: @project.node_api_species_count || 0
+      }
+    rescue
+      sleep(2)
+      return redirect_to stats_slideshow_project_path(@project)
+    end
+
+    render layout: "basic"
   end
+
+  private
   
   def load_project
     @project = Project.find(params[:id]) rescue nil
@@ -928,7 +901,7 @@ class ProjectsController < ApplicationController
       params[:project].delete(:featured_at)
     end
     if params[:project][:project_type] != Project::BIOBLITZ_TYPE && !current_user.is_curator?
-      params[:project][:prefers_aggregation] = false
+      params[:project].delete(:prefers_aggregation)
     end
     true
   end

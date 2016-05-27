@@ -65,6 +65,18 @@ describe ObservationsController do
         post :create, observation: {species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s}, project_id: p.id
       }.not_to raise_error
     end
+
+    it "should work with a custom coordinate system" do
+      nztm_proj4 = "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+      post :create, observation: {
+        geo_x: 1889191,
+        geo_y: 5635569,
+        coordinate_system: nztm_proj4
+      }
+      o = user.observations.last
+      expect( o.latitude ).to eq -39.380943828
+      expect( o.longitude ).to eq 176.3574072522
+    end
   end
   
   describe "update" do
@@ -552,8 +564,9 @@ describe ObservationsController, "new_bulk_csv" do
   let(:headers) do
     %w(taxon_name date_observed description place_name latitude longitude tags geoprivacy)
   end
+  let(:user) { User.make! }
   before do
-    sign_in User.make!
+    sign_in user
   end
   it "should not allow you to enqueue the same file twice" do
     Delayed::Job.delete_all
@@ -586,5 +599,67 @@ describe ObservationsController, "new_bulk_csv" do
     expect( Delayed::Job.count ).to eq 1
     post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
     expect( Delayed::Job.count ).to eq 2
+  end
+
+  it "should create observations" do
+    Delayed::Job.delete_all
+    Observation.by( user ).destroy_all
+    expect( Observation.by( user ).count ).to eq 0
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        '37.7693',
+        '-122.46565',
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    Taxon.make!( name: "Homo sapiens" )
+    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    Delayed::Worker.new.work_off
+    expect( Observation.by( user ).count ).to eq 1
+  end
+
+  it "should create observations with custom coordinate systems" do
+    stub_config :coordinate_systems => {
+      :nztm2000 => {
+        :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
+        :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+      },
+      :nzmg => {
+        :label => "NZMG (New Zealand Map Grid), EPSG:27200",
+        :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+      }
+    }
+    expect(CONFIG.coordinate_systems).not_to be_blank
+    Delayed::Job.delete_all
+    Observation.by( user ).destroy_all
+    expect( Observation.by( user ).count ).to eq 0
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        5635569, # these coordinates should be NZMG for Lat -39.380943828, Lon 176.3574072522
+        1889191,
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    Taxon.make!( name: "Homo sapiens" )
+    post :new_bulk_csv, upload: {
+      datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv'),
+      coordinate_system: "nzmg"
+    }
+    Delayed::Worker.new.work_off
+    expect( Observation.by( user ).count ).to eq 1
   end
 end

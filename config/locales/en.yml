@@ -26,6 +26,12 @@ en:
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_:
+    one: '1 Identification'
+    other: '%{count} Identifications'
+  x_ids:
+    one: '1 ID'
+    other: '%{count} IDs'
   x_lists:
     one: '1 list'
     other: '%{count} lists'
@@ -41,6 +47,9 @@ en:
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
+  x_observations_:
+    one: "1 Observation"
+    other: "%{count} Observations"
   x_observations_html:
     one: "<span class='count'>1</span> observation"
     other: "<span class='count'>%{count}</span> observations"
@@ -121,6 +130,7 @@ en:
   accept: accept
   accept_community_identifications: Accept community identifications
   accuracy: Accuracy
+  accuracy_m: Accuracy (m)
   accuracy_meters: Accuracy (meters)
   accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
   acquaintances: acquaintances
@@ -380,6 +390,7 @@ en:
   are_you_sure_merge_these_places: Are you sure you want to merge these places?  This cannot be undone.
   are_you_sure_remove_curator: "Are you sure you want to remove %{user} as a curator?"
   are_you_sure_remove_from_project: "Are you sure you want to remove %{user} from this project?"
+  are_you_sure_remove_photo: "Are you sure you want to remove this photo?"
   are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
   are_you_sure_remove_taxon_from_place: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
@@ -612,6 +623,7 @@ en:
   choose_files_from_your_computer: choose files from your computer
   choose_from_your_lists: Choose from your lists
   choose_good_default_photos: choose good default photos from the pool of Creative Commons photos on Flickr
+  choose_photos: Choose photos
   choose_photos_for_this_taxon: Choose photos for this taxon
   choose_photos_to_tag_from_photostream: Choose photos to tag from your photostream
   choose_place: Choose a place
@@ -643,6 +655,7 @@ en:
                 useful in categorization, like brown mammals and green ferns.
   colors: Colors
   columns: Columns
+  combine: Combine
   comma_separated_list_of_tracking_codes: |
               Comma-separated list of tracking codes. Add these if you want to append a tracking code when sending
               people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
@@ -686,6 +699,7 @@ en:
     Configure a widget to show %{site_name} observations on your website or
     blog. You may have to include the embedded CSS in the
     <code>&lt;head&gt;</code> of your HTML.  Feel free to re-write the CSS.
+  confirm: Confirm
   confirm_membership: Confirm membership
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
@@ -710,6 +724,7 @@ en:
   conservation_summary: Conservation Summary
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   contest: contest
+  continue: Continue
   contributions: contributions
   contributions_from: Contributions from
   contributor_cannot_be_found: Contributor cannot be found
@@ -770,6 +785,7 @@ en:
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
   creative_commons_unless_otherwise_noted: "Creative Commons unless otherwise noted."
   critically_endangered: critically endangered
+  critically_imperiled: critically imperiled
   css_description: This will get included after all other css on the page.
   csv: CSV
   csv_file: CSV file
@@ -792,6 +808,7 @@ en:
     private and obscured contributions to this project.
   curator_identification: Curator identification
   current_password: Current Password
+  custom_field_values: Custom field values
   custom_project_fields: Custom Project Fields
   custom_project_was_successfully_created: CustomProject was successfully created.
   custom_project_was_successfully_updated: CustomProject was successfully updated.
@@ -902,6 +919,7 @@ en:
   display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
+  drop_it: Drop it
   do_not_show_this_message_again: Do not show this message again
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
@@ -926,6 +944,7 @@ en:
   draft_: Draft
   draft_saved: Draft saved!
   drafts: Drafts
+  drag_and_drop_some_photos: Drag & drop some photos
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
@@ -938,6 +957,7 @@ en:
   edit_field: Edit field
   edit_flagged_observation: Edit Flagged Observation
   edit_license: Edit license
+  edit_multiple_descriptions: Edit multiple descriptions
   edit_notes: Edit notes
   edit_photos: Edit photos
   edit_photos_for_observation_id: "Edit photos for Observation %{obs_id}"
@@ -969,6 +989,9 @@ en:
   editing_custom_project_fields_for: Editing custom project fields for
   editing_observation_field: Editing observation field
   editing_observation_id: "Editing Observation %{obs_id}"
+  editing_observations:
+    one: 'Editing <span class="count">1</span> observation:'
+    other: 'Editing <span class="count">%{count}</span> observations:'
   editing_project: Editing %{project}
   editing_project_asset: Editing Project Asset for
   editing_subscription_to_x_html: "Editing subscription to %{x}"
@@ -1162,11 +1185,13 @@ en:
   from_a_place: from a place
   from_anywhere_change: from anywhere (<span class="button">change</span>)
   from_eol_collection: From EOL collection
+  from_flickr_facebook_etc: From Flickr, Facebook, etc.
   from_in_this_place: from in this place
   from_list: From list
   from_this: from this
   from_photos: From photos
   from_place: From place
+  from_soundcloud: From Soundcloud
   from_your_site_observations: "From %{site_name} observations"
   from_licensed_site_observations: "From licensed %{site_name} observations"
   full_id_please: ID Please!
@@ -1201,6 +1226,8 @@ en:
   global_names: Global names
   globally: globally
   go: Go
+  go_back: Go back
+  going_to_your_observations: Going to your observations...
   good_choice_for_sharing: Good choice for sharing with scientists
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
   graft: Graft
@@ -1315,6 +1342,7 @@ en:
   import_observations: Import Observations
   import_observations_from_a_photo: Import observations from a photo provider or a file on your computer.
   import_photos: Import photos
+  import_sounds: Import sounds
   import_tags_from_csv: Import tags from CSV
   importing: "Importing..."
   in: in
@@ -1565,6 +1593,7 @@ en:
     ja: Japanese
     "zh-CN": Chinese (simplified)
     "zh-TW": Chinese (traditional)
+  locality_notes: Locality notes
   localized_species_accounts: Localized species accounts
   location: Location
   location_: Location
@@ -1672,7 +1701,7 @@ en:
     shortRelativeTime:
       future: "in %s"
       past: "%s"
-      s:  "s"
+      s:  "1s"
       m:  "1min"
       mm: "%dm"
       h:  "1h"
@@ -1690,6 +1719,7 @@ en:
   more: More
   more_fields: More fields
   more_filters: More filters
+  more_import_options: More import options
   more_info: More info
   more_info_title: More Info
   more_journal_posts: More journal posts
@@ -1702,6 +1732,10 @@ en:
   most_observed_species: Most observed species
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
+  must_be_observed_after: |
+    must be observed after %{operand}
+  must_be_observed_before: |
+    must be observed before %{operand}
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
@@ -1894,6 +1928,7 @@ en:
   numeric_: numeric
   noun_by_you: "%{noun} by you"
   obs: Obs
+  obscured_: obscured
   obscured: Obscured
   obscured_or_private: obscured or private
   obscured_description: "Public coordinates shown as a random point within 10KM of the true coordinates. True coordinates are only visible to you and the curators of projects to which you add the observation."
@@ -1928,6 +1963,7 @@ en:
     Amphibia" and "must be in Reptilia", then the project will accept
     observations of reptiles OR amphibians.
   observation_was_deleted: Observation was deleted.
+  observation_without_photo: Observation without photo
   observation_would_like_some_help: "%{user} would like some help identifying this!"
   observations: Observations
   observations_added_by_x_html: "Observations added by %{x}"
@@ -2005,6 +2041,7 @@ en:
   offensive_inappropriate: offensive / inappropriate
   official_blog: Official Blog
   offline_access_enabled: Offline access enabled
+  ok: "OK"
   on_: "on"
   on_date: "at %{date}"
   on_day: "on"
@@ -2112,6 +2149,7 @@ en:
   photo_hosting_accounts: Photo hosting accounts
   photo_integration: Photo Integration
   photo_licensing: Photo licensing
+  photo_s: Photo(s)
   photo_type: Photo type
   photo_urls_repaired: Photo URLs repaired
   photos: Photos
@@ -2366,7 +2404,7 @@ en:
   project_user_was_invalid: "Project user was invalid: %{project_user}"
   project_was_successfully_created: Project was successfully created.
   project_was_successfully_updated: Project was successfully updated.
-  project_x_was_delete: "%{project} was deleted"
+  project_x_was_delete: "%{project} was deleted (please allow a few minutes it to be removed from the website)"
   projects: Projects
   projects_description: "Projects are a way to pool your observations with other people on %{site_name}.  Whether you're interested in starting a citizen science project or just keeping tabs on the birds in a nearby park with your local birding club, Projects are the way to go."
   projects_from_place: "Projects from %{place}"
@@ -2474,6 +2512,9 @@ en:
   remove_from_project: Remove from project
   remove_this_section: Remove this section
   remove_manager: Remove manager
+  remove_observations:
+    one: Remove 1 observation?
+    other: Remove %{count} observations?
   remove_place: Remove place
   remove_project_user: Remove project user
   remove_selected: Remove selected
@@ -2512,6 +2553,7 @@ en:
   resolved_by: Resolved by
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   results: results
+  review_all: Review All
   review_verb: Review
   reviewed: Reviewed
   roadmap: roadmap
@@ -2554,6 +2596,9 @@ en:
   save_place: Save place
   save_trip: Save trip
   saving: "Saving..."
+  saving_num_of_count_observations:
+    one: Saving observation...
+    other: Saving %{num} of %{count} observations...
   saving_verb: Saving
   schemes: Schemes
   schemes_including: Schemes including
@@ -2566,6 +2611,7 @@ en:
   search_creative_commons_photos_on_flickr: "Search Creative Commons photos on Flickr. If you select one, be nice and leave them a thank you comment!"
   search_descendant_taxa_raquo: "Search descendant taxa &raquo;"
   search_external_name_providers: Search external name providers
+  search_for_a_location: Search for a location
   search_for_new_taxa: search for new taxa
   search_for_place_to_import_from_yahoo: Search for a place to import from Yahoo.
   search_for_species: Search for species
@@ -2594,6 +2640,7 @@ en:
   select_how_unobserved_listings_are_displayed: Select how unobserved listings from the project list are displayed
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
+  select_observations_to_edit: Select observations to edit...
   select_one_or_more_photos: 'Select one or more photos'
   select_options: Select options
   select_photos_from_your_photo_stream: |
@@ -2745,7 +2792,9 @@ en:
   species_guess: species guess
   species_guide: Species Guide
   species_header: Species
-  species_name: species names
+  species_name: species name
+  species_name_cap: Species name
+  species_names: species names
   species_or_lower: species or lower
   species_search: Species Search
   species_taxon_name: Species / Taxon Name
@@ -2784,6 +2833,9 @@ en:
   submission_model_description: Who can add observations to your project?
   submit: Submit
   submit_comment: Submit comment
+  submit_observations:
+    one: Submit 1 observation
+    other: Submit %{count} observations
   submitted: Submitted
   subscribe_to_a_taxon: Subscribe to a Taxon
   subscribe_to_a_place: Subscribe to a Place
@@ -2986,6 +3038,8 @@ en:
     for synonymous taxa and merge them.
   these_arent_necessarily_relevant_to: "These aren't necessarily relevant to this project. Please check the"
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
+  these_observations_have_not_been_uploaded_yet: |
+    These observations have not been uploaded yet.
   they_already_have_iNat_accounts: "...they already have %{site_name} accounts"
   they_have_been_invited: ...they've already been invited
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
@@ -3106,6 +3160,7 @@ en:
   unprocessable: Unprocessable
   unpublish: Unpublish
   unreview: Unreview
+  unreview_all: Unreview All
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
@@ -3375,6 +3430,8 @@ en:
   yesterday_at: ', yesterday at 4pm'
   you: you
   you_admin: you admin
+  you_appear_offline_try_again: |
+    You appear to be offline. Please try again when you are connected to the Internet.
   youre_a_site_curator_which_means: |
     You're a site curator, which means you've volunteered to help
     curate our data and monitor content. Please don't feel obliged
@@ -3392,6 +3449,11 @@ en:
   you_are_setting_this_project_to_aggregate: |
     You are setting this project to aggregate all observations matching the
     following rules: %{rules} Do you want to proceed?
+  you_are_submitting_obs_without_photos_and_names: |
+    You are submitting observations without photos and taxon names.
+    These observations will very difficult to accurately identify.
+  you_are_submitting_obs_with_photos_no_date: |
+    You are submitting observations with photos but without date or location.
   you_are_subscribed_to: "You're subscribed to "
   you_arent_a_member_of_that_project: You aren't a member of that project.
   you_arent_following_that_person: "You aren't following that person."
@@ -3988,6 +4050,9 @@ en:
         tag_list: Comma-separated list of tags
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
+      identify:
+          review_all_tooltip: "Mark all observations on the page as reviewed"
+          unreview_all_tooltip: "Remove reviewed status for all observations on the page"
       import:
         coordinate_systems_help: |
           %{site_name} accepts coordinates using several different coordinate
@@ -4873,6 +4938,11 @@ en:
           attributes:
             user_id:
               must_be_curator: must be a curator of this project
+            observation_id:
+              must_be_observed_after: |
+                must be observed after %{time}
+              must_be_observed_before: |
+                must be observed before %{time}
   i18n:
     inflections:
       :@vow_or_con:

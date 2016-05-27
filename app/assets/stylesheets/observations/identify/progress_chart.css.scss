@@ -1,0 +1,27 @@
+@import "../../colors";
+
+.ProgressChart {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.ProgressChart .chart,
+.ProgressChart .value {
+  height: 20px;
+}
+.ProgressChart .chart {
+  background-color: #bbb;
+  margin: 3px 0;
+}
+.ProgressChart .value {
+  background-color: $inat-green;
+  transition: width 0.5s;
+}
+.ProgressChart .footer {
+  color: #888;
+  font-size: smaller;
+}
+.ProgressChart .count {
+  font-weight: 600;
+  color: black;
+}

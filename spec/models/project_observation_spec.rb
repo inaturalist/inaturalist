@@ -83,6 +83,68 @@ describe ProjectObservation, "creation" do
     expect( po ).to be_valid
   end
 
+  it "should validates bioblitz time range" do
+    start_time = Time.parse("2016-01-01T20:00:00-07:00")
+    end_time = Time.parse("2016-01-01T20:00:00-07:00")
+    p = Project.make!(
+      project_type: Project::BIOBLITZ_TYPE,
+      start_time: start_time,
+      end_time: end_time,
+      prefers_range_by_date: false
+    )
+    # equal to start time
+    o = Observation.make!(observed_on_string: start_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # equal to end time
+    o = Observation.make!(observed_on_string: end_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 minute earlier
+    o = Observation.make!(observed_on_string: (start_time - 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+    # 1 minute later
+    o = Observation.make!(observed_on_string: (end_time + 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+  end
+
+  it "should validates bioblitz date range" do
+    start_time = Time.parse("2016-01-01T20:00:00-07:00")
+    end_time = Time.parse("2016-01-01T20:00:00-07:00")
+    p = Project.make!(
+      project_type: Project::BIOBLITZ_TYPE,
+      start_time: start_time,
+      end_time: end_time,
+      prefers_range_by_date: true
+    )
+    # equal to start time
+    o = Observation.make!(observed_on_string: start_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # equal to end time
+    o = Observation.make!(observed_on_string: end_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 minute earlier
+    o = Observation.make!(observed_on_string: (start_time - 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 minute later
+    o = Observation.make!(observed_on_string: (end_time + 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 day earlier
+    o = Observation.make!(observed_on_string: (start_time - 1.day).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+    # 1 day later
+    o = Observation.make!(observed_on_string: (end_time + 1.day).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+  end
+
   describe "updates" do
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)

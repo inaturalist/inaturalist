@@ -1,6 +1,6 @@
 $.fn.placeAutocomplete = function( options ) {
   options = options || { };
-  if( !options.id_el ) { return; }
+  if( !options.idEl ) { return; }
   var field = this;
 
   field.template = function( item ) {
@@ -17,7 +17,7 @@ $.fn.placeAutocomplete = function( options ) {
   };
 
   field.genericAutocomplete( _.extend( options, {
-    extra_class: "place",
+    extraClass: "place",
     source: function( request, response ) {
       $.ajax({
       url: "//<%= CONFIG.node_api_host %>/places/autocomplete",

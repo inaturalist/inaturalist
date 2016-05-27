@@ -295,13 +295,15 @@ class Observation < ActiveRecord::Base
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
-  validates_inclusion_of :coordinate_system,
-    :in => proc { CONFIG.coordinate_systems.to_h.keys.map(&:to_s) },
-    :message => "'%{value}' is not a valid coordinate system",
-    :allow_blank => true,
-    :if => lambda {|o|
-      CONFIG.coordinate_systems
-    }
+  validate do
+    unless coordinate_system.blank?
+      begin
+        RGeo::CoordSys::Proj4.new( coordinate_system )
+      rescue RGeo::Error::UnsupportedOperation
+        errors.add( :coordinate_system, "is not a valid Proj4 string" )
+      end
+    end
+  end
   # See /config/locale/en.yml for field labels for `geo_x` and `geo_y`
   validates_numericality_of :geo_x,
     :allow_blank => true,
@@ -2168,7 +2170,7 @@ class Observation < ActiveRecord::Base
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new(CONFIG.coordinate_systems.send(self.coordinate_system.to_sym).proj4)
+      from = RGeo::CoordSys::Proj4.new(self.coordinate_system)
 
       # ... to WGS84
       to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)

@@ -20,7 +20,9 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy, :viewed_updates, :update_fields ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!,
+    only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
+    if: lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -990,12 +992,18 @@ class ObservationsController < ApplicationController
     FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
+    unless CONFIG.coordinate_systems.blank? || params[:upload][:coordinate_system].blank?
+      if coordinate_system = CONFIG.coordinate_systems[params[:upload][:coordinate_system]]
+        proj4 = coordinate_system.proj4
+      end
+    end
+
     # Send the filename to a background processor
     bof = BulkObservationFile.new(
-      path, 
-      params[:upload][:project_id], 
-      params[:upload][:coordinate_system], 
-      current_user
+      path,
+      current_user.id,
+      project_id: params[:upload][:project_id], 
+      coord_system: proj4
     )
     Delayed::Job.enqueue(
       bof, 
@@ -1246,6 +1254,9 @@ class ObservationsController < ApplicationController
     if @site && @site.site_only_users
       @top_identifiers = @top_identifiers.where(:site_id => @site)
     end
+    respond_to do |format|
+      format.html
+    end
   end
   
   # Renders observation components as form fields for inclusion in 
@@ -1412,6 +1423,14 @@ class ObservationsController < ApplicationController
     delayed_csv(path_for_csv, @project)
   end
   
+  def identify
+    render layout: "bootstrap"
+  end
+
+  def upload
+    render layout: "basic"
+  end
+
   def identotron
     @observation = Observation.find_by_id((params[:observation] || params[:observation_id]).to_i)
     @taxon = Taxon.find_by_id(params[:taxon].to_i)
@@ -1784,8 +1803,11 @@ class ObservationsController < ApplicationController
     p = options.blank? ? params : options
     p.permit(
       :captive_flag,
+      :coordinate_system,
       :description,
       :force_quality_metrics,
+      :geo_x,
+      :geo_y,
       :geoprivacy,
       :iconic_taxon_id,
       :id_please,
@@ -1793,9 +1815,9 @@ class ObservationsController < ApplicationController
       :license,
       :location_is_exact,
       :longitude,
-      :map_scale,
       :make_license_default,
       :make_licenses_same,
+      :map_scale,
       :oauth_application_id,
       :observed_on_string,
       :place_guess,
@@ -1938,7 +1960,10 @@ class ObservationsController < ApplicationController
     user_reviewed
     respond_to do |format|
       format.html { redirect_to @observation }
-      format.json { head :no_content }
+      format.json do
+        Observation.refresh_es_index
+        head :no_content
+      end
     end
   end
 
@@ -2029,8 +2054,12 @@ class ObservationsController < ApplicationController
     return unless logged_in?
     review = ObservationReview.where(observation_id: @observation.id,
       user_id: current_user.id).first_or_create
-    review.update_attributes({ user_added: true,
-      reviewed: (params[:reviewed] === "false") ? false : true })
+    reviewed = if request.delete?
+      false
+    else
+      params[:reviewed] === "false" ? false : true
+    end
+    review.update_attributes({ user_added: true, reviewed: reviewed })
     review.observation.elastic_index!
   end
 

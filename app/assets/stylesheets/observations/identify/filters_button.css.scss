@@ -1,0 +1,188 @@
+$bg-color: #727272;
+$changed-color: #74ac00;
+
+.FiltersButtonPopover.popover {
+  max-width: none;
+}
+.FiltersButtonPopover.popover .popover-content {
+  padding: 0;
+}
+.FiltersButtonPopover .FiltersButtonFooter {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.popover .FiltersButtonContainer > button.btn-default {
+  background-color: $bg-color;
+  border-color: $bg-color;
+  color: #eee;
+  position: relative;
+}
+.popover .FiltersButtonContainer > button:hover { color: white; }
+.popover .FiltersButtonContainer > button.btn-default .badge {
+  background-color: $changed-color;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.popover .FiltersButtonContainer .filter-changed,
+.popover .FiltersButtonContainer .filter-changed label {
+  color: $changed-color;
+  font-weight: bold;
+}
+.FiltersButtonContainer select.filter-changed,
+.FiltersButtonContainer button.filter-changed,
+.FiltersButtonContainer .form-control.filter-changed,
+.FiltersButtonContainer .form-control.filter-changed {
+  color: $changed-color !important;
+  border-color: $changed-color !important;
+  background-color: rgba(16, 172, 0, 0.1) !important;
+}
+
+/* FORM-INLINE OVERRIDES: embedding the button in a form-inline really screws things up */
+.form-inline .FiltersButtonContainer .form-control {
+  width: 100%;
+  display: block;
+}
+.form-inline .FiltersButtonContainer .radio input[type=radio],
+.form-inline .FiltersButtonContainer .checkbox input[type=checkbox] {
+  position: absolute;
+  margin-left: -20px;
+}
+.form-inline .FiltersButtonContainer .checkbox label {
+  padding-left: 20px;
+}
+.form-inline .FiltersButtonContainer .form-group {
+  margin-left: 0;
+  margin-bottom: 15px;
+}
+
+
+.FiltersButtonContainer .fa-sliders {
+  font-size: 120%;
+  margin-right: 5px;
+}
+// .FiltersButtonContainer .container .fa-sliders:before {
+//   top: 1px;
+//   position: relative;
+// }
+
+.popover .FiltersButtonContainer {
+  width: 900px !important;
+}
+.popover.FiltersButtonPopover[role="tooltip"] { background-color: #eee; padding: 0px; }
+.popover.FiltersButtonPopover[role="tooltip"] .arrow:after { border-bottom-color: #eee; }
+
+/* DATES */
+.FiltersButtonContainer .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
+.FiltersButtonContainer .filters-dates .form-control {
+  display: inline-block;
+}
+.FiltersButtonContainer .filters-dates .filters-dates-exact.form-control {width: 176px;}
+.FiltersButtonContainer .date-type-range,
+.FiltersButtonContainer .date-type-exact {
+  position: relative;
+  // top: -3px;
+}
+.FiltersButtonContainer .date-type-month {
+  position: relative;
+  top: -1px;
+}
+
+/* ICONIC TAXA */
+.popover .FiltersButtonContainer .iconic-taxon {
+  margin: 0 5px 5px 0;
+  padding: 0px 6px;
+  font-size: 27.3px;
+}
+.FiltersButtonContainer .btn.iconic-taxon:focus {
+  outline: none;
+  background-color: white;
+}
+.FiltersButtonContainer .btn.iconic-taxon.active:focus {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.FiltersButtonContainer .iconic-taxon.last {margin-right: 0;}
+#filters-body {
+  padding: 10px 0px 15px;
+}
+#filters-footer {
+  background-color: #ddd;
+  padding: 10px 0;
+}
+#filters-footer .btn {margin-left: 12px;}
+#filters-footer .btn:first-child {margin-left: 0px;}
+#filters-footer .btn-default { border-color: #aaa; }
+#feeds .btn {padding-left: 0; padding-right: 0; color: #333;}
+#feeds .btn:hover { text-decoration: none; }
+#feeds .btn:hover span { text-decoration: underline; }
+
+#filters-center-col {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+#filters-more-btn {padding:0;margin: 12px 0;}
+#filters-more-btn .fa-caret-up { display: inline;}
+#filters-more-btn .fa-caret-down { display: none;}
+#filters-more-btn.collapsed .fa-caret-up { display: none; }
+#filters-more-btn.collapsed .fa-caret-down { display: inline; }
+
+.dropdown-menu.places {
+  width: 500px;
+  left: 0px;
+  background: #f16f3a;
+  color: #fff;
+  line-height: 1.2em;
+}
+.dropdown-menu.places .col-xs-6:first-child {
+  border-right: 1px solid rgba(0, 0, 0, .15);
+}
+.dropdown-menu.places h4 {
+  font-size: 17px;
+  color: rgba(0, 0, 0, .6);
+  text-transform: uppercase;
+}
+.dropdown-menu.places .glyphicon-map-marker {
+  font-size: 0.8em;
+  margin-right: 3px;
+}
+.dropdown-menu.places .place {
+  cursor: pointer;
+  margin-bottom: 8px;
+  text-indent: -7px;
+  margin-left: 14px;
+}
+.dropdown-menu.places .name {
+  font-weight: 700;
+}
+.dropdown-menu.places .place:hover {
+  text-decoration: underline;
+}
+.dropdown-menu.places .place:hover .type {
+  text-decoration: underline;
+  color: #fff;
+}
+.dropdown-menu.places .place .type {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-left: 5px;
+  color: rgba(0, 0, 0, .5);
+}
+
+.FiltersButtonFooter .feeds i {
+  margin-right: 5px;
+}
+
+// get auto-complete menus to appear above a popover
+.ui-front {
+  z-index: 1060;
+}
+
+.bootstrap label.sectionlabel {
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+}

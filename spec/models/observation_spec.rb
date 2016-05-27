@@ -2922,20 +2922,11 @@ describe Observation do
   end
 
   describe "coordinate transformation", :focus => true  do
+    let(:proj4_nztm) {
+      "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+    }
     subject { Observation.make }
-    before do
-      stub_config :coordinate_systems => {
-        :nztm2000 => {
-          :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
-          :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-        },
-        :nzmg => {
-          :label => "NZMG (New Zealand Map Grid), EPSG:27200",
-          :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
-        }
-      }
-      expect(CONFIG.coordinate_systems).not_to be_blank
-    end
+    
     it "requires geo_x if geo_y is present" do
       subject.geo_y = 5413457.7
       subject.valid?
@@ -2970,7 +2961,7 @@ describe Observation do
     it "sets lat lng" do
       subject.geo_y = 5413457.7
       subject.geo_x = 1528677.3
-      subject.coordinate_system = "nztm2000"
+      subject.coordinate_system = proj4_nztm
       subject.save!
       expect(subject.latitude).to be_within(0.0000001).of(-41.4272781531)
       expect(subject.longitude).to be_within(0.0000001).of(172.1464131267)

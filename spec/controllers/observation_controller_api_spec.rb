@@ -1486,6 +1486,32 @@ shared_examples_for "an ObservationsController" do
       end
     end
   end
+
+  describe "review" do
+    let(:o) { Observation.make! }
+    it "should mark an observation as reviewed by the current user" do
+      post :review, format: :json, id: o.id
+      o.reload
+      expect( o ).to be_reviewed_by user
+    end
+    describe "should unreview" do
+      before do
+        ObservationReview.make!( observation: o, user: user )
+        o.reload
+        expect( o ).to be_reviewed_by user
+      end
+      it "should unreview in response to a param" do
+        post :review, format: :json, id: o.id, reviewed: "false"
+        o.reload
+        expect( o ).not_to be_reviewed_by user
+      end
+      it "should unreview in response to DELETE" do
+        delete :review, format: :json, id: o.id
+        o.reload
+        expect( o ).not_to be_reviewed_by user
+      end
+    end
+  end
 end
 
 describe ObservationsController, "oauth authentication" do

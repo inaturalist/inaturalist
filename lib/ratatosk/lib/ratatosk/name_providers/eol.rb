@@ -1,7 +1,7 @@
 module Ratatosk
   module NameProviders
     #
-    # Concrete strategy for getting names from the Catalogue of Life
+    # Concrete strategy for getting names from EOL
     #
     class EolNameProvider
       cattr_accessor :source
@@ -86,7 +86,7 @@ module Ratatosk
             raise NameProviderError, "Failed to load hierarchy for #{taxon.name} (higherarchy ID: #{hierarchy_id}"
           end
         end
-        lineage = [lineage, taxon].flatten.reverse
+        lineage = [taxon] + lineage.reverse
         lineage.compact
       end
       

@@ -224,4 +224,37 @@ $(document).ready(function() {
       })
     }
   })
+
+  updateObservedAfterRule( );
+  $( ".start_time_field input" ).on( "change", function( ) {
+    updateObservedAfterRule( );
+  });
+
+  updateObservedBeforeRule( );
+  $( ".end_time_field input" ).on( "change", function( ) {
+    updateObservedBeforeRule( );
+  });
+
 })
+
+var updateObservedAfterRule = function( ) {
+  var value = $( ".start_time_field input" ).val( );
+  if ( value ) {
+    $( "li#observed_after_rule" ).
+      text( I18n.t( "must_be_observed_after", { operand: value } ) ).
+      css( { display: "list-item" } );
+  } else {
+    $( "li#observed_after_rule" ).css( { display: "none" } );
+  }
+};
+
+var updateObservedBeforeRule = function( ) {
+  var value = $( ".end_time_field input" ).val( );
+  if ( value ) {
+    $( "li#observed_before_rule" ).
+      text( I18n.t( "must_be_observed_before", { operand: value } ) ).
+      css( { display: "list-item" } );
+  } else {
+    $( "li#observed_before_rule" ).css( { display: "none" } );
+  }
+};

@@ -10,6 +10,9 @@
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
+    <% if logged_in? -%>
+      <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
+    <% end -%>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
     <% end -%>
@@ -24,7 +27,7 @@
     <%= yield :extracss %>
   </head>
   <body>
-    <div id="bodywrapper">
+    <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
       <% unless @headless -%>
         <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
           <%= render :partial => 'shared/header' %>
@@ -95,10 +98,10 @@
       var btn = $.fn.button.noConflict()
       $.fn.btn = btn
     </script>
-    <%= google_maps_js libraries: %w(places geometry) %>
-    <%= javascript_include_tag "map_bundle" %>
+    <%= google_maps_js libraries: %w(places geometry drawing) %>
+    <%= javascript_include_tag "map_bundle" unless @minimal_header %>
     <%= yield :extrajs %>
-    <% if logged_in? -%>
+    <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setTimeout(getUpdatesCount, 1000)

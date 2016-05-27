@@ -5,7 +5,8 @@ class PhotosController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
   before_filter :require_owner, :only => [:update, :destroy, :rotate]
-  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy, :repair, :rotate, :fix, :repair_all]
+  before_filter :authenticate_user!, :only =>
+    [:inviter, :update, :destroy, :repair, :rotate, :fix, :repair_all, :create]
   before_filter :return_here, :only => [:show, :invite, :inviter, :fix]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
@@ -259,7 +260,32 @@ class PhotosController < ApplicationController
     @photo.rotate!(rotation)
     redirect_back_or_default(@photo.becomes(Photo))
   end
-  
+
+  def create
+    @photo = LocalPhoto.new(file: params[:file],
+      user: current_user, mobile: is_mobile_app?)
+    respond_to do |format|
+      if @photo.save
+        @photo.reload
+        format.html { redirect_to observations_path }
+        format.json do
+          json = @photo.as_json(include: {
+          to_observation: {
+            include: { observation_field_values:
+              { include: :observation_field, methods: :taxon } },
+            methods: [ :tag_list ]
+          } } )
+          json[:original_url] = @photo.file.url(:original)
+          json[:large_url] = @photo.file.url(:large)
+          render json: json
+        end
+      else
+        format.html { redirect_to observations_path }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   
   def load_photo

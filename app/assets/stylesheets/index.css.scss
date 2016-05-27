@@ -15,6 +15,7 @@ body {
 }
 html, body {height: 100%;}
 #bodywrapper {min-height: 100%; margin-bottom: -196px;}
+#bodywrapper.no-footer-gap {margin-bottom: -260px;}
 #bodywrapper:after {
   content: "";
   display: block;
@@ -433,7 +434,8 @@ form .field .description { margin-bottom: 0.5em;}
 }
 #header .subnav.rightsubnav {
   left: auto;
-  right: -2px;
+  right: 0px;
+  border-right: 0px;
   padding-left: 10px;
   padding-right: 12px;
 }
@@ -1182,6 +1184,8 @@ a.csvlink{background-image:image-url('silk/table.png');}
 }
 .taxon.has-com-name .sciname:before { content: '('; display: inline-block; }
 .taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
+.taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
+.taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
 .taxon .sciname .rank:after {content: ' ';}
 
 /* Users table */
@@ -1792,7 +1796,6 @@ ul.plain {list-style:none;margin:0;padding:0}
 .colorfield.brown   { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
 .colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
 
-.project_invitation_extra {margin-top: 1px;}
 .project_invitation .box {margin: 0;}
 .wiki_page_actions {list-style: none;margin:0;}
 .wiki_page_actions li {display:inline; margin-left: 5px;}

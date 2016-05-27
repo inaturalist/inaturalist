@@ -46,14 +46,15 @@ class MetaService
     params      = args.merge({@method_param => method})
     params      = params.merge(@default_params)
     endpoint    = api_endpoint ? api_endpoint.base_url : @endpoint
-    url         = endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
+    url         = endpoint + params.reject{ |k,v| k == :force_update }.
+                    map {|k,v| "#{k}=#{v}"}.join('&')
     uri         = URI.encode(url)
     request_uri = URI.parse(uri)
     response = nil
     begin
-      MetaService.fetch_request_uri(request_uri: request_uri, timeout: @timeout,
+      MetaService.fetch_request_uri(args.merge(request_uri: request_uri, timeout: @timeout,
         api_endpoint: api_endpoint,
-        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}")
+        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}"))
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
@@ -78,7 +79,7 @@ class MetaService
         api_endpoint: options[:api_endpoint],
         request_url: options[:request_uri].to_s)
       return if api_endpoint_cache.in_progress?
-      if api_endpoint_cache.cached?
+      if api_endpoint_cache.cached? && !options[:force_update]
         return Nokogiri::XML(api_endpoint_cache.response)
       end
     end

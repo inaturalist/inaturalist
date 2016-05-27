@@ -25,7 +25,7 @@ module Paperclip
     end
   end
   class Attachment
-    def post_process
+    def post_process(*args)
     end
   end
   module Storage

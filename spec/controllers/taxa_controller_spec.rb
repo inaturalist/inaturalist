@@ -31,6 +31,36 @@ describe TaxaController do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
     end
+
+    describe "listed_taxon" do
+      let( :taxon ) { Taxon.make! }
+      let( :place ) { make_place_with_geom }
+      let( :listed_taxon ) { ListedTaxon.make!( taxon: taxon, place: place, list: place.check_list ) }
+      let( :user ) { User.make!( place: place ) }
+      before do
+        expect( listed_taxon.list.place ).to eq place
+        expect( place.taxa ).to include taxon
+        sign_in user
+      end
+      it "should be chosen if it exists" do
+        get :show, id: taxon.id
+        expect( assigns(:place) ).to eq place
+        expect( assigns(:listed_taxon) ).to eq listed_taxon
+      end
+      it "should not be chosen if it does not exist" do
+        user.update_attributes( place: Place.make! )
+        get :show, id: taxon.id
+        expect( assigns(:place) ).to eq user.place
+        expect( assigns(:listed_taxon) ).to be_blank
+      end
+      it "should not be chosen if one exists but it's absent" do
+        listed_taxon.update_attributes( occurrence_status_level: ListedTaxon::ABSENT )
+        get :show, id: taxon.id
+        expect( assigns(:place) ).to eq place
+        expect( assigns(:listed_taxon) ).to be_blank
+      end
+    end
+
   end
 
   describe "merge" do

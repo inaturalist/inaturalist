@@ -39,7 +39,7 @@ EOS
   opt :place, "Only export observations from this place", :type => :string, :short => "-p"
   opt :taxon, "Only export observations of this taxon", :type => :string, :short => "-t"
   opt :core, "Core type. Options: occurrence, taxon. Default: occurrence.", :type => :string, :short => "-c", :default => "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia", :type => :strings, :short => "-x"
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields", :type => :strings, :short => "-x"
   opt :metadata, "Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.", :type => :string, :short => "-m", :default => "observations/gbif.eml.erb"
   opt :descriptor, "Path to descriptor template. Default: observations/gbif.descriptor.builder", :type => :string, :short => "-r", :default => "observations/gbif.descriptor.builder"
   opt :quality, "Quality grade of observation output.  This will also filter EolMedia exports. Options: research, casual, any.  Default: research.", :type => :string, :short => "-q", :default => "research"

@@ -1,25 +1,38 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe GuideSection, "creation" do
-  it "should set the license of the guide to CC-BY-SA if this section is CC-BY-SA"
-  
-  it "should not be modified by default" do
-    gs = GuideSection.make!
-    expect(gs).not_to be_modified
+describe GuideSection do
+  describe "creation" do
+    it "should set the license of the guide to CC-BY-SA if this section is CC-BY-SA"
+
+    it "should not be modified by default" do
+      gs = GuideSection.make!
+      expect(gs).not_to be_modified
+    end
+
+    it "should be modified modified_on_create set" do
+      gs = GuideSection.make!(:modified_on_create => true)
+      expect(gs).to be_modified
+    end
+
+    it "should validate the length of a title" do
+      gs = GuideSection.make(:title => "foo")
+      expect(gs).to be_valid
+      gs = GuideSection.make(:title => "foo"*256)
+      expect(gs).not_to be_valid
+      expect(gs.errors[:title]).not_to be_blank
+    end
   end
 
-  it "should be modified modified_on_create set" do
-    gs = GuideSection.make!(:modified_on_create => true)
-    expect(gs).to be_modified
-  end
-
-  it "should validate the length of a title" do
-    gs = GuideSection.make(:title => "foo")
-    expect(gs).to be_valid
-    gs = GuideSection.make(:title => "foo"*256)
-    expect(gs).not_to be_valid
-    expect(gs.errors[:title]).not_to be_blank
+  describe "acts_as_spammable" do
+    it "does not check for spam if there is a source_url" do
+      gs = GuideSection.make(title: "t", description: "d")
+      expect(gs).to receive(:check_for_spam)
+      gs.save
+      gs = GuideSection.make(title: "t", description: "d", source_url: "something")
+      expect(gs).not_to receive(:check_for_spam?)
+      gs.save
+    end
   end
 end
 

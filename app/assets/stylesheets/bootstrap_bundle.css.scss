@@ -7,37 +7,29 @@
 $font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
 @font-face { 
   font-family: Whitney; 
-  src: asset-data-url('Whitney-Book-Pro.otf');
+  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
 }
 @font-face { 
   font-family: Whitney; 
   font-weight: bold;
-  src: asset-data-url('Whitney-Medium-Pro.otf');
+  src: url('/fonts/Whitney-Medium-Pro.otf') format("opentype");
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 100;
-  src: asset-data-url('Whitney-Light-Pro.otf');
+  src: url('/fonts/Whitney-Light-Pro.otf') format("opentype");
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 600;
-  src: asset-data-url('Whitney-Semibold-Pro.otf');
+  src: url('/fonts/Whitney-Semibold-Pro.otf') format("opentype");
 } 
 @font-face { 
   font-family: Whitney; 
   font-weight: 800;
-  src: asset-data-url('Whitney-Bold-Pro.otf');
+  src: url('/fonts/Whitney-Bold-Pro.otf') format("opentype");
 }
 body {font-size: 75%;}
-body .bootstrap {
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  background-color: #ffffff;
-  font-family: $font-stack;
-}
 // The modal-backdrop gets inserted at the end of the BODY tag, i.e. outsisde
 // of our namespace div, so we need to re-apply these styles. Ugh.
 .modal-backdrop {
@@ -57,11 +49,161 @@ body .bootstrap {
   filter: alpha(opacity=50);
   opacity: .5;
 }
+
+// popovers have the same problem
+body > div > .popover[role="tooltip"],
+body > div > div > .popover[role="tooltip"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  display: none;
+  padding: 1px;
+  // font-size: 14px;
+  // font-style: normal;
+  // font-weight: normal;
+  // line-height: 1.42857143;
+  // text-align: left;
+  // text-align: start;
+  // text-decoration: none;
+  // text-shadow: none;
+  // text-transform: none;
+  // letter-spacing: normal;
+  // word-break: normal;
+  // word-spacing: normal;
+  // word-wrap: normal;
+  // white-space: normal;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+
+  line-break: auto;
+}
+
+.popover.top {
+  margin-top: -10px;
+}
+.popover.right {
+  margin-left: 10px;
+}
+.popover.bottom {
+  margin-top: 10px;
+}
+.popover.left {
+  margin-left: -10px;
+}
+.popover-title {
+  padding: 8px 14px;
+  margin: 0;
+  font-size: 14px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  border-radius: 5px 5px 0 0;
+}
+.popover-content {
+  padding: 9px 14px;
+}
+.popover > .arrow,
+.popover > .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.popover > .arrow {
+  border-width: 11px;
+}
+.popover > .arrow:after {
+  content: "";
+  border-width: 10px;
+}
+.popover.top > .arrow {
+  bottom: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-color: #999;
+  border-top-color: rgba(0, 0, 0, .25);
+  border-bottom-width: 0;
+}
+.popover.top > .arrow:after {
+  bottom: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-color: #fff;
+  border-bottom-width: 0;
+}
+.popover.right > .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-right-color: #999;
+  border-right-color: rgba(0, 0, 0, .25);
+  border-left-width: 0;
+}
+.popover.right > .arrow:after {
+  bottom: -10px;
+  left: 1px;
+  content: " ";
+  border-right-color: #fff;
+  border-left-width: 0;
+}
+.popover.bottom > .arrow {
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: #999;
+  border-bottom-color: rgba(0, 0, 0, .25);
+}
+.popover.bottom > .arrow:after {
+  top: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-width: 0;
+  border-bottom-color: #fff;
+}
+.popover.left > .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-right-width: 0;
+  border-left-color: #999;
+  border-left-color: rgba(0, 0, 0, .25);
+}
+.popover.left > .arrow:after {
+  right: 1px;
+  bottom: -10px;
+  content: " ";
+  border-right-width: 0;
+  border-left-color: #fff;
+}
+
 .ui-front {z-index: 1051;}
-.bootstrap {
+.bootstrap,
+body > div > [role="dialog"],
+body > div > .popover,
+body > div > div > .popover {
+  position: relative;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+  font-family: $font-stack;
   @import "bootstrap";
   .bootstrap-10 {
     @import "bootstrap-10";
   }
   @import 'bootstrap-inat';
+}
+
+.bootstrap .popover {
+  font-family: $font-stack;
 }

@@ -337,6 +337,8 @@
         <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
 
+      countries: <%= @countries.map(&:code).join(", ") %>
+
       <% if @check_listed_taxa.blank? -%>
         <% unless logged_in? %><div class="description"><%= t(:no_places_selected)%></div><% end %>
       <% else %>
@@ -344,7 +346,8 @@
           <% for lt in @sorted_check_listed_taxa %>
             <% next if lt.place.blank? -%>
             <li>
-              <%= link_to t(lt.place.display_name, :default => lt.place.display_name), lt.place %>
+              <%= link_to t(lt.place.display_name, :default => lt.place.display_name), lt.place,
+                :class => ( "absent" if lt.is_absent? ) %>
               <% if logged_in? && lt.editable_by?(current_user) -%>
                 <%= link_to(t(:edit), lt, :class => "small description editlink") %>
               <% end -%>

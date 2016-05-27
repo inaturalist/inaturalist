@@ -27,10 +27,11 @@
         return false;
       })
       $('#nodescription').click(function(e) {
-        if ($(this).hasClass('editing')) { return true };
+        if ($(this).hasClass('editing')) { return true; };
         $(this).addClass('editing')
         $(this).find('.more').hide()
         $(this).find('form').show()
+        return false;
       })
     })
   </script>
