@@ -831,15 +831,9 @@ class Project < ActiveRecord::Base
   end
 
   def node_api_species_count
-    uri = URI("http://" + CONFIG.node_api_host +
-      "/observations/species_counts?project_id=#{self.id}&per_page=0&ttl=300")
-    timed_out = Timeout::timeout(5) do
-      response = Net::HTTP.get_response(uri)
-      if response.code == "200" && json = JSON.parse(response.body)
-        return json["total_results"]
-      end
-    end
-    0
+    response = INatAPIService.observations_species_counts(
+      project_id: self.id, per_page: 0, ttl: 300)
+    (response && response.total_results) || 0
   end
 
 end

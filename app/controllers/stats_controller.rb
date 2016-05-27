@@ -23,19 +23,21 @@ class StatsController < ApplicationController
   end
 
   def summary
-    fetch_statistics
-    es_stats = Observation.elastic_search(size: 0,
-      aggregate: {
-        total_observations: { cardinality: { field: "id", precision_threshold: 10000 } },
-        total_observed_taxa: { cardinality: { field: "taxon.id", precision_threshold: 10000 } },
-        total_observers: { cardinality: { field: "user.id", precision_threshold: 10000 } }
-      }).response.aggregations
+    params = { per_page: 1 }
+    params[:place_id] = @site.place_id if @site.place_id
+    observations = INatAPIService.observations(params.merge(verifiable: true))
+    observers = INatAPIService.observations_observers(params)
+    species_counts = INatAPIService.observations_species_counts(params)
+    user_count_scope = User.where("suspended_at IS NULL")
+    if @site.name != "iNaturalist.org"
+      user_count_scope = user_count_scope.where(site_id: @site.id)
+    end
     @stats = {
-      total_users: User.where("suspended_at IS NULL").count,
-      total_leaf_taxa: Observation.elastic_taxon_leaf_ids.size,
-      total_observations: es_stats[:total_observations][:value],
-      total_observed_taxa: es_stats[:total_observed_taxa][:value],
-      total_observers: es_stats[:total_observers][:value],
+      total_users: user_count_scope.count,
+      total_leaf_taxa: (species_counts && species_counts.total_results) || 0,
+      total_observations: (observations && observations.total_results) || 0,
+      total_observed_taxa: (species_counts && species_counts.total_results) || 0,
+      total_observers: (observers && observers.total_results) || 0,
       updated_at: Time.now
     }
     respond_to do |format|
