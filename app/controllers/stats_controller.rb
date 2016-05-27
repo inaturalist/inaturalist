@@ -23,9 +23,9 @@ class StatsController < ApplicationController
   end
 
   def summary
-    params = { per_page: 1 }
+    params = { verifiable: true, per_page: 1 }
     params[:place_id] = @site.place_id if @site.place_id
-    observations = INatAPIService.observations(params.merge(verifiable: true))
+    observations = INatAPIService.observations(params)
     observers = INatAPIService.observations_observers(params)
     species_counts = INatAPIService.observations_species_counts(params)
     user_count_scope = User.where("suspended_at IS NULL")
