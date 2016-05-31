@@ -3974,8 +3974,7 @@ CREATE TABLE users (
     spam_count integer DEFAULT 0,
     last_active date,
     subscriptions_suspended_at timestamp without time zone,
-    latitude double precision,
-    longitude double precision
+    test_groups character varying
 );
 
 
@@ -8003,5 +8002,5 @@ INSERT INTO schema_migrations (version) VALUES ('20160324184344');
 
 INSERT INTO schema_migrations (version) VALUES ('20160325152944');
 
-INSERT INTO schema_migrations (version) VALUES ('20160406233849');
+INSERT INTO schema_migrations (version) VALUES ('20160531181652');
 

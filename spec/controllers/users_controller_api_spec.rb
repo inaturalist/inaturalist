@@ -85,6 +85,24 @@ shared_examples_for "a signed in UsersController" do
       expect(json.detect{|ju| ju['id'] == u.id}).not_to be_blank
     end
   end
+
+  describe "test_groups" do
+    it "should be set with update" do
+      test_groups = "foo"
+      expect( user.test_groups ).to be_blank
+      put :update, id: user.id, user: { test_groups: test_groups }
+      user.reload
+      expect( user.test_groups ).to eq test_groups
+    end
+
+    it "should be included in the JSON response to show" do
+      test_groups = "foo|bar"
+      user.update_attributes( test_groups: test_groups )
+      get :show, id: user.id, format: :json
+      json = JSON.parse( response.body )
+      expect( json["test_groups"] ).to eq test_groups
+    end
+  end
 end
 
 describe UsersController, "oauth authentication" do
