@@ -109,7 +109,7 @@ module ObservationsHelper
       { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
     end
     CONFIG.coordinate_systems.to_h.each do |system_name, system|
-      systems[system[:label]] = system_name
+      systems[system[:label]] = options[:names] ? system_name : system.proj4
     end
     systems
   end
