@@ -267,20 +267,20 @@ const ObservationModal = ( {
                   }}
                 /> { I18n.t( "reviewed" ) }
               </label>
-              <Button bsStyle="primary" onClick={ function ( ) { addComment( ); } }>
+              <Button bsStyle="default" onClick={ function ( ) { addComment( ); } }>
                 <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
-              <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
-                <i className="icon-identification"></i> { I18n.t( "add_id" ) }
-              </Button>
               <Button
-                bsStyle="primary"
+                bsStyle="default"
                 disabled={ !showAgree( ) }
                 onClick={ function ( ) {
                   agreeWithCurrentObservation( );
                 } }
               >
                 <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
+              </Button>
+              <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
+                <i className="icon-identification"></i> { I18n.t( "add_id" ) }
               </Button>
             </Col>
           </Row>
