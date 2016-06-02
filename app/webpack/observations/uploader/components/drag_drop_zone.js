@@ -50,24 +50,26 @@ class DragDropZone extends Component {
     this.resize( );
     $( window ).on( "resize", this.resize );
     $( "body" ).unbind( "keydown keyup click" );
+    const commandKeys = [17, 91, 93, 224];
+    const shiftKeys = [16];
     $( "body" ).on( "keydown", e => {
-      if ( e.which === 91 ) {
+      if ( _.includes( commandKeys, e.which ) ) {
         this.props.setState( { commandKeyPressed: true } );
-      } else if ( e.which === 16 ) {
+      } else if ( _.includes( shiftKeys, e.which ) ) {
         this.props.setState( { shiftKeyPressed: true } );
       }
     } );
     $( "body" ).on( "keyup", e => {
-      if ( e.which === 91 ) {
+      if ( _.includes( commandKeys, e.which ) ) {
         this.props.setState( { commandKeyPressed: false } );
-      } else if ( e.which === 16 ) {
+      } else if ( _.includes( shiftKeys, e.which ) ) {
         this.props.setState( { shiftKeyPressed: false } );
       }
     } );
     $( "body" ).on( "click", this.unselectAll );
     $( ".uploader" ).selectable( { filter: ".card",
       cancel: ".card, .glyphicon, input, button, .input-group-addon, " +
-        ".input-group-addon, " +
+        ".input-group-addon, .intro, " +
         ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
       selected: this.selectObsCards,
       unselected: this.selectObsCards,

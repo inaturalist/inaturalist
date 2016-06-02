@@ -22,7 +22,7 @@ function updateIdentifiers( updates ) {
 function fetchIdentifiers( ) {
   return function ( dispatch, getState ) {
     const s = getState();
-    const apiParams = Object.assign( { }, paramsForSearch( s.searchParams ), {
+    const apiParams = Object.assign( { }, paramsForSearch( s.searchParams.params ), {
       reviewed: "any",
       quality_grade: "any"
     } );

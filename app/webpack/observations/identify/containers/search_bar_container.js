@@ -4,7 +4,8 @@ import { fetchObservations, updateSearchParams, reviewAll, unreviewAll } from ".
 
 function mapStateToProps( state ) {
   return {
-    params: state.searchParams,
+    params: state.searchParams.params,
+    defaultParams: state.searchParams.default,
     allReviewed: state.config.allReviewed
   };
 }

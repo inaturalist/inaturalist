@@ -105,11 +105,25 @@ describe LocalPhoto, "to_observation" do
   it "should not set a taxon from a blank title" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg"))
+    p.extract_metadata
     tn = TaxonName.make!
     tn.update_attribute(:name, "")
     expect(tn.name).to eq("")
     o = p.to_observation
     expect(o.taxon).to be_blank
+  end
+
+  it "should not choose an inactive taxon if a current synonym exists" do
+    active = Taxon.make!( name: "Neocuthona abronia", rank: Taxon::SPECIES )
+    inactive = Taxon.make!( name: "Cuthona abronia", rank: Taxon::SPECIES, is_active: false )
+    TaxonName.make!( taxon: active, name: inactive.name, lexicon: TaxonName::SCIENTIFIC_NAMES, is_valid: false )
+    expect( active ).to be_is_active
+    expect( inactive ).not_to be_is_active
+    p = LocalPhoto.make
+    p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
+    p.extract_metadata
+    o = p.to_observation
+    expect( o.taxon ).to eq active
   end
 
   it "should set observation fields from machine tags" do
