@@ -1,4 +1,3 @@
-import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
@@ -22,7 +21,7 @@ function fetchObservations( ) {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale
-    }, paramsForSearch( s.searchParams ) );
+    }, paramsForSearch( s.searchParams.params ) );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         let obs = response.results;

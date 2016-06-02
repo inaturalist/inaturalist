@@ -13,7 +13,8 @@ import {
   fetchObservationsStats,
   setConfig,
   updateSearchParams,
-  updateSearchParamsFromPop
+  updateSearchParamsFromPop,
+  updateDefaultParams
 } from "./actions/";
 import App from "./components/app";
 
@@ -40,8 +41,13 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
+  // we use this for requesting localized taoxn names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
+  } ) );
+  // this is the default place for all obs API requests
+  store.dispatch( updateDefaultParams( {
+    place_id: PREFERRED_PLACE.id
   } ) );
 }
 
