@@ -1443,7 +1443,12 @@ class Observation < ActiveRecord::Base
   end
 
   def set_community_taxon(options = {})
-    self.community_taxon = get_community_taxon(options)
+    
+    community_taxon = get_community_taxon(options)
+    self.community_taxon = community_taxon
+    if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
+      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+    end
     true
   end
 

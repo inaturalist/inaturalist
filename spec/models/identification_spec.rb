@@ -83,6 +83,26 @@ describe Identification, "creation" do
     expect(obs.identifications.count).to eq 1
   end
   
+  it "should not modify species_guess to an observation if there's a taxon_id and the taxon_id didn't change" do
+    obs = Observation.make!
+    taxon = Taxon.make!
+    taxon2 = Taxon.make!
+    identification = Identification.make!(
+      :user => obs.user,
+      :observation => obs,
+      :taxon => taxon
+    )
+    obs.reload
+    user = User.make!
+    identification = Identification.make!(
+      :user => user,
+      :observation => obs,
+      :taxon => taxon2
+    )
+    obs.reload
+    expect(obs.species_guess).to eq taxon.name
+  end
+  
   it "should add a species_guess to a newly identified observation if the owner identified it and the species_guess was nil" do
     obs = Observation.make!
     taxon = Taxon.make!

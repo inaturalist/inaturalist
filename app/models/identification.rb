@@ -125,12 +125,14 @@ class Identification < ActiveRecord::Base
     attrs = {}
     if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
-      # update the species_guess
-      species_guess = observation.species_guess
-      unless taxon.taxon_names.exists?(name: species_guess)
-        species_guess = taxon.common_name.try(:name) || taxon.name
+      attrs = { taxon_id: taxon_id, iconic_taxon_id: taxon.iconic_taxon_id }
+      if user_id == observation.user_id
+        species_guess = observation.species_guess
+        unless taxon.taxon_names.exists?(name: species_guess)
+          species_guess = taxon.common_name.try(:name) || taxon.name
+        end
+        attrs[:species_guess] = species_guess
       end
-      attrs = { species_guess: species_guess, taxon_id: taxon_id, iconic_taxon_id: taxon.iconic_taxon_id }
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
           observation.id, observation.user_id ] }
