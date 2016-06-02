@@ -254,31 +254,51 @@ const ObservationModal = ( {
               </OverlayTrigger>
             </Col>
             <Col xs={8}>
-              <label
-                className={
-                  `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                    { I18n.t( "mark_as_reviewed" ) }
+                  </Tooltip>
                 }
+                container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <input
-                  type="checkbox"
-                  checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
-                  onChange={function ( ) {
-                    toggleReviewed( );
-                  }}
-                /> { I18n.t( "reviewed" ) }
-              </label>
+                <label
+                  className={
+                    `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                    onChange={function ( ) {
+                      toggleReviewed( );
+                    }}
+                  /> { I18n.t( "reviewed" ) }
+                </label>
+              </OverlayTrigger>
               <Button bsStyle="default" onClick={ function ( ) { addComment( ); } }>
                 <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
-              <Button
-                bsStyle="default"
-                disabled={ !showAgree( ) }
-                onClick={ function ( ) {
-                  agreeWithCurrentObservation( );
-                } }
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
+                    { I18n.t( "agree_with_current_taxon" ) }
+                  </Tooltip>
+                }
+                container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
-              </Button>
+                <Button
+                  bsStyle="default"
+                  disabled={ !showAgree( ) }
+                  onClick={ function ( ) {
+                    agreeWithCurrentObservation( );
+                  } }
+                >
+                  <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
+                </Button>
+              </OverlayTrigger>
               <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
                 <i className="icon-identification"></i> { I18n.t( "add_id" ) }
               </Button>
