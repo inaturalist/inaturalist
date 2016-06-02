@@ -1148,11 +1148,11 @@
                     <div class="timeline-heading">
                       <h2 class="timeline-title">
                         <%- if is_mention %>
-                          <%= link_to generic_edit_user_url, class: "pull-right" do %>
+                          <%= link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do %>
                             <span class="glyphicon glyphicon-cog"></span>
                           <%- end %>
                         <%- else %>
-                          <%= link_to edit_subscription_by_resource_path(resource_type, resource_id), class: "pull-right" do %>
+                          <%= link_to edit_subscription_by_resource_path(resource_type, resource_id), class: "pull-right subscriptionsettings" do %>
                             <span class="glyphicon glyphicon-cog"></span>
                           <%- end %>
                         <%- end %>
@@ -1174,11 +1174,11 @@
                               notifier ||= u.notifier
                             -%>
                             <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
-                              <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
+                              <%= render partial: "shared/activity_item_bootstrap", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
                             </div>
                           <% end %>
                           <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",
-                                  resource, :class => "readmore" %>
+                                  resource, :class => "btn btn-sm btn-primary" %>
                         </div>
                       <% else %>
                         <%= 

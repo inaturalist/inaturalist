@@ -4,30 +4,25 @@
     project_user = update.notifier
     user = project_user.user
     role = if project_user.user_id == project_user.project.user_id
-      "the admin"
+      "the <strong>admin</strong>".html_safe
     elsif project_user.role.to_s =~ /^[aeiou]/
-      "an #{project_user.role}"
+      "an <strong>#{project_user.role}</strong>".html_safe
     else
-      "a #{project_user.role}"
+      "a <strong>#{project_user.role}</strong>".html_safe
     end
-  .stacked.curatorupdate
-    = image_and_content user_image(user, :size => "thumb"), :image_size => 48 do
+  %ul
+    %li
       - if is_me?(user)
         You are now
       - else
         = link_to_user user
         is now
       = role
-      for
-      = surround '', '.' do
-        = link_to project.title, project
       - unless user.description.blank? || is_me?(user)
         Here's a little about
         = surround '', ': ' do
           = user.login
         %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
-      - unless is_me?(user)
-        %div= link_to "View more about #{user.login}", user, :class => "readmore"
       - if user.id == current_user.id && project.user_id == current_user.id
         .notice.status.box
           Wondering why you're now
@@ -36,7 +31,6 @@
           = CONFIG.site_name_short
           assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
           = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
-%p.ui
-  Just a reminder, project curators can see the private and obscured
-  coordinates of observations you add to this project.
+%p.alert.alert-info
+  Just a reminder, since you may have project curators permissions to view the private coordinates of your observations in this project.
   

@@ -11,22 +11,37 @@
   login = default_observation.user.login
 -%>
 
-<div class="updatecontent">
-  <div class="observationcontrols stacked"></div>
-  
-  <div class="observations <%= observations.size > 1 ? 'medium grid' : 'mini' %> stacked">
-    <%- compact do %>
-      <%= render :partial => "observations/cached_component", :collection => observations %>
-    <% end -%>
-  </div>
-  
-  <div class="meta">
-    <%= link_to "View #{login}'s observations", observations_by_login_path(login), :class => "#{'readmore' if place_guesses.size == 0}" %>
-    <% unless place_guesses.blank? -%>
-      from
-      <%= place_guesses.map {|pg| 
-        link_to(pg, observations_by_login_path(login, :q => pg, :search_on => "place"))
-      }.join(', ').html_safe %>
-    <% end -%>
+<%- if observations.size == 1 %>
+<div class="media">
+  <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="img/taxa01.jpg" alt="..."> </a> </div>
+  <div class="media-body">
+    <h3><%= observations.first.id %> <span class="scientific_name">(Poanes melane)</span></h3>
+    <ul>
+      <li><span class="date_observed"><i class="glyphicon glyphicon-calendar"></i> Apr 3, 2016</span> <span class="location_observed"><i class="glyphicon glyphicon-map-marker"></i> Mount Diablo State Park, Clayton, CA, US (Google, OSM)</span></li>
+      <li>1 ID <span class="label label_research_grade">Research Grade</span></li>
+    </ul>
+    <p>
+      <button type="button" class="btn btn-sm btn-primary" >View Observation</button>
+      <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand01">View All From This Location</button>
+    </p>
   </div>
 </div>
+<%- else %>
+<div class="row" >
+  <ul>
+    <li class="col-md-3">
+      <a href="#">
+        <div class="thumbnail"><img src="img/taxa02.jpg" class="img-responsive" alt="...">
+          <h3>Butterflies </h3>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="timeline-footer">
+  <button type="button" class="btn btn-sm btn-primary" >View All</button>
+  <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand03" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
+</div>
+<%- end %>
+
+

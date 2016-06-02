@@ -5,7 +5,7 @@
   remote = !non_remote
 .media
   .media-left
-    = link_to(image_tag(project.icon.url(:span2), :alt => "#{h(project.title)} icon", :width => 70, :height => 70), project)
+    = link_to(image_tag(project.icon.url(:span2), :alt => "#{h(project.title)} icon", :style => "max-width: 70px;", :class => "media-object img-thumbnail"), project)
   .media-body
     %h3= link_to project.title, project
     =formatted_user_text(truncate(project.description, :length => 300))
