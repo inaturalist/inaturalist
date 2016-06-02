@@ -12,7 +12,7 @@ const App = () => (
     <Grid fluid>
       <Row>
         <Col xs={12}>
-          <h2>Identify</h2>
+          <h2>{ I18n.t( "identify_title" ) }</h2>
         </Col>
       </Row>
       <Row>

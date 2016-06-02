@@ -177,12 +177,12 @@ const ObservationModal = ( {
       <Modal.Footer>
         <Grid fluid>
           <Row>
-            <Col xs={6} className="secondary-actions">
+            <Col xs={4} className="secondary-actions">
               <OverlayTrigger
                 trigger="hover"
                 placement="top"
                 overlay={
-                  <Popover title="Keyboard Shortcuts" id="keyboard-shortcuts-popover">
+                  <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
                     <dl className="keyboard-shortcuts">
                       <dt>z</dt>
                       <dd>{ I18n.t( "organism_appears_captive_cultivated" ) }</dd>
@@ -253,7 +253,7 @@ const ObservationModal = ( {
                 </div>
               </OverlayTrigger>
             </Col>
-            <Col xs={6}>
+            <Col xs={8}>
               <label
                 className={
                   `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`

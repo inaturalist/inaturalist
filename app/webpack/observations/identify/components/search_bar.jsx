@@ -29,6 +29,7 @@ const SearchBar = ( {
       <PlaceAutocomplete
         resetOnChange={false}
         initialPlaceID={params.place_id}
+        bootstrapClear
         afterSelect={ function ( result ) {
           updateSearchParams( { place_id: result.item.id } );
         } }
@@ -59,7 +60,9 @@ const SearchBar = ( {
       >
         <i
           className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
-        ></i> { allReviewed ? "Mark All as Unreviewed" : "Mark All as Reviewed" }
+        ></i> {
+          allReviewed ? I18n.t( "mark_all_as_unreviewed" ) : I18n.t( "mark_all_as_reviewed" )
+        }
       </Button>
     </div>
   </form>

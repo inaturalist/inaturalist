@@ -28,7 +28,11 @@ const ObservationsGridItem = ( {
   if ( o.reviewed_by.indexOf( o.user.id ) >= 0 ) {
     numReviewers = numReviewers - 1;
   }
-  const agreeTooltip = <Tooltip id={`agree-tooltip-${o.id}`}>Agree with current taxon</Tooltip>;
+  const agreeTooltip = (
+    <Tooltip id={`agree-tooltip-${o.id}`}>
+      { I18n.t( "agree_with_current_taxon" ) }
+    </Tooltip>
+  );
   return (
     <div className={wrapperClass}>
       <div className={`reviewed-notice ${o.reviewedByCurrentUser ? "reviewed" : ""}`}>

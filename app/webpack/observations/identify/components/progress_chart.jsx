@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import _ from "lodash";
 
 const ProgressChart = ( {
   reviewed,
@@ -6,9 +7,13 @@ const ProgressChart = ( {
 } ) => (
   <div className="ProgressChart">
     <div className="title">
-      <span className="count">
-        { I18n.toNumber( reviewed, { precision: 0 } ) }
-      </span> Observations Reviewed
+      <span
+        dangerouslySetInnerHTML={ { __html:
+          _.capitalize( I18n.t( "x_observations_reviewed_html",
+            { count: I18n.toNumber( reviewed, { precision: 0 } ) }
+          ) )
+        } }
+      ></span>
     </div>
     <div className="chart">
       <div

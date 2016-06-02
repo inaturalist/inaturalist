@@ -56,6 +56,9 @@ en:
   x_observations_link_html:
     one: "<a href='%{url}'>1 observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> observation reviewed"
+    other: "<span class='count'>%{count}</span> observations reviewed"
   x_people:
     one: '1 person'
     other: '%{count} people'
@@ -240,6 +243,7 @@ en:
   agree: agree
   agree?: Agree?
   agree_to_the_project_terms: Agree to the project terms
+  agree_with_current_taxon: Agree with current taxon
   agreeing: Agreeing...
   aka: aka
   all: All
@@ -1276,6 +1280,7 @@ en:
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
   identify: Identify
+  identify_title: "Identify"
   identification: identification
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
@@ -1407,6 +1412,7 @@ en:
   jump_to_letter: Jump to letter
   just_added!: Just added!
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
+  keyboard_shortcuts: Keyboard Shortcuts
   kml: KML
   kml_file_size_error: "KML must be less than 1 MB in size"
   labels: Labels
@@ -1640,6 +1646,8 @@ en:
   map_for: Map for
   maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
   mark_as_reviewed: Mark as reviewed
+  mark_all_as_reviewed: Mark All as Reviewed
+  mark_all_as_unreviewed: Mark All as Unreviewed
   matched_several_different_taxa: matched several different taxa
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
@@ -3087,6 +3095,7 @@ en:
   tools: Tools
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
+  top_identifiers: Top Identifiers
   total: total
   totals: totals
   total_members: Total members

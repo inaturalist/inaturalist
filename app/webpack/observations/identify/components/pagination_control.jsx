@@ -16,7 +16,7 @@ const PaginationControl = ( {
     }
   >
     <Button onClick={loadMore} className={`stacked ${visible ? "" : "collapse"}`}>
-      Load More
+      { I18n.t( "view_more" ) }
     </Button>
     <Pagination
       total={totalResults}
