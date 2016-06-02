@@ -1,4 +1,6 @@
 - @no_footer_gap = true
+- content_for :title do
+  = I18n.t :identify_title
 - content_for :extrajs do
   = javascript_include_tag "observations-identify-webpack"
 - content_for :extracss do

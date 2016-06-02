@@ -142,6 +142,9 @@ const setUrl = ( newParams, defaultParams ) => {
     }
     urlState[k] = v;
   } );
+  if ( !newParams.place_id && defaultParams.place_id ) {
+    urlState.place_id = "any";
+  }
   const title = `Identify: ${$.param( urlState )}`;
   const newUrl = [
     window.location.origin,
