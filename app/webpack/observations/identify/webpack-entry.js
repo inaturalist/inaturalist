@@ -34,6 +34,14 @@ const store = createStore(
   )
 );
 
+
+// Set state from initial url search and listen for changes
+// Order is important, this needs to happen before any other actions are dispatched.
+const newParams = normalizeParams(
+  $.deparam( window.location.search.replace( /^\?/, "" ) )
+);
+store.dispatch( updateSearchParams( newParams ) );
+
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
@@ -53,11 +61,6 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 
 setupKeyboardShortcuts( store.dispatch );
 
-// set state from initial url search and listen for changes
-const newParams = normalizeParams(
-  $.deparam( window.location.search.replace( /^\?/, "" ) )
-);
-store.dispatch( updateSearchParams( newParams ) );
 window.onpopstate = ( e ) => {
   store.dispatch( updateSearchParamsFromPop( e.state ) );
   store.dispatch( fetchObservations() );

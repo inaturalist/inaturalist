@@ -28,7 +28,9 @@ const SearchBar = ( {
     <span className="form-group">
       <PlaceAutocomplete
         resetOnChange={false}
-        initialPlaceID={params.place_id}
+        initialPlaceID={
+          parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+        }
         bootstrapClear
         afterSelect={ function ( result ) {
           updateSearchParams( { place_id: result.item.id } );

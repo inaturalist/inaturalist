@@ -432,7 +432,9 @@ class FiltersButton extends React.Component {
             <span className="input-group-addon fa fa-globe"></span>
             <PlaceAutocomplete
               resetOnChange={false}
-              initialPlaceID={params.place_id}
+              initialPlaceID={
+                parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+              }
               bootstrapClear
               className={params.place_id ? "filter-changed" : ""}
               afterSelect={ function ( result ) {
