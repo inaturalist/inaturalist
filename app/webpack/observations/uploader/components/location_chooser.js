@@ -1,10 +1,11 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes } from "react";
 import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
 import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
+import SelectionBasedComponent from "./selection_based_component";
 var lastCenterChange = new Date().getTime();
 
-class LocationChooser extends Component {
+class LocationChooser extends SelectionBasedComponent {
 
   static searchboxStyle( ) {
     return {
@@ -48,6 +49,7 @@ class LocationChooser extends Component {
     const circles = [];
     _.each( this.props.obsCards, c => {
       if ( c.latitude ) {
+        /* global google */
         circles.push( new google.maps.Circle( {
           center: {
             lat: c.latitude,

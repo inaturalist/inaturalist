@@ -27,8 +27,10 @@ class TopMenu extends Component {
         { I18n.t( "add" ) }
       </div>
     );
+    let className = "nav_add_obs";
+    if ( this.props.scrolledPastToolbar ) { className += " fixed"; }
     return (
-      <Navbar className="nav_add_obs" fluid>
+      <Navbar className={ className } fluid>
         <Nav>
           <NavDropdown title={ dropdownToggle } id="add_photos">
             <MenuItem onClick={ fileChooser }>{ I18n.t( "photo_s" ) }</MenuItem>
@@ -53,13 +55,14 @@ class TopMenu extends Component {
           <li className={ `select ${countTotal === 0 && "disabled"}` }>
             <form className="navbar-form" role="search">
               <input
+                id="select-all"
                 type="checkbox"
                 key={ `select${countSelected}${countTotal}` }
                 disabled={ countTotal === 0 }
                 checked={ countTotal > 0 && countSelected === countTotal }
                 onChange={ ( ) => ( countSelected !== countTotal ? selectAll( ) : selectNone( ) ) }
               />
-              { I18n.t( "select_all" ) }
+              <label htmlFor="select-all">{ I18n.t( "select_all" ) }</label>
             </form>
           </li>
         </Nav>
@@ -72,19 +75,20 @@ class TopMenu extends Component {
 }
 
 TopMenu.propTypes = {
-  createBlankObsCard: PropTypes.func,
-  confirmRemoveSelected: PropTypes.func,
-  selectAll: PropTypes.func,
-  selectNone: PropTypes.func,
-  selectedObsCards: PropTypes.object,
-  trySubmitObservations: PropTypes.func,
   combineSelected: PropTypes.func,
-  fileChooser: PropTypes.func,
-  countTotal: PropTypes.number,
+  confirmRemoveSelected: PropTypes.func,
+  countPending: PropTypes.number,
   countSelected: PropTypes.number,
   countSelectedPending: PropTypes.number,
-  countPending: PropTypes.number,
-  reactKey: PropTypes.string
+  countTotal: PropTypes.number,
+  createBlankObsCard: PropTypes.func,
+  fileChooser: PropTypes.func,
+  reactKey: PropTypes.string,
+  scrolledPastToolbar: PropTypes.bool,
+  selectAll: PropTypes.func,
+  selectedObsCards: PropTypes.object,
+  selectNone: PropTypes.func,
+  trySubmitObservations: PropTypes.func
 };
 
 export default TopMenu;

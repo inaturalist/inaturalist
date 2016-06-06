@@ -1,14 +1,16 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes } from "react";
 import { Input, Glyphicon, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
+import SelectionBasedComponent from "./selection_based_component";
 
-class LeftMenu extends Component {
+class LeftMenu extends SelectionBasedComponent {
 
   constructor( props, context ) {
     super( props, context );
-    this.valuesOf = this.valuesOf.bind( this );
+    this.removeTag = this.removeTag.bind( this );
+    this.submitTag = this.submitTag.bind( this );
     this.commonValue = this.commonValue.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
   }
@@ -19,39 +21,24 @@ class LeftMenu extends Component {
   }
 
   openLocationChooser( ) {
-    let lat;
-    let lng;
-    let radius;
-    let zoom;
-    const commonLat = this.commonValue( "latitude" );
-    const commonLng = this.commonValue( "longitude" );
-    const commonRadius = this.commonValue( "accuracy" );
-    const commonZoom = this.commonValue( "zoom" );
-    if ( commonLat && commonLng && commonRadius ) {
-      lat = commonLat;
-      lng = commonLng;
-      radius = commonRadius;
-      zoom = commonZoom;
-    }
     this.props.setState( { locationChooser: {
       show: true,
-      zoom,
-      radius,
-      lat,
-      lng,
-      notes: this.commonValue( "locality_notes" ),
-      geoprivacy: this.commonValue( "geoprivacy" )
+      editSelected: true
     } } );
   }
 
-  valuesOf( attr ) {
-    return _.uniqBy( _.map( this.props.selectedObsCards, c => c[attr] ),
-      a => a && ( a.id || a ) );
+  submitTag( e ) {
+    e.preventDefault( );
+    const input = $( e.target ).find( "input" );
+    const tag = _.trim( input.val( ) );
+    if ( tag ) {
+      this.props.appendToSelectedObsCards( { tags: tag } );
+    }
+    input.val( "" );
   }
 
-  commonValue( attr ) {
-    const uniq = this.valuesOf( attr );
-    return ( uniq.length === 1 ) ? uniq[0] : undefined;
+  removeTag( t ) {
+    this.props.removeFromSelectedObsCards( { tags: t } );
   }
 
   render( ) {
@@ -65,27 +52,45 @@ class LeftMenu extends Component {
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
-    let descriptionPlaceholder = I18n.t( "description" );
-    if ( uniqDescriptions.length > 1 ) {
-      descriptionPlaceholder = I18n.t( "edit_multiple_descriptions" );
-    }
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
-    const commonTags = this.commonValue( "tags" );
-    let taglist;
-    if ( commonTags && commonTags.length > 0 ) {
-      taglist = (
-        <div className="tags">
-          { I18n.t( "tags" ) }
-          <div className="taglist">
-            { _.map( commonTags, t => (
-              <Badge className="tag" key={ t }>{ t }</Badge>
-            ) ) }
+    const commonTags = _.uniq( _.flatten( this.valuesOf( "tags" ) ) );
+    let taglist = (
+      <div className="tags">
+        { I18n.t( "tags" ) }
+        <form onSubmit={this.submitTag}>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control input-sm"
+              placeholder="Add a tag..."
+              ref="input-tag"
+              onKeyPress={ this.checkTagSubmit }
+            />
+            <span className="input-group-btn">
+              <button
+                className="btn btn-default btn-sm"
+                type="submit"
+              >
+                Add
+              </button>
+            </span>
           </div>
+        </form>
+        <div className="taglist">
+          { _.map( commonTags, t => (
+            <Badge className="tag" key={ t }>
+              { t }
+              <Glyphicon glyph="remove-circle" onClick={ () => {
+                this.removeTag( t );
+              } }
+              />
+            </Badge>
+          ) ) }
         </div>
-      );
-    }
+      </div>
+    );
     let ofvlist;
     const commonOfvs = this.commonValue( "observation_field_values" );
     if ( commonOfvs && commonOfvs.length > 0 ) {
@@ -140,6 +145,8 @@ class LeftMenu extends Component {
                     species_guess: null } );
               }
             } }
+            placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
+              I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
           />
           <DateTimeFieldWrapper
             ref="datetime"
@@ -167,7 +174,8 @@ class LeftMenu extends Component {
                   this.refs.datetime.onChange( undefined, e.target.value );
                 }
               } }
-              placeholder={ I18n.t( "date_" ) }
+              placeholder={ this.valuesOf( "date" ).length > 1 ?
+                I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
             />
           </div>
           <div className="input-group"
@@ -180,15 +188,18 @@ class LeftMenu extends Component {
               type="text"
               className="form-control"
               value={ locationText }
-              placeholder={ I18n.t( "location" ) }
+              placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
+                this.valuesOf( "longitude" ).length > 1 ) ?
+                I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
               readOnly
             />
           </div>
           <div className="form-group">
             <textarea
-              placeholder={ descriptionPlaceholder }
+              placeholder={ uniqDescriptions.length > 1 ?
+                I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
               className="form-control"
-              value={ commonDescription }
+              value={ commonDescription || "" }
               onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
             />
           </div>
@@ -215,6 +226,8 @@ LeftMenu.propTypes = {
   obsCards: PropTypes.object,
   selectedObsCards: PropTypes.object,
   updateSelectedObsCards: PropTypes.func,
+  appendToSelectedObsCards: PropTypes.func,
+  removeFromSelectedObsCards: PropTypes.func,
   setState: PropTypes.func,
   reactKey: PropTypes.string
 };

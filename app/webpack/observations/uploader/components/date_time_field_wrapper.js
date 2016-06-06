@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from "react";
 import DateTimeField from "react-bootstrap-datetimepicker";
-import moment from "moment";
+import moment from "moment-timezone";
 
 class DateTimeFieldWrapper extends Component {
 
@@ -34,9 +34,11 @@ class DateTimeFieldWrapper extends Component {
     if ( e && eInt ) {
       const pickedDate = new Date( eInt );
       if ( pickedDate ) {
-        value = moment
-          .parseZone( pickedDate )
-          .format( this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ" );
+        value = this.props.timeZone ?
+          moment( pickedDate ).tz( this.props.timeZone ).
+            format( this.props.inputFormat || "YYYY/MM/DD h:mm A z" ) :
+          moment.parseZone( pickedDate ).
+            format( this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ" );
       }
     }
     this.props.onChange( value );
@@ -72,6 +74,7 @@ DateTimeFieldWrapper.propTypes = {
   onSelection: PropTypes.func,
   reactKey: PropTypes.string,
   defaultText: PropTypes.string,
+  timeZone: PropTypes.string,
   mode: PropTypes.string,
   inputFormat: PropTypes.string,
   size: PropTypes.string,

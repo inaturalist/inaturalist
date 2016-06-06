@@ -43,12 +43,16 @@ class FileGalleryItem extends Component {
     let close;
     let item;
     let zoom;
-    if ( this.props.file.upload_state === "uploading" ) {
+    if ( this.props.file.preview && !this.props.file.photo ) {
+      item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
+      zoom = this.zoomButton( );
+      close = this.closeButton( );
+    } else if ( this.props.file.upload_state === "uploading" ) {
       item = ( <Glyphicon glyph="refresh" className="fa-spin" /> );
     } else if ( this.props.file.upload_state === "pending" ) {
       item = ( <Glyphicon glyph="hourglass" /> );
     } else if ( this.props.file.photo ) {
-      item = ( <Photo { ...this.props } /> );
+      item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );
       close = this.closeButton( );
     } else {

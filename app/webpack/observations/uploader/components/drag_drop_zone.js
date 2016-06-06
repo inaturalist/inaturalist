@@ -48,7 +48,18 @@ class DragDropZone extends Component {
 
   componentDidMount( ) {
     this.resize( );
+    const toolbarTopOffset = $( ".nav_add_obs" ).offset( ).top;
     $( window ).on( "resize", this.resize );
+    $( window ).on( "scroll", ( ) => {
+      const scrollTop = $( "body" ).scrollTop( );
+      if ( scrollTop >= toolbarTopOffset ) {
+        if ( !this.props.scrolledPastToolbar ) {
+          this.props.setState( { scrolledPastToolbar: true } );
+        }
+      } else if ( this.props.scrolledPastToolbar ) {
+        this.props.setState( { scrolledPastToolbar: false } );
+      }
+    } );
     $( "body" ).unbind( "keydown keyup click" );
     const commandKeys = [17, 91, 93, 224];
     const shiftKeys = [16];
@@ -182,14 +193,15 @@ class DragDropZone extends Component {
 
   render( ) {
     const { onDrop, updateObsCard, confirmRemoveObsCard, onCardDrop, updateSelectedObsCards,
-      obsCards, trySubmitObservations, createBlankObsCard, selectedObsCards, locationChooser,
-      selectAll, removeSelected, mergeObsCards, saveStatus, saveCounts, setState,
-      updateState, removeModal, confirmRemoveSelected, removeObsCard, movePhoto,
-      selectObsCards, combineSelected, commandKeyPressed, shiftKeyPressed,
+      obsCards, selectedObsCards, locationChooser,
+      removeSelected, mergeObsCards, saveStatus, saveCounts, setState,
+      updateState, removeModal, removeObsCard, movePhoto,
+      selectObsCards, commandKeyPressed, shiftKeyPressed,
       draggingProps, confirmModal, confirmRemoveFile, photoViewer, photoIsOver } = this.props;
     let leftColumn;
     let intro;
     let className = "uploader";
+    if ( this.props.scrolledPastToolbar ) { className += " fixedToolbar"; }
     if ( draggingProps && draggingProps.obsCard ) { className += " hover"; }
     if ( photoIsOver ) { className += " photoOver"; }
     const cardCount = Object.keys( obsCards ).length;
@@ -199,14 +211,18 @@ class DragDropZone extends Component {
       const lastUpdate = _.max( _.map( selectedObsCards, c => c.updatedAt ) );
       const first = keys[0];
       const leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
+      let leftClass = "col-fixed-240 leftColumn";
+      if ( this.props.scrolledPastToolbar ) { leftClass += " fixed"; }
       leftColumn = (
-        <Col className="col-fixed-240 leftColumn">
+        <Col className={ leftClass }>
           <LeftMenu
             reactKey={ leftMenuKey }
             count={ cardCount }
             setState={ this.props.setState }
             selectedObsCards={ this.props.selectedObsCards }
             updateSelectedObsCards={ this.props.updateSelectedObsCards }
+            appendToSelectedObsCards={ this.props.appendToSelectedObsCards }
+            removeFromSelectedObsCards={ this.props.removeFromSelectedObsCards }
           />
         </Col>
       );
@@ -225,7 +241,6 @@ class DragDropZone extends Component {
           className={ className }
           activeClassName="hover"
           disableClick
-          disablePreview
           accept="image/*"
         >
           <nav className="navbar navbar-default">
@@ -253,18 +268,13 @@ class DragDropZone extends Component {
           <TopMenu
             key={ `topMenu${cardCount}${countSelected}` }
             reactKey={ `topMenu${cardCount}${countSelected}` }
-            createBlankObsCard={ createBlankObsCard }
-            confirmRemoveSelected={ confirmRemoveSelected }
-            selectAll={ selectAll }
             selectNone={ this.selectNone }
-            selectedObsCards={ selectedObsCards }
-            trySubmitObservations={ trySubmitObservations }
-            combineSelected={ combineSelected }
             fileChooser={ this.fileChooser }
             countTotal={ cardCount }
             countSelected={ countSelected }
             countSelectedPending={ countSelectedPending }
             countPending={ countPending }
+            { ...this.props }
           />
           <Grid fluid>
             <div className="row-fluid">
@@ -344,6 +354,7 @@ class DragDropZone extends Component {
 }
 
 DragDropZone.propTypes = {
+  appendToSelectedObsCards: PropTypes.func,
   combineSelected: PropTypes.func,
   commandKeyPressed: PropTypes.bool,
   confirmModal: PropTypes.object,
@@ -362,11 +373,13 @@ DragDropZone.propTypes = {
   onDrop: PropTypes.func.isRequired,
   photoIsOver: PropTypes.bool,
   photoViewer: PropTypes.object,
+  removeFromSelectedObsCards: PropTypes.func,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
   removeSelected: PropTypes.func,
   saveCounts: PropTypes.object,
   saveStatus: PropTypes.string,
+  scrolledPastToolbar: PropTypes.bool,
   selectAll: PropTypes.func,
   selectedObsCards: PropTypes.object,
   selectObsCards: PropTypes.func,

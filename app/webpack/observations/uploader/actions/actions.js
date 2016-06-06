@@ -34,6 +34,14 @@ const actions = class actions {
     return { type: types.UPDATE_SELECTED_OBS_CARDS, attrs };
   }
 
+  static appendToSelectedObsCards( attrs ) {
+    return { type: types.APPEND_TO_SELECTED_OBS_CARDS, attrs };
+  }
+
+  static removeFromSelectedObsCards( attrs ) {
+    return { type: types.REMOVE_FROM_SELECTED_OBS_CARDS, attrs };
+  }
+
   static removeSelected( ) {
     return { type: types.REMOVE_SELECTED };
   }
@@ -278,8 +286,7 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.uploadedFiles( ).length > 0 &&
-             ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
+        if ( !failed && ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
           failed = true;
         }
       } );
@@ -288,7 +295,7 @@ const actions = class actions {
           show: true,
           cancelText: I18n.t( "go_back" ),
           confirmText: I18n.t( "continue" ),
-          message: I18n.t( "you_are_submitting_obs_with_photos_no_date" ),
+          message: I18n.t( "you_are_submitting_obs_with_no_date_or_no_location" ),
           onConfirm: () => {
             dispatch( actions.submitObservations( ) );
           }

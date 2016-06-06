@@ -10,6 +10,11 @@ import FileGallery from "./file_gallery";
 
 const cardSource = {
   canDrag( props ) {
+    if ( $( `div[data-id=${props.obsCard.id}] input:focus` ).length > 0 ||
+         $( `div[data-id=${props.obsCard.id}] textarea:focus` ).length > 0 ||
+         $( ".bootstrap-datetimepicker-widget:visible" ).length > 0 ) {
+      return false;
+    }
     return props.obsCard.nonUploadedFiles( ).length === 0;
   },
   beginDrag( props, monitor, component ) {
@@ -219,6 +224,8 @@ class ObsCardComponent extends Component {
               key={ `datetime${obsCard.selected_date}`}
               reactKey={ `datetime${obsCard.selected_date}`}
               ref="datetime"
+              inputFormat="YYYY/MM/DD h:mm A z"
+              timeZone={ obsCard.time_zone }
               onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
               onSelection={ dateString =>
                 updateObsCard( obsCard, { date: dateString, selected_date: dateString } )

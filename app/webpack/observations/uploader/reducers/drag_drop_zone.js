@@ -68,11 +68,51 @@ const dragDropZone = ( state = defaultState, action ) => {
     }
 
     case types.UPDATE_SELECTED_OBS_CARDS: {
-      action.attrs.updatedAt = new Date( ).getTime( );
+      const time = new Date( ).getTime( );
       let modified = Object.assign( { }, state.obsCards );
       _.each( state.selectedObsCards, c => {
         modified = update( modified, {
-          [c.id]: { $merge: action.attrs }
+          [c.id]: { $merge: Object.assign( action.attrs, { updatedAt: time } ) }
+        } );
+      } );
+      return Object.assign( { }, state, { obsCards: modified,
+        selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
+      } );
+    }
+
+    case types.APPEND_TO_SELECTED_OBS_CARDS: {
+      const time = new Date( ).getTime( );
+      let modified = Object.assign( { }, state.obsCards );
+      _.each( action.attrs, ( v, k ) => {
+        _.each( state.selectedObsCards, c => {
+          if ( _.isArray( c[k] ) ) {
+            modified = update( modified, {
+              [c.id]: { $merge: {
+                [k]: _.uniq( _.flatten( c[k].concat( v ) ) ),
+                updatedAt: time
+              } }
+            } );
+          }
+        } );
+      } );
+      return Object.assign( { }, state, { obsCards: modified,
+        selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
+      } );
+    }
+
+    case types.REMOVE_FROM_SELECTED_OBS_CARDS: {
+      const time = new Date( ).getTime( );
+      let modified = Object.assign( { }, state.obsCards );
+      _.each( action.attrs, ( v, k ) => {
+        _.each( state.selectedObsCards, c => {
+          if ( _.isArray( c[k] ) ) {
+            modified = update( modified, {
+              [c.id]: { $merge: {
+                [k]: _.uniq( _.difference( c[k], _.flatten( [v] ) ) ),
+                updatedAt: time
+              } }
+            } );
+          }
         } );
       } );
       return Object.assign( { }, state, { obsCards: modified,

@@ -945,7 +945,10 @@ en:
   edit_field: Edit field
   edit_flagged_observation: Edit Flagged Observation
   edit_license: Edit license
+  edit_multiple_dates: Edit multiple dates
   edit_multiple_descriptions: Edit multiple descriptions
+  edit_multiple_locations: Edit multiple locations
+  edit_multiple_species: Edit multiple species
   edit_notes: Edit notes
   edit_photos: Edit photos
   edit_photos_for_observation_id: "Edit photos for Observation %{obs_id}"
@@ -3430,9 +3433,9 @@ en:
     following rules: %{rules} Do you want to proceed?
   you_are_submitting_obs_without_photos_and_names: |
     You are submitting observations without photos and taxon names.
-    These observations will very difficult to accurately identify.
-  you_are_submitting_obs_with_photos_no_date: |
-    You are submitting observations with photos but without date or location.
+    These observations will be very difficult to accurately identify.
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    You are submitting observations without dates or locations.
   you_are_subscribed_to: "You're subscribed to "
   you_arent_a_member_of_that_project: You aren't a member of that project.
   you_arent_following_that_person: "You aren't following that person."

@@ -355,7 +355,7 @@ class TaxonAutocomplete extends React.Component {
             value={ this.props.value }
             className={ `form-control ${smallClass}` }
             onChange={ this.props.onChange }
-            placeholder={ I18n.t( "species_name_cap" ) }
+            placeholder={ this.props.placeholder || I18n.t( "species_name_cap" ) }
             autoComplete="off"
           />
           <Glyphicon className="searchclear" glyph="remove-circle"
@@ -370,6 +370,7 @@ class TaxonAutocomplete extends React.Component {
 TaxonAutocomplete.propTypes = {
   onChange: PropTypes.func,
   small: PropTypes.bool,
+  placeholder: PropTypes.string,
   resetOnChange: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,

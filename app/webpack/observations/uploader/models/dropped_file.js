@@ -11,6 +11,7 @@ const DroppedFile = class DroppedFile {
       lastModifiedDate: file.lastModifiedDate,
       size: file.size,
       type: file.type,
+      preview: file.preview,
       upload_state: "pending",
       file
     } );

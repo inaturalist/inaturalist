@@ -1,7 +1,7 @@
 import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
 import actions from "../actions/actions";
-import moment from "moment";
+import moment from "moment-timezone";
 
 const ObsCard = class ObsCard {
   constructor( attrs ) {
@@ -19,7 +19,9 @@ const ObsCard = class ObsCard {
       accuracy: null,
       species_guess: null,
       tags: [],
-      observation_field_values: []
+      observation_field_values: [],
+      /* global TIMEZONE */
+      time_zone: TIMEZONE
     };
     Object.assign( this, defaultAttrs, attrs );
   }
@@ -65,7 +67,10 @@ const ObsCard = class ObsCard {
     const updates = { };
     const obs = p.to_observation;
     if ( !this.date && obs.time_observed_at ) {
-      updates.date = moment.parseZone( obs.time_observed_at ).format( "YYYY/MM/DD h:mm A ZZ" );
+      this.time_zone = obs.zic_time_zone;
+      updates.date = moment( obs.time_observed_at ).
+        tz( this.time_zone ).
+        format( "YYYY/MM/DD h:mm A z" );
       updates.selected_date = updates.date;
     }
     if ( !this.latitude && obs.latitude && obs.longitude ) {
