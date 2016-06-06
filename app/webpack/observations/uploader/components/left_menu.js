@@ -1,4 +1,5 @@
 import _ from "lodash";
+import moment from "moment-timezone";
 import React, { PropTypes } from "react";
 import { Input, Glyphicon, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
@@ -52,10 +53,12 @@ class LeftMenu extends SelectionBasedComponent {
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
+    const commonGeoprivacy = this.commonValue( "geoprivacy" );
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
     const commonTags = _.uniq( _.flatten( this.valuesOf( "tags" ) ) );
+    let multipleGeoprivacy = !commonGeoprivacy && ( <option>{ " -- multiple -- " }</option> );
     let taglist = (
       <div className="tags">
         { I18n.t( "tags" ) }
@@ -152,6 +155,8 @@ class LeftMenu extends SelectionBasedComponent {
             ref="datetime"
             key={ `multidate${commonDate}` }
             reactKey={ `multidate${commonDate}` }
+            dateTime={ commonDate ?
+                moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
             onChange={ dateString => updateSelectedObsCards(
               { date: dateString, selected_date: dateString } ) }
           />
@@ -203,6 +208,18 @@ class LeftMenu extends SelectionBasedComponent {
               onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
             />
           </div>
+          <Input
+            key={ `multigeoprivacy${commonGeoprivacy}` }
+            type="select"
+            label={ I18n.t( "geoprivacy" ) }
+            value={ commonGeoprivacy }
+            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+          >
+            { multipleGeoprivacy }
+            <option value="open">{ I18n.t( "open" ) }</option>
+            <option value="obscured">{ I18n.t( "obscured_" ) }</option>
+            <option value="private">{ I18n.t( "private" ) }</option>
+          </Input>
           <Input type="checkbox"
             label={ I18n.t( "captive_cultivated" ) }
             checked={ this.commonValue( "captive" ) }

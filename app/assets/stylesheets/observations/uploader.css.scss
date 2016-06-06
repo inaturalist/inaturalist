@@ -28,12 +28,12 @@ body {
   // border-width: 0 0 1px 0;
   border: 0;
   background-color: white;
+  box-shadow: 0px 3px 10px #e7e7e7;
   &.fixed {
     position: fixed;
     width: 100%;
     z-index: 100000;
     top: 20px;
-    box-shadow: 0px 3px 10px #e7e7e7;
   }
   .navbar-right {
     margin-right: 0px;
@@ -114,12 +114,13 @@ body {
     width: 240px;
     float: left;
     &.fixed {
+      margin-top: -52px;
       position: fixed;
       z-index: 10;
     }
   }
   .col-offset-290 {
-    padding-left: 290px;
+    margin-left: 275px;
     position: absolute;
   }
   .left-col-padding {
@@ -406,7 +407,7 @@ ul.obs > li .card {
     .modal-footer {
       text-align: center;
       button {
-        min-width: 100px;
+        min-width: 110px;
         margin: 0px 20px;
       }
     }
@@ -414,9 +415,9 @@ ul.obs > li .card {
       display: inline-block;
       margin: 0px 10px;
       input {
-        width: 80px;
+        width: 100px;
         &.notes {
-          width: 200px;
+          width: 250px;
         }
       }
     }

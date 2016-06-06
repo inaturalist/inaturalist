@@ -5,6 +5,7 @@ import { pipe } from "ramda";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
 import _ from "lodash";
+import moment from "moment-timezone";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
 
@@ -225,6 +226,8 @@ class ObsCardComponent extends Component {
               reactKey={ `datetime${obsCard.selected_date}`}
               ref="datetime"
               inputFormat="YYYY/MM/DD h:mm A z"
+              dateTime={ obsCard.selected_date ?
+                moment( obsCard.selected_date, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
               timeZone={ obsCard.time_zone }
               onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
               onSelection={ dateString =>

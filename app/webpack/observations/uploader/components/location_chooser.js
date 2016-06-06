@@ -121,8 +121,7 @@ class LocationChooser extends SelectionBasedComponent {
       center: this.refs.map.getCenter( ),
       bounds: this.refs.map.getBounds( ),
       zoom: this.refs.map.getZoom( ),
-      locality_notes: this.props.notes,
-      geoprivacy: this.props.geoprivacy
+      locality_notes: this.props.notes
     };
     if ( this.props.obsCard ) {
       this.props.updateObsCard( this.props.obsCard, attrs );
@@ -328,21 +327,10 @@ class LocationChooser extends SelectionBasedComponent {
             <Input
               key="radius"
               type="text"
-              label={ I18n.t( "accuracy_m" ) }
+              label={ I18n.t( "accuracy_meters" ) }
               value={ this.props.radius }
               onChange={ e => this.update( "radius", e ) }
             />
-            <Input
-              key="geoprivacy"
-              type="select"
-              label={ I18n.t( "geoprivacy" ) }
-              value={ this.props.geoprivacy }
-              onChange={ e => this.update( "geoprivacy", e ) }
-            >
-              <option value="open">{ I18n.t( "open" ) }</option>
-              <option value="obscured">{ I18n.t( "obscured_" ) }</option>
-              <option value="private">{ I18n.t( "private" ) }</option>
-            </Input>
             <Input
               className="notes"
               key="notes"
@@ -383,7 +371,6 @@ LocationChooser.propTypes = {
   zoom: PropTypes.number,
   center: PropTypes.object,
   bounds: PropTypes.object,
-  geoprivacy: PropTypes.string,
   notes: PropTypes.string
 };
 
