@@ -3225,6 +3225,8 @@ en:
   users_contributions_to_project_html: |
     <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_id: "%{user}'s ID"
+  users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
+  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"

@@ -25,7 +25,7 @@ const IdentificationForm = ( {
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
     <Input type="textarea" name="body" className="form-control" />
-    <Button type="submit">Save</Button>
+    <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );
 
