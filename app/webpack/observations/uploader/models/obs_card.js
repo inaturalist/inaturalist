@@ -63,45 +63,22 @@ const ObsCard = class ObsCard {
     return undefined;
   }
 
-  syncMetadataWithPhoto( p, dispatch ) {
+  additionalPhotoMetadata( files ) {
     const updates = { };
-    const obs = p.to_observation;
-    if ( !this.date && obs.time_observed_at ) {
-      this.time_zone = obs.zic_time_zone;
-      updates.date = moment( obs.time_observed_at ).
-        tz( this.time_zone ).
-        format( "YYYY/MM/DD h:mm A z" );
-      updates.selected_date = updates.date;
-    }
-    if ( !this.latitude && obs.latitude && obs.longitude ) {
-      updates.latitude = parseFloat( obs.latitude );
-      updates.longitude = parseFloat( obs.longitude );
-    }
-    if ( !this.locality_notes && obs.place_guess ) {
-      updates.locality_notes = obs.place_guess;
-    }
-    if ( !this.taxon_id && obs.taxon_id ) {
-      updates.taxon_id = obs.taxon_id;
-    }
-    if ( this.observation_field_values.length === 0 && obs.observation_field_values ) {
-      updates.observation_field_values = obs.observation_field_values;
-    }
-    if ( this.tags.length === 0 && obs.tag_list ) {
-      updates.tags = obs.tag_list;
-    }
-    if ( !this.description && obs.description ) {
-      updates.description = obs.description;
-    }
-    if ( Object.keys( updates ).length > 0 ) {
-      dispatch( actions.updateObsCard( this, Object.assign( updates, { modified: false } ) ) );
-    }
+    _.each( files || this.files, f => {
+      Object.assign( updates, f.additionalPhotoMetadata( Object.assign( { }, this, updates ) ) );
+    } );
+    return updates;
   }
 
   upload( file, dispatch ) {
     if ( !this.files[file.id] ) { return; }
     dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploading" } ) );
     inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
-      this.syncMetadataWithPhoto( r, dispatch );
+      const updates = this.additionalPhotoMetadata( );
+      if ( !_.isEmpty( updates ) ) {
+        dispatch( actions.updateObsCard( this, Object.assign( updates, { modified: false } ) ) );
+      }
       dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploaded", photo: r } ) );
     } ).catch( e => {
       console.log( "Upload failed:", e );

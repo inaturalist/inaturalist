@@ -172,7 +172,6 @@ class ObsCardComponent extends Component {
           className={ className }
           data-id={ obsCard.id }
           disableClick
-          disablePreview
           onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
           onDragEnter={ this.onDragEnter }
           activeClassName="hover"
@@ -209,7 +208,8 @@ class ObsCardComponent extends Component {
                   updateObsCard( obsCard,
                     { taxon_id: r.item.id,
                       selected_taxon: r.item,
-                      species_guess: r.item.title } );
+                      species_guess: r.item.title,
+                      modified: r.item.id !== obsCard.taxon_id } );
                 }
               } }
               afterUnselect={ ( ) => {

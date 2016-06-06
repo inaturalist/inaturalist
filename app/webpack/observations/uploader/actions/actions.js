@@ -206,7 +206,7 @@ const actions = class actions {
       dispatch( actions.updateObsCard( toObsCard, { files: toFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
-      if ( fromCard.blank( ) || !fromCard.modified ) {
+      if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };
@@ -218,12 +218,13 @@ const actions = class actions {
       const time = new Date( ).getTime( );
       const obsCard = new ObsCard( { id: time } );
       obsCard.files[time] = new DroppedFile( Object.assign( { }, photo.file, { id: time } ) );
+      Object.assign( obsCard, obsCard.additionalPhotoMetadata( ) );
       delete fromFiles[photo.file.id];
-      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
       dispatch( actions.appendObsCards( { [obsCard.id]: obsCard } ) );
+      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
-      if ( fromCard.blank( ) ) {
+      if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };
