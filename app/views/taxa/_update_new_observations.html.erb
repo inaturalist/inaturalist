@@ -6,6 +6,7 @@
   else
     updates.map{|u| u.notifier}
   end.compact
+  target_id = rand(36**8).to_s(36)
 -%>
 
 <%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12], target_id: target_id} %>

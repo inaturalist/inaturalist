@@ -2,6 +2,7 @@
   <%- 
     observation = observations.first
     for_idents ||= false
+    target_id ||= rand(36**8).to_s(36)
   -%>
   <div class="media <%= "for_idents" if for_idents %>">
     <div class="media-left"> 
