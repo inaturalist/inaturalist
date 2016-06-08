@@ -22,26 +22,12 @@ class LeftMenu extends SelectionBasedComponent {
   }
 
   openLocationChooser( ) {
-    let lat;
-    let lng;
-    let radius;
-    let zoom;
-    const commonLat = this.commonValue( "latitude" );
-    const commonLng = this.commonValue( "longitude" );
-    const commonRadius = this.commonValue( "accuracy" );
-    const commonZoom = this.commonValue( "zoom" );
-    if ( commonLat && commonLng && commonRadius ) {
-      lat = commonLat;
-      lng = commonLng;
-      radius = commonRadius;
-      zoom = commonZoom;
-    }
     this.props.setState( { locationChooser: {
       show: true,
-      zoom,
-      radius,
-      lat,
-      lng,
+      zoom: this.commonValue( "zoom" ),
+      radius: this.commonValue( "accuracy" ),
+      lat: this.commonValue( "latitude" ),
+      lng: this.commonValue( "longitude" ),
       notes: this.commonValue( "locality_notes" ),
       geoprivacy: this.commonValue( "geoprivacy" ),
       obsCards: this.props.selectedObsCards

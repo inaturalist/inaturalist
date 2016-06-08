@@ -37,6 +37,8 @@ class LocationChooser extends SelectionBasedComponent {
     this.radiusChanged = this.radiusChanged.bind( this );
     this.centerChanged = this.centerChanged.bind( this );
     this.moveCircle = this.moveCircle.bind( this );
+    this.multiValued = this.multiValued.bind( this );
+    this.placeholder = this.placeholder.bind( this );
   }
 
   componentDidUpdate( prevProps ) {
@@ -118,15 +120,22 @@ class LocationChooser extends SelectionBasedComponent {
     const attrs = {
       latitude: this.props.lat ? Number( this.props.lat ) : undefined,
       longitude: this.props.lat ? Number( this.props.lng ) : undefined,
-      accuracy: this.props.lat ? Number( this.props.radius ) : undefined,
+      accuracy: this.props.radius ? Number( this.props.radius ) : undefined,
       center: this.refs.map.getCenter( ),
       bounds: this.refs.map.getBounds( ),
       zoom: this.refs.map.getZoom( ),
       locality_notes: this.props.notes
     };
+    if ( !attrs.accuracy ) { attrs.accuracy = undefined; }
     if ( this.props.obsCard ) {
       this.props.updateObsCard( this.props.obsCard, attrs );
     } else {
+      if ( !attrs.latitude && this.multiValued( "latitude" ) ) { delete attrs.latitude; }
+      if ( !attrs.longitude && this.multiValued( "longitude" ) ) { delete attrs.longitude; }
+      if ( !attrs.accuracy && this.multiValued( "accuracy" ) ) { delete attrs.accuracy; }
+      if ( !attrs.locality_notes && this.multiValued( "locality_notes" ) ) {
+        delete attrs.locality_notes;
+      }
       this.props.updateSelectedObsCards( attrs );
     }
     this.close( );
@@ -176,6 +185,15 @@ class LocationChooser extends SelectionBasedComponent {
       this.reverseGeocode( lat, lng );
     }
     this.props.updateState( { locationChooser: updates } );
+  }
+
+  multiValued( prop ) {
+    return this.props.obsCards &&
+           this.valuesOf( prop, this.props.obsCards ).length > 1;
+  }
+
+  placeholder( prop ) {
+    return this.multiValued( prop ) ? "multiple" : undefined;
   }
 
   render() {
@@ -287,6 +305,7 @@ class LocationChooser extends SelectionBasedComponent {
               type="text"
               label={ I18n.t( "latitude" ) }
               value={ this.props.lat }
+              placeholder={ this.placeholder( "latitude" ) }
               onChange={ e => this.update( "lat", e ) }
             />
             <Input
@@ -294,6 +313,7 @@ class LocationChooser extends SelectionBasedComponent {
               type="text"
               label={ I18n.t( "longitude" ) }
               value={ this.props.lng }
+              placeholder={ this.placeholder( "longitude" ) }
               onChange={ e => this.update( "lng", e ) }
             />
             <Input
@@ -301,6 +321,7 @@ class LocationChooser extends SelectionBasedComponent {
               type="text"
               label={ I18n.t( "accuracy_meters" ) }
               value={ this.props.radius }
+              placeholder={ this.placeholder( "accuracy" ) }
               onChange={ e => this.update( "radius", e ) }
             />
             <Input
@@ -309,6 +330,7 @@ class LocationChooser extends SelectionBasedComponent {
               type="text"
               label={ I18n.t( "locality_notes" ) }
               value={ this.props.notes }
+              placeholder={ this.placeholder( "locality_notes" ) }
               onChange={ e => this.update( "notes", e ) }
             />
           </div>

@@ -9,17 +9,17 @@ class SelectionBasedComponent extends Component {
     this.commonValue = this.commonValue.bind( this );
   }
 
-  valuesOf( attr ) {
+  valuesOf( attr, obsCards ) {
     return _.uniqBy(
-      _.map( this.props.selectedObsCards, c => {
+      _.map( obsCards || this.props.selectedObsCards, c => {
         const val = c[attr];
         return !val ? null : val;
       } ),
       a => a && ( a.id || a ) );
   }
 
-  commonValue( attr ) {
-    const uniq = this.valuesOf( attr );
+  commonValue( attr, obsCards ) {
+    const uniq = this.valuesOf( attr, obsCards );
     return ( uniq.length === 1 ) ? uniq[0] : undefined;
   }
 }
