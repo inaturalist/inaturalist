@@ -72,6 +72,32 @@ const ObservationModal = ( {
     );
   }
 
+  let photos = null;
+  if ( images && images.length > 0 ) {
+    photos = (
+      <ZoomableImageGallery
+        key={`map-for-${observation.id}`}
+        items={images}
+        showThumbnails={images && images.length > 1}
+        lazyLoad={false}
+        server
+        showNav={false}
+      />
+    );
+  }
+  let sounds = null;
+  if ( observation.sounds && observation.sounds.length > 0 ) {
+    sounds = observation.sounds.map( s => (
+      <iframe
+        width="100%"
+        height="100"
+        scrolling="no"
+        frameBorder="no"
+        src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
+      ></iframe>
+    ) );
+  }
+
   const scrollSidebarToForm = ( form ) => {
     const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
     const target = $( form );
@@ -121,15 +147,9 @@ const ObservationModal = ( {
       <Modal.Body>
         <Grid fluid>
           <Row>
-            <Col xs={8}>
-              <ZoomableImageGallery
-                key={`map-for-${observation.id}`}
-                items={images}
-                showThumbnails={images && images.length > 1}
-                lazyLoad={false}
-                server
-                showNav={false}
-              />
+            <Col xs={8} className={( photos && sounds ) ? "photos sounds" : "media"}>
+              { photos }
+              { sounds }
             </Col>
             <Col xs={4} className="sidebar">
               {taxonMap}

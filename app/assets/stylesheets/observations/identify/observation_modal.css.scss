@@ -198,3 +198,12 @@ dl.keyboard-shortcuts,
   display: inline-block;
   margin-left: 10px;
 }
+
+.ObservationModal .photos.sounds .image-gallery {
+  margin-bottom: 10px;
+}
+.ObservationModal .photos.sounds .image-gallery,
+.ObservationModal .photos.sounds .image-gallery-content,
+.ObservationModal .photos.sounds .image-gallery-content img {
+  height: 260px;
+}
