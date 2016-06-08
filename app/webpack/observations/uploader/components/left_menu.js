@@ -1,7 +1,7 @@
 import _ from "lodash";
 import moment from "moment-timezone";
 import React, { PropTypes } from "react";
-import { Input, Glyphicon, Badge } from "react-bootstrap";
+import { Input, Glyphicon, Badge, Accordion, Panel } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
@@ -22,9 +22,29 @@ class LeftMenu extends SelectionBasedComponent {
   }
 
   openLocationChooser( ) {
+    let lat;
+    let lng;
+    let radius;
+    let zoom;
+    const commonLat = this.commonValue( "latitude" );
+    const commonLng = this.commonValue( "longitude" );
+    const commonRadius = this.commonValue( "accuracy" );
+    const commonZoom = this.commonValue( "zoom" );
+    if ( commonLat && commonLng && commonRadius ) {
+      lat = commonLat;
+      lng = commonLng;
+      radius = commonRadius;
+      zoom = commonZoom;
+    }
     this.props.setState( { locationChooser: {
       show: true,
-      editSelected: true
+      zoom,
+      radius,
+      lat,
+      lng,
+      notes: this.commonValue( "locality_notes" ),
+      geoprivacy: this.commonValue( "geoprivacy" ),
+      obsCards: this.props.selectedObsCards
     } } );
   }
 
@@ -58,61 +78,100 @@ class LeftMenu extends SelectionBasedComponent {
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
     const commonTags = _.uniq( _.flatten( this.valuesOf( "tags" ) ) );
+    const commonOfvs = this.commonValue( "observation_field_values" );
     let multipleGeoprivacy = !commonGeoprivacy && ( <option>{ " -- multiple -- " }</option> );
     let taglist = (
-      <div className="tags">
-        { I18n.t( "tags" ) }
-        <form onSubmit={this.submitTag}>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control input-sm"
-              placeholder="Add a tag..."
-              ref="input-tag"
-              onKeyPress={ this.checkTagSubmit }
-            />
-            <span className="input-group-btn">
-              <button
-                className="btn btn-default btn-sm"
-                type="submit"
-              >
-                Add
-              </button>
-            </span>
+      <Accordion>
+        <Panel
+          eventKey="1"
+          className="tags-panel"
+          header={ ( <div>Tags<Glyphicon glyph="menu-right" /></div> ) }
+          onEnter={ () => { $( ".tags-panel .glyphicon" ).addClass( "rotate" ); } }
+          onExit={ () => { $( ".tags-panel .glyphicon" ).removeClass( "rotate" ); } }
+        >
+          <div className="tags">
+            <form onSubmit={this.submitTag}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control input-sm"
+                  placeholder="Add a tag..."
+                  ref="input-tag"
+                  onKeyPress={ this.checkTagSubmit }
+                />
+                <span className="input-group-btn">
+                  <button
+                    className="btn btn-default btn-sm"
+                    type="submit"
+                  >
+                    Add
+                  </button>
+                </span>
+              </div>
+            </form>
+            <div className="taglist">
+              { _.map( commonTags, t => (
+                <Badge className="tag" key={ t }>
+                  { t }
+                  <Glyphicon glyph="remove-circle" onClick={ () => {
+                    this.removeTag( t );
+                  } }
+                  />
+                </Badge>
+              ) ) }
+            </div>
           </div>
-        </form>
-        <div className="taglist">
-          { _.map( commonTags, t => (
-            <Badge className="tag" key={ t }>
-              { t }
-              <Glyphicon glyph="remove-circle" onClick={ () => {
-                this.removeTag( t );
-              } }
-              />
-            </Badge>
-          ) ) }
-        </div>
-      </div>
+        </Panel>
+      </Accordion>
     );
-    let ofvlist;
-    const commonOfvs = this.commonValue( "observation_field_values" );
-    if ( commonOfvs && commonOfvs.length > 0 ) {
-      ofvlist = (
-        <div className="tags">
-          { I18n.t( "custom_field_values" ) }
-          <div className="taglist">
-            { _.map( commonOfvs, t => {
-              const key = `${t.observation_field.name}` +
-                `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}`;
-              return ( <Badge className="tag" key={ key }>
-                <span className="field">{ `${t.observation_field.name}:` }</span>
-                { `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}` }
-              </Badge> );
-            } ) }
+    let ofvlist = (
+      <Accordion>
+        <Panel
+          eventKey="1"
+          className="ofvs-panel"
+          header={ ( <div>Custom Fields<Glyphicon glyph="menu-right" /></div> ) }
+          onEnter={ () => { $( ".ofvs-panel .glyphicon" ).addClass( "rotate" ); } }
+          onExit={ () => { $( ".ofvs-panel .glyphicon" ).removeClass( "rotate" ); } }
+        >
+          <div className="tags">
+            <form onSubmit={this.submitTag}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control input-sm ofv-field"
+                  placeholder="Field"
+                  ref="input-tag"
+                />
+                <input
+                  type="text"
+                  className="form-control input-sm ofv-value"
+                  placeholder="Value"
+                  ref="input-tag"
+                />
+                <span className="input-group-btn">
+                  <button
+                    className="btn btn-default btn-sm"
+                    type="submit"
+                  >
+                    Add
+                  </button>
+                </span>
+              </div>
+            </form>
+            <div className="taglist">
+              { _.map( commonOfvs, t => {
+                const key = `${t.observation_field.name}` +
+                  `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}`;
+                return ( <Badge className="tag" key={ key }>
+                  <span className="field">{ `${t.observation_field.name}:` }</span>
+                  { `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}` }
+                </Badge> );
+              } ) }
+            </div>
           </div>
-        </div>
-      );
-    }
+        </Panel>
+      </Accordion>
+    );
     let menu;
     if ( count === 0 ) {
       menu = ( <span className="head">{ I18n.t( "select_observations_to_edit" )} </span> );
@@ -208,24 +267,34 @@ class LeftMenu extends SelectionBasedComponent {
               onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
             />
           </div>
-          <Input
-            key={ `multigeoprivacy${commonGeoprivacy}` }
-            type="select"
-            label={ I18n.t( "geoprivacy" ) }
-            value={ commonGeoprivacy }
-            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
-          >
-            { multipleGeoprivacy }
-            <option value="open">{ I18n.t( "open" ) }</option>
-            <option value="obscured">{ I18n.t( "obscured_" ) }</option>
-            <option value="private">{ I18n.t( "private" ) }</option>
-          </Input>
-          <Input type="checkbox"
-            label={ I18n.t( "captive_cultivated" ) }
-            checked={ this.commonValue( "captive" ) }
-            value="true"
-            onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
-          />
+          <Accordion>
+            <Panel
+              eventKey="1"
+              className="details-panel"
+              header={ ( <div>More<Glyphicon glyph="menu-right" /></div> ) }
+              onEnter={ () => { $( ".details-panel .glyphicon" ).addClass( "rotate" ); } }
+              onExit={ () => { $( ".details-panel .glyphicon" ).removeClass( "rotate" ); } }
+            >
+              <Input
+                key={ `multigeoprivacy${commonGeoprivacy}` }
+                type="select"
+                label={ I18n.t( "geoprivacy" ) }
+                value={ commonGeoprivacy }
+                onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+              >
+                { multipleGeoprivacy }
+                <option value="open">{ I18n.t( "open" ) }</option>
+                <option value="obscured">{ I18n.t( "obscured_" ) }</option>
+                <option value="private">{ I18n.t( "private" ) }</option>
+              </Input>
+              <Input type="checkbox"
+                label={ I18n.t( "captive_cultivated" ) }
+                checked={ this.commonValue( "captive" ) }
+                value="true"
+                onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+              />
+            </Panel>
+          </Accordion>
           { taglist }
           { ofvlist }
         </div>

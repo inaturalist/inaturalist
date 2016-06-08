@@ -1,6 +1,5 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 
-
 body {
   background-color: #eee;
 }
@@ -157,6 +156,46 @@ body {
     font-weight: 400;
     .count {
       font-weight: bold;
+    }
+  }
+  .panel, .panel-heading, .panel-body {
+    border: 0 !important;
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .panel-group {
+    margin-bottom: 10px;
+  }
+  .panel-heading {
+    .panel-title {
+      font-weight: normal;
+      font-size: 14px;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .ofv-field {
+    width: 40%;
+    border-right: 0px;
+  }
+  .ofv-value {
+    width: 60%;
+  }
+  .panel-title .glyphicon {
+    margin-left: 10px;
+    font-size: 0.8em;
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    &.rotate {
+      -moz-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
     }
   }
   .tags {
@@ -420,6 +459,14 @@ ul.obs > li .card {
         &.notes {
           width: 250px;
         }
+      }
+    }
+    .close {
+      color: white;
+      opacity: 0.6;
+      text-shadow: 0 1px 0 #333;
+      &:hover {
+        opacity: 1;
       }
     }
   }
