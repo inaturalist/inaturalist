@@ -741,9 +741,8 @@
                       <div class="timeline-body">
                         <%- target_id = rand(36**8).to_s(36) %>
                         <div id="expand<%= "#{target_id}" %>" class="collapse out">
-                          <%- observations = [updates[0].resource]
-                          -%>
-                          <%- unless observations.nil? %>
+                          <%- if updates[0].resource_type == 'Observation' %>
+                            <%- observations = [updates[0].resource] -%>
                             <%= render partial: 'observations/observations_component_for_dashboard', locals: {for_idents: true, observations: observations} %>
                           <% end %>
                           <ul class="timeline timeline_observation">
