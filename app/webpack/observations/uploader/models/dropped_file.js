@@ -50,7 +50,12 @@ const DroppedFile = class DroppedFile {
       reader.onloadend = e => {
         const exif = { };
         // read EXIF into an object
-        const exifObj = piexif.load( e.target.result );
+        let exifObj;
+        try {
+          exifObj = piexif.load( e.target.result );
+        } catch ( err ) {
+          return resolve( metadata );
+        }
         _.each( exifObj, ( tags, ifd ) => {
           if ( ifd === "thumbnail" ) { return; }
           _.each( tags, ( value, tag ) => {

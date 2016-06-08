@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from "react";
-import { Glyphicon, MenuItem,
+import { Glyphicon, MenuItem, OverlayTrigger, Tooltip,
   Navbar, Nav, NavDropdown, NavItem } from "react-bootstrap";
 
 class TopMenu extends Component {
@@ -32,39 +32,64 @@ class TopMenu extends Component {
     return (
       <Navbar className={ className } fluid>
         <Nav>
-          <NavDropdown title={ dropdownToggle } id="add_photos">
-            <MenuItem onClick={ fileChooser }>{ I18n.t( "photo_s" ) }</MenuItem>
-            <MenuItem onClick={ createBlankObsCard }>
-              { I18n.t( "observation_without_photo" ) }
-            </MenuItem>
-          </NavDropdown>
-          <NavItem
-            onClick={ confirmRemoveSelected }
-            disabled={ countSelected === 0 }
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="add-tip">Add additional photos or photoless observations</Tooltip> ) }
           >
-            <Glyphicon glyph="remove" />
-            { I18n.t( "remove" ) }
-          </NavItem>
-          <NavItem
-            onClick={ combineSelected }
-            disabled={ countSelectedPending > 0 || countSelected < 2 }
+            <NavDropdown title={ dropdownToggle } id="add_photos">
+              <MenuItem onClick={ fileChooser }>{ I18n.t( "photo_s" ) }</MenuItem>
+              <MenuItem onClick={ createBlankObsCard }>
+                { I18n.t( "observation_without_photo" ) }
+              </MenuItem>
+            </NavDropdown>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="remove-tip">Remove selected observations</Tooltip> ) }
           >
-            <Glyphicon glyph="resize-small" />
-            { I18n.t( "combine" ) }
-          </NavItem>
-          <li className={ `select ${countTotal === 0 && "disabled"}` }>
-            <form className="navbar-form" role="search">
-              <input
-                id="select-all"
-                type="checkbox"
-                key={ `select${countSelected}${countTotal}` }
-                disabled={ countTotal === 0 }
-                checked={ countTotal > 0 && countSelected === countTotal }
-                onChange={ ( ) => ( countSelected !== countTotal ? selectAll( ) : selectNone( ) ) }
-              />
-              <label htmlFor="select-all">{ I18n.t( "select_all" ) }</label>
-            </form>
-          </li>
+            <NavItem
+              onClick={ confirmRemoveSelected }
+              disabled={ countSelected === 0 }
+            >
+              <Glyphicon glyph="remove" />
+              { I18n.t( "remove" ) }
+            </NavItem>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="merge-tip">Merge selected observations</Tooltip> ) }
+          >
+            <NavItem
+              onClick={ combineSelected }
+              disabled={ countSelectedPending > 0 || countSelected < 2 }
+            >
+              <Glyphicon glyph="resize-small" />
+              { I18n.t( "combine" ) }
+            </NavItem>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="select-tip">Select all observations</Tooltip> ) }
+          >
+            <li className={ `select ${countTotal === 0 && "disabled"}` }>
+              <form className="navbar-form" role="search">
+                <input
+                  id="select-all"
+                  type="checkbox"
+                  key={ `select${countSelected}${countTotal}` }
+                  disabled={ countTotal === 0 }
+                  checked={ countTotal > 0 && countSelected === countTotal }
+                  onChange={ ( ) => (
+                    countSelected !== countTotal ? selectAll( ) : selectNone( ) ) }
+                />
+                <label htmlFor="select-all">{ I18n.t( "select_all" ) }</label>
+              </form>
+            </li>
+          </OverlayTrigger>
         </Nav>
         <Nav pullRight>
           { saveButton }
