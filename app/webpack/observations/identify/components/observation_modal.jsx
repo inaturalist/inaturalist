@@ -133,10 +133,18 @@ const ObservationModal = ( {
       </Button>
       <Modal.Header closeButton>
         <Modal.Title>
-          <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
-          <span className="datebit">
+          <SplitTaxon
+            taxon={observation.taxon}
+            url={`/observations/${observation.id}`}
+            placeholder={observation.species_guess}
+          />
+          <span className="titlebit">
             <label>{ I18n.t( "observed" ) }:</label>
             { moment( observation.observed_on ).format( "L" ) }
+          </span>
+          <span className="titlebit">
+            <label>{ I18n.t( "by" ) }:</label>
+            { observation.user.login }
           </span>
           <span className={`pull-right quality_grade ${observation.quality_grade}`}>
             { qualityGrade( ) }

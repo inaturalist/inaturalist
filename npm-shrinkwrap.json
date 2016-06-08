@@ -610,7 +610,7 @@
     },
     "core-js": {
       "version": "2.4.0",
-      "from": "core-js@>=2.4.0 <3.0.0",
+      "from": "core-js@>=2.1.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.4.0.tgz"
     },
     "core-util-is": {
@@ -1849,7 +1849,7 @@
     },
     "html-truncate": {
       "version": "1.2.1",
-      "from": "html-truncate@>=1.2.1 <2.0.0",
+      "from": "html-truncate@latest",
       "resolved": "https://registry.npmjs.org/html-truncate/-/html-truncate-1.2.1.tgz"
     },
     "http-browserify": {
@@ -1883,9 +1883,9 @@
       "resolved": "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz"
     },
     "inaturalistjs": {
-      "version": "0.1.3",
+      "version": "0.1.4",
       "from": "inaturalist/inaturalistjs",
-      "resolved": "git://github.com/inaturalist/inaturalistjs.git#6e76cb7a57fa56b0ef0c069e354ea29fce57f5f8"
+      "resolved": "git://github.com/inaturalist/inaturalistjs.git#272a515b9ecca8f37f28e27380cab6cf7ea9a690"
     },
     "indent-string": {
       "version": "2.1.0",
@@ -2430,9 +2430,9 @@
           "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz"
         },
         "readable-stream": {
-          "version": "2.1.4",
+          "version": "2.1.2",
           "from": "readable-stream@>=2.0.1 <3.0.0",
-          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.1.4.tgz"
+          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.1.2.tgz"
         }
       }
     },
@@ -2899,9 +2899,9 @@
           "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz"
         },
         "readable-stream": {
-          "version": "2.1.4",
+          "version": "2.1.2",
           "from": "readable-stream@>=2.0.2 <3.0.0",
-          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.1.4.tgz"
+          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.1.2.tgz"
         }
       }
     },
@@ -2979,7 +2979,7 @@
     },
     "repeating": {
       "version": "1.1.3",
-      "from": "repeating@>=1.1.0 <2.0.0",
+      "from": "repeating@>=1.1.3 <2.0.0",
       "resolved": "https://registry.npmjs.org/repeating/-/repeating-1.1.3.tgz"
     },
     "replace-ext": {
@@ -3041,7 +3041,7 @@
     },
     "safe-html": {
       "version": "1.0.0",
-      "from": "safe-html@>=1.0.0 <2.0.0",
+      "from": "safe-html@latest",
       "resolved": "https://registry.npmjs.org/safe-html/-/safe-html-1.0.0.tgz"
     },
     "scriptjs": {
