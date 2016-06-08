@@ -3,8 +3,14 @@
     updates.map{|u| @update_cache[:observations][u.notifier_id]}
   end.compact
   observations = updates.map{|u| u.notifier}.compact if observations.blank?
-  default_observation = observations.first
-  login = default_observation.user.login
+  
+  update = updates.last
+  resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
+    @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
+  end
+  resource ||= update.resource
+  login = resource.login
+  
   target_id = rand(36**8).to_s(36)
 -%>
 
