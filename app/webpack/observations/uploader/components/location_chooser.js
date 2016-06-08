@@ -3,6 +3,7 @@ import React, { PropTypes } from "react";
 import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
 import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
 import SelectionBasedComponent from "./selection_based_component";
+import util from "../models/util";
 var lastCenterChange = new Date().getTime();
 
 class LocationChooser extends SelectionBasedComponent {
@@ -132,38 +133,9 @@ class LocationChooser extends SelectionBasedComponent {
   }
 
   reverseGeocode( lat, lng ) {
-    const geocoder = new google.maps.Geocoder;
-    geocoder.geocode( { location: { lat, lng } }, ( results, status ) => {
-      if ( status === google.maps.GeocoderStatus.OK ) {
-        if ( results[0] ) {
-          results.reverse( );
-          const neighborhood = _.find( results, r => _.includes( r.types, "neighborhood" ) );
-          const locality = _.find( results, r => _.includes( r.types, "locality" ) );
-          const sublocality = _.find( results, r => _.includes( r.types, "sublocality" ) );
-          const level2 = _.find( results, r =>
-            _.includes( r.types, "administrative_area_level_2" ) );
-          const level1 = _.find( results, r =>
-            _.includes( r.types, "administrative_area_level_1" ) );
-          let locationName;
-          if ( neighborhood ) {
-            locationName = neighborhood.formatted_address;
-          } else if ( sublocality ) {
-            locationName = sublocality.formatted_address;
-          } else if ( locality ) {
-            locationName = locality.formatted_address;
-          } else if ( level2 ) {
-            locationName = level2.formatted_address;
-          } else if ( level1 ) {
-            locationName = level1.formatted_address;
-          }
-          if ( locationName ) {
-            this.props.updateState( { locationChooser: { notes: locationName } } );
-          }
-        } else {
-          // no results
-        }
-      } else {
-        // fail
+    util.reverseGeocode( lat, lng ).then( location => {
+      if ( location ) {
+        this.props.updateState( { locationChooser: { notes: location } } );
       }
     } );
   }
