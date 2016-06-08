@@ -1,0 +1,122 @@
+<%- if observations.size == 1 %>
+  <%- 
+    observation = observations.first
+    for_idents ||= false
+  -%>
+  <div class="media <%= "for_idents" if for_idents %>">
+    <div class="media-left"> 
+      <% photo_count, sound_count, link_text =
+        observation.observation_photos_finished_processing.size,
+        observation.observation_sounds_count, [] %>
+      <% if photo_count == 0 && sound_count == 0 -%>
+        <div class="media-object img-thumbnail" style="text-align:center;display:table-cell;vertical-align:middle;height:130px;padding-right:25px;padding-left:25px;">
+          <%=t :'sounds.no_photos_sounds' %>
+        </div>
+      <% else %>
+        <% if photo_count > 0 %>
+          <%- 
+            photos = observation.observation_photos_finished_processing.sort_by{|op|
+              op.position || photo_count + op.id.to_i
+            }.map{|op| op.photo}.compact
+            photo = photos.first
+          %>
+          <% if photo %>
+            <%= link_to image_tag(photo.square_url,
+              "data-square-url" => photo.square_url,
+              "data-small-url" => photo.small_url,
+              "data-medium-url" => photo.medium_url
+              ), observation_path(observation), :class => 'media-object img-thumbnail'%>
+            <% if photo_count > 1 -%>
+              <% link_text << t(:photos_size_photos, :photos_size => photos.size).downcase %>
+            <% end -%>
+          <% end %>
+        <% end -%>
+        <% if sound_count > 0 %>
+          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation_path(observation), :class => "sound-icon#{' with-photo' if photo}" %>
+          <% if sound_count > 1 %>
+            <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
+          <% end -%>
+        <% end %>
+        <% unless link_text.blank? -%>
+          <%= link_to link_text.join(',<br/>').html_safe, observation_path(observation), :class => 'readmore' %>
+        <% end -%>
+      <% end -%>
+    </div>
+    <div class="media-body">
+      <h3>
+        <% if observation.taxon %>
+          <%= render :partial => 'shared/taxon', 
+                     :locals => {
+                        :taxon => observation.taxon,
+                        :link_url => observation_path(observation),
+                        :include_parens => false} %>
+        <% elsif !observation.species_guess.blank? %>
+          <span class="taxon">
+            <%= link_to observation.species_guess, observation_path(observation) %>
+          </span>
+        <% else %>
+          <span class="taxon">
+            <%= link_to "#{t(:something)}...", observation_path(observation) %>
+          </span>
+        <% end %>
+      </h3>
+      <ul>
+        <li> 
+          <span class="date_observed"><i class="glyphicon glyphicon-user"></i>
+            <%= link_to(observation.user.login, observations_by_login_path(observation.user.login)) %>
+          </span>
+          <% if observation.num_identifications_by_others > 0 -%>
+            <%= observation.num_identifications_by_others %>
+            <%= t(:id) if observation.num_identifications_by_others == 1 %>
+            <%= t(:ids) if observation.num_identifications_by_others != 1 %>
+          <% end -%>
+          <%- if observation.needs_id? || observation.research_grade? %>
+            <% if observation.needs_id? -%>
+              <span class="label label_needs_id"><%= t(:needs_id_expandable_html) %></span>
+            <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
+              <span class="label label_research_grade"><%= t(:research_grade_short_html) %></span>  
+            <% end -%>
+          <%- end -%>
+        </li>
+        <li>
+          <span class="date_observed"><i class="glyphicon glyphicon-calendar"></i>
+            <% if observation.observed_on -%>
+              <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
+                observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
+              <%= link_to observation.observed_on.day, 
+                observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
+              <%= link_to observation.observed_on.year, 
+                observations_by_login_path(observation.user.login, :on => observation.observed_on.year) %>
+            <% else %>
+              <%=t :the_past %>
+            <% end -%>
+          </span>
+          <span class="location_observed"><i class="glyphicon glyphicon-map-marker"></i>
+            <%= observation_place_guess observation, :truncate_coordinates => true %>
+          </span>
+        </li>
+      </ul>
+      <p>
+        <%= link_to t(:view_observation), observation_path(observation), class: "btn btn-sm btn-primary"%>
+      </p>
+    </div>
+  </div>
+<%- else %>    
+  <div class="row">
+    <ul>
+      <% for observation in observations[0..3] %>
+        <%= render partial: "shared/mult_obs_component_for_dashboard", :locals => {:observation => observation} %>
+      <% end %>
+    </ul>
+  </div>
+  <% if observations.count > 4 -%>
+    <div class="row collapse out", id="<%= "expand#{target_id}" %>">
+      <ul>
+        <% for observation in observations[4..-1] %>
+          <%= render partial: "shared/mult_obs_component_for_dashboard", :locals => {:observation => observation} %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%- end %>
+

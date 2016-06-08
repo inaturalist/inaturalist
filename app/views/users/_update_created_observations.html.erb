@@ -1,47 +1,22 @@
 <%-
-  user = update_created_observations || resource
-  updates ||= []
   observations = if @update_cache && @update_cache[:observations]
     updates.map{|u| @update_cache[:observations][u.notifier_id]}
   end.compact
   observations = updates.map{|u| u.notifier}.compact if observations.blank?
   default_observation = observations.first
-  return if observations.blank? # this really shouldn't happen
-  place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess }.compact.uniq
   login = default_observation.user.login
+  target_id = rand(36**8).to_s(36)
 -%>
 
-<%- if observations.size == 1 %>
-<div class="media">
-  <div class="media-left"> <a href="#"> <img class="media-object img-thumbnail" src="img/taxa01.jpg" alt="..."> </a> </div>
-  <div class="media-body">
-    <h3><%= observations.first.id %> <span class="scientific_name">(Poanes melane)</span></h3>
-    <ul>
-      <li><span class="date_observed"><i class="glyphicon glyphicon-calendar"></i> Apr 3, 2016</span> <span class="location_observed"><i class="glyphicon glyphicon-map-marker"></i> Mount Diablo State Park, Clayton, CA, US (Google, OSM)</span></li>
-      <li>1 ID <span class="label label_research_grade">Research Grade</span></li>
-    </ul>
-    <p>
-      <button type="button" class="btn btn-sm btn-primary" >View Observation</button>
-      <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#expand01">View All From This Location</button>
-    </p>
+<%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12], target_id: target_id} %>
+<%- if observations.count > 1 %>
+  <div class="timeline-footer">
+    <%= link_to t(:view_observations), observations_path({user_id: login}), class: "btn btn-sm btn-primary" %>
+    <% if observations.count > 4 -%>
+      <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
+        <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span>
+        <span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span>
+      </button>
+    <% end -%>    
   </div>
-</div>
-<%- else %>
-<div class="row" >
-  <ul>
-    <li class="col-md-3">
-      <a href="#">
-        <div class="thumbnail"><img src="img/taxa02.jpg" class="img-responsive" alt="...">
-          <h3>Butterflies </h3>
-        </div>
-      </a>
-    </li>
-  </ul>
-</div>
-<div class="timeline-footer">
-  <button type="button" class="btn btn-sm btn-primary" >View All</button>
-  <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand03" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
-</div>
-<%- end %>
-
-
+<% end %>
