@@ -64,7 +64,6 @@ const ObservationModal = ( {
         zoomLevel={ obsForMap.map_scale || 8 }
         mapTypeControl={false}
         showAccuracy
-        className="stacked"
         disableFullscreen
         showAllLayer={false}
         overlayMenu={false}
@@ -152,7 +151,10 @@ const ObservationModal = ( {
               { sounds }
             </Col>
             <Col xs={4} className="sidebar">
-              {taxonMap}
+              { taxonMap }
+              <div className="place-guess">
+                { observation.place_guess }
+              </div>
               <UserText text={observation.description} truncate={100} className="stacked" />
               <DiscussionListContainer observation={observation} />
               <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
