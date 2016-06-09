@@ -35,25 +35,6 @@ const CONFIG = {
   allowedAttributes: ALLOWED_ATTRIBUTES
 };
 
-// const UserText = ( { text, truncate, config, className } ) => {
-//   if ( !text || text.length === 0 ) {
-//     return <div className={`UserText ${className}`}></div>;
-//   }
-//   const html = safeHtml( text, config || CONFIG );
-//   const style = {};
-//   if ( truncate && truncate > 0 ) {
-//     // html = htmlTruncate( html, truncate );
-//     style.maxHeight = truncate;
-//     className += " truncated";
-//   }
-//   return (
-//     <div
-//       className={`UserText ${className}`}
-//       dangerouslySetInnerHTML={ { __html: html } }
-//     ></div>
-//   );
-// };
-
 class UserText extends React.Component {
   constructor( ) {
     super( );
@@ -66,13 +47,18 @@ class UserText extends React.Component {
     this.setState( { more: !this.state.more } );
   }
 
+  // Imperfect solution until we can get an API endpoint to check for the existence of these users
+  hyperlinkMentions( text ) {
+    return text.replace( /(\B)@([\\\w][\\\w\\\-_]*)/g, "$1<a href=\"/people/$2\">@$2</a>" );
+  }
+
   render( ) {
     const { text, truncate, config } = this.props;
     let { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
     }
-    const html = safeHtml( text, config || CONFIG );
+    const html = safeHtml( this.hyperlinkMentions( text ), config || CONFIG );
     let truncatedHtml;
     const style = {
       transition: "height 2s",
