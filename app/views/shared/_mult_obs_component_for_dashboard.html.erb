@@ -4,9 +4,7 @@
       observation.observation_photos_finished_processing.size,
       observation.observation_sounds_count, [] %>
     <% if photo_count == 0 && sound_count == 0 -%>
-      <div class="media-object img-thumbnail" style="text-align:center;display:table-cell;vertical-align:middle;height:130px;padding-right:25px;padding-left:25px;">
-        <%=t :'sounds.no_photos_sounds' %>
-      </div>
+      <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name %>" style="font-size: 100px; color:rgb(238,238,238);"></i>
     <% else %>
       <% if photo_count > 0 %>
         <%- 
@@ -35,7 +33,9 @@
                       :taxon => observation.taxon,
                       :link_url => observation_path(observation),
                       :include_parens => false,
-                      :truncate => true} %>
+                      :truncate => true,
+                      :trunclength => 20,
+                      :one_name => true} %>
       <% else %>
         <span class="taxon">
           <%= link_to "#{t(:unknown)}", observation_path(observation) %>

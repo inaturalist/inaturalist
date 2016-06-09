@@ -1,16 +1,17 @@
 <%-
   taxon ||= @taxon
   include_article ||= false
+  one_name ||= false
   singular ||= false
   no_common ||= false
   place ||= nil
   comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
   truncate ||= false
-  trunclength = truncate ? 23 : 500
+  trunclength ||= truncate ? 23 : 500
   if taxon.species_or_lower?
     pieces = taxon.name.split
-    if truncate && pieces.map{|a| a.length}.sum > 20
-      pieces[-1] = truncate(pieces.last, length: 20/pieces.length)
+    if truncate && pieces.map{|a| a.length}.sum > (trunclength - 5)
+      pieces[-1] = truncate(pieces.last, length: (trunclength - 5)/pieces.length)
     end
     sciname = if taxon.variety? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
@@ -75,12 +76,14 @@
     <% if truncate %>
       <br/>
     <% end %>
-    <span class="othernames">
-      <% if include_parens %>
-        (<%= sciname.html_safe %>)
-      <% else %>
-        <%= sciname.html_safe %>
-      <% end %>
-    </span>
+    <%- unless one_name %>
+      <span class="othernames">
+        <% if include_parens %>
+          (<%= sciname.html_safe %>)
+        <% else %>
+          <%= sciname.html_safe %>
+        <% end %>
+      </span>
+    <% end -%>
   </span>
 <% end -%>
