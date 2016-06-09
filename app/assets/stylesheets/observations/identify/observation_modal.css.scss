@@ -142,6 +142,7 @@ $image-gallery-height: 380px;
   height: auto;
   width: auto;
   opacity: 1;
+  cursor: zoom-out;
 }
 
 .easyzoom-zoomed img {
@@ -153,6 +154,7 @@ $image-gallery-height: 380px;
 .easyzoom > a {
   display: inline-block;
   width: 100%;
+  cursor: zoom-in;
 }
 body > div > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;

@@ -14,6 +14,7 @@ class ZoomableImageGallery extends ImageGallery {
       return `<div class="easyzoom"><a href="${zoomImgUrl || standardImgUrl}"></a></div>`;
     } );
     $( ".image-gallery-slide .easyzoom", domNode ).easyZoom( {
+      eventType: "click",
       onShow( ) {
         this.$link.addClass( "easyzoom-zoomed" );
       },
