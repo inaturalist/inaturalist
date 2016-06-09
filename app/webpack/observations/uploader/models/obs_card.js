@@ -20,6 +20,7 @@ const ObsCard = class ObsCard {
       species_guess: null,
       tags: [],
       observation_field_values: [],
+      projects: [],
       /* global TIMEZONE */
       time_zone: TIMEZONE
     };

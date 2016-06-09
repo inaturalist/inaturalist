@@ -10,8 +10,12 @@ class LeftMenu extends SelectionBasedComponent {
 
   constructor( props, context ) {
     super( props, context );
+    this.tags = this.tags.bind( this );
+    this.observationFields = this.observationFields.bind( this );
+    this.projects = this.projects.bind( this );
     this.removeTag = this.removeTag.bind( this );
     this.submitTag = this.submitTag.bind( this );
+    this.removeProject = this.removeProject.bind( this );
     this.commonValue = this.commonValue.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
   }
@@ -19,6 +23,25 @@ class LeftMenu extends SelectionBasedComponent {
   shouldComponentUpdate( nextProps ) {
     if ( this.props.reactKey === nextProps.reactKey ) { return false; }
     return true;
+  }
+
+  componentDidUpdate( ) {
+    const input = $( ".panel-group .projects input" );
+    if ( input.data( "uiAutocomplete" ) ) {
+      input.autocomplete( "destroy" );
+      input.removeData( "uiAutocomplete" );
+    }
+    input.projectAutocomplete( {
+      resetOnChange: false,
+      allowEnterSubmit: true,
+      idEl: $( "<input/>" ),
+      afterSelect: p => {
+        if ( p ) {
+          this.props.appendToSelectedObsCards( { projects: p.item } );
+        }
+        input.val( "" );
+      }
+    } );
   }
 
   openLocationChooser( ) {
@@ -48,31 +71,34 @@ class LeftMenu extends SelectionBasedComponent {
     this.props.removeFromSelectedObsCards( { tags: t } );
   }
 
-  render( ) {
-    const { updateSelectedObsCards, selectedObsCards } = this.props;
-    const keys = _.keys( selectedObsCards );
-    const count = keys.length;
-    const uniqDescriptions = this.valuesOf( "description" );
-    const commonDescription = this.commonValue( "description" );
-    const commonSelectedTaxon = this.commonValue( "selected_taxon" );
-    const commonDate = this.commonValue( "date" );
-    const commonLat = this.commonValue( "latitude" );
-    const commonLng = this.commonValue( "longitude" );
-    const commonNotes = this.commonValue( "locality_notes" );
-    const commonGeoprivacy = this.commonValue( "geoprivacy" );
-    let locationText = commonNotes ||
-      ( commonLat && commonLng &&
-      `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
+  removeProject( p ) {
+    this.props.removeFromSelectedObsCards( { projects: p } );
+  }
+
+  chooseFirstProject( e ) {
+    e.preventDefault( );
+    const input = $( ".panel-group .projects input" );
+    if ( input.data( "uiAutocomplete" ) ) {
+      input.trigger( "selectFirst" );
+    }
+  }
+
+  tags( ) {
     const commonTags = _.uniq( _.flatten( this.valuesOf( "tags" ) ) );
-    const commonOfvs = this.commonValue( "observation_field_values" );
-    let multipleGeoprivacy = !commonGeoprivacy && ( <option>{ " -- multiple -- " }</option> );
-    let taglist = (
+    const countBadge = commonTags.length > 0 ?
+      ( <Badge className="count" key="projectCount">{ commonTags.length }</Badge> ) : undefined;
+    const header = ( <div>
+      Tags{countBadge}
+      <Glyphicon glyph="menu-right" />
+    </div> );
+    return (
       <Accordion>
         <Panel
           eventKey="1"
           className="tags-panel"
-          header={ ( <div>Tags<Glyphicon glyph="menu-right" /></div> ) }
+          header={ header }
           onEnter={ () => { $( ".tags-panel .glyphicon" ).addClass( "rotate" ); } }
+          onEntered={ () => { $( ".tags-panel input" ).focus( ).select( ).val( "" ); } }
           onExit={ () => { $( ".tags-panel .glyphicon" ).removeClass( "rotate" ); } }
         >
           <div className="tags">
@@ -83,7 +109,6 @@ class LeftMenu extends SelectionBasedComponent {
                   className="form-control input-sm"
                   placeholder="Add a tag..."
                   ref="input-tag"
-                  onKeyPress={ this.checkTagSubmit }
                 />
                 <span className="input-group-btn">
                   <button
@@ -110,17 +135,28 @@ class LeftMenu extends SelectionBasedComponent {
         </Panel>
       </Accordion>
     );
-    let ofvlist = (
+  }
+
+  observationFields( ) {
+    const commonOfvs = this.commonValue( "observation_field_values" );
+    const countBadge = commonOfvs.length > 0 ?
+      ( <Badge className="count" key="projectCount">{ commonOfvs.length }</Badge> ) : undefined;
+    const header = ( <div>
+      Custom Fields{countBadge}
+      <Glyphicon glyph="menu-right" />
+    </div> );
+    return (
       <Accordion>
         <Panel
           eventKey="1"
           className="ofvs-panel"
-          header={ ( <div>Custom Fields<Glyphicon glyph="menu-right" /></div> ) }
+          header={ header }
           onEnter={ () => { $( ".ofvs-panel .glyphicon" ).addClass( "rotate" ); } }
+          onEntered={ () => { $( ".ofvs-panel input.ofv-field" ).focus( ).select( ).val( "" ); } }
           onExit={ () => { $( ".ofvs-panel .glyphicon" ).removeClass( "rotate" ); } }
         >
           <div className="tags">
-            <form onSubmit={this.submitTag}>
+            <form>
               <div className="input-group">
                 <input
                   type="text"
@@ -158,6 +194,79 @@ class LeftMenu extends SelectionBasedComponent {
         </Panel>
       </Accordion>
     );
+  }
+
+  projects( ) {
+    const commonProjects = this.commonValue( "projects" );
+    const countBadge = commonProjects.length > 0 ?
+      ( <Badge className="count" key="projectCount">{ commonProjects.length }</Badge> ) : undefined;
+    const header = ( <div>
+      Projects{countBadge}
+      <Glyphicon glyph="menu-right" />
+    </div> );
+    return (
+      <Accordion>
+        <Panel
+          eventKey="1"
+          className="projects-panel"
+          header={ header }
+          onEnter={ () => { $( ".projects-panel .glyphicon" ).addClass( "rotate" ); } }
+          onEntered={ () => { $( ".projects-panel input" ).focus( ).select( ).val( "" ); } }
+          onExit={ () => { $( ".projects-panel .glyphicon" ).removeClass( "rotate" ); } }
+        >
+          <div className="projects">
+            <form onSubmit={this.chooseFirstProject}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control input-sm"
+                  placeholder={ I18n.t( "url_slug_or_id" ) }
+                  ref="input-tag"
+                />
+                <span className="input-group-btn">
+                  <button
+                    className="btn btn-default btn-sm"
+                    type="submit"
+                  >
+                    Add
+                  </button>
+                </span>
+              </div>
+            </form>
+            <div className="taglist">
+              { _.map( commonProjects, p => {
+                const key = p.title;
+                return ( <Badge className="tag" key={ key }>
+                  { key }
+                  <Glyphicon glyph="remove-circle" onClick={ () => {
+                    this.removeProject( p );
+                  } }
+                  />
+                </Badge> );
+              } ) }
+            </div>
+          </div>
+        </Panel>
+      </Accordion>
+    );
+  }
+
+  render( ) {
+    const { updateSelectedObsCards, selectedObsCards } = this.props;
+    const keys = _.keys( selectedObsCards );
+    const count = keys.length;
+    const uniqDescriptions = this.valuesOf( "description" );
+    const commonDescription = this.commonValue( "description" );
+    const commonSelectedTaxon = this.commonValue( "selected_taxon" );
+    const commonDate = this.commonValue( "date" );
+    const commonLat = this.commonValue( "latitude" );
+    const commonLng = this.commonValue( "longitude" );
+    const commonNotes = this.commonValue( "locality_notes" );
+    const commonGeoprivacy = this.commonValue( "geoprivacy" );
+    let locationText = commonNotes ||
+      ( commonLat && commonLng &&
+      `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
+    let multipleGeoprivacy = !commonGeoprivacy && ( <option>{ " -- multiple -- " }</option> );
     let menu;
     if ( count === 0 ) {
       menu = ( <span className="head">{ I18n.t( "select_observations_to_edit" )} </span> );
@@ -169,98 +278,98 @@ class LeftMenu extends SelectionBasedComponent {
           />
           <br />
           <br />
-          <TaxonAutocomplete
-            key={
-              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
-            bootstrap
-            searchExternal
-            showPlaceholder
-            perPage={ 6 }
-            initialSelection={ commonSelectedTaxon }
-            afterSelect={ r => {
-              if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
-                updateSelectedObsCards(
-                  { taxon_id: r.item.id,
-                    selected_taxon: r.item,
-                    species_guess: r.item.title } );
-              }
-            } }
-            afterUnselect={ ( ) => {
-              if ( commonSelectedTaxon ) {
-                updateSelectedObsCards(
-                  { taxon_id: null,
-                    selected_taxon: null,
-                    species_guess: null } );
-              }
-            } }
-            placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
-              I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
-          />
-          <DateTimeFieldWrapper
-            ref="datetime"
-            key={ `multidate${commonDate}` }
-            reactKey={ `multidate${commonDate}` }
-            dateTime={ commonDate ?
-                moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
-            onChange={ dateString => updateSelectedObsCards(
-              { date: dateString, selected_date: dateString } ) }
-          />
-          <div className="input-group"
-            onClick= { ( ) => {
-              if ( this.refs.datetime ) {
-                this.refs.datetime.onClick( );
-              }
-            } }
-          >
-            <div className="input-group-addon">
-              <Glyphicon glyph="calendar" />
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              value={ commonDate }
-              onChange= { e => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onChange( undefined, e.target.value );
-                }
-              } }
-              placeholder={ this.valuesOf( "date" ).length > 1 ?
-                I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
-            />
-          </div>
-          <div className="input-group"
-            onClick={ this.openLocationChooser }
-          >
-            <div className="input-group-addon">
-              <Glyphicon glyph="map-marker" />
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              value={ locationText }
-              placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
-                this.valuesOf( "longitude" ).length > 1 ) ?
-                I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
-              readOnly
-            />
-          </div>
-          <div className="form-group">
-            <textarea
-              placeholder={ uniqDescriptions.length > 1 ?
-                I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
-              className="form-control"
-              value={ commonDescription || "" }
-              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-            />
-          </div>
           <Accordion>
             <Panel
               eventKey="1"
               className="details-panel"
-              header={ ( <div>More<Glyphicon glyph="menu-right" /></div> ) }
+              header={ ( <div>Details<Glyphicon glyph="menu-right" /></div> ) }
               onEnter={ () => { $( ".details-panel .glyphicon" ).addClass( "rotate" ); } }
               onExit={ () => { $( ".details-panel .glyphicon" ).removeClass( "rotate" ); } }
             >
+              <TaxonAutocomplete
+                key={
+                  `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
+                bootstrap
+                searchExternal
+                showPlaceholder
+                perPage={ 6 }
+                initialSelection={ commonSelectedTaxon }
+                afterSelect={ r => {
+                  if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
+                    updateSelectedObsCards(
+                      { taxon_id: r.item.id,
+                        selected_taxon: r.item,
+                        species_guess: r.item.title } );
+                  }
+                } }
+                afterUnselect={ ( ) => {
+                  if ( commonSelectedTaxon ) {
+                    updateSelectedObsCards(
+                      { taxon_id: null,
+                        selected_taxon: null,
+                        species_guess: null } );
+                  }
+                } }
+                placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
+                  I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
+              />
+              <DateTimeFieldWrapper
+                ref="datetime"
+                key={ `multidate${commonDate}` }
+                reactKey={ `multidate${commonDate}` }
+                dateTime={ commonDate ?
+                    moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
+                onChange={ dateString => updateSelectedObsCards(
+                  { date: dateString, selected_date: dateString } ) }
+              />
+              <div className="input-group"
+                onClick= { ( ) => {
+                  if ( this.refs.datetime ) {
+                    this.refs.datetime.onClick( );
+                  }
+                } }
+              >
+                <div className="input-group-addon">
+                  <Glyphicon glyph="calendar" />
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ commonDate }
+                  onChange= { e => {
+                    if ( this.refs.datetime ) {
+                      this.refs.datetime.onChange( undefined, e.target.value );
+                    }
+                  } }
+                  placeholder={ this.valuesOf( "date" ).length > 1 ?
+                    I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
+                />
+              </div>
+              <div className="input-group"
+                onClick={ this.openLocationChooser }
+              >
+                <div className="input-group-addon">
+                  <Glyphicon glyph="map-marker" />
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ locationText }
+                  placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
+                    this.valuesOf( "longitude" ).length > 1 ) ?
+                    I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
+                  readOnly
+                />
+              </div>
+              <div className="form-group">
+                <textarea
+                  placeholder={ uniqDescriptions.length > 1 ?
+                    I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
+                  className="form-control"
+                  value={ commonDescription || "" }
+                  onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+                />
+              </div>
               <Input
                 key={ `multigeoprivacy${commonGeoprivacy}` }
                 type="select"
@@ -277,12 +386,14 @@ class LeftMenu extends SelectionBasedComponent {
                 label={ I18n.t( "captive_cultivated" ) }
                 checked={ this.commonValue( "captive" ) }
                 value="true"
-                onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+                onChange={ e =>
+                  updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
               />
             </Panel>
           </Accordion>
-          { taglist }
-          { ofvlist }
+          { this.tags( ) }
+          { this.observationFields( ) }
+          { this.projects( ) }
         </div>
       );
     }

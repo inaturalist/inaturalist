@@ -72,7 +72,7 @@ $.fn.genericAutocomplete = function( options ) {
     // set the hidden id field
     options.idEl.val( ui.item.id );
     if( options.afterSelect ) { options.afterSelect( ui ); }
-    e.preventDefault( );
+    if( e ) { e.preventDefault( ); }
     return false;
   };
 
@@ -94,6 +94,16 @@ $.fn.genericAutocomplete = function( options ) {
     }
     return li;
   };
+
+  field.selectFirst = function( ) {
+    if ( $( ac.menu.element ).is( ":visible" ) ) {
+      var firstItem = $( ac.menu.element ).find( "li" ).first( );
+      if ( firstItem ) {
+        ac._trigger( "select", null, { item: firstItem.data( "uiAutocompleteItem" ) } );
+        return true;
+      }
+    }
+  }
 
   var ac = field.autocomplete({
     minLength: 1,
@@ -144,11 +154,10 @@ $.fn.genericAutocomplete = function( options ) {
       // allowEnterSubmit. So the default behavior is for ENTER to select an
       // option when the menu is open but not submit the form, and if the menu
       // is closed and the input has focus, ENTER *will* submit the form
-      if(
-        !options.preventEnterSubmit
-        && ( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) )
-      ) {
-        field.closest( "form" ).submit( );
+      if( options.preventEnterSubmit ) { return false; }
+      field.selectFirst( );
+      if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
+        return true;
       }
       return false;
     }
