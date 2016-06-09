@@ -16,11 +16,8 @@
           photo = photos.first
         %>
         <% if photo %>
-          <%= link_to image_tag(photo.square_url,
-            "data-square-url" => photo.square_url,
-            "data-small-url" => photo.small_url,
-            "data-medium-url" => photo.medium_url
-            ), observation_path(observation), :class => 'media-object img-thumbnail'%>
+          <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
+         
         <% end %>
       <% end -%>
       <% if sound_count > 0 %>

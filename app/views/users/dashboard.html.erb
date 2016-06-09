@@ -4,7 +4,14 @@
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
   <style>
-
+  
+  .scaledimg {
+   width: 100%;
+   min-height: 150px;
+   background-size: cover;
+   background-position: center;
+  }
+   
   .timeline {
   	list-style: none;
   	padding: 20px 0 20px 0;
