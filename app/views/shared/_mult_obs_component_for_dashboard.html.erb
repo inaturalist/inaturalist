@@ -16,8 +16,9 @@
           photo = photos.first
         %>
         <% if photo %>
-          <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
-         
+          <%= link_to observation_path(observation) do %>
+            <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
+          <% end %>
         <% end %>
       <% end -%>
       <% if sound_count > 0 %>
@@ -33,14 +34,11 @@
                    :locals => {
                       :taxon => observation.taxon,
                       :link_url => observation_path(observation),
-                      :include_parens => false} %>
-      <% elsif !observation.species_guess.blank? %>
-        <span class="taxon">
-          <%= link_to observation.species_guess, observation_path(observation) %>
-        </span>
+                      :include_parens => false,
+                      :truncate => true} %>
       <% else %>
         <span class="taxon">
-          <%= link_to "#{t(:something)}...", observation_path(observation) %>
+          <%= link_to "#{t(:unknown)}", observation_path(observation) %>
         </span>
       <% end %>
     </h3>

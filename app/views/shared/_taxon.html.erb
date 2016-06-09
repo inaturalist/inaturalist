@@ -5,14 +5,19 @@
   no_common ||= false
   place ||= nil
   comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
+  truncate ||= false
+  trunclength = truncate ? 23 : 500
   if taxon.species_or_lower?
     pieces = taxon.name.split
+    if truncate && pieces.map{|a| a.length}.sum > 20
+      pieces[-1] = truncate(pieces.last, length: 20/pieces.length)
+    end
     sciname = if taxon.variety? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
     elsif taxon.subspecies? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
     else
-      "<span class=\"sciname\">#{taxon.name}</span>"
+      "<span class=\"sciname\">#{truncate(taxon.name,length: trunclength)}</span>"
     end
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
@@ -38,8 +43,6 @@
   if named_ancestor == true
     named_ancestor = taxon.ancestors.reverse.detect{|t| !t.common_name.blank?}
   end
-  truncate ||= false
-  trunclength = truncate ? 23 : 500
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>
