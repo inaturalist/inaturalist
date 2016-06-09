@@ -5,13 +5,19 @@
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
   <style>
   
-  .scaledimg {
+  .thumbnail > a > .scaledimg {
    width: 100%;
    min-height: 150px;
    background-size: cover;
    background-position: center;
   }
-   
+  .media-left > a > .scaledimg {
+   width: 120px;
+   height: 120px;
+   margin-right: 5px;
+   background-size: cover;
+   background-position: center;
+  }
   .timeline {
   	list-style: none;
   	padding: 20px 0 20px 0;
