@@ -440,8 +440,10 @@ class User < ActiveRecord::Base
     return true if last_ip.nil?
     url = URI.parse('http://geoip.inaturalist.org/')
     http = Net::HTTP.new(url.host, url.port)
-    http.read_timeout = 5
-    http.open_timeout = 5
+    http.read_timeout = 0.5
+    http.open_timeout = 0.5
+    latitude = nil
+    longitude = nil
     begin
       resp = http.start() {|http|
         http.get("/?ip=#{last_ip}")
@@ -449,9 +451,11 @@ class User < ActiveRecord::Base
       data = resp.body
       begin
         result = JSON.parse(data)
-        ll = result["results"]["ll"]
-        latitude = ll[0]
-        longitude = ll[1]
+        if results["results"]["region"] != ""
+          ll = result["results"]["ll"]
+          latitude = ll[0]
+          longitude = ll[1]
+        end
       rescue
         latitude = nil
         longitude = nil
