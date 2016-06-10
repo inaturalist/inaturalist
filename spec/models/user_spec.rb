@@ -103,7 +103,7 @@ describe User do
     end
     
     it "should set latitude and longitude" do
-      u = User.make(:last_ip => "6.6.6.6")
+      u = User.make(:last_ip => "12.189.20.126")
       u.save
       expect(u.latitude).to_not be_blank
       expect(u.longitude).to_not be_blank

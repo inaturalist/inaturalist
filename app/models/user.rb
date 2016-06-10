@@ -440,8 +440,8 @@ class User < ActiveRecord::Base
     if last_ip_changed?
       url = URI.parse('http://geoip.inaturalist.org/')
       http = Net::HTTP.new(url.host, url.port)
-      http.read_timeout = 0.5
-      http.open_timeout = 0.5
+      http.read_timeout = 5
+      http.open_timeout = 5
       begin
         resp = http.start() {|http|
           http.get("/?ip=#{last_ip}")
