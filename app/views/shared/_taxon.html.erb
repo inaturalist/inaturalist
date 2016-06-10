@@ -3,6 +3,7 @@
   include_article ||= false
   one_name ||= false
   singular ||= false
+  exclude_rank ||= false
   no_common ||= false
   place ||= nil
   comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
@@ -10,9 +11,6 @@
   trunclength ||= truncate ? 23 : 500
   if taxon.species_or_lower?
     pieces = taxon.name.split
-    if truncate && pieces.map{|a| a.length}.sum > (trunclength - 5)
-      pieces[-1] = truncate(pieces.last, length: (trunclength - 5)/pieces.length)
-    end
     sciname = if taxon.variety? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
     elsif taxon.subspecies? && pieces.size == 3
@@ -23,14 +21,19 @@
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
   else
-    rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", :default => taxon.rank).capitalize : t(:unknown_rank)
-    rank = content_tag(:span, rank, :class => 'rank')
-    sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
+    if exclude_rank
+      sciname = "<span class=\"sciname\">#{taxon.name}</span>" 
+    else
+      rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", :default => taxon.rank).capitalize : t(:unknown_rank)
+      rank = content_tag(:span, rank, :class => 'rank')
+      sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
+    end
   end
   include_id ||= false
   sciname += " #{taxon.id}" if include_id
   sciname += " [inactive]" unless taxon.is_active?
-
+  sciname = truncate_rendered_name(sciname, trunclength+6) if truncate
+  
   include_parens ||= true unless include_parens == false
   link_url ||= nil
   singular ||= false

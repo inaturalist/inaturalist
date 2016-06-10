@@ -10,7 +10,9 @@
         observation.observation_photos_finished_processing.size,
         observation.observation_sounds_count, [] %>
       <% if photo_count == 0 && sound_count == 0 -%>
-          <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="font-size: 100px; color:rgb(238,238,238);"></i>
+        <%= link_to observation_path(observation) do %>
+          <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="vertical-align: middle;font-size: 105px; color:rgb(238,238,238);"></i>
+        <% end -%>
       <% else %>
         <% if photo_count > 0 %>
           <%- 
@@ -20,13 +22,22 @@
             photo = photos.first
           %>
           <% if photo %>
-            <%= link_to observation_path(observation) do %>
-              <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
-            <% end %>
+            <% if sound_count > 0 %>
+              <%= link_to observation_path(observation) do %>
+                <div class="scaledimg icon_container" style="background-image: url('<%= "#{photo.small_url}" %>')">
+                  <i class="fa fa-volume-up fa-4x" style="vertical-align: middle;font-size: 105px;color:rgb(238,238,238);"></i>
+                </div>
+              <% end %>
+            <% else %>
+              <%= link_to observation_path(observation) do %>
+                <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
+              <% end %>
+            <% end %>        
           <% end %>
-        <% end -%>
-        <% if sound_count > 0 %>
-          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation_path(observation), :class => "sound-icon#{' with-photo' if photo}" %>
+        <% else -%>
+          <%= link_to observation_path(observation) do %>
+            <i class="fa fa-volume-up" style="line-height: 150px;vertical-align: middle;font-size: 105px;color:rgb(238,238,238);"></i>
+          <% end -%>
         <% end %>
       <% end -%>
     </div>

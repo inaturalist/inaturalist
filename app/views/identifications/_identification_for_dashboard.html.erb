@@ -18,7 +18,7 @@
 -%>
   <div class="media">
     <div class="media-left">
-      <%= link_to taxon_image(taxon, :class => "media-object img-thumbnail"), taxon %>
+      <%= link_to taxon_image(taxon, :class => "media-object img-thumbnail", :style => "width:50px;height:50px;"), taxon %>
     </div>
     <div class="media-body">
       <% unless hide_actions -%>
@@ -43,11 +43,11 @@
               :class => "removelink" -%></span>
         <% end %>
       <% end -%>
-      <h3 style="line-height:40px">
+      <h3 class="dashboard_id">
         <%= render :partial => 'shared/taxon', 
                    :locals => { :taxon => taxon,
                                 :link_url => taxon,
-                                :named_ancestor => true } %>
+                                :named_ancestor => false } %>
         <% unless identification.current? -%>
           <span class="label label-default label_refined">Refined</span>
         <% end -%>

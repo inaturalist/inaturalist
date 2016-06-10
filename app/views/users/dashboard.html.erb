@@ -5,8 +5,19 @@
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
   <style>
   
-  .thumbnail > a.no_photo_sound {
-    padding-left: 20px;
+  
+  
+  
+  h3.dashboard_id{
+    line-height:24px;
+  }
+  
+  h3.dashboard_id > .taxon > .comname {
+    display: block;
+  }
+  
+  .icon_container {
+    padding: 20px;
   }
   
   .thumbnail > a > .scaledimg {
@@ -470,6 +481,7 @@
   ul.timeline_observation > li > .timeline-panel .label_refined {
   	float: right;
   	margin-top: 7px;
+    margin-right: 15px;
   	background-color: #ddd;
   	font-weight: normal;
   	color: black

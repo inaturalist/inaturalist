@@ -962,6 +962,36 @@ module ApplicationHelper
     end
   end
   
+  def truncate_rendered_name(sciname, trunclength)
+    doc = Nokogiri::HTML::Document.parse(sciname)
+    doc.css('span.sciname').map(&:text)
+    rendered_name = doc.css('span.sciname').map(&:text)[0]
+    rendered_rank = doc.css('span.rank').map(&:text)[0]
+    return sciname if rendered_name.length <= trunclength
+    while rendered_name.length > trunclength
+      rendered_name = rendered_name.gsub("...","")
+      to_trim = rendered_name.length - trunclength + 3
+      rendered_pieces = rendered_name.split
+      (rendered_pieces.length-1).downto(0).each do |ind|
+        if rendered_pieces[ind].length >= to_trim && rendered_pieces[ind] != rendered_rank
+          new_end = rendered_pieces[ind].length - to_trim - 1
+          rendered_pieces[ind] = rendered_pieces[ind][0..new_end]
+          break
+        else
+          popped = rendered_pieces.pop
+          to_trim = to_trim - popped.length+1
+        end
+      end
+      rendered_name = rendered_pieces.join(" ")+"..."
+    end
+    if rendered_rank
+      sciname = "<span class=\"sciname subspecies\">#{rendered_name.gsub(rendered_rank, "<span class=\"rank\">#{rendered_rank}</span>")}</span>" 
+    else
+      sciname = "<span class=\"sciname\">#{rendered_name}</span>" 
+    end
+    return sciname
+  end
+  
   def update_tagline_for(update, options = {})
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]

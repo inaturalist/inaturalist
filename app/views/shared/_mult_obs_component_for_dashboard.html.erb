@@ -1,11 +1,11 @@
-<li class="col-md-3">
+<li class="col-md-3 col-sm-3">
   <div class="thumbnail">
     <% photo_count, sound_count, link_text =
       observation.observation_photos_finished_processing.size,
       observation.observation_sounds_count, [] %>
     <% if photo_count == 0 && sound_count == 0 -%>
-      <%= link_to observation_path(observation), :class => "no_photo_sound" do %>
-        <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="font-size: 105px; color:rgb(238,238,238);"></i>
+      <%= link_to observation_path(observation), :class => "icon_container" do %>
+        <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="vertical-align: middle;font-size: 105px; color:rgb(238,238,238);"></i>
       <% end -%>
     <% else %>
       <% if photo_count > 0 %>
@@ -16,15 +16,21 @@
           photo = photos.first
         %>
         <% if photo %>
-          <%= link_to observation_path(observation) do %>
-            <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
-          <% end %>
+          <% if sound_count > 0 %>
+            <%= link_to observation_path(observation) do %>
+              <div class="scaledimg icon_container" style="background-image: url('<%= "#{photo.small_url}" %>')">
+                <i class="fa fa-volume-up fa-4x" style="vertical-align: middle;font-size: 105px;color:rgb(238,238,238);"></i>
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to observation_path(observation) do %>
+              <div class="scaledimg" style="background-image: url('<%= "#{photo.small_url}" %>')"></div>
+            <% end %>
+          <% end %>        
         <% end %>
-      <% end -%>
-      <% if sound_count > 0 %>
-        <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation_path(observation), :class => "sound-icon#{' with-photo' if photo}" %>
-        <% if sound_count > 1 %>
-          <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
+      <% else -%>
+        <%= link_to observation_path(observation), :class => "icon_container" do %>
+          <i class="fa fa-volume-up" style="line-height: 150px;vertical-align: middle;font-size: 105px;color:rgb(238,238,238);"></i>
         <% end -%>
       <% end %>
     <% end -%>
@@ -36,7 +42,8 @@
                       :link_url => observation_path(observation),
                       :include_parens => false,
                       :truncate => true,
-                      :trunclength => 19,
+                      :trunclength => 16,
+                      :exclude_rank => true,
                       :one_name => true} %>
       <% else %>
         <span class="taxon">
