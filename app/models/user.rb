@@ -451,7 +451,7 @@ class User < ActiveRecord::Base
       data = resp.body
       begin
         result = JSON.parse(data)
-        unless results["results"]["region"].nil?
+        unless result["results"]["region"] == ""
           ll = result["results"]["ll"]
           latitude = ll[0]
           longitude = ll[1]
