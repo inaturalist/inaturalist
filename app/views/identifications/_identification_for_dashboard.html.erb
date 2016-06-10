@@ -21,6 +21,28 @@
       <%= link_to taxon_image(taxon, :class => "media-object img-thumbnail"), taxon %>
     </div>
     <div class="media-body">
+      <% unless hide_actions -%>
+        <% if logged_in? && 
+            !hide_agree &&
+            identification.user_id != current_user.id && 
+            (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
+          <span class="btn btn-sm btn-default btn_agree">
+            <%= link_to t(:agree?), {
+                 :controller => 'identifications',
+                 :action => 'agree',
+                 :observation_id => identification.observation_id,
+                 :taxon_id => identification.taxon_id },
+               :method => :post,
+               "data-loading-click" => t(:agreeing) -%>
+          </span>
+        <% end %>
+        <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
+          <span class="btn btn-sm btn-default btn_agree"><%= link_to t(:remove), identification_path(identification),
+              :method => :delete,
+              "data-loading-click" => t(:removing),
+              :class => "removelink" -%></span>
+        <% end %>
+      <% end -%>
       <h3 style="line-height:40px">
         <%= render :partial => 'shared/taxon', 
                    :locals => { :taxon => taxon,
@@ -29,30 +51,6 @@
         <% unless identification.current? -%>
           <span class="label label-default label_refined">Refined</span>
         <% end -%>
-        <% unless hide_actions -%>
-          <% if logged_in? && 
-              !hide_agree &&
-              identification.user_id != current_user.id && 
-              (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
-            <span class="btn btn-sm btn-default btn_agree">
-              <%= link_to t(:agree?), {
-                   :controller => 'identifications',
-                   :action => 'agree',
-                   :observation_id => identification.observation_id,
-                   :taxon_id => identification.taxon_id },
-                 :method => :post,
-                 "data-loading-click" => t(:agreeing) -%>
-            </span>
-          <% end %>
-          <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
-            <span class="btn btn-sm btn-default btn_agree"><%= link_to t(:remove), identification_path(identification),
-                :method => :delete,
-                "data-loading-click" => t(:removing),
-                :class => "removelink" -%></span>
-          <% end %>
-        <% end -%>
-    
-        
       </h3>
 
     

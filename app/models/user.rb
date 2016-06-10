@@ -142,11 +142,11 @@ class User < ActiveRecord::Base
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
+  after_save :get_lat_lon_from_ip_if_last_ip_changed
   after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-  before_save :get_lat_lon_from_ip
   
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
@@ -436,31 +436,33 @@ class User < ActiveRecord::Base
     true
   end
     
-  def get_lat_lon_from_ip
-    url = URI.parse('http://geoip.inaturalist.org/')
-    http = Net::HTTP.new(url.host, url.port)
-    http.read_timeout = 0.1
-    http.open_timeout = 0.1
-    begin
-      resp = http.start() {|http|
-        http.get("/?ip=#{self.last_ip}")
-      }
-      data = resp.body
+  def get_lat_lon_from_ip_if_last_ip_changed
+    if last_ip_changed?
+      url = URI.parse('http://geoip.inaturalist.org/')
+      http = Net::HTTP.new(url.host, url.port)
+      http.read_timeout = 0.5
+      http.open_timeout = 0.5
       begin
-        result = JSON.parse(data)
-        ll = result["results"]["ll"]
-        latitude = ll[0]
-        longitude = ll[1]
-      rescue
+        resp = http.start() {|http|
+          http.get("/?ip=#{last_ip}")
+        }
+        data = resp.body
+        begin
+          result = JSON.parse(data)
+          ll = result["results"]["ll"]
+          latitude = ll[0]
+          longitude = ll[1]
+        rescue
+          latitude = nil
+          longitude = nil
+        end
+      rescue Timeout::Error => e
         latitude = nil
         longitude = nil
       end
-    rescue Timeout::Error => e
-      latitude = nil
-      longitude = nil
+      self.latitude = latitude
+      self.longitude = longitude
     end
-    self.latitude = latitude
-    self.longitude = longitude
   end
   
   def published_name

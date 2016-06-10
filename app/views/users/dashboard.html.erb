@@ -240,6 +240,7 @@
   	color: gray
   }
   .label_research_grade {
+    padding: .5em .6em .5em .7em;
   	background-color: #74ac00;
   	font-weight: normal
   }
@@ -645,7 +646,7 @@
               </div>
               <div class="panel-footer">
                 <%= link_to observations_path, class: "btn btn-primary btn-md" do %>
-                  <%=t :browse_observations %><span class="glyphicon glyphicon-chevron-right"></span>
+                  <%=t :browse_observations %> <span class="glyphicon glyphicon-chevron-right"></span>
                 <% end %>
                 <%= link_to "/pages/getting+started", target: "_blank" do %>
                   <span class="glyphicon glyphicon-info-sign"></span> <%=t :getting_started_guide %>
