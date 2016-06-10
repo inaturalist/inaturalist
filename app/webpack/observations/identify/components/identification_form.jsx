@@ -23,7 +23,7 @@ const IdentificationForm = ( {
         data( "uiAutocomplete" ).selectedItem;
       let confirmationText = safeHtml( I18n.t( "your_coarser_id", {
         coarser_taxon_name: idTaxon.name,
-        finer_taxon_name: o.taxon.name
+        finer_taxon_name: o.taxon ? o.taxon.name : ""
       } ), {} );
       confirmationText = confirmationText.replace( /<a.+?\/a>/, "" );
       confirmationText = confirmationText.replace( /<br>/g, "" );
