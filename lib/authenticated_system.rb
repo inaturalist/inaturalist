@@ -98,8 +98,11 @@ module AuthenticatedSystem
     def login_from_session
       if session[:user_id]
         self.current_user = User.find_by_id(session[:user_id])
-        if current_user && current_user.last_ip != request.env['REMOTE_ADDR']
-          current_user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+        last_ip = request.env['REMOTE_ADDR']
+        last_ip = request.env["HTTP_X_FORWARDED_FOR"] if last_ip.split(".")[0..1].join(".") == "10.183"
+        last_ip = request.env["HTTP_X_CLUSTER_CLIENT_IP"] if last_ip.split(".")[0..1].join(".") == "10.183"
+        if current_user && current_user.last_ip != last_ip
+          current_user.update_attribute(:last_ip, last_ip)
         end
         self.current_user
       end
@@ -109,8 +112,11 @@ module AuthenticatedSystem
     def login_from_basic_auth
       authenticate_with_http_basic do |login, password|
         u = User.authenticate(login, password)
-        if u && u.last_ip != request.env['REMOTE_ADDR']
-          u.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+        last_ip = request.env['REMOTE_ADDR']
+        last_ip = request.env["HTTP_X_FORWARDED_FOR"] if last_ip.split(".")[0..1].join(".") == "10.183"
+        last_ip = request.env["HTTP_X_CLUSTER_CLIENT_IP"] if last_ip.split(".")[0..1].join(".") == "10.183"
+        if u && u.last_ip != last_ip
+          u.update_attribute(:last_ip, last_ip)
         end
         self.current_user = u
       end

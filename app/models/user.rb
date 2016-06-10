@@ -136,13 +136,13 @@ class User < ActiveRecord::Base
   before_validation :strip_name, :strip_login
   before_save :set_time_zone
   before_save :whitelist_licenses
+  before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
-  after_save :get_lat_lon_from_ip_if_last_ip_changed
   after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
@@ -436,32 +436,40 @@ class User < ActiveRecord::Base
     true
   end
     
-  def get_lat_lon_from_ip_if_last_ip_changed
-    if last_ip_changed?
-      url = URI.parse('http://geoip.inaturalist.org/')
-      http = Net::HTTP.new(url.host, url.port)
-      http.read_timeout = 5
-      http.open_timeout = 5
+  def get_lat_lon_from_ip
+    return true if last_ip.nil?
+    url = URI.parse('http://geoip.inaturalist.org/')
+    http = Net::HTTP.new(url.host, url.port)
+    http.read_timeout = 5
+    http.open_timeout = 5
+    begin
+      resp = http.start() {|http|
+        http.get("/?ip=#{last_ip}")
+      }
+      data = resp.body
       begin
-        resp = http.start() {|http|
-          http.get("/?ip=#{last_ip}")
-        }
-        data = resp.body
-        begin
-          result = JSON.parse(data)
-          ll = result["results"]["ll"]
-          latitude = ll[0]
-          longitude = ll[1]
-        rescue
-          latitude = nil
-          longitude = nil
-        end
-      rescue Timeout::Error => e
+        result = JSON.parse(data)
+        ll = result["results"]["ll"]
+        latitude = ll[0]
+        longitude = ll[1]
+      rescue
         latitude = nil
         longitude = nil
+        Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
-      self.latitude = latitude
-      self.longitude = longitude
+    rescue Timeout::Error => e
+      latitude = nil
+      longitude = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip timeout"
+    end
+    self.latitude = latitude
+    self.longitude = longitude
+  end
+  
+  def get_lat_lon_from_ip_if_last_ip_changed
+    return true if last_ip.nil?
+    if last_ip_changed? || latitude.nil?
+      get_lat_lon_from_ip
     end
   end
   
