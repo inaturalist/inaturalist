@@ -440,8 +440,8 @@ class User < ActiveRecord::Base
     return true if last_ip.nil?
     url = URI.parse('http://geoip.inaturalist.org/')
     http = Net::HTTP.new(url.host, url.port)
-    http.read_timeout = 0.5
-    http.open_timeout = 0.5
+    http.read_timeout = 5
+    http.open_timeout = 5
     latitude = nil
     longitude = nil
     begin
