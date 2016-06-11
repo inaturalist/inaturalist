@@ -38,7 +38,8 @@ class FinishedModal extends React.Component {
     );
     let modalBody = (
       <Modal.Body>
-        You reviewed { reviewed } of { pageTotal } observations on this page out of { total } matching observations.
+        { I18n.t( "views.observations.identify.you_reviewed_message", {
+          reviewed, pageTotal, total } ) }
       </Modal.Body>
     );
     let modalFooter = (
@@ -50,7 +51,7 @@ class FinishedModal extends React.Component {
     if ( done ) {
       modalBody = (
         <Modal.Body>
-          That was the last observation matching the current search parameters.
+          { I18n.t( "that_was_the_last_observation_matching_the_current_filters" ) }
         </Modal.Body>
       );
       modalFooter = (
@@ -75,7 +76,7 @@ class FinishedModal extends React.Component {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            { done ? "Finished" : "Finished With Page" }
+            { done ? I18n.t( "finished" ) : I18n.t( "finished_with_page" ) }
           </Modal.Title>
         </Modal.Header>
         { modalBody }
