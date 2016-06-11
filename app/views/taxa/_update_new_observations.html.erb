@@ -9,10 +9,12 @@
   target_id = rand(36**8).to_s(36)
 -%>
 
-<%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12], target_id: target_id} %>
+<div class="timeline-body">
+  <%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12], target_id: target_id} %>
+</div>
 <%- if observations.count > 1 %>
   <div class="timeline-footer">
-    <%= link_to t(:view_observations), observations_path({taxon_id: taxon.id}), class: "btn btn-sm btn-primary" %>
+    <%= link_to t(:view_observations), observations_path({taxon_id: taxon.id, subview: "grid"}), class: "btn btn-sm btn-primary" %>
     <% if observations.count > 4 -%>
       <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
         <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span>

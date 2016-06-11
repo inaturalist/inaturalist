@@ -1,33 +1,28 @@
 <% project = resource %>
-<% updates.each do |update| %>
-  <% 
-    post = update.notifier 
-    author = post.try(:user)
-    the_post_path = project_journal_post_path(:project_id => project.id, :id => post.id)
-  %>
-  
-  <div id="<%= id_for(post) %>" class="post clear stacked">
-    <div class="post_user column">
-      <% if author -%>
-        <%= link_to(image_tag(author.icon.url(:thumb), :class => 'usericon'), the_post_path) %>
-      <% end -%>
-    </div>
-    <div class="post_content last column item_content">
-      <h4><%= link_to(post.title, the_post_path) %></h4>
-      <div class="readable body clear">
-        <%= truncate_with_more(formatted_user_text(post.body, scrubber: PostScrubber.new(
-          tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE)), length: 500) %>
-      </div>
-      <div class="meta">
-        <%=t :posted_by %>
-        <%= link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login)) %>
-        <span class="when">
-          <abbr class="date timeago" title="<%= post.published_at.iso8601 %>"><%= time_ago_in_words(post.published_at) %> ago</abbr>
-        </span> | 
-        <%= link_to t(:view_post), the_post_path %>
-
-      </div>
-    </div>
+<% 
+  post = updates.first.notifier 
+  author = post.try(:user)
+  the_post_path = project_journal_post_path(:project_id => project.id, :id => post.id)
+  target_id = rand(36**8).to_s(36)
+%>
+<div class="timeline-body">
+  <h3><%= post.title %></h3>
+  <%= formatted_user_text(stripped_first_paragraph_of_text(post.body,"\r\n\r\n"), scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE)) %>
+  <%- remaining_paragraphs = remaining_paragraphs_of_text(post.body,"\r\n\r\n")  %>
+  <div id="expand<%= target_id %>" class="collapse out">
+      <%= formatted_user_text(remaining_paragraphs, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE)) %>
   </div>
-<% end %>
-<%= link_to t(:view_xs_journal, :x => project.title), project_journal_path(project), :class => 'readmore' %>
+</div>
+<div class="timeline-footer">
+  <%= link_to t(:view_post), the_post_path, :type => "button", :class => 'btn btn-sm btn-primary' do %>
+    <%- unless remaining_paragraphs.length == 0 %>
+      <button type="button" class='btn btn-sm btn-default btn_expand collapsed pull-right' data-toggle="collapse" data-target="#expand<%= target_id %>">
+        <span class="expand_inactive">
+          <i class="glyphicon.glyphicon-collapse-down">Show More...</i>
+        </span>
+        <span class="expand_active">
+          <i class="glyphicon.glyphicon-collapse-up">Show Less</i>
+        </span>
+      </button>
+  <% end -%>
+</div>          

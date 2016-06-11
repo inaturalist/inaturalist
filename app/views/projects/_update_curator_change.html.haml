@@ -1,36 +1,37 @@
 - project ||= update_curator_change
-- for update in updates
-  :ruby
-    project_user = update.notifier
-    user = project_user.user
-    role = if project_user.user_id == project_user.project.user_id
-      "the <strong>admin</strong>".html_safe
-    elsif project_user.role.to_s =~ /^[aeiou]/
-      "an <strong>#{project_user.role}</strong>".html_safe
-    else
-      "a <strong>#{project_user.role}</strong>".html_safe
-    end
-  %ul
-    %li
-      - if is_me?(user)
-        You are now
-      - else
-        = link_to_user user
-        is now
-      = role
-      - unless user.description.blank? || is_me?(user)
-        Here's a little about
-        = surround '', ': ' do
-          = user.login
-        %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
-      - if user.id == current_user.id && project.user_id == current_user.id
-        .notice.status.box
-          Wondering why you're now
-          = role
-          for this project? The previous owner probably deleted their account, so
-          = CONFIG.site_name_short
-          assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
-          = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
-%p.alert.alert-info
-  Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
+.timeline-body
+  - for update in updates
+    :ruby
+      project_user = update.notifier
+      user = project_user.user
+      role = if project_user.user_id == project_user.project.user_id
+        "the <strong>admin</strong>".html_safe
+      elsif project_user.role.to_s =~ /^[aeiou]/
+        "an <strong>#{project_user.role}</strong>".html_safe
+      else
+        "a <strong>#{project_user.role}</strong>".html_safe
+      end
+    %ul
+      %li
+        - if is_me?(user)
+          You are now
+        - else
+          = link_to_user user
+          is now
+        = role
+        - unless user.description.blank? || is_me?(user)
+          Here's a little about
+          = surround '', ': ' do
+            = user.login
+          %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
+        - if user.id == current_user.id && project.user_id == current_user.id
+          .notice.status.box
+            Wondering why you're now
+            = role
+            for this project? The previous owner probably deleted their account, so
+            = CONFIG.site_name_short
+            assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
+            = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
+  %p.alert.alert-info
+    Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
   

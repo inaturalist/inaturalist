@@ -61,23 +61,9 @@
       </h3>
       <ul>
         <li> 
-          <span class="date_observed"><i class="glyphicon glyphicon-user"></i>
+          <span class="observer"><i class="glyphicon glyphicon-user"></i>
             <%= link_to(observation.user.login, observations_by_login_path(observation.user.login)) %>
           </span>
-          <% if observation.num_identifications_by_others > 0 -%>
-            <%= observation.num_identifications_by_others %>
-            <%= t(:id) if observation.num_identifications_by_others == 1 %>
-            <%= t(:ids) if observation.num_identifications_by_others != 1 %>
-          <% end -%>
-          <%- if observation.needs_id? || observation.research_grade? %>
-            <% if observation.needs_id? -%>
-              <span class="label label_needs_id"><%= t(:needs_id_expandable_html) %></span>
-            <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
-              <span class="label label_research_grade"><%= t(:research_grade_short_html) %></span>  
-            <% end -%>
-          <%- end -%>
-        </li>
-        <li>
           <span class="date_observed"><i class="glyphicon glyphicon-calendar"></i>
             <% if observation.observed_on -%>
               <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
@@ -90,6 +76,16 @@
               <%=t :the_past %>
             <% end -%>
           </span>
+          <% if observation.num_identifications_by_others > 0 -%>
+            <%= observation.num_identifications_by_others %>
+            <%= t(:id) if observation.num_identifications_by_others == 1 %>
+            <%= t(:ids) if observation.num_identifications_by_others != 1 %>
+          <% end -%>
+          <%- if observation.research_grade? %>
+            <span class="label label_research_grade"><%= t(:research_grade_short_html) %></span>  
+          <%- end -%>
+        </li>
+        <li>
           <span class="location_observed"><i class="glyphicon glyphicon-map-marker"></i>
             <%= observation_place_guess observation, :truncate_coordinates => true %>
           </span>

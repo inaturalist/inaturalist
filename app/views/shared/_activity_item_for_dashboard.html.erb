@@ -36,19 +36,19 @@
           <%= compact_date(posted_at) %>
         </span>
         <span style="font-weight:normal; color:gray">
-          <%= link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
+          <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
           <%- if item.is_a? Identification %>
-            added an identification
+            <%= t(:user_added_an_x, :user => title, :x => t(:identification)).html_safe %>
           <% elsif item.is_a? ProjectInvitation %>
-            added a project invitation
+            <%= t(:user_added_a_x, :user => title, :x => t(:project_invitation)).html_safe %>
           <% elsif item.is_a? Flag %>
-            added a flag
+            <%= t(:user_added_a_x, :user => title, :x => t(:flag)).html_safe %>
           <% elsif item.is_a? ObservationFieldValue %>
-            added an observation field value
+            <%= t(:user_added_an_x, :user => title, :x => t(:observation_field_value)).html_safe %>
           <% elsif item.is_a? ActsAsVotable::Vote %>
-            added a fave
+            <%= t(:user_added_a_x, :user => title, :x => t(:fave)).html_safe %>
           <% else %>
-            added a comment
+            <%= t(:user_added_a_x, :user => title, :x => t(:comment)).html_safe %>
           <%- end -%>
         </span>
       </h2>
@@ -109,7 +109,7 @@
           item.description
         end -%>
       <% if text -%>
-        <div class="readable body">
+        <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
           <%- if context_around && context = text.context_of_pattern(context_around) %>
             <%= formatted_user_text(context) %>
           <% else -%>

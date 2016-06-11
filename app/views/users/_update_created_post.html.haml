@@ -1,20 +1,20 @@
-- updates.each do |update|
-  - post = update.notifier
-  - author = resource
-  - the_post_path = journal_post_path(:login => resource.login, :id => post.id)
-  - target_id = rand(36**8).to_s(36)
+- post = updates.first.notifier
+- author = resource
+- the_post_path = journal_post_path(:login => resource.login, :id => post.id)
+- target_id = rand(36**8).to_s(36)
+.timeline-body
   %h3= post.title
   = formatted_user_text(stripped_first_paragraph_of_text(post.body,"\r\n\r\n"), scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
   - remaining_paragraphs = remaining_paragraphs_of_text(post.body,"\r\n\r\n")
   %div{:id => "expand#{target_id}", :class => "collapse out"}
     = formatted_user_text(remaining_paragraphs, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
-  .timeline-footer
-    = link_to t(:view_post), the_post_path, :type => "button", :class => 'btn btn-sm btn-primary'
-    - unless remaining_paragraphs.length == 0
-      %button{:type => "button", :class => 'btn btn-sm btn-default btn_expand collapsed pull-right', "data-toggle" => "collapse", "data-target" => "#expand#{target_id}"}
-        %span.expand_inactive
-          %i.glyphicon.glyphicon-collapse-down
-          Show More...
-        %span.expand_active
-          %i.glyphicon.glyphicon-collapse-up
-          Show Less
+.timeline-footer
+  = link_to t(:view_post), the_post_path, :type => "button", :class => 'btn btn-sm btn-primary'
+  - unless remaining_paragraphs.length == 0
+    %button{:type => "button", :class => 'btn btn-sm btn-default btn_expand collapsed pull-right', "data-toggle" => "collapse", "data-target" => "#expand#{target_id}"}
+      %span.expand_inactive
+        %i.glyphicon.glyphicon-collapse-down
+        Show More...
+      %span.expand_active
+        %i.glyphicon.glyphicon-collapse-up
+        Show Less

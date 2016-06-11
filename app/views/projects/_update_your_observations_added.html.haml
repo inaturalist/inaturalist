@@ -8,5 +8,6 @@
     end
     o || u.notifier.observation
   end
-- compact do
-  = render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12]}    
+.timeline-body
+  - compact do
+    = render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12]}    

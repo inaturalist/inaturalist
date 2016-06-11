@@ -1,23 +1,22 @@
 - taxon_change ||= update_committed
-%table.table{ :style => "border-bottom:1px solid #ddd;" }
-  %thead{ :style => "background-color:#fbeed7;" }
-    %tr
-      %th
-        Taxon
-      %th
-        = taxon_change.verb_phrase.capitalize
-  %tbody
-    %tr
-      %td
-        - for taxon in taxon_change.input_taxa
-          = render "shared/taxon", :taxon => taxon, :link_url => taxon          
-      %td
-        - for taxon in taxon_change.output_taxa
-          = render "shared/taxon", :taxon => taxon, :link_url => taxon
-
-.ui
-  = formatted_user_text taxon_change.description
-
+.timeline-body
+  %table.table{ :style => "border-bottom:1px solid #ddd;" }
+    %thead{ :style => "background-color:#fbeed7;" }
+      %tr
+        %th
+          Taxon
+        %th
+          = taxon_change.verb_phrase.capitalize
+    %tbody
+      %tr
+        %td
+          - for taxon in taxon_change.input_taxa
+            = render "shared/taxon", :taxon => taxon, :link_url => taxon          
+        %td
+          - for taxon in taxon_change.output_taxa
+            = render "shared/taxon", :taxon => taxon, :link_url => taxon
+  %p
+    = formatted_user_text taxon_change.description
 .timeline-footer
   = link_to "View details", taxon_change, :class => "btn btn-sm btn-primary"
   = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-sm btn-default"
