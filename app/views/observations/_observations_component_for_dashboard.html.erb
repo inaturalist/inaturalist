@@ -77,9 +77,11 @@
             <% end -%>
           </span>
           <% if observation.num_identifications_by_others > 0 -%>
-            <%= observation.num_identifications_by_others %>
-            <%= t(:id) if observation.num_identifications_by_others == 1 %>
-            <%= t(:ids) if observation.num_identifications_by_others != 1 %>
+            <span class="ids_by_others">
+              <%= observation.num_identifications_by_others %>
+              <%= t(:id) if observation.num_identifications_by_others == 1 %>
+              <%= t(:ids) if observation.num_identifications_by_others != 1 %>
+            </span>
           <% end -%>
           <%- if observation.research_grade? %>
             <span class="label label_research_grade"><%= t(:research_grade_short_html) %></span>  

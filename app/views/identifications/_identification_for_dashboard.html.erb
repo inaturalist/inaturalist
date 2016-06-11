@@ -21,9 +21,6 @@
       <%= link_to taxon_image(taxon, :class => "media-object img-thumbnail", :style => "width:50px;height:50px;"), taxon %>
     </div>
     <div class="media-body">
-      <% unless identification.current? -%>
-        <span class="label label-default label_refined">Refined</span>
-      <% end -%>
       <% unless hide_actions -%>
         <% if logged_in? && 
             !hide_agree &&
@@ -45,6 +42,9 @@
               "data-loading-click" => t(:removing),
               :class => "removelink" -%></span>
         <% end %>
+      <% end -%>
+      <% unless identification.current? -%>
+        <span class="label label-default label_refined">Refined</span>
       <% end -%>
       <h3 class="dashboard_id">
         <%= render :partial => 'shared/taxon', 
