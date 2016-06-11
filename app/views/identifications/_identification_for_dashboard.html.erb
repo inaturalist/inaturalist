@@ -21,6 +21,9 @@
       <%= link_to taxon_image(taxon, :class => "media-object img-thumbnail", :style => "width:50px;height:50px;"), taxon %>
     </div>
     <div class="media-body">
+      <% unless identification.current? -%>
+        <span class="label label-default label_refined">Refined</span>
+      <% end -%>
       <% unless hide_actions -%>
         <% if logged_in? && 
             !hide_agree &&
@@ -47,10 +50,7 @@
         <%= render :partial => 'shared/taxon', 
                    :locals => { :taxon => taxon,
                                 :link_url => taxon,
-                                :named_ancestor => false } %>
-        <% unless identification.current? -%>
-          <span class="label label-default label_refined">Refined</span>
-        <% end -%>
+                                :named_ancestor => false } %>        
       </h3>
 
     
