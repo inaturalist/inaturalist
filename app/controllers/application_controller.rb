@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   before_filter :sign_out_spammers
 
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 18
+  HEADER_VERSION = 19
   
   alias :logged_in? :user_signed_in?
 
