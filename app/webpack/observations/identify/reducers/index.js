@@ -32,6 +32,7 @@ import currentObservation from "./current_observation_reducer";
 import config from "./config_reducer";
 import searchParams from "./search_params_reducer";
 import identifiers from "./identifiers_reducer";
+import finishedModal from "./finished_modal_reducer";
 
 const rootReducer = combineReducers( {
   config,
@@ -39,7 +40,8 @@ const rootReducer = combineReducers( {
   observationsStats,
   currentObservation,
   searchParams,
-  identifiers
+  identifiers,
+  finishedModal
 } );
 
 export default rootReducer;

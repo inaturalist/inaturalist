@@ -6,3 +6,4 @@ export * from "./observations_actions";
 export * from "./observations_stats_actions";
 export * from "./search_params_actions";
 export * from "./identifiers_actions";
+export * from "./finished_modal_actions";

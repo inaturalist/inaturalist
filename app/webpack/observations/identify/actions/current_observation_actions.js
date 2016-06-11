@@ -3,6 +3,7 @@ import _ from "lodash";
 import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
+import { showFinishedModal } from "./finished_modal_actions";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -113,6 +114,9 @@ function showNextObservation( ) {
     if ( nextObservation ) {
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
+    } else {
+      dispatch( hideCurrentObservation( ) );
+      dispatch( showFinishedModal( ) );
     }
   };
 }
