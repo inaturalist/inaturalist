@@ -14755,6 +14755,13 @@ CREATE INDEX index_taxa_on_locked ON taxa USING btree (locked);
 
 
 --
+-- Name: index_taxa_on_lower_name_and_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE INDEX index_taxa_on_lower_name_and_id ON taxa USING btree (lower((name)::text), id);
+
+
+--
 -- Name: index_taxa_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15761,4 +15768,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160325152944');
 INSERT INTO schema_migrations (version) VALUES ('20160531181652');
 
 INSERT INTO schema_migrations (version) VALUES ('20160531215755');
+
+INSERT INTO schema_migrations (version) VALUES ('20160613200151');
 
