@@ -318,6 +318,64 @@ class UsersController < ApplicationController
     counts_for_users
   end
   
+  def get_nearby_taxa_obs_counts search_params
+    elastic_params =  Observation.params_to_elastic_query(search_params)
+    species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: { species: { "taxon.id": 4 } })).response.aggregations
+    nearby_taxa_results = species_counts.species.buckets
+  end
+  
+  def get_local_onboarding_content
+    local_onboarding_content = {local_results: false, target_taxa: nil, to_follows: nil}
+    if (current_user.latitude.nil? || current_user.longitude.nil?)
+      search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+      nearby_taxa_results = get_nearby_taxa_obs_counts( search_params )
+      local_onboarding_content[:local_results] = false
+    else
+      local_onboarding_content[:local_results] = true
+      search_params = { verifiable: true, lat: current_user.latitude, lng: current_user.longitude, radius: 1, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+      nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+      nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+      if nearby_taxa_obs_count < 50
+        search_params[:radius] = 100  # expand radius
+        nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+        nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+        if nearby_taxa_obs_count < 50
+          search_params[:d1] = 12.months.ago.to_s  # expand time period
+          nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+          nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+          if nearby_taxa_obs_count < 50
+            search_params[:radius] = 1000 # expand radius
+            nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+            nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+            if nearby_taxa_obs_count < 50
+              local_results = false # settle for global results
+              search_params[:lat] = nil
+              search_params[:lng] = nil
+              search_params[:radius] = nil
+              search_params[:d1] = 12.months.ago.to_s
+              search_params[:d2] = Time.now
+              nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+              local_onboarding_content[:local_results] = false
+            end
+          end
+        end
+      end
+    end
+    
+    #fetch target_taxa from results
+    target_taxa_ids = nearby_taxa_results.map{ |b| b["key"] }
+    target_taxa = Taxon.where("id IN (?)", target_taxa_ids)
+    local_onboarding_content[:target_taxa] = target_taxa if target_taxa.length > 0
+
+    #fetch followers from results
+    follower_ids = Observation.elastic_user_observation_counts(Observation.params_to_elastic_query(search_params), 4)[:counts].map{|u| u["user_id"]}
+    follower_ids.delete(current_user.id) #exclude the current user
+    followers = User.where("id IN (?)", follower_ids)
+    local_onboarding_content[:to_follows] = followers if followers.length > 0
+
+    return local_onboarding_content
+  end
+
   def dashboard
     filters = [ ]
     wheres = { }
@@ -331,44 +389,7 @@ class UsersController < ApplicationController
       wheres[:resource_owner_id] = current_user.id
     end
     
-    #try to get target_taxa and followers based on local results
-    search_params = { verifiable: true, lat: current_user.latitude, lng: current_user.longitude, radius: 1, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
-    @local_results = true
-    nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-    nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
-    if nearby_taxa_obs_count < 50
-      search_params[:radius] = 100  # expand radius
-      nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-      nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
-      if nearby_taxa_obs_count < 50
-        search_params[:d1] = 12.months.ago.to_s  # expand time period
-        nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-        nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
-        if nearby_taxa_obs_count < 50
-          search_params[:radius] = 1000 # expand radius
-          nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-          nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
-          if nearby_taxa_obs_count < 50
-            @local_results = false # settle for global results
-            search_params[:lat] = nil
-            search_params[:lng] = nil
-            search_params[:radius] = nil
-            search_params[:d1] = nil
-            search_params[:d2] = nil
-            nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-          end
-        end
-      end
-    end
-    
-    #fetch target_taxa from results
-    target_taxa_ids = nearby_taxa_results.map{ |b| b["key"] }
-    @target_taxa = Taxon.where("id IN (?)", target_taxa_ids)
-    
-    #fetch followers from results
-    follower_ids = Observation.elastic_user_observation_counts(Observation.params_to_elastic_query(search_params), 4)[:counts].map{|u| u["user_id"]}
-    follower_ids.delete(current_user.id) #exclude the current user
-    @to_follows = User.where("id IN (?)", follower_ids)
+    @local_onboarding_content = get_local_onboarding_content
     
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
@@ -398,12 +419,6 @@ class UsersController < ApplicationController
       end
       format.mobile
     end
-  end
-  
-  def get_nearby_taxa_obs_counts search_params
-    elastic_params =  Observation.params_to_elastic_query(search_params)
-    species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: { species: { "taxon.id": 4 } })).response.aggregations
-    nearby_taxa_results = species_counts.species.buckets
   end
   
   def updates_count
