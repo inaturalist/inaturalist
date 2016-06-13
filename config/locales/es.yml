@@ -111,6 +111,18 @@ es:
   about_these_licenses: Sobre estas licencias
   about_this_map: Sobre este mapa
   about_this_project: Sobre este proyecto
+  about_updates_lead: |
+    %{site_name} se actualiza cuando hay actividad en sus observaciones y cuando las personas a las que siguen las observaciones posteriores.
+  about_updates_rest: |
+    <p>
+      La actividad en sus observaciones podría incluir comentarios , identificaciones , o favoritos de la comunidad de iNaturalist.org . O tal vez alguien añade su observación a un proyecto o anotado con campos adicionales.      
+    </p>
+    <p>
+      Cuando sigue la gente , se le informado cuando publican observaciones o publicar los mensajes de diario.
+    </p>
+    <p>
+      También puede recibir información actualizada sobre las observaciones de los organismos o lugares específicos mediante la suscripción de ellos. O puede unirse a proyectos que actualizarse cuando publican mensajes de diario de proyectos.
+    </p>
   about_x: Sobre %{x}
   acc: Prec.(m)
   account: Cuenta
@@ -554,8 +566,10 @@ es:
   brief_description_of_what_you_saw: Descripción breve de lo que viste
   brown: café
   browse: Navegar
+  browse_observations: Examinar observaciones
   browse_all_projects: Examinar todos los proyectos
   browse_all_species: Examinar todas las especies
+  browse_people: Examinar gente
   browse_projects: Examinar proyectos
   browse_species_that_occur_near_this_observation: Examinar especies que existan cerca
     de esta observación.
@@ -1280,6 +1294,8 @@ es:
   flickr_tags: Etiquetas de Flickr
   flickr_youre_all_set: Ya está listo para comenzar a explorar %{site_name}
   fluid: fluida
+  follow_some_active_naturalists: Siga algunos naturalistas activos
+  follow_some_nearby_naturalists: Siga algunos naturalistas cercanos
   follow_us: Síganos en
   follow_us_on: Síganos en
   follow_user: Seguir a %{user}
@@ -1289,6 +1305,8 @@ es:
   for_a_taxon: de un taxon
   for_a_widget_showing_recent_observations_from: Para el widget que muestre las observaciones
     recientes de %{place_name}, échale un ojo a
+  for_inspiration_local: "Por un poco de inspiración, aquí hay algunas especies que se observan en las inmediaciones..."
+  for_inspiration_global: "Por un poco de inspiración, aquí hay algunas especies que se observan en todo el mundo..."
   for_more_information: para más información.
   forgot_your_password: ¿Olvidó su contraseña?
   fri: vie
@@ -1329,14 +1347,17 @@ es:
   georeferenced: ¿Geo referenciado?
   georeferenced?: con georeferencia
   get_current_position: Obtener posición actual
+  get_started: Comience
   get_started_raquo: Comience &raquo;
   getting_started: Cómo Empezar
+  getting_started_guide: Guía de Inicio
   give_it_some_detail: ¡Colóquele algún detalle!
   global_conservation_status: Estado de conservación global
   global_names: Nombres globales
   globally: globalmente
   go: Busca
   good_choice_for_sharing: Buena alternativa para compartir con los científicos
+  got_it!: Entiendo!
   got_your_data_somewhere_else?: ¿Obtuvo sus datos en otro lugar? Podemos ayudarle.
   graft: Injertar
   grafting: Injertando...
@@ -1607,6 +1628,8 @@ es:
   legacy_authentication_notice_html: |-
     Parece que estas usando una contraseña de una versión antigua de este sitio web.
     Por favor, recuerda <a href="%{url}">cambiar tu contraseña</a> para la nueva versión.
+  lets_get_started_by_posting_some_observations: Vamos a añadir observaciones
+  let_us_walk_you_through: Vamos a explicar las principales características de este sitio.
   lexicon: Léxico
   lexicons:
     scientific_names: Nombres científicos
@@ -1823,6 +1846,7 @@ es:
   manage_all_your_subscriptions: Administra todas tus suscripciones
   manage_names: Administrar nombres
   manage_your_project_invitations: Administra las invitaciones de tus proyectos
+  manage_subscriptions: Administra las suscripciones
   managed: gestionado
   manager: Gerente
   managers: Gerentes
@@ -3125,6 +3149,10 @@ es:
   submit: Enviar
   submit_comment: Enviar comentario
   submitted: Enviado
+  subscribe_to_a_taxon: Suscribete a Especies
+  subscribe_to_a_place: Subscribe a Lugares
+  subscribe_to_observations_in_a_taxon: Suscribirse a todas las observaciones publicadas de una especie o grupo de organismos (por ejemplo, 'escorpiones').
+  subscribe_to_observations_in_a_place: Suscribirse a todas las observaciones publicadas en este lugar. También puede agregar un filtro opcional especie o grupo de organismos (por ejemplo, 'escorpiones de Chiapas').
   subscribe_to_places_to: |-
     Suscribete a lugares para recibir actualizaciones acerca de nuevas
     observaciones, personas que sigues y cosas que has comentado,
@@ -3136,6 +3164,7 @@ es:
   subscribe_to_this_observation: Suscribirse a esta observación
   subscribe_to_x_from_this_y_html: <a href="#" onclick="$(this).parents('form:first').submit();
     return false;">Suscribirse</a> a %{x} de estas %{y}.
+  subscriptions: Suscripciones
   subscriptions_arent_available_for: Las suscripciones no están disponibles para lugares
     sin límites definidos.
   successfully_changed_your_password: Tu contraseña fue modificada satisfactoriamente.
@@ -3277,6 +3306,8 @@ es:
   the_list: la lista
   the_name_of_the_taxon_including_space: El nombre del taxón, incluyendo el espacio
     para las especies e infraespecies.<br/><br/> <strong>Ejemplo. </strong><br/>
+  the_next_step: |-
+    El siguiente paso es conseguir que fuera y observar un organismo individual . Escoja algo salvaje y examinar, con una foto clara de fotograma completo . Si ya tiene una foto de algo salvaje, <a href="%{new_observation_path}">añadir ahora</a>.
   the_observation_form_looks: El formulario de observación es así
   the_observation_has_date: la observación <strong>tiene una fecha</strong>
   the_observation_has_photo: la observación <strong>tiene una foto</strong>
@@ -3338,14 +3369,14 @@ es:
   these_are_items_people_on: Son contenidos que la gente a puesto como advertencia
     para curación. Contenidos de spam serán borrados y el usuario que lo puso debería
     ser suspendido (ve a la página de su perfil y en la parte inferior izquierda selecciona
-    el enlace "suspender usuario" para que ya no pueda entrar al sitio). Otro tipo
+    el enlace suspender usuario para que ya no pueda entrar al sitio). Otro tipo
     de contenidos como que sea ilegal, engañoso, racial, étnico, etc, deberán ser
     borrados y respondidos con un comentario de una manera atenta. Gente que repita
     estos comentarios deberán ser reportados a un administrador del sitio o
   these_are_taxa_that: |-
     Son especies o grupos que %{site} no pudo añadir automáticamente
     al árbol taxonómico. Tu puedes añadirlos al árbol seleccionando el
-    en lace "editar" y escogiendo un clase padre a la cual pertenezca.
+    en lace editar y escogiendo un clase padre a la cual pertenezca.
     Por ejemplo el padre de <i>Homo sapiens</i> podría ser
     <i>Homo</i>. También puede buscar por especie o grupos que sean
     sinónimos y mezclarla.
@@ -3554,6 +3585,8 @@ es:
     La mayoría de las aplicaciones de hoja de cálculos deberían exportar a CSV con este formato.
   user: Usuario
   user_added_an_observation_html: '%{user} añadió una observación'
+  user_added_a_x: '%{user} añadió una %{x}'
+  user_added_an_x: '%{user} añadió un %{x}'
   user_added_an_x_to_noun_html: '%{user} añadió una %{x} a %{noun}'
   user_added_a_x_to_noun_html: '%{user} añadió un %{x} a %{noun}'
   user_added_an_x_to_noun_by_html: '%{user} añadió una %{x} a %{noun} de %{by}'
@@ -3824,6 +3857,8 @@ es:
   you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: "También
     puedes <a href=\"%{project_settings_url}\">cambiar tu configuración para este
     proyecto</a> \no <a href=\"/users/edit#projects\">cambiar tu configuración global</a>."
+  you_can_also_use: |-
+    También puede utilizar las aplicaciones móviles iNaturalist de compartir su observación con la comunidad. Así, se actualizará con cualquier comentarios sobre sus observaciones de la comunidad en forma de comentarios o identificaciones. ¿Quién sabe lo que usted descubrirá!
   you_can_alwais_add_new: Siempre se puede añadir nuevas observaciones haciendo clic
     en la pequeña flecha en la esquina superior derecha de la página y utilizar el
     menú desplegable.
@@ -3915,11 +3950,13 @@ es:
     la información de alguien más sin permiso. No seas malvado.
   you_unlinked_your_provider_account: Has desvinculado tu cuenta de %{provider}
   you_would_get_the: usted obtendrá las siguientes etiquetas
+  youll_be_updated: Si visita estos perfiles y haga clic en el botón de seguimiento, se le informado cuando publican observaciones
   youll_need_to_link: Deberá vincular
   youve_been_invited_to_join_this_project_html: Has sido invitado a unirte a este
     <a href="%{url}" class="readmore">proyecto </a>
   youve_joined_the_x_project: Te has unido al proyecto %{project_invitation} y tus
     observaciones fueron añadidas
+  youve_got_updates: Tienes actualizaciones!
   your: Tu
   your_: Usted
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor

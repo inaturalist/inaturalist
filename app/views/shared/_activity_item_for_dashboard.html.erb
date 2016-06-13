@@ -38,7 +38,7 @@
         <span style="font-weight:normal; color:gray">
           <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
           <%- if item.is_a? Identification %>
-            <%= t(:user_added_an_x, :user => title, :x => t(:identification)).html_safe %>
+            <%= t(:user_added_an_x, :user => "dick", :x => t(:identification)).html_safe %>
           <% elsif item.is_a? ProjectInvitation %>
             <%= t(:user_added_a_x, :user => title, :x => t(:project_invitation)).html_safe %>
           <% elsif item.is_a? Flag %>
