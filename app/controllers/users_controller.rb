@@ -327,7 +327,7 @@ class UsersController < ApplicationController
   def get_local_onboarding_content
     local_onboarding_content = {local_results: false, target_taxa: nil, to_follows: nil}
     if (current_user.latitude.nil? || current_user.longitude.nil?)
-      search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+      search_params = {}# verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
       nearby_taxa_results = get_nearby_taxa_obs_counts( search_params )
       local_onboarding_content[:local_results] = false
     else
