@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 4.2.0"
+gem 'rails', "~> 4.2.6"
 
 gem 'apipie-rails'
 gem 'aasm'
@@ -54,6 +54,7 @@ gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/Programatica/irwi.git'
 gem 'json'
 gem 'jquery-rails'
+gem 'jwt', '~> 1.2.1'
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
@@ -68,7 +69,8 @@ gem 'omniauth-soundcloud'
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "4.2.1"
-gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
+gem 'delayed_paperclip', git: 'git://github.com/jrgifford/delayed_paperclip.git',
+  ref: '8f11882ee945bf56affe8df4f591e5171581aac3'
 gem 'pg'
 gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
@@ -76,8 +78,6 @@ gem 'rails-observers'
 gem 'rakismet'
 gem 'RedCloth'
 gem 'rest-client', :require => 'rest_client'
-gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
-gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
@@ -108,7 +108,7 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'git://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
-  gem 'newrelic_rpm'
+  gem 'newrelic_rpm', '~> 3.15.0'
 end
 
 group :test, :development, :prod_dev do
@@ -119,14 +119,17 @@ group :test, :development, :prod_dev do
   gem "binding_of_caller"
   gem 'thin', '~> 1.6.3'
   gem 'capybara', '~> 2.4'
+  gem 'puma'
 end
 
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
-  gem "rspec-rails"
+  gem "rspec", "~> 3.4.0"
+  gem "rspec-rails", "~> 3.4.2"
   gem "rspec-html-matchers"
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem "chromedriver-helper"
+  gem "webmock"
 end

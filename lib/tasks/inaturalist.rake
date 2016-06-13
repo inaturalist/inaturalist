@@ -104,22 +104,23 @@ namespace :inaturalist do
                  "ranks", "research", "asc", "desc",
                  "date_format.month", "momentjs", "endemic", "native", 
                  "introduced", "casual", "status_globally", "status_in_place",
-                 "number_selected",
-                 "all_taxa.animals",
-                 "all_taxa.birds",
-                 "all_taxa.amphibians",
-                 "all_taxa.reptiles",
-                 "all_taxa.mammals",
-                 "all_taxa.insects",
-                 "all_taxa.arachnids",
-                 "all_taxa.mollusks",
-                 "all_taxa.ray_finned_fishes",
-                 "all_taxa.plants",
-                 "all_taxa.fungi",
-                 "all_taxa.protozoans" ]
-
+                 "number_selected", "you_are_setting_this_project_to_aggregate",
+                 "all_taxa.animals", "animals",
+                 "all_taxa.birds", "birds",
+                 "all_taxa.amphibians", "amphibians",
+                 "all_taxa.reptiles", "reptiles",
+                 "all_taxa.mammals", "mammals",
+                 "all_taxa.insects", "insects",
+                 "all_taxa.arachnids", "arachnids",
+                 "all_taxa.mollusks", "mollusks",
+                 "all_taxa.ray_finned_fishes", "ray_finned_fishes",
+                 "all_taxa.plants", "plants",
+                 "all_taxa.fungi", "fungi",
+                 "all_taxa.protozoans", "protozoans",
+                 "unknown" ]
+    all_keys += Date::MONTHNAMES.compact.map{|m| "date_format.month.#{m.downcase}"}
     # look for other keys in all javascript files
-    Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
+    scanner_proc = Proc.new do |f|
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if f == output_path
@@ -129,6 +130,8 @@ namespace :inaturalist do
         all_keys += results.map{ |r| r[2].chomp(".") }
       end
     end
+    Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("app/webpack/**/*")).each(&scanner_proc)
 
     # look for keys in angular expressions in all templates
     Dir.glob(Rails.root.join("app/views/**/*")).each do |f|

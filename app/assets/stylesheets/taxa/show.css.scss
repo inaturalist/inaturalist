@@ -169,6 +169,7 @@ table.infobox_v2,
 
 #places_list .editlink { display: none; }
 #places_list li:hover .editlink { display: inline; }
+#places_list .absent { text-decoration: line-through; }
 
 .externallink { 
   display: none;

@@ -1,0 +1,18 @@
+a.UserImage {
+  display: inline-block;
+  border-radius: 120px;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  font-size: 32px;
+  background-size: cover;
+  background-position: center;
+  background-color: #aaa;
+  color: white;
+  text-align: center;
+  border: 2px solid white;
+  vertical-align: middle;
+  color: white;
+}
+.ObservationsGridItem .UserImage:hover,
+.ObservationsGridItem .UserImage:active {opacity: 1; color: #eee;}

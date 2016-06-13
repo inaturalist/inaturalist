@@ -1,0 +1,11 @@
+- @no_footer_gap = true
+- content_for :title do
+  = I18n.t :identify_title
+- content_for :extrajs do
+  = javascript_include_tag "observations-identify-webpack"
+- content_for :extracss do
+  = stylesheet_link_tag "observations/identify"
+- content_for :extrahead do
+  %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
+  %meta{ name: "config:inaturalist_write_api_host", content: CONFIG.node_api_host }
+#app

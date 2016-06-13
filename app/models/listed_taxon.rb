@@ -432,7 +432,6 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_cache_columns
     return unless taxon_id
-
     if cc = cache_columns
       self.first_observation_id, self.last_observation_id,
       self.observations_count, self.observations_month_counts = cc
@@ -643,6 +642,14 @@ class ListedTaxon < ActiveRecord::Base
 
   def occurrence_status=(status)
     self.occurrence_status_level = OCCURRENCE_STATUS_LEVELS_BY_NAME[status]
+  end
+
+  def is_present?
+    PRESENT_EQUIVALENTS.include?( occurrence_status_level ) || occurrence_status_level.blank?
+  end
+
+  def is_absent?
+    !is_present?
   end
   
   def editable_by?(target_user)

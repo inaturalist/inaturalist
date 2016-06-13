@@ -599,6 +599,7 @@ describe Observation do
       o = make_research_grade_observation
       Delayed::Job.delete_all
       stamp = Time.now
+      o = Observation.find(o.id)
       o.update_attributes(:taxon => Taxon.make!)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /CheckList.*refresh_with_observation/m
@@ -672,6 +673,7 @@ describe Observation do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         new_taxon = Taxon.make!
+        o = Observation.find(o.id)
         o.update_attributes(:taxon => new_taxon)
         expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
@@ -910,7 +912,8 @@ describe Observation do
       o = Observation.make!
       t = Taxon.make!
       expect(t.observations_count).to eq(0)
-      o = without_delay {o.update_attributes(:taxon => t)}
+      o.update_attributes(:taxon => t)
+      Delayed::Worker.new.work_off
       t.reload
       expect(t.observations_count).to eq(1)
     end
@@ -920,7 +923,11 @@ describe Observation do
       p = without_delay { Taxon.make! }
       t = without_delay { Taxon.make!(:parent => p) }
       expect(p.observations_count).to eq 0
-      o = without_delay {o.update_attributes(:taxon => t)}
+      o.update_attributes(:taxon => t)
+      Delayed::Worker.new.work_off
+      p.reload
+      expect(p.observations_count).to eq 1
+      Observation.elastic_index!(ids: [ o.id ], delay: true)
       p.reload
       expect(p.observations_count).to eq 1
     end
@@ -2611,14 +2618,16 @@ describe Observation do
 
 
     it "change should be triggered by changing the taxon" do
+      load_test_taxa
       o = Observation.make!
-      i1 = Identification.make!(:observation => o)
-      o.reload
+      i1 = Identification.make!(:observation => o, :taxon => @Animalia)
       expect(o.community_taxon).to be_blank
-      o.update_attributes(:taxon => i1.taxon)
+      o = Observation.find(o.id)
+      o.update_attributes(:taxon => @Plantae)
       expect(o.community_taxon).not_to be_blank
+      expect(o.identifications.count).to eq 2
     end
-
+    
     # it "change should trigger change in observation stats" do
 
     # end
@@ -2913,20 +2922,11 @@ describe Observation do
   end
 
   describe "coordinate transformation", :focus => true  do
+    let(:proj4_nztm) {
+      "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+    }
     subject { Observation.make }
-    before do
-      stub_config :coordinate_systems => {
-        :nztm2000 => {
-          :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
-          :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-        },
-        :nzmg => {
-          :label => "NZMG (New Zealand Map Grid), EPSG:27200",
-          :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
-        }
-      }
-      expect(CONFIG.coordinate_systems).not_to be_blank
-    end
+    
     it "requires geo_x if geo_y is present" do
       subject.geo_y = 5413457.7
       subject.valid?
@@ -2961,7 +2961,7 @@ describe Observation do
     it "sets lat lng" do
       subject.geo_y = 5413457.7
       subject.geo_x = 1528677.3
-      subject.coordinate_system = "nztm2000"
+      subject.coordinate_system = proj4_nztm
       subject.save!
       expect(subject.latitude).to be_within(0.0000001).of(-41.4272781531)
       expect(subject.longitude).to be_within(0.0000001).of(172.1464131267)
@@ -3017,7 +3017,7 @@ describe Observation do
     end
   end
 
-  describe "random_neighbor_lat_lon" do
+  describe "random_neighbor_lat_lon", disabled: ENV["TRAVIS_CI"] do
     it "randomizes values within a 0.2 degree square" do
       lat_lons = [ [ 0, 0 ], [ 0.001, 0.001 ], [ 0.199, 0.199 ] ]
       values = [ ]

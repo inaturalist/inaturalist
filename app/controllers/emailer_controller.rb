@@ -6,7 +6,7 @@ class EmailerController < ApplicationController
     from = "#{CONFIG.site_name} <#{CONFIG.noreply_email}>"
     subject = "#REAL NAME wants you to join them on #{CONFIG.site_name}"
     @sending_user = current_user
-    @sending_user_real_name = current_user.name.blank? ? current_user.login : current_user.name.split.first
+    @sending_user_real_name = current_user.name.blank? ? current_user.login : current_user.name
     @observations = Observation.by(current_user.id).first(10)
   end
 
@@ -30,7 +30,7 @@ class EmailerController < ApplicationController
     @invited = @invited[0..emails_allowed].try(:sort) || []
     
     @invited.each do |address|
-      Emailer.invite(address, params[:email], current_user).deliver_now
+      Emailer.invite_user(address, params[:email], current_user).deliver_now
     end
   end
 end

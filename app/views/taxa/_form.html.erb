@@ -118,7 +118,7 @@
       <%= f.label :wikipedia_summary %>:
       <blockquote class="quiet box">
         <% if taxon.wikipedia_summary -%>
-          <span id="wikipedia_summary"><%= taxon.wikipedia_summary %></span>
+          <span id="wikipedia_summary"><%= raw taxon.wikipedia_summary %></span>
         <% else %>
           <span id="wikipedia_summary" class="description"><%= t(:no_summary_has_been_set) %></span>
         <% end -%>

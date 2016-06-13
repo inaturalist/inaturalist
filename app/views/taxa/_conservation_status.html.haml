@@ -12,9 +12,9 @@
   %strong.csstatus
     - if !cs.place && !hide_place
       =raw t(:globally).capitalize
-      = t(status_name.gsub(' ','_').downcase, :defalut => status_name)
+      = t(status_name.gsub(' ','_').downcase, default: status_name).capitalize
     - else
-      = t((status_name[0].upcase + status_name[1..-1]).gsub(' ','_').downcase, :default => status_name[0].upcase + status_name[1..-1])
+      = t((status_name[0].upcase + status_name[1..-1]).gsub(' ','_').downcase, default: status_name[0].upcase + status_name[1..-1]).capitalize
     - if status_name !~ /#{cs.status}/
       = surround '(',')' do
         = cs.status

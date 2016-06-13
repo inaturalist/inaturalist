@@ -18,6 +18,10 @@ class PlacesController < ApplicationController
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
+
+  protect_from_forgery unless: -> {
+    request.parameters[:action] == "autocomplete" && request.format.json? }
+
   
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
   
@@ -147,7 +151,7 @@ class PlacesController < ApplicationController
   
   def create
     if params[:woeid]
-      @place = Place.import_by_woeid(params[:woeid])
+      @place = Place.import_by_woeid(params[:woeid], user: current_user)
     else
       @place = Place.new(params[:place])
       @place.user = current_user
@@ -156,10 +160,10 @@ class PlacesController < ApplicationController
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
-        @place.save_geom(@geometry) if @geometry
+        @place.save_geom(@geometry, user: current_user) if @geometry
       end
       if @geometry && @place.valid?
-        @place.save_geom(@geometry)
+        @place.save_geom(@geometry, user: current_user)
         if @place.too_big_for_check_list?
           notice = t(:place_too_big_for_check_list)
           @place.check_list.destroy if @place.check_list
@@ -168,6 +172,10 @@ class PlacesController < ApplicationController
       end
     end
     
+    if @place.errors.any?
+      flash[:error] = t(:there_were_problems_importing_that_place_geometry,
+        error: @place.errors.full_messages.join(', '))
+    end
     if @place.save
       notice ||= t(:place_imported)
       flash[:notice] = notice
@@ -179,6 +187,12 @@ class PlacesController < ApplicationController
   end
   
   def edit
+    # Only the admin should be able to edit places with admin_level
+    unless @place.admin_level.nil? or current_user.is_admin?
+      redirect_to place_path(@place)
+      return
+    end
+    
     r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
     @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
@@ -189,7 +203,11 @@ class PlacesController < ApplicationController
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
-        @place.save_geom(@geometry) if @geometry
+        @place.save_geom(@geometry, user: current_user) if @geometry
+      end
+      if @place.errors.any?
+        flash[:error] = t(:there_were_problems_importing_that_place_geometry,
+          error: @place.errors.full_messages.join(', '))
       end
 
       if params[:remove_geom]
@@ -253,6 +271,7 @@ class PlacesController < ApplicationController
     @q = params[:q] || params[:term] || params[:item]
     @q = sanitize_query(@q.to_s.sanitize_encoding)
     site_place = @site.place if @site
+    params[:per_page] ||= 30
     if @q.blank?
       scope = if site_place
         Place.where(site_place.child_conditions)
@@ -260,7 +279,7 @@ class PlacesController < ApplicationController
         Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
       scope = scope.with_geom if params[:with_geom]
-      @places = scope.includes(:place_geometry_without_geom).limit(30).
+      @places = scope.includes(:place_geometry_without_geom).limit(params[:per_page]).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
       # search both the autocomplete and normal field
@@ -275,7 +294,8 @@ class PlacesController < ApplicationController
       @places = Place.elastic_paginate(
         where: search_wheres,
         fields: [ :id ],
-        sort: { bbox_area: "desc" })
+        sort: { bbox_area: "desc" },
+        per_page: params[:per_page])
       Place.preload_associations(@places, :place_geometry_without_geom)
     end
 
@@ -287,7 +307,8 @@ class PlacesController < ApplicationController
         @places.each_with_index do |place, i|
           @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item', :object => place)
         end
-        render :json => @places.to_json(:methods => [:html, :kml_url])
+        render json: @places.to_json(methods: [:html, :kml_url]),
+          callback: params[:callback]
       end
     end
   end
@@ -544,7 +565,7 @@ class PlacesController < ApplicationController
       if @geometry
         @place.latitude = @geometry.envelope.center.y
         @place.longitude = @geometry.envelope.center.x
-        @place.save_geom(@geometry)
+        @place.save_geom(@geometry, user: current_user)
       else
         @place.add_custom_error(:base, "File was invalid or did not contain any polygons")
       end

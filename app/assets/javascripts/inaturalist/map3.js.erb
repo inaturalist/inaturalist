@@ -194,9 +194,7 @@ google.maps.Map.prototype.removeObservations = function(observations) {
   var map = this;
   if (typeof(observations) == "undefined") {
     $.each(map.observations, function(k,v) {
-      map.removeMarker(v)
-      v.setMap(null)
-      delete map.observations[k]
+      map.removeObservation( { id: k } );
       delete map.observationBounds
     });
   } else {
@@ -495,7 +493,12 @@ iNaturalist.Map.createObservationIcon = function(options) {
     var iconSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONS' : 'ICONS'
     var iconicTaxonIconsSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONIC_TAXON_ICONS' : 'ICONIC_TAXON_ICONS'
     var iconicTaxonName = options.observation.iconic_taxon_name
-    if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
+    if (!iconicTaxonName && options.observation.iconic_taxon) {
+      iconicTaxonName = options.observation.iconic_taxon.name;
+    }
+    if (!iconicTaxonName && options.observation.taxon) {
+      iconicTaxonName = options.observation.taxon.iconic_taxon_name;
+    }
     if (iconicTaxonName) {
       iconPath = _.clone( iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName] );
       if( options.observation.quality_grade != "research" ) {
@@ -717,6 +720,10 @@ iNaturalist.OverlayControl.prototype.removeOverlayControl = function(title) {
   $("li[data-title='"+title+"']", this.div).remove()
 }
 
+iNaturalist.OverlayControl.prototype.removeAll = function( ) {
+  $("li[data-title]", this.div).remove()
+}
+
 // Given an array of wax.g map layers (overlayMapTypes), add a single
 // checkbox to the custom iNaturalist Overlays map control. That single
 // checkbox can have custom title and description, and will toggle everything
@@ -819,6 +826,12 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
       .attr("name", options.taxon.name);
     var primaryName = options.taxon.common_name ?
       options.taxon.common_name.name : options.taxon.to_styled_s;
+    if ( !primaryName ) {
+      primaryName = options.taxon.preferred_common_name;
+    }
+    if ( !primaryName ) {
+      primaryName = options.taxon.name;
+    }
     // prepare the label for the input, the taxon's scientific Name
     taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
     // append the checkbox and label
@@ -901,7 +914,7 @@ var appendValidParamsToURL = function( url, options ) {
   _.each( options, function( value, key ) {
     if( options.endpoint === "grid" ) { key = key.replace("grid_", ""); }
     if( options.endpoint === "points" ) { key = key.replace("point_", ""); }
-    if( _.contains( options.validParams, key ) ) {
+    if( _.includes( options.validParams, key ) ) {
       params[ key ] = value;
     }
     if ( key.match( /field[:%]\w+/ ) ) {
@@ -1017,6 +1030,18 @@ function postgisTileservers( ) {
   return elasticsearchTileservers( );
 }
 
+google.maps.Map.prototype.removeAllLayers = function( ) {
+  for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
+    var mapType = this.overlayMapTypes.getAt(i),
+        title = mapType.title;
+    mapType.interactivity.remove();
+    this.overlayMapTypes.removeAt(i);
+    if( this._overlayControl ) {
+      this._overlayControl.removeOverlayControl(title)
+    }
+  }
+}
+
 google.maps.Map.prototype.removeObservationsLayer = function(title) {
   for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
     if( this.overlayMapTypes.getAt(i).title == title ) {
@@ -1057,7 +1082,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'native', 'verifiable', 'popular', 'has', 'photos', 'sounds',
     'photo_license', 'created_d1', 'created_d2', 'not_in_project',
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
-    'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id' ];
+    'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
+    'taxon_ids', 'changed_fields', 'changed_since', 'change_project_id' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -1253,6 +1279,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
 
 google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, options ) {
   options = options || { };
+  iw.close( );
   if( options.pixelOffset ) {
     // proper window placement for non-obscured markers
     iw.setOptions({ pixelOffset: options.pixelOffset });

@@ -1,79 +1,22 @@
-- content_for :title do
-  = @title = t(:observation_photo_uploader)
-- content_for :extrajs do
-  = google_maps_js
-  = javascript_include_tag "load-image.min.js"
-  = javascript_include_tag "jquery/plugins/jquery.iframe-transport"
-  = javascript_include_tag "jquery/plugins/jquery.fileupload"
-  = javascript_include_tag "jquery/plugins/jquery.fileupload-fp"
-  = javascript_include_tag "jquery/plugins/inat/datepicker"
-  = javascript_include_tag "jquery/plugins/jquery.latLonSelector"
-  = javascript_include_tag 'map_bundle'
-  = javascript_include_tag "observations/uploader"
-- content_for :extracss do
-  = stylesheet_link_tag "observations/edit"
-  :css
-    .template-upload td {vertical-align: middle;}
-    textarea {height: 70px; width: 330px;}
-    .observation .field input.text {width: 325px;}
-    .observation {padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee;}
-    .latitude_field .inlabel, 
-    .longitude_field .inlabel, 
-    .positional_accuracy_field .inlabel,
-    .latitude_field, 
-    .longitude_field, 
-    .positional_accuracy_field,
-    .geoprivacy_field,
-    .geoprivacy_field .inlabel { display: inline-block; }
-    .observation .latitude_field input.text,
-    .observation .longitude_field input.text,
-    .observation .positional_accuracy_field input.text {width: 80px; font-size: smaller;}
-    form .id_please_field {margin-bottom:0.2em;}
-
-#pageheader.clear
-  .column.span-12
-    %h2= @title
-  .last.column.span-12
-    = render :partial => 'new_nav'
-= form_tag "/observations/photo.json", :multipart => true, :id => "fileupload", :remote => true do
-  %p.description
-    =t(:create_observations_by_uploading_photos_to, :place=>CONFIG.site_name_short)
-    %em
-      =t(:drag_and_drop_photos)
-    = file_field_tag "files[]", :multiple => true, :style => "display:none", :id => "filefield", :accept => "image/jpg,image/jpeg,image/png,image/gif"
-    %em
-      = link_to_function t(:choose_files_from_your_computer), "$('#filefield').click()"
-  .observations
-    .observation.template.stacked.column.span-24{:style => "display:none"}
-      .photocol.column.span-6
-      .last.column.span-18
-        = fields_for "observations[]", Observation.new, :builder => DefaultFormBuilder do |f|
-          = hidden_field_tag :ignore_photos, true
-          .column.span-9
-            .right
-              = f.check_box :id_please, :label_after => true, :label => t(:id_please!), :id => "observation_#{serial_id}_id_please"
-            %label
-              =t(:what_did_you_see)
-            = f.text_field :species_guess, :label => false, :placeholder => t(:type_a_name_and_click)
-            = f.hidden_field :taxon_id
-            = f.text_area :description, :label => false, :placeholder => t(:brief_description_on_what_you_observed)
-          .last.column.span-9
-            = f.text_field :observed_on_string, :label => t(:when_did_you_see_it?), :placeholder => t(:type_date_time_or_use_the_calendar)
-            = f.text_field :place_guess, :label => t(:where_were_you?), :placeholder => t(:type_a_place_name_and_click_search)
-            = f.text_field :latitude, :placeholder => t(:latitude), :label => t(:lat)
-            = f.text_field :longitude, :placeholder => t(:longitude), :label => t(:long)
-            = f.hidden_field :map_scale, :class => 'map_scale'
-            = f.text_field :positional_accuracy, :label => t(:acc), :placeholder => t(:positional_accuracy), :class => 'positional_accuracy text inlineblock', "data-tip" => t(:accuracy_of_the_coordinates)
-            = f.hidden_field :positioning_method, :class => 'positioning_method text inlineblock', :disabled => true
-            = f.hidden_field :positioning_device, :class => 'positioning_device', :disabled => true
-            = f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open), :label=>t(:geoprivacy)
-        .column.span-20.actions.last.inline.buttonrow
-          = link_to t(:upload), "", :class => "uploadbutton button default"
-          = link_to t(:update), "", :class => "savebutton button default", :style => "display:none" #, :disabled => true
-          = link_to_function t(:remove_from_batch), "$(this).parents('.observation:first').fadeOut(function() { $(this).remove() })", :class => "removebutton pale button"
-          = link_to t(:delete), "", :class => "deletebutton delete button", :style => "display:none"
-.small.meta
-  =t(:this_tool_is_experimental)
-  = link_to t(:report_any_problems), "mailto:#{CONFIG.help_email}"
-  =t(:you_may_have)
-  = commas_and [["Safari", "http://www.apple.com/safari/"], ["Chrome", "https://www.google.com/intl/en/chrome/browser/"], ["Firefox", "http://www.mozilla.org/en-US/firefox"]].map{|n,u| link_to n, u}
+- content_for :extrahead do
+  = stylesheet_link_tag "jquery-ui"
+  = stylesheet_link_tag "autocomplete"
+  = stylesheet_link_tag "fontastic-icons"
+  = stylesheet_link_tag "font-awesome"
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "observations/uploader"
+  %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
+  %meta{ name: "config:inaturalist_write_api_host", content: CONFIG.node_api_host }
+  = javascript_include_tag 'i18n'
+#app
+= google_maps_js libraries: %w(places geometry drawing)
+- content_for :delayed_js do
+  = javascript_include_tag 'i18n/translations'
+  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
+  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
+  = javascript_include_tag 'inaturalist'
+  = javascript_include_tag 'ang/models/taxon'
+  = javascript_include_tag 'jquery/plugins/inat/generic_autocomplete'
+  = javascript_include_tag 'jquery/plugins/inat/taxon_autocomplete'
+  = javascript_include_tag "observations-uploader-webpack"
+  = javascript_include_tag "//getbootstrap.com/dist/js/bootstrap.min.js"

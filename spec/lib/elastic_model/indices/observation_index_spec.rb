@@ -142,12 +142,6 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:taxon][:endemic] ).to be true
   end
 
-  it "sets verifiable" do
-    expect( Observation.make!.as_indexed_json[:verifiable] ).to be false
-    expect( make_research_grade_candidate_observation.
-      as_indexed_json[:verifiable] ).to be true
-  end
-
   it "indexes identifications" do
     o = Observation.make!
     Identification.where(observation_id: o.id).destroy_all
@@ -531,15 +525,19 @@ describe "Observation Index" do
     end
 
     it "filters by updated_since" do
-      expect( Observation.params_to_elastic_query({ updated_since: "2015-10-31T00:00:00+00:00" }) ).to include(
-        filters: [ { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } } ] )
+      timeString = "2015-10-31T00:00:00+00:00"
+      timeObject = Chronic.parse(timeString)
+      expect( Observation.params_to_elastic_query({ updated_since: timeString }) ).to include(
+        filters: [ { range: { updated_at: { gte: timeObject } } } ] )
     end
 
     it "filters by updated_since OR aggregation_user_ids" do
+      timeString = "2015-10-31T00:00:00+00:00"
+      timeObject = Chronic.parse(timeString)
       expect( Observation.params_to_elastic_query({
-        updated_since: "2015-10-31T00:00:00+00:00", aggregation_user_ids: [ 1, 2 ] }) ).to include(
+        updated_since: timeString, aggregation_user_ids: [ 1, 2 ] }) ).to include(
         filters: [ { bool: { should: [
-          { range: { updated_at: { gte: "2015-10-31 00:00:00 +0000" } } },
+          { range: { updated_at: { gte: timeObject } } },
           { terms: { "user.id" => [1, 2] } } ] } } ] )
     end
 

@@ -103,24 +103,7 @@ class ProjectUser < ActiveRecord::Base
   
   # set taxa_count on project user, which is the number of taxa observed by this user, favoring the curator ident
   def update_taxa_counter_cache
-    sql = <<-SQL
-      SELECT count(DISTINCT COALESCE(i.taxon_id, o.taxon_id))
-      FROM project_observations po
-        JOIN observations o ON po.observation_id = o.id
-        LEFT OUTER JOIN taxa ot ON ot.id = o.taxon_id
-        LEFT OUTER JOIN identifications i ON po.curator_identification_id = i.id
-        LEFT OUTER JOIN taxa it ON it.id = i.taxon_id
-      WHERE
-        po.project_id = #{project_id}
-        AND o.user_id = #{user_id}
-        AND (
-          -- observer's ident taxon is species or lower
-          ot.rank_level <= #{Taxon::SPECIES_LEVEL}
-          -- curator's ident taxon is species or lower
-          OR it.rank_level <= #{Taxon::SPECIES_LEVEL}
-        )
-    SQL
-    update_attributes(:taxa_count => ProjectUser.connection.execute(sql)[0]['count'].to_i)
+    project.update_users_taxa_counts(user_id: user_id)
   end
   
   def check_role

@@ -38,7 +38,9 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :taxon_schemes, :through => :taxon_scheme_taxa
   has_many :lists, :through => :listed_taxa
-  has_many :places, :through => :listed_taxa
+  has_many :places,
+    -> { where( "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ) },
+    through: :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
@@ -154,6 +156,7 @@ class Taxon < ActiveRecord::Base
     'sub-family'      => 'subfamily',
     'gen'             => 'genus',
     'sp'              => 'species',
+    'spp'             => 'species',
     'infraspecies'    => 'subspecies',
     'ssp'             => 'subspecies',
     'sub-species'     => 'subspecies',
@@ -367,7 +370,7 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_ID', Taxon::ICONIC_TAXA.index_by(&:id))
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
-  
+
   # Callbacks ###############################################################
   
   def handle_after_move
@@ -863,7 +866,7 @@ class Taxon < ActiveRecord::Base
     w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
     
-    if summary = w.summary(wname)
+    if summary = w.summary(wname, options)
       pre_trunc = summary
       summary = summary.split[0..75].join(' ')
       summary += '...' if pre_trunc > summary

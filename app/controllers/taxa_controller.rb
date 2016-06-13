@@ -169,15 +169,22 @@ class TaxaController < ApplicationController
         end
         if @place
           @conservation_status = @conservation_statuses.detect do |cs|
-            cs.place_id == @place.id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+            @place.id == cs.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+          end
+          @conservation_status ||= @conservation_statuses.detect do |cs|
+            @place.self_and_ancestor_ids.include?( cs.place_id ) && cs.iucn > Taxon::IUCN_LEAST_CONCERN
           end
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
         if @place
-          @listed_taxon = @taxon.listed_taxa.joins(:place).includes(:place).
+          @listed_taxon = @taxon.listed_taxa.includes(:place).
+            where(place_id: @place.id).
+            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).first
+          @listed_taxon ||= @taxon.listed_taxa.joins(:place).includes(:place).
             where(place_id: @place.self_and_ancestor_ids).
-            order("(places.ancestry || '/' || places.id) DESC, establishment_means").first
+            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).
+            order("admin_level DESC, (places.ancestry || '/' || places.id) DESC, establishment_means").first
         end
         
         @children = @taxon.children.where(:is_active => @taxon.is_active).
@@ -186,7 +193,13 @@ class TaxaController < ApplicationController
         @iconic_taxa = Taxon::ICONIC_TAXA
         
         @check_listed_taxa = ListedTaxon.page(1).
-          select("min(listed_taxa.id) AS id, listed_taxa.place_id, listed_taxa.taxon_id, min(listed_taxa.list_id) AS list_id, min(establishment_means) AS establishment_means").
+          select("
+            min(listed_taxa.id) AS id,
+            listed_taxa.place_id,
+            listed_taxa.taxon_id,
+            min(listed_taxa.list_id) AS list_id,
+            min(establishment_means) AS establishment_means,
+            max(occurrence_status_level) AS occurrence_status_level").
           includes(:place, :list).
           group(:place_id, :taxon_id).
           where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
@@ -796,7 +809,7 @@ class TaxaController < ApplicationController
     (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
       ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
       next if ydn_places.blank?
-      @places << Place.import_by_woeid(ydn_places.first.woeid)
+      @places << Place.import_by_woeid(ydn_places.first.woeid, user: current_user)
     end
     
     @listed_taxa = @places.map do |place| 
@@ -880,7 +893,7 @@ class TaxaController < ApplicationController
   
   def refresh_wikipedia_summary
     begin
-      summary = @taxon.set_wikipedia_summary
+      summary = @taxon.set_wikipedia_summary(force_update: true)
     rescue Timeout::Error => e
       error_text = e.message
     end

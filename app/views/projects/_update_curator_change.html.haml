@@ -25,7 +25,7 @@
         Here's a little about
         = surround '', ': ' do
           = user.login
-        %blockquote= truncate(strip_tags(user.description), :length => 100)
+        %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
       - unless is_me?(user)
         %div= link_to "View more about #{user.login}", user, :class => "readmore"
       - if user.id == current_user.id && project.user_id == current_user.id

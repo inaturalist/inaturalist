@@ -1,6 +1,7 @@
 <% content_for(:title) do %><%= @title = t(:users_profile, :user => @user.login) %><% end %>
 
 <% content_for(:extracss) do %>
+<%= stylesheet_link_tag 'users/show' %>
 <%= stylesheet_link_tag "taxa" %>
 <style type="text/css" media="screen">
   #medium_user_image { width:auto;}
@@ -26,10 +27,11 @@
         return false;
       })
       $('#nodescription').click(function(e) {
-        if ($(this).hasClass('editing')) { return true };
+        if ($(this).hasClass('editing')) { return true; };
         $(this).addClass('editing')
         $(this).find('.more').hide()
         $(this).find('form').show()
+        return false;
       })
     })
   </script>
@@ -45,11 +47,19 @@
   <% end -%>
 <%- end -%>
 
-<%-
-  # show only the suspended message (no user profile) to everyone but curators.
-  # curators should be able to see the profile to change spammer status
-  if (@user.spammer? || @user.suspended?) && !(current_user && current_user.is_curator?) %>
-  <%= render :partial => "suspended" %>
-<%- else %>
-  <%= render :partial => "show" %>
-<% end %>
+<div class="container" style="background-color:white">
+  <%-
+    # show only the suspended message (no user profile) to everyone but curators.
+    # curators should be able to see the profile to change spammer status
+    if (@user.spammer? || @user.suspended?) && !(current_user && current_user.is_curator?) %>
+    <%= render :partial => "suspended" %>
+  <%- else %>
+    <%- if @user.suspended? %>
+      <div class="alert alert-warning">
+        <strong><%=t :this_user_has_been_suspended %></strong>
+        <p class="unstacked"><%= t(:this_user_has_been_suspended_message).html_safe %></p>
+      </div>
+    <% end %>
+    <%= render :partial => "show" %>
+  <% end %>
+</div>

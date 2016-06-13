@@ -125,6 +125,13 @@ shared_examples_for "an ObservationFieldValuesController" do
     delete :destroy, :format => :json, :id => ofv.id
     expect(ObservationFieldValue.find_by_id(ofv.id)).to be_blank
   end
+
+  it "should destroy values on others observations" do
+    ofv = ObservationFieldValue.make!(observation: Observation.make!,
+      observation_field: observation_field, user_id: user.id)
+    delete :destroy, format: :json, id: ofv.id
+    expect(ObservationFieldValue.find_by_id(ofv.id)).to be_blank
+  end
 end
 
 describe ObservationFieldValuesController, "oauth authentication" do

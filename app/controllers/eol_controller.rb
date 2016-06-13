@@ -26,8 +26,7 @@ class EolController < ApplicationController
       per_page
     end
 
-    @photos = EolPhoto.search_eol(@q, :limit => limit, :eol_page_id => params[:eol_page_id])
-    @photos = @photos[offset,per_page]
+    @photos = EolPhoto.search_eol(@q, page: page, per_page: per_page, eol_page_id: params[:eol_page_id])
     
     partial = params[:partial].to_s
     partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    

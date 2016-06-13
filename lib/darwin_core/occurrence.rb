@@ -48,6 +48,7 @@ module DarwinCore
     # delegation.
     def self.adapt(record, options = {})
       record.extend(InstanceMethods)
+      record.extend(DarwinCore::Helpers)
       record.set_view(options[:view])
       record.set_show_private_coordinates(options[:private_coordinates])
       record
@@ -240,11 +241,6 @@ module DarwinCore
         user.name.blank? ? user.login : user.name
       end
 
-      protected
-
-      def dwc_filter_text(s)
-        s.to_s.gsub(/\r\n|\n|\t/, " ")
-      end
     end
   end
   

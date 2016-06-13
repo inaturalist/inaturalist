@@ -1,4 +1,4 @@
-iNatAPI.factory( "ObservationsFactory", [ "shared", function( shared ) {
+iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
   var show = function( id, params ) {
     var url = "//<%= CONFIG.node_api_host %>/observations/" + id;
     if( params ) { url += "?" + $.param(params); }

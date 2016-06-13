@@ -464,7 +464,7 @@ class GuidesController < ApplicationController
       end
     end
     tags = {}
-    CSV.foreach(open(params[:file]), headers: true) do |row|
+    row_handler = Proc.new do |row|
       tags[row[0]] ||= []
       row.each_with_index do |pair,i|
         next if i == 0
@@ -479,6 +479,23 @@ class GuidesController < ApplicationController
         end
       end
     end
+    begin
+      CSV.foreach(open(params[:file]), headers: true, &row_handler)
+    rescue ArgumentError => e
+      raise e unless e.message =~ /invalid byte sequence in UTF-8/
+      # if there's an encoding issue we'll try to load the entire file and adjust the encoding
+      content = open(params[:file]).read
+      utf_content = if content.encoding.name == 'UTF-8'
+        # if Ruby thinks it's UTF-8 but it obviously isn't, we'll assume it's LATIN1
+        content.force_encoding('ISO-8859-1')
+        content.encode('UTF-8')
+      else
+        # otherwise we try to coerce it into UTF-8
+        content.encode('UTF-8')
+      end
+      CSV.parse(utf_content, headers: true, &row_handler)
+    end
+
     @guide.guide_taxa.find_each do |gt|
       next unless tags[gt.name]
       gt.update_attributes(tag_list: gt.tag_list + tags[gt.name])

@@ -344,7 +344,8 @@
           <% for lt in @sorted_check_listed_taxa %>
             <% next if lt.place.blank? -%>
             <li>
-              <%= link_to t(lt.place.display_name, :default => lt.place.display_name), lt.place %>
+              <%= link_to t(lt.place.display_name, :default => lt.place.display_name), lt.place,
+                :class => ( "absent" if lt.is_absent? ) %>
               <% if logged_in? && lt.editable_by?(current_user) -%>
                 <%= link_to(t(:edit), lt, :class => "small description editlink") %>
               <% end -%>

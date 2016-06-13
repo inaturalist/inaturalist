@@ -11,7 +11,7 @@ iNatModels.Taxon.ICONIC_TAXA = <%= Taxon::ICONIC_TAXA.sort.to_json(only: [:id, :
 
 iNatModels.Taxon.prototype.iconicTaxonName = function( ) {
   var that = this
-  var iconicTaxon = _.detect(iNatModels.Taxon.ICONIC_TAXA, function(t) { 
+  var iconicTaxon = _.find(iNatModels.Taxon.ICONIC_TAXA, function(t) {
     return t.id == that.iconic_taxon_id;
   });
   if (iconicTaxon) {
@@ -99,4 +99,30 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
       this.conservationStatusName = null;
   }
   return this.conservationStatusName;
+};
+
+iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
+  options = options || { };
+  options.locale = ( options.locale || "en" ).split( "-" )[0];
+  var nameInLocale;
+  var nameInPlace;
+  var nameInAncestorPlace;
+  _.each( this.names, function( n ) {
+    if( options.preferredPlace && n.place_taxon_names ) {
+      if( _.find( n.place_taxon_names, function( ptn ) {
+          return ptn.place_id === options.preferredPlace.id; })) {
+        nameInPlace = n.name;
+      } else if( _.find( n.place_taxon_names, function( ptn ) {
+          return _.includes( options.preferredPlace.ancestor_place_ids, ptn.place_id ); })) {
+        nameInAncestorPlace = n.name;
+      }
+    }
+    if( !nameInLocale && n.locale === options.locale ) { nameInLocale = n.name; }
+  });
+  nameInLocale = nameInPlace || nameInAncestorPlace || nameInLocale;
+  if( options.defaultToEnglish === true &&
+      !nameInLocale && options.locale != "en" ) {
+    return this.preferredCommonName( _.extend( { }, options, { locale: "en" } ) );
+  }
+  return nameInLocale;
 };

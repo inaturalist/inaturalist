@@ -52,6 +52,57 @@ describe Identification, "creation" do
     expect(obs.taxon_id).to eq identification.taxon.id
   end
   
+  it "should add a taxon to its observation if it's someone elses identification" do
+    obs = Observation.make!
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).to eq identification.taxon.id
+    expect(obs.community_taxon).to be_blank
+  end
+  
+  it "shouldn't add a taxon to its observation if it's someone elses identification but the observation user rejects community IDs" do
+    u = User.make!(:prefers_community_taxa => false)
+    obs = Observation.make!(:user => u)
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+  end
+  
+  it "shouldn't create an ID by the obs owner if someone else adds an ID" do
+    obs = Observation.make!
+    expect(obs.taxon_id).to be_blank
+    expect(obs.identifications.count).to eq 0
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).not_to be_blank
+    expect(obs.identifications.count).to eq 1
+  end
+  
+  it "should not modify species_guess to an observation if there's a taxon_id and the taxon_id didn't change" do
+    obs = Observation.make!
+    taxon = Taxon.make!
+    taxon2 = Taxon.make!
+    identification = Identification.make!(
+      :user => obs.user,
+      :observation => obs,
+      :taxon => taxon
+    )
+    obs.reload
+    user = User.make!
+    identification = Identification.make!(
+      :user => user,
+      :observation => obs,
+      :taxon => taxon2
+    )
+    obs.reload
+    expect(obs.species_guess).to eq taxon.name
+  end
+  
   it "should add a species_guess to a newly identified observation if the owner identified it and the species_guess was nil" do
     obs = Observation.make!
     taxon = Taxon.make!
@@ -111,6 +162,20 @@ describe Identification, "creation" do
     expect(obs.num_identification_disagreements).to eq old_count
   end
   
+  it "should NOT increment the observations num_identification_agreements or num_identification_disagreements if theres just one ID" do
+    taxon = Taxon.make!
+    obs = Observation.make!
+    old_agreement_count = obs.num_identification_agreements
+    old_disagreement_count = obs.num_identification_disagreements
+    expect(obs.community_taxon).to be_blank
+    Identification.make!(:observation => obs, :taxon => taxon)
+    obs.reload
+    expect(obs.num_identification_agreements).to eq old_agreement_count
+    expect(obs.num_identification_disagreements).to eq old_disagreement_count
+    expect(obs.community_taxon).to be_blank
+    expect(obs.identifications.count).to eq 1
+  end
+  
   it "should consider an identification with a taxon that is a child of " + 
      "the observation's taxon to be in agreement" do
     taxon = Taxon.make!
@@ -147,11 +212,13 @@ describe Identification, "creation" do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should incremement for an ident on someone else's observation, with delay" do
+      taxon = Taxon.make!
+      obs = Observation.make!(taxon: taxon)
       user = User.make!
       Delayed::Job.destroy_all
       expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 0
-      Identification.make!(user: user)
+      Identification.make!(user: user, observation: obs, taxon: taxon)
       expect( Delayed::Job.count ).to be > 1
       user.reload
       expect( user.identifications_count ).to eq 0
@@ -277,13 +344,13 @@ describe Identification, "deletion" do
   end
   
   before(:each) do
-    @observation = Observation.make!(:taxon => Taxon.make!)
+    @observation = Observation.make!(:taxon => Taxon.make!, :prefers_community_taxon => false)
     @unknown_obs = Observation.make!(:user => @observation.user)
     @identification = Identification.make!(:observation => @observation, :taxon => @observation.taxon)
   end
   
   it "should remove the taxon associated with the observation if it's the " +
-     "observer's identification" do
+     "observer's identification and obs does not prefers_community_taxon" do
     expect(@observation.taxon).not_to be(nil)
     expect(@observation.valid?).to be(true)
     @observation.reload
@@ -295,6 +362,23 @@ describe Identification, "deletion" do
     doomed_ident.destroy
     @observation.reload
     expect(@observation.taxon_id).to be(nil)
+  end
+  
+  it "should NOT remove the taxon associated with the observation if it's the " +
+     "observer's identification and obs prefers_community_taxon " do
+    @observation_prefers_community_taxon = Observation.make!(:taxon => Taxon.make!)
+    @identification_prefers_community_taxon = Identification.make!(:observation => @observation_prefers_community_taxon, :taxon => @observation_prefers_community_taxon.taxon)
+    expect(@observation_prefers_community_taxon.taxon).not_to be(nil)
+    expect(@observation_prefers_community_taxon.valid?).to be(true)
+    @observation_prefers_community_taxon.reload
+    expect(@observation_prefers_community_taxon.identifications.length).to be >= 1
+    doomed_ident = @observation_prefers_community_taxon.identifications.select do |ident| 
+      ident.user_id == @observation_prefers_community_taxon.user_id
+    end.first
+    expect(doomed_ident.user_id).to be(@observation_prefers_community_taxon.user_id)
+    doomed_ident.destroy
+    @observation_prefers_community_taxon.reload
+    expect(@observation_prefers_community_taxon.taxon_id).not_to be(nil)
   end
   
   it "should decrement the observation's num_identification_agreements if this was an agreement" do
@@ -546,6 +630,21 @@ describe Identification do
       i = without_delay { Identification.make!(body: "hey @#{ u.login }") }
       expect( Update.where(notifier: i).mention.count ).to eq 1
       expect( Update.where(notifier: i).mention.first.subscriber ).to eq u
+    end
+  end
+
+  describe "run_update_curator_identification" do
+    it "indexes the observation in elasticsearch" do
+      o = Observation.make!
+      p = Project.make!
+      pu = ProjectUser.make!(user: o.user, project: p)
+      po = ProjectObservation.make!(observation: o, project: p)
+      i = Identification.make!(user: p.user, observation: o)
+      expect( Observation.page_of_results(project_id: p.id, pcid: true).
+        total_entries ).to eq 0
+      Identification.run_update_curator_identification(i)
+      expect( Observation.page_of_results(project_id: p.id, pcid: true).
+        total_entries ).to eq 1
     end
   end
 end

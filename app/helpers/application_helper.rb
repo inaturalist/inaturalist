@@ -70,28 +70,28 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to t(:stop_following_user, :user => potential_friend.login), 
+    unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
       url_options.merge(:remove_friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
         :datatype => "json",
         :method => :put,
         :id => dom_id(potential_friend, 'unfriend_link'),
-        :class => "unfriend_link",
+        :class => "btn btn-primary btn-xs unfriend_link",
         :style => already_friends ? "" : "display:none"
       )
-    friend_link = link_to t(:follow_user, :user=> potential_friend.login), 
+    friend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:follow_user, :user=> potential_friend.login)}".html_safe, 
       url_options.merge(:friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
         :method => :put,
         :datatype => "json",
         :id => dom_id(potential_friend, 'friend_link'),
-        :class => "friend_link",
+        :class => "btn btn-primary btn-xs friend_link",
         :style => (!already_friends && user != potential_friend) ? "" : "display:none"
       )
     
-    content_tag :span, (friend_link + unfriend_link).html_safe, :class => "friend_button"
+    content_tag :span, (friend_link + unfriend_link).html_safe
   end
   
   def char_wrap(text, len)
@@ -274,6 +274,19 @@ module ApplicationHelper
       photo.native_page_url,
       link_options
     )
+  end
+  
+  def stripped_first_paragraph_of_text(text)
+    return text if text.blank?
+    text = text.split("\n\n")[0]
+    text = strip_tags(text)
+  end
+  
+  def remaining_paragraphs_of_text(text)
+    return text if text.blank?
+    paragraphs = text.split("\n\n")
+    text = paragraphs[1..paragraphs.length].join("\n\n")
+    Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
   
   def formatted_user_text(text, options = {})
@@ -807,7 +820,6 @@ module ApplicationHelper
       :center => "#{o.latitude},#{o.longitude}",
       :zoom => o.map_scale || 7,
       :size => '200x200',
-      :sensor => 'false',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
       :port => false,
       :key => CONFIG.google.simple_key
@@ -1043,7 +1055,7 @@ module ApplicationHelper
         else
           link_to(project.title, url_for_resource_with_host(project))
         end
-        if update.notification = Update::YOUR_OBSERVATIONS_ADDED
+        if update.notification == Update::YOUR_OBSERVATIONS_ADDED
           t(:project_curators_added_some_of_your_observations_html, url: project_url(resource), project: project.title)
         else
           t(:curators_changed_for_x_html, :x => title)
@@ -1255,10 +1267,8 @@ module ApplicationHelper
   end
 
   def google_maps_js(options = {})
-    sensor = options[:sensor] ? 'true' : 'false'
     libraries = options[:libraries] || []
-    params = "sensor=#{sensor}"
-    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
+    params = "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
 
@@ -1387,7 +1397,7 @@ module ApplicationHelper
   def hyperlink_mentions(text)
     linked_text = text.dup
     linked_text.mentioned_users.each do |u|
-      linked_text.gsub!(/(^|\s|>)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+      linked_text.gsub!(/(\B)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
     end
     linked_text
   end

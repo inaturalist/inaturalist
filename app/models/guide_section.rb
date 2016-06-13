@@ -1,5 +1,6 @@
 class GuideSection < ActiveRecord::Base
-  acts_as_spammable :fields => [ :title, :description ]
+  acts_as_spammable :fields => [ :title, :description ],
+    checks_spam_unless: :is_imported
   attr_accessor :modified_on_create
   belongs_to :guide_taxon, :inverse_of => :guide_sections
   belongs_to :creator, :class_name => 'User', :inverse_of => :created_guide_sections
@@ -80,6 +81,10 @@ class GuideSection < ActiveRecord::Base
 
   def to_s
     "<GuideSection #{id}>"
+  end
+
+  def is_imported
+    return !!source_url
   end
 
   def remove_updater_if_no_changes

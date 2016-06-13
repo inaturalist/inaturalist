@@ -26,6 +26,7 @@
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t( 'filters' ) }}" }
               %i.fa.fa-sliders
+              = t(:filters)
               .ng-cloak
                 %span.badge{ "ng-show" => "numFiltersSet > 0" }
                   {{ numFiltersSet }}
@@ -83,10 +84,13 @@
             #subview-controls.btn-group
               %button{ "ng-click": "changeView('observations', 'map')", title: "{{ shared.t('map') }}", :class => "btn btn-default {{ currentSubview == 'map' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-map-marker{ "aria-hidden": "true" }
+                = t(:map)
               %button{ "ng-click": "changeView('observations', 'grid')", title: "{{ shared.t('grid') }}", :class => "btn btn-default {{ currentSubview == 'grid' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-th{ "aria-hidden": "true" }
+                = t(:grid)
               %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
+                = t(:list)
             #layer-control.btn-group.btn-group-stateless{ "ng-show": "viewing('observations', 'map')" }
               %button.btn.btn-default.btn-icon-stupidity.dropdown-toggle{ data: { toggle: "dropdown" } }
                 %i.icon-layers{ title: "{{ shared.t('layers') }}" }

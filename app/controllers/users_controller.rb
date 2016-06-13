@@ -1,6 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :edit, :dashboard, :new_updates ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!,
+    only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
+    if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
@@ -19,7 +21,10 @@ class UsersController < ApplicationController
   MOBILIZED = [:show, :dashboard, :new, :create]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  
+
+  protect_from_forgery unless: -> {
+    request.parameters[:action] == "search" && request.format.json? }
+
   caches_action :dashboard,
     :expires_in => 1.hour,
     :cache_path => Proc.new {|c|
@@ -159,6 +164,8 @@ class UsersController < ApplicationController
           flag.save!
         end
         @user.unsuspend!
+      else
+        @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
     redirect_to :back
@@ -237,8 +244,9 @@ class UsersController < ApplicationController
   def search
     scope = User.active
     @q = params[:q].to_s
+    escaped_q = @q.gsub(/(%|_)/){ |m| "\\" + m }
     unless @q.blank?
-      wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
+      wildcard_q = (@q.size == 1 ? "#{escaped_q}%" : "%#{escaped_q.downcase}%")
       conditions = if logged_in? && @q =~ Devise.email_regexp
         ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
@@ -253,16 +261,28 @@ class UsersController < ApplicationController
     else
       scope = scope.order("login")
     end
-    @users = scope.page(params[:page])
+    params[:per_page] = params[:per_page] || 30
+    params[:per_page] = 30 if params[:per_page].to_i > 30
+    params[:per_page] = 1 if params[:per_page].to_i < 1
+    params[:page] = params[:page] || 1
+    params[:page] = 1 if params[:page].to_i < 1
+    offset = (params[:page].to_i - 1) * params[:per_page].to_i
     respond_to do |format|
-      format.html { counts_for_users }
+      format.html {
+        # will_paginate collection will have total_entries
+        @users = scope.paginate(page: params[:page], per_page: params[:per_page])
+        counts_for_users
+      }
       format.json do
+        # use .limit.offset to avoid a slow count(), since count isn't used
+        @users = scope.limit(params[:per_page]).offset(offset)
         haml_pretty do
           @users.each_with_index do |user, i|
             @users[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => user).gsub(/\n/, '')
           end
         end
-        render :json => @users.to_json(User.default_json_options.merge(:methods => [:html]))
+        render :json => @users.to_json(User.default_json_options.merge(:methods => [:html])),
+          callback: params[:callback]
       end
     end
   end
@@ -284,6 +304,7 @@ class UsersController < ApplicationController
         @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
+        render layout: "bootstrap"
       end
       format.json { render :json => @selected_user.to_json(User.default_json_options) }
       format.mobile
@@ -501,6 +522,10 @@ class UsersController < ApplicationController
     render :head => :no_content, :layout => false, :text => nil
   end
 
+  def api_token
+    render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
+  end
+
 protected
 
   def add_friend
@@ -692,6 +717,7 @@ protected
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
       :site_id,
+      :test_groups,
       :time_zone
     )
   end

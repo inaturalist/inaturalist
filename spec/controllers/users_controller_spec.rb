@@ -129,6 +129,23 @@ describe UsersController, "set_spammer" do
       expect( f.resolver ).to be_blank
     end
 
+    it "sets the user_id of the flag to the current_user" do
+      u = User.make!
+      post :set_spammer, id: u.id, spammer: "true"
+      u.reload
+      expect( u.flags.last.user ).to eq @curator
+    end
+
+    it "resolves the spam flag on the user when setting to non-spammer" do
+      u = User.make!( spammer: true )
+      post :set_spammer, id: u.id, spammer: "true"
+      u.reload
+      flag = u.flags.detect{|f| f.flag == Flag::SPAM}
+      expect( flag ).not_to be_blank
+      post :set_spammer, id: u.id, spammer: "false"
+      flag.reload
+      expect( flag ).to be_resolved
+    end
   end
 end
 

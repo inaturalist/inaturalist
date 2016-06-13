@@ -159,7 +159,7 @@
                 <label><%=t :coordinate_systems %></label>
               </div>
               <div class="last column span-12">
-                <%= select 'upload', :coordinate_system, coordinate_system_select_options %>
+                <%= select 'upload', :coordinate_system, coordinate_system_select_options( names: true ) %>
                 <span class="coords_tip_target helptip" rel="#coords_tip"></span><div id="coords_tip" style="display:none">
                   <%=t 'views.observations.import.coordinate_systems_help', :site_name => SITE_NAME %>
                 </div>

@@ -73,7 +73,7 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
-      :default_url => FakeView.image_url("bird.png")
+      :default_url => ->(i){ FakeView.image_url("bird.png") }
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
@@ -83,6 +83,24 @@ class Site < ActiveRecord::Base
   validates_attachment_content_type :logo_square, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
+  # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
+  if Rails.env.production?
+    has_attached_file :logo_email_banner,
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_host_alias => CONFIG.s3_bucket,
+      :bucket => CONFIG.s3_bucket,
+      :path => "sites/:id-logo_email_banner.:extension",
+      :url => ":s3_alias_url",
+      :default_url => ->(i){ FakeView.image_url("inat_email_banner.png") }
+  else
+    has_attached_file :logo_email_banner,
+      :path => ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
+      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo_email_banner.:extension",
+      :default_url => FakeView.image_url("inat_email_banner.png")
+  end
+  validates_attachment_content_type :logo_email_banner, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], :message => "must be JPG, PNG, or GIF"
+      
   # CSS file to override default styles
   if Rails.env.production?
     has_attached_file :stylesheet,
@@ -195,6 +213,9 @@ class Site < ActiveRecord::Base
   preference :natureserve_key, :string
   preference :custom_logo, :text
   preference :custom_footer, :text
+  preference :custom_secondary_footer, :text
+  preference :custom_email_footer_leftside, :text
+  preference :custom_email_footer_rightside, :text
 
   def to_s
     "<Site #{id} #{url}>"

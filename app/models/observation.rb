@@ -34,6 +34,13 @@ class Observation < ActiveRecord::Base
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
+  WATCH_FIELDS_CHANGED_AT = {
+    geom: true,
+    observed_on: true,
+    place_guess: true,
+    positional_accuracy: true
+  }
+  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
@@ -246,6 +253,8 @@ class Observation < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :project_observations_with_changes, -> {
+    joins(:model_attribute_changes) }, class_name: "ProjectObservation"
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
@@ -286,13 +295,15 @@ class Observation < ActiveRecord::Base
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
-  validates_inclusion_of :coordinate_system,
-    :in => proc { CONFIG.coordinate_systems.to_h.keys.map(&:to_s) },
-    :message => "'%{value}' is not a valid coordinate system",
-    :allow_blank => true,
-    :if => lambda {|o|
-      CONFIG.coordinate_systems
-    }
+  validate do
+    unless coordinate_system.blank?
+      begin
+        RGeo::CoordSys::Proj4.new( coordinate_system )
+      rescue RGeo::Error::UnsupportedOperation
+        errors.add( :coordinate_system, "is not a valid Proj4 string" )
+      end
+    end
+  end
   # See /config/locale/en.yml for field labels for `geo_x` and `geo_y`
   validates_numericality_of :geo_x,
     :allow_blank => true,
@@ -325,9 +336,9 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :set_iconic_taxon
-  
+
   before_update :handle_id_please_on_update, :set_quality_grade
-                 
+
   after_save :refresh_lists,
              :refresh_check_lists,
              :update_out_of_range_later,
@@ -1384,7 +1395,6 @@ class Observation < ActiveRecord::Base
     #   print n[:score].to_s.ljust(width)
     #   puts
     # end
-
     return unless node
     node[:taxon]
   end
@@ -1433,7 +1443,12 @@ class Observation < ActiveRecord::Base
   end
 
   def set_community_taxon(options = {})
-    self.community_taxon = get_community_taxon(options)
+    
+    community_taxon = get_community_taxon(options)
+    self.community_taxon = community_taxon
+    if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
+      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+    end
     true
   end
 
@@ -1470,13 +1485,13 @@ class Observation < ActiveRecord::Base
   def set_taxon_from_community_taxon
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     # obs opted out or user opted out
     elsif prefers_community_taxon == false || !user.prefers_community_taxa?
       owners_identification.try(:taxon_id)
     # implicitly opted in
     else
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats(:skip_save => true)
@@ -1830,6 +1845,8 @@ class Observation < ActiveRecord::Base
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
+        num_agreements = 0 if current_idents.count <= 1
+        num_disagreements = 0 if current_idents.count <= 1
       else
         num_agreements    = current_idents.select{|ident| ident.is_agreement?(:observation => self)}.size
         num_disagreements = current_idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
@@ -2158,7 +2175,7 @@ class Observation < ActiveRecord::Base
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new(CONFIG.coordinate_systems.send(self.coordinate_system.to_sym).proj4)
+      from = RGeo::CoordSys::Proj4.new(self.coordinate_system)
 
       # ... to WGS84
       to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)
@@ -2506,6 +2523,22 @@ class Observation < ActiveRecord::Base
     description.mentioned_users
   end
 
+  def last_changed(params={})
+    changes = field_changes_to_index
+    # only consider the fields requested
+    if params[:changed_fields] && fields = params[:changed_fields].split(",")
+      changes = changes.select{ |c| fields.include?(c[:field_name]) }
+    end
+    # ignore any projects other than those selected
+    if params[:change_project_id]
+      changes = changes.select do |c|
+        c[:project_id].blank? || c[:project_id] == params[:change_project_id]
+      end
+    end
+    # return the max of the remaining dates
+    field_changes_to_index.map{ |c| c[:changed_at] }.max
+  end
+
   # Show count of all faves on this observation. cached_votes_total stores the
   # count of all votes without a vote_scope, which for an Observation means
   # the faves, but since that might vary from model to model based on how we
@@ -2558,6 +2591,10 @@ class Observation < ActiveRecord::Base
 
   def self.index_observations_for_user(user_id)
     Observation.elastic_index!( scope: Observation.by( user_id ) )
+  end
+
+  def self.refresh_es_index
+    Observation.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
 end

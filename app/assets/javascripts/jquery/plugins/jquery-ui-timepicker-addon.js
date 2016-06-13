@@ -552,7 +552,6 @@
 		_limitMinMaxDateTime: function (dp_inst, adjustSliders) {
 			var o = this._defaults,
 				dp_date = new Date(dp_inst.selectedYear, dp_inst.selectedMonth, dp_inst.selectedDay);
-
 			if (!this._defaults.showTimepicker) {
 				return;
 			} // No time so nothing to check here

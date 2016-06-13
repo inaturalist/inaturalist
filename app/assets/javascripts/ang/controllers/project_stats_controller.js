@@ -42,7 +42,8 @@ function( ObservationsFactory, shared, $scope ) {
     $scope.observationSearchParams = _.extend( { }, p );
   };
   $scope.$watch( "observationSearchParams", function( ) {
-    var statsParams = _.extend( { }, $scope.observationSearchParams, { per_page: 5 });
+    var statsParams = _.extend( { }, $scope.observationSearchParams,
+      iNaturalist.localeParams( ), { per_page: 5 });
     $scope.searchURL = "/observations?" + $.param($scope.observationSearchParams);
     ObservationsFactory.speciesCounts( statsParams ).then( function( response ) {
       $scope.speciesCount = response.data.total_results;

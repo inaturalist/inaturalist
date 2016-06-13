@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   before_filter :sign_out_spammers
 
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 18
+  HEADER_VERSION = 19
   
   alias :logged_in? :user_signed_in?
 
@@ -245,7 +245,7 @@ class ApplicationController < ActionController::Base
   def load_user_by_login
     @login = params[:login].to_s.downcase
     @selected_user =  @login.blank? ? nil :
-      User.where("lower(login) = ?", @login).first
+      User.where("lower(login) = ?", @login).take
     return render_404 unless @selected_user
   end
 
@@ -329,7 +329,7 @@ class ApplicationController < ActionController::Base
     Place.preload_associations(@places, :place_geometry_without_geom)
     if logged_in? && @places.blank? && !params[:q].blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
+        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid, user: current_user)}.compact
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
