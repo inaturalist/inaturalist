@@ -1512,7 +1512,7 @@ es:
     por favor</a>, este es un lugar para colocar observaciones de cosas que usted
     no sabe ¡y ayudar a que otras personas identifiquen criaturas misteriosas!
   internal_server_error: Error interno del servidor
-  introduced: introdujo
+  introduced: introducida
   invasive: invasoras
   invitation: Invitación
   invitations: Invitaciones
@@ -4354,12 +4354,12 @@ es:
         confirmation: |-
           ¿Estás seguro? Esto cambiará los medios de establecimiento para TODOS
           los taxones enumerados pertenecientes a lugares dentro de este lugar. Podrías estar deshaciendo un montón de trabajo.
-        description_html: "Esto cambiará los medios de establecimiento de <em>todos
-          </em> los listados de este taxón en todos los descendientes de los lugares
-          de \n<a href=\"%{place_url}\">%{place_name}</a> <strong>\"%{establishment_means}\"</strong>.
-          Sólo los curadores pueden utilizar esta herramienta. Cambiando el medio
-          de establecimiento de \"introducido\" tendrá aproximadamente el mismo efecto,
-          pero no va a cambiar los valores existentes, sólo rellenará los vacíos."
+        description_html: "Esto cambiará los medios de establecimiento de <em>todos</em>
+          los listados de este taxón en todos los descendientes de los lugares de
+          \n<a href=\"%{place_url}\">%{place_name}</a> a <strong>\"%{establishment_means}\"</strong>.
+          Sólo los curadores pueden utilizar esta herramienta. Cambiar el medio de
+          establecimiento a \"introducido\" tendrá aproximadamente el mismo efecto,
+          pero no cambiará los valores existentes, sólo rellenará los vacíos."
     lists:
       new:
         place_desc: |-
