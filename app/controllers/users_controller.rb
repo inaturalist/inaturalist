@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
 
-  caches_action :dashboard,
+  caches_action :dashboard_updates,
     :expires_in => 1.hour,
     :cache_path => Proc.new {|c|
       c.send(
@@ -376,7 +376,7 @@ class UsersController < ApplicationController
     return local_onboarding_content
   end
 
-  def dashboard
+  def dashboard_updates
     filters = [ ]
     wheres = { }
     if params[:from]
@@ -389,8 +389,6 @@ class UsersController < ApplicationController
       wheres[:resource_owner_id] = current_user.id
     end
     
-    @local_onboarding_content = get_local_onboarding_content
-    
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
     @updates = Update.load_additional_activity_updates(@pagination_updates)
@@ -400,6 +398,15 @@ class UsersController < ApplicationController
     @month_observations = current_user.observations.
       where([ "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
+    respond_to do |format|
+      format.html do
+        render :partial => 'dashboard_updates', :collection => @updates, :layout => false
+      end
+    end
+  end
+  
+  def dashboard
+    @local_onboarding_content = get_local_onboarding_content
     respond_to do |format|
       format.html do
         scope = Announcement.where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)

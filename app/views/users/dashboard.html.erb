@@ -13,19 +13,33 @@
   <%= javascript_include_tag 'map_bundle', "d3.min", 'calendars', 'observations/observation_fields' %>
   <script type="text/javascript" charset="utf-8">
     var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
+    
+    function get_content(url, target){
+      $.ajax({
+        type: "GET",
+        url: url,
+        error: function(data){
+          alert("There was a problem");
+        },
+        success: function(data){
+          $(target).html(data);
+        }
+      });
+    }
+    
     $(document).ready(function() {
+      get_content("/users/dashboard_updates","#updates");
+      
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var target = $(e.target).attr("href") // activated tab
-        $.ajax({
-          type: "GET",
-          url: "/comments?partial=true",
-          error: function(data){
-            alert("There was a problem");
-          },
-          success: function(data){
-            $(target).html(data);
-          }
-        })
+        if(target == "#comments"){
+          var url = "/comments?partial=true";
+        }else if(target == "#updates"){
+          var url = "/users/dashboard_updates";
+        }else{
+          var url = "/users/dashboard_updates?filter=you";
+        }
+        get_content(url, target);
       })
       
       $('.subscriptionsettings').subscriptionSettings()
@@ -122,220 +136,19 @@
 
   <div class="col-md-8"  style="background-color:white">
     <div class="tabbable">
-      <ul id="myTab" class="nav nav-tabs">
-  	  	<li class="<%= 'active' if params[:filter].blank? %>" >
-          <% if params[:filter].blank? %>
-            <a href="#updates" data-toggle="tab"><%= t(:following).capitalize %></a>
-          <% else %>
-            <%= link_to t(:following).capitalize, dashboard_path %>            
-          <% end %>
+      <ul id="myTab" class="nav nav-pills">
+  	  	<li class="active" >
+          <a href="#updates" data-toggle="tab"><%= t(:following).capitalize %></a>
         </li>
-  		  <li class="<%= 'active' if params[:filter] == 'you' %>" >
-          <% if params[:filter] == 'you' %>
-            <a href="#updates" data-toggle="tab"><%= t(:you).capitalize %></a>
-          <% else %>
-            <%= link_to t(:you).capitalize, dashboard_path(:filter => "you") %>
-          <% end %>
-        </li>
+  		  <li><a href="#updates_by_you" data-toggle="tab"><%= t(:you).capitalize %></a></li>
   		  <li><a href="#comments" data-toggle="tab"><%= t :comment_feed %></a></li>
   	  </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane active" id="updates<%= "_by_you" if params[:filter].blank? %>">
-          <% if current_user.observations_count < 4 && !current_user.prefers_hide_observe_onboarding -%>
-            <div class="panel panel-success" id="observe_panel">
-              <div class="panel-heading">
-                <a data-panel-type="observe" class="close">&times;</a>
-                <h3 class="panel-title" style="font-size:20px"><%=t :lets_get_started_by_posting_some_observations %></h3>
-              </div>
-              <div class="panel-body">
-                <%- if @local_onboarding_content[:target_taxa] %>
-                  <p class="lead">
-                    <%= @local_onboarding_content[:local_results] ? t(:for_inspiration_local) : t(:for_inspiration_global) %>
-                  </p>
-                  <div class="row">
-                    <% for taxon in @local_onboarding_content[:target_taxa] %>
-                      <%= render(:partial => 'favorites', :locals => {:taxon => taxon}) %>
-                    <% end %>
-                  </div>
-                <% end -%>
-                <div class="media">
-                  <div class="media-body">
-                    <p class="lead"><%= t(:the_next_step, new_observation_path: new_observation_path).html_safe %></p>
-                    <p><%= t( :you_can_also_use, site_name: SITE_NAME )%></p>
-                  </div>
-                  <div class="media-right"><img class="media-object"  src="http://static.inaturalist.org/wiki_page_attachments/615-original.jpg" style="padding: 0 0 0 10px"></div>
-                </div>
-              </div>
-              <div class="panel-footer">
-                <%= link_to observations_path, class: "btn btn-primary btn-md" do %>
-                  <%=t :browse_observations %> <span class="glyphicon glyphicon-chevron-right"></span>
-                <% end %>
-                <%= link_to "/pages/getting+started", target: "_blank" do %>
-                  <span class="glyphicon glyphicon-info-sign"></span> <%=t :getting_started_guide %>
-                <% end %>
-              </div>        
-            </div>
-          <% end -%>
-      
-          <% if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]-%>
-            <div class="panel panel-success" id="follow_panel">
-              <div class="panel-heading">
-                <a data-panel-type="follow" class="close">&times;</a>
-                <h3 class="panel-title"> <%= @local_onboarding_content[:local_results] ? t(:follow_some_nearby_naturalists) : t(:follow_some_active_naturalists) %></h3>
-              </div>
-              <div class="panel-body">
-                <p>
-                  <%=t :youll_be_updated %>
-                </p>  
-                <div class="row">
-                  <% @local_onboarding_content[:to_follows].each do |to_follow| %>
-                    <%= render(:partial => 'followees', :locals => {:friend => to_follow}) %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="panel-footer">
-                <%= link_to people_path, class: "btn btn-primary" do %>
-                  <%=t :browse_people %> <span class="glyphicon glyphicon-chevron-right"></span>
-                <% end %>  
-              </div>
-            </div>                
-          <% end -%> 
-          
-          <% unless @updates.blank? -%>
-            <% unless current_user.prefers_hide_activity_onboarding -%>
-              <div class="panel panel-info" id="activity_panel">
-                <div class="panel-heading">
-                  <a data-panel-type="activity" class="close">&times;</a>
-                  <h3 class="panel-title"><%=t :youve_got_updates %></h3>
-                </div>
-                <div class="panel-body">
-                  <p class="lead"><%= t(:about_updates_lead, site_name: SITE_NAME)%></p>                    
-                  <%= t(:about_updates_rest, site_name: SITE_NAME).html_safe%>                  
-                </div>
-                <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
-              </div>                
-            <% end -%>
-            <ul class="timeline">
-              <% for key, updates in @grouped_updates %>
-                <%-
-                  resource_type, resource_id, notification = key
-                  resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
-                    @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
-                  else
-                    updates.last.resource
-                  end
-                  notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
-                    @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
-                  else
-                    updates.last.notifier
-                  end
-                  is_mention = (notification == "mention")
-                -%>
-                <li class="observation_multiple_added">
-                  <% if notification == "committed" %>
-                    <div class="timeline-badge warning"><i class="glyphicon glyphicon glyphicon-random"></i></div>
-                  <% elsif (notification == "new_observations" && resource.class.name == "Place") %>
-                    <div class="timeline-badge success"><i class="glyphicon glyphicon-map-marker"></i></div>
-                  <%- else %>
-                    <div class="timeline-badge plain">
-                      <%= link_to update_image_for(updates.last, :style => "max-width:48px;"), resource %>
-                    </div>                    
-                  <%- end %>
-                  <% if ["activity","curator_change","invited","created_post"].include? notification %>
-                    <%- 
-                      case notification
-                      when "activity"
-                        glytype = "bookmark"
-                      when "curator_change"
-                        glytype = "user"
-                      when "invited"
-                        glytype = "send"
-                      when "created_post"
-                        glytype = "pencil"
-                      end
-                    -%>
-                    <div class="sub-badge">
-                      <i class="glyphicon glyphicon-<%= glytype %>"></i>
-                    </div>
-                  <%- end %>
-                  <div class="timeline-panel">
-                    <div class="timeline-heading">
-                      <h2 class="timeline-title">
-                        <%- if is_mention %>
-                          <%= link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do %>
-                            <span class="glyphicon glyphicon-cog"></span>
-                          <%- end %>
-                        <%- else %>
-                          <%= link_to edit_subscription_by_resource_path(resource_type, resource_id), class: "pull-right subscriptionsettings" do %>
-                            <span class="glyphicon glyphicon-cog"></span>
-                          <%- end %>
-                        <%- end %>
-                        <span class="time" title="<%= updates.last.sort_by_date.iso8601 %>">
-                          <i class="glyphicon glyphicon-time"></i>  <%= compact_date(updates.last.sort_by_date) %>
-                        </span>
-                        <%= update_tagline_for(updates.last, :count => updates.size) %>
-                      </h2>
-                    </div>
-                    
-                    <% if notification == "activity" || is_mention -%>
-                      <div class="timeline-body">
-                        <%- target_id = rand(36**8).to_s(36) %>
-                        <div id="expand<%= "#{target_id}" %>" class="collapse out">
-                          <%- if updates[0].resource_type == 'Observation' %>
-                            <%- observations = [updates[0].resource] -%>
-                            <%= render partial: 'observations/observations_component_for_dashboard', locals: {for_idents: true, observations: observations} %>
-                          <% end %>
-                          <ul class="timeline timeline_observation">
-                            <% for u in updates[0..-2] %>
-                              <%-
-                                notifier = nil
-                                if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-                                  notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-                                end
-                                notifier ||= u.notifier
-                              -%>
-                              <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
-                            <% end %>
-                          </ul>
-                        </div>
-                        <ul class="timeline timeline_observation" style="margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0">
-                          <%-
-                            u = updates.last
-                            notifier = nil
-                            if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-                              notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-                            end
-                            notifier ||= u.notifier
-                          -%>
-                          <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
-                        </ul>
-                      </div>
-                      <div class="timeline-footer">
-                        <%- if resource_type == "Post" %>
-                          <%= link_to t(:view_post), resource, :class => "btn btn-sm btn-primary" %>
-                        <%- else %>
-                          <%= link_to t(:view_observation), resource, :class => "btn btn-sm btn-primary" %>
-                        <% end -%>
-                        <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
-                      </div>  
-                    <% else %>                      
-                      <%= 
-                        begin
-                          render :partial => "#{resource_type.underscore.pluralize}/update_#{notification}", 
-                            :object => resource, :locals => {:updates => updates, :resource => resource}
-                          rescue ActionView::MissingTemplate, Errno::ENOENT
-                          "#{resource_type} #{notification}"
-                        end
-                      -%>                      
-                    <% end -%>  
-                  </div>
-                </li>
-              <% end -%>
-            </ul>
-            <div class="pagination">
-              <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "btn btn-sm btn-default") unless @pagination_updates.blank? %>
-            </div>
-          <% end %>
+        <div class="tab-pane active" id="updates">
+          <%= loading %>
+        </div>
+        <div class="tab-pane" id="updates_by_you">
+          <%= loading %>
         </div>
         <div class="tab-pane" id="comments">
           <%= loading %>
