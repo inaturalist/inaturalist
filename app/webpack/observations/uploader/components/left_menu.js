@@ -61,145 +61,111 @@ class LeftMenu extends SelectionBasedComponent {
           />
           <br />
           <br />
-          <Accordion defaultActiveKey="1">
-            <Panel
-              eventKey="1"
-              className="details-panel"
-              header={ ( <div>Details<Glyphicon glyph="menu-right" className="rotate" /></div> ) }
-              onEnter={ () => { $( ".details-panel .glyphicon" ).addClass( "rotate" ); } }
-              onExit={ () => { $( ".details-panel .glyphicon" ).removeClass( "rotate" ); } }
-            >
-              <TaxonAutocomplete
-                key={
-                  `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
-                bootstrap
-                searchExternal
-                showPlaceholder
-                perPage={ 6 }
-                initialSelection={ commonSelectedTaxon }
-                afterSelect={ r => {
-                  if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
-                    updateSelectedObsCards(
-                      { taxon_id: r.item.id,
-                        selected_taxon: r.item,
-                        species_guess: r.item.title } );
-                  }
-                } }
-                afterUnselect={ ( ) => {
-                  if ( commonSelectedTaxon ) {
-                    updateSelectedObsCards(
-                      { taxon_id: null,
-                        selected_taxon: null,
-                        species_guess: null } );
-                  }
-                } }
-                placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
-                  I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
-              />
-              <DateTimeFieldWrapper
-                ref="datetime"
-                key={ `multidate${commonDate}` }
-                reactKey={ `multidate${commonDate}` }
-                dateTime={ commonDate ?
-                    moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
-                onChange={ dateString => updateSelectedObsCards(
-                  { date: dateString, selected_date: dateString } ) }
-              />
-              <div className="input-group"
-                onClick= { ( ) => {
-                  if ( this.refs.datetime ) {
-                    this.refs.datetime.onClick( );
-                  }
-                } }
-              >
-                <div className="input-group-addon">
-                  <Glyphicon glyph="calendar" />
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={ commonDate }
-                  onChange= { e => {
-                    if ( this.refs.datetime ) {
-                      this.refs.datetime.onChange( undefined, e.target.value );
-                    }
-                  } }
-                  placeholder={ this.valuesOf( "date" ).length > 1 ?
-                    I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
-                />
-              </div>
-              <div className="input-group"
-                onClick={ this.openLocationChooser }
-              >
-                <div className="input-group-addon">
-                  <Glyphicon glyph="map-marker" />
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={ locationText }
-                  placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
-                    this.valuesOf( "longitude" ).length > 1 ) ?
-                    I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
-                  readOnly
-                />
-              </div>
-              <div className="form-group">
-                <textarea
-                  placeholder={ uniqDescriptions.length > 1 ?
-                    I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
-                  className="form-control"
-                  value={ commonDescription || "" }
-                  onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-                />
-              </div>
-              <Input
-                key={ `multigeoprivacy${commonGeoprivacy}` }
-                type="select"
-                value={ commonGeoprivacy }
-                onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
-              >
-                { multipleGeoprivacy }
-                <option value="open">{ "Location is public" }</option>
-                <option value="obscured">{ "Location is obscured" }</option>
-                <option value="private">{ "Location is private" }</option>
-              </Input>
-              <Input type="checkbox"
-                label={ I18n.t( "captive_cultivated" ) }
-                checked={ this.commonValue( "captive" ) }
-                value="true"
-                onChange={ e =>
-                  updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
-              />
-            </Panel>
-            <Panel
-              eventKey="2"
-              className="tags-panel"
-              header={ ( <div>Tags<Glyphicon glyph="menu-right" /></div> ) }
-              onEnter={ () => { $( ".tags-panel .glyphicon" ).addClass( "rotate" ); } }
-              onExit={ () => { $( ".tags-panel .glyphicon" ).removeClass( "rotate" ); } }
-            >
-              <TagsChooser { ...this.props } />
-            </Panel>
-            <Panel
-              eventKey="3"
-              className="projects-panel"
-              header={ ( <div>Projects<Glyphicon glyph="menu-right" /></div> ) }
-              onEnter={ () => { $( ".projects-panel .glyphicon" ).addClass( "rotate" ); } }
-              onExit={ () => { $( ".projects-panel .glyphicon" ).removeClass( "rotate" ); } }
-            >
-              <ProjectsChooser { ...this.props } />
-            </Panel>
-            <Panel
-              eventKey="4"
-              className="fields-panel"
-              header={ ( <div>Fields<Glyphicon glyph="menu-right" /></div> ) }
-              onEnter={ () => { $( ".fields-panel .glyphicon" ).addClass( "rotate" ); } }
-              onExit={ () => { $( ".fields-panel .glyphicon" ).removeClass( "rotate" ); } }
-            >
-              <ObservationFieldsChooser { ...this.props } />
-            </Panel>
-          </Accordion>
+          <TaxonAutocomplete
+            key={
+              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
+            bootstrap
+            searchExternal
+            showPlaceholder
+            perPage={ 6 }
+            initialSelection={ commonSelectedTaxon }
+            afterSelect={ r => {
+              if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
+                updateSelectedObsCards(
+                  { taxon_id: r.item.id,
+                    selected_taxon: r.item,
+                    species_guess: r.item.title } );
+              }
+            } }
+            afterUnselect={ ( ) => {
+              if ( commonSelectedTaxon ) {
+                updateSelectedObsCards(
+                  { taxon_id: null,
+                    selected_taxon: null,
+                    species_guess: null } );
+              }
+            } }
+            placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
+              I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
+          />
+          <DateTimeFieldWrapper
+            ref="datetime"
+            key={ `multidate${commonDate}` }
+            reactKey={ `multidate${commonDate}` }
+            dateTime={ commonDate ?
+                moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
+            onChange={ dateString => updateSelectedObsCards(
+              { date: dateString, selected_date: dateString } ) }
+          />
+          <div className="input-group"
+            onClick= { ( ) => {
+              if ( this.refs.datetime ) {
+                this.refs.datetime.onClick( );
+              }
+            } }
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="calendar" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ commonDate }
+              onChange= { e => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onChange( undefined, e.target.value );
+                }
+              } }
+              placeholder={ this.valuesOf( "date" ).length > 1 ?
+                I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
+            />
+          </div>
+          <div className="input-group"
+            onClick={ this.openLocationChooser }
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="map-marker" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ locationText }
+              placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
+                this.valuesOf( "longitude" ).length > 1 ) ?
+                I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              placeholder={ uniqDescriptions.length > 1 ?
+                I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
+              className="form-control"
+              value={ commonDescription || "" }
+              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+            />
+          </div>
+          <Input
+            key={ `multigeoprivacy${commonGeoprivacy}` }
+            type="select"
+            value={ commonGeoprivacy }
+            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+          >
+            { multipleGeoprivacy }
+            <option value="open">{ "Location is public" }</option>
+            <option value="obscured">{ "Location is obscured" }</option>
+            <option value="private">{ "Location is private" }</option>
+          </Input>
+          <Input type="checkbox"
+            label={ I18n.t( "captive_cultivated" ) }
+            checked={ this.commonValue( "captive" ) }
+            value="true"
+            onChange={ e =>
+              updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+          />
+          <TagsChooser { ...this.props } />
+          <ProjectsChooser { ...this.props } />
+          <ObservationFieldsChooser { ...this.props } />
         </div>
       );
     }
