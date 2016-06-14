@@ -25,20 +25,25 @@ class IdentificationsController < ApplicationController
     @identifications = scope.page(params[:page]).per_page(20)
     Identification.preload_associations(@identifications, [
       { observation: [ :user, :photos, :taxon ] }, :taxon, :user ])
-    @identifications_by_obs_id = @identifications.index_by(&:observation_id)
-    @observations = @identifications.collect(&:observation)
-    @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
-      includes(:observation, :taxon)
-    @other_id_stats = {}
-    @other_ids.group_by(&:observation).each do |obs, ids|
-      user_ident = @identifications_by_obs_id[obs.id]
-      agreements = ids.select do |ident|
-        ident.in_agreement_with?(user_ident)
+    respond_to do |format|
+      format.html do
+        @identifications_by_obs_id = @identifications.index_by(&:observation_id)
+        @observations = @identifications.collect(&:observation)
+        @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
+          includes(:observation, :taxon)
+        @other_id_stats = {}
+        @other_ids.group_by(&:observation).each do |obs, ids|
+          user_ident = @identifications_by_obs_id[obs.id]
+          agreements = ids.select do |ident|
+            ident.in_agreement_with?(user_ident)
+          end
+          @other_id_stats[obs.id] = {
+            :num_agreements => agreements.size,
+            :num_disagreements => ids.size - agreements.size
+          }
+        end
       end
-      @other_id_stats[obs.id] = {
-        :num_agreements => agreements.size,
-        :num_disagreements => ids.size - agreements.size
-      }
+      format.json { render json: @identifications }
     end
   end
   

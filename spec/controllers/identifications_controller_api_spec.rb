@@ -129,6 +129,22 @@ shared_examples_for "an IdentificationsController" do
       expect(identification).to be_current
     end
   end
+
+  describe "by_login" do
+    it "should return identifications by the selected user" do
+      ident = Identification.make!( user: user )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      puts "json: #{json.inspect}"
+      expect( json.detect{|i| i["id"] == ident.id } ).not_to be_blank
+    end
+    it "should not return identifications not by the selected user" do
+      ident = Identification.make!
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      expect( json.detect{|i| i["id"] == ident.id } ).to be_blank
+    end
+  end
 end
 
 describe IdentificationsController, "oauth authentication" do
