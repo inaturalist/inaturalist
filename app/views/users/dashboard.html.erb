@@ -14,16 +14,18 @@
   <script type="text/javascript" charset="utf-8">
     var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
     $(document).ready(function() {
-      $('#tabs').tabs({
-        show: function(event, ui) {
-          if ($(ui.panel).attr('id') == 'comments' && !$(ui.panel).hasClass('loaded')) {
-            $(ui.panel).load('/comments?partial=true', function(data) {
-              var html = data.replace(/[\s\n]+/, ' ')
-              $(this).html(html)
-            })
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href") // activated tab
+        $.ajax({
+          type: "GET",
+          url: "/comments?partial=true",
+          error: function(data){
+            alert("There was a problem");
+          },
+          success: function(data){
+            $(target).html(data);
           }
-          $(ui.panel).addClass('loaded')
-        }
+        })
       })
       
       $('.subscriptionsettings').subscriptionSettings()
@@ -120,7 +122,7 @@
 
   <div class="col-md-8"  style="background-color:white">
     <div class="tabbable">
-      <ul class="nav nav-pills">
+      <ul id="myTab" class="nav nav-tabs">
   	  	<li class="<%= 'active' if params[:filter].blank? %>" >
           <% if params[:filter].blank? %>
             <a href="#updates" data-toggle="tab"><%= t(:following).capitalize %></a>
@@ -137,8 +139,8 @@
         </li>
   		  <li><a href="#comments" data-toggle="tab"><%= t :comment_feed %></a></li>
   	  </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="updates">
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active" id="updates<%= "_by_you" if params[:filter].blank? %>">
           <% if current_user.observations_count < 4 && !current_user.prefers_hide_observe_onboarding -%>
             <div class="panel panel-success" id="observe_panel">
               <div class="panel-heading">
@@ -330,9 +332,6 @@
                 </li>
               <% end -%>
             </ul>
-            <script type="text/javascript" charset="utf-8">
-              $('.observationcontrols').observationControls()
-            </script>
             <div class="pagination">
               <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "btn btn-sm btn-default") unless @pagination_updates.blank? %>
             </div>
