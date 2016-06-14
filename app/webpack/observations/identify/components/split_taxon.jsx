@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 
-const SplitTaxon = ( { taxon, url, noParens } ) => {
+const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
   const taxonClass = ( ) => {
     let cssClass = "taxon";
     if ( taxon ) {
@@ -37,6 +37,21 @@ const SplitTaxon = ( { taxon, url, noParens } ) => {
         </a>
       );
     } else if ( !taxon ) {
+      if ( placeholder ) {
+        return (
+          <span>
+            <a
+              className="noname display-name"
+              href={ url }
+              target="_self"
+            >
+              { I18n.t( "unknown" ) }
+            </a> <span className="altname">
+              ({ I18n.t( "placeholder" ) }: { placeholder })
+            </span>
+          </span>
+        );
+      }
       return (
         <a
           className="noname display-name"
@@ -91,7 +106,8 @@ const SplitTaxon = ( { taxon, url, noParens } ) => {
 SplitTaxon.propTypes = {
   taxon: PropTypes.object,
   url: PropTypes.string,
-  noParens: PropTypes.bool
+  noParens: PropTypes.bool,
+  placeholder: PropTypes.string
 };
 
 export default SplitTaxon;

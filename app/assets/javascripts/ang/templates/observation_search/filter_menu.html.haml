@@ -171,7 +171,7 @@
                   {{ shared.t('project') | capitalize:'title' }}
                 .input-group
                   %span.input-group-addon.fa.fa-briefcase
-                  %input.form-control{ placeholder: "{{ shared.t('url_slug_or_id') }}", type: "search", name: "project_name", title: "{{ shared.t('url_slug_or_id') }}", "ng-class" => "{ 'filter-changed': params.project_id }" }
+                  %input.form-control{ placeholder: "{{ shared.t('name_or_slug') }}", type: "search", name: "project_name", title: "{{ shared.t('name_or_slug') }}", "ng-class" => "{ 'filter-changed': params.project_id }" }
                   %input{ "ng-model" => "params.project_id", type: "hidden", name: "project_id" }
               .form-group
                 %label.sectionlabel{for: "params-place-name"}

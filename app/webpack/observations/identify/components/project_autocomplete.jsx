@@ -48,7 +48,7 @@ class ProjectAutocomplete extends React.Component {
           type="search"
           name="project_title"
           className={`form-control ${this.props.className}`}
-          placeholder={ I18n.t( "url_slug_or_id" ) }
+          placeholder={ I18n.t( "name_or_slug" ) }
         />
         <input type="hidden" name="project_id" />
       </span>

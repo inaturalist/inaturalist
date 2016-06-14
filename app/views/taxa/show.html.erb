@@ -337,8 +337,6 @@
         <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
 
-      countries: <%= @countries.map(&:code).join(", ") %>
-
       <% if @check_listed_taxa.blank? -%>
         <% unless logged_in? %><div class="description"><%= t(:no_places_selected)%></div><% end %>
       <% else %>

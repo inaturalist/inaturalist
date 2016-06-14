@@ -15,7 +15,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     onDelete: ( item ) => {
       dispatch( loadingDiscussionItem( ) );
-      if ( item.className === "Identification " ) {
+      if ( item.className === "Identification" ) {
         dispatch( deleteIdentification( item ) )
           .then( ( ) => {
             dispatch( fetchCurrentObservation( ) );

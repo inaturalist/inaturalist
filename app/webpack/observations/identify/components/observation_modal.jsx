@@ -64,12 +64,37 @@ const ObservationModal = ( {
         zoomLevel={ obsForMap.map_scale || 8 }
         mapTypeControl={false}
         showAccuracy
-        className="stacked"
         disableFullscreen
         showAllLayer={false}
         overlayMenu={false}
       />
     );
+  }
+
+  let photos = null;
+  if ( images && images.length > 0 ) {
+    photos = (
+      <ZoomableImageGallery
+        key={`map-for-${observation.id}`}
+        items={images}
+        showThumbnails={images && images.length > 1}
+        lazyLoad={false}
+        server
+        showNav={false}
+      />
+    );
+  }
+  let sounds = null;
+  if ( observation.sounds && observation.sounds.length > 0 ) {
+    sounds = observation.sounds.map( s => (
+      <iframe
+        width="100%"
+        height="100"
+        scrolling="no"
+        frameBorder="no"
+        src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
+      ></iframe>
+    ) );
   }
 
   const scrollSidebarToForm = ( form ) => {
@@ -108,10 +133,18 @@ const ObservationModal = ( {
       </Button>
       <Modal.Header closeButton>
         <Modal.Title>
-          <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
-          <span className="datebit">
+          <SplitTaxon
+            taxon={observation.taxon}
+            url={`/observations/${observation.id}`}
+            placeholder={observation.species_guess}
+          />
+          <span className="titlebit">
             <label>{ I18n.t( "observed" ) }:</label>
             { moment( observation.observed_on ).format( "L" ) }
+          </span>
+          <span className="titlebit">
+            <label>{ I18n.t( "by" ) }:</label>
+            { observation.user.login }
           </span>
           <span className={`pull-right quality_grade ${observation.quality_grade}`}>
             { qualityGrade( ) }
@@ -121,18 +154,15 @@ const ObservationModal = ( {
       <Modal.Body>
         <Grid fluid>
           <Row>
-            <Col xs={8}>
-              <ZoomableImageGallery
-                key={`map-for-${observation.id}`}
-                items={images}
-                showThumbnails={images && images.length > 1}
-                lazyLoad={false}
-                server
-                showNav={false}
-              />
+            <Col xs={8} className={( photos && sounds ) ? "photos sounds" : "media"}>
+              { photos }
+              { sounds }
             </Col>
             <Col xs={4} className="sidebar">
-              {taxonMap}
+              { taxonMap }
+              <div className="place-guess">
+                { observation.place_guess }
+              </div>
               <UserText text={observation.description} truncate={100} className="stacked" />
               <DiscussionListContainer observation={observation} />
               <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>

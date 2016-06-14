@@ -78,9 +78,14 @@ const DiscussionListItem = ( {
   return (
     <div className={`DiscussionListItem ${className}`}>
       <div className="clear">
-        <a href={`/people/${user.login}`}>
-          {user.login}
-        </a>'s { identification ? I18n.t( "identification" ) : I18n.t( "comment" ) }
+        <span
+          dangerouslySetInnerHTML={ { __html: (
+            identification ?
+              I18n.t( "users_identification_html", { user: user.login, url: `/people/${user.login}` } )
+              :
+              I18n.t( "users_comment_html", { user: user.login, url: `/people/${user.login}` } )
+          ) } }
+        ></span>
         { controls }
         <span className="date pull-right" title={createdAt}>
           { moment( createdAt ).local( ).fromNow( ) }

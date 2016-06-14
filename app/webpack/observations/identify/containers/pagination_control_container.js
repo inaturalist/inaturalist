@@ -17,10 +17,12 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     loadMore: ( ) => {
+      window.scrollTo( 0, 0 ); // $.scrollTo didn't seem to work for some reason
       dispatch( updateSearchParams( { page: 1 } ) );
       dispatch( fetchObservations( ) );
     },
     loadPage: ( page ) => {
+      window.scrollTo( 0, 0 );
       dispatch( updateSearchParams( { page } ) );
       dispatch( fetchObservations( ) );
     }

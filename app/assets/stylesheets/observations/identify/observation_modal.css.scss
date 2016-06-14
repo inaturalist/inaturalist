@@ -61,13 +61,13 @@ $image-gallery-height: 380px;
 .ObservationModal .modal-title {
   font-size: 16px;
 }
-.ObservationModal .modal-title .datebit {
-  color: #bbb;
+.ObservationModal .modal-title .titlebit {
+  color: #aaa;
   margin-left: 10px;
   font-size: 14px;
   text-transform: uppercase;
 }
-.ObservationModal .modal-title .datebit label {
+.ObservationModal .modal-title .titlebit label {
   margin-right: 5px;
 }
 .ObservationModal .modal-body {
@@ -142,6 +142,7 @@ $image-gallery-height: 380px;
   height: auto;
   width: auto;
   opacity: 1;
+  cursor: zoom-out;
 }
 
 .easyzoom-zoomed img {
@@ -153,6 +154,7 @@ $image-gallery-height: 380px;
 .easyzoom > a {
   display: inline-block;
   width: 100%;
+  cursor: zoom-in;
 }
 body > div > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
@@ -197,4 +199,21 @@ dl.keyboard-shortcuts,
 .captive-checkbox-wrapper {
   display: inline-block;
   margin-left: 10px;
+}
+
+.ObservationModal .photos.sounds .image-gallery {
+  margin-bottom: 10px;
+}
+.ObservationModal .photos.sounds .image-gallery,
+.ObservationModal .photos.sounds .image-gallery-content,
+.ObservationModal .photos.sounds .image-gallery-content img {
+  height: 260px;
+}
+.ObservationModal .place {
+  background-color: #DDDDDD;
+}
+.ObservationModal .place-guess {
+  text-align: center;
+  padding: 5px;
+  font-size: smaller;
 }

@@ -47,6 +47,9 @@ es-MX:
   x_observations_link_html:
     one: <a href='%{url}'>1</a> observación
     other: <a href='%{url}'>%{count}</a> observaciones
+  x_observations_reviewed_html:
+    one: <span class='count'>1</span> observación revisada
+    other: <span class='count'>%{count}</span> observaciones revisadas
   x_people:
     one: Una persona
     other: '%{count} personas'
@@ -236,6 +239,7 @@ es-MX:
   agree: En acuerdo
   agree?: ¿Estás de acuerdo?
   agree_to_the_project_terms: De acuerdo con los términos del proyecto
+  agree_with_current_taxon: De acuerdo con la especie o grupo
   agreeing: De acuerdo...
   aka: Alias
   all: Todo
@@ -1187,6 +1191,7 @@ es-MX:
   find_suitable_observations: Encuentra observaciones adecuadas
   find_unsuitable_observations: Encuentra observaciones inadecuadas
   find_your_current_location: Encuentra tu ubicación actual
+  finished_with_page: Terminaste la página
   first_confirmed_inat_observation: Primera observacipón confirmada de %{site_name}
   first_connect_your_provider_account_to_your_site: 'Primero, conecta tu cuenta %{provider}
     a %{site_name}:'
@@ -1369,6 +1374,7 @@ es-MX:
   id_please: Identificación por favor
   id_please_expandable_html: Identificación<span class='full'> por favor!</span>
   identify: Identificación
+  identify_title: Identificar
   identification: Identificación
   identification_deleted: Identificación eliminada.
   identification_saved: ¡Identificación guardada!
@@ -1514,11 +1520,13 @@ es-MX:
   journal: Diario
   journal_archives_for: Archivos de Diario para
   journal_post: Nota de diario
+  journal_post: Notas de diarios
   journal_post_deleted: La nota del diario ha sido borrada.
   jpg_png_or_gif: JPG, PNG, o GIF
   jump_to_letter: Brinca a la letra
   just_added!: ¡Recientemente añadido!
   kelp_diatoms_and_allies: Kelp, diatomeas y parientes
+  keyboard_shortcuts: Teclas de acceso rápido
   kml: KML
   kml_file_size_error: KML debe ser menor a 1 MB de tamaño
   labels: Etiquetas
@@ -1778,6 +1786,8 @@ es-MX:
       range: Distribución
   map_tooltip: Muestra la vista de mapa
   map_for: Mapa para
+  mark_all_as_reviewed: Marcar todas como revisadas
+  mark_all_as_unreviewed: Marcar todas como no revisadas
   matched_several_different_taxa: varios taxa distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
     El mapa mostrará un rango si %{place} tiene alguna de esas especies.
@@ -2572,7 +2582,8 @@ es-MX:
   recently_resolved: Resuelto recientemente
   record!: ¡Comparte!
   red: Rojo
-  redo_search_in_map_area: Vuelve a realizar la búsqueda en el área del mapa
+  redo_search_in_map: Volver a cargar el mapa
+  redo_search_in_map_area: Volver a cargar el mapa
   refresh: Refrescar
   refresh_listed_taxa: actualiza taxa incluidos
   refreshing: actualizando
@@ -2790,6 +2801,7 @@ es-MX:
   single_taxon: Una especie o grupo(entrada de datos para separar/eliminar/etapa,
     salida de datos para mezclar/intercambiar)
   sizes: Tamaños
+  skip_to_next_page: Ir a la sig. página
   small: chica
   site_name_place: Lugares de %{site_name}
   site_observations_export_from_date: '%{site_name} observaciones exportadas de %{date}'
@@ -3058,6 +3070,7 @@ es-MX:
   that_observation_no_longer_exists: Esa observació ya no existe.
   that_project_doesnt_exist: Ese proyecto ya no existe.
   that_role_doesnt_exist: Ese rol no existe.
+  that_was_the_last_observation_matching_the_current_filters: Esa fué la última observación que coincidió con los actuales filtros.
   that_will_insert_a_link_to: que insertará un enlace en esta herramienta en cada
     página de fotos de Flickr
   thats_okay_we_forget: ¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos
@@ -3265,6 +3278,7 @@ es-MX:
   tools: Herramientas
   top_5_identifiers: Los 5 identificadores principales
   top_contributors: Los principales contribuyentes
+  top_identifiers: Los principales identificadores
   total: Total
   totals: Totales
   total_members: Total de miembros
@@ -3395,9 +3409,11 @@ es-MX:
   username_or_email: Nombre de usuario o correo electónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
+  users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> contribuciones
     de %{project_title}
   users_id: de %{user}
+  users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Últimas observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}
   users_profile: Perfil de %{user}
@@ -3445,6 +3461,7 @@ es-MX:
   view_more_observations_of_x_taxon: Ver mas observaciones de la especie o grupo %{taxon}
     en <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Ver mas observaciones recientes
+  view_more_unreviewed: Ver más sin revisar
   view_nbsp: Ver &nbsp;
   view_non_mobile_site: Ver el sitio fijo
   view_post: Ve diario
@@ -3460,6 +3477,7 @@ es-MX:
   view_original_by: Ver original de %{by} en %{photo}
   view_original_ccD_photo: Ve la foto original CC de  %{owner}
   view_other_taxa: Ver otro <nobr> %{taxon_name} &raquo; </nobr>
+  view_photo: Ver foto
   view_photos_ranges_observations_more: ¡Ve fotos, distribución de especies, observaciones
     de %{site_name} y mucho más! Hemos reunido información de muchas fuentes distintas
     y combinadas proporcionan un rápido resumen para cada especie en cada lugar.
@@ -3743,6 +3761,7 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
+  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Tu nueva contraseña es
@@ -4215,6 +4234,10 @@ es-MX:
         tag_list: Lista de etiquetas separadas por comas
         positioning_method: Cómo se determinaron las coordenadas
         positioning_device: Dispositivo usado para determinar las coordenadas
+      identify:
+        review_all_tooltip: Marcar todas las observaciones de esta página como revisadas
+        you_reviewed_message: Has revisado %{reviewed} de %{pageTotal} observaciones en esta página, de un total de %{total} observaciones coincidentes.
+        unreview_all_tooltip: Quitar el estatus de revisadas a todas las observaciones de esta página
       import:
         coordinate_systems_help: '%{site_name} acepta las coordenadas usando varios
           sistemas distintos de coordenadas, Cuando proporcionas en otro sistema que

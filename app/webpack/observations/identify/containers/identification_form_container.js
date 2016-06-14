@@ -12,7 +12,8 @@ import {
 // <IdentificationFormContainer observation={foo} />
 function mapStateToProps( state, ownProps ) {
   return {
-    observation: ownProps.observation
+    observation: ownProps.observation,
+    currentUser: state.config.currentUser
   };
 }
 

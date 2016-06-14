@@ -1118,6 +1118,8 @@ en:
   find_suitable_observations: Find suitable observations
   find_unsuitable_observations: Find unsuitable observations
   find_your_current_location: Find your current location
+  finished: Finished
+  finished_with_page: Finished With Page
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
@@ -1734,6 +1736,7 @@ en:
   name: Name
   name_entered: Name entered
   name_llaves: "[NAME]"
+  name_or_slug: "Name or URL slug, e.g. my-project"
   name_of_the_place_you: Name of the place you made the observation
   name_or_username: Name or username
   name_provider: Name provider
@@ -2684,6 +2687,7 @@ en:
   single_observation: Single observation
   single_taxon: Single taxon (input for split/drop/stage, output for merge/swap)
   sizes: Sizes
+  skip_to_next_page: "Skip to next page"
   small: small
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
@@ -2928,6 +2932,7 @@ en:
   that_observation_no_longer_exists: That observation no longer exists.
   that_project_doesnt_exist: "That project doesn't exist."
   that_role_doesnt_exist: That role doesn't exist
+  that_was_the_last_observation_matching_the_current_filters: That was the last observation matching the current filters.
   that_will_insert_a_link_to: that will insert a link to this tool on every Flickr photo page.
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
   thats_not_a_real_date: That's not a real date!
@@ -3177,7 +3182,6 @@ en:
   uploaded_by: Uploaded by
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
-  url_slug_or_id: "URL slug or ID, e.g. my-project or 333"
   US_states: US States
   usage_stats: Usage stats
   use_name_as_a_placeholder: |
@@ -3228,6 +3232,8 @@ en:
   users_contributions_to_project_html: |
     <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_id: "%{user}'s ID"
+  users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
+  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
@@ -3269,6 +3275,7 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_recent_observations: View more recent observations
+  view_more_unreviewed: "View more unreviewed"
   view_nbsp: "View &nbsp;"
   view_non_mobile_site: View non-mobile site
   view_post: View post
@@ -4027,8 +4034,9 @@ en:
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
       identify:
-          review_all_tooltip: "Mark all observations on the page as reviewed"
-          unreview_all_tooltip: "Remove reviewed status for all observations on the page"
+        review_all_tooltip: "Mark all observations on the page as reviewed"
+        you_reviewed_message: "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
+        unreview_all_tooltip: "Remove reviewed status for all observations on the page"
       import:
         coordinate_systems_help: |
           %{site_name} accepts coordinates using several different coordinate
