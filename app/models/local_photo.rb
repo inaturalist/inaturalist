@@ -29,11 +29,11 @@ class LocalPhoto < Photo
     default_url: "/attachment_defaults/:class/:style.png"
   }
 
-  if Rails.env.production? || Rails.env.prod_dev?
+  if Rails.env.production?
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
-      s3_host_alias: CONFIG.s3_host,
+      s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       path: "photos/:id/:style.:extension",
       url: ":s3_alias_url",
