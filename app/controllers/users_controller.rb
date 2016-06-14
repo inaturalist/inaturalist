@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
   
-  MOBILIZED = [:show, :dashboard, :new, :create]
+  MOBILIZED = [:show, :new, :create]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
 
@@ -26,12 +26,11 @@ class UsersController < ApplicationController
     request.parameters[:action] == "search" && request.format.json? }
 
   caches_action :dashboard_updates,
-    :expires_in => 1.hour,
+    :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|
       c.send(
         :home_url,
         :user_id => c.instance_variable_get("@current_user").id,
-        :mobile => c.request.format.mobile?,
         :ssl => c.request.ssl?
       )
     },
@@ -400,7 +399,7 @@ class UsersController < ApplicationController
       Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
-        render :partial => 'dashboard_updates', :collection => @updates, :layout => false
+        render :partial => 'dashboard_updates', :layout => false
       end
     end
   end
@@ -424,7 +423,6 @@ class UsersController < ApplicationController
         end
         render layout: "bootstrap"
       end
-      format.mobile
     end
   end
   

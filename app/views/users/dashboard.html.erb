@@ -145,6 +145,65 @@
   	  </ul>
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane active" id="updates">
+          <% if current_user.observations_count < 4 && !current_user.prefers_hide_observe_onboarding -%>
+            <div class="panel panel-success" id="observe_panel">
+              <div class="panel-heading">
+                <a data-panel-type="observe" class="close">&times;</a>
+                <h3 class="panel-title" style="font-size:20px"><%=t :lets_get_started_by_posting_some_observations %></h3>
+              </div>
+              <div class="panel-body">
+                <%- if @local_onboarding_content[:target_taxa] %>
+                  <p class="lead">
+                    <%= @local_onboarding_content[:local_results] ? t(:for_inspiration_local) : t(:for_inspiration_global) %>
+                  </p>
+                  <div class="row">
+                    <% for taxon in @local_onboarding_content[:target_taxa] %>
+                      <%= render(:partial => 'favorites', :locals => {:taxon => taxon}) %>
+                    <% end %>
+                  </div>
+                <% end -%>
+                <div class="media">
+                  <div class="media-body">
+                    <p class="lead"><%= t(:the_next_step, new_observation_path: new_observation_path).html_safe %></p>
+                    <p><%= t( :you_can_also_use, site_name: SITE_NAME )%></p>
+                  </div>
+                  <div class="media-right"><img class="media-object"  src="http://static.inaturalist.org/wiki_page_attachments/615-original.jpg" style="padding: 0 0 0 10px"></div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <%= link_to observations_path, class: "btn btn-primary btn-md" do %>
+                  <%=t :browse_observations %> <span class="glyphicon glyphicon-chevron-right"></span>
+                <% end %>
+                <%= link_to "/pages/getting+started", target: "_blank" do %>
+                  <span class="glyphicon glyphicon-info-sign"></span> <%=t :getting_started_guide %>
+                <% end %>
+              </div>        
+            </div>
+          <% end -%>
+
+          <% if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]-%>
+            <div class="panel panel-success" id="follow_panel">
+              <div class="panel-heading">
+                <a data-panel-type="follow" class="close">&times;</a>
+                <h3 class="panel-title"> <%= @local_onboarding_content[:local_results] ? t(:follow_some_nearby_naturalists) : t(:follow_some_active_naturalists) %></h3>
+              </div>
+              <div class="panel-body">
+                <p>
+                  <%=t :youll_be_updated %>
+                </p>  
+                <div class="row">
+                  <% @local_onboarding_content[:to_follows].each do |to_follow| %>
+                    <%= render(:partial => 'followees', :locals => {:friend => to_follow}) %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <%= link_to people_path, class: "btn btn-primary" do %>
+                  <%=t :browse_people %> <span class="glyphicon glyphicon-chevron-right"></span>
+                <% end %>  
+              </div>
+            </div>                
+          <% end -%> 
           <%= loading %>
         </div>
         <div class="tab-pane" id="updates_by_you">
