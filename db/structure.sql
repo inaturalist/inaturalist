@@ -14755,7 +14755,7 @@ CREATE INDEX index_taxa_on_locked ON taxa USING btree (locked);
 
 
 --
--- Name: index_taxa_on_lower_name_and_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_taxa_on_lower_name_and_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_taxa_on_lower_name_and_id ON taxa USING btree (lower((name)::text), id);

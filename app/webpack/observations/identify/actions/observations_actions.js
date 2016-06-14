@@ -14,6 +14,7 @@ function receiveObservations( results ) {
 
 function fetchObservations( ) {
   return function ( dispatch, getState ) {
+    dispatch( setConfig( { allReviewed: false } ) );
     const s = getState();
     const currentUser = s.config.currentUser ? s.config.currentUser : null;
     const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
