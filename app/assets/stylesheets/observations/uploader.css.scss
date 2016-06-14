@@ -109,9 +109,10 @@ body {
 // Main content structure
 
 .row-fluid {
-  .col-fixed-240 {
-    width: 240px;
+  .col-fixed-250 {
+    width: 250px;
     float: left;
+    overflow: visible;
     &.fixed {
       margin-top: -52px;
       position: fixed;
@@ -124,7 +125,8 @@ body {
     width: 70%;
   }
   .left-col-padding {
-    padding-left: 5px
+    padding-left: 5px;
+    padding-right: 10px;
   }
 }
 
@@ -177,13 +179,6 @@ body {
       text-decoration: none;
     }
   }
-  .ofv-field {
-    width: 40%;
-    border-right: 0px;
-  }
-  .ofv-value {
-    width: 60%;
-  }
   .panel-title .glyphicon {
     margin-left: 10px;
     font-size: 0.8em;
@@ -214,10 +209,24 @@ body {
   }
   .taglist {
     margin-bottom: 10px;
+    line-height: 1.8em;
     .badge {
       margin-left: 5px;
       font-weight: 300;
-      letter-spacing: 0.3px;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 1px 7px;
+      span.wrap {
+        display: inline-block;
+        max-width: 190px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      span.field {
+        max-width: 130px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
     }
     .field {
       font-weight: 600;
@@ -230,8 +239,35 @@ body {
       z-index: 3;
       cursor: pointer;
       &:hover {
-        opacity: 1;
+        opacity: 0.8;
       }
+    }
+  }
+  .observation-field {
+    h4 {
+      font-size: 16px;
+    }
+    caption {
+      display: block;
+      padding-top: 0px;
+    }
+    padding-bottom: 15px;
+    .help-block {
+      margin-bottom: 0px;
+    }
+    button.standalone[type="submit"] {
+      margin-top: 10px;
+    }
+  }
+  .options {
+    border-top: 1px solid #DFDFDF;
+    padding-top: 10px;
+    color: black;
+    a {
+      color: black;
+    }
+    .glyphicon-new-window {
+      margin-left: 5px;
     }
   }
 }

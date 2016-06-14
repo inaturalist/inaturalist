@@ -163,6 +163,29 @@ describe LocalPhoto, "to_observation" do
     expect( o.tag_list ).to include 'tag1'
     expect( o.tag_list ).to include 'tag2'
   end
+
+  it "uses the observations time zone" do
+    lp = LocalPhoto.make!(metadata: {
+      date_time_original: "2016-06-06 06:16:00 -0400"
+    }, user: User.make!(time_zone: "Hawaii"))
+    o = lp.to_observation
+    lp1 = LocalPhoto.make!(metadata: {
+      date_time_original: "2016-06-06 06:16:00 -1000"
+    }, user: User.make!(time_zone: "Hawaii"))
+    o1 = lp1.to_observation
+    puts "IN SPEC"
+    pp o.datetime.to_s
+    pp o1.datetime.to_s
+    pp o.time_observed_at
+    pp o1.time_observed_at
+    pp lp.as_json(include: :to_observation)
+    pp lp1.as_json(include: :to_observation)
+    puts "ENDSPEC"
+    pp lp.as_json(include: :to_observation)["to_observation"]["time_observed_at"].to_s
+    pp lp1.as_json(include: :to_observation)["to_observation"]["time_observed_at"].to_s
+    expect( o.observed_on_string.to_s ).to eq "2016-06-06 06:16:00 -1000"
+    expect( o.time_zone ).to eq "Hawaii"
+  end
 end
 
 describe LocalPhoto, "flagging" do

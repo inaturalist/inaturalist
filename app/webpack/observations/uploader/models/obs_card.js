@@ -105,7 +105,8 @@ const ObsCard = class ObsCard {
         observation_field_values_attributes: this.observation_field_values,
         tag_list: this.tags.join( "," ),
         captive_flag: this.captive
-      }
+      },
+      project_id: _.map( this.projects, "id" )
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
     if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }

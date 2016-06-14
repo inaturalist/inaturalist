@@ -33,7 +33,7 @@ class LocalPhoto < Photo
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
-      s3_host_alias: CONFIG.s3_bucket,
+      s3_host_alias: CONFIG.s3_host,
       bucket: CONFIG.s3_bucket,
       path: "photos/:id/:style.:extension",
       url: ":s3_alias_url",
@@ -185,12 +185,19 @@ class LocalPhoto < Photo
     end
     if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
       o.set_time_zone
-      o.time_observed_at = capture_time.in_time_zone(o.time_zone)
+      # puts "START"
+      # puts o.time_zone
+      # pp capture_time
+      # pp capture_time.in_time_zone(o.time_zone)
+      o.time_observed_at = capture_time
+      # o.time_observed_at = capture_time.in_time_zone(o.time_zone)
       o.set_time_in_time_zone
       if o.time_observed_at
         o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
         o.observed_on = o.time_observed_at.to_date
       end
+      # pp o.observed_on_string
+      # puts "END"
     end
     unless metadata[:dc].blank?
       o.taxon = to_taxon

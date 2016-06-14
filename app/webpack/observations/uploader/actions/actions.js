@@ -19,7 +19,11 @@ const actions = class actions {
   }
 
   static appendObsCards( obsCards ) {
-    return { type: types.APPEND_OBS_CARDS, obsCards };
+    return function ( dispatch ) {
+      const firstKey = _.first( _.keys( obsCards ) );
+      dispatch( { type: types.APPEND_OBS_CARDS, obsCards } );
+      dispatch( actions.selectObsCards( { [firstKey]: true } ) );
+    };
   }
 
   static selectObsCards( ids ) {
@@ -51,7 +55,12 @@ const actions = class actions {
   }
 
   static createBlankObsCard( ) {
-    return { type: types.CREATE_BLANK_OBS_CARD };
+    return function ( dispatch, getState ) {
+      dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
+      const s = getState( );
+      const lastKey = _.last( _.keys( s.dragDropZone.obsCards ) );
+      dispatch( actions.selectObsCards( { [lastKey]: true } ) );
+    };
   }
 
   static onFileDrop( droppedFiles, e ) {

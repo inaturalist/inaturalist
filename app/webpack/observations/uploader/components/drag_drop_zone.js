@@ -44,6 +44,7 @@ class DragDropZone extends Component {
     this.selectCard = this.selectCard.bind( this );
     this.resize = this.resize.bind( this );
     this.selectNone = this.selectNone.bind( this );
+    this.resizeLeftMenu = this.resizeLeftMenu.bind( this );
   }
 
   componentDidMount( ) {
@@ -80,7 +81,7 @@ class DragDropZone extends Component {
     $( "body" ).on( "click", this.unselectAll );
     $( ".uploader" ).selectable( { filter: ".card",
       cancel: ".card, .glyphicon, input, button, .input-group-addon, " +
-        ".input-group-addon, .intro, select, " +
+        ".input-group-addon, .intro, select, .leftColumn, " +
         ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
       selected: this.selectObsCards,
       unselected: this.selectObsCards,
@@ -118,6 +119,17 @@ class DragDropZone extends Component {
   resize( ) {
     this.resizeElement( $( ".uploader" ) );
     this.resizeElement( $( "#imageGrid" ) );
+    this.resizeLeftMenu( );
+  }
+
+  resizeLeftMenu( ) {
+    const el = $( ".leftColumn" );
+    if ( el.length > 0 ) {
+      const topOffset = el.position( ).top;
+      const height = $( window ).height( );
+      const difference = height - topOffset;
+      el.css( "height", difference );
+    }
   }
 
   resizeElement( el ) {
@@ -210,19 +222,24 @@ class DragDropZone extends Component {
       const countSelected = _.keys( selectedObsCards ).length;
       const lastUpdate = _.max( _.map( selectedObsCards, c => c.updatedAt ) );
       const first = keys[0];
-      const leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
-      let leftClass = "col-fixed-240 leftColumn";
+      let leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
+      if ( this.props.observationField ) {
+        leftMenuKey += `field${this.props.observationField.id}`;
+      }
+      if ( this.props.observationFieldValue ) {
+        leftMenuKey += this.props.observationFieldValue;
+      }
+      if ( this.props.observationFieldSelectedDate ) {
+        leftMenuKey += this.props.observationFieldSelectedDate;
+      }
+      let leftClass = "col-fixed-250 leftColumn";
       if ( this.props.scrolledPastToolbar ) { leftClass += " fixed"; }
       leftColumn = (
         <Col className={ leftClass }>
           <LeftMenu
             reactKey={ leftMenuKey }
             count={ cardCount }
-            setState={ this.props.setState }
-            selectedObsCards={ this.props.selectedObsCards }
-            updateSelectedObsCards={ this.props.updateSelectedObsCards }
-            appendToSelectedObsCards={ this.props.appendToSelectedObsCards }
-            removeFromSelectedObsCards={ this.props.removeFromSelectedObsCards }
+            { ...this.props }
           />
         </Col>
       );

@@ -19,7 +19,6 @@ genericAutocomplete.menuClosed = function( ) {
   return ( $("ul.ac-menu:visible").length == 0 );
 };
 
-
 genericAutocomplete.focus = function( e, ui ) {
   var ac = $(this).data( "uiAutocomplete" );
   var li = ac.menu.element.find("li#ui-id-"+ ui.item.id);
@@ -110,7 +109,8 @@ $.fn.genericAutocomplete = function( options ) {
     delay: 50,
     source: options.source,
     select: options.select || field.select,
-    focus: options.focus || genericAutocomplete.focus
+    focus: options.focus || genericAutocomplete.focus,
+    appendTo: options.appendTo
   }).data( "uiAutocomplete" );
   // modifying _move slightly to prevent scrolling with arrow
   // keys past the top or bottom of the autocomplete menu

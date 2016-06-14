@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
 import { Glyphicon } from "react-bootstrap";
+import ReactDOM from "react-dom";
 import { pipe } from "ramda";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
@@ -31,7 +32,9 @@ const cardSource = {
 
 const cardTarget = {
   canDrop( props, monitor ) {
+    console.log("CanDrop");
     const item = monitor.getItem( );
+    console.log(monitor.getClientOffset());
     return item.obsCard.id !== props.obsCard.id;
   },
   drop( props, monitor, component ) {
@@ -44,6 +47,36 @@ const cardTarget = {
       ), dropResult.obsCard );
     }
   }
+  // hover( props, monitor, component ) {
+  //   const dragIndex = monitor.getItem().obsCard.id;
+  //   const hoverIndex = props.obsCard.id;
+
+  //   // Don't replace items with themselves
+  //   if ( dragIndex === hoverIndex ) {
+  //     return;
+  //   }
+
+  //   // Determine rectangle on screen
+  //   const hoverBoundingRect = ReactDOM.findDOMNode( component ).getBoundingClientRect( );
+
+  //   // Get horisontal middle
+  //   const hoverMiddleX = ( hoverBoundingRect.right - hoverBoundingRect.left ) / 2;
+
+  //   // Determine mouse position
+  //   const clientOffset = monitor.getClientOffset();
+  //   // console.log( monitor.getInitialClientOffset() );
+  //   // console.log( monitor.getClientOffset() );
+
+  //   // Get pixels to the top
+  //   const hoverClientX = clientOffset.x - hoverBoundingRect.left;
+
+  //     console.log(monitor.getClientOffset())
+  //   if ( hoverClientX <= hoverMiddleX ) {
+  //     console.log("on the left")
+  //   } else {
+  //     console.log( "on the right");
+  //   }
+  // }
 };
 
 const photoTarget = {
@@ -128,7 +161,6 @@ class ObsCardComponent extends Component {
       zoom: this.props.obsCard.zoom,
       center: this.props.obsCard.center,
       bounds: this.props.obsCard.bounds,
-      geoprivacy: this.props.obsCard.geoprivacy,
       notes: this.props.obsCard.locality_notes
     } } );
   }

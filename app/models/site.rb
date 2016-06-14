@@ -46,14 +46,10 @@ class Site < ActiveRecord::Base
   belongs_to :place, :inverse_of => :sites
 
   # header logo, should be at least 118x22
-  if Rails.env.production?
+  if Rails.env.production? || Rails.env.prod_dev?
     has_attached_file :logo,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_host_alias => CONFIG.s3_bucket,
-      :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo.:extension",
-      :url => ":s3_alias_url",
+      :url => "http://staticdev.inaturalist.org/sites/:id-logo.:extension",
       :default_url => "/assets/logo-small.gif"
   else
     has_attached_file :logo,
