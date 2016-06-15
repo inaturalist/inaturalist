@@ -1,72 +1,102 @@
 <%- 
   comment ||= listing_for_dashboard
   extra ||= nil
+  parent = comment.parent
 -%>
-<div class="column span-24 commentitem lined">
-  <div class="column span-24">
-    <%- case comment.parent.class.to_s -%>
-    <%- when "Observation" -%>
-      <div class="commenttype">
-        <%= link_to image_tag("notebook-icon-color-15px.png"), comment.parent %>
-        <%= link_to t(:observation), comment.parent %>
-        <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
-      </div>
-    <%- when "Post" %>
-      <div class="commenttype">
-        <%= link_to image_tag("silk/book-light.png"), journal_post_path(comment.parent.user.login, comment.parent) %>
-        <%= link_to t(:journal_post), journal_post_path(comment.parent.user.login, comment.parent) %>
-        <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>:
-      </div>
-    <%- when "ListedTaxon" %>
-      <div class="commenttype">
-        <%= link_to image_tag("checklist-icon-color-15px.png"), comment.parent %>
-        <%= link_to t(:listed_taxon), comment.parent %>
-        <% if comment.parent.user -%>
-            <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
-        <% end -%>
-        <%= t :on_ %>
-        <%= link_to truncate(h(comment.parent.list.title), :length => 85), comment.parent.list %>
-      </div>
-    <%- else %>
-      <div class="commenttype">
-        <%= link_to comment.parent.class.to_s.underscore.humanize, comment.parent %> 
-        <% if comment.parent.user -%>
-          <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
-        <% end -%>
-      </div>
-    <%- end -%>
-  </div>
 
-  <div class="column span-8">
-    <%- case comment.parent.class.to_s -%>
+<li class="observation_multiple_added">
+  <div class="timeline-badge plain">
+    <%- case parent.class.to_s -%>
     <%- when "Observation" -%>
-      <div class="mini observations">
-        <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [comment.parent]} %>
-      </div>
-    <%- when "Post" %>
-      <h3><%= link_to comment.parent.title, journal_post_path(comment.parent.user.login, comment.parent) %></h3>
+      <%= link_to observation_image(parent, :options => {:size => "square"}, :style => "max-width:48px;"), parent %>
+    <%- when "Post" -%>
+      <%- case parent.parent_type -%>
+      <%- when "User" -%>
+        <%= link_to image_tag(parent.user.icon.url(:thumb), :options => {:class => "usericon"}, :style => "max-width:48px;"), parent %>
+      <%- when "Project" -%>
+        <%= link_to image_tag(parent.parent.icon.url(:thumb), :options => {:class => "projecticon"}, :style => "max-width:48px;"), parent %>
+      <%- else %>
+        <%= link_to image_tag(parent.parent.logo_square.url, :options => {:class => "siteicon"}, :style => "max-width:48px;"), parent %>
+      <%- end -%>
     <%- when "ListedTaxon" %>
-      <%= iconic_taxon_image comment.parent.taxon, :style => "vertical-align: middle" %>
-      <%= link_to comment.parent.taxon do %>
-        <%= render :partial => "shared/taxon", :object => comment.parent.taxon %>
-      <% end %>
+      <%= link_to image_tag("checklist-icon-color-32px.png", :style => "max-width:48px;"), parent %>
     <%- else %>
-      <div class="commenttype">
-        <%= link_to comment.parent.class.to_s.underscore.humanize, comment.parent %> 
-        <% if comment.parent.user -%>
-          <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
-        <% end -%>
-      </div>
+      <%= link_to image_tag(FakeView.image_url("logo-cccccc-20px.png")), parent %>
     <%- end -%>
+  </div>                    
+  <div class="sub-badge">
+    <i class="glyphicon glyphicon-bookmark"></i>
   </div>
-  
-  <div class="last column span-16">
-    <% if @comments_by_parent_id -%>
-      <%= render :partial => "shared/activity_item_for_dashboard", :collection => @comments_by_parent_id[comment.parent_id] %>
-    <% else %>
-      <%= render :partial => "shared/activity_item_for_dashboard", :object => comment %>
-    <% end -%>
-    
-    <%= extra %>
+  <div class="timeline-panel">
+    <div class="timeline-heading">
+      <h2 class="timeline-title">
+        <span class="comment_time">
+          <i class="glyphicon glyphicon-time"></i>  <%= compact_date(comment.created_at) %>
+        </span>
+        <%- case comment.parent.class.to_s -%>
+        <%- when "Observation" -%>
+            <%= link_to t(:observation), comment.parent %>
+            <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
+        <%- when "Post" %>
+            <%= link_to t(:journal_post), journal_post_path(comment.parent.user.login, comment.parent) %>
+            <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>:
+        <%- when "ListedTaxon" %>
+            <%= link_to t(:listed_taxon), comment.parent %>
+            <% if comment.parent.user -%>
+                <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
+            <% end -%>
+            <%= t :on_ %>
+            <%= link_to truncate(h(comment.parent.list.title), :length => 85), comment.parent.list %>
+        <%- else %>
+            <%= link_to comment.parent.class.to_s.underscore.humanize, comment.parent %> 
+            <% if comment.parent.user -%>
+              <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
+            <% end -%>
+        <%- end -%>
+      </h2>
+    </div>
+    <div class="timeline-body">
+      <%- target_id = rand(36**8).to_s(36) %>
+      <div id="expand<%= "#{target_id}" %>" class="collapse out">
+        <div>
+          <%- case comment.parent.class.to_s -%>
+          <%- when "Observation" -%>
+            <div class="mini observations">
+              <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [comment.parent]} %>
+            </div>
+          <%- when "Post" %>
+            <h3><%= link_to comment.parent.title, journal_post_path(comment.parent.user.login, comment.parent) %></h3>
+          <%- when "ListedTaxon" %>
+            <%= iconic_taxon_image comment.parent.taxon, :style => "vertical-align: middle" %>
+            <%= link_to comment.parent.taxon do %>
+              <%= render :partial => "shared/taxon", :object => comment.parent.taxon %>
+            <% end %>
+          <%- else %>
+            <div class="commenttype">
+              <%= link_to comment.parent.class.to_s.underscore.humanize, comment.parent %> 
+              <% if comment.parent.user -%>
+                <%= t(:by).downcase %> <%= link_to comment.parent.user.login, comment.parent.user %>
+              <% end -%>
+            </div>
+          <%- end -%>
+        </div>
+        <%- if @comments_by_parent_id[[comment.parent.class.to_s,comment.parent_id].join("_")].length > 1 %>
+          <ul class="timeline timeline_observation">
+            <%= render :partial => "shared/activity_item_for_dashboard", :collection => @comments_by_parent_id[[comment.parent.class.to_s,comment.parent_id].join("_")][0..-2] %>
+          </ul>
+        <%- end %>
+      </div>
+      <ul class="timeline timeline_observation" style="margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0">
+        <%= render :partial => "shared/activity_item_for_dashboard", :object => @comments_by_parent_id[[comment.parent.class.to_s,comment.parent_id].join("_")].last %>
+      </ul>
+    </div>
+    <div class="timeline-footer">
+      <%- if comment.parent.class.to_s == "Post" %>
+        <%= link_to t(:view_post), comment.parent, :class => "btn btn-sm btn-primary" %>
+      <%- else %>
+        <%= link_to t(:view_observation), comment.parent, :class => "btn btn-sm btn-primary" %>
+      <% end -%>
+      <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
+    </div>
   </div>
-</div>
+</li>

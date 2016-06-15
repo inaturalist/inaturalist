@@ -207,6 +207,15 @@ h2.timeline-title { /* fix - added h2 */
 	border-right: 1px solid #ddd;
 	margin-right: 10px;
 }
+
+.timeline-title > .comment_time {
+	float: right!important;
+	color: #777;
+	font-size: 75%;
+	padding-right: 10px;
+	border-right: 0px;
+	margin-right: 10px;
+}
 .timeline-heading {
 	background-color: #f2f2f2;
 }
@@ -230,13 +239,14 @@ h2.timeline-title { /* fix - added h2 */
 	font-weight: normal;
 	color: gray
 }
-.label.label_research_grade {
+.label_research_grade {
   margin-left: 10px;
 	padding-left: 10px;
 	border-left: 1px solid #ddd;
   padding: .5em .6em .5em .7em;
 	background-color: #74ac00;
-	font-weight: normal
+	font-weight: normal;
+  color: white;
 }
 
 /* PANEL CONTENT > MEDIA ************************************* */
@@ -397,10 +407,12 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > l
 
 /* Observation Activity - Timeline 
 ------------------------- */
-
 .timeline_observation:before {
-	width: 2px;
+	width: 0;
 	margin-left: 20px;
+}​
+ul.timeline_observation > li {
+	margin-bottom:10px;	
 }
 ul.timeline_observation > li > .timeline-badge {
 	color: #fff;
@@ -416,10 +428,8 @@ ul.timeline_observation > li > .timeline-badge {
 	border-top-right-radius: 50%;
 	border-top-left-radius: 50%;
 	border-bottom-right-radius: 50%;
-	border-bottom-left-radius: 50%;
+	border-bottom-left-radius: 50%
 }
-/* Udder */
-
 .timeline_observation > li > .timeline-panel:before {
 	position: absolute;
 	top: 9px;
@@ -434,6 +444,7 @@ ul.timeline_observation > li > .timeline-badge {
 	border-right-width: 11px;
 	left: -11px;
 	right: auto;
+	border:none
 }
 .timeline_observation > li > .timeline-panel:after {
 	position: absolute;
@@ -449,35 +460,48 @@ ul.timeline_observation > li > .timeline-badge {
 	border-right-width: 10px;
 	left: -10px;
 	right: auto;
+	border:none
 }
 ul.timeline_observation > li > .timeline-badge > img {
 	width: 40px;
-	height: 40px;
+	height: 40px
 }
 ul.timeline_observation > li > .timeline-panel {
-	background-color: #fafafa;
-	box-shadow: none
+	box-shadow: none;
+	border:none;
+	border-radius:0
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-heading {
-	background-color: #F1F1F1;
+	background-color: transparent;
+		border-top: 1px solid #eee;
+		padding-left:0;
+		padding-right:0;
+		margin-right:0
+}
+ul.timeline_observation > li > .timeline-panel > .timeline-heading > h2.timeline-title {
+	padding-bottom: 10px;
+	margin-right: 0;
+	padding-right:0
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > .timeline-title > .time {
-	border-right: none;
-	margin-right: 0;
-	padding-right: 0
+	border-right: 0;
+}
+a.subscriptionsettings {
+  margin-top:-2px;
+  color: gray
 }
 ul.timeline_observation > li > .timeline-panel .btn_agree {
 	float: right;
-	margin-top: 5px;
+	margin-top: 5px
 }
 ul.timeline_observation > li > .timeline-panel .label_refined {
 	float: right;
 	margin-top: 7px;
-  margin-right: 15px;
+	margin-right: 15px;
 	background-color: #ddd;
 	font-weight: normal;
 	color: black;
-  padding: .5em .6em .5em .7em;
+	padding: .5em .6em .5em .7em
 }
 ul.timeline_observation > li.id_refined {
 	opacity: .6
@@ -486,11 +510,34 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body > .media > .medi
 	padding: 2px;
 	margin-right: 0
 }
+ul.timeline_observation > li > .timeline-panel > .timeline-body {
+	padding-top: 0;
+	padding-bottom: 0
+}
+/* ------------------------- */
 
 .for_idents {
-  padding-bottom:15px;
-  margin-bottom:15px;
-  border-bottom: 1px solid #eee;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #DEDEDE;
+	background-color:#ededed;
+	border-radius:2px
+}
+
+.media-body > h3 > .taxon > .comname {
+  display: block;
+}
+
+.taxon > a {
+  color: rgb(51,51,51);
+}
+
+.taxon > .comname > a {
+  color: rgb(51,51,51);
+}
+
+.taxon > a > .sciname {
+  color: rgb(51,51,51);
 }
 
 p.alert-info{
@@ -509,6 +556,9 @@ h3.dashboard_id > .taxon > .comname {
   display: block;
 }
 
+h3 .glyphicon {
+  font-size:14px;
+}
 .icon_container {
   padding: 20px;
 }

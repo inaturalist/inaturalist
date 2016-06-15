@@ -973,7 +973,7 @@ module ApplicationHelper
       to_trim = rendered_name.length - trunclength + 3
       rendered_pieces = rendered_name.split
       (rendered_pieces.length-1).downto(0).each do |ind|
-        if rendered_pieces[ind].length >= to_trim && rendered_pieces[ind] != rendered_rank
+        if rendered_pieces[ind].length >= ( to_trim + 1 ) && rendered_pieces[ind] != rendered_rank
           new_end = rendered_pieces[ind].length - to_trim - 1
           rendered_pieces[ind] = rendered_pieces[ind][0..new_end]
           break
