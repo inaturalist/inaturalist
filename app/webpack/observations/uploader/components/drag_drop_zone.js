@@ -44,7 +44,6 @@ class DragDropZone extends Component {
     this.selectCard = this.selectCard.bind( this );
     this.resize = this.resize.bind( this );
     this.selectNone = this.selectNone.bind( this );
-    this.resizeLeftMenu = this.resizeLeftMenu.bind( this );
   }
 
   componentDidMount( ) {
