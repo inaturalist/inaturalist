@@ -1,7 +1,8 @@
 import _ from "lodash";
 import moment from "moment-timezone";
 import React, { PropTypes } from "react";
-import { Input, Glyphicon, Accordion, Panel, Badge } from "react-bootstrap";
+import { Input, Glyphicon, Accordion, Panel, Badge,
+  OverlayTrigger, Tooltip } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
@@ -50,6 +51,12 @@ class LeftMenu extends SelectionBasedComponent {
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
     let multipleGeoprivacy = !commonGeoprivacy && ( <option>{ " -- multiple -- " }</option> );
+    let geoprivacyTooltip = "Everyone can see the coordinates unless the taxon is threatened";
+    if ( commonGeoprivacy === "obscured" ) {
+      geoprivacyTooltip = "Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation";
+    } else if ( commonGeoprivacy === "obscured" ) {
+      geoprivacyTooltip = "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation";
+    }
     return (
       <div>
         <TaxonAutocomplete
@@ -88,72 +95,109 @@ class LeftMenu extends SelectionBasedComponent {
           onChange={ dateString => updateSelectedObsCards(
             { date: dateString, selected_date: dateString } ) }
         />
-        <div className="input-group"
-          onClick= { ( ) => {
-            if ( this.refs.datetime ) {
-              this.refs.datetime.onClick( );
-            }
-          } }
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">Date and time of observation</Tooltip> ) }
         >
-          <div className="input-group-addon">
-            <Glyphicon glyph="calendar" />
-          </div>
-          <input
-            type="text"
-            className="form-control"
-            value={ commonDate }
-            onChange= { e => {
+          <div className="input-group"
+            onClick= { ( ) => {
               if ( this.refs.datetime ) {
-                this.refs.datetime.onChange( undefined, e.target.value );
+                this.refs.datetime.onClick( );
               }
             } }
-            placeholder={ this.valuesOf( "date" ).length > 1 ?
-              I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
-          />
-        </div>
-        <div className="input-group"
-          onClick={ this.openLocationChooser }
-        >
-          <div className="input-group-addon">
-            <Glyphicon glyph="map-marker" />
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="calendar" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ commonDate }
+              onChange= { e => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onChange( undefined, e.target.value );
+                }
+              } }
+              placeholder={ this.valuesOf( "date" ).length > 1 ?
+                I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
+            />
           </div>
-          <input
-            type="text"
-            className="form-control"
-            value={ locationText }
-            placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
-              this.valuesOf( "longitude" ).length > 1 ) ?
-              I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
-            readOnly
-          />
-        </div>
-        <div className="form-group">
-          <textarea
-            placeholder={ uniqDescriptions.length > 1 ?
-              I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
-            className="form-control"
-            value={ commonDescription || "" }
-            onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-          />
-        </div>
-        <Input
-          key={ `multigeoprivacy${commonGeoprivacy}` }
-          type="select"
-          value={ commonGeoprivacy }
-          onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">Location of observation</Tooltip> ) }
         >
-          { multipleGeoprivacy }
-          <option value="open">{ "Location is public" }</option>
-          <option value="obscured">{ "Location is obscured" }</option>
-          <option value="private">{ "Location is private" }</option>
-        </Input>
-        <Input type="checkbox"
-          label={ I18n.t( "captive_cultivated" ) }
-          checked={ this.commonValue( "captive" ) }
-          value="true"
-          onChange={ e =>
-            updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
-        />
+          <div className="input-group"
+            onClick={ this.openLocationChooser }
+          >
+            <div className="input-group-addon">
+              <Glyphicon glyph="map-marker" />
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              value={ locationText }
+              placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
+                this.valuesOf( "longitude" ).length > 1 ) ?
+                I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
+              readOnly
+            />
+          </div>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">Description</Tooltip> ) }
+        >
+          <div className="form-group">
+            <textarea
+              placeholder={ uniqDescriptions.length > 1 ?
+                I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
+              className="form-control"
+              value={ commonDescription || "" }
+              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+            />
+          </div>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ multipleGeoprivacy ? ( <span /> ) :
+            ( <Tooltip id="left-date-tip">{ geoprivacyTooltip }</Tooltip> ) }
+        >
+          <Input
+            key={ `multigeoprivacy${commonGeoprivacy}` }
+            type="select"
+            value={ commonGeoprivacy }
+            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+          >
+            { multipleGeoprivacy }
+            <option value="open">{ "Location is public" }</option>
+            <option value="obscured">{ "Location is obscured" }</option>
+            <option value="private">{ "Location is private" }</option>
+          </Input>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">The organism exists where it was observed because humans intended it to be there. iNaturalist is about observing wild organism, and our scientific data partners are not interested in observations of pets, gardens, or animals in zoos</Tooltip> ) }
+        >
+          <div className="form-group">
+            <div className="checkbox">
+              <label>
+                <input type="checkbox"
+                  checked={ this.commonValue( "captive" ) }
+                  value="true"
+                  onChange={ e =>
+                    updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+                />
+                <span>{ I18n.t( "captive_cultivated" ) }</span>
+              </label>
+            </div>
+          </div>
+        </OverlayTrigger>
       </div>
     );
   }
@@ -173,12 +217,16 @@ class LeftMenu extends SelectionBasedComponent {
       </div>
     );
     let className = `panel-${key}`;
+    let entered = ( key !== "1" ) ? () => {
+      $( `.${className} input:first` ).focus( ).select( ).val( "" );
+    } : undefined;
     return (
       <Panel
         eventKey={ key }
         className={ className }
         header={ header }
         onEnter={ () => { $( `.${className} .toggle` ).addClass( "rotate" ); } }
+        onEntered={ entered }
         onExit={ () => { $( `.${className} .toggle` ).removeClass( "rotate" ); } }
       >
         { contents }

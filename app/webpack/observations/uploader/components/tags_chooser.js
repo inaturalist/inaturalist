@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Glyphicon, Badge, OverlayTrigger, Tooltip, Popover } from "react-bootstrap";
+import { Glyphicon, Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SelectionBasedComponent from "./selection_based_component";
 
 class TagsChooser extends SelectionBasedComponent {
@@ -31,28 +31,27 @@ class TagsChooser extends SelectionBasedComponent {
     return (
       <div className="tags">
         <form onSubmit={this.submitTag}>
-          <div className="input-group">
-            <OverlayTrigger
-              placement="bottom"
-              delayShow={ 1000 }
-              delay={ 3000 }
-              overlay={ ( <Popover id="tag-tip">Separate tags by commas</Popover> ) }
-            >
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="tag-tip">Tags are keywords you can add to an observation to make them easier to find. For example, if a barracuda followed you on a scuba diving trip in Turks and Caicos, you might tag the observation "scary, barracuda, scuba diving, vacation, turks and caicos"</Tooltip> ) }
+          >
+            <div className="input-group">
               <input
                 type="text"
                 className="form-control"
                 placeholder="Add tags..."
               />
-            </OverlayTrigger>
-            <span className="input-group-btn">
-              <button
-                className="btn btn-default"
-                type="submit"
-              >
-                Add
-              </button>
-            </span>
-          </div>
+              <span className="input-group-btn">
+                <button
+                  className="btn btn-default"
+                  type="submit"
+                >
+                  Add
+                </button>
+              </span>
+            </div>
+          </OverlayTrigger>
         </form>
         <div className="taglist">
           { _.map( commonTags, ( t, i ) => (

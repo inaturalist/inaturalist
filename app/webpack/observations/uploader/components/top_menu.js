@@ -29,13 +29,16 @@ class TopMenu extends Component {
     );
     let className = "nav_add_obs";
     if ( this.props.scrolledPastToolbar ) { className += " fixed"; }
+    const removeDisabled = countSelected === 0;
+    const combineDisabled = countSelectedPending > 0 || countSelected < 2;
+    const selectAllDisabled = countTotal === 0;
     return (
       <Navbar className={ className } fluid>
         <Nav>
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="add-tip">Add additional photos or photoless observations</Tooltip> ) }
+            overlay={ ( <Tooltip id="add-tip">Add observation(s)</Tooltip> ) }
           >
             <NavDropdown title={ dropdownToggle } id="add_photos">
               <MenuItem onClick={ fileChooser }>{ I18n.t( "photo_s" ) }</MenuItem>
@@ -47,11 +50,12 @@ class TopMenu extends Component {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="remove-tip">Remove selected observations</Tooltip> ) }
+            overlay={ removeDisabled ? ( <span /> ) :
+              ( <Tooltip id="remove-tip">Remove selected observations</Tooltip> ) }
           >
             <NavItem
               onClick={ confirmRemoveSelected }
-              disabled={ countSelected === 0 }
+              disabled={ removeDisabled }
             >
               <Glyphicon glyph="remove" />
               { I18n.t( "remove" ) }
@@ -60,11 +64,12 @@ class TopMenu extends Component {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="merge-tip">Merge selected observations</Tooltip> ) }
+            overlay={ combineDisabled ? ( <span /> ) :
+              ( <Tooltip id="merge-tip">Combine selected observations</Tooltip> ) }
           >
             <NavItem
               onClick={ combineSelected }
-              disabled={ countSelectedPending > 0 || countSelected < 2 }
+              disabled={ combineDisabled }
             >
               <Glyphicon glyph="resize-small" />
               { I18n.t( "combine" ) }
@@ -73,7 +78,8 @@ class TopMenu extends Component {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="select-tip">Select all observations</Tooltip> ) }
+            overlay={ selectAllDisabled ? ( <span /> ) :
+              ( <Tooltip id="select-tip">Select all observations</Tooltip> ) }
           >
             <li className={ `select ${countTotal === 0 && "disabled"}` }>
               <form className="navbar-form" role="search">
@@ -81,7 +87,7 @@ class TopMenu extends Component {
                   id="select-all"
                   type="checkbox"
                   key={ `select${countSelected}${countTotal}` }
-                  disabled={ countTotal === 0 }
+                  disabled={ selectAllDisabled }
                   checked={ countTotal > 0 && countSelected === countTotal }
                   onChange={ ( ) => (
                     countSelected !== countTotal ? selectAll( ) : selectNone( ) ) }

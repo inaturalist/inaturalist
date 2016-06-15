@@ -197,6 +197,10 @@ class LeftMenu extends SelectionBasedComponent {
     );
   }
 
+  dnaInput( ) {
+    return ( <textarea name="value" className="form-control" /> );
+  }
+
   defaultInput( ) {
     return (
       <div className="input-group">
@@ -221,14 +225,18 @@ class LeftMenu extends SelectionBasedComponent {
     const commonOfvs = this.uniqueValuesOf( "observation_field_values" );
     let observationFieldInput;
     const field = this.props.observationField;
+    const standaloneSubmit = ( <Button className="standalone" type="submit">Add</Button> );
     if ( field ) {
       let input;
       let submit;
       if ( field.allowed_values ) {
         input = this.selectInput( field );
-        submit = ( <Button className="standalone" type="submit">Add</Button> );
+        submit = standaloneSubmit;
       } else if ( field.datatype === "taxon" ) {
         input = this.taxonInput( );
+      } else if ( field.datatype === "dna" ) {
+        input = this.dnaInput( );
+        submit = standaloneSubmit;
       } else if ( field.datatype === "datetime" ||
                   field.datatype === "time" ||
                   field.datatype === "date" ) {
@@ -248,13 +256,22 @@ class LeftMenu extends SelectionBasedComponent {
     return (
       <div className="ofvs">
         <form onSubmit={ this.submitFieldValue }>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control ofv-field"
-              placeholder="Add a field..."
-            />
-          </div>
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="field-tip">Observation fields are additional data fields that can be added to observations</Tooltip> ) }
+          >
+            <div className="input-group">
+              <div className="input-group-addon input-sm">
+                <Glyphicon glyph="th-list" />
+              </div>
+              <input
+                type="text"
+                className="form-control ofv-field"
+                placeholder="Add a field..."
+              />
+            </div>
+          </OverlayTrigger>
           <input type="hidden" name="observation_field_id" value={ field && field.id } />
           <div className="taglist">
             { _.map( commonOfvs, ( t, i ) => {

@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
-import { Glyphicon } from "react-bootstrap";
-import ReactDOM from "react-dom";
+import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
@@ -32,9 +31,7 @@ const cardSource = {
 
 const cardTarget = {
   canDrop( props, monitor ) {
-    console.log("CanDrop");
     const item = monitor.getItem( );
-    console.log(monitor.getClientOffset());
     return item.obsCard.id !== props.obsCard.id;
   },
   drop( props, monitor, component ) {
@@ -47,36 +44,6 @@ const cardTarget = {
       ), dropResult.obsCard );
     }
   }
-  // hover( props, monitor, component ) {
-  //   const dragIndex = monitor.getItem().obsCard.id;
-  //   const hoverIndex = props.obsCard.id;
-
-  //   // Don't replace items with themselves
-  //   if ( dragIndex === hoverIndex ) {
-  //     return;
-  //   }
-
-  //   // Determine rectangle on screen
-  //   const hoverBoundingRect = ReactDOM.findDOMNode( component ).getBoundingClientRect( );
-
-  //   // Get horisontal middle
-  //   const hoverMiddleX = ( hoverBoundingRect.right - hoverBoundingRect.left ) / 2;
-
-  //   // Determine mouse position
-  //   const clientOffset = monitor.getClientOffset();
-  //   // console.log( monitor.getInitialClientOffset() );
-  //   // console.log( monitor.getClientOffset() );
-
-  //   // Get pixels to the top
-  //   const hoverClientX = clientOffset.x - hoverBoundingRect.left;
-
-  //     console.log(monitor.getClientOffset())
-  //   if ( hoverClientX <= hoverMiddleX ) {
-  //     console.log("on the left")
-  //   } else {
-  //     console.log( "on the right");
-  //   }
-  // }
 };
 
 const photoTarget = {
@@ -98,8 +65,7 @@ class ObsCardComponent extends Component {
   static collectCard( connect, monitor ) {
     return {
       cardDragSource: connect.dragSource( ),
-      cardIsDragging: monitor.isDragging( ),
-      cardDragPreview: connect.dragPreview( )
+      cardIsDragging: monitor.isDragging( )
     };
   }
 
@@ -266,50 +232,68 @@ class ObsCardComponent extends Component {
                 updateObsCard( obsCard, { date: dateString, selected_date: dateString } )
               }
             />
-            <div className="input-group"
-              onClick= { () => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onClick( );
-                }
-              } }
+            <OverlayTrigger
+              placement="top"
+              delayShow={ 1000 }
+              overlay={ ( <Tooltip id="date-tip">Date and time of observation</Tooltip> ) }
             >
-              <div className="input-group-addon input-sm">
-                <Glyphicon glyph="calendar" />
-              </div>
-              <input
-                type="text"
-                className="form-control input-sm"
-                value={ obsCard.date }
-                onChange= { e => {
+              <div className="input-group"
+                onClick= { () => {
                   if ( this.refs.datetime ) {
-                    this.refs.datetime.onChange( undefined, e.target.value );
+                    this.refs.datetime.onClick( );
                   }
                 } }
-                placeholder={ I18n.t( "date_" ) }
-              />
-            </div>
-            <div className="input-group"
-              onClick={ this.openLocationChooser }
-            >
-              <div className="input-group-addon input-sm">
-                <Glyphicon glyph="map-marker" />
+              >
+                <div className="input-group-addon input-sm">
+                  <Glyphicon glyph="calendar" />
+                </div>
+                <input
+                  type="text"
+                  className="form-control input-sm"
+                  value={ obsCard.date }
+                  onChange= { e => {
+                    if ( this.refs.datetime ) {
+                      this.refs.datetime.onChange( undefined, e.target.value );
+                    }
+                  } }
+                  placeholder={ I18n.t( "date_" ) }
+                />
               </div>
-              <input
-                type="text"
-                className="form-control input-sm"
-                value={ locationText }
-                placeholder={ I18n.t( "location" ) }
-                readOnly
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                placeholder={ I18n.t( "description" ) }
-                className="form-control input-sm"
-                value={ obsCard.description }
-                onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
-              />
-            </div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delayShow={ 1000 }
+              overlay={ ( <Tooltip id="location-tip">Location of observation</Tooltip> ) }
+            >
+              <div className="input-group"
+                onClick={ this.openLocationChooser }
+              >
+                <div className="input-group-addon input-sm">
+                  <Glyphicon glyph="map-marker" />
+                </div>
+                <input
+                  type="text"
+                  className="form-control input-sm"
+                  value={ locationText }
+                  placeholder={ I18n.t( "location" ) }
+                  readOnly
+                />
+              </div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delayShow={ 1000 }
+              overlay={ ( <Tooltip id="description-tip">Description</Tooltip> ) }
+            >
+              <div className="form-group">
+                <textarea
+                  placeholder={ I18n.t( "description" ) }
+                  className="form-control input-sm"
+                  value={ obsCard.description }
+                  onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
+                />
+              </div>
+            </OverlayTrigger>
           </div>
         </Dropzone>
       </li>
@@ -321,7 +305,6 @@ ObsCardComponent.propTypes = {
   obsCard: PropTypes.object,
   confirmRemoveObsCard: PropTypes.func,
   cardDragSource: PropTypes.func,
-  cardDragPreview: PropTypes.func,
   cardDropTarget: PropTypes.func,
   photoDropTarget: PropTypes.func,
   cardIsOver: PropTypes.bool,

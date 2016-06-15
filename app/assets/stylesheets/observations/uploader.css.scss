@@ -120,7 +120,7 @@ body {
   }
   .col-offset-290 {
     margin-left: 275px;
-    position: absolute;
+    position: inherit;
     width: 70%;
   }
   .left-col-padding {
@@ -325,7 +325,7 @@ ul.obs > li {
   }
 }
 ul.obs > li .card {
-  margin: 0px;
+  margin: 3px;
   width: 220px;
   position: relative;
   &.ui-selecting {
