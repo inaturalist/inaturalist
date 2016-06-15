@@ -18,10 +18,15 @@ class SelectionBasedComponent extends Component {
       a => a && ( a.id || a ) );
   }
 
+  uniqueValuesOf( attr, obsCards ) {
+    return _.uniq( _.compact( _.flatten( this.valuesOf( attr, obsCards ) ) ) );
+  }
+
   commonValue( attr, obsCards ) {
     const uniq = this.valuesOf( attr, obsCards );
     return ( uniq.length === 1 ) ? uniq[0] : undefined;
   }
+
 }
 
 SelectionBasedComponent.propTypes = {

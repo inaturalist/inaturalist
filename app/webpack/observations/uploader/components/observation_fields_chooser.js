@@ -10,6 +10,9 @@ class LeftMenu extends SelectionBasedComponent {
 
   constructor( props, context ) {
     super( props, context );
+    this.selectInput = this.selectInput.bind( this );
+    this.taxonInput = this.taxonInput.bind( this );
+    this.datetimeInput = this.datetimeInput.bind( this );
     this.submitFieldValue = this.submitFieldValue.bind( this );
     this.removeFieldValue = this.removeFieldValue.bind( this );
     this.setUpObservationFieldAutocomplete = this.setUpObservationFieldAutocomplete.bind( this );
@@ -89,127 +92,149 @@ class LeftMenu extends SelectionBasedComponent {
     this.props.removeFromSelectedObsCards( { observation_field_values: ofv } );
   }
 
+  selectInput( field ) {
+    return (
+      <Input type="select" name="value" >
+        { _.map( field.allowed_values.split( "|" ), f => (
+          <option value={ f } key={ f }>{ f }</option>
+        ) ) }
+      </Input>
+    );
+  }
+
+  taxonInput( ) {
+    return (
+      <div className="input-group">
+        <TaxonAutocomplete
+          bootstrap
+          searchExternal
+          showPlaceholder={ false }
+          perPage={ 6 }
+          afterSelect={ r => {
+            this.props.setState( {
+              observationFieldTaxon: r.item,
+              observationFieldValue: r.item.id } );
+          } }
+          afterUnselect={ ( ) => {
+            this.props.setState( {
+              observationFieldTaxon: null,
+              observationFieldValue: null } );
+          } }
+          placeholder={ I18n.t( "species_name_cap" ) }
+        />
+        <span className="input-group-btn">
+          <button
+            className="btn btn-default"
+            type="submit"
+          >
+            Add
+          </button>
+        </span>
+      </div>
+    );
+  }
+
+  datetimeInput( datatype ) {
+    /* global TIMEZONE */
+    let mode;
+    if ( datatype === "time" ) {
+      mode = "time";
+    } else if ( datatype === "date" ) {
+      mode = "date";
+    }
+    let format = "YYYY/MM/DD h:mm A z";
+    if ( datatype === "time" ) {
+      format = "HH:mm";
+    } else if ( datatype === "date" ) {
+      format = "YYYY/MM/DD";
+    }
+    return (
+      <div className="input-group">
+        <DateTimeFieldWrapper
+          key={ `datetime${this.props.observationFieldSelectedDate}`}
+          reactKey={ `datetime${this.props.observationFieldSelectedDate}`}
+          ref="datetime"
+          mode={ mode }
+          inputFormat={ format }
+          dateTime={ this.props.observationFieldDateTime ?
+            moment( this.props.observationFieldDateTime, format ).format( "x" )
+            : undefined }
+          timeZone={ TIMEZONE }
+          onChange={ dateString =>
+            this.props.setState( { observationFieldValue: dateString } ) }
+          onSelection={ dateString =>
+            this.props.setState( { observationFieldValue: dateString,
+              observationFieldSelectedDate: dateString } )
+          }
+        />
+        <input
+          type="text"
+          name="value"
+          className="form-control"
+          autoComplete="off"
+          value={ this.props.observationFieldValue }
+          onClick= { () => {
+            if ( this.refs.datetime ) {
+              this.refs.datetime.onClick( );
+            }
+          } }
+          onChange= { e => {
+            if ( this.refs.datetime ) {
+              this.refs.datetime.onChange( undefined, e.target.value );
+            }
+          } }
+          placeholder={ I18n.t( "date_" ) }
+        />
+        <span className="input-group-btn">
+          <button
+            className="btn btn-default"
+            type="submit"
+          >
+            Add
+          </button>
+        </span>
+      </div>
+    );
+  }
+
+  defaultInput( ) {
+    return (
+      <div className="input-group">
+        <input
+          type="text"
+          name="value"
+          className="form-control"
+        />
+        <span className="input-group-btn">
+          <button
+            className="btn btn-default"
+            type="submit"
+          >
+            Add
+          </button>
+        </span>
+      </div>
+    );
+  }
+
   render( ) {
-    const commonOfvs = this.commonValue( "observation_field_values" );
+    const commonOfvs = this.uniqueValuesOf( "observation_field_values" );
     let observationFieldInput;
     const field = this.props.observationField;
     if ( field ) {
       let input;
       let submit;
       if ( field.allowed_values ) {
-        input = (
-          <Input type="select" name="value" >
-            { _.map( field.allowed_values.split( "|" ), f => (
-              <option value={ f } key={ f }>{ f }</option>
-            ) ) }
-          </Input>
-        );
+        input = this.selectInput( field );
         submit = ( <Button className="standalone" type="submit">Add</Button> );
       } else if ( field.datatype === "taxon" ) {
-        input = (
-          <div className="input-group">
-            <TaxonAutocomplete
-              bootstrap
-              searchExternal
-              showPlaceholder={ false }
-              perPage={ 6 }
-              afterSelect={ r => {
-                this.props.setState( {
-                  observationFieldTaxon: r.item,
-                  observationFieldValue: r.item.id } );
-              } }
-              afterUnselect={ ( ) => {
-                this.props.setState( {
-                  observationFieldTaxon: null,
-                  observationFieldValue: null } );
-              } }
-              placeholder={ I18n.t( "species_name_cap" ) }
-            />
-            <span className="input-group-btn">
-              <button
-                className="btn btn-default"
-                type="submit"
-              >
-                Add
-              </button>
-            </span>
-          </div>
-        );
+        input = this.taxonInput( );
       } else if ( field.datatype === "datetime" ||
                   field.datatype === "time" ||
                   field.datatype === "date" ) {
-        /* global TIMEZONE */
-        let mode;
-        if ( field.datatype === "time" ) { mode = "time"; }
-        else if ( field.datatype === "date" ) { mode = "date"; }
-        let format = "YYYY/MM/DD h:mm A z";
-        if ( field.datatype === "time" ) { format = "HH:mm"; }
-        else if ( field.datatype === "date" ) { format = "YYYY/MM/DD"; }
-        input = (
-          <div className="input-group">
-            <DateTimeFieldWrapper
-              key={ `datetime${this.props.observationFieldSelectedDate}`}
-              reactKey={ `datetime${this.props.observationFieldSelectedDate}`}
-              ref="datetime"
-              mode={ mode }
-              inputFormat={ format }
-              dateTime={ this.props.observationFieldDateTime ?
-                moment( this.props.observationFieldDateTime, format ).format( "x" )
-                : undefined }
-              timeZone={ TIMEZONE }
-              onChange={ dateString =>
-                this.props.setState( { observationFieldValue: dateString } ) }
-              onSelection={ dateString =>
-                this.props.setState( { observationFieldValue: dateString,
-                  observationFieldSelectedDate: dateString } )
-              }
-            />
-            <input
-              type="text"
-              name="value"
-              className="form-control"
-              autoComplete="off"
-              value={ this.props.observationFieldValue }
-              onClick= { () => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onClick( );
-                }
-              } }
-              onChange= { e => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onChange( undefined, e.target.value );
-                }
-              } }
-              placeholder={ I18n.t( "date_" ) }
-            />
-            <span className="input-group-btn">
-              <button
-                className="btn btn-default"
-                type="submit"
-              >
-                Add
-              </button>
-            </span>
-          </div>
-        );
+        input = this.datetimeInput( field.datatype );
       } else {
-        input = (
-          <div className="input-group">
-            <input
-              type="text"
-              name="value"
-              className="form-control"
-            />
-            <span className="input-group-btn">
-              <button
-                className="btn btn-default"
-                type="submit"
-              >
-                Add
-              </button>
-            </span>
-          </div>
-        );
+        input = this.defaultInput( );
       }
       observationFieldInput = (
         <div className="observation-field">
@@ -224,9 +249,6 @@ class LeftMenu extends SelectionBasedComponent {
       <div className="ofvs">
         <form onSubmit={ this.submitFieldValue }>
           <div className="input-group">
-            <div className="input-group-addon input-sm">
-              <Glyphicon glyph="th-list" />
-            </div>
             <input
               type="text"
               className="form-control ofv-field"

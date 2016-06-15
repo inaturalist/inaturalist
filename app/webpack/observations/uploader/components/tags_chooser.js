@@ -27,14 +27,11 @@ class TagsChooser extends SelectionBasedComponent {
   }
 
   render( ) {
-    const commonTags = _.uniq( _.flatten( this.valuesOf( "tags" ) ) );
+    const commonTags = this.uniqueValuesOf( "tags" );
     return (
       <div className="tags">
         <form onSubmit={this.submitTag}>
           <div className="input-group">
-            <div className="input-group-addon input-sm">
-              <Glyphicon glyph="tag" />
-            </div>
             <OverlayTrigger
               placement="bottom"
               delayShow={ 1000 }

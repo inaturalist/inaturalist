@@ -49,18 +49,7 @@ class DragDropZone extends Component {
 
   componentDidMount( ) {
     this.resize( );
-    const toolbarTopOffset = $( ".nav_add_obs" ).offset( ).top;
     $( window ).on( "resize", this.resize );
-    $( window ).on( "scroll", ( ) => {
-      const scrollTop = $( "body" ).scrollTop( );
-      if ( scrollTop >= toolbarTopOffset ) {
-        if ( !this.props.scrolledPastToolbar ) {
-          this.props.setState( { scrolledPastToolbar: true } );
-        }
-      } else if ( this.props.scrolledPastToolbar ) {
-        this.props.setState( { scrolledPastToolbar: false } );
-      }
-    } );
     $( "body" ).unbind( "keydown keyup click" );
     const commandKeys = [17, 91, 93, 224];
     const shiftKeys = [16];
@@ -119,17 +108,6 @@ class DragDropZone extends Component {
   resize( ) {
     this.resizeElement( $( ".uploader" ) );
     this.resizeElement( $( "#imageGrid" ) );
-    this.resizeLeftMenu( );
-  }
-
-  resizeLeftMenu( ) {
-    const el = $( ".leftColumn" );
-    if ( el.length > 0 ) {
-      const topOffset = el.position( ).top;
-      const height = $( window ).height( );
-      const difference = height - topOffset;
-      el.css( "height", difference );
-    }
   }
 
   resizeElement( el ) {
@@ -213,7 +191,6 @@ class DragDropZone extends Component {
     let leftColumn;
     let intro;
     let className = "uploader";
-    if ( this.props.scrolledPastToolbar ) { className += " fixedToolbar"; }
     if ( draggingProps && draggingProps.obsCard ) { className += " hover"; }
     if ( photoIsOver ) { className += " photoOver"; }
     const cardCount = Object.keys( obsCards ).length;
@@ -233,7 +210,6 @@ class DragDropZone extends Component {
         leftMenuKey += this.props.observationFieldSelectedDate;
       }
       let leftClass = "col-fixed-250 leftColumn";
-      if ( this.props.scrolledPastToolbar ) { leftClass += " fixed"; }
       leftColumn = (
         <Col className={ leftClass }>
           <LeftMenu
@@ -250,6 +226,7 @@ class DragDropZone extends Component {
     const countSelectedPending =
       _.sum( _.map( selectedObsCards, c => c.nonUploadedFiles().length ) );
     const countPending = _.sum( _.map( obsCards, c => c.nonUploadedFiles().length ) );
+    /* global SITE */
     return (
       <div onClick={ this.closeAutocompletes }>
         <Dropzone
@@ -386,6 +363,9 @@ DragDropZone.propTypes = {
   movePhoto: PropTypes.func,
   newCardFromPhoto: PropTypes.func,
   obsCards: PropTypes.object,
+  observationField: PropTypes.object,
+  observationFieldValue: PropTypes.any,
+  observationFieldSelectedDate: PropTypes.string,
   onCardDrop: PropTypes.func,
   onDrop: PropTypes.func.isRequired,
   photoIsOver: PropTypes.bool,

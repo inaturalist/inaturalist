@@ -18,22 +18,24 @@ body {
 // Navbar
 .navbar {
   border-radius: 0px;
+  position: fixed;
+  width: 100%;
+  margin-top: -120px;
+  z-index: 10;
 }
 
 .nav_add_obs {
   padding-top: 0;
-  margin-top: -20px;
+  margin-top: 32px;
   margin-left: 0px;
   // border-width: 0 0 1px 0;
   border: 0;
   background-color: white;
   box-shadow: 0px 3px 10px #e7e7e7;
-  &.fixed {
-    position: fixed;
-    width: 100%;
-    z-index: 100000;
-    top: 20px;
-  }
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+  top: 20px;
   .navbar-right {
     margin-right: 0px;
   }
@@ -112,12 +114,9 @@ body {
   .col-fixed-250 {
     width: 250px;
     float: left;
-    overflow: auto;
-    &.fixed {
-      margin-top: -52px;
-      position: fixed;
-      z-index: 10;
-    }
+    overflow: visible;
+    position: fixed;
+    z-index: 10;
   }
   .col-offset-290 {
     margin-left: 275px;
@@ -132,9 +131,7 @@ body {
 
 .uploader {
   min-width: 800px;
-  &.fixedToolbar {
-    margin-top: 50px;
-  }
+  margin-top: 120px;
   &.hover {
     opacity: 0.7;
     cursor: copy;
@@ -161,36 +158,70 @@ body {
     }
   }
   .panel, .panel-heading, .panel-body {
-    border: 0 !important;
+    border: 0;
     margin: 0;
     padding: 0;
     background: none;
     box-shadow: none;
   }
+  .panel-body {
+    border: 0px !important;
+  }
   .panel-group {
     margin-bottom: 10px;
+    .panel-heading {
+      margin: 5px 0px;
+    }
+    .panel-title {
+      a {
+        display: block;
+      }
+      .icon {
+        margin-right: 10px;
+      }
+      .toggle {
+        float: right;
+        top: 4px;
+      }
+    }
+    .panel {
+      border-top: 1px solid #DFDFDF;
+      border-bottom: 0px;
+      border-radius: 0px;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    .panel+.panel {
+      margin: 0px;
+    }
+    .panel:last-child {
+      border-bottom: 1px solid #DFDFDF;
+    }
   }
   .panel-heading {
     .panel-title {
       font-weight: normal;
       font-size: 14px;
+      .glyphicon {
+        margin-left: 10px;
+        font-size: 0.8em;
+        -moz-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        &.rotate {
+          -moz-transform: rotate(90deg);
+          -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+        }
+      }
+      &.contents {
+        font-weight: bold;
+      }
     }
     a {
       text-decoration: none;
-    }
-  }
-  .panel-title .glyphicon {
-    margin-left: 10px;
-    font-size: 0.8em;
-    -moz-transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-    &.rotate {
-      -moz-transform: rotate(90deg);
-      -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
     }
   }
   .tags {
@@ -201,8 +232,8 @@ body {
     }
   }
   .badge.count {
-    font-size: 0.7em;
-    padding: 3px 5px;
+    float: right;
+    padding: 3px 6px;
     margin-left: 5px;
     margin-bottom: 3px;
     background-color: #74ac00;

@@ -52,14 +52,11 @@ class ProjectsChooser extends SelectionBasedComponent {
   }
 
   render( ) {
-    const commonProjects = this.commonValue( "projects" );
+    const commonProjects = this.uniqueValuesOf( "projects" );
     return (
       <div className="projects">
         <form onSubmit={this.chooseFirstProject}>
           <div className="input-group">
-            <div className="input-group-addon input-sm">
-              <Glyphicon glyph="briefcase" />
-            </div>
             <input
               type="text"
               className="form-control"
