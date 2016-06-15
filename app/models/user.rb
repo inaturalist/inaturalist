@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
   preference :hide_follow_onboarding, default: false
   preference :hide_activity_onboarding, default: false
   preference :hide_getting_started_onboarding, default: false
+  preference :hide_dashboard_you_onboarding, default: false
+  preference :hide_dashboard_comments_onboarding, default: false
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 

@@ -180,6 +180,10 @@ button.btn_expand .expand_inactive {
 
 /* Panel Content************************************* */
 
+.panel > .panel-footer > .btn {
+  margin-right: 15px;
+}
+
 h2.timeline-title { /* fix - added h2 */
 	font-weight: normal;
 	margin: 0;

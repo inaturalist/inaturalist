@@ -1,5 +1,5 @@
 <%- 
-  comment ||= listing
+  comment ||= listing_for_dashboard
   extra ||= nil
 -%>
 <div class="column span-24 commentitem lined">
@@ -41,7 +41,7 @@
     <%- case comment.parent.class.to_s -%>
     <%- when "Observation" -%>
       <div class="mini observations">
-        <%= render :partial => "observations/cached_component", :object => comment.parent %>
+        <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [comment.parent]} %>
       </div>
     <%- when "Post" %>
       <h3><%= link_to comment.parent.title, journal_post_path(comment.parent.user.login, comment.parent) %></h3>
@@ -62,9 +62,9 @@
   
   <div class="last column span-16">
     <% if @comments_by_parent_id -%>
-      <%= render :partial => "shared/activity_item", :collection => @comments_by_parent_id[comment.parent_id] %>
+      <%= render :partial => "shared/activity_item_for_dashboard", :collection => @comments_by_parent_id[comment.parent_id] %>
     <% else %>
-      <%= render :partial => "shared/activity_item", :object => comment %>
+      <%= render :partial => "shared/activity_item_for_dashboard", :object => comment %>
     <% end -%>
     
     <%= extra %>

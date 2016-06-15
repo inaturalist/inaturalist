@@ -405,6 +405,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
+    @has_updates = (current_user.recent_notifications.count > 0)
     @local_onboarding_content = get_local_onboarding_content
     respond_to do |format|
       format.html do

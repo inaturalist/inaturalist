@@ -38,11 +38,13 @@ class CommentsController < ApplicationController
     @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
     @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id)).
       where("created_at >= '#{ @comments.last.try(:created_at) }'").sort_by{|c| c.id}
-    @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
+    @extra_ids = Identification.where(observation_id: @comments.map(&:parent_id)).includes(:observation)
+    @extra_comments_and_ids = [@extra_comments,@extra_ids].flatten
+    @comments_by_parent_id = @extra_comments_and_ids.sort_by{|c| c.created_at}.group_by{|c| (c.respond_to? :observation_id) ? c.observation_id : c.parent_id }
     respond_to do |format|
       format.html do
         if params[:partial]
-          render :partial => 'listing', :collection => @comments, :layout => false
+          render :partial => 'listing_for_dashboard', :collection => @comments, :layout => false
         end
       end
     end
