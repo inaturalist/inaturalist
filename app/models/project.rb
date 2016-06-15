@@ -762,8 +762,10 @@ class Project < ActiveRecord::Base
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
         # don't use first_or_create here
-        po = ProjectObservation.where(project: self, observation: o).first ||
-          ProjectObservation.create(project: self, observation: o)
+        po = transaction do
+          ProjectObservation.where(project: self, observation: o).first ||
+            ProjectObservation.create(project: self, observation: o)
+        end
         if po && !po.errors.any?
           added += 1
         else
