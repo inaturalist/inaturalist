@@ -28,11 +28,31 @@ const ObservationsGridItem = ( {
   if ( o.reviewed_by.indexOf( o.user.id ) >= 0 ) {
     numReviewers = numReviewers - 1;
   }
-  const agreeTooltip = (
-    <Tooltip id={`agree-tooltip-${o.id}`}>
-      { I18n.t( "agree_with_current_taxon" ) }
-    </Tooltip>
+  const agreeButton = (
+    <OverlayTrigger
+      placement="bottom"
+      overlay={
+        <Tooltip id={`agree-tooltip-${o.id}`}>
+          { I18n.t( "agree_with_current_taxon" ) }
+        </Tooltip>
+      }
+      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+    >
+      <Button
+        id={`agree-btn-${o.id}`}
+        bsSize="xs"
+        bsStyle={o.currentUserAgrees ? "success" : "default"}
+        disabled={ !o.taxon || o.currentUserAgrees}
+        onClick={ ( ) => {
+          onAgree( o );
+        } }
+      >
+        <i className="fa fa-check">
+        </i> { _.capitalize( I18n.t( "agree" ) ) }
+      </Button>
+    </OverlayTrigger>
   );
+  const speciesOrLower = o.taxon && o.taxon.rank_level <= 10;
   return (
     <div className={wrapperClass}>
       <div className={`reviewed-notice ${o.reviewedByCurrentUser ? "reviewed" : ""}`}>
@@ -69,24 +89,7 @@ const ObservationsGridItem = ( {
         <UserImage user={ o.user } />
         { taxonJSX }
         <div className="controls">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={agreeTooltip}
-            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-          >
-            <Button
-              id={`agree-btn-${o.id}`}
-              bsSize="xs"
-              bsStyle={o.currentUserAgrees ? "success" : "default"}
-              disabled={ !o.taxon || o.currentUserAgrees}
-              onClick={ ( ) => {
-                onAgree( o );
-              } }
-            >
-              <i className="fa fa-check">
-              </i> { _.capitalize( I18n.t( "agree" ) ) }
-            </Button>
-          </OverlayTrigger>
+          { speciesOrLower ? agreeButton : null }
         </div>
       </div>
     </div>
