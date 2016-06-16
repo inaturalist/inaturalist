@@ -78,7 +78,7 @@ const actions = class actions {
           const obsCard = new ObsCard( { id } );
           obsCard.files[id] = DroppedFile.fromFile( f, id );
           obsCards[obsCard.id] = obsCard;
-          obsCard.files[id].readExif( ).then( metadata => {
+          obsCard.files[id].readExif( obsCard ).then( metadata => {
             dispatch( actions.updateObsCard( obsCard,
               Object.assign( { }, metadata, { modified: false } ) ) );
           } );
@@ -102,7 +102,7 @@ const actions = class actions {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           files[id] = DroppedFile.fromFile( f, id );
-          files[id].readExif( ).then( metadata => {
+          files[id].readExif( obsCard ).then( metadata => {
             dispatch( actions.updateObsCard( obsCard,
               Object.assign( { }, metadata, { modified: false } ) ) );
           } );

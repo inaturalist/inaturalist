@@ -160,8 +160,12 @@ class ObsCardComponent extends Component {
     }
     let photoCount;
     const fileCount = _.size( obsCard.files );
-    if ( fileCount > 1 ) {
-      photoCount = `${obsCard.galleryIndex || 1}/${fileCount}`;
+    if ( fileCount ) {
+      if ( _.find( obsCard.files, f => f.upload_state === "uploading" ) ) {
+        photoCount = "Loading metadata...";
+      } else if ( fileCount > 1 ) {
+        photoCount = `${obsCard.galleryIndex || 1}/${fileCount}`;
+      }
     }
     return cardDropTarget( photoDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>

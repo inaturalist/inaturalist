@@ -43,7 +43,7 @@ const DroppedFile = class DroppedFile {
   }
 
   // returns a Promise
-  readExif( ) {
+  readExif( obsCard ) {
     const reader = new FileReader();
     const metadata = { };
     return new Promise( ( resolve ) => {
@@ -63,28 +63,34 @@ const DroppedFile = class DroppedFile {
           } );
         } );
         // check that object for metadata we care about
-        if ( exif.ImageDescription ) { metadata.description = exif.ImageDescription; }
-        if ( exif.GPSLatitude && exif.GPSLatitude.length === 3 ) {
-          metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude );
-          if ( exif.GPSLatitudeRef === "S" ) {
-            metadata.latitude *= -1;
+        if ( exif.ImageDescription && !obsCard.description ) {
+          metadata.description = exif.ImageDescription;
+        }
+        if ( !obsCard.latitude ) {
+          if ( exif.GPSLatitude && exif.GPSLatitude.length === 3 ) {
+            metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude );
+            if ( exif.GPSLatitudeRef === "S" ) {
+              metadata.latitude *= -1;
+            }
+          }
+          if ( exif.GPSLongitude && exif.GPSLongitude.length === 3 ) {
+            metadata.longitude = util.gpsCoordConvert( exif.GPSLongitude );
+            if ( exif.GPSLongitudeRef === "W" ) {
+              metadata.longitude *= -1;
+            }
           }
         }
-        if ( exif.GPSLongitude && exif.GPSLongitude.length === 3 ) {
-          metadata.longitude = util.gpsCoordConvert( exif.GPSLongitude );
-          if ( exif.GPSLongitudeRef === "W" ) {
-            metadata.longitude *= -1;
+        if ( !obsCard.date ) {
+          if ( exif.DateTimeOriginal || exif.DateTimeDigitized ) {
+            // reformat YYYY:MM:DD into YYYY/MM/DD for moment
+            const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized ).
+              replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
+            /* global TIMEZONE */
+            // assume the date is in the timezone of their user account
+            metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE ).
+              format( "YYYY/MM/DD h:mm A z" );
+            metadata.selected_date = metadata.date;
           }
-        }
-        if ( exif.DateTimeOriginal || exif.DateTimeDigitized ) {
-          // reformat YYYY:MM:DD into YYYY/MM/DD for moment
-          const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized ).
-            replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
-          /* global TIMEZONE */
-          // assume the date is in the timezone of their user account
-          metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE ).
-            format( "YYYY/MM/DD h:mm A z" );
-          metadata.selected_date = metadata.date;
         }
         // reverse geocode lat/lngs to get place name
         if ( metadata.latitude && metadata.longitude ) {

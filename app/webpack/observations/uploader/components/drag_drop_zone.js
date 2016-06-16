@@ -107,9 +107,11 @@ class DragDropZone extends Component {
   resize( ) {
     this.resizeElement( $( ".uploader" ) );
     this.resizeElement( $( "#imageGrid" ) );
+    this.resizeElement( $( ".leftColumn" ) );
   }
 
   resizeElement( el ) {
+    if ( el.length === 0 ) { return; }
     const topOffset = el.offset( ).top;
     const height = $( window ).height( );
     const difference = height - topOffset;
