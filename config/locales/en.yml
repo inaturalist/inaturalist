@@ -110,20 +110,6 @@ en:
   about_these_licenses: About these licenses
   about_this_map: About This Map
   about_this_project: About this Project
-  about_updates_lead: |
-    %{site_name} updates you when there's activity on your observations and when the people you follow post observations.
-  about_updates_rest: |
-    <p>
-      Activity on your observations might include comments, identifications, or faves from the %{site_name} community. Or 
-      maybe someone added your observation to a project or annotated it with additional fields.
-    </p>
-    <p>
-      When you follow people, you'll be updated when they post observations or publish journal posts.
-    </p>
-    <p>
-      You can also recieve updates on observations of specific organisms or places by subscribing to them.
-      Or you can join projects to be updated when they publish project journal posts.
-    </p>
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
@@ -335,6 +321,7 @@ en:
       other: "%{count} other animals"
   all_taxa_in_this_guide: All taxa in this guide
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
+  all_updates: All updates
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_projects: All your projects
@@ -917,7 +904,7 @@ en:
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
-  disconnect_provider: "Disconnect %{provider}"
+  disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
@@ -1169,8 +1156,6 @@ en:
   flickr_tags: Flickr Tags
   flickr_youre_all_set: "You're all set to start exploring %{site_name}"
   fluid: fluid
-  follow_some_active_naturalists: Follow Some Active Naturalists 
-  follow_some_nearby_naturalists: Follow Some Nearby Naturalists
   follow_us: Follow us on
   follow_us_on: Follow us on
   follow_user: "Follow %{user}"
@@ -1179,8 +1164,6 @@ en:
   for: for
   for_a_taxon: for a taxon
   for_a_widget_showing_recent_observations_from: For a widget showing recent observations from %{place_name}, check out the
-  for_inspiration_local: "For some inspiration, here are some nearby organisms to observe..."
-  for_inspiration_global: "For some inspiration, here's whats being observed around the world..."
   for_more_information: for more information.
   forgot_your_password: Forgot your password?
   fri: Fri
@@ -1467,7 +1450,6 @@ en:
   legacy_authentication_notice_html: |
     Looks like you're using a password from an older version of this website.
     Please remember to <a href="%{url}">change your password</a> for the new version.
-  lets_get_started_by_posting_some_observations: Let's Get Started by Posting Some Observations
   let_us_walk_you_through: Let us walk you through the main features of this site.
   lexicon: Lexicon
   lexicons:
@@ -1785,6 +1767,7 @@ en:
   new_check_list: New check list
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
+  new_comment_on_a_parent_by_user_link: New comment on @vow_or_con{vow:an|a} %{parent} by %{user_link}
   new_custom_field_for: New custom field for
   new_flag_for: New Flag for 
   new_guide: New Guide
@@ -2054,6 +2037,28 @@ en:
   on_list?: on list
   on_submit_date: "on %{submitdate}"
   on_your_life_list: on your life list
+  onboarding:
+      observe_panel_title: Let's Get Started by Posting Some Observations
+      observe_panel_body_p1_local: Need inspiration? Here's some organisms being observed nearby...  
+      observe_panel_body_p1_global: Need inspiration? Here's some organisms being observed...
+      observe_panel_body_p2: Get outside, and observe an individual organism. Pick something wild and take a clear, full frame photo. If you already have a photo of something wild, <a href="%{new_observation_path}">add it now</a>. You can also use the %{site_name} mobile apps to record observations.
+      observe_panel_body_p3: Once you've shared your observations, this page will show you updates from the community in the form of comments and identifications. Who knows what you'll discover!
+      follow_panel_title_local: Follow Some Nearby Naturalists
+      follow_panel_title_global: Follow Some Active Naturalists 
+      follow_panel_body: If you visit these profiles and click the follow button, you'll be updated when they post observations
+      comments_panel_title: Curious what kind of discussions are happening on %{site_name}?
+      comments_panel_body: <p>iNaturalist is all about sharing and discussing observations of living things. Here are some discussions happening right now...</p> <p>You'll be automatically subscribed to any discussions you contribute comments or identifications to. You can always use the Manage Subscriptions tool on the right to stop recieving updates</p>
+      updates_by_you_panel_title: This tab is a quick way to filter out only updates on your content.
+      updates_by_you_panel_body: Remember, in the 'All updates' tab you'll recieve updates not just on your own content but also on content from people you follow and the taxa or places that you subscribe to using the Subscriptions tool on the right.
+      youve_got_updates_panel_title: You've got updates!
+      youve_got_updates_panel_body_p1: Stay current with updates on the following...
+      youve_got_updates_panel_body_p2: |
+        <ul>
+          <li><strong>Your Content:</strong> When there is activity on your observations such as comments, identifications, or faves from the %{site_name} community. You will also receive updates when someone adds your observation to a project or annotated it with additional fields.</li>
+          <li><strong>People:</strong> When people you follow post observations or publish journal posts.</li>
+          <li><strong>Organisms, Projects & Places:</strong> You can also recieve updates on observations of specific organisms or places by subscribing to them. You can also join projects to be updated when they publish project journal posts.</li>
+          <li><strong>Ongoing conversations</strong> You'll be automatically subscribed to updates on content you contribute comments or identifications to. Use the 'Manage your subscriptions' tool to stop recieving updates.</li>
+        </ul>
   one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
   only_a_project_manager_can_add: Only a project manager can add project curator status
@@ -2464,6 +2469,7 @@ en:
   read_the_full_wikipedia: Read the full Wikipedia description
   ready_to_get_started?: "Ready to get started?"
   real_time_stats: Real Time Stats
+  real_time_discussions: Real Time Discussions
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -2974,9 +2980,7 @@ en:
      that is comprehensive, i.e. it lists <em>all</em> the representatives of
      its taxon in a place, the Identotron will show a notice.
   the_list: the list
-  the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.<br/><br/> <strong>Example:</strong><br/>
-  the_next_step: |-
-    The next step is to get outside and observe an individual organism. Pick something wild and take a clear, full frame photo. If you already have a photo of something wild, <a href="%{new_observation_path}">add it now</a>.
+  the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.<br/><br/> <strong>Example:</strong><br/>  
   the_observation_form_looks: "The observation form looks like this:"
   the_observation_has_date: the observation <strong>has a date</strong>
   the_observation_has_photo: the observation <strong>has a photo</strong>
@@ -3297,8 +3301,7 @@ en:
   view_more_recent_observations: View more recent observations
   view_nbsp: "View &nbsp;"
   view_non_mobile_site: View non-mobile site
-  view_post: View post
-  view_observation: View observation
+  view_resource: View %{resource}
   view_observations: View observations
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
@@ -3470,10 +3473,6 @@ en:
   you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: |
     You can also <a href="%{project_settings_url}">change your settings for this project</a> 
     or <a href="/users/edit#projects">change your global settings</a>.
-  you_can_also_use: |-
-    You can also use %{site_name} mobile apps to share your observation with the community. 
-    You'll be updated with any feedback on your observations from the community in the form of comments or identifications.  
-    Who knows what you'll discover!
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
   you_can_change_your_new_passwd_after_logging_in: "You can change your new password after logging in here:"
   you_can_choose_observations_associated: You can choose observations to associate with this journal post.
@@ -3538,12 +3537,10 @@ en:
     someone else's data without permission.  Don't be evil.
   you_unlinked_your_provider_account: "You unlinked your %{provider} account"
   you_would_get_the: "you would get the following tags:"
-  youll_be_updated: If you visit these profiles and click the follow button, you'll be updated when they post observations
   youll_need_to_link: You'll need to link
   youve_been_invited_to_join_this_project_html: |
     You've been invited to <a href="%{url}" class="readmore">join this project</a>
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
-  youve_got_updates: You've got updates!
   your: Your
   your_: Your
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
@@ -3554,6 +3551,7 @@ en:
     <span class='taxon'>%{finer_taxon_name}</span>. Is this what you want to do?<br><br>
     <a href='/pages/getting+started' target='_blank'>Learn more about how identifications work &raquo;</a>
   your_comment_was_saved: Your content was saved
+  your_content: Your Content
   your_contributions_to_project: "Your contributions to %{project_title}"
   your_default: your default
   your_default_time_zone: Your default time zone

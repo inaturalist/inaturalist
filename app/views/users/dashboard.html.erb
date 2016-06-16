@@ -36,13 +36,14 @@
         var active_tab = $(e.target).attr("href") // activated tab
         if(active_tab == "#comments"){
           var url = "/comments?partial=true";
-          var target = "#dashboard_comments_updates"
+          var target = "#dashboard_comments_updates";
+          $(target).addClass("timeline");
         }else if(active_tab == "#updates_by_you"){          
           var url = "/users/dashboard_updates?filter=you";
-          var target = "#dashboard_you_updates"
+          var target = "#dashboard_you_updates";
         }else{
           var url = "/users/dashboard_updates";
-          var target = "#dashboard_updates"
+          var target = "#dashboard_updates";
         }
         get_content(url, target);
       })
@@ -143,9 +144,9 @@
     <div class="tabbable">
       <div class="row" style="padding:15px 0;">
         <div class="btn-group">
-          <a class="btn btn-default" href="#updates" data-toggle="tab">All Updates</a>
-    		  <a class="btn btn-default" href="#updates_by_you" data-toggle="tab">Your Updates Only</a>
-    		  <a class="btn btn-default" href="#comments" data-toggle="tab">Realtime Discussions</a>
+          <a class="btn btn-default" href="#updates" data-toggle="tab"><%=t :all_updates %></a>
+    		  <a class="btn btn-default" href="#updates_by_you" data-toggle="tab"><%=t :your_content %></a>
+    		  <a class="btn btn-default" href="#comments" data-toggle="tab"><%=t :real_time_discussions %></a>
         </div>
       </div>
       <div class="tab-content">
@@ -155,12 +156,12 @@
               <div class="panel panel-success" id="observe_panel">
                 <div class="panel-heading">
                   <a data-panel-type="observe" class="close">&times;</a>
-                  <h3 class="panel-title" style="font-size:20px"><%=t :lets_get_started_by_posting_some_observations %></h3>
+                  <h3 class="panel-title" style="font-size:20px"><%=t 'onboarding.observe_panel_title' %></h3>
                 </div>
                 <div class="panel-body">
                   <%- if @local_onboarding_content[:target_taxa] %>
                     <p class="lead">
-                      <%= @local_onboarding_content[:local_results] ? t(:for_inspiration_local) : t(:for_inspiration_global) %>
+                      <%= @local_onboarding_content[:local_results] ? t('onboarding.observe_panel_body_p1_local') : t('onboarding.observe_panel_body_p1_global') %>
                     </p>
                     <div class="row">
                       <% for taxon in @local_onboarding_content[:target_taxa] %>
@@ -170,8 +171,8 @@
                   <% end -%>
                   <div class="media">
                     <div class="media-body">
-                      <p class="lead"><%= t(:the_next_step, new_observation_path: new_observation_path).html_safe %></p>
-                      <p><%= t( :you_can_also_use, site_name: SITE_NAME )%></p>
+                      <p class="lead"><%= t('onboarding.observe_panel_body_p2', site_name: SITE_NAME.gsub(".org",""), new_observation_path: new_observation_path).html_safe %></p>
+                      <p><%= t( 'onboarding.observe_panel_body_p3' )%></p>
                     </div>
                     <div class="media-right"><img class="media-object"  src="http://static.inaturalist.org/wiki_page_attachments/615-original.jpg" style="padding: 0 0 0 10px"></div>
                   </div>
@@ -191,12 +192,10 @@
               <div class="panel panel-success" id="follow_panel">
                 <div class="panel-heading">
                   <a data-panel-type="follow" class="close">&times;</a>
-                  <h3 class="panel-title"> <%= @local_onboarding_content[:local_results] ? t(:follow_some_nearby_naturalists) : t(:follow_some_active_naturalists) %></h3>
+                  <h3 class="panel-title"> <%= @local_onboarding_content[:local_results] ? t('onboarding.follow_panel_title_local') : t('onboarding.follow_panel_title_global') %></h3>
                 </div>
                 <div class="panel-body">
-                  <p>
-                    <%=t :youll_be_updated %>
-                  </p>  
+                  <p><%=t 'onboarding.follow_panel_body' %></p>  
                   <div class="row">
                     <% @local_onboarding_content[:to_follows].each do |to_follow| %>
                       <%= render(:partial => 'followees', :locals => {:friend => to_follow}) %>
@@ -212,7 +211,7 @@
             <% end -%>
           <% end -%>  
           <div id="dashboard_updates">
-            <%= loading %>
+            <div class="loading"><%=t :loading %></div>
           </div>
         </div>
         <div class="tab-pane" id="updates_by_you">    
@@ -220,17 +219,14 @@
             <div class="panel panel-info" id="activity_panel">
               <div class="panel-heading">
                 <a data-panel-type="activity" class="close">&times;</a>
-                <h3 class="panel-title">Filter updates on your observations only</h3>
+                <h3 class="panel-title"><%= t('onboarding.updates_by_you_panel_title') %></h3>
               </div>
-              <div class="panel-body">
-                You get updated when the community gives feedback on your content or when content is created that you follow or subscribe to. You can use this tab to filter just feedback on your content
-                (e.g. comments and IDs on your observations) but not updates about other people's content (e.g. new comments on someone elses observation that you're subscribed to, or new observations from someone you follow)
-              </div>
+              <div class="panel-body"><%= t('onboarding.updates_by_you_panel_body') %></div>
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
             </div>                
           <% end -%>
           <div id="dashboard_you_updates">
-            <%= loading %>
+            <div class="loading"><%=t :loading %></div>
           </div>
         </div>
         <div class="tab-pane" id="comments">
@@ -238,17 +234,16 @@
             <div class="panel panel-info" id="activity_panel">
               <div class="panel-heading">
                 <a data-panel-type="activity" class="close">&times;</a>
-                <h3 class="panel-title">Curious what kind of discussions are happening on iNaturalist?</h3>
+                <h3 class="panel-title"><%= t('onboarding.comments_panel_title', site_name: SITE_NAME.gsub(".org","")) %></h3>
               </div>
               <div class="panel-body">                  
-                 iNaturalist is all about sharing and discussing natural history observations. Here's some discussions happening right now to give you a flavor of the kinds of discussions the
-                 community is having. The majority of discussions focus on identifying observations. But you might find discussions on journal postings and other content as well.
+                 <%= t('onboarding.comments_panel_body').html_safe %>                 
               </div>
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
             </div>                
           <% end -%>
-          <ul class="timeline" id="dashboard_comments_updates">
-            <%= loading %>
+          <ul id="dashboard_comments_updates">
+            <div class="loading"><%=t :loading %></div>
           </ul>          
         </div>
       </div>

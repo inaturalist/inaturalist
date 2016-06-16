@@ -3,11 +3,11 @@
     <div class="panel panel-info" id="activity_panel">
       <div class="panel-heading">
         <a data-panel-type="activity" class="close">&times;</a>
-        <h3 class="panel-title"><%=t :youve_got_updates %></h3>
+        <h3 class="panel-title"><%=t 'onboarding.youve_got_updates_panel_title' %></h3>
       </div>
       <div class="panel-body">
-        <p class="lead"><%= t(:about_updates_lead, site_name: SITE_NAME)%></p>                    
-        <%= t(:about_updates_rest, site_name: SITE_NAME).html_safe%>                  
+        <p class="lead"><%= t('onboarding.youve_got_updates_panel_body_p1', site_name: SITE_NAME.gsub(".org",""))%></p>                    
+        <%= t('onboarding.youve_got_updates_panel_body_p2', site_name: SITE_NAME.gsub(".org","")).html_safe%>                  
       </div>
       <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
     </div>                
@@ -108,11 +108,7 @@
               </ul>
             </div>
             <div class="timeline-footer">
-              <%- if resource_type == "Post" %>
-                <%= link_to t(:view_post), resource, :class => "btn btn-sm btn-primary" %>
-              <%- else %>
-                <%= link_to t(:view_observation), resource, :class => "btn btn-sm btn-primary" %>
-              <% end -%>
+              <%= link_to t(:view_resource, :resource => resource_type), resource, :class => "btn btn-sm btn-primary" %>
               <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
             </div>  
           <% else %>                      
