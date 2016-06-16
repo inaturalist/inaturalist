@@ -22,6 +22,7 @@ qqq:
   x_identifications: |-
     Number of identifications
     {{Identical|Identification}}
+  x_ids: '{{Identical|ID}}'
   x_lists: |-
     Number of lists. Note: you *must* translate both one: and other:
     {{Identical|List}}
@@ -32,6 +33,7 @@ qqq:
   x_observations: |-
     Number of observations
     {{Identical|Observation}}
+  x_observations_: '{{Identical|Observation}}'
   x_observations_html: |-
     Number of observations, with the count in a span of class 'count'
     {{Identical|Observation}}
@@ -135,6 +137,7 @@ qqq:
   are_you_sure_you_want_to_remove_these_x_taxa?: where x is a number
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: where place is the name
     of a place
+  attention: '{{Identical|Attention}}'
   you_sure_delete_taxon_from_list?: where taxon is the name of a taxon
   asc: Abbreviation of "Ascending".
   assessment_x: where assessment is the display name of an assessment
@@ -214,11 +217,13 @@ qqq:
   comprehensive?: '{{Identical|Comprehensive}}'
   configure: '{{Identical|Configure}}'
   configure_a_widget_to_show: where site_name is the name of the site
+  confirm: '{{Identical|Confirm}}'
   confirmed: '{{Identical|Confirmed}}'
   connect_to_provider: where provider is an external provider like Facebook
   connecting_your_inat_account_to_accounts_other_sites: where site_name is the name
     of the site
   contest: '{{Identical|Contest}}'
+  continue: '{{Identical|Continue}}'
   contributions: '{{Identical|Contribution}}'
   contributors_to_project: where project is the name of a project
   controls: '{{Identical|Control}}'
@@ -385,6 +390,7 @@ qqq:
   identify: |-
     Second-person verb, used as a button label
     {{Identical|Identify}}
+  identify_title: '{{Identical|Identify}}'
   identifications: '{{Identical|Identification}}'
   identifications_by: where user is the name of a user
   identified?: '{{Identical|Identified}}'
@@ -509,6 +515,9 @@ qqq:
     as eating
   message: '{{Identical|Message}}'
   messages: '{{Identical|Message}}'
+  momentjs:
+    shortRelativeTime:
+      future: '{{Identical|In}}'
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'
@@ -591,6 +600,7 @@ qqq:
     present: '{{Identical|Present}}'
     common: '{{Identical|Common}}'
   of: '{{Identical|Of}}'
+  ok: '{{Identical|OK}}'
   on_: '{{Identical|On}}'
   on_date: where date is a date
   on_day: '{{Identical|On}}'
@@ -624,6 +634,7 @@ qqq:
   photo_by_id_attribution: where id is an identifier and attribution is the author's
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
+  photo_s: '{{Identical|Photo}}'
   photos: '{{Identical|Photo}}'
   photos_size:
     small: '{{Identical|Small}}'
@@ -706,6 +717,7 @@ qqq:
   privacy: '{{Identical|Privacy policy}}'
   privacy_policy: '{{Identical|Privacy policy}}'
   private: '{{Identical|Private}}'
+  proceed: '{{Identical|Proceed}}'
   processing: '{{Identical|Processing}}'
   processing3p: '{{Identical|Processing}}'
   profile: '{{Identical|Profile}}'

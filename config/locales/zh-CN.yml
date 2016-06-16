@@ -29,6 +29,9 @@ zh-CN:
   x_identifications:
     one: 1次鉴定
     other: '%{count} 次鉴定'
+  x_ids:
+    one: 1 个ID
+    other: '%{count} 个ID'
   x_lists:
     one: 1 个列表
     other: '%{count} 个列表'
@@ -42,6 +45,9 @@ zh-CN:
     one: <span class="count">1</span> 个匹配的分类单元
     other: <span class="count">%{count}</span> 个匹配的分类群
   x_observations:
+    one: 1 次观察
+    other: '%{count} 次观察'
+  x_observations_:
     one: 1 次观察
     other: '%{count} 次观察'
   x_observations_html:
@@ -107,6 +113,7 @@ zh-CN:
   accept: 接受
   accept_community_identifications: 接受社群认同
   accuracy: 准确性
+  accuracy_m: 精确度（米）
   accuracy_meters: 精确度（米）
   accuracy_of_the_coordinates: 坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使你能保证自己在圈内的某个位置。
   acquaintances: 熟人
@@ -222,6 +229,7 @@ zh-CN:
   agree: 同意
   agree?: 是否同意？
   agree_to_the_project_terms: 同意项目条款
+  agree_with_current_taxon: 同意当前的分类单元
   agreeing: 正在同意……
   aka: 也就是
   all: 全部
@@ -353,6 +361,7 @@ zh-CN:
     如果如此，他们所有垃圾邮件标志将会被去除。
   are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
   are_you_sure_you_want_to_remove_this_taxon: 您确定要移除此分类单元么？
+  attention: 关注
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
   asc: 升
@@ -502,6 +511,7 @@ zh-CN:
   check_list_source: 来源<span class="meta">（可选）</span>
   check_lists_for: 用于%{place}的其他检查表
   check_out_my_observations_at: 如果您希望，您可以在此检查我的观察
+  check_out_our_blog: 看看我们的博客
   check_out_your_life_list: 检查您的生命清单
   check_this_box_if: 如果您希望同意为您的照片使用<a href='http://creativecommons.org/licenses/by-nc/3.0/deed.zh'
     target='_blank'>知识共享 署名-非商业性使用</a>许可协议，请点选此框。您可以另选许可协议或稍后移除协议，但这是与研究人员分享时最好的协议。
@@ -516,6 +526,7 @@ zh-CN:
   choose_files_from_your_computer: 从您的电脑中选择文件
   choose_from_your_lists: 从您的列表中选择
   choose_good_default_photos: 从Flickr上的知识共享图片池中选择良好的默认照片
+  choose_photos: 选择照片
   choose_place: 选择一个地方
   choose_rule: 选择一条规则
   choose_subjects: 选择学科
@@ -537,6 +548,7 @@ zh-CN:
   color_categories_for_this_species: 用于此物种的颜色分类，就好像您要将它放在按颜色排序的野外生存指南中。请不要列举所有有机物的颜色，只列举显著的即可。对于开花植物，请使用花的颜色。在颜色对分类没有用的情况下，请将其留空，例如棕色的哺乳动物和绿色的蕨类植物。
   colors: 颜色
   columns: 列数
+  combine: 结合
   comma_separated_list_of_tracking_codes: 以逗号分隔的追踪代码列表。如果您希望向人们发送新的观察表时附加追踪代码，请添加它，例如%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可以使用它追踪来自不同来源的参与者。当下载您项目的观察为CSV文件时，您可以访问这些代码。
   comma_separated_please: 请以逗号分隔
   comment_preview: 评论预览
@@ -574,6 +586,7 @@ zh-CN:
   concept_status: 概念状态
   configure: 配置
   configure_a_widget_to_show: 配置小部件以在您的网站或博客显示 %{site_name} 观察。您可能必须在您的HTML的<code>&lt;head&gt;</code>中包含嵌入式CSS。请随意重写CSS。
+  confirm: 确认
   confirm_membership: 确认会员
   confirm_new_password: 确认新密码
   confirm_now: 现在确认
@@ -594,6 +607,7 @@ zh-CN:
     authority: 宣布此状态的组织。如果*您*希望被列为权威，您可以跳过这条。
     geoprivacy: 用于此分类单元观察的默认位置隐私
   contest: 竞赛
+  continue: 继续
   contributions: 贡献
   contributions_from: 贡献自
   contributor_cannot_be_found: 找不到贡献者
@@ -660,6 +674,7 @@ zh-CN:
   curators_changed_for_x_html: 为%{x}工作的馆长已更改
   curators: 馆长
   current_password: 当前密码
+  custom_field_values: 自定义字段值
   custom_project_fields: 自定义项目字段
   custom_project_was_successfully_created: 已成功创建定制项目。
   darr_apply_darr: '&darr; 申请 &darr;'
@@ -761,6 +776,8 @@ zh-CN:
   disagree: 不同意
   disconnect_provider: 取消连接 %{provider}
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
+  drop_it: 放弃它
+  do_not_show_this_message_again: 不要再次显示这条消息
   do_you_know_where_this_species_lives: 您知道这个物种住在哪里吗？
   does_the_location_seem_accurate: 位置看起来精确么？
   doesnt_have_default_photo: 尚无默认的照片。
@@ -788,6 +805,7 @@ zh-CN:
   edit_field: 编辑字段
   edit_flagged_observation: 编辑被标记的观察
   edit_license: 编辑许可协议
+  edit_multiple_descriptions: 编辑多个描述
   edit_notes: 编辑注释
   edit_photos: 编辑照片
   edit_place: 编辑地点
@@ -824,6 +842,7 @@ zh-CN:
   either: 任一
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
+  email_copyright: 版权所有 &copy; %{x}，保留所有权利
   email_settings: 电子邮件设置
   embed: 嵌入
   embed_widget_project: 在您的网站嵌入到此项目的小部件
@@ -909,6 +928,8 @@ zh-CN:
   find_species: 查找物种
   find_unsuitable_observations: 查找不适当的观察
   find_your_current_location: 找到您当前的位置
+  finished: 已结束
+  finished_with_page: 通过页面结束
   first_observer: 第一个观察者
   first_report: 第一份报告
   flag: 标记
@@ -952,11 +973,13 @@ zh-CN:
   from_a_place: 来自一个地方
   from_anywhere_change: 任何地点（<span class="button">更改</span>）
   from_eol_collection: 来自EOL收藏
+  from_flickr_facebook_etc: 来自Flickr、Facebook等
   from_in_this_place: 来自此地区
   from_list: 来自列表
   from_this: 来自此
   from_photos: 来自照片
   from_place: 来自地方
+  from_soundcloud: 来自Soundcloud
   from_your_site_observations: 来自 %{site_name} 观察
   full_id_please: ID请！
   full_id_please!: ID请！
@@ -984,6 +1007,7 @@ zh-CN:
   global_names: 全域名称
   globally: 全域
   go: 前往
+  go_back: 返回
   got_your_data_somewhere_else?: 在别的地方找到了你的数据？我们可以帮助。
   graft: 移植
   grafting: 移植中……
@@ -1036,6 +1060,7 @@ zh-CN:
   id_please: ID请
   id_please_expandable_html: ID<span class='full'>请</span>！
   identify: 鉴定
+  identify_title: 鉴定
   identification: 鉴定
   identification_deleted: 身份证明已删除。
   identification_saved: 身份证明已保存！
@@ -1056,6 +1081,7 @@ zh-CN:
   if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
   ignore: 忽略
   ignore_times: 忽略时间
+  imperiled: 危及
   import: 导入
   import_date_time_location_taxonomic: 从此照片导入日期、时间、位置、描述和分类信息。
   import_from_csv: 从CSV导入
@@ -1065,6 +1091,7 @@ zh-CN:
   import_observations: 导入观察
   import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
   import_photos: 导入照片
+  import_sounds: 导入声音
   import_tags_from_csv: 从CSV导入标签
   importing: 正在导入...
   in: 于
@@ -1126,6 +1153,7 @@ zh-CN:
   jpg_png_or_gif: JPG、PNG或GIF
   jump_to_letter: 跳转至信件
   just_added!: 添加了！
+  keyboard_shortcuts: 键盘快捷键
   kml: KML
   kml_file_size_error: KML 大小必须小于 1 MB
   labels: 标签
@@ -1304,6 +1332,8 @@ zh-CN:
   map_tooltip: 显示地图预览
   map_for: 地图用于
   mark_as_reviewed: 标记为已复核
+  mark_all_as_reviewed: 全部标记为已复核
+  mark_all_as_unreviewed: 全部标记为未复核
   maybe_your_signed_in_with: 也许您是使用您的 %{omniauth} 账户登录的？
   media: 媒体
   medium: 中
@@ -1331,7 +1361,7 @@ zh-CN:
     shortRelativeTime:
       future: 在 %s
       past: '%s'
-      s: s
+      s: 1秒
       m: 1分钟
       mm: '%dm'
       h: 1h
@@ -1349,6 +1379,7 @@ zh-CN:
   more: 更多
   more_fields: 更多字段
   more_filters: 更多过滤器
+  more_import_options: 更多导入选项
   more_info: 更多信息
   more_info_title: 更多信息
   more_journal_posts: 更多日志发布
@@ -1367,6 +1398,7 @@ zh-CN:
   n_person_disagrees: '%{amount} 个人不同意'
   name: 名称
   name_llaves: '[名称]'
+  name_or_slug: 名称或URL slug，例如my-project
   name_or_username: 名称或用户名
   name_provider: 名称提供方
   name_providers:
@@ -1450,6 +1482,7 @@ zh-CN:
   numeric_: 数字
   noun_by_you: 由您做出的 %{noun}
   obs: 观察
+  obscured_: 已遮盖
   obscured: 已遮盖
   obscured_or_private: 已掩盖或私有
   observation: 观察
@@ -1492,6 +1525,7 @@ zh-CN:
     absent: 缺席
   of: 的
   official_blog: 官方博客
+  ok: 确定
   on_: 在
   on_date: 于 %{date}
   on_day: 于
@@ -1562,6 +1596,7 @@ zh-CN:
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
   photo_hosting_accounts: 照片托管账户
   photo_licensing: 照片许可协议
+  photo_s: 照片
   photo_type: 照片类型
   photos: 照片
   photos_size:
@@ -1576,6 +1611,7 @@ zh-CN:
   pick_a_username: 选择用户名
   pink: 粉色
   place: 地方
+  placeholder: 占位符
   place_geo:
     geo_planet_place_types:
       Aggregate: 聚合
@@ -1594,6 +1630,7 @@ zh-CN:
       county: 县
       District: 区
       district: 区
+      Division: 部门
       Drainage: 排水管道
       drainage: 排水
       Estate: 房地产
@@ -1606,6 +1643,8 @@ zh-CN:
       land_feature: 地貌
       Miscellaneous: 杂项
       miscellaneous: 杂项
+      Municipality: 直辖市
+      municipality: 直辖市
       Nationality: 国籍
       nationality: 国籍
       open_space: 开放空间
@@ -1715,6 +1754,7 @@ zh-CN:
   privacy_policy: 隐私政策
   private: 私有
   private_description: 坐标已从地图中完全隐藏，真坐标只对您和您添加观察的项目的馆长可见。带私有坐标的观察仍将被使用以验证地点核对表。
+  proceed: 继续
   processing: 处理中
   processing3p: 处理中...
   profile: 个人信息
@@ -1741,7 +1781,7 @@ zh-CN:
   project_user_was_invalid: 项目用户无效：%{project_user}
   project_was_successfully_created: 已成功创建项目。
   project_was_successfully_updated: 已成功更新项目。
-  project_x_was_delete: '%{project}已删除'
+  project_x_was_delete: '%{project}已删除（请允许几分钟以从网站中移除）'
   projects: 项目
   protozoans: 原生动物
   public_domain: 公有领域
@@ -1807,6 +1847,9 @@ zh-CN:
   remove_curator: 移除馆长
   remove_curator_role: 移除馆长角色
   remove_from_project: 从项目移除
+  remove_observations:
+    one: 移除 1 次观察么？
+    other: 移除 %{count} 次观察么？
   remove_place: 移除地点
   remove_tags: 移除标签
   removed: 已移除
@@ -1826,6 +1869,7 @@ zh-CN:
   resolve: 解决
   resolver_said_x_html: <span class="meta">%{resolver}说：</span>“%{x}”
   results: 结果
+  review_all: 复核全部
   review_verb: 复核
   reviewed: 已复核
   role: 角色
@@ -1888,6 +1932,7 @@ zh-CN:
   sign_in_exclamation: 登录！
   single_observation: 单一观察
   sizes: 尺寸
+  skip_to_next_page: 跳至下一页
   small: 小
   so_meta!: 所以元！
   some_agree: 部分同意
@@ -1943,6 +1988,8 @@ zh-CN:
   species_guide: 物种指南
   species_header: 物种
   species_name: 物种名称
+  species_name_cap: 物种名称
+  species_names: 物种名称
   species_or_lower: 种或更低
   species_search: 物种搜索
   species_taxon_name: 物种 / 分类名称
@@ -1974,6 +2021,9 @@ zh-CN:
   submission_model_description: 谁可以添加观察至您的项目？
   submit: 提交
   submit_comment: 提交评论
+  submit_observations:
+    one: 提交 1 次观察
+    other: 提交 %{count} 次观察
   submitted: 已提交
   subscribe_to_this: 订阅此
   subscribe_to_x_from_this_y_html: 从此%{y}<a href="#" onclick="$(this).parents('form:first').submit();
@@ -1981,6 +2031,7 @@ zh-CN:
   summary: 摘要
   suspicious_photos: 可疑照片
   sun: 日
+  suspend_user: 停用用户
   sync: 同步
   sync_obs_with_photo_metadata: 同步obs. w/ 照片元数据？
   table: 表格
@@ -2013,7 +2064,7 @@ zh-CN:
   taxonomic_order: 分类排序
   taxonomic_status: 分类状态
   tell_everyone_a_little_about_you: 向大家介绍您自己
-  tell_the_world_a_little_about_yourself: 告诉世界有关您的一些东西，通过
+  tell_the_world_a_little_about_yourself: 告诉我们有关您自己
   terms: 条款
   terms_and_rules_html: 条款和规则
   terms_new_users: 如果您添加条款，新用户必须在加入该项目前同意这些条款。
@@ -2037,12 +2088,21 @@ zh-CN:
   the_project: 项目
   the_species_listed_below_were_not_found_in_the_site_database: 下列物种未在%{site_name}数据库中找到。
   the_title_of_the_wikipedia_article_we_use: 我们用于描述的维基百科条目标题。如果维基百科URL是<code>http://zh.wikipedia.org/wiki/鸟</code>，那么这个值应该是<code>鸟</code>。如果留空，此分类的学名会被使用（它通常都能工作）。
+  the_user_x_has_been_suspended: 用户 %{user} 已被停用
   the_world: 世界
   there_isnt_wiki_article: 没有维基百科条目或重定向的标题叫做“<i>%{taxon}</i>”。您可能想找
   there_isnt_a_wikipedia_article_titled_x_html: 没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
   there_were_errors: 存在错误。
   there_were_some_problems_with: 您的CSV文件存在一些问题。请修正失效的行。当然问题总是出现在我们这边。如果这样，请让我们了解。
   theres_also: 这里也有
+  these_are_items_people_on: |-
+    这些是被网站上的人们标记为需要检查的项目。Spam
+    comments should be deleted and users who add spam should be suspended (go
+    to their profile page and click "Suspend user" in the lower right to
+    prevent them from logging in). Other flagged items should only be deleted
+    if they are clearly hateful, illegal, etc. Rudeness, offensive language,
+    etc, should be handled with a polite comment. Repeat offenders should be
+    reported to a site admin or
   these_are_taxa_that: 这些是由于某些原因，%{site}网站不能自动加入到我们的分类树中的分类。您可以通过编辑分类并选择一个父记录加入它们。例如<i>现代人</i>的父分类是<i>人属</i>。您也可能希望检查同义词分类并合并它们。
   third_person_possessive_singular: '%{object_phrase} 的 %{noun}'
   this: 此
@@ -2053,6 +2113,8 @@ zh-CN:
   this_species: 此物种
   this_taxon_change_has_been_commited: <strong>此分类单元更改已经提交！</strong>请不要编辑分类群。可以编辑其他字段。
   this_tool_is_experimental: 本工具是实验性的，所以请
+  this_user_has_been_suspended: 此用户已被停用
+  this_user_has_been_suspended_message: 如果这是您的账户，并且您认为这样做是错误的，请<a href="mailto:%{email}">联络我们</a>。
   this_will_re_apply_all_list_rules: 这将重新同意所有列表规则至列出的分类，并更新任何分配的统计，例如拒绝不在分类列表中的分类或不是选定排名的分类。它将不会添加任何新分类。这会消耗几分钟。
   this_will_reload_and_refresh: 这将从观察加入列出的分类，并立即刷新观察状态。这将花费一些时间，并请酌情使用。
   thu: 四
@@ -2070,6 +2132,7 @@ zh-CN:
   tools: 工具
   top_5_identifiers: 前5个标识符
   top_contributors: 顶尖贡献者
+  top_identifiers: 顶端标识符
   total: 总计
   totals: 总计
   total_members: 成员总数
@@ -2108,6 +2171,7 @@ zh-CN:
   unprocessable: 不可加工
   unpublish: 取消发布
   unreview: 未复核
+  unreview_all: 取消复核全部
   unsubscribe: 取消订阅
   unsubscribe_from_this: 退订此
   unverifiable: 不能证实
@@ -2128,7 +2192,6 @@ zh-CN:
   upload_photos: 上传照片
   uploaded_by: 上传者
   url_identifier_of_a_project_derived_from: 由同一外部资源衍生出来的URL/项目标识符
-  url_slug_or_id: URL slug或ID，例如my-project或333
   US_states: 美国州
   usage_stats: 用法状态
   use_name_as_a_placeholder: 使用<span class='ac-placeholder'>"%{name}"</span>作为一个占位符
@@ -2149,6 +2212,8 @@ zh-CN:
   users: 用户
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
   users_id: '%{user} 的ID'
+  users_identification_html: <a href='%{url}'>%{user}</a>的身份证明
+  users_comment_html: <a href='%{url}'>%{user}</a> 的评论
   users_observations: '%{user}的观察'
   users_profile: '%{user}的详细信息'
   using_a_license: 使用一份许可协议
@@ -2183,6 +2248,7 @@ zh-CN:
   view_more_observations_of_x_taxon: 查看在 <nobr>%{site_name}</nobr> 上的更多 %{taxon} 的观察
     &raquo;
   view_more_recent_observations: 查看更多最新观察
+  view_more_unreviewed: 查看更多未复核
   view_nbsp: 查看 &nbsp;
   view_non_mobile_site: 查看非移动网站
   view_post: 查看帖子
@@ -2749,7 +2815,7 @@ zh-CN:
           if you choose.
       show:
         take_a_chance_to_review_html: 抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。
-        this_user_was_banned: 此用户已被封禁
+        this_user_was_banned: 此用户已被停用
     welcome:
       index:
         welcome_message_html: 至%{image}，在这里您可以<strong>记录</strong>您在自然中看见，与其他自然爱好者<strong>见面</strong>与<strong>了解</strong>有关自然世界的地方。
@@ -2993,6 +3059,10 @@ zh-CN:
               dna_only_atcg: 对于DNA，只能包含字符A、T、C或G
               date_format: 用于日期字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）的日期格式必须为YYYY-MM-DD
               time_format: 必须以hh:mm形式填写时间字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: 太大了，不能导入
         post:
           attributes:
             user:

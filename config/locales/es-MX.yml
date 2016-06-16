@@ -1519,7 +1519,6 @@ es-MX:
   joining: Uniendo...
   journal: Diario
   journal_archives_for: Archivos de Diario para
-  journal_post: Nota de diario
   journal_post: Notas de diarios
   journal_post_deleted: La nota del diario ha sido borrada.
   jpg_png_or_gif: JPG, PNG, o GIF
@@ -3070,7 +3069,8 @@ es-MX:
   that_observation_no_longer_exists: Esa observació ya no existe.
   that_project_doesnt_exist: Ese proyecto ya no existe.
   that_role_doesnt_exist: Ese rol no existe.
-  that_was_the_last_observation_matching_the_current_filters: Esa fué la última observación que coincidió con los actuales filtros.
+  that_was_the_last_observation_matching_the_current_filters: Esa fué la última observación
+    que coincidió con los actuales filtros.
   that_will_insert_a_link_to: que insertará un enlace en esta herramienta en cada
     página de fotos de Flickr
   thats_okay_we_forget: ¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos
@@ -3359,7 +3359,6 @@ es-MX:
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
     web fuente
-  url_slug_or_id: mi-proyecto de oro 333
   US_states: Estados de Estados Unidos
   usage_stats: Estadísticas de uso
   use_this_form_to_create_a_new: Usa esta forma para crear un cambio taxonómico en
@@ -3409,11 +3408,11 @@ es-MX:
   username_or_email: Nombre de usuario o correo electónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
-  users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> contribuciones
     de %{project_title}
   users_id: de %{user}
   users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
+  users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Últimas observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}
   users_profile: Perfil de %{user}
@@ -3477,7 +3476,6 @@ es-MX:
   view_original_by: Ver original de %{by} en %{photo}
   view_original_ccD_photo: Ve la foto original CC de  %{owner}
   view_other_taxa: Ver otro <nobr> %{taxon_name} &raquo; </nobr>
-  view_photo: Ver foto
   view_photos_ranges_observations_more: ¡Ve fotos, distribución de especies, observaciones
     de %{site_name} y mucho más! Hemos reunido información de muchas fuentes distintas
     y combinadas proporcionan un rápido resumen para cada especie en cada lugar.
@@ -3761,7 +3759,6 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
-  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Tu nueva contraseña es
@@ -4236,8 +4233,10 @@ es-MX:
         positioning_device: Dispositivo usado para determinar las coordenadas
       identify:
         review_all_tooltip: Marcar todas las observaciones de esta página como revisadas
-        you_reviewed_message: Has revisado %{reviewed} de %{pageTotal} observaciones en esta página, de un total de %{total} observaciones coincidentes.
-        unreview_all_tooltip: Quitar el estatus de revisadas a todas las observaciones de esta página
+        you_reviewed_message: Has revisado %{reviewed} de %{pageTotal} observaciones
+          en esta página, de un total de %{total} observaciones coincidentes.
+        unreview_all_tooltip: Quitar el estatus de revisadas a todas las observaciones
+          de esta página
       import:
         coordinate_systems_help: '%{site_name} acepta las coordenadas usando varios
           sistemas distintos de coordenadas, Cuando proporcionas en otro sistema que
