@@ -14,6 +14,9 @@ ja:
   x_followers:
     one: 1人のフォロワー
     other: '%{count}人のフォロワー'
+  x_ids:
+    one: 1 ID
+    other: '%{count} ID'
   x_lists:
     one: 1件のリスト
     other: '%{count}件のリスト'
@@ -24,6 +27,9 @@ ja:
     one: <span class="count">1</span>個の該当する分類群
     other: <span class="count">%{count}</span>個の該当する分類群
   x_observations:
+    one: 1件の観察記録
+    other: '%{count}件の観察記録'
+  x_observations_:
     one: 1件の観察記録
     other: '%{count}件の観察記録'
   x_observations_link_html:
@@ -309,6 +315,7 @@ ja:
   are_you_sure_merge_these_places: この場所を統合して本当によろしいですか？この操作は元に戻すことができません。
   are_you_sure_remove_curator: '%{user}からキュレーター管理の権限を取消しても本当によろしいですか？'
   are_you_sure_remove_from_project: このプロジェクトから%{user}を退会させて本当によろしいですか？
+  are_you_sure_remove_photo: この写真を本当に削除してよろしいですか？
   are_you_sure_remove_taxon_from_list: リストからこの分類群を削除して本当によろしいですか？
   are_you_sure_remove_taxon_from_place: この分類群を%{place}のチェックリストから取り除いて本当によろしいですか？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
@@ -336,6 +343,7 @@ ja:
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: '%{place}のチェックリストからこの分類群を削除して本当によろしいですか？'
   associated_observations: 関連している観測記録
   associated_taxa: 関連する分類群
+  attention: 注意
   you_sure_delete_list: このリストを削除して本当によろしいですか？
   you_sure_delete_taxon_from_list?: リストから%{taxon}を削除して本当によろしいですか？
   asc: 昇順
@@ -782,6 +790,9 @@ ja:
   editing_custom_project_fields_for: プロジェクト専用フィールド編集中：
   editing_observation_field: 観測記録のフィールドを編集中
   editing_observation_id: '%{obs_id}の観測記録を編集中'
+  editing_observations:
+    one: <span class="count">1</span>件の観察記録を編集中：
+    other: <span class="count">%{count}</span>件の観察記録を編集中：
   editing_project: '%{project}を編集中'
   editing_project_asset: プロジェクトアセット編集中：
   editing_subscription_to_x_html: '%{x}の購読を編集中'
@@ -891,6 +902,7 @@ ja:
   find_suitable_observations: 適切な観察記録を検索
   find_unsuitable_observations: 不適切な観察記録を検索
   find_your_current_location: 現在地を取得
+  finished: 完了
   first_confirmed_inat_observation: '%{site_name}で初確認済の観察記録'
   first_connect_your_provider_account_to_your_site: まず、%{provider}のアカウントを%{site_name}と接続しましょう。
   first_inat_observation: 初めての%{site_name}観察記録
@@ -969,6 +981,7 @@ ja:
   give_it_some_detail: 詳しく書きましょう！
   global_conservation_status: 世界保全状況
   global_names: グローバル名
+  go_back: 戻る
   good_choice_for_sharing: 科学者にデータ共有できるのでオススメ
   got_your_data_somewhere_else?: 別のところでデータを保存していますか？お手伝いできます。
   graft: 融合
@@ -1056,6 +1069,7 @@ ja:
   import_observations: 観測記録をインポート
   import_observations_from_a_photo: 写真共有サイト及びパソコンの写真ファイルから観察記録をインポート
   import_photos: 写真をインポート
+  import_sounds: 音声データをインポート
   import_tags_from_csv: CSVからタグをインポート
   importing: インポート中...
   inaturalist_network_affiliation: iNaturalistネットワーク所属
@@ -1347,7 +1361,7 @@ ja:
   momentjs:
     shortRelativeTime:
       past: '%s'
-      s: 秒
+      s: 1秒
       m: 1分
       mm: '%dm'
       h: 1時間
@@ -1627,6 +1641,7 @@ ja:
   offensive_inappropriate: 不快／不適切
   official_blog: 公式ブログ
   offline_access_enabled: オフラインアクセス対応
+  ok: OK
   on_your_life_list: 自分のライフリストに
   one_by_one: １個ずつ
   one_of_your_lists: 自分のリストに
@@ -1700,6 +1715,7 @@ ja:
   photo_by_id_attribution: 写真 %{id}, %{attribution}
   photo_deleted: 写真が削除されました
   photo_licensing: 写真ライセンス
+  photo_s: 写真
   photo_type: 写真の種類
   photo_urls_repaired: 写真のURLは復元できました
   photos: 写真
@@ -1757,6 +1773,8 @@ ja:
       local_administrative_area: 自治区
       Miscellaneous: その他
       miscellaneous: その他
+      Municipality: 市町村
+      municipality: 市町村
       Nationality: 国籍
       nationality: 国籍
       Nearby_Building: 近辺の建物
@@ -1893,6 +1911,7 @@ ja:
   privacy: プライバシー・ポリシー
   privacy_policy: プライバシー・ポリシー
   private: 非公開
+  proceed: 続行
   processing: 処理中
   processing3p: 処理中...
   profile: プロフィール
@@ -1926,7 +1945,7 @@ ja:
   project_user_was_invalid: プロジェクトユーザーは無効です：%{project_user}
   project_was_successfully_created: プロジェクトは無事作成されました
   project_was_successfully_updated: プロジェクトは無事更新されました
-  project_x_was_delete: '%{project}は削除されました'
+  project_x_was_delete: '%{project}は削除されました (ウェブサイト上から削除されるまで数分を要する場合があります)'
   projects: プロジェクト
   projects_from_place: '%{place}からのプロジェクト'
   projects_in_x: '%{x}の中のプロジェクト'
@@ -2016,6 +2035,9 @@ ja:
   remove_from_guide: ガイドから取り除く
   remove_from_list: リストから外す
   remove_from_project: プロジェクトから除去
+  remove_observations:
+    one: 1件の観察記録を除去しますか？
+    other: '%{count}件の観察記録を除去しますか？'
   remove_place: 場所を取り除く
   remove_project_user: プロジェクトユーザーを取り除く
   remove_selected: 選択された項目を取り除く
@@ -2082,6 +2104,9 @@ ja:
   save_photos: 写真を保存
   save_place: 場所を保存
   saving: 保存中...
+  saving_num_of_count_observations:
+    one: 観察記録を保存中...
+    other: '%{count}件中%{num}件目の観察記録を保存中...'
   saving_verb: 保存中
   schemes: スキーム
   schemes_including: 次の含むスキーム
@@ -2239,6 +2264,8 @@ ja:
   species_guide: 種ガイド
   species_header: 種
   species_name: 種名
+  species_name_cap: 種名
+  species_names: 種名
   species_or_lower: 種と種より下級
   species_search: 種を検索
   species_taxon_name: 種・分類群の名称
@@ -2271,6 +2298,9 @@ ja:
   stuff_just_added: あなたの新着追加項目
   submit: 送信
   submit_comment: コメントを投稿
+  submit_observations:
+    one: 1件の観察記録を送信
+    other: '%{count}件の観察記録を送信'
   submitted: 投稿済
   subscribe_to_this: こちらを購読
   subscribe_to_this_observation: この観察記録に購読
@@ -2330,7 +2360,7 @@ ja:
   taxonomic_tags_for_flickr: Flickr用のタクソンタグ付け
   taxonomic_tree_browser: 系統樹ブラウザ
   tell_everyone_a_little_about_you: みんなに自己紹介しましょう
-  tell_the_world_a_little_about_yourself: 世界に自己紹介しましょう
+  tell_the_world_a_little_about_yourself: 自己紹介しましょう
   terms: 規約
   terms_and_rules_html: 規約及び規則
   terms_new_users: プロジェクトに参加する条件として、同意しなければならない規約
@@ -2412,6 +2442,7 @@ ja:
   this_taxon_name_was_originally_imported: この分類群は次の外部名称提供データベースよりインポートされたものです：
   this_taxon_was_originally_imported_from: この分類群は外部名称提供データベースよりインポートされたものです
   this_tool_is_experimental: このツールは実験的なものなので、必ず
+  this_user_has_been_suspended: この利用者は利用停止されました
   this_will_try_to_add_tags_to_your_flickr: Flickr上の写真にタグ追加を試みます。実行しますか？
   those_observations_no_longer_exist: お探しの観測記録は存在しません
   threatened: 絶滅危惧種
@@ -2501,6 +2532,7 @@ ja:
   username_or_user_id: ユーザー名もしくユーザーID
   users: ユーザー
   users_id: '%{user}さんのID'
+  users_comment_html: <a href='%{url}'>%{user}</a>のコメント
   users_latest_observations_on_site: '%{site}における%{user}の最新観察記録'
   users_observations: '%{user}の観測記録'
   users_profile: '%{user}のプロフィール'

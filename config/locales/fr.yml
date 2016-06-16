@@ -19,6 +19,7 @@
 # Author: Robby
 # Author: Spasmedevivre
 # Author: Wladek92
+# Author: Yasten
 ---
 fr:
   licensing_your_content: "En ajoutant une licence à votre contenu, vous donnez aux
@@ -49,6 +50,12 @@ fr:
   x_identifications:
     one: 1 identification
     other: '%{count} identifications'
+  x_identifications_:
+    one: 1 identification
+    other: '%{count} identifications'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDs'
   x_lists:
     one: 1 liste
     other: '%{count} listes'
@@ -64,12 +71,18 @@ fr:
   x_observations:
     one: 1 observation
     other: '%{count} observations'
+  x_observations_:
+    one: 1 observation
+    other: '%{count} observations'
   x_observations_html:
     one: <span class='count'>1</span> observation
     other: <span class='count'>%{count}</span> observations
   x_observations_link_html:
     one: <a href='%{url}'>1 observation</a>
     other: <a href='%{url}'>%{count} observations</a>
+  x_observations_reviewed_html:
+    one: <span class='count'>1</span> observation revue
+    other: <span class='count'>%{count}</span> observations revues
   x_people:
     one: 1 personne
     other: '%{count} personnes'
@@ -132,6 +145,7 @@ fr:
   accept: accepter
   accept_community_identifications: Accepter les identifications de la communauté
   accuracy: Précision
+  accuracy_m: Précision (m)
   accuracy_meters: Précision (mètres)
   accuracy_of_the_coordinates: |-
     Précision des coordonnées en mètres. Vous pouvez modifier les coordonnées
@@ -271,6 +285,7 @@ fr:
   agree: accepter
   agree?: Accepter?
   agree_to_the_project_terms: Accepter les modalités du projet
+  agree_with_current_taxon: Accord avec le taxon actuel
   agreeing: Consentement en cours…
   aka: alias
   all: Tous
@@ -427,6 +442,7 @@ fr:
     que" responsable de l’organisation ?
   are_you_sure_remove_from_project: Êtes-vous certain de vouloir retirer %{user} du
     projet?
+  are_you_sure_remove_photo: Êtes-vous sûr de vouloir supprimer cette photo ?
   are_you_sure_remove_taxon_from_list: Êtes-vous certain de vouloir enlever ce taxon
     de la liste?
   are_you_sure_remove_taxon_from_place: Êtes-vous certain de vouloir enlever ce taxon
@@ -485,6 +501,7 @@ fr:
     vouloir supprimer ce taxon de la liste de contrôle de « %{place} » ?
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
+  attention: Attention
   you_sure_delete_list: Êtes-vous certain de vouloir supprimer cette liste ?
   you_sure_delete_taxon_from_list?: Êtes-vous certain de vouloir retirer %{taxon}
     de la liste?
@@ -727,6 +744,7 @@ fr:
   check_lists_for: Autres listes de contrôle associées à %{place}
   check_out_my_observations_at: Si vous voulez, vous pouvez consulter mes observations
     à
+  check_out_our_blog: Regardez notre blog
   check_out_what_the_observation: Consulter l’apparence de l’observation que vous
     tentez d’identifier.
   check_out_your_life_list: Consulter votre liste des êtres vivants
@@ -755,6 +773,7 @@ fr:
   choose_from_your_lists: Choisissez à partir de vos listes
   choose_good_default_photos: choisissez de bonnes photos par défaut à partir de l’inventaire
     de photos Creative Commons de Flickr
+  choose_photos: Choisir les photos
   choose_photos_for_this_taxon: Choisissez des photos pour ce taxon
   choose_photos_to_tag_from_photostream: Choisissez des photos à étiquetées à partir
     de votre flux de photos
@@ -791,6 +810,7 @@ fr:
     les fougères vertes.'
   colors: Couleurs
   columns: Colonnes
+  combine: Combiner
   comma_separated_list_of_tracking_codes: |-
     Liste de codes de suivi séparés par des virgules. Ajoutez un code de suivi
     lorsque vous renvoyez les gens vers un nouveau formulaire d’observation,
@@ -838,6 +858,7 @@ fr:
     d’%{site_name} sur votre site web ou votre blogue. Vous devrez peut-être inclure
     le CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas
     à réécrire le CSS.
+  confirm: Confirmer
   confirm_membership: Confirmer l’adhésion
   confirm_new_password: Confirmer le nouveau mot de passe
   confirm_now: Confirmer maintenant
@@ -870,6 +891,7 @@ fr:
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
     de ce taxon qui sont présents ici?
   contest: concours
+  continue: Continuer
   contributions: contributions
   contributions_from: Contributions de
   contributor_cannot_be_found: Le collaborateur est introuvable
@@ -936,6 +958,7 @@ fr:
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
   creative_commons_unless_otherwise_noted: Creative Commons, sauf mention contraire.
   critically_endangered: gravement menacée
+  critically_imperiled: gravement menacé
   css_description: Sera inclus après tous les autres CSS de la page.
   csv: CSV
   csv_file: Fichier CSV
@@ -959,6 +982,7 @@ fr:
     du projet.
   curator_identification: Identification du responsable de l’organisation
   current_password: Mot de passe actuel
+  custom_field_values: Valeurs de champs personnalisés
   custom_project_fields: Champs de projet personnalisés
   custom_project_was_successfully_created: Le projet personnalisé a bien été créé.
   custom_project_was_successfully_updated: Le projet personnalisé a bien été mis à
@@ -1075,12 +1099,15 @@ fr:
   display_listings_added_by_curators: Afficher les listes ajoutées par les responsables
     de l’organisation
   display_listings_from_place: Afficher les listes du lieu
+  drop_it: Le déposer
+  do_not_show_this_message_again: Ne plus afficher ce message
   do_you_know_where_this_species_lives: Savez-vous où vivent ces espèces?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Étudiez-vous les nématodes?
     Êtes-vous le plus grand expert mondial de la taxonomie des anatifes? Aimez-vous
     simplement regarder les belles fleurs? En remplissant votre profil,  vous y donnez
     du caractère et vous contribuez à établir votre crédibilité quand vous aidez les
     autres dans leurs identifications.
+  do_you_want_to_proceed: Voulez-vous poursuivre?
   does_the_location_seem_accurate: L’emplacement semble-t-il exact?
   does_the_date_seem_accurate: La date semble-t-elle exacte?
   doesnt_have_default_photo: n’a pas encore de photo par défaut.
@@ -1101,6 +1128,7 @@ fr:
   draft_: Brouillon
   draft_saved: Brouillon enregistré!
   drafts: Brouillons
+  drag_and_drop_some_photos: Glisser & déposer quelques photos
   each_place_displays_all_species_inat_knows: Chaque page de lieu affiche toutes les
     espèces dont %{site_name} est au courant dans ce lieu, y compris les informations
     sur leur abondance, leur situation quant à la conservation et la personne qui
@@ -1118,6 +1146,7 @@ fr:
   edit_field: Modifier le champ
   edit_flagged_observation: Modifier l’observation signalée
   edit_license: Modifier la licence
+  edit_multiple_descriptions: Modifier des descriptions multiples
   edit_notes: Modifier les notes
   edit_photos: Modifier les photos
   edit_photos_for_observation_id: Modifier les photos pour l’observation %{obs_id}
@@ -1152,6 +1181,9 @@ fr:
     pour
   editing_observation_field: Modification du champ de l’observation
   editing_observation_id: Modification de l’observation %{obs_id}
+  editing_observations:
+    one: 'Modifier <span class="count">1</span> observation :'
+    other: 'Modifier <span class="count">%{count}</span> observations :'
   editing_project: Modification de %{project}
   editing_project_asset: Modification du bien du projet pour
   editing_subscription_to_x_html: Modification de l’abonnement à %{x}
@@ -1170,6 +1202,7 @@ fr:
     à 60 tous les 30 jours.
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
   email_addresses_to_receive_invites: Adresses électroniques pour recevoir les invitations
+  email_copyright: Copyright &copy; %{x}, tous droits réservés
   email_settings: Paramètres de courriel
   embed: Intégrer
   embed_a_widget_for_this_taxon_on_website: Intégrer un widget pour ce taxon sur votre
@@ -1301,6 +1334,8 @@ fr:
   find_suitable_observations: Trouver des observations pertinentes
   find_unsuitable_observations: Trouvez les observations inadaptées
   find_your_current_location: Trouver votre position actuelle
+  finished: Terminé
+  finished_with_page: Terminé avec la page
   first_confirmed_inat_observation: Première observation %{site_name} confirmée
   first_connect_your_provider_account_to_your_site: 'D’abord, connectez votre compte
     %{provider} à %{site_name} :'
@@ -1363,11 +1398,13 @@ fr:
   from_a_place: À partir d’un lieu
   from_anywhere_change: À partir de n’importe où (<span class="button">modifier</span>)
   from_eol_collection: À partir de la collection de l’EdlV
+  from_flickr_facebook_etc: Depuis Flickr, Facebook, etc.
   from_in_this_place: à partir de ce lieu
   from_list: À partir de la liste
   from_this: À partir de ceci
   from_photos: À partir des photos
   from_place: À partir du lieu
+  from_soundcloud: Depuis Soundcloud
   from_your_site_observations: À partir ses observations d’%{site_name}
   from_licensed_site_observations: À partir des observations sous licence  d’%{site_name}
   full_id_please: Identification, SVP!
@@ -1403,6 +1440,8 @@ fr:
   global_names: Noms globaux
   globally: à l’échelle mondiale
   go: Continuer
+  go_back: Revenir en arrière
+  going_to_your_observations: Aller à vos observations…
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
   got_your_data_somewhere_else?: Avez-vous obtenu vos données ailleurs ? Nous pouvons
     vous aider.
@@ -1487,6 +1526,7 @@ fr:
   id_please: Identification SVP
   id_please_expandable_html: Identification<span class='full'> demandée</span> !
   identify: Identifier
+  identify_title: Identifier
   identification: identification
   identification_deleted: identification supprimée.
   identification_saved: Identification enregistrée!
@@ -1530,6 +1570,7 @@ fr:
   ignore_times: Ignorer le nombre de fois
   image_must_be_exactly: la largeur de l’image doit être exactement 950px et la hauteur
     d’un maximum de 400px
+  imperiled: En péril
   import: Importer
   import_all_photos_as_observations: Importer toutes les photos comme des observations
   import_as_an_observation: Importer comme une observation
@@ -1544,6 +1585,7 @@ fr:
   import_observations_from_a_photo: Importer des observations à partir d’un fournisseur
     de photos ou d’un fichier sur votre machine.
   import_photos: Importer des photos
+  import_sounds: Importer les sons
   import_tags_from_csv: Importer des balises à partir d'un fichier CSV
   importing: Importation en cours…
   in: dans
@@ -1648,6 +1690,7 @@ fr:
   jump_to_letter: Sauter à la lettre
   just_added!: Ajouts récents
   kelp_diatoms_and_allies: varech, diatomées et espèces apparantées
+  keyboard_shortcuts: Raccourcis clavier
   kml: KML
   kml_file_size_error: Le format KML doit être moins de 1Mo
   labels: Étiquettes
@@ -1850,6 +1893,7 @@ fr:
     ja: Japonais
     zh-CN: Chinois (simplifié)
     zh-TW: Chinois (traditionnel)
+  locality_notes: Notes localisées
   localized_species_accounts: Comptes d’espèces localisées
   location: Emplacement
   location_: Emplacement
@@ -1934,6 +1978,8 @@ fr:
   map_tooltip: Afficher la vue de la carte
   map_for: Carte de
   mark_as_reviewed: Mark tel que révisé
+  mark_all_as_reviewed: Marquer l'ensemble comme relu
+  mark_all_as_unreviewed: Marquer tout comme non relu
   matched_several_different_taxa: correspond à plusieurs taxons différents
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées
     ici. Les cartes afficheront une aire de répartition pour cette espèce si elle
@@ -1972,7 +2018,7 @@ fr:
     shortRelativeTime:
       future: en %s
       past: '%s'
-      s: s
+      s: 1s
       m: 1min
       mm: '%dm'
       h: 1h
@@ -1990,6 +2036,7 @@ fr:
   more: Plus
   more_fields: Plus de champs
   more_filters: Plus de filtres
+  more_import_options: Plus options d’importation
   more_info: Plus d’informations
   more_info_title: Plus d’informations
   more_journal_posts: Plus de notes de journal
@@ -2004,6 +2051,8 @@ fr:
     sortie aux fins de séparation)
   multiple_taxon_ids_separated_by_commas: IDs de taxon multiples séparés par des virgules,
     par ex. 123,654
+  must_be_observed_after: doit être observé après %{operand}
+  must_be_observed_before: doit être observé avant %{operand}
   must_be_observed_in: doit être observé dans
   must_be_less_than_x_MB: Doit être de moins de %{x} Mo
   must_have_observation_field: le champ '%{operand}' de l’observation doit être rempli
@@ -2016,6 +2065,7 @@ fr:
   name: Nom
   name_entered: Nom saisi
   name_llaves: '[NOM]'
+  name_or_slug: Nom ou identifiant de l’URL, par ex. mon-projet
   name_of_the_place_you: Nom du lieu où vous avez fait l’observation
   name_or_username: Nom ou nom d’utilisateur
   name_provider: Fournisseur du nom
@@ -2220,6 +2270,7 @@ fr:
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
   obs: Obs
+  obscured_: masqué
   obscured: Masqué
   obscured_or_private: masqué ou privé
   obscured_description: Les coordonnées qui sont visibles pour tout le monde sont
@@ -2261,6 +2312,7 @@ fr:
     alors le projet acceptera des observations sur les reptiles OU les
     amphibiens.
   observation_was_deleted: L’observation a été supprimée.
+  observation_without_photo: Observation sans photo
   observation_would_like_some_help: '%{user} aimerait de l’aide l’identification!'
   observations: Observations
   observations_added_by_x_html: Observations ajoutées par %{x}
@@ -2346,6 +2398,7 @@ fr:
   offensive_inappropriate: injurieux/inapproprié
   official_blog: Blog officiel
   offline_access_enabled: Accès hors ligne activé
+  ok: OK
   on_: le
   on_date: le %{date}
   on_day: le
@@ -2475,6 +2528,7 @@ fr:
   photo_hosting_accounts: Comptes d’hébergement de photos
   photo_integration: Intégration de photos
   photo_licensing: Licence de photo
+  photo_s: Photo(s)
   photo_type: Type de Photo
   photo_urls_repaired: URL de photo réparées
   photos: Photos
@@ -2514,6 +2568,8 @@ fr:
       county: comté
       District: District
       district: District
+      Division: Division
+      division: division
       Drainage: Bassin hydrographique
       drainage: bassin hydrographique
       Estate: Domaine
@@ -2534,6 +2590,8 @@ fr:
       local_administrative_area: unité administrative locale
       Miscellaneous: Divers
       miscellaneous: divers
+      Municipality: Municipalité
+      municipality: municipalité
       Nationality: Nationalité
       nationality: nationalité
       Nearby_Building: Bâtiment à proximité
@@ -2692,6 +2750,7 @@ fr:
     des projets auxquels vous avez ajouté l’observation. Les observations avec des
     coordonnées privées seront toujours utilisées pour vérifier les listes de contrôle
     des lieux.
+  proceed: Procéder
   processing: Traitement
   processing3p: Traitement en cours…
   profile: Profil
@@ -2745,7 +2804,8 @@ fr:
   project_user_was_invalid: 'L’utilisateur du projet n’est pas valide : %{project_user}'
   project_was_successfully_created: Le projet a bien été créé.
   project_was_successfully_updated: Le projet a bien été mis à jour.
-  project_x_was_delete: '%{project} a été supprimé'
+  project_x_was_delete: '%{project} a été supprimé (merci d’attendre quelques minutes
+    pour qu’il soit supprimé du site web)'
   projects: Projets
   projects_description: Les projets sont un moyen de mettre en commun vos observations
     avec celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un
@@ -2860,6 +2920,9 @@ fr:
   remove_from_project: Supprimer du projet
   remove_this_section: Supprimer cette section
   remove_manager: Supprimer le gestionnaire
+  remove_observations:
+    one: Supprimer 1 observation ?
+    other: Supprimer %{count} observations ?
   remove_place: Supprimer lieu
   remove_project_user: Supprimer l’utilisateur du projet
   remove_selected: Supprimer la sélection
@@ -2901,6 +2964,7 @@ fr:
   resolved_by: Réglé par
   resolver_said_x_html: <span class="meta">%{resolver} a dit,</span> « %{x} »
   results: résultats
+  review_all: Relire tout
   review_verb: Relecture
   reviewed: Relu
   roadmap: feuille de route
@@ -2944,6 +3008,9 @@ fr:
   save_place: Enregistrer le lieu
   save_trip: Enregistrer le voyage
   saving: Enregistrement en cours…
+  saving_num_of_count_observations:
+    one: Enregistrement de l’observation…
+    other: Enregistrement de %{num} sur %{count} observations…
   saving_verb: Enregistrement
   schemes: Plans
   schemes_including: Plans comprenant
@@ -2959,6 +3026,7 @@ fr:
     les commentaires!
   search_descendant_taxa_raquo: Rechercher les taxons descendants &raquo;
   search_external_name_providers: Rechercher les fournisseurs externes de noms
+  search_for_a_location: Rechercher un emplacement
   search_for_new_taxa: rechercher de nouveaux taxons
   search_for_place_to_import_from_yahoo: Rechercher un lieu à importer à partir de
     Yahoo.
@@ -2990,6 +3058,7 @@ fr:
     les listes non observées à partir de la liste des projets
   select_one_or_more_photos: Sélectionnez une ou plusieurs photos
   select_none: Ne rien sélectionner
+  select_observations_to_edit: Sélectionner les observations à modifier...
   select_options: Sélectionnez les options
   select_photos_from_your_photo_stream: Sélectionnez des photos des sites d’échange
     externes pour les convertir en observations %{site_name}. Nous remplirons la date,
@@ -3054,6 +3123,7 @@ fr:
   single_taxon: Taxon unique (entrée aux fins de séparation/suppression/organisation,
     sortie aux fins de fusion/échange)
   sizes: Tailles
+  skip_to_next_page: Passer à la page suivante
   small: petit
   site_name_place: lieu d’%{site_name}
   site_observations_export_from_date: observations d’%{site_name} exportées depuis
@@ -3176,7 +3246,9 @@ fr:
   species_guess: devinez l’espèce
   species_guide: Guide des espèces
   species_header: Espèce
-  species_name: noms des espèces
+  species_name: nom des espèces
+  species_name_cap: Nom des espèces
+  species_names: noms des espèces
   species_or_lower: espèces ou rang inférieur
   species_search: Recherche d’espèces
   species_taxon_name: Nom de l’espèce/taxon
@@ -3217,6 +3289,9 @@ fr:
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit: Soumettre
   submit_comment: Soumettre un commentaire
+  submit_observations:
+    one: Soumettre 1 observation
+    other: Soumettre %{count} observations
   submitted: Soumis
   subscribe_to_places_to: Abonnez-vous aux lieux pour recevoir les mises à jour sur
     les nouvelles observations qui y sont faites. Les mises à jour faites par les
@@ -3316,8 +3391,7 @@ fr:
   taxonomic_tags_for_flickr: Étiquettes taxonomiques pour Flickr
   taxonomic_tree_browser: Explorateur de l’arborescence taxonomique
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
-  tell_the_world_a_little_about_yourself: Dites-en un peu sur vous à tout le monde
-    en
+  tell_the_world_a_little_about_yourself: Parlez-nous de vous
   terms: Conditions
   terms_and_rules_html: Conditions &amp; Règles
   terms_new_users: Si vous ajoutez des conditions, les nouveaux utilisateurs devront
@@ -3336,6 +3410,8 @@ fr:
   that_observation_no_longer_exists: Cette observation n’existe plus.
   that_project_doesnt_exist: Ce projet n’existe pas.
   that_role_doesnt_exist: Ce rôle n’existe pas
+  that_was_the_last_observation_matching_the_current_filters: C’était la dernière
+    observation correspondant aux filtres actuels.
   that_will_insert_a_link_to: cette action insérera un lien vers cet outil dans chaque
     page de photo de Flickr.
   thats_okay_we_forget: Pas de problème! Il nous arrive aussi d’oublier le nôtre.
@@ -3423,6 +3499,8 @@ fr:
     lors de l’ajout de cette observation à ce projet :'
   there_were_problems_importing_that_place: 'Il y a eu des problèmes durant l’importation
     de ce lieu : %{place_error}'
+  there_were_problems_importing_that_place_geometry: 'Il y a eu des problèmes lors
+    de l’importation de la géométrie de ce lieu : %{error}'
   there_were_some_problems_saving_this_observation: Il y a eu des problèmes durant
     l’enregistrement de cette observation
   there_were_some_problems_saving_those_colors: 'Il y a eu des problèmes durant l’enregistrement
@@ -3451,6 +3529,8 @@ fr:
     cadre de ce projet. Veuillez vérifier les
   these_folks_kindly_volunteer_to: Ces gens se sont aimablement portés volontaires
     pour maintenir notre taxonomie et gérer les autres problèmes.
+  these_observations_have_not_been_uploaded_yet: Ces observations n’ont pas encore
+    été téléchargées.
   they_already_have_iNat_accounts: … ils ont déjà des comptes sur %{site_name}
   they_have_been_invited: …ils ont déjà été invités
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
@@ -3498,6 +3578,9 @@ fr:
   this_taxon_was_originally_imported_from: 'Ce taxon a été importé initialement à
     partir d’un fournisseur externe de noms :'
   this_tool_is_experimental: Cet outil est utilisé à titre expérimental; veuillez
+  this_user_has_been_suspended: Cet utilisateur a été suspendu
+  this_user_has_been_suspended_message: Si c’est votre compte et que vous pensez que
+    cela a été fait par erreur, veuillez <a href="mailto:%{email}">nous contacter</a>.
   this_will_add_listed_taxa: Cette action ajoutera les taxons répertoriés à partir
     des observations. Elle peut prendre un certain temps; veuillez l’utiliser avec
     modération     et uniquement avec de petites listes de contrôle
@@ -3551,6 +3634,7 @@ fr:
   tools: Outils
   top_5_identifiers: les 5 identificateurs les plus importants
   top_contributors: Collaborateurs les plus importants
+  top_identifiers: Meilleurs identifiants
   total: total
   totals: totaux
   total_members: Total des membres
@@ -3597,6 +3681,7 @@ fr:
   unprocessable: Non traitable
   unpublish: Dépublier
   unreview: Non vérifiés
+  unreview_all: Marquer tout comme non relu
   unsubscribe: Désabonnez-vous
   unsubscribe_from_this: Désabonnez-vous
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
@@ -3614,6 +3699,7 @@ fr:
   update_search: Mettre à jour la recherche
   update_selected_taxa: Mettre à jour les taxons sélectionnés
   update_subscription: Mettre à jour l’abonnement
+  update_subscription_preferences: mettre à jour les préférences d’abonnement
   update_x_selected_taxa:
     one: Mettre à jour le taxon sélectionné
     other: Mettre à jour les %{count} taxons sélectionnés
@@ -3634,7 +3720,6 @@ fr:
   url_identifier_of_a_project_derived_from: URL/identifiant d&un projet dérivé d’une
     ressource externe
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
-  url_slug_or_id: titre de l'URL ou identifiant, par exemple "mon-projet" ou 333
   US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
   use_name_as_a_placeholder: Utilisez <span class='ac-placeholder'>"%{name}"</span>
@@ -3690,6 +3775,8 @@ fr:
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a>
     à %{project_title}
   users_id: ID de %{user}
+  users_identification_html: identification de <a href='%{url}'>%{user}</a>
+  users_comment_html: commentaire de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: dernières observations de %{user} sur %{site}
   users_observations: observations de %{user}
   users_profile: Profil de %{user}
@@ -3737,6 +3824,7 @@ fr:
   view_more_observations_of_x_taxon: Afficher plus d’observations de %{taxon} sur
     <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Afficher les observations les plus récentes
+  view_more_unreviewed: Afficher plus de non relu
   view_nbsp: Voir &nbsp;
   view_non_mobile_site: Afficher le site non mobile
   view_post: Afficher le message
@@ -3908,6 +3996,8 @@ fr:
   yesterday_at: ', hier à 16 h'
   you: vous
   you_admin: que vous administrez
+  you_appear_offline_try_again: Vous semblez être déconnecté. Veuillez réessayer une
+    fois connecté à Internet.
   youre_a_site_curator_which_means: |-
     Vous êtes un responsable de l’organisation du site, ce qui veut dire que vous vous êtes porté volontaire pour aider
     à organiser nos données et à contrôler le contenu. Ne vous sentez pas obligé
@@ -3923,6 +4013,14 @@ fr:
     ajouter un</a>
   you_are_already_a_member_of_this_project: Vous êtes déjà membre de ce projet!
   you_are_no_longer_following_x: Vous ne suivez plus %{friend}.
+  you_are_setting_this_project_to_aggregate: |-
+    Vous paramétrez ce projet pour agréger toutes les observations correspondant aux
+    règles suivantes : %{rules} Voulez-vous continuer ?
+  you_are_submitting_obs_without_photos_and_names: Vous soumettez des observations
+    sans photos ni noms de taxon. Ces observations seront très difficiles à identifier
+    avec précision.
+  you_are_submitting_obs_with_photos_no_date: Vous soumettez des observations avec
+    des photos, mais sans date ni lieu.
   you_are_subscribed_to: Vous êtes abonné à
   you_arent_a_member_of_that_project: Vous n’êtes pas membre de ce projet.
   you_arent_following_that_person: Vous ne suivez pas cette personne.
@@ -4042,6 +4140,11 @@ fr:
     vous connecter pour continuer.
   your_activation_code_was_missing: Votre code d'activation est manquant. Veuillez
     suivre l'URL de votre e-mail.
+  your_coarser_id: |-
+    Votre ID grossière de <span class='taxon'>%{coarser_taxon_name}</span> implique que vous
+    n’êtes pas d’accord avec l’ID plus précise de
+    <span class='taxon'>%{finer_taxon_name}</span>. Est-ce bien ce que vous voulez faire ?<br><br>
+    <a href='/pages/getting+started' target='_blank'>En savoir plus sur le travail d’identification &raquo;</a>
   your_comment_was_saved: Votre contenu a été enregistré
   your_contributions_to_project: Vos contributions à %{project_title}
   your_default: vos paramètres par défaut
@@ -4582,6 +4685,12 @@ fr:
         tag_list: Liste d’étiquettes séparée par des virgules
         positioning_method: Façon dont les coordonnées ont été déterminées
         positioning_device: Appareil utilisé pour déterminer les coordonnées
+      identify:
+        review_all_tooltip: Marquer toutes les observations de la page comme relues
+        you_reviewed_message: Vous avez relu %{reviewed} sur %{pageTotal} observations
+          de cette page, sur un total de %{total} observations correspondantes.
+        unreview_all_tooltip: Supprimer le statut examiné de toutes les observations
+          sur la page
       import:
         coordinate_systems_help: |-
           %{site_name} accepte les coordonnées en provenance de différents systèmes
@@ -5105,7 +5214,7 @@ fr:
       show:
         take_a_chance_to_review_html: Prenez le temps de revoir <a href="%{link}">nos
           lignes directrices</a>.
-        this_user_was_banned: Cet utilisateur a été banni
+        this_user_was_banned: Cet utilisateur a été suspendu
     welcome:
       index:
         welcome_message_html: "sur %{image}, où vous pourrez <strong>enregistrer</strong>
@@ -5402,6 +5511,10 @@ fr:
                 \ndans votre observation de « %{observation_species_guess} »)"
               time_format: "doit être au format hh:mm pour un champ d’heure (« %{observation_field_name} »
                 \ndans votre observation de « %{observation_species_guess} »)"
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: est trop gros pour être importé
         post:
           attributes:
             user:
@@ -5415,6 +5528,9 @@ fr:
           attributes:
             user_id:
               must_be_curator: doit être un responsable de ce projet
+            observation_id:
+              must_be_observed_after: doit être observé après %{time}
+              must_be_observed_before: doit être observé avant %{time}
     attributes:
       assessment:
         description: Description
