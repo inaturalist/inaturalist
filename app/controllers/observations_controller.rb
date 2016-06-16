@@ -2695,6 +2695,9 @@ class ObservationsController < ApplicationController
       po = observation.project_observations.build(project: @project,
         tracking_code: tracking_code, user: current_user)
       unless po.save
+        if params[:uploader]
+          observation.project_observations.delete(po)
+        end
         return (errors + po.errors.full_messages).uniq
       end
     end

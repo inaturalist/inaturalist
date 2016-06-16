@@ -32,7 +32,8 @@ class TaxonAutocomplete extends React.Component {
       idEl: this.idElement( ),
       source: this.source,
       select: this.select,
-      template: this.template
+      template: this.template,
+      appendTo: this.idElement( ).parent( )
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );

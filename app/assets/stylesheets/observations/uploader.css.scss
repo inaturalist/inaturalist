@@ -634,8 +634,19 @@ ul.obs > li .card {
     }
   }
 }
-.ui-autocomplete .ac-result {
-  font-size: 0.9em;
+.ui-autocomplete {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  &.open {
+    opacity: 1;
+  }
+  .ac-result {
+    font-size: 0.9em;
+  }
 }
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
   position: absolute;

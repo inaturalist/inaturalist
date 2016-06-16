@@ -65,6 +65,14 @@ class LeftMenu extends SelectionBasedComponent {
     e.preventDefault( );
     const observationFieldID = $( e.target ).find( "input[name='observation_field_id']" );
     const value = $( e.target ).find( "[name='value']" );
+    if ( !this.props.observationFieldValue && !value.val( ) ) {
+      const valueInput = $( e.target ).find( "[name='value'], [name='taxon_name']" );
+      valueInput.addClass( "failed" );
+      setTimeout( () => {
+        valueInput.removeClass( "failed" );
+      }, 1000 );
+      return;
+    }
     if ( this.props.observationField && this.props.observationFieldValue ) {
       this.props.appendToSelectedObsCards( { observation_field_values:
         { observation_field_id: this.props.observationField.id,
@@ -92,7 +100,8 @@ class LeftMenu extends SelectionBasedComponent {
     }
     observationFieldID.val( "" );
     value.val( "" );
-    $( ".ofvs input.ofv-field" ).focus( ).select( ).val( "" );
+    $( ".ofvs input.ofv-field" ).val( "" ).blur( );
+    setTimeout( () => $( ".ofvs input.ofv-field" ).focus( ).val( "" ), 500 );
   }
 
   removeFieldValue( ofv ) {

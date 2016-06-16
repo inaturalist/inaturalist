@@ -217,8 +217,11 @@ class LeftMenu extends SelectionBasedComponent {
       </div>
     );
     let className = `panel-${key}`;
-    let entered = ( key !== "1" ) ? () => {
-      $( `.${className} input:first` ).focus( ).select( ).val( "" );
+    const entered = ( key !== "1" ) ? () => {
+      if ( !$( ".observation-field" ).is( ":visible" ) ) {
+        const mainPanelInput = $( `.${className} input:first` );
+        mainPanelInput.focus( ).select( ).val( mainPanelInput.val( ) );
+      }
     } : undefined;
     return (
       <Panel
@@ -226,7 +229,7 @@ class LeftMenu extends SelectionBasedComponent {
         className={ className }
         header={ header }
         onEnter={ () => { $( `.${className} .toggle` ).addClass( "rotate" ); } }
-        onEntered={ entered }
+        onEntered={ () => setTimeout( entered, 50 ) }
         onExit={ () => { $( `.${className} .toggle` ).removeClass( "rotate" ); } }
       >
         { contents }

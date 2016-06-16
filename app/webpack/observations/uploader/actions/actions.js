@@ -382,7 +382,7 @@ const actions = class actions {
               Some observations failed to be added to projects
               <div className="projects">
                 { _.map( missingProjects, mp => (
-                  <div className="project">
+                  <div className="project" key={ mp.project.id }>
                     <span className="title">{ mp.project.title }</span>
                     <span className="count">
                       { mp.count } observation{ mp.count > 1 && "s" } failed

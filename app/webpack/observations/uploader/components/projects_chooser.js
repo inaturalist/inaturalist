@@ -41,7 +41,8 @@ class ProjectsChooser extends SelectionBasedComponent {
         if ( p ) {
           this.props.appendToSelectedObsCards( { projects: p.item } );
         }
-        input.val( "" );
+        input.val( "" ).blur( );
+        setTimeout( () => input.focus( ).val( "" ), 500 );
       }
     } );
   }

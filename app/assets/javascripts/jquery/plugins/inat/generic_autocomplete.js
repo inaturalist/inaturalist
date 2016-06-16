@@ -105,12 +105,14 @@ $.fn.genericAutocomplete = function( options ) {
   }
 
   var ac = field.autocomplete({
-    minLength: 1,
-    delay: 50,
+    minLength: ( options.minLength || options.minLength === 0 ) ? options.minLength : 1,
+    delay: 0,
     source: options.source,
     select: options.select || field.select,
     focus: options.focus || genericAutocomplete.focus,
-    appendTo: options.appendTo
+    appendTo: options.appendTo,
+    open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) },
+    close: function () {  $( $(this).data().uiAutocomplete.menu.element ).removeClass( "open" ) }
   }).data( "uiAutocomplete" );
   // modifying _move slightly to prevent scrolling with arrow
   // keys past the top or bottom of the autocomplete menu
@@ -153,13 +155,6 @@ $.fn.genericAutocomplete = function( options ) {
     acResponse( content );
   };
   field.keydown( function( e ) {
-    if ( options.onResults ) {
-      setTimeout( function( ) {
-        console.log("asdfasdf");
-        console.log(field.val());
-        if( !field.val( ) ) { options.onResults( null ); }
-      }, 1 );
-    }
     var key = e.keyCode || e.which;
     // return key
     if( key === 13 ) {

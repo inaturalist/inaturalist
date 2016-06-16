@@ -94,7 +94,14 @@ const dragDropZone = ( state = defaultState, action ) => {
           if ( _.isArray( c[k] ) ) {
             modified = update( modified, {
               [c.id]: { $merge: {
-                [k]: _.uniq( _.flatten( c[k].concat( v ) ) ),
+                [k]: _.uniqBy( _.flatten( c[k].concat( v ) ), uv => {
+                  if ( uv.observation_field_id ) {
+                    return uv.observation_field_id;
+                  } else if ( uv.id ) {
+                    return uv.id;
+                  }
+                  return uv;
+                } ),
                 updatedAt: time
               } }
             } );
