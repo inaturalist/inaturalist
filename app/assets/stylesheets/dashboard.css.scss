@@ -516,6 +516,10 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body {
 }
 /* ------------------------- */
 
+.dashboard_tab_row {
+  padding:15px 15px 15px 15px;
+}
+
 .for_idents {
 	padding: 10px;
 	margin-bottom: 15px;
@@ -524,10 +528,12 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body {
 	border-radius:2px
 }
 
-.media-body > h3 > .taxon > .comname {
-  display: block;
+.media-body > h3 > .taxon > .comname{
+  display:inline-block;
 }
-
+.media-body > h3 > .taxon > .othernames {
+  display:inline-block;
+}
 .taxon > a {
   color: rgb(51,51,51);
 }

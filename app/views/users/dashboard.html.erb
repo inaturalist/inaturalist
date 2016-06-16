@@ -29,10 +29,8 @@
     
     $(document).ready(function() {
       get_content("/users/dashboard_updates","#updates_target");
-      $('a[href="#updates"]').addClass("active");
       
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        $('a[href="#updates"]').removeClass("active");
         var active_tab = $(e.target).attr("href") // activated tab
         if(active_tab == "#comments"){
           var url = "/comments?partial=true";
@@ -125,7 +123,10 @@
     
       $("[data-toggle=popover]").popover();
       
-      
+      $(".dashboard_tab").click(function(){
+         $(".dashboard_tab").removeClass("active");
+         $(this).addClass("active");
+      });
     })
   </script>
 <%- end -%>
@@ -141,11 +142,11 @@
 
   <div class="col-md-8"  style="background-color:white">
     <div class="tabbable">
-      <div class="row" style="padding:15px 0;">
+      <div class="row dashboard_tab_row">
         <div class="btn-group">
-          <a class="btn btn-default" href="#updates" data-toggle="tab"><%=t :all_updates %></a>
-    		  <a class="btn btn-default" href="#updates_by_you" data-toggle="tab"><%=t :your_content %></a>
-    		  <a class="btn btn-default" href="#comments" data-toggle="tab"><%=t :real_time_discussions %></a>
+          <a class="btn btn-default dashboard_tab active" href="#updates" data-toggle="tab"><%=t :all_updates %></a>
+    		  <a class="btn btn-default dashboard_tab" href="#updates_by_you" data-toggle="tab"><%=t :your_content %></a>
+    		  <a class="btn btn-default dashboard_tab" href="#comments" data-toggle="tab"><%=t :real_time_discussions %></a>
         </div>
       </div>
       <div class="tab-content">
