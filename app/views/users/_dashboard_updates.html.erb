@@ -1,5 +1,5 @@
 <% unless @updates.blank? -%>
-  <% unless current_user.prefers_hide_activity_onboarding -%>
+  <% unless current_user.prefers_hide_activity_onboarding || @you -%>
     <div class="panel panel-info" id="activity_panel">
       <div class="panel-heading">
         <a data-panel-type="activity" class="close">&times;</a>

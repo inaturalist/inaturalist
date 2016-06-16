@@ -386,6 +386,7 @@ class UsersController < ApplicationController
     end
     if params[:filter] == "you"
       wheres[:resource_owner_id] = current_user.id
+      @you = true
     end
     
     @pagination_updates = current_user.recent_notifications(

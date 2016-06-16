@@ -236,7 +236,7 @@
                 <h3 class="panel-title"><%= t('onboarding.comments_panel_title', site_name: SITE_NAME.gsub(".org","")) %></h3>
               </div>
               <div class="panel-body">                  
-                 <%= t('onboarding.comments_panel_body').html_safe %>                 
+                 <%= t('onboarding.comments_panel_body', site_name: SITE_NAME.gsub(".org","")).html_safe %>                 
               </div>
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="comments"><%= t(:got_it!) %></a></div>
             </div>                
@@ -344,14 +344,14 @@
     <% if current_user.is_curator? -%>
       <h3 class="page-header">
         <%= t :curation %>
-        <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-content="<%= t(:youre_a_site_curator_which_means, email: CONFIG.help_email).html_safe %>"></span>
+        <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t(:youre_a_site_curator_which_means, email: CONFIG.help_email).html_safe %>"></span>
       </h3>
       <% unless @flags.blank? -%>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
               <span class="glyphicon glyphicon-flag"></span> <%= t(:flag).pluralize %>
-              <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-content="<%= t(:these_are_items_people_on, email: CONFIG.help_email).html_safe %>"></span>
+              <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t(:these_are_items_people_on, email: CONFIG.help_email).html_safe %>"></span>
             </h3>
           </div>
           <div class="list-group">
@@ -392,7 +392,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">
             <span class="glyphicon glyphicon-leaf" style="" aria-hidden="true"></span> <%=t :ungrafted_taxa %>
-            <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-content="<%= t(:these_are_taxa_that, site: CONFIG.site_name_short).html_safe %>"></span>
+            <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t(:these_are_taxa_that, site: CONFIG.site_name_short).html_safe %>"></span>
           </h3>
         </div>
         <ul class="list-group">

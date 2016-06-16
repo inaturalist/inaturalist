@@ -111,18 +111,6 @@ es:
   about_these_licenses: Sobre estas licencias
   about_this_map: Sobre este mapa
   about_this_project: Sobre este proyecto
-  about_updates_lead: |
-    %{site_name} se actualiza cuando hay actividad en sus observaciones y cuando las personas a las que siguen las observaciones posteriores.
-  about_updates_rest: |
-    <p>
-      La actividad en sus observaciones podría incluir comentarios , identificaciones , o favoritos de la comunidad de iNaturalist.org . O tal vez alguien añade su observación a un proyecto o anotado con campos adicionales.      
-    </p>
-    <p>
-      Cuando sigue la gente , se le informado cuando publican observaciones o publicar los mensajes de diario.
-    </p>
-    <p>
-      También puede recibir información actualizada sobre las observaciones de los organismos o lugares específicos mediante la suscripción de ellos. O puede unirse a proyectos que actualizarse cuando publican mensajes de diario de proyectos.
-    </p>
   about_x: Sobre %{x}
   acc: Prec.(m)
   account: Cuenta
@@ -344,6 +332,7 @@ es:
       other: '%{count} otros animales'
   all_taxa_in_this_guide: Todas las especies y grupos de esta guía
   all_taxonomic_groups: '&laquo; Todos los grupos taxonómicos'
+  all_updates: Todas las Actualizaciones
   all_your_observations_will_default_this_time_zone: Todas tus observaciones se harán
     en esta zona horaria a menos que especifiques lo contrario.
   all_your_observations_will_default_to_this_time_zone: Todas tus observaciones se
@@ -1294,8 +1283,6 @@ es:
   flickr_tags: Etiquetas de Flickr
   flickr_youre_all_set: Ya está listo para comenzar a explorar %{site_name}
   fluid: fluida
-  follow_some_active_naturalists: Siga algunos naturalistas activos
-  follow_some_nearby_naturalists: Siga algunos naturalistas cercanos
   follow_us: Síganos en
   follow_us_on: Síganos en
   follow_user: Seguir a %{user}
@@ -1305,8 +1292,6 @@ es:
   for_a_taxon: de un taxon
   for_a_widget_showing_recent_observations_from: Para el widget que muestre las observaciones
     recientes de %{place_name}, échale un ojo a
-  for_inspiration_local: "Por un poco de inspiración, aquí hay algunas especies que se observan en las inmediaciones..."
-  for_inspiration_global: "Por un poco de inspiración, aquí hay algunas especies que se observan en todo el mundo..."
   for_more_information: para más información.
   forgot_your_password: ¿Olvidó su contraseña?
   fri: vie
@@ -1628,7 +1613,6 @@ es:
   legacy_authentication_notice_html: |-
     Parece que estas usando una contraseña de una versión antigua de este sitio web.
     Por favor, recuerda <a href="%{url}">cambiar tu contraseña</a> para la nueva versión.
-  lets_get_started_by_posting_some_observations: Vamos a añadir observaciones
   let_us_walk_you_through: Vamos a explicar las principales características de este sitio.
   lexicon: Léxico
   lexicons:
@@ -2291,6 +2275,33 @@ es:
   on_list?: en lista
   on_submit_date: el %{submitdate}
   on_your_life_list: en su lista de vida
+  onboarding:
+      observe_panel_title: Vamos a añadir observaciones
+      observe_panel_body_p1_local: Por un poco de inspiración, aquí hay algunas especies que se observan en las inmediaciones...
+      observe_panel_body_p1_global: Por un poco de inspiración, aquí hay algunas especies que se observan en todo el mundo...
+      observe_panel_body_p2: El siguiente paso es conseguir que fuera y observar un organismo individual . Escoja algo salvaje y examinar, con una foto clara de fotograma completo . Si ya tiene una foto de algo salvaje, <a href="%{new_observation_path}">añadir ahora</a>.También puede utilizar las aplicaciones móviles %{site_name} de compartir su observación con la comunidad.         
+      observe_panel_body_p3: Así, se actualizará con cualquier comentarios sobre sus observaciones de la comunidad en forma de comentarios o identificaciones. ¿Quién sabe lo que usted descubrirá!
+      follow_panel_title_local: Siga algunos naturalistas cercanos
+      follow_panel_title_global: Siga algunos naturalistas activos
+      follow_panel_body: Si visita estos perfiles y haga clic en el botón de seguimiento, se le informado cuando publican observaciones
+      comments_panel_title: Curioso qué tipo de discusiones están ocurriendo en %{site_name}?
+      comments_panel_body: <p>%{site_name} es compartir y discutir las observaciones de los seres vivos . Estas son algunas discusiones que ocurren en este momento...</p><p>Quedará suscrito automáticamente a cualquier discusión que contribuir con comentarios o identificaciones a. Siempre se puede utilizar la herramienta de administrar las suscripciones a la derecha de parar de recibir actualizaciones</p>
+      updates_by_you_panel_title: Esta ficha es una forma rápida para filtrar sólo las actualizaciones de su contenido.
+      updates_by_you_panel_body: Recuerde , en la pestaña 'Todas las Actualizaciones' que usted reciba actualizaciones no sólo en su propio contenido, sino también en el contenido de la gente le sigue y los taxones o lugares en los que esté suscrito a la utilización de la herramienta de suscripciones a la derecha.
+      youve_got_updates_panel_title: Tienes actualizaciones!
+      youve_got_updates_panel_body_p1: Se actualiza cuando hay actividad en sus observaciones y cuando las personas a las que siguen las observaciones posteriores.
+      youve_got_updates_panel_body_p2: |
+        <ul>
+          <li>
+            La actividad en sus observaciones podría incluir comentarios , identificaciones , o favoritos de la comunidad de iNaturalist.org . O tal vez alguien añade su observación a un proyecto o anotado con campos adicionales.      
+          </li>
+          <li>
+            Cuando sigue la gente , se le informado cuando publican observaciones o publicar los mensajes de diario.
+          </li>
+          <li>
+            También puede recibir información actualizada sobre las observaciones de los organismos o lugares específicos mediante la suscripción de ellos. O puede unirse a proyectos que actualizarse cuando publican mensajes de diario de proyectos.
+          </li>
+        </ul>
   one_by_one: Uno por uno
   one_of_your_lists: una de sus listas...
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación
@@ -2738,6 +2749,7 @@ es:
   read_the_full_wikipedia: Leer toda la descripción de Wikipedia
   ready_to_get_started?: ¿Listo para empezar?
   real_time_stats: Estadísticas en tiempo real
+  real_time_discussions: Discusiones
   reason: Razón
   reason_you_are_flagging_this_item: Razón por la cual estas marcando este elemento.
   receive_email_notifications_when_people_leave_you: Reciba notificaciones por correo
@@ -3306,8 +3318,6 @@ es:
   the_list: la lista
   the_name_of_the_taxon_including_space: El nombre del taxón, incluyendo el espacio
     para las especies e infraespecies.<br/><br/> <strong>Ejemplo. </strong><br/>
-  the_next_step: |-
-    El siguiente paso es conseguir que fuera y observar un organismo individual . Escoja algo salvaje y examinar, con una foto clara de fotograma completo . Si ya tiene una foto de algo salvaje, <a href="%{new_observation_path}">añadir ahora</a>.
   the_observation_form_looks: El formulario de observación es así
   the_observation_has_date: la observación <strong>tiene una fecha</strong>
   the_observation_has_photo: la observación <strong>tiene una foto</strong>
@@ -3857,8 +3867,6 @@ es:
   you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: "También
     puedes <a href=\"%{project_settings_url}\">cambiar tu configuración para este
     proyecto</a> \no <a href=\"/users/edit#projects\">cambiar tu configuración global</a>."
-  you_can_also_use: |-
-    También puede utilizar las aplicaciones móviles iNaturalist de compartir su observación con la comunidad. Así, se actualizará con cualquier comentarios sobre sus observaciones de la comunidad en forma de comentarios o identificaciones. ¿Quién sabe lo que usted descubrirá!
   you_can_alwais_add_new: Siempre se puede añadir nuevas observaciones haciendo clic
     en la pequeña flecha en la esquina superior derecha de la página y utilizar el
     menú desplegable.
@@ -3950,13 +3958,11 @@ es:
     la información de alguien más sin permiso. No seas malvado.
   you_unlinked_your_provider_account: Has desvinculado tu cuenta de %{provider}
   you_would_get_the: usted obtendrá las siguientes etiquetas
-  youll_be_updated: Si visita estos perfiles y haga clic en el botón de seguimiento, se le informado cuando publican observaciones
   youll_need_to_link: Deberá vincular
   youve_been_invited_to_join_this_project_html: Has sido invitado a unirte a este
     <a href="%{url}" class="readmore">proyecto </a>
   youve_joined_the_x_project: Te has unido al proyecto %{project_invitation} y tus
     observaciones fueron añadidas
-  youve_got_updates: Tienes actualizaciones!
   your: Tu
   your_: Usted
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor
@@ -3964,6 +3970,7 @@ es:
   your_activation_code_was_missing: Tu código de activación se ha perdido.  Porfavor
     sigue el enlace desde tu correo
   your_comment_was_saved: Su comentario ha sido guardado.
+  your_content: Su Contenido
   your_contributions_to_project: Tus contribuciones a %{project_title}
   your_default: su defecto
   your_default_time_zone: Su zona horaria actual
