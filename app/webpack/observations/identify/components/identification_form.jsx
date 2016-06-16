@@ -21,6 +21,9 @@ const IdentificationForm = ( {
       // really being modal.
       const idTaxon = $( ".IdentificationForm:visible:first input[name='taxon_name']" ).
         data( "uiAutocomplete" ).selectedItem;
+      if ( !idTaxon ) {
+        return;
+      }
       let confirmationText = safeHtml( I18n.t( "your_coarser_id", {
         coarser_taxon_name: idTaxon.name,
         finer_taxon_name: o.taxon ? o.taxon.name : ""

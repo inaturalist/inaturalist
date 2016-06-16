@@ -5,7 +5,8 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers
+  fetchIdentifiers,
+  stopLoadingDiscussionItem
 } from "../actions";
 
 // ownProps contains data passed in through the "tag", so in this case
@@ -22,6 +23,9 @@ function mapDispatchToProps( dispatch, ownProps ) {
     onSubmitIdentification: ( identification ) => {
       dispatch( loadingDiscussionItem( ) );
       dispatch( postIdentification( identification ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( ) );
+        } )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ownProps.observation ) );
           dispatch( fetchObservationsStats( ) );

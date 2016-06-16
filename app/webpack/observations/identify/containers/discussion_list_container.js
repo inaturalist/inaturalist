@@ -3,6 +3,7 @@ import DiscussionList from "../components/discussion_list";
 import {
   fetchCurrentObservation,
   loadingDiscussionItem,
+  stopLoadingDiscussionItem,
   deleteIdentification,
   deleteComment
 } from "../actions";
@@ -17,6 +18,9 @@ function mapDispatchToProps( dispatch ) {
       dispatch( loadingDiscussionItem( ) );
       if ( item.className === "Identification" ) {
         dispatch( deleteIdentification( item ) )
+          .catch( ( ) => {
+            dispatch( stopLoadingDiscussionItem( ) );
+          } )
           .then( ( ) => {
             dispatch( fetchCurrentObservation( ) );
           } );

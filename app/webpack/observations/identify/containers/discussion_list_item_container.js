@@ -5,7 +5,8 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers
+  fetchIdentifiers,
+  stopLoadingDiscussionItem
 } from "../actions";
 
 function mapStateToProps( state, ownProps ) {
@@ -24,6 +25,9 @@ function mapDispatchToProps( dispatch ) {
     agreeWith: ( params ) => {
       dispatch( loadingDiscussionItem( ) );
       dispatch( postIdentification( params ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( ) );
+        } )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ) );
           dispatch( fetchObservationsStats( ) );

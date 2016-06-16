@@ -5,8 +5,8 @@ import ObservationModalContainer from "../containers/observation_modal_container
 import SearchBarContainer from "../containers/search_bar_container";
 import PaginationControlContainer from "../containers/pagination_control_container";
 import FinishedModalContainer from "../containers/finished_modal_container";
-
 import SideBar from "./side_bar";
+import AlertModalContainer from "../containers/alert_modal_container";
 
 const App = () => (
   <div id="Identify">
@@ -32,6 +32,7 @@ const App = () => (
         </Col>
       </Row>
       <ObservationModalContainer />
+      <AlertModalContainer />
     </Grid>
   </div>
 );

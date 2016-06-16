@@ -227,3 +227,7 @@ li.rc-pagination-item-active a {
 .IdentifierStats .user a {
   color: #333;
 }
+.bootstrap .AlertModal .modal-dialog,
+body > div > [role="dialog"] .AlertModal .modal-dialog {
+  margin: 100px auto;
+}

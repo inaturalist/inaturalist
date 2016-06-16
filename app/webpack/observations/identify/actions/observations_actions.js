@@ -2,6 +2,7 @@ import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
 import { setConfig } from "./config_actions";
+import { showAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
@@ -75,7 +76,12 @@ function reviewAll( ) {
     // I know how to do this
     Promise.all(
       getState( ).observations.results.map( o => iNaturalistJS.observations.review( o ) )
-    ).then( ( ) => dispatch( fetchObservationsStats( ) ) );
+    )
+      .catch( ( ) => dispatch( showAlert(
+        I18n.t( "failed_to_save_recoed" ),
+        { title: I18n.t( "request_failed" ) }
+      ) ) )
+      .then( ( ) => dispatch( fetchObservationsStats( ) ) );
   };
 }
 
@@ -85,7 +91,12 @@ function unreviewAll( ) {
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     Promise.all(
       getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( o ) )
-    ).then( ( ) => dispatch( fetchObservationsStats( ) ) );
+    )
+      .catch( ( ) => dispatch( showAlert(
+        I18n.t( "failed_to_save_recoed" ),
+        { title: I18n.t( "request_failed" ) }
+      ) ) )
+      .then( ( ) => dispatch( fetchObservationsStats( ) ) );
   };
 }
 
