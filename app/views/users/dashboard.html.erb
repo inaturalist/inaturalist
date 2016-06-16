@@ -28,7 +28,7 @@
     }
     
     $(document).ready(function() {
-      get_content("/users/dashboard_updates","#dashboard_updates");
+      get_content("/users/dashboard_updates","#updates_target");
       $('a[href="#updates"]').addClass("active");
       
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -37,7 +37,6 @@
         if(active_tab == "#comments"){
           var url = "/comments?partial=true";
           var target = "#comments_target";
-          $(target).addClass("timeline");
         }else if(active_tab == "#updates_by_you"){          
           var url = "/users/dashboard_updates?filter=you";
           var target = "#updates_by_you_target";
@@ -242,7 +241,7 @@
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="comments"><%= t(:got_it!) %></a></div>
             </div>                
           <% end -%>
-          <ul id="comments_target">
+          <ul class="timeline" id="comments_target">
             <div class="loading"><%=t :loading %></div>
           </ul>          
         </div>
