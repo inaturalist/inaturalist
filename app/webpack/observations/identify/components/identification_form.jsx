@@ -13,12 +13,6 @@ const IdentificationForm = ( {
     className={`IdentificationForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
-      // All of the following coarser ID confirmation stuff is a hack to avoid
-      // layering a modal on top of another modal. We either need a new design
-      // solution for this notification, or the entire observation modal on
-      // identify needs to be rethough as something other than a vanilla
-      // bootstrap modal, e.g. something full screen and modal-ish without
-      // really being modal.
       const idTaxon = $( ".IdentificationForm:visible:first input[name='taxon_name']" ).
         data( "uiAutocomplete" ).selectedItem;
       if ( !idTaxon ) {
@@ -40,17 +34,14 @@ const IdentificationForm = ( {
       const currentUserSkippedConfirmation = (
         currentUser && currentUser.prefers_skip_coarer_id_modal
       );
-      if (
-        isDisagreement( ) &&
-        !currentUserSkippedConfirmation &&
-        !confirm( confirmationText )
-      ) {
-        return;
-      }
       onSubmitIdentification( {
         observation_id: o.id,
         taxon_id: e.target.elements.taxon_id.value,
         body: e.target.elements.body.value
+      }, {
+        confirmationText: (
+          ( isDisagreement( ) && !currentUserSkippedConfirmation ) ? confirmationText : null
+        )
       } );
       // this doesn't feel right... somehow submitting an ID should alter
       // the app state and this stuff should flow three here as props

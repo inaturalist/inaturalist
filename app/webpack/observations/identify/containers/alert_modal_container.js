@@ -5,12 +5,7 @@ import {
 } from "../actions";
 
 function mapStateToProps( state ) {
-  return {
-    visible: state.alert.visible,
-    content: state.alert.content,
-    title: state.alert.title,
-    onConfirm: state.alert.onConfirm
-  };
+  return state.alert;
 }
 
 function mapDispatchToProps( dispatch ) {

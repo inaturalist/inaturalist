@@ -4,7 +4,7 @@ import {
   Button
 } from "react-bootstrap";
 
-const AlertModal = ( { visible, title, content, onConfirm, onClose } ) => {
+const AlertModal = ( { visible, title, content, onConfirm, onClose, onCancel } ) => {
   let modalFooter = (
     <Modal.Footer>
       <Button onClick={onClose} bsStyle="primary">{ I18n.t( "ok" ) }</Button>
@@ -13,7 +13,16 @@ const AlertModal = ( { visible, title, content, onConfirm, onClose } ) => {
   if ( onConfirm ) {
     modalFooter = (
       <Modal.Footer>
-        <Button onClick={onClose}>{ I18n.t( "cancel" ) }</Button>
+        <Button
+          onClick={ ( ) => {
+            onClose( );
+            if ( onCancel ) {
+              onCancel( );
+            }
+          } }
+        >
+          { I18n.t( "cancel" ) }
+        </Button>
         <Button
           bsStyle="primary"
           onClick={ ( ) => {
@@ -51,7 +60,8 @@ AlertModal.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   onConfirm: PropTypes.func,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  onCancel: PropTypes.func
 };
 
 export default AlertModal;
