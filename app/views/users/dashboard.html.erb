@@ -14,6 +14,7 @@
   <script type="text/javascript" charset="utf-8">
     var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
     
+    
     function get_content(url, target){
       $.ajax({
         type: "GET",
@@ -23,6 +24,22 @@
         },
         success: function(data){
           $(target).html(data);
+          
+          $("#more_pagination").click(function(e){
+            e.preventDefault();
+            var from = $(this).data('from');
+            var url = "/users/dashboard_updates?from="+from;
+            var target = "#updates_target";
+            get_content(url, target);            
+          });
+          
+          $("#more_pagination_you").click(function(e){
+            e.preventDefault();
+            var from = $(this).data('from');
+            var url = "/users/dashboard_updates?from="+from+"&filter=you";
+            var target = "#updates_by_you_target";
+            get_content(url, target);          
+          });
         }
       });
     }
@@ -127,6 +144,8 @@
          $(".dashboard_tab").removeClass("active");
          $(this).addClass("active");
       });
+      
+      
     })
   </script>
 <%- end -%>

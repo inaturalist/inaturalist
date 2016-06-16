@@ -126,6 +126,6 @@
     <% end -%>
   </ul>
   <div class="pagination">
-    <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "btn btn-sm btn-default") unless @pagination_updates.blank? %>
+    <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), 'data-from' => @pagination_updates.last.id, :id => (@you ? "more_pagination_you" : "more_pagination"), :class => "btn btn-sm btn-default") unless @pagination_updates.blank? %>
   </div>
 <% end %>
