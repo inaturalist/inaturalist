@@ -313,7 +313,7 @@ class DragDropZone extends Component {
           </Grid>
         </Dropzone>
         <StatusModal
-          show={ saveStatus === "saving" }
+          show={ saveStatus === "saving" && !confirmModal.show }
           saveCounts={ saveCounts }
           total={ cardCount } className="status"
         />

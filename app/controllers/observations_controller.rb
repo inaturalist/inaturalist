@@ -638,7 +638,14 @@ class ObservationsController < ApplicationController
     
     # check for errors
     errors = false
-    @observations.compact.each { |obs| errors = true unless obs.valid? }
+    if params[:uploader]
+      @observations.compact.each { |obs|
+        obs.errors.delete(:project_observations)
+        errors = true if obs.errors.any?
+      }
+    else
+      @observations.compact.each { |obs| errors = true unless obs.valid? }
+    end
     respond_to do |format|
       format.html do
         unless errors
@@ -694,7 +701,8 @@ class ObservationsController < ApplicationController
               }
             )
           else
-            render :json => @observations.to_json(:viewer => current_user, :methods => [:user_login, :iconic_taxon_name])
+            render :json => @observations.to_json(viewer: current_user,
+              methods: [ :user_login, :iconic_taxon_name, :project_observations ])
           end
         end
       end

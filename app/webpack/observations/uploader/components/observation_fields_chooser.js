@@ -37,6 +37,13 @@ class LeftMenu extends SelectionBasedComponent {
       allowEnterSubmit: false,
       idEl: $( "<input/>" ),
       appendTo: $( ".leftColumn" ),
+      onResults: items => {
+        if ( items !== null && items.length === 0 ) {
+          $( ".ofvs input.ofv-field" ).addClass( "failed" );
+        } else {
+          $( ".ofvs input.ofv-field" ).removeClass( "failed" );
+        }
+      },
       afterSelect: p => {
         if ( p ) {
           this.props.setState( {

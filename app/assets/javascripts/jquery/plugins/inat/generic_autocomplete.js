@@ -144,8 +144,22 @@ $.fn.genericAutocomplete = function( options ) {
   // custom simple _renderItem that gives the LI's class ac-result
   ac._renderItem = field.renderItem;
   // custom simple _renderMenu that removes the ac-menu class
-  ac._renderMenu = options.renderMenu || genericAutocomplete.renderMenu
+  ac._renderMenu = options.renderMenu || genericAutocomplete.renderMenu;
+  var acResponse = ac.__response.bind( ac );
+  ac.__response = function( content ) {
+    if ( options.onResults ) {
+      options.onResults( content );
+    }
+    acResponse( content );
+  };
   field.keydown( function( e ) {
+    if ( options.onResults ) {
+      setTimeout( function( ) {
+        console.log("asdfasdf");
+        console.log(field.val());
+        if( !field.val( ) ) { options.onResults( null ); }
+      }, 1 );
+    }
     var key = e.keyCode || e.which;
     // return key
     if( key === 13 ) {

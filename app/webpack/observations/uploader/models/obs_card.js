@@ -106,15 +106,19 @@ const ObsCard = class ObsCard {
         tag_list: this.tags.join( "," ),
         captive_flag: this.captive
       },
-      project_id: _.map( this.projects, "id" )
+      project_id: _.map( this.projects, "id" ),
+      uploader: true
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
     if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
     if ( this.date ) { params.observation.observed_on_string = this.date; }
     const photoIDs = _.compact( _.map( this.files, f => ( f.photo.id ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
-    inaturalistjs.observations.create( params, { same_origin: true } ).then( ( ) => {
-      dispatch( actions.updateObsCard( this, { save_state: "saved" } ) );
+    inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
+      dispatch( actions.updateObsCard( this, {
+        save_state: "saved",
+        server_response: r && r[0]
+      } ) );
     } ).catch( e => {
       console.log( "Save failed:", e );
       dispatch( actions.updateObsCard( this, { save_state: "failed" } ) );

@@ -1,5 +1,6 @@
 import _ from "lodash";
 import * as types from "../constants/constants";
+import React from "react";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
@@ -349,6 +350,53 @@ const actions = class actions {
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
+        dispatch( actions.finalizeSave( ) );
+      }
+    };
+  }
+
+  static finalizeSave( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const missingProjects = { };
+      _.each( s.dragDropZone.obsCards, c => {
+        const selectedProjetIDs = _.map( c.projects, "id" );
+        let addedToProjectIDs = [];
+        if ( c.server_response && c.server_response.project_observations ) {
+          addedToProjectIDs = _.map( c.server_response.project_observations, "project_id" );
+        }
+        const failedProjectIDs = _.difference( selectedProjetIDs, addedToProjectIDs );
+        _.each( failedProjectIDs, pid => {
+          missingProjects[pid] = missingProjects[pid] ||
+            { project: _.find( c.projects, p => p.id === pid ), count: 0 };
+          missingProjects[pid].count += 1;
+        } );
+      } );
+      if ( _.keys( missingProjects ).length > 0 ) {
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          hideCancel: true,
+          confirmText: I18n.t( "continue" ),
+          message: (
+            <div>
+              Some observations failed to be added to projects
+              <div className="projects">
+                { _.map( missingProjects, mp => (
+                  <div className="project">
+                    <span className="title">{ mp.project.title }</span>
+                    <span className="count">
+                      { mp.count } observation{ mp.count > 1 && "s" } failed
+                    </span>
+                  </div>
+                ) ) }
+              </div>
+            </div>
+          ),
+          onConfirm: () => {
+            window.location = `/observations/${CURRENT_USER.login}`;
+          }
+        } } ) );
+      } else {
         window.location = `/observations/${CURRENT_USER.login}`;
       }
     };

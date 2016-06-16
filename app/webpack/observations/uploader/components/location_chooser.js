@@ -42,8 +42,11 @@ class LocationChooser extends SelectionBasedComponent {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.show && !prevProps.show && !this.props.center ) {
-      setTimeout( this.fitCircles, 10 );
+    if ( this.props.show && !prevProps.show ) {
+      if ( !this.props.center ) {
+        setTimeout( this.fitCircles, 10 );
+      }
+      setTimeout( () => $( ".gm-style input" ).focus( ).val( "" ), 200 );
     }
   }
 
