@@ -19,7 +19,7 @@
         type: "GET",
         url: url,
         error: function(data){
-          alert("There was a problem");
+          console.log("There was a problem");
         },
         success: function(data){
           $(target).html(data);
