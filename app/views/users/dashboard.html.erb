@@ -36,14 +36,14 @@
         var active_tab = $(e.target).attr("href") // activated tab
         if(active_tab == "#comments"){
           var url = "/comments?partial=true";
-          var target = "#dashboard_comments_updates";
+          var target = "#comments_target";
           $(target).addClass("timeline");
         }else if(active_tab == "#updates_by_you"){          
           var url = "/users/dashboard_updates?filter=you";
-          var target = "#dashboard_you_updates";
+          var target = "#updates_by_you_target";
         }else{
           var url = "/users/dashboard_updates";
-          var target = "#dashboard_updates";
+          var target = "#updates_target";
         }
         get_content(url, target);
       })
@@ -210,39 +210,39 @@
               </div>                
             <% end -%>
           <% end -%>  
-          <div id="dashboard_updates">
+          <div id="updates_target">
             <div class="loading"><%=t :loading %></div>
           </div>
         </div>
         <div class="tab-pane" id="updates_by_you">    
-          <% unless current_user.prefers_hide_dashboard_you_onboarding -%>
-            <div class="panel panel-info" id="activity_panel">
+          <% unless current_user.prefers_hide_updates_by_you_onboarding -%>
+            <div class="panel panel-info" id="updates_by_you_panel">
               <div class="panel-heading">
-                <a data-panel-type="activity" class="close">&times;</a>
+                <a data-panel-type="updates_by_you" class="close">&times;</a>
                 <h3 class="panel-title"><%= t('onboarding.updates_by_you_panel_title') %></h3>
               </div>
               <div class="panel-body"><%= t('onboarding.updates_by_you_panel_body') %></div>
-              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
+              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="updates_by_you"><%= t(:got_it!) %></a></div>
             </div>                
           <% end -%>
-          <div id="dashboard_you_updates">
+          <div id="updates_by_you_target">
             <div class="loading"><%=t :loading %></div>
           </div>
         </div>
         <div class="tab-pane" id="comments">
-          <% unless current_user.prefers_hide_dashboard_comments_onboarding -%>
-            <div class="panel panel-info" id="activity_panel">
+          <% unless current_user.prefers_hide_comments_onboarding -%>
+            <div class="panel panel-info" id="comments_panel">
               <div class="panel-heading">
-                <a data-panel-type="activity" class="close">&times;</a>
+                <a data-panel-type="comments" class="close">&times;</a>
                 <h3 class="panel-title"><%= t('onboarding.comments_panel_title', site_name: SITE_NAME.gsub(".org","")) %></h3>
               </div>
               <div class="panel-body">                  
                  <%= t('onboarding.comments_panel_body').html_safe %>                 
               </div>
-              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
+              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="comments"><%= t(:got_it!) %></a></div>
             </div>                
           <% end -%>
-          <ul id="dashboard_comments_updates">
+          <ul id="comments_target">
             <div class="loading"><%=t :loading %></div>
           </ul>          
         </div>
