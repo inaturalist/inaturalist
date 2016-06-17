@@ -67,7 +67,8 @@ class ProjectsChooser extends SelectionBasedComponent {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="project-tip">Projects are collections of observations by numerous people gathered for a common purpose</Tooltip> ) }
+            overlay={ ( <Tooltip id="project-tip">{
+              I18n.t( "uploader.tooltips.projects" ) }</Tooltip> ) }
           >
             <div className="input-group">
               <div className="input-group-addon input-sm">
@@ -76,7 +77,7 @@ class ProjectsChooser extends SelectionBasedComponent {
               <input
                 type="text"
                 className="form-control"
-                placeholder={ "Add to a project..." }
+                placeholder={ I18n.t( "add_to_a_project" ) }
               />
             </div>
           </OverlayTrigger>

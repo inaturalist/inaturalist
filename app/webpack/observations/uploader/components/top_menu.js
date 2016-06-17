@@ -38,7 +38,7 @@ class TopMenu extends Component {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="add-tip">Add observation(s)</Tooltip> ) }
+            overlay={ ( <Tooltip id="add-tip">{ I18n.t( "uploader.tooltips.add" ) }</Tooltip> ) }
           >
             <NavDropdown title={ dropdownToggle } id="add_photos">
               <MenuItem onClick={ fileChooser }>{ I18n.t( "photo_s" ) }</MenuItem>
@@ -51,7 +51,7 @@ class TopMenu extends Component {
             placement="top"
             delayShow={ 1000 }
             overlay={ removeDisabled ? ( <span /> ) :
-              ( <Tooltip id="remove-tip">Remove selected observations</Tooltip> ) }
+              ( <Tooltip id="remove-tip">{ I18n.t( "uploader.tooltips.remove" ) }</Tooltip> ) }
           >
             <NavItem
               onClick={ confirmRemoveSelected }
@@ -65,7 +65,7 @@ class TopMenu extends Component {
             placement="top"
             delayShow={ 1000 }
             overlay={ combineDisabled ? ( <span /> ) :
-              ( <Tooltip id="merge-tip">Combine selected observations</Tooltip> ) }
+              ( <Tooltip id="merge-tip">{ I18n.t( "uploader.tooltips.combine" ) }</Tooltip> ) }
           >
             <NavItem
               onClick={ combineSelected }
@@ -79,7 +79,7 @@ class TopMenu extends Component {
             placement="top"
             delayShow={ 1000 }
             overlay={ selectAllDisabled ? ( <span /> ) :
-              ( <Tooltip id="select-tip">Select all observations</Tooltip> ) }
+              ( <Tooltip id="select-tip">{ I18n.t( "uploader.tooltips.select_all" ) }</Tooltip> ) }
           >
             <li className={ `select ${countTotal === 0 && "disabled"}` }>
               <form className="navbar-form" role="search">

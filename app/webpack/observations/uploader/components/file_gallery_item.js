@@ -26,7 +26,8 @@ class FileGalleryItem extends Component {
       <OverlayTrigger
         placement="top"
         delayShow={ 1000 }
-        overlay={ ( <Tooltip id="remove-photo-tip">Remove photo</Tooltip> ) }
+        overlay={ ( <Tooltip id="remove-photo-tip">{
+          I18n.t( "uploader.tooltips.remove_photo" ) }</Tooltip> ) }
       >
         <button className="btn-close-photo" onClick={ () =>
           this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }

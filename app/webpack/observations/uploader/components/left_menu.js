@@ -50,12 +50,13 @@ class LeftMenu extends SelectionBasedComponent {
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
-    let multipleGeoprivacy = !commonGeoprivacy && ( <option>{ " -- multiple -- " }</option> );
-    let geoprivacyTooltip = "Everyone can see the coordinates unless the taxon is threatened";
+    let multipleGeoprivacy = !commonGeoprivacy && (
+      <option>{ I18n.t( "multiple_select_option" ) }</option> );
+    let geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_open" );
     if ( commonGeoprivacy === "obscured" ) {
-      geoprivacyTooltip = "Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation";
+      geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_obscured" );
     } else if ( commonGeoprivacy === "private" ) {
-      geoprivacyTooltip = "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation";
+      geoprivacyTooltip = I18n.t( "uploader.tooltips.date" );
     }
     return (
       <div>
@@ -98,7 +99,8 @@ class LeftMenu extends SelectionBasedComponent {
         <OverlayTrigger
           placement="top"
           delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">Date and time of observation</Tooltip> ) }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.date" ) }</Tooltip> ) }
         >
           <div className="input-group"
             onClick= { ( ) => {
@@ -127,7 +129,8 @@ class LeftMenu extends SelectionBasedComponent {
         <OverlayTrigger
           placement="top"
           delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">Location of observation</Tooltip> ) }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.location" ) }</Tooltip> ) }
         >
           <div className="input-group"
             onClick={ this.openLocationChooser }
@@ -149,7 +152,8 @@ class LeftMenu extends SelectionBasedComponent {
         <OverlayTrigger
           placement="top"
           delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">Description</Tooltip> ) }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.description" ) }</Tooltip> ) }
         >
           <div className="form-group">
             <textarea
@@ -174,15 +178,16 @@ class LeftMenu extends SelectionBasedComponent {
             onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
           >
             { multipleGeoprivacy }
-            <option value="open">{ "Location is public" }</option>
-            <option value="obscured">{ "Location is obscured" }</option>
-            <option value="private">{ "Location is private" }</option>
+            <option value="open">{ I18n.t( "location_is_public" ) }</option>
+            <option value="obscured">{ I18n.t( "location_is_obscured" ) }</option>
+            <option value="private">{ I18n.t( "location_is_private" ) }</option>
           </Input>
         </OverlayTrigger>
         <OverlayTrigger
           placement="top"
           delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">The organism exists where it was observed because humans intended it to be there. iNaturalist is about observing wild organism, and our scientific data partners are not interested in observations of pets, gardens, or animals in zoos</Tooltip> ) }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.captive" ) }</Tooltip> ) }
         >
           <div className="form-group">
             <div className="checkbox">
@@ -262,13 +267,13 @@ class LeftMenu extends SelectionBasedComponent {
           <br />
           <br />
           <Accordion defaultActiveKey="1">
-            { this.formPanel( "1", "Details", "pencil",
+            { this.formPanel( "1", I18n.t( "details" ), "pencil",
               this.details( ), detailsContent, true ) }
-            { this.formPanel( "2", "Tags", "tag", (
+            { this.formPanel( "2", I18n.t( "tags" ), "tag", (
               <TagsChooser { ...this.props } /> ), tagsContent ) }
-            { this.formPanel( "3", "Projects", "briefcase", (
+            { this.formPanel( "3", I18n.t( "projects" ), "briefcase", (
               <ProjectsChooser { ...this.props } /> ), projectsContent ) }
-            { this.formPanel( "4", "Fields", "th-list", (
+            { this.formPanel( "4", I18n.t( "fields_" ), "th-list", (
               <ObservationFieldsChooser { ...this.props } /> ), fieldsContent ) }
           </Accordion>
         </div>

@@ -222,7 +222,7 @@ class LocationChooser extends SelectionBasedComponent {
   }
 
   placeholder( prop ) {
-    return this.multiValued( prop ) ? "multiple" : undefined;
+    return this.multiValued( prop ) ? I18n.t( "multiple" ) : undefined;
   }
 
   render() {

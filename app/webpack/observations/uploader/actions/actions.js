@@ -379,13 +379,13 @@ const actions = class actions {
           confirmText: I18n.t( "continue" ),
           message: (
             <div>
-              Some observations failed to be added to projects
+              { I18n.t( "some_observations_failed" ) }
               <div className="projects">
                 { _.map( missingProjects, mp => (
                   <div className="project" key={ mp.project.id }>
                     <span className="title">{ mp.project.title }</span>
                     <span className="count">
-                      { mp.count } observation{ mp.count > 1 && "s" } failed
+                      { I18n.t( "x_observations_failed", { count: mp.count } ) }
                     </span>
                   </div>
                 ) ) }

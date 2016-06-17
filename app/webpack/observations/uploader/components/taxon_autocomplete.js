@@ -347,7 +347,8 @@ class TaxonAutocomplete extends React.Component {
       <OverlayTrigger
         placement="top"
         delayShow={ 1000 }
-        overlay={ ( <Tooltip id="left-taxon-tip">Enter or look up species name</Tooltip> ) }
+        overlay={ ( <Tooltip id="left-taxon-tip">{
+          I18n.t( "uploader.tooltips.taxon" ) }</Tooltip> ) }
       >
         <div className="form-group TaxonAutocomplete">
           <input type="hidden" name="taxon_id" />

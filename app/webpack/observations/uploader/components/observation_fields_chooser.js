@@ -143,7 +143,7 @@ class LeftMenu extends SelectionBasedComponent {
             className="btn btn-default"
             type="submit"
           >
-            Add
+            { I18n.t( "add" ) }
           </button>
         </span>
       </div>
@@ -199,14 +199,14 @@ class LeftMenu extends SelectionBasedComponent {
               this.refs.datetime.onChange( undefined, e.target.value );
             }
           } }
-          placeholder={ I18n.t( "date_" ) }
+          placeholder={ I18n.t( "date_time" ) }
         />
         <span className="input-group-btn">
           <button
             className="btn btn-default"
             type="submit"
           >
-            Add
+            { I18n.t( "add" ) }
           </button>
         </span>
       </div>
@@ -230,7 +230,7 @@ class LeftMenu extends SelectionBasedComponent {
             className="btn btn-default"
             type="submit"
           >
-            Add
+            { I18n.t( "add" ) }
           </button>
         </span>
       </div>
@@ -241,7 +241,8 @@ class LeftMenu extends SelectionBasedComponent {
     const commonOfvs = this.uniqueValuesOf( "observation_field_values" );
     let observationFieldInput;
     const field = this.props.observationField;
-    const standaloneSubmit = ( <Button className="standalone" type="submit">Add</Button> );
+    const standaloneSubmit = ( <Button className="standalone" type="submit">{
+      I18n.t( "add" ) }</Button> );
     if ( field ) {
       let input;
       let submit;
@@ -275,7 +276,8 @@ class LeftMenu extends SelectionBasedComponent {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="field-tip">Observation fields are additional data fields that can be added to observations</Tooltip> ) }
+            overlay={ ( <Tooltip id="field-tip">{
+              I18n.t( "uploader.tooltips.fields" ) }</Tooltip> ) }
           >
             <div className="input-group">
               <div className="input-group-addon input-sm">
@@ -284,7 +286,7 @@ class LeftMenu extends SelectionBasedComponent {
               <input
                 type="text"
                 className="form-control ofv-field"
-                placeholder="Add a field..."
+                placeholder={ I18n.t( "add_a_field" ) }
               />
             </div>
           </OverlayTrigger>
@@ -321,7 +323,7 @@ class LeftMenu extends SelectionBasedComponent {
         </form>
         <p className="options">
           <a href="/observation_fields" target="_blank">
-            View Field Options
+            { I18n.t( "view_field_options" ) }
             <Glyphicon glyph="new-window" />
           </a>
         </p>

@@ -163,7 +163,7 @@ class ObsCardComponent extends Component {
     if ( fileCount ) {
       if ( _.find( obsCard.files, f =>
              f.upload_state === "uploading" || f.upload_state === "pending" ) ) {
-        photoCountOrStatus = "Loading metadata...";
+        photoCountOrStatus = I18n.t( "loading_metadata" );
       } else if ( fileCount > 1 ) {
         photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
       }
@@ -185,7 +185,8 @@ class ObsCardComponent extends Component {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="remove-obs-tip">Remove observation</Tooltip> ) }
+            overlay={ ( <Tooltip id="remove-obs-tip">{
+              I18n.t( "uploader.tooltips.remove_observation" ) }</Tooltip> ) }
           >
             <button className="btn-close" onClick={ confirmRemoveObsCard }>
               <Glyphicon glyph="remove" />
@@ -246,7 +247,8 @@ class ObsCardComponent extends Component {
             <OverlayTrigger
               placement="top"
               delayShow={ 1000 }
-              overlay={ ( <Tooltip id="date-tip">Date and time of observation</Tooltip> ) }
+              overlay={ ( <Tooltip id="date-tip">{
+                I18n.t( "uploader.tooltips.date" ) }</Tooltip> ) }
             >
               <div className="input-group"
                 onClick= { () => {
@@ -274,7 +276,8 @@ class ObsCardComponent extends Component {
             <OverlayTrigger
               placement="top"
               delayShow={ 1000 }
-              overlay={ ( <Tooltip id="location-tip">Location of observation</Tooltip> ) }
+              overlay={ ( <Tooltip id="location-tip">{
+                I18n.t( "uploader.tooltips.location" ) }</Tooltip> ) }
             >
               <div className="input-group"
                 onClick={ this.openLocationChooser }
@@ -294,7 +297,8 @@ class ObsCardComponent extends Component {
             <OverlayTrigger
               placement="top"
               delayShow={ 1000 }
-              overlay={ ( <Tooltip id="description-tip">Description</Tooltip> ) }
+              overlay={ ( <Tooltip id="description-tip">{
+                I18n.t( "uploader.tooltips.description" ) }</Tooltip> ) }
             >
               <div className="form-group">
                 <textarea

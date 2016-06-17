@@ -34,20 +34,21 @@ class TagsChooser extends SelectionBasedComponent {
           <OverlayTrigger
             placement="top"
             delayShow={ 1000 }
-            overlay={ ( <Tooltip id="tag-tip">Tags are keywords you can add to an observation to make them easier to find. For example, if a barracuda followed you on a scuba diving trip in Turks and Caicos, you might tag the observation "scary, barracuda, scuba diving, vacation, turks and caicos"</Tooltip> ) }
+            overlay={ ( <Tooltip id="tag-tip">{
+              I18n.t( "uploader.tooltips.tags" ) }</Tooltip> ) }
           >
             <div className="input-group">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Add tags..."
+                placeholder={ I18n.t( "add_tags" ) }
               />
               <span className="input-group-btn">
                 <button
                   className="btn btn-default"
                   type="submit"
                 >
-                  Add
+                  { I18n.t( "add" ) }
                 </button>
               </span>
             </div>
