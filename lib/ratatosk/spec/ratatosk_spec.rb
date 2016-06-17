@@ -15,24 +15,20 @@ describe Ratatosk::Ratatosk do
       expect(np).to respond_to(:find)
     end
   end
-  
-  it "should have functional behaves_like_a" do
-    expect([]).to behave_like_an(Enumerable)
-  end
 end
 
 describe Ratatosk::Ratatosk, "creation" do
   it "should accept an array of name providers as a param" do
     col_name_provider = Ratatosk::NameProviders::ColNameProvider.new
     ratatosk = Ratatosk::Ratatosk.new(:name_providers => [col_name_provider])
-    ratatosk.name_providers.size.should eq 1
-    ratatosk.name_providers.should include(col_name_provider)
+    expect(ratatosk.name_providers.size).to eq 1
+    expect(ratatosk.name_providers).to include(col_name_provider)
   end
 
   it "shold accept an array of name provider prefixes as a param" do
     ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col, :ubio])
-    ratatosk.name_providers.first.should be_a(Ratatosk::NameProviders::ColNameProvider)
-    ratatosk.name_providers.last.should be_a(Ratatosk::NameProviders::UBioNameProvider)
+    expect( ratatosk.name_providers.first.class ).to eq Ratatosk::NameProviders::ColNameProvider
+    expect( ratatosk.name_providers.last.class ).to eq Ratatosk::NameProviders::UBioNameProvider
   end
 end
 
@@ -42,15 +38,13 @@ describe Ratatosk, "searching" do
   end
   
   it "should return an array" do
-    @ratatosk.find('Western Bluebird').should be_an(Array)
+    expect( @ratatosk.find('Western Bluebird').class ).to eq Array
   end
   
   it "should return TaxonName-like objects that have Taxon-like objects" do
     tn = @ratatosk.find('Western Bluebird')
     tn.each do |taxon_name|
-      # puts "DEBUG: #{taxon_name} is a #{taxon_name.class}"
       expect(taxon_name.taxon).not_to be(nil)
-      # taxon_name.taxon.should behave_like_a(Taxon)
       expect(taxon_name.taxon.name).not_to be(nil)
     end
   end
@@ -60,7 +54,7 @@ describe Ratatosk, "searching" do
       unless name.valid?
         puts "ERROR FROM Ratatosk searching should return valid names by default: #{name.errors.full_messages.join(', ')}"
       end
-      name.valid?.should be(true)
+      expect(name.valid?).to be(true)
     end
   end
   
@@ -74,18 +68,18 @@ describe Ratatosk, "searching" do
           puts "[DEBUG] #{name.taxon} was invalid: #{name.taxon.errors.full_messages.join(', ')}"
         end
       end
-      name.should be_valid
+      expect(name).to be_valid
       name.reload
-      name.should be_valid
+      expect(name).to be_valid
     end
     
-    names = TaxonName.find(:all, :conditions => {:name => 'coyote'})
+    names = TaxonName.where( name: "coyote" )
     names.each do |name|
       puts "DEBUG: #{name} is invalid: #{name.errors.full_messages.join(', ')}" unless name.valid?
-      name.valid?.should be(true)
+      expect(name.valid?).to be(true)
       
       puts "DEBUG: #{name.taxon} is invalid: #{name.taxon.errors.full_messages.join(', ')}" unless name.taxon.valid?
-      name.taxon.valid?.should be(true)
+      expect(name.taxon.valid?).to be(true)
     end
   end
   
@@ -95,8 +89,8 @@ describe Ratatosk, "searching" do
       name_provider = Ratatosk::NameProviders.const_get(name.taxon.name_provider).new
       name_provider.get_phylum_for(name.taxon)
     end.compact
-    phyla.map(&:name).should include('Magnoliophyta')
-    phyla.map(&:name).should include('Arthropoda')
+    expect(phyla.map(&:name)).to include('Magnoliophyta')
+    expect(phyla.map(&:name)).to include('Arthropoda')
   end
   
   it "should not return homonyms in the same phylum" do
@@ -105,12 +99,11 @@ describe Ratatosk, "searching" do
       name_provider = Ratatosk::NameProviders.const_get(name.taxon.name_provider).new
       name_provider.get_phylum_for(name.taxon)
     end.compact
-    phyla.select{|p| p.name == 'Chordata'}.size.should be(1)
+    expect(phyla.select{|p| p.name == 'Chordata'}.size).to be(1)
   end
   
   it "should find 'horseshoe crab'" do
-    tn = @ratatosk.find('horseshoe crab')
-    tn.should have_at_least(1).taxon_name_adapter
+    expect( @ratatosk.find('horseshoe crab') ).not_to be_blank
   end
   
   it "should return a taxon with a unique name for Holodiscus discolor" do
@@ -127,22 +120,20 @@ describe Ratatosk, "searching" do
     existing = Taxon.find_by_name('Calypte anna')
     expect(existing).not_to be_blank
     results = ratatosk.find('Calypte anna')
-    puts "existing: #{existing}"
     results.each do |tn|
-      puts "tn: #{tn}"
-      tn.taxon.should eq(existing)
+      expect(tn.taxon).to eq(existing)
     end
   end
 end
 
 describe Ratatosk, "grafting" do
   
-  before :all do
+  before do
     load_test_taxa
   end
   
   before(:each) do
-    @ratatosk = Ratatosk
+    @ratatosk = Ratatosk::Ratatosk.new
   end
   
   it "should set the parent of Homo sapiens to Homo" do
@@ -151,14 +142,14 @@ describe Ratatosk, "grafting" do
     @homo_sapiens = @homo_sapiens_name.taxon
     @ratatosk.graft(@homo_sapiens)
     @homo_sapiens.reload
-    @homo_sapiens.parent.name.should eq 'Homo'
+    expect(@homo_sapiens.parent.name).to eq 'Homo'
   end
   
   it "should set the parent of a species to genus" do
     nudi = @ratatosk.find('hermissenda crassicornis').first
     nudi.save
     @ratatosk.graft(nudi.taxon)
-    nudi.taxon.parent.rank.should eq 'genus'
+    expect(nudi.taxon.parent.rank).to eq 'genus'
   end
   
   it "should set the parent of a subspecies to an existing species" do
@@ -168,7 +159,7 @@ describe Ratatosk, "grafting" do
     yenes.save
     @ratatosk.graft(yenes.taxon)
     yenes.reload
-    yenes.taxon.parent.should eq enes
+    expect(yenes.taxon.parent).to eq enes
   end
   
   it "should not set the parent of a subspecies to a genus" do
@@ -187,8 +178,8 @@ describe Ratatosk, "grafting" do
     unless anna.grafted?
       anna.update_attributes(:parent => calypte)
     end
-    anna.should be_grafted
-    @ratatosk.graft(anna).should eq []
+    expect(anna).to be_grafted
+    expect(@ratatosk.graft(anna)).to eq []
   end
   
   it "should graft everything to 'Life'" do
@@ -197,7 +188,7 @@ describe Ratatosk, "grafting" do
     tn.save
     @ratatosk.graft(tn.taxon)
     tn.reload
-    tn.taxon.ancestors.should include(life)
+    expect(tn.taxon.ancestors).to include(life)
   end
   
   it "should set the parent of a kingdom to 'Life'" do
@@ -206,15 +197,16 @@ describe Ratatosk, "grafting" do
     plantae.save
     @ratatosk.graft(plantae.taxon)
     plantae.reload
-    plantae.taxon.parent.should eq life
+    expect(plantae.taxon.parent).to eq life
   end
   
   it "should result in taxa that all have scientific names" do
     @homo_sapiens_name = Ratatosk.find('Homo sapiens').first
-    @homo_sapiens_name.save
+    @homo_sapiens_name.save!
     @homo_sapiens = @homo_sapiens_name.taxon
+    @homo_sapiens.reload
     Ratatosk.graft(@homo_sapiens).each do |grafted_taxon|
-      grafted_taxon.taxon_names.map(&:name).should include(grafted_taxon.name)
+      expect(grafted_taxon.taxon_names.map(&:name)).to include(grafted_taxon.name)
     end
   end
   
@@ -224,33 +216,8 @@ describe Ratatosk, "grafting" do
     diva.save
     @ratatosk.graft(diva.taxon)
     diva.reload
-    diva.taxon.parent.rank.should eq 'genus'
-    diva.taxon.parent.name.should eq 'Cuthona'
-  end
-
-  # Didn't seem to be getting any results as of 2009-10-09
-  # it "should work for incense cedar" do
-  #   results = @ratatosk.find('incense cedar').select do |name|
-  #     name.name == 'incense cedar'
-  #   end
-  #   puts "DEBUG: results: #{results.join(', ')}"
-  #   cedar = results.first
-  #   cedar.save
-  #   @ratatosk.graft(cedar.taxon)
-  #   cedar.reload
-  #   cedar.taxon.parent.name.should == 'Cupressaceae'
-  #   cedar.taxon.ancestors.first.name.should == 'Life'
-  # end
-  
-  it "should work for royal larkspur" do
-    names = @ratatosk.find('royal larkspur')
-    names.each(&:save)
-    rola = Taxon.find_by_name('Delphinium variegatum')
-    @ratatosk.graft(rola)
-    rola.reload
-    rola.parent.name.should eq "Delphinium"
-    rola.phylum.name.should eq 'Magnoliophyta'
-    rola.ancestors.first.name.should eq 'Life'
+    expect(diva.taxon.parent.rank).to eq 'genus'
+    expect(diva.taxon.parent.name).to eq 'Cuthona'
   end
   
   describe "to a locked subtree" do
@@ -263,29 +230,35 @@ describe Ratatosk, "grafting" do
       expect(taxon.ancestor_ids).not_to include(@Amphibia.id)
     end
 
+    it "should be idempotent" do
+      @Amphibia.update_attributes(:locked => true)
+      taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
+      @ratatosk.graft(taxon)
+      taxon.reload
+      expect(taxon).not_to be_grafted
+      expect(taxon.ancestor_ids).not_to include(@Amphibia.id)
+    end
+
     it "should flag taxa that could not be grafted" do
       @Amphibia.update_attributes(:locked => true)
-      @Amphibia.should be_valid
-      @Amphibia.should be_locked
-      # puts "Amphibia.locked: #{@Amphibia.locked}"
+      expect(@Amphibia).to be_valid
+      expect(@Amphibia).to be_locked
       taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
       expect {
-        # puts "spec, grafting"
         @ratatosk.graft(taxon)
         taxon.reload
-        # puts "taxon.ancestor_ids: #{taxon.ancestor_ids.inspect}"
         expect(taxon).not_to be_grafted
       }.to change(Flag, :count).by_at_least(1)
     end
   end
 
   it "should look up import a polynom parent" do
-    Taxon.find_by_name('Sula leucogaster').should be_blank
-    Taxon.find_by_name('Sula').should be_blank
+    expect(Taxon.find_by_name('Sula leucogaster')).to be_blank
+    expect(Taxon.find_by_name('Sula')).to be_blank
     taxon = Taxon.make!(:name => "Sula leucogaster", :rank => Taxon::SPECIES)
     @ratatosk.graft(taxon)
     expect(taxon.parent).not_to be_blank
-    taxon.parent.name.should eq('Sula')
+    expect(taxon.parent.name).to eq('Sula')
   end
 end
 
@@ -306,19 +279,10 @@ describe Ratatosk, "get_graft_point_for" do
     name_provider = Ratatosk::NameProviders.const_get(gbh.taxon.name_provider).new
     lineage = name_provider.get_lineage_for(gbh.taxon)
     graft_point, lineage = @ratatosk.get_graft_point_for(lineage)
-    lineage.first.name.should eq gbh.taxon.name
-    graft_point.should eq aves
+    expect(lineage.first.name).to eq gbh.taxon.name
+    expect(graft_point).to eq aves
   end
   
-  # it "should work for Boloria bellona" do
-  #   bobes = @ratatosk.find('Boloria bellona')
-  #   puts "bobes.size: #{bobes.size}"
-  #   tn = bobes.first
-  #   name_provider = Ratatosk::NameProviders.const_get(tn.taxon.name_provider).new
-  #   lineage = name_provider.get_lineage_for(tn.taxon)
-  #   graft_point, lineage = @ratatosk.get_graft_point_for(lineage)
-  #   graft_point.name.should == "Insecta"
-  # end
 end
 
 def load_test_taxa

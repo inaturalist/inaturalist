@@ -5,14 +5,21 @@ import {
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
+import { showAlert } from "./alert_actions";
 
 const POST_IDENTIFICATION = "post_identification";
 
 function postIdentification( params ) {
-  return function ( ) {
+  return function ( dispatch ) {
     const body = Object.assign( {}, params );
     body.user_id = 1;
-    return inatjs.identifications.create( body );
+    return inatjs.identifications.create( body ).catch( e => {
+      dispatch( showAlert(
+        I18n.t( "failed_to_save_recoed" ),
+        { title: I18n.t( "request_failed" ) }
+      ) );
+      throw e;
+    } );
   };
 }
 
