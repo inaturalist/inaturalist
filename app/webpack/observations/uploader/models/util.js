@@ -4,7 +4,7 @@ const util = class util {
 
   static isOnline( callback ) {
     // temporary until we have a ping API
-    fetch( "https://www.inaturalist.org/pages/about", {
+    fetch( "/pages/about", {
       method: "head",
       mode: "no-cors",
       cache: "no-store" } ).
