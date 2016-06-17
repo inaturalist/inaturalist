@@ -18,13 +18,16 @@ class IdentificationsController < ApplicationController
   def by_login
     block_if_spammer(@selected_user) && return
     scope = @selected_user.identifications_for_others.
-      order("identifications.created_at DESC")
+      order("identifications.id DESC")
     unless params[:on].blank?
       scope = scope.on(params[:on])
     end
     @identifications = scope.page(params[:page]).per_page(20)
     Identification.preload_associations(@identifications, [
-      { observation: [ :user, :photos, :taxon ] }, :taxon, :user ])
+      { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
+      { taxon: [{taxon_names: :place_taxon_names}, :photos] },
+      :user
+    ] )
     respond_to do |format|
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)
@@ -43,7 +46,30 @@ class IdentificationsController < ApplicationController
           }
         end
       end
-      format.json { render json: @identifications }
+      format.json do
+        taxon_options = {
+          only: [:id, :name, :rank],
+          methods: [:default_name, :photo_url, :iconic_taxon_name]
+        }
+        render json: @identifications.as_json( include: [
+          {
+            taxon: taxon_options
+          }, 
+          {
+            observation: {
+              only: [:id, :species_guess],
+              methods: [:iconic_taxon_name],
+              include: {
+                taxon: taxon_options,
+                photos: {
+                  only: [:id, :square_url, :thumb_url, :small_url, :medium_url, :large_url],
+                  methods: [:license_code, :attribution]
+                }
+              }
+            }
+          }
+        ] )
+      end
     end
   end
   

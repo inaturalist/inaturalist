@@ -131,11 +131,11 @@ shared_examples_for "an IdentificationsController" do
   end
 
   describe "by_login" do
+    before(:all) { load_test_taxa }
     it "should return identifications by the selected user" do
       ident = Identification.make!( user: user )
       get :by_login, format: :json, login: user.login
       json = JSON.parse( response.body )
-      puts "json: #{json.inspect}"
       expect( json.detect{|i| i["id"] == ident.id } ).not_to be_blank
     end
     it "should not return identifications not by the selected user" do
@@ -143,6 +143,60 @@ shared_examples_for "an IdentificationsController" do
       get :by_login, format: :json, login: user.login
       json = JSON.parse( response.body )
       expect( json.detect{|i| i["id"] == ident.id } ).to be_blank
+    end
+    describe "response should include the" do
+      let(:ident) { Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) ) }
+      let(:json_ident) do
+        expect( ident ).not_to be_blank
+        get :by_login, format: :json, login: user.login
+        json = JSON.parse( response.body )
+        json.detect{|i| i["id"] == ident.id }
+      end
+      it "taxon" do
+        expect( json_ident["taxon"]["id"] ).to eq ident.taxon_id
+      end
+      it "observation" do
+        expect( json_ident["observation"]["id"] ).to eq ident.observation_id
+      end
+      it "observation's taxon" do
+        expect( json_ident["observation"]["taxon"]["id"] ).to eq ident.observation.taxon_id
+      end
+      it "observation photo URL" do
+        expect( json_ident["observation"]["photos"][0]["medium_url"] ).to eq ident.observation.photos.first.medium_url
+      end
+      it "observation iconic_taxon_name" do
+        expect( ident.observation.iconic_taxon_name ).not_to be_blank
+        expect( json_ident["observation"]["iconic_taxon_name"] ).to eq ident.observation.iconic_taxon_name
+      end
+    end
+    it "should include locale-specific taxon name" do
+      ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
+      tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS["Spanish"] )
+      user.update_attributes( locale: "es" )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      json_ident = json.detect{|i| i["id"] == ident.id }
+      expect( json_ident["taxon"]["default_name"]["name"] ).to eq tn.name
+    end
+    it "should include place-specific taxon name" do
+      ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
+      place = Place.make!
+      tn = TaxonName.make!( taxon: ident.taxon )
+      ptn = PlaceTaxonName.make!( taxon_name: tn, place: place )
+      user.update_attributes( place: place )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      json_ident = json.detect{|i| i["id"] == ident.id }
+      expect( json_ident["taxon"]["default_name"]["name"] ).to eq tn.name
+    end
+    it "should include locale-specific observation taxon name" do
+      ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
+      tn = TaxonName.make!( taxon: ident.observation.taxon, lexicon: TaxonName::LEXICONS["Spanish"] )
+      user.update_attributes( locale: "es" )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      json_ident = json.detect{|i| i["id"] == ident.id }
+      expect( json_ident["observation"]["taxon"]["default_name"]["name"] ).to eq tn.name
     end
   end
 end
