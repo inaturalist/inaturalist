@@ -1,17 +1,4 @@
 <% unless @updates.blank? -%>
-  <% unless current_user.prefers_hide_activity_onboarding || @you -%>
-    <div class="panel panel-info" id="activity_panel">
-      <div class="panel-heading">
-        <a data-panel-type="activity" class="close">&times;</a>
-        <h3 class="panel-title"><%=t 'onboarding.youve_got_updates_panel_title' %></h3>
-      </div>
-      <div class="panel-body">
-        <p class="lead"><%= t('onboarding.youve_got_updates_panel_body_p1', site_name: SITE_NAME.gsub(".org",""))%></p>                    
-        <%= t('onboarding.youve_got_updates_panel_body_p2', site_name: SITE_NAME.gsub(".org","")).html_safe%>                  
-      </div>
-      <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
-    </div>                
-  <% end -%>
   <ul class="timeline">
     <% for key, updates in @grouped_updates %>
       <%-

@@ -41,11 +41,6 @@
             get_content(url, target);          
           });
           
-          $("a[data-panel-type]").click(function(e){
-            e.preventDefault()
-            panelType = $(this).data("panel-type")
-            close_panel(this, panelType)
-          });
         }
       });
     }
@@ -232,7 +227,20 @@
                 </div>
               </div>                
             <% end -%>
-          <% end -%>  
+          <% end -%>
+          <% if @has_updates && !current_user.prefers_hide_activity_onboarding -%>
+            <div class="panel panel-info" id="activity_panel">
+              <div class="panel-heading">
+                <a data-panel-type="activity" class="close">&times;</a>
+                <h3 class="panel-title"><%=t 'onboarding.youve_got_updates_panel_title' %></h3>
+              </div>
+              <div class="panel-body">
+                <p class="lead"><%= t('onboarding.youve_got_updates_panel_body_p1', site_name: SITE_NAME.gsub(".org",""))%></p>                    
+                <%= t('onboarding.youve_got_updates_panel_body_p2', site_name: SITE_NAME.gsub(".org","")).html_safe%>                  
+              </div>
+              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
+            </div>                
+          <% end -%>
           <div id="updates_target">
             <div class="loading"><%=t :loading %></div>
           </div>
