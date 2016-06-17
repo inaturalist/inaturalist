@@ -40,8 +40,21 @@
             var target = "#updates_by_you_target";
             get_content(url, target);          
           });
+          
+          $("a[data-panel-type]").click(function(e){
+            e.preventDefault()
+            panelType = $(this).data("panel-type")
+            close_panel(this, panelType)
+          });
         }
       });
+    }
+    
+    function close_panel(element, panelType) {
+      $( "#" + panelType + "_panel" ).fadeOut();
+      var pref = { };
+      pref[ "prefers_hide_" + panelType + "_onboarding" ] = true;
+      updateSession( pref );       
     }
     
     $(document).ready(function() {
@@ -124,27 +137,18 @@
         }
       });
       
-      function close_panel(element, panelType) {
-        $( "#" + panelType + "_panel" ).fadeOut();
-        var pref = { };
-        pref[ "prefers_hide_" + panelType + "_onboarding" ] = true;
-        updateSession( pref );       
-      }
-      
       $("a[data-panel-type]").click(function(e){
         e.preventDefault()
-        
         panelType = $(this).data("panel-type")
         close_panel(this, panelType)
       });
-    
+  
       $("[data-toggle=popover]").popover();
-      
+    
       $(".dashboard_tab").click(function(){
          $(".dashboard_tab").removeClass("active");
          $(this).addClass("active");
       });
-      
       
     })
   </script>
