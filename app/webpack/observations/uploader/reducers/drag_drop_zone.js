@@ -148,9 +148,17 @@ const dragDropZone = ( state = defaultState, action ) => {
           } );
         }
       }
-      return Object.assign( { }, state, { obsCards: modified,
+      const newState = {
+        obsCards: modified,
         selectedObsCards: _.pick( modified, _.keys( action.ids ) )
-      } );
+      };
+      if ( _.isEmpty( newState.selectedObsCards ) ) {
+        newState.observationField = null;
+        newState.observationFieldTaxon = null;
+        newState.observationFieldValue = null;
+        newState.observationFieldSelectedDate = null;
+      }
+      return Object.assign( { }, state, newState );
     }
 
     case types.SELECT_ALL: {

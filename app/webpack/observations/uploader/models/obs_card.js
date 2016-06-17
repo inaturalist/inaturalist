@@ -30,6 +30,9 @@ const ObsCard = class ObsCard {
   blank( ) {
     return (
       _.isEmpty( this.files ) &&
+      _.isEmpty( this.tags ) &&
+      _.isEmpty( this.observation_field_values ) &&
+      _.isEmpty( this.projects ) &&
       !this.description &&
       !this.date &&
       !this.taxon_id &&

@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Photo from "./photo";
 
 class FileGalleryItem extends Component {
@@ -23,11 +23,17 @@ class FileGalleryItem extends Component {
 
   closeButton( ) {
     return (
-      <button className="btn-close-photo" onClick={ () =>
-        this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }
+      <OverlayTrigger
+        placement="top"
+        delayShow={ 1000 }
+        overlay={ ( <Tooltip id="remove-photo-tip">Remove photo</Tooltip> ) }
       >
-        <Glyphicon glyph="remove" />
-      </button>
+        <button className="btn-close-photo" onClick={ () =>
+          this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }
+        >
+          <Glyphicon glyph="remove" />
+        </button>
+      </OverlayTrigger>
     );
   }
 

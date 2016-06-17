@@ -158,13 +158,14 @@ class ObsCardComponent extends Component {
         >C</button>
       );
     }
-    let photoCount;
+    let photoCountOrStatus;
     const fileCount = _.size( obsCard.files );
     if ( fileCount ) {
-      if ( _.find( obsCard.files, f => f.upload_state === "uploading" ) ) {
-        photoCount = "Loading metadata...";
+      if ( _.find( obsCard.files, f =>
+             f.upload_state === "uploading" || f.upload_state === "pending" ) ) {
+        photoCountOrStatus = "Loading metadata...";
       } else if ( fileCount > 1 ) {
-        photoCount = `${obsCard.galleryIndex || 1}/${fileCount}`;
+        photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
       }
     }
     return cardDropTarget( photoDropTarget( cardDragSource(
@@ -181,9 +182,15 @@ class ObsCardComponent extends Component {
           key={ obsCard.id }
         >
           { captiveMarker }
-          <button className="btn-close" onClick={ confirmRemoveObsCard }>
-            <Glyphicon glyph="remove" />
-          </button>
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="remove-obs-tip">Remove observation</Tooltip> ) }
+          >
+            <button className="btn-close" onClick={ confirmRemoveObsCard }>
+              <Glyphicon glyph="remove" />
+            </button>
+          </OverlayTrigger>
           <FileGallery
             obsCard={ obsCard }
             setState={ setState }
@@ -193,7 +200,7 @@ class ObsCardComponent extends Component {
           />
           <div className="caption">
             <p className="photo-count">
-              { photoCount || "\u00a0" }
+              { photoCountOrStatus || "\u00a0" }
             </p>
             <TaxonAutocomplete
               key={

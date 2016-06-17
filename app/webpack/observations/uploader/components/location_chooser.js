@@ -156,31 +156,57 @@ class LocationChooser extends SelectionBasedComponent {
     const places = this.refs.searchbox.getPlaces();
     if ( places.length > 0 ) {
       const geometry = places[0].geometry;
-      if ( geometry.viewport ) {
-        this.refs.map.fitBounds( geometry.viewport );
+      let lat;
+      let lng;
+      let notes;
+      let radius;
+      const viewport = geometry.viewport;
+      if ( viewport ) {
+        lat = geometry.location.lat( );
+        lng = geometry.location.lng( );
+        notes = places[0].formatted_address;
+        radius = _.max( [
+          this.distanceInMeters( lat, lng, viewport.H.H, viewport.j.H ),
+          this.distanceInMeters( lat, lng, viewport.H.j, viewport.j.j )
+        ] );
+        this.refs.map.fitBounds( viewport );
       } else {
-        const lat = geometry.location.lat( );
-        const lng = geometry.location.lng( );
+        const lt = geometry.location.lat( );
+        const lg = geometry.location.lng( );
         this.refs.map.fitBounds( new google.maps.LatLngBounds(
-          new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
-          new google.maps.LatLng( lat + 0.001, lng + 0.001 ) ) );
+          new google.maps.LatLng( lt - 0.001, lg - 0.001 ),
+          new google.maps.LatLng( lt + 0.001, lg + 0.001 ) ) );
       }
-      const zoom = this.refs.map.getZoom( );
       this.props.updateState( { locationChooser: {
-        lat: geometry.location.lat( ).toString( ),
-        lng: geometry.location.lng( ).toString( ),
+        lat: lat ? lat.toString( ) : undefined,
+        lng: lng ? lng.toString( ) : undefined,
         center: this.refs.map.getCenter( ),
         bounds: this.refs.map.getBounds( ),
-        radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 10000000 ).toString( ),
-        notes: places[0].formatted_address
+        radius,
+        notes
       } } );
     }
+  }
+
+  // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
+  distanceInMeters( lat1, lon1, lat2, lon2 ) {
+    const earthRadius = 6370997; // m
+    const degreesPerRadian = 57.2958;
+    const dLat = ( lat2 - lat1 ) / degreesPerRadian;
+    const dLon = ( lon2 - lon1 ) / degreesPerRadian;
+    const lat1Mod = lat1 / degreesPerRadian;
+    const lat2Mod = lat2 / degreesPerRadian;
+
+    const a = Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
+            Math.sin( dLon / 2 ) * Math.sin( dLon / 2 ) * Math.cos( lat1Mod ) * Math.cos( lat2Mod );
+    const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
+    const d = earthRadius * c;
+    return d;
   }
 
   update( field, e ) {
     const updates = { [field]: e.target.value };
     if ( field === "lat" || field === "lng" ) {
-      updates.radius = this.props.radius || "1";
       let lat = updates.lat || this.props.lat;
       lat = lat ? Number( lat ) : undefined;
       let lng = updates.lng || this.props.lng;

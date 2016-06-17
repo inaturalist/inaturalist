@@ -54,7 +54,7 @@ class LeftMenu extends SelectionBasedComponent {
     let geoprivacyTooltip = "Everyone can see the coordinates unless the taxon is threatened";
     if ( commonGeoprivacy === "obscured" ) {
       geoprivacyTooltip = "Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation";
-    } else if ( commonGeoprivacy === "obscured" ) {
+    } else if ( commonGeoprivacy === "private" ) {
       geoprivacyTooltip = "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation";
     }
     return (

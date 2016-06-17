@@ -191,9 +191,12 @@ $.fn.genericAutocomplete = function( options ) {
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
     // don't redo the search if there are results being shown
-    if( genericAutocomplete.menuClosed( ) ) {
-      $(this).autocomplete( "search", $(this).val( ));
-    }
+    var that = this;
+    setTimeout( function() {
+      if( genericAutocomplete.menuClosed( ) ) {
+        $(that).autocomplete( "search", $(that).val( ));
+      }
+    }, 100);
   });
   field.bind( "click", function( ) {
     // don't redo the search if there are results being shown
