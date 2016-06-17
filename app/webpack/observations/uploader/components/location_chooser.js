@@ -1,10 +1,22 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
-import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
+import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker,
+  OverlayView } from "react-google-maps";
 import SelectionBasedComponent from "./selection_based_component";
 import util from "../models/util";
 var lastCenterChange = new Date().getTime();
+
+const markerSVG = {
+  path: "M256,0C149.969,0,64,85.969,64,192s160,320,192,320s192-213.969,192-320S362.031,0,256,0z " +
+    "M256,320  c-70.594,0-128-57.438-128-128S185.406,64,256,64s128,57.438,128,128S326.594,320," +
+    "256,320z",
+  fillOpacity: 1,
+  strokeWeight: 2,
+  scale: 0.05,
+  origin: new google.maps.Point( 0, 0 ),
+  anchor: new google.maps.Point( 256, 512 )
+};
 
 class LocationChooser extends SelectionBasedComponent {
 
@@ -156,14 +168,12 @@ class LocationChooser extends SelectionBasedComponent {
     const places = this.refs.searchbox.getPlaces();
     if ( places.length > 0 ) {
       const geometry = places[0].geometry;
-      let lat;
-      let lng;
+      const lat = geometry.location.lat( );
+      const lng = geometry.location.lng( );
       let notes;
       let radius;
       const viewport = geometry.viewport;
       if ( viewport ) {
-        lat = geometry.location.lat( );
-        lng = geometry.location.lng( );
         notes = places[0].formatted_address;
         radius = _.max( [
           this.distanceInMeters( lat, lng, viewport.H.H, viewport.j.H ),
@@ -171,11 +181,9 @@ class LocationChooser extends SelectionBasedComponent {
         ] );
         this.refs.map.fitBounds( viewport );
       } else {
-        const lt = geometry.location.lat( );
-        const lg = geometry.location.lng( );
         this.refs.map.fitBounds( new google.maps.LatLngBounds(
-          new google.maps.LatLng( lt - 0.001, lg - 0.001 ),
-          new google.maps.LatLng( lt + 0.001, lg + 0.001 ) ) );
+          new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
+          new google.maps.LatLng( lat + 0.001, lng + 0.001 ) ) );
       }
       this.props.updateState( { locationChooser: {
         lat: lat ? lat.toString( ) : undefined,
@@ -229,6 +237,7 @@ class LocationChooser extends SelectionBasedComponent {
     let center;
     let circles = [];
     let markers = [];
+    let overlays = [];
     let canSave = false;
     const latNum = Number( this.props.lat );
     const lngNum = Number( this.props.lng );
@@ -245,50 +254,61 @@ class LocationChooser extends SelectionBasedComponent {
     }
     _.each( this.props.obsCards, c => {
       if ( c.latitude && !( this.props.obsCard && this.props.obsCard.id === c.id ) ) {
-        markers.push(
-          <Marker key={`marker${c.id}`}
-            position={{ lat: c.latitude, lng: c.longitude }}
-            icon={{
-              path: "M -4,-4 4,4 M 4,-4 -4,4",
-              strokeColor: "#337ab7",
-              strokeWeight: 4,
-              scale: 1
-            }}
-          />
-        );
-        circles.push(
-          <Circle key={`circle${c.id}`}
-            center={{ lat: c.latitude, lng: c.longitude }}
-            radius={c.accuracy || 0}
-            onClick={ this.handleMapClick }
-            options={{
-              strokeColor: "#337ab7",
-              strokeOpacity: 0.6,
-              fillColor: "#337ab7",
-              fillOpacity: 0.35
-            }}
-          />
-        );
+        const cardImage = $( `[data-id=${c.id}] .carousel-inner img:first` );
+        if ( cardImage.length > 0 ) {
+          overlays.push(
+            <OverlayView key={ `overlay${c.id}` }
+              position={ { lat: c.latitude, lng: c.longitude } }
+              mapPaneName={ OverlayView.OVERLAY_LAYER }
+            >
+              <div className="photo-marker">
+                <img src={ cardImage[0].src } />
+              </div>
+            </OverlayView>
+          );
+        } else {
+          markers.push(
+            <Marker key={`marker${c.id}`}
+              position={{ lat: c.latitude, lng: c.longitude }}
+              icon={ Object.assign( { }, markerSVG, {
+                fillColor: "#333",
+                strokeColor: "#333"
+              } ) }
+            />
+          );
+        }
       }
     } );
     if ( center ) {
-      circles.push(
-        <Circle key="circle" ref="circle"
-          center={ center }
-          radius={ Number( this.props.radius ) }
-          onClick={ this.handleMapClick }
-          onRadiusChanged={ this.radiusChanged }
-          onCenterChanged={ this.centerChanged }
-          options={{
-            strokeColor: "#DF0101",
-            strokeOpacity: 0.8,
-            fillColor: "#DF0101",
-            fillOpacity: 0.35
-          }}
-          editable
-          draggable
-        />
-      );
+      if ( this.props.radius ) {
+        circles.push(
+          <Circle key="circle" ref="circle"
+            center={ center }
+            radius={ Number( this.props.radius ) }
+            onClick={ this.handleMapClick }
+            onRadiusChanged={ this.radiusChanged }
+            onCenterChanged={ this.centerChanged }
+            options={{
+              strokeColor: "#DF0101",
+              strokeOpacity: 0.8,
+              fillColor: "#DF0101",
+              fillOpacity: 0.35
+            }}
+            editable
+            draggable
+          />
+        );
+      } else {
+        markers.push(
+          <Marker key="marker"
+            position={{ lat: center.lat, lng: center.lng }}
+            icon={ Object.assign( { }, markerSVG, {
+              fillColor: "#DF0101",
+              strokeColor: "#DF0101"
+            } ) }
+          />
+        );
+      }
     }
     const glyph = this.props.notes && ( <Glyphicon glyph="map-marker" /> );
     return (
@@ -325,6 +345,7 @@ class LocationChooser extends SelectionBasedComponent {
                 />
                 { markers }
                 { circles }
+                { overlays }
               </GoogleMap>
             }
           />
