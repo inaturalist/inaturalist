@@ -8,14 +8,16 @@ import util from "../models/util";
 var lastCenterChange = new Date().getTime();
 
 const markerSVG = {
-  path: "M256,0C149.969,0,64,85.969,64,192s160,320,192,320s192-213.969,192-320S362.031,0,256,0z " +
-    "M256,320  c-70.594,0-128-57.438-128-128S185.406,64,256,64s128,57.438,128,128S326.594,320," +
-    "256,320z",
+  path: "M648 1169q117 0 216 -60t156.5 -161t57.5 -218q0 -115 -70 -258q-69 -109 -158 -225.5t-143 " +
+    "-179.5l-54 -62q-9 8 -25.5 24.5t-63.5 67.5t-91 103t-98.5 128t-95.5 148q-60 132 -60 249q0 88 " +
+    "34 169.5t91.5 142t137 96.5t166.5 36zM652.5 974q-91.5 0 -156.5 -65 t-65 -157t65 -156.5t156.5 " +
+    "-64.5t156.5 64.5t65 156.5t-65 157t-156.5 65z",
   fillOpacity: 1,
-  strokeWeight: 2,
-  scale: 0.05,
+  strokeWeight: 0,
+  scale: 0.02,
+  rotation: 180,
   origin: new google.maps.Point( 0, 0 ),
-  anchor: new google.maps.Point( 256, 512 )
+  anchor: new google.maps.Point( 630, 0 )
 };
 
 class LocationChooser extends SelectionBasedComponent {
@@ -271,8 +273,7 @@ class LocationChooser extends SelectionBasedComponent {
             <Marker key={`marker${c.id}`}
               position={{ lat: c.latitude, lng: c.longitude }}
               icon={ Object.assign( { }, markerSVG, {
-                fillColor: "#333",
-                strokeColor: "#333"
+                fillColor: "#333"
               } ) }
             />
           );
@@ -280,31 +281,30 @@ class LocationChooser extends SelectionBasedComponent {
       }
     } );
     if ( center ) {
-      if ( this.props.radius ) {
-        circles.push(
-          <Circle key="circle" ref="circle"
-            center={ center }
-            radius={ Number( this.props.radius ) }
-            onClick={ this.handleMapClick }
-            onRadiusChanged={ this.radiusChanged }
-            onCenterChanged={ this.centerChanged }
-            options={{
-              strokeColor: "#DF0101",
-              strokeOpacity: 0.8,
-              fillColor: "#DF0101",
-              fillOpacity: 0.35
-            }}
-            editable
-            draggable
-          />
-        );
-      } else {
+      circles.push(
+        <Circle key="circle" ref="circle"
+          center={ center }
+          radius={ Number( this.props.radius ) }
+          onClick={ this.handleMapClick }
+          onRadiusChanged={ this.radiusChanged }
+          onCenterChanged={ this.centerChanged }
+          options={{
+            strokeColor: "#DF0101",
+            strokeOpacity: 0.8,
+            fillColor: "#DF0101",
+            fillOpacity: 0.35
+          }}
+          editable
+          draggable
+        />
+      );
+      if ( !this.props.radius ) {
         markers.push(
           <Marker key="marker"
             position={{ lat: center.lat, lng: center.lng }}
             icon={ Object.assign( { }, markerSVG, {
               fillColor: "#DF0101",
-              strokeColor: "#DF0101"
+              scale: 0.03
             } ) }
           />
         );
