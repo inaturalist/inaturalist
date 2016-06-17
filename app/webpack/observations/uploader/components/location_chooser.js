@@ -17,7 +17,7 @@ const markerSVG = {
   scale: 0.02,
   rotation: 180,
   origin: new google.maps.Point( 0, 0 ),
-  anchor: new google.maps.Point( 630, 0 )
+  anchor: new google.maps.Point( 625, 0 )
 };
 
 class LocationChooser extends SelectionBasedComponent {
@@ -227,8 +227,9 @@ class LocationChooser extends SelectionBasedComponent {
   }
 
   multiValued( prop ) {
-    return this.props.obsCards &&
-           this.valuesOf( prop, this.props.obsCards ).length > 1;
+    if ( this.props.obsCard ) { return false; }
+    return this.props.selectedObsCards &&
+           this.valuesOf( prop, this.props.selectedObsCards ).length > 1;
   }
 
   placeholder( prop ) {
@@ -312,7 +313,12 @@ class LocationChooser extends SelectionBasedComponent {
     }
     const glyph = this.props.notes && ( <Glyphicon glyph="map-marker" /> );
     return (
-      <Modal show={ this.props.show } className="location" onHide={ this.close }>
+      <Modal
+        show={ this.props.show }
+        className="location"
+        onHide={ this.close }
+        backdrop="static"
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             { glyph }
@@ -406,6 +412,7 @@ LocationChooser.propTypes = {
   obsCard: PropTypes.object,
   obsCards: PropTypes.object,
   setState: PropTypes.func,
+  selectedObsCards: PropTypes.object,
   updateState: PropTypes.func,
   updateObsCard: PropTypes.func,
   updateSelectedObsCards: PropTypes.func,

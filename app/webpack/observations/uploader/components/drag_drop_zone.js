@@ -334,6 +334,7 @@ class DragDropZone extends Component {
         <LocationChooser
           obsCards={ obsCards }
           setState={ setState }
+          selectedObsCards={ selectedObsCards }
           updateObsCard={ updateObsCard }
           updateState={ updateState }
           updateSelectedObsCards={ updateSelectedObsCards }
