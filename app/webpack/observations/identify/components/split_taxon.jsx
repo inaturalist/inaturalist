@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 
-const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
+const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) => {
   const taxonClass = ( ) => {
     let cssClass = "taxon";
     if ( taxon ) {
@@ -25,11 +25,11 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
       cssClass += "unknown";
     }
   };
-  const commonName = ( ) => {
+  const displayName = ( ) => {
     if ( taxon && taxon.preferred_common_name ) {
       return (
         <a
-          className="comname display-name"
+          className={`comname display-name ${displayClassName || ""}`}
           href={ url }
           target="_self"
         >
@@ -41,7 +41,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
         return (
           <span>
             <a
-              className="noname display-name"
+              className={`noname display-name ${displayClassName || ""}`}
               href={ url }
               target="_self"
             >
@@ -54,7 +54,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
       }
       return (
         <a
-          className="noname display-name"
+          className={`noname display-name ${displayClassName || ""}`}
           href={ url }
           target="_self"
         >
@@ -78,9 +78,13 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
       }
       return "";
     };
+    let sciNameClass = `sciname ${taxon.rank}`;
+    if ( taxon.preferred_common_name ) {
+      sciNameClass += `display-name ${displayClassName || ""}`;
+    }
     return (
       <a
-        className={`sciname ${taxon.rank} ${taxon.preferred_common_name ? "" : "display-name"}`}
+        className={sciNameClass}
         href={ url }
         target="_self"
       >
@@ -97,7 +101,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder } ) => {
           className={iconClass( )}
         >
         </a>
-        { commonName( ) } { sciName( ) }
+        { displayName( ) } { sciName( ) }
       </span>
     </div>
   );
@@ -107,7 +111,8 @@ SplitTaxon.propTypes = {
   taxon: PropTypes.object,
   url: PropTypes.string,
   noParens: PropTypes.bool,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  displayClassName: PropTypes.string
 };
 
 export default SplitTaxon;

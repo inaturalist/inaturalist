@@ -106,6 +106,13 @@ $image-gallery-height: 380px;
 .DiscussionListItem .identification .SplitTaxon {
   flex: 2;
   padding: 5px;
+  overflow: hidden;
+}
+.DiscussionListItem .identification .display-name {
+  display: block;
+}
+.DiscussionListItem .identification .actions {
+  padding-top: 3px;
 }
 
 .ObservationModal .btn.nav-button {
