@@ -9,7 +9,7 @@ function postComment( params ) {
     // TODO handle error state
     return inatjs.comments.create( body ).catch( e => {
       dispatch( showAlert(
-        I18n.t( "failed_to_save_recoed" ),
+        I18n.t( "failed_to_save_record" ),
         { title: I18n.t( "request_failed" ) }
       ) );
       throw e;

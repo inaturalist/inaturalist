@@ -78,7 +78,7 @@ function reviewAll( ) {
       getState( ).observations.results.map( o => iNaturalistJS.observations.review( o ) )
     )
       .catch( ( ) => dispatch( showAlert(
-        I18n.t( "failed_to_save_recoed" ),
+        I18n.t( "failed_to_save_record" ),
         { title: I18n.t( "request_failed" ) }
       ) ) )
       .then( ( ) => dispatch( fetchObservationsStats( ) ) );
@@ -93,7 +93,7 @@ function unreviewAll( ) {
       getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( o ) )
     )
       .catch( ( ) => dispatch( showAlert(
-        I18n.t( "failed_to_save_recoed" ),
+        I18n.t( "failed_to_save_record" ),
         { title: I18n.t( "request_failed" ) }
       ) ) )
       .then( ( ) => dispatch( fetchObservationsStats( ) ) );
