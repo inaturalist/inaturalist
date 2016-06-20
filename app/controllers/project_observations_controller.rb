@@ -5,24 +5,28 @@ class ProjectObservationsController < ApplicationController
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])
-    auto_join_project
-    @project_observation.user = current_user
+    existing = ProjectObservation.
+      where(
+        project_id: @project_observation.project_id,
+        observation_id: @project_observation.observation_id
+      ).first
+    if existing
+      @project_observation = existing
+    else
+      auto_join_project
+      @project_observation.user = current_user
+    end
 
     respond_to do |format|
       if @project_observation.save
-        format.json { render :json => @project_observation }
+        format.json { render json: @project_observation }
       else
         format.json do
           json = {
-            :errors => @project_observation.errors.full_messages,
-            :object => @project_observation
+            errors: @project_observation.errors.full_messages,
+            object: @project_observation
           }
-          if json[:errors].to_s =~ /already added/
-            if existing = @project_observation.project.project_observations.find_by_observation_id(@project_observation.observation_id)
-              json[:existing] = existing
-            end
-          end
-          render :status => :unprocessable_entity, :json => json
+          render status: :unprocessable_entity, json: json
         end
       end
     end

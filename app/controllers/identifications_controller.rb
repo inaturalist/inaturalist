@@ -17,17 +17,15 @@ class IdentificationsController < ApplicationController
   
   def by_login
     block_if_spammer(@selected_user) && return
-    scope = @selected_user.identifications_for_others.
-      order("identifications.id DESC")
+    scope = @selected_user.identifications_for_others.order("identifications.id DESC")
     unless params[:on].blank?
       scope = scope.on(params[:on])
     end
-    @identifications = scope.page(params[:page]).per_page(20)
-    Identification.preload_associations(@identifications, [
+    @identifications = scope.page(params[:page]).per_page(20).includes(
       { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
       { taxon: [{taxon_names: :place_taxon_names}, :photos] },
       :user
-    ] )
+    )
     respond_to do |format|
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)
