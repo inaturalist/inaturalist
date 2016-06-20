@@ -270,11 +270,11 @@ class PhotosController < ApplicationController
         format.html { redirect_to observations_path }
         format.json do
           json = @photo.as_json(include: {
-          to_observation: {
-            include: { observation_field_values:
-              { include: :observation_field, methods: :taxon } },
-            methods: [ :tag_list ]
-          } } )
+            to_observation: {
+              include: { observation_field_values:
+                { include: :observation_field, methods: :taxon } },
+              methods: [ :tag_list ]
+            } } )
           json[:original_url] = @photo.file.url(:original)
           json[:large_url] = @photo.file.url(:large)
           render json: json

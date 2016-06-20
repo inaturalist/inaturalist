@@ -1,6 +1,5 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 
-
 body {
   background-color: #eee;
 }
@@ -14,16 +13,34 @@ body {
   background-color: white;
 }
 
+input.failed, textarea.failed {
+  border-color: #d9534f !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
+}
 
 
 // Navbar
+.navbar {
+  border-radius: 0px;
+  position: fixed;
+  width: 100%;
+  margin-top: -120px;
+  z-index: 1001;
+}
 
 .nav_add_obs {
   padding-top: 0;
-  margin-top: -20px;
-  margin-left: -10px;
-  border-top: 0;
+  margin-top: 32px;
+  margin-left: 0px;
+  // border-width: 0 0 1px 0;
+  border: 0;
   background-color: white;
+  box-shadow: 0px 3px 10px #e7e7e7;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  top: 20px;
   .navbar-right {
     margin-right: 0px;
   }
@@ -31,10 +48,10 @@ body {
     display: inline;
   }
   .select {
-    margin-top:6px;
-    border-left:1px solid #e7e7e7;
-    margin-left:10px;
-    padding-left:10px;
+    margin-top: 6px;
+    border-left: 1px solid #e7e7e7;
+    margin-left: 10px;
+    padding-left: 10px;
     &.disabled {
       cursor: not-allowed;
       color: #ccc;
@@ -42,6 +59,10 @@ body {
   }
   .glyphicon, input[type="checkbox"] {
     margin-right: 4px;
+  }
+  label {
+    font-weight: normal;
+    margin: 1px;
   }
 }
 
@@ -62,7 +83,7 @@ body {
 .intro {
   text-align: center;
   height: 300px;
-  padding-top: 6%;
+  padding-top: 3%;
   font-size: 1.3em;
   .drag_or_choose {
     padding-bottom: 30px;
@@ -95,21 +116,27 @@ body {
 // Main content structure
 
 .row-fluid {
-  .col-fixed-240 {
-    width: 240px;
+  .col-fixed-250 {
+    width: 250px;
+    float: left;
+    overflow: visible;
     position: fixed;
+    z-index: 10;
   }
   .col-offset-290 {
-    padding-left: 290px;
+    margin-left: 275px;
     position: inherit;
+    width: 70%;
   }
   .left-col-padding {
-    padding-left: 5px
+    padding-left: 5px;
+    padding-right: 10px;
   }
 }
 
 .uploader {
   min-width: 800px;
+  margin-top: 120px;
   &.hover {
     opacity: 0.7;
     cursor: copy;
@@ -135,17 +162,149 @@ body {
       font-weight: bold;
     }
   }
+  .panel, .panel-heading, .panel-body {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .panel-body {
+    border: 0px !important;
+  }
+  .panel-group {
+    margin-bottom: 10px;
+    .panel-heading {
+      margin: 5px 0px;
+    }
+    .panel-title {
+      a {
+        display: block;
+      }
+      .icon {
+        margin-right: 10px;
+      }
+      .toggle {
+        float: right;
+        top: 4px;
+      }
+    }
+    .panel {
+      border-top: 1px solid #DFDFDF;
+      border-bottom: 0px;
+      border-radius: 0px;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    .panel+.panel {
+      margin: 0px;
+    }
+    .panel:last-child {
+      border-bottom: 1px solid #DFDFDF;
+    }
+  }
+  .panel-heading {
+    .panel-title {
+      font-weight: normal;
+      font-size: 14px;
+      .glyphicon {
+        margin-left: 10px;
+        font-size: 0.8em;
+        -moz-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        &.rotate {
+          -moz-transform: rotate(90deg);
+          -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+        }
+      }
+      &.contents {
+        font-weight: bold;
+      }
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .tags {
+    & > span {
+      float: left;
+      margin-right: 10px;
+      line-height: 2;
+    }
+  }
+  .badge.count {
+    float: right;
+    padding: 3px 6px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+    background-color: #74ac00;
+  }
   .taglist {
     margin-bottom: 10px;
+    line-height: 1.8em;
     .badge {
       margin-left: 5px;
       font-weight: 300;
-      letter-spacing: 0.3px;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 1px 7px;
+      span.wrap {
+        display: inline-block;
+        max-width: 190px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        vertical-align: text-top;
+      }
+      span.field {
+        max-width: 130px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
     }
     .field {
       font-weight: 600;
       margin-right: 3px;
       letter-spacing: normal;
+    }
+    .glyphicon {
+      margin-left: 5px;
+      opacity: 0.3;
+      z-index: 3;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .observation-field {
+    h4 {
+      font-size: 16px;
+    }
+    caption {
+      display: block;
+      padding-top: 0px;
+    }
+    padding-bottom: 15px;
+    .help-block {
+      margin-bottom: 0px;
+    }
+    button.standalone[type="submit"] {
+      margin-top: 10px;
+    }
+  }
+  .options {
+    border-top: 1px solid #DFDFDF;
+    padding-top: 10px;
+    color: black;
+    a {
+      color: black;
+    }
+    .glyphicon-new-window {
+      margin-left: 5px;
     }
   }
 }
@@ -161,7 +320,7 @@ ul.obs {
 ul.obs > li {
   float: left;
   list-style: none;
-  margin: 0px;
+  margin: 10px;
   &:hover {
     .card {
       box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
@@ -172,7 +331,7 @@ ul.obs > li {
   }
 }
 ul.obs > li .card {
-  margin: 6px;
+  margin: 3px;
   width: 220px;
   position: relative;
   &.ui-selecting {
@@ -267,7 +426,7 @@ ul.obs > li .card {
     vertical-align: middle;
     opacity: 0.8;
     right: 5px;
-    bottom: 5px;
+    bottom: 15px;
     display: none;
     outline: none;
   }
@@ -368,7 +527,7 @@ ul.obs > li .card {
     .modal-footer {
       text-align: center;
       button {
-        min-width: 100px;
+        min-width: 110px;
         margin: 0px 20px;
       }
     }
@@ -376,15 +535,36 @@ ul.obs > li .card {
       display: inline-block;
       margin: 0px 10px;
       input {
-        width: 80px;
+        width: 100px;
         &.notes {
-          width: 200px;
+          width: 250px;
         }
+      }
+    }
+    .close {
+      color: white;
+      opacity: 0.6;
+      text-shadow: 0 1px 0 #333;
+      &:hover {
+        opacity: 1;
       }
     }
   }
   .map {
     height: 310px;
+    .photo-marker {
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      margin-left: -25px;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        border: 2px solid white;
+        border-radius: 3px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+      }
+    }
   }
   .form {
     margin-top: 10px;
@@ -413,6 +593,17 @@ ul.obs > li .card {
       button {
         min-width: 100px;
         margin: 0px 10px;
+      }
+    }
+    .projects {
+      margin: 10px 20px;
+      font-size: 0.9em;
+      .count {
+        display: block;
+        margin: 0px 20px 10px;
+        font-size: 0.9em;
+        line-height: 1;
+        color: #666;
       }
     }
   }
@@ -457,8 +648,19 @@ ul.obs > li .card {
     }
   }
 }
-.ui-autocomplete .ac-result {
-  font-size: 0.9em;
+.ui-autocomplete {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  &.open {
+    opacity: 1;
+  }
+  .ac-result {
+    font-size: 0.9em;
+  }
 }
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
   position: absolute;
@@ -487,7 +689,19 @@ ul.obs > li .card {
   z-index: 1100;
 }
 
+// so the lightbox image viewer shows above the fixed toolbar
+.container--jss-0-0 {
+  z-index: 100001 !important;
+}
 
+
+
+@media (min-width: 992px) {
+  .col-md-12 {
+    width: auto;
+    float: none;
+  }
+}
 
 // Removing navbar collapse feature of responsive bootstrap
 

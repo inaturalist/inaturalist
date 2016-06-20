@@ -1,10 +1,26 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes } from "react";
 import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
-import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker } from "react-google-maps";
+import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker,
+  OverlayView } from "react-google-maps";
+import SelectionBasedComponent from "./selection_based_component";
+import util from "../models/util";
 var lastCenterChange = new Date().getTime();
 
-class LocationChooser extends Component {
+const markerSVG = {
+  path: "M648 1169q117 0 216 -60t156.5 -161t57.5 -218q0 -115 -70 -258q-69 -109 -158 -225.5t-143 " +
+    "-179.5l-54 -62q-9 8 -25.5 24.5t-63.5 67.5t-91 103t-98.5 128t-95.5 148q-60 132 -60 249q0 88 " +
+    "34 169.5t91.5 142t137 96.5t166.5 36zM652.5 974q-91.5 0 -156.5 -65 t-65 -157t65 -156.5t156.5 " +
+    "-64.5t156.5 64.5t65 156.5t-65 157t-156.5 65z",
+  fillOpacity: 1,
+  strokeWeight: 0,
+  scale: 0.02,
+  rotation: 180,
+  origin: new google.maps.Point( 0, 0 ),
+  anchor: new google.maps.Point( 625, 0 )
+};
+
+class LocationChooser extends SelectionBasedComponent {
 
   static searchboxStyle( ) {
     return {
@@ -35,11 +51,17 @@ class LocationChooser extends Component {
     this.radiusChanged = this.radiusChanged.bind( this );
     this.centerChanged = this.centerChanged.bind( this );
     this.moveCircle = this.moveCircle.bind( this );
+    this.multiValued = this.multiValued.bind( this );
+    this.placeholder = this.placeholder.bind( this );
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.show && !prevProps.show && !this.props.center ) {
-      setTimeout( this.fitCircles, 10 );
+    if ( this.props.show && !prevProps.show ) {
+      if ( !this.props.center ) {
+        setTimeout( this.fitCircles, 10 );
+      }
+      // focus on the autocomplete search field when the location modal opens
+      setTimeout( () => $( ".gm-style input" ).focus( ).val( "" ), 200 );
     }
   }
 
@@ -48,6 +70,7 @@ class LocationChooser extends Component {
     const circles = [];
     _.each( this.props.obsCards, c => {
       if ( c.latitude ) {
+        /* global google */
         circles.push( new google.maps.Circle( {
           center: {
             lat: c.latitude,
@@ -115,54 +138,31 @@ class LocationChooser extends Component {
     const attrs = {
       latitude: this.props.lat ? Number( this.props.lat ) : undefined,
       longitude: this.props.lat ? Number( this.props.lng ) : undefined,
-      accuracy: this.props.lat ? Number( this.props.radius ) : undefined,
+      accuracy: this.props.radius ? Number( this.props.radius ) : undefined,
       center: this.refs.map.getCenter( ),
       bounds: this.refs.map.getBounds( ),
       zoom: this.refs.map.getZoom( ),
-      locality_notes: this.props.notes,
-      geoprivacy: this.props.geoprivacy
+      locality_notes: this.props.notes
     };
+    if ( !attrs.accuracy ) { attrs.accuracy = undefined; }
     if ( this.props.obsCard ) {
       this.props.updateObsCard( this.props.obsCard, attrs );
     } else {
+      if ( !attrs.latitude && this.multiValued( "latitude" ) ) { delete attrs.latitude; }
+      if ( !attrs.longitude && this.multiValued( "longitude" ) ) { delete attrs.longitude; }
+      if ( !attrs.accuracy && this.multiValued( "accuracy" ) ) { delete attrs.accuracy; }
+      if ( !attrs.locality_notes && this.multiValued( "locality_notes" ) ) {
+        delete attrs.locality_notes;
+      }
       this.props.updateSelectedObsCards( attrs );
     }
     this.close( );
   }
 
   reverseGeocode( lat, lng ) {
-    const geocoder = new google.maps.Geocoder;
-    geocoder.geocode( { location: { lat, lng } }, ( results, status ) => {
-      if ( status === google.maps.GeocoderStatus.OK ) {
-        if ( results[0] ) {
-          results.reverse( );
-          const neighborhood = _.find( results, r => _.includes( r.types, "neighborhood" ) );
-          const locality = _.find( results, r => _.includes( r.types, "locality" ) );
-          const sublocality = _.find( results, r => _.includes( r.types, "sublocality" ) );
-          const level2 = _.find( results, r =>
-            _.includes( r.types, "administrative_area_level_2" ) );
-          const level1 = _.find( results, r =>
-            _.includes( r.types, "administrative_area_level_1" ) );
-          let locationName;
-          if ( neighborhood ) {
-            locationName = neighborhood.formatted_address;
-          } else if ( sublocality ) {
-            locationName = sublocality.formatted_address;
-          } else if ( locality ) {
-            locationName = locality.formatted_address;
-          } else if ( level2 ) {
-            locationName = level2.formatted_address;
-          } else if ( level1 ) {
-            locationName = level1.formatted_address;
-          }
-          if ( locationName ) {
-            this.props.updateState( { locationChooser: { notes: locationName } } );
-          }
-        } else {
-          // no results
-        }
-      } else {
-        // fail
+    util.reverseGeocode( lat, lng ).then( location => {
+      if ( location ) {
+        this.props.updateState( { locationChooser: { notes: location } } );
       }
     } );
   }
@@ -171,31 +171,54 @@ class LocationChooser extends Component {
     const places = this.refs.searchbox.getPlaces();
     if ( places.length > 0 ) {
       const geometry = places[0].geometry;
-      if ( geometry.viewport ) {
-        this.refs.map.fitBounds( geometry.viewport );
+      const lat = geometry.location.lat( );
+      const lng = geometry.location.lng( );
+      let notes = places[0].formatted_address;
+      let radius;
+      const viewport = geometry.viewport;
+      if ( viewport ) {
+        // radius is the largest distance from geom center to one of the bounds corners
+        radius = _.max( [
+          this.distanceInMeters( lat, lng, viewport.H.H, viewport.j.H ),
+          this.distanceInMeters( lat, lng, viewport.H.j, viewport.j.j )
+        ] );
+        this.refs.map.fitBounds( viewport );
       } else {
-        const lat = geometry.location.lat( );
-        const lng = geometry.location.lng( );
+        notes = this.refs.searchbox.state.inputElement.value || notes;
         this.refs.map.fitBounds( new google.maps.LatLngBounds(
           new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
           new google.maps.LatLng( lat + 0.001, lng + 0.001 ) ) );
       }
-      const zoom = this.refs.map.getZoom( );
       this.props.updateState( { locationChooser: {
-        lat: geometry.location.lat( ).toString( ),
-        lng: geometry.location.lng( ).toString( ),
+        lat: lat ? lat.toString( ) : undefined,
+        lng: lng ? lng.toString( ) : undefined,
         center: this.refs.map.getCenter( ),
         bounds: this.refs.map.getBounds( ),
-        radius: Math.round( ( 1 / Math.pow( 2, zoom ) ) * 10000000 ).toString( ),
-        notes: places[0].formatted_address
+        radius,
+        notes
       } } );
     }
+  }
+
+  // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
+  distanceInMeters( lat1, lon1, lat2, lon2 ) {
+    const earthRadius = 6370997; // m
+    const degreesPerRadian = 57.2958;
+    const dLat = ( lat2 - lat1 ) / degreesPerRadian;
+    const dLon = ( lon2 - lon1 ) / degreesPerRadian;
+    const lat1Mod = lat1 / degreesPerRadian;
+    const lat2Mod = lat2 / degreesPerRadian;
+
+    const a = Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
+            Math.sin( dLon / 2 ) * Math.sin( dLon / 2 ) * Math.cos( lat1Mod ) * Math.cos( lat2Mod );
+    const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
+    const d = earthRadius * c;
+    return d;
   }
 
   update( field, e ) {
     const updates = { [field]: e.target.value };
     if ( field === "lat" || field === "lng" ) {
-      updates.radius = this.props.radius || "1";
       let lat = updates.lat || this.props.lat;
       lat = lat ? Number( lat ) : undefined;
       let lng = updates.lng || this.props.lng;
@@ -205,10 +228,21 @@ class LocationChooser extends Component {
     this.props.updateState( { locationChooser: updates } );
   }
 
+  multiValued( prop ) {
+    if ( this.props.obsCard ) { return false; }
+    return this.props.selectedObsCards &&
+           this.valuesOf( prop, this.props.selectedObsCards ).length > 1;
+  }
+
+  placeholder( prop ) {
+    return this.multiValued( prop ) ? I18n.t( "multiple" ) : undefined;
+  }
+
   render() {
     let center;
     let circles = [];
     let markers = [];
+    let overlays = [];
     let canSave = false;
     const latNum = Number( this.props.lat );
     const lngNum = Number( this.props.lng );
@@ -225,30 +259,28 @@ class LocationChooser extends Component {
     }
     _.each( this.props.obsCards, c => {
       if ( c.latitude && !( this.props.obsCard && this.props.obsCard.id === c.id ) ) {
-        markers.push(
-          <Marker key={`marker${c.id}`}
-            position={{ lat: c.latitude, lng: c.longitude }}
-            icon={{
-              path: "M -4,-4 4,4 M 4,-4 -4,4",
-              strokeColor: "#337ab7",
-              strokeWeight: 4,
-              scale: 1
-            }}
-          />
-        );
-        circles.push(
-          <Circle key={`circle${c.id}`}
-            center={{ lat: c.latitude, lng: c.longitude }}
-            radius={c.accuracy || 0}
-            onClick={ this.handleMapClick }
-            options={{
-              strokeColor: "#337ab7",
-              strokeOpacity: 0.6,
-              fillColor: "#337ab7",
-              fillOpacity: 0.35
-            }}
-          />
-        );
+        const cardImage = $( `[data-id=${c.id}] .carousel-inner img:first` );
+        if ( cardImage.length > 0 ) {
+          overlays.push(
+            <OverlayView key={ `overlay${c.id}` }
+              position={ { lat: c.latitude, lng: c.longitude } }
+              mapPaneName={ OverlayView.OVERLAY_LAYER }
+            >
+              <div className="photo-marker">
+                <img src={ cardImage[0].src } />
+              </div>
+            </OverlayView>
+          );
+        } else {
+          markers.push(
+            <Marker key={`marker${c.id}`}
+              position={{ lat: c.latitude, lng: c.longitude }}
+              icon={ Object.assign( { }, markerSVG, {
+                fillColor: "#333"
+              } ) }
+            />
+          );
+        }
       }
     } );
     if ( center ) {
@@ -269,10 +301,26 @@ class LocationChooser extends Component {
           draggable
         />
       );
+      if ( !this.props.radius ) {
+        markers.push(
+          <Marker key="marker"
+            position={{ lat: center.lat, lng: center.lng }}
+            icon={ Object.assign( { }, markerSVG, {
+              fillColor: "#DF0101",
+              scale: 0.03
+            } ) }
+          />
+        );
+      }
     }
     const glyph = this.props.notes && ( <Glyphicon glyph="map-marker" /> );
     return (
-      <Modal show={ this.props.show } className="location" onHide={ this.close }>
+      <Modal
+        show={ this.props.show }
+        className="location"
+        onHide={ this.close }
+        backdrop="static"
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             { glyph }
@@ -305,6 +353,7 @@ class LocationChooser extends Component {
                 />
                 { markers }
                 { circles }
+                { overlays }
               </GoogleMap>
             }
           />
@@ -314,6 +363,7 @@ class LocationChooser extends Component {
               type="text"
               label={ I18n.t( "latitude" ) }
               value={ this.props.lat }
+              placeholder={ this.placeholder( "latitude" ) }
               onChange={ e => this.update( "lat", e ) }
             />
             <Input
@@ -321,32 +371,24 @@ class LocationChooser extends Component {
               type="text"
               label={ I18n.t( "longitude" ) }
               value={ this.props.lng }
+              placeholder={ this.placeholder( "longitude" ) }
               onChange={ e => this.update( "lng", e ) }
             />
             <Input
               key="radius"
               type="text"
-              label={ I18n.t( "accuracy_m" ) }
+              label={ I18n.t( "accuracy_meters" ) }
               value={ this.props.radius }
+              placeholder={ this.placeholder( "accuracy" ) }
               onChange={ e => this.update( "radius", e ) }
             />
-            <Input
-              key="geoprivacy"
-              type="select"
-              label={ I18n.t( "geoprivacy" ) }
-              value={ this.props.geoprivacy }
-              onChange={ e => this.update( "geoprivacy", e ) }
-            >
-              <option value="open">{ I18n.t( "open" ) }</option>
-              <option value="obscured">{ I18n.t( "obscured_" ) }</option>
-              <option value="private">{ I18n.t( "private" ) }</option>
-            </Input>
             <Input
               className="notes"
               key="notes"
               type="text"
               label={ I18n.t( "locality_notes" ) }
               value={ this.props.notes }
+              placeholder={ this.placeholder( "locality_notes" ) }
               onChange={ e => this.update( "notes", e ) }
             />
           </div>
@@ -372,6 +414,7 @@ LocationChooser.propTypes = {
   obsCard: PropTypes.object,
   obsCards: PropTypes.object,
   setState: PropTypes.func,
+  selectedObsCards: PropTypes.object,
   updateState: PropTypes.func,
   updateObsCard: PropTypes.func,
   updateSelectedObsCards: PropTypes.func,
@@ -381,7 +424,6 @@ LocationChooser.propTypes = {
   zoom: PropTypes.number,
   center: PropTypes.object,
   bounds: PropTypes.object,
-  geoprivacy: PropTypes.string,
   notes: PropTypes.string
 };
 

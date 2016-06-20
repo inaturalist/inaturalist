@@ -638,7 +638,14 @@ class ObservationsController < ApplicationController
     
     # check for errors
     errors = false
-    @observations.compact.each { |obs| errors = true unless obs.valid? }
+    if params[:uploader]
+      @observations.compact.each { |obs|
+        obs.errors.delete(:project_observations)
+        errors = true if obs.errors.any?
+      }
+    else
+      @observations.compact.each { |obs| errors = true unless obs.valid? }
+    end
     respond_to do |format|
       format.html do
         unless errors
@@ -694,7 +701,8 @@ class ObservationsController < ApplicationController
               }
             )
           else
-            render :json => @observations.to_json(:viewer => current_user, :methods => [:user_login, :iconic_taxon_name])
+            render :json => @observations.to_json(viewer: current_user,
+              methods: [ :user_login, :iconic_taxon_name, :project_observations ])
           end
         end
       end
@@ -2657,8 +2665,26 @@ class ObservationsController < ApplicationController
   # auto-joining
   def create_project_observations
     return unless params[:project_id]
-    @project = Project.find_by_id(params[:project_id])
-    @project ||= Project.find(params[:project_id]) rescue nil
+    if params[:project_id].is_a?(Array)
+      params[:project_id].each do |pid|
+        errors = create_project_observation_records(pid)
+      end
+    else
+      errors = create_project_observation_records(params[:project_id])
+      if !errors.blank?
+        if request.format.html?
+          flash[:error] = t(:your_observations_couldnt_be_added_to_that_project, :errors => errors.to_sentence)
+        else
+          Rails.logger.error "[ERROR #{Time.now}] Failed to add #{@observations.size} obs to #{@project}: #{errors.to_sentence}"
+        end
+      end
+    end
+  end
+
+  def create_project_observation_records(project_id)
+    return unless project_id
+    @project = Project.find_by_id(project_id)
+    @project ||= Project.find(project_id) rescue nil
     return unless @project
     if @project.tracking_code_allowed?(params[:tracking_code])
       tracking_code = params[:tracking_code]
@@ -2669,15 +2695,10 @@ class ObservationsController < ApplicationController
       po = observation.project_observations.build(project: @project,
         tracking_code: tracking_code, user: current_user)
       unless po.save
-        errors = (errors + po.errors.full_messages).uniq
-      end
-    end
-
-    if !errors.blank?
-      if request.format.html?
-        flash[:error] = t(:your_observations_couldnt_be_added_to_that_project, :errors => errors.to_sentence)
-      else
-        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{@observations.size} obs to #{@project}: #{errors.to_sentence}"
+        if params[:uploader]
+          observation.project_observations.delete(po)
+        end
+        return (errors + po.errors.full_messages).uniq
       end
     end
   end

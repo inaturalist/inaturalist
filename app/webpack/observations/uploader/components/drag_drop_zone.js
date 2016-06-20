@@ -69,7 +69,7 @@ class DragDropZone extends Component {
     $( "body" ).on( "click", this.unselectAll );
     $( ".uploader" ).selectable( { filter: ".card",
       cancel: ".card, .glyphicon, input, button, .input-group-addon, " +
-        ".input-group-addon, .intro, " +
+        ".input-group-addon, .intro, select, .leftColumn, " +
         ".bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
       selected: this.selectObsCards,
       unselected: this.selectObsCards,
@@ -107,9 +107,11 @@ class DragDropZone extends Component {
   resize( ) {
     this.resizeElement( $( ".uploader" ) );
     this.resizeElement( $( "#imageGrid" ) );
+    this.resizeElement( $( ".leftColumn" ) );
   }
 
   resizeElement( el ) {
+    if ( el.length === 0 ) { return; }
     const topOffset = el.offset( ).top;
     const height = $( window ).height( );
     const difference = height - topOffset;
@@ -131,7 +133,7 @@ class DragDropZone extends Component {
   unselectAll( e ) {
     const ignore = "a, .card, button, .modal, span.title, .leftColumn, " +
       ".bootstrap-datetimepicker-widget, .ui-autocomplete, #react-images-container, " +
-      ".navbar .select, input, .form-group";
+      ".navbar .select, input, .form-group, select";
     const target = e.target || e.nativeEvent.target;
     if ( $( ignore ).has( target ).length > 0 ||
          $( target ).is( ignore ) ) {
@@ -182,10 +184,10 @@ class DragDropZone extends Component {
 
   render( ) {
     const { onDrop, updateObsCard, confirmRemoveObsCard, onCardDrop, updateSelectedObsCards,
-      obsCards, trySubmitObservations, createBlankObsCard, selectedObsCards, locationChooser,
-      selectAll, removeSelected, mergeObsCards, saveStatus, saveCounts, setState,
-      updateState, removeModal, confirmRemoveSelected, removeObsCard, movePhoto,
-      selectObsCards, combineSelected, commandKeyPressed, shiftKeyPressed,
+      obsCards, selectedObsCards, locationChooser,
+      removeSelected, mergeObsCards, saveStatus, saveCounts, setState,
+      updateState, removeModal, removeObsCard, movePhoto,
+      selectObsCards, commandKeyPressed, shiftKeyPressed,
       draggingProps, confirmModal, confirmRemoveFile, photoViewer, photoIsOver } = this.props;
     let leftColumn;
     let intro;
@@ -198,15 +200,23 @@ class DragDropZone extends Component {
       const countSelected = _.keys( selectedObsCards ).length;
       const lastUpdate = _.max( _.map( selectedObsCards, c => c.updatedAt ) );
       const first = keys[0];
-      const leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
+      let leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
+      if ( this.props.observationField ) {
+        leftMenuKey += `field${this.props.observationField.id}`;
+      }
+      if ( this.props.observationFieldValue ) {
+        leftMenuKey += this.props.observationFieldValue;
+      }
+      if ( this.props.observationFieldSelectedDate ) {
+        leftMenuKey += this.props.observationFieldSelectedDate;
+      }
+      let leftClass = "col-fixed-250 leftColumn";
       leftColumn = (
-        <Col className="col-fixed-240 leftColumn">
+        <Col className={ leftClass }>
           <LeftMenu
             reactKey={ leftMenuKey }
             count={ cardCount }
-            setState={ this.props.setState }
-            selectedObsCards={ this.props.selectedObsCards }
-            updateSelectedObsCards={ this.props.updateSelectedObsCards }
+            { ...this.props }
           />
         </Col>
       );
@@ -217,6 +227,7 @@ class DragDropZone extends Component {
     const countSelectedPending =
       _.sum( _.map( selectedObsCards, c => c.nonUploadedFiles().length ) );
     const countPending = _.sum( _.map( obsCards, c => c.nonUploadedFiles().length ) );
+    /* global SITE */
     return (
       <div onClick={ this.closeAutocompletes }>
         <Dropzone
@@ -225,7 +236,6 @@ class DragDropZone extends Component {
           className={ className }
           activeClassName="hover"
           disableClick
-          disablePreview
           accept="image/*"
         >
           <nav className="navbar navbar-default">
@@ -253,18 +263,13 @@ class DragDropZone extends Component {
           <TopMenu
             key={ `topMenu${cardCount}${countSelected}` }
             reactKey={ `topMenu${cardCount}${countSelected}` }
-            createBlankObsCard={ createBlankObsCard }
-            confirmRemoveSelected={ confirmRemoveSelected }
-            selectAll={ selectAll }
             selectNone={ this.selectNone }
-            selectedObsCards={ selectedObsCards }
-            trySubmitObservations={ trySubmitObservations }
-            combineSelected={ combineSelected }
             fileChooser={ this.fileChooser }
             countTotal={ cardCount }
             countSelected={ countSelected }
             countSelectedPending={ countSelectedPending }
             countPending={ countPending }
+            { ...this.props }
           />
           <Grid fluid>
             <div className="row-fluid">
@@ -310,7 +315,7 @@ class DragDropZone extends Component {
           </Grid>
         </Dropzone>
         <StatusModal
-          show={ saveStatus === "saving" }
+          show={ saveStatus === "saving" && !confirmModal.show }
           saveCounts={ saveCounts }
           total={ cardCount } className="status"
         />
@@ -329,6 +334,7 @@ class DragDropZone extends Component {
         <LocationChooser
           obsCards={ obsCards }
           setState={ setState }
+          selectedObsCards={ selectedObsCards }
           updateObsCard={ updateObsCard }
           updateState={ updateState }
           updateSelectedObsCards={ updateSelectedObsCards }
@@ -344,6 +350,7 @@ class DragDropZone extends Component {
 }
 
 DragDropZone.propTypes = {
+  appendToSelectedObsCards: PropTypes.func,
   combineSelected: PropTypes.func,
   commandKeyPressed: PropTypes.bool,
   confirmModal: PropTypes.object,
@@ -358,15 +365,20 @@ DragDropZone.propTypes = {
   movePhoto: PropTypes.func,
   newCardFromPhoto: PropTypes.func,
   obsCards: PropTypes.object,
+  observationField: PropTypes.object,
+  observationFieldValue: PropTypes.any,
+  observationFieldSelectedDate: PropTypes.string,
   onCardDrop: PropTypes.func,
   onDrop: PropTypes.func.isRequired,
   photoIsOver: PropTypes.bool,
   photoViewer: PropTypes.object,
+  removeFromSelectedObsCards: PropTypes.func,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
   removeSelected: PropTypes.func,
   saveCounts: PropTypes.object,
   saveStatus: PropTypes.string,
+  scrolledPastToolbar: PropTypes.bool,
   selectAll: PropTypes.func,
   selectedObsCards: PropTypes.object,
   selectObsCards: PropTypes.func,

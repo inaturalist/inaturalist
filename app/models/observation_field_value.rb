@@ -18,6 +18,8 @@ class ObservationFieldValue < ActiveRecord::Base
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
 
+  after_save :update_observation_field_counts
+
   notifies_subscribers_of :observation, :notification => "activity",
     :on => :save,
     :include_owner => lambda {|ofv, observation|
@@ -146,6 +148,10 @@ class ObservationFieldValue < ActiveRecord::Base
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
+  end
+
+  def update_observation_field_counts
+    observation_field.update_counts
   end
 
   def as_indexed_json(options={})

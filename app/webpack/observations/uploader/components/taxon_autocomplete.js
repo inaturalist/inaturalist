@@ -3,7 +3,7 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
 import inaturalistjs from "inaturalistjs";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 var searchInProgress;
 
 class TaxonAutocomplete extends React.Component {
@@ -32,7 +32,9 @@ class TaxonAutocomplete extends React.Component {
       idEl: this.idElement( ),
       source: this.source,
       select: this.select,
-      template: this.template
+      template: this.template,
+      // ensure the AC menu scrolls with the input
+      appendTo: this.idElement( ).parent( )
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
@@ -343,26 +345,33 @@ class TaxonAutocomplete extends React.Component {
   render( ) {
     const smallClass = this.props.small ? "input-sm" : "";
     return (
-      <div className="form-group TaxonAutocomplete">
-        <input type="hidden" name="taxon_id" />
-        <div className={ `ac-chooser input-group ${this.props.small && "small"}` }>
-          <div className={ `ac-select-thumb input-group-addon ${smallClass}` }>
-            <Glyphicon glyph="search" />
+      <OverlayTrigger
+        placement="top"
+        delayShow={ 1000 }
+        overlay={ ( <Tooltip id="left-taxon-tip">{
+          I18n.t( "uploader.tooltips.taxon" ) }</Tooltip> ) }
+      >
+        <div className="form-group TaxonAutocomplete">
+          <input type="hidden" name="taxon_id" />
+          <div className={ `ac-chooser input-group ${this.props.small && "small"}` }>
+            <div className={ `ac-select-thumb input-group-addon ${smallClass}` }>
+              <Glyphicon glyph="search" />
+            </div>
+            <input
+              type="text"
+              name="taxon_name"
+              value={ this.props.value }
+              className={ `form-control ${smallClass}` }
+              onChange={ this.props.onChange }
+              placeholder={ this.props.placeholder || I18n.t( "species_name_cap" ) }
+              autoComplete="off"
+            />
+            <Glyphicon className="searchclear" glyph="remove-circle"
+              onClick={ () => this.inputElement( ).trigger( "resetAll" ) }
+            />
           </div>
-          <input
-            type="text"
-            name="taxon_name"
-            value={ this.props.value }
-            className={ `form-control ${smallClass}` }
-            onChange={ this.props.onChange }
-            placeholder={ I18n.t( "species_name_cap" ) }
-            autoComplete="off"
-          />
-          <Glyphicon className="searchclear" glyph="remove-circle"
-            onClick={ () => this.inputElement( ).trigger( "resetAll" ) }
-          />
         </div>
-      </div>
+      </OverlayTrigger>
     );
   }
 }
@@ -370,6 +379,7 @@ class TaxonAutocomplete extends React.Component {
 TaxonAutocomplete.propTypes = {
   onChange: PropTypes.func,
   small: PropTypes.bool,
+  placeholder: PropTypes.string,
   resetOnChange: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,

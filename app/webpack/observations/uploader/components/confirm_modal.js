@@ -56,7 +56,7 @@ class ConfirmModal extends Component {
 
 ConfirmModal.propTypes = {
   show: PropTypes.bool,
-  message: PropTypes.string,
+  message: PropTypes.any,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func,
   cancelText: PropTypes.string,

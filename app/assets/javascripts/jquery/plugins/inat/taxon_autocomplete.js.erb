@@ -157,7 +157,7 @@ $.fn.taxonAutocomplete = function( options ) {
   };
   var select = function( e, ui ) {
     // clicks on the View link should not count as selection
-    if( e.toElement && $(e.toElement).hasClass( "ac-view" ) ) {
+    if( e && e.toElement && $(e.toElement).hasClass( "ac-view" ) ) {
       return false;
     }
     // they selected the search external name provider option
@@ -211,7 +211,7 @@ $.fn.taxonAutocomplete = function( options ) {
       // the result list while the external search is happening
       ac.keepOpen = true;
       setTimeout( function( ){ ac.keepOpen = false; }, 10 );
-      e.preventDefault( );
+      if( e ) { e.preventDefault( ); }
       return false;
     }
     // show the best name in the search field
