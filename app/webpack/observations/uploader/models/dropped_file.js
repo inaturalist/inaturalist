@@ -69,13 +69,13 @@ const DroppedFile = class DroppedFile {
         if ( !obsCard.latitude ) {
           if ( exif.GPSLatitude && exif.GPSLatitude.length === 3 ) {
             metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude );
-            if ( exif.GPSLatitudeRef === "S" ) {
+            if ( _.lowerCase( exif.GPSLatitudeRef ) === "s" ) {
               metadata.latitude *= -1;
             }
           }
           if ( exif.GPSLongitude && exif.GPSLongitude.length === 3 ) {
             metadata.longitude = util.gpsCoordConvert( exif.GPSLongitude );
-            if ( exif.GPSLongitudeRef === "W" ) {
+            if ( _.lowerCase( exif.GPSLongitudeRef ) === "w" ) {
               metadata.longitude *= -1;
             }
           }
