@@ -762,11 +762,11 @@ class ListedTaxon < ActiveRecord::Base
   def observed_in_place?
     p = place || list.place
     return false unless p
-    scope = Observation.in_place(p).of(taxon)
+    search_params = { place_id: p.id, taxon_id: taxon.id }
     if list.is_a?(LifeList)
-      scope = scope.by(list.user)
+      search_params[:user_id] = list.user.id
     end
-    scope.exists?
+    !! Observation.page_of_results(search_params).first
   end
   
   def self.merge_duplicates(options = {})
