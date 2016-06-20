@@ -23,6 +23,7 @@ const actions = class actions {
     return function ( dispatch ) {
       const firstKey = _.first( _.keys( obsCards ) );
       dispatch( { type: types.APPEND_OBS_CARDS, obsCards } );
+      // select the first card in any new batch
       dispatch( actions.selectObsCards( { [firstKey]: true } ) );
     };
   }
@@ -60,6 +61,7 @@ const actions = class actions {
       dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
       const s = getState( );
       const lastKey = _.last( _.keys( s.dragDropZone.obsCards ) );
+      // select the blank card
       dispatch( actions.selectObsCards( { [lastKey]: true } ) );
     };
   }
@@ -78,6 +80,7 @@ const actions = class actions {
           const obsCard = new ObsCard( { id } );
           obsCard.files[id] = DroppedFile.fromFile( f, id );
           obsCards[obsCard.id] = obsCard;
+          // asynchronously read the photo metadata and update the card after
           obsCard.files[id].readExif( obsCard ).then( metadata => {
             dispatch( actions.updateObsCard( obsCard,
               Object.assign( { }, metadata, { modified: false } ) ) );
@@ -102,6 +105,7 @@ const actions = class actions {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           files[id] = DroppedFile.fromFile( f, id );
+          // asynchronously read the photo metadata and update the card after
           files[id].readExif( obsCard ).then( metadata => {
             dispatch( actions.updateObsCard( obsCard,
               Object.assign( { }, metadata, { modified: false } ) ) );
@@ -224,6 +228,8 @@ const actions = class actions {
       dispatch( actions.updateObsCard( toObsCard, { files: toFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
+      // the card from where the photo was move can be removed if it has no data
+      // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
@@ -242,6 +248,8 @@ const actions = class actions {
       dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
+      // the card from where the photo was move can be removed if it has no data
+      // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
@@ -362,9 +370,11 @@ const actions = class actions {
       _.each( s.dragDropZone.obsCards, c => {
         const selectedProjetIDs = _.map( c.projects, "id" );
         let addedToProjectIDs = [];
+        // fetch the set of IDs that obs were actually added to
         if ( c.server_response && c.server_response.project_observations ) {
           addedToProjectIDs = _.map( c.server_response.project_observations, "project_id" );
         }
+        // compare those IDs to the ones the user selected
         const failedProjectIDs = _.difference( selectedProjetIDs, addedToProjectIDs );
         _.each( failedProjectIDs, pid => {
           missingProjects[pid] = missingProjects[pid] ||
@@ -372,6 +382,8 @@ const actions = class actions {
           missingProjects[pid].count += 1;
         } );
       } );
+      // show a modal with the projects and counts of obs that were not added
+      // otherwise go to the user's observation page
       if ( _.keys( missingProjects ).length > 0 ) {
         dispatch( actions.setState( { confirmModal: {
           show: true,

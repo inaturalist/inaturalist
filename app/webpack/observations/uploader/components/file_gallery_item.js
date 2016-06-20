@@ -51,18 +51,17 @@ class FileGalleryItem extends Component {
     let item;
     let zoom;
     if ( this.props.file.preview && !this.props.file.photo ) {
+      // preview photo
       item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );
       close = this.closeButton( );
-    } else if ( this.props.file.upload_state === "uploading" ) {
-      item = ( <Glyphicon glyph="refresh" className="fa-spin" /> );
-    } else if ( this.props.file.upload_state === "pending" ) {
-      item = ( <Glyphicon glyph="hourglass" /> );
     } else if ( this.props.file.photo ) {
+      // uploaded photo
       item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );
       close = this.closeButton( );
     } else {
+      // fallback state that is pretty much never seen
       item = ( <Glyphicon glyph="exclamation-sign" /> );
       close = this.closeButton( );
     }

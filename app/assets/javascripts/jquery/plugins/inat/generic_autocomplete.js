@@ -147,6 +147,7 @@ $.fn.genericAutocomplete = function( options ) {
   ac._renderItem = field.renderItem;
   // custom simple _renderMenu that removes the ac-menu class
   ac._renderMenu = options.renderMenu || genericAutocomplete.renderMenu;
+  // can be configured to call a callback with the results to be rendered
   var acResponse = ac.__response.bind( ac );
   ac.__response = function( content ) {
     if ( options.onResults ) {
@@ -164,7 +165,8 @@ $.fn.genericAutocomplete = function( options ) {
       // option when the menu is open but not submit the form, and if the menu
       // is closed and the input has focus, ENTER *will* submit the form
       if( options.preventEnterSubmit ) { return false; }
-      field.selectFirst( );
+      // can be configured to select the top result when hitting enter
+      if( options.selectFirstMatch ) { field.selectFirst( ); }
       if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
         return true;
       }
@@ -190,9 +192,10 @@ $.fn.genericAutocomplete = function( options ) {
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
-    // don't redo the search if there are results being shown
     var that = this;
+    // set a small delay before showing the results menu
     setTimeout( function() {
+      // don't redo the search if there are results being shown
       if( genericAutocomplete.menuClosed( ) ) {
         $(that).autocomplete( "search", $(that).val( ));
       }

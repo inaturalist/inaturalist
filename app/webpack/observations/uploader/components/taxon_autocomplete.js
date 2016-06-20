@@ -33,6 +33,7 @@ class TaxonAutocomplete extends React.Component {
       source: this.source,
       select: this.select,
       template: this.template,
+      // ensure the AC menu scrolls with the input
       appendTo: this.idElement( ).parent( )
     } );
     this.inputElement( ).genericAutocomplete( opts );

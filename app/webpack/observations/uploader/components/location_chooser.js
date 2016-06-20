@@ -60,6 +60,7 @@ class LocationChooser extends SelectionBasedComponent {
       if ( !this.props.center ) {
         setTimeout( this.fitCircles, 10 );
       }
+      // focus on the autocomplete search field when the location modal opens
       setTimeout( () => $( ".gm-style input" ).focus( ).val( "" ), 200 );
     }
   }
@@ -177,6 +178,7 @@ class LocationChooser extends SelectionBasedComponent {
       const viewport = geometry.viewport;
       if ( viewport ) {
         notes = places[0].formatted_address;
+        // radius is the largest distance from geom center to one of the bounds corners
         radius = _.max( [
           this.distanceInMeters( lat, lng, viewport.H.H, viewport.j.H ),
           this.distanceInMeters( lat, lng, viewport.H.j, viewport.j.j )

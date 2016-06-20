@@ -30,6 +30,7 @@ class ProjectsChooser extends SelectionBasedComponent {
       allowEnterSubmit: true,
       idEl: $( "<input/>" ),
       appendTo: $( ".leftColumn" ),
+      selectFirstMatch: true,
       onResults: items => {
         if ( items !== null && items.length === 0 ) {
           $( ".projects input" ).addClass( "failed" );

@@ -55,7 +55,7 @@ class LeftMenu extends SelectionBasedComponent {
     if ( commonGeoprivacy === "obscured" ) {
       geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_obscured" );
     } else if ( commonGeoprivacy === "private" ) {
-      geoprivacyTooltip = I18n.t( "uploader.tooltips.date" );
+      geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_private" );
     }
     return (
       <div>
@@ -221,7 +221,7 @@ class LeftMenu extends SelectionBasedComponent {
       </div>
     );
     let className = `panel-${key}`;
-    const entered = ( key !== "1" ) ? () => {
+    const onEntered = ( key !== "1" ) ? () => {
       if ( !$( ".observation-field" ).is( ":visible" ) ) {
         const mainPanelInput = $( `.${className} input:first` );
         mainPanelInput.focus( ).select( ).val( mainPanelInput.val( ) );
@@ -233,7 +233,7 @@ class LeftMenu extends SelectionBasedComponent {
         className={ className }
         header={ header }
         onEnter={ () => { $( `.${className} .toggle` ).addClass( "rotate" ); } }
-        onEntered={ () => setTimeout( entered, 50 ) }
+        onEntered={ () => setTimeout( onEntered, 50 ) }
         onExit={ () => { $( `.${className} .toggle` ).removeClass( "rotate" ); } }
       >
         { contents }

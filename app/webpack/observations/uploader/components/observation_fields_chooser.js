@@ -35,6 +35,7 @@ class LeftMenu extends SelectionBasedComponent {
     input.observationFieldAutocomplete( {
       resetOnChange: false,
       allowEnterSubmit: false,
+      selectFirstMatch: true,
       idEl: $( "<input/>" ),
       appendTo: $( ".leftColumn" ),
       onResults: items => {
@@ -89,7 +90,6 @@ class LeftMenu extends SelectionBasedComponent {
       this.props.appendToSelectedObsCards( { observation_field_values:
         { observation_field_id: observationFieldID.val( ),
           value: value.val( ),
-          // taxon
           observation_field: this.props.observationField }
       } );
       this.props.setState( {
