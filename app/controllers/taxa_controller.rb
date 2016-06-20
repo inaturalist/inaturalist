@@ -214,11 +214,8 @@ class TaxaController < ApplicationController
         end
 
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
-
-        @observations = Observation.of(@taxon).recently_added.
-          preload(:projects, :taxon, :stored_preferences, :flags,
-            :quality_metrics, { user: :stored_preferences },
-            { photos: :flags } ).limit(12)
+        @observations = Observation.page_of_results(
+          taxon_id: @taxon.id, per_page: 12, order_by: "id", order: "desc")
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
         end

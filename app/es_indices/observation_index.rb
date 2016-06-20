@@ -519,7 +519,7 @@ class Observation < ActiveRecord::Base
       { species_guess: sort_order }
     when "votes"
       { cached_votes_total: sort_order }
-    when "id"
+    when "id", "observations.id"
       { id: sort_order }
     else
       { created_at: sort_order }
