@@ -173,11 +173,10 @@ class LocationChooser extends SelectionBasedComponent {
       const geometry = places[0].geometry;
       const lat = geometry.location.lat( );
       const lng = geometry.location.lng( );
-      let notes;
+      let notes = places[0].formatted_address;
       let radius;
       const viewport = geometry.viewport;
       if ( viewport ) {
-        notes = places[0].formatted_address;
         // radius is the largest distance from geom center to one of the bounds corners
         radius = _.max( [
           this.distanceInMeters( lat, lng, viewport.H.H, viewport.j.H ),
@@ -185,6 +184,7 @@ class LocationChooser extends SelectionBasedComponent {
         ] );
         this.refs.map.fitBounds( viewport );
       } else {
+        notes = this.refs.searchbox.state.inputElement.value || notes;
         this.refs.map.fitBounds( new google.maps.LatLngBounds(
           new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
           new google.maps.LatLng( lat + 0.001, lng + 0.001 ) ) );
