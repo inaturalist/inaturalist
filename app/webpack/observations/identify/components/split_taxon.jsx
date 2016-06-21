@@ -79,8 +79,8 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
       return "";
     };
     let sciNameClass = `sciname ${taxon.rank}`;
-    if ( taxon.preferred_common_name ) {
-      sciNameClass += `display-name ${displayClassName || ""}`;
+    if ( !taxon.preferred_common_name ) {
+      sciNameClass += ` display-name ${displayClassName || ""}`;
     }
     return (
       <a
