@@ -139,7 +139,7 @@ class ObservationsController < ApplicationController
       end
       
       format.atom do
-        @updated_at = Observation.order("updated_at DESC").first.updated_at
+        @updated_at = Observation.last.updated_at
       end
       
       format.dwc do
@@ -1381,7 +1381,7 @@ class ObservationsController < ApplicationController
         render_observations_to_json
       end
       format.atom do
-        @updated_at = Observation.order("updated_at DESC").first.updated_at
+        @updated_at = Observation.last.updated_at
         render :action => "index"
       end
       format.csv do
