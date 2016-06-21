@@ -10,7 +10,7 @@ xml.Placemark(:id => "ID#{observation.id}") do
   
   if observation.datetime
     xml.TimeStamp do
-      xml.when( observation.datetime.strftime( observation.time_observed_at ? "%Y-%m-%dT%H:%M:%SZ%:z" : "%Y-%m-%d" ) )
+      xml.when( observation.datetime.strftime( observation.time_observed_at ? "%Y-%m-%dT%H:%M:%S%:z" : "%Y-%m-%d" ) )
     end
   end
   
