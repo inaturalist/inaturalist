@@ -6,6 +6,7 @@
 # Author: Cgalindo
 # Author: Fasouzafreitas
 # Author: Julianagatti
+# Author: LucyDiniz
 # Author: Luk3
 # Author: Vonmatter
 # Author: Walesson
@@ -33,6 +34,9 @@ pt-BR:
   x_identifications:
     one: 1 identificação
     other: '%{count} identificações'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDs'
   x_lists:
     one: 1 lista
     other: '%{count} listas'
@@ -1006,6 +1010,7 @@ pt-BR:
   disconnect_provider: Desconecte-se de %{provider}
   display_listings_added_by_curators: Mostre listas adicionadas pelos coordenadores
   display_listings_from_place: Mostre listas por lugar
+  drop_it: Solte
   do_you_know_where_this_species_lives: Você sabe onde esta espécie vive?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Você estuda nematóides?
     Você é o maior especialista do mundo em taxonomia de cracas? Você gosta mesmo
@@ -1047,6 +1052,7 @@ pt-BR:
   edit_field: Editar campo
   edit_flagged_observation: Editar Observação com Alerta
   edit_license: Modificar licença
+  edit_multiple_descriptions: Editar múltiplas descrições
   edit_notes: Alterar anotações
   edit_photos: Alterar fotos
   edit_photos_for_observation_id: Editar fotos da Observação %{obs_id}
@@ -2078,6 +2084,7 @@ pt-BR:
     "deve ser Anfíbio" e "deve ser Réptil", então o projeto aceitará observações de
     répteis e anfíbios.'
   observation_was_deleted: Observação foi apagada.
+  observation_without_photo: Observação sem foto
   observation_would_like_some_help: '%{user} gostaria de ajuda para identificar isto!'
   observations: Observações
   observations_by: Observações por
@@ -2505,7 +2512,8 @@ pt-BR:
   project_user_was_invalid: 'Usuário do projeto é inválido: %{project_user}'
   project_was_successfully_created: Projeto foi criado com sucesso.
   project_was_successfully_updated: Projeto foi atualizado com sucesso.
-  project_x_was_delete: '%{project} foi eliminado'
+  project_x_was_delete: '%{project} foi eliminado (favor aguardar alguns minutos para
+    que seja removido do site)'
   projects: Projetos
   projects_description: Projetos são uma maneira de reunir suas observações com outras
     pessoas no %{site_name}.  Esteja você interessado em começar um projeto de ciência
@@ -2612,6 +2620,9 @@ pt-BR:
   remove_from_project: Remova do projeto
   remove_this_section: Remova esta seção
   remove_manager: Remover moderador
+  remove_observations:
+    one: Remover 1 observação?
+    other: Remover %{count} observações?
   remove_project_user: Remova usuário do projeto
   remove_selected: Remova selecionado
   remove_tags: Remova marcações
@@ -2734,6 +2745,7 @@ pt-BR:
     as listas que faltam observações, na lista geral do seu projeto
   select_one_or_more_photos: Selecione uma ou mais fotos
   select_none: Limpar seleção
+  select_observations_to_edit: Selecione observações para editar...
   select_photos_from_your_photo_stream: Selecione fotos de sites de armazenamento
     de imagens externos para converte-las em %{site_name} observações. Data, horário
     e local serão automaticamente inseridos com base em metadados, de preferência
@@ -2912,7 +2924,7 @@ pt-BR:
   species_guess: Estimativa de espécies
   species_guide: Guia de espécies
   species_header: Espécies
-  species_name: Nomes de espécies
+  species_name: Nome de espécie
   species_or_lower: espécies ou grupos de organismos
   species_search: Busca por Espécies
   species_taxon_name: Espécies / Nomes dos táxons
@@ -3042,7 +3054,7 @@ pt-BR:
   taxonomic_tags_for_flickr: Marcações Taxonômicas para Flickr
   taxonomic_tree_browser: Explorador da Árvore Taxonômica
   tell_everyone_a_little_about_you: Conte um pouco sobre você
-  tell_the_world_a_little_about_yourself: Conte para o mundo um pouco sobre você
+  tell_the_world_a_little_about_yourself: Conte-nos sobre você
   terms: Termos
   terms_and_rules_html: Termos &amp; Regras
   terms_new_users: Novos usuários devem aceitar os termos antes de entrar neste projeto.
@@ -3139,6 +3151,8 @@ pt-BR:
     ao adicionar sua observação neste projeto:'
   there_were_problems_importing_that_place: 'Aconteceram alguns problemas ao importar
     este lugar: %{place_error}'
+  there_were_problems_importing_that_place_geometry: 'Aconteceram alguns problemas
+    ao importar este lugar: %{error}'
   there_were_some_problems_saving_this_observation: Ocorreram alguns problemas ao
     salvar esta observação
   there_were_some_problems_saving_those_colors: 'Aconteceram alguns problemas ao salvar
@@ -3208,6 +3222,7 @@ pt-BR:
   this_taxon_was_originally_imported_from: 'Este táxon foi originalmente importado
     de um provedor externo de nomes:'
   this_tool_is_experimental: Esta ferramenta é experimental, então por favor
+  this_user_has_been_suspended: Este(a) usuário(a) foi suspenso(a)
   this_will_add_listed_taxa: Isto irá adicionar táxons listados a partir das suas
     observações. Isto pode levar um tempo, então por favor utilize com moderação e
     em pequenas listas de verificação
@@ -3594,6 +3609,8 @@ pt-BR:
     guia. <a href="/guides/new">Adicione uma</a>
   you_are_already_a_member_of_this_project: Você já é membro deste projeto!
   you_are_no_longer_following_x: Você não está mais seguindo %{friend}.
+  you_are_submitting_obs_with_photos_no_date: Você está enviando observações com fotos
+    mas sem data ou localização.
   you_are_subscribed_to: Você está inscrito em
   you_arent_a_member_of_that_project: Você não é um membro deste projeto.
   you_arent_following_that_person: Você não está seguindo nenhuma pessoa.
@@ -4097,8 +4114,8 @@ pt-BR:
           táxons adicionados pelos administradores, táxons observados e identificados
           por coordenadores, e táxons categorizados como observações de pesquisa.
     observations:
-      copy_tip: Adicione uma nova observação copiando esta data, local, fotos e campos
-        de observação.
+      copy_tip: Adicione uma nova observação copiando a data, local, fotos e campos
+        de observação desta observação.
       captive_help_html: |-
         O organismo observado é uma espécie <strong>cultivada</strong> ou
         <strong>domesticada</strong>? Por exemplo, sua observação foi realizada <strong> em um jardim,
@@ -4166,6 +4183,9 @@ pt-BR:
         tag_list: Lista de Marcações separadas por vírgulas
         positioning_method: Como as coordenadas foram determinadas
         positioning_device: Equipamento utilizado para determinar coordenadas
+      identify:
+        unreview_all_tooltip: Remover status revisto para todas as observações na
+          página
       import:
         coordinate_systems_help: '%{site_name} aceita coordenadas utilizando diferentes
           sistemas, então quando você providenciar coordenadas em um sistema diferente
@@ -4458,7 +4478,7 @@ pt-BR:
       show:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.
-        this_user_was_banned: O usuário foi banido
+        this_user_was_banned: O usuário foi suspenso
     welcome:
       index:
         welcome_message_html: "para %{image}, onde você pode <strong>gravar</strong>

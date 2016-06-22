@@ -29,6 +29,9 @@ zh-CN:
   x_identifications:
     one: 1次鉴定
     other: '%{count} 次鉴定'
+  x_identifications_:
+    one: 1 次鉴定
+    other: '%{count} 次鉴定'
   x_ids:
     one: 1 个ID
     other: '%{count} 个ID'
@@ -56,6 +59,9 @@ zh-CN:
   x_observations_link_html:
     one: <a href='%{url}'>1 次观察</a>
     other: <a href='%{url}'>%{count} 次观察</a>
+  x_observations_reviewed_html:
+    one: <span class='count'>1</span> 次观察已复核
+    other: <span class='count'>%{count}</span> 次观察已复核
   x_people:
     one: 1 个人
     other: '%{count} 个人'
@@ -339,6 +345,7 @@ zh-CN:
   are_you_sure_leave_this_project: 您确定要离开这个项目么？
   are_you_sure_merge_these_places: 您确定要合并这些地点么？它不能被撤销。
   are_you_sure_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
+  are_you_sure_remove_photo: 您确定要移除这张照片么？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 您确定么？这将重新加载页面，您可能会丢失您的一些更改。
   are_you_sure_unlink_picasa: 您确定要取消链接您的Picasa账户？
   are_you_sure_want_activate_account: 您确定要激活这个账户？
@@ -795,6 +802,7 @@ zh-CN:
   draft_: 草稿
   draft_saved: 草稿已保存！
   drafts: 草稿
+  drag_and_drop_some_photos: 拖放一些图片
   edit: 编辑
   edit_account_settings_and_profile: 编辑账户设置和详细信息
   edit_assessment: 编辑评估
@@ -833,6 +841,9 @@ zh-CN:
   edited_by_name_html: 由%{name}编辑
   editing: 编辑中
   editing_announcement: 编辑公告
+  editing_observations:
+    one: 正在编辑 <span class="count">1</span> 份观察：
+    other: 正在编辑 <span class="count">%{count}</span> 份观察：
   editing_project: 编辑 %{project}
   editing_taxon_link: 正在编辑分类链接
   editing_taxon_name: 正在编辑分类名称
@@ -1389,6 +1400,8 @@ zh-CN:
   most_disagree: 多数不同意
   most_species: 最多物种
   most_observed_species: 最多观察的物种
+  must_be_observed_after: 必须在 %{operand} 之后被观察
+  must_be_observed_before: 必须在 %{operand} 之前被观察
   must_be_less_than_x_MB: 必须小于 %{x} MB
   must_have_x: 必须有 %{x}
   n_ago: '%{n}前'
@@ -1489,6 +1502,7 @@ zh-CN:
   observation_added: 观察已添加。
   observation_date: 日期
   observation_date?: 日期？
+  observation_without_photo: 没有照片的观察
   observation_would_like_some_help: '%{user}需要一些人帮助识别这个！'
   observations: 观察
   observations_added_by_x_html: 由%{x}添加的观察
@@ -1631,6 +1645,7 @@ zh-CN:
       District: 区
       district: 区
       Division: 部门
+      division: 门
       Drainage: 排水管道
       drainage: 排水
       Estate: 房地产
@@ -1887,11 +1902,15 @@ zh-CN:
   save_guide: 保存指南
   save_observation: 保存观察
   saving: 正在保存...
+  saving_num_of_count_observations:
+    one: 正在保存观察...
+    other: 正在保存 %{num} 个观察，共 %{count} 个...
   saving_verb: 保存中
   search: 搜索
   search_catalogue_of_life: 搜索<a href="http://www.catalogueoflife.org">Catalogue of
     Life</a>
   search_creative_commons_photos_on_flickr: 在 Flickr 上搜索知识共享照片。如果您选择了一个，请友善地留下一条感谢评论！
+  search_for_a_location: 搜索位置
   search_for_species: 搜索物种
   search_list: 搜索列表
   search_remote: 搜索远程
@@ -1903,6 +1922,7 @@ zh-CN:
   second_person_possessive_singular_: 您的%{noun}
   select: 选择
   select_one_or_more_photos: 请选择一个或多个照片
+  select_observations_to_edit: 选择观察编辑...
   select_options: 选择选项
   select_photos_from_your_photo_stream: 从外部照片分享网站选择照片以转换至%{site_name}观察中。我们将从照片的元数据中填充日期、时间和位置，并尝试从标签查找物种名称。
   send: 发送
@@ -2093,6 +2113,7 @@ zh-CN:
   there_isnt_wiki_article: 没有维基百科条目或重定向的标题叫做“<i>%{taxon}</i>”。您可能想找
   there_isnt_a_wikipedia_article_titled_x_html: 没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
   there_were_errors: 存在错误。
+  there_were_problems_importing_that_place_geometry: 导入地方几何学数据时出现问题：%{error}
   there_were_some_problems_with: 您的CSV文件存在一些问题。请修正失效的行。当然问题总是出现在我们这边。如果这样，请让我们了解。
   theres_also: 这里也有
   these_are_items_people_on: |-
@@ -3067,6 +3088,11 @@ zh-CN:
           attributes:
             user:
               must_be_on_site_long_enough: 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: 必须在 %{time} 之后被观察
+              must_be_observed_before: 必须在 %{time} 之前被观察
     attributes:
       assessment:
         description: 描述

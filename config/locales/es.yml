@@ -35,6 +35,9 @@ es:
   x_identifications:
     one: 1 identificación
     other: '%{count} identificaciones'
+  x_identifications_:
+    one: 1 identificación
+    other: '%{count} identificaciones'
   x_lists:
     one: 1 lista
     other: '%{count} listas'
@@ -2695,7 +2698,8 @@ es:
   project_user_was_invalid: 'El usuario del proyecto no era válido: %{project_user}'
   project_was_successfully_created: El proyecto fue creado satisfactoriamente.
   project_was_successfully_updated: El proyecto fue actualizado satisfactoriamente.
-  project_x_was_delete: El proyecto %{project} fue eliminado
+  project_x_was_delete: El proyecto %{project} fue eliminado (espera unos minutos
+    para que se elimine del sitio web)
   projects: Proyectos
   projects_description: Los proyectos son una forma de agrupar sus observaciones con
     otras personas en %{site_name}.  Ya sea que a usted le interese comenzar un proyecto
@@ -4434,8 +4438,8 @@ es:
           proyecto y taxones con observaciones en grado de investigación agregadas
           al proyecto se muestran en las listas del proyecto.
     observations:
-      copy_tip: Añadir una nueva observación copiando la fecha de esta observación,
-        el lugar, las fotos y los campos de observación.
+      copy_tip: Añadir una observación nueva copiando la fecha, el lugar, las fotos
+        de esta observación y los campos de observación.
       captive_help_html: |-
         Fue el organismo que observó <strong>cultivado</strong> o en <strong>cautividad</strong>? Por ejemplo,
         estaba en <strong>un jardín, zoológico, el acuario</strong> o alguna otra situación en
@@ -5268,6 +5272,7 @@ es:
               must_be_curator: debe ser un curador de este proyecto
             observation_id:
               must_be_observed_after: debe observarse después de %{time}
+              must_be_observed_before: debe observarse antes de %{time}
     attributes:
       assessment:
         description: Descripción

@@ -1110,6 +1110,9 @@ ca:
     per a
   editing_observation_field: Modifica camp d'observació
   editing_observation_id: Modifica observació %{obs_id}
+  editing_observations:
+    one: 'Editant <span class="count">1</span> observacio:'
+    other: 'Editant <span class="count">%{count}</span> observacions:'
   editing_project: Modifica %{project}
   editing_project_asset: Modifica l'arxiu de projecte per a
   editing_subscription_to_x_html: Editar la subscripció a %{x}
@@ -2903,7 +2906,8 @@ ca:
   save_trip: Desa viatge
   saving: Desant...
   saving_num_of_count_observations:
-    other: un=Desant observació...
+    one: Desant observació...
+    other: Desant %{num} de %{count} observacions...
   saving_verb: Desant
   schemes: Esquemes
   schemes_including: Esquemes que inclouen
@@ -3175,7 +3179,8 @@ ca:
   submit: Envia
   submit_comment: Envia comentari
   submit_observations:
-    other: un=Enviar 1 observació
+    one: Enviar 1 observació
+    other: Enviar %{count} observacions
   submitted: Enviat
   subscribe_to_places_to: |-
     Subscriu-vos a llocs per rebre actualitzacions sobre noves
@@ -3398,6 +3403,8 @@ ca:
     rellevants per al projecte. Si us plau, comproveu els
   these_folks_kindly_volunteer_to: Aquestes persones s'ofereixen voluntàries amablement
     per mantenir la taxonomia i resoldre altres problemes.
+  these_observations_have_not_been_uploaded_yet: Aquestes observacions encara no s'han
+    pujat
   they_already_have_iNat_accounts: '...que ja tenen comptes %{site_name}'
   they_have_been_invited: '... ells ja han estat convidats.'
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
@@ -3446,6 +3453,10 @@ ca:
     d'un proveïdor de noms extern
   this_tool_is_experimental: Aquesta eina està encara en desenvolupament, així que,
     si us plau
+  this_user_has_been_suspended: Aquest usuari ha estat suspès
+  this_user_has_been_suspended_message: Si aquest és el vostre compte i penseu que
+    això ha estat una errada, si us plau, <a href="mailto:%{email}">contacteu amb
+    nosaltres</a>.
   this_will_add_listed_taxa: Això afegirà tàxons des d'observacions. Això pot requerir
     una mica de temps, així que utilitzeu-lo amb moderació i amb llistes de comprovació
     curtes
@@ -3498,6 +3509,7 @@ ca:
   tools: Eines
   top_5_identifiers: Els 5 identificadors principals
   top_contributors: Col·laboradors més actius
+  top_identifiers: Principals identificadors
   total: Total
   totals: totals
   total_members: Nombre total de membres
@@ -3543,6 +3555,7 @@ ca:
   unprocessable: No es pot processar
   unpublish: No publiquis
   unreview: No revisat
+  unreview_all: Marcar-los tots com no revisats
   unsubscribe: Elimineu subscripció
   unsubscribe_from_this: Elimineu subscripció d'aquest
   unsuspend_user: Reactiva usuari
@@ -3560,6 +3573,7 @@ ca:
   update_search: Actualitzeu la cerca
   update_selected_taxa: Actualitza els tàxons seleccionats
   update_subscription: Actualització de subscripció
+  update_subscription_preferences: actualitza les preferències de subscripció
   update_x_selected_taxa:
     one: Actualitzar el tàxon seleccionat
     other: Actualitzar els %{count} tàxons seleccionats
@@ -3635,6 +3649,8 @@ ca:
   users_contributions_to_project_html: Contribucions de <a href="%{url}">%{login}</a>
     al projecte %{project_title}
   users_id: ID de %{user}
+  users_identification_html: identificació de <a href="%{url}">%{user}</a>
+  users_comment_html: comentari de <a href="%{url}">%{user}</a>
   users_latest_observations_on_site: Últimes observacions de %{user} a %{site}
   users_observations: Observacions de %{user}
   users_profile: Perfil de %{user}
@@ -3682,6 +3698,7 @@ ca:
   view_more_observations_of_x_taxon: Mostra més observacions de %{taxon} a <nobr>%{site_name}
     »</nobr>
   view_more_recent_observations: Mostra més observacions recents
+  view_more_unreviewed: Veure més no revisats
   view_nbsp: Mostra  
   view_non_mobile_site: Mostra la web no adaptada per a mòbils
   view_post: Mostra introducció
@@ -3846,6 +3863,8 @@ ca:
   yesterday_at: ', ahir a les 4 de la tarda'
   you: vós
   you_admin: que administreu
+  you_appear_offline_try_again: Sembla que esteu desconnectat. Si us plau, torneu
+    a intentar-ho quan esteu connectat a internet.
   youre_a_site_curator_which_means: Sou un supervisor del lloc, el que significa que
     us heu ofert voluntari per ajudar a gestionar les dades i gestionar el contingut
     de la pàgina. No us sentiu obligat per tot el que això implica, però si teniu
@@ -3859,6 +3878,14 @@ ca:
     una</a>
   you_are_already_a_member_of_this_project: Ja sou membre d'aquest projecte!
   you_are_no_longer_following_x: Ja no seguiu a %{friend}.
+  you_are_setting_this_project_to_aggregate: 'Esteu fent que aquest projecte incorpori
+    totes les observacions que coincideixen amb les regles següents: %{rules}, voleu
+    continuar?'
+  you_are_submitting_obs_without_photos_and_names: |-
+    Esteu enviant observacions sense fotos ni un nom de tàxon.
+    Aquestes observacions són molt difícil d'identificar amb precisió.
+  you_are_submitting_obs_with_photos_no_date: Esteu enviant observacions amb fotos,
+    però sense data o localització.
   you_are_subscribed_to: Esteu subscrit a
   you_arent_a_member_of_that_project: No sou un membre d'aquest projecte.
   you_arent_following_that_person: No seguiu aquesta persona.
@@ -3969,6 +3996,11 @@ ca:
     Si us plau, ingresseu per continuar.
   your_activation_code_was_missing: El vostre codi d'activació s'ha perdut. Si us
     plau, accediu a l'enllaç des del correu electrònic
+  your_coarser_id: |-
+    Una IDentificació menys precisa de <span class="taxon">%{coarser_taxon_name}</span> implica que no esteu
+    d'acord amb la IDentificació detallada de
+    <span class="taxon">%{finer_taxon_name}</span>. És realment això el que voleu fer?<br><br>
+    <a href="/pages/getting+started" target="_blank">Coneix més sobre com actuen les identificacions"</a>
   your_comment_was_saved: S’ha desat el vostre contingut.
   your_contributions_to_project: Les vostres aportacions al projecte %{project_title}
   your_default: els vostres valors per defecte
@@ -4439,6 +4471,8 @@ ca:
         review_all_tooltip: Marca totes les observacions de la pàgina com a revisades
         you_reviewed_message: Heu revisat %{reviewed} de %{pageTotal} observacions
           d'aquesta pàgina de %{total} observacions coincidents.
+        unreview_all_tooltip: Eliminar l'estat de revisat a totes les observacions
+          de la pàgina
       import:
         coordinate_systems_help: '%{site_name} accepta coordenades procedents de diversos
           sistemes de coordenades, de manera que quan proporcioneu les coordenades
