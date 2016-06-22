@@ -59,6 +59,9 @@ zh-CN:
   x_observations_link_html:
     one: <a href='%{url}'>1 次观察</a>
     other: <a href='%{url}'>%{count} 次观察</a>
+  x_observations_reviewed_html:
+    one: <span class='count'>1</span> 次观察已复核
+    other: <span class='count'>%{count}</span> 次观察已复核
   x_people:
     one: 1 个人
     other: '%{count} 个人'
@@ -342,6 +345,7 @@ zh-CN:
   are_you_sure_leave_this_project: 您确定要离开这个项目么？
   are_you_sure_merge_these_places: 您确定要合并这些地点么？它不能被撤销。
   are_you_sure_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
+  are_you_sure_remove_photo: 您确定要移除这张照片么？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 您确定么？这将重新加载页面，您可能会丢失您的一些更改。
   are_you_sure_unlink_picasa: 您确定要取消链接您的Picasa账户？
   are_you_sure_want_activate_account: 您确定要激活这个账户？
@@ -1906,6 +1910,7 @@ zh-CN:
   search_catalogue_of_life: 搜索<a href="http://www.catalogueoflife.org">Catalogue of
     Life</a>
   search_creative_commons_photos_on_flickr: 在 Flickr 上搜索知识共享照片。如果您选择了一个，请友善地留下一条感谢评论！
+  search_for_a_location: 搜索位置
   search_for_species: 搜索物种
   search_list: 搜索列表
   search_remote: 搜索远程
@@ -3083,6 +3088,11 @@ zh-CN:
           attributes:
             user:
               must_be_on_site_long_enough: 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: 必须在 %{time} 之后被观察
+              must_be_observed_before: 必须在 %{time} 之前被观察
     attributes:
       assessment:
         description: 描述
