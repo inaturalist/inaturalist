@@ -238,7 +238,7 @@ $(document).ready(function() {
 })
 
 var updateObservedAfterRule = function( ) {
-  var value = $( ".start_time_field input" ).val( );
+  var value = $( ".start_time_field:visible input" ).val( );
   if ( value ) {
     $( "li#observed_after_rule" ).
       text( I18n.t( "must_be_observed_after", { operand: value } ) ).
@@ -249,7 +249,7 @@ var updateObservedAfterRule = function( ) {
 };
 
 var updateObservedBeforeRule = function( ) {
-  var value = $( ".end_time_field input" ).val( );
+  var value = $( ".end_time_field:visible input" ).val( );
   if ( value ) {
     $( "li#observed_before_rule" ).
       text( I18n.t( "must_be_observed_before", { operand: value } ) ).
