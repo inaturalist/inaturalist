@@ -186,6 +186,7 @@ Rails.application.routes.draw do
       get :export
       get :map
       get :identify
+      get :moimport
     end
     member do
       put :viewed_updates

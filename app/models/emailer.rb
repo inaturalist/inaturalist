@@ -164,6 +164,18 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def moimport_finished( mot, errors = {} )
+    @user = mot.user
+    set_locale
+    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
+    @errors = errors
+    @exception = mot.exception
+    mail(set_site_specific_opts.merge(
+      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+    ))
+    reset_locale
+  end
+
   private
   def default_url_options
     opts = Rails.application.config.action_mailer.default_url_options.dup

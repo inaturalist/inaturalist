@@ -1,0 +1,18 @@
+%p
+  Your Mushroom Observer import is finished. You can see the results at
+  = link_to observations_by_login_url( @user.login ), observations_by_login_url( @user.login )
+
+- unless @errors.blank?
+  %p The following observations could not be imported:
+  %ul
+    - @errors.each do |url, errors|
+      = link_to url, url
+      %p= errors
+- unless @exception.blank?
+  %p There was also this one big error that caused the whole process to stop:
+  = @exception
+
+- unless @errors.blank? && @exception.blank?
+  %p
+    If you need some help resolving these errors, please forward this email to
+    = link_to "help@inaturalist.org", "mailto:help@inaturalist.org"

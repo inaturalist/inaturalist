@@ -1,0 +1,68 @@
+- content_for :extracss do
+  = stylesheet_link_tag "taxa"
+.container
+  .row
+    .col-xs-12
+      %h1 Mushroom Observer Import
+      %p
+        This tool will import your observations from Mushroom Observer to iNat. You'll need to get a Mushroom Observer API key from
+        = link_to "http://mushroomobserver.org/account/api_keys", "http://mushroomobserver.org/account/api_keys"
+  .row
+    .col-xs-6
+      %form.form-inline{ method: "get" }
+        .form-group
+          %input.form-control{ type: "text", name: "api_key", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key }
+        %input.btn.btn-default{ type: "submit", value: "Test" }
+    .col-xs6
+      = form_for MushroomObserverImportFlowTask.new, 
+          url: flow_tasks_url,
+          data: { confirm: "Are you sure? This is going to take a while, so expect the following screen to tell you there was an error because it was taking too long. Ignore it! You'll get an email when the import is done though, whether or not it succeeds." } do |f|
+        = f.hidden_field :redirect_url, value: observations_by_login_url( current_user.login )
+        = f.fields_for :inputs, f.object.inputs.first || f.object.inputs.build do |fti|
+          = fti.fields_for :extra do |ftie|
+            = ftie.text_field :api_key, class: "text", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key
+            = ftie.hidden_field :mo_user_id, value: @mo_user_id
+        = f.submit "Import", class: "btn btn-primary"
+  - if @results
+    .row
+      .col-xs-12
+        %h2
+          Test Import for MO user
+          = @mo_user_id
+        %table.table
+          %thead
+            %tr
+              %th Photo
+              %th Taxon
+              %th Date
+              %th Latitude
+              %th Longitude
+              %th Accuracy
+              %th Place desc
+              %th Description &amp; MO URL
+          %tbody
+            - @results.each do |result, observation|
+              %tr
+                %td
+                  - if img = result.at( "primary_image" )
+                    %img{ src: "http://images.mushroomobserver.org/thumb/#{img[:id]}.jpg" }
+                  - else
+                    = iconic_taxon_image( observation.taxon )
+                %td
+                  - if observation.taxon 
+                    = render "shared/taxon", taxon: observation.taxon, link_url: observation.taxon
+                  - else
+                    Placeholder:
+                    = observation.species_guess
+                %td.nobr
+                  = observation.munge_observed_on_with_chronic; observation.observed_on
+                %td= observation.latitude
+                %td= observation.longitude
+                %td= "#{observation.positional_accuracy} m"
+                %td= observation.place_guess
+                %td
+                  = formatted_user_text observation.description
+                  %p
+                    MO URL: 
+                    = link_to result[:url], result[:url]
+                
