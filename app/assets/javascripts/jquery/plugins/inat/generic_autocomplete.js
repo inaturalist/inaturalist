@@ -19,7 +19,6 @@ genericAutocomplete.menuClosed = function( ) {
   return ( $("ul.ac-menu:visible").length == 0 );
 };
 
-
 genericAutocomplete.focus = function( e, ui ) {
   var ac = $(this).data( "uiAutocomplete" );
   var li = ac.menu.element.find("li#ui-id-"+ ui.item.id);
@@ -72,7 +71,7 @@ $.fn.genericAutocomplete = function( options ) {
     // set the hidden id field
     options.idEl.val( ui.item.id );
     if( options.afterSelect ) { options.afterSelect( ui ); }
-    e.preventDefault( );
+    if( e ) { e.preventDefault( ); }
     return false;
   };
 
@@ -95,12 +94,25 @@ $.fn.genericAutocomplete = function( options ) {
     return li;
   };
 
+  field.selectFirst = function( ) {
+    if ( $( ac.menu.element ).is( ":visible" ) ) {
+      var firstItem = $( ac.menu.element ).find( "li" ).first( );
+      if ( firstItem ) {
+        ac._trigger( "select", null, { item: firstItem.data( "uiAutocompleteItem" ) } );
+        return true;
+      }
+    }
+  }
+
   var ac = field.autocomplete({
-    minLength: 1,
-    delay: 50,
+    minLength: ( options.minLength || options.minLength === 0 ) ? options.minLength : 1,
+    delay: 0,
     source: options.source,
     select: options.select || field.select,
-    focus: options.focus || genericAutocomplete.focus
+    focus: options.focus || genericAutocomplete.focus,
+    appendTo: options.appendTo,
+    open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) },
+    close: function () {  $( $(this).data().uiAutocomplete.menu.element ).removeClass( "open" ) }
   }).data( "uiAutocomplete" );
   // modifying _move slightly to prevent scrolling with arrow
   // keys past the top or bottom of the autocomplete menu
@@ -134,7 +146,15 @@ $.fn.genericAutocomplete = function( options ) {
   // custom simple _renderItem that gives the LI's class ac-result
   ac._renderItem = field.renderItem;
   // custom simple _renderMenu that removes the ac-menu class
-  ac._renderMenu = options.renderMenu || genericAutocomplete.renderMenu
+  ac._renderMenu = options.renderMenu || genericAutocomplete.renderMenu;
+  // can be configured to call a callback with the results to be rendered
+  var acResponse = ac.__response.bind( ac );
+  ac.__response = function( content ) {
+    if ( options.onResults ) {
+      options.onResults( content );
+    }
+    acResponse( content );
+  };
   field.keydown( function( e ) {
     var key = e.keyCode || e.which;
     // return key
@@ -144,11 +164,11 @@ $.fn.genericAutocomplete = function( options ) {
       // allowEnterSubmit. So the default behavior is for ENTER to select an
       // option when the menu is open but not submit the form, and if the menu
       // is closed and the input has focus, ENTER *will* submit the form
-      if(
-        !options.preventEnterSubmit
-        && ( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) )
-      ) {
-        field.closest( "form" ).submit( );
+      if( options.preventEnterSubmit ) { return false; }
+      // can be configured to select the top result when hitting enter
+      if( options.selectFirstMatch ) { field.selectFirst( ); }
+      if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
+        return true;
       }
       return false;
     }
@@ -172,10 +192,14 @@ $.fn.genericAutocomplete = function( options ) {
   });
   // show the results anytime the text field gains focus
   field.bind( "focus", function( ) {
-    // don't redo the search if there are results being shown
-    if( genericAutocomplete.menuClosed( ) ) {
-      $(this).autocomplete( "search", $(this).val( ));
-    }
+    var that = this;
+    // set a small delay before showing the results menu
+    setTimeout( function() {
+      // don't redo the search if there are results being shown
+      if( genericAutocomplete.menuClosed( ) ) {
+        $(that).autocomplete( "search", $(that).val( ));
+      }
+    }, 100);
   });
   field.bind( "click", function( ) {
     // don't redo the search if there are results being shown

@@ -1,0 +1,42 @@
+if( typeof RECENT_OBSERVATION_FIELDS === "undefined" ) {
+  var RECENT_OBSERVATION_FIELDS = [ ];
+}
+var anyRecentFields = RECENT_OBSERVATION_FIELDS.length > 0;
+
+$.fn.observationFieldAutocomplete = function( options ) {
+  options = options || { };
+  if( !options.idEl ) { return; }
+  var field = this;
+
+  field.genericAutocomplete( _.extend( options, {
+    minLength: anyRecentFields ? 0 : undefined,
+    allowPlaceholders: true,
+    source: function( request, response ) {
+      if( !request.term ) {
+        if( anyRecentFields ) {
+          response( _.map(RECENT_OBSERVATION_FIELDS, function(r) {
+              return Object.assign( { }, r, { title: r.name } );
+            } ) );
+        } else {
+          response( [] );
+        }
+      } else {
+        $.ajax({
+        url: "//<%= CONFIG.node_api_host %>/observation_fields/autocomplete",
+          dataType: "jsonp",
+          cache: true,
+          jsonpCallback: "observationFieldAutocompleteCallback",
+          data: {
+            q: request.term,
+            per_page: 10
+          },
+          success: function( data ) {
+            response( _.map(data.results, function(r) {
+              return Object.assign( { }, r, { title: r.name } );
+            } ) );
+          }
+        });
+      }
+    }
+  }));
+};

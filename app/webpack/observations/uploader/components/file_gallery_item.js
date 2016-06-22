@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Photo from "./photo";
 
 class FileGalleryItem extends Component {
@@ -23,11 +23,18 @@ class FileGalleryItem extends Component {
 
   closeButton( ) {
     return (
-      <button className="btn-close-photo" onClick={ () =>
-        this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }
+      <OverlayTrigger
+        placement="top"
+        delayShow={ 1000 }
+        overlay={ ( <Tooltip id="remove-photo-tip">{
+          I18n.t( "uploader.tooltips.remove_photo" ) }</Tooltip> ) }
       >
-        <Glyphicon glyph="remove" />
-      </button>
+        <button className="btn-close-photo" onClick={ () =>
+          this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }
+        >
+          <Glyphicon glyph="remove" />
+        </button>
+      </OverlayTrigger>
     );
   }
 
@@ -43,15 +50,18 @@ class FileGalleryItem extends Component {
     let close;
     let item;
     let zoom;
-    if ( this.props.file.upload_state === "uploading" ) {
-      item = ( <Glyphicon glyph="refresh" className="fa-spin" /> );
-    } else if ( this.props.file.upload_state === "pending" ) {
-      item = ( <Glyphicon glyph="hourglass" /> );
+    if ( this.props.file.preview && !this.props.file.photo ) {
+      // preview photo
+      item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
+      zoom = this.zoomButton( );
+      close = this.closeButton( );
     } else if ( this.props.file.photo ) {
-      item = ( <Photo { ...this.props } /> );
+      // uploaded photo
+      item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );
       close = this.closeButton( );
     } else {
+      // fallback state that is pretty much never seen
       item = ( <Glyphicon glyph="exclamation-sign" /> );
       close = this.closeButton( );
     }

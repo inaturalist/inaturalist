@@ -1,15 +1,21 @@
 import React, { PropTypes, Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
 import _ from "lodash";
+import moment from "moment-timezone";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
 
 const cardSource = {
   canDrag( props ) {
+    if ( $( `div[data-id=${props.obsCard.id}] input:focus` ).length > 0 ||
+         $( `div[data-id=${props.obsCard.id}] textarea:focus` ).length > 0 ||
+         $( ".bootstrap-datetimepicker-widget:visible" ).length > 0 ) {
+      return false;
+    }
     return props.obsCard.nonUploadedFiles( ).length === 0;
   },
   beginDrag( props, monitor, component ) {
@@ -59,8 +65,7 @@ class ObsCardComponent extends Component {
   static collectCard( connect, monitor ) {
     return {
       cardDragSource: connect.dragSource( ),
-      cardIsDragging: monitor.isDragging( ),
-      cardDragPreview: connect.dragPreview( )
+      cardIsDragging: monitor.isDragging( )
     };
   }
 
@@ -122,7 +127,6 @@ class ObsCardComponent extends Component {
       zoom: this.props.obsCard.zoom,
       center: this.props.obsCard.center,
       bounds: this.props.obsCard.bounds,
-      geoprivacy: this.props.obsCard.geoprivacy,
       notes: this.props.obsCard.locality_notes
     } } );
   }
@@ -154,10 +158,15 @@ class ObsCardComponent extends Component {
         >C</button>
       );
     }
-    let photoCount;
+    let photoCountOrStatus;
     const fileCount = _.size( obsCard.files );
-    if ( fileCount > 1 ) {
-      photoCount = `${obsCard.galleryIndex || 1}/${fileCount}`;
+    if ( fileCount ) {
+      if ( _.find( obsCard.files, f =>
+             f.upload_state === "uploading" || f.upload_state === "pending" ) ) {
+        photoCountOrStatus = I18n.t( "loading_metadata" );
+      } else if ( fileCount > 1 ) {
+        photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
+      }
     }
     return cardDropTarget( photoDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
@@ -166,7 +175,6 @@ class ObsCardComponent extends Component {
           className={ className }
           data-id={ obsCard.id }
           disableClick
-          disablePreview
           onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
           onDragEnter={ this.onDragEnter }
           activeClassName="hover"
@@ -174,9 +182,16 @@ class ObsCardComponent extends Component {
           key={ obsCard.id }
         >
           { captiveMarker }
-          <button className="btn-close" onClick={ confirmRemoveObsCard }>
-            <Glyphicon glyph="remove" />
-          </button>
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ ( <Tooltip id="remove-obs-tip">{
+              I18n.t( "uploader.tooltips.remove_observation" ) }</Tooltip> ) }
+          >
+            <button className="btn-close" onClick={ confirmRemoveObsCard }>
+              <Glyphicon glyph="remove" />
+            </button>
+          </OverlayTrigger>
           <FileGallery
             obsCard={ obsCard }
             setState={ setState }
@@ -186,7 +201,7 @@ class ObsCardComponent extends Component {
           />
           <div className="caption">
             <p className="photo-count">
-              { photoCount || "\u00a0" }
+              { photoCountOrStatus || "\u00a0" }
             </p>
             <TaxonAutocomplete
               key={
@@ -203,7 +218,8 @@ class ObsCardComponent extends Component {
                   updateObsCard( obsCard,
                     { taxon_id: r.item.id,
                       selected_taxon: r.item,
-                      species_guess: r.item.title } );
+                      species_guess: r.item.title,
+                      modified: r.item.id !== obsCard.taxon_id } );
                 }
               } }
               afterUnselect={ ( ) => {
@@ -219,55 +235,80 @@ class ObsCardComponent extends Component {
               key={ `datetime${obsCard.selected_date}`}
               reactKey={ `datetime${obsCard.selected_date}`}
               ref="datetime"
+              inputFormat="YYYY/MM/DD h:mm A z"
+              dateTime={ obsCard.selected_date ?
+                moment( obsCard.selected_date, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
+              timeZone={ obsCard.time_zone }
               onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
               onSelection={ dateString =>
                 updateObsCard( obsCard, { date: dateString, selected_date: dateString } )
               }
             />
-            <div className="input-group"
-              onClick= { () => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onClick( );
-                }
-              } }
+            <OverlayTrigger
+              placement="top"
+              delayShow={ 1000 }
+              overlay={ ( <Tooltip id="date-tip">{
+                I18n.t( "uploader.tooltips.date" ) }</Tooltip> ) }
             >
-              <div className="input-group-addon input-sm">
-                <Glyphicon glyph="calendar" />
-              </div>
-              <input
-                type="text"
-                className="form-control input-sm"
-                value={ obsCard.date }
-                onChange= { e => {
+              <div className="input-group"
+                onClick= { () => {
                   if ( this.refs.datetime ) {
-                    this.refs.datetime.onChange( undefined, e.target.value );
+                    this.refs.datetime.onClick( );
                   }
                 } }
-                placeholder={ I18n.t( "date_" ) }
-              />
-            </div>
-            <div className="input-group"
-              onClick={ this.openLocationChooser }
-            >
-              <div className="input-group-addon input-sm">
-                <Glyphicon glyph="map-marker" />
+              >
+                <div className="input-group-addon input-sm">
+                  <Glyphicon glyph="calendar" />
+                </div>
+                <input
+                  type="text"
+                  className="form-control input-sm"
+                  value={ obsCard.date }
+                  onChange= { e => {
+                    if ( this.refs.datetime ) {
+                      this.refs.datetime.onChange( undefined, e.target.value );
+                    }
+                  } }
+                  placeholder={ I18n.t( "date_" ) }
+                />
               </div>
-              <input
-                type="text"
-                className="form-control input-sm"
-                value={ locationText }
-                placeholder={ I18n.t( "location" ) }
-                readOnly
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                placeholder={ I18n.t( "description" ) }
-                className="form-control input-sm"
-                value={ obsCard.description }
-                onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
-              />
-            </div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delayShow={ 1000 }
+              overlay={ ( <Tooltip id="location-tip">{
+                I18n.t( "uploader.tooltips.location" ) }</Tooltip> ) }
+            >
+              <div className="input-group"
+                onClick={ this.openLocationChooser }
+              >
+                <div className="input-group-addon input-sm">
+                  <Glyphicon glyph="map-marker" />
+                </div>
+                <input
+                  type="text"
+                  className="form-control input-sm"
+                  value={ locationText }
+                  placeholder={ I18n.t( "location" ) }
+                  readOnly
+                />
+              </div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delayShow={ 1000 }
+              overlay={ ( <Tooltip id="description-tip">{
+                I18n.t( "uploader.tooltips.description" ) }</Tooltip> ) }
+            >
+              <div className="form-group">
+                <textarea
+                  placeholder={ I18n.t( "description" ) }
+                  className="form-control input-sm"
+                  value={ obsCard.description }
+                  onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
+                />
+              </div>
+            </OverlayTrigger>
           </div>
         </Dropzone>
       </li>
@@ -279,7 +320,6 @@ ObsCardComponent.propTypes = {
   obsCard: PropTypes.object,
   confirmRemoveObsCard: PropTypes.func,
   cardDragSource: PropTypes.func,
-  cardDragPreview: PropTypes.func,
   cardDropTarget: PropTypes.func,
   photoDropTarget: PropTypes.func,
   cardIsOver: PropTypes.bool,

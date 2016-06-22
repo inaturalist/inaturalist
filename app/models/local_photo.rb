@@ -29,7 +29,7 @@ class LocalPhoto < Photo
     default_url: "/attachment_defaults/:class/:style.png"
   }
 
-  if Rails.env.production? || Rails.env.prod_dev?
+  if Rails.env.production?
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -185,7 +185,7 @@ class LocalPhoto < Photo
     end
     if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
       o.set_time_zone
-      o.time_observed_at = capture_time
+      o.time_observed_at = capture_time.in_time_zone(o.time_zone)
       o.set_time_in_time_zone
       if o.time_observed_at
         o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")

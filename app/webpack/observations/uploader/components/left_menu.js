@@ -1,15 +1,21 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
-import { Input, Glyphicon, Badge } from "react-bootstrap";
+import moment from "moment-timezone";
+import React, { PropTypes } from "react";
+import { Input, Glyphicon, Accordion, Panel, Badge,
+  OverlayTrigger, Tooltip } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
+import SelectionBasedComponent from "./selection_based_component";
+import ObservationFieldsChooser from "./observation_fields_chooser";
+import ProjectsChooser from "./projects_chooser";
+import TagsChooser from "./tags_chooser";
 
-class LeftMenu extends Component {
+class LeftMenu extends SelectionBasedComponent {
 
   constructor( props, context ) {
     super( props, context );
-    this.valuesOf = this.valuesOf.bind( this );
-    this.commonValue = this.commonValue.bind( this );
+    this.details = this.details.bind( this );
+    this.formPanel = this.formPanel.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
   }
 
@@ -19,45 +25,19 @@ class LeftMenu extends Component {
   }
 
   openLocationChooser( ) {
-    let lat;
-    let lng;
-    let radius;
-    let zoom;
-    const commonLat = this.commonValue( "latitude" );
-    const commonLng = this.commonValue( "longitude" );
-    const commonRadius = this.commonValue( "accuracy" );
-    const commonZoom = this.commonValue( "zoom" );
-    if ( commonLat && commonLng && commonRadius ) {
-      lat = commonLat;
-      lng = commonLng;
-      radius = commonRadius;
-      zoom = commonZoom;
-    }
     this.props.setState( { locationChooser: {
       show: true,
-      zoom,
-      radius,
-      lat,
-      lng,
+      zoom: this.commonValue( "zoom" ),
+      radius: this.commonValue( "accuracy" ),
+      lat: this.commonValue( "latitude" ),
+      lng: this.commonValue( "longitude" ),
       notes: this.commonValue( "locality_notes" ),
       geoprivacy: this.commonValue( "geoprivacy" )
     } } );
   }
 
-  valuesOf( attr ) {
-    return _.uniqBy( _.map( this.props.selectedObsCards, c => c[attr] ),
-      a => a && ( a.id || a ) );
-  }
-
-  commonValue( attr ) {
-    const uniq = this.valuesOf( attr );
-    return ( uniq.length === 1 ) ? uniq[0] : undefined;
-  }
-
-  render( ) {
-    const { updateSelectedObsCards, selectedObsCards } = this.props;
-    const keys = _.keys( selectedObsCards );
-    const count = keys.length;
+  details( ) {
+    const { updateSelectedObsCards } = this.props;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
     const commonSelectedTaxon = this.commonValue( "selected_taxon" );
@@ -65,89 +45,62 @@ class LeftMenu extends Component {
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
-    let descriptionPlaceholder = I18n.t( "description" );
-    if ( uniqDescriptions.length > 1 ) {
-      descriptionPlaceholder = I18n.t( "edit_multiple_descriptions" );
-    }
+    const commonGeoprivacy = this.commonValue( "geoprivacy" );
     let locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
-    const commonTags = this.commonValue( "tags" );
-    let taglist;
-    if ( commonTags && commonTags.length > 0 ) {
-      taglist = (
-        <div className="tags">
-          { I18n.t( "tags" ) }
-          <div className="taglist">
-            { _.map( commonTags, t => (
-              <Badge className="tag" key={ t }>{ t }</Badge>
-            ) ) }
-          </div>
-        </div>
-      );
+    let multipleGeoprivacy = !commonGeoprivacy && (
+      <option>{ I18n.t( "multiple_select_option" ) }</option> );
+    let geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_open" );
+    if ( commonGeoprivacy === "obscured" ) {
+      geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_obscured" );
+    } else if ( commonGeoprivacy === "private" ) {
+      geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_private" );
     }
-    let ofvlist;
-    const commonOfvs = this.commonValue( "observation_field_values" );
-    if ( commonOfvs && commonOfvs.length > 0 ) {
-      ofvlist = (
-        <div className="tags">
-          { I18n.t( "custom_field_values" ) }
-          <div className="taglist">
-            { _.map( commonOfvs, t => {
-              const key = `${t.observation_field.name}` +
-                `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}`;
-              return ( <Badge className="tag" key={ key }>
-                <span className="field">{ `${t.observation_field.name}:` }</span>
-                { `${( t.taxon && t.taxon.name ) ? t.taxon.name : t.value}` }
-              </Badge> );
-            } ) }
-          </div>
-        </div>
-      );
-    }
-    let menu;
-    if ( count === 0 ) {
-      menu = ( <span className="head">{ I18n.t( "select_observations_to_edit" )} </span> );
-    } else {
-      menu = (
-        <div>
-          <span className="head" dangerouslySetInnerHTML={
-            { __html: I18n.t( "editing_observations", { count } ) } }
-          />
-          <br />
-          <br />
-          <TaxonAutocomplete
-            key={
-              `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
-            bootstrap
-            searchExternal
-            showPlaceholder
-            perPage={ 6 }
-            initialSelection={ commonSelectedTaxon }
-            afterSelect={ r => {
-              if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
-                updateSelectedObsCards(
-                  { taxon_id: r.item.id,
-                    selected_taxon: r.item,
-                    species_guess: r.item.title } );
-              }
-            } }
-            afterUnselect={ ( ) => {
-              if ( commonSelectedTaxon ) {
-                updateSelectedObsCards(
-                  { taxon_id: null,
-                    selected_taxon: null,
-                    species_guess: null } );
-              }
-            } }
-          />
-          <DateTimeFieldWrapper
-            ref="datetime"
-            key={ `multidate${commonDate}` }
-            reactKey={ `multidate${commonDate}` }
-            onChange={ dateString => updateSelectedObsCards(
-              { date: dateString, selected_date: dateString } ) }
-          />
+    return (
+      <div>
+        <TaxonAutocomplete
+          key={
+            `multitaxonac${commonSelectedTaxon && commonSelectedTaxon.title}` }
+          bootstrap
+          searchExternal
+          showPlaceholder
+          perPage={ 6 }
+          initialSelection={ commonSelectedTaxon }
+          afterSelect={ r => {
+            if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {
+              updateSelectedObsCards(
+                { taxon_id: r.item.id,
+                  selected_taxon: r.item,
+                  species_guess: r.item.title } );
+            }
+          } }
+          afterUnselect={ ( ) => {
+            if ( commonSelectedTaxon ) {
+              updateSelectedObsCards(
+                { taxon_id: null,
+                  selected_taxon: null,
+                  species_guess: null } );
+            }
+          } }
+          placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
+            I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
+        />
+        <DateTimeFieldWrapper
+          ref="datetime"
+          key={ `multidate${commonDate}` }
+          reactKey={ `multidate${commonDate}` }
+          dateTime={ commonDate ?
+              moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
+          onChange={ dateString => updateSelectedObsCards(
+            { date: dateString, selected_date: dateString } ) }
+        />
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.date" ) }</Tooltip> ) }
+        >
           <div className="input-group"
             onClick= { ( ) => {
               if ( this.refs.datetime ) {
@@ -167,9 +120,17 @@ class LeftMenu extends Component {
                   this.refs.datetime.onChange( undefined, e.target.value );
                 }
               } }
-              placeholder={ I18n.t( "date_" ) }
+              placeholder={ this.valuesOf( "date" ).length > 1 ?
+                I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
             />
           </div>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.location" ) }</Tooltip> ) }
+        >
           <div className="input-group"
             onClick={ this.openLocationChooser }
           >
@@ -180,26 +141,140 @@ class LeftMenu extends Component {
               type="text"
               className="form-control"
               value={ locationText }
-              placeholder={ I18n.t( "location" ) }
+              placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
+                this.valuesOf( "longitude" ).length > 1 ) ?
+                I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
               readOnly
             />
           </div>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.description" ) }</Tooltip> ) }
+        >
           <div className="form-group">
             <textarea
-              placeholder={ descriptionPlaceholder }
+              placeholder={ uniqDescriptions.length > 1 ?
+                I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
               className="form-control"
-              value={ commonDescription }
+              value={ commonDescription || "" }
               onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
             />
           </div>
-          <Input type="checkbox"
-            label={ I18n.t( "captive_cultivated" ) }
-            checked={ this.commonValue( "captive" ) }
-            value="true"
-            onChange={ e => updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ multipleGeoprivacy ? ( <span /> ) :
+            ( <Tooltip id="left-date-tip">{ geoprivacyTooltip }</Tooltip> ) }
+        >
+          <Input
+            key={ `multigeoprivacy${commonGeoprivacy}` }
+            type="select"
+            value={ commonGeoprivacy }
+            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+          >
+            { multipleGeoprivacy }
+            <option value="open">{ I18n.t( "location_is_public" ) }</option>
+            <option value="obscured">{ I18n.t( "location_is_obscured" ) }</option>
+            <option value="private">{ I18n.t( "location_is_private" ) }</option>
+          </Input>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 1000 }
+          overlay={ ( <Tooltip id="left-date-tip">{
+            I18n.t( "uploader.tooltips.captive" ) }</Tooltip> ) }
+        >
+          <div className="form-group">
+            <div className="checkbox">
+              <label>
+                <input type="checkbox"
+                  checked={ this.commonValue( "captive" ) }
+                  value="true"
+                  onChange={ e =>
+                    updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+                />
+                <span>{ I18n.t( "captive_cultivated" ) }</span>
+              </label>
+            </div>
+          </div>
+        </OverlayTrigger>
+      </div>
+    );
+  }
+
+  formPanel( key, title, glyph, contents, contentCount, open ) {
+    let openGlyphClass = "toggle";
+    if ( open ) { openGlyphClass += " rotate"; }
+    let badge = contentCount && contentCount > 0 ? (
+      <Badge className="count">{ contentCount }</Badge>
+    ) : undefined;
+    let header = (
+      <div className={ contentCount && "contents" }>
+        <Glyphicon glyph={ glyph } className="icon" />
+        { title }
+        <Glyphicon glyph="triangle-right" className={ openGlyphClass } />
+        { badge }
+      </div>
+    );
+    let className = `panel-${key}`;
+    const onEntered = ( key !== "1" ) ? () => {
+      if ( !$( ".observation-field" ).is( ":visible" ) ) {
+        const mainPanelInput = $( `.${className} input:first` );
+        mainPanelInput.focus( ).select( ).val( mainPanelInput.val( ) );
+      }
+    } : undefined;
+    return (
+      <Panel
+        eventKey={ key }
+        className={ className }
+        header={ header }
+        onEnter={ () => { $( `.${className} .toggle` ).addClass( "rotate" ); } }
+        onEntered={ () => setTimeout( onEntered, 50 ) }
+        onExit={ () => { $( `.${className} .toggle` ).removeClass( "rotate" ); } }
+      >
+        { contents }
+      </Panel>
+    );
+  }
+
+  render( ) {
+    const count = _.keys( this.props.selectedObsCards ).length;
+    let menu;
+    const detailsContent =
+      this.uniqueValuesOf( "description" ).length > 0 ||
+      this.uniqueValuesOf( "date" ).length > 0 ||
+      this.uniqueValuesOf( "latitude" ).length > 0 ||
+      this.uniqueValuesOf( "longitude" ).length > 0 ||
+      this.uniqueValuesOf( "locality_notes" ).length > 0 ||
+      this.uniqueValuesOf( "species_guess" ).length > 0 ||
+      this.uniqueValuesOf( "selected_taxon" ).length > 0;
+    const tagsContent = this.uniqueValuesOf( "tags" ).length;
+    const projectsContent = this.uniqueValuesOf( "projects" ).length;
+    const fieldsContent = this.uniqueValuesOf( "observation_field_values" ).length;
+    if ( count === 0 ) {
+      menu = ( <span className="head">{ I18n.t( "select_observations_to_edit" )} </span> );
+    } else {
+      menu = (
+        <div>
+          <span className="head" dangerouslySetInnerHTML={
+            { __html: I18n.t( "editing_observations", { count } ) } }
           />
-          { taglist }
-          { ofvlist }
+          <br />
+          <br />
+          <Accordion defaultActiveKey="1">
+            { this.formPanel( "1", I18n.t( "details" ), "pencil",
+              this.details( ), detailsContent, true ) }
+            { this.formPanel( "2", I18n.t( "tags" ), "tag", (
+              <TagsChooser { ...this.props } /> ), tagsContent ) }
+            { this.formPanel( "3", I18n.t( "projects" ), "briefcase", (
+              <ProjectsChooser { ...this.props } /> ), projectsContent ) }
+            { this.formPanel( "4", I18n.t( "fields_" ), "th-list", (
+              <ObservationFieldsChooser { ...this.props } /> ), fieldsContent ) }
+          </Accordion>
         </div>
       );
     }
@@ -215,6 +290,8 @@ LeftMenu.propTypes = {
   obsCards: PropTypes.object,
   selectedObsCards: PropTypes.object,
   updateSelectedObsCards: PropTypes.func,
+  appendToSelectedObsCards: PropTypes.func,
+  removeFromSelectedObsCards: PropTypes.func,
   setState: PropTypes.func,
   reactKey: PropTypes.string
 };

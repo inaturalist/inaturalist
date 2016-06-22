@@ -5,7 +5,10 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers
+  fetchIdentifiers,
+  stopLoadingDiscussionItem,
+  showAlert,
+  addIdentification
 } from "../actions";
 
 // ownProps contains data passed in through the "tag", so in this case
@@ -19,14 +22,31 @@ function mapStateToProps( state, ownProps ) {
 
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
-    onSubmitIdentification: ( identification ) => {
+    onSubmitIdentification: ( identification, options = {} ) => {
       dispatch( loadingDiscussionItem( ) );
-      dispatch( postIdentification( identification ) )
+      const boundPostIdentification = ( ) => {
+        dispatch( postIdentification( identification ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( ) );
+        } )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ownProps.observation ) );
           dispatch( fetchObservationsStats( ) );
           dispatch( fetchIdentifiers( ) );
         } );
+      };
+      if ( options.confirmationText ) {
+        dispatch( showAlert( options.confirmationText, {
+          title: I18n.t( "heads_up" ),
+          onConfirm: boundPostIdentification,
+          onCancel: ( ) => {
+            dispatch( stopLoadingDiscussionItem( ) );
+            dispatch( addIdentification( ) );
+          }
+        } ) );
+      } else {
+        boundPostIdentification( );
+      }
     }
   };
 }

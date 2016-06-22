@@ -1,7 +1,7 @@
 import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
 import actions from "../actions/actions";
-import moment from "moment";
+import moment from "moment-timezone";
 
 const ObsCard = class ObsCard {
   constructor( attrs ) {
@@ -19,7 +19,10 @@ const ObsCard = class ObsCard {
       accuracy: null,
       species_guess: null,
       tags: [],
-      observation_field_values: []
+      observation_field_values: [],
+      projects: [],
+      /* global TIMEZONE */
+      time_zone: TIMEZONE
     };
     Object.assign( this, defaultAttrs, attrs );
   }
@@ -27,6 +30,9 @@ const ObsCard = class ObsCard {
   blank( ) {
     return (
       _.isEmpty( this.files ) &&
+      _.isEmpty( this.tags ) &&
+      _.isEmpty( this.observation_field_values ) &&
+      _.isEmpty( this.projects ) &&
       !this.description &&
       !this.date &&
       !this.taxon_id &&
@@ -61,42 +67,22 @@ const ObsCard = class ObsCard {
     return undefined;
   }
 
-  syncMetadataWithPhoto( p, dispatch ) {
+  additionalPhotoMetadata( files ) {
     const updates = { };
-    const obs = p.to_observation;
-    if ( !this.date && obs.time_observed_at ) {
-      updates.date = moment.parseZone( obs.time_observed_at ).format( "YYYY/MM/DD h:mm A ZZ" );
-      updates.selected_date = updates.date;
-    }
-    if ( !this.latitude && obs.latitude && obs.longitude ) {
-      updates.latitude = parseFloat( obs.latitude );
-      updates.longitude = parseFloat( obs.longitude );
-    }
-    if ( !this.locality_notes && obs.place_guess ) {
-      updates.locality_notes = obs.place_guess;
-    }
-    if ( !this.taxon_id && obs.taxon_id ) {
-      updates.taxon_id = obs.taxon_id;
-    }
-    if ( this.observation_field_values.length === 0 && obs.observation_field_values ) {
-      updates.observation_field_values = obs.observation_field_values;
-    }
-    if ( this.tags.length === 0 && obs.tag_list ) {
-      updates.tags = obs.tag_list;
-    }
-    if ( !this.description && obs.description ) {
-      updates.description = obs.description;
-    }
-    if ( Object.keys( updates ).length > 0 ) {
-      dispatch( actions.updateObsCard( this, Object.assign( updates, { modified: false } ) ) );
-    }
+    _.each( files || this.files, f => {
+      Object.assign( updates, f.additionalPhotoMetadata( Object.assign( { }, this, updates ) ) );
+    } );
+    return updates;
   }
 
   upload( file, dispatch ) {
     if ( !this.files[file.id] ) { return; }
     dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploading" } ) );
     inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
-      this.syncMetadataWithPhoto( r, dispatch );
+      const updates = this.additionalPhotoMetadata( );
+      if ( !_.isEmpty( updates ) ) {
+        dispatch( actions.updateObsCard( this, Object.assign( updates, { modified: false } ) ) );
+      }
       dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploaded", photo: r } ) );
     } ).catch( e => {
       console.log( "Upload failed:", e );
@@ -122,15 +108,20 @@ const ObsCard = class ObsCard {
         observation_field_values_attributes: this.observation_field_values,
         tag_list: this.tags.join( "," ),
         captive_flag: this.captive
-      }
+      },
+      project_id: _.map( this.projects, "id" ),
+      uploader: true
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
     if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
     if ( this.date ) { params.observation.observed_on_string = this.date; }
     const photoIDs = _.compact( _.map( this.files, f => ( f.photo.id ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
-    inaturalistjs.observations.create( params, { same_origin: true } ).then( ( ) => {
-      dispatch( actions.updateObsCard( this, { save_state: "saved" } ) );
+    inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
+      dispatch( actions.updateObsCard( this, {
+        save_state: "saved",
+        server_response: r && r[0]
+      } ) );
     } ).catch( e => {
       console.log( "Save failed:", e );
       dispatch( actions.updateObsCard( this, { save_state: "failed" } ) );

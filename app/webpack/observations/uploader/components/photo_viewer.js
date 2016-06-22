@@ -26,7 +26,8 @@ class PhotoViewer extends Component {
   render( ) {
     let images = [];
     if ( this.props.obsCard ) {
-      images = _.map( this.props.obsCard.uploadedFiles( ), f => ( { src: f.photo.large_url } ) );
+      images = _.map( this.props.obsCard.files, f => (
+        { src: f.photo ? f.photo.large_url : f.file.preview } ) );
     }
     return (
       <Lightbox
@@ -36,6 +37,7 @@ class PhotoViewer extends Component {
         currentImage={ this.props.activeIndex }
         onClose={ this.close }
         images={ images }
+        backdropClosesModal
       />
     );
   }

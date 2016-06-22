@@ -6,6 +6,7 @@ import {
   ADD_COMMENT,
   ADD_IDENTIFICATION,
   LOADING_DISCUSSION_ITEM,
+  STOP_LOADING_DISCUSSION_ITEM,
   RECEIVE_OBSERVATIONS,
   UPDATE_CURRENT_OBSERVATION
 } from "../actions";
@@ -25,7 +26,7 @@ const currentObservationReducer = ( state = {}, action ) => {
       return Object.assign( {}, state, {
         visible: false
       } );
-    case RECEIVE_CURRENT_OBSERVATION:
+    case RECEIVE_CURRENT_OBSERVATION: {
       const obs = _.cloneDeep( action.observation );
       obs.captiveByCurrentUser = action.captiveByCurrentUser;
       obs.reviewedByCurrentUser = action.reviewedByCurrentUser;
@@ -36,6 +37,7 @@ const currentObservationReducer = ( state = {}, action ) => {
         loadingDiscussionItem: false,
         currentUserIdentification: action.currentUserIdentification
       } );
+    }
     case UPDATE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
         observation: Object.assign( {}, state.observation, action.updates )
@@ -55,6 +57,12 @@ const currentObservationReducer = ( state = {}, action ) => {
         identificationFormVisible: false,
         commentFormVisible: false,
         loadingDiscussionItem: true
+      } );
+    case STOP_LOADING_DISCUSSION_ITEM:
+      return Object.assign( {}, state, {
+        identificationFormVisible: false,
+        commentFormVisible: false,
+        loadingDiscussionItem: false
       } );
     case RECEIVE_OBSERVATIONS:
       return Object.assign( { }, state, { observation: null } );

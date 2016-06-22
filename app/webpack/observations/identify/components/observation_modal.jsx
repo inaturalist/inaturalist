@@ -222,12 +222,16 @@ const ObservationModal = ( {
                       <dd>{ I18n.t( "mark_as_reviewed" ) }</dd>
                     </dl>
                     <dl className="keyboard-shortcuts">
-                      <dt>i</dt>
-                      <dd>{ I18n.t( "add_id" ) }</dd>
-                    </dl>
-                    <dl className="keyboard-shortcuts">
                       <dt>c</dt>
                       <dd>{ _.capitalize( I18n.t( "comment" ) ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>a</dt>
+                      <dd>{ _.capitalize( I18n.t( "agree" ) ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>i</dt>
+                      <dd>{ I18n.t( "add_id" ) }</dd>
                     </dl>
                     <dl className="keyboard-shortcuts">
                       <dt>&larr;</dt>

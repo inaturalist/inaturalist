@@ -11,7 +11,7 @@
       = link_to t(:observations_w_field),
         observations_path("field:#{ ofv.observation_field.normalized_name(escape: true) }" => ""),
         :rel => "nofollow"
-      - if ofv.value.to_s.size < 30
+      - if ofv.value.to_s.size < 100
         |
         = link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
           observations_path("field:#{ ofv.observation_field.normalized_name(escape: true) }" => ofv.value),

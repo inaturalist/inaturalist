@@ -1,5 +1,6 @@
 import _ from "lodash";
 import * as types from "../constants/constants";
+import React from "react";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
@@ -19,7 +20,12 @@ const actions = class actions {
   }
 
   static appendObsCards( obsCards ) {
-    return { type: types.APPEND_OBS_CARDS, obsCards };
+    return function ( dispatch ) {
+      const firstKey = _.first( _.keys( obsCards ) );
+      dispatch( { type: types.APPEND_OBS_CARDS, obsCards } );
+      // select the first card in any new batch
+      dispatch( actions.selectObsCards( { [firstKey]: true } ) );
+    };
   }
 
   static selectObsCards( ids ) {
@@ -34,6 +40,14 @@ const actions = class actions {
     return { type: types.UPDATE_SELECTED_OBS_CARDS, attrs };
   }
 
+  static appendToSelectedObsCards( attrs ) {
+    return { type: types.APPEND_TO_SELECTED_OBS_CARDS, attrs };
+  }
+
+  static removeFromSelectedObsCards( attrs ) {
+    return { type: types.REMOVE_FROM_SELECTED_OBS_CARDS, attrs };
+  }
+
   static removeSelected( ) {
     return { type: types.REMOVE_SELECTED };
   }
@@ -43,7 +57,13 @@ const actions = class actions {
   }
 
   static createBlankObsCard( ) {
-    return { type: types.CREATE_BLANK_OBS_CARD };
+    return function ( dispatch, getState ) {
+      dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
+      const s = getState( );
+      const lastKey = _.last( _.keys( s.dragDropZone.obsCards ) );
+      // select the blank card
+      dispatch( actions.selectObsCards( { [lastKey]: true } ) );
+    };
   }
 
   static onFileDrop( droppedFiles, e ) {
@@ -60,6 +80,11 @@ const actions = class actions {
           const obsCard = new ObsCard( { id } );
           obsCard.files[id] = DroppedFile.fromFile( f, id );
           obsCards[obsCard.id] = obsCard;
+          // asynchronously read the photo metadata and update the card after
+          obsCard.files[id].readExif( obsCard ).then( metadata => {
+            dispatch( actions.updateObsCard( obsCard,
+              Object.assign( { }, metadata, { modified: false } ) ) );
+          } );
           i += 1;
         }
       } );
@@ -80,6 +105,11 @@ const actions = class actions {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           files[id] = DroppedFile.fromFile( f, id );
+          // asynchronously read the photo metadata and update the card after
+          files[id].readExif( obsCard ).then( metadata => {
+            dispatch( actions.updateObsCard( obsCard,
+              Object.assign( { }, metadata, { modified: false } ) ) );
+          } );
           i += 1;
         }
       } );
@@ -198,7 +228,9 @@ const actions = class actions {
       dispatch( actions.updateObsCard( toObsCard, { files: toFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
-      if ( fromCard.blank( ) || !fromCard.modified ) {
+      // the card from where the photo was move can be removed if it has no data
+      // or if its data is untouched from when it was imported
+      if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };
@@ -210,12 +242,15 @@ const actions = class actions {
       const time = new Date( ).getTime( );
       const obsCard = new ObsCard( { id: time } );
       obsCard.files[time] = new DroppedFile( Object.assign( { }, photo.file, { id: time } ) );
+      Object.assign( obsCard, obsCard.additionalPhotoMetadata( ) );
       delete fromFiles[photo.file.id];
-      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
       dispatch( actions.appendObsCards( { [obsCard.id]: obsCard } ) );
+      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
       fromCard.files = fromFiles;
-      if ( fromCard.blank( ) ) {
+      // the card from where the photo was move can be removed if it has no data
+      // or if its data is untouched from when it was imported
+      if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };
@@ -278,8 +313,7 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.uploadedFiles( ).length > 0 &&
-             ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
+        if ( !failed && ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
           failed = true;
         }
       } );
@@ -288,7 +322,7 @@ const actions = class actions {
           show: true,
           cancelText: I18n.t( "go_back" ),
           confirmText: I18n.t( "continue" ),
-          message: I18n.t( "you_are_submitting_obs_with_photos_no_date" ),
+          message: I18n.t( "you_are_submitting_obs_with_no_date_or_no_location" ),
           onConfirm: () => {
             dispatch( actions.submitObservations( ) );
           }
@@ -324,6 +358,57 @@ const actions = class actions {
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
+        dispatch( actions.finalizeSave( ) );
+      }
+    };
+  }
+
+  static finalizeSave( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const missingProjects = { };
+      _.each( s.dragDropZone.obsCards, c => {
+        const selectedProjetIDs = _.map( c.projects, "id" );
+        let addedToProjectIDs = [];
+        // fetch the set of IDs that obs were actually added to
+        if ( c.server_response && c.server_response.project_observations ) {
+          addedToProjectIDs = _.map( c.server_response.project_observations, "project_id" );
+        }
+        // compare those IDs to the ones the user selected
+        const failedProjectIDs = _.difference( selectedProjetIDs, addedToProjectIDs );
+        _.each( failedProjectIDs, pid => {
+          missingProjects[pid] = missingProjects[pid] ||
+            { project: _.find( c.projects, p => p.id === pid ), count: 0 };
+          missingProjects[pid].count += 1;
+        } );
+      } );
+      // show a modal with the projects and counts of obs that were not added
+      // otherwise go to the user's observation page
+      if ( _.keys( missingProjects ).length > 0 ) {
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          hideCancel: true,
+          confirmText: I18n.t( "continue" ),
+          message: (
+            <div>
+              { I18n.t( "some_observations_failed" ) }
+              <div className="projects">
+                { _.map( missingProjects, mp => (
+                  <div className="project" key={ mp.project.id }>
+                    <span className="title">{ mp.project.title }</span>
+                    <span className="count">
+                      { I18n.t( "x_observations_failed", { count: mp.count } ) }
+                    </span>
+                  </div>
+                ) ) }
+              </div>
+            </div>
+          ),
+          onConfirm: () => {
+            window.location = `/observations/${CURRENT_USER.login}`;
+          }
+        } } ) );
+      } else {
         window.location = `/observations/${CURRENT_USER.login}`;
       }
     };

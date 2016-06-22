@@ -22,6 +22,17 @@ shared_examples_for "a ProjectObservationsController" do
       }.to change(ProjectObservation, :count).by(1)
     end
 
+    it "should succeed if there is an existing project observation" do
+      po = ProjectObservation.make!( observation: observation, project: project )
+      post :create, format: :json, project_observation: {
+        observation_id: observation.id,
+        project_id: project.id
+      }
+      expect( response ).to be_success
+      json = JSON.parse( response.body )
+      expect( json["id"] ).to eq po.id
+    end
+
     it "should yield JSON for invalid record" do
       expect {
         post :create, :format => :json, :project_observation => {
@@ -95,15 +106,6 @@ shared_examples_for "a ProjectObservationsController" do
       post :create, format: :json, project_observation: {observation_id: o.id, project_id: project.id}
       expect( project.observations ).to include o
     end
-
-    # spec failing as of 2015-06-18 and a few weeks earlier
-    it "should not allow addition if the current user is not a curator"
-    # it "should not allow addition if the current user is not a curator" do
-    #   o = Observation.make!
-    #   expect( project ).not_to be_curated_by user
-    #   post :create, format: :json, project_observation: {observation_id: o.id, project_id: project.id}
-    #   expect( project.observations ).not_to include o
-    # end
 
     describe "with user preferences" do
       let(:other_observation) { Observation.make! }

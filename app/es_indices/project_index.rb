@@ -26,7 +26,8 @@ class Project < ActiveRecord::Base
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
       place_ids: place ? place.self_and_ancestor_ids : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
-      geojson: ElasticModel.point_geojson(latitude, longitude)
+      geojson: ElasticModel.point_geojson(latitude, longitude),
+      icon: icon ? icon.url(:span2) : nil
     }
   end
 

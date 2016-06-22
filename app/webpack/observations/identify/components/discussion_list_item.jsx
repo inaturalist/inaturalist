@@ -60,6 +60,7 @@ const DiscussionListItem = ( {
           taxon={t}
           noParens
           url={`/taxa/${t.id}`}
+          displayClassName="fadednowrap"
         />
         { actions }
       </div>

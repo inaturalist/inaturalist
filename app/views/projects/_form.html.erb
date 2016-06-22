@@ -43,7 +43,7 @@
 
   <div class="column span-12">
     <%= f.text_field :title, :required => true %>
-    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{ |type| [ t( type.gsub( " ", "_" ), default: type ).downcase, type ] },
       :include_blank => t(:normal),
       :description => t(:project_type_description) %>
   </div>
@@ -129,7 +129,7 @@
       <div class="column span-7">
         <%= f.text_field :latitude, :label => t(:latitude) %>
         <%= f.text_field :longitude, :label => t(:longitude)%>
-        <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
+        <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t(type, default: type).downcase, type]} %>
         <%= f.text_field :zoom_level %>
         <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
         <% if @place -%>

@@ -80,10 +80,10 @@ class Taxon < ActiveRecord::Base
                           :scope => [:ancestry, :is_active],
                           :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
                           :message => "already used as a child of this taxon's parent"
-  validates_uniqueness_of :source_identifier,
-                          :scope => [:source_id],
-                          :message => "already exists",
-                          :allow_blank => true
+  # validates_uniqueness_of :source_identifier,
+  #                         :scope => [:source_id],
+  #                         :message => "already exists",
+  #                         :allow_blank => true
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
