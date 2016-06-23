@@ -54,6 +54,12 @@ const util = class util {
            ( ( c[2][0] / c[2][1] ) / 3600 );
   }
 
+  static countPending( files ) {
+    return _.size( _.pickBy( files, f =>
+      f.uploadState === "pending" || f.uploadState === "uploading"
+    ) );
+  }
+
 };
 
 export default util;

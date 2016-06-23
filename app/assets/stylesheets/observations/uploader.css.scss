@@ -25,7 +25,7 @@ input.failed, textarea.failed {
   border-radius: 0px;
   position: fixed;
   width: 100%;
-  margin-top: -120px;
+  margin-top: -100px;
   z-index: 1001;
 }
 
@@ -136,7 +136,7 @@ input.failed, textarea.failed {
 
 .uploader {
   min-width: 800px;
-  margin-top: 120px;
+  margin-top: 100px;
   &.hover {
     opacity: 0.7;
     cursor: copy;
@@ -151,6 +151,9 @@ input.failed, textarea.failed {
     .left-col-padding, .nav_add_obs > div {
       opacity: 0;
     }
+  }
+  & > .container-fluid {
+    margin-top: 20px;
   }
 }
 

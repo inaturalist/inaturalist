@@ -6,15 +6,13 @@ class TopMenu extends Component {
 
   render( ) {
     const { createBlankObsCard, confirmRemoveSelected, selectAll, combineSelected,
-      trySubmitObservations, fileChooser, countTotal, countSelected, selectNone,
-      countPending } = this.props;
+      trySubmitObservations, fileChooser, countTotal, countSelected, selectNone } = this.props;
     let saveButton;
     if ( countTotal > 0 ) {
       saveButton = (
         <button
           type="button"
           onClick={ trySubmitObservations }
-          disabled={ countPending > 0 || countTotal === 0 }
           className="btn btn-success navbar-btn"
         >
           { I18n.t( "submit_observations", { count: countTotal } ) }

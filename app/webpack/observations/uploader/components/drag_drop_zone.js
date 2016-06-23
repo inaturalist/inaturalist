@@ -300,9 +300,9 @@ class DragDropZone extends Component {
           </Grid>
         </Dropzone>
         <StatusModal
+          { ...this.props }
           className="status"
           show={ this.props.saveStatus === "saving" && !this.props.confirmModal.show }
-          saveCounts={ this.props.saveCounts }
           total={ cardCount }
         />
         <ConfirmModal
@@ -344,7 +344,6 @@ DragDropZone.propTypes = {
   photoViewer: PropTypes.object,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
-  saveCounts: PropTypes.object,
   saveStatus: PropTypes.string,
   selectedObsCards: PropTypes.object,
   selectObsCards: PropTypes.func,

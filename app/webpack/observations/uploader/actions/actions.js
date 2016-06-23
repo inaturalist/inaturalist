@@ -327,6 +327,8 @@ const actions = class actions {
   static saveObservations( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
+      if ( s.dragDropZone.saveStatus !== "saving" ) { return; }
+      if ( util.countPending( s.dragDropZone.files ) > 0 ) { return; }
       const stateCounts = { pending: 0, saving: 0, saved: 0, failed: 0 };
       let nextToSave;
       _.each( s.dragDropZone.obsCards, c => {
@@ -414,6 +416,8 @@ const actions = class actions {
         dispatch( actions.uploadImage( nextToUpload ) );
       } else if ( nextToUpload ) {
         // waiting for existing uploads to finish
+      } else {
+        dispatch( actions.saveObservations( ) );
       }
     };
   }
