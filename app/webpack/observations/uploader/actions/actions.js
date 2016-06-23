@@ -1,6 +1,7 @@
 import _ from "lodash";
 import * as types from "../constants/constants";
 import React from "react";
+import inaturalistjs from "inaturalistjs";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
@@ -26,6 +27,18 @@ const actions = class actions {
       // select the first card in any new batch
       dispatch( actions.selectObsCards( { [firstKey]: true } ) );
     };
+  }
+
+  static appendFiles( files ) {
+    return { type: types.APPEND_FILES, files };
+  }
+
+  static updateFile( file, attrs ) {
+    return { type: types.UPDATE_FILE, file, attrs };
+  }
+
+  static removeFile( file ) {
+    return { type: types.REMOVE_FILE, file };
   }
 
   static selectObsCards( ids ) {
@@ -66,30 +79,36 @@ const actions = class actions {
     };
   }
 
+  static readFileExif( file ) {
+    return function ( dispatch ) {
+      file.readExif( ).then( metadata => {
+        dispatch( actions.updateFile( file, { metadata } ) );
+      } );
+    };
+  }
+
   static onFileDrop( droppedFiles, e ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
       // skip drops onto cards
       if ( $( "ul.obs li" ).has( e.nativeEvent.target ).length > 0 ) { return; }
       const obsCards = { };
+      const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
       droppedFiles.forEach( f => {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           const obsCard = new ObsCard( { id } );
-          obsCard.files[id] = DroppedFile.fromFile( f, id );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
           obsCards[obsCard.id] = obsCard;
-          // asynchronously read the photo metadata and update the card after
-          obsCard.files[id].readExif( obsCard ).then( metadata => {
-            dispatch( actions.updateObsCard( obsCard,
-              Object.assign( { }, metadata, { modified: false } ) ) );
-          } );
+          dispatch( actions.readFileExif( files[id] ) );
           i += 1;
         }
       } );
       if ( Object.keys( obsCards ).length > 0 ) {
         dispatch( actions.appendObsCards( obsCards ) );
+        dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadImages( ) );
       }
     };
@@ -98,26 +117,19 @@ const actions = class actions {
   static onFileDropOnCard( droppedFiles, e, obsCard ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
-      const files = Object.assign( { }, obsCard.files );
+      const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
       droppedFiles.forEach( f => {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
-          files[id] = DroppedFile.fromFile( f, id );
-          // asynchronously read the photo metadata and update the card after
-          files[id].readExif( obsCard ).then( metadata => {
-            dispatch( actions.updateObsCard( obsCard,
-              Object.assign( { }, metadata, { modified: false } ) ) );
-          } );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
+          dispatch( actions.readFileExif( files[id] ) );
           i += 1;
         }
       } );
-      if ( Object.keys( files ).length !== Object.keys( obsCard.files ).length ) {
-        dispatch( actions.updateObsCard( obsCard, {
-          files,
-          dispatch
-        } ) );
+      if ( Object.keys( files ).length > 0 ) {
+        dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadImages( ) );
       }
     };
@@ -153,7 +165,7 @@ const actions = class actions {
   static updateObsCard( obsCard, attrs ) {
     return function ( dispatch ) {
       dispatch( { type: types.UPDATE_OBS_CARD, obsCard, attrs } );
-      if ( attrs.save_state ) {
+      if ( attrs.saveState ) {
         setTimeout( ( ) => {
           dispatch( actions.saveObservations( ) );
         }, 100 );
@@ -166,7 +178,6 @@ const actions = class actions {
       const ids = _.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
-      const mergedFiles = Object.assign( { }, obsCards[targetID].files );
 
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -174,13 +185,12 @@ const actions = class actions {
         if ( c.id !== targetID ) {
           _.each( c.files, f => {
             const id = ( startTime + i );
-            mergedFiles[id] = new DroppedFile( Object.assign( { }, f, { id } ) );
+            dispatch( actions.updateFile( f, { cardID: targetID, sort: id } ) );
             i += 1;
           } );
           dispatch( { type: types.REMOVE_OBS_CARD, obsCard: c } );
         }
       } );
-      dispatch( actions.updateObsCard( obsCards[targetID], { files: mergedFiles } ) );
       dispatch( actions.selectObsCards( { [targetID]: true } ) );
     };
   }
@@ -195,42 +205,28 @@ const actions = class actions {
     };
   }
 
-  static confirmRemoveFile( file, obsCard ) {
+  static confirmRemoveFile( file ) {
     return function ( dispatch ) {
       dispatch( actions.setState( { confirmModal: {
         show: true,
         confirmClass: "danger",
         confirmText: I18n.t( "remove" ),
         message: I18n.t( "are_you_sure_remove_photo" ),
-        onConfirm: () => dispatch( actions.removeFile( file, obsCard ) )
+        onConfirm: () => dispatch( actions.removeFile( file ) )
       } } ) );
-    };
-  }
-
-  static removeFile( file, obsCard ) {
-    return function ( dispatch ) {
-      const files = Object.assign( { }, obsCard.files );
-      delete files[file.id];
-      dispatch( actions.updateObsCard( obsCard, { files } ) );
     };
   }
 
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
-      const fromFiles = Object.assign( { }, photo.obsCard.files );
-      const toFiles = Object.assign( { }, toObsCard.files );
-
       const time = new Date( ).getTime( );
-      toFiles[time] = new DroppedFile( Object.assign( { }, photo.file, { id: time } ) );
-      delete fromFiles[photo.file.id];
+      dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 
-      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
-      dispatch( actions.updateObsCard( toObsCard, { files: toFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      fromCard.files = fromFiles;
+      delete fromCard.files[photo.file.id];
       // the card from where the photo was move can be removed if it has no data
       // or if its data is untouched from when it was imported
-      if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
+      if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };
@@ -238,30 +234,18 @@ const actions = class actions {
 
   static newCardFromPhoto( photo ) {
     return function ( dispatch ) {
-      const fromFiles = Object.assign( { }, photo.obsCard.files );
       const time = new Date( ).getTime( );
-      const obsCard = new ObsCard( { id: time } );
-      obsCard.files[time] = new DroppedFile( Object.assign( { }, photo.file, { id: time } ) );
-      Object.assign( obsCard, obsCard.additionalPhotoMetadata( ) );
-      delete fromFiles[photo.file.id];
-      dispatch( actions.appendObsCards( { [obsCard.id]: obsCard } ) );
-      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
+      const obsCards = { [time]: new ObsCard( { id: time } ) };
+      dispatch( actions.appendObsCards( obsCards ) );
+      dispatch( actions.updateFile( photo.file, { cardID: time, sort: time } ) );
+
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      fromCard.files = fromFiles;
+      delete fromCard.files[photo.file.id];
       // the card from where the photo was move can be removed if it has no data
       // or if its data is untouched from when it was imported
-      if ( fromCard.blank( ) || ( _.isEmpty( fromFiles ) && !fromCard.modified ) ) {
+      if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
-    };
-  }
-
-  static updateObsCardFile( obsCard, file, attrs ) {
-    return function ( dispatch ) {
-      dispatch( { type: types.UPDATE_OBS_CARD_FILE, obsCard, file, attrs } );
-      setTimeout( ( ) => {
-        dispatch( actions.uploadImages( ) );
-      }, 100 );
     };
   }
 
@@ -287,7 +271,7 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.uploadedFiles( ).length === 0 && !c.taxon_id && !c.species_guess ) {
+        if ( !failed && c.files.length === 0 && !c.taxon_id && !c.species_guess ) {
           failed = true;
         }
       } );
@@ -343,12 +327,14 @@ const actions = class actions {
   static saveObservations( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
+      if ( s.dragDropZone.saveStatus !== "saving" ) { return; }
+      if ( util.countPending( s.dragDropZone.files ) > 0 ) { return; }
       const stateCounts = { pending: 0, saving: 0, saved: 0, failed: 0 };
       let nextToSave;
       _.each( s.dragDropZone.obsCards, c => {
-        stateCounts[c.save_state] = stateCounts[c.save_state] || 0;
-        stateCounts[c.save_state] += 1;
-        if ( c.save_state === "pending" && !nextToSave ) {
+        stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
+        stateCounts[c.saveState] += 1;
+        if ( c.saveState === "pending" && !nextToSave ) {
           nextToSave = c;
         }
       } );
@@ -371,8 +357,8 @@ const actions = class actions {
         const selectedProjetIDs = _.map( c.projects, "id" );
         let addedToProjectIDs = [];
         // fetch the set of IDs that obs were actually added to
-        if ( c.server_response && c.server_response.project_observations ) {
-          addedToProjectIDs = _.map( c.server_response.project_observations, "project_id" );
+        if ( c.serverResponse && c.serverResponse.project_observations ) {
+          addedToProjectIDs = _.map( c.serverResponse.project_observations, "project_id" );
         }
         // compare those IDs to the ones the user selected
         const failedProjectIDs = _.difference( selectedProjetIDs, addedToProjectIDs );
@@ -419,22 +405,43 @@ const actions = class actions {
       const s = getState( );
       const stateCounts = { pending: 0, uploading: 0, uploaded: 0, failed: 0 };
       let nextToUpload;
-      _.each( s.dragDropZone.obsCards, ( c ) => {
-        _.each( c.files, ( f ) => {
-          stateCounts[f.upload_state] = stateCounts[f.upload_state] || 0;
-          stateCounts[f.upload_state] += 1;
-          if ( f.upload_state === "pending" && !nextToUpload ) {
-            nextToUpload = { card: c, file: f };
-          }
-        } );
+      _.each( s.dragDropZone.files, ( f ) => {
+        stateCounts[f.uploadState] = stateCounts[f.uploadState] || 0;
+        stateCounts[f.uploadState] += 1;
+        if ( f.uploadState === "pending" && !nextToUpload ) {
+          nextToUpload = f;
+        }
       } );
       if ( nextToUpload && stateCounts.uploading < s.dragDropZone.maximumNumberOfUploads ) {
-        nextToUpload.card.upload( nextToUpload.file, dispatch );
+        dispatch( actions.uploadImage( nextToUpload ) );
       } else if ( nextToUpload ) {
         // waiting for existing uploads to finish
+      } else {
+        dispatch( actions.saveObservations( ) );
       }
     };
   }
+
+  static uploadImage( file ) {
+    return function ( dispatch ) {
+      dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
+      inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
+        const serverMetadata = file.additionalPhotoMetadata( r );
+        dispatch( actions.updateFile( file, {
+          uploadState: "uploaded", photo: r, serverMetadata } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadImages( ) );
+        }, 100 );
+      } ).catch( e => {
+        console.log( "Upload failed:", e );
+        dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadImages( ) );
+        }, 100 );
+      } );
+    };
+  }
+
 };
 
 export default actions;

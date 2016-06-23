@@ -26,7 +26,7 @@ class FileGallery extends Component {
           onSlideEnd={ ( ) => this.props.updateObsCard( this.props.obsCard,
             { galleryIndex: this.refs.carousel.state.activeIndex + 1 } ) }
         >
-          { _.map( this.props.obsCard.files, f => (
+          { _.map( _.sortBy( this.props.obsCard.files, "sort" ), f => (
             <Carousel.Item key={ `file${f.id}${count}` }>
               <FileGalleryItem
                 obsCard={ this.props.obsCard }

@@ -6,15 +6,13 @@ class TopMenu extends Component {
 
   render( ) {
     const { createBlankObsCard, confirmRemoveSelected, selectAll, combineSelected,
-      trySubmitObservations, fileChooser, countTotal, countSelected, selectNone,
-      countSelectedPending, countPending } = this.props;
+      trySubmitObservations, fileChooser, countTotal, countSelected, selectNone } = this.props;
     let saveButton;
     if ( countTotal > 0 ) {
       saveButton = (
         <button
           type="button"
           onClick={ trySubmitObservations }
-          disabled={ countPending > 0 || countTotal === 0 }
           className="btn btn-success navbar-btn"
         >
           { I18n.t( "submit_observations", { count: countTotal } ) }
@@ -30,7 +28,7 @@ class TopMenu extends Component {
     let className = "nav_add_obs";
     if ( this.props.scrolledPastToolbar ) { className += " fixed"; }
     const removeDisabled = countSelected === 0;
-    const combineDisabled = countSelectedPending > 0 || countSelected < 2;
+    const combineDisabled = countSelected < 2;
     const selectAllDisabled = countTotal === 0;
     return (
       <Navbar className={ className } fluid>
@@ -110,7 +108,6 @@ TopMenu.propTypes = {
   confirmRemoveSelected: PropTypes.func,
   countPending: PropTypes.number,
   countSelected: PropTypes.number,
-  countSelectedPending: PropTypes.number,
   countTotal: PropTypes.number,
   createBlankObsCard: PropTypes.func,
   fileChooser: PropTypes.func,

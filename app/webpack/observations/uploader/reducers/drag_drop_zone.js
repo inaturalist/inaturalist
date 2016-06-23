@@ -5,8 +5,9 @@ import ObsCard from "../models/obs_card";
 
 const defaultState = {
   obsCards: { },
+  files: { },
   numberOfUploads: 0,
-  maximumNumberOfUploads: 3,
+  maximumNumberOfUploads: 4,
   saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 },
   locationChooser: { show: false },
   removeModal: { show: false },
@@ -24,6 +25,30 @@ const dragDropZone = ( state = defaultState, action ) => {
       } );
     }
 
+    case types.APPEND_FILES: {
+      let updatedState = update( state, {
+        files: { $merge: action.files }
+      } );
+      const cardIDs = _.zipObject( _.map( action.files, "cardID" ), "true" );
+      const time = new Date( ).getTime( );
+      // heavy handed way to (re)set files associated with cards
+      _.each( updatedState.obsCards, ( obsCard, id ) => {
+        const attrs = { };
+        attrs.files = _.pickBy( updatedState.files, f =>
+          f.cardID === obsCard.id
+        );
+        // the card associated with a new file should be 'updated'
+        if ( cardIDs[obsCard.id] ) {
+          attrs.updatedAt = time;
+          attrs.galleryIndex = 1;
+        }
+        updatedState = update( updatedState, { obsCards: {
+          [id]: { $merge: attrs }
+        } } );
+      } );
+      return updatedState;
+    }
+
     case types.UPDATE_OBS_CARD: {
       if ( state.obsCards[action.obsCard.id] === undefined ) {
         return state;
@@ -32,14 +57,13 @@ const dragDropZone = ( state = defaultState, action ) => {
       // reset the gallery to the first photo when a new photo is added
       if ( action.attrs.files ) { attrs.galleryIndex = 1; }
       const keys = _.keys( attrs );
-      if ( _.difference( keys, ["save_state", "galleryIndex", "files"] ).length > 0 &&
+      if ( _.difference( keys, ["saveState", "galleryIndex", "files"] ).length > 0 &&
            attrs.modified !== false ) {
         attrs.modified = true;
       }
+      // if false, keep it false, or don't override the value if modified is true
+      if ( attrs.modified === false ) { delete attrs.modified; }
       attrs.updatedAt = new Date( ).getTime( );
-      if ( attrs.files ) {
-        Object.assign( attrs, action.obsCard.additionalPhotoMetadata( attrs.files ) );
-      }
       let newState = update( state, {
         obsCards: { [action.obsCard.id]: { $merge: attrs } }
       } );
@@ -51,26 +75,42 @@ const dragDropZone = ( state = defaultState, action ) => {
       return newState;
     }
 
-    case types.UPDATE_OBS_CARD_FILE: {
-      if ( state.obsCards[action.obsCard.id] === undefined ||
-           state.obsCards[action.obsCard.id].files[action.file.id] === undefined ) {
+    case types.UPDATE_FILE: {
+      if ( state.files[action.file.id] === undefined ) {
         return state;
       }
-      let newState = update( state, {
-        obsCards: { [action.obsCard.id]: {
-          files: { [action.file.id]: { $merge: action.attrs } }
-        } }
+      const time = new Date( ).getTime( );
+      let updatedState = update( state, {
+        files: { [action.file.id]: { $merge: action.attrs } }
       } );
-      const obsCardAttrs = newState.obsCards[action.obsCard.id].additionalPhotoMetadata( );
-      newState = update( newState, {
-        obsCards: { [action.obsCard.id]: { $merge: obsCardAttrs } }
-      } );
-      if ( state.selectedObsCards[action.obsCard.id] ) {
-        newState = update( newState, {
-          selectedObsCards: { [action.obsCard.id]: { $set: newState.obsCards[action.obsCard.id] } }
+      const cardID = updatedState.files[action.file.id].cardID;
+      const card = updatedState.obsCards[cardID];
+      // the card the file is currently associated with
+      if ( card ) {
+        const cardUpdates = Object.assign( { updatedAt: time },
+          card.newMetadataFromFile( updatedState.files[action.file.id] ) );
+        updatedState = update( updatedState, {
+          obsCards: { [cardID]: { $merge: cardUpdates } }
+        } );
+        if ( state.selectedObsCards[card.id] ) {
+          updatedState = update( updatedState, {
+            selectedObsCards: { [card.id]: { $set: updatedState.obsCards[card.id] } }
+          } );
+        }
+      }
+      // the file was previously associated with another card that still exists,
+      // so update that cards updatedAt time
+      if ( action.file.cardID !== cardID && updatedState.obsCards[action.file.cardID] ) {
+        updatedState = update( updatedState, {
+          obsCards: { [action.file.cardID]: { $merge: { updatedAt: time } } }
         } );
       }
-      return newState;
+      _.each( updatedState.obsCards, ( obsCard, id ) => {
+        updatedState.obsCards[id].files = _.pickBy( updatedState.files, f =>
+          f.cardID === obsCard.id
+        );
+      } );
+      return updatedState;
     }
 
     case types.UPDATE_SELECTED_OBS_CARDS: {
@@ -179,6 +219,27 @@ const dragDropZone = ( state = defaultState, action ) => {
       delete cards[action.obsCard.id];
       delete ids[action.obsCard.id];
       return Object.assign( { }, state, { obsCards: cards, selectedIDs: ids } );
+    }
+
+    case types.REMOVE_FILE: {
+      let updatedState = Object.assign( { }, state );
+      const card = updatedState.obsCards[updatedState.files[action.file.id].cardID];
+      const time = new Date( ).getTime( );
+      // bump updatedAt for this file's card
+      if ( card ) {
+        updatedState = update( updatedState, { obsCards: {
+          [card.id]: { $merge: { updatedAt: time, galleryIndex: 1 } }
+        } } );
+      }
+      delete updatedState.files[action.file.id];
+      // reset all card file associations
+      _.each( updatedState.obsCards, ( obsCard, id ) => {
+        updatedState.obsCards[id].files = _.pickBy( updatedState.files, f =>
+          f.cardID === obsCard.id
+        );
+      } );
+      return Object.assign( { }, state, {
+        obsCards: updatedState.obsCards, files: updatedState.files } );
     }
 
     case types.REMOVE_SELECTED: {
