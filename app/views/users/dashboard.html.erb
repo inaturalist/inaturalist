@@ -31,6 +31,7 @@
             var from = $(this).data('from');
             var url = "/users/dashboard_updates?from="+from;
             var target = "#updates_target";
+            $(target).html('<div class="loading status"><%=t :loading %></div>');
             get_content(url, target);         
           });
           
@@ -40,6 +41,7 @@
             var from = $(this).data('from');
             var url = "/users/dashboard_updates?from="+from+"&filter=you";
             var target = "#updates_by_you_target";
+            $(target).html('<div class="loading status"><%=t :loading %></div>');
             get_content(url, target);          
           });
           
