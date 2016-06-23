@@ -1,4 +1,6 @@
 class DeviseMailer < Devise::Mailer
+  after_action :set_sendgrid_headers
+  
   def devise_mail(record, action, opts={})
     user = if record.is_a?(User)
       record
@@ -36,5 +38,14 @@ class DeviseMailer < Devise::Mailer
     else
       super(record, action, opts)
     end
+  end
+
+  private
+  def set_sendgrid_headers
+    mailer = self.class.name
+    headers "X-SMTPAPI" => {
+      category:    [ mailer, "#{mailer}##{action_name}" ],
+      unique_args: { environment: Rails.env }
+    }.to_json
   end
 end
