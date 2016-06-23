@@ -271,7 +271,7 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.uploadedFiles( ).length === 0 && !c.taxon_id && !c.species_guess ) {
+        if ( !failed && c.files.length === 0 && !c.taxon_id && !c.species_guess ) {
           failed = true;
         }
       } );

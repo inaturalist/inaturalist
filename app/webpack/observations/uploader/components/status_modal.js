@@ -13,7 +13,7 @@ class StatusModal extends Component {
     const photoIndex = totalPhotos - util.countPending( this.props.files );
     if ( totalPhotos !== photoIndex ) {
       modalMessage = I18n.t( "uploading_num_of_count_photos",
-        { num: photoIndex, count: totalPhotos } );
+        { num: photoIndex || 1, count: totalPhotos } );
     } else if ( ( saveCounts.pending + saveCounts.saving ) === 0 && savingCount !== 0 ) {
       modalMessage = I18n.t( "going_to_your_observations" );
     } else {
