@@ -16,7 +16,7 @@ const cardSource = {
          $( ".bootstrap-datetimepicker-widget:visible" ).length > 0 ) {
       return false;
     }
-    return props.obsCard.nonUploadedFiles( ).length === 0;
+    return true;
   },
   beginDrag( props, monitor, component ) {
     component.closeDatepicker( );
@@ -97,8 +97,8 @@ class ObsCardComponent extends Component {
       this.props.cardIsOver !== nextProps.cardIsOver ||
       this.props.obsCard.galleryIndex !== nextProps.obsCard.galleryIndex ||
       this.props.selected_species_guess !== nextProps.selected_species_guess ||
-      Object.keys( this.props.obsCard.files ).length !==
-        Object.keys( nextProps.obsCard.files ).length ||
+      _.size( this.props.obsCard.files ) !==
+        _.size( nextProps.obsCard.files ) ||
       !_.isMatch( this.props.obsCard, nextProps.obsCard ) );
     return b;
   }
@@ -162,7 +162,7 @@ class ObsCardComponent extends Component {
     const fileCount = _.size( obsCard.files );
     if ( fileCount ) {
       if ( _.find( obsCard.files, f =>
-             f.upload_state === "uploading" || f.upload_state === "pending" ) ) {
+             f.uploadState === "uploading" || f.uploadState === "pending" ) ) {
         photoCountOrStatus = I18n.t( "loading_metadata" );
       } else if ( fileCount > 1 ) {
         photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
@@ -317,27 +317,27 @@ class ObsCardComponent extends Component {
 }
 
 ObsCardComponent.propTypes = {
-  obsCard: PropTypes.object,
-  confirmRemoveObsCard: PropTypes.func,
   cardDragSource: PropTypes.func,
   cardDropTarget: PropTypes.func,
-  photoDropTarget: PropTypes.func,
-  cardIsOver: PropTypes.bool,
-  photoIsOver: PropTypes.bool,
   cardIsDragging: PropTypes.bool,
-  updateObsCard: PropTypes.func,
-  onCardDrop: PropTypes.func,
-  mergeObsCards: PropTypes.func,
-  setState: PropTypes.func,
-  selectCard: PropTypes.func,
-  selectObsCards: PropTypes.func,
-  selectedObsCards: PropTypes.object,
-  movePhoto: PropTypes.func,
-  draggingProps: PropTypes.object,
-  commandKeyPressed: PropTypes.bool,
-  shiftKeyPressed: PropTypes.bool,
+  cardIsOver: PropTypes.bool,
   confirmRemoveFile: PropTypes.func,
-  selected_species_guess: PropTypes.string
+  confirmRemoveObsCard: PropTypes.func,
+  draggingProps: PropTypes.object,
+  files: PropTypes.object,
+  mergeObsCards: PropTypes.func,
+  movePhoto: PropTypes.func,
+  obsCard: PropTypes.object,
+  onCardDrop: PropTypes.func,
+  photoDropTarget: PropTypes.func,
+  photoIsOver: PropTypes.bool,
+  selectCard: PropTypes.func,
+  selected_species_guess: PropTypes.string,
+  selectedObsCards: PropTypes.object,
+  selectObsCards: PropTypes.func,
+  setState: PropTypes.func,
+  shiftKeyPressed: PropTypes.bool,
+  updateObsCard: PropTypes.func
 };
 
 export default pipe(

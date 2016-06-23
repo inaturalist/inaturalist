@@ -30,7 +30,7 @@ class FileGalleryItem extends Component {
           I18n.t( "uploader.tooltips.remove_photo" ) }</Tooltip> ) }
       >
         <button className="btn-close-photo" onClick={ () =>
-          this.props.confirmRemoveFile( this.props.file, this.props.obsCard ) }
+          this.props.confirmRemoveFile( this.props.file ) }
         >
           <Glyphicon glyph="remove" />
         </button>

@@ -7,7 +7,7 @@ const ObsCard = class ObsCard {
   constructor( attrs ) {
     const defaultAttrs = {
       id: new Date( ).getTime( ),
-      save_state: "pending",
+      saveState: "pending",
       geoprivacy: "open",
       files: { },
       date: null,
@@ -43,11 +43,11 @@ const ObsCard = class ObsCard {
 
   nonUploadedFiles( ) {
     return _.filter( this.files, f =>
-      f.upload_state === "uploading" || f.upload_state === "pending" );
+      f.uploadState === "uploading" || f.uploadState === "pending" );
   }
 
   uploadedFiles( ) {
-    return _.filter( this.files, f => f.upload_state === "uploaded" );
+    return _.filter( this.files, f => f.uploadState === "uploaded" );
   }
 
   uploadedFileIDs( ) {
@@ -67,6 +67,18 @@ const ObsCard = class ObsCard {
     return undefined;
   }
 
+  // usually called when a card acquires a new photo, this will return
+  // all fields with metadata attached to the photo, where the corresponding
+  // field on the card is currently blank
+  newMetadataFromFile( file ) {
+    const newMetadata = { };
+    const fileMetadata = Object.assign( { }, file.metadata, file.serverMetadata );
+    _.each( fileMetadata, ( v, k ) => {
+      if ( !this[k] ) { newMetadata[k] = v; }
+    } );
+    return newMetadata;
+  }
+
   additionalPhotoMetadata( files ) {
     const updates = { };
     _.each( files || this.files, f => {
@@ -75,28 +87,13 @@ const ObsCard = class ObsCard {
     return updates;
   }
 
-  upload( file, dispatch ) {
-    if ( !this.files[file.id] ) { return; }
-    dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploading" } ) );
-    inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
-      const updates = this.additionalPhotoMetadata( );
-      if ( !_.isEmpty( updates ) ) {
-        dispatch( actions.updateObsCard( this, Object.assign( updates, { modified: false } ) ) );
-      }
-      dispatch( actions.updateObsCardFile( this, file, { upload_state: "uploaded", photo: r } ) );
-    } ).catch( e => {
-      console.log( "Upload failed:", e );
-      dispatch( actions.updateObsCardFile( this, file, { upload_state: "failed" } ) );
-    } );
-  }
-
   save( dispatch ) {
     if ( this.blank( ) ) {
-      dispatch( actions.updateObsCard( this, { save_state: "saved" } ) );
+      dispatch( actions.updateObsCard( this, { saveState: "saved" } ) );
       return;
     }
-    if ( this.save_state !== "pending" ) { return; }
-    dispatch( actions.updateObsCard( this, { save_state: "saving" } ) );
+    if ( this.saveState !== "pending" ) { return; }
+    dispatch( actions.updateObsCard( this, { saveState: "saving" } ) );
     const params = {
       observation: {
         description: this.description,
@@ -119,12 +116,12 @@ const ObsCard = class ObsCard {
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
     inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
       dispatch( actions.updateObsCard( this, {
-        save_state: "saved",
-        server_response: r && r[0]
+        saveState: "saved",
+        serverResponse: r && r[0]
       } ) );
     } ).catch( e => {
       console.log( "Save failed:", e );
-      dispatch( actions.updateObsCard( this, { save_state: "failed" } ) );
+      dispatch( actions.updateObsCard( this, { saveState: "failed" } ) );
     } );
   }
 };

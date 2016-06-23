@@ -61,8 +61,8 @@ const mapDispatchToProps = ( dispatch ) => ( {
   combineSelected: ( ) => {
     dispatch( actions.combineSelected( ) );
   },
-  confirmRemoveFile: ( file, obsCard ) => {
-    dispatch( actions.confirmRemoveFile( file, obsCard ) );
+  confirmRemoveFile: ( file ) => {
+    dispatch( actions.confirmRemoveFile( file ) );
   },
   appendToSelectedObsCards: ( updates ) => {
     dispatch( actions.appendToSelectedObsCards( updates ) );
