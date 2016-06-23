@@ -27,20 +27,25 @@
           
           $("#more_pagination").click(function(e){
             e.preventDefault();
+            $('body').scrollTop(0);
             var from = $(this).data('from');
             var url = "/users/dashboard_updates?from="+from;
             var target = "#updates_target";
-            get_content(url, target);            
+            get_content(url, target);         
           });
           
           $("#more_pagination_you").click(function(e){
             e.preventDefault();
+            $('body').scrollTop(0);
             var from = $(this).data('from');
             var url = "/users/dashboard_updates?from="+from+"&filter=you";
             var target = "#updates_by_you_target";
             get_content(url, target);          
           });
           
+          if(target == "#comments_target"){
+            $('#comments_target').addClass('timeline');
+          }
         }
       });
     }
@@ -145,6 +150,14 @@
          $(this).addClass("active");
       });
       
+      $('html').on('mouseup', function(e) {
+          if(!$(e.target).closest('.popover').length) {
+              $('.popover').each(function(){
+                  $(this.previousSibling).popover('hide');
+              });
+          }
+      });
+      
     })
   </script>
 <%- end -%>
@@ -242,7 +255,7 @@
             </div>                
           <% end -%>
           <div id="updates_target">
-            <div class="loading"><%=t :loading %></div>
+            <div class="loading status"><%=t :loading %></div>
           </div>
         </div>
         <div class="tab-pane" id="updates_by_you">    
@@ -257,7 +270,7 @@
             </div>                
           <% end -%>
           <div id="updates_by_you_target">
-            <div class="loading"><%=t :loading %></div>
+            <div class="loading status"><%=t :loading %></div>
           </div>
         </div>
         <div class="tab-pane" id="comments">
@@ -273,8 +286,8 @@
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="comments"><%= t(:got_it!) %></a></div>
             </div>                
           <% end -%>
-          <ul class="timeline" id="comments_target">
-            <div class="loading"><%=t :loading %></div>
+          <ul id="comments_target">
+            <div class="loading status"><%=t :loading %></div>
           </ul>          
         </div>
       </div>

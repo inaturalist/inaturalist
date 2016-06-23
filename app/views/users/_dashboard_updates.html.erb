@@ -46,14 +46,14 @@
           <div class="timeline-heading">
             <h2 class="timeline-title">
               <%- if is_mention %>
-                <%= link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do %>
-                  <span class="glyphicon glyphicon-cog"></span>
-                <%- end %>
-              <%- else %>
-                <%= link_to edit_subscription_by_resource_path(resource_type, resource_id), class: "pull-right subscriptionsettings" do %>
-                  <span class="glyphicon glyphicon-cog"></span>
-                <%- end %>
-              <%- end %>
+                                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
+                                    "#", class: "subscriptionsettings", "data-gear-text" => I18n.t("edit_your_default_settings"),
+                                    "data-gear-url" => generic_edit_user_url %>
+                                <%- else %>
+                                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
+                                    edit_subscription_by_resource_path(resource_type, resource_id),
+                                    class: "subscriptionsettings" %>
+                                <%- end %>
               <span class="time" title="<%= updates.last.sort_by_date.iso8601 %>">
                 <i class="glyphicon glyphicon-time"></i>  <%= compact_date(updates.last.sort_by_date) %>
               </span>
@@ -63,12 +63,12 @@
           
           <% if notification == "activity" || is_mention -%>
             <div class="timeline-body">
+              <%- if updates[0].resource_type == 'Observation' %>
+                <%- observations = [updates[0].resource] -%>
+                <%= render partial: 'observations/observations_component_for_dashboard', locals: {for_idents: true, observations: observations} %>
+              <% end %>
               <%- target_id = rand(36**8).to_s(36) %>
               <div id="expand<%= "#{target_id}" %>" class="collapse out">
-                <%- if updates[0].resource_type == 'Observation' %>
-                  <%- observations = [updates[0].resource] -%>
-                  <%= render partial: 'observations/observations_component_for_dashboard', locals: {for_idents: true, observations: observations} %>
-                <% end %>
                 <ul class="timeline timeline_observation">
                   <% for u in updates[0..-2] %>
                     <%-

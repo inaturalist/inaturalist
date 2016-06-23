@@ -48,30 +48,31 @@
       </h2>
     </div>
     <div class="timeline-body">
+      <div>
+        <%- case parent.class.to_s -%>
+        <%- when "Observation" -%>
+          <div class="mini observations">
+            <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [parent]} %>
+          </div>
+        <%- when "Post" %>
+          <h3><%= link_to parent.title, journal_post_path(parent.user.login, parent) %></h3>
+        <%- when "ListedTaxon" %>
+          <%= iconic_taxon_image parent.taxon, :style => "vertical-align: middle" %>
+          <%= link_to parent.taxon do %>
+            <%= render :partial => "shared/taxon", :object => parent.taxon %>
+          <% end %>
+        <%- else %>
+          <div class="commenttype">
+            <%= link_to parent.class.to_s.underscore.humanize, parent %> 
+            <% if parent.user -%>
+              <%= t(:by).downcase %> <%= link_to parent.user.login, parent.user %>
+            <% end -%>
+          </div>
+        <%- end -%>
+      </div>
       <%- target_id = rand(36**8).to_s(36) %>
       <div id="expand<%= "#{target_id}" %>" class="collapse out">
-        <div>
-          <%- case parent.class.to_s -%>
-          <%- when "Observation" -%>
-            <div class="mini observations">
-              <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [parent]} %>
-            </div>
-          <%- when "Post" %>
-            <h3><%= link_to parent.title, journal_post_path(parent.user.login, parent) %></h3>
-          <%- when "ListedTaxon" %>
-            <%= iconic_taxon_image parent.taxon, :style => "vertical-align: middle" %>
-            <%= link_to parent.taxon do %>
-              <%= render :partial => "shared/taxon", :object => parent.taxon %>
-            <% end %>
-          <%- else %>
-            <div class="commenttype">
-              <%= link_to parent.class.to_s.underscore.humanize, parent %> 
-              <% if parent.user -%>
-                <%= t(:by).downcase %> <%= link_to parent.user.login, parent.user %>
-              <% end -%>
-            </div>
-          <%- end -%>
-        </div>
+        
         <%- if @comments_by_parent_id[[parent.class.to_s,comment.parent_id].join("_")].length > 1 %>
           <ul class="timeline timeline_observation">
             <%= render :partial => "shared/activity_item_for_dashboard", :collection => @comments_by_parent_id[[parent.class.to_s,comment.parent_id].join("_")][0..-2] %>
