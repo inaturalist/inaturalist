@@ -46,14 +46,14 @@
           <div class="timeline-heading">
             <h2 class="timeline-title">
               <%- if is_mention %>
-                                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
-                                    "#", class: "subscriptionsettings", "data-gear-text" => I18n.t("edit_your_default_settings"),
-                                    "data-gear-url" => generic_edit_user_url %>
-                                <%- else %>
-                                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
-                                    edit_subscription_by_resource_path(resource_type, resource_id),
-                                    class: "subscriptionsettings" %>
-                                <%- end %>
+                <%= link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do %>
+                  <span class="glyphicon glyphicon-cog"></span>
+                <%- end %>
+              <%- else %>
+                <%= link_to edit_subscription_by_resource_path(resource_type, resource_id), class: "pull-right subscriptionsettings" do %>
+                  <span class="glyphicon glyphicon-cog"></span>
+                <%- end %>
+              <%- end %>
               <span class="time" title="<%= updates.last.sort_by_date.iso8601 %>">
                 <i class="glyphicon glyphicon-time"></i>  <%= compact_date(updates.last.sort_by_date) %>
               </span>

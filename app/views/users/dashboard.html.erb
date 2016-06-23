@@ -45,7 +45,10 @@
           
           if(target == "#comments_target"){
             $('#comments_target').addClass('timeline');
+          }else{
+            $('.subscriptionsettings').subscriptionSettings()
           }
+
         }
       });
     }
@@ -75,7 +78,6 @@
         get_content(url, target);
       })
       
-      $('.subscriptionsettings').subscriptionSettings()
       $('abbr.timeago').timeago()
       if ((new Date()).getTime() - CACHED_AT.getTime() > 5000) {
         $('#flash').hide()
