@@ -44,7 +44,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def get_results_xml( options = {} )
     user_id = mo_user_id( options[:api_key] )
     page = options[:page] || 1
-    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
+    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}&date=201601" ) ).search( "result" )
   end
 
   def mo_user_id( for_api_key = nil )
@@ -84,7 +84,7 @@ class MushroomObserverImportFlowTask < FlowTask
       begin
         taxon = Taxon.single_taxon_for_name( name, iconic_taxa: [ Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ])
         taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
-        o.taxon = taxon if taxon
+        o.taxon = Taxon.find_by_id( taxon.id ) if taxon && taxon.persisted?
       rescue ActiveRecord::AssociationTypeMismatch
         log "Failed to import a new taxon for #{name}"
       end
