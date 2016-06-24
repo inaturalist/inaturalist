@@ -80,6 +80,10 @@ class ApplicationController < ActionController::Base
       current_user.try(:locale) || I18n.default_locale
     I18n.locale = current_user.try(:locale) if I18n.locale.blank?
     I18n.locale = I18n.default_locale if I18n.locale.blank?
+    unless I18N_SUPPORTED_LOCALES.include?( I18n.locale )
+      I18n.locale = I18n.default_locale
+    end
+    true
   end
 
   def sign_out_spammers
