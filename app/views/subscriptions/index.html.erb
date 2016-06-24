@@ -1,9 +1,9 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Manage Your Subscriptions" %>
+  <%= @title = t(:manage_your_subscriptions, default: 'Manage Your Subscriptions') %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{possessive(current_user)} dashboard".html_safe, dashboard_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{t(:back_to)} #{possessive(current_user)} #{t(:dashboard)}".html_safe, dashboard_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2><%= @title %></h2>
 </div>
@@ -11,19 +11,19 @@
 <div class="column span-4">
   <ul class="leftmenu">
     <% for klass in Subscription.subscribable_classes.sort %>
-      <li><%= link_to klass.underscore.humanize.pluralize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil %></li>  
+      <li><%= link_to t(klass.underscore.pluralize.downcase, default: klass.pluralize).humanize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil %></li>
     <% end %>
   </ul>
 </div>
 <div class="last column span-20">
   <% if @subscriptions.blank? -%>
-    <div class="noresults meta">No subscriptions to <%= @type.underscore.humanize.underscore.pluralize %></div>
+    <div class="noresults meta"><%= t :no_subscriptions_to, default: 'No subscriptions to' %> <%= @type.underscore.humanize.underscore.pluralize %></div>
   <%- else %>
     <table border="0" cellspacing="5" cellpadding="5" width="100%">
       <thead>
         <tr>
-          <th>Resource</th>
-          <th>Actions</th>
+          <th><%= t :resource, default: 'Resource' %></th>
+          <th><%= t :actions, default: 'Actions' %></th>
         </tr>
       </thead>
       <tbody>
@@ -36,11 +36,11 @@
             </td>
             <td class="nobr meta">
               <% if subscription.resource_type == "Place" -%>
-                <%= link_to "edit", edit_subscription_url(subscription) %>
+                <%= link_to t(:edit), edit_subscription_url(subscription) %>
                 |
               <% end -%>
-              <%= link_to "unsubscribe", subscription_url(subscription), :method => "delete", 
-                :data => {:confirm => "Are you sure you want to unsubscribe from this?"} %>
+              <%= link_to t(:unsubscribe), subscription_url(subscription), :method => "delete",
+                :data => {:confirm => t(:are_you_sure_you_want_to_unsubscribe_from_this, default: 'Are you sure you want to unsubscribe from this?')} %>
             </td>
           </tr>
         <% end %>
