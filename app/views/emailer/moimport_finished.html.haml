@@ -3,14 +3,29 @@
   = link_to observations_by_login_url( @user.login ), observations_by_login_url( @user.login )
 
 - unless @errors.blank?
+  %h2 Errors
   %p The following observations could not be imported:
   %ul
     - @errors.each do |url, errors|
-      = link_to url, url
-      %p= errors
+      %li
+        = link_to url, url
+        %p= errors
 - unless @exception.blank?
   %p There was also this one big error that caused the whole process to stop:
   = @exception
+
+- unless @warnings.blank?
+  %h2 Warnings
+  %ul
+    - @warnings.each do |url, warnings|
+      %li
+        = link_to url, url
+        %ul
+          - warnings.each do |wanring|
+            %li= warning
+          %li
+            = link_to "View on iNat", observations_url( "field:Mushroom+Observer+URL" => url )
+
 
 - unless @errors.blank? && @exception.blank?
   %p

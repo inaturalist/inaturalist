@@ -1809,6 +1809,7 @@ class ObservationsController < ApplicationController
     if @api_key = params[:api_key]
       mot = MushroomObserverImportFlowTask.new
       @mo_user_id = mot.mo_user_id( @api_key )
+      @mo_user_name = mot.mo_user_name( @api_key )
       @results = mot.get_results_xml( api_key: @api_key ).map{ |r| [r, mot.observation_from_result( r, skip_images: true )] }
     end
     respond_to do |format|

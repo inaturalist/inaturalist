@@ -11,14 +11,15 @@ class MushroomObserverImportFlowTask < FlowTask
       break if page > 5 # test
       results.each do |result|
         o = observation_from_result( result )
-        unless o.save
+        unless o && o.save
           errors[result[:url]] = o.errors.full_messages.to_sentence
+          clear_warnings_for_url( result[:url] )
         end
       end
       page += 1
     end
     log "Finished importing observations from Mushroom Observer for #{user}"
-    Emailer.moimport_finished( self, errors ).deliver_now
+    Emailer.moimport_finished( self, errors, @warnings ).deliver_now
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
     logger.error "#{self.class.name} #{id}: Error: #{exception_string}" if @debug
@@ -27,7 +28,7 @@ class MushroomObserverImportFlowTask < FlowTask
       error: "Error",
       exception: [ exception_string, e.backtrace ].join("\n")
     )
-    Emailer.moimport_finished( self, errors ).deliver_now
+    Emailer.moimport_finished( self, errors, @warnings ).deliver_now
     false
   end
 
@@ -44,13 +45,25 @@ class MushroomObserverImportFlowTask < FlowTask
   def get_results_xml( options = {} )
     user_id = mo_user_id( options[:api_key] )
     page = options[:page] || 1
-    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}&date=201601" ) ).search( "result" )
+    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}&date=2013-05-01" ) ).search( "result" )
   end
 
   def mo_user_id( for_api_key = nil )
-    for_api_key ||= api_key
-    xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
-    @mo_user_id ||= xml.at( "response/user" )[:id]
+    unless @mo_user_id
+      for_api_key ||= api_key
+      xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
+      @mo_user_id = xml.at( "response/user" )[:id]
+    end
+    @mo_user_id
+  end
+
+  def mo_user_name( for_api_key = nil )
+    unless @mo_user_name
+      user_id = mo_user_id( for_api_key )
+      xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/users?id=#{user_id}&detail=high" ) )
+      @mo_user_name = xml.at( "login_name" ).text
+    end
+    @mo_user_name
   end
 
   def api_key
@@ -58,8 +71,24 @@ class MushroomObserverImportFlowTask < FlowTask
     @api_key ||= inputs.first.extra[:api_key]
   end
 
+  def warn( url, msg )
+    log msg
+    @warnings ||= {}
+    @warnings[url] ||= []
+    @warnings[url] << msg
+  end
+
+  def clear_warnings_for_url( url )
+    @warnings ||= {}
+    @warnings.delete url
+  end
+
   def observation_from_result( result, options = {} )
     log "working on result #{result[:url]}"
+    if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
+      warn( result[:url], "Obs not from collection location")
+      return nil
+    end
     existing = Observation.by( user ).joins(:observation_field_values).
       where(
         "observation_field_values.observation_field_id = ? AND value = ?",
@@ -84,9 +113,14 @@ class MushroomObserverImportFlowTask < FlowTask
       begin
         taxon = Taxon.single_taxon_for_name( name, iconic_taxa: [ Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ])
         taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
-        o.taxon = Taxon.find_by_id( taxon.id ) if taxon && taxon.persisted?
+        if taxon && taxon.persisted?
+          o.taxon = Taxon.find_by_id( taxon.id )
+          if taxon.name != name
+            warn( result[:url], "Name mismatch, #{name} on MO, #{taxon.name} on iNat" )
+          end
+        end
       rescue ActiveRecord::AssociationTypeMismatch
-        log "Failed to import a new taxon for #{name}"
+        warn( result[:url], "Failed to import a new taxon for #{name}")
       end
       o.species_guess = name
     end
@@ -98,8 +132,8 @@ class MushroomObserverImportFlowTask < FlowTask
     end
     if !options[:skip_images] && ( primary_image = result.at( "primary_image" ) )
       [primary_image, result.search( "image" )].flatten.each do |image|
-        lp = LocalPhoto.new( user: user )
         image_url = "http://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
+        lp = LocalPhoto.new( user: user )
         begin
           log "getting image from #{image_url}"
           io = open( URI.parse( image_url ) )
@@ -107,7 +141,8 @@ class MushroomObserverImportFlowTask < FlowTask
             lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
           end
         rescue => e
-          log "[ERROR #{Time.now}] Failed to download_remote_icon for #{id}: #{e}"
+          warn( result[:url], "Failed to download #{image_url}")
+          next
         end
         if image_license = image.at( "license")
           lp.license = case image_license[:url]

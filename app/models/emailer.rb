@@ -164,11 +164,12 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def moimport_finished( mot, errors = {} )
+  def moimport_finished( mot, errors = {}, warnings = {} )
     @user = mot.user
     set_locale
     @subject = "#{subject_prefix} Mushroom Observer Import Finished"
     @errors = errors
+    @warnings = warnings
     @exception = mot.exception
     mail(set_site_specific_opts.merge(
       :to => "#{@user.name} <#{@user.email}>", :subject => @subject

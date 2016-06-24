@@ -9,7 +9,7 @@
         = link_to "http://mushroomobserver.org/account/api_keys", "http://mushroomobserver.org/account/api_keys"
   .row
     .col-xs-6
-      %form.form-inline{ method: "get" }
+      = form_for moimport_observations_path, html: { class: "form-inline" } do |f|
         .form-group
           %input.form-control{ type: "text", name: "api_key", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key }
         %input.btn.btn-default{ type: "submit", value: "Test" }
@@ -28,7 +28,8 @@
       .col-xs-12
         %h2
           Test Import for MO user
-          = @mo_user_id
+          = @mo_user_name
+          = "(#{@mo_user_id})"
         %table.table
           %thead
             %tr
@@ -65,4 +66,34 @@
                   %p
                     MO URL: 
                     = link_to result[:url], result[:url]
-                
+  .row
+    .col-xs-12
+      %h2 How This Works
+      %p
+        iNat will import all of your MO observations, doing its best to
+        translate MO's data model to our own. The testing tool above will
+        give you a sense for what youre imported data will look like on
+        iNat. It should not import the same record twice, so if you run this
+        multiple times, don't expect a record that's already been imported
+        to change. It will store the MO URL as an observation field so you
+        can always refer back to the original.
+      %h3 Some caveats
+      %ul
+        %li
+          %strong Names will not allways match up:
+          iNat will do its best to match MO names with iNat taxa, but it's not
+          always going to be perfect. If we can't find a matching taxon, we'll
+          just add a "placeholder" and you'll need to look for taxon-less
+          observations to correct them.
+        %li
+          %strong iNat will use the MO consensus name, not your name.
+          Getting your naming from the MO API seems to be impossible.
+        %li
+          %strong Observaitons not from collection location will be skipped:
+          iNat is for recording observations from where and when they were
+          observed in the wild.
+        %li
+          %strong You are the photo copyright holder:
+          iNat does not support uploading photos by other people. It will
+          assume and state publicly that you are the copyright holder for all
+          images.
