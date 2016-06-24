@@ -2701,6 +2701,7 @@ class ObservationsController < ApplicationController
         return (errors + po.errors.full_messages).uniq
       end
     end
+    nil
   end
   
   def update_user_account
