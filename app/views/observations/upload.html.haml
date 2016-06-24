@@ -1,4 +1,9 @@
 - content_for :extrahead do
+  :javascript
+    var RECENT_PROJECTS = #{ current_user.recent_projects.to_json(only:
+      [:id, :title, :description, :slug]) };
+    var RECENT_OBSERVATION_FIELDS = #{ current_user.recent_observation_fields.to_json(only:
+      [:id, :name, :description, :datatype, :allowed_values, :values_count]) };
   = stylesheet_link_tag "jquery-ui"
   = stylesheet_link_tag "autocomplete"
   = stylesheet_link_tag "fontastic-icons"
@@ -7,16 +12,18 @@
   = stylesheet_link_tag "observations/uploader"
   %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
   %meta{ name: "config:inaturalist_write_api_host", content: CONFIG.node_api_host }
-  = javascript_include_tag 'i18n'
+  = javascript_include_tag "i18n"
 #app
 = google_maps_js libraries: %w(places geometry drawing)
 - content_for :delayed_js do
-  = javascript_include_tag 'i18n/translations'
-  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
-  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
-  = javascript_include_tag 'inaturalist'
-  = javascript_include_tag 'ang/models/taxon'
-  = javascript_include_tag 'jquery/plugins/inat/generic_autocomplete'
-  = javascript_include_tag 'jquery/plugins/inat/taxon_autocomplete'
+  = javascript_include_tag "i18n/translations"
+  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
+  = javascript_include_tag "inaturalist"
+  = javascript_include_tag "ang/models/taxon"
+  = javascript_include_tag "jquery/plugins/inat/generic_autocomplete"
+  = javascript_include_tag "jquery/plugins/inat/taxon_autocomplete"
+  = javascript_include_tag "jquery/plugins/inat/project_autocomplete"
+  = javascript_include_tag "jquery/plugins/inat/observation_field_autocomplete"
   = javascript_include_tag "observations-uploader-webpack"
   = javascript_include_tag "//getbootstrap.com/dist/js/bootstrap.min.js"

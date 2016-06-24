@@ -1,20 +1,47 @@
 import React, { PropTypes } from "react";
 import { Button, Input } from "react-bootstrap";
+import safeHtml from "safe-html";
 import TaxonAutocomplete from "./taxon_autocomplete";
 
 const IdentificationForm = ( {
-  observation,
+  observation: o,
   onSubmitIdentification,
-  className
+  className,
+  currentUser
 } ) => (
   <form
     className={`IdentificationForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
+      const idTaxon = $( ".IdentificationForm:visible:first input[name='taxon_name']" ).
+        data( "uiAutocomplete" ).selectedItem;
+      if ( !idTaxon ) {
+        return;
+      }
+      let confirmationText = safeHtml( I18n.t( "your_coarser_id", {
+        coarser_taxon_name: idTaxon.name,
+        finer_taxon_name: o.taxon ? o.taxon.name : ""
+      } ), {} );
+      confirmationText = confirmationText.replace( /<a.+?\/a>/, "" );
+      confirmationText = confirmationText.replace( /<br>/g, "" );
+      confirmationText = confirmationText.replace( /\s+/g, " " );
+      const isDisagreement = ( ) => {
+        if ( !o || !o.taxon || !o.taxon.rank_level || !o.taxon.rank_level ) {
+          return false;
+        }
+        return ( idTaxon && idTaxon.rank_level > o.taxon.rank_level );
+      };
+      const currentUserSkippedConfirmation = (
+        currentUser && currentUser.prefers_skip_coarer_id_modal
+      );
       onSubmitIdentification( {
-        observation_id: observation.id,
+        observation_id: o.id,
         taxon_id: e.target.elements.taxon_id.value,
         body: e.target.elements.body.value
+      }, {
+        confirmationText: (
+          ( isDisagreement( ) && !currentUserSkippedConfirmation ) ? confirmationText : null
+        )
       } );
       // this doesn't feel right... somehow submitting an ID should alter
       // the app state and this stuff should flow three here as props
@@ -25,14 +52,15 @@ const IdentificationForm = ( {
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
     <Input type="textarea" name="body" className="form-control" />
-    <Button type="submit">Save</Button>
+    <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );
 
 IdentificationForm.propTypes = {
   observation: PropTypes.object,
   onSubmitIdentification: PropTypes.func.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  currentUser: PropTypes.object
 };
 
 export default IdentificationForm;

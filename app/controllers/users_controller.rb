@@ -242,8 +242,9 @@ class UsersController < ApplicationController
   def search
     scope = User.active
     @q = params[:q].to_s
+    escaped_q = @q.gsub(/(%|_)/){ |m| "\\" + m }
     unless @q.blank?
-      wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
+      wildcard_q = (@q.size == 1 ? "#{escaped_q}%" : "%#{escaped_q.downcase}%")
       conditions = if logged_in? && @q =~ Devise.email_regexp
         ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
@@ -784,6 +785,7 @@ protected
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
       :site_id,
+      :test_groups,
       :time_zone
     )
   end

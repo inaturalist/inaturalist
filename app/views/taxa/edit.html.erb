@@ -14,10 +14,6 @@
     <% if @taxon.creator -%>
       <%=t :created_by_user_on_date, :user => @taxon.creator.login, :date => l(@taxon.created_at) %>
     <% end -%>
-
-    <%= t(:please_be_careful_particulary_when) %>
-    <%= link_to t(:merge), :controller => "taxa", :action => "merge", :id => @taxon %>
-    <%= t(:it_instead) %>
   </div>
 </div>
 

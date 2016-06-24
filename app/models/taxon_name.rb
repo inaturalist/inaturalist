@@ -233,6 +233,7 @@ class TaxonName < ActiveRecord::Base
     when "indonesian" then "id"
     when "italian" then "it"
     when "japanese" then "ja"
+    when "korean" then "ko"
     when "maori" then "mi"
     when "maya" then "myn"
     when "portuguese" then "pt"
@@ -256,6 +257,7 @@ class TaxonName < ActiveRecord::Base
     when /^fr/      then 'french'
     when /^iw/      then 'hebrew'
     when /^ja/      then 'japanese'
+    when /^ko/      then 'korean'
     when /^pt/      then 'portuguese'
     when /zh.CN/i   then 'chinese_simplified'
     when /^zh/      then 'chinese_traditional'

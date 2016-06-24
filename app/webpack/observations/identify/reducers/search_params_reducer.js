@@ -1,7 +1,8 @@
 import {
   UPDATE_SEARCH_PARAMS,
   RECEIVE_OBSERVATIONS,
-  UPDATE_SEARCH_PARAMS_FROM_POP
+  UPDATE_SEARCH_PARAMS_FROM_POP,
+  UPDATE_DEFAULT_PARAMS
 } from "../actions";
 import _ from "lodash";
 
@@ -132,15 +133,18 @@ const paramsForSearch = ( params ) => {
   return newParams;
 };
 
-const setUrl = ( newState ) => {
+const setUrl = ( newParams, defaultParams ) => {
   // don't put defaults in the URL
   const urlState = {};
-  _.forEach( paramsForSearch( newState ), ( v, k ) => {
-    if ( DEFAULT_PARAMS[k] !== undefined && DEFAULT_PARAMS[k] === v ) {
+  _.forEach( paramsForSearch( newParams ), ( v, k ) => {
+    if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
     urlState[k] = v;
   } );
+  if ( !newParams.place_id && defaultParams.place_id ) {
+    urlState.place_id = "any";
+  }
   const title = `Identify: ${$.param( urlState )}`;
   const newUrl = [
     window.location.origin,
@@ -151,34 +155,54 @@ const setUrl = ( newState ) => {
   history.pushState( urlState, title, newUrl );
 };
 
-const searchParamsReducer = ( state = DEFAULT_PARAMS, action ) => {
+const searchParamsReducer = ( state = {
+  default: DEFAULT_PARAMS,
+  params: DEFAULT_PARAMS
+}, action ) => {
   let newState = state;
   switch ( action.type ) {
     case UPDATE_SEARCH_PARAMS:
-      newState = Object.assign( {}, state, action.params );
-      break;
-    case UPDATE_SEARCH_PARAMS_FROM_POP:
-      newState = Object.assign( {}, state, action.params );
-      break;
-    case RECEIVE_OBSERVATIONS:
-      newState = Object.assign( {}, state, {
-        page: action.page,
-        per_page: action.perPage
+      newState = Object.assign( {}, {
+        default: Object.assign( {}, state.default ),
+        params: Object.assign( {}, state.params, action.params )
       } );
       break;
+    case UPDATE_SEARCH_PARAMS_FROM_POP:
+      newState = Object.assign( {}, {
+        default: Object.assign( {}, state.default ),
+        params: Object.assign( {}, state.params, action.params )
+      } );
+      break;
+    case RECEIVE_OBSERVATIONS:
+      newState = Object.assign( {}, {
+        default: Object.assign( {}, state.default ),
+        params: Object.assign( {}, state.params, {
+          page: action.page,
+          per_page: action.perPage
+        } )
+      } );
+      break;
+    case UPDATE_DEFAULT_PARAMS: {
+      const newDefaults = Object.assign( {}, state.default, action.params );
+      newState = Object.assign( {}, {
+        default: newDefaults,
+        params: Object.assign( {}, newDefaults, state.params )
+      } );
+      break;
+    }
     default:
       return state;
   }
-  newState = normalizeParams( newState );
-  if ( _.isEqual( state, newState ) ) {
+  newState.params = normalizeParams( newState.params );
+  if ( _.isEqual( state.params, newState.params ) ) {
     return state;
   }
   if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
     return newState;
   }
-  setUrl( newState );
+  setUrl( newState.params, newState.default );
   return newState;
 };
 
 export default searchParamsReducer;
-export { normalizeParams, DEFAULT_PARAMS, paramsForSearch };
+export { normalizeParams, paramsForSearch };

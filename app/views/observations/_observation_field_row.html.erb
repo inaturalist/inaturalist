@@ -15,7 +15,7 @@
     <%= ofv.hidden_field "_destroy" %>
     <%= link_to_function t(:remove),
       "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')", 
-      :class => "right" %>
+      :class => "right removelink" %>
   <% end -%>
   <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
   <div class="labeldesc">

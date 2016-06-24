@@ -61,11 +61,18 @@ const mapDispatchToProps = ( dispatch ) => ( {
   combineSelected: ( ) => {
     dispatch( actions.combineSelected( ) );
   },
-  confirmRemoveFile: ( file, obsCard ) => {
-    dispatch( actions.confirmRemoveFile( file, obsCard ) );
+  confirmRemoveFile: ( file ) => {
+    dispatch( actions.confirmRemoveFile( file ) );
+  },
+  appendToSelectedObsCards: ( updates ) => {
+    dispatch( actions.appendToSelectedObsCards( updates ) );
+  },
+  removeFromSelectedObsCards: ( updates ) => {
+    dispatch( actions.removeFromSelectedObsCards( updates ) );
   }
 } );
 
+/* eslint new-cap: [2, { capIsNewExceptions: ["DragDropContext"] }] */
 const Uploader = connect(
   mapStateToProps,
   mapDispatchToProps

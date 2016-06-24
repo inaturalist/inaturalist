@@ -131,6 +131,12 @@ class ObservationField < ActiveRecord::Base
     @projects_count ||= projects.count
   end
 
+  def update_counts
+    self.update(
+      values_count: observation_field_values.count,
+      users_count: observation_field_values.select(:user_id).uniq.count)
+  end
+
   def self.default_json_options
     {
       :methods => [:created_at_utc, :updated_at_utc]

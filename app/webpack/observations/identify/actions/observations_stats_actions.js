@@ -15,7 +15,7 @@ function fetchObservationsStats( ) {
     const s = getState();
     const apiParams = Object.assign( {
       viewer_id: s.config.currentUser ? s.config.currentUser.id : null
-    }, paramsForSearch( s.searchParams ) );
+    }, paramsForSearch( s.searchParams.params ) );
     const needsIdParams = Object.assign( {}, apiParams, { quality_grade: "needs_id" } );
     iNaturalistJS.observations.search( needsIdParams )
       .then( response => {

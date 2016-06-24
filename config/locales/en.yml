@@ -56,6 +56,9 @@ en:
   x_observations_link_html:
     one: "<a href='%{url}'>1 observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> observation reviewed"
+    other: "<span class='count'>%{count}</span> observations reviewed"
   x_people:
     one: '1 person'
     other: '%{count} people'
@@ -203,6 +206,7 @@ en:
   add_taxonomic_tags_to_the_fickr_photos: Add taxonomic tags to the Fickr photos associated with the selected observations.
   add_to: Add to
   add_to_a_scheme: Add to a scheme
+  add_to_a_project: Add to a project
   add_to_calendar: Add to calendar
   add_to_checklist: Add to checklist
   add_to_favorites: Add to favorites
@@ -240,6 +244,7 @@ en:
   agree: agree
   agree?: Agree?
   agree_to_the_project_terms: Agree to the project terms
+  agree_with_current_taxon: Agree with current taxon
   agreeing: Agreeing...
   aka: aka
   all: All
@@ -946,7 +951,10 @@ en:
   edit_field: Edit field
   edit_flagged_observation: Edit Flagged Observation
   edit_license: Edit license
+  edit_multiple_dates: Edit multiple dates
   edit_multiple_descriptions: Edit multiple descriptions
+  edit_multiple_locations: Edit multiple locations
+  edit_multiple_species: Edit multiple species
   edit_notes: Edit notes
   edit_photos: Edit photos
   edit_photos_for_observation_id: "Edit photos for Observation %{obs_id}"
@@ -1064,8 +1072,9 @@ en:
   facebook_confirmation: "Facebook would like to confirm that you want your account connected to %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
-  failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_find_your_location: Failed to find your location.
+  failed_to_repair_photo: "Failed to repair photo: %{errors}"
+  failed_to_save_record: "Failed to save record. Please try again later."
   'false': 'False'
   faq: Frequently Asked Questions
   fave: fave
@@ -1087,6 +1096,7 @@ en:
     <strong>Note:</strong> If you'd like to create a field, check to see if
     someone else has already made it to avoid duplication.
   fields: fields
+  fields_: Fields
   fields_can_only_be_edited_by_the_people_who: Fields can only be edited by the people who created them and site curators
   fields_merged: Fields merged
   file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
@@ -1117,6 +1127,8 @@ en:
   find_suitable_observations: Find suitable observations
   find_unsuitable_observations: Find unsuitable observations
   find_your_current_location: Find your current location
+  finished: Finished
+  finished_with_page: Finished With Page
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
@@ -1285,6 +1297,7 @@ en:
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
   identify: Identify
+  identify_title: "Identify"
   identification: identification
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
@@ -1415,7 +1428,9 @@ en:
   jpg_png_or_gif: "JPG, PNG, or GIF"
   jump_to_letter: Jump to letter
   just_added!: Just added!
+  keep_editing: Keep editing
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
+  keyboard_shortcuts: Keyboard Shortcuts
   kml: KML
   kml_file_size_error: "KML must be less than 1 MB in size"
   labels: Labels
@@ -1554,6 +1569,7 @@ en:
   loading_full_description_html: "Loading full description..."
   loading_images: Loading images...
   loading_map: Loading map...
+  loading_metadata: Loading metadata...
   loading_more_photos: "Loading more photos..."
   loading_observations: "Loading observations..."
   loading_preview_and_code: Loading preview and code...
@@ -1585,6 +1601,9 @@ en:
   location: Location
   location_: Location
   location_is_exact: location is exact
+  location_is_public: Location is public
+  location_is_obscured: Location is obscured
+  location_is_private: Location is private
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log in
   logged_in_as: Logged in as
@@ -1652,6 +1671,8 @@ en:
   map_for: Map for
   maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
   mark_as_reviewed: Mark as reviewed
+  mark_all_as_reviewed: Mark All as Reviewed
+  mark_all_as_unreviewed: Mark All as Unreviewed
   matched_several_different_taxa: matched several different taxa
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
@@ -1717,6 +1738,8 @@ en:
   most_observations: Most observations
   most_species: Most species
   most_observed_species: Most observed species
+  multiple: multiple
+  multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
   must_be_observed_after: |
@@ -1735,6 +1758,7 @@ en:
   name: Name
   name_entered: Name entered
   name_llaves: "[NAME]"
+  name_or_slug: "Name or URL slug, e.g. my-project"
   name_of_the_place_you: Name of the place you made the observation
   name_or_username: Name or username
   name_provider: Name provider
@@ -2544,6 +2568,7 @@ en:
   reply: Reply
   report_any_problems: report any problems
   reptiles: reptiles
+  request_failed: "Request Failed"
   request_id_help: Request ID help
   request_password: Request Password
   request_timed_out: Request timed out!
@@ -2709,12 +2734,14 @@ en:
   single_observation: Single observation
   single_taxon: Single taxon (input for split/drop/stage, output for merge/swap)
   sizes: Sizes
+  skip_to_next_page: "Skip to next page"
   small: small
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
   site_taxon_page: "%{site_name} taxon page"
   so_meta!: so meta!
   some_agree: some agree
+  some_observations_failed: Some observations failed to be added to projects
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
   some_other_reason: Some other reason you can explain below.
   some_people: Some people
@@ -2958,6 +2985,7 @@ en:
   that_observation_no_longer_exists: That observation no longer exists.
   that_project_doesnt_exist: "That project doesn't exist."
   that_role_doesnt_exist: That role doesn't exist
+  that_was_the_last_observation_matching_the_current_filters: That was the last observation matching the current filters.
   that_will_insert_a_link_to: that will insert a link to this tool on every Flickr photo page.
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
   thats_not_a_real_date: That's not a real date!
@@ -3127,6 +3155,7 @@ en:
   tools: Tools
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
+  top_identifiers: Top Identifiers
   total: total
   totals: totals
   total_members: Total members
@@ -3203,9 +3232,42 @@ en:
     spreadsheet or database, this is probably the way to go.
   upload_photos: Upload photos
   uploaded_by: Uploaded by
+  uploader:
+    tooltips:
+      add: Add observation(s)
+      remove: Remove selected observations
+      combine: Combine selected observations
+      select_all: Select all observations
+      remove_photo: Remove photo
+      remove_observation: Remove observation
+      date: Date and time of observation
+      location: Location of observation
+      description: Description
+      geo_open: Everyone can see the coordinates unless the taxon is threatened
+      geo_obscured:
+        Public coordinates shown as a random point within a 0.2 by 0.2 degree area that
+        contains the true coordinates, which works out to about a 22x22 km square area of
+        uncertainty at the equator, decreasing as you approach the poles. True coordinates
+        are only visible to you and the curators of projects to which you add the observation
+      geo_private:
+        Coordinates completely hidden from public maps, true coordinates only visible to you
+        and the curators of projects to which you add the observation
+      captive:
+        The organism exists where it was observed because humans intended it to be there.
+        iNaturalist is about observing wild organism, and our scientific data partners are
+        not interested in observations of pets, gardens, or animals in zoos
+      fields: Observation fields are additional data fields that can be added to observations
+      projects: Projects are collections of observations by numerous people gathered for a common purpose
+      tags:
+        Tags are keywords you can add to an observation to make them easier to find. For example,
+        if a barracuda followed you on a scuba diving trip in Turks and Caicos, you might tag the
+        observation "scary, barracuda, scuba diving, vacation, turks and caicos"
+      taxon: Enter or look up species name
+  uploading_num_of_count_photos:
+    one: Uploading photo...
+    other: Uploading %{num} of %{count} photos...
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
-  url_slug_or_id: "URL slug or ID, e.g. my-project or 333"
   US_states: US States
   usage_stats: Usage stats
   use_name_as_a_placeholder: |
@@ -3258,6 +3320,8 @@ en:
   users_contributions_to_project_html: |
     <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_id: "%{user}'s ID"
+  users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
+  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
@@ -3279,6 +3343,7 @@ en:
   view_check_list_page: View check list page
   view_contributions: View contributions
   view_details: View details
+  view_field_options: View Field Options
   view_flags: View flags
   view_flags_for_x_html: "View flags for %{x}"
   view_full_observation: View full observation
@@ -3299,6 +3364,7 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_recent_observations: View more recent observations
+  view_more_unreviewed: "View more unreviewed"
   view_nbsp: "View &nbsp;"
   view_non_mobile_site: View non-mobile site
   view_resource: View %{resource}
@@ -3417,6 +3483,9 @@ en:
   x_journal_editing: "%{user}'s Journal &middot; Editing"
   x_journal_middot: "%{user}'s Journal &middot;"
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
+  x_observations_failed:
+    one: "1 observation failed"
+    other: "%{count} observations failed"
   x_project_journal: "%{project}'s %{name}"
   x_project_stats: "%{project} Stats"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
@@ -3462,9 +3531,9 @@ en:
     following rules: %{rules} Do you want to proceed?
   you_are_submitting_obs_without_photos_and_names: |
     You are submitting observations without photos and taxon names.
-    These observations will very difficult to accurately identify.
-  you_are_submitting_obs_with_photos_no_date: |
-    You are submitting observations with photos but without date or location.
+    These observations will be very difficult to accurately identify.
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    You are submitting observations without dates or locations.
   you_are_subscribed_to: "You're subscribed to "
   you_arent_a_member_of_that_project: You aren't a member of that project.
   you_arent_following_that_person: "You aren't following that person."
@@ -4057,8 +4126,9 @@ en:
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
       identify:
-          review_all_tooltip: "Mark all observations on the page as reviewed"
-          unreview_all_tooltip: "Remove reviewed status for all observations on the page"
+        review_all_tooltip: "Mark all observations on the page as reviewed"
+        you_reviewed_message: "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
+        unreview_all_tooltip: "Remove reviewed status for all observations on the page"
       import:
         coordinate_systems_help: |
           %{site_name} accepts coordinates using several different coordinate

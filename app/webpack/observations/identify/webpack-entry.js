@@ -13,7 +13,8 @@ import {
   fetchObservationsStats,
   setConfig,
   updateSearchParams,
-  updateSearchParamsFromPop
+  updateSearchParamsFromPop,
+  updateDefaultParams
 } from "./actions/";
 import App from "./components/app";
 
@@ -33,6 +34,14 @@ const store = createStore(
   )
 );
 
+
+// Set state from initial url search and listen for changes
+// Order is important, this needs to happen before any other actions are dispatched.
+const newParams = normalizeParams(
+  $.deparam( window.location.search.replace( /^\?/, "" ) )
+);
+store.dispatch( updateSearchParams( newParams ) );
+
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
@@ -40,18 +49,18 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
+  // we use this for requesting localized taoxn names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
+  } ) );
+  // this is the default place for all obs API requests
+  store.dispatch( updateDefaultParams( {
+    place_id: PREFERRED_PLACE.id
   } ) );
 }
 
 setupKeyboardShortcuts( store.dispatch );
 
-// set state from initial url search and listen for changes
-const newParams = normalizeParams(
-  $.deparam( window.location.search.replace( /^\?/, "" ) )
-);
-store.dispatch( updateSearchParams( newParams ) );
 window.onpopstate = ( e ) => {
   store.dispatch( updateSearchParamsFromPop( e.state ) );
   store.dispatch( fetchObservations() );

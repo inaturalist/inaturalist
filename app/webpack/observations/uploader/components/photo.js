@@ -34,7 +34,12 @@ class Photo extends Component {
       <div>
         { this.props.connectDragSource(
           <div className={ className }>
-            <img className="img-thumbnail" src={ this.props.file.photo.large_url } />
+            <img
+              className="img-thumbnail"
+              src={ this.props.file.photo ?
+                this.props.file.photo.large_url : this.props.file.preview }
+              onClick={ this.props.onClick }
+            />
           </div>
         ) }
       </div>
@@ -46,6 +51,7 @@ Photo.propTypes = {
   src: PropTypes.string,
   obsCard: PropTypes.object,
   file: PropTypes.object,
+  onClick: PropTypes.func,
   setState: PropTypes.func,
   confirmRemoveFile: PropTypes.func,
   draggingProps: PropTypes.object,

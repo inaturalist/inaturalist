@@ -1,5 +1,6 @@
 .observation_field { border-bottom: 1px solid #eee; padding-bottom:10px;}
-.observation_field {padding-left: 210px; position: relative;}
+.observation_field {padding-left: 210px; position: relative; padding-right: 50px;}
+.observation_field .removelink { position: absolute; right: 0; }
 .observation_field .labeldesc {width: 200px; position:absolute; left: 0; top: 0;}
 .observation_field.disabled {opacity: 0.5;}
 #morefields .buttonrow .button, #morefields .buttonrow label, #morefields .buttonrow .inter { padding-top: 4px; padding-bottom:3px;vertical-align:top;}

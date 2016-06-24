@@ -64,12 +64,37 @@ const ObservationModal = ( {
         zoomLevel={ obsForMap.map_scale || 8 }
         mapTypeControl={false}
         showAccuracy
-        className="stacked"
         disableFullscreen
         showAllLayer={false}
         overlayMenu={false}
       />
     );
+  }
+
+  let photos = null;
+  if ( images && images.length > 0 ) {
+    photos = (
+      <ZoomableImageGallery
+        key={`map-for-${observation.id}`}
+        items={images}
+        showThumbnails={images && images.length > 1}
+        lazyLoad={false}
+        server
+        showNav={false}
+      />
+    );
+  }
+  let sounds = null;
+  if ( observation.sounds && observation.sounds.length > 0 ) {
+    sounds = observation.sounds.map( s => (
+      <iframe
+        width="100%"
+        height="100"
+        scrolling="no"
+        frameBorder="no"
+        src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
+      ></iframe>
+    ) );
   }
 
   const scrollSidebarToForm = ( form ) => {
@@ -108,10 +133,18 @@ const ObservationModal = ( {
       </Button>
       <Modal.Header closeButton>
         <Modal.Title>
-          <SplitTaxon taxon={observation.taxon} url={`/observations/${observation.id}`} />
-          <span className="datebit">
+          <SplitTaxon
+            taxon={observation.taxon}
+            url={`/observations/${observation.id}`}
+            placeholder={observation.species_guess}
+          />
+          <span className="titlebit">
             <label>{ I18n.t( "observed" ) }:</label>
             { moment( observation.observed_on ).format( "L" ) }
+          </span>
+          <span className="titlebit">
+            <label>{ I18n.t( "by" ) }:</label>
+            { observation.user.login }
           </span>
           <span className={`pull-right quality_grade ${observation.quality_grade}`}>
             { qualityGrade( ) }
@@ -121,18 +154,15 @@ const ObservationModal = ( {
       <Modal.Body>
         <Grid fluid>
           <Row>
-            <Col xs={8}>
-              <ZoomableImageGallery
-                key={`map-for-${observation.id}`}
-                items={images}
-                showThumbnails={images && images.length > 1}
-                lazyLoad={false}
-                server
-                showNav={false}
-              />
+            <Col xs={8} className={( photos && sounds ) ? "photos sounds" : "media"}>
+              { photos }
+              { sounds }
             </Col>
             <Col xs={4} className="sidebar">
-              {taxonMap}
+              { taxonMap }
+              <div className="place-guess">
+                { observation.place_guess }
+              </div>
               <UserText text={observation.description} truncate={100} className="stacked" />
               <DiscussionListContainer observation={observation} />
               <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
@@ -177,12 +207,12 @@ const ObservationModal = ( {
       <Modal.Footer>
         <Grid fluid>
           <Row>
-            <Col xs={6} className="secondary-actions">
+            <Col xs={4} className="secondary-actions">
               <OverlayTrigger
                 trigger="hover"
                 placement="top"
                 overlay={
-                  <Popover title="Keyboard Shortcuts" id="keyboard-shortcuts-popover">
+                  <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
                     <dl className="keyboard-shortcuts">
                       <dt>z</dt>
                       <dd>{ I18n.t( "organism_appears_captive_cultivated" ) }</dd>
@@ -192,12 +222,16 @@ const ObservationModal = ( {
                       <dd>{ I18n.t( "mark_as_reviewed" ) }</dd>
                     </dl>
                     <dl className="keyboard-shortcuts">
-                      <dt>i</dt>
-                      <dd>{ I18n.t( "add_id" ) }</dd>
-                    </dl>
-                    <dl className="keyboard-shortcuts">
                       <dt>c</dt>
                       <dd>{ _.capitalize( I18n.t( "comment" ) ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>a</dt>
+                      <dd>{ _.capitalize( I18n.t( "agree" ) ) }</dd>
+                    </dl>
+                    <dl className="keyboard-shortcuts">
+                      <dt>i</dt>
+                      <dd>{ I18n.t( "add_id" ) }</dd>
                     </dl>
                     <dl className="keyboard-shortcuts">
                       <dt>&larr;</dt>
@@ -253,34 +287,54 @@ const ObservationModal = ( {
                 </div>
               </OverlayTrigger>
             </Col>
-            <Col xs={6}>
-              <label
-                className={
-                  `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+            <Col xs={8}>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                    { I18n.t( "mark_as_reviewed" ) }
+                  </Tooltip>
                 }
+                container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <input
-                  type="checkbox"
-                  checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
-                  onChange={function ( ) {
-                    toggleReviewed( );
-                  }}
-                /> { I18n.t( "reviewed" ) }
-              </label>
-              <Button bsStyle="primary" onClick={ function ( ) { addComment( ); } }>
+                <label
+                  className={
+                    `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                    onChange={function ( ) {
+                      toggleReviewed( );
+                    }}
+                  /> { I18n.t( "reviewed" ) }
+                </label>
+              </OverlayTrigger>
+              <Button bsStyle="default" onClick={ function ( ) { addComment( ); } }>
                 <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
+                    { I18n.t( "agree_with_current_taxon" ) }
+                  </Tooltip>
+                }
+                container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+              >
+                <Button
+                  bsStyle="default"
+                  disabled={ !showAgree( ) }
+                  onClick={ function ( ) {
+                    agreeWithCurrentObservation( );
+                  } }
+                >
+                  <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
+                </Button>
+              </OverlayTrigger>
               <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
                 <i className="icon-identification"></i> { I18n.t( "add_id" ) }
-              </Button>
-              <Button
-                bsStyle="primary"
-                disabled={ !showAgree( ) }
-                onClick={ function ( ) {
-                  agreeWithCurrentObservation( );
-                } }
-              >
-                <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
               </Button>
             </Col>
           </Row>

@@ -6,6 +6,11 @@ if Rails.env == 'production'
   exit
 end
 
+if User.count == 0
+  puts "You need to make at least one user for this to work."
+  exit
+end
+
 QUIET = false
 EARLIEST_TIME = Time.parse('2007-01-01')
 LATEST_TIME = Time.now
@@ -40,5 +45,3 @@ num_obs.times do
 end
 
 puts "Created #{count} observations"
-
-# Observation.all.each {|o| o.destroy}

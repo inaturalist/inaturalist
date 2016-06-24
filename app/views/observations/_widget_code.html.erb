@@ -19,13 +19,14 @@
 .inat-label, .inat-value, .inat-user { font-family: "Trebuchet MS", Arial, sans-serif; }
 .inat-user-body {vertical-align: middle;}
 .inat-widget td.inat-user-body {vertical-align: middle;}
+.inat-widget .inat-footer td.inat-value {vertical-align: middle; padding-left: 10px;}
 </style>
 <div class="inat-widget">
   <% if @logo != "none" -%>
-    <div class="inat-widget-header"><%= link_to image_tag(image_url(CONFIG.logo), :alt => SITE_NAME), root_url %></div>
+    <div class="inat-widget-header"><%= link_to image_tag(image_url(@site.logo.url), :alt => SITE_NAME), root_url %></div>
   <% end -%>
   <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
-  <table>
+  <table class="inat-footer">
     <tr class="inat-user">
       <% unless place || taxon || project %>
         <td class="inat-user-image">

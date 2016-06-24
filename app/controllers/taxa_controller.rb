@@ -169,16 +169,22 @@ class TaxaController < ApplicationController
         end
         if @place
           @conservation_status = @conservation_statuses.detect do |cs|
+            @place.id == cs.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+          end
+          @conservation_status ||= @conservation_statuses.detect do |cs|
             @place.self_and_ancestor_ids.include?( cs.place_id ) && cs.iucn > Taxon::IUCN_LEAST_CONCERN
           end
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
         if @place
-          @listed_taxon = @taxon.listed_taxa.joins(:place).includes(:place).
+          @listed_taxon = @taxon.listed_taxa.includes(:place).
+            where(place_id: @place.id).
+            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).first
+          @listed_taxon ||= @taxon.listed_taxa.joins(:place).includes(:place).
             where(place_id: @place.self_and_ancestor_ids).
             where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).
-            order("(places.ancestry || '/' || places.id) DESC, establishment_means").first
+            order("admin_level DESC, (places.ancestry || '/' || places.id) DESC, establishment_means").first
         end
         
         @children = @taxon.children.where(:is_active => @taxon.is_active).
@@ -208,11 +214,8 @@ class TaxaController < ApplicationController
         end
 
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
-
-        @observations = Observation.of(@taxon).recently_added.
-          preload(:projects, :taxon, :stored_preferences, :flags,
-            :quality_metrics, { user: :stored_preferences },
-            { photos: :flags } ).limit(12)
+        @observations = Observation.page_of_results(
+          taxon_id: @taxon.id, per_page: 12, order_by: "id", order: "desc")
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
         end

@@ -5,7 +5,7 @@ import { updateSearchParams, fetchObservations } from "../actions";
 function mapStateToProps( state ) {
   return {
     stats: state.observationsStats,
-    currentQualityGrade: state.searchParams.quality_grade
+    currentQualityGrade: state.searchParams.params.quality_grade
   };
 }
 

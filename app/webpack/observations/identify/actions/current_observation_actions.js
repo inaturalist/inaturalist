@@ -3,6 +3,7 @@ import _ from "lodash";
 import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
+import { showFinishedModal } from "./finished_modal_actions";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -14,6 +15,7 @@ const SHOW_PREV_OBSERVATION = "show_prev_observation";
 const ADD_IDENTIFICATION = "add_identification";
 const ADD_COMMENT = "add_comment";
 const LOADING_DISCUSSION_ITEM = "loading_discussion_item";
+const STOP_LOADING_DISCUSSION_ITEM = "stop_loading_discussion_item";
 
 function showCurrentObservation( observation ) {
   return {
@@ -113,6 +115,9 @@ function showNextObservation( ) {
     if ( nextObservation ) {
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
+    } else {
+      dispatch( hideCurrentObservation( ) );
+      dispatch( showFinishedModal( ) );
     }
   };
 }
@@ -222,6 +227,10 @@ function toggleReviewed( optionalObs = null ) {
 function loadingDiscussionItem( ) {
   return { type: LOADING_DISCUSSION_ITEM };
 }
+function stopLoadingDiscussionItem( ) {
+  return { type: STOP_LOADING_DISCUSSION_ITEM };
+}
+
 
 export {
   SHOW_CURRENT_OBSERVATION,
@@ -234,6 +243,7 @@ export {
   ADD_COMMENT,
   ADD_IDENTIFICATION,
   LOADING_DISCUSSION_ITEM,
+  STOP_LOADING_DISCUSSION_ITEM,
   showCurrentObservation,
   hideCurrentObservation,
   fetchCurrentObservation,
@@ -246,5 +256,6 @@ export {
   toggleCaptive,
   toggleReviewed,
   loadingDiscussionItem,
+  stopLoadingDiscussionItem,
   updateCurrentObservation
 };

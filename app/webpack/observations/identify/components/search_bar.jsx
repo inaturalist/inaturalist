@@ -6,6 +6,7 @@ import PlaceAutocomplete from "./place_autocomplete";
 
 const SearchBar = ( {
   params,
+  defaultParams,
   updateSearchParams,
   reviewAll,
   unreviewAll,
@@ -27,7 +28,10 @@ const SearchBar = ( {
     <span className="form-group">
       <PlaceAutocomplete
         resetOnChange={false}
-        initialPlaceID={params.place_id}
+        initialPlaceID={
+          parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+        }
+        bootstrapClear
         afterSelect={ function ( result ) {
           updateSearchParams( { place_id: result.item.id } );
         } }
@@ -38,7 +42,11 @@ const SearchBar = ( {
     </span>
     <Button bsStyle="primary">
       { I18n.t( "go" ) }
-    </Button> <FiltersButton params={params} updateSearchParams={updateSearchParams} />
+    </Button> <FiltersButton
+      params={params}
+      updateSearchParams={updateSearchParams}
+      defaultParams={defaultParams}
+    />
     <Input
       type="checkbox"
       label={ I18n.t( "reviewed" ) }
@@ -54,7 +62,9 @@ const SearchBar = ( {
       >
         <i
           className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
-        ></i> { allReviewed ? "Mark All as Unreviewed" : "Mark All as Reviewed" }
+        ></i> {
+          allReviewed ? I18n.t( "mark_all_as_unreviewed" ) : I18n.t( "mark_all_as_reviewed" )
+        }
       </Button>
     </div>
   </form>
@@ -63,6 +73,7 @@ const SearchBar = ( {
 
 SearchBar.propTypes = {
   params: PropTypes.object,
+  defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   reviewAll: PropTypes.func,
   unreviewAll: PropTypes.func,

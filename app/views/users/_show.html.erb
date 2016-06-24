@@ -20,7 +20,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle  nav-justified" type="button" id="dropdownMenu1" data-toggle="dropdown" style="text-align:left"><span class="glyphicon glyphicon-wrench"></span> Admin Tools
+            <button class="btn btn-default dropdown-toggle  nav-justified" type="button" id="dropdownMenu1" data-toggle="dropdown" style="text-align:left">
+              <span class="glyphicon glyphicon-wrench"></span> <%= t :admin_tools, default: 'Admin Tools' %>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" style="width:100%">
@@ -117,7 +118,7 @@
     <% end %>
   
     <h3 class="page-header">
-      <%=t :following.capitalize %> <%= t(:x_people, :count => @user.friendships.count) %>
+      <%= t(:following).capitalize %> <%= t(:x_people, :count => @user.friendships.count) %>
     </h3>
     <% unless @followees.blank? %>
       <div class="row">
@@ -145,7 +146,7 @@
   
     <% unless @favorite_listed_taxa.blank? -%>
       <div id="favorites">
-        <h3 class="page-header">Favorite Taxa</h3>
+        <h3 class="page-header"><%= t :favorite_taxa, default: 'Favorite Taxa' %></h3>
         <div class="row">
           <% for listed_taxon in @favorite_listed_taxa[0..3] %>
             <%= render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon}) %>

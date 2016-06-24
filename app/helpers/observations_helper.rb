@@ -5,7 +5,12 @@ module ObservationsHelper
     photo = observation.observation_photos.sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i
     end.first.photo
-    photo.send(size)
+    url = photo.send(size)
+    # this assumes you're not using SSL *and* locally hosted attachments for observations
+    if request && request.protocol =~ /https/
+      url = url.sub("http://", "https://s3.amazonaws.com/")
+    end
+    url
   end
   
   def short_observation_description(observation)
@@ -109,7 +114,7 @@ module ObservationsHelper
       { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
     end
     CONFIG.coordinate_systems.to_h.each do |system_name, system|
-      systems[system[:label]] = system.proj4
+      systems[system[:label]] = options[:names] ? system_name : system.proj4
     end
     systems
   end

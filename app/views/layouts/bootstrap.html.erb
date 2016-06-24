@@ -87,7 +87,11 @@
       <% end -%>
       var CURRENT_USER;
       <% if logged_in? -%>
-        CURRENT_USER = { id: <%= current_user.id %>, login: '<%= current_user.login %>' };
+        CURRENT_USER = {
+          id: <%= current_user.id %>,
+          login: '<%= current_user.login %>',
+          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>
+        };
       <% end -%>
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
     </script>

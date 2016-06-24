@@ -57,6 +57,12 @@
         chosen: user,
         defaultSources: defaultUsers
       })
+
+      $('#filters_taxon_name').taxonAutocomplete( {
+        idEl: $('#filters_taxon_id' ),
+        initialSelection: <%=raw @taxon.to_json %>,
+        thumbnail: false
+      } );
       
       if (taxon) {
         $('[data-taxon-id='+taxon.id+']').css('background-color', 'lightyellow')
@@ -85,7 +91,8 @@
     <%= f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => t(:none), :selected => @taxon_scheme.try(:id), :label => t(:taxon_scheme) %>
     <%= f.select :committed, [t(:yes), t(:no)], :include_blank => t(:either), :selected => @committed, :label => t(:committed) %>
     <%= f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => t(:any), :selected => @iconic_taxon.try(:read_attribute, :id), :label => t(:iconic_taxon) %>
-    <%= f.text_field :taxon_id,  :value => @taxon ? @taxon.id : nil, :placeholder => t(:type_taxon_name), :label => t(:taxon) %>
+    <%= f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon) %>
+    <%= f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil %>
     <%= f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => t(:type_source_name), :label => t(:source) %>
     <% if logged_in? -%>
       <%= f.text_field :user_id, :value => @user ? @user.id : nil, :placeholder => t(:start_typing_someones_name), :label => t(:added_by) %>

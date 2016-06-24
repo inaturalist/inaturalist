@@ -19,7 +19,7 @@ const IdentifierStats = ( {
       <table className="table">
         <thead>
           <tr>
-            <th>{ I18n.t( "rank" ) }</th>
+            <th>{ I18n.t( "rank_position" ) }</th>
             <th colSpan={2} className="identifications">{ I18n.t( "identifications" ) }</th>
           </tr>
         </thead>
@@ -44,7 +44,7 @@ const IdentifierStats = ( {
   }
   return (
     <div className="IdentifierStats">
-      <h4>Top Identifiers</h4>
+      <h4>{ I18n.t( "top_identifiers" ) }</h4>
       { content }
     </div>
   );

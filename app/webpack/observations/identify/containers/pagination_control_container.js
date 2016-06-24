@@ -7,20 +7,22 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    visible: !state.searchParams.reviewed,
+    visible: !state.searchParams.params.reviewed,
     totalResults: state.observations.totalResults,
-    current: state.searchParams.page,
-    perPage: state.searchParams.per_page
+    current: state.searchParams.params.page,
+    perPage: state.searchParams.params.per_page
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
     loadMore: ( ) => {
+      window.scrollTo( 0, 0 ); // $.scrollTo didn't seem to work for some reason
       dispatch( updateSearchParams( { page: 1 } ) );
       dispatch( fetchObservations( ) );
     },
     loadPage: ( page ) => {
+      window.scrollTo( 0, 0 );
       dispatch( updateSearchParams( { page } ) );
       dispatch( fetchObservations( ) );
     }

@@ -29,7 +29,7 @@ class LocalPhoto < Photo
     default_url: "/attachment_defaults/:class/:style.png"
   }
 
-  if Rails.env.production? || Rails.env.prod_dev?
+  if Rails.env.production?
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -193,17 +193,7 @@ class LocalPhoto < Photo
       end
     end
     unless metadata[:dc].blank?
-      photo_taxa = to_taxa(valid: true)
-      candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
-      if candidate.blank?
-        photo_taxa = to_taxa
-        candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
-      end
-      if photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
-        o.species_guess = candidate.name
-      else
-        o.taxon = candidate
-      end
+      o.taxon = to_taxon
       if o.taxon
         tags = to_tags(with_title: true).map(&:downcase)
         o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)

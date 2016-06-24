@@ -1,8 +1,8 @@
-import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
 import { setConfig } from "./config_actions";
+import { showAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
@@ -15,6 +15,7 @@ function receiveObservations( results ) {
 
 function fetchObservations( ) {
   return function ( dispatch, getState ) {
+    dispatch( setConfig( { allReviewed: false } ) );
     const s = getState();
     const currentUser = s.config.currentUser ? s.config.currentUser : null;
     const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
@@ -22,7 +23,7 @@ function fetchObservations( ) {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale
-    }, paramsForSearch( s.searchParams ) );
+    }, paramsForSearch( s.searchParams.params ) );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         let obs = response.results;
@@ -75,7 +76,12 @@ function reviewAll( ) {
     // I know how to do this
     Promise.all(
       getState( ).observations.results.map( o => iNaturalistJS.observations.review( o ) )
-    ).then( ( ) => dispatch( fetchObservationsStats( ) ) );
+    )
+      .catch( ( ) => dispatch( showAlert(
+        I18n.t( "failed_to_save_record" ),
+        { title: I18n.t( "request_failed" ) }
+      ) ) )
+      .then( ( ) => dispatch( fetchObservationsStats( ) ) );
   };
 }
 
@@ -85,7 +91,12 @@ function unreviewAll( ) {
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     Promise.all(
       getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( o ) )
-    ).then( ( ) => dispatch( fetchObservationsStats( ) ) );
+    )
+      .catch( ( ) => dispatch( showAlert(
+        I18n.t( "failed_to_save_record" ),
+        { title: I18n.t( "request_failed" ) }
+      ) ) )
+      .then( ( ) => dispatch( fetchObservationsStats( ) ) );
   };
 }
 

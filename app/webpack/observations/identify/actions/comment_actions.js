@@ -1,12 +1,19 @@
 import inatjs from "inaturalistjs";
+import { showAlert } from "./alert_actions";
 
 const POST_COMMENT = "post_comment";
 
 function postComment( params ) {
-  return function ( ) {
+  return function ( dispatch ) {
     const body = Object.assign( {}, params );
     // TODO handle error state
-    return inatjs.comments.create( body );
+    return inatjs.comments.create( body ).catch( e => {
+      dispatch( showAlert(
+        I18n.t( "failed_to_save_record" ),
+        { title: I18n.t( "request_failed" ) }
+      ) );
+      throw e;
+    } );
   };
 }
 

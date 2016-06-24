@@ -2,7 +2,6 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Button, Popover, Overlay, Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
-import { DEFAULT_PARAMS } from "../reducers/search_params_reducer";
 import PlaceAutocomplete from "./place_autocomplete";
 import ProjectAutocomplete from "./project_autocomplete";
 import UserAutocomplete from "./user_autocomplete";
@@ -12,7 +11,7 @@ class FiltersButton extends React.Component {
   constructor( props ) {
     super( props );
     const params = props.params;
-    const diffs = _.difference( _.values( params ), _.values( DEFAULT_PARAMS ) );
+    const diffs = _.difference( _.values( params ), _.values( props.defaultParams ) );
     this.state = {
       moreFiltersHidden: diffs.length === 0,
       show: false
@@ -52,15 +51,15 @@ class FiltersButton extends React.Component {
   }
 
   render( ) {
-    const { params, updateSearchParams } = this.props;
+    const { params, updateSearchParams, defaultParams } = this.props;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
       $( ".FiltersButton" ).click( );
     };
-    const resetParams = ( ) => updateSearchParams( DEFAULT_PARAMS );
+    const resetParams = ( ) => updateSearchParams( defaultParams );
     const numFiltersSet = ( ) => {
-      const diffs = _.difference( _.values( params ), _.values( DEFAULT_PARAMS ) );
+      const diffs = _.difference( _.values( params ), _.values( defaultParams ) );
       return diffs.length > 0 ? diffs.length.toString() : "";
     };
     const filterCheckbox = ( checkbox ) => {
@@ -293,7 +292,7 @@ class FiltersButton extends React.Component {
               id="params-order-by"
               className={
                 "form-control" +
-                ` ${params.order_by !== DEFAULT_PARAMS.order_by ? "filter-changed" : ""}`
+                ` ${params.order_by !== defaultParams.order_by ? "filter-changed" : ""}`
               }
               onChange={ e => updateSearchParams( { order_by: e.target.value } ) }
             >
@@ -310,7 +309,7 @@ class FiltersButton extends React.Component {
               defaultValue="desc"
               className={
                 "form-control" +
-                ` ${params.order !== DEFAULT_PARAMS.order ? "filter-changed" : ""}`
+                ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
               }
               onChange={ e => updateSearchParams( { order: e.target.value } ) }
             >
@@ -433,7 +432,9 @@ class FiltersButton extends React.Component {
             <span className="input-group-addon fa fa-globe"></span>
             <PlaceAutocomplete
               resetOnChange={false}
-              initialPlaceID={params.place_id}
+              initialPlaceID={
+                parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+              }
               bootstrapClear
               className={params.place_id ? "filter-changed" : ""}
               afterSelect={ function ( result ) {
@@ -613,6 +614,7 @@ class FiltersButton extends React.Component {
 
 FiltersButton.propTypes = {
   params: PropTypes.object,
+  defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func
 };
 

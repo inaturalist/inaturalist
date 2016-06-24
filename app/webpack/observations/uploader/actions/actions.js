@@ -1,5 +1,7 @@
 import _ from "lodash";
 import * as types from "../constants/constants";
+import React from "react";
+import inaturalistjs from "inaturalistjs";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
@@ -19,7 +21,24 @@ const actions = class actions {
   }
 
   static appendObsCards( obsCards ) {
-    return { type: types.APPEND_OBS_CARDS, obsCards };
+    return function ( dispatch ) {
+      const firstKey = _.first( _.keys( obsCards ) );
+      dispatch( { type: types.APPEND_OBS_CARDS, obsCards } );
+      // select the first card in any new batch
+      dispatch( actions.selectObsCards( { [firstKey]: true } ) );
+    };
+  }
+
+  static appendFiles( files ) {
+    return { type: types.APPEND_FILES, files };
+  }
+
+  static updateFile( file, attrs ) {
+    return { type: types.UPDATE_FILE, file, attrs };
+  }
+
+  static removeFile( file ) {
+    return { type: types.REMOVE_FILE, file };
   }
 
   static selectObsCards( ids ) {
@@ -34,6 +53,14 @@ const actions = class actions {
     return { type: types.UPDATE_SELECTED_OBS_CARDS, attrs };
   }
 
+  static appendToSelectedObsCards( attrs ) {
+    return { type: types.APPEND_TO_SELECTED_OBS_CARDS, attrs };
+  }
+
+  static removeFromSelectedObsCards( attrs ) {
+    return { type: types.REMOVE_FROM_SELECTED_OBS_CARDS, attrs };
+  }
+
   static removeSelected( ) {
     return { type: types.REMOVE_SELECTED };
   }
@@ -43,7 +70,21 @@ const actions = class actions {
   }
 
   static createBlankObsCard( ) {
-    return { type: types.CREATE_BLANK_OBS_CARD };
+    return function ( dispatch, getState ) {
+      dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
+      const s = getState( );
+      const lastKey = _.last( _.keys( s.dragDropZone.obsCards ) );
+      // select the blank card
+      dispatch( actions.selectObsCards( { [lastKey]: true } ) );
+    };
+  }
+
+  static readFileExif( file ) {
+    return function ( dispatch ) {
+      file.readExif( ).then( metadata => {
+        dispatch( actions.updateFile( file, { metadata } ) );
+      } );
+    };
   }
 
   static onFileDrop( droppedFiles, e ) {
@@ -52,19 +93,22 @@ const actions = class actions {
       // skip drops onto cards
       if ( $( "ul.obs li" ).has( e.nativeEvent.target ).length > 0 ) { return; }
       const obsCards = { };
+      const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
       droppedFiles.forEach( f => {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           const obsCard = new ObsCard( { id } );
-          obsCard.files[id] = DroppedFile.fromFile( f, id );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
           obsCards[obsCard.id] = obsCard;
+          dispatch( actions.readFileExif( files[id] ) );
           i += 1;
         }
       } );
       if ( Object.keys( obsCards ).length > 0 ) {
         dispatch( actions.appendObsCards( obsCards ) );
+        dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadImages( ) );
       }
     };
@@ -73,21 +117,19 @@ const actions = class actions {
   static onFileDropOnCard( droppedFiles, e, obsCard ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
-      const files = Object.assign( { }, obsCard.files );
+      const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
       droppedFiles.forEach( f => {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
-          files[id] = DroppedFile.fromFile( f, id );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
+          dispatch( actions.readFileExif( files[id] ) );
           i += 1;
         }
       } );
-      if ( Object.keys( files ).length !== Object.keys( obsCard.files ).length ) {
-        dispatch( actions.updateObsCard( obsCard, {
-          files,
-          dispatch
-        } ) );
+      if ( Object.keys( files ).length > 0 ) {
+        dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadImages( ) );
       }
     };
@@ -123,7 +165,7 @@ const actions = class actions {
   static updateObsCard( obsCard, attrs ) {
     return function ( dispatch ) {
       dispatch( { type: types.UPDATE_OBS_CARD, obsCard, attrs } );
-      if ( attrs.save_state ) {
+      if ( attrs.saveState ) {
         setTimeout( ( ) => {
           dispatch( actions.saveObservations( ) );
         }, 100 );
@@ -136,7 +178,6 @@ const actions = class actions {
       const ids = _.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
-      const mergedFiles = Object.assign( { }, obsCards[targetID].files );
 
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -144,13 +185,12 @@ const actions = class actions {
         if ( c.id !== targetID ) {
           _.each( c.files, f => {
             const id = ( startTime + i );
-            mergedFiles[id] = new DroppedFile( Object.assign( { }, f, { id } ) );
+            dispatch( actions.updateFile( f, { cardID: targetID, sort: id } ) );
             i += 1;
           } );
           dispatch( { type: types.REMOVE_OBS_CARD, obsCard: c } );
         }
       } );
-      dispatch( actions.updateObsCard( obsCards[targetID], { files: mergedFiles } ) );
       dispatch( actions.selectObsCards( { [targetID]: true } ) );
     };
   }
@@ -165,40 +205,28 @@ const actions = class actions {
     };
   }
 
-  static confirmRemoveFile( file, obsCard ) {
+  static confirmRemoveFile( file ) {
     return function ( dispatch ) {
       dispatch( actions.setState( { confirmModal: {
         show: true,
         confirmClass: "danger",
         confirmText: I18n.t( "remove" ),
         message: I18n.t( "are_you_sure_remove_photo" ),
-        onConfirm: () => dispatch( actions.removeFile( file, obsCard ) )
+        onConfirm: () => dispatch( actions.removeFile( file ) )
       } } ) );
-    };
-  }
-
-  static removeFile( file, obsCard ) {
-    return function ( dispatch ) {
-      const files = Object.assign( { }, obsCard.files );
-      delete files[file.id];
-      dispatch( actions.updateObsCard( obsCard, { files } ) );
     };
   }
 
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
-      const fromFiles = Object.assign( { }, photo.obsCard.files );
-      const toFiles = Object.assign( { }, toObsCard.files );
-
       const time = new Date( ).getTime( );
-      toFiles[time] = new DroppedFile( Object.assign( { }, photo.file, { id: time } ) );
-      delete fromFiles[photo.file.id];
+      dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 
-      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
-      dispatch( actions.updateObsCard( toObsCard, { files: toFiles } ) );
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      fromCard.files = fromFiles;
-      if ( fromCard.blank( ) || !fromCard.modified ) {
+      delete fromCard.files[photo.file.id];
+      // the card from where the photo was move can be removed if it has no data
+      // or if its data is untouched from when it was imported
+      if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
     };
@@ -206,27 +234,18 @@ const actions = class actions {
 
   static newCardFromPhoto( photo ) {
     return function ( dispatch ) {
-      const fromFiles = Object.assign( { }, photo.obsCard.files );
       const time = new Date( ).getTime( );
-      const obsCard = new ObsCard( { id: time } );
-      obsCard.files[time] = new DroppedFile( Object.assign( { }, photo.file, { id: time } ) );
-      delete fromFiles[photo.file.id];
-      dispatch( actions.updateObsCard( photo.obsCard, { files: fromFiles } ) );
-      dispatch( actions.appendObsCards( { [obsCard.id]: obsCard } ) );
+      const obsCards = { [time]: new ObsCard( { id: time } ) };
+      dispatch( actions.appendObsCards( obsCards ) );
+      dispatch( actions.updateFile( photo.file, { cardID: time, sort: time } ) );
+
       const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      fromCard.files = fromFiles;
-      if ( fromCard.blank( ) ) {
+      delete fromCard.files[photo.file.id];
+      // the card from where the photo was move can be removed if it has no data
+      // or if its data is untouched from when it was imported
+      if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
       }
-    };
-  }
-
-  static updateObsCardFile( obsCard, file, attrs ) {
-    return function ( dispatch ) {
-      dispatch( { type: types.UPDATE_OBS_CARD_FILE, obsCard, file, attrs } );
-      setTimeout( ( ) => {
-        dispatch( actions.uploadImages( ) );
-      }, 100 );
     };
   }
 
@@ -252,7 +271,7 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.uploadedFiles( ).length === 0 && !c.taxon_id && !c.species_guess ) {
+        if ( !failed && c.files.length === 0 && !c.taxon_id && !c.species_guess ) {
           failed = true;
         }
       } );
@@ -278,8 +297,7 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.uploadedFiles( ).length > 0 &&
-             ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
+        if ( !failed && ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
           failed = true;
         }
       } );
@@ -288,7 +306,7 @@ const actions = class actions {
           show: true,
           cancelText: I18n.t( "go_back" ),
           confirmText: I18n.t( "continue" ),
-          message: I18n.t( "you_are_submitting_obs_with_photos_no_date" ),
+          message: I18n.t( "you_are_submitting_obs_with_no_date_or_no_location" ),
           onConfirm: () => {
             dispatch( actions.submitObservations( ) );
           }
@@ -309,12 +327,14 @@ const actions = class actions {
   static saveObservations( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
+      if ( s.dragDropZone.saveStatus !== "saving" ) { return; }
+      if ( util.countPending( s.dragDropZone.files ) > 0 ) { return; }
       const stateCounts = { pending: 0, saving: 0, saved: 0, failed: 0 };
       let nextToSave;
       _.each( s.dragDropZone.obsCards, c => {
-        stateCounts[c.save_state] = stateCounts[c.save_state] || 0;
-        stateCounts[c.save_state] += 1;
-        if ( c.save_state === "pending" && !nextToSave ) {
+        stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
+        stateCounts[c.saveState] += 1;
+        if ( c.saveState === "pending" && !nextToSave ) {
           nextToSave = c;
         }
       } );
@@ -324,6 +344,57 @@ const actions = class actions {
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
+        dispatch( actions.finalizeSave( ) );
+      }
+    };
+  }
+
+  static finalizeSave( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const missingProjects = { };
+      _.each( s.dragDropZone.obsCards, c => {
+        const selectedProjetIDs = _.map( c.projects, "id" );
+        let addedToProjectIDs = [];
+        // fetch the set of IDs that obs were actually added to
+        if ( c.serverResponse && c.serverResponse.project_observations ) {
+          addedToProjectIDs = _.map( c.serverResponse.project_observations, "project_id" );
+        }
+        // compare those IDs to the ones the user selected
+        const failedProjectIDs = _.difference( selectedProjetIDs, addedToProjectIDs );
+        _.each( failedProjectIDs, pid => {
+          missingProjects[pid] = missingProjects[pid] ||
+            { project: _.find( c.projects, p => p.id === pid ), count: 0 };
+          missingProjects[pid].count += 1;
+        } );
+      } );
+      // show a modal with the projects and counts of obs that were not added
+      // otherwise go to the user's observation page
+      if ( _.keys( missingProjects ).length > 0 ) {
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          hideCancel: true,
+          confirmText: I18n.t( "continue" ),
+          message: (
+            <div>
+              { I18n.t( "some_observations_failed" ) }
+              <div className="projects">
+                { _.map( missingProjects, mp => (
+                  <div className="project" key={ mp.project.id }>
+                    <span className="title">{ mp.project.title }</span>
+                    <span className="count">
+                      { I18n.t( "x_observations_failed", { count: mp.count } ) }
+                    </span>
+                  </div>
+                ) ) }
+              </div>
+            </div>
+          ),
+          onConfirm: () => {
+            window.location = `/observations/${CURRENT_USER.login}`;
+          }
+        } } ) );
+      } else {
         window.location = `/observations/${CURRENT_USER.login}`;
       }
     };
@@ -334,22 +405,43 @@ const actions = class actions {
       const s = getState( );
       const stateCounts = { pending: 0, uploading: 0, uploaded: 0, failed: 0 };
       let nextToUpload;
-      _.each( s.dragDropZone.obsCards, ( c ) => {
-        _.each( c.files, ( f ) => {
-          stateCounts[f.upload_state] = stateCounts[f.upload_state] || 0;
-          stateCounts[f.upload_state] += 1;
-          if ( f.upload_state === "pending" && !nextToUpload ) {
-            nextToUpload = { card: c, file: f };
-          }
-        } );
+      _.each( s.dragDropZone.files, ( f ) => {
+        stateCounts[f.uploadState] = stateCounts[f.uploadState] || 0;
+        stateCounts[f.uploadState] += 1;
+        if ( f.uploadState === "pending" && !nextToUpload ) {
+          nextToUpload = f;
+        }
       } );
       if ( nextToUpload && stateCounts.uploading < s.dragDropZone.maximumNumberOfUploads ) {
-        nextToUpload.card.upload( nextToUpload.file, dispatch );
+        dispatch( actions.uploadImage( nextToUpload ) );
       } else if ( nextToUpload ) {
         // waiting for existing uploads to finish
+      } else {
+        dispatch( actions.saveObservations( ) );
       }
     };
   }
+
+  static uploadImage( file ) {
+    return function ( dispatch ) {
+      dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
+      inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
+        const serverMetadata = file.additionalPhotoMetadata( r );
+        dispatch( actions.updateFile( file, {
+          uploadState: "uploaded", photo: r, serverMetadata } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadImages( ) );
+        }, 100 );
+      } ).catch( e => {
+        console.log( "Upload failed:", e );
+        dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadImages( ) );
+        }, 100 );
+      } );
+    };
+  }
+
 };
 
 export default actions;

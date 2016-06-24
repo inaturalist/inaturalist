@@ -3,7 +3,8 @@ import CommentForm from "../components/comment_form";
 import {
   postComment,
   fetchCurrentObservation,
-  loadingDiscussionItem
+  loadingDiscussionItem,
+  stopLoadingDiscussionItem
 } from "../actions";
 
 // ownProps contains data passed in through the "tag", so in this case
@@ -18,9 +19,13 @@ function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitComment: ( comment ) => {
       dispatch( loadingDiscussionItem( ) );
-      dispatch( postComment( comment ) ).then( ( ) => {
-        dispatch( fetchCurrentObservation( ownProps.observation ) );
-      } );
+      dispatch( postComment( comment ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( ) );
+        } )
+        .then( ( ) => {
+          dispatch( fetchCurrentObservation( ownProps.observation ) );
+        } );
     }
   };
 }
