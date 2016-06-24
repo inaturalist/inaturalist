@@ -138,6 +138,10 @@ class Site < ActiveRecord::Base
 
   # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
   preference :home_page_wiki_path, :string
+  # Chunk of json represening customized home page wiki paths by locale. Yes,
+  # we *could* use the preference gem's grouping here, but this is easier to
+  # put in a form
+  preference :home_page_wiki_path_by_locale, :string
 
   # site: only show obs added through this site
   # place: only show obs within the specified place's boundary
@@ -238,5 +242,14 @@ class Site < ActiveRecord::Base
     url = logo_square.url
     url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
     url
+  end
+
+  def home_page_wiki_path_by_locale( locale )
+    return nil if preferred_home_page_wiki_path_by_locale.blank?
+    paths = JSON.parse( preferred_home_page_wiki_path_by_locale ) rescue {}
+    unless path = paths[ locale.to_s ]
+      path = paths[ locale.to_s.split("-")[0] ]
+    end
+    path
   end
 end

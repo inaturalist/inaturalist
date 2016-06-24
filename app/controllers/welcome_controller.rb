@@ -30,15 +30,15 @@ class WelcomeController < ApplicationController
   private
 
   def set_homepage_wiki
-    # use a custom wiki page for this locale
-    if CONFIG.home_page_wiki_path_by_locale
-      if path = CONFIG.home_page_wiki_path_by_locale.send( I18n.locale )
+    if @site
+      # use a custom wiki page for this locale
+      if path = @site.home_page_wiki_path_by_locale( I18n.locale )
         @page = WikiPage.find_by_path( path )
       end
-    end
-    # otherwise use the site default wiki page
-    if @page.blank? && CONFIG.home_page_wiki_path
-      @page = WikiPage.find_by_path( CONFIG.home_page_wiki_path )
+      # otherwise use the site default wiki page
+      if @page.blank? && ( path = @site.home_page_wiki_path )
+        @page = WikiPage.find_by_path( path )
+      end
     end
   end
 
