@@ -442,6 +442,7 @@ es-MX:
     taxón?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Estás seguro que deseas
     quitar a esta especie o grupo de la lista de comprobación de %{place}?
+  are_you_sure_you_want_to_unsubscribe_from_this: ¿Estás seguro de cancelar esta suscripción?
   associated_observations: Observaciones asociadas
   associated_taxa: Taxa asociados
   you_sure_delete_list: ¿Estás seguro que quieres borrar esta lista?
@@ -1667,6 +1668,7 @@ es-MX:
     taxonomic: taxonomía
     photo: fotos
   list_was_successfully_created: La lista fue creada exitosamente.
+  listed_taxa: lista de especies o grupos
   listed_taxon: Especie o grupo enlistado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
   listing_announcement: Enlistando noticias
@@ -1762,6 +1764,7 @@ es-MX:
   manage_all_your_subscriptions: Administra todas tus suscripciones
   manage_names: Administra nombres
   manage_your_project_invitations: Administra las invitaciones de tus proyectos
+  manage_your_subscriptions: Administración de suscripciones
   managed: cuativerio/cultivada
   manager: Gerente
   managers: Gerentes
@@ -1991,6 +1994,7 @@ es-MX:
     trata de una lista de la vida, automáticamente se actualizará con las
     especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
   no_subject_parens: (Sin tema)
+  no_subscriptions_to: No hay suscripciones a
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: No se ha incluido un resumen
   no_taxa: No hay taxa
@@ -2685,6 +2689,7 @@ es-MX:
   resolved: Resuelta
   resolved_by: Resuelto por
   resolver_said_x_html: <span class="meta">%{resolver} dijo:</span> "%{x}"
+  resource: Contenido
   results: Resultados
   reviewed: Revisada
   roadmap: camino
@@ -3033,7 +3038,7 @@ es-MX:
     of Life Images</a>.
   take_me_facebook: ¡Si, llévame a Facebook!
   take_me_flickr!: ¡Sí, llévame a Flickr!
-  taxa: Taxa
+  taxa: Especieso grupos
   taxa_all_species_html: Todas las especies y grupos
   taxa_needing_curation: Taxa que necesita revisión
   taxa_observed: especies o grupos observados
@@ -3056,6 +3061,7 @@ es-MX:
     data_url: Enlace de datos
     overlays: Capas
   taxon_change_settings: Configuración del cambio de especies y grupos
+  taxon_changes: Cambios a especies o grupos
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
   taxon_photos_updated: ¡Las fotos de la especie o grupo fueron actualizadas!
@@ -3775,7 +3781,7 @@ es-MX:
   youve_joined_the_x_project: Te has unido al proyecto %{project_invitation} y tus
     observaciones fueron añadidas
   your: Tus
-  your_: Tuyas
+  your_: Tu
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor
     ingresa al sistema para continuar.
   your_activation_code_was_missing: Tu código de activación se ha perdido.  Porfavor
