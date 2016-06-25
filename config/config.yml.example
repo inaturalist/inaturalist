@@ -195,6 +195,10 @@ base: &base
         client_id: 09af09af09af09af09af09af09af09af
         secret: 09af09af09af09af09af09af09af09af
 
+    google:
+        # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+        browser_api_key: 09af09af09af09af09af09af09af09af
+
     # Ratatosk is an internal library for looking up external taxonomy info.
     # By default it uses all registered name providers, but you can
     # configure it here to use a subset
