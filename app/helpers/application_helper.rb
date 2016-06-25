@@ -813,7 +813,7 @@ module ApplicationHelper
   end
 
   def google_static_map_for_observation_url(o, options = {})
-    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
+    return if CONFIG.google.blank? || CONFIG.google.browser_api_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
@@ -822,7 +822,7 @@ module ApplicationHelper
       :size => '200x200',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
       :port => false,
-      :key => CONFIG.google.simple_key
+      :key => CONFIG.google.browser_api_key
     }.merge(options)
     url_for(url_for_options)
   end
@@ -1268,7 +1268,8 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "&libraries=#{libraries.join(',')}" unless libraries.blank?
+    params = "key=#{CONFIG.google.browser_api_key}"
+    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
 
