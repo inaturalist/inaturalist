@@ -12,7 +12,7 @@
       = form_for moimport_observations_path, html: { class: "form-inline" } do |f|
         .form-group
           %input.form-control{ type: "text", name: "api_key", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key }
-        %input.btn.btn-default{ type: "submit", value: "Test" }
+        %input.btn.btn-default{ type: "submit", value: "Test", data: { loading_click: "Loading..." } }
     .col-xs6
       = form_for MushroomObserverImportFlowTask.new, 
           url: flow_tasks_url,
@@ -22,7 +22,7 @@
           = fti.fields_for :extra do |ftie|
             = ftie.text_field :api_key, class: "text", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key
             = ftie.hidden_field :mo_user_id, value: @mo_user_id
-        = f.submit "Import", class: "btn btn-primary"
+        = f.submit "Import", class: "btn btn-primary", data: { loading_click: "Loading..." }
   - if @results
     .row
       .col-xs-12
@@ -72,7 +72,7 @@
       %p
         iNat will import all of your MO observations, doing its best to
         translate MO's data model to our own. The testing tool above will
-        give you a sense for what youre imported data will look like on
+        give you a sense for what your imported data will look like on
         iNat. It should not import the same record twice, so if you run this
         multiple times, don't expect a record that's already been imported
         to change. It will store the MO URL as an observation field so you

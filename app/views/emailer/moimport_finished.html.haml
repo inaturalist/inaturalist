@@ -21,10 +21,9 @@
       %li
         = link_to url, url
         %ul
-          - warnings.each do |wanring|
+          - warnings.each do |warning|
             %li= warning
-          %li
-            = link_to "View on iNat", observations_url( "field:Mushroom+Observer+URL" => url )
+        = link_to "View on iNat", observations_url( "field:Mushroom+Observer+URL" => url )
 
 
 - unless @errors.blank? && @exception.blank?

@@ -8,7 +8,6 @@ class MushroomObserverImportFlowTask < FlowTask
     loop do
       results = get_results_xml( page: page )
       break if results.blank?
-      break if page > 5 # test
       results.each do |result|
         o = observation_from_result( result )
         unless o && o.save
@@ -45,7 +44,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def get_results_xml( options = {} )
     user_id = mo_user_id( options[:api_key] )
     page = options[:page] || 1
-    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}&date=2013-05-01" ) ).search( "result" )
+    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
   end
 
   def mo_user_id( for_api_key = nil )
@@ -123,6 +122,10 @@ class MushroomObserverImportFlowTask < FlowTask
         warn( result[:url], "Failed to import a new taxon for #{name}")
       end
       o.species_guess = name
+      o.observation_field_values.build( observation_field: mo_name_observation_field, value: [
+        name,
+        consensus_name.at( "author" ).try(:text)
+      ].compact.join(" ") )
     end
     if date = result.at( "date" )
       o.observed_on_string = date.text
@@ -170,5 +173,17 @@ class MushroomObserverImportFlowTask < FlowTask
       )
     end
     @mo_url_observation_field
+  end
+
+  def mo_name_observation_field
+    unless @mo_name_observation_field
+      @mo_name_observation_field = ObservationField.find_by_name( "Mushroom Observer Consensus Name" )
+      @mo_name_observation_field ||= ObservationField.create!(
+        name: "Mushroom Observer Consensus Name",
+        datatype: ObservationField::TEXT,
+        description: "Consensus taxon name for this record on http://mushroomobserver.org"
+      )
+    end
+    @mo_name_observation_field
   end
 end
