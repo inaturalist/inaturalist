@@ -216,7 +216,7 @@
                   <%= link_to observations_path, class: "btn btn-primary btn-md" do %>
                     <%=t :browse_observations %> <span class="glyphicon glyphicon-chevron-right"></span>
                   <% end %>
-                  <%= link_to site.getting_started_url, target: "_blank" do %>
+                  <%= link_to @site.getting_started_url, target: "_blank" do %>
                     <span class="glyphicon glyphicon-info-sign"></span> <%=t :getting_started_guide %>
                   <% end %>
                 </div>        
@@ -373,7 +373,7 @@
         </div>
         <div class="panel-body">
           <p><%=t :let_us_walk_you_through %></p>
-          <%= link_to t(:get_started), site.getting_started_url, class: "btn btn-default btn-md" %>
+          <%= link_to t(:get_started), @site.getting_started_url, class: "btn btn-default btn-md" %>
         </div>
       </div>
     <% end -%>
