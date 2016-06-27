@@ -123,6 +123,9 @@ class Site < ActiveRecord::Base
 
   # URL where visitors can get help using the site
   preference :help_url, :string, :default => FakeView.wiki_page_url("help")
+  
+  # URL where visitors can get started using the site
+  preference :getting_started_url, :string, :default => FakeView.wiki_page_url("getting+started")
 
   # URL where press can learn more about the site and get assets
   preference :press_url, :string

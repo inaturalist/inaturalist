@@ -331,7 +331,6 @@ class UsersController < ApplicationController
       nearby_taxa_results = get_nearby_taxa_obs_counts( search_params )
       local_onboarding_content[:local_results] = false
     else #have latitude and longitude so show local content
-      local_onboarding_content[:local_results] = true
       if current_user.lat_lon_acc_admin_level == 0 || current_user.lat_lon_acc_admin_level == 1 #use place_id to fetch content from country or state
         place = Place.containing_lat_lng(current_user.latitude, current_user.longitude).where(admin_level: current_user.lat_lon_acc_admin_level).first
         if place
@@ -342,6 +341,7 @@ class UsersController < ApplicationController
           nearby_taxa_obs_count = 0
         end
       else #use lat-lon and radius to fetch content
+        local_onboarding_content[:local_results] = true        
         search_params = { verifiable: true, lat: current_user.latitude, lng: current_user.longitude, radius: 1, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
         nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
         nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
