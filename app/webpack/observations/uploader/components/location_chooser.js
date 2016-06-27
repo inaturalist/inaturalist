@@ -179,8 +179,8 @@ class LocationChooser extends SelectionBasedComponent {
       if ( viewport ) {
         // radius is the largest distance from geom center to one of the bounds corners
         radius = _.max( [
-          this.distanceInMeters( lat, lng, viewport.H.H, viewport.j.H ),
-          this.distanceInMeters( lat, lng, viewport.H.j, viewport.j.j )
+          this.distanceInMeters( lat, lng, viewport.getCenter().lat(), viewport.getCenter().lng() ),
+          this.distanceInMeters( lat, lng, viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
         ] );
         this.refs.map.fitBounds( viewport );
       } else {
