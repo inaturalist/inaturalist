@@ -446,6 +446,7 @@ class User < ActiveRecord::Base
     http.open_timeout = 0.5
     latitude = nil
     longitude = nil
+    lat_lon_acc_admin_level = nil
     begin
       resp = http.start() {|http|
         http.get("/?ip=#{last_ip}")
@@ -453,23 +454,39 @@ class User < ActiveRecord::Base
       data = resp.body
       begin
         result = JSON.parse(data)
-        unless result["results"]["region"] == ""
+        if result["results"]["country"] == ""
+          lat_lon_acc_admin_level = nil #no idea where
+          latitude = nil
+          longitude = nil          
+        else #know the country at least
           ll = result["results"]["ll"]
           latitude = ll[0]
           longitude = ll[1]
+          if result["results"]["city"] == ""
+            if result["results"]["region"] == ""
+              lat_lon_acc_admin_level = 0  #probably just know the country
+            else
+              lat_lon_acc_admin_level = 1 #also probably know the state
+            end
+          else
+            lat_lon_acc_admin_level = 2 #also probably know the county
+          end
         end
       rescue
         latitude = nil
         longitude = nil
+        lat_lon_acc_admin_level = nil
         Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
     rescue Timeout::Error => e
       latitude = nil
       longitude = nil
+      lat_lon_acc_admin_level = nil
       Rails.logger.info "[INFO #{Time.now}] geoip timeout"
     end
     self.latitude = latitude
     self.longitude = longitude
+    self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
   
   def get_lat_lon_from_ip_if_last_ip_changed

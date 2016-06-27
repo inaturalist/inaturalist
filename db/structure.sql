@@ -3978,7 +3978,8 @@ CREATE TABLE users (
     subscriptions_suspended_at timestamp without time zone,
     latitude double precision,
     longitude double precision,
-    test_groups character varying
+    test_groups character varying,
+    lat_lon_acc_admin_level integer
 );
 
 
@@ -7027,7 +7028,7 @@ CREATE INDEX index_taxa_on_locked ON taxa USING btree (locked);
 
 
 --
--- Name: index_taxa_on_lower_name_and_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_taxa_on_lower_name_and_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_taxa_on_lower_name_and_id ON taxa USING btree (lower((name)::text), id);
@@ -8017,3 +8018,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160611140606');
 INSERT INTO schema_migrations (version) VALUES ('20160613200151');
 
 INSERT INTO schema_migrations (version) VALUES ('20160613202854');
+
+INSERT INTO schema_migrations (version) VALUES ('20160627194031');
+

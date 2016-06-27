@@ -326,39 +326,45 @@ class UsersController < ApplicationController
   
   def get_local_onboarding_content
     local_onboarding_content = {local_results: false, target_taxa: nil, to_follows: nil}
-    if (current_user.latitude.nil? || current_user.longitude.nil?)
-      search_params = {}# verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+    if (current_user.latitude.nil? || current_user.longitude.nil?) #show global content
+      search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
       nearby_taxa_results = get_nearby_taxa_obs_counts( search_params )
       local_onboarding_content[:local_results] = false
-    else
+    else #have latitude and longitude so show local content
       local_onboarding_content[:local_results] = true
-      search_params = { verifiable: true, lat: current_user.latitude, lng: current_user.longitude, radius: 1, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
-      nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-      nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
-      if nearby_taxa_obs_count < 50
-        search_params[:radius] = 100  # expand radius
+      if current_user.lat_lon_acc_admin_level == 0 || current_user.lat_lon_acc_admin_level == 1 #use place_id to fetch content from country or state
+        place = Place.containing_lat_lng(lat: current_user.latitude, lng: current_user.longitude).where(admin_level: current_user.lat_lon_acc_admin_level).first
+        if place
+          search_params = { verifiable: true, place_id: place.id, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+          nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+          nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+        else
+          nearby_taxa_obs_count = 0
+        end
+      else #use lat-lon and radius to fetch content
+        search_params = { verifiable: true, lat: current_user.latitude, lng: current_user.longitude, radius: 1, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
         nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
         nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
         if nearby_taxa_obs_count < 50
-          search_params[:d1] = 12.months.ago.to_s  # expand time period
+          search_params[:radius] = 100  # expand radius
           nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
           nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
           if nearby_taxa_obs_count < 50
-            search_params[:radius] = 1000 # expand radius
+            search_params[:d1] = 12.months.ago.to_s  # expand time period
             nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
             nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
             if nearby_taxa_obs_count < 50
-              local_results = false # settle for global results
-              search_params[:lat] = nil
-              search_params[:lng] = nil
-              search_params[:radius] = nil
-              search_params[:d1] = 12.months.ago.to_s
-              search_params[:d2] = Time.now
+              search_params[:radius] = 1000 # expand radius
               nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
-              local_onboarding_content[:local_results] = false
+              nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
             end
           end
         end
+      end
+      if nearby_taxa_obs_count < 50 #not enough content so settle for global results
+        search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+        nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+        local_onboarding_content[:local_results] = false
       end
     end
     
