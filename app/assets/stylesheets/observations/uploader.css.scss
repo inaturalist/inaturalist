@@ -27,6 +27,11 @@ input.failed, textarea.failed {
   width: 100%;
   margin-top: -100px;
   z-index: 1001;
+  .navbar-brand {
+    img {
+      height: 24px;
+    }
+  }
 }
 
 .nav_add_obs {

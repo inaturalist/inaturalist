@@ -74,7 +74,7 @@ const ObsCard = class ObsCard {
     const newMetadata = { };
     const fileMetadata = Object.assign( { }, file.metadata, file.serverMetadata );
     _.each( fileMetadata, ( v, k ) => {
-      if ( !this[k] ) { newMetadata[k] = v; }
+      if ( _.isEmpty(this[k]) ) { newMetadata[k] = v; }
     } );
     return newMetadata;
   }

@@ -507,6 +507,7 @@ class ApplicationController < ActionController::Base
   # redirect.
   def authenticate_user!(*args)
     if request.get? && !logged_in?
+      session[:return_to] = request.fullpath
       session[:return_to_for_new_user] = request.fullpath
     end
     super

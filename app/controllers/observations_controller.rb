@@ -611,7 +611,7 @@ class ObservationsController < ApplicationController
         end
       end
       photo = photos.compact.last
-      if o.new_record? && photo && photo.respond_to?(:to_observation) && 
+      if o.new_record? && photo && photo.respond_to?(:to_observation) && !params[:uploader] &&
           (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
         photo_o = photo.to_observation
         if o.observed_on_string.blank?
