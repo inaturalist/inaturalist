@@ -29,8 +29,8 @@ class LocationChooser extends SelectionBasedComponent {
       boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
       boxSizing: "border-box",
       MozBoxSizing: "border-box",
-      fontSize: "14px",
-      height: "36px",
+      fontSize: "13px",
+      height: "31px",
       marginTop: "10px",
       outline: "none",
       padding: "0 12px",
@@ -341,7 +341,7 @@ class LocationChooser extends SelectionBasedComponent {
                 defaultZoom={ this.props.zoom || 1 }
                 defaultCenter={ this.props.center || center || { lat: 30, lng: 15 } }
                 onClick={ this.handleMapClick }
-                options={{ streetViewControl: false }}
+                options={{ streetViewControl: false, fullscreenControl: true }}
               >
                 <SearchBox
                   bounds={ this.props.bounds }

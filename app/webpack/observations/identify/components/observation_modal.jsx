@@ -64,9 +64,9 @@ const ObservationModal = ( {
         zoomLevel={ obsForMap.map_scale || 8 }
         mapTypeControl={false}
         showAccuracy
-        disableFullscreen
         showAllLayer={false}
         overlayMenu={false}
+        zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
       />
     );
   }

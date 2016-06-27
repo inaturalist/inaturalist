@@ -450,7 +450,6 @@ iNaturalist.Map.createMap = function(options) {
     }
   })
   map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
-  
   if ( !options.disableFullscreen ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   }
@@ -572,7 +571,6 @@ iNaturalist.FullScreenControl = function(map) {
     map.setCenter(oldCenter)
     $(document).bind('keyup', window.fullscreenEscapeHandler)
   }
-  
   controlUI.toggle(enterFullScreen, exitFullScreen)
   return controlDiv;
 }
@@ -692,7 +690,7 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
 iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
-  controlDiv.style.padding = '5px';
+  controlDiv.style.margin = '14px 10px 0';
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)

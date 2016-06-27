@@ -87,6 +87,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         minZoom: options.minZoom,
         backgroundColor: '#E3EAF6',
         zoomControl: (options.zoomControl !== false),
+        zoomControlOptions: options.zoomControlOptions,
         styles: [
           {
             stylers: [
@@ -102,7 +103,8 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   } else {
     map = iNaturalist.Map.createMap( $.extend( true, { }, mapOptions, {
       div: elt,
-      disableFullscreen: options.disableFullscreen
+      disableFullscreen: true,
+      fullscreenControl: !options.disableFullscreen
     } ) );
   }
 
