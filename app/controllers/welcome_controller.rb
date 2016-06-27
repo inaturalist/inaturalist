@@ -10,12 +10,11 @@ class WelcomeController < ApplicationController
         @announcement = Announcement.where(placement: "welcome/index").
           where('? BETWEEN "start" AND "end"', Time.now.utc).last
         @google_webmaster_verification = @site.google_webmaster_verification if @site
-        unless @page
-          if logged_in?
-            redirect_to home_path
-          else
-            render layout: 'bootstrap'
-          end
+        
+        if logged_in?
+          redirect_to home_path
+        elsif !@page
+          render layout: 'bootstrap'
         end
       end
       format.mobile
