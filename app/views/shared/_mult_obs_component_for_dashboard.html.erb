@@ -52,11 +52,11 @@
         <% end %>
       </h3>
       <div class="meta">
-        <%- if observation.quality_grade == 'research_grade' -%>
-          <span class="quality_grade research_grade" title="<%= t(:research_grade) -%>">
+        <%- if observation.research_grade? -%>
+          <span class="quality_grade research" title="<%= t(:research_grade) -%>">
             <%= t(:research_grade_short_html)  -%>
           </span>
-        <% elsif observation.quality_grade == 'casual' %>
+        <% elsif observation.casual? %>
           <span class="quality_grade casual" title="<%= t(:casual) -%>">
             <%= t(:casual)  -%>
           </span>

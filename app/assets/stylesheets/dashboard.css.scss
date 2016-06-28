@@ -253,16 +253,6 @@ h2.timeline-title { /* fix - added h2 */
 	font-weight: normal;
 	color: gray
 }
-.label_research_grade {
-  margin-left: 10px;
-	padding-left: 10px;
-	border-left: 1px solid #ddd;
-  padding: .5em .6em .5em .7em;
-	background-color: #74ac00;
-	font-weight: normal;
-  color: white;
-}
-
 .quality_grade {
   display: inline-block;
   background-color: #ddd;
@@ -306,18 +296,12 @@ h2.timeline-title { /* fix - added h2 */
   border-color: #74ac00;
   border-right-color: transparent;
 }
-
-.full {
+.meta .full {
   display: none;
 }
-
 .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
 .meta .comments i,
 .meta .identifications i {font-size: 110%;}
-.meta .pull-right {
-  position: relative;
-  top: 2px;
-}
 
 
 /* PANEL CONTENT > MEDIA ************************************* */

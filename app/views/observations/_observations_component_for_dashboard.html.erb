@@ -84,7 +84,9 @@
             </span>
           <% end -%>
           <%- if observation.research_grade? %>
-            <span class="label_research_grade"><%= t(:research_grade_short_html) %></span>  
+            <span class="quality_grade research" title="<%= t(:research_grade) -%>">
+              <%= t(:research_grade_short_html)  -%>
+            </span>
           <%- end -%>
         </li>
         <li>
