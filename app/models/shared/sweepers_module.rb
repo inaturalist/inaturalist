@@ -21,6 +21,7 @@ module Shared::SweepersModule
       ctrl.send(:expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.id, locale: locale))
       ctrl.send(:expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.to_param, locale: locale))
     end
-    Rails.cache.delete(taxon.photos_cache_key)
+    Rails.cache.delete( taxon.photos_cache_key )
+    Rails.cache.delete( taxon.photos_with_external_cache_key )
   end
 end
