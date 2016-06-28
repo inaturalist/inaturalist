@@ -32,7 +32,8 @@ class LeftMenu extends SelectionBasedComponent {
       lat: this.commonValue( "latitude" ),
       lng: this.commonValue( "longitude" ),
       notes: this.commonValue( "locality_notes" ),
-      geoprivacy: this.commonValue( "geoprivacy" )
+      geoprivacy: this.commonValue( "geoprivacy" ),
+      manualPlaceGuess: this.commonValue( "manualPlaceGuess" )
     } } );
   }
 

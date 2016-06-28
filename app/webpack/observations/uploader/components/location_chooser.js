@@ -142,7 +142,8 @@ class LocationChooser extends SelectionBasedComponent {
       center: this.refs.map.getCenter( ),
       bounds: this.refs.map.getBounds( ),
       zoom: this.refs.map.getZoom( ),
-      locality_notes: this.props.notes
+      locality_notes: this.props.notes,
+      manualPlaceGuess: this.props.manualPlaceGuess
     };
     if ( !attrs.accuracy ) { attrs.accuracy = undefined; }
     if ( this.props.obsCard ) {
@@ -160,9 +161,13 @@ class LocationChooser extends SelectionBasedComponent {
   }
 
   reverseGeocode( lat, lng ) {
+    if ( this.props.manualPlaceGuess && this.props.notes ) { return; }
     util.reverseGeocode( lat, lng ).then( location => {
       if ( location ) {
-        this.props.updateState( { locationChooser: { notes: location } } );
+        this.props.updateState( { locationChooser: {
+          notes: location,
+          manualPlaceGuess: false
+        } } );
       }
     } );
   }
@@ -179,8 +184,10 @@ class LocationChooser extends SelectionBasedComponent {
       if ( viewport ) {
         // radius is the largest distance from geom center to one of the bounds corners
         radius = _.max( [
-          this.distanceInMeters( lat, lng, viewport.getCenter().lat(), viewport.getCenter().lng() ),
-          this.distanceInMeters( lat, lng, viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
+          this.distanceInMeters( lat, lng,
+            viewport.getCenter().lat(), viewport.getCenter().lng() ),
+          this.distanceInMeters( lat, lng,
+            viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
         ] );
         this.refs.map.fitBounds( viewport );
       } else {
@@ -189,13 +196,20 @@ class LocationChooser extends SelectionBasedComponent {
           new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
           new google.maps.LatLng( lat + 0.001, lng + 0.001 ) ) );
       }
+      let manualPlaceGuess = this.props.manualPlaceGuess;
+      if ( manualPlaceGuess && this.props.notes ) {
+        notes = this.props.notes;
+      } else {
+        manualPlaceGuess = false;
+      }
       this.props.updateState( { locationChooser: {
         lat: lat ? lat.toString( ) : undefined,
         lng: lng ? lng.toString( ) : undefined,
         center: this.refs.map.getCenter( ),
         bounds: this.refs.map.getBounds( ),
         radius,
-        notes
+        notes,
+        manualPlaceGuess
       } } );
     }
   }
@@ -224,6 +238,8 @@ class LocationChooser extends SelectionBasedComponent {
       let lng = updates.lng || this.props.lng;
       lng = lng ? Number( lng ) : undefined;
       this.reverseGeocode( lat, lng );
+    } else if ( field === "notes" ) {
+      updates.manualPlaceGuess = true;
     }
     this.props.updateState( { locationChooser: updates } );
   }
@@ -411,6 +427,7 @@ class LocationChooser extends SelectionBasedComponent {
 LocationChooser.propTypes = {
   show: PropTypes.bool,
   default: PropTypes.object,
+  manualPlaceGuess: PropTypes.bool,
   obsCard: PropTypes.object,
   obsCards: PropTypes.object,
   setState: PropTypes.func,
