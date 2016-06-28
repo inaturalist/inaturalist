@@ -7,8 +7,6 @@
   no_common ||= false
   place ||= nil
   comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
-  truncate ||= false
-  trunclength ||= truncate ? 23 : 500
   if taxon.species_or_lower?
     pieces = taxon.name.split
     sciname = if taxon.variety? && pieces.size == 3
@@ -16,7 +14,7 @@
     elsif taxon.subspecies? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
     else
-      "<span class=\"sciname\">#{truncate(taxon.name,length: trunclength)}</span>"
+      "<span class=\"sciname\">#{taxon.name}</span>"
     end
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
@@ -32,7 +30,6 @@
   include_id ||= false
   sciname += " #{taxon.id}" if include_id
   sciname += " [inactive]" unless taxon.is_active?
-  sciname = truncate_rendered_name(sciname, trunclength+6) if truncate
   
   include_parens ||= true unless include_parens == false
   link_url ||= nil
@@ -47,6 +44,8 @@
   if named_ancestor == true
     named_ancestor = taxon.ancestors.reverse.detect{|t| !t.common_name.blank?}
   end
+  truncate ||= false
+  trunclength = truncate ? 23 : 500
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>

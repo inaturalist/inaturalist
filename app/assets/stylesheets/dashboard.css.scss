@@ -4,6 +4,11 @@
    width:1029px;            
 }
 
+.followee {
+  max-width:50px;
+  max-height:50px;  
+}
+
 #observe_panel .scaledimg {
   width: 100%;
   min-height: 150px;
@@ -302,7 +307,7 @@ div.media-body > ul {
 .timeline-footer > .btn {
 	margin-right: 15px;
 }
-.thumbnail > h3 {
+.thumbnail > .caption > h3 {
 	font-size: 14px;
 	line-height: 20px;
 	margin: 0;
@@ -536,6 +541,13 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body {
 	border: 1px solid #DEDEDE;
 	background-color:#ededed;
 	border-radius:2px
+}
+
+.caption h3
+{
+  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .media-body > h3 > .taxon > .comname{

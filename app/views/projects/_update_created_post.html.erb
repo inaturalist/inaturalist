@@ -3,7 +3,7 @@
   post = updates.first.notifier 
   author = post.try(:user)
   the_post_path = project_journal_post_path(:project_id => project.id, :id => post.id)
-  target_id = rand(36**8).to_s(36)
+  target_id = bootstrapTargetID
 %>
 <div class="timeline-body">
   <h3><%= post.title %></h3>

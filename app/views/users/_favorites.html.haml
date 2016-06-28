@@ -5,4 +5,4 @@
       %div.scaledimg{ style: "background-image: url('#{taxon_image_url(taxon, size: "medium")}')" }
     .caption
       = link_to taxon_path(taxon) do
-        = render(:partial => 'shared/taxon', :object => taxon, :locals => { :include_parens => false, :truncate => true, :trunclength => 16, :exclude_rank => true, :one_name => true})
+        = render(:partial => 'shared/taxon', :object => taxon, :locals => { :include_parens => false, :exclude_rank => true, :one_name => true})

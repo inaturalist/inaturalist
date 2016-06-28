@@ -70,7 +70,7 @@
           </div>
         <%- end -%>
       </div>
-      <%- target_id = rand(36**8).to_s(36) %>
+      <%- target_id = bootstrapTargetID %>
       <div id="expand<%= "#{target_id}" %>" class="collapse out">
         
         <%- if @comments_by_parent_id[[parent.class.to_s,comment.parent_id].join("_")].length > 1 %>

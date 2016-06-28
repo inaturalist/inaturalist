@@ -34,22 +34,23 @@
         <% end -%>
       <% end %>
     <% end -%>
-    <h3>
-      <% if observation.taxon %>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => {
-                      :taxon => observation.taxon,
-                      :link_url => observation_path(observation),
-                      :include_parens => false,
-                      :truncate => true,
-                      :trunclength => 16,
-                      :exclude_rank => true,
-                      :one_name => true} %>
-      <% else %>
-        <span class="taxon">
-          <%= link_to "#{t(:unknown)}", observation_path(observation) %>
-        </span>
-      <% end %>
-    </h3>
+    <div class="caption">
+      <h3>
+        <% if observation.taxon %>        
+          <%= render :partial => 'shared/taxon', 
+                     :locals => {
+                        :taxon => observation.taxon,
+                        :link_url => observation_path(observation),
+                        :include_parens => false,
+                        :exclude_rank => true,
+                        :one_name => true} %>
+        
+        <% else %>
+          <span class="taxon">
+            <%= link_to "#{t(:unknown)}", observation_path(observation) %>
+          </span>
+        <% end %>
+      </h3>
+    </div>
   </div>
 </li>

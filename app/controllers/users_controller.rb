@@ -402,9 +402,6 @@ class UsersController < ApplicationController
     Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
-    @month_observations = current_user.observations.
-      where([ "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
-      Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
         render :partial => 'dashboard_updates', :layout => false
@@ -485,7 +482,7 @@ class UsersController < ApplicationController
             :crypted_password, :salt, :old_preferences, :activation_code,
             :remember_token, :last_ip, :suspended_at, :suspension_reason,
             :icon_content_type, :icon_file_name, :icon_file_size,
-            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url, :latitude, :longitude
+            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url, :latitude, :longitude, :lat_lon_acc_admin_level
           ],
           :methods => [
             :user_icon_url, :medium_user_icon_url, :original_user_icon_url

@@ -67,7 +67,7 @@
                 <%- observations = [updates[0].resource] -%>
                 <%= render partial: 'observations/observations_component_for_dashboard', locals: {for_idents: true, observations: observations} %>
               <% end %>
-              <%- target_id = rand(36**8).to_s(36) %>
+              <%- target_id = bootstrapTargetID %>
               <div id="expand<%= "#{target_id}" %>" class="collapse out">
                 <ul class="timeline timeline_observation">
                   <% for u in updates[0..-2] %>
