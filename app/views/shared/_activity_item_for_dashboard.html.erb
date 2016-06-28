@@ -20,10 +20,11 @@
   context_around ||= nil
   posted_at ||= item.created_at
   posted_at = item.updated_at if item.is_a?(Flag)
+  last ||= false
 -%>
 
 
-<li class="<%= ("id_refined" unless item.current?) if item.is_a? Identification  %>">
+<li class="<%= ("id_refined" unless item.current?) if item.is_a? Identification  %> <%= "last" if last  %>">
   <div class="timeline-badge">
     <% if user && !no_thumb -%>
         <%= link_to image_tag(user.icon.url(:thumb), :class => 'img-circle padding'), person_path(user) %>

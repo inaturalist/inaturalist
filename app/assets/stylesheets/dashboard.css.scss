@@ -1,6 +1,7 @@
-.container {
-   min-width:1029px;
-   width:1029px;            
+.container.main {
+   min-width:950px;
+   width: auto !important;
+   width:950px;            
 }
 
 .followee {
@@ -347,15 +348,37 @@ div.media-body > ul {
 .timeline-footer > .btn {
 	margin-right: 15px;
 }
-.thumbnail > .caption {
-  height: 66px;
+
+.thumbnail > .capt {
+  padding-top: 4px;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 45px
 }
-.thumbnail > .caption > h3 {
+
+li > .thumbnail {
+  margin-bottom: 0px !important;
+  margin-top: 20px !important;
+}
+
+li > .thumbnail.first {
+  margin-top: 0px !important;
+}
+
+.thumbnail > .capt > h3 {
 	font-size: 14px;
 	line-height: 20px;
 	margin: 0;
-	padding: 5px
+	padding: 0px
 }
+
+.capt h3
+{
+  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 .timeline-footer > a.btn_settings {
 	padding-right: 15px
 }
@@ -465,6 +488,12 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > l
 
 /* Observation Activity - Timeline 
 ------------------------- */
+ul.timeline_observation {
+  margin-top:0;
+  margin-bottom:0;
+  padding-top:0;
+  padding-bottom:0
+}
 .timeline_observation:before {
 	width: 0;
 	margin-left: 20px;
@@ -472,6 +501,11 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > l
 ul.timeline_observation > li {
 	margin-bottom:10px;	
 }
+
+ul.timeline_observation > li.last {
+	margin-bottom:0px;	
+}
+
 ul.timeline_observation > li > .timeline-badge {
 	color: #fff;
 	width: 40px;
@@ -584,13 +618,6 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body {
 	border: 1px solid #DEDEDE;
 	background-color:#ededed;
 	border-radius:2px
-}
-
-.caption h3
-{
-  text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
 }
 
 .media-body > h3 > .taxon > .comname{

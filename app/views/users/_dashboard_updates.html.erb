@@ -78,11 +78,11 @@
                       end
                       notifier ||= u.notifier
                     -%>
-                    <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
+                    <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: false, no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
                   <% end %>
                 </ul>
               </div>
-              <ul class="timeline timeline_observation" style="margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0">
+              <ul class="timeline timeline_observation">
                 <%-
                   u = updates.last
                   notifier = nil
@@ -91,12 +91,14 @@
                   end
                   notifier ||= u.notifier
                 -%>
-                <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
+                <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: true, no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
               </ul>
             </div>
             <div class="timeline-footer">
               <%= link_to t(:view_resource, :resource => resource_type), resource, :class => "btn btn-sm btn-primary" %>
-              <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
+              <%- if updates.count > 1 %>
+                <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
+              <%- end %>
             </div>  
           <% else %>                      
             <%= 

@@ -1,5 +1,6 @@
-<li class="col-md-3 col-sm-3">
-  <div class="thumbnail">
+<%- first ||= false -%>
+<li class="col-md-3 col-sm-3 col-xs-3">
+  <div class="thumbnail<%= " first" if first %>">
     <% photo_count, sound_count, link_text =
       observation.observation_photos_finished_processing.size,
       observation.observation_sounds_count, [] %>
@@ -34,7 +35,7 @@
         <% end -%>
       <% end %>
     <% end -%>
-    <div class="caption">
+    <div class="capt">
       <h3>
         <% if observation.taxon %>        
           <%= render :partial => 'shared/taxon', 

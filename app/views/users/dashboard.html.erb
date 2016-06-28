@@ -17,7 +17,7 @@
   <%= javascript_include_tag 'map_bundle', "d3.min", 'observations/observation_fields', 'users/dashboard' %>
 <%- end -%>
 
-<div class="container" style="background-color:white">
+<div class="container main" style="background-color:white">
   <% if announcement = @announcements.detect{|a| a.placement == 'users/dashboard'} -%>
     <div class="column span-24">
       <%= announcement.body.html_safe %>
