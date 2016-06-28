@@ -39,6 +39,7 @@ class TaxaController < ApplicationController
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
   ALLOWED_SHOW_PARTIALS = %w(chooser)
+  ALLOWED_PHOTO_PARTIALS = %w(photo)
   MOBILIZED = [:show, :index]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
@@ -649,7 +650,7 @@ class TaxaController < ApplicationController
       Rails.logger.error "[ERROR #{Time.now}] Flickr error: #{e}"
       @photos = @taxon.photos
     end
-    if params[:partial]
+    if params[:partial] && ALLOWED_PHOTO_PARTIALS.include?( params[:partial] )
       key = {:controller => 'taxa', :action => 'photos', :id => @taxon.id, :partial => params[:partial]}
       if fragment_exist?(key)
         content = read_fragment(key)

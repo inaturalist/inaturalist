@@ -3,7 +3,7 @@ class TaxonSweeper < ActionController::Caching::Sweeper
   include Shared::SweepersModule
   
   def after_update(taxon)
-    expire_taxon(taxon)
+    expire_taxon( taxon )
   end
   
   def after_destroy(taxon)
