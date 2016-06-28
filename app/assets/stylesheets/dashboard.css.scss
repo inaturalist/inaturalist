@@ -263,6 +263,63 @@ h2.timeline-title { /* fix - added h2 */
   color: white;
 }
 
+.quality_grade {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 2px 0px 1px 10px;
+  position: relative;
+  font-size: 12px !important;
+  line-height: 17px !important;
+  z-index: 1;
+  margin-right: 20px;
+}
+.quality_grade:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 10px solid #ddd;
+  border-right-width: 5px;
+  border-right-color: transparent;
+  right: -15px;
+  z-index: -1;
+}
+
+.quality_grade {
+  padding: 1px 0px 1px 5px;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  margin-right: 20px;
+}
+.quality_grade:after {
+  bottom: 0;
+  border-width: 8px;
+  border-right-width: 5px;
+  right: -10px;
+}
+
+.quality_grade.research {
+  background-color:#74ac00;
+  color:white;
+}
+.quality_grade.research:after {
+  border-color: #74ac00;
+  border-right-color: transparent;
+}
+
+.full {
+  display: none;
+}
+
+.meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
+.meta .comments i,
+.meta .identifications i {font-size: 110%;}
+.meta .pull-right {
+  position: relative;
+  top: 2px;
+}
+
+
 /* PANEL CONTENT > MEDIA ************************************* */
 
 .media-body > p > button {
@@ -305,6 +362,9 @@ div.media-body > ul {
 }
 .timeline-footer > .btn {
 	margin-right: 15px;
+}
+.thumbnail > .caption {
+  height: 66px;
 }
 .thumbnail > .caption > h3 {
 	font-size: 14px;
