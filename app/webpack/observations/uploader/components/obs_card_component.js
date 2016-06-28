@@ -127,7 +127,8 @@ class ObsCardComponent extends Component {
       zoom: this.props.obsCard.zoom,
       center: this.props.obsCard.center,
       bounds: this.props.obsCard.bounds,
-      notes: this.props.obsCard.locality_notes
+      notes: this.props.obsCard.locality_notes,
+      manualPlaceGuess: this.props.obsCard.manualPlaceGuess
     } } );
   }
 
