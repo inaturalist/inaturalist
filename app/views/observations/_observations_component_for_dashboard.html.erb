@@ -87,6 +87,10 @@
             <span class="quality_grade research" title="<%= t(:research_grade) -%>">
               <%= t(:research_grade_short_html)  -%>
             </span>
+          <%- elsif observation.casual? %>
+            <span class="quality_grade casual" title="<%= t(:casual) -%>">
+              <%= t(:casual)  -%>
+            </span>
           <%- end -%>
         </li>
         <li>
