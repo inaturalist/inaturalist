@@ -1,9 +1,9 @@
+<%- 
+  observation = observations.first
+  for_idents ||= false
+  target_id ||= bootstrapTargetID
+-%>
 <%- if observations.size == 1 %>
-  <%- 
-    observation = observations.first
-    for_idents ||= false
-    target_id ||= bootstrapTargetID
-  -%>
   <div class="media <%= "for_idents" if for_idents %>">
     <div class="media-left"> 
       <% photo_count, sound_count, link_text =
@@ -98,7 +98,7 @@
       </p>
     </div>
   </div>
-<%- else %>    
+<%- else %>
   <div class="row">
     <ul>
       <% for observation in observations[0..3] %>
@@ -116,4 +116,3 @@
     </div>
   <% end %>
 <%- end %>
-

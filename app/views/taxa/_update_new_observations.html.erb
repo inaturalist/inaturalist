@@ -10,11 +10,16 @@
 -%>
 
 <div class="timeline-body">
-  <%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12], target_id: target_id} %>
+  <%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations, target_id: target_id} %>
 </div>
 <%- if observations.count > 1 %>
+  <%- 
+    created_at_times = observations.map{|o| o.created_at.blank? ? nil : o.created_at }.compact.uniq.sort
+    created_d1 = created_at_times.min.to_s
+    created_d2 = created_at_times.max.to_s
+  -%>
   <div class="timeline-footer">
-    <%= link_to t(:view_observations), observations_path({taxon_id: taxon.id, subview: "grid"}), class: "btn btn-sm btn-primary" %>
+    <%= link_to t(:view_observations), observations_path({taxon_id: taxon.id, created_d1: created_d1, created_d2: created_d2, subview: "grid"}), class: "btn btn-sm btn-primary" %>
     <% if observations.count > 4 -%>
       <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
         <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span>
