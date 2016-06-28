@@ -10,7 +10,11 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'map_bundle', "d3.min", 'observations/observation_fields', 'dashboard' %>
+  <script>
+    DASHBOARD_TAB = "<%= params[:tab] || 'updates' %>";
+    DASHBOARD_FROM = "<%= params[:from] %>";
+  </script>
+  <%= javascript_include_tag 'map_bundle', "d3.min", 'observations/observation_fields', 'users/dashboard' %>
 <%- end -%>
 
 <div class="container" style="background-color:white">
@@ -19,16 +23,19 @@
       <%= announcement.body.html_safe %>
     </div>
   <% end -%>
-  
+
   <%= render :partial => "shared/by_login_header_bootstrap", :locals => { :user => current_user } %>
 
   <div class="col-md-8"  style="background-color:white">
     <div class="tabbable">
       <div class="row dashboard_tab_row">
         <div class="btn-group">
-          <a class="btn btn-default dashboard_tab active" href="#updates" data-toggle="tab"><%=t :all_updates %></a>
-    		  <a class="btn btn-default dashboard_tab" href="#updates_by_you" data-toggle="tab"><%=t :your_content %></a>
-    		  <a class="btn btn-default dashboard_tab" href="#comments" data-toggle="tab"><%=t :real_time_discussions %></a>
+          <a class="btn btn-default dashboard_tab active" data-target-el="#updates" data-tab="updates"
+            href="#updates"><%=t :all_updates %></a>
+          <a class="btn btn-default dashboard_tab" data-target-el="#updates_by_you" data-tab="yours"
+            href="#updates_by_you"><%=t :your_content %></a>
+          <a class="btn btn-default dashboard_tab" data-target-el="#comments" data-tab="comments"
+            href="#comments"><%=t :real_time_discussions %></a>
         </div>
       </div>
       <div class="tab-content">
@@ -66,7 +73,7 @@
                   <%= link_to @site.getting_started_url, target: "_blank" do %>
                     <span class="glyphicon glyphicon-info-sign"></span> <%=t :getting_started_guide %>
                   <% end %>
-                </div>        
+                </div>
               </div>
             <% end -%>
 
@@ -77,7 +84,7 @@
                   <h3 class="panel-title"> <%= @local_onboarding_content[:local_results] ? t('onboarding.follow_panel_title_local') : t('onboarding.follow_panel_title_global') %></h3>
                 </div>
                 <div class="panel-body">
-                  <p><%=t 'onboarding.follow_panel_body' %></p>  
+                  <p><%=t 'onboarding.follow_panel_body' %></p>
                   <div class="row">
                     <% @local_onboarding_content[:to_follows].each do |to_follow| %>
                       <%= render(:partial => 'followees', :locals => {:friend => to_follow}) %>
@@ -87,9 +94,9 @@
                 <div class="panel-footer">
                   <%= link_to people_path, class: "btn btn-primary" do %>
                     <%=t :browse_people %> <span class="glyphicon glyphicon-chevron-right"></span>
-                  <% end %>  
+                  <% end %>
                 </div>
-              </div>                
+              </div>
             <% end -%>
           <% end -%>
           <% if @has_updates && !current_user.prefers_hide_activity_onboarding -%>
@@ -99,17 +106,17 @@
                 <h3 class="panel-title"><%=t 'onboarding.youve_got_updates_panel_title' %></h3>
               </div>
               <div class="panel-body">
-                <p class="lead"><%= t('onboarding.youve_got_updates_panel_body_p1', site_name: SITE_NAME.gsub(".org",""))%></p>                    
-                <%= t('onboarding.youve_got_updates_panel_body_p2', site_name: SITE_NAME.gsub(".org","")).html_safe%>                  
+                <p class="lead"><%= t('onboarding.youve_got_updates_panel_body_p1', site_name: SITE_NAME.gsub(".org",""))%></p>
+                <%= t('onboarding.youve_got_updates_panel_body_p2', site_name: SITE_NAME.gsub(".org","")).html_safe%>
               </div>
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
-            </div>                
+            </div>
           <% end -%>
           <div id="updates_target">
             <div class="loading status"><%=t :loading %></div>
           </div>
         </div>
-        <div class="tab-pane" id="updates_by_you">    
+        <div class="tab-pane" id="updates_by_you">
           <% unless current_user.prefers_hide_updates_by_you_onboarding -%>
             <div class="panel panel-info" id="updates_by_you_panel">
               <div class="panel-heading">
@@ -118,7 +125,7 @@
               </div>
               <div class="panel-body"><%= t('onboarding.updates_by_you_panel_body') %></div>
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="updates_by_you"><%= t(:got_it!) %></a></div>
-            </div>                
+            </div>
           <% end -%>
           <div id="updates_by_you_target">
             <div class="loading status"><%=t :loading %></div>
@@ -131,15 +138,15 @@
                 <a data-panel-type="comments" class="close">&times;</a>
                 <h3 class="panel-title"><%= t('onboarding.comments_panel_title', site_name: SITE_NAME.gsub(".org","")) %></h3>
               </div>
-              <div class="panel-body">                  
-                 <%= t('onboarding.comments_panel_body', site_name: SITE_NAME.gsub(".org","")).html_safe %>                 
+              <div class="panel-body">
+                 <%= t('onboarding.comments_panel_body', site_name: SITE_NAME.gsub(".org","")).html_safe %>
               </div>
               <div class="panel-footer"><a class="btn btn-primary" data-panel-type="comments"><%= t(:got_it!) %></a></div>
-            </div>                
+            </div>
           <% end -%>
-          <ul id="comments_target">
+          <div id="comments_target">
             <div class="loading status"><%=t :loading %></div>
-          </ul>          
+          </div>
         </div>
       </div>
     </div>
@@ -149,11 +156,11 @@
       <span class="glyphicon glyphicon-plus"></span>
       <%= t(:add_observations) %>
     <% end %>
-    
+
     <% if (announcement = @announcements.detect{|a| a.placement == 'users/dashboard#sidebar'}) && !user_seen_announcement?(announcement) -%>
       <%= announcement.body.html_safe %>
     <% end -%>
-    
+
     <h3 class="page-header">
       <%= t :subscriptions %>
       <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t :subscribe_to_places_to %>"></span>
@@ -165,18 +172,18 @@
           <% for subscription in subscriptions %>
             <li class="list-group-item">
               <%= link_to edit_subscription_path(subscription), :class => "pull-right" do %>
-                <span class="glyphicon glyphicon-cog"></span>                
+                <span class="glyphicon glyphicon-cog"></span>
               <% end %>
               <%= subscription.resource.try_methods(:display_name, :name, :title)%>
               <% if subscription.taxon -%>
                 (<%= subscription.taxon.name %>)
               <% end -%>
-            </li>                  
+            </li>
           <% end %>
         </ul>
       <% end %>
-    <% end %> 
-    
+    <% end %>
+
     <div class="list-group">
       <%= link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", :class => "list-group-item" do %>
         <span class="glyphicon glyphicon-leaf"></span>
@@ -207,8 +214,8 @@
          </div>
        </div>
      </div>
-    </div>     
-     
+    </div>
+
     <h3 class="page-header"><%=t :more %>..</h3>
     <% unless current_user.prefers_hide_getting_started_onboarding -%>
       <div class="panel panel-default" id="getting_started_panel">
@@ -224,7 +231,7 @@
         </div>
       </div>
     <% end -%>
-      
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%=t :blog_widget %></h3>
@@ -252,7 +259,7 @@
           </div>
           <div class="list-group">
             <% for flag in @flags %>
-              <%-  
+              <%-
                 flaggable = flag.flaggable
                 flaggable_class = flaggable.class
                 flaggable = flaggable.becomes(Photo) if flaggable.is_a?(Photo)
@@ -267,7 +274,7 @@
                   <% end -%>
                   <%= t(:flagged) %>
                   <strong>
-                  <%= 
+                  <%=
                     if flaggable.respond_to?(:user) && flaggable.user
                       "#{flaggable.user.login}'s"
                     else
@@ -276,14 +283,14 @@
                   %>
                   <%= flaggable_class.name.humanize.downcase %>
                   </strong>
-                  <%=t :because_of %>: 
+                  <%=t :because_of %>:
                   <%= flag.flag %>
-              <% end %> 
+              <% end %>
             <% end %>
           </div>
-        </div>      
+        </div>
       <% end -%>
-  
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -297,7 +304,7 @@
               <%= link_to taxon_path(taxon), class: "pull-right" do %>
                 <span class="glyphicon glyphicon-edit"></span>
               <% end %>
-              <%= link_to_taxon taxon %>        
+              <%= link_to_taxon taxon %>
             </li>
           <% end %>
         </ul>
@@ -307,7 +314,7 @@
         </div>
       </div>
     <% end -%>
-    
+
   </div>
 </div>
 
