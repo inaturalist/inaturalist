@@ -14,7 +14,6 @@ window.onpopstate = function( event ) {
 
 DASHBOARD.loadTab = function( tabName, options ) {
   var tab = $("a[data-tab='" + tabName + "']")
-  console.log(tab.data());
   $( "body" ).scrollTop( 0 );
   $( ".tab-content > div" ).hide( );
   $( ".dashboard_tab_row a").removeClass( "active" );
