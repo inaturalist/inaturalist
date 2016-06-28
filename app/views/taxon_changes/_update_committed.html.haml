@@ -1,37 +1,27 @@
 - taxon_change ||= update_committed
-%table
-  %tr
-    %td
-      - for taxon in taxon_change.input_taxa
-        = image_and_content link_to(taxon_image(taxon), taxon), :image_size => 75, :class => "stacked" do
-          = render "shared/taxon", :taxon => taxon, :link_url => taxon
-    %td
-      %strong
-        = taxon_change.verb_phrase
-    %td
-      - for taxon in taxon_change.output_taxa
-        = image_and_content link_to(taxon_image(taxon), taxon), :image_size => 75, :class => "stacked" do
-          = render "shared/taxon", :taxon => taxon, :link_url => taxon
+.timeline-body
+  %table.table{ :style => "border-bottom:1px solid #ddd;" }
+    %thead{ :style => "background-color:#fbeed7;" }
+      %tr
+        %th
+          Taxon
+        %th
+          = taxon_change.verb_phrase.capitalize
+    %tbody
+      %tr
+        %td
+          - for taxon in taxon_change.input_taxa
+            = render "shared/taxon", :taxon => taxon, :link_url => taxon          
+        %td
+          - for taxon in taxon_change.output_taxa
+            = render "shared/taxon", :taxon => taxon, :link_url => taxon
+  %p
+    = formatted_user_text taxon_change.description
+.timeline-footer
+  = link_to "View details", taxon_change, :class => "btn btn-sm btn-primary"
+  = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-sm btn-default"
+  About Taxon Changes
+  %span.glyphicon.glyphicon-info-sign{"data-toggle" => "popover", "data-content"=>"Taxon changes represent changes to #{CONFIG.site_name}'s taxonomy. Most of the time #{CONFIG.site_name_short} will automatically keep your content up-to-date when these changes happen (unless you've opted-out), but we still want to let you know when and how your data is changing."}
 
-.ui
-  = formatted_user_text taxon_change.description
+    
 
-.stacked
-  = helptip "About taxon changes" do
-    Taxon changes represent changes to #{CONFIG.site_name}'s taxonomy. Most of the time #{CONFIG.site_name_short} will automatically
-    keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
-    to let you know when and how your data is changing.
-    - if taxon_change.automatable?
-      - if current_user.prefers_automatic_taxonomic_changes?
-        Since this change is unambiguous, your content will be updated automatically. If you'd prefer to perform these updates yourself in the future, you can 
-        = surround '', '.' do
-          = link_to "alter your taxon change settings", edit_user_path(current_user)
-      - else
-        If you'd prefer to have #{CONFIG.site_name_short} update your content automatically in the future, you can
-        = surround '', '.' do
-          = link_to "alter your taxon change settings", edit_user_path(current_user)
-    - else
-      #{CONFIG.site_name_short} cannot update your content automatically for this change.
-= link_to "View details", taxon_change, :class => "readmore"
-&nbsp;
-= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"

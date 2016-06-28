@@ -1,9 +1,7 @@
-.col-md-3
+.col-md-3.col-sm-3
   .media
     .media-left
-      = link_to(                                                                     |
-        image_tag(friend.icon.url(:thumb), :class => 'media-object img-circle', :width => 40), |
-        person_by_login_path(friend.login))                                          |
+      = link_to(image_tag(friend.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(friend.login))                                          
     .media-body
       %h4.media-heading= link_to friend.login, person_by_login_path(friend.login)
       / %span.glyphicon.glyphicon-eye-open{"aria-hidden" => "true"}

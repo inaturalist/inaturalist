@@ -134,6 +134,7 @@ Rails.application.routes.draw do
   get '/users/updates_count' => 'users#updates_count', :as => :updates_count
   get '/users/new_updates' => 'users#new_updates', :as => :new_updates
   get '/users/api_token' => 'users#api_token', :as => :api_token
+  get '/users/dashboard_updates' => 'users#dashboard_updates', :as => :dashboard_updates
   
   resources :users, :except => [:new, :create] do
     resources :flags

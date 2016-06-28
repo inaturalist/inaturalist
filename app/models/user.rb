@@ -57,7 +57,12 @@ class User < ActiveRecord::Base
   preference :location_details, :boolean, default: false
   preference :redundant_identification_notifications, :boolean, default: true
   preference :skip_coarer_id_modal, default: false
-
+  preference :hide_observe_onboarding, default: false
+  preference :hide_follow_onboarding, default: false
+  preference :hide_activity_onboarding, default: false
+  preference :hide_getting_started_onboarding, default: false
+  preference :hide_updates_by_you_onboarding, default: false
+  preference :hide_comments_onboarding, default: false
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -133,6 +138,7 @@ class User < ActiveRecord::Base
   before_validation :strip_name, :strip_login
   before_save :set_time_zone
   before_save :whitelist_licenses
+  before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -143,7 +149,7 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-
+  
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
     :message => "must be JPG, PNG, or GIF"
@@ -431,7 +437,65 @@ class User < ActiveRecord::Base
     end
     true
   end
-
+    
+  def get_lat_lon_from_ip
+    return true if last_ip.nil?
+    url = URI.parse('http://geoip.inaturalist.org/')
+    http = Net::HTTP.new(url.host, url.port)
+    http.read_timeout = 0.5
+    http.open_timeout = 0.5
+    latitude = nil
+    longitude = nil
+    lat_lon_acc_admin_level = nil
+    begin
+      resp = http.start() {|http|
+        http.get("/?ip=#{last_ip}")
+      }
+      data = resp.body
+      begin
+        result = JSON.parse(data)
+        if result["results"]["country"] == ""
+          lat_lon_acc_admin_level = nil #no idea where
+          latitude = nil
+          longitude = nil          
+        else #know the country at least
+          ll = result["results"]["ll"]
+          latitude = ll[0]
+          longitude = ll[1]
+          if result["results"]["city"] == ""
+            if result["results"]["region"] == ""
+              lat_lon_acc_admin_level = 0  #probably just know the country
+            else
+              lat_lon_acc_admin_level = 1 #also probably know the state
+            end
+          else
+            lat_lon_acc_admin_level = 2 #also probably know the county
+          end
+        end
+      rescue
+        latitude = nil
+        longitude = nil
+        lat_lon_acc_admin_level = nil
+        Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
+      end
+    rescue Timeout::Error => e
+      latitude = nil
+      longitude = nil
+      lat_lon_acc_admin_level = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip timeout"
+    end
+    self.latitude = latitude
+    self.longitude = longitude
+    self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
+  end
+  
+  def get_lat_lon_from_ip_if_last_ip_changed
+    return true if last_ip.nil?
+    if last_ip_changed? || latitude.nil?
+      get_lat_lon_from_ip
+    end
+  end
+  
   def published_name
     name.blank? ? login : name
   end

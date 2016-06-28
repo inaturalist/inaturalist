@@ -3,340 +3,311 @@
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
+  <style>
+
+  </style>
 <% end -%>
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'map_bundle', "d3.min", 'calendars', 'observations/observation_fields' %>
-  <script type="text/javascript" charset="utf-8">
-    var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
-    $(document).ready(function() {
-      $('#tabs').tabs({
-        show: function(event, ui) {
-          if ($(ui.panel).attr('id') == 'explore' && !$(ui.panel).hasClass('loaded')) {
-            $('.observations', ui.panel).load('/observations?partial=cached_component', function(data) {
-              var html = data.replace(/[\s\n]+/, ' ')
-              $(this).html(html)
-              $(this).parent().find('.observationcontrols').observationControls()
-            })
-          } else if ($(ui.panel).attr('id') == 'comments' && !$(ui.panel).hasClass('loaded')) {
-            $(ui.panel).load('/comments?partial=true', function(data) {
-              var html = data.replace(/[\s\n]+/, ' ')
-              $(this).html(html)
-            })
-          }
-          $(ui.panel).addClass('loaded')
-        }
-      })
-      
-      $('.subscriptionsettings').subscriptionSettings()
-      $('abbr.timeago').timeago()
-      if ((new Date()).getTime() - CACHED_AT.getTime() > 5000) {
-        $('#flash').hide()
-      }
-      var dayInSeconds = 24 * 60 * 60,
-          now = new Date(),
-          monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      
-      var elt = $('abbr.compact.date:first')
-      if (elt.length > 0) {
-        var dateString = $(elt).attr('title').split('T')[0],
-            timeString = $(elt).attr('title').split('T')[1],
-            d = new Date(Date.parse($(elt).attr('title')))
-
-        $('abbr.compact.date').each(function() {
-          var dateString = $(this).attr('title').split('T')[0],
-              timeString = $(this).attr('title').split('T')[1],
-              d = new Date(Date.parse($(elt).attr('title')))
-          if (!timeString.indexOf(':') || typeof(d) != 'object') { return }
-          if (now.getFullYear() == d.getFullYear() &&
-              now.getMonth() == d.getMonth() &&
-              now.getDate() == d.getDate()) {
-            return 
-          }
-          $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
-        })
-      }
-
-      $('#new_place_subscription_link, #new_taxon_subscription_link').click(function() {
-        var dialogId = 'new_subscription_dialog'
-        var dialog = $('#'+dialogId)
-        if (dialog.length != 0) {$(dialog).remove()};
-        dialog = $('<div></div>')
-          .attr('id', dialogId)
-          .addClass('dialog').html('<div class="loading status">' + I18n.t('loading') + '</div>')
-        $(document).append(dialog)
-        var data = 'partial=form&authenticity_token=' + $('meta[name=csrf-token]').attr('content')
-        dialog.load($(this).attr('href'), data, function() {
-          $(this).centerDialog()
-          $('form:has(input[required])', this).submit(checkFormForRequiredFields)
-        })
-        dialog.dialog({
-          modal: true,
-          title: 'Subscribe to a new place/taxon'
-        })
-        return false
-      })
-    })
-  </script>
+  <%= javascript_include_tag 'map_bundle', "d3.min", 'observations/observation_fields', 'dashboard' %>
 <%- end -%>
 
-<% if announcement = @announcements.detect{|a| a.placement == 'users/dashboard'} -%>
-  <div class="column span-24">
-    <%= announcement.body.html_safe %>
-  </div>
-<% end -%>
-
-<div id="pageheader">
-  <h2><%=t :welcome_comma! %> <%= current_user.login %>!</h2>
-  <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>
-</div>
-
-<div id="tabs" class="ui-tabs">
-  <ul>
-    <li><a href="#updates"><span><%= t :recent_updates %></span></a></li>
-    <li><a href="#explore"><span><%= t :observations_by_everyone %></span></a></li>
-    <li><a href="#comments"><span><%= t :comments_by_everyone %></span></a></li>
-  </ul>
+<div class="container" style="background-color:white">
+  <% if announcement = @announcements.detect{|a| a.placement == 'users/dashboard'} -%>
+    <div class="column span-24">
+      <%= announcement.body.html_safe %>
+    </div>
+  <% end -%>
   
-  <div id="updates">
-    <div class="column span-15 append-1">
-      <% if @updates.blank? -%>
-        <% if params[:page].blank? -%>
-          <p>
-            <% if current_user.friendships.count == 0 -%>
-              <%=t :your_dashboard_helps_you %>
-              <%= link_to t(:find_some_people_to_follow), people_path, :class => "readmore" %>
-            <% else %>
-              <%=t :none_of_the_people_you_follow_have_any_updates_yet %>
-            <% end -%>
-          </p>
+  <%= render :partial => "shared/by_login_header_bootstrap", :locals => { :user => current_user } %>
 
-          <p><%=t :here_are_some_things_you_can_do_in_the_meantime %>:</p>
-          <ul class="readable leafylist">
-            <% unless current_user.flickr_identity %>
-              <li><%= link_to t(:link_your_flickr_account_with_inat, :site_name => SITE_NAME_SHORT), auth_url_for('flickr') %></li>
-            <% end %>
-            <li><%= link_to t(:browse_your_observations), observations_by_login_path(current_user.login) %></li>
-            <li><%= link_to t(:add_new_observations), :controller => 'observations', :action => 'new' %></li>
-            <li><%= link_to t(:explore_everyones_observations), observations_path %></li>
-            <li><%= link_to t(:check_out_your_life_list), lists_by_login_path(current_user.login) %></li>
-          </ul>
-        <% else %>
-          <p class="description">
-            <%= t :no_more_updates %>
-          </p>
-        <% end -%>
-
-      <% else %>
-        <div id="owner_filter" class="tabs clear centered">
-          <ul>
-            <li><%= link_to t(:all_updates), dashboard_path, :class => "#{'active' if params[:filter].blank?}" %></li>
-            <li><%= link_to t(:updates_on_your_content), dashboard_path(:filter => "you") , :class => "#{'active' if params[:filter] == 'you'}" %></li>
-          </ul>
+  <div class="col-md-8"  style="background-color:white">
+    <div class="tabbable">
+      <div class="row dashboard_tab_row">
+        <div class="btn-group">
+          <a class="btn btn-default dashboard_tab active" href="#updates" data-toggle="tab"><%=t :all_updates %></a>
+    		  <a class="btn btn-default dashboard_tab" href="#updates_by_you" data-toggle="tab"><%=t :your_content %></a>
+    		  <a class="btn btn-default dashboard_tab" href="#comments" data-toggle="tab"><%=t :real_time_discussions %></a>
         </div>
-        <% for key, updates in @grouped_updates %>
-          <%-
-            resource_type, resource_id, notification = key
-            resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
-              @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
-            else
-              updates.last.resource
-            end
-            notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
-              @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
-            else
-              updates.last.notifier
-            end
-            is_mention = (notification == "mention")
-          -%>
-          <div class="update clear stacked 
-              <%= 'activity' if updates.last.notification == 'activity' %>
-              <%= 'new' if updates.detect{|u| !u.new_record? && u.viewed_at.blank?} && updates.last.resource_owner_id == current_user.id %>">
-            <div class="updateresource">
-              <%= link_to update_image_for(updates.last), resource %>
-            </div>
-            <div class="updatebody">
-              <div class="updateheader meta stacked">
-                <div class="right small">
-                  <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
-                  <%- if is_mention %>
-                    <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
-                      "#", class: "subscriptionsettings", "data-gear-text" => I18n.t("edit_your_default_settings"),
-                      "data-gear-url" => generic_edit_user_url %>
-                  <%- else %>
-                    <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe,
-                      edit_subscription_by_resource_path(resource_type, resource_id),
-                      class: "subscriptionsettings" %>
-                  <%- end %>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane active" id="updates">
+          <% if !@has_updates -%>
+            <% if current_user.observations_count < 4 && !current_user.prefers_hide_observe_onboarding -%>
+              <div class="panel panel-success" id="observe_panel">
+                <div class="panel-heading">
+                  <a data-panel-type="observe" class="close">&times;</a>
+                  <h3 class="panel-title" style="font-size:20px"><%=t 'onboarding.observe_panel_title' %></h3>
                 </div>
-                <%= update_tagline_for(updates.last, :count => updates.size) %>
-              </div>
-              <% if notification == "activity" || is_mention -%>
-                <div class="updatecontent">
-                  <% for u in updates %>
-                    <%-
-                      notifier = nil
-                      if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-                        notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-                      end
-                      notifier ||= u.notifier
-                    -%>
-                    <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
-                      <%= render partial: "shared/activity_item", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
+                <div class="panel-body">
+                  <%- if @local_onboarding_content[:target_taxa] %>
+                    <p class="lead">
+                      <%= @local_onboarding_content[:local_results] ? t('onboarding.observe_panel_body_p1_local') : t('onboarding.observe_panel_body_p1_global') %>
+                    </p>
+                    <div class="row">
+                      <% for taxon in @local_onboarding_content[:target_taxa] %>
+                        <%= render(:partial => 'favorites', :locals => {:taxon => taxon}) %>
+                      <% end %>
                     </div>
-                  <% end %>
-                  <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",
-                              resource, :class => "readmore" %>
+                  <% end -%>
+                  <div class="media">
+                    <div class="media-body">
+                      <p class="lead"><%= t('onboarding.observe_panel_body_p2', site_name: SITE_NAME.gsub(".org",""), new_observation_path: new_observation_path).html_safe %></p>
+                      <p><%= t( 'onboarding.observe_panel_body_p3' )%></p>
+                    </div>
+                    <div class="media-right"><img class="media-object"  src="http://static.inaturalist.org/wiki_page_attachments/615-original.jpg" style="padding: 0 0 0 10px"></div>
+                  </div>
                 </div>
-              <% else %>
-                <%= 
-                  begin
-                    render :partial => "#{resource_type.underscore.pluralize}/update_#{notification}", 
-                      :object => resource, :locals => {:updates => updates, :resource => resource}
-                  rescue ActionView::MissingTemplate, Errno::ENOENT
-                    "#{resource_type} #{notification}"
-                  end
-                -%>
-              <% end -%>
-            </div>
-          </div>
-        <% end %>
-        <script type="text/javascript" charset="utf-8">
-          $('.observationcontrols').observationControls()
-        </script>
-        <div class="pagination">
-          <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "readmore") unless @pagination_updates.blank? %>
-        </div>
-      <% end %>
-    </div>
-
-    <div id="rightcol" class="last column span-8">
-      <% if (announcement = @announcements.detect{|a| a.placement == 'users/dashboard#sidebar'}) && !user_seen_announcement?(announcement) -%>
-        <%= announcement.body.html_safe %>
-      <% end -%>
-
-      <%= link_to t(:add_observations), new_observation_path, :id => "obsbutton", :class => "default button" %>
-
-      <div id="calendar" class="clear stacked">
-        <%= render :partial => "calendars/calendar", :locals => { 
-          :observations => @month_observations, 
-          :month_name => t(:your_month_observations, :month => t("date_format.month.#{Date::MONTHNAMES[Date.today.month].downcase}")) } %>
-        <%= link_to t(:view_your_calendar), calendar_path(current_user.login), :class => "readmore" %>
-      </div>
-
-      <% if current_user.is_curator? -%>
-        <div id="curatorbox" class="box">
-          <h3>
-            <%= t :curation %>
-            <% helptip_for "curation" do %>
-              <%= t :youre_a_site_curator_which_means %>
-              <%= link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}" %>.
-            <% end -%>
-          </h3>
-          <% unless @flags.blank? -%>
-            <h4>
-              <%= t(:flag).pluralize %>
-              <% helptip_for "flags" do %>
-                <%= t :these_are_items_people_on %> <%=
-                CONFIG.help_email %>.
-              <% end -%>
-            </h4>
-            <ul>
-              <% for flag in @flags %>
-                <li>
-                  <%= render :partial => "flags/flag", :object => flag %>
-                </li>
-              <% end %>
-            </ul>
-          <% end -%>
-
-          <% unless @ungrafted_taxa.blank? -%>
-            <h4>
-              <%= t :ungrafted_taxa %>
-                <% helptip_for "ungrafted_taxa" do %>
-                  <%=raw t :these_are_taxa_that, :site => CONFIG.site_name_short %>
-                <% end -%>
-              </h4>
-            </h4>
-            <ul>
-              <% for taxon in @ungrafted_taxa %>
-                <li>
-                  <%= link_to_taxon taxon %>
-                  <%= link_to t(:edit), edit_taxon_path(taxon) %>
-                </li>
-              <% end %>
-            </ul>
-          <% end -%>
-
-          <%= link_to t(:curate_taxa), curate_taxa_path %> |
-          <%= link_to t(:create_a_new_taxon), new_taxon_path %>
-        </div>
-      <% end -%>
-
-      <%= separator %>
-
-      <div class="stacked">
-        <h3>
-          <%= t :your_subscriptions %>
-          <% helptip_for "subscriptions" do %>
-            <%= t :subscribe_to_places_to %>
-          <% end -%>
-        </h3>
-
-        <ul style="margin-bottom: 5px" class="plain">
-          <% if @subscriptions.blank? %>
-            <div class="nocontent meta"><%= t :you_dont_have_any %></div>
-          <% else %>
-            <% for resource_type, subscriptions in @subscriptions.group_by(&:resource_type) %>
-              <li>
-                <span class="meta"><%= t(resource_type.humanize.pluralize.downcase, :default => resource_type.humanize.pluralize) %></span>
-                <ul style="margin-bottom: 5px">
-                  <% for subscription in subscriptions %>
-                    <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
-                      <%= link_to subscription.resource.try_methods(:display_name, :name, :title), subscription.resource %>
-                      <nobr class="meta">
-                        <% if subscription.taxon -%>
-                          (<%= subscription.taxon.name %>)
-                        <% end -%>
-                        <%= link_to t(:edit), edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
-                      </nobr>
-                    </li>
+                <div class="panel-footer">
+                  <%= link_to observations_path, class: "btn btn-primary btn-md" do %>
+                    <%=t :browse_observations %> <span class="glyphicon glyphicon-chevron-right"></span>
                   <% end %>
-                </ul>
-              </li>
-            <% end %>
+                  <%= link_to @site.getting_started_url, target: "_blank" do %>
+                    <span class="glyphicon glyphicon-info-sign"></span> <%=t :getting_started_guide %>
+                  <% end %>
+                </div>        
+              </div>
+            <% end -%>
+
+            <% if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]-%>
+              <div class="panel panel-success" id="follow_panel">
+                <div class="panel-heading">
+                  <a data-panel-type="follow" class="close">&times;</a>
+                  <h3 class="panel-title"> <%= @local_onboarding_content[:local_results] ? t('onboarding.follow_panel_title_local') : t('onboarding.follow_panel_title_global') %></h3>
+                </div>
+                <div class="panel-body">
+                  <p><%=t 'onboarding.follow_panel_body' %></p>  
+                  <div class="row">
+                    <% @local_onboarding_content[:to_follows].each do |to_follow| %>
+                      <%= render(:partial => 'followees', :locals => {:friend => to_follow}) %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <%= link_to people_path, class: "btn btn-primary" do %>
+                    <%=t :browse_people %> <span class="glyphicon glyphicon-chevron-right"></span>
+                  <% end %>  
+                </div>
+              </div>                
+            <% end -%>
           <% end -%>
-        </ul>
-        <div>
-          <%= t :add_a %>
-          <%= link_to t(:place_subscription), new_subscription_path(:type => "place"), :id => "new_place_subscription_link" %>
-          |
-          <%= link_to t(:taxon_subscription), new_subscription_path(:type => "taxon"), :id => "new_taxon_subscription_link" %>
+          <% if @has_updates && !current_user.prefers_hide_activity_onboarding -%>
+            <div class="panel panel-info" id="activity_panel">
+              <div class="panel-heading">
+                <a data-panel-type="activity" class="close">&times;</a>
+                <h3 class="panel-title"><%=t 'onboarding.youve_got_updates_panel_title' %></h3>
+              </div>
+              <div class="panel-body">
+                <p class="lead"><%= t('onboarding.youve_got_updates_panel_body_p1', site_name: SITE_NAME.gsub(".org",""))%></p>                    
+                <%= t('onboarding.youve_got_updates_panel_body_p2', site_name: SITE_NAME.gsub(".org","")).html_safe%>                  
+              </div>
+              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="activity"><%= t(:got_it!) %></a></div>
+            </div>                
+          <% end -%>
+          <div id="updates_target">
+            <div class="loading status"><%=t :loading %></div>
+          </div>
         </div>
-        <%= link_to t(:manage_all_your_subscriptions), subscriptions_path, :class => "readmore" %>
+        <div class="tab-pane" id="updates_by_you">    
+          <% unless current_user.prefers_hide_updates_by_you_onboarding -%>
+            <div class="panel panel-info" id="updates_by_you_panel">
+              <div class="panel-heading">
+                <a data-panel-type="updates_by_you" class="close">&times;</a>
+                <h3 class="panel-title"><%= t('onboarding.updates_by_you_panel_title') %></h3>
+              </div>
+              <div class="panel-body"><%= t('onboarding.updates_by_you_panel_body') %></div>
+              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="updates_by_you"><%= t(:got_it!) %></a></div>
+            </div>                
+          <% end -%>
+          <div id="updates_by_you_target">
+            <div class="loading status"><%=t :loading %></div>
+          </div>
+        </div>
+        <div class="tab-pane" id="comments">
+          <% unless current_user.prefers_hide_comments_onboarding -%>
+            <div class="panel panel-info" id="comments_panel">
+              <div class="panel-heading">
+                <a data-panel-type="comments" class="close">&times;</a>
+                <h3 class="panel-title"><%= t('onboarding.comments_panel_title', site_name: SITE_NAME.gsub(".org","")) %></h3>
+              </div>
+              <div class="panel-body">                  
+                 <%= t('onboarding.comments_panel_body', site_name: SITE_NAME.gsub(".org","")).html_safe %>                 
+              </div>
+              <div class="panel-footer"><a class="btn btn-primary" data-panel-type="comments"><%= t(:got_it!) %></a></div>
+            </div>                
+          <% end -%>
+          <ul id="comments_target">
+            <div class="loading status"><%=t :loading %></div>
+          </ul>          
+        </div>
       </div>
-      <%= separator %>
-
-      <h3><%= t :extras %></h3>
-
-      <h4><%= link_to t(:blog_widget), :controller => "observations", :action => "widget" %></h4>
-      <p class="description">
-        <%= t :show_off_your_recent_observations %>
-        <%= link_to t(:get_started_raquo).html_safe, :controller => "observations", :action => "widget" %>
-      </p>
     </div>
   </div>
-  
-  <div id="explore">
-    <div class="stacked observationcontrols"></div>
-    <div class="medium observations grid stacked">
-      <%= loading %>
+  <div class="col-md-4"  style="padding-left:25px">
+    <%= link_to new_observation_path, :id => "obsbutton", :class => "btn btn-default btn-lg  nav-justified" do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      <%= t(:add_observations) %>
+    <% end %>
+    
+    <% if (announcement = @announcements.detect{|a| a.placement == 'users/dashboard#sidebar'}) && !user_seen_announcement?(announcement) -%>
+      <%= announcement.body.html_safe %>
+    <% end -%>
+    
+    <h3 class="page-header">
+      <%= t :subscriptions %>
+      <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t :subscribe_to_places_to %>"></span>
+    </h3>
+    <% unless @subscriptions.blank? %>
+      <% for resource_type, subscriptions in @subscriptions.group_by(&:resource_type) %>
+        <h4><%= t(resource_type.humanize.pluralize.downcase, :default => resource_type.humanize.pluralize) %></h4>
+        <ul class="list-group">
+          <% for subscription in subscriptions %>
+            <li class="list-group-item">
+              <%= link_to edit_subscription_path(subscription), :class => "pull-right" do %>
+                <span class="glyphicon glyphicon-cog"></span>                
+              <% end %>
+              <%= subscription.resource.try_methods(:display_name, :name, :title)%>
+              <% if subscription.taxon -%>
+                (<%= subscription.taxon.name %>)
+              <% end -%>
+            </li>                  
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %> 
+    
+    <div class="list-group">
+      <%= link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", :class => "list-group-item" do %>
+        <span class="glyphicon glyphicon-leaf"></span>
+        <%=t :subscribe_to_a_taxon %>
+      <% end -%>
+      <%= link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", :class => "list-group-item" do %>
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <%=t :subscribe_to_a_place %>
+      <% end -%>
+      <%= link_to subscriptions_path, :class => "list-group-item" do %>
+        <span class="glyphicon glyphicon-wrench"></span>
+        <%=t :manage_subscriptions %>
+      <% end -%>
     </div>
-    <%= link_to t(:view_more_recent_observations), observations_url, :class => "readmore" %>
-  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="subscribeModal" tabindex="-1">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title" id="subscribePlaceLabel"><%=t :subscribe_to_a_place %></h4>
+           <h4 class="modal-title" id="subscribeTaxonLabel"><%=t :subscribe_to_a_taxon %></h4>
+         </div>
+         <div class="modal-body">
+           <p id="subscribeTaxonBody"><%=t :subscribe_to_observations_in_a_taxon %></p>
+           <p id="subscribePlaceBody"><%=t :subscribe_to_observations_in_a_place %></p>
+         </div>
+       </div>
+     </div>
+    </div>     
+     
+    <h3 class="page-header"><%=t :more %>..</h3>
+    <% unless current_user.prefers_hide_getting_started_onboarding -%>
+      <div class="panel panel-default" id="getting_started_panel">
+        <div class="panel-heading">
+          <a data-panel-type="getting_started" class="close">&times;</a>
+          <h3 class="panel-title">
+            <%=t :getting_started_guide %>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <p><%=t :let_us_walk_you_through %></p>
+          <%= link_to t(:get_started), @site.getting_started_url, class: "btn btn-default btn-md" %>
+        </div>
+      </div>
+    <% end -%>
+      
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%=t :blog_widget %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= t :show_off_your_recent_observations %></p>
+        <p>
+          <%= link_to t(:learn_more), {:controller => "observations", :action => "widget"}, :class => "btn btn-default btn-md" %>
+        </p>
+      </div>
+    </div>
+
+    <% if current_user.is_curator? -%>
+      <h3 class="page-header">
+        <%= t :curation %>
+        <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t(:youre_a_site_curator_which_means, email: CONFIG.help_email).html_safe %>"></span>
+      </h3>
+      <% unless @flags.blank? -%>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="glyphicon glyphicon-flag"></span> <%= t(:flag).pluralize %>
+              <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t(:these_are_items_people_on, email: CONFIG.help_email).html_safe %>"></span>
+            </h3>
+          </div>
+          <div class="list-group">
+            <% for flag in @flags %>
+              <%-  
+                flaggable = flag.flaggable
+                flaggable_class = flaggable.class
+                flaggable = flaggable.becomes(Photo) if flaggable.is_a?(Photo)
+              -%>
+              <%= link_to flag, class: "list-group-item" do %>
+                <span class="pull-right">
+                  <span class="glyphicon glyphicon-comment"></span> <%= flag.comments.size %></span>
+                  <% if flag.user -%>
+                    <%= flag.user.login %>
+                  <% else %>
+                    <%= CONFIG.site_name_short %>
+                  <% end -%>
+                  <%= t(:flagged) %>
+                  <strong>
+                  <%= 
+                    if flaggable.respond_to?(:user) && flaggable.user
+                      "#{flaggable.user.login}'s"
+                    else
+                      t(:a)
+                    end
+                  %>
+                  <%= flaggable_class.name.humanize.downcase %>
+                  </strong>
+                  <%=t :because_of %>: 
+                  <%= flag.flag %>
+              <% end %> 
+            <% end %>
+          </div>
+        </div>      
+      <% end -%>
   
-  <div id="comments">
-    <%= loading %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="glyphicon glyphicon-leaf" style="" aria-hidden="true"></span> <%=t :ungrafted_taxa %>
+            <span class="glyphicon glyphicon-info-sign" data-toggle="popover" data-placement="top" data-content="<%= t(:these_are_taxa_that, site: CONFIG.site_name_short).html_safe %>"></span>
+          </h3>
+        </div>
+        <ul class="list-group">
+          <% for taxon in @ungrafted_taxa %>
+            <li class="list-group-item">
+              <%= link_to taxon_path(taxon), class: "pull-right" do %>
+                <span class="glyphicon glyphicon-edit"></span>
+              <% end %>
+              <%= link_to_taxon taxon %>        
+            </li>
+          <% end %>
+        </ul>
+        <div class="panel-footer">
+          <%= link_to t(:curate_taxa), curate_taxa_path, class: "btn btn-primary btn-sm" %>
+          <%= link_to t(:create_a_new_taxon), new_taxon_path, class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    <% end -%>
+    
   </div>
 </div>
+

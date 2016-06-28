@@ -1,32 +1,30 @@
 <%-
-  user = update_created_observations || resource
-  updates ||= []
   observations = if @update_cache && @update_cache[:observations]
     updates.map{|u| @update_cache[:observations][u.notifier_id]}
   end.compact
   observations = updates.map{|u| u.notifier}.compact if observations.blank?
-  default_observation = observations.first
-  return if observations.blank? # this really shouldn't happen
-  place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess }.compact.uniq
-  login = default_observation.user.login
+  
+  update = updates.last
+  resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
+    @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
+  end
+  resource ||= update.resource
+  login = resource.login
+  
+  target_id = bootstrapTargetID
 -%>
 
-<div class="updatecontent">
-  <div class="observationcontrols stacked"></div>
-  
-  <div class="observations <%= observations.size > 1 ? 'medium grid' : 'mini' %> stacked">
-    <%- compact do %>
-      <%= render :partial => "observations/cached_component", :collection => observations %>
-    <% end -%>
-  </div>
-  
-  <div class="meta">
-    <%= link_to "View #{login}'s observations", observations_by_login_path(login), :class => "#{'readmore' if place_guesses.size == 0}" %>
-    <% unless place_guesses.blank? -%>
-      from
-      <%= place_guesses.map {|pg| 
-        link_to(pg, observations_by_login_path(login, :q => pg, :search_on => "place"))
-      }.join(', ').html_safe %>
-    <% end -%>
-  </div>
+<div class="timeline-body">
+  <%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations[0...12], target_id: target_id} %>
 </div>
+<%- if observations.count > 1 %>
+  <div class="timeline-footer">
+    <%= link_to t(:view_observations), observations_path({user_id: login, subview: "grid"}), class: "btn btn-sm btn-primary" %>
+    <% if observations.count > 4 -%>
+      <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
+        <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span>
+        <span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span>
+      </button>
+    <% end -%>    
+  </div>
+<% end %>

@@ -24,3 +24,10 @@
 #nodescription textarea {
   height: 200px;
 }
+
+.caption
+{
+  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

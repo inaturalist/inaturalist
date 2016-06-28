@@ -1,0 +1,123 @@
+<%- 
+  item = activity_item_for_dashboard || item
+  return unless item
+  taxon = update_cached(item, :taxon) if item.respond_to?(:taxon)
+  observation = update_cached(item, :observation) if item.respond_to?(:observation)
+  user = if item.is_a?(Flag)
+    update_cached(item, :resolver)
+  elsif item.is_a?(ObservationFieldValue)
+    update_cached(item, :updater) || update_cached(item, :user)
+  elsif item.respond_to?(:user)
+    update_cached(item, :user)
+  end
+  edit_url = case item.class.name
+  when "Comment" then edit_comment_path(item)
+  when "Identification" then edit_identification_path(item)
+  end
+  hide_agree ||= false
+  no_thumb ||= false
+  no_meta ||= false
+  context_around ||= nil
+  posted_at ||= item.created_at
+  posted_at = item.updated_at if item.is_a?(Flag)
+-%>
+
+
+<li class="<%= ("id_refined" unless item.current?) if item.is_a? Identification  %>">
+  <div class="timeline-badge">
+    <% if user && !no_thumb -%>
+        <%= link_to image_tag(user.icon.url(:thumb), :class => 'img-circle padding'), person_path(user) %>
+    <% end -%>
+  </div>
+  <div class="timeline-panel">
+    <div class="timeline-heading">
+      <h2 class="timeline-title">  
+        <span class="time">
+          <%= compact_date(posted_at) %>
+        </span>
+        <span style="font-weight:normal; color:gray">
+          <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
+          <%- if item.is_a? Identification %>
+            <%= t(:user_added_an_x, :user => title, :x => t(:identification)).html_safe %>
+          <% elsif item.is_a? ProjectInvitation %>
+            <%= t(:user_added_a_x, :user => title, :x => t(:project_invitation)).html_safe %>
+          <% elsif item.is_a? Flag %>
+            <%= t(:user_added_a_x, :user => title, :x => t(:flag)).html_safe %>
+          <% elsif item.is_a? ObservationFieldValue %>
+            <%= t(:user_added_an_x, :user => title, :x => t(:observation_field_value)).html_safe %>
+          <% elsif item.is_a? ActsAsVotable::Vote %>
+            <%= t(:user_added_a_x, :user => title, :x => t(:fave)).html_safe %>
+          <% else %>
+            <%= t(:user_added_a_x, :user => title, :x => t(:comment)).html_safe %>
+          <%- end -%>
+        </span>
+      </h2>
+    </div>                  
+    <div class="timeline-body">
+      <%- if item.is_a? Identification %>
+        <%= render :partial => "identifications/identification_for_dashboard", :locals => { 
+          :identification => item,
+          :taxon => taxon,
+          :observation => observation,
+          :user => user,
+          :hide_agree => hide_agree
+        } %>
+      <% elsif item.is_a? ProjectInvitation %>
+        <p><%= t :please_add_this_observation_to %></p>
+        <%= render :partial => "project_invitations/project_invitation", 
+          :object => item,
+          :locals => { 
+            :observation => observation,
+            :truncation_length => 48 } %>
+      <% elsif item.is_a? Flag %>
+        <div class="stacked body">
+          <div class="stacked">
+            <span class="meta"><%= t :originally_flagged_by %></span>
+            <%= link_to_user update_cached(item, :user) %>: "<%= item.flag %>"
+          </div>
+          <%= t(:flag_marked_as_resolved_html).html_safe %>
+          <% unless item.comment.blank? %>
+            <%-
+              username = if (u = update_cached(item, :resolver))
+                link_to_user(u)
+              elsif item.resolver_id.blank?
+                SITE_NAME_SHORT
+              else
+                t(:deleted_user)
+              end
+            -%>
+            <span class="meta"><%= username %> <%= t :said %>,</span>
+            "<%= item.comment %>"
+          <% end -%>
+        </div>
+      <% elsif item.is_a? ObservationFieldValue %>
+        <div class="stacked body">
+          <%= render "observation_fields/observation_field_value", :observation_field_value => item %>
+        </div>
+      <% elsif item.is_a? ActsAsVotable::Vote %>
+        <div class="stacked body">
+          <em class="meta nocontent">
+            <i class="fa fa-star"></i>
+            <%=t :added_to_favorites_html, url: faves_by_login_url(user.login) %>
+          </em>
+        </div>
+      <%- end -%>
+
+      <% text = if item.respond_to?(:body) && item.body
+          item.body
+        elsif item.respond_to?(:description) && item.description
+          item.description
+        end -%>
+      <% if text -%>
+        <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
+          <%- if context_around && context = text.context_of_pattern(context_around) %>
+            <%= formatted_user_text(context) %>
+          <% else -%>
+            <%= formatted_user_text(text) %>
+          <% end -%>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</li>
+

@@ -101,6 +101,13 @@ describe User do
     it "should not allow time_zone to be a blank string" do
       expect( User.make( time_zone: "" ) ).not_to be_valid
     end
+    
+    it "should set latitude and longitude" do
+      u = User.make(:last_ip => "12.189.20.126")
+      u.save
+      expect(u.latitude).to_not be_blank
+      expect(u.longitude).to_not be_blank
+    end
   end
 
   describe "update" do

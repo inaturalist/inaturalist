@@ -276,16 +276,17 @@ module ApplicationHelper
     )
   end
   
-  def stripped_first_paragraph_of_text(text)
+  def stripped_first_paragraph_of_text(text,split = nil)
     return text if text.blank?
-    text = text.split("\n\n")[0]
+    split ||= "\n\n"
+    text = text.split(split)[0]
     text = strip_tags(text)
   end
   
-  def remaining_paragraphs_of_text(text)
+  def remaining_paragraphs_of_text(text,split)
     return text if text.blank?
-    paragraphs = text.split("\n\n")
-    text = paragraphs[1..paragraphs.length].join("\n\n")
+    paragraphs = text.split(split)
+    text = paragraphs[1..paragraphs.length].join(split)
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
   
@@ -962,6 +963,10 @@ module ApplicationHelper
     end
   end
   
+  def bootstrapTargetID
+     return rand(36**8).to_s(36)
+  end
+    
   def update_tagline_for(update, options = {})
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]

@@ -1,4 +1,5 @@
 :ruby
+  @selected_user ||= user
   model_name ||= controller.class.to_s.underscore.humanize.split.first
   title ||= if is_me?(@selected_user)
     if model_name != 'Journal'
@@ -16,7 +17,7 @@
   = before
   %h1
     = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
-    -if model_name == 'Profile'
+    -if controller.controller_name=="users" && ( controller.action_name=="show" || controller.action_name=="dashboard" )
       = @selected_user.login
       - if logged_in? && is_not_me?(@selected_user)
         = link_to new_message_path(:to => @selected_user.login), :class => 'btn btn-primary btn-xs' do
