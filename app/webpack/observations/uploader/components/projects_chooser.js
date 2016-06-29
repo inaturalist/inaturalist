@@ -66,23 +66,16 @@ class ProjectsChooser extends SelectionBasedComponent {
     return (
       <div className="projects">
         <form onSubmit={this.chooseFirstProject}>
-          <OverlayTrigger
-            placement="top"
-            delayShow={ 1000 }
-            overlay={ ( <Tooltip id="project-tip">{
-              I18n.t( "uploader.tooltips.projects" ) }</Tooltip> ) }
-          >
-            <div className="input-group">
-              <div className="input-group-addon input-sm">
-                <Glyphicon glyph="briefcase" />
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                placeholder={ I18n.t( "add_to_a_project" ) }
-              />
+          <div className="input-group">
+            <div className="input-group-addon input-sm">
+              <Glyphicon glyph="briefcase" />
             </div>
-          </OverlayTrigger>
+            <input
+              type="text"
+              className="form-control"
+              placeholder={ I18n.t( "add_to_a_project" ) }
+            />
+          </div>
         </form>
         <div className="taglist">
           { _.map( commonProjects, ( p, i ) => {

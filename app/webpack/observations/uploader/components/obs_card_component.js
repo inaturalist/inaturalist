@@ -245,71 +245,50 @@ class ObsCardComponent extends Component {
                 updateObsCard( obsCard, { date: dateString, selected_date: dateString } )
               }
             />
-            <OverlayTrigger
-              placement="top"
-              delayShow={ 1000 }
-              overlay={ ( <Tooltip id="date-tip">{
-                I18n.t( "uploader.tooltips.date" ) }</Tooltip> ) }
+            <div className="input-group"
+              onClick= { () => {
+                if ( this.refs.datetime ) {
+                  this.refs.datetime.onClick( );
+                }
+              } }
             >
-              <div className="input-group"
-                onClick= { () => {
+              <div className="input-group-addon input-sm">
+                <Glyphicon glyph="calendar" />
+              </div>
+              <input
+                type="text"
+                className="form-control input-sm"
+                value={ obsCard.date }
+                onChange= { e => {
                   if ( this.refs.datetime ) {
-                    this.refs.datetime.onClick( );
+                    this.refs.datetime.onChange( undefined, e.target.value );
                   }
                 } }
-              >
-                <div className="input-group-addon input-sm">
-                  <Glyphicon glyph="calendar" />
-                </div>
-                <input
-                  type="text"
-                  className="form-control input-sm"
-                  value={ obsCard.date }
-                  onChange= { e => {
-                    if ( this.refs.datetime ) {
-                      this.refs.datetime.onChange( undefined, e.target.value );
-                    }
-                  } }
-                  placeholder={ I18n.t( "date_" ) }
-                />
-              </div>
-            </OverlayTrigger>
-            <OverlayTrigger
-              placement="top"
-              delayShow={ 1000 }
-              overlay={ ( <Tooltip id="location-tip">{
-                I18n.t( "uploader.tooltips.location" ) }</Tooltip> ) }
+                placeholder={ I18n.t( "date_" ) }
+              />
+            </div>
+            <div className="input-group"
+              onClick={ this.openLocationChooser }
             >
-              <div className="input-group"
-                onClick={ this.openLocationChooser }
-              >
-                <div className="input-group-addon input-sm">
-                  <Glyphicon glyph="map-marker" />
-                </div>
-                <input
-                  type="text"
-                  className="form-control input-sm"
-                  value={ locationText }
-                  placeholder={ I18n.t( "location" ) }
-                  readOnly
-                />
+              <div className="input-group-addon input-sm">
+                <Glyphicon glyph="map-marker" />
               </div>
-            </OverlayTrigger>
-            <OverlayTrigger
-              placement="top"
-              delayShow={ 1000 }
-              overlay={ ( <Tooltip id="description-tip">{
-                I18n.t( "uploader.tooltips.description" ) }</Tooltip> ) }
-            >
-              <div className="form-group">
-                <textarea
-                  placeholder={ I18n.t( "description" ) }
-                  className="form-control input-sm"
-                  value={ obsCard.description }
-                  onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
-                />
-              </div>
-            </OverlayTrigger>
+              <input
+                type="text"
+                className="form-control input-sm"
+                value={ locationText }
+                placeholder={ I18n.t( "location" ) }
+                readOnly
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                placeholder={ I18n.t( "description" ) }
+                className="form-control input-sm"
+                value={ obsCard.description }
+                onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
+              />
+            </div>
           </div>
         </Dropzone>
       </li>
