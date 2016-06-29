@@ -4,9 +4,13 @@
 .ui-autocomplete {
   cursor: pointer;
   padding: 0px;
+  max-height: 315px;
+  overflow: auto;
+  width: 373px;
 }
 .ui-autocomplete .ac {
-  min-width: 370px;
+  width: 355px;
+  min-width: 355px;
   display: inline-block;
   cursor: pointer;
   width: 100%;

@@ -4,8 +4,9 @@ class ProjectUser < ActiveRecord::Base
   belongs_to :user, touch: true
   auto_subscribes :user, :to => :project
   
-  after_save :check_role, :remove_updates, :subscribe_to_assessment_sections_later
-  after_destroy :remove_updates
+  after_save :check_role, :remove_updates, :subscribe_to_assessment_sections_later,
+    :index_project
+  after_destroy :remove_updates, :index_project
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_presence_of :project, :user
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
@@ -115,7 +116,11 @@ class ProjectUser < ActiveRecord::Base
     end
     true
   end
-  
+
+  def index_project
+    project.elastic_index! if project
+  end
+
   def self.update_observations_counter_cache_from_project_and_user(project_id, user_id)
     project_user = ProjectUser.where(project_id: project_id, user_id: user_id).first
     return unless project_user

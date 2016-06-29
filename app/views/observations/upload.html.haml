@@ -1,7 +1,5 @@
 - content_for :extrahead do
   :javascript
-    var RECENT_PROJECTS = #{ current_user.recent_projects.to_json(only:
-      [:id, :title, :description, :slug]) };
     var RECENT_OBSERVATION_FIELDS = #{ current_user.recent_observation_fields.to_json(only:
       [:id, :name, :description, :datatype, :allowed_values, :values_count]) };
   = stylesheet_link_tag "jquery-ui"

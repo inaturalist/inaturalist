@@ -1,7 +1,6 @@
-if( typeof RECENT_PROJECTS === "undefined" ) {
-  var RECENT_PROJECTS = [ ];
+if( typeof CURRENT_USER === "undefined" ) {
+  var CURRENT_USER = { };
 }
-var anyRecentProjects = RECENT_PROJECTS.length > 0;
 
 $.fn.projectAutocomplete = function( options ) {
   options = options || { };
@@ -9,30 +8,23 @@ $.fn.projectAutocomplete = function( options ) {
   var field = this;
 
   field.genericAutocomplete( _.extend( options, {
-    minLength: anyRecentProjects ? 0 : undefined,
+    minLength: CURRENT_USER.id ? 0 : undefined,
     allowPlaceholders: true,
     source: function( request, response ) {
-      if( !request.term ) {
-        if( anyRecentProjects ) {
-          response( RECENT_PROJECTS );
-        } else {
-          response( [] );
-        }
-      } else {
-        $.ajax({
+      $.ajax({
         url: "//<%= CONFIG.node_api_host %>/projects/autocomplete",
-          dataType: "jsonp",
-          cache: true,
-          jsonpCallback: "projectAutocompleteCallback",
-          data: {
-            q: request.term,
-            per_page: 10
-          },
-          success: function( data ) {
-            response( data.results );
-          }
-        });
-      }
+        dataType: "jsonp",
+        cache: true,
+        jsonpCallback: "projectAutocompleteCallback",
+        data: {
+          q: request.term,
+          per_page: request.term ? 10 : 300,
+          member_id: CURRENT_USER.id
+        },
+        success: function( data ) {
+          response( data.results );
+        }
+      });
     }
   }));
 };

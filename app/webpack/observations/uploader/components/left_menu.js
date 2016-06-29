@@ -1,8 +1,7 @@
 import _ from "lodash";
 import moment from "moment-timezone";
 import React, { PropTypes } from "react";
-import { Input, Glyphicon, Accordion, Panel, Badge,
-  OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Input, Glyphicon, Accordion, Panel, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
@@ -96,113 +95,78 @@ class LeftMenu extends SelectionBasedComponent {
           onChange={ dateString => updateSelectedObsCards(
             { date: dateString, selected_date: dateString } ) }
         />
-        <OverlayTrigger
-          placement="top"
-          delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">{
-            I18n.t( "uploader.tooltips.date" ) }</Tooltip> ) }
+        <div className="input-group"
+          onClick= { ( ) => {
+            if ( this.refs.datetime ) {
+              this.refs.datetime.onClick( );
+            }
+          } }
         >
-          <div className="input-group"
-            onClick= { ( ) => {
+          <div className="input-group-addon">
+            <Glyphicon glyph="calendar" />
+          </div>
+          <input
+            type="text"
+            className="form-control"
+            value={ commonDate }
+            onChange= { e => {
               if ( this.refs.datetime ) {
-                this.refs.datetime.onClick( );
+                this.refs.datetime.onChange( undefined, e.target.value );
               }
             } }
-          >
-            <div className="input-group-addon">
-              <Glyphicon glyph="calendar" />
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              value={ commonDate }
-              onChange= { e => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onChange( undefined, e.target.value );
-                }
-              } }
-              placeholder={ this.valuesOf( "date" ).length > 1 ?
-                I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
-            />
-          </div>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">{
-            I18n.t( "uploader.tooltips.location" ) }</Tooltip> ) }
+            placeholder={ this.valuesOf( "date" ).length > 1 ?
+              I18n.t( "edit_multiple_dates" ) : I18n.t( "date_" ) }
+          />
+        </div>
+        <div className="input-group"
+          onClick={ this.openLocationChooser }
         >
-          <div className="input-group"
-            onClick={ this.openLocationChooser }
-          >
-            <div className="input-group-addon">
-              <Glyphicon glyph="map-marker" />
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              value={ locationText }
-              placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
-                this.valuesOf( "longitude" ).length > 1 ) ?
-                I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
-              readOnly
-            />
+          <div className="input-group-addon">
+            <Glyphicon glyph="map-marker" />
           </div>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">{
-            I18n.t( "uploader.tooltips.description" ) }</Tooltip> ) }
+          <input
+            type="text"
+            className="form-control"
+            value={ locationText }
+            placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
+              this.valuesOf( "longitude" ).length > 1 ) ?
+              I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
+            readOnly
+          />
+        </div>
+        <div className="form-group">
+          <textarea
+            placeholder={ uniqDescriptions.length > 1 ?
+              I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
+            className="form-control"
+            value={ commonDescription || "" }
+            onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
+          />
+        </div>
+        <Input
+          key={ `multigeoprivacy${commonGeoprivacy}` }
+          type="select"
+          value={ commonGeoprivacy }
+          onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
         >
-          <div className="form-group">
-            <textarea
-              placeholder={ uniqDescriptions.length > 1 ?
-                I18n.t( "edit_multiple_descriptions" ) : I18n.t( "description" ) }
-              className="form-control"
-              value={ commonDescription || "" }
-              onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
-            />
+          { multipleGeoprivacy }
+          <option value="open">{ I18n.t( "location_is_public" ) }</option>
+          <option value="obscured">{ I18n.t( "location_is_obscured" ) }</option>
+          <option value="private">{ I18n.t( "location_is_private" ) }</option>
+        </Input>
+        <div className="form-group">
+          <div className="checkbox">
+            <label>
+              <input type="checkbox"
+                checked={ this.commonValue( "captive" ) }
+                value="true"
+                onChange={ e =>
+                  updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
+              />
+              <span>{ I18n.t( "captive_cultivated" ) }</span>
+            </label>
           </div>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delayShow={ 1000 }
-          overlay={ multipleGeoprivacy ? ( <span /> ) :
-            ( <Tooltip id="left-date-tip">{ geoprivacyTooltip }</Tooltip> ) }
-        >
-          <Input
-            key={ `multigeoprivacy${commonGeoprivacy}` }
-            type="select"
-            value={ commonGeoprivacy }
-            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
-          >
-            { multipleGeoprivacy }
-            <option value="open">{ I18n.t( "location_is_public" ) }</option>
-            <option value="obscured">{ I18n.t( "location_is_obscured" ) }</option>
-            <option value="private">{ I18n.t( "location_is_private" ) }</option>
-          </Input>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delayShow={ 1000 }
-          overlay={ ( <Tooltip id="left-date-tip">{
-            I18n.t( "uploader.tooltips.captive" ) }</Tooltip> ) }
-        >
-          <div className="form-group">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox"
-                  checked={ this.commonValue( "captive" ) }
-                  value="true"
-                  onChange={ e =>
-                    updateSelectedObsCards( { captive: $( e.target ).is( ":checked" ) } ) }
-                />
-                <span>{ I18n.t( "captive_cultivated" ) }</span>
-              </label>
-            </div>
-          </div>
-        </OverlayTrigger>
+        </div>
       </div>
     );
   }
