@@ -101,6 +101,7 @@ en:
   a_member_of_taxon_html: "a member of %{taxon}"
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
+  about_taxon_changes: About Taxon Changes
   about_bioblitz_results: About bioblitz results
   about_community_taxa: About community taxa
   about_external_links: About External Links
@@ -1274,6 +1275,7 @@ en:
   helped_the_observer_make: helped the observer make their final ID (i.e. they were made before the final ID and they match it)
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_some_things_you_can_do_meantime: "Here are some things you can do in the meantime:"
+  heres_a_litle_about: Here's a little about
   hex_color_eg: Hex color, e.g. 65644F
   hi: Hi,
   hi_user: "Hi %{user}"
@@ -1402,6 +1404,7 @@ en:
   is_a: 'is a'
   is_an: 'is an'
   is_not_following_anyone: is not following anyone.
+  is_now: is now
   is_the_organism_wild: "Is the organism wild/naturalized?"
   is_this_observation_offensive_html: 'Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
@@ -1427,6 +1430,7 @@ en:
   journal_post_deleted: Journal post deleted.
   jpg_png_or_gif: "JPG, PNG, or GIF"
   jump_to_letter: Jump to letter
+  just_a_reminder: Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
   just_added!: Just added!
   keep_editing: Keep editing
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
@@ -2710,6 +2714,8 @@ en:
   show_default_taxon_photos: show default taxon photos
   show_counts: Show counts based on the list.
   show_kml: Show KML
+  show_less: Show less
+  show_more: Show more
   show_observation_photos: show observation photos
   show_observations_from: Show observations by
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
@@ -3368,7 +3374,7 @@ en:
   view_more_unreviewed: "View more unreviewed"
   view_nbsp: "View &nbsp;"
   view_non_mobile_site: View non-mobile site
-  view_resource: View %{resource}
+  view_observation: View observation
   view_observations: View observations
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
@@ -3383,6 +3389,7 @@ en:
   view_other_taxa: "View other <nobr> %{taxon_name} &raquo; </nobr>"
   view_photos_ranges_observations_more: "View photos, species ranges, %{site_name} observations, and more! We've assembled information from many different sources and combined them for a quick summary of each species in each place."
   view_place: View place
+  view_post: View post
   view_projects_from_place: "View projects from %{place}"
   view_real_time_stats_in_a_new_window: View real-time stats in a new window
   view_site_name_observations_html: "View <strong>%{site_name}</strong> observations"
@@ -3521,6 +3528,7 @@ en:
     you have any questions about curating content or don't want to
     be a curator anymore, please contact us at %{email}
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
+  you_are_now: You are now
   you_are_now_following_x: "You are now following %{friend_user}."
   you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
   you_are_not_editing_any_guides_add_one_html: |

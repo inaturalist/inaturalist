@@ -62,10 +62,10 @@
             <%= t(:casual)  -%>
           </span>
         <% end %>
-        <%- if observation.identifications_count > 0 -%>
+        <%- if observation.num_identifications_by_others > 0 -%>
           <span class="identifications">
             <i class="icon-identification"></i>
-            <%= observation.identifications_count %>
+            <%= observation.num_identifications_by_others %>
           </span>
         <%- end -%>
         <%- if observation.comments_count > 0 -%>

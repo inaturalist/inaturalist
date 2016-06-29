@@ -4,9 +4,9 @@
     %thead{ :style => "background-color:#fbeed7;" }
       %tr
         %th
-          Taxon
+          =t :taxon
         %th
-          = taxon_change.verb_phrase.capitalize
+          =t taxon_change.verb_phrase.gsub(" ","_").downcase.to_sym, default: "replaced with"
     %tbody
       %tr
         %td
@@ -18,10 +18,6 @@
   %p
     = formatted_user_text taxon_change.description
 .timeline-footer
-  = link_to "View details", taxon_change, :class => "btn btn-sm btn-primary"
-  = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-sm btn-default"
-  About Taxon Changes
-  %span.glyphicon.glyphicon-info-sign{"data-toggle" => "popover", "data-content"=>"Taxon changes represent changes to #{CONFIG.site_name}'s taxonomy. Most of the time #{CONFIG.site_name_short} will automatically keep your content up-to-date when these changes happen (unless you've opted-out), but we still want to let you know when and how your data is changing."}
-
-    
+  = link_to t(:view_details), taxon_change, :class => "btn btn-sm btn-primary"
+  = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-sm btn-default"    
 

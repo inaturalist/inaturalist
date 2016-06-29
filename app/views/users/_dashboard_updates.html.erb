@@ -95,9 +95,9 @@
               </ul>
             </div>
             <div class="timeline-footer">
-              <%= link_to t(:view_resource, :resource => resource_type), resource, :class => "btn btn-sm btn-primary" %>
+              <%= link_to t("view_#{resource_type.downcase}".to_sym, default: "View"), resource, :class => "btn btn-sm btn-primary" %>
               <%- if updates.count > 1 %>
-                <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> Show More...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> Show Less</span></button>
+                <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#expand<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <%= t(:show_more) %>...</span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <%= t(:show_less) %></span></button>
               <%- end %>
             </div>  
           <% else %>                      

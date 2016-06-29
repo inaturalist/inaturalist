@@ -14,13 +14,13 @@
     %ul
       %li
         - if is_me?(user)
-          You are now
+          =t :you_are_now
         - else
           = link_to_user user
-          is now
+          =t :is_now
         = role
         - unless user.description.blank? || is_me?(user)
-          Here's a little about
+          =t :heres_a_little_about
           = surround '', ': ' do
             = user.login
           %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
@@ -33,5 +33,5 @@
             assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
             = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
   %p.alert.alert-info
-    Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
+    =t :just_a_reminder
   
