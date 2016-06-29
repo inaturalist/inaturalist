@@ -11,7 +11,9 @@
         observation.observation_sounds_count, [] %>
       <% if photo_count == 0 && sound_count == 0 -%>
         <%= link_to observation_path(observation) do %>
-          <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="vertical-align: middle;font-size: 105px; color:rgb(238,238,238);"></i>
+          <div class="scaledimg">
+          <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="vertical-align: middle;font-size: 120px; color:rgb(238,238,238);"></i>
+          </div>
         <% end -%>
       <% else %>
         <% if photo_count > 0 %>
