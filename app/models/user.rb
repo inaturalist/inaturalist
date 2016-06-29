@@ -771,11 +771,6 @@ class User < ActiveRecord::Base
     subscriptions.where(resource: resource).exists?
   end
 
-  def recent_projects
-    project_users.joins(:project).includes(:project).limit(10).
-      order("(projects.user_id = #{id}) DESC, projects.updated_at ASC").map(&:project)
-  end
-
   def recent_observation_fields
     ObservationField.recently_used_by(self).limit(10)
   end

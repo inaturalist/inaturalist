@@ -32,7 +32,8 @@ class ProjectsChooser extends SelectionBasedComponent {
       appendTo: $( ".leftColumn" ),
       selectFirstMatch: true,
       onResults: items => {
-        if ( items !== null && items.length === 0 ) {
+        // don't want to add the failed class if there is no search term
+        if ( items !== null && items.length === 0 && $( ".projects input" ).val( ) ) {
           $( ".projects input" ).addClass( "failed" );
         } else {
           $( ".projects input" ).removeClass( "failed" );
