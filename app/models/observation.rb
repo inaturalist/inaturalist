@@ -479,8 +479,8 @@ class Observation < ActiveRecord::Base
   }
 
   scope :with_identifications_of, lambda { |taxon|
-    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
-    return where("1 = 2") unless taxon
+    taxon = Taxon.find_by_id( taxon.to_i ) unless taxon.is_a? Taxon
+    return where( "1 = 2" ) unless taxon
     c = taxon.descendant_conditions.to_sql
     c = c.gsub( '"taxa"."ancestry"', 'it."ancestry"' )
     joins( :identifications ).
@@ -1515,13 +1515,13 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def self.reassess_coordinates_for_observations_of(taxon, options = {})
-    scope = Observation.of(taxon).joins(:taxon)
-    scope = scope.in_place(options[:place]) if options[:place]
+  def self.reassess_coordinates_for_observations_of( taxon, options = {} )
+    scope = Observation.with_identifications_of( taxon ).joins( :taxon )
+    scope = scope.in_place( options[:place] ) if options[:place]
     scope.find_each do |o|
       o.obscure_coordinates_for_threatened_taxa
       next unless o.coordinates_changed?
-      Observation.where(id: o.id).update_all(
+      Observation.where( id: o.id ).update_all(
         latitude: o.latitude,
         longitude: o.longitude,
         private_latitude: o.private_latitude,

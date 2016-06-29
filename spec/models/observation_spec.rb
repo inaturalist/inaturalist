@@ -2270,6 +2270,18 @@ describe Observation do
       expect(o).to be_coordinates_obscured
     end
 
+    it "should obscure coordinates for observations with dissenting identifications of threatened taxa" do
+      load_test_taxa
+      o = make_research_grade_observation( taxon: @Calypte_anna )
+      2.times { Identification.make!( observation: o, taxon: @Calypte_anna ) }
+      Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+      expect( o ).not_to be_coordinates_obscured
+      cs = ConservationStatus.make!( taxon: @Pseudacris_regilla )
+      Observation.reassess_coordinates_for_observations_of( @Pseudacris_regilla )
+      o.reload
+      expect( o ).to be_coordinates_obscured
+    end
+
     it "should not unobscure coordinates of obs of unthreatened if geoprivacy is set" do
       t = Taxon.make!
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED, :taxon => t)
