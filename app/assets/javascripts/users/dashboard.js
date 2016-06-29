@@ -1,31 +1,45 @@
 var DASHBOARD = {
-  LOADED_AT: new Date( Date.now( ) * 1000 ).getTime( ),
   fromIDs: { }
 };
 
+// hide the flash message after 5 seconds
+setTimeout( function( ) {
+  $( "#flash" ).fadeOut( 1000 );
+}, 5000 );
+
+// set default `from` param from variable defined in view
 if ( DASHBOARD_FROM ) {
   DASHBOARD.fromIDs[DASHBOARD_TAB] = DASHBOARD_FROM;
 }
 
 window.onpopstate = function( event ) {
+  // set the tab's current `from` param based on the popped state
   DASHBOARD.fromIDs[event.state.type] = event.state.fromID;
+  // show the tab and fetch the content
   DASHBOARD.loadTab( event.state.type, { noState: true } );
 };
 
 DASHBOARD.loadTab = function( tabName, options ) {
   var tab = $("a[data-tab='" + tabName + "']")
   $( "body" ).scrollTop( 0 );
+  // hide all other tabs
   $( ".tab-content > div" ).hide( );
   $( ".dashboard_tab_row a").removeClass( "active" );
+  // show this one
   tab.addClass( "active" );
   $( tab.data( "targetEl" ) ).
     html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" ).show( );
-  DASHBOARD.getContent( tab.data( "tab" ), options );
+  var type = tab.data( "tab" );
+  var tabSettings = DASHBOARD.tabSettings( type );
+  // set the browser state and URL
+  DASHBOARD.setState( type, tabSettings.params, options );
+  // make an API call to fetch the tab's content
+  DASHBOARD.fetchContent( tabSettings.fetchURL, type, tabSettings.target );
 };
 
-DASHBOARD.getContent = function( type, options ) {
+DASHBOARD.tabSettings = function( type ) {
   var fetchURL, target, params = { };
-  var options = options || { };
+  // prepare the API path and params
   if ( type === "comments" ) {
     fetchURL = "/comments";
     params = { partial: true };
@@ -39,20 +53,17 @@ DASHBOARD.getContent = function( type, options ) {
       target = "#updates";
     }
   }
+  // use this tab's current `from` param
   if ( DASHBOARD.fromIDs[type] ) {
     params.from = DASHBOARD.fromIDs[type];
   }
   if ( Object.keys( params ).length > 0 ) {
     fetchURL += "?" + $.param( params );
   }
-  var state = { type: type, fromID: DASHBOARD.fromIDs[type] };
-  if ( options.replaceState ) {
-    history.replaceState( state, "" );
-  } else if ( !options.noState ) {
-    var dashboardParams = { tab: type };
-    if ( DASHBOARD.fromIDs[type]) { dashboardParams.from = DASHBOARD.fromIDs[type]; }
-    history.pushState( state, "", "/home?" + $.param( dashboardParams ) );
-  }
+  return { fetchURL: fetchURL, params: params, target: target };
+};
+
+DASHBOARD.fetchContent = function( fetchURL, type, target ) {
   $.ajax( {
     type: "GET",
     url: fetchURL,
@@ -61,29 +72,52 @@ DASHBOARD.getContent = function( type, options ) {
     },
     success: function( data ) {
       if ( type === "comments" ) {
+        // the coments partial renders <li>s, so wrap in a ul.timeline
         data = $("<ul/>").addClass( "timeline" ).append( data );
       }
+      // show the content
       $( target ).html( data );
-
-      $( "#more_pagination" ).click( function( e ) {
-        e.preventDefault( );
-        DASHBOARD.fromIDs["updates"] = $( this ).data( "from" );
-        DASHBOARD.loadTab( "updates" );
-      });
-
-      $( "#more_pagination_you" ).click( function( e ) {
-        e.preventDefault( );
-        DASHBOARD.fromIDs["yours"] = $( this ).data( "from" );
-        DASHBOARD.loadTab( "yours" );
-      });
-
+      // enable jQuery click events on loaded `more` buttons
+      DASHBOARD.enableMoreButtonClickEvents( );
       if ( type !== "comments" ) {
         $( ".subscriptionsettings" ).subscriptionSettings( );
       }
-
     }
   });
+};
+
+DASHBOARD.enableMoreButtonClickEvents = function( ) {
+  $( "#more_pagination" ).unbind( "click" );
+  $( "#more_pagination" ).bind( "click", function( e ) {
+    e.preventDefault( );
+    DASHBOARD.fromIDs["updates"] = $( this ).data( "from" );
+    DASHBOARD.loadTab( "updates" );
+  });
+
+  $( "#more_pagination_you" ).unbind( "click" );
+  $( "#more_pagination_you" ).bind( "click", function( e ) {
+    e.preventDefault( );
+    DASHBOARD.fromIDs["yours"] = $( this ).data( "from" );
+    DASHBOARD.loadTab( "yours" );
+  });
 }
+
+DASHBOARD.setState = function( type, params, options ) {
+  var options = options || { };
+  var state = { type: type, fromID: DASHBOARD.fromIDs[type] };
+  // on page load, just replace the empty state with the default params
+  if ( options.replaceState ) {
+    history.replaceState( state, "" );
+  }
+  // with onpopstate, noState will be set since we're popping not pushing
+  else if ( !options.noState ) {
+    var dashboardParams = { tab: type };
+    // store this tab's current `from` param in state
+    if ( DASHBOARD.fromIDs[type]) { dashboardParams.from = DASHBOARD.fromIDs[type]; }
+    // stores the state and changes the browser URL
+    history.pushState( state, "", "/home?" + $.param( dashboardParams ) );
+  }
+};
 
 DASHBOARD.loadingPanel = function( selector ) {
   $( "body" ).scrollTop( 0 );
@@ -98,17 +132,17 @@ DASHBOARD.closePanel = function( element, panelType ) {
 };
 
 $( function( ) {
+  // load the default tab from a variable set in the view
+  // make sure to replaceState and not setState as this is the initial load
   DASHBOARD.loadTab( DASHBOARD_TAB, { replaceState: true } );
 
+  // prepare the click events for the tab labels
   $( ".dashboard_tab_row a" ).on( "click", function( e ) {
     e.preventDefault( );
     DASHBOARD.loadTab( $( e.target ).data( "tab" ) );
   });
 
   $( "abbr.timeago" ).timeago( );
-  if ( ( new Date( ) ).getTime( ) - DASHBOARD.LOADED_AT > 5000 ) {
-    $( "#flash" ).hide( );
-  }
   var dayInSeconds = 24 * 60 * 60,
       now = new Date( ),
       monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
