@@ -1099,20 +1099,27 @@ class Taxon < ActiveRecord::Base
     end
   end
 
-  def geoprivacy(options = {})
-    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", self_and_ancestor_ids).order("iucn ASC").last
+  def self.max_geoprivacy( taxon_ids, options = {} )
+    target_taxon_ids = [
+      taxon_ids,
+      Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}
+    ].flatten.compact.uniq
+    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).order("iucn ASC").last
     if global_status && global_status.geoprivacy == Observation::PRIVATE
       return global_status.geoprivacy
     end
-    geoprivacies = [global_status.try(:geoprivacy)]
+    geoprivacies = [ global_status.try(:geoprivacy) ]
     geoprivacies += ConservationStatus.
-      where("taxon_id IN (?)", self_and_ancestor_ids).
-      for_lat_lon(options[:latitude], options[:longitude]).pluck(:geoprivacy)
-    geoprivacies = geoprivacies.uniq.reject{|gp| gp.blank? || gp == Observation::OPEN}
+      where( "taxon_id IN (?)", target_taxon_ids ).
+      for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
+    geoprivacies = geoprivacies.uniq.reject{ |gp| gp.blank? || gp == Observation::OPEN }
     return geoprivacies.first if geoprivacies.size == 1
-    return Observation::PRIVATE if geoprivacies.include?(Observation::PRIVATE)
+    return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED unless geoprivacies.blank?
-    ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
+  end
+
+  def geoprivacy( options = {} )
+    Taxon.max_geoprivacy( [id], options )
   end
 
   def add_to_intersecting_places

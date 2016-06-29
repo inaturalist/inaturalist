@@ -477,6 +477,16 @@ class Observation < ActiveRecord::Base
     c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
     joins(:taxon).where(c)
   }
+
+  scope :with_identifications_of, lambda { |taxon|
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
+    return where("1 = 2") unless taxon
+    c = taxon.descendant_conditions.to_sql
+    c = c.gsub( '"taxa"."ancestry"', 'it."ancestry"' )
+    joins( :identifications ).
+    joins( "JOIN taxa it ON it.id = identifications.taxon_id" ).
+    where( "identifications.current AND (it.id = ? or #{c})", taxon.id ) 
+  }
   
   scope :at_or_below_rank, lambda {|rank| 
     rank_level = Taxon::RANK_LEVELS[rank]
@@ -1298,7 +1308,8 @@ class Observation < ActiveRecord::Base
     lat = private_latitude.blank? ? latitude : private_latitude
     lon = private_longitude.blank? ? longitude : private_longitude
     t = taxon || community_taxon
-    taxon_geoprivacy = t ? t.geoprivacy(:latitude => lat, :longitude => lon) : nil
+    target_taxon_ids = [[t.try(:id)] + identifications.current.pluck(:taxon_id)].flatten.compact.uniq
+    taxon_geoprivacy = Taxon.max_geoprivacy( target_taxon_ids, latitude: lat, longitude: lon )
     case taxon_geoprivacy
     when OBSCURED
       obscure_coordinates unless coordinates_obscured?
@@ -1502,41 +1513,6 @@ class Observation < ActiveRecord::Base
       end
     end
     true
-  end
-  
-  def self.obscure_coordinates_for_observations_of(taxon, options = {})
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return unless taxon
-    scope = Observation.of(taxon)
-    scope = scope.in_place(options[:place]) if options[:place]
-    scope.find_each do |o|
-      o.obscure_coordinates
-      Observation.where(id: o.id).update_all(
-        place_guess: o.place_guess,
-        latitude: o.latitude,
-        longitude: o.longitude,
-        private_latitude: o.private_latitude,
-        private_longitude: o.private_longitude,
-        geom: o.geom,
-        private_geom: o.private_geom
-      )
-    end
-  end
-  
-  def self.unobscure_coordinates_for_observations_of(taxon)
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return unless taxon
-    Observation.find_observations_of(taxon) do |o|
-      o.unobscure_coordinates
-      Observation.where(id: o.id).update_all(
-        latitude: o.latitude,
-        longitude: o.longitude,
-        private_latitude: o.private_latitude,
-        private_longitude: o.private_longitude,
-        geom: o.geom,
-        private_geom: o.private_geom
-      )
-    end
   end
 
   def self.reassess_coordinates_for_observations_of(taxon, options = {})
