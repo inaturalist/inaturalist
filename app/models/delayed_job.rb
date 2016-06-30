@@ -17,11 +17,13 @@ class Delayed::Backend::ActiveRecord::Job
   end
 
   def self.failed
-    Delayed::Job.where("failed_at IS NOT NULL").order(failed_at: :desc)
+    Delayed::Job.
+      where("failed_at IS NOT NULL OR attempts > 0 OR last_error IS NOT NULL").
+      order(failed_at: :desc)
   end
 
   def self.pending
-    Delayed::Job.where("run_at > ?", Time.now).order(run_at: :asc)
+    Delayed::Job.where("run_at > ? OR attempts = 0", Time.now).order(run_at: :asc)
   end
 
   def paperclip?
@@ -79,10 +81,10 @@ class Delayed::Backend::ActiveRecord::Job
     return if flow_task?
     if bulk_observation_file?
       return {
-        observation_file: handler_yaml.observation_file,
+        observation_file: (handler_yaml.observation_file if handler_yaml.respond_to?(:observation_file)),
         user_id: (handler_yaml.user.id if handler_yaml.user),
         project_id: (handler_yaml.project.id if handler_yaml.project),
-        csv_options: handler_yaml.csv_options
+        csv_options: (handler_yaml.csv_options if handler_yaml.respond_to?(:csv_options))
       }
     end
     return handler_yaml.job_data["arguments"] if paperclip?
