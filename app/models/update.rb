@@ -263,4 +263,65 @@ class Update < ActiveRecord::Base
     Update.delete_all(*args)
   end
 
+  def self.migrate_to_new_tables
+    past_two_months_ago = false
+    batch_size = 20000
+    max_id = 148940001 # first ID 148740001
+    first = Update.first.id
+    last = Update.last.id
+    total = first - last
+    puts "First: #{first}, Last: #{last}"
+    start_time = Time.now
+    time = Benchmark.measure do
+      Update.joins(:subscriber).
+             where("updates.id < #{ first + 1000000 }").
+             where("users.last_active IS NOT NULL").
+             find_in_batches(batch_size: batch_size) do |batch|
+        if batch.first.created_at >= 2.months.ago
+          past_two_months_ago = true
+        end
+        puts "ID: #{batch.first.id}, Time: #{Time.now - start_time}"
+        action_ids = { }
+        subscriptions = [ ]
+        Update.connection.transaction do
+          batch.each do |u|
+            next if !past_two_months_ago && !u.viewed_at
+            actionAttrs = {
+              resource_id: u.resource_id,
+              resource_type: u.resource_type,
+              notifier_type: u.notifier_type,
+              notifier_id: u.notifier_id,
+              notification: u.notification,
+              resource_owner_id: u.resource_owner_id
+            }
+            key = actionAttrs.flatten.join(",")
+            action_id = action_ids[key]
+            if !action_id && action = UpdateAction.where(actionAttrs).first
+              action_id = action.id
+            end
+            if !action_id
+              action = UpdateAction.new(actionAttrs.merge(created_at: u.created_at))
+              if !action.save(validate: false)
+                next
+              end
+              action_id = action.id
+            end
+            action_ids[key] = action_id
+            subscriptions <<  {
+              update_action_id: action_id,
+              subscriber_id: u.subscriber_id,
+              viewed_at: u.viewed_at ? "'#{u.viewed_at}'" : "NULL"
+            }
+          end
+        end
+        next if subscriptions.empty?
+        values = subscriptions.map{ |s| "(#{ s.values.join(",") })" }
+        sql = "INSERT INTO update_subscribers (update_action_id, subscriber_id, viewed_at) " +
+              "VALUES #{ values.join(",") }"
+        Update.connection.execute(sql)
+      end
+    end
+    pp time
+  end
+
 end
