@@ -15,11 +15,16 @@
 <%- if observations.count > 1 %>
   <%- 
     created_at_times = observations.map{|o| o.created_at.blank? ? nil : o.created_at }.compact.uniq.sort
-    created_d1 = created_at_times.min.strftime("%Y-%m-%dT%H:%M:%S%z")
-    created_d2 = (created_at_times.max+1.second).strftime("%Y-%m-%dT%H:%M:%S%z")
+    created_d1 = created_at_times.min.strftime( "%Y-%m-%dT%H:%M:%S%z" )
+    created_d2 = ( created_at_times.max+1.second ).strftime( "%Y-%m-%dT%H:%M:%S%z" )
+    url_params = { verifiable: "any", place_id: "any", taxon_id: taxon.id, created_d1: created_d1, created_d2: created_d2, subview: "grid" }
   -%>
   <div class="timeline-footer">
-    <%= link_to t(:view_observations), observations_path({verifiable: "any", place_id: "any", taxon_id: taxon.id, created_d1: created_d1, created_d2: created_d2, subview: "grid"}), class: "btn btn-sm btn-primary" %>
+    <%= link_to t(:view_observations), observations_path( url_params ), class: "btn btn-sm btn-primary" %>
+    <%= link_to identify_observations_path( url_params ), class: "btn btn-sm btn-default" do %>
+      <i class="icon icon-identification"></i>
+      <%= t(:identify_title) %>
+    <% end %>
     <% if observations.count > 4 -%>
       <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
         <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <%= t(:show_more) %>...</span>
