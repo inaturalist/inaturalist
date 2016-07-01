@@ -16,15 +16,15 @@
 <div class="timeline-footer">
   <%= link_to the_post_path, :type => "button", :class => 'btn btn-sm btn-primary' do %>
     <%= t(:view_post) %>
-    <%- unless remaining_paragraphs.length == 0 %>
-      <button type="button" class='btn btn-sm btn-default btn_expand collapsed pull-right' data-toggle="collapse" data-target="#expand<%= target_id %>">
-        <span class="expand_inactive">
-          <i class="glyphicon.glyphicon-collapse-down">Show More...</i>
-        </span>
-        <span class="expand_active">
-          <i class="glyphicon.glyphicon-collapse-up">Show Less</i>
-        </span>
-      </button>
-    <% end %>
   <% end -%>
+  <%- unless remaining_paragraphs.length == 0 %>
+    <button type="button" class='btn btn-sm btn-default btn_expand collapsed pull-right' data-toggle="collapse" data-target="#expand<%= target_id %>">
+      <span class="expand_inactive">
+        <i class="glyphicon.glyphicon-collapse-down">Show More...</i>
+      </span>
+      <span class="expand_active">
+        <i class="glyphicon.glyphicon-collapse-up">Show Less</i>
+      </span>
+    </button>
+  <% end %>
 </div>
