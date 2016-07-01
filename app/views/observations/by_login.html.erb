@@ -135,7 +135,7 @@
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if is_me?(@selected_user) -%>
-      <%= link_to t(:add_observations), new_observation_path,
+      <%= link_to t(:add_observations), upload_observations_path,
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
       <div id="batchcontrols" class="buttoncontainer" style="display: none">
@@ -201,7 +201,7 @@
       <%=t :no_matching_observations %>
       <br><br>
       <% if logged_in? && current_user.login == @login %>
-      <%= link_to t(:add_observations), new_observation_path,
+      <%= link_to t(:add_observations), upload_observations_path,
                   :class => 'default inline button' %>
       <% end %>
     </div>
