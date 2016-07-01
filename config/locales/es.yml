@@ -1061,11 +1061,13 @@ es:
   download_csv_template: Descargar plantilla CSV
   download_kml: Descargar KML
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
+  drag_and_drop_some_photos: Arrastra y suelta algunas fotos
   draft: borrador
   draft_: Borrador
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
   drag_and_drop_some_photos: Arrastra y suelta algunas fotos
+  drop_it: ¡Suéltalo!
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las
     especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia,
     estado de conservación y quién observó esa especie por primera vez en ese lugar
@@ -1082,7 +1084,10 @@ es:
   edit_field: Edita el campo
   edit_flagged_observation: Editar la observación marcada
   edit_license: Modificar licencia
+  edit_multiple_dates: Edita múltiples fechas
   edit_multiple_descriptions: Editar múltiples descripciones
+  edit_multiple_locations: Editar múltiples localizaciones
+  edit_multiple_species: Editar múltiples grupos o especies
   edit_notes: Modificar notas
   edit_photos: Modificar fotos
   edit_photos_for_observation_id: Modificar fotos para la observación %{obs_id}
@@ -1229,6 +1234,7 @@ es:
   field_note: <strong>Nota:</strong> si quieres crear un campo, verifica si alguien
     más ya lo ha hecho, para evitar la duplicación.
   fields: campos
+  fields_: Campos
   fields_can_only_be_edited_by_the_people_who: Los campos solo pueden ser editados
     por las personas que los crearon y los curadores del sitio.
   fields_merged: Campos combinados
@@ -1372,6 +1378,7 @@ es:
   globally: globalmente
   go: Busca
   go_back: Regresar
+  going_to_your_observations: Dirigiéndote a tus observaciones ...
   good_choice_for_sharing: Buena alternativa para compartir con los científicos
   got_it!: Entiendo!
   got_your_data_somewhere_else?: ¿Obtuvo sus datos en otro lugar? Podemos ayudarle.
@@ -1786,6 +1793,7 @@ es:
   loading_full_description_html: Cargando la descripción completa...
   loading_images: Cargando imágenes...
   loading_map: Cargando el mapa…
+  loading_metadata: Cargando metadatos ...
   loading_more_photos: Cargando más fotos...
   loading_observations: Cargando observaciones...
   loading_preview_and_code: Cargando el código...
@@ -1813,10 +1821,14 @@ es:
     ja: Japonés
     zh-CN: Chino (simplificado)
     zh-TW: Chino (tradicional)
+  locality_notes: Notas por localidad
   localized_species_accounts: Cuentas de especies localizadas
   location: Ubicación
   location_: Ubicación
   location_is_exact: ubicación es exacta
+  location_is_obscured: La ubicación esta oscurecida
+  location_is_private: La ubicación es privada
+  location_is_public: La ubicación es pública
   locked_taxa_will_not_allow_new: Los taxones bloqueados no permitirán que se agreguen
     nuevos taxones descendientes. Entonces si usted bloqueó Amphibia y alguien trató
     de importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, el nuevo
@@ -1965,6 +1977,8 @@ es:
   most_observations: Con más observaciones
   most_species: La mayoría de las especies
   most_observed_species: Especies más observadas
+  multiple: Múltiple
+  multiple_select_option: --- Múltiple ---
   multiple_taxa_for_taxon_change: Más de una especie o grupo (entrada de datos para
     intercambiar/mezclar, salida de datos para separar)
   multiple_taxon_ids_separated_by_commas: Varias IDs de taxones separadas por comas,
@@ -2223,6 +2237,7 @@ es:
     ser Réptil", entonces el proyecto aceptará observaciones de
     reptiles O anfibios.
   observation_was_deleted: La observación fue borrada.
+  observation_without_photo: Observación sin foto
   observation_would_like_some_help: ¡A %{user} le gustaría un poco de ayuda para identificar
     esto!
   observations: Observaciones
@@ -2311,6 +2326,7 @@ es:
   official_blog: Blog oficial
   offline_access_enabled: El acceso sin conexión habilitada
   ok: Aceptar
+  old_observation_from: Observación antigua de
   on_: en
   on_date: en %{date}
   on_day: el
@@ -2857,6 +2873,9 @@ es:
   remove_from_project: Quitar del proyecto
   remove_this_section: Eliminar esta sección
   remove_manager: Quitar gerente
+  remove_observations:
+        one: ¿Quitar 1 observación?
+        other: ¿Quitar %{count} observaciones?
   remove_place: Quitar lugar
   remove_project_user: Quitar usuario de proyecto
   remove_selected: Eliminar los elementos seleccionados
@@ -2988,6 +3007,7 @@ es:
     de especies no observadas en la lista del proyecto
   select_one_or_more_photos: Selecciona una o más fotos
   select_none: No seleccionar ninguno
+  select_observations_to_edit: Selecciona observaciones para editar ...
   select_options: Seleccione opciones
   select_photos_from_your_photo_stream: Selecciona las fotos de sitios que comparten
     fotos para convertirlas en observaciones de {site_name}. Encontraremos la fecha,
@@ -3063,6 +3083,7 @@ es:
   some_agree: Algunos la apoyan
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
+  some_observations_failed: Algunas observaciones no fueron añadidas a los proyectos.
   some_other_reason: Otra razón que puedes explicar después.
   some_people: Algunas personas
   some_people_that: Algunas personas que
@@ -3724,6 +3745,7 @@ es:
   view_check_list_page: Ver página de lista de verificación
   view_contributions: Ver contribuciones
   view_details: Ver detalles
+  view_field_options: Ver las opciones del campo
   view_flags: Ver marcas
   view_flags_for_x_html: Ver marcas para %{x}
   view_full_observation: Ver observación completa
@@ -3889,6 +3911,9 @@ es:
   x_journal_editing: Diario de %{user} &middot; Modificar
   x_journal_middot: Diario de %{user} &middot;
   x_journal_new_post: Diario de %{user} &middot; Nuevo ingreso
+  x_observations_failed:
+      one: "1 observación falló"
+      other: "%{count} observaciones fallaron"
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadísticas de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} le envió un nuevo mensaje en %{y}'
@@ -3928,6 +3953,10 @@ es:
     <a href="/guides/new">Agrega una</a>
   you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
   you_are_no_longer_following_x: Ya no estas siguiendo a %{friend}.
+  you_are_submitting_obs_with_no_date_or_no_location: Estás añadiendo observaciones sin fecha ni ubicación.
+  you_are_submitting_obs_without_photos_and_names: |
+      Estás añadiendo observaciones sin foto ni un nombre de especie.
+      OJO, estas observaciones serán dificiles de identificar.
   you_are_subscribed_to: Estas suscrito a
   you_arent_a_member_of_that_project: No eres un miembro del proyecto.
   you_arent_following_that_person: No estas siguiendo a esa persona.
