@@ -316,7 +316,14 @@
             t(:please_hold_on_while_the_file),
           :rel => "nofollow" %>
       </li>
-      <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe, project_observations_url(@project), class: "navlink" %></li>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe,
+          project_observations_url(@project), class: "navlink" %>
+      </li>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t( :identify_observations )}".html_safe,
+          identify_observations_url( project_id: @project ), class: "navlink" %>
+      </li>
       <% if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
       <% end -%>
