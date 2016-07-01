@@ -835,7 +835,7 @@ class Place < ActiveRecord::Base
     end
   end
 
-  def bbox_contains_lat_lng_acc?(lat, lng, acc)
+  def bbox_contains_lat_lng_acc?(lat, lng, acc = nil)
     f = RGeo::Geographic.simple_mercator_factory
     bbox = f.polygon(
       f.linear_ring([

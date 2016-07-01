@@ -257,7 +257,7 @@ class ObservationsController < ApplicationController
           @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
         end
         
-        @places = @observation.places
+        @places = @coordinates_viewable ? @observation.places : @observation.public_places
         
         @project_observations = @observation.project_observations.joins(:project).limit(100).to_a
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
