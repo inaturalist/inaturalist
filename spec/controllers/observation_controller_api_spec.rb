@@ -445,6 +445,14 @@ shared_examples_for "an ObservationsController" do
       expect( o.identifications.count ).to eq 3
     end
 
+    it "shoudld remove the taxon when taxon_id is blank" do
+      o = Observation.make!( user: user, taxon: Taxon.make! )
+      expect( o.taxon ).not_to be_blank
+      put :update, format: :json, id: o.id, observation: { taxon_id: nil }
+      o.reload
+      expect( o.taxon ).to be_blank
+    end
+
     it "should mark as captive in response to captive_flag" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
