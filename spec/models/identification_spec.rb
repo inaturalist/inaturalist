@@ -648,3 +648,77 @@ describe Identification do
     end
   end
 end
+
+describe Identification, "category" do
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
+  let( :o ) { Observation.make! }
+  describe "should be improving when" do
+    it "is the first that matches the community ID among several IDs" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      o.reload
+      i1.reload
+      expect( o.community_taxon ).to eq i1.taxon
+      expect( i1.observation.identifications.count ).to eq 2
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+  end
+  describe "should be maverick when" do
+    it "the community taxon is not an ancestor" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      i3 = Identification.make!( observation: o )
+      i3.reload
+      expect( i3.category ).to eq Identification::MAVERICK
+    end
+  end
+  describe "should be leading when" do
+    it "is the only ID" do
+      i = Identification.make!
+      expect( i.category ).to eq Identification::LEADING
+    end
+    it "has a taxon that is a descendant of the community taxon" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      child = Taxon.make!( parent: i1.taxon )
+      i3 = Identification.make!( observation: o, taxon: child )
+      expect( i3.category ).to eq Identification::LEADING
+    end
+  end
+  describe "should be supporting when" do
+    it "matches the community taxon but is not the first to do so" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      expect( i2.category ).to eq Identification::SUPPORTING
+    end
+    it "descends from the community taxon but is not the first identification of that taxon" do
+      i1 = Identification.make!( observation: o )
+      child = Taxon.make!( parent: i1.taxon )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i3 = Identification.make!( observation: o, taxon: child )
+      expect( i3.category ).to eq Identification::SUPPORTING
+    end
+    it "is an ancestor of the community taxon and was not added after the first ID of the community taxon" do
+      i1 = Identification.make!( observation: o, taxon: Taxon.make!( rank: Taxon::GENUS ) )
+      child = Taxon.make!( parent: i1.taxon, rank: Taxon::SPECIES )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i3 = Identification.make!( observation: o, taxon: child )
+      i4 = Identification.make!( observation: o, taxon: child )
+      o.reload
+      expect( o.community_taxon ).to eq child
+      i1.reload
+      expect( i1.category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "should be removed when" do
+    it "it is not current" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, user: i1.user )
+      i1.reload
+      i2.reload
+      expect( i1 ).not_to be_current
+      expect( i1.category ).to eq Identification::REMOVED
+    end
+  end
+end

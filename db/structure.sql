@@ -9119,7 +9119,8 @@ CREATE TABLE identifications (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     current boolean DEFAULT true,
-    taxon_change_id integer
+    taxon_change_id integer,
+    category character varying
 );
 
 
@@ -13684,6 +13685,13 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 
 --
+-- Name: index_identifications_on_category; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_identifications_on_category ON identifications USING btree (category);
+
+
+--
 -- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15798,4 +15806,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160627194031');
 INSERT INTO schema_migrations (version) VALUES ('20160629221454');
 
 INSERT INTO schema_migrations (version) VALUES ('20160701031842');
+
+INSERT INTO schema_migrations (version) VALUES ('20160701042751');
 

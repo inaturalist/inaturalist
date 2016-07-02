@@ -74,5 +74,11 @@
         <%= t :added_as_a_part_of %> <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
       </span>
     <% end -%>
+
+    <%= feature_test :idcats do %>
+      <div class="small status">
+        <%= identification.category %>
+      </div>
+    <% end %>
   </div>
 </div>
