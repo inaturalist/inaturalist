@@ -208,11 +208,11 @@ class ObservationsController < ApplicationController
   # GET /observations/1.xml
   def show
     unless @skipping_preloading
-      @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
-      @prev = @previous
-      @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
       @quality_metrics = @observation.quality_metrics.includes(:user)
       if logged_in?
+        @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
+        @prev = @previous
+        @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
         @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
         @project_invitations = @observation.project_invitations.limit(100).to_a
         @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
