@@ -43,7 +43,7 @@ class Identification < ActiveRecord::Base
   attr_accessor :html
   attr_accessor :captive_flag
 
-  %w(improving supporting leading maverick removed).each do |category|
+  %w(improving supporting leading maverick).each do |category|
     const_set category.upcase, category
     define_method "#{category}?" do
       self.category == category
@@ -53,8 +53,7 @@ class Identification < ActiveRecord::Base
     IMPROVING,
     SUPPORTING,
     LEADING,
-    MAVERICK,
-    REMOVED
+    MAVERICK
   ]
 
   
@@ -303,36 +302,36 @@ class Identification < ActiveRecord::Base
       removed: []
     }
     previous_current_idents = []
-    Identification.
-        select( "id, taxon_id, current" ).
-        includes(:taxon).
-        where( observation_id: o.id ).
-        sort_by(&:id).each do |ident|
-      if !ident.current?
-        categories[:removed] << ident
-        next
-      elsif o.community_taxon_id == ident.taxon_id
-        if categories[:improving].blank?
-          categories[:improving] = [ident]
+    idents = Identification.
+      select( "id, taxon_id, current" ).
+      includes(:taxon).
+      where( observation_id: o.id ).
+      sort_by(&:id)
+    idents.each do |ident|
+      on_path_to_community_id = ( o.community_taxon && o.community_taxon.self_and_ancestor_ids.include?( ident.taxon_id ) )
+      if on_path_to_community_id
+        progressive = (categories[:improving] + categories[:supporting]).flatten.detect{|i| i.taxon.self_and_ancestor_ids.include?( ident.taxon_id ) }.blank?
+        conservative_disagreement = previous_current_idents.detect{|i| i.taxon.ancestor_ids.include?( ident.taxon_id ) }
+        if progressive
+          categories[:improving] << ident
+        elsif conservative_disagreement && ident.taxon_id != o.community_taxon_id
+          categories[:maverick] << ident
         else
-          categories[:supporting] ||= []
           categories[:supporting] << ident
         end
-      elsif o.community_taxon_id.blank? || ident.taxon.ancestor_ids.include?( o.community_taxon_id )
-        categories[:leading] ||= []
-        if categories[:leading].detect{ |i| i.taxon_id == ident.taxon_id }
-          categories[:supporting] << ident
-        else
-          categories[:leading] << ident
-        end
-      elsif o.community_taxon.ancestor_ids.include?( ident.taxon_id ) &&
-          previous_current_idents.detect{|i| i.taxon.ancestor_ids.include?( ident.taxon_id ) }.blank?
-        categories[:supporting] << ident
       else
-        categories[:maverick] << ident
+        descendant_of_community_taxon = ident.taxon.ancestor_ids.include?( o.community_taxon_id )
+        if idents.size == 1
+          categories[:leading] << ident
+        elsif !categories[:improving].blank? && (descendant_of_community_taxon || o.community_taxon_id.blank?)
+          categories[:leading] << ident
+        else
+          categories[:maverick] << ident
+        end
       end
-      previous_current_idents << ident
+      previous_current_idents << ident if ident.current?
     end
+
     categories.each do |category, idents|
       Identification.where( id: idents.map(&:id) ).update_all( category: category )
     end
