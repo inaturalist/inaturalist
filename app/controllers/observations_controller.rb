@@ -2525,7 +2525,8 @@ class ObservationsController < ApplicationController
     scope = Observation.where(id: params[:id] || params[:observation_id])
     unless @skipping_preloading
       scope = scope.includes([ :quality_metrics,
-       :photos,
+       :flags,
+       { photos: :flags },
        :identifications,
        :projects,
        { taxon: :taxon_names }])
