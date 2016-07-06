@@ -13341,14 +13341,14 @@ CREATE INDEX fk_flags_user ON flags USING btree (user_id);
 
 
 --
--- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_announcements_on_site_id ON announcements USING btree (site_id);
 
 
 --
--- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -
+-- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_announcements_on_start_and_end ON announcements USING btree (start, "end");
@@ -15794,6 +15794,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160613202854');
 INSERT INTO schema_migrations (version) VALUES ('20160624205645');
 
 INSERT INTO schema_migrations (version) VALUES ('20160627194031');
+
+INSERT INTO schema_migrations (version) VALUES ('20160629221454');
 
 INSERT INTO schema_migrations (version) VALUES ('20160701031842');
 
