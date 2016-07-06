@@ -8,6 +8,7 @@ $.fn.projectAutocomplete = function( options ) {
   var field = this;
 
   field.genericAutocomplete( _.extend( options, {
+    menuClass: "projects",
     minLength: CURRENT_USER.id ? 0 : undefined,
     allowPlaceholders: true,
     source: function( request, response ) {

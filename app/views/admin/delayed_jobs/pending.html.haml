@@ -8,7 +8,12 @@
     %tbody
       - @jobs.each do |dj|
         %tr
-          %td= t(:in_n, n: time_ago_in_words(dj.run_at)) if dj.run_at
+          %td
+            - if dj.run_at
+              - if dj.run_at > Time.now
+                = t(:in_n, n: time_ago_in_words(dj.run_at))
+              - else
+                = t(:n_ago, n: time_ago_in_words(dj.run_at))
           %td
             - dj.dashboard_info.each do |k,v|
               %strong= "#{ k }:"

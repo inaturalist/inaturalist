@@ -141,6 +141,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
     it "should provide private coordinates for user's observation" do
       o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
       get :show, :format => :json, :id => o.id
@@ -443,6 +446,14 @@ shared_examples_for "an ObservationsController" do
       put :update, format: :json, id: o.id, observation: {taxon_id: t3.id}
       o.reload
       expect( o.identifications.count ).to eq 3
+    end
+
+    it "shoudld remove the taxon when taxon_id is blank" do
+      o = Observation.make!( user: user, taxon: Taxon.make! )
+      expect( o.taxon ).not_to be_blank
+      put :update, format: :json, id: o.id, observation: { taxon_id: nil }
+      o.reload
+      expect( o.taxon ).to be_blank
     end
 
     it "should mark as captive in response to captive_flag" do

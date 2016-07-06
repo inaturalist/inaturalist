@@ -20,16 +20,18 @@ class OpeningActionMenu extends Component {
             title={ I18n.t( "more_import_options" ) }
             id="more_imports"
           >
-            <MenuItem href="/observations/import#csv_import">
-              { I18n.t( "csv" ) }
-            </MenuItem>
             <MenuItem href="/observations/import#photo_import">
               { I18n.t( "from_flickr_facebook_etc" ) }
             </MenuItem>
-            <MenuItem divider />
-            <MenuItem header>{ I18n.t( "import_sounds" ) }</MenuItem>
             <MenuItem href="/observations/import#sound_import">
               { I18n.t( "from_soundcloud" ) }
+            </MenuItem>
+            <MenuItem divider />
+            <MenuItem href="/observations/import#csv_import">
+              { I18n.t( "csv" ) }
+            </MenuItem>
+            <MenuItem href="/observations/new">
+              { I18n.t( "old_observation_form" ) }
             </MenuItem>
           </DropdownButton>
         </div>

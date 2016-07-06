@@ -23,7 +23,7 @@ class HeaderUserMenu extends Component {
             <ul className="dropdown-menu">
               <li><a href="/home">{ I18n.t( "dashboard" ) }</a></li>
               <li><a href={ `/observations/${user.login}` }>{ I18n.t( "observations" ) }</a></li>
-              <li><a href="/observations/new">&nbsp;↳ { I18n.t( "add" ) }</a></li>
+              <li><a href="/observations/upload">&nbsp;↳ { I18n.t( "add" ) }</a></li>
               <li><a href="/observations/import">&nbsp;↳ { I18n.t( "import" ) }</a></li>
               <li><a href={ `/calendar/${user.login}` }>&nbsp;↳ { I18n.t( "calendar" ) }</a></li>
               <li><a href={ `/faves/${user.login}` }>{ I18n.t( "favorites" ) }</a></li>

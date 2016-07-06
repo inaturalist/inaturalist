@@ -427,9 +427,14 @@ class UsersController < ApplicationController
     @local_onboarding_content = get_local_onboarding_content
     respond_to do |format|
       format.html do
-        scope = Announcement.where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)
-        @announcements = scope.in_locale(I18n.locale)
-        @announcements = scope.in_locale(I18n.locale.to_s.split('-').first) if @announcements.blank?
+        scope = Announcement.
+          where( 'placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc ).
+          limit( 5 )
+        base_scope = scope
+        scope = scope.where( site_id: nil )
+        @announcements = scope.in_locale( I18n.locale )
+        @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+        @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").

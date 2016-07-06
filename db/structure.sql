@@ -7960,7 +7960,8 @@ CREATE TABLE announcements (
     body text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    locales text[] DEFAULT '{}'::text[]
+    locales text[] DEFAULT '{}'::text[],
+    site_id integer
 );
 
 
@@ -13340,7 +13341,14 @@ CREATE INDEX fk_flags_user ON flags USING btree (user_id);
 
 
 --
--- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_on_site_id ON announcements USING btree (site_id);
+
+
+--
+-- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_announcements_on_start_and_end ON announcements USING btree (start, "end");
@@ -15787,5 +15795,5 @@ INSERT INTO schema_migrations (version) VALUES ('20160624205645');
 
 INSERT INTO schema_migrations (version) VALUES ('20160627194031');
 
-INSERT INTO schema_migrations (version) VALUES ('20160629221454');
+INSERT INTO schema_migrations (version) VALUES ('20160701031842');
 

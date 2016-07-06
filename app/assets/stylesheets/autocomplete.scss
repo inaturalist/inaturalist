@@ -4,16 +4,21 @@
 .ui-autocomplete {
   cursor: pointer;
   padding: 0px;
-  max-height: 315px;
-  overflow: auto;
-  width: 373px;
-}
-.ui-autocomplete .ac {
-  width: 355px;
-  min-width: 355px;
-  display: inline-block;
-  cursor: pointer;
-  width: 100%;
+  .ac {
+    min-width: 370px;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+  }
+  &.projects {
+    max-height: 315px;
+    overflow: auto;
+    width: 373px;
+    .ac {
+      width: 355px;
+      min-width: 355px;
+    }
+  }
 }
 .ac-message[data-type='message'] {
   cursor: default;

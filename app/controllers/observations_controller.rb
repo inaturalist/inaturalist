@@ -66,7 +66,7 @@ class ObservationsController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
-  ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes"
+  ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
@@ -208,11 +208,13 @@ class ObservationsController < ApplicationController
   # GET /observations/1.xml
   def show
     unless @skipping_preloading
-      @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
-      @prev = @previous
-      @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
       @quality_metrics = @observation.quality_metrics.includes(:user)
       if logged_in?
+        @previous = Observation.page_of_results({ user_id: @observation.user.id,
+          per_page: 1, max_id: @observation.id - 1, order_by: "id", order: "desc", per_page: 1 }).first
+        @prev = @previous
+        @next = Observation.page_of_results({ user_id: @observation.user.id,
+          per_page: 1, min_id: @observation.id + 1, order_by: "id", order: "asc", per_page: 1 }).first
         @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
         @project_invitations = @observation.project_invitations.limit(100).to_a
         @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
@@ -2434,10 +2436,11 @@ class ObservationsController < ApplicationController
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end.compact
-    
     reference_photo = @observation.try(:observation_photos).try(:first).try(:photo)
     reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
-    reference_photo ||= current_user.photos.order("id ASC").last
+    unless params[:action] === "show"
+      reference_photo ||= current_user.photos.order("id ASC").last
+    end
     if reference_photo
       assoc_name = (reference_photo.subtype || reference_photo.class.to_s).
         underscore.split('_').first + "_identity"
@@ -2522,7 +2525,8 @@ class ObservationsController < ApplicationController
     scope = Observation.where(id: params[:id] || params[:observation_id])
     unless @skipping_preloading
       scope = scope.includes([ :quality_metrics,
-       :photos,
+       :flags,
+       { photos: :flags },
        :identifications,
        :projects,
        { taxon: :taxon_names }])

@@ -1137,8 +1137,8 @@ class Observation < ActiveRecord::Base
   end
   
   def appropriate?
-    return false if flags.detect{ |f| f.resolved == false }
-    return false if observation_photos_count > 0 && photos.detect{ |p| p.flags.detect{ |f| f.resolved == false } }
+    return false if flagged?
+    return false if observation_photos_count > 0 && photos.detect{ |p| p.flagged? }
     true
   end
   

@@ -2,6 +2,9 @@ require "spec_helper"
 
 describe ObservationsController, type: :controller do
 
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   render_views
   let(:spammer) { User.make!(spammer: true) }
   let(:curator) { make_curator }
