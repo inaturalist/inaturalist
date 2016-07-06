@@ -25,7 +25,7 @@ class IdentificationsController < ApplicationController
       @identifications = @identifications.outdated
     end
     @identifications = @identifications.of( params[:taxon_id] ) if params[:taxon_id]
-    @counts = @identifications.group(:category).count
+    @counts = @identifications.where("category IS NOT NULL").group(:category).count
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
