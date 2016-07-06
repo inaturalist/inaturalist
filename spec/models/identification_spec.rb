@@ -795,4 +795,39 @@ describe Identification, "category" do
       expect( @sequence.last.category ).to eq Identification::LEADING
     end
   end
+  describe "disagreement within a genus" do
+    before do
+      load_test_taxa
+      @sequence = []
+      @sequence << Identification.make!( observation: o, taxon: @Calypte_anna )
+      @sequence << Identification.make!( observation: o, taxon: Taxon.make!( parent: @Calypte, rank: Taxon::SPECIES ) )
+      @sequence << Identification.make!( observation: o, taxon: Taxon.make!( parent: @Calypte, rank: Taxon::SPECIES ) )
+      @sequence.each(&:reload)
+      o.reload
+      expect( o.community_taxon ).to eq @Calypte
+    end
+    it "should have all leading IDs" do
+      expect( @sequence[0].category ).to eq Identification::LEADING
+      expect( @sequence[1].category ).to eq Identification::LEADING
+      expect( @sequence[2].category ).to eq Identification::LEADING
+    end
+  end
+  describe "disagreement with revision" do
+    before do
+      load_test_taxa
+      user = User.make!
+      @sequence = []
+      @sequence << Identification.make!( observation: o, taxon: @Calypte, user: user )
+      @sequence << Identification.make!( observation: o, taxon: @Calypte_anna, user: user )
+      @sequence << Identification.make!( observation: o, taxon: @Calypte )
+      @sequence.each(&:reload)
+      o.reload
+      expect( o.community_taxon ).to eq @Calypte
+    end
+    it "should have all leading IDs" do
+      expect( @sequence[0].category ).to eq Identification::SUPPORTING
+      expect( @sequence[1].category ).to eq Identification::MAVERICK
+      expect( @sequence[2].category ).to eq Identification::IMPROVING
+    end
+  end
 end

@@ -311,9 +311,29 @@ class Identification < ActiveRecord::Base
     idents.each do |ident|
       on_path_to_community_id = ( o.community_taxon && o.community_taxon.self_and_ancestor_ids.include?( ident.taxon_id ) )
       if on_path_to_community_id
-        progressive = (categories[:improving] + categories[:supporting]).flatten.detect{|i| i.taxon.self_and_ancestor_ids.include?( ident.taxon_id ) }.blank?
+        progressive = ( categories[:improving] + categories[:supporting] ).flatten.detect { |i|
+          i.current? && i.taxon.self_and_ancestor_ids.include?( ident.taxon_id )
+        }.blank?
         conservative_disagreement = previous_current_idents.detect{|i| i.taxon.ancestor_ids.include?( ident.taxon_id ) }
         if progressive
+          # Go back and see if there are prior leading identifications that
+          # are more progressive than this one and make them mavericks, since
+          # they've been disagreed with
+          categories[:leading].each do |i|
+            if i.taxon.ancestor_ids.include?( ident.taxon_id )
+              categories[:leading].delete( i )
+              categories[:maverick] << i
+            end
+          end
+          # Go back and see if there are prior improving identifications that
+          # are more progressive than this one and make them supporting, since
+          # they've been disagreed with
+          categories[:improving].each do |i|
+            if i.taxon.self_and_ancestor_ids.include?( ident.taxon_id )
+              categories[:improving].delete( i )
+              categories[:supporting] << i
+            end
+          end
           categories[:improving] << ident
         elsif conservative_disagreement && ident.taxon_id != o.community_taxon_id
           categories[:maverick] << ident
@@ -324,7 +344,7 @@ class Identification < ActiveRecord::Base
         descendant_of_community_taxon = ident.taxon.ancestor_ids.include?( o.community_taxon_id )
         if current_idents.size == 1
           categories[:leading] << ident
-        elsif !categories[:improving].blank? && (descendant_of_community_taxon || o.community_taxon_id.blank?)
+        elsif descendant_of_community_taxon || o.community_taxon_id.blank?
           categories[:leading] << ident
         else
           categories[:maverick] << ident

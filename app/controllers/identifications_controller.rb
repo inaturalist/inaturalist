@@ -19,10 +19,13 @@ class IdentificationsController < ApplicationController
         @identifications = @identifications.by( user )
       end
     end
-    if params[:current].blank? && params[:current].yesish?
+    if params[:current].blank? || params[:current].yesish?
       @identifications = @identifications.current
     elsif params[:current].noish?
       @identifications = @identifications.outdated
+    end
+    if params[:for] == "others"
+      @identifications = @identifications.joins(:observation).where( "observations.user_id != identifications.user_id" )
     end
     @identifications = @identifications.of( params[:taxon_id] ) if params[:taxon_id]
     @counts = @identifications.where("category IS NOT NULL").group(:category).count

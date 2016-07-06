@@ -54,6 +54,7 @@
               %td= link_to_user i.user
               %td= i.category
               %td= i.current
+      = will_paginate
     .col-xs-3
       %h3 Stats
       #category-pie
@@ -68,3 +69,6 @@
         %li
           %code current=false|any
           Default: true
+        %li
+          %code for=others|any
+          Default: any
