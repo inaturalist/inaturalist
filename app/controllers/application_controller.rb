@@ -53,10 +53,10 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    @site ||= CONFIG.site
+    @site ||= CONFIG.site unless Rails.env.test?
     if !@site && CONFIG.site_id
       @site = Site.find_by_id(CONFIG.site_id)
-      CONFIG.site = @site
+      CONFIG.site = @site unless Rails.env.test?
     end
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
   end

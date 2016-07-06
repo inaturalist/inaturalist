@@ -141,6 +141,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
     it "should provide private coordinates for user's observation" do
       o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
       get :show, :format => :json, :id => o.id
