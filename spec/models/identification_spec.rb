@@ -770,7 +770,6 @@ describe Identification, "category" do
         Identification.make!( observation: o, taxon: @Calypte )
       ]
       @sequence.each(&:reload)
-      @sequence
     end
     it "should consider disagreements that match the community taxon to be improving" do
       expect( o.community_taxon ).to eq @Calypte
@@ -779,6 +778,21 @@ describe Identification, "category" do
     end
     it "should consider the identification people disagreed with to be maverick" do
       expect( @sequence[0].category ).to eq Identification::MAVERICK
+    end
+  end
+  describe "single user redundant identifications" do
+    before do
+      load_test_taxa
+      user = User.make!
+      @sequence = [
+        Identification.make!( observation: o, user: user, taxon: @Calypte ),
+        Identification.make!( observation: o, user: user, taxon: @Calypte )
+      ]
+      @sequence.each(&:reload)
+    end
+    it "should leave the current ID as leading" do
+      expect( @sequence.last ).to be_current
+      expect( @sequence.last.category ).to eq Identification::LEADING
     end
   end
 end

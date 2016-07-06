@@ -1,0 +1,70 @@
+- content_for(:extrajs) do
+  = javascript_include_tag "https://www.gstatic.com/charts/loader.js"
+  :javascript
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var counts = [
+        ["Category", "Count"]
+      ];
+      counts = counts.concat( #{@counts.to_a.to_json} );
+      var data = google.visualization.arrayToDataTable( counts );
+      var options = {
+        legend: {
+          position: "bottom"
+        },
+        chartArea: { width: "100%", top: 10 }
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('category-pie'));
+      chart.draw(data, options);
+    }
+- content_for :extracss do
+  :css
+    .observations.mini .photos {
+      float: left;
+      margin: 0 10px 0 0;
+    }
+    .taxonimage .attribution { display: none; }
+    .taxonimage { float: left; margin-right: 10px; }
+.container
+  .row
+    .col-xs-12
+      %h2=t :identifications
+  .row
+    .col-xs-9
+      %table.table
+        %thead
+          %tr
+            %th id
+            %th observation
+            %th taxon
+            %th user
+            %th category
+            %th current
+        %tbody
+          - @identifications.each do |i|
+            %tr
+              %td= i.id
+              %td
+                .observations.mini.compact
+                  = render "observations/cached_component", observation: i.observation
+              %td
+                .taxon_links
+                  = render "taxa/taxon", taxon: i.taxon, url: i.taxon, hide_wikipedia_summary: true
+              %td= link_to_user i.user
+              %td= i.category
+              %td= i.current
+    .col-xs-3
+      %h3 Stats
+      #category-pie
+      %h3 Params
+      %ul
+        %li
+          %code taxon_id=1234
+        %li
+          %code user_id=kueda
+        %li
+          %code category=maverick
+        %li
+          %code current=false|any
+          Default: true

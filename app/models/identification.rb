@@ -307,6 +307,7 @@ class Identification < ActiveRecord::Base
       includes(:taxon).
       where( observation_id: o.id ).
       sort_by(&:id)
+    current_idents = idents.select(&:current?)
     idents.each do |ident|
       on_path_to_community_id = ( o.community_taxon && o.community_taxon.self_and_ancestor_ids.include?( ident.taxon_id ) )
       if on_path_to_community_id
@@ -321,7 +322,7 @@ class Identification < ActiveRecord::Base
         end
       else
         descendant_of_community_taxon = ident.taxon.ancestor_ids.include?( o.community_taxon_id )
-        if idents.size == 1
+        if current_idents.size == 1
           categories[:leading] << ident
         elsif !categories[:improving].blank? && (descendant_of_community_taxon || o.community_taxon_id.blank?)
           categories[:leading] << ident
