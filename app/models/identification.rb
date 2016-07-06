@@ -365,12 +365,8 @@ class Identification < ActiveRecord::Base
       descendant_of_community_taxon = o.community_taxon && ident.taxon.ancestor_ids.include?( o.community_taxon_id )
       matches_community_taxon = o.community_taxon && ( ident.taxon_id == o.community_taxon_id )
       progressive = ( categories[:improving] + categories[:supporting] ).flatten.detect { |i|
-        i.current? && i.taxon.self_and_ancestor_ids.include?( ident.taxon_id )
+        i.taxon.self_and_ancestor_ids.include?( ident.taxon_id )
       }.blank?
-      # puts "ancestor_of_community_taxon: #{ancestor_of_community_taxon}"
-      # puts "descendant_of_community_taxon: #{descendant_of_community_taxon}"
-      # puts "matches_community_taxon: #{matches_community_taxon}"
-      # puts "progressive: #{progressive}"
       if o.community_taxon.blank? || descendant_of_community_taxon
         categories[:leading] << ident
       elsif ( ancestor_of_community_taxon || matches_community_taxon ) && progressive

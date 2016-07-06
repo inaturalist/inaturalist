@@ -829,10 +829,10 @@ describe Identification, "category" do
     #   expect( @sequence[1].category ).to eq Identification::MAVERICK
     #   expect( @sequence[2].category ).to eq Identification::IMPROVING
     # end
-    it "should be improving, leading, improving" do
+    it "should be improving, leading, supporting" do
       expect( @sequence[0].category ).to eq Identification::IMPROVING
       expect( @sequence[1].category ).to eq Identification::LEADING
-      expect( @sequence[2].category ).to eq Identification::IMPROVING
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
     end
   end
 end
