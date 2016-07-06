@@ -48,6 +48,7 @@
               %td
                 .observations.mini.compact
                   = render "observations/cached_component", observation: i.observation
+                  = link_to "View with test=idcats", observation_url( i.observation, test: "idcats" )
               %td
                 .taxon_links
                   = render "taxa/taxon", taxon: i.taxon, url: i.taxon, hide_wikipedia_summary: true

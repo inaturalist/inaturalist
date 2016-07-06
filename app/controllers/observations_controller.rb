@@ -312,6 +312,27 @@ class ObservationsController < ApplicationController
         if logged_in?
           user_viewed_updates
         end
+
+        if params[:test] == "idcats"
+          leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
+          if leading_taxon_ids.size > 0
+            sql = <<-SQL
+              SELECT
+                user_id, count(*) AS ident_count
+              FROM
+                identifications
+              WHERE
+                category = 'improving'
+                AND taxon_id IN (#{leading_taxon_ids.join( "," )})
+              GROUP BY
+                user_id
+              HAVING count(*) > 0
+              ORDER BY count(*) DESC
+              LIMIT 10
+            SQL
+            @users_who_can_help = User.joins( "JOIN (#{sql}) AS ident_users ON ident_users.user_id = users.id" ).order("ident_count DESC").limit(10)
+          end
+        end
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
