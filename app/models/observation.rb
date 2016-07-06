@@ -139,6 +139,7 @@ class Observation < ActiveRecord::Base
     "latitude", 
     "longitude",
     "positional_accuracy",
+    "private_place_guess",
     "private_latitude",
     "private_longitude",
     "private_positional_accuracy",
@@ -187,6 +188,7 @@ class Observation < ActiveRecord::Base
     "latitude", 
     "longitude",
     "positional_accuracy",
+    "private_place_guess",
     "private_latitude",
     "private_longitude",
     "private_positional_accuracy",
@@ -740,8 +742,8 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
-      options[:except] += [:place_guess] if coordinates_obscured?
+      options[:except] += [:private_latitude, :private_longitude,
+        :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]
@@ -1325,27 +1327,28 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates
-    self.place_guess = obscured_place_guess
-    return if latitude.blank? || longitude.blank?
+    if latitude.blank? || longitude.blank?
+      self.private_place_guess = place_guess
+      self.place_guess = nil
+      return
+    end
     if latitude_changed? || longitude_changed?
       self.private_latitude = latitude
       self.private_longitude = longitude
+      self.private_place_guess = place_guess
     else
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
+      self.private_place_guess ||= place_guess
     end
-    self.latitude, self.longitude = Observation.random_neighbor_lat_lon(private_latitude, private_longitude)
+    self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
     set_geom_from_latlon
+    self.place_guess = Observation.place_guess_from_latlon( private_latitude, private_longitude, acc: calculate_public_positional_accuracy )
+    true
   end
   
   def lat_lon_in_place_guess?
     !place_guess.blank? && place_guess !~ /[a-cf-mo-rt-vx-z]/i && !place_guess.scan(COORDINATE_REGEX).blank?
-  end
-  
-  def obscured_place_guess
-    return place_guess if place_guess.blank?
-    return nil if lat_lon_in_place_guess?
-    place_guess.sub(/^\d[\d\-A-z]+\s+/, '')
   end
   
   def unobscure_coordinates
@@ -1353,8 +1356,10 @@ class Observation < ActiveRecord::Base
     return unless geoprivacy.blank?
     self.latitude = private_latitude
     self.longitude = private_longitude
+    self.place_guess = private_place_guess
     self.private_latitude = nil
     self.private_longitude = nil
+    self.private_place_guess = nil
     set_geom_from_latlon
   end
   
@@ -1642,24 +1647,34 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def set_place_guess_from_latlon
-    return true unless place_guess.blank?
-    sys_places = system_places
-    return true if sys_places.blank?
+  def self.place_guess_from_latlon( lat, lon, options = {} )
+    sys_places = Observation.system_places_for_latlon( lat, lon, options )
+    return if sys_places.blank?
     sys_places_codes = sys_places.map(&:code)
-    first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?('US')
+    user = options[:user]
+    locale = options[:locale]
+    locale ||= user.locale if user
+    first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
       "#{sys_places[0].name} County"
     else
-      I18n.t( sys_places[0].name, locale: user.locale, default: sys_places[0].name )
+      I18n.t( sys_places[0].name, locale: locale, default: sys_places[0].name )
     end
-    remaining_names = system_places[1..-1].map do |p|
-      if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?('US')
+    remaining_names = sys_places[1..-1].map do |p|
+      if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
         p.code.blank? ? I18n.t( p.name, locale: user.locale, default: p.name ) : p.code
       end
     end
-    self.place_guess = [first_name, remaining_names].flatten.join(', ')
+    [first_name, remaining_names].flatten.join( ", " )
+  end
+
+  def set_place_guess_from_latlon
+    return true unless place_guess.blank?
+    return true if coordinates_private?
+    if guess = Observation.place_guess_from_latlon( latitude, longitude, { acc: calculate_public_positional_accuracy, user: user } )
+      self.place_guess = guess
+    end
     true
   end
   
@@ -1916,12 +1931,8 @@ class Observation < ActiveRecord::Base
     lon = private_longitude || longitude
     Observation.uncertainty_cell_diagonal_meters( lat, lon )
   end
-  
-  def places
-    return [] unless georeferenced?
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = public_positional_accuracy || private_positional_accuracy || positional_accuracy
+
+  def self.places_for_latlon( lat, lon, acc )
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
 
     # At present we use PostGIS GEOMETRY types, which are a bit stupid about
@@ -1943,25 +1954,39 @@ class Observation < ActiveRecord::Base
     end
   end
   
+  def places
+    return [] unless georeferenced?
+    lat = private_latitude || latitude
+    lon = private_longitude || longitude
+    acc = private_positional_accuracy || positional_accuracy
+    Observation.places_for_latlon( lat, lon, acc )
+  end
+  
+  #
   # For obscured coordinates only return default place types that weren't
   # made by users. This is not ideal, but hopefully will get around honey
   # pots.
+  #
   def public_places
-    all_places = places
-    return if all_places.blank?
+    all_places = Observation.places_for_latlon( private_latitude || latitude, private_longitude || longitude, public_positional_accuracy )
+    return [] if all_places.blank?
     return all_places unless coordinates_obscured?
-    system_places(:places => all_places)
+    system_places( places: all_places )
   end
 
-  # The places that are theoretically controlled by site admins
-  def system_places(options = {})
-    all_places = options[:places] || places
+  def self.system_places_for_latlon( lat, lon, options = {} )
+    all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
     all_places.select do |p| 
       p.user_id.blank? && (
         [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
         p.place_type == Place::PLACE_TYPE_CODES['Open Space']
       )
     end
+  end
+
+  # The places that are theoretically controlled by site admins
+  def system_places(options = {})
+    Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
   end
 
   def intersecting_places

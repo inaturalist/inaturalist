@@ -51,9 +51,7 @@
       <div>
         <%- case parent.class.to_s -%>
         <%- when "Observation" -%>
-          <div class="mini observations">
-            <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [parent]} %>
-          </div>
+          <%= render :partial => "observations/observations_component_for_dashboard", locals: {for_idents: true, observations: [parent]} %>
         <%- when "Post" %>
           <h3><%= link_to parent.title, journal_post_path(parent.user.login, parent) %></h3>
         <%- when "ListedTaxon" %>
