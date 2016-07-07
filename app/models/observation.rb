@@ -1521,19 +1521,22 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of( taxon, options = {} )
-    scope = Observation.with_identifications_of( taxon ).joins( :taxon )
+    scope = Observation.with_identifications_of( taxon )
     scope = scope.in_place( options[:place] ) if options[:place]
-    scope.find_each do |o|
-      o.obscure_coordinates_for_threatened_taxa
-      next unless o.coordinates_changed?
-      Observation.where( id: o.id ).update_all(
-        latitude: o.latitude,
-        longitude: o.longitude,
-        private_latitude: o.private_latitude,
-        private_longitude: o.private_longitude,
-        geom: o.geom,
-        private_geom: o.private_geom
-      )
+    scope.find_in_batches do |batch|
+      batch.each do |o|
+        o.obscure_coordinates_for_threatened_taxa
+        next unless o.coordinates_changed?
+        Observation.where( id: o.id ).update_all(
+          latitude: o.latitude,
+          longitude: o.longitude,
+          private_latitude: o.private_latitude,
+          private_longitude: o.private_longitude,
+          geom: o.geom,
+          private_geom: o.private_geom
+        )
+      end
+      Observation.elastic_index!( ids: batch.map(&:id) )
     end
   end
   
