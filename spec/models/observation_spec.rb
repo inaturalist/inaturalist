@@ -2277,8 +2277,8 @@ describe Observation do
   describe "update_for_taxon_change" do
     before(:each) do
       @taxon_swap = TaxonSwap.make
-      @input_taxon = Taxon.make!
-      @output_taxon = Taxon.make!
+      @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
+      @output_taxon = Taxon.make!( rank: Taxon::FAMILY )
       @taxon_swap.add_input_taxon(@input_taxon)
       @taxon_swap.add_output_taxon(@output_taxon)
       @taxon_swap.save!
