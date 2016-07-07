@@ -1962,16 +1962,13 @@ class Observation < ActiveRecord::Base
     Observation.places_for_latlon( lat, lon, acc )
   end
   
-  #
-  # For obscured coordinates only return default place types that weren't
-  # made by users. This is not ideal, but hopefully will get around honey
-  # pots.
-  #
   def public_places
-    all_places = Observation.places_for_latlon( private_latitude || latitude, private_longitude || longitude, public_positional_accuracy )
-    return [] if all_places.blank?
-    return all_places unless coordinates_obscured?
-    system_places( places: all_places )
+    return [] unless georeferenced?
+    return [] if geoprivacy == PRIVATE
+    lat = private_latitude || latitude
+    lon = private_longitude || longitude
+    acc = public_positional_accuracy || positional_accuracy
+    Observation.places_for_latlon( lat, lon, acc )
   end
 
   def self.system_places_for_latlon( lat, lon, options = {} )
