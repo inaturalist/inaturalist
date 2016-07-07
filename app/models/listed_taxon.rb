@@ -418,7 +418,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def index_taxon
     unless skip_index_taxon
-      taxon.reload.elastic_index!
+      Taxon.load_for_index.where(id: taxon.id).elastic_index!
     end
   end
 
