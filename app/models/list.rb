@@ -300,7 +300,7 @@ class List < ActiveRecord::Base
     end
     target_list_ids = refresh_with_observation_lists(observation, options)
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
-    listed_taxa = ListedTaxon.joins(:list).
+    listed_taxa = ListedTaxon.
       where("listed_taxa.taxon_id IN (?) AND listed_taxa.list_id IN (?)", taxon_ids, target_list_ids)
     if respond_to?(:create_new_listed_taxa_for_refresh)
       unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects

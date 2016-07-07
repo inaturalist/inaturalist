@@ -211,10 +211,10 @@ class ObservationsController < ApplicationController
       @quality_metrics = @observation.quality_metrics.includes(:user)
       if logged_in?
         @previous = Observation.page_of_results({ user_id: @observation.user.id,
-          per_page: 1, max_id: @observation.id - 1, order_by: "id", order: "desc", per_page: 1 }).first
+          per_page: 1, max_id: @observation.id - 1, order_by: "id", order: "desc" }).first
         @prev = @previous
         @next = Observation.page_of_results({ user_id: @observation.user.id,
-          per_page: 1, min_id: @observation.id + 1, order_by: "id", order: "asc", per_page: 1 }).first
+          per_page: 1, min_id: @observation.id + 1, order_by: "id", order: "asc" }).first
         @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
         @project_invitations = @observation.project_invitations.limit(100).to_a
         @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
@@ -591,7 +591,7 @@ class ObservationsController < ApplicationController
       o.assign_attributes(observation_params(observation))
       o.user = current_user
       o.user_agent = request.user_agent
-      o.site = @site || current_user.site
+      o.site = (@site || current_user.site).becomes(Site)
       if doorkeeper_token && (a = doorkeeper_token.application)
         o.oauth_application = a.becomes(OauthApplication)
       end
@@ -2438,7 +2438,7 @@ class ObservationsController < ApplicationController
     end.compact
     reference_photo = @observation.try(:observation_photos).try(:first).try(:photo)
     reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
-    unless params[:action] === "show"
+    unless params[:action] === "show" || params[:action] === "update"
       reference_photo ||= current_user.photos.order("id ASC").last
     end
     if reference_photo
