@@ -97,21 +97,16 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          q = if @site
-            "SELECT * from observations WHERE taxon_id IS NOT NULL
-             AND site_id = #{@site.id} AND observed_on >= '#{1.month.ago.to_date}'
-             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
-          else
-            "SELECT * from observations WHERE taxon_id IS NOT NULL
-             AND observed_on >= '#{1.month.ago.to_date}'
-             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+          recent_params = { d1: 1.month.ago.to_date.to_s,
+            quality_grade: :research, order_by: :observed_on }
+          if @site
+            recent_params[:site_id] = @site.id
           end
-          @recent = Observation.
-            select("DISTINCT ON (taxon_id) *").
-            from("(#{q}) AS observations").
-            includes(:taxon => [ { taxon_names: :place_taxon_names }, :photos ]).
-            limit(5)
-          @recent = @recent.where(:site_id => @site.id) if @site && CONFIG.site_only_observations
+          # group by taxon ID and get the first obs of each taxon
+          @recent = Observation.page_of_results(recent_params).
+            group_by(&:taxon_id).map{ |k,v| v.first }[0...5]
+          Observation.preload_associations(@recent,{
+            taxon: [ { taxon_names: :place_taxon_names }, :photos ] } )
           @recent = @recent.sort_by(&:id).reverse
         end
       end
