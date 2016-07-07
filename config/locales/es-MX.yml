@@ -205,8 +205,8 @@ es-MX:
   add_taxonomic_tags_to_the_fickr_photos: Añade etiquetas taxonómicas a las fotos
     de Flickr asociadas con las observaciones seleccionadas.
   add_to: Añade a
-  add_to_a_project: Añade a un proyecto
   add_to_a_scheme: Añadir a un esquema
+  add_to_a_project: Añade a un proyecto
   add_to_checklist: Añade a lista de comprobación
   add_to_id_please: Añadir a la identificación, por favor
   add_to_list: Añade a la lista
@@ -444,7 +444,6 @@ es-MX:
     taxón?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Estás seguro que deseas
     quitar a esta especie o grupo de la lista de comprobación de %{place}?
-  are_you_sure_you_want_to_unsubscribe_from_this: ¿Estás seguro de cancelar esta suscripción?
   associated_observations: Observaciones asociadas
   associated_taxa: Taxa asociados
   you_sure_delete_list: ¿Estás seguro que quieres borrar esta lista?
@@ -987,6 +986,7 @@ es-MX:
   disconnect_provider: Desconecta  %{provider}
   display_listings_added_by_curators: Mostrar listados añadidos por curadores
   display_listings_from_place: Mostrar listados del Lugar
+  drop_it: ¡Suéltalo!
   do_you_know_where_this_species_lives: ¿Sabes en donde vive esta especie?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: ¿Estudiaste a los nemátodos?
     ¿Eres uno de los expertos mundiales en la taxonomía de los percebes? ¿Te gusta
@@ -1007,12 +1007,11 @@ es-MX:
   download_csv: Descarga CSV
   download_kml: Descarga KML
   drag_and_drop_photos: Arrastra y suelta la foto en esta ventana o
-  drag_and_drop_some_photos: Arrastra y suelta algunas fotos
   draft: ¡BORRADOR!
   draft_: Borrador
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
-  drop_it: ¡Suéltalo!
+  drag_and_drop_some_photos: Arrastra y suelta algunas fotos
   each_place_displays_all_species_inat_knows: Cada página de Lugares muestra todas
     las especies que %{site_name} conoce de ese lugar, incluyendo información de su
     abundancia, estado de conservación y quién observó esa especie por primera vez
@@ -1576,11 +1575,12 @@ es-MX:
   leave_a_comment: Deja un comentario
   leave_this_project: Sal de este proyecto
   leaves: últimos
-  let_us_walk_you_through: Conoce las principales características de la plataforma NaturaLista.
   not_absent: no ausente
   legacy_authentication_notice_html: |-
     Parece que estas usando una contraseña de una versión antigua de este sitio web.
     Por favor, recuerda <a href="%{url}">cambiar tu contraseña</a> para la nueva versión.
+  let_us_walk_you_through: Conoce las principales características de la plataforma
+    NaturaLista.
   lexicon: Léxico
   lexicons:
     scientific_names: Nombres científicos
@@ -1736,9 +1736,9 @@ es-MX:
   location: Ubicación
   location_: Ubicación
   location_is_exact: La ubicación es exacta
+  location_is_public: La ubicación es pública
   location_is_obscured: La ubicación esta oscurecida
   location_is_private: La ubicación es privada
-  location_is_public: La ubicación es pública
   locked_taxa_will_not_allow_new: Las especies o grupos con candado no permitirán
     añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta
     importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva
@@ -1790,7 +1790,6 @@ es-MX:
   manage_all_your_subscriptions: Administra todas tus suscripciones
   manage_names: Administra nombres
   manage_your_project_invitations: Administra las invitaciones de tus proyectos
-  manage_your_subscriptions: Administración de suscripciones
   managed: cuativerio/cultivada
   manager: Gerente
   managers: Gerentes
@@ -1859,7 +1858,7 @@ es-MX:
   most_species: La mayoría de las especies
   most_observed_species: Especies más observadas
   multiple: Múltiple
-  multiple_select_option: --- Múltiple ---
+  multiple_select_option: '--- Múltiple ---'
   multiple_taxa_for_taxon_change: Más de una especie o grupo (entrada de datos para
     intercambiar/mezclar, salida de datos para separar)
   must_be_observed_in: deben ser observaciones en
@@ -2023,7 +2022,6 @@ es-MX:
     trata de una lista de la vida, automáticamente se actualizará con las
     especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
   no_subject_parens: (Sin tema)
-  no_subscriptions_to: No hay suscripciones a
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: No se ha incluido un resumen
   no_taxa: No hay taxa
@@ -2180,7 +2178,6 @@ es-MX:
   offensive_inappropriate: ofensivo / inapropiado
   offline_access_enabled: El acceso sin conexión habilitado
   old_observation_form: Antiguó registro de observaciones
-  old_observation_from: Observación antigua de
   on_: en
   on_date: el %{date}
   on_day: el
@@ -2189,35 +2186,54 @@ es-MX:
   on_submit_date: sobre %{submitdate}
   on_your_life_list: en tu lista de vida
   onboarding:
-        observe_panel_title: Empieza añadiendo observaciones
-        observe_panel_body_p1_local: Por si necesitas inspiración, aquí hay algunas especies que se observan a través de la NatraLista...
-        observe_panel_body_p1_global: Por si necesitas inspiración, aquí hay algunas especies que se observan a través de la NatraLista...
-        observe_panel_body_p2: Ahora sal y observa a alguna especie. Escoge algo salvaje y toma una foto clara que lo enfoque en su totalidad. Si ya tienes una foto de algo salvaje, puedes<a href="%{new_observation_path}">subirla</a>.También puedes utilizar las aplicaciones móviles de %{site_name} para compartir tus observaciones con la comunidad.
-        observe_panel_body_p3: Aquí, se actualizará el contenido acerca de tus observaciones de la comunidad en forma de comentarios o identificaciones. ¡Podrías descrubir una nueva especie!
-        follow_panel_title_local: Sigue a algunos NaturaListas cera de ti
-        follow_panel_title_global: Sigue a algunos NaturaListas activos
-        follow_panel_body: Si visitas estos perfiles y le das clic en seguir, se te informará cuando publiquen nuevas observaciones
-        comments_panel_title: ¿Curioso de qué tipo de discusiones están ocurriendo en %{site_name}?
-        comments_panel_body: <p>%{site_name} es para compartir y discutir observaciones de los seres vivos. Estas son algunas discusiones que ocurren en este momento...</p><p>Quedarás suscrito automáticamente a cualquier discusión que contribuya con comentarios u identificaciones. Siempre puedes utilizar la herramienta de administrar suscripciones (a la derecha) si cambias de parecer</p>
-        updates_by_you_panel_title: Esta pestaña es una forma rápida para filtrar sólo las actualizaciones de tu contenido.
-        updates_by_you_panel_body: "¡Recuerda! , en la pestaña 'Todas las actualizaciones' recibirás actualizaciones no sólo de tu contenido, sino también el contenido de las personas que te sigue, así como las especies o lugares en los que estes suscrito."
-        youve_got_updates_panel_title: "¡Tienes actualizaciones!"
-        youve_got_updates_panel_body_p1: Mantener el mismo criterio sobre las actualizaciones en ...
-        youve_got_updates_panel_body_p2: |
-          <ul>
-            <li>
-              <strong>Tu contenido:</strong> La actividad en tus observaciones podría incluir comentarios , identificaciones o favoritos de la comunidad de NaturaLista. Además recibirás notificaciones cuando alguien añada tus observaciones a algun proyecto de su interes.
-            </li>
-            <li>
-              <strong>Gente:</strong> Nuevas observaciones o notas en el diario de gente que te sigue.
-            </li>
-            <li>
-              <strong>Especies, proyectos y lugares:</strong> Nuevas observaciones de ciertas especies o lugares a los que estás suscrito. Adicionalmente puedes unirte a proyectos para estar al corriente cuando publiquen notas en el diario.
-            </li>
-            <li>
-              <strong>Acerca de las discusiones:</strong> Comentar o añadir identificaciones en el contenido de alguien más, automáticamente te suscribe a cualquier nueva actividad de dicho contenido. Usa la herramienta 'Administra las suscripciones' para dejar de recibir notificaciones.
-            </li>
-          </ul>
+    observe_panel_title: Empieza añadiendo observaciones
+    observe_panel_body_p1_local: Por si necesitas inspiración, aquí hay algunas especies
+      que se observan a través de la NatraLista...
+    observe_panel_body_p1_global: Por si necesitas inspiración, aquí hay algunas especies
+      que se observan a través de la NatraLista...
+    observe_panel_body_p2: Ahora sal y observa a alguna especie. Escoge algo salvaje
+      y toma una foto clara que lo enfoque en su totalidad. Si ya tienes una foto
+      de algo salvaje, puedes<a href="%{new_observation_path}">subirla</a>.También
+      puedes utilizar las aplicaciones móviles de %{site_name} para compartir tus
+      observaciones con la comunidad.
+    observe_panel_body_p3: Aquí, se actualizará el contenido acerca de tus observaciones
+      de la comunidad en forma de comentarios o identificaciones. ¡Podrías descrubir
+      una nueva especie!
+    follow_panel_title_local: Sigue a algunos NaturaListas cera de ti
+    follow_panel_title_global: Sigue a algunos NaturaListas activos
+    follow_panel_body: Si visitas estos perfiles y le das clic en seguir, se te informará
+      cuando publiquen nuevas observaciones
+    comments_panel_title: ¿Curioso de qué tipo de discusiones están ocurriendo en
+      %{site_name}?
+    comments_panel_body: <p>%{site_name} es para compartir y discutir observaciones
+      de los seres vivos. Estas son algunas discusiones que ocurren en este momento...</p><p>Quedarás
+      suscrito automáticamente a cualquier discusión que contribuya con comentarios
+      u identificaciones. Siempre puedes utilizar la herramienta de administrar suscripciones
+      (a la derecha) si cambias de parecer</p>
+    updates_by_you_panel_title: Esta pestaña es una forma rápida para filtrar sólo
+      las actualizaciones de tu contenido.
+    updates_by_you_panel_body: ¡Recuerda! , en la pestaña 'Todas las actualizaciones'
+      recibirás actualizaciones no sólo de tu contenido, sino también el contenido
+      de las personas que te sigue, así como las especies o lugares en los que estes
+      suscrito.
+    youve_got_updates_panel_title: ¡Tienes actualizaciones!
+    youve_got_updates_panel_body_p1: Mantener el mismo criterio sobre las actualizaciones
+      en ...
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li>
+          <strong>Tu contenido:</strong> La actividad en tus observaciones podría incluir comentarios , identificaciones o favoritos de la comunidad de NaturaLista. Además recibirás notificaciones cuando alguien añada tus observaciones a algun proyecto de su interes.
+        </li>
+        <li>
+          <strong>Gente:</strong> Nuevas observaciones o notas en el diario de gente que te sigue.
+        </li>
+        <li>
+          <strong>Especies, proyectos y lugares:</strong> Nuevas observaciones de ciertas especies o lugares a los que estás suscrito. Adicionalmente puedes unirte a proyectos para estar al corriente cuando publiquen notas en el diario.
+        </li>
+        <li>
+          <strong>Acerca de las discusiones:</strong> Comentar o añadir identificaciones en el contenido de alguien más, automáticamente te suscribe a cualquier nueva actividad de dicho contenido. Usa la herramienta 'Administra las suscripciones' para dejar de recibir notificaciones.
+        </li>
+      </ul>
   one_by_one: Uno per uno
   one_of_your_lists: una de tus listas...
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación
@@ -2726,7 +2742,6 @@ es-MX:
   resolved: Resuelta
   resolved_by: Resuelto por
   resolver_said_x_html: <span class="meta">%{resolver} dijo:</span> "%{x}"
-  resource: Contenido
   results: Resultados
   reviewed: Revisada
   roadmap: camino
@@ -2768,10 +2783,10 @@ es-MX:
   save_place: Guardar el lugar
   save_trip: Guarda el viaje
   saving: Guardando...
-  saving_verb: Guardando
   saving_num_of_count_observations:
     one: Guardando la observación ...
     other: Guardando %{num} de %{count} observaciones ...
+  saving_verb: Guardando
   schemes: Esquemas
   schemes_including: Esquemas que incluyen a
   scientific_names: Nombres científicos
@@ -2886,9 +2901,9 @@ es-MX:
   site_taxon_page: '%{site_name} página del taxón'
   so_meta!: so meta!
   some_agree: Algunos están de acuerdo
+  some_observations_failed: Algunas observaciones no fueron añadidas a los proyectos.
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
-  some_observations_failed: Algunas observaciones no fueron añadidas a los proyectos.
   some_other_reason: Otra razón que puedes explicar.
   some_people: Algunas personas
   some_people_that: Algunas personas que
@@ -3041,10 +3056,13 @@ es-MX:
     one: Enviar 1 observación
     other: Enviar %{count} observaciones
   submitted: Enviado
-  subscribe_to_a_place: Suscríbete a lugares
   subscribe_to_a_taxon: Suscríbete a especies
-  subscribe_to_observations_in_a_taxon: Suscríbete a todas las observaciones publicadas de una especie o grupo (por ejemplo 'escorpiones').
-  subscribe_to_observations_in_a_place: Suscríbete a todas las observaciones publicadas en este lugar. También puede agregar un filtro para una especie o grupo (por ejemplo 'escorpiones de tijuana')
+  subscribe_to_a_place: Suscríbete a lugares
+  subscribe_to_observations_in_a_taxon: Suscríbete a todas las observaciones publicadas
+    de una especie o grupo (por ejemplo 'escorpiones').
+  subscribe_to_observations_in_a_place: Suscríbete a todas las observaciones publicadas
+    en este lugar. También puede agregar un filtro para una especie o grupo (por ejemplo
+    'escorpiones de tijuana')
   subscribe_to_places_to: |-
     Suscríbete a lugares para recibir actualizaciones acerca de nuevas
     observaciones, personas que sigues y cosas que has comentado. En la herramienta "Administra las suscripciones"
@@ -3107,7 +3125,6 @@ es-MX:
     data_url: Enlace de datos
     overlays: Capas
   taxon_change_settings: Configuración del cambio de especies y grupos
-  taxon_changes: Cambios a especies o grupos
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
   taxon_photos_updated: ¡Las fotos de la especie o grupo fueron actualizadas!
@@ -3268,7 +3285,8 @@ es-MX:
     para el proyecto. Porfavor checa los
   these_folks_kindly_volunteer_to: Estas personas amablemente son voluntarios para
     mantener la taxonomía y resolver otros problemas.
-  these_observations_have_not_been_uploaded_yet: Estas observaciones no se han subido aún.
+  these_observations_have_not_been_uploaded_yet: Estas observaciones no se han subido
+    aún.
   they_already_have_iNat_accounts: '...ya tienen cuentas de %{site_name}'
   they_have_been_invited: '...ya han sido invitados'
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
@@ -3451,29 +3469,6 @@ es-MX:
       select_all: Seleccionar todas las observaciones
       remove_photo: Quitar la foto
       remove_observation: Quitar la observación
-      date: Fecha y hora de la observación
-      location: Ubicación de la observación
-      description: Descripción
-      geo_open: Toda la comunidad puede ver las coordenas a menos que la especie o grupo esté amenazada
-      geo_obscured:
-        Las coordenadas serán mostradas como un punto al azar con una desviación de 0.2 por 0.2 grados alrededor de
-        las coordendas reales, que es alrededor de un cuadrado de 22x22 kilómetros que va disminuyendo conforme la
-        coordenada esté cerca de los polos. Las coordendas reales solo serán visibles por tí y por los curadores de los proyectos
-        a los cuales tu decidás que observaciones añadir.
-      geo_private:
-        Las corrdendas estarán completamente escondidas por la comunidad. Las coordendas reales
-        solo serán visibles por tí y por los curadores de los proyectos a los cuales tu decidás que observaciones añadir.
-      captive:
-        El organismo existe donde fue observado, sin embargo es una especie que se encuentra cultivada o en cautiverio.
-        NaturaLista es acerca de observar organismos en estado salvaje ya que nuestra comunidad científica no se interesa
-        en observaciones de mascotas, jardines o animales en zoologicos.
-      fields: Los campos de la observación es información adicional que puede ser utilizada para múltiples observaciones
-      projects: Los proyectos son colecciones de observaciones añadidas por numerosas personas para un propósito en específico
-      tags:
-        Las etiquetas son palabras cortas y descriptivas que puedes añadir a una observación con el propósito de encontrarla mas fácil.
-        Por ejemplo, Si viste a un colibrí rojo bebiendo en las Lagunas de Zempoala, puede añadir estas etiquetas;
-        colibrí, laguna, bebiendo, rojo
-      taxon: Entra o busca por nombre de la especie o grupo
   url_identifier_of_a_project_derived_from: Dirección web / identificador del proyecto
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
@@ -3583,7 +3578,6 @@ es-MX:
   view_more_unreviewed: Ver más sin revisar
   view_nbsp: Ver &nbsp;
   view_non_mobile_site: Ver el sitio fijo
-  view_post: Ve diario
   view_observation: Ver observación
   view_observations: Ver observaciones
   view_observations_by_everyone: Ve las observaciones de todos
@@ -3600,6 +3594,7 @@ es-MX:
     de %{site_name} y mucho más! Hemos reunido información de muchas fuentes distintas
     y combinadas proporcionan un rápido resumen para cada especie en cada lugar.
   view_place: Ver lugar
+  view_post: Ve diario
   view_projects_from_place: Ve proyectos de %{place}
   view_real_time_stats_in_a_new_window: Ve estadísticas en tiempo real en una nueva
     ventana
@@ -3717,8 +3712,8 @@ es-MX:
   x_journal_middot: Diario de %{user} &middot;
   x_journal_new_post: Diario de %{user} &middot; Nueva nota
   x_observations_failed:
-    one: "1 observación falló"
-    other: "%{count} observaciones fallaron"
+    one: 1 observación falló
+    other: '%{count} observaciones fallaron'
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadisticas del proyecto %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} te envió un nuevo mensaje en %{y}'
@@ -3757,10 +3752,11 @@ es-MX:
     <a href="/guides/new">Agrega una</a>
   you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
   you_are_no_longer_following_x: Ya no estas siguiendo a %{friend}.
-  you_are_submitting_obs_with_no_date_or_no_location: Estás añadiendo observaciones sin fecha ni ubicación.
-  you_are_submitting_obs_without_photos_and_names: |
+  you_are_submitting_obs_without_photos_and_names: |-
     Estás añadiendo observaciones sin foto ni un nombre de especie.
     OJO, estas observaciones serán dificiles de identificar.
+  you_are_submitting_obs_with_no_date_or_no_location: Estás añadiendo observaciones
+    sin fecha ni ubicación.
   you_are_subscribed_to: Estás suscrito a
   you_arent_a_member_of_that_project: No eres un miembro del proyecto.
   you_arent_following_that_person: No estas siguiendo a esa persona.

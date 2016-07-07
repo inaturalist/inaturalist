@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Andreas Plank
 # Author: Danieleseglie
+# Author: Exonie
 # Author: Frog7301
 # Author: Liuxinyu970226
 # Author: Macofe
@@ -75,6 +76,7 @@ qqq:
     and just above the map. See https://www.inaturalist.org/projects/herps-of-texas/journal/1869
   account: '{{Identical|Account}}'
   accept: '{{Identical|Accept}}'
+  accept_community_identifications: An option (checkbox) in the account settings page
   accuracy: '{{Identical|Accuracy}}'
   accuracy_meters: '{{Identical|Accuracy}}'
   acquaintances: '{{Identical|Acquaintance}}'
@@ -344,6 +346,7 @@ qqq:
   feeds: '{{Identical|Feed}}'
   failed: '{{Identical|Failed}}'
   fields: '{{Identical|Field}}'
+  fields_: '{{Identical|Field}}'
   filter: '{{Identical|Filter}}'
   filters: '{{Identical|Filter}}'
   find: '{{Identical|Find}}'
@@ -372,8 +375,10 @@ qqq:
   full_screen: '{{Identical|Full screen}}'
   general: '{{Identical|General}}'
   geoprivacy: See [[wiktionary:geoprivacy|geoprivacy on Wiktionary]] for hints.
+  get_started: '{{Identical|Get started}}'
   getting_started: '{{Identical|Getting started}}'
   go: '{{Identical|Go}}'
+  got_it!: '{{Identical|Got it}}'
   grant_role: where grant is removed/added and role is a role like admin
   grid: '{{Identical|Grid}}'
   group: '{{Identical|Group}}'
@@ -475,12 +480,14 @@ qqq:
   lists: '{{Identical|List}}'
   load: '{{Identical|Load}}'
   loading: '{{Identical|Loading}}'
+  locales_: '{{Identical|Locale}}'
   locales:
     en: '{{Identical|English}}'
     es: '{{Identical|Spanish}}'
     fr: '{{Identical|French}}'
     it: '{{Identical|Italian}}'
     pt: '{{Identical|Portuguese}}'
+  localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
   log_in: '{{Identical|Log in}}'
@@ -493,6 +500,7 @@ qqq:
   mail_disclaimer: where site_name is the name of the site
   main_content_description: '{{notranslate}}'
   make_this_your_default_license: where type is a
+  manage: '{{Identical|Manage}}'
   manager: '{{Identical|Manager}}'
   managers: '{{Identical|Manager}}'
   map: '{{Identical|Map}}'
@@ -679,6 +687,8 @@ qqq:
       province: '{{Identical|Province}}'
       Region: '{{Identical|Region}}'
       region: '{{Identical|Region}}'
+      Republic: '{{Identical|Republic}}'
+      republic: '{{Identical|Republic}}'
       State: '{{Identical|State}}'
       state: '{{Identical|State}}'
       Street: '{{Identical|Street}}'
@@ -695,6 +705,8 @@ qqq:
       Town: '{{Identical|Town}}'
       town: '{{Identical|Town}}'
       undefined: '{{Identical|Undefined}}'
+      Unknown: '{{Identical|Unknown}}'
+      unknown: '{{Identical|Unknown}}'
       zone: '{{Identical|Zone}}'
   places_name:
     europe: '{{Identical|Europe}}'
@@ -893,6 +905,9 @@ qqq:
   update_with_site_content: where site_name is the name of the site
   updated: '{{Identical|Updated}}'
   upload: '{{Identical|Upload}}'
+  uploader:
+    tooltips:
+      add: This is the tooltip of the button "Add" in the uploader form.
   use_name_as_a_placeholder: where name is the name of a new taxon not yet in our
     database
   user: '{{Identical|User}}'
@@ -1271,6 +1286,9 @@ qqq:
       place:
         code: '{{Identical|Code}}'
         name: '{{Identical|Name}}'
+        parent_id: |-
+          The parent place of the newly created place.
+          (see http://www.inaturalist.org/places/new )
       flag:
         reason: '{{Identical|Reason}}'
         flag: '{{Identical|Flag}}'

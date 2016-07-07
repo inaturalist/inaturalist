@@ -101,6 +101,7 @@ ca:
   a_member_of_taxon_html: un tipus de %{taxon}
   able_to_connect_flickr: Molt bé! L'hem pogut vincular al compte de Flickr.
   about: Sobre
+  about_taxon_changes: Sobre els canvis de taxons
   about_bioblitz_results: Sobre els resultats del bioblitz
   about_community_taxa: Sobre la comunitat de tàxons
   about_external_links: Sobre els enllaços externs
@@ -218,6 +219,7 @@ ca:
     de Flickr relacionades amb les observacions seleccionades.
   add_to: Afegiu a
   add_to_a_scheme: Afegiu a un esquema
+  add_to_a_project: Afegiu al projecte
   add_to_calendar: Afegiu al calendari
   add_to_checklist: Afegiu a la llista de verificació
   add_to_favorites: Afegiu als preferits
@@ -337,6 +339,7 @@ ca:
       other: '%{count} altres animals'
   all_taxa_in_this_guide: Tots els tàxons en aquesta guia
   all_taxonomic_groups: « Tots els grups taxonòmics
+  all_updates: Totes les actualitzacions
   all_your_observations_will_default_this_time_zone: Totes les observacions es faran
     en aquesta zona horària tret que especifiqueu el contrari.
   all_your_observations_will_default_to_this_time_zone: Totes les observacions es
@@ -532,6 +535,7 @@ ca:
   beacuse_we_recently_changed_auth_system: El nostre sistema d’autenticació d’usuaris
     ha canviat recentment. Per això ha calgut reinicialitzar la vostra contrasenya.
   because: perquè
+  because_of: a causa de
   before_importing_photos: abans d'importar fotos.
   before_you_can_contribute_your_observations: abans que podeu contribuir amb les
     vostres observacions.
@@ -561,6 +565,8 @@ ca:
   browse: Navega
   browse_all_projects: Navegar per tots els projectes
   browse_all_species: Examina totes les espècies
+  browse_observations: Veure observacions
+  browse_people: Examinar persones
   browse_projects: Examina els projectes
   browse_species_that_occur_near_this_observation: Veure espècies que es trobin prop
     d'aquesta observació.
@@ -761,6 +767,7 @@ ca:
   comma_separated_please: Si us plau, separeu per comes
   comment_preview: Vista prèvia del comentari
   comment: comentari
+  comment_feed: Comentaris
   comment_deleted: El comentari s’ha esborrat
   commented: comentat
   comments: Comentaris
@@ -1075,7 +1082,10 @@ ca:
   edit_field: Camp d'edició
   edit_flagged_observation: Editeu l'observació marcada
   edit_license: Modifica la llicència
+  edit_multiple_dates: Editeu diverses dates
   edit_multiple_descriptions: Editar descripcions múltiples
+  edit_multiple_locations: Editeu diverses localitzacions
+  edit_multiple_species: Editeu diverses espècies
   edit_notes: Modifica les notes
   edit_photos: Modifica les fotos
   edit_photos_for_observation_id: Modifica les fotos per a l'observació %{obs_id}
@@ -1205,10 +1215,12 @@ ca:
   facebook_needs_the_owner_of_that_photo_to: Facebook necessita la confirmació del
     propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
   facebook_options: Opcions de Facebook
-  failed_to_repair_photo: 'Ha fallat la reparació de la fotografia: %{errors}'
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
+  failed_to_repair_photo: 'Ha fallat la reparació de la fotografia: %{errors}'
+  failed_to_save_record: No s'ha pogut desar el registre. Intenteu-ho de nou.
   "false": Fals
   faq: Preguntes freqüents
+  fave: favorit
   Family: Família
   favorite_taxa: tàxons preferits
   favorites: Preferits
@@ -1226,6 +1238,7 @@ ca:
   field_note: <strong>Nota:</strong> Si heu de crear un camp comproveu abans si algú
     ja l'ha creat per evitar duplicats.
   fields: camps
+  fields_: Camps
   fields_can_only_be_edited_by_the_people_who: Els camps només poden ser editats per
     les persones que els van crear i els supervisors del lloc
   fields_merged: Camps fusionats
@@ -1361,7 +1374,9 @@ ca:
   georeferenced?: georeferenciat
   get_current_position: Obté la posició actual
   get_started_raquo: Comença »
+  get_started: Comenceu
   getting_started: Primers passos
+  getting_started_guide: Guia d'inici
   give_it_some_detail: Introdueix alguna dada!
   global_conservation_status: 'Estat global de conservació:'
   global_names: Nom Global
@@ -1370,6 +1385,7 @@ ca:
   go_back: Torna
   going_to_your_observations: Anant a les vostres observacions...
   good_choice_for_sharing: Bona alternativa per compartir amb els científics
+  got_it!: Entesos!
   got_your_data_somewhere_else?: Heu obtingut les dades a un altre lloc? Us podem
     ajudar.
   graft: Insereix
@@ -1427,6 +1443,7 @@ ca:
     a dir, es van fer abans de la identificació final i coincideixen)
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_some_things_you_can_do_meantime: Mentrestant aquí trobareu coses per fer
+  heres_a_litle_about: Aquí teniu una mica al respecte
   hex_color_eg: Color en hexadecimal, ex. 65644F
   hi: Hola.
   hi_user: Hola %{user}
@@ -1450,6 +1467,7 @@ ca:
   id_please: ID, si us plau
   id_please_expandable_html: ID<span class='full'> si us plau</span>!
   identify: Identificar
+  identify_observations: Identifiqueu observacions
   identify_title: Identificar
   identification: identificació
   identification_deleted: Identificació eliminada.
@@ -1576,6 +1594,7 @@ ca:
   is_a: és un
   is_an: és un
   is_not_following_anyone: no segueix ningú
+  is_now: és ara
   is_the_organism_wild: És un organisme salvatge/naturalitzat?
   is_this_observation_offensive_html: Aquesta observació és <a href="/help#inappropriate">inadequada</a>,
     agressiva o ofensiva?
@@ -1604,7 +1623,11 @@ ca:
   journal_post_deleted: La nota de la Revista s’ha esborrat.
   jpg_png_or_gif: JPG, PNG o GIF
   jump_to_letter: Salta a la lletra
+  just_a_reminder: Només com a recordatori, doncs heu donat als administrador del
+    projecte permisos per veure les coordenades privades de les vostres observacions
+    d'aquest projecte.
   just_added!: S'hi acaba d'afegir!
+  keep_editing: Continueu editant
   kelp_diatoms_and_allies: algues brunes, diatomees i parents
   keyboard_shortcuts: Dreceres de teclat
   kml: KML
@@ -1642,6 +1665,8 @@ ca:
   legacy_authentication_notice_html: |-
     Sembla que utilitzeu una contrasenya d'una versió antiga d'aquest lloc web.
     Recordeu que heu de <a href="%{url}">canviar la vostra contrasenya</a> per a la nova versió.
+  let_us_walk_you_through: Deixeu-nos explicar-vos les principals característiques
+    d'aquest lloc.
   lexicon: Lèxic
   lexicons:
     scientific_names: Noms científics
@@ -1779,6 +1804,7 @@ ca:
   loading_full_description_html: Carregant la descripció completa...
   loading_images: Carregant imatges...
   loading_map: Carregant mapa...
+  loading_metadata: Carregant metadades...
   loading_more_photos: Carregant més fotos...
   loading_observations: Carregant observacions...
   loading_preview_and_code: Carregant previsualització i codi...
@@ -1787,6 +1813,7 @@ ca:
   loading_wikipedia_description: Carregant descripció de Viquipèdia...
   locale_description: Locale permet configurar l'idioma i les preferències de format
     de la data.
+  locales_: Locals
   locales:
     br: Bretó
     ca: Català
@@ -1811,6 +1838,9 @@ ca:
   location: Localitat
   location_: Ubicació
   location_is_exact: la ubicació és exacta
+  location_is_public: La ubicació és pública
+  location_is_obscured: La ubicació està enfosquida
+  location_is_private: La ubicació és privada
   locked_taxa_will_not_allow_new: No és possible afegir nous tàxons descendents als
     tàxons bloquejats. Per exemple, si heu bloquejat Amphibia i algú intenta importar
     <i>Rana catesbeiana</i> d'un proveïdor de noms extern, es crearia el nou tàxon,
@@ -1860,9 +1890,11 @@ ca:
   make_this_your_default_license: Feu que aquesta sigui la llicència %{type} per defecte
   make_this_the_primary_listing: Feu que aquesta sigui la llista primària
   mammals: mamífers
+  manage: Administra
   manage_all_your_subscriptions: Administreu totes les vostres subscripcions
   manage_names: Gestiona noms
   manage_your_project_invitations: Administreu les invitacions dels vostres projectes
+  manage_subscriptions: Administreu subscripcions
   managed: gestionat
   manager: Gestor
   managers: Gestors
@@ -1958,6 +1990,8 @@ ca:
   most_observations: La majoria de les observacions
   most_species: La majoria de les espècies
   most_observed_species: La majoria d'espècies observades
+  multiple: múltiples
+  multiple_select_option: -- múltiple --
   multiple_taxa_for_taxon_change: Múltiples tàxons (entrar per intercanviar/barrejar,
     sortir per separar)
   multiple_taxon_ids_separated_by_commas: Moltes ID de tàxons separades per comes,
@@ -2015,6 +2049,8 @@ ca:
   new_check_list_for: Crea una nova llista de verificació per a {place} »
   new_check_list_record: Si vol marcar aquesta llista com a exhaustiva, creeu-la,
     afegiu-hi els tàxons i després modifiqueu-la per poder marcar-la com a exhaustiva.
+  new_comment_on_a_parent_by_user_link: Nou comentari sobre @vow_or_con{vot:un|un}
+    %{parent} de %{user_link}
   new_custom_field_for: Nou camp personalitzat per a
   new_flag_for: Nova marca per a
   new_guide: Guia nova
@@ -2296,6 +2332,7 @@ ca:
   offensive_inappropriate: ofensiu/inadequat
   official_blog: Blog oficial
   offline_access_enabled: Accés fora de línia activat
+  old_observation_form: Antic registre de l'observació (obsolet)
   ok: D’acord
   on_: en
   on_date: el %{date}
@@ -2304,6 +2341,17 @@ ca:
   on_list?: a la llista
   on_submit_date: el %{submitdate}
   on_your_life_list: a la vostra llista de vida
+  onboarding:
+    observe_panel_title: Anem a començar publicant algunes observacions
+    observe_panel_body_p1_local: Necessiteu inspiració? Aquí teniu alguns organismes
+      observats a prop...
+    observe_panel_body_p1_global: Necessiteu inspiració? Aquí teniu alguns organismes
+      observats...
+    follow_panel_title_local: Seguiu alguns naturalistes propers
+    follow_panel_title_global: Seguiu alguns naturalistes actius
+    youve_got_updates_panel_title: Teniu actualitzacions!
+    youve_got_updates_panel_body_p1: Mantingueu-vos al dia sobre les actualitzacions
+      a la següent...
   one_by_one: Un a un
   one_of_your_lists: una de les teves llistes...
   only_a_project_manager_can_add: Només un gestor de projecte pot atorgar-li classificació
@@ -2839,6 +2887,7 @@ ca:
   reply: Respon
   report_any_problems: comuniqueu qualsevol problema
   reptiles: rèptils
+  request_failed: La petició ha Fallat
   request_id_help: Sol·liciteu ajuda per IDentificar
   request_password: Sol·liciteu la contrasenya
   request_timed_out: La petició ha excedit el temps d'espera
@@ -3023,6 +3072,7 @@ ca:
   site_taxon_page: pàgina del tàxon a %{site_name}
   so_meta!: Autoreferència!
   some_agree: alguns usuaris hi estan d’acord
+  some_observations_failed: Algunes observacions no han pogut ser afegides als projectes
   some_of_those_photos_couldnt_be_saved: 'Algunes fotos no s’han pogut desar: %{error}'
   some_other_reason: Una altra raó que podeu explicar després.
   some_people: Algunes persones
@@ -3591,6 +3641,14 @@ ca:
     haureu de fer-ho d'aquesta manera.
   upload_photos: Penja fotos
   uploaded_by: Pujat per
+  uploader:
+    tooltips:
+      add: Afegiu observació(ns)
+      remove: Elimineu les observacions seleccionades
+      combine: Combineu les observacions seleccionades
+      select_all: Seleccioneu totes les observacions
+      remove_photo: Elimineu la foto
+      remove_observation: Traieu l'observació
   url_identifier_of_a_project_derived_from: Adreça web / identificador del projecte
     derivat de fonts externes
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina
@@ -3613,6 +3671,8 @@ ca:
     de fulla de càlcul haurien de permetre-us exportar a CSV amb aquest format.
   user: Usuari
   user_added_an_observation_html: '%{user} ha afegit una observació'
+  user_added_a_x: '%{user} va afegir un %{x}'
+  user_added_an_x: '%{user} va afegir un %{x}'
   user_added_an_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
   user_added_a_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
   user_added_an_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
@@ -3675,6 +3735,7 @@ ca:
   view_check_list_page: Mostra la pàgina de la llista de comprovació
   view_contributions: Veure contribucions
   view_details: Mostra els detalls
+  view_field_options: Veure el camp Opcions
   view_flags: Mostra les marques
   view_flags_for_x_html: Veure etiquetes per %{x}
   view_full_observation: Mostra l’observació completa
@@ -3701,7 +3762,6 @@ ca:
   view_more_unreviewed: Veure més no revisats
   view_nbsp: Mostra  
   view_non_mobile_site: Mostra la web no adaptada per a mòbils
-  view_post: Mostra introducció
   view_observation: Mostra observació
   view_observations: Mostra observacions
   view_observation_flags: Veure marques de l'observació
@@ -3719,6 +3779,7 @@ ca:
     d’%{site_name} i més! Hem recopilat informació de moltes fonts diferents i les
     hem combinat per proporcionar-vos un breu resum de cada espècie en cada lloc.
   view_place: Mostra lloc
+  view_post: Mostra introducció
   view_projects_from_place: Veure projectes de %{place}
   view_real_time_stats_in_a_new_window: Visualitzar les estadístiques en temps real
     en una finestra nova
@@ -3839,6 +3900,9 @@ ca:
   x_journal_editing: Diari de %{user} · Modifica
   x_journal_middot: Diari de %{user} ·
   x_journal_new_post: Diari de %{user} · Nova entrada
+  x_observations_failed:
+    one: 1 observació fallida
+    other: '%{count} observacions fallides'
   x_project_journal: '%{name} del projecte %{project}'
   x_project_stats: Estadístiques del projecte %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} us ha enviat un nou missatge sobre %{y}:'
@@ -3870,8 +3934,10 @@ ca:
     de la pàgina. No us sentiu obligat per tot el que això implica, però si teniu
     temps de revisar alguns continguts, t'ho agraïm. Si teniu algun dubte, comentari
     o simplement ja no voleu ser supervisor, poseu-vos en contacte amb nosaltres a
+    %{email}
   you_are_over_your_invites_quota: '...ja heu enviat el màxim de 60 invitacions per
     aquest mes.'
+  you_are_now: Ara sou
   you_are_now_following_x: Ara seguiu a %{friend_user}.
   you_are_now_role_for_project_html: <strong>Ara</strong> sou %{role} de %{project}
   you_are_not_editing_any_guides_add_one_html: No esteu editant cap guia. <a href="/guides/new">Afegiu
@@ -3884,8 +3950,8 @@ ca:
   you_are_submitting_obs_without_photos_and_names: |-
     Esteu enviant observacions sense fotos ni un nom de tàxon.
     Aquestes observacions són molt difícil d'identificar amb precisió.
-  you_are_submitting_obs_with_photos_no_date: Esteu enviant observacions amb fotos,
-    però sense data o localització.
+  you_are_submitting_obs_with_no_date_or_no_location: Esteu enviant observacions sense
+    data o localització.
   you_are_subscribed_to: Esteu subscrit a
   you_arent_a_member_of_that_project: No sou un membre d'aquest projecte.
   you_arent_following_that_person: No seguiu aquesta persona.
@@ -4002,6 +4068,7 @@ ca:
     <span class="taxon">%{finer_taxon_name}</span>. És realment això el que voleu fer?<br><br>
     <a href="/pages/getting+started" target="_blank">Coneix més sobre com actuen les identificacions"</a>
   your_comment_was_saved: S’ha desat el vostre contingut.
+  your_content: El vostre Contingut
   your_contributions_to_project: Les vostres aportacions al projecte %{project_title}
   your_default: els vostres valors per defecte
   your_default_time_zone: La vostra zona horària predeterminada
