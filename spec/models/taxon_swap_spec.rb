@@ -4,7 +4,7 @@ describe TaxonSwap, "creation" do
   before(:each) { enable_elastic_indexing(Observation, Update) }
   after(:each) { disable_elastic_indexing(Observation, Update) }
   it "should not allow swaps without inputs" do
-    output_taxon = Taxon.make!
+    output_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
     swap.add_output_taxon(output_taxon)
     expect(swap.input_taxa).to be_blank
@@ -12,7 +12,7 @@ describe TaxonSwap, "creation" do
   end
 
   it "should not allow swaps without outputs" do
-    input_taxon = Taxon.make!
+    input_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
     swap.add_input_taxon(input_taxon)
     expect(swap).not_to be_valid
@@ -126,7 +126,7 @@ describe TaxonSwap, "commit" do
   end
 
   it "should move children from the input to the output taxon" do
-    child = Taxon.make!( parent: @input_taxon )
+    child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
     descendant = Taxon.make!( parent: child )
     without_delay { @swap.commit }
     child.reload
@@ -366,8 +366,8 @@ describe TaxonSwap, "commit_records" do
 end
 
 def prepare_swap
-  @input_taxon = Taxon.make!
-  @output_taxon = Taxon.make!
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY )
   @swap = TaxonSwap.make
   @swap.add_input_taxon(@input_taxon)
   @swap.add_output_taxon(@output_taxon)

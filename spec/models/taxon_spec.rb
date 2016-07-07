@@ -1018,3 +1018,22 @@ describe Taxon, "leading_name" do
     expect(taxon.leading_name).to eq "Common"
   end
 end
+
+describe Taxon, "editable_by?" do
+  before { load_test_taxa }
+  let(:admin) { make_admin }
+  let(:curator) { make_curator }
+  it "should always be editable by admins" do
+    Taxon.all.each do |t|
+      expect( t ).to be_editable_by( admin )
+    end
+  end
+  it "should be editable by curators if below order" do
+    expect( @Calypte ).to be_editable_by( curator )
+  end
+  it "should not be editable by curators if order or above" do
+    expect( @Aves ).not_to be_editable_by( curator )
+  end
+end
+
+

@@ -798,8 +798,17 @@ class Taxon < ActiveRecord::Base
        !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
       return
     end
-    ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%").
-      update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
+    max = ListedTaxon.calculate(:maximum, :id)
+    offset = 0
+    batch_size = 10000
+    scope = ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%")
+    ( ( max - offset ) / batch_size ).times do |i|
+      start = offset + i * batch_size
+      stop  = offset + i * batch_size + batch_size - 1
+      scope.where( "id BETWEEN ? AND ?", start, stop ).
+        update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
+      sleep 1
+    end
   end
   
   def update_life_lists(options = {})
@@ -1250,8 +1259,9 @@ class Taxon < ActiveRecord::Base
     taxon
   end
 
-  def editable_by?(user)
-    user.is_curator? || user.is_admin?
+  def editable_by?( user )
+    return true if user.is_admin?
+    user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 
   def mergeable_by?(user, reject)
