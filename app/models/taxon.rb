@@ -1260,6 +1260,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def editable_by?( user )
+    return false unless user.is_a?( User )
     return true if user.is_admin?
     user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end

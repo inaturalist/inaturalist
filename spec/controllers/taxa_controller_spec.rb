@@ -2,6 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe TaxaController do
   describe "show" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
     render_views
     # not a pretty test. maybe it's time for view tests...?
     it "should use a taxon name for the user's place instead of the default" do
@@ -147,7 +149,7 @@ describe TaxaController do
     it "should be possible if user did create the record" do
       u = make_curator
       sign_in u
-      t = Taxon.make!(:creator => u)
+      t = Taxon.make!( creator: u, rank: Taxon::FAMILY )
       delete :destroy, :id => t.id
       expect(Taxon.find_by_id(t.id)).to be_blank
     end
@@ -155,7 +157,7 @@ describe TaxaController do
     it "should not be possible if user did not create the record" do
       u = make_curator
       sign_in u
-      t = Taxon.make!
+      t = Taxon.make!( rank: Taxon::FAMILY )
       delete :destroy, :id => t.id
       expect(Taxon.find_by_id(t.id)).not_to be_blank
     end
@@ -163,14 +165,14 @@ describe TaxaController do
     it "should always be possible for admins" do
       u = make_admin
       sign_in u
-      t = Taxon.make!
+      t = Taxon.make!( rank: Taxon::FAMILY )
       delete :destroy, :id => t.id
       expect(Taxon.find_by_id(t.id)).to be_blank
     end
 
     it "should not be possible for taxa inolved in taxon changes" do
       u = make_curator
-      t = Taxon.make!(:creator => u)
+      t = Taxon.make!( creator: u, rank: Taxon::FAMILY )
       ts = make_taxon_swap(:input_taxon => t)
       sign_in u
       delete :destroy, :id => t.id
@@ -183,7 +185,7 @@ describe TaxaController do
       user = make_curator
       sign_in user
       locked_parent = Taxon.make!(:locked => true)
-      taxon = Taxon.make!
+      taxon = Taxon.make!( rank: Taxon::FAMILY )
       put :update, :id => taxon.id, :taxon => {:parent_id => locked_parent.id}
       taxon.reload
       expect(taxon.parent_id).to eq locked_parent.id
@@ -211,8 +213,8 @@ describe TaxaController do
 
   describe "graft" do
     it "should graft a taxon" do
-      genus = Taxon.make!(name: 'Bartleby')
-      species = Taxon.make!(name: 'Bartleby thescrivener')
+      genus = Taxon.make!( name: 'Bartleby', rank: Taxon::GENUS )
+      species = Taxon.make!( name: 'Bartleby thescrivener', rank: Taxon::SPECIES )
       expect(species.parent).to be_blank
       u = make_curator
       sign_in u
