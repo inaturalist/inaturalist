@@ -309,8 +309,12 @@ class List < ActiveRecord::Base
     end
     listed_taxa.each do |lt|
       Rails.logger.info "[INFO #{Time.now}] List.refresh_with_observation, refreshing #{lt}"
+      # delay taxon indexing
+      lt.skip_index_taxon = true
       refresh_listed_taxon(lt)
     end
+    # index taxa in bulk
+    Taxon.elastic_index!(ids: listed_taxa.map(&:taxon_id).uniq)
     Rails.logger.info "[INFO #{Time.now}] Finished List.refresh_with_observation for #{observation}"
   end
   

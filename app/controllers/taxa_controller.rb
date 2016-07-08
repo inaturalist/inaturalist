@@ -86,9 +86,11 @@ class TaxaController < ApplicationController
           :iconic_taxon, :photos, :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
         featured_taxa_obs = @featured_taxa.map do |taxon|
-          scope = taxon.observations.order("id DESC")
-          scope = scope.where(:site_id => @site) if @site
-          scope.first
+          taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
+          if @site
+            taxon_obs_params[:site_id] = @site.id
+          end
+          Observation.page_of_results(taxon_obs_params).first
         end.compact
         Observation.preload_associations(featured_taxa_obs, :user)
         @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
