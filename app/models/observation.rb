@@ -485,6 +485,11 @@ class Observation < ActiveRecord::Base
     return where( "1 = 2" ) unless taxon
     c = taxon.descendant_conditions.to_sql
     c = c.gsub( '"taxa"."ancestry"', 'it."ancestry"' )
+    # I'm not using TaxonAncestor here b/c updating observations for changes
+    # in conservation status uses this scope, and when a cons status changes,
+    # we don't want to skip any taxa that have moved around the tree since the
+    # last time the denormalizer ran
+    select( "DISTINCT observations.*").
     joins( :identifications ).
     joins( "JOIN taxa it ON it.id = identifications.taxon_id" ).
     where( "identifications.current AND (it.id = ? or #{c})", taxon.id ) 

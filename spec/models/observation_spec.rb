@@ -1496,6 +1496,30 @@ describe Observation do
         expect(Observation.of(t).first).to eq o
       end
     end
+
+    describe :with_identifications_of do
+      it "should include observations with identifications of the taxon" do
+        i = Identification.make!
+        o = Observation.make!
+        AncestryDenormalizer.denormalize
+        expect( Observation.with_identifications_of( i.taxon ) ).to include i.observation
+        expect( Observation.with_identifications_of( i.taxon ) ).not_to include o
+      end
+      it "should include observations with identifications of descendant taxa" do
+        parent = Taxon.make!( rank: Taxon::GENUS )
+        child = Taxon.make!( rank: Taxon::SPECIES, parent: parent )
+        i = Identification.make!( taxon: child )
+        AncestryDenormalizer.denormalize
+        expect( Observation.with_identifications_of( parent ) ).to include i.observation
+      end
+      it "should not return duplicate observations when there are multiple identifications" do
+        o = Observation.make!
+        i1 = Identification.make!( observation: o )
+        i2 = Identification.make!( observation: o, taxon: i1.taxon )
+        AncestryDenormalizer.denormalize
+        expect( Observation.with_identifications_of( i1.taxon ).count ).to eq 1
+      end
+    end
   end
 
   describe "private location data" do
