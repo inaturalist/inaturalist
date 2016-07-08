@@ -1348,7 +1348,8 @@ class Observation < ActiveRecord::Base
     end
     self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
     set_geom_from_latlon
-    self.place_guess = Observation.place_guess_from_latlon( private_latitude, private_longitude, acc: calculate_public_positional_accuracy )
+    self.place_guess = Observation.place_guess_from_latlon( private_latitude, private_longitude,
+      acc: calculate_public_positional_accuracy, user: user )
     true
   end
   
@@ -1662,6 +1663,7 @@ class Observation < ActiveRecord::Base
     user = options[:user]
     locale = options[:locale]
     locale ||= user.locale if user
+    locale ||= I18n.locale
     first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
       "#{sys_places[0].name} County"
     else
@@ -1671,7 +1673,7 @@ class Observation < ActiveRecord::Base
       if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        p.code.blank? ? I18n.t( p.name, locale: user.locale, default: p.name ) : p.code
+        p.code.blank? ? I18n.t( p.name, locale: locale, default: p.name ) : p.code
       end
     end
     [first_name, remaining_names].flatten.join( ", " )
