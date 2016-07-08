@@ -27,6 +27,8 @@ class TaxaController < ApplicationController
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip]
+  before_filter :taxon_curator_required, :only => [:edit, :update,
+    :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
     :browse, :search]
   before_filter :ensure_flickr_write_permission, :only => [
@@ -1440,10 +1442,21 @@ class TaxaController < ApplicationController
     end
   end
   
-
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
       select('DISTINCT authority').where("authority IS NOT NULL").
       map(&:authority).compact.reject(&:blank?).map(&:strip).sort
+  end
+
+  def taxon_curator_required
+    unless @taxon.editable_by?( current_user )
+      flash[:notice] = t(:only_administrators_may_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
+    end
   end
 end

@@ -66,8 +66,8 @@ describe TaxaController do
   describe "merge" do
     it "should redirect on succesfully merging" do
       user = make_curator
-      keeper = Taxon.make!
-      reject = Taxon.make!
+      keeper = Taxon.make!( rank: Taxon::SPECIES )
+      reject = Taxon.make!( rank: Taxon::SPECIES )
       sign_in user
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       expect(response).to be_redirect
@@ -76,8 +76,8 @@ describe TaxaController do
     it "should allow curators to merge taxa they created" do
       curator = make_curator
       sign_in curator
-      keeper = Taxon.make!(:creator => curator)
-      reject = Taxon.make!(:creator => curator)
+      keeper = Taxon.make!( creator: curator, rank: Taxon::SPECIES )
+      reject = Taxon.make!( creator: curator, rank: Taxon::SPECIES )
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       expect(Taxon.find_by_id(reject.id)).to be_blank
     end
@@ -85,7 +85,7 @@ describe TaxaController do
     it "should not allow curators to merge taxa they didn't create" do
       curator = make_curator
       sign_in curator
-      keeper = Taxon.make!(:creator => curator)
+      keeper = Taxon.make!( creator: curator, rank: Taxon::SPECIES )
       reject = Taxon.make!
       Observation.make!(:taxon => reject)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
@@ -95,8 +95,8 @@ describe TaxaController do
     it "should allow curators to merge synonyms" do
       curator = make_curator
       sign_in curator
-      keeper = Taxon.make!(:name => "Foo")
-      reject = Taxon.make!(:name => "Foo")
+      keeper = Taxon.make!(:name => "Foo", rank: Taxon::SPECIES )
+      reject = Taxon.make!(:name => "Foo", rank: Taxon::SPECIES )
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       expect(Taxon.find_by_id(reject.id)).to be_blank
     end
@@ -104,8 +104,8 @@ describe TaxaController do
     it "should not allow curators to merge unsynonymous taxa" do
       curator = make_curator
       sign_in curator
-      keeper = Taxon.make!
-      reject = Taxon.make!
+      keeper = Taxon.make!( rank: Taxon::SPECIES )
+      reject = Taxon.make!( rank: Taxon::SPECIES )
       Observation.make!(:taxon => reject)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       expect(Taxon.find_by_id(reject.id)).not_to be_blank
@@ -114,8 +114,8 @@ describe TaxaController do
     it "should allow curators to merge taxa without observations" do
       curator = make_curator
       sign_in curator
-      keeper = Taxon.make!
-      reject = Taxon.make!
+      keeper = Taxon.make!( rank: Taxon::SPECIES )
+      reject = Taxon.make!( rank: Taxon::SPECIES )
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       expect(Taxon.find_by_id(reject.id)).to be_blank
     end
@@ -123,8 +123,8 @@ describe TaxaController do
     it "should allow admins to merge anything" do
       curator = make_admin
       sign_in curator
-      keeper = Taxon.make!
-      reject = Taxon.make!
+      keeper = Taxon.make!( rank: Taxon::SPECIES )
+      reject = Taxon.make!( rank: Taxon::SPECIES )
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       expect(Taxon.find_by_id(reject.id)).to be_blank
     end
