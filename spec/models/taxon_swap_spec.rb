@@ -21,10 +21,10 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, Update)
+    enable_elastic_indexing(Observation, Update, Taxon)
     prepare_swap
   end
-  after(:each) { disable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update, Taxon) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)
