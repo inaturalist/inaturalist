@@ -15,11 +15,12 @@ class Identification < ActiveRecord::Base
   validate :uniqueness_of_current, :on => :update
   
   before_create :update_other_identifications
-  after_create  :update_observation, 
+  after_create  :update_observation,
                 :create_observation_review
   
-  after_commit :update_user_counter_cache
-                
+  after_commit :update_user_counter_cache,
+               :update_categories
+
   after_save    :update_obs_stats, 
                 :update_curator_identification,
                 :update_quality_metrics
@@ -41,6 +42,20 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
+
+  %w(improving supporting leading maverick).each do |category|
+    const_set category.upcase, category
+    define_method "#{category}?" do
+      self.category == category
+    end
+  end
+  CATEGORIES = [
+    IMPROVING,
+    SUPPORTING,
+    LEADING,
+    MAVERICK
+  ]
+
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| 
@@ -274,6 +289,47 @@ class Identification < ActiveRecord::Base
     if captive_flag == "1"
       QualityMetric.vote(user, observation, QualityMetric::WILD, false)
     end
+    true
+  end
+
+  def self.update_categories_for_observation( o )
+    return unless o = Observation.where( id: o ).first
+    categories = {
+      improving: [],
+      leading: [],
+      supporting: [],
+      maverick: [],
+      removed: []
+    }
+    previous_current_idents = []
+    Identification.
+        select( "id, taxon_id, current" ).
+        includes(:taxon).
+        where( observation_id: o.id ).
+        sort_by(&:id).each do |ident|
+      ancestor_of_community_taxon = o.community_taxon && o.community_taxon.ancestor_ids.include?( ident.taxon_id )
+      descendant_of_community_taxon = o.community_taxon && ident.taxon.ancestor_ids.include?( o.community_taxon_id )
+      matches_community_taxon = o.community_taxon && ( ident.taxon_id == o.community_taxon_id )
+      progressive = ( categories[:improving] + categories[:supporting] ).flatten.detect { |i|
+        i.taxon.self_and_ancestor_ids.include?( ident.taxon_id )
+      }.blank?
+      if o.community_taxon.blank? || descendant_of_community_taxon
+        categories[:leading] << ident
+      elsif ( ancestor_of_community_taxon || matches_community_taxon ) && progressive
+        categories[:improving] << ident
+      elsif !ancestor_of_community_taxon && !descendant_of_community_taxon && !matches_community_taxon
+        categories[:maverick] << ident
+      else
+        categories[:supporting] << ident
+      end
+    end
+    categories.each do |category, idents|
+      Identification.where( id: idents.map(&:id) ).update_all( category: category )
+    end
+  end
+
+  def update_categories
+    Identification.update_categories_for_observation( observation )
     true
   end
 

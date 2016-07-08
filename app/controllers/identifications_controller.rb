@@ -10,6 +10,29 @@ class IdentificationsController < ApplicationController
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
   }
+
+  def index
+    @identifications = Identification.order( "id desc" ).page( params[:page] ).per_page( 100 )
+    @identifications = @identifications.where( category: params[:category] ) if Identification::CATEGORIES.include?( params[:category] )
+    if params[:user_id]
+      if user = ( User.find_by_id( params[:user_id] ) || User.find_by_login( params[:user_id] ) )
+        @identifications = @identifications.by( user )
+      end
+    end
+    if params[:current].blank? || params[:current].yesish?
+      @identifications = @identifications.current
+    elsif params[:current].noish?
+      @identifications = @identifications.outdated
+    end
+    if params[:for] == "others"
+      @identifications = @identifications.joins(:observation).where( "observations.user_id != identifications.user_id" )
+    end
+    @identifications = @identifications.of( params[:taxon_id] ) if params[:taxon_id]
+    @counts = @identifications.where("category IS NOT NULL").group(:category).count
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
     
   def show
     redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")

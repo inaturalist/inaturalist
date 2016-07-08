@@ -1893,6 +1893,7 @@ class Observation < ActiveRecord::Base
       o.set_community_taxon
       o.update_stats(:skip_save => true)
       o.save
+      Identification.update_categories_for_observation( o )
     end
     Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end

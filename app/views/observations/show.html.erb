@@ -439,6 +439,20 @@
         <%- taxon_ids[item.taxon_id] = taxon_ids[item.taxon_id].to_i + 1 %>
       <% end %>
     <% end -%>
+
+    <%= feature_test :idcats, audience: [:users] do %>
+      <% if @users_who_can_help && @users_who_can_help.size > 0 %>
+        <h4>People Who Can Help</h4>
+        <ul>
+          <% @users_who_can_help.each do |u| %>
+            <li>
+              <%= link_to_user u %>
+              (<%= link_to "Improving idents of obs taxon", identifications_path( user_id: u.login, taxon_id: @observation.taxon_id, category: Identification::IMPROVING, current: "any" ) %>)
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
     
     <div id="forms" class="ui-tabs">
       <ul class="clear">

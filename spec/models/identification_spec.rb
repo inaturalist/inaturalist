@@ -648,3 +648,191 @@ describe Identification do
     end
   end
 end
+
+describe Identification, "category" do
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
+  let( :o ) { Observation.make! }
+  let(:parent) { Taxon.make!( rank: Taxon::GENUS ) }
+  let(:child) { Taxon.make!( rank: Taxon::SPECIES, parent: parent ) }
+  describe "should be improving when" do
+    it "is the first that matches the community ID among several IDs" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      o.reload
+      i1.reload
+      expect( o.community_taxon ).to eq i1.taxon
+      expect( i1.observation.identifications.count ).to eq 2
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+    it "qualifies but isn't current" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+      i3 = Identification.make!( observation: o, taxon: child, user: i1.user )
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+    it "is an ancestor of the community taxon and was not added after the first ID of the community taxon" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i3 = Identification.make!( observation: o, taxon: child )
+      i4 = Identification.make!( observation: o, taxon: child )
+      o.reload
+      expect( o.community_taxon ).to eq child
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+  end
+  describe "should be maverick when" do
+    it "the community taxon is not an ancestor" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      i3 = Identification.make!( observation: o )
+      i3.reload
+      expect( i3.category ).to eq Identification::MAVERICK
+    end
+    # it "is a higher-rank disagreement with the community taxon" do
+    #   i1 = Identification.make!( observation: o, taxon: child )
+    #   i2 = Identification.make!( observation: o, taxon: child )
+    #   i3 = Identification.make!( observation: o, taxon: child )
+    #   i4 = Identification.make!( observation: o, taxon: parent )
+    #   i4.reload
+    #   expect( i4.category ).to eq Identification::MAVERICK
+    # end
+  end
+  describe "should be leading when" do
+    it "is the only ID" do
+      i = Identification.make!
+      expect( i.category ).to eq Identification::LEADING
+    end
+    it "has a taxon that is a descendant of the community taxon" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: parent )
+      i3 = Identification.make!( observation: o, taxon: child )
+      expect( i3.category ).to eq Identification::LEADING
+    end
+  end
+  describe "should be supporting when" do
+    it "matches the community taxon but is not the first to do so" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      expect( i2.category ).to eq Identification::SUPPORTING
+    end
+    it "descends from the community taxon but is not the first identification of that taxon" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i3 = Identification.make!( observation: o, taxon: child )
+      expect( i3.category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "examples: " do
+    let(:o) { Observation.make! }
+    describe "sequence of IDs along the same ancestry" do
+      before do
+        load_test_taxa
+        @sequence = [
+          Identification.make!( observation: o, taxon: @Chordata ),
+          Identification.make!( observation: o, taxon: @Aves ),
+          Identification.make!( observation: o, taxon: @Calypte ),
+          Identification.make!( observation: o, taxon: @Calypte_anna )
+        ]
+        @sequence.each(&:reload)
+        @sequence
+      end
+      it "should all be improving until the community taxon" do
+        o.reload
+        expect( o.community_taxon ).to eq @Calypte
+        expect( @sequence[0].category ).to eq Identification::IMPROVING
+        expect( @sequence[1].category ).to eq Identification::IMPROVING
+      end
+      it "should end with a leading ID" do
+        expect( @sequence.last.category ).to eq Identification::LEADING
+      end
+      it "should continue to have improving IDs even if the first identifier agrees with the last" do
+        first = @sequence[0]
+        i = Identification.make!( observation: o, taxon: @sequence[-1].taxon, user: first.user )
+        first.reload
+        @sequence[1].reload
+        expect( first ).not_to be_current
+        expect( first.category ).to eq Identification::IMPROVING
+        expect( @sequence[1].category ).to eq Identification::IMPROVING
+      end
+    end
+  end
+  describe "conservative disagreement" do
+    before do
+      load_test_taxa
+      @sequence = [
+        Identification.make!( observation: o, taxon: @Calypte_anna ),
+        Identification.make!( observation: o, taxon: @Calypte ),
+        Identification.make!( observation: o, taxon: @Calypte )
+      ]
+      @sequence.each(&:reload)
+    end
+    it "should consider disagreements that match the community taxon to be improving" do
+      expect( o.community_taxon ).to eq @Calypte
+      expect( @sequence[1].category ).to eq Identification::IMPROVING
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+    end
+    # it "should consider the identification people disagreed with to be maverick" do
+    #   expect( @sequence[0].category ).to eq Identification::MAVERICK
+    # end
+  end
+  describe "single user redundant identifications" do
+    before do
+      load_test_taxa
+      user = User.make!
+      @sequence = [
+        Identification.make!( observation: o, user: user, taxon: @Calypte ),
+        Identification.make!( observation: o, user: user, taxon: @Calypte )
+      ]
+      @sequence.each(&:reload)
+    end
+    it "should leave the current ID as leading" do
+      expect( @sequence.last ).to be_current
+      expect( @sequence.last.category ).to eq Identification::LEADING
+    end
+  end
+  describe "disagreement within a genus" do
+    before do
+      load_test_taxa
+      @sequence = []
+      @sequence << Identification.make!( observation: o, taxon: @Calypte_anna )
+      @sequence << Identification.make!( observation: o, taxon: Taxon.make!( parent: @Calypte, rank: Taxon::SPECIES ) )
+      @sequence << Identification.make!( observation: o, taxon: Taxon.make!( parent: @Calypte, rank: Taxon::SPECIES ) )
+      @sequence.each(&:reload)
+      o.reload
+      expect( o.community_taxon ).to eq @Calypte
+    end
+    it "should have all leading IDs" do
+      expect( @sequence[0].category ).to eq Identification::LEADING
+      expect( @sequence[1].category ).to eq Identification::LEADING
+      expect( @sequence[2].category ).to eq Identification::LEADING
+    end
+  end
+  describe "disagreement with revision" do
+    before do
+      load_test_taxa
+      user = User.make!
+      @sequence = []
+      @sequence << Identification.make!( observation: o, taxon: @Calypte, user: user )
+      @sequence << Identification.make!( observation: o, taxon: @Calypte_anna, user: user )
+      @sequence << Identification.make!( observation: o, taxon: @Calypte )
+      @sequence.each(&:reload)
+      o.reload
+      expect( o.community_taxon ).to eq @Calypte
+    end
+    # it "should be supporting, maverick, improving" do
+    #   expect( @sequence[0].category ).to eq Identification::SUPPORTING
+    #   expect( @sequence[1].category ).to eq Identification::MAVERICK
+    #   expect( @sequence[2].category ).to eq Identification::IMPROVING
+    # end
+    it "should be improving, leading, supporting" do
+      expect( @sequence[0].category ).to eq Identification::IMPROVING
+      expect( @sequence[1].category ).to eq Identification::LEADING
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+    end
+  end
+end
