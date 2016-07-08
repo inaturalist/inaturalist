@@ -440,7 +440,7 @@
       <% end %>
     <% end -%>
 
-    <%= feature_test :idcats do %>
+    <%= feature_test :idcats, audience: [:users] do %>
       <% if @users_who_can_help && @users_who_can_help.size > 0 %>
         <h4>People Who Can Help</h4>
         <ul>

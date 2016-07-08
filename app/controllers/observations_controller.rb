@@ -315,7 +315,7 @@ class ObservationsController < ApplicationController
           user_viewed_updates
         end
 
-        if params[:test] == "idcats"
+        if params[:test] == "idcats" && logged_in?
           leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
           if leading_taxon_ids.size > 0
             sql = <<-SQL
@@ -326,6 +326,23 @@ class ObservationsController < ApplicationController
               WHERE
                 category = 'improving'
                 AND taxon_id IN (#{leading_taxon_ids.join( "," )})
+              GROUP BY
+                user_id
+              HAVING count(*) > 0
+              ORDER BY count(*) DESC
+              LIMIT 10
+            SQL
+            @users_who_can_help = User.joins( "JOIN (#{sql}) AS ident_users ON ident_users.user_id = users.id" ).order("ident_count DESC").limit(10)
+          elsif @observation.taxon && @observation.taxon.rank_level > Taxon::SPECIES_LEVEL
+            sql = <<-SQL
+              SELECT
+                user_id, count(*) AS ident_count
+              FROM
+                identifications
+                  LEFT OUTER JOIN taxon_ancestors ta ON ta.taxon_id = identifications.taxon_id 
+              WHERE
+                category = 'improving'
+                AND ta.ancestor_taxon_id = #{@observation.taxon_id}
               GROUP BY
                 user_id
               HAVING count(*) > 0

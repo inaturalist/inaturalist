@@ -75,7 +75,7 @@
       </span>
     <% end -%>
 
-    <%= feature_test :idcats do %>
+    <%= feature_test :idcats, audience: [:users] do %>
       <div class="small status">
         <%= identification.category %>
       </div>
