@@ -485,6 +485,11 @@ class Observation < ActiveRecord::Base
     return where( "1 = 2" ) unless taxon
     c = taxon.descendant_conditions.to_sql
     c = c.gsub( '"taxa"."ancestry"', 'it."ancestry"' )
+    # I'm not using TaxonAncestor here b/c updating observations for changes
+    # in conservation status uses this scope, and when a cons status changes,
+    # we don't want to skip any taxa that have moved around the tree since the
+    # last time the denormalizer ran
+    select( "DISTINCT observations.*").
     joins( :identifications ).
     joins( "JOIN taxa it ON it.id = identifications.taxon_id" ).
     where( "identifications.current AND (it.id = ? or #{c})", taxon.id ) 
@@ -1343,7 +1348,8 @@ class Observation < ActiveRecord::Base
     end
     self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
     set_geom_from_latlon
-    self.place_guess = Observation.place_guess_from_latlon( private_latitude, private_longitude, acc: calculate_public_positional_accuracy )
+    self.place_guess = Observation.place_guess_from_latlon( private_latitude, private_longitude,
+      acc: calculate_public_positional_accuracy, user: user )
     true
   end
   
@@ -1657,6 +1663,7 @@ class Observation < ActiveRecord::Base
     user = options[:user]
     locale = options[:locale]
     locale ||= user.locale if user
+    locale ||= I18n.locale
     first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
       "#{sys_places[0].name} County"
     else
@@ -1666,7 +1673,7 @@ class Observation < ActiveRecord::Base
       if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        p.code.blank? ? I18n.t( p.name, locale: user.locale, default: p.name ) : p.code
+        p.code.blank? ? I18n.t( p.name, locale: locale, default: p.name ) : p.code
       end
     end
     [first_name, remaining_names].flatten.join( ", " )
@@ -1799,8 +1806,8 @@ class Observation < ActiveRecord::Base
   # include ActionController::UrlWriter
   include Rails.application.routes.url_helpers
   
-  def image_url
-    url = observation_image_url(self, :size => "medium")
+  def image_url(options = {})
+    url = observation_image_url(self, options.merge(size: "medium"))
     url =~ /^http/ ? url : nil
   end
   
@@ -2296,35 +2303,8 @@ class Observation < ActiveRecord::Base
   # share this (and any subsequent) observations on twitter
   # if we're sharing more than one observation, this aggregates them into one tweet
   def share_on_twitter(options = {})
-    u = self.user
-    twit_api = u.twitter_api
-    return nil unless twit_api
-    observations_to_share = if options[:single]
-      [self]
-    else
-      Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
-    end
-    observations_to_share_count = observations_to_share.count
-    tweet_text = "I added "
-    tweet_text += observations_to_share_count > 1 ? "#{observations_to_share_count} observations" : "an observation"
-    url = if observations_to_share_count == 1
-      FakeView.observation_url(self)
-    else
-      dates = observations_to_share.map(&:observed_on).uniq.compact
-      if dates.size == 1
-        d = dates.first
-        FakeView.calendar_date_url(u.login, d.year, d.month, d.day)
-      else
-        FakeView.observations_by_login_url(u.login)
-      end
-    end
-    url = if url =~ /\?/
-      "#{url}&#{id}"
-    else
-      "#{url}?#{id}"
-    end
-    tweet_text += " to #{SITE_NAME} #{url}"
-    twit_api.update(tweet_text)
+    # TODO: fully remove twitter sharing
+    return
   end
 
   # Share this and any future observations on twitter and/or fb (depending on user preferences)
@@ -2452,11 +2432,12 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.as_csv(scope, methods)
+  def self.as_csv(scope, methods, options = {})
     CSV.generate do |csv|
       csv << methods
       scope.each do |item|
-        csv << methods.map{ |m| item.send(m) }
+        # image_url gets options, which will include an SSL boolean
+        csv << methods.map{ |m| m == :image_url ? item.send(m, options) : item.send(m) }
       end
     end
   end

@@ -2691,9 +2691,10 @@ class ObservationsController < ApplicationController
         Observation.preload_associations(@observations, { :observation_field_values => :observation_field })
       end
     end
-    Observation.preload_associations(@observations, :tags) if @observations.respond_to?(:scoped)
+    Observation.preload_associations(@observations, [ :tags, :taxon, :photos, :user, :quality_metrics ])
     pagination_headers_for(@observations)
-    render :text => Observation.as_csv(@observations, only.map{|c| c.to_sym})
+    render :text => Observation.as_csv(@observations, only.map{|c| c.to_sym},
+      { ssl: request.protocol =~ /https/ })
   end
   
   def render_observations_to_kml(options = {})
