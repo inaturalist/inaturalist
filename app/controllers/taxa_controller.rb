@@ -27,6 +27,8 @@ class TaxaController < ApplicationController
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip]
+  before_filter :taxon_curator_required, :only => [:edit, :update,
+    :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
     :browse, :search]
   before_filter :ensure_flickr_write_permission, :only => [
@@ -84,9 +86,11 @@ class TaxaController < ApplicationController
           :iconic_taxon, :photos, :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
         featured_taxa_obs = @featured_taxa.map do |taxon|
-          scope = taxon.observations.order("id DESC")
-          scope = scope.where(:site_id => @site) if @site
-          scope.first
+          taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
+          if @site
+            taxon_obs_params[:site_id] = @site.id
+          end
+          Observation.page_of_results(taxon_obs_params).first
         end.compact
         Observation.preload_associations(featured_taxa_obs, :user)
         @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
@@ -97,21 +101,16 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          q = if @site
-            "SELECT * from observations WHERE taxon_id IS NOT NULL
-             AND site_id = #{@site.id} AND observed_on >= '#{1.month.ago.to_date}'
-             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
-          else
-            "SELECT * from observations WHERE taxon_id IS NOT NULL
-             AND observed_on >= '#{1.month.ago.to_date}'
-             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+          recent_params = { d1: 1.month.ago.to_date.to_s,
+            quality_grade: :research, order_by: :observed_on }
+          if @site
+            recent_params[:site_id] = @site.id
           end
-          @recent = Observation.
-            select("DISTINCT ON (taxon_id) *").
-            from("(#{q}) AS observations").
-            includes(:taxon => [ { taxon_names: :place_taxon_names }, :photos ]).
-            limit(5)
-          @recent = @recent.where(:site_id => @site.id) if @site && CONFIG.site_only_observations
+          # group by taxon ID and get the first obs of each taxon
+          @recent = Observation.page_of_results(recent_params).
+            group_by(&:taxon_id).map{ |k,v| v.first }[0...5]
+          Observation.preload_associations(@recent,{
+            taxon: [ { taxon_names: :place_taxon_names }, :photos ] } )
           @recent = @recent.sort_by(&:id).reverse
         end
       end
@@ -1445,10 +1444,21 @@ class TaxaController < ApplicationController
     end
   end
   
-
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
       select('DISTINCT authority').where("authority IS NOT NULL").
       map(&:authority).compact.reject(&:blank?).map(&:strip).sort
+  end
+
+  def taxon_curator_required
+    unless @taxon.editable_by?( current_user )
+      flash[:notice] = t(:only_administrators_may_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
+    end
   end
 end

@@ -50,11 +50,6 @@ class UsersController < ApplicationController
     :if => Proc.new {|c| 
       (c.params.keys - %w(action controller format)).blank?
     }
-  # caches_action :updates_count,
-  #   expires_in: 15.minutes,
-  #   cache_path: Proc.new { |c|
-  #     updates_count_path(user_id: c.instance_variable_get("@current_user").id)
-  #   }
   cache_sweeper :user_sweeper, :only => [:update]
   
   def new
@@ -189,15 +184,19 @@ class UsersController < ApplicationController
     unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
-        scope = klass.limit(30).
-          order("#{klass.table_name}.id DESC").
-          where("#{klass.table_name}.created_at > ?", 1.week.ago).
-          joins(:user).
-          where("users.id IS NOT NULL").
-          preload(:user)
-        scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-        @updates += scope.all
+        if klass == Observation && !@site.prefers_site_only_users?
+          @updates += Observation.page_of_results( d1: 1.week.ago.to_s )
+        else
+          scope = klass.limit(30).
+            order("#{klass.table_name}.id DESC").
+            where("#{klass.table_name}.created_at > ?", 1.week.ago).
+            joins(:user).
+            where("users.id IS NOT NULL")
+          scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
+          @updates += scope.all
+        end
       end
+      Observation.preload_associations(@updates, :user)
       @updates.delete_if do |u|
         (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
       end

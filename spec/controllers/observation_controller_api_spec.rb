@@ -141,6 +141,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
     it "should provide private coordinates for user's observation" do
       o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
       get :show, :format => :json, :id => o.id
@@ -443,6 +446,14 @@ shared_examples_for "an ObservationsController" do
       put :update, format: :json, id: o.id, observation: {taxon_id: t3.id}
       o.reload
       expect( o.identifications.count ).to eq 3
+    end
+
+    it "shoudld remove the taxon when taxon_id is blank" do
+      o = Observation.make!( user: user, taxon: Taxon.make! )
+      expect( o.taxon ).not_to be_blank
+      put :update, format: :json, id: o.id, observation: { taxon_id: nil }
+      o.reload
+      expect( o.taxon ).to be_blank
     end
 
     it "should mark as captive in response to captive_flag" do
@@ -1238,7 +1249,7 @@ shared_examples_for "an ObservationsController" do
       before{ @o = make_research_grade_observation }
       it "should show the angular app" do
         # the angular app doesn't need to load any observations
-        Observation.should_not_receive(:get_search_params)
+        expect( Observation ).not_to receive(:get_search_params)
         get :index, format: :html
         expect(response.body).to include "ng-controller='MapController'"
         expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
@@ -1246,7 +1257,7 @@ shared_examples_for "an ObservationsController" do
 
       it "can render a partial instead" do
         # we need observations to render all other partials/formats
-        Observation.should_receive(:get_search_params)
+        expect( Observation ).to receive(:get_search_params)
         get :index, format: :html, partial: "observation_component"
         expect(response.body).to_not include "ng-controller='MapController'"
         expect( response.body ).to have_tag("div.user a", text: @o.user.login)

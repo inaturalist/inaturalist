@@ -31,28 +31,21 @@ class TagsChooser extends SelectionBasedComponent {
     return (
       <div className="tags">
         <form onSubmit={this.submitTag}>
-          <OverlayTrigger
-            placement="top"
-            delayShow={ 1000 }
-            overlay={ ( <Tooltip id="tag-tip">{
-              I18n.t( "uploader.tooltips.tags" ) }</Tooltip> ) }
-          >
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder={ I18n.t( "add_tags" ) }
-              />
-              <span className="input-group-btn">
-                <button
-                  className="btn btn-default"
-                  type="submit"
-                >
-                  { I18n.t( "add" ) }
-                </button>
-              </span>
-            </div>
-          </OverlayTrigger>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder={ I18n.t( "add_tags" ) }
+            />
+            <span className="input-group-btn">
+              <button
+                className="btn btn-default"
+                type="submit"
+              >
+                { I18n.t( "add" ) }
+              </button>
+            </span>
+          </div>
         </form>
         <div className="taglist">
           { _.map( commonTags, ( t, i ) => (

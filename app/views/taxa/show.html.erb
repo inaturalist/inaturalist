@@ -108,7 +108,7 @@
     <% if logged_in? -%>
       | <%= link_to t(:map), taxon_map_path(@taxon) %>
     <% end -%>
-    <% if logged_in? and current_user.is_curator? %>
+    <% if logged_in? && @taxon.editable_by?( current_user ) %>
       | <strong><%= link_to t(:edit), edit_taxon_path(@taxon) %></strong>
     <% end %>
     <% if @taxon.flagged? %>
@@ -428,7 +428,7 @@
 
   </div>
 
-  <% if logged_in? && current_user.is_curator? -%>
+  <% if @taxon.editable_by?( current_user ) -%>
     <div id="curation" class="quiet box">
       <h3><%= t(:curation) %></h3>
       <ul>

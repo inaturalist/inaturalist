@@ -12,7 +12,6 @@ $.fn.userAutocomplete = function( options ) {
   };
 
   field.genericAutocomplete( _.extend( options, {
-    extra_class: "user",
     source: function( request, response ) {
       $.ajax({
       url: "/people/search.json",

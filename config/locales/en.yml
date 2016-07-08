@@ -553,7 +553,7 @@ en:
       split: Old taxon split into multiple new taxa
       merge: Several old taxa lumped into one new taxon
       swap: 1-to-1 name change
-      drop: Taxon concept completely invalid, maintained for historical purposes or partner compatability
+      drop: Taxon concept completely invalid, maintained for historical purposes or partner compatibility
       stage: Prepare an inactive concept for release as part of a change group
   change_geoprivacy: 'Change geoprivacy'
   change_group: Change group
@@ -1299,6 +1299,7 @@ en:
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
   identify: Identify
+  identify_observations: "Identify observations"
   identify_title: "Identify"
   identification: identification
   identification_deleted: Identification deleted.
@@ -1362,7 +1363,7 @@ en:
   inactive_taxon: inactive taxon
   inactive_taxon_concepts_are:
     Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change.
-    Outdated concepts are kept to maintain history and compatability with some partner sites.
+    Outdated concepts are kept to maintain history and compatibility with some partner sites.
   inappropriate: Inappropriate?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."

@@ -114,6 +114,9 @@ $.fn.genericAutocomplete = function( options ) {
     open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) },
     close: function () {  $( $(this).data().uiAutocomplete.menu.element ).removeClass( "open" ) }
   }).data( "uiAutocomplete" );
+  if( options.menuClass && ac.menu && ac.menu.element ) {
+    $( ac.menu.element ).addClass( options.menuClass );
+  }
   // modifying _move slightly to prevent scrolling with arrow
   // keys past the top or bottom of the autocomplete menu
   ac._move = function( direction, e ) {

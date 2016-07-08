@@ -9,7 +9,11 @@ module Gonzo
       module InstanceMethods
 
         def flagged?
-          self.flags.where(resolved: false).any?
+          if self.flags.loaded?
+            !! self.flags.detect{ |f| !f.resolved }
+          else
+            self.flags.where(resolved: false).any?
+          end
         end
 
         def to_plain_s

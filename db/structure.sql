@@ -13686,6 +13686,7 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 --
 -- Name: index_identifications_on_category; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_identifications_on_category ON identifications USING btree (category);

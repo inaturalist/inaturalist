@@ -110,7 +110,7 @@
             %li
               = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
               %ul
-                %li= link_to t(:add), new_observation_path, :class => 'subnavaction'
+                %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
                 %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
                 %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
             %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'

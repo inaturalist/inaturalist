@@ -27,10 +27,10 @@ DASHBOARD.loadTab = function( tabName, options ) {
   $( ".dashboard_tab_row a").removeClass( "active" );
   // show this one
   tab.addClass( "active" );
-  $( tab.data( "targetEl" ) ).
-    html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" ).show( );
+  $( tab.data( "targetEl" ) ).show( );
   var type = tab.data( "tab" );
   var tabSettings = DASHBOARD.tabSettings( type );
+  $( tabSettings.target ).html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" )
   // set the browser state and URL
   DASHBOARD.setState( type, tabSettings.params, options );
   // make an API call to fetch the tab's content
@@ -43,14 +43,14 @@ DASHBOARD.tabSettings = function( type ) {
   if ( type === "comments" ) {
     fetchURL = "/comments";
     params = { partial: true };
-    target = "#comments";
+    target = "#comments_target";
   } else {
     fetchURL = "/users/dashboard_updates";
     if ( type === "yours" ) {
       params = { filter: "you" };
-      target = "#updates_by_you";
+      target = "#updates_by_you_target";
     } else {
-      target = "#updates";
+      target = "#updates_target";
     }
   }
   // use this tab's current `from` param

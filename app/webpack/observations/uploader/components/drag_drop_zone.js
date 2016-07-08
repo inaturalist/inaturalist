@@ -77,6 +77,11 @@ class DragDropZone extends Component {
       stop: () => setTimeout( () => $( "body" ).on( "click", this.unselectAll ), 100 ),
       distance: 1
     } );
+    // prevent these keys from being stuck in the "pressed" state
+    $( window ).blur( () => {
+      this.props.setState( { shiftKeyPressed: false } );
+      this.props.setState( { commandKeyPressed: false } );
+    } );
   }
 
   componentDidUpdate( ) {
