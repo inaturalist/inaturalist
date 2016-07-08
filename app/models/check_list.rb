@@ -334,7 +334,7 @@ class CheckList < List
   
   def self.get_current_place_ids_to_refresh(observation, options = {})
     return [] unless observation
-    observation.places.map{|p| p.id}
+    observation.public_places.map{|p| p.id}
   end
   
   def self.get_old_place_ids_to_refresh(observation, options = {})
