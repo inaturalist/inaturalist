@@ -129,9 +129,12 @@ class TaxaController < ApplicationController
           @taxa = Taxon::ICONIC_TAXA
         end
         pagination_headers_for @taxa
+        Taxon.preload_associations(@taxa, [
+          { taxon_photos: { photo: :user } }, :taxon_descriptions,
+          { taxon_names: :place_taxon_names }, :iconic_taxon ] )
         options = Taxon.default_json_options
         options[:include].merge!(
-          :iconic_taxon => {:only => [:id, :name]}, 
+          :iconic_taxon => {:only => [:id, :name]},
           :taxon_names => {:only => [:id, :name, :lexicon]}
         )
         options[:methods] += [:common_name, :image_url, :default_name]

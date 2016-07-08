@@ -361,18 +361,6 @@ class User < ActiveRecord::Base
     @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
-  # returns a Twitter object to make (authenticated) api calls
-  # see twitter gem docs for available methods: https://github.com/sferik/twitter
-  def twitter_api
-    return nil unless twitter_identity
-    @twitter_api ||= Twitter::Client.new do |config|
-      config.consumer_key = CONFIG.twitter.key
-      config.consumer_secret = CONFIG.twitter.secret
-      config.access_token = twitter_identity.token,
-      config.access_token_secret = twitter_identity.secret
-    end
-  end
-
   # returns nil or the twitter ProviderAuthorization
   def twitter_identity
     @twitter_identity ||= has_provider_auth('twitter')

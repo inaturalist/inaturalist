@@ -1799,8 +1799,8 @@ class Observation < ActiveRecord::Base
   # include ActionController::UrlWriter
   include Rails.application.routes.url_helpers
   
-  def image_url
-    url = observation_image_url(self, :size => "medium")
+  def image_url(options = {})
+    url = observation_image_url(self, options.merge(size: "medium"))
     url =~ /^http/ ? url : nil
   end
   
@@ -2295,35 +2295,8 @@ class Observation < ActiveRecord::Base
   # share this (and any subsequent) observations on twitter
   # if we're sharing more than one observation, this aggregates them into one tweet
   def share_on_twitter(options = {})
-    u = self.user
-    twit_api = u.twitter_api
-    return nil unless twit_api
-    observations_to_share = if options[:single]
-      [self]
-    else
-      Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
-    end
-    observations_to_share_count = observations_to_share.count
-    tweet_text = "I added "
-    tweet_text += observations_to_share_count > 1 ? "#{observations_to_share_count} observations" : "an observation"
-    url = if observations_to_share_count == 1
-      FakeView.observation_url(self)
-    else
-      dates = observations_to_share.map(&:observed_on).uniq.compact
-      if dates.size == 1
-        d = dates.first
-        FakeView.calendar_date_url(u.login, d.year, d.month, d.day)
-      else
-        FakeView.observations_by_login_url(u.login)
-      end
-    end
-    url = if url =~ /\?/
-      "#{url}&#{id}"
-    else
-      "#{url}?#{id}"
-    end
-    tweet_text += " to #{SITE_NAME} #{url}"
-    twit_api.update(tweet_text)
+    # TODO: fully remove twitter sharing
+    return
   end
 
   # Share this and any future observations on twitter and/or fb (depending on user preferences)
@@ -2451,11 +2424,12 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.as_csv(scope, methods)
+  def self.as_csv(scope, methods, options = {})
     CSV.generate do |csv|
       csv << methods
       scope.each do |item|
-        csv << methods.map{ |m| item.send(m) }
+        # image_url gets options, which will include an SSL boolean
+        csv << methods.map{ |m| m == :image_url ? item.send(m, options) : item.send(m) }
       end
     end
   end
