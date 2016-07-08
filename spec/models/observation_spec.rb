@@ -2340,6 +2340,19 @@ describe Observation do
       expect(o).to be_coordinates_obscured
       expect(o.latitude).to eq(old_lat)
     end
+
+    it "should change the place_guess" do
+      p = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+      t = Taxon.make!
+      place_guess = "somewhere awesome"
+      o = Observation.make!( taxon: t, latitude: p.latitude, longitude: p.longitude, place_guess: place_guess )
+      cs = ConservationStatus.make!( taxon: t )
+      expect( o.place_guess ).to eq place_guess
+      Observation.reassess_coordinates_for_observations_of( t )
+      o.reload
+      expect( o.place_guess ).not_to be =~ /#{place_guess}/
+      expect( o.place_guess ).to be =~ /#{p.name}/
+    end
   end
 
   describe "queue_for_sharing" do

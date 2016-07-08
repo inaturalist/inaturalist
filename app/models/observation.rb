@@ -1532,14 +1532,16 @@ class Observation < ActiveRecord::Base
     scope.find_in_batches do |batch|
       batch.each do |o|
         o.obscure_coordinates_for_threatened_taxa
-        next unless o.coordinates_changed?
+        next unless o.coordinates_changed? || o.place_guess_changed?
         Observation.where( id: o.id ).update_all(
           latitude: o.latitude,
           longitude: o.longitude,
           private_latitude: o.private_latitude,
           private_longitude: o.private_longitude,
           geom: o.geom,
-          private_geom: o.private_geom
+          private_geom: o.private_geom,
+          place_guess: o.place_guess,
+          private_place_guess: o.private_place_guess
         )
       end
       Observation.elastic_index!( ids: batch.map(&:id) )
