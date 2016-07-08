@@ -283,14 +283,16 @@ class CheckList < List
     
     old_listed_taxa = ListedTaxon.where(place_id: (old_place_ids - current_place_ids), taxon_id: taxon_ids)
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
+    ListedTaxon.preload_associations(listed_taxa, [ { list: :rules }, :taxon, :place, :first_observation ])
     unless listed_taxa.blank?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        CheckList.delay(priority: INTEGRITY_PRIORITY,
-          run_at: 1.hour.from_now, queue: "slow",
-          unique_hash: { "CheckList::refresh_listed_taxon": lt.id }).
-          refresh_listed_taxon(lt.id, options)
+        # delay taxon indexing
+        lt.skip_index_taxon = true
+        refresh_listed_taxon(lt, options)
       end
+      # index taxa in bulk
+      Taxon.elastic_index!(ids: listed_taxa.map(&:taxon_id).uniq)
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
@@ -302,11 +304,9 @@ class CheckList < List
   def self.refresh_listed_taxon(lt, options = {})
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return unless lt
+    # save sets all observation associates, months stats, etc.
     lt.force_update_cache_columns = true
-    lt.save # sets all observation associates, months stats, etc.
-    # now that its saved we don't need to force update for valid?
-    lt.force_update_cache_columns = false
-    unless lt.valid?
+    unless lt.save
       Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
     end
     if lt.auto_removable_from_check_list? && !options[:new]

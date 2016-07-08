@@ -353,16 +353,6 @@ describe CheckList, "refresh_with_observation" do
     @place.taxon_ids.should include(species.id)
   end
 
-  it "should queue unique jobs to refresh listed taxa" do
-    t = Taxon.make!(:species)
-    lt = @check_list.add_taxon(t)
-    o = Observation.make!(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
-    CheckList.refresh_with_observation(o, :new => true)
-    # Delayed::Job.all.each {|j| puts j.handler; puts}
-    Delayed::Job.where("handler LIKE '%CheckList%refresh_listed_taxon% #{lt.id}\n%'").count.should eq(1)
-    CheckList.refresh_with_observation(o, :new => true)
-    Delayed::Job.where("handler LIKE '%CheckList%refresh_listed_taxon% #{lt.id}\n%'").count.should eq(1)
-  end
 end
 
 describe CheckList, "sync_with_parent" do
