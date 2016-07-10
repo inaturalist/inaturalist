@@ -44,7 +44,7 @@ class IdentificationsController < ApplicationController
     unless params[:on].blank?
       scope = scope.on(params[:on])
     end
-    @identifications = scope.page(params[:page]).per_page(20).includes(
+    @identifications = scope.page( params[:page] ).per_page( limited_per_page ).includes(
       { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
       { taxon: [{taxon_names: :place_taxon_names}, :photos] },
       :user
@@ -68,6 +68,7 @@ class IdentificationsController < ApplicationController
         end
       end
       format.json do
+        pagination_headers_for( @identifications )
         taxon_options = {
           only: [:id, :name, :rank],
           methods: [:default_name, :photo_url, :iconic_taxon_name]
