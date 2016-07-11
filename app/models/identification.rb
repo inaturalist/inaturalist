@@ -292,8 +292,19 @@ class Identification < ActiveRecord::Base
     true
   end
 
-  def self.update_categories_for_observation( o )
-    return unless o = Observation.where( id: o ).first
+  def self.update_categories_for_observation( o, options = {} )
+    unless options[:skip_reload]
+      o = Observation.where( id: o ).includes(:community_taxon).first
+    end
+    return unless o
+    if options[:skip_reload]
+      idents = o.identifications
+    else
+      idents = Identification.
+        select( "id, taxon_id, current" ).
+        includes(:taxon).
+        where( observation_id: o.id )
+    end
     categories = {
       improving: [],
       leading: [],
@@ -302,11 +313,7 @@ class Identification < ActiveRecord::Base
       removed: []
     }
     previous_current_idents = []
-    Identification.
-        select( "id, taxon_id, current" ).
-        includes(:taxon).
-        where( observation_id: o.id ).
-        sort_by(&:id).each do |ident|
+    idents.sort_by(&:id).each do |ident|
       ancestor_of_community_taxon = o.community_taxon && o.community_taxon.ancestor_ids.include?( ident.taxon_id )
       descendant_of_community_taxon = o.community_taxon && ident.taxon.ancestor_ids.include?( o.community_taxon_id )
       matches_community_taxon = o.community_taxon && ( ident.taxon_id == o.community_taxon_id )
@@ -324,6 +331,7 @@ class Identification < ActiveRecord::Base
       end
     end
     categories.each do |category, idents|
+      next if idents.compact.blank?
       Identification.where( id: idents.map(&:id) ).update_all( category: category )
     end
   end
