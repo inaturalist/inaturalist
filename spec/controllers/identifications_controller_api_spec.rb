@@ -128,6 +128,18 @@ shared_examples_for "an IdentificationsController" do
       identification.reload
       expect(identification).to be_current
     end
+
+    it "should not leave multiple current IDs when deleting a middle ID" do
+      o = Observation.make!
+      i1 = Identification.make!( user: user, observation: o )
+      i2 = Identification.make!( user: user, observation: o )
+      i3 = Identification.make!( user: user, observation: o )
+      delete :destroy, id: i2.id
+      i1.reload
+      i3.reload
+      expect( i3 ).to be_current
+      expect( i1 ).not_to be_current
+    end
   end
 
   describe "by_login" do

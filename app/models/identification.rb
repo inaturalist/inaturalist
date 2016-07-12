@@ -220,6 +220,8 @@ class Identification < ActiveRecord::Base
   end
 
   def set_last_identification_as_current
+    last_current = observation.identifications.current.by(user_id).order("id ASC").last
+    return true if last_current
     last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
     if last_outdated
       begin
