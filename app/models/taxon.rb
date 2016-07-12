@@ -798,8 +798,17 @@ class Taxon < ActiveRecord::Base
        !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
       return
     end
-    ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%").
-      update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
+    max = ListedTaxon.calculate(:maximum, :id)
+    offset = 0
+    batch_size = 10000
+    scope = ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%")
+    ( ( max - offset ) / batch_size ).times do |i|
+      start = offset + i * batch_size
+      stop  = offset + i * batch_size + batch_size - 1
+      scope.where( "id BETWEEN ? AND ?", start, stop ).
+        update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
+      sleep 1
+    end
   end
   
   def update_life_lists(options = {})
@@ -1099,20 +1108,27 @@ class Taxon < ActiveRecord::Base
     end
   end
 
-  def geoprivacy(options = {})
-    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", self_and_ancestor_ids).order("iucn ASC").last
+  def self.max_geoprivacy( taxon_ids, options = {} )
+    target_taxon_ids = [
+      taxon_ids,
+      Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}
+    ].flatten.compact.uniq
+    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).order("iucn ASC").last
     if global_status && global_status.geoprivacy == Observation::PRIVATE
       return global_status.geoprivacy
     end
-    geoprivacies = [global_status.try(:geoprivacy)]
+    geoprivacies = [ global_status.try(:geoprivacy) ]
     geoprivacies += ConservationStatus.
-      where("taxon_id IN (?)", self_and_ancestor_ids).
-      for_lat_lon(options[:latitude], options[:longitude]).pluck(:geoprivacy)
-    geoprivacies = geoprivacies.uniq.reject{|gp| gp.blank? || gp == Observation::OPEN}
+      where( "taxon_id IN (?)", target_taxon_ids ).
+      for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
+    geoprivacies = geoprivacies.uniq.reject{ |gp| gp.blank? || gp == Observation::OPEN }
     return geoprivacies.first if geoprivacies.size == 1
-    return Observation::PRIVATE if geoprivacies.include?(Observation::PRIVATE)
+    return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED unless geoprivacies.blank?
-    ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
+  end
+
+  def geoprivacy( options = {} )
+    Taxon.max_geoprivacy( [id], options )
   end
 
   def add_to_intersecting_places
@@ -1250,8 +1266,10 @@ class Taxon < ActiveRecord::Base
     taxon
   end
 
-  def editable_by?(user)
-    user.is_curator? || user.is_admin?
+  def editable_by?( user )
+    return false unless user.is_a?( User )
+    return true if user.is_admin?
+    user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 
   def mergeable_by?(user, reject)

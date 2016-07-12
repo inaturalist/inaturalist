@@ -418,7 +418,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def index_taxon
     unless skip_index_taxon
-      taxon.reload.elastic_index!
+      Taxon.load_for_index.where(id: taxon.id).elastic_index!
     end
   end
 
@@ -719,8 +719,6 @@ class ListedTaxon < ActiveRecord::Base
 
   def expire_caches
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(FakeView.listed_taxon_path(id))
-    ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
     ListedTaxon::ORDERS.each do |order|
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
@@ -737,7 +735,6 @@ class ListedTaxon < ActiveRecord::Base
       ctrl.expire_page FakeView.list_path(list, :format => 'csv')
       ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
     end
-    ctrl.send :expire_action, FakeView.url_for(:controller => 'taxa', :action => 'show', :id => taxon_id)
     true
   end
 

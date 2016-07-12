@@ -1,13 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 def setup_taxon_merge
-  @input_taxon1 = Taxon.make!
-  @input_taxon2 = Taxon.make!
-  @output_taxon = Taxon.make!
+  @input_taxon1 = Taxon.make!( rank: Taxon::GENUS )
+  @input_taxon2 = Taxon.make!( rank: Taxon::GENUS )
+  @output_taxon = Taxon.make!( rank: Taxon::GENUS )
   @merge = TaxonMerge.make
-  @merge.add_input_taxon(@input_taxon1)
-  @merge.add_input_taxon(@input_taxon2)
-  @merge.add_output_taxon(@output_taxon)
+  @merge.add_input_taxon( @input_taxon1 )
+  @merge.add_input_taxon( @input_taxon2 )
+  @merge.add_output_taxon( @output_taxon )
   @merge.save!
 end
 
@@ -89,10 +89,13 @@ describe TaxonMerge, "commit" do
   end
 
   it "should move children from the input to the output taxon" do
-    child1 = Taxon.make!( parent: @input_taxon1 )
-    descendant1 = Taxon.make!( parent: child1 )
-    child2 = Taxon.make!( parent: @input_taxon2 )
-    descendant2 = Taxon.make!( parent: child2 )
+    @input_taxon1.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
+    @input_taxon2.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
+    child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::FAMILY )
+    descendant1 = Taxon.make!( parent: child1, rank: Taxon::GENUS )
+    child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::FAMILY )
+    descendant2 = Taxon.make!( parent: child2, rank: Taxon::GENUS )
+    expect( @merge ).to be_valid
     without_delay { @merge.commit }
     child1.reload
     child2.reload

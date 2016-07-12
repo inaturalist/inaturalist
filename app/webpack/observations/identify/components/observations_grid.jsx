@@ -8,21 +8,32 @@ const ObservationsGrid = ( {
   toggleReviewed,
   onAgree,
   grid
-} ) => (
-  <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"}`}>
-    <Col xs={12}>
-      {observations.map( ( observation ) => (
-        <ObservationsGridItem
-          key={observation.id}
-          observation={observation}
-          onObservationClick={onObservationClick}
-          toggleReviewed={toggleReviewed}
-          onAgree={onAgree}
-        />
-      ) ) }
-    </Col>
-  </Row>
-);
+} ) => {
+  let noObservationsNotice;
+  if ( observations.length === 0 ) {
+    noObservationsNotice = (
+      <div className="text-center text-muted">
+        { I18n.t( "no_matching_observations" ) }
+      </div>
+    );
+  }
+  return (
+    <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"}`}>
+      <Col xs={12}>
+        { noObservationsNotice }
+        {observations.map( ( observation ) => (
+          <ObservationsGridItem
+            key={observation.id}
+            observation={observation}
+            onObservationClick={onObservationClick}
+            toggleReviewed={toggleReviewed}
+            onAgree={onAgree}
+          />
+        ) ) }
+      </Col>
+    </Row>
+  );
+};
 
 Col.propTypes = {
   key: PropTypes.number

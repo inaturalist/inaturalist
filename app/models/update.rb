@@ -21,7 +21,6 @@ class Update < ActiveRecord::Base
   validates_presence_of :resource, :notifier, :subscriber
   
   before_create :set_resource_owner
-  after_create :expire_caches
   
   # NOTIFICATIONS = %w(create change activity)
   YOUR_OBSERVATIONS_ADDED = "your_observations_added"
@@ -54,13 +53,7 @@ class Update < ActiveRecord::Base
   def sort_by_date
     created_at || notifier.try(:created_at) || Time.now
   end
-  
-  def expire_caches
-    ctrl = ActionController::Base.new
-    ctrl.expire_fragment(FakeView.home_url(:user_id => subscriber_id).gsub('http://', ''))
-    true
-  end
-  
+
   def self.load_additional_activity_updates(updates)
     # fetch all other activity updates for the loaded resources
     activity_updates = updates.select{|u| u.notification == 'activity'}
@@ -250,7 +243,6 @@ class Update < ActiveRecord::Base
     updates_scope = Update.where(id: updates)
     updates_scope.update_all(viewed_at: Time.now)
     Update.elastic_index!(scope: updates_scope)
-    ActionController::Base.new.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'updates_count', user_id: subscriber_id)
   end
 
   def self.delete_and_purge(*args)

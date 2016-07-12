@@ -2,6 +2,7 @@ class AnnouncementsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_required
   before_filter :load_announcement, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_sites, only: [:new, :edit, :create]
   
   # GET /announcements
   # GET /announcements.xml
@@ -14,7 +15,6 @@ class AnnouncementsController < ApplicationController
   
   def new
     @announcement = Announcement.new
-    
     respond_to do |format|
       format.html
     end
@@ -58,4 +58,9 @@ class AnnouncementsController < ApplicationController
   def load_announcement
     render_404 unless @announcement = Announcement.find_by_id(params[:id])
   end
+
+  def load_sites
+    @sites = Site.limit(100)
+  end
+  
 end

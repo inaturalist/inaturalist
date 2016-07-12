@@ -188,8 +188,8 @@ describe DarwinCore::Archive, "make_project_observations_data" do
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   it "should filter by taxon" do
     parent = Taxon.make!(rank: Taxon::GENUS)

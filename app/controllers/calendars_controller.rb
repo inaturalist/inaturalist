@@ -56,20 +56,34 @@ class CalendarsController < ApplicationController
       sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      # without this there can be performance problems with very large places.
-      # 6 is around the max size for a US county
-      place_name_counts = Observation.
-        joins("JOIN place_geometries ON (ST_Intersects(place_geometries.geom, observations.private_geom))").
-        joins("JOIN places ON (place_geometries.place_id = places.id)").
-        where("st_area(place_geometries.geom) < 6").
-        where(Observation.conditions_for_date("observations.observed_on", @date)).
-        where("observations.user_id = ?", @selected_user).
-        group("(places.display_name || '-' || places.id)").count
-      @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.to_s.split('-').last})
-      @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
-        n = "#{place.display_name}-#{place.id}"
-        [n, place_name_counts[n]]
+      @place_name_counts = {}
+      @places = Set.new
+      Observation.preload_associations( @observations, observations_places: :place )
+      @observations.each do |o|
+        if @selected_user == current_user
+          acc = o.positional_accuracy
+        else
+          next if o.latitude.blank?
+          acc = o.public_positional_accuracy || o.positional_accuracy
+        end
+        lat = o.private_latitude || o.latitude
+        lon = o.private_longitude || o.longitude
+        places = o.observations_places.map(&:place).select do |p|
+           if p.blank? || ( p.admin_level.blank? && p.place_type != Place::OPEN_SPACE )
+            false
+          elsif p.straddles_date_line?
+            true
+          else
+            p.bbox_contains_lat_lng_acc?( lat, lon, acc )
+          end
+        end
+        @places += places
+        places.each do |p|
+          @place_name_counts["#{p.display_name}-#{p.id}"] ||= { place: p, count: 0 }
+          @place_name_counts["#{p.display_name}-#{p.id}"][:count] += 1
+        end
       end
+      @place_name_counts = @place_name_counts.sort_by{ |k,v| v[:place].bbox_area }.map{ |k,v| [k, v[:count]] }[0..5]
       @previous = @selected_user.observations.where("observed_on < ?", @observations.first.observed_on).order("observed_on DESC").first
       @next = @selected_user.observations.where("observed_on > ?", @observations.first.observed_on).order("observed_on ASC").first
     end

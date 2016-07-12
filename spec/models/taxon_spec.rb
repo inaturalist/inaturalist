@@ -980,6 +980,28 @@ describe Taxon, "geoprivacy" do
   end
 end
 
+describe Taxon, "max_geoprivacy" do
+  let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
+  let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
+  let(:taxon_ids) { [t1.id, t2.id] }
+  it "should be private if one of the taxa has a private global status" do
+    cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
+  end
+  it "should be private if one of the ancestor taxa has a private global status" do
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    cs_global = ConservationStatus.make!( taxon: parent, geoprivacy: Observation::PRIVATE )
+    without_delay do
+      t1.update_attributes( parent: parent )
+    end
+    expect( t1.ancestor_ids ).to include parent.id
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
+  end
+  it "should be nil if one none of the taxa have global status" do
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq nil
+  end
+end
+
 describe Taxon, "to_styled_s" do
   it "should return normal names untouched" do
     expect(Taxon.new(:name => "Tom", :rank => nil).to_styled_s).to eq "Tom"
@@ -1018,3 +1040,22 @@ describe Taxon, "leading_name" do
     expect(taxon.leading_name).to eq "Common"
   end
 end
+
+describe Taxon, "editable_by?" do
+  before { load_test_taxa }
+  let(:admin) { make_admin }
+  let(:curator) { make_curator }
+  it "should always be editable by admins" do
+    Taxon.all.each do |t|
+      expect( t ).to be_editable_by( admin )
+    end
+  end
+  it "should be editable by curators if below order" do
+    expect( @Calypte ).to be_editable_by( curator )
+  end
+  it "should not be editable by curators if order or above" do
+    expect( @Aves ).not_to be_editable_by( curator )
+  end
+end
+
+

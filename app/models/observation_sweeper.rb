@@ -50,8 +50,6 @@ class ObservationSweeper < ActionController::Caching::Sweeper
     return unless taxon
     ctrl = ActionController::Base.new
     I18N_SUPPORTED_LOCALES.each do |locale|
-      ctrl.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.to_param, locale: locale)
-      ctrl.send :expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.id, locale: locale)
       ctrl.send :expire_action, FakeView.url_for(controller: 'observations', action: 'of', id: taxon.id, format: "json", locale: locale)
       ctrl.send :expire_action, FakeView.url_for(controller: 'observations', action: 'of', id: taxon.id, format: "geojson", locale: locale)
     end

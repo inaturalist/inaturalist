@@ -24,7 +24,7 @@ describe TaxonSplit, "commit_records" do
 end
 
 def prepare_drop
-  @input_taxon = Taxon.make!
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
   @drop = TaxonDrop.make
   @drop.add_input_taxon(@input_taxon)
   @drop.save!  

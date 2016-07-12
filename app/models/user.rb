@@ -180,7 +180,7 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
-  validates_length_of       :time_zone, minimum: 4, allow_nil: true
+  validates_length_of       :time_zone, minimum: 3, allow_nil: true
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -359,18 +359,6 @@ class User < ActiveRecord::Base
 
   def picasa_identity
     @picasa_identity ||= has_provider_auth('google_oauth2')
-  end
-
-  # returns a Twitter object to make (authenticated) api calls
-  # see twitter gem docs for available methods: https://github.com/sferik/twitter
-  def twitter_api
-    return nil unless twitter_identity
-    @twitter_api ||= Twitter::Client.new do |config|
-      config.consumer_key = CONFIG.twitter.key
-      config.consumer_secret = CONFIG.twitter.secret
-      config.access_token = twitter_identity.token,
-      config.access_token_secret = twitter_identity.secret
-    end
   end
 
   # returns nil or the twitter ProviderAuthorization

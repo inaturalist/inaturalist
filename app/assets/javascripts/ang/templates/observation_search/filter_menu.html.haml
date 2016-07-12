@@ -225,7 +225,10 @@
         {{ shared.t('update_search') | capitalize:'title' }}
       %button.btn.btn-default{ type: 'button', "ng-click": "resetParams( )" }
         {{ shared.t('reset_search_filters') | capitalize:'title' }}
-      #feeds.pull-right
+      #footer-links.pull-right
+        %a.btn.btn-link{"ng-href" => "/observations/identify?{{ paramsForUrl( ) }}", target: "_self"}
+          %i.icon-identification
+          %span {{ shared.t('identify_title') }}
         %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}", target: "_self"}
           %i.fa.fa-rss
           %span {{ shared.t('atom') }}

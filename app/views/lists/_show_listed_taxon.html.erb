@@ -8,8 +8,6 @@
   <%= render :partial => 'lists/listed_taxon',
              :locals => {:listed_taxon => listed_taxon, :list => list} %>
 <%- else -%>
-  <% cache(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon.id, :locale => I18n.locale) do %>
-    <%= render :partial => 'lists/listed_taxon',
-               :locals => {:listed_taxon => listed_taxon, :list => list} %>
-  <% end %>
+  <%= render :partial => 'lists/listed_taxon',
+             :locals => {:listed_taxon => listed_taxon, :list => list} %>
 <% end -%>

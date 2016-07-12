@@ -10,6 +10,29 @@ class IdentificationsController < ApplicationController
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
   }
+
+  def index
+    @identifications = Identification.order( "id desc" ).page( params[:page] ).per_page( 100 )
+    @identifications = @identifications.where( category: params[:category] ) if Identification::CATEGORIES.include?( params[:category] )
+    if params[:user_id]
+      if user = ( User.find_by_id( params[:user_id] ) || User.find_by_login( params[:user_id] ) )
+        @identifications = @identifications.by( user )
+      end
+    end
+    if params[:current].blank? || params[:current].yesish?
+      @identifications = @identifications.current
+    elsif params[:current].noish?
+      @identifications = @identifications.outdated
+    end
+    if params[:for] == "others"
+      @identifications = @identifications.joins(:observation).where( "observations.user_id != identifications.user_id" )
+    end
+    @identifications = @identifications.of( params[:taxon_id] ) if params[:taxon_id]
+    @counts = @identifications.where("category IS NOT NULL").group(:category).count
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
     
   def show
     redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
@@ -21,7 +44,7 @@ class IdentificationsController < ApplicationController
     unless params[:on].blank?
       scope = scope.on(params[:on])
     end
-    @identifications = scope.page(params[:page]).per_page(20).includes(
+    @identifications = scope.page( params[:page] ).per_page( limited_per_page ).includes(
       { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
       { taxon: [{taxon_names: :place_taxon_names}, :photos] },
       :user
@@ -45,6 +68,7 @@ class IdentificationsController < ApplicationController
         end
       end
       format.json do
+        pagination_headers_for( @identifications )
         taxon_options = {
           only: [:id, :name, :rank],
           methods: [:default_name, :photo_url, :iconic_taxon_name]

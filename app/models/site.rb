@@ -4,6 +4,7 @@ class Site < ActiveRecord::Base
   has_many :site_admins, inverse_of: :site
   has_many :posts, as: :parent, dependent: :destroy
   has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
+  has_many :announcements, inverse_of: :site, dependent: :destroy
 
   scope :live, -> { where(draft: false) }
   scope :drafts, -> { where(draft: true) }

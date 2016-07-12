@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSplit, "validation" do
   it "should not allow the same taxon on both sides of the split" do
-    old_taxon = Taxon.make!
-    new_taxon = Taxon.make!
+    old_taxon = Taxon.make!( rank: Taxon::FAMILY )
+    new_taxon = Taxon.make!( rank: Taxon::FAMILY )
     tc = TaxonSplit.make
     tc.add_input_taxon(old_taxon)
     tc.add_output_taxon(new_taxon)
@@ -46,9 +46,9 @@ describe TaxonSplit, "commit_records" do
 end
 
 def prepare_split
-  @input_taxon = Taxon.make!
-  @output_taxon1 = Taxon.make!
-  @output_taxon2 = Taxon.make!
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
+  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY )
+  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY )
   @split = TaxonSplit.make
   @split.add_input_taxon(@input_taxon)
   @split.add_output_taxon(@output_taxon1)
