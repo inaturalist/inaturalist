@@ -124,6 +124,7 @@ shared_examples_for "an ObservationsController" do
       post :create, :format => :json, :observation => {:uuid => uuid}
       expect(Observation.where(:uuid => uuid).count).to eq 2
     end
+
   end
 
   describe "destroy" do
@@ -471,6 +472,38 @@ shared_examples_for "an ObservationsController" do
       o.reload
       qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
       expect( qm ).to be_agree
+    end
+
+    describe "private_place_guess" do
+      let(:p) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL, name: "Freedonia" ) }
+      let(:original_place_guess) { "super secret place" }
+      let(:o) {
+        Observation.make!(
+          latitude: p.latitude,
+          longitude: p.longitude,
+          geoprivacy: Observation::OBSCURED,
+          place_guess: original_place_guess,
+          user: user
+        )
+      }
+      it "should not change if the obscured place_guess is submitted" do
+        obscured_place_guess = o.place_guess
+        expect( obscured_place_guess ).to eq p.name
+        put :update, format: :json, id: o.id, observation: { place_guess: original_place_guess, description: "foo" }
+        o.reload
+        expect( o.description ).to eq "foo"
+        expect( o ). to be_coordinates_obscured
+        expect( o.place_guess ).to eq obscured_place_guess
+        expect( o.private_place_guess ).to eq original_place_guess
+      end
+      it "should change with a new place_guess" do
+        obscured_place_guess = o.place_guess
+        new_place_guess = "a totally different place"
+        put :update, format: :json, id: o.id, observation: { place_guess: new_place_guess }
+        o.reload
+        expect( o.place_guess ).to eq obscured_place_guess
+        expect( o.private_place_guess ).to eq new_place_guess
+      end
     end
   end
 

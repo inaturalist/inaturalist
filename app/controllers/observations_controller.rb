@@ -568,6 +568,7 @@ class ObservationsController < ApplicationController
     if @observation.coordinates_obscured?
       @observation.latitude = @observation.private_latitude
       @observation.longitude = @observation.private_longitude
+      @observation.place_guess = @observation.private_place_guess
     end
     
     if params[:facebook_photo_id]
