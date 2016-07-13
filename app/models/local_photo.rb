@@ -35,14 +35,22 @@ class LocalPhoto < Photo
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
-      path: "photos/:id/:style.:extension",
+      #
+      #  NOTE: the path used to be "photos/:id/:style.:extension" as of
+      #  [DATE], but that wasn't setting the extension based on the detected
+      #  content type, just echoing what was in the file name. So if you're
+      #  trying to use file.url or file.path for photos older than [DATE],
+      #  you'll probably want to fetch the original from original_url first
+      #  before you do any work on the photo.
+      #
+      path: "photos/:id/:style.:content_type_extension",
       url: ":s3_alias_url",
       only_process: [ :original, :large ]
     )
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
       only_process: [ :original, :large ]
     )
   end
@@ -139,7 +147,15 @@ class LocalPhoto < Photo
     true
   end
 
+  def reset_file_from_original
+    io = open( URI.parse( original_url ) )
+    Timeout::timeout(10) do
+      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+  end
+
   def repair(options = {})
+    reset_file_from_original
     self.file.reprocess!
     set_urls
     [self, {}]
@@ -233,11 +249,11 @@ class LocalPhoto < Photo
   end
 
   def rotate!(degrees = 90)
+    reset_file_from_original
     self.rotation = degrees
     self.rotation -= 360 if self.rotation >= 360
     self.rotation += 360 if self.rotation <= -360
-    self.file.post_processing = true
-    self.file.reprocess!
+    self.file.reprocess_without_delay!
     self.save
   end
 
