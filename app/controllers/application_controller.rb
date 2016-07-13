@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
 
   def set_site
     @site ||= CONFIG.site unless Rails.env.test?
-    if !@site && CONFIG.site_id
+    if ( !@site || !@site.is_a?( Site ) ) && CONFIG.site_id
       @site = Site.find_by_id(CONFIG.site_id)
       CONFIG.site = @site unless Rails.env.test?
     end
