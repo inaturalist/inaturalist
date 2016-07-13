@@ -696,12 +696,12 @@ class User < ActiveRecord::Base
     options[:wheres] ||= { }
     options[:per_page] ||= 10
     if options[:unviewed]
-      options[:filters] << { not: { exists: { field: :viewed_at } } }
+      options[:filters] << { not: { term: { viewed_subscriber_ids: id } } }
     elsif options[:viewed]
-      options[:filters] << { range: { viewed_at: { gt: 1.day.ago } } }
+      options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_id: id } }
-    Update.elastic_paginate(
+    options[:filters] << { term: { subscriber_ids: id } }
+    UpdateAction.elastic_paginate(
       where: options[:wheres],
       filters: options[:filters],
       per_page: options[:per_page],

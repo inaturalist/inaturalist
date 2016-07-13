@@ -410,10 +410,9 @@ class UsersController < ApplicationController
     
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
-    @updates = Update.load_additional_activity_updates(@pagination_updates)
-    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
-    @update_cache = Update.eager_load_associates(@updates)
-    @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
+    @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
+    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
+    @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
     respond_to do |format|
       format.html do
         render :partial => 'dashboard_updates', :layout => false
@@ -478,11 +477,10 @@ class UsersController < ApplicationController
       end
     end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
-      Update.user_viewed_updates(@updates)
+      UpdateAction.user_viewed_updates(@updates, current_user.id)
       session[:updates_count] = 0
     end
-    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
-    @update_cache = Update.eager_load_associates(@updates)
+    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
     respond_to do |format|
       format.html { render :layout => false }

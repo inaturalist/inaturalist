@@ -5,21 +5,20 @@ class CreateNewUpdatesTables < ActiveRecord::Migration
       t.string :resource_type
       t.string :notifier_type
       t.integer :notifier_id
-      t.integer :notification
+      t.string :notification
       t.integer :resource_owner_id
       t.datetime :created_at
     end
-    # add_index :update_actions,
-    #   [ :resource_id, :notifier_id, :resource_type, :notifier_type, :notification ],
-    #   unique: true, name: "index_update_actions_unique"
-    # add_index :update_actions, :created_at
+    add_index :update_actions, [ :resource_id, :notifier_id, :resource_type,
+      :notifier_type, :notification, :resource_owner_id ], unique: true,
+      name: "index_update_actions_unique"
+    # add_index :update_actions, [ :notifier_id, :notifier_type ]
 
     create_table :update_subscribers do |t|
       t.integer :update_action_id
-      t.string :subscriber_id
+      t.integer :subscriber_id
       t.datetime :viewed_at
     end
-    # add_index :update_subscribers, :update_action_id
-    # add_index :update_subscribers, :subscriber_id
+    add_index :update_subscribers, :update_action_id
   end
 end
