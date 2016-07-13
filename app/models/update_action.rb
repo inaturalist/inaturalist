@@ -35,6 +35,17 @@ class UpdateAction < ActiveRecord::Base
     created_at || notifier.try(:created_at) || Time.now
   end
 
+  def self.components_of_class(klass, updates)
+    (updates.map{ |u| u.resource_type == klass.name ? u.resource : nil } +
+      updates.map{ |u| u.notifier_type == klass.name ? u.notifier : nil }).compact.uniq
+  end
+
+  def self.components_with_assoc(assoc, updates)
+    (updates.map{ |u| u.resource.class.reflect_on_association(assoc) ? u.resource : nil } +
+      updates.map{ |u| u.notifier.class.reflect_on_association(assoc) ? u.notifier : nil }).compact.uniq
+  end
+
+
   def self.email_updates
     # site will be looked up tons of times, so store it in CONFIG
     CONFIG.site = Site.find_by_id(CONFIG.site_id)
@@ -100,19 +111,12 @@ class UpdateAction < ActiveRecord::Base
     end.compact
     return if updates.blank?
 
-    UpdateAction.preload_associations(updates, [ :resource, :notifier, :resource_owner ])
-    # all observation resources and notifiers
-    obs = updates.map{ |u| u.resource_type == "Observation" ? u.resource : nil } +
-      updates.map{ |u| u.notifier_type == "Observation" ? u.notifier : nil }.compact.uniq
-    # all identification notifiers
-    ids = updates.map{ |u| u.notifier_type == "Identification" ? u.notifier : nil }.compact.uniq
-    # all resources and notifiers with user associations
-    with_users = updates.map{ |u| u.resource.class.reflect_on_association(:user) ? u.resource : nil } +
-      updates.map{ |u| u.notifier.class.reflect_on_association(:user) ? u.notifier : nil }.compact.uniq
+    UpdateAction.preload_associations(updates, [ :resource, :notifier, :resource_owner ] )
+    obs = UpdateAction.components_of_class(Observation, updates)
+    ids = UpdateAction.components_of_class(Identification, updates)
+    with_users = UpdateAction.components_with_assoc(:user, updates)
     Observation.preload_associations(obs, [:photos, :site ])
-    Taxon.preload_associations(ids + obs, [
-      { taxon: [ { taxon_photos: :photo }, { taxon_names: :place_taxon_names } ] } ] )
-    Identification.preload_associations(ids, :observation)
+    Taxon.preload_associations(ids + obs, { taxon: [ :photos, { taxon_names: :place_taxon_names } ] } )
     User.preload_associations(with_users, { user: :site })
     Emailer.updates_notification(user, updates).deliver_now
   end

@@ -412,23 +412,18 @@ class UsersController < ApplicationController
       filters: filters, wheres: wheres, per_page: 50)
     @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
     UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
-    # grab the observation resources and notifiers
-    obs = @updates.map{ |u| u.resource_type == "Observation" ? u.resource : nil } +
-      @updates.map{ |u| u.notifier_type == "Observation" ? u.notifier : nil }.compact.uniq
-    # load some obs associations needed for group_and_sort
-    Observation.preload_associations(obs, [:comments, :identifications, :photos ])
+    obs = UpdateAction.components_of_class(Observation, @updates)
+    taxa = UpdateAction.components_of_class(Taxon, @updates)
+    with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
+    with_user = UpdateAction.components_with_assoc(:user, @updates)
+    Observation.preload_associations(obs, [:comments, :identifications, :photos])
+    with_taxa += obs.map(&:identifications).flatten
+    with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
+    Taxon.preload_associations(with_taxa, :taxon)
+    taxa += with_taxa.map(&:taxon)
+    Taxon.preload_associations(taxa, { taxon_names: :place_taxon_names })
+    User.preload_associations(with_user, :user)
     @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
-    # grab the updates from the groups, to do some preloading
-    preload_updates = @grouped_updates.map{ |g| g[1] }.flatten
-    # preload the basics for all updates
-    UpdateAction.preload_associations(preload_updates, [ :resource, :notifier, :resource_owner ])
-    # grab the identification update notifiers
-    ids = preload_updates.map{ |u| u.notifier_type == "Identification" ? u.notifier : nil }.compact.uniq
-    # preload taxa and user for obs and ids
-    Taxon.preload_associations(ids + obs, [
-      { taxon: [ { taxon_photos: :photo }, { taxon_names: :place_taxon_names } ] },
-      :user ] )
-    Identification.preload_associations(ids, :observation)
     respond_to do |format|
       format.html do
         render :partial => 'dashboard_updates', :layout => false
