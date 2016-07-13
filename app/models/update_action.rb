@@ -36,11 +36,11 @@ class UpdateAction < ActiveRecord::Base
   end
 
   def self.email_updates
+    # site will be looked up tons of times, so store it in CONFIG
+    CONFIG.site = Site.find_by_id(CONFIG.site_id)
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
     email_count = 0
-    start_time = 5.months.ago
-    end_time = Time.now
     user_ids = UpdateAction.joins(:update_subscribers).
       where(["created_at BETWEEN ? AND ?", start_time, end_time]).
       select("DISTINCT subscriber_id").map{|u| u.subscriber_id}.compact.uniq.sort
@@ -99,7 +99,22 @@ class UpdateAction < ActiveRecord::Base
       !user.prefers_mention_email_notification? && u.notification == "mention"
     end.compact
     return if updates.blank?
-    Emailer.updates_notification(user, updates)
+
+    UpdateAction.preload_associations(updates, [ :resource, :notifier, :resource_owner ])
+    # all observation resources and notifiers
+    obs = updates.map{ |u| u.resource_type == "Observation" ? u.resource : nil } +
+      updates.map{ |u| u.notifier_type == "Observation" ? u.notifier : nil }.compact.uniq
+    # all identification notifiers
+    ids = updates.map{ |u| u.notifier_type == "Identification" ? u.notifier : nil }.compact.uniq
+    # all resources and notifiers with user associations
+    with_users = updates.map{ |u| u.resource.class.reflect_on_association(:user) ? u.resource : nil } +
+      updates.map{ |u| u.notifier.class.reflect_on_association(:user) ? u.notifier : nil }.compact.uniq
+    Observation.preload_associations(obs, [:photos, :site ])
+    Taxon.preload_associations(ids + obs, [
+      { taxon: [ { taxon_photos: :photo }, { taxon_names: :place_taxon_names } ] } ] )
+    Identification.preload_associations(ids, :observation)
+    User.preload_associations(with_users, { user: :site })
+    Emailer.updates_notification(user, updates).deliver_now
   end
 
   def self.load_additional_activity_updates(updates, user_id)
@@ -129,7 +144,7 @@ class UpdateAction < ActiveRecord::Base
         end
       elsif notification == "activity" && !options[:skip_past_activity]
         # get the resource that has all this activity
-        resource = Object.const_get(resource_type).find_by_id(resource_id)
+        resource = batch.first.resource
         if resource.blank?
           Rails.logger.error "[ERROR #{Time.now}] couldn't find resource #{resource_type} #{resource_id}, first update: #{batch.first}"
           next
@@ -182,7 +197,8 @@ class UpdateAction < ActiveRecord::Base
 
   def self.first_with_attributes(attrs, options = {})
     skip_validations = options.delete(:skip_validations)
-    if action = UpdateAction.where(attrs).first
+    # using .limit(1)[0] rather than .first to avoid a SQL sort on id
+    if action = UpdateAction.where(attrs).limit(1)[0]
       return action
     end
     action = UpdateAction.new(attrs.merge(created_at: Time.now).merge(options))
