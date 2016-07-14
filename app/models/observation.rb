@@ -315,7 +315,7 @@ class Observation < ActiveRecord::Base
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
-  validates_uniqueness_of :uuid
+  validates_uniqueness_of :uuid, case_sensitive: false
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
@@ -1082,7 +1082,8 @@ class Observation < ActiveRecord::Base
   end
 
   def set_uuid
-    self.uuid ||= UUID.generate
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
     true
   end
   
