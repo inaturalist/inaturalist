@@ -320,7 +320,8 @@ class Observation < ActiveRecord::Base
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates
+                    :set_coordinates,
+                    :set_uuid
 
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
@@ -339,8 +340,7 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
-              :set_iconic_taxon,
-              :set_uuid
+              :set_iconic_taxon
 
   before_update :handle_id_please_on_update, :set_quality_grade
 
