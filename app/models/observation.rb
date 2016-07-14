@@ -315,6 +315,7 @@ class Observation < ActiveRecord::Base
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
+  validates_uniqueness_of :uuid
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
@@ -338,7 +339,8 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :set_uuid
 
   before_update :handle_id_please_on_update, :set_quality_grade
 
@@ -1076,6 +1078,11 @@ class Observation < ActiveRecord::Base
     else
       self.iconic_taxon_id = nil
     end
+    true
+  end
+
+  def set_uuid
+    self.uuid ||= UUID.generate
     true
   end
   

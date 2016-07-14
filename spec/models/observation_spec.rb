@@ -444,6 +444,7 @@ describe Observation do
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE)
       expect(o).to be_georeferenced
     end
+
   end
 
   describe "updating" do

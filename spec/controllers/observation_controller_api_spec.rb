@@ -117,12 +117,25 @@ shared_examples_for "an ObservationsController" do
       expect(o.description).to eq "this is a WOAH"
     end
 
-    it "should duplicate observations with the same uuid if made by different users" do
-      # in theory this is statistically impossible if people use rfc4122 UUIDs, but people and statistics are evil
+    it "should be invalid for observations with the same uuid if" do
       uuid = "some really long identifier"
-      o = Observation.make!(:uuid => uuid)
-      post :create, :format => :json, :observation => {:uuid => uuid}
-      expect(Observation.where(:uuid => uuid).count).to eq 2
+      o = Observation.make!( uuid: uuid )
+      post :create, format: :json, observation: { uuid: uuid }
+      expect( response.status ).to eq 422
+      expect( Observation.where( uuid: uuid ).count ).to eq 1
+    end
+
+    it "should set the uuid even if it wasn't included in the request" do
+      post :create, format: :json, observation: { species_guess: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["uuid"] ).not_to be_blank
+    end
+
+    it "should not override a uuid in the request" do
+      uuid = "some really long identifier"
+      post :create, format: :json, observation: { uuid: uuid }
+      json = JSON.parse( response.body )[0]
+      expect( json["uuid"] ).to eq uuid
     end
 
   end
