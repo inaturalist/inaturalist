@@ -423,6 +423,7 @@ class UsersController < ApplicationController
     taxa += with_taxa.map(&:taxon)
     Taxon.preload_associations(taxa, { taxon_names: :place_taxon_names })
     User.preload_associations(with_user, :user)
+    @updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
     @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
     respond_to do |format|
       format.html do

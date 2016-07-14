@@ -36,13 +36,15 @@ class UpdateAction < ActiveRecord::Base
   end
 
   def self.components_of_class(klass, updates)
-    (updates.map{ |u| u.resource_type == klass.name ? u.resource : nil } +
-      updates.map{ |u| u.notifier_type == klass.name ? u.notifier : nil }).compact.uniq
+    (updates.map{ |u| u.resource && u.resource_type == klass.name ? u.resource : nil } +
+      updates.map{ |u| u.notifier && u.notifier_type == klass.name ? u.notifier : nil }).
+      compact.uniq
   end
 
   def self.components_with_assoc(assoc, updates)
-    (updates.map{ |u| u.resource.class.reflect_on_association(assoc) ? u.resource : nil } +
-      updates.map{ |u| u.notifier.class.reflect_on_association(assoc) ? u.notifier : nil }).compact.uniq
+    (updates.map{ |u| u.resource && u.resource.class.reflect_on_association(assoc) ? u.resource : nil } +
+      updates.map{ |u| u.notifier && u.notifier.class.reflect_on_association(assoc) ? u.notifier : nil }).
+      compact.uniq
   end
 
 
@@ -118,6 +120,7 @@ class UpdateAction < ActiveRecord::Base
     Observation.preload_associations(obs, [:photos, :site ])
     Taxon.preload_associations(ids + obs, { taxon: [ :photos, { taxon_names: :place_taxon_names } ] } )
     User.preload_associations(with_users, { user: :site })
+    updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
     Emailer.updates_notification(user, updates).deliver_now
   end
 
