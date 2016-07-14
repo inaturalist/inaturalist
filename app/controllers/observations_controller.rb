@@ -307,9 +307,19 @@ class ObservationsController < ApplicationController
         else
           FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
         end
-        @shareable_description = @observation.to_plain_s(:no_place_guess => !@coordinates_viewable)
+        @shareable_title = if !@observation.species_guess.blank?
+          @observation.species_guess
+        elsif @observation.taxon
+          if comname = FakeView.common_taxon_name( @observation.taxon, place: @site.try(:place) ).try(:name)
+            "#{comname} (#{@observation.taxon.name})"
+          else
+            @observation.taxon.name
+          end
+        else
+          I18n.t( "something" )
+        end
+        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
         @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
-        
 
         if logged_in?
           user_viewed_updates
