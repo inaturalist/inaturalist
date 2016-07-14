@@ -2347,11 +2347,41 @@ ca:
       observats a prop...
     observe_panel_body_p1_global: Necessiteu inspiració? Aquí teniu alguns organismes
       observats...
+    observe_panel_body_p2: Sortiu a l'exterior, i observeu un organisme. Escolliu
+      algun ésser viu silvestre i preneu una fotografia clara on ocupi tot el fotograma.
+      Si ja teniu la foto d'alguna forma silvestre,  <a href="%{new_observation_path}">afegiu-la
+      ara</a>. També podeu utilitzar l'aplicació mòbil de %{site_name} per enregistrar
+      les observacions.
+    observe_panel_body_p3: Una vegada heu compartit la vostra observació, aquesta
+      pàgina us mostrarà les actualitzacions de la la comunitat en forma de comentaris
+      i identificacions. Qui sap el que podeu descobrir!
     follow_panel_title_local: Seguiu alguns naturalistes propers
     follow_panel_title_global: Seguiu alguns naturalistes actius
+    follow_panel_body: Si visiteu aquests perfils i premeu el botó per seguir-los,
+      rebreu actualitzacions quan publiquin les seves observacions
+    comments_panel_title: Tens curiositat per conèixer quines discussions tenen lloc
+      a %{site_name}
+    comments_panel_body: <p>%{site_name} està dedicat a compartir i discutir observacions
+      sobre els éssers vius. Aquí hi ha algunes discussions que s'estan produint ara
+      mateix...</p> <p>Estareu subscrits a qualsevol discussió a la que aporteu comentaris
+      o identificacions. Podeu utilitzar l'eina per a Gestionar les Subscripcions
+      a la dreta per deixar de rebre les actualitzacions en qualsevol moment</p>
+    updates_by_you_panel_title: Aquesta pestanya és una forma ràpida de filtrar únicament
+      les actualitzacions del vostre contingut.
+    updates_by_you_panel_body: Recordeu que a la pestanya "Totes les actualitzacions"
+      rebreu actualitzacions, no només del vostre contingut, sinó també del de les
+      persones que seguiu i els tàxons o llocs als que us heu subscrit utilitzant
+      l'eina de Subscripcions de la dreta.
     youve_got_updates_panel_title: Teniu actualitzacions!
     youve_got_updates_panel_body_p1: Mantingueu-vos al dia sobre les actualitzacions
       a la següent...
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+       <li><strong>El vostre Contingut:</strong> Activitat sobre les vostres observacions, com ara comentaris, identificacions, o favorits de la comunitat de %{site_name}. També rebreu actualitzacions quan algú aporti les seves observacions a un projecte o l'anoti amb camps addicionals.</li>
+       <li><strong>Persones:</strong> Noves observacions o publicacions a revistes de les persones que seguiu.</li>
+       <li><strong>Organismes, Projectes i Llocs:</strong> Noves observacions dels organisme o dels llocs als que us heu subscrit. També us podeu unir a projectes per rebre una actualit.</li>
+       <li><strong>Les discussions que us interessen:</strong> Si comenteu o afegiu identificacions a algun contingut, automàticament estareu subscrits a qualsevol nova activitat sobre aquests continguts. Podeu utilitzar l'eina de 'Gestió de les vostres subscripcions' per deixar de rebre les actualitzacions.</li>
+      </ul>
   one_by_one: Un a un
   one_of_your_lists: una de les teves llistes...
   only_a_project_manager_can_add: Només un gestor de projecte pot atorgar-li classificació
@@ -2502,8 +2532,12 @@ ca:
       airport: aeroport
       Building: Construcció
       building: construcció
+      Canton: Cantó
+      canton: cantó
       Colloquial: Col·loquial
       colloquial: col·loquial
+      Commune: Comuna
+      commune: comuna
       Continent: Continent
       continent: continent
       Country: Estat
@@ -2518,6 +2552,8 @@ ca:
       drainage: drenatge
       Estate: Immoble
       estate: immoble
+      Governorate: Governorat
+      governorate: governorat
       Historical_County: País històric
       historical_county: país històric
       Historical_State: Estat històric
@@ -2532,6 +2568,8 @@ ca:
       land_feature: característica del terreny
       Local_Administrative_Area: Àrea administrativa local
       local_administrative_area: àrea administrativa local
+      Local_Authority: Autoritat Local
+      local_authority: autoritat local
       Miscellaneous: Divers
       miscellaneous: divers
       Municipality: Municipi
@@ -2546,6 +2584,8 @@ ca:
       open_space: espai obert
       Parish: Districte
       parish: districte
+      Prefecture_City: Prefectura de la Ciutat
+      prefecture_city: prefectura de la ciutat
       Point_of_Interest: Punt d'interès
       point_of_interest: punt d'interès
       Postal_Code: Codi Postal
@@ -2554,6 +2594,10 @@ ca:
       province: província
       Region: Regió
       region: regió
+      Republic: República
+      republic: república
+      Shire: Comarca
+      shire: comarca
       Sports_Team: Equip esportiu
       sports_team: equip esportiu
       State: Estat
@@ -2562,6 +2606,8 @@ ca:
       street: carrer
       Street_Segment: Segment de carrer
       street_segment: segment de carrer
+      Subdivision: Subdivisió
+      subdivision: Subdivisió
       Suburb: Suburbi
       suburb: suburbi
       Supername: Supernom
@@ -2574,6 +2620,8 @@ ca:
       town: poble
       Undefined: Indefinit
       undefined: indefinit
+      Unknown: Desconegut
+      unknown: desconegut
       Zone: Zona
       zone: zona
   place_guess: lloc suggerit
@@ -2805,6 +2853,7 @@ ca:
   read_the_full_wikipedia: Llegeix tota la descripció de Viquipèdia
   ready_to_get_started?: Llest per començar?
   real_time_stats: Estadístiques en temps real
+  real_time_discussions: Discussions en temps real
   reason: Raó
   reason_you_are_flagging_this_item: Raó per la qual esteu comunicant aquest contingut.
   receive_email_notifications_when_people_leave_you: Rebeu una notificació per correu
@@ -3038,6 +3087,8 @@ ca:
   show_default_taxon_photos: Mostra les fotos predeterminades del tàxon
   show_counts: Mostra càlculs basats en la llista
   show_kml: Mostra KML
+  show_less: Mostrar menys
+  show_more: Mostrar més
   show_observation_photos: Mostra les fotos de les observacions
   show_observations_from: Mostra observacions fetes per
   show_off_your_recent_observations: Publiqueu les observacions en el vostre propi
@@ -3232,6 +3283,13 @@ ca:
     one: Enviar 1 observació
     other: Enviar %{count} observacions
   submitted: Enviat
+  subscribe_to_a_taxon: Subscriure's a un tàxon
+  subscribe_to_a_place: Subscriure's a un lloc
+  subscribe_to_observations_in_a_taxon: Subscriure's a totes les observacions publicades
+    sobre una espècie o grup d'organismes (per exemple, 'escorpins').
+  subscribe_to_observations_in_a_place: Subscriure's a totes les observacions publicades
+    sobre aquest lloc. També podeu afegir un filtre opcional per un tàxon (per exemple,
+    'escorpins de Tarragona').
   subscribe_to_places_to: |-
     Subscriu-vos a llocs per rebre actualitzacions sobre noves
     observacions, persones que seguiu i coses que heu comentat, tot això és gestionat per les subscripcions, podeu veure a què us heu subscrit i a què no. Seleccioneu l'enllaç de més avall "Administreu totes les vostres subscripcions" i també, si ho desitgeu, podreu eliminar totes les subscripcions d'algun lloc que ja no vulgueu tenir en les vostres preferències.
@@ -3240,6 +3298,7 @@ ca:
   subscribe_to_x_from_this_y_html: |-
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscriure's</a>
     a %{x} d'aquestes %{y}.
+  subscriptions: Subscripcions
   subscriptions_arent_available_for: Les subscripcions no estan disponibles per a
     llocs sense límits definits.
   successfully_changed_your_password: La vostre contrasenya s'ha modificat satisfactòriament.
@@ -3440,15 +3499,15 @@ ca:
   these_are_items_people_on: Hi ha continguts que altres han marcat per ser supervisats.
     Els continguts brossa s’esborraran i l’usuari que els va introduir podria ser
     suspès (aneu a la pàgina del seu perfil i a la part inferior esquerra seleccioneu
-    l'enllaç Suspèn usuari perquè ja no pugui entrar al lloc). Els continguts de tipus
-    il·legal, enganyós, racista, xenòfob, etc., s'han d'esborrar i s'han de respondre
-    amb un comentari correcte. Les persones que repeteixin aquests comentaris s'han
-    de comunicar a l'administrador del lloc o
+    l'enllaç "Suspèn l'usuari" perquè ja no pugui entrar al lloc). Els continguts
+    de tipus il·legal, enganyós, racista, xenòfob, etc., s'han d'esborrar i s'han
+    de respondre amb un comentari correcte. Les persones que repeteixin aquests comentaris
+    s'han de comunicar a l'administrador del lloc o %{email}
   these_are_taxa_that: |-
     Són tàxons que %{site} no ha pogut afegir automàticament
     a l'arbre taxonòmic. Podeu afegir-los a l'arbre seleccionant l’enllaç "editar" i escollint una classe pare a la qual pertanyi.
-    Per exemple, el grup pare d'<i>Homo sapiens</i> podria ser
-    <i>Homo</i>. També podeu cercar per espècie o grups que siguin sinònims i combinar-los.
+    Per exemple, el grup pare d'Homo sapiens podria ser
+    Homo També podeu cercar per espècie o grups que siguin sinònims i combinar-los.
   these_arent_necessarily_relevant_to: Aquestes observacions no necessàriament són
     rellevants per al projecte. Si us plau, comproveu els
   these_folks_kindly_volunteer_to: Aquestes persones s'ofereixen voluntàries amablement
