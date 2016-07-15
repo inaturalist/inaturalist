@@ -52,7 +52,7 @@ const ObservationsGridItem = ( {
       </Button>
     </OverlayTrigger>
   );
-  const speciesOrLower = o.taxon && o.taxon.rank_level <= 10;
+  const showAgree = o.taxon && o.taxon.rank_level <= 10 && o.taxon.is_active;
   return (
     <div className={wrapperClass}>
       <div className={`reviewed-notice ${o.reviewedByCurrentUser ? "reviewed" : ""}`}>
@@ -89,7 +89,7 @@ const ObservationsGridItem = ( {
         <UserImage user={ o.user } />
         { taxonJSX }
         <div className="controls">
-          { speciesOrLower ? agreeButton : null }
+          { showAgree ? agreeButton : null }
         </div>
       </div>
     </div>

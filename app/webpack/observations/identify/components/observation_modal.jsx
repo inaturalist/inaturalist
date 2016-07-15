@@ -106,9 +106,13 @@ const ObservationModal = ( {
 
   const showAgree = ( ) => {
     if ( !currentUserIdentification ) {
-      return typeof( observation.taxon ) === "object";
+      return typeof( observation.taxon ) === "object" && observation.taxon.is_active;
     }
-    return ( observation.taxon && observation.taxon.id !== currentUserIdentification.taxon.id );
+    return (
+      observation.taxon &&
+      observation.taxon.is_active &&
+      observation.taxon.id !== currentUserIdentification.taxon.id
+    );
   };
 
   const qualityGrade = ( ) => {

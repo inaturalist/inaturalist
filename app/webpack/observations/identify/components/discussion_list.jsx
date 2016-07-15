@@ -11,7 +11,7 @@ const DiscussionList = ( { observation, onDelete } ) => {
   ) );
   const taxonIds = new Set( );
   items = items.concat( ( observation.identifications || [] ).map( ( i ) => {
-    const hideAgree = taxonIds.has( i.taxon.id );
+    const hideAgree = taxonIds.has( i.taxon.id ) || !i.taxon.is_active;
     taxonIds.add( i.taxon.id );
     return Object.assign( i, {
       className: "Identification",

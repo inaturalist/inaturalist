@@ -93,6 +93,23 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
       </a>
     );
   };
+  const inactive = ( ) => {
+    if ( !taxon || taxon.is_active ) {
+      return "";
+    }
+    return (
+      <span className="inactive">
+        [
+          <a
+            href={`/taxon_changes?taxon_id=${taxon.id}`}
+            target="_blank"
+          >
+            { I18n.t( "inactive_taxon" ) }
+          </a>
+        ]
+      </span>
+    );
+  };
   return (
     <div className="SplitTaxon">
       <span className={taxonClass( )}>
@@ -101,7 +118,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
           className={iconClass( )}
         >
         </a>
-        { displayName( ) } { sciName( ) }
+        { displayName( ) } { sciName( ) } { inactive( ) }
       </span>
     </div>
   );
