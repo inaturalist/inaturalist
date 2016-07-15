@@ -34,7 +34,7 @@ class ProjectObservation < ActiveRecord::Base
   def notify_observer(association)
     if UpdateAction.joins(:update_subscribers).
          where(resource: project, notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).
-         where("update_subscribers.subscriber_id = ?", observation.user_id)
+         where("update_subscribers.subscriber_id = ?", observation.user_id).
          where("update_subscribers.viewed_at IS NULL").count >= 15
       return
     end

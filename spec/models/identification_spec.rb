@@ -628,8 +628,9 @@ describe Identification do
     it "generates mention updates" do
       u = User.make!
       i = without_delay { Identification.make!(body: "hey @#{ u.login }") }
-      expect( Update.where(notifier: i).mention.count ).to eq 1
-      expect( Update.where(notifier: i).mention.first.subscriber ).to eq u
+      expect( UpdateAction.where(notifier: i, notification: "mention").count ).to eq 1
+      expect( UpdateAction.where(notifier: i, notification: "mention").first.
+        update_subscribers.first.subscriber).to eq u
     end
   end
 

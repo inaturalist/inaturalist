@@ -13,45 +13,44 @@ describe Flag, "creation" do
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       EOT
     )
-    f.should_not be_valid
-    f.errors[:flag].should_not be_blank
+    expect( f ).to_not be_valid
+    expect( f.errors[:flag] ).to_not be_blank
   end
 end
 
 describe Flag, "update" do
   it "should generate an update for the user" do
     t = Taxon.make!
-    f = Flag.make!(:flaggable => t)
+    f = Flag.make!(flaggable: t)
     u = make_curator
     without_delay do
-      f.update_attributes(:resolver => u, :comment => "foo", :resolved => true)
+      f.update_attributes(resolver: u, comment: "foo", resolved: true)
     end
-    f.user.updates.detect{|update| update.resource_type == "Flag" && update.resource_id == f.id}.should_not be_blank
+    expect( UpdateAction.joins(:update_subscribers).
+      where(resource: f).where("update_subscribers.subscriber_id = ?", f.user_id).count ).to eq 1
   end
 
   it "should autosubscribe the resolver" do
     t = Taxon.make!
-    f = Flag.make!(:flaggable => t)
+    f = Flag.make!(flaggable: t)
     u = make_curator
-    without_delay do
-      f.update_attributes(:resolver => u, :comment => "foo", :resolved => true)
-    end
-    u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}.should_not be_blank
+    without_delay { f.update_attributes(resolver: u, comment: "foo", resolved: true) }
+    expect(u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to_not be_blank
   end
 end
 
 describe Flag, "destruction" do
-  before(:each) { enable_elastic_indexing(Update) }
-  after(:each) { disable_elastic_indexing(Update) }
+  before(:each) { enable_elastic_indexing(UpdateAction) }
+  after(:each) { disable_elastic_indexing(UpdateAction) }
   it "should remove the resolver's subscription" do
     t = Taxon.make!
-    f = Flag.make!(:flaggable => t)
+    f = Flag.make!(flaggable: t)
     u = make_curator
     without_delay do
-      f.update_attributes(:resolver => u, :comment => "foo", :resolved => true)
+      f.update_attributes(resolver: u, comment: "foo", resolved: true)
     end
     f.reload
     f.destroy
-    u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}.should be_blank
+    expect( u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to be_blank
   end
 end

@@ -10,6 +10,7 @@ class Update < ActiveRecord::Base
   validates_uniqueness_of :notifier_id, unless: -> { notification == "mention" },
     scope: [:notifier_type, :subscriber_id, :notification]
   # comment/ID mentions: [ notifier_id, notifier_type, subscriber_id ]
+  # don't generate two updates if the user is mentioned twice in the same comment
   validates_uniqueness_of :notifier_id, if: -> { notification == "mention" &&
     ![ "Observation", "Post" ].include?(notifier_type) },
     scope: [:notifier_type, :subscriber_id]
@@ -21,14 +22,7 @@ class Update < ActiveRecord::Base
   
   before_create :set_resource_owner
   
-  # NOTIFICATIONS = %w(create change activity)
   YOUR_OBSERVATIONS_ADDED = "your_observations_added"
-  
-  # scope :unviewed, -> { where("viewed_at IS NULL") }
-  # scope :activity, -> { where(notification: "activity") }
-  # scope :mention, -> { where(notification: "mention") }
-
-  attr_accessor :skip_indexing
 
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +

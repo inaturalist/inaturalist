@@ -19,8 +19,8 @@ describe Comment do
   end
 
   describe "deletion" do
-    before(:each) { enable_elastic_indexing(Update) }
-    after(:each) { disable_elastic_indexing(Update) }
+    before(:each) { enable_elastic_indexing(UpdateAction) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
 
     it "should decrement a counter cache on the parent if the column exists" do
       o = Observation.make!
@@ -37,10 +37,10 @@ describe Comment do
       s = Subscription.make!(:resource => o)
       c = Comment.make(:parent => o)
       without_delay { c.save }
-      expect(Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count).to eq(1)
+      expect(UpdateAction.where(resource: o).count).to eq(1)
       c.destroy
       o.reload
-      expect(Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count).to eq(0)
+      expect(UpdateAction.where(resource: o).count).to eq(0)
     end
   end
 
@@ -67,26 +67,31 @@ describe Comment do
     it "generates mention updates" do
       u = User.make!
       c = without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      expect( Update.where(notifier: c).mention.count ).to eq 1
-      expect( Update.where(notifier: c).mention.first.subscriber ).to eq u
+      expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
+      expect( UpdateAction.where(notifier: c, notification: "mention").first.
+        update_subscribers.first.subscriber ).to eq u
     end
 
     it "keeps mentions up-to-date" do
       u1 = User.make!
       u2 = User.make!
       c = without_delay { Comment.make!(body: "hey") }
-      expect( Update.where(notifier: c).mention.count ).to eq 0
+      expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
       without_delay { c.update_attributes(body: "hey @#{ u1.login }") }
-      expect( Update.where(notifier: c).mention.count ).to eq 1
-      expect( Update.where(notifier: c).mention.first.subscriber ).to eq u1
+      expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
+      expect( UpdateAction.where(notifier: c, notification: "mention").first.
+        update_subscribers.first.subscriber ).to eq u1
       without_delay { c.update_attributes(body: "hey @#{ u2.login }") }
-      expect( Update.where(notifier: c).mention.count ).to eq 1
-      expect( Update.where(notifier: c).mention.first.subscriber ).to eq u2
+      expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
+      expect( UpdateAction.where(notifier: c, notification: "mention").first.
+        update_subscribers.first.subscriber ).to eq u2
       without_delay { c.update_attributes(body: "hey @#{ u1.login }, @#{ u2.login }") }
-      expect( Update.where(notifier: c).mention.count ).to eq 2
-      expect( Update.where(notifier: c).mention.map(&:subscriber) ).to eq [ u1, u2 ]
+      expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
+      # shouldn't need to use uniq here - duplicate subscribers
+      expect( UpdateAction.where(notifier: c, notification: "mention").first.
+        update_subscribers.map(&:subscriber_id).uniq.sort ).to eq [ u1.id, u2.id ]
       without_delay { c.update_attributes(body: "hey") }
-      expect( Update.where(notifier: c).mention.count ).to eq 0
+      expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
     end
   end
 

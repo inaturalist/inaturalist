@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a signed in UsersController" do
   before(:all) { User.destroy_all }
-  before(:each) { enable_elastic_indexing( Update, Observation ) }
-  after(:each) { disable_elastic_indexing( Update, Observation ) }
+  before(:each) { enable_elastic_indexing( UpdateAction, Observation ) }
+  after(:each) { disable_elastic_indexing( UpdateAction, Observation ) }
   let(:user) { User.make! }
   it "should show email for edit" do
     get :edit, :format => :json
@@ -64,7 +64,7 @@ shared_examples_for "a signed in UsersController" do
       without_delay { Comment.make!(:parent => o) }
       get :new_updates, :format => :json, :skip_view => true
       Delayed::Worker.new(:quiet => true).work_off
-      expect(user.updates.unviewed.activity.count).to be > 0
+      expect(user.update_subscribers.where("viewed_at IS NULL").count).to be > 0
     end
   end
 

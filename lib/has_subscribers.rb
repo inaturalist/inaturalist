@@ -15,7 +15,6 @@ module HasSubscribers
       
       has_many :update_subscriptions, class_name: "Subscription", as: :resource, inverse_of: :resource
       has_many :subscribers, through: :update_subscriptions, source: :user
-      has_many :updates, as: :resource
       has_many :update_actions, as: :resource
       
       cattr_accessor :notifying_associations

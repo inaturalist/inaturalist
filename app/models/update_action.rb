@@ -5,7 +5,7 @@ class UpdateAction < ActiveRecord::Base
   belongs_to :resource, polymorphic: true
   belongs_to :notifier, polymorphic: true
   belongs_to :resource_owner, class_name: "User"
-  has_many :update_subscribers, dependent: :destroy
+  has_many :update_subscribers, dependent: :delete_all
 
   validates_presence_of :resource, :notifier
 
@@ -25,9 +25,9 @@ class UpdateAction < ActiveRecord::Base
 
   def bulk_insert_subscribers(subscriber_ids)
     values = subscriber_ids.map{ |id| "(#{self.id},#{id})" }
+    return if values.blank?
     sql = "INSERT INTO update_subscribers (update_action_id, subscriber_id) " +
           "VALUES #{ values.join(",") }"
-    puts "inserting"
     UpdateAction.connection.execute(sql)
   end
 

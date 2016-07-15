@@ -14,6 +14,6 @@ describe ProjectInvitation, "notify_owner_of" do
     pi = make_project_invitation
     lambda {
       pi.notify_owner_of(:observation)
-    }.should change(Update, :count).by(1)
+    }.should change(UpdateAction, :count).by(1)
   end
 end
