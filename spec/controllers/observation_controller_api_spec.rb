@@ -117,7 +117,7 @@ shared_examples_for "an ObservationsController" do
       expect(o.description).to eq "this is a WOAH"
     end
 
-    it "should be invalid for observations with the same uuid if" do
+    it "should be invalid for observations with the same uuid if the existing was by a differnet user" do
       uuid = "some really long identifier"
       o = Observation.make!( uuid: uuid )
       post :create, format: :json, observation: { uuid: uuid }
