@@ -74,7 +74,7 @@ class FiltersButton extends React.Component {
           <label>
             <input
               type="checkbox"
-              defaultChecked={ params[checkbox.param] === checkedVal }
+              checked={ params[checkbox.param] === checkedVal }
               onChange={ ( e ) => {
                 let newVal = checkbox.unchecked;
                 if ( e.target.checked ) newVal = checkedVal;
