@@ -37,9 +37,9 @@ class LocalPhoto < Photo
       bucket: CONFIG.s3_bucket,
       #
       #  NOTE: the path used to be "photos/:id/:style.:extension" as of
-      #  [DATE], but that wasn't setting the extension based on the detected
+      #  2016-07-15, but that wasn't setting the extension based on the detected
       #  content type, just echoing what was in the file name. So if you're
-      #  trying to use file.url or file.path for photos older than [DATE],
+      #  trying to use file.url or file.path for photos older than 2016-07-15,
       #  you'll probably want to fetch the original from original_url first
       #  before you do any work on the photo.
       #
