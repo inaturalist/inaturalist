@@ -82,7 +82,8 @@ def elastic_models
     Project => { },
     Place => { batch_size: 20 },
     Taxon => { },
-    Update => { batch_size: 5000 }
+    Update => { batch_size: 5000 },
+    UpdateAction => { batch_size: 5000 }
   }
 end
 
