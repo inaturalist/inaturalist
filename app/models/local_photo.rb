@@ -148,7 +148,35 @@ class LocalPhoto < Photo
   end
 
   def reset_file_from_original
-    io = open( URI.parse( original_url ) )
+    interpolated_original_url = FakeView.image_url( self.file.url(:original) )
+    
+    # If we're using local file storage and using some kind of development-ish
+    # setup, it probably means we're running a single server process, which
+    # means running a HEAD request while *this* request is running is going to
+    # cause problems, but it also means that the original file is *probably*
+    # there so we can skip this file reset business.
+    return if interpolated_original_url =~ /localhost/
+
+    # If the original file is there under the current path, no need to do anythign
+    return if Photo.valid_remote_photo_url?( interpolated_original_url )
+    
+    # If it's not, check the old path
+    old_interpolated_original_url = FakeView.image_url(
+      Paperclip::Interpolations.interpolate("photos/:id/:style.:extension", self.file, "original")
+    )
+    url = if Photo.valid_remote_photo_url?( old_interpolated_original_url )
+      old_interpolated_original_url
+    
+    # If it's not at the old path, use the cached original_url if it's not copyright infringement
+    elsif original_url !~ /copyright/
+      FakeView.image_url( original_url )
+
+    # If this is a copyright violation AND we don't have access to an original file, we're screwed.
+    else
+      raise "We no longer have access to the original file."
+    end
+
+    io = open( URI.parse( url ) )
     Timeout::timeout(10) do
       self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
     end
