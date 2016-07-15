@@ -18,3 +18,5 @@ Paperclip.interpolates('icon_type_extension') do |attachment, style|
   end
   ext
 end
+
+Paperclip::UploadedFileAdapter.content_type_detector = Paperclip::FileCommandContentTypeDetector
