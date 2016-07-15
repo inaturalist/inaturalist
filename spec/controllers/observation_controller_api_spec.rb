@@ -487,6 +487,15 @@ shared_examples_for "an ObservationsController" do
       expect( qm ).to be_agree
     end
 
+    it "should remove place_guess when changing geoprivacy to private" do
+      original_place_guess = "foo"
+      o = Observation.make!( user: user, place_guess: original_place_guess, latitude: 1, longitude: 1 )
+      expect( o.place_guess ).to eq original_place_guess
+      put :update, format: :json, id: o.id, observation: { geoprivacy: Observation::PRIVATE }
+      o.reload
+      expect( o.place_guess ).to be_blank
+    end
+
     describe "private_place_guess" do
       let(:p) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL, name: "Freedonia" ) }
       let(:original_place_guess) { "super secret place" }

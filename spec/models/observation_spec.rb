@@ -1741,6 +1741,11 @@ describe Observation do
       expect(o.longitude).to be_blank
     end
 
+    it "should remove place_guess when private" do
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE, place_guess: "foo" )
+      expect( o.place_guess ).to be_blank
+    end
+
     it "should remove public coordinates when moving from obscured to private" do
       o = Observation.make!(latitude: 37, longitude: -122, geoprivacy: Observation::OBSCURED)
       expect(o.latitude).not_to be_blank

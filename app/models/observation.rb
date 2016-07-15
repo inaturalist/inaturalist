@@ -1356,7 +1356,14 @@ class Observation < ActiveRecord::Base
 
 
   def obscure_place_guess
-    if coordinates_obscured?
+    if coordinates_private?
+      if place_guess_changed? && place_guess == private_place_guess
+        self.place_guess = nil
+      else
+        self.private_place_guess = place_guess
+        self.place_guess = nil
+      end
+    elsif coordinates_obscured?
       public_place_guess = Observation.place_guess_from_latlon(
         private_latitude,
         private_longitude,
@@ -1368,13 +1375,6 @@ class Observation < ActiveRecord::Base
       else
         self.private_place_guess = place_guess
         self.place_guess = public_place_guess
-      end
-    elsif coordinates_private?
-      if place_guess_changed? && place_guess == private_place_guess
-        self.place_guess = nil
-      else
-        self.private_place_guess == place_guess
-        self.place_guess = nil
       end
     else
       unless place_guess_changed? || private_place_guess.blank?
