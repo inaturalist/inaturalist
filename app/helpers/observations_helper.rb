@@ -61,7 +61,7 @@ module ObservationsHelper
       display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
     end
     
-    if !observation.place_guess.blank? && coordinates_viewable
+    if !display_place_guess.blank? && coordinates_viewable
       place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
         "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
       elsif options[:place_guess_truncation]

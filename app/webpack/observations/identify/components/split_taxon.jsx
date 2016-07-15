@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 
-const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) => {
+const SplitTaxon = ( { taxon, url, target, noParens, placeholder, displayClassName } ) => {
   const taxonClass = ( ) => {
     let cssClass = "taxon";
     if ( taxon ) {
@@ -31,7 +31,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
         <a
           className={`comname display-name ${displayClassName || ""}`}
           href={ url }
-          target="_self"
+          target={ target }
         >
           { taxon.preferred_common_name }
         </a>
@@ -43,7 +43,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
             <a
               className={`noname display-name ${displayClassName || ""}`}
               href={ url }
-              target="_self"
+              target={ target }
             >
               { I18n.t( "unknown" ) }
             </a> <span className="altname">
@@ -56,7 +56,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
         <a
           className={`noname display-name ${displayClassName || ""}`}
           href={ url }
-          target="_self"
+          target={ target }
         >
           { I18n.t( "unknown" ) }
         </a>
@@ -86,7 +86,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
       <a
         className={sciNameClass}
         href={ url }
-        target="_self"
+        target={ target }
       >
         { taxonRank( ) }
         { taxon.name }
@@ -102,7 +102,7 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
         [
           <a
             href={`/taxon_changes?taxon_id=${taxon.id}`}
-            target="_blank"
+            target={ target }
           >
             { I18n.t( "inactive_taxon" ) }
           </a>
@@ -127,9 +127,13 @@ const SplitTaxon = ( { taxon, url, noParens, placeholder, displayClassName } ) =
 SplitTaxon.propTypes = {
   taxon: PropTypes.object,
   url: PropTypes.string,
+  target: PropTypes.string,
   noParens: PropTypes.bool,
   placeholder: PropTypes.string,
   displayClassName: PropTypes.string
 };
+SplitTaxon.defaultProps = {
+  target: "_self"
+}
 
 export default SplitTaxon;

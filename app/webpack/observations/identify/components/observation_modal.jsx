@@ -46,8 +46,7 @@ const ObservationModal = ( {
 
   // skipping map until we can work out the memory issues
   let taxonMap;
-  const includeMap = true;
-  if ( includeMap ) {
+  if ( observation.latitude ) {
     const obsForMap = Object.assign( {}, observation, {
       coordinates_obscured: observation.obscured
     } );
