@@ -526,6 +526,19 @@ shared_examples_for "an ObservationsController" do
         expect( o.place_guess ).to eq obscured_place_guess
         expect( o.private_place_guess ).to eq new_place_guess
       end
+      it "should not change when updating an observation of a threatened taxon" do
+        o = Observation.make!(
+          taxon: make_threatened_taxon,
+          latitude: 1,
+          longitude: 1,
+          place_guess: original_place_guess,
+          user: user
+        )
+        expect( o.private_place_guess ).to eq original_place_guess
+        put :update, format: :json, id: o.id, observation: { description: "foo" }
+        o.reload
+        expect( o.private_place_guess ).to eq original_place_guess
+      end
     end
   end
 

@@ -1370,9 +1370,14 @@ class Observation < ActiveRecord::Base
         acc: calculate_public_positional_accuracy,
         user: user
       )
-      if place_guess_changed? && place_guess == private_place_guess
-        self.place_guess = public_place_guess
-      else
+      if place_guess_changed?
+        if place_guess == private_place_guess
+          self.place_guess = public_place_guess
+        else
+          self.private_place_guess = place_guess
+          self.place_guess = public_place_guess
+        end
+      elsif private_latitude_changed? && private_place_guess.blank?
         self.private_place_guess = place_guess
         self.place_guess = public_place_guess
       end
