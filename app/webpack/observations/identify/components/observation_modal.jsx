@@ -105,7 +105,7 @@ const ObservationModal = ( {
 
   const showAgree = ( ) => {
     if ( !currentUserIdentification ) {
-      return typeof( observation.taxon ) === "object" && observation.taxon.is_active;
+      return observation.taxon && observation.taxon.is_active;
     }
     return (
       observation.taxon &&
