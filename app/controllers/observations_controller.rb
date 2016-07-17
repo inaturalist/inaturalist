@@ -929,31 +929,32 @@ class ObservationsController < ApplicationController
           Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
-              :methods => [:user_login, :iconic_taxon_name],
-              :include => {
-                :taxon => Taxon.default_json_options,
-                :observation_field_values => {},
-                :project_observations => {
-                  :include => {
-                    :project => {
-                      :only => [:id, :title, :description],
-                      :methods => [:icon_url]
+              viewer: current_user,
+              methods: [:user_login, :iconic_taxon_name],
+              include: {
+                taxon: Taxon.default_json_options,
+                observation_field_values: {},
+                project_observations: {
+                  include: {
+                    project: {
+                      only: [:id, :title, :description],
+                      methods: [:icon_url]
                     }
                   }
                 },
-                :observation_photos => {
-                  :include => {
-                    :photo => {
-                      :methods => [:license_code, :attribution],
-                      :except => [:original_url, :file_processing, :file_file_size, 
+                observation_photos: {
+                  include: {
+                    photo: {
+                      methods: [:license_code, :attribution],
+                      except: [:original_url, :file_processing, :file_file_size, 
                         :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
                         :native_realname, :native_photo_id]
                     }
                   }
                 },
-              })
+              } )
           else
-            render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
+            render json: @observations.to_json( methods: [:user_login, :iconic_taxon_name], viewer: current_user )
           end
         end
       end

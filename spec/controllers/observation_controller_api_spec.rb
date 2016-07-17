@@ -496,6 +496,20 @@ shared_examples_for "an ObservationsController" do
       expect( o.place_guess ).to be_blank
     end
 
+    it "should return private coordinates if geoprivacy is private" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
+      put :update, format: :json, id: o.id, observation: { description: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["private_latitude"] ).not_to be_blank
+    end
+
+    it "should return private coordinates if geoprivacy is obscured" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      put :update, format: :json, id: o.id, observation: { description: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["private_latitude"] ).not_to be_blank
+    end
+
     describe "private_place_guess" do
       let(:p) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL, name: "Freedonia" ) }
       let(:original_place_guess) { "super secret place" }
