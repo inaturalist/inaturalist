@@ -203,9 +203,10 @@ class TaxonName < ActiveRecord::Base
     end
   end
 
-  def serializable_hash(options = {})
+  def serializable_hash(options = nil)
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
+    options ||= { }
     options[:except] ||= []
     options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :creator_id, :updater_id]
     if options[:only]

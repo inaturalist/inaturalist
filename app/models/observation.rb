@@ -728,7 +728,7 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def serializable_hash(options = {})
+  def serializable_hash(options = nil)
     # for some reason, in some cases options was still nil
     options ||= { }
     # making a deep copy of the options so they don't get modified
