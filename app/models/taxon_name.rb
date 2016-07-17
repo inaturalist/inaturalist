@@ -128,7 +128,7 @@ class TaxonName < ActiveRecord::Base
     true
   end
 
-  def as_json(options = {})
+  def serializable_hash(options = {})
     if options.blank?
       options[:only] = [:id, :name, :lexicon, :is_valid]
     end

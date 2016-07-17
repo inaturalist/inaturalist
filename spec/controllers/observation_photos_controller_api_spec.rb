@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "an ObservationPhotosController" do
   describe "create" do
-    let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
+    let(:file) { fixture_file_upload('files/cuthona_abronia-tagged.jpg', 'image/jpeg') }
     it "should work" do
       expect {
         post :create, :format => :json, :observation_photo => {:observation_id => observation.id}, :file => file
@@ -17,6 +17,14 @@ shared_examples_for "an ObservationPhotosController" do
       expect(ObservationPhoto.where(:uuid => uuid).count).to eq 1
       observation.reload
       expect(observation.photos.size).to eq 1
+    end
+
+    it "should not include photo metadata" do
+      op = ObservationPhoto.make!( observation: observation )
+      post :create, format: :json, observation_photo: { observation_id: observation.id }, file: file
+      json = JSON.parse( response.body )
+      expect( json["photo"] ).not_to be_blank
+      expect( json["photo"].keys ).not_to include "metadata"
     end
   end
 
@@ -36,6 +44,7 @@ shared_examples_for "an ObservationPhotosController" do
     delete :destroy, :format => :json, :id => op.id
     expect(ObservationPhoto.find_by_id(op.id)).to be_blank
   end
+
 end
 
 describe ObservationPhotosController, "oauth authentication" do

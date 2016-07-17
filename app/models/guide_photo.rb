@@ -25,7 +25,7 @@ class GuidePhoto < ActiveRecord::Base
     photo.respond_to?(method) ? photo.send(method, *args) : super
   end
 
-  def as_json(options = {})
+  def serializable_hash(options = {})
     options[:methods] ||= []
     options[:methods] += [:url, :square_url, :small_url, :medium_url, :large_url]
     options[:methods].uniq!
