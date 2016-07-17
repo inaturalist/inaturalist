@@ -127,7 +127,8 @@ class Photo < ActiveRecord::Base
     try_methods(*methods)
   end
 
-  def serializable_hash(options = {})
+  def serializable_hash( options = {} )
+    options ||= {}
     options[:except] ||= []
     options[:except] += [:metadata, :file_content_type, :file_file_name,
       :file_file_size, :file_processing, :file_updated_at, :mobile,
