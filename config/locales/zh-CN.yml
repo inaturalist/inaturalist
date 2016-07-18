@@ -521,6 +521,9 @@ zh-CN:
   change_your_matching: 更改您的匹配
   change_your_password: 更改您的密码
   changing_the_geoprivacy: 更改位置隐私会改变其他人看见您观察位置的方式。
+  check_here_to_autoload_description: 点击此处以从维基百科自动加载描述。You might want to uncheck it
+    when a taxon's scientific name is also a non-scientific word or common mispelling,
+    like "Parus".
   check_it_out: 去看看
   check_list: 监视列表
   check_list_place: '%{place} 监视列表'
@@ -1153,7 +1156,11 @@ zh-CN:
   invitations: 引诱
   invite: 邀请
   invite_more: 邀请更多
+  invite_people: 邀请人们
+  invite_people_to_project: 邀请人们至 %{project}
+  invite_someone_to: 邀请一些人至 %{name}！
   invite_to_project: 邀请至项目
+  invite_your_friends: 邀请您的朋友
   inviteonly: 仅邀请
   invited: 已邀请
   invited_x: 已邀请 %{x}
@@ -1302,7 +1309,7 @@ zh-CN:
   loading_metadata: 正在加载元数据...
   loading_more_photos: 正在加载更多照片……
   loading_tags: 正在加载标签……
-  loading_wikipedia_description: 正在载入维基百科描述……
+  loading_wikipedia_description: 正在加载维基百科描述...
   locale_description: 区域设置您的语言和日期格式选项。
   locales_: 区域
   locales:
@@ -1494,7 +1501,11 @@ zh-CN:
   next_page: 下一页
   "no": 否
   no_activity_in_the_past_week: 上周没有活跃。时间至
+  no_colors_selected: 未选择颜色。
+  no_comments_yet: 尚无评论。
   no_countries_added_yet: 尚未添加国家
+  no_creative_commons_flickr_photo: 没有知识共享Flickr照片已标记
+  no_creative_commons_flickr_photos_tagged_x: 没有知识共享Flickr照片标记为“%{x}”
   no_flags: 目前没有标记
   no_header_row: 没有标题行
   no_favorites_added:
@@ -1520,11 +1531,15 @@ zh-CN:
   no_subject_parens: （无主题）
   no_summary_from_wikipedia: 没有来自维基百科的概要
   no_taxa: 无分类群
+  no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
   no_x_this_y: 不是%{x}这个%{y}
   noble_curators: '%{site}的博物馆长'
   none: 无
   normal: 一般
+  not_found: 未找到
   not_linked_facebook: 您的%{site_name}账户并未链接至您的Facebook账户&#59;
+  not_logged_in: 未登录
+  not_yet: 尚未
   note: 注释
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
@@ -1576,6 +1591,7 @@ zh-CN:
     absent: 缺席
   of: 的
   official_blog: 官方博客
+  old_observation_form: 旧观察表单（已弃用）
   ok: 确定
   on_: 在
   on_date: 于 %{date}
@@ -1585,6 +1601,7 @@ zh-CN:
   on_submit_date: 在 %{submitdate}
   onboarding:
     follow_panel_title_local: 关注一些附近的自然法学家
+    follow_panel_title_global: 关注一些活跃的自然法学家
     youve_got_updates_panel_title: 您获得了更新！
   one_by_one: 一个接一个
   one_of_your_lists: 您的列表中的一个...
@@ -1844,7 +1861,9 @@ zh-CN:
   project_members: '%{project} 成员'
   project_name: 项目名称
   project_post: 项目贴子
+  project_rules: 项目规则
   project_settings: 项目设置
+  project_terms_and_rules: 项目条款和规则
   project_type_description: |-
     评价和bioblitz是项目的特殊类型。Assessments are
     for collaborating on a set of species assessments, usually to gauge
@@ -1856,6 +1875,7 @@ zh-CN:
   project_was_successfully_updated: 已成功更新项目。
   project_x_was_delete: '%{project}已删除（请允许几分钟以从网站中移除）'
   projects: 项目
+  projects_in_x: 在 %{x} 中的项目
   protozoans: 原生动物
   public_domain: 公有领域
   publish: 发布
@@ -1892,12 +1912,14 @@ zh-CN:
     form: 型
     leaves: 叶片
   re_apply_list_rules: 重新应用列表规则
+  read_the_full_wikipedia: 阅读全部维基百科描述
   real_time_stats: 实时统计
   real_time_discussions: 实时讨论
   reason: 原因
   reason_you_are_flagging_this_item: 您标记此项目的原因。
   receive_email_notifications_when_people_leave_you: 接受电子邮件通知有关
   receive_updates_from_this_project: 从此项目接收更新
+  received: 已收到
   recent: 最近
   recent_additions: 最新添加
   recent_observations: 最新观察
@@ -1908,6 +1930,7 @@ zh-CN:
   recently_created: 最近创建
   recently_finished: 最近完成
   record!: 记录！
+  red: 红色
   redo_search_in_map: 在地图中重新搜索
   refresh: 刷新
   refreshing: 正在刷新
@@ -1916,7 +1939,9 @@ zh-CN:
     as much descriptive information as possible. Most importantly, please provide
     a <strong>place</strong>, a <strong>date/time</strong>, and some information about
     the <strong>size</strong>.
+  remember_me: 记住我
   remove: 移除
+  remove_all_tags: 移除所有标签
   remove_boundary: 移除边界
   remove_curator: 移除馆长
   remove_curator_role: 移除馆长角色
@@ -1942,6 +1967,7 @@ zh-CN:
   reset_search_filters: 重置搜索过滤器
   reset_your_password: 重置您的密码
   resolve: 解决
+  resolved: 已解决
   resolver_said_x_html: <span class="meta">%{resolver}说：</span>“%{x}”
   results: 结果
   review_all: 复核全部
@@ -1954,8 +1980,11 @@ zh-CN:
   rules_types:
     must_be_identified: 必须被认证
   sat: 六
+  satellite: 卫星
   save: 保存
+  save_all: 保存全部
   save_and_add_another: 保存并添加其他
+  save_and_continue: 保存并继续...
   save_and_add_taxa: 保存并开始添加物种
   save_comment: 保存评论
   save_flag: 保存标记
@@ -2003,6 +2032,7 @@ zh-CN:
   show_kml: 显示KML
   show_less: 显示更少
   show_more: 显示更多
+  show_only: 仅显示
   showing_one_to: 显示1~
   sign_in: 登录
   sign_out: 退出
@@ -2132,6 +2162,8 @@ zh-CN:
   taxa: 分类单元
   taxa_all_species_html: 分类群 &middot; 所有物种
   taxon: 类群
+  taxon_: 分类单元
+  taxon_id: 分类单元ID
   taxon_ids: 分类单元ID
   taxon_map:
     data_url: 数据URL
@@ -2175,6 +2207,7 @@ zh-CN:
   the_title_of_the_wikipedia_article_we_use: 我们用于描述的维基百科条目标题。如果维基百科URL是<code>http://zh.wikipedia.org/wiki/鸟</code>，那么这个值应该是<code>鸟</code>。如果留空，此分类的学名会被使用（它通常都能工作）。
   the_user_x_has_been_suspended: 用户 %{user} 已被停用
   the_world: 世界
+  there_is_no_wikipedia_page_matching: 没有匹配的维基百科页面
   there_isnt_wiki_article: 没有维基百科条目或重定向的标题叫做“<i>%{taxon}</i>”。您可能想找
   there_isnt_a_wikipedia_article_titled_x_html: 没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
   there_were_errors: 存在错误。
@@ -2634,6 +2667,8 @@ zh-CN:
         alphaname: 按学名的字母顺序排列
         alphadisplay: 按显示名的字母顺序排列
     guide_taxa:
+      edit:
+        site_explanation: 添加一个常用名，最多5个已授权图片和来自 %{site_name} 的维基百科摘要。
       show:
         reuse_desc: 您可以复制此分类至其他指南。如果您是此指南的编辑者之一，它应该复制任何东西，但如果您不是，那么它将只复制获授权的内容。
     help:
@@ -2670,15 +2705,8 @@ zh-CN:
           title="inaturalist at master - GitHub">在GitHub上fork我们</a>！
         how_do_i_contact_inaturalist?: 我该如何联系%{site_name}
         you_can_contact_us_at_html: 您可通过<a href="mailto:%{help_email}">%{help_email}</a>联系我们
-        you_know_it_when_you_see_it_html: |-
-          <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">当您看见它时</a>您就知道它，不是么？违反我们<a href="/terms.html">使用条款</a>第二节的东西肯定不被接受，并会被标记，或通知管理员。温和的物理形式会令人遗憾，但或许我们不会删除。
-          Observations of pets, captive
-          animals, humans, and other organisms most naturalists may not find
-          interesting are ok (they're alive, after all). Observations of things
-          that aren't organisms are a gray area. Things that clearly have
-          nothing to do with nature, like what someone had for lunch, are worth
-          flagging and may be deleted, but evidence of pollution or disturbance
-          could be interesting, and probably won't be removed.
+        you_know_it_when_you_see_it_html: <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">当您看见它时</a>您就知道它，不是么？违反我们<a
+          href="/terms.html">使用条款</a>第二节的东西肯定不被接受，并会被标记，或通知管理员。温和的物理形式会令人遗憾，但或许我们不会删除。宠物、圈养动物、人和其他多数自然法学派可能不感兴趣的生物体观察可被接受（毕竟它们还活着）。非生物体事物的观察是一个灰色地带。明显与自然无关的事物，例如有人吃午饭，会被特别标记并可能被删除，但污染或骚扰的证据可能会感兴趣，并可能不会被移除。
         inaturalist_has_name_information_for_mammals: '%{site_name} 有用于哺乳类、鸟类、爬行类和两栖动物的名称信息，并持续添加新的物种名称至我们的数据库。如果我们不承认某一特定名称，尝试其他我们可能承认的名称，并添加原始名称至标签或描述字段。'
         how_can_i_get_help_identifying_what_i_saw?: 我如何帮助您识别我看见的东西？
         can_i_add_photos_without_a_flickr_account?: 我可以不用Flickr账户就添加图片么？
@@ -3000,6 +3028,10 @@ zh-CN:
       10: 十月
       11: 十一月
       12: 十二月
+    order:
+    - :年
+    - :月
+    - :日
   datetime:
     distance_in_words:
       about_x_hours:
@@ -3222,6 +3254,7 @@ zh-CN:
         value: 值
       taxon:
         name: 名称
+        wikipedia_title: 维基百科标题
         source_identifier: 来源标识符
       taxon_name:
         source_url: 来源URL

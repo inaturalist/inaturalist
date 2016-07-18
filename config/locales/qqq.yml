@@ -11,6 +11,7 @@
 # Author: Robby
 # Author: Siebrand
 # Author: Sudachi
+# Author: Walter Klosse
 # Author: 아라
 ---
 qqq:
@@ -118,6 +119,7 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: an doesnt exist in czech language
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -537,6 +539,7 @@ qqq:
   more_info: '{{Identical|More information}}'
   more_info_title: '{{Identical|More information}}'
   most: '{{Identical|Most}}'
+  multiple: '{{Identical|Multiple}}'
   must_be_less_than_x_MB: where x is the file size as a number
   must_have_observation_field: where opened is the name of an observation field like
     eating
@@ -765,12 +768,14 @@ qqq:
     species: '{{Identical|Species}}'
     form: '{{Identical|Form}}'
   reason: '{{Identical|Reason}}'
+  received: '{{Identical|Received}}'
   recent: '{{Identical|Recent}}'
   recent_atom_observations_by: where login is the name of a user
   recent_observations_by: where login is the name of a user
   recently_active_projects_from_place: where place is the name of a place
   recently_created_projects_from_place: where place is the name of a place
   record!: '{{Identical|Record}}'
+  red: '{{Identical|Red}}'
   refresh: '{{Identical|Refresh}}'
   register_for_this_event_at_x_html: where x is an external resource like EventBrite
   remove: '{{Identical|Remove}}'
@@ -779,6 +784,7 @@ qqq:
   removing: '{{Identical|Removing}}'
   reply: '{{Identical|Reply}}'
   required: '{{Identical|Required}}'
+  resolved: '{{Identical|Resolved}}'
   resolver_said_x_html: where resolver is the name of a user and x is a message
   results: '{{Identical|Result}}'
   review_verb: '{{Identical|Review}}'
@@ -852,6 +858,7 @@ qqq:
   tagging: '{{Identical|Tagging}}'
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
+  taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
   text_: '{{Identical|Text}}'
@@ -862,7 +869,8 @@ qqq:
   the_user_x_has_been_unsuspended: where user is the name of a user
   the_world_is_full_of_interesting_places: where site is the name of a site
   there_are_x_synonyms_html: number of synonyms
-  there_isnt_a_wikipedia_article_titled_x_html: where x is the title of the article
+  there_isnt_a_wikipedia_article_titled_x_html: where x is the title of the article,
+    feel free to change en.wikipedia.org to your language edition's domain if needed.
   there_merge_problems_with_the_merge: where merged_error describes the error
   there_was_a_problem_saving_your_identification: where error describes the error
   there_were_problems_adding_taxa: where errors describes the error
