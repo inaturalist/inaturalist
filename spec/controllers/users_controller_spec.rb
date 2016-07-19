@@ -36,8 +36,17 @@ describe UsersController, "update" do
 end
 
 describe UsersController, "delete" do
+  let(:user) { User.make! }
+
+  it "destroys in a delayed job" do
+    sign_in user
+    delete :destroy, id: user.id
+    expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
+    expect( Delayed::Job.where("unique_hash = '{:\"User::sane_destroy\"=>#{user.id}}'").
+      count ).to eq 1
+  end
+
   it "should be possible for the user" do
-    user = User.make!
     sign_in user
     without_delay { delete :destroy, :id => user.id }
     expect(response).to be_redirect
@@ -45,7 +54,6 @@ describe UsersController, "delete" do
   end
   
   it "should be impossible for everyone else" do
-    user = User.make!
     nogoodnik = User.make!
     sign_in nogoodnik
     delete :destroy, :id => user.id
