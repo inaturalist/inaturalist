@@ -1326,6 +1326,18 @@ shared_examples_for "an ObservationsController" do
       end
     end
 
+    describe "csv" do
+      render_views
+      it "should render" do
+        o = make_research_grade_observation
+        get :index, format: :csv
+        CSV.parse( response.body, headers: true ) do |row|
+          expect( row["species_guess"] ).to eq o.species_guess
+          expect( row["image_url"] ).not_to be_blank
+        end
+      end
+    end
+
     describe "HTML format" do
       render_views
       before{ @o = make_research_grade_observation }

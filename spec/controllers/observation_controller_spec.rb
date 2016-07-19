@@ -77,6 +77,7 @@ describe ObservationsController do
       expect( o.latitude ).to eq -39.380943828
       expect( o.longitude ).to eq 176.3574072522
     end
+
   end
   
   describe "update" do
@@ -462,10 +463,17 @@ describe ObservationsController do
   describe "index" do
     before(:each) { enable_elastic_indexing( Observation, Update ) }
     after(:each) { disable_elastic_indexing( Observation, Update ) }
+    render_views
     it "should just ignore project slugs for projects that don't exist" do
       expect {
         get :index, projects: 'imaginary-project'
       }.not_to raise_error
+    end
+
+    it "should include https image urls in widget response" do
+      make_research_grade_observation
+      get :index, protocol: :https, format: :widget
+      expect( response.body ).to match /s3.amazonaws.com/
     end
   end
 
