@@ -271,6 +271,10 @@ bg:
     попадат в тази часова зона по подразбиране, освен в случаите когато изберете друго.
   all_your_projects: Всички Ваши проекти
   amphibians: земноводни
+  and_you_havent_linked: '...и не сте свързали някой от тези външни акаунти, ще трябва
+    първо да влезете през %{site_name} и след това да свържете акаунта от настройките
+    на профила. В противен случай %{site_name} може да не разбере, че двата акаунта
+    са свързани и вместо това ще се опита да създаде нов акаунт.'
   animals: Животни
   any: без значение
   arachnids: паякообразни
@@ -281,6 +285,9 @@ bg:
   ascending: възходящо
   authority_list:
     iucn_red_list: Червен списък на IUCN
+  automatically_share_your_observations_on: Автоматично споделяй наблюденията си във
+  automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието
+    ми при промяна на таксон
   back_to_x: Обратно към %{noun}
   back_to_x_history: Обратно към историята на %{x}
   back_to_x_journal: Обратно към дневника на %{user}
@@ -315,6 +322,8 @@ bg:
   captive_cultivated: В плен / култивиран
   catalogue_of_life: Catalogue of Life
   categories: категории
+  change: Промени
+  change_cover: Промени корицата
   change_password: Промени паролата
   change_your_password: Промяна на паролата
   check_list: Видов списък
@@ -335,6 +344,10 @@ bg:
   check_list_updated: Видовият списък е обновен!
   check_lists_for: Други видови списъци за %{place}
   check_out_your_life_list: Провери своя житейски списък
+  check_this_box_if: Маркирайте тази кутийка ако искате да приложите <a href='http://creativecommons.org/licenses/by-nc/3.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial лиценз</a> към Вашите
+    снимки. По-късно можете да изберете друг лиценз или да го премахнете изобщо, но
+    това е най-добрият лиценз за споделяне с изследователите.
   choose_files_from_your_computer: изберете файлове от вашия компютър
   choose_from_your_lists: Изберете от вашите списъци
   choose_photos: Избери снимки
@@ -344,11 +357,13 @@ bg:
   click_the_map_to_jump_new_place: Щракнете на картата за да отскочите до ново място
   code: Код
   combine: Обедини
+  comments: Коментари
   comments_and_identifications: Коментари и разпознавания
   comments_by_everyone: Коментари от всички
   comments_by_me: Коментари от мен
   comments_on: Коментари на
   comments_on_my_observations: Коментари на мои наблюдения
+  community_moderation_settings: Настройки на редактиране от общността
   compare_with: Сравни с
   comparing_list_to_list: Сравняване на %{list1} със %{list2}
   comparing_versions_x_and_y: Сравняване на версии %{x} и %{y}
@@ -382,6 +397,7 @@ bg:
     copyright: авторски права
     no_copyright: без авторски права (CC0)
   copyright_holder: Притежател на авторското право
+  couldnt_change_your_password: 'Не можахме да променим паролата Ви: %{e}'
   countries: Държави
   cover: Корица
   create: Създай
@@ -436,7 +452,7 @@ bg:
   default_invite_comment: 'Страхотна снимка! Трябва да я публикувате на %{site_name}:
     {{INVITE_LINK}}'
   delete: Изтрий
-  delete_your_account: Изтрийте акаунта си
+  delete_your_account: Изтриване на акаунта
   deleting: Изтриване...
   desc: низх.
   dna_: ДНК
@@ -490,6 +506,7 @@ bg:
     статут или да използвате просто търсене.
   edit: Редактирай
   edit_account_settings_and_profile: Промени настройките на акаунта и профила
+  edit_your_account_and_profile_html: Редактиране на акаунт и профил
   edit_your_identification: Промени разпознаването си
   edit_your_profile: Редактирай профила си
   edit_your_settings_for_this_project: Промени настройките си за този проект
@@ -505,6 +522,7 @@ bg:
   either_that_user_doesnt_exist_or: Или потребителят не съществува или вече го следвате.
   eligible_for_research_grade: Приемливо за „Изследователски клас“
   email: Имейл
+  email_settings: Настройки за имейл
   embed_a_widget_for_this_taxon_on_website: Вмъкни widget за този таксон на сайта
     си
   embed_widget_project: Вмъкни widget за този проект на сайта си
@@ -587,7 +605,9 @@ bg:
   flickr_description: Flickr е сайт за съхранение на снимки. Може би вече знаете за
     него!
   follower: последовател
+  forgot_your_password: Забравена парола?
   fri: пт
+  from: От
   from_flickr_facebook_etc: От Flickr, Facebook и др.
   from_soundcloud: От Soundcloud
   full_screen: Пълен екран
@@ -614,12 +634,16 @@ bg:
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
   help_faq: Помощ / ЧЗВ
   home_faq: ЧЗВ
+  icon_slash_photo: Иконка / снимка
   id: ID
   id_: ID
   identify: Разпознай
   identify_observations: Разпознай наблюдения
   identify_title: Разпознай
+  identifications: Разпознавания
+  identifications_by: Разпознавания от %{user}
   identifiers: Разпознавачи
+  if_you_already_have_an_account: Ако вече имате акаунт на %{site_name}...
   import_from_csv: Импорт от CSV
   import_from_other_photo_sites: Импорт от други фото сайтове
   import_from_photos: Импорт от снимки
@@ -842,6 +866,9 @@ bg:
   mark_all_as_unreviewed: Маркирай всички като нерецензирани
   media: Мултимедия
   members: Членове
+  mentions: Споменавания
+  message: Съобщение
+  messages: Съобщения
   mollusks: мекотели
   momentjs:
     shortRelativeTime:
@@ -916,6 +943,12 @@ bg:
   not_linked_facebook: Вашият акаунт на %{site_name} не е свързан с акаунта Ви на
     Фейсбук
   not_linked_flickr: Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr
+  notify_me_of_mentions: Известявай ме за споменавания (напр. @потр.име)
+  notify_me_about_redundant_identifications: Известявай ме при потвърждаване на разпознаване
+  notify_me_about_redundant_identifications_desc: Получавайте известия за разпознавания
+    които съвпадат с Вашите собствени. Ако изключите това, ще получавате известия
+    само за разпознавания, които не съвпадат точно с посочения от Вас таксон.
+  number_of_observations: Брой наблюдения
   observation: Наблюдение
   observation_added: Наблюдението е добавено.
   observation_added_to_the_project: Наблюдението е добавено към проекта "%{project}"
@@ -1027,6 +1060,8 @@ bg:
   or_if_you_dont_want_email: Или ако просто не искате никакви имейли...
   or_invite_your_friends: или добави своите приятели
   or_post_message_to_google_group: 'или публикувай съобщения в нашата Гугъл група:'
+  or_you_can: Или пък...
+  or_you_can_: или можете да
   orange: оранжево
   order: Ред
   order_by: Подреди по
@@ -1260,10 +1295,13 @@ bg:
   project_created_on: създаде този проект на %{date}
   project_icon: Икона на проекта
   project_invitations: Покани за проекти
-  project_journal_posts: Публикации в дневника на проекта
+  project_journal_posts: Публикации в дневника на проект
   project_list: Проектен списък
   project_list_defaults:
     title: Житейски списък на %{owner_name}
+  project_settings: Настройки за проекти
+  project_was_successfully_created: Проектът беше създаден успешно.
+  project_was_successfully_updated: Проектът беше обновен успешно.
   projects: Проекти
   projects_description: Проектите са начин да обедините наблюденията си с тези на
     други хора от %{site_name}. Независимо дали искате да започнете граждански научен
@@ -1313,6 +1351,8 @@ bg:
   real_time_stats: Статистика в реално време
   real_time_discussions: Дискусии в реално време
   reason: Причина
+  receive_email_notifications_when_people_leave_you: Получаване на известия по имейл
+    за
   received: получени
   recent_observations: Последни наблюдения
   recently_active: Последно активни
@@ -1400,9 +1440,13 @@ bg:
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_options: Избери опция
   select_photos_to_display: Избор на снимки за изобразяване
+  send_me_reset_password_instructions: Изпрати ми инструкции за възстановяване на
+    паролата
+  sending: Изпращане...
   sent: изпратени
   september: септември
   share_on: Сподели във
+  sharing_settings: Настройки за споделяне
   show: Покажи
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_default_taxon_photos: показвай снимките по подразбиране за таксоните
@@ -1421,6 +1465,13 @@ bg:
   show_taxa_from_place: Покажи таксони от %{place}
   showing_taxa_from_everywhere: Показване на таксони отвсякъде
   show_taxa_from_everywhere: Покажи таксони отвсякъде
+  sign_in: Влизане
+  sign_in_with_provider: Влезте чрез %{provider}
+  sign_out: Излизане
+  sign_up!: Регистрирайте се!
+  sign_up: Регистриране
+  sign_up_exclamation: Регистрирайте се!
+  sign_in_exclamation: Влезте!
   some_rights_reserved: някои права запазени
   sorry_you_cant_delete_your_own_life_list: Съжаляваме, не можете да изтриете собствения
     си житейски списък.
@@ -1446,7 +1497,7 @@ bg:
   start_a_new_project: Започни нов проект
   start_a_project: Започни проект
   start_adding_observations: Започни да добавяш наблюдения
-  start_new_account: Отвори нов акаунт
+  start_new_account: Създайте нов акаунт
   start_new_project: Започни нов проект
   start_typing_field_name: Започни да въвеждаш име на полето...
   start_typing_place_name: Започни да въвеждаш място...
@@ -1481,10 +1532,14 @@ bg:
   summary: Резюме
   suspicious_photos: Съмнителни снимки
   sun: нед
+  taxon_change_settings: Настройки за промяна на таксон
   taxon_removed_from_list: Таксонът е премахнат от списъка.
+  taxon_was_successfully_created: Таксонът беше създаден успешно.
+  taxon_was_successfully_updated: Таксонът беше обновен успешно.
   taxonomic_changes: Таксономични промени
   taxonomic_changes_raquo_html: Таксономични <nobr>промени &raquo;</nobr>
   taxonomic_groups: Таксономични групи
+  taxonomic_order: Таксономичен ред
   taxonomic_status: Таксономичен статут
   taxonomic_tags_for_flickr: Таксономични тагове за Flickr
   tell_everyone_a_little_about_you: Разкажете на останалите малко аз себе си
@@ -1656,6 +1711,7 @@ bg:
     влезете.
   wed: сря
   what_do_you_want_to_list: Какво искате да включите в списъка?
+  which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   within_inaturalist: В %{site_name}
   x_journal: Дневникът на %{user}
   x_journal_archives_for_y: Дневникът на %{user} &middot; Архиви за
@@ -1667,6 +1723,8 @@ bg:
   year: Година
   year_month: година/месец
   "yes": Да
+  yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците
+    и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
   yesterday_at: ', вчера в 16:00 ч.'
   you_are_now_following_x: Вече следвате %{friend_user}.
@@ -1707,6 +1765,8 @@ bg:
   youre_not_following_anyone: Не следвате никого. Като следвате други естествоизпитатели
     ще можете да проследявате техните най-нови наблюдения. Разберете какво <a href="%{observations_path}">наблюдават</a>
     другите хора и създайте нови <a href="%{people_path}">запознанства</a>.
+  youve_successfully_linked_your_provider_account: Успешно свързахте Вашия %{provider}
+    акаунт
   zoom_in: Приближи
   zoom_out: Отдалечи
   your_dashboard_helps_you: Вашето информационно табло Ви държи в течение какво правят
@@ -1849,6 +1909,71 @@ bg:
           проект? Вероятно предишният администратор е изтрил акаунта си и затова %{site_name}
           е назначил Вас, тъй като сте били управител на проекта или куратор. Ако
           не искате да бъдете администратор, моля свържете се с <a href="mailto:%{help_email}">%{help_email}</a>
+      edit:
+        project_addition_preferences:
+          joined: Проекти, в които участвате
+          none: Никои, само Вие можете да добавяте наблюденията си към проекти
+        project_settings_desc: Помнете, това не дава достъп на проектите до Вашите
+          поверителни координати, нито им позволява да Ви изпращат новини. Трябва
+          да се включите в проект, за да стане това възможно, или да дадете такива
+          права собственоръчно.
+        taxon_change_desc: Когато таксон бъде променен или преименуван на %{site_name},
+          Вашите наблюдения, списъци, разпознавания и т.н. ще бъдат автоматично обновени
+          до новия таксон, ако тези промени са еднозначни. Ако изключите тази функция
+          или ако промяната е двузначна (например разделяне на таксон), ще получите
+          известие за промяната с препратка към инструмент, с който собственоръчно
+          да обновите съдържанието си ако пожелаете.
+        place_help_html: Персонализира някои аспекти от сайта спрямо дадено място
+          - например местни названия.
+        prefers_community_taxa_desc: '%{site_name} следи както Вашето мнение за това
+          какво мислите, че сте наблюдавали, така и мнението на общността. Разпознатият
+          таксон, който споделяме с информационните си партньори, винаги е този на
+          общността. Но ако не искате никога мнението на общността да натежава над
+          Вашето собствено, изключете от тук тази функция. Хората все още ще могат
+          да разпознават наблюденията Ви, но тяхното мнение няма да е с по-голям приоритет
+          от Вашето. Това означава също и, че Вашите наблюдения няма да получават
+          „изследователски клас“, когато мнението Ви е различно от това на общността.'
+    welcome:
+      index:
+        connect_with_nature: Опознай природата
+        explore_and_share: Изследвай и споделяй своите наблюдения на природата.
+        observations_to_date: Наблюдения до момента
+        species_observed: Наблюдавани видове
+        people_signed_up: Регистрирани потребители
+        how_it_works: Как работи
+        record_your_observations: Запиши своите наблюдения
+        share_with_fellow_naturalists: Сподели с останалите
+        discuss_your_findings: Дискутирай наблюденията
+        contribute_to_science: Принос към науката
+        science_desc_html: Всяко наблюдение може да допринесе за опознаването на биоразнообразието
+          - от най-рядката пеперуда до най-срещания плевел. Ние споделяме Вашите открития
+          с научни информационни хранилища като <a href='http://gbif.org' target='_blank'>Global
+          Biodiversity Information Facility</a> за да помогнем на учените да открият
+          и използват Вашите данни. От Вас се иска само да наблюдавате природата.
+        nature_at_your_fingertips: Природата на ръка разстояние
+        keep_track: Организирайте данните си
+        record_your_encounters: Опишете своите срещи с други организми и съставете
+          свои житейски списъци с видове - всичко това в облачно съхранение.
+        create_useful_data: Създайте полезни данни
+        help_scientists: Помогнете на учени и еколози да разберат кога и къде се срещат
+          различните организми.
+        crowdsource_identifications: Разпознаване от разстояние
+        connect_with_experts: Свържете се с експерти които могат да разпознаят наблюдаваните
+          от Вас организми.
+        become_a_citizen_scientist: Гражданска наука
+        find_a_project: Намерете или създайте проект с мисия която Ви интересува.
+        learn_about_nature: Научете за природата
+        build_your_knowledge: Разширете знанията си като разговаряте с други естествоизпитатели
+          и като си помагате взаимно.
+        run_a_bioblitz: Стартирайте биоблиц
+        hold_an_event: Организирайте състезание, в което участниците се стремят да
+          намерят колкото е възможно повече видове.
+        works_on_all_your_devices: Работи на всички устройства
+        install_our_mobile_apps: Инсталирайте мобилното ни приложение и ще можете
+          винаги да регистрирате наблюдения, дори и при липса на покритие или wifi.
+        who_uses_site_name: Кой използва %{site_name}?
+        what_are_you_waiting_for: Защо се колебаете още?
+        join_today: Включете се днес
   date:
     abbr_day_names:
     - Нд
@@ -1860,6 +1985,8 @@ bg:
     - Сб
     abbr_month_names:
       1: Ян
+      2: фев
+      3: мар
       4: Апр
       5: Май
       6: Юни
@@ -1870,13 +1997,13 @@ bg:
       11: Ное
       12: Дек
     day_names:
-    - Неделя
-    - Понеделник
-    - Вторник
-    - Сряда
-    - Четвъртък
-    - Петък
-    - Събота
+    - неделя
+    - понеделник
+    - вторник
+    - сряда
+    - четвъртък
+    - петък
+    - събота
     formats:
       default: '%Y-%m-%d'
       long: '%d %B %Y'
@@ -1975,6 +2102,9 @@ bg:
         other: е с грешна дължина (трябва да е %{count} символа)
     template:
       body: 'Имаше проблеми със следните полета:'
+      header:
+        one: 1 грешка попречи на запазването на %{model}
+        other: '%{count} грешки попречиха на запазването на %{model}'
   helpers:
     select:
       prompt: Моля изберете
@@ -1987,6 +2117,10 @@ bg:
       format:
         delimiter: .
         format: '%n %u'
+        separator: ','
+    format:
+      delimiter: .
+      separator: ','
   activerecord:
     errors:
       models:

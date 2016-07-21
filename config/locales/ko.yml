@@ -401,6 +401,7 @@ ko:
   browse: 찾아보기
   browse_all_projects: 모든 프로젝트 검색
   browse_all_species: 모든 종 검색
+  browse_people: 사람 찾아보기
   browse_projects: 프로젝트 검색
   browse_species_that_occur_near_this_observation: 이 관찰 주변에서 서식하는 종 검색
   browse_your_observations: 너의 관찰 검색
@@ -1408,7 +1409,7 @@ ko:
     회원
   members: 구성원
   mentioned_you_in_noun_html: '%{user}가 %{noun}에서 당신을 언급했습니다.'
-  mentioned_you_in_noun_by_html: '%{user}가 %{noun}에서 당신을 %{by}을/를 통해 언급했습니다.'
+  mentioned_you_in_noun_by_html: '%{user}가 %{noun}에서 당신을 %{by}을(를) 통해 언급했습니다.'
   mentioned_you_in_a_x_on_noun_html: '%{user}가 %{noun}의 %{x}에서 당신을 언급했습니다.'
   mentioned_you_in_an_x_on_noun_html: '%{user}가 %{noun}의 %{x}에서 당신을 언급했습니다.'
   mentioned_you_in_a_x_on_noun_by_html: '%{user}가 %{noun}의 %{x}에서 %{by}을/를 통해 당신을
@@ -1922,6 +1923,9 @@ ko:
       remove: 선택된 관찰 제거
       select_all: 모든 관찰 선택
       remove_photo: 사진 제거
+  uploading_num_of_count_photos:
+    one: 사진을 올리는 중...
+    other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
   username: 사용자 이름
@@ -2141,7 +2145,7 @@ ko:
       second: 초
       year: 년
   errors:
-    format: '%{attribute}(은)는 %{message}'
+    format: '%{attribute} %{message}'
     messages:
       accepted: 동의해야 합니다
       blank: 비워둘 수 없습니다
