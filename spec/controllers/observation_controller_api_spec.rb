@@ -117,13 +117,27 @@ shared_examples_for "an ObservationsController" do
       expect(o.description).to eq "this is a WOAH"
     end
 
-    it "should duplicate observations with the same uuid if made by different users" do
-      # in theory this is statistically impossible if people use rfc4122 UUIDs, but people and statistics are evil
+    it "should be invalid for observations with the same uuid if the existing was by a differnet user" do
       uuid = "some really long identifier"
-      o = Observation.make!(:uuid => uuid)
-      post :create, :format => :json, :observation => {:uuid => uuid}
-      expect(Observation.where(:uuid => uuid).count).to eq 2
+      o = Observation.make!( uuid: uuid )
+      post :create, format: :json, observation: { uuid: uuid }
+      expect( response.status ).to eq 422
+      expect( Observation.where( uuid: uuid ).count ).to eq 1
     end
+
+    it "should set the uuid even if it wasn't included in the request" do
+      post :create, format: :json, observation: { species_guess: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["uuid"] ).not_to be_blank
+    end
+
+    it "should not override a uuid in the request" do
+      uuid = "some really long identifier"
+      post :create, format: :json, observation: { uuid: uuid }
+      json = JSON.parse( response.body )[0]
+      expect( json["uuid"] ).to eq uuid
+    end
+
   end
 
   describe "destroy" do
@@ -471,6 +485,74 @@ shared_examples_for "an ObservationsController" do
       o.reload
       qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
       expect( qm ).to be_agree
+    end
+
+    it "should remove place_guess when changing geoprivacy to private" do
+      original_place_guess = "foo"
+      o = Observation.make!( user: user, place_guess: original_place_guess, latitude: 1, longitude: 1 )
+      expect( o.place_guess ).to eq original_place_guess
+      put :update, format: :json, id: o.id, observation: { geoprivacy: Observation::PRIVATE }
+      o.reload
+      expect( o.place_guess ).to be_blank
+    end
+
+    it "should return private coordinates if geoprivacy is private" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
+      put :update, format: :json, id: o.id, observation: { description: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["private_latitude"] ).not_to be_blank
+    end
+
+    it "should return private coordinates if geoprivacy is obscured" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      put :update, format: :json, id: o.id, observation: { description: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["private_latitude"] ).not_to be_blank
+    end
+
+    describe "private_place_guess" do
+      let(:p) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL, name: "Freedonia" ) }
+      let(:original_place_guess) { "super secret place" }
+      let(:o) {
+        Observation.make!(
+          latitude: p.latitude,
+          longitude: p.longitude,
+          geoprivacy: Observation::OBSCURED,
+          place_guess: original_place_guess,
+          user: user
+        )
+      }
+      it "should not change if the obscured place_guess is submitted" do
+        obscured_place_guess = o.place_guess
+        expect( obscured_place_guess ).to eq p.name
+        put :update, format: :json, id: o.id, observation: { place_guess: original_place_guess, description: "foo" }
+        o.reload
+        expect( o.description ).to eq "foo"
+        expect( o ). to be_coordinates_obscured
+        expect( o.place_guess ).to eq obscured_place_guess
+        expect( o.private_place_guess ).to eq original_place_guess
+      end
+      it "should change with a new place_guess" do
+        obscured_place_guess = o.place_guess
+        new_place_guess = "a totally different place"
+        put :update, format: :json, id: o.id, observation: { place_guess: new_place_guess }
+        o.reload
+        expect( o.place_guess ).to eq obscured_place_guess
+        expect( o.private_place_guess ).to eq new_place_guess
+      end
+      it "should not change when updating an observation of a threatened taxon" do
+        o = Observation.make!(
+          taxon: make_threatened_taxon,
+          latitude: 1,
+          longitude: 1,
+          place_guess: original_place_guess,
+          user: user
+        )
+        expect( o.private_place_guess ).to eq original_place_guess
+        put :update, format: :json, id: o.id, observation: { description: "foo" }
+        o.reload
+        expect( o.private_place_guess ).to eq original_place_guess
+      end
     end
   end
 
@@ -1241,6 +1323,18 @@ shared_examples_for "an ObservationsController" do
         get :index, format: :dwc
         xml = Nokogiri::XML(response.body)
         expect( xml.at_xpath('//dwr:SimpleDarwinRecordSet').children.size ).not_to be_blank
+      end
+    end
+
+    describe "csv" do
+      render_views
+      it "should render" do
+        o = make_research_grade_observation
+        get :index, format: :csv
+        CSV.parse( response.body, headers: true ) do |row|
+          expect( row["species_guess"] ).to eq o.species_guess
+          expect( row["image_url"] ).not_to be_blank
+        end
       end
     end
 

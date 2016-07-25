@@ -25,9 +25,12 @@
   height: 200px;
 }
 
-.caption
-{
+.caption {
   text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+.user_image {
+  width: 100%;
 }

@@ -154,7 +154,8 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    @user.delay(:priority => USER_PRIORITY).sane_destroy
+    @user.delay(priority: USER_PRIORITY,
+      unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)
     flash[:notice] = "#{@user.login} has been removed from #{CONFIG.site_name} " + 
       "(it may take up to an hour to completely delete all associated content)"

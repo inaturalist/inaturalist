@@ -34,8 +34,8 @@
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
   <% end -%>
-  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
-  <meta property="twitter:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
+  <meta property="og:title" content="<%= @shareable_title %>"/> 
+  <meta property="twitter:title" content="<%=t :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
     <meta property="og:image" content="<%= @shareable_image_url %>"/> 
     <meta name="twitter:card" content="photo">

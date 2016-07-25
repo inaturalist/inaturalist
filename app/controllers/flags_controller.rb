@@ -1,9 +1,9 @@
 class FlagsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :curator_required, :only => [:edit, :update, :destroy]
   before_filter :set_model, :except => [:update, :show, :destroy, :on]
   before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
-  before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
+  before_filter :load_flag, :only => [:show, :destroy, :update]
+  before_filter :curator_or_owner_required, only: [ :update, :destroy ]
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
@@ -152,4 +152,14 @@ class FlagsController < ApplicationController
     end
   end
 
+  def curator_or_owner_required
+    unless logged_in? && @flag && (current_user.is_curator? || current_user.id == @flag.user.id)
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+    end
+  end
 end

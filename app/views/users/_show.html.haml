@@ -1,0 +1,107 @@
+= render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
+.row
+  .col-sm-4
+    - if @selected_user.icon?
+      %h1= user_image @user, :size => "medium", :class => "img-thumbnail img-responsive"
+    - if is_me?(@user)
+      %p
+        = link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user), :class => "btn btn-primary btn-lg btn-group-justified"
+    = render :partial => 'glance'
+    - if logged_in? && (current_user.is_admin? || current_user.is_curator?)
+      .row
+        .col-md-12
+          .dropdown
+            %button#dropdownMenu1.btn.btn-default.dropdown-toggle.nav-justified{"data-toggle" => "dropdown", :style => "text-align:left", :type => "button"}
+              %span.glyphicon.glyphicon-wrench
+              = t :admin_tools, default: 'Admin Tools'
+              %span.caret
+            %ul.dropdown-menu{:style => "width:100%"}
+              - if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
+                - if @user.active?
+                  %li
+                    = link_to t(:suspend_user), suspend_user_path(@user)
+                - else
+                  %li
+                    = link_to t(:unsuspend_user), unsuspend_user_path(@user)
+              - if current_user.is_curator? && !@user.is_admin?
+                - if @user.is_curator?
+                  %li
+                    = link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete
+                - else
+                  %li
+                    = link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post
+              - if is_admin?
+                %li
+                  = link_to t(:curate_user), curate_users_path(:id => @user.id)
+              - if current_user.is_curator? && !is_me?(@user) && !@user.is_admin?
+                %li.divider{:role => "separator"}
+                - unless @user.spammer?
+                  %li
+                    = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post
+                - unless @user.known_non_spammer?
+                  %li
+                    = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
+  .col-sm-8{:style => "background-color:white"}
+    %h1
+      = @user.name.blank? ? @user.login : @user.name
+      - if @user.is_admin? || @user.is_curator?
+        %small= @user.is_admin? ? t(:admin) : t(:curator)
+        %small
+          = link_to help_path(:anchor => "curators") do
+            %span.glyphicon.glyphicon.glyphicon-question-sign
+    - if @user.description.blank?
+      - if is_me?(@selected_user)
+        #nodescription.well
+          %p
+            = link_to t(:tell_the_world_a_little_about_yourself).html_safe, generic_edit_user_path, :class => "btn btn-primary btn-default"
+          .more
+            = t(:do_you_study_nematodes_worlds_foremost_expert_barnacle)
+          = form_for @selected_user, :html => {:style => "display: none"} do |f|
+            = f.text_area :description, placeholder: t(:describe_your_interest_in_nature), :class => "stacked form-control"
+            .actions
+              = f.submit t(:save), :class => "default button", "data-loading-click" => true
+              %a.button.cancellink{:href => "#"}= t(:cancel)
+      - else
+        = t(:user_is_a_naturalist, :user => @user.login)
+    - else
+      - @description = formatted_user_text(@user.description)
+      %p.lead
+        = stripped_first_paragraph_of_text(@description, "\n\n")
+      = remaining_paragraphs_of_text(@description, "\n\n")
+    %h3.page-header
+      = t(:following).capitalize
+      = t(:x_people, :count => @user.friendships.count)
+    - unless @followees.blank?
+      .row
+        - @followees[0..3].each do |friend|
+          = render(:partial => 'followees', :locals => {:friend => friend})
+      - if @followees.count > 4
+        #followee-row.row
+          - @followees[4..7].each do |friend|
+            = render(:partial => 'followees', :locals => {:friend => friend})
+      %p#view_more_btn_container
+        = link_to t(:view_all), following_by_login_path(@user.login), :class => "btn btn-sm btn-default"
+    - else
+      - if is_me?(@user)
+        %p= raw t(:youre_not_following_anyone, observations_path: observations_path, people_path: people_path )
+      - else
+        %p
+          = @user.login
+          = t(:is_not_following_anyone).downcase
+    - unless @favorite_listed_taxa.blank?
+      #favorites
+        %h3.page-header= t :favorite_taxa, default: 'Favorite Taxa'
+        .row
+          - for listed_taxon in @favorite_listed_taxa[0..3]
+            = render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon})
+        - if @favorite_listed_taxa.count > 4
+          .row
+            - for listed_taxon in @favorite_listed_taxa[4..7]
+              = render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon})
+        %p#view_more_btn_container
+          = link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"
+    - if @favorites_list.blank? && is_me?(@selected_user)
+      .well{:style => "text-align: center;"}
+        = t(:want_to_show_off_some_of_your_favorite_taxa)
+        = link_to t(:create_a_list), new_list_path(:title => t(:favorites))
+        = t(:titled_favorites_and_the_most_recent_additions)

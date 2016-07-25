@@ -162,5 +162,7 @@ describe ProjectsController, "destroy" do
   it "should queue a job to destroy the project" do
     delete :destroy, id: project.id
     expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
+    expect( Delayed::Job.where("unique_hash = '{:\"Project::sane_destroy\"=>#{project.id}}'").
+      count ).to eq 1
   end
 end

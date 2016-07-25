@@ -869,7 +869,8 @@ class Place < ActiveRecord::Base
     "place_guide_#{id}"
   end
   
-  def as_json(options = {})
+  def serializable_hash(options = nil)
+    options ||= { }
     options[:methods] ||= []
     options[:methods] << :place_type_name
     options[:except] ||= []

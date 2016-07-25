@@ -35,14 +35,22 @@ class LocalPhoto < Photo
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
-      path: "photos/:id/:style.:extension",
+      #
+      #  NOTE: the path used to be "photos/:id/:style.:extension" as of
+      #  2016-07-15, but that wasn't setting the extension based on the detected
+      #  content type, just echoing what was in the file name. So if you're
+      #  trying to use file.url or file.path for photos older than 2016-07-15,
+      #  you'll probably want to fetch the original from original_url first
+      #  before you do any work on the photo.
+      #
+      path: "photos/:id/:style.:content_type_extension",
       url: ":s3_alias_url",
       only_process: [ :original, :large ]
     )
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
       only_process: [ :original, :large ]
     )
   end
@@ -139,7 +147,43 @@ class LocalPhoto < Photo
     true
   end
 
+  def reset_file_from_original
+    interpolated_original_url = FakeView.image_url( self.file.url(:original) )
+    
+    # If we're using local file storage and using some kind of development-ish
+    # setup, it probably means we're running a single server process, which
+    # means running a HEAD request while *this* request is running is going to
+    # cause problems, but it also means that the original file is *probably*
+    # there so we can skip this file reset business.
+    return if interpolated_original_url =~ /localhost/
+
+    # If the original file is there under the current path, no need to do anythign
+    return if Photo.valid_remote_photo_url?( interpolated_original_url )
+    
+    # If it's not, check the old path
+    old_interpolated_original_url = FakeView.image_url(
+      Paperclip::Interpolations.interpolate("photos/:id/:style.:extension", self.file, "original")
+    )
+    url = if Photo.valid_remote_photo_url?( old_interpolated_original_url )
+      old_interpolated_original_url
+    
+    # If it's not at the old path, use the cached original_url if it's not copyright infringement
+    elsif original_url !~ /copyright/
+      FakeView.image_url( original_url )
+
+    # If this is a copyright violation AND we don't have access to an original file, we're screwed.
+    else
+      raise "We no longer have access to the original file."
+    end
+
+    io = open( URI.parse( url ) )
+    Timeout::timeout(10) do
+      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+  end
+
   def repair(options = {})
+    reset_file_from_original
     self.file.reprocess!
     set_urls
     [self, {}]
@@ -233,11 +277,11 @@ class LocalPhoto < Photo
   end
 
   def rotate!(degrees = 90)
+    reset_file_from_original
     self.rotation = degrees
     self.rotation -= 360 if self.rotation >= 360
     self.rotation += 360 if self.rotation <= -360
-    self.file.post_processing = true
-    self.file.reprocess!
+    self.file.reprocess_without_delay!
     self.save
   end
 

@@ -240,7 +240,8 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.delay( priority: USER_INTEGRITY_PRIORITY ).sane_destroy
+    @project.delay( priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
     
     respond_to do |format|
       format.html do

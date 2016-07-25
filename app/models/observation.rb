@@ -315,11 +315,13 @@ class Observation < ActiveRecord::Base
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
+  validates_uniqueness_of :uuid
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates
+                    :set_coordinates,
+                    :set_uuid
 
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
@@ -337,6 +339,7 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
+              :obscure_place_guess,
               :set_iconic_taxon
 
   before_update :handle_id_please_on_update, :set_quality_grade
@@ -712,7 +715,7 @@ class Observation < ActiveRecord::Base
     unless self.time_observed_at.blank? || options[:no_time]
       s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
-    s += " #{I18n.t(:by).downcase} #{self.user.try(:login)}" unless options[:no_user]
+    s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
     s.gsub(/\s+/, ' ')
   end
 
@@ -725,7 +728,7 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def serializable_hash(options = {})
+  def serializable_hash(options = nil)
     # for some reason, in some cases options was still nil
     options ||= { }
     # making a deep copy of the options so they don't get modified
@@ -1077,6 +1080,12 @@ class Observation < ActiveRecord::Base
     end
     true
   end
+
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
   
   #
   # Trim whitespace around species guess
@@ -1332,24 +1341,52 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates
-    if latitude.blank? || longitude.blank?
-      self.private_place_guess = place_guess
-      self.place_guess = nil
-      return
-    end
+    return if latitude.blank? || longitude.blank?
     if latitude_changed? || longitude_changed?
       self.private_latitude = latitude
       self.private_longitude = longitude
-      self.private_place_guess = place_guess
     else
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
-      self.private_place_guess ||= place_guess
     end
     self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
     set_geom_from_latlon
-    self.place_guess = Observation.place_guess_from_latlon( private_latitude, private_longitude,
-      acc: calculate_public_positional_accuracy, user: user )
+    true
+  end
+
+
+  def obscure_place_guess
+    if coordinates_private?
+      if place_guess_changed? && place_guess == private_place_guess
+        self.place_guess = nil
+      else
+        self.private_place_guess = place_guess
+        self.place_guess = nil
+      end
+    elsif coordinates_obscured?
+      public_place_guess = Observation.place_guess_from_latlon(
+        private_latitude,
+        private_longitude,
+        acc: calculate_public_positional_accuracy,
+        user: user
+      )
+      if place_guess_changed?
+        if place_guess == private_place_guess
+          self.place_guess = public_place_guess
+        else
+          self.private_place_guess = place_guess
+          self.place_guess = public_place_guess
+        end
+      elsif private_latitude_changed? && private_place_guess.blank?
+        self.private_place_guess = place_guess
+        self.place_guess = public_place_guess
+      end
+    else
+      unless place_guess_changed? || private_place_guess.blank?
+        self.place_guess = private_place_guess
+      end
+      self.private_place_guess = nil
+    end
     true
   end
   
@@ -1362,10 +1399,8 @@ class Observation < ActiveRecord::Base
     return unless geoprivacy.blank?
     self.latitude = private_latitude
     self.longitude = private_longitude
-    self.place_guess = private_place_guess
     self.private_latitude = nil
     self.private_longitude = nil
-    self.private_place_guess = nil
     set_geom_from_latlon
   end
   
@@ -1532,6 +1567,7 @@ class Observation < ActiveRecord::Base
     scope.find_in_batches do |batch|
       batch.each do |o|
         o.obscure_coordinates_for_threatened_taxa
+        o.obscure_place_guess
         next unless o.coordinates_changed? || o.place_guess_changed?
         Observation.where( id: o.id ).update_all(
           latitude: o.latitude,

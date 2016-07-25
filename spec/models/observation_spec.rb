@@ -444,6 +444,7 @@ describe Observation do
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE)
       expect(o).to be_georeferenced
     end
+
   end
 
   describe "updating" do
@@ -1662,25 +1663,6 @@ describe Observation do
       expect(o.private_longitude).to be_blank
     end
   
-    it "should strip leading digits out of street addresses" do
-      o = Observation.make!(:place_guess => '5720 Claremont Ave. Oakland, CA')
-      o.obscure_coordinates
-      expect(o.place_guess).not_to match(/5720/)
-    
-      o = Observation.make!(:place_guess => '3333 23rd St, San Francisco, CA 94114, USA ')
-      o.obscure_coordinates
-      expect(o.place_guess).not_to match(/3333/)
-
-      o = Observation.make!(:place_guess => '3333A 23rd St, San Francisco, CA 94114, USA ')
-      o.obscure_coordinates
-      expect(o.place_guess).not_to match(/3333/)
-    
-      o = Observation.make!(:place_guess => '3333-6666 23rd St, San Francisco, CA 94114, USA ')
-      o.obscure_coordinates
-      expect(o.place_guess).not_to match(/3333/)
-      expect(o.place_guess).not_to match(/6666/)
-    end
-  
     it "should not affect already obscured coordinates" do
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
       lat = o.latitude
@@ -1757,6 +1739,11 @@ describe Observation do
       o = Observation.make!(latitude: 37, longitude: -122, geoprivacy: Observation::PRIVATE)
       expect(o.latitude).to be_blank
       expect(o.longitude).to be_blank
+    end
+
+    it "should remove place_guess when private" do
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE, place_guess: "foo" )
+      expect( o.place_guess ).to be_blank
     end
 
     it "should remove public coordinates when moving from obscured to private" do

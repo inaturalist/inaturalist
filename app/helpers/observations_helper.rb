@@ -7,7 +7,7 @@ module ObservationsHelper
     end.first.photo
     url = photo.send(size)
     # this assumes you're not using SSL *and* locally hosted attachments for observations
-    if params[:ssl]
+    if params[:ssl] || ( defined? request && request && request.protocol =~ /https/ )
       url = url.sub("http://", "https://s3.amazonaws.com/")
     end
     url
@@ -61,7 +61,7 @@ module ObservationsHelper
       display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
     end
     
-    if !observation.place_guess.blank? && coordinates_viewable
+    if !display_place_guess.blank? && coordinates_viewable
       place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
         "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
       elsif options[:place_guess_truncation]

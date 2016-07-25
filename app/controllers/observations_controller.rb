@@ -307,9 +307,19 @@ class ObservationsController < ApplicationController
         else
           FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
         end
-        @shareable_description = @observation.to_plain_s(:no_place_guess => !@coordinates_viewable)
+        @shareable_title = if !@observation.species_guess.blank?
+          @observation.species_guess
+        elsif @observation.taxon
+          if comname = FakeView.common_taxon_name( @observation.taxon, place: @site.try(:place) ).try(:name)
+            "#{comname} (#{@observation.taxon.name})"
+          else
+            @observation.taxon.name
+          end
+        else
+          I18n.t( "something" )
+        end
+        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
         @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
-        
 
         if logged_in?
           user_viewed_updates
@@ -568,6 +578,7 @@ class ObservationsController < ApplicationController
     if @observation.coordinates_obscured?
       @observation.latitude = @observation.private_latitude
       @observation.longitude = @observation.private_longitude
+      @observation.place_guess = @observation.private_place_guess
     end
     
     if params[:facebook_photo_id]
@@ -918,31 +929,32 @@ class ObservationsController < ApplicationController
           Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
-              :methods => [:user_login, :iconic_taxon_name],
-              :include => {
-                :taxon => Taxon.default_json_options,
-                :observation_field_values => {},
-                :project_observations => {
-                  :include => {
-                    :project => {
-                      :only => [:id, :title, :description],
-                      :methods => [:icon_url]
+              viewer: current_user,
+              methods: [:user_login, :iconic_taxon_name],
+              include: {
+                taxon: Taxon.default_json_options,
+                observation_field_values: {},
+                project_observations: {
+                  include: {
+                    project: {
+                      only: [:id, :title, :description],
+                      methods: [:icon_url]
                     }
                   }
                 },
-                :observation_photos => {
-                  :include => {
-                    :photo => {
-                      :methods => [:license_code, :attribution],
-                      :except => [:original_url, :file_processing, :file_file_size, 
+                observation_photos: {
+                  include: {
+                    photo: {
+                      methods: [:license_code, :attribution],
+                      except: [:original_url, :file_processing, :file_file_size, 
                         :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
                         :native_realname, :native_photo_id]
                     }
                   }
                 },
-              })
+              } )
           else
-            render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
+            render json: @observations.to_json( methods: [:user_login, :iconic_taxon_name], viewer: current_user )
           end
         end
       end
@@ -1079,6 +1091,7 @@ class ObservationsController < ApplicationController
       if o.coordinates_obscured?
         o.latitude = o.private_latitude
         o.longitude = o.private_longitude
+        o.place_guess = o.private_place_guess
       end
       if qm = o.quality_metrics.detect{|qm| qm.user_id == o.user_id}
         o.captive_flag = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
