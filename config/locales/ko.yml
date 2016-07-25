@@ -163,7 +163,7 @@ ko:
   added_an: 추가됨
   added_as_a_part_of: 일부분으로 추가됨
   added_by: 추가함
-  added_by_user_on_date_html: '%{date}에 %{user}이(가) 추가함'
+  added_by_user_on_date_html: '%{date}에 %{user}님이 추가함'
   added_identifications_to: 확인을 관찰에 추가함
   added_on: 추가됨
   added_to: 추가됨
@@ -355,12 +355,12 @@ ko:
   back_to_possessive_user_profile: '%{possuser}의 프로파일로 돌아가기'
   back_to_post: '&laquo; 포스트로 돌아가기'
   back_to_projects: 프로젝트틀로 돌아가기
-  back_to_shared_taxon: '%{sharedtaxon}로 돌아가기'
-  back_to_taxon: '%{defaulttaxon}로 돌아가기'
+  back_to_shared_taxon: '%{sharedtaxon}(으)로 돌아가기'
+  back_to_taxon: '%{defaulttaxon}(으)로 돌아가기'
   back_to_taxon_changes: 분류군 변화들로 돌아가기
-  back_to_this: '%{place}로 돌아가기'
+  back_to_this: '%{place}(으)로 돌아가기'
   back_to_viewing: <i>%{taxon}</i> 보기로 돌아가기
-  back_to_x: '%{noun}로 돌아가기'
+  back_to_x: '%{noun}(으)로 돌아가기'
   back_to_x_assessment: '%{project} 평가들로 돌아가기'
   back_to_x_history: '%{x} 역사로 돌아가기'
   back_to_x_journal: '%{user}의 일지로 돌아가기'
@@ -401,6 +401,7 @@ ko:
   browse: 찾아보기
   browse_all_projects: 모든 프로젝트 검색
   browse_all_species: 모든 종 검색
+  browse_observations: 관찰 찾아보기
   browse_people: 사람 찾아보기
   browse_projects: 프로젝트 검색
   browse_species_that_occur_near_this_observation: 이 관찰 주변에서 서식하는 종 검색
@@ -847,7 +848,7 @@ ko:
   editing_observation_id: 관찰 편집 %{obs_id}
   editing_project: '%{project} 편집'
   editing_project_asset: 을 위한 프로젝트 자산 편집
-  editing_subscription_to_x_html: 구독 %{x}로 편집
+  editing_subscription_to_x_html: '%{x}의 구독 편집'
   editing_taxon_link: 분류군 링크 편집
   editing_taxon_name: 분류군 이름 편집
   editing_taxon_range: 분류군 범위 편집
@@ -921,7 +922,7 @@ ko:
   extras: 엑스트라들
   facebook: 페이스북
   facebook_account_information: 페이스북 계정 정보
-  facebook_account_not_linked: '%{user}가 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이 더이상
+  facebook_account_not_linked: '%{user}님이 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이(가)
     이 사진을 접근할 권한이 없습니다.'
   facebook_access_token_expired: 접근 토큰 기간이 만료되었습니다. %{user}는 다시 본인의 페이스북 계정을 연결해야
     합니다.
@@ -1079,7 +1080,7 @@ ko:
   guide_was_successfully_published: 가이드가 성공적으로 출판되었습니다.
   guide_was_successfully_updated: 가이드가 성공적으로 업데이트되었습니다.
   guidelines: 가이드라인
-  has_already_been_flagged_by: 이/가 이미 플래그함
+  has_already_been_flagged_by: 에 의해 이미 플래그함
   has_one_or_more_faves: 하나 이상의 '좋아요'가 있다
   has_photos: 사진이 있다
   has_sounds: 소리가 있다
@@ -1131,7 +1132,7 @@ ko:
   identification_summary: 동정 요약
   identification_updated: 동정 업데이트됨
   identifications: 동정
-  identifications_by: '%{user}가 한 동정'
+  identifications_by: '%{user}님이 한 동정'
   identified?: 동정됨
   identifiers: 동정한 사용자들
   if_this_is_a_scientific_name: 이것이 학명이라면, 현재 받아들여지는 학명인가요?
@@ -1195,15 +1196,15 @@ ko:
   invitation: 초대장
   invitations: 초대장들
   invite: 초대
-  invite_flickr_photos: Flickr 사진들을 %{site_name}로 초대
+  invite_flickr_photos: Flickr 사진을 %{site_name}(으)로 초대
   invite_more: 더 초대
   invite_observations: 관찰 초대
   invite_people: 사용자들 초대
-  invite_people_to_project: '%{project}로 사용자들 초대'
+  invite_people_to_project: '%{project}(으)로 사용자들 초대'
   invite_photos_from_other_sites: 다른 사이트의 사진들 초대
-  invite_photos_to: '%{site_name}로 사진들 초대'
+  invite_photos_to: '%{site_name}(으)로 사진 초대'
   invite_photos_to_raquo_html: <nobr>%{site_name} &raquo;</nobr>로 사진들 초대
-  invite_someone_to: '%{name}으로 사용자 초대!'
+  invite_someone_to: '%{name}에 사용자를 초대합니다!'
   invite_to_project: 프로젝트로 초대
   invite_your_friends: 친구들 초대
   invite_your_friends_description: 친구들을 초대해서 %{site_name}이 더 크고 좋은 공동체가 될 수 있게 만들어가요!
@@ -1249,6 +1250,7 @@ ko:
   leaderboard_most:
     observations: '%{time}에 가장 많은 관찰'
   learn_more: 더 알아보기
+  let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
   lexicons:
     scientific_names: 학명
     afrikaans: Afrikaans
@@ -1408,10 +1410,10 @@ ko:
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>의
     회원
   members: 구성원
-  mentioned_you_in_noun_html: '%{user}가 %{noun}에서 당신을 언급했습니다.'
-  mentioned_you_in_noun_by_html: '%{user}가 %{noun}에서 당신을 %{by}을(를) 통해 언급했습니다.'
-  mentioned_you_in_a_x_on_noun_html: '%{user}가 %{noun}의 %{x}에서 당신을 언급했습니다.'
-  mentioned_you_in_an_x_on_noun_html: '%{user}가 %{noun}의 %{x}에서 당신을 언급했습니다.'
+  mentioned_you_in_noun_html: '%{user}님이 %{noun}에서 당신을 언급했습니다.'
+  mentioned_you_in_noun_by_html: '%{user}님이 %{noun}에서 당신을 %{by}을(를) 통해 언급했습니다.'
+  mentioned_you_in_a_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 당신을 언급했습니다.'
+  mentioned_you_in_an_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 당신을 언급했습니다.'
   mentioned_you_in_a_x_on_noun_by_html: '%{user}가 %{noun}의 %{x}에서 %{by}을/를 통해 당신을
     언급했습니다.'
   mentioned_you_in_an_x_on_noun_by_html: '%{user}가 %{noun}의 %{x}에서 %{by}을/를 통해 당신을
@@ -1520,10 +1522,10 @@ ko:
   no_header_row: 표 제목란이 없습니다.
   no_identifications_added:
     current_user: 다른 사람의 관찰에 동정을 추가한 것이 없습니다.
-    user: '%{user}은(는) 다른 사람의 관찰에 동정을 추가한 것이 없습니다.'
+    user: '%{user}님은 다른 사람의 관찰에 동정을 추가한 것이 없습니다.'
   no_favorites_added:
     current_user: 즐겨찾기가 추가되지 않았습니다.
-    user: '%{user}은(는) 즐겨찾기를 추가한 것이 없습니다.'
+    user: '%{user}님은 즐겨찾기를 추가한 것이 없습니다.'
   no_journal_post_have_been: 아직 이 프로젝트에 일지를 추가하지 않았습니다.
   no_license_all_rights_reserved: 라이선스 없음 (모든 권한 보유)
   no_link_flickr: 거절합니다.
@@ -1857,7 +1859,7 @@ ko:
   show_less: 덜 보기
   show_more: 더 보기
   sign_in: 로그인
-  sign_in_with_provider: '%{provider}로 로그인하기'
+  sign_in_with_provider: '%{provider}(으)로 로그인'
   sign_out: 로그아웃
   sign_up!: 가입하기
   sign_up: 가입하기
@@ -1927,6 +1929,8 @@ ko:
     one: 사진을 올리는 중...
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
+  user_added_a_x: '%{user}님이 %{x}을(를) 추가했습니다'
+  user_added_an_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
   username: 사용자 이름
   username_or_email: 사용자 이름이나 이메일
@@ -2151,7 +2155,7 @@ ko:
       blank: 비워둘 수 없습니다
       confirmation: 확인과 일치하지 않습니다
       empty: 비워둘 수 없습니다
-      equal_to: '%{count}(와)과 같아야 합니다'
+      equal_to: '%{count}와(과) 같아야 합니다'
       even: 짝수여야 합니다
       exclusion: 이미 존재합니다.
       greater_than: '%{count}보다 커야 합니다'

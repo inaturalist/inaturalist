@@ -1,24 +1,25 @@
 # Messages for Bulgarian (български)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: DCLXVI
 # Author: Exonie
 ---
 bg:
   licensing_your_content: Като лицензирате съдържанието си, давате легални права на
     други да го използват, ако спазват условията на лиценза. %{site_name} използва
-    Вашето съдържание лицензирано под Creative Commons за да го сподели с партньори
+    Вашето съдържание, лицензирано под Creative Commons, за да го сподели с партньори
     като <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
     (GBIF).
-  you_think_observation_inacurate: Ако смятате, че наблюдението е неточно, моля добавете
+  you_think_observation_inacurate: Ако смятате, че наблюдението е неточно, добавете
     таксономично определение, вземете участие в оценката на качеството по-горе или
     опишете неточността с коментар.
   we_also_support: Поддържаме също и <a href="http://flickr.com">Flickr</a>, <a href="http://picasaweb.google.com">Picasa</a>
     и <a href="http://facebook.com">Facebook</a> като хранилища за снимки.
   x_comments:
-    one: 1 коментар
+    one: Един коментар
     other: '%{count} коментара'
   x_followers:
-    one: 1 последовател
+    one: Един последовател
     other: '%{count} последователи'
   x_identifications:
     one: 1 разпознаване
@@ -108,7 +109,7 @@ bg:
   about_this_project: За този проект
   about_x: За %{x}
   acc: Точност (m)
-  account: Акаунт
+  account: Сметка
   accept: приеми
   accept_community_identifications: Приемай разпознаванията от общността
   accuracy: Точност
@@ -124,16 +125,16 @@ bg:
   active: активен
   activity_settings: Настройки за активност
   adapted_by_name_from_a_work_by_original: Адаптирано от %{name} по оригинала на %{original}
-  add: Добави
-  add_a: Добави
-  add_a_batch_of_observations: Добави множество наблюдения
-  add_a_batch_of_observations_by_csv: Добави множество наблюдения чрез CSV
-  add_a_batch_of_taxa: Добави множество таксони
-  add_a_comment: Добави коментар
-  add_a_field: Добави поле
-  add_a_flag: Добави маркер
-  add_a_link_raquo: Добави връзка &raquo;
-  add_a_name: Добави име
+  add: Добавяне
+  add_a: Добавяне на
+  add_a_batch_of_observations: Добавяне на множество наблюдения
+  add_a_batch_of_observations_by_csv: Добавяне на множество наблюдения чрез CSV
+  add_a_batch_of_taxa: Добавяне на множество таксони
+  add_a_comment: Добавяне на коментар
+  add_a_field: Добавяне на поле
+  add_a_flag: Добавяне на маркер
+  add_a_link_raquo: Добавяне на връзка &raquo;
+  add_a_name: Добавяне на име
   add_a_new_observation_to_id_please!: Добави ново наблюдение в „Моля определете“
   add_a_place_raquo: Добави място &raquo;
   add_a_single_observation: Добави единично наблюдение.
@@ -159,6 +160,7 @@ bg:
     (трябва да са с лиценз Creative Commons!)
   add_new_place: Добави ново място
   add_new_rule: Добави ново правило
+  add_new_source: Добавяне на нов източник...
   add_observation: Добави наблюдение
   add_observations!: Добави наблюдения!
   add_observations: Добави наблюдения
