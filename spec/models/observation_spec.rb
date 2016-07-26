@@ -1650,6 +1650,15 @@ describe Observation do
       pu = ProjectUser.make!( project: po.project, role: ProjectUser::MANAGER )
       expect( o.coordinates_viewable_by?( pu.user ) ).to be true
     end
+
+    it "should not remove private_place_guess when an identificaiton gets added" do
+      original_place_guess = "the secret place"
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE, place_guess: original_place_guess )
+      expect( o.private_place_guess ).to eq original_place_guess
+      i = Identification.make!( observation: o )
+      o.reload
+      expect( o.private_place_guess ).to eq original_place_guess
+    end
   end
   
   describe "obscure_coordinates" do
