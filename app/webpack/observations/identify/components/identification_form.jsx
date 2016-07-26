@@ -32,7 +32,9 @@ const IdentificationForm = ( {
         return ( idTaxon && idTaxon.rank_level > o.taxon.rank_level );
       };
       const currentUserSkippedConfirmation = (
-        currentUser && currentUser.prefers_skip_coarer_id_modal
+        false && // test to see if this bugs people, we get a lot of mistaken coarse IDs
+        currentUser &&
+        currentUser.prefers_skip_coarer_id_modal
       );
       onSubmitIdentification( {
         observation_id: o.id,
