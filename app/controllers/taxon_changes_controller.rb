@@ -45,7 +45,7 @@ class TaxonChangesController < ApplicationController
       includes(:source).
       order("taxon_changes.id DESC")
     @taxa = @taxon_changes.map{|tc| [tc.taxa, tc.taxon]}.flatten
-    @swaps = TaxonSwap.joins([ {:taxon => :taxon_schemes}, {:taxa => :taxon_schemes} ]).
+    @swaps = TaxonSwap.committed.joins([ {:taxon => :taxon_schemes}, {:taxa => :taxon_schemes} ]).
       where([ "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", @taxa, @taxa ])
     @swaps_by_taxon_id = {}
     @swaps.each do |swap|

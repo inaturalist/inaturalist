@@ -26,10 +26,15 @@
     }
 
     function rearrangeTaxonFieldsets() {
-      var changeType = $('input[name="taxon_swap[type]"]:checked').val() || $('input[name*="[type]"]').val()
-      if (changeType == 'TaxonStage' || changeType == 'TaxonDrop') {
+      var changeType = $('input[name="taxon_change[type]"]:checked').val() || $('input[name*="[type]"]').val()
+      if (changeType == 'TaxonStage' ) {
         $('#singletaxon').removeClass('right').addClass('left').show()
         $('#multiple_taxa').removeClass('right').addClass('left').hide()
+        $('#singletaxon legend').text(I18n.t('output_taxon'))
+      } else if ( changeType == 'TaxonDrop') {
+        $('#singletaxon').removeClass('right').addClass('left').show()
+        $('#multiple_taxa').removeClass('right').addClass('left').hide()
+        $('#singletaxon legend').text(I18n.t('input_taxon'))
       } else if (changeType == 'TaxonSwap' || changeType == 'TaxonMerge') {
         $('#singletaxon').removeClass('left').addClass('right').show()
         $('#singletaxon legend').text(I18n.t('output_taxon'))
@@ -52,7 +57,7 @@
         })
       })
       rearrangeTaxonFieldsets()
-      $('input[name="taxon_swap[type]"]').change(rearrangeTaxonFieldsets)
+      $('input[name="taxon_change[type]"]').change(rearrangeTaxonFieldsets)
     })
   </script>
 <%- end -%>
@@ -61,7 +66,7 @@
   taxon_change_type = taxon_change.class.name
 -%>
 
-<%= form_for(taxon_change, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+<%= form_for( taxon_change.becomes( TaxonChange ), builder: DefaultFormBuilder, html: { multipart: true } ) do |f| %>
   <%= error_messages_for :taxon_change %>
   
   <div class="column span-24">
@@ -78,7 +83,7 @@
             <%= t :choose_what_kind_of_change_youre_creating %>
           <% end -%>
         </legend>
-        <%= f.radio_button :type, 'TaxonSplit', { :checked => true }, :label_after => true, :label => t("change_types.split"),
+        <%= f.radio_button :type, 'TaxonSplit', :label_after => true, :label => t("change_types.split"),
           :description => t("change_descriptions.split") %>
         <%= f.radio_button :type, 'TaxonMerge', :label_after => true, :label => t("change_types.merge"),
           :description => t("change_descriptions.merge") %>
