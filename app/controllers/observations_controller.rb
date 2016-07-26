@@ -638,7 +638,7 @@ class ObservationsController < ApplicationController
       end
       # when we add UUIDs to everything and either stop using strings or
       # ensure that everything is lowercase, we can stop doing this
-      if o.blank?
+      if o.blank? && !observation[:uuid].blank?
         o = current_user.observations.where( uuid: observation[:uuid].downcase ).first
       end
       o ||= Observation.new
