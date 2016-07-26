@@ -33,6 +33,7 @@
 }
 .ui-autocomplete-input {
   flex: 2;
+  min-width: 100px; // apparently required for IE
 }
 body > div > [role="dialog"] .searchclear.glyphicon,
 .searchclear.glyphicon {
