@@ -22,7 +22,7 @@
     <% if logged_in? && current_user.is_curator? -%>
       <h4 class="upstacked"><%=t :curators %></h4>
       <p class="ui">
-        <%=t 'views.photos.show.view_original_html', :url => @photo.is_a?(LocalPhoto) ? @photo.original_url : @photo.native_page_url %>
+        <%=t 'views.photos.show.view_original_html', :url => @photo.is_a?(LocalPhoto) ? @photo.file.url(:original) : @photo.native_page_url %>
       </p>
     <% end -%>
   </div>
