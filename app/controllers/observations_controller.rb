@@ -634,7 +634,12 @@ class ObservationsController < ApplicationController
       next if observation.blank?
       observation.delete('fieldset_index') if observation[:fieldset_index]
       o = unless observation[:uuid].blank?
-        current_user.observations.where(:uuid => observation[:uuid]).first
+        current_user.observations.where( uuid: observation[:uuid] ).first
+      end
+      # when we add UUIDs to everything and either stop using strings or
+      # ensure that everything is lowercase, we can stop doing this
+      if o.blank?
+        o = current_user.observations.where( uuid: observation[:uuid].downcase ).first
       end
       o ||= Observation.new
       o.assign_attributes(observation_params(observation))
