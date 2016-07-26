@@ -21,7 +21,7 @@ const ObservationsGrid = ( {
     <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"}`}>
       <Col xs={12}>
         { noObservationsNotice }
-        {observations.map( ( observation ) => (
+        { observations.map( ( observation ) => (
           <ObservationsGridItem
             key={observation.id}
             observation={observation}

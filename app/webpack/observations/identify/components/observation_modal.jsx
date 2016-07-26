@@ -104,6 +104,9 @@ const ObservationModal = ( {
   };
 
   const showAgree = ( ) => {
+    if ( loadingDiscussionItem ) {
+      return false;
+    }
     if ( !currentUserIdentification ) {
       return observation.taxon && observation.taxon.is_active;
     }
@@ -307,7 +310,7 @@ const ObservationModal = ( {
                 >
                   <input
                     type="checkbox"
-                    checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                    defaultChecked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
                     onChange={function ( ) {
                       toggleReviewed( );
                     }}

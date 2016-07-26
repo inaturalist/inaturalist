@@ -19,7 +19,7 @@ const observationsReducer = ( state = { results: [] }, action ) => {
         if ( obs.id !== action.observation.id ) {
           return obs;
         }
-        const newObs = _.cloneDeep( action.observation );
+        const newObs = _.cloneDeep( obs );
         _.forOwn( action.changes, ( v, k ) => {
           newObs[k] = v;
         } );
