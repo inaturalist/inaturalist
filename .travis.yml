@@ -19,7 +19,7 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - psql -U postgres -c "create extension postgis"
-  - psql -U postgres -c "create extension uuid-ossp"
+  - psql -U postgres -c 'create extension "uuid-ossp"'
   - sudo -u postgres createdb template_postgis
   - sudo -u postgres psql template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
   - sudo -u postgres psql -q template_postgis < /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql
