@@ -27,6 +27,24 @@ describe Post do
     end
   end
 
+  describe "update" do
+    it "should generate an update if the post was just published" do
+      f = Friendship.make!
+      post = without_delay { Post.make!( :draft, parent: f.friend ) }
+      expect( post ).not_to be_published
+      Update.delete_all
+      without_delay { post.update_attributes( body: "#{post.body} something else", published_at: Time.now ) }
+      expect( Update.where( notifier_type: "Post", notifier_id: post.id, subscriber_id: f.user_id ).first ).not_to be_blank
+    end
+    it "should not generate updates if body changed by published_at didn't" do
+      f = Friendship.make!
+      post = without_delay { Post.make!( parent: f.friend, published_at: Time.now ) }
+      Update.delete_all
+      without_delay { post.update_attributes( body: "#{post.body} something else" ) }
+      expect( Update.where( notifier_type: "Post", notifier_id: post.id, subscriber_id: f.user_id ).first ).to be_blank
+    end
+  end
+
   describe "publish" do
     describe "for a project" do
       let(:project) { Project.make! }

@@ -861,8 +861,8 @@ ja:
   facebook_account_information: あなたのFacebookアカウント情報
   facebook_account_not_linked: '%{user}のFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。'
   facebook_options: Facebook設定
-  failed_to_repair_photo: '写真の修復作業は失敗しました: %{errors}'
   failed_to_find_your_location: 現在地を特定できませんでした。
+  failed_to_repair_photo: '写真の修復作業は失敗しました: %{errors}'
   "false": 偽
   faq: よくあるご質問
   Family: 科
@@ -1813,6 +1813,7 @@ ja:
       town: 市町村
       Undefined: 未定義
       undefined: 未定義
+      Unknown: 不明
       Zone: ゾーン
       zone: ゾーン
   place_guess: 場所の推測
@@ -2190,6 +2191,7 @@ ja:
   site_observations_export_from_date: '%{date}の%{site_name}観察記録を書き出す'
   site_taxon_page: '%{site_name}分類群ページ'
   some_agree: 多少賛成
+  some_observations_failed: 一部の観察記録は、プロジェクトに追加できませんでした
   some_of_those_photos_couldnt_be_saved: いくつかの写真は保存できませんでした：%{error}
   some_rights_reserved: いくつかの権利を保有
   something: 何か
@@ -2507,6 +2509,10 @@ ja:
   upload_a_csv_file: CSVファイルをアップロード
   upload_photos: 写真をアップロード
   uploaded_by: アップロードしたユーザー：
+  uploader:
+    tooltips:
+      add: 観察記録を追加
+      remove_photo: 写真を除去
   US_states: アメリカの州
   usage_stats: 利用状況
   user: ユーザー
@@ -2568,7 +2574,6 @@ ja:
   view_more_recent_observations: 新着観察記録をさらに表示
   view_nbsp: 表示 &nbsp;
   view_non_mobile_site: PCサイトを表示
-  view_post: 投稿を表示
   view_observation: 観察記録を表示
   view_observations: 観測記録を表示
   view_observation_flags: 観測記録フラグを表示
@@ -2581,6 +2586,7 @@ ja:
   view_original: オリジナルを表示
   view_original_by: '%{photo}で%{by}のオリジナルを表示'
   view_place: 場所を表示
+  view_post: 投稿を表示
   view_projects_from_place: '%{place}のプロジェクトを表示'
   view_real_time_stats_in_a_new_window: 新規ウィンドウでリアルタイム統計データを表示
   view_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示
@@ -2657,6 +2663,9 @@ ja:
   x_does_not_exist: '%{x}は存在しません'
   x_journal: '%{user}さんのジャーナル'
   x_journal_middot: '%{user}のジャーナル &middot;'
+  x_observations_failed:
+    one: 1件の観察失敗記録
+    other: '%{count}件の観察失敗記録'
   x_project_journal: '%{project}の%{name}'
   x_project_stats: '%{project}の統計'
   x_site_is_a_social_network_for_naturalist: '%{site}はナチュラリストのためのソーシャルネットワークです！植物や動物の観察を記録し、友人と研究者に共有し、自然についてもっと知りましょう！'
