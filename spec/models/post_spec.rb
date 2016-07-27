@@ -32,16 +32,19 @@ describe Post do
       f = Friendship.make!
       post = without_delay { Post.make!( :draft, parent: f.friend ) }
       expect( post ).not_to be_published
-      Update.delete_all
+      UpdateAction.delete_all
+      UpdateSubscriber.delete_all
       without_delay { post.update_attributes( body: "#{post.body} something else", published_at: Time.now ) }
-      expect( Update.where( notifier_type: "Post", notifier_id: post.id, subscriber_id: f.user_id ).first ).not_to be_blank
+      expect(UpdateAction.where(notifier: post).first.
+        update_subscribers.where(subscriber_id: f.user_id).first).not_to be_blank
     end
     it "should not generate updates if body changed by published_at didn't" do
       f = Friendship.make!
       post = without_delay { Post.make!( parent: f.friend, published_at: Time.now ) }
-      Update.delete_all
+      UpdateAction.delete_all
+      UpdateSubscriber.delete_all
       without_delay { post.update_attributes( body: "#{post.body} something else" ) }
-      expect( Update.where( notifier_type: "Post", notifier_id: post.id, subscriber_id: f.user_id ).first ).to be_blank
+      expect(UpdateAction.where(notifier: post).first).to be_blank
     end
   end
 
