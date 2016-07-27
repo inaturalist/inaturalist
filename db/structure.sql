@@ -8175,7 +8175,8 @@ CREATE TABLE comments (
     parent_type character varying(255),
     body text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -9120,7 +9121,8 @@ CREATE TABLE identifications (
     updated_at timestamp without time zone,
     current boolean DEFAULT true,
     taxon_change_id integer,
-    category character varying
+    category character varying,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -9495,7 +9497,8 @@ CREATE TABLE observation_field_values (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     user_id integer,
-    updater_id integer
+    updater_id integer,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -10436,7 +10439,8 @@ CREATE TABLE project_observations (
     updated_at timestamp without time zone,
     curator_identification_id integer,
     tracking_code character varying(255),
-    user_id integer
+    user_id integer,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -15175,6 +15179,11 @@ CREATE UNIQUE INDEX taggings_idx ON taggings USING btree (tag_id, taggable_id, t
 
 CREATE INDEX taxon_names_lower_name_index ON taxon_names USING btree (lower((name)::text));
 
+
+CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
+CREATE INDEX index_identifications_on_uuid ON identifications USING btree (uuid);
+CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
+CREATE INDEX index_project_observations_on_uuid ON project_observations USING btree (uuid);
 
 --
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
