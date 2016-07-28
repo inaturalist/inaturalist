@@ -66,7 +66,7 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
 gem "omniauth-google-oauth2", "~> 0.4.1"
-gem 'omniauth-soundcloud', git: "git@github.com:ratafire/omniauth-soundcloud.git"
+gem 'omniauth-soundcloud', git: "git://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "4.2.1"
