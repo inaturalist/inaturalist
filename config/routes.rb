@@ -115,6 +115,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
+  post '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback_post
   delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'

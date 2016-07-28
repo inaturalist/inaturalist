@@ -44,7 +44,7 @@ gem "friendly_id", "~> 5.1.0"
 gem 'gdata', :git => 'git://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
-gem 'google-api-client'
+gem 'google-api-client', "=0.8.6"
 gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'htmlentities'
@@ -54,18 +54,19 @@ gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/Programatica/irwi.git'
 gem 'json'
 gem 'jquery-rails'
-gem 'jwt', '~> 1.2.1'
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
 gem 'nokogiri'
 gem "non-stupid-digest-assets"
-gem 'omniauth-facebook'
+gem "omniauth"
+gem "omniauth-oauth2", " 1.3.1"
+gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
-gem "omniauth-google-oauth2"
-gem 'omniauth-soundcloud'
+gem "omniauth-google-oauth2", "~> 0.4.1"
+gem 'omniauth-soundcloud', git: "git@github.com:ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "4.2.1"
