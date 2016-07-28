@@ -2488,6 +2488,12 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
+    if Rails.env.development?
+      FacebookPhoto
+      PicasaPhoto
+      LocalPhoto
+      FlickrPhoto
+    end
     @photo_identities = Photo.subclasses.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
