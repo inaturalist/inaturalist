@@ -78,6 +78,10 @@ const DroppedFile = class DroppedFile {
             format( "YYYY/MM/DD h:mm A z" );
           metadata.selected_date = metadata.date;
         }
+        if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {
+          metadata.latitude = null;
+          metadata.longitude = null;
+        }
         // reverse geocode lat/lngs to get place name
         if ( metadata.latitude && metadata.longitude ) {
           util.reverseGeocode( metadata.latitude, metadata.longitude ).then( location => {
