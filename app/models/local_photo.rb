@@ -224,7 +224,7 @@ class LocalPhoto < Photo
         o.longitude = o.longitude * -1
       end
     end
-    if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs) > 180
+    if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
       o.latitude = nil
       o.longitude = nil
     end
