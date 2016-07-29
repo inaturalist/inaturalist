@@ -336,8 +336,7 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( result.rank && ( result.rank_level > 10 || !result.subtitle ) ) {
       const rank = I18n.t( `ranks.${result.rank}`, { defaultValue: result.rank } );
-      const subtitle = result.subtitle ? ` ${result.subtitle}` : "";
-      result.subtitle = _.capitalize( `${rank} ${subtitle}` );
+      result.subtitle = `${_.capitalize( rank )} ${_.capitalize( result.subtitle )}`;
     }
     return this.resultTemplate( result, fieldValue );
   }

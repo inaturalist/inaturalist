@@ -13,16 +13,18 @@ class ProjectUserInvitation < ActiveRecord::Base
   end
 
   def create_update_for_user
-    Update.create(
-      :resource => self,
-      :notifier => self,
-      :subscriber => invited_user,
-      :notification => "invited"
-    )
+    action_attrs = {
+      resource: self,
+      notifier: self,
+      notification: "invited"
+    }
+    action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+    action.bulk_insert_subscribers( [invited_user.id] )
+    UpdateAction.elastic_index!(ids: [action.id])
   end
 
   def destroy_updates
-    Update.delete_and_purge(
+    UpdateAction.delete_and_purge(
       resource_type: "ProjectUserInvitation",
       resource_id: id)
   end

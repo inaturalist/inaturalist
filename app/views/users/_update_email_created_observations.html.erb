@@ -1,11 +1,7 @@
 <%-
   user = update_email_created_observations || resource
   updates ||= []
-  observations = if @update_cache && @update_cache[:observations]
-    updates.map{|u| @update_cache[:observations][u.notifier_id]}
-  else
-    updates.map{|u| u.notifier}
-  end
+  observations = updates.map{|u| u.notifier}
   default_observation = observations.first
   login = user.login
   columns ||= @observation_columns || 6

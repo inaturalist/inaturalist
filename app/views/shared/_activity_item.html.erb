@@ -1,14 +1,14 @@
 <%- 
   item = activity_item || item
   return unless item
-  taxon = update_cached(item, :taxon) if item.respond_to?(:taxon)
-  observation = update_cached(item, :observation) if item.respond_to?(:observation)
+  taxon = item.taxon if item.respond_to?(:taxon)
+  observation = item.observation if item.respond_to?(:observation)
   user = if item.is_a?(Flag)
-    update_cached(item, :resolver)
+    item.resolver
   elsif item.is_a?(ObservationFieldValue)
-    update_cached(item, :updater) || update_cached(item, :user)
+    item.updater || item.user
   elsif item.respond_to?(:user)
-    update_cached(item, :user)
+    item.user
   end
   edit_url = case item.class.name
   when "Comment" then edit_comment_path(item)
@@ -47,12 +47,12 @@
       <div class="stacked body">
         <div class="stacked">
           <span class="meta"><%= t :originally_flagged_by %></span>
-          <%= link_to_user update_cached(item, :user) %>: "<%= item.flag %>"
+          <%= link_to_user item.user %>: "<%= item.flag %>"
         </div>
         <%= t(:flag_marked_as_resolved_html).html_safe %>
         <% unless item.comment.blank? %>
           <%-
-            username = if (u = update_cached(item, :resolver))
+            username = if (u = item.resolver)
               link_to_user(u)
             elsif item.resolver_id.blank?
               SITE_NAME_SHORT

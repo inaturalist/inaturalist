@@ -18,15 +18,10 @@ class Subscription < ActiveRecord::Base
     "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
   end
 
-  def has_unviewed_updates_from(notifier)
-    Update.exists?([
-      "subscriber_id = ? AND notifier_type = ? AND notifier_id = ? AND viewed_at IS NULL",
-      user_id, notifier.class.to_s, notifier.id ])
-    # this is the elasticsearch way of doing the same
-    # Update.elastic_search(where: {
-    #   subscriber_id: user_id, notifier_type: notifier.class.to_s,
-    #   notifier_id: notifier.id
-    # }, filters: [{ not: { exists: { field: :viewed_at } } }]).total_entries > 0
+  def self.users_with_unviewed_updates_from(notifier)
+    UpdateSubscriber.joins(:update_action).where(update_actions: {
+      notifier_type: notifier.class.to_s, notifier_id: notifier.id },
+      viewed_at: nil).map(&:subscriber_id)
   end
 
   def cannot_subscribe_to_north_america

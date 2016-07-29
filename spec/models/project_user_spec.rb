@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectUser, "creation" do
-  before(:each) { enable_elastic_indexing(Update) }
-  after(:each) { disable_elastic_indexing(Update) }
+  before(:each) { enable_elastic_indexing(UpdateAction) }
+  after(:each) { disable_elastic_indexing(UpdateAction) }
   it "should subscribe user to assessment sections if curator" do
     as = AssessmentSection.make!
     p = as.assessment.project
@@ -57,10 +57,9 @@ describe ProjectUser, "creation" do
 end
 
 describe ProjectUser do
-  before(:each) do
-    enable_elastic_indexing( Observation )
-  end
-  
+  before(:each) { enable_elastic_indexing(Observation, Taxon) }
+  after(:each) { disable_elastic_indexing(Observation, Taxon) }
+
   describe "update_taxa_counter_cache" do
     it "should set taxa_count to the number of observed species" do
       project_user = ProjectUser.make!
@@ -110,9 +109,9 @@ describe ProjectUser do
       @project_user = ProjectUser.make!
       Delayed::Job.delete_all
       @now = Time.now
-      enable_elastic_indexing(Update)
+      enable_elastic_indexing(UpdateAction)
     end
-    after(:each) { disable_elastic_indexing(Update) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
     
     it "should queue a job to update identifications if became curator" do
       @project_user.update_attributes(:role => ProjectUser::CURATOR)
@@ -149,7 +148,8 @@ describe ProjectUser do
       curator_pu = without_delay do 
         ProjectUser.make!(:project => pu.project, :role => ProjectUser::CURATOR)
       end
-      u = Update.where("created_at >= ?", start).where(:subscriber_id => pu.user_id).first
+      u = UpdateSubscriber.joins(:update_action).where("created_at >= ?", start).
+        where(subscriber_id: pu.user_id).first
       expect(u).not_to be_blank
     end
 
@@ -159,7 +159,8 @@ describe ProjectUser do
       curator_pu = without_delay do 
         ProjectUser.make!(:project => pu.project, :role => ProjectUser::MANAGER)
       end
-      u = Update.where("created_at >= ?", start).where(:subscriber_id => pu.user_id).first
+      u = UpdateSubscriber.joins(:update_action).where("created_at >= ?", start).
+        where(subscriber_id: pu.user_id).first
       expect(u).not_to be_blank
     end
 
@@ -171,7 +172,8 @@ describe ProjectUser do
       without_delay do
         p.update_attributes(:user => new_pu.user)
       end
-      u = Update.where("created_at >= ?", start).where(:subscriber_id => pu.user_id).first
+      u = UpdateSubscriber.joins(:update_action).where("created_at >= ?", start).
+        where(subscriber_id: pu.user_id).first
       expect(u).not_to be_blank
     end
   end

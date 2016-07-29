@@ -1,16 +1,8 @@
 <%-
-  observations = if @update_cache && @update_cache[:observations]
-    updates.map{|u| @update_cache[:observations][u.notifier_id]}
-  end.compact
   observations = updates.map{|u| u.notifier}.compact if observations.blank?
-  
   update = updates.last
-  resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
-    @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
-  end
-  resource ||= update.resource
+  resource = update.resource
   login = resource.login
-  
   target_id = bootstrapTargetID
 -%>
 

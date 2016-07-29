@@ -128,7 +128,8 @@ class User < ActiveRecord::Base
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
-  has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
+  has_many :update_subscribers, foreign_key: :subscriber_id, dependent: :delete_all
+  has_many :update_subscriber_actions, source: :update_action, through: :update_subscribers
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
@@ -696,12 +697,12 @@ class User < ActiveRecord::Base
     options[:wheres] ||= { }
     options[:per_page] ||= 10
     if options[:unviewed]
-      options[:filters] << { not: { exists: { field: :viewed_at } } }
+      options[:filters] << { not: { term: { viewed_subscriber_ids: id } } }
     elsif options[:viewed]
-      options[:filters] << { range: { viewed_at: { gt: 1.day.ago } } }
+      options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_id: id } }
-    Update.elastic_paginate(
+    options[:filters] << { term: { subscriber_ids: id } }
+    UpdateAction.elastic_paginate(
       where: options[:wheres],
       filters: options[:filters],
       per_page: options[:per_page],

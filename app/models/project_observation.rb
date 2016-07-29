@@ -32,20 +32,25 @@ class ProjectObservation < ActiveRecord::Base
     with: :notify_observer
 
   def notify_observer(association)
-    if Update.where(subscriber_id: observation.user_id, resource: project, notification: Update::YOUR_OBSERVATIONS_ADDED).
-        where("viewed_at IS NULL").count >= 15
+    if UpdateAction.joins(:update_subscribers).
+         where(resource: project, notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).
+         where("update_subscribers.subscriber_id = ?", observation.user_id).
+         where("update_subscribers.viewed_at IS NULL").count >= 15
       return
     end
-    u = Update.create(
-      :subscriber => observation.user,
-      :resource => project,
-      :notifier => self,
-      :notification => Update::YOUR_OBSERVATIONS_ADDED
-    )
+    action_attrs = {
+      resource: project,
+      notifier: self,
+      notification: UpdateAction::YOUR_OBSERVATIONS_ADDED
+    }
+    action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+    action.bulk_insert_subscribers( [observation.user.id] )
+    UpdateAction.elastic_index!(ids: [action.id])
   end
   
   after_destroy do |record|
-    Update.where(resource: record.project, notifier: observation, notification: Update::YOUR_OBSERVATIONS_ADDED).delete_all
+    UpdateAction.where(resource: record.project, notifier: observation,
+      notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).delete_all
   end
 
   def set_curator_coordinate_access

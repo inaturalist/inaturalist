@@ -212,8 +212,8 @@ describe ObservationsController do
   end
 
   describe "project" do
-    before(:each) { enable_elastic_indexing( Observation, Update ) }
-    after(:each) { disable_elastic_indexing( Observation, Update ) }
+    before(:each) { enable_elastic_indexing( Observation, UpdateAction ) }
+    after(:each) { disable_elastic_indexing( Observation, UpdateAction ) }
     render_views
 
     describe "viewed by project curator" do
@@ -461,8 +461,8 @@ describe ObservationsController do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation, Update ) }
-    after(:each) { disable_elastic_indexing( Observation, Update ) }
+    before(:each) { enable_elastic_indexing( Observation, UpdateAction ) }
+    after(:each) { disable_elastic_indexing( Observation, UpdateAction ) }
     render_views
     it "should just ignore project slugs for projects that don't exist" do
       expect {

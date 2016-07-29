@@ -1,11 +1,7 @@
 <%-
   place = update_email_new_observations || resource
   updates ||= []
-  observations = if @update_cache && @update_cache[:observations]
-    updates.map{|u| @update_cache[:observations][u.notifier_id]}
-  else
-    updates.map{|u| u.notifier}
-  end
+  observations = updates.map{|u| u.notifier}
   default_observation = observations.first
   columns ||= @observation_columns || 6
 -%>
