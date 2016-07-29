@@ -237,7 +237,9 @@ class LocationChooser extends SelectionBasedComponent {
       lat = lat ? Number( lat ) : undefined;
       let lng = updates.lng || this.props.lng;
       lng = lng ? Number( lng ) : undefined;
-      this.reverseGeocode( lat, lng );
+      if ( lat && Math.abs( lat ) > 90 ) { lat = undefined; }
+      if ( lng && Math.abs( lng ) > 180 ) { lng = undefined; }
+      if ( lat && lng ) { this.reverseGeocode( lat, lng ); }
     } else if ( field === "notes" ) {
       updates.manualPlaceGuess = true;
     }
