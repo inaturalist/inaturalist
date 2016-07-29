@@ -49,8 +49,7 @@ class Emailer < ActionMailer::Base
     return if user.prefers_no_email
     @user = user
     set_locale
-    @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
-    @update_cache = Update.eager_load_associates(updates)
+    @grouped_updates = UpdateAction.group_and_sort(updates, :skip_past_activity => true)
     mail(set_site_specific_opts.merge(
       :to => user.email,
       :subject => t(:updates_notification_email_subject, :prefix => subject_prefix, :date => Date.today)

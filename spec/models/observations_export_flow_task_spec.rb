@@ -84,8 +84,8 @@ describe ObservationsExportFlowTask do
   end
 
   describe "geoprivacy" do
-    before(:each) { enable_elastic_indexing(Update) }
-    after(:each) { disable_elastic_indexing(Update) }
+    before(:each) { enable_elastic_indexing(UpdateAction) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
 
     it "should not include private coordinates you can't see" do
       o = make_private_observation(:taxon => Taxon.make!)

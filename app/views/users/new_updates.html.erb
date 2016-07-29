@@ -4,10 +4,7 @@
   <% end -%>
   <% for update in @updates %>
     <%- 
-      resource = if @update_cache && @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
-        @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
-      end
-      resource ||= update.resource
+      resource = update.resource
       if update.notification == "mention"
         anchor = "activity_comment_#{ update.notifier_id }"
       end

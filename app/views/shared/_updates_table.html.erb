@@ -2,16 +2,8 @@
   <% @grouped_updates.each do |key, updates| %>
     <%-
       resource_type, resource_id, notification = key
-      resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
-        @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
-      else
-        updates.last.resource
-      end
-      notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
-        @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
-      else
-        updates.last.notifier
-      end
+      resource = updates.last.resource
+      notifier = updates.last.notifier
       is_mention = (notification == "mention")
     -%>
     <tr>

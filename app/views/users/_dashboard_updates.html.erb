@@ -3,16 +3,8 @@
     <% for key, updates in @grouped_updates %>
       <%-
         resource_type, resource_id, notification = key
-        resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
-          @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
-        else
-          updates.last.resource
-        end
-        notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
-          @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
-        else
-          updates.last.notifier
-        end
+        resource = updates.last.resource
+        notifier = updates.last.notifier
         is_mention = (notification == "mention")
       -%>
       <li class="observation_multiple_added">
@@ -72,11 +64,7 @@
                 <ul class="timeline timeline_observation">
                   <% for u in updates[0..-2] %>
                     <%-
-                      notifier = nil
-                      if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-                        notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-                      end
-                      notifier ||= u.notifier
+                      notifier = u.notifier
                     -%>
                     <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: false, no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
                   <% end %>
@@ -84,12 +72,7 @@
               </div>
               <ul class="timeline timeline_observation">
                 <%-
-                  u = updates.last
-                  notifier = nil
-                  if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-                    notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-                  end
-                  notifier ||= u.notifier
+                  notifier = updates.last.notifier
                 -%>
                 <%= render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: true, no_thumb: (is_mention && notifier.is_a?(Post)), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil } %>
               </ul>

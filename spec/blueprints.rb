@@ -423,6 +423,12 @@ Update.blueprint do
   notifier { Comment.make!(:parent => o) }
 end
 
+UpdateAction.blueprint do
+  o = Observation.make!
+  resource { o }
+  notifier { Comment.make!(:parent => o) }
+end
+
 User.blueprint do
   login { 
     s = Faker::Internet.user_name.gsub(/[W\.]/, '')

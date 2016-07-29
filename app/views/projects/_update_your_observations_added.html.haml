@@ -3,10 +3,7 @@
   updates ||= []
   observations = updates.map do |u|
     next unless u.notifier
-    o = if @update_cache && @update_cache[:observations]
-      @update_cache[:observations][u.notifier.observation_id]
-    end
-    o || u.notifier.observation
+    u.notifier.observation
   end
 .timeline-body
   - compact do

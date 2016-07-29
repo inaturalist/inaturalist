@@ -12,15 +12,12 @@
     <% for update in updates %>
       <%-
         notifier = nil
-        notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
-          @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
-        end
-        notifier ||= update.notifier
+        notifier = update.notifier
         next unless notifier
         user = if notifier.is_a?(Flag)
-          update_cached(notifier, :resolver)
+          notifier.resolver
         elsif notifier.respond_to?(:user)
-          update_cached(notifier, :user)
+          notifier.user
         end
       -%>
       <tr>

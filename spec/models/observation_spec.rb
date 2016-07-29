@@ -773,7 +773,7 @@ describe Observation do
         without_delay do
           expect {
             o.downvote_from User.make!, vote_scope: 'needs_id'
-          }.not_to change(Update, :count)
+          }.not_to change(UpdateAction, :count)
         end
         o.reload
         expect( o.quality_grade ).to eq Observation::CASUAL
@@ -1040,8 +1040,8 @@ describe Observation do
   end
 
   describe "destruction" do
-    before(:each) { enable_elastic_indexing(Update) }
-    after(:each) { disable_elastic_indexing(Update) }
+    before(:each) { enable_elastic_indexing(UpdateAction) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
@@ -1067,10 +1067,10 @@ describe Observation do
       s = Subscription.make!(:user => subscriber, :resource => user)
       o = Observation.make(:user => user)
       without_delay { o.save! }
-      update = Update.where(:subscriber_id => subscriber).last
+      update = UpdateSubscriber.where(:subscriber_id => subscriber).last
       expect(update).not_to be_blank
       o.destroy
-      expect(Update.find_by_id(update.id)).to be_blank
+      expect(UpdateSubscriber.find_by_id(update.id)).to be_blank
     end
 
     it "should delete associated project observations" do
@@ -2173,8 +2173,8 @@ describe Observation do
   end
 
   describe "taxon updates" do
-    before(:each) { enable_elastic_indexing(Update) }
-    after(:each) { disable_elastic_indexing(Update) }
+    before(:each) { enable_elastic_indexing(UpdateAction) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
 
     it "should generate an update" do
       t = Taxon.make!
@@ -2183,9 +2183,9 @@ describe Observation do
       without_delay do
         o.save!
       end
-      u = Update.last
+      u = UpdateSubscriber.last
       expect(u).not_to be_blank
-      expect(u.notifier).to eq(o)
+      expect(u.update_action.notifier).to eq(o)
       expect(u.subscriber).to eq(s.user)
     end
 
@@ -2197,9 +2197,9 @@ describe Observation do
       without_delay do
         o.save!
       end
-      u = Update.last
+      u = UpdateSubscriber.last
       expect(u).not_to be_blank
-      expect(u.notifier).to eq(o)
+      expect(u.update_action.notifier).to eq(o)
       expect(u.subscriber).to eq(s.user)
     end
 
@@ -2224,8 +2224,8 @@ describe Observation do
 
 
   describe "place updates" do
-    before(:each) { enable_elastic_indexing(Update) }
-    after(:each) { disable_elastic_indexing(Update) }
+    before(:each) { enable_elastic_indexing(UpdateAction) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
 
     describe "for places that cross the date line" do
       let(:place) {
@@ -2263,13 +2263,13 @@ describe Observation do
           Observation.make!( latitude: @christchurch_lat, longitude: @christchurch_lon )
         end
         expect( o.public_places.map(&:id) ).to include place.id
-        expect( @subscription.user.updates.last.notifier ).to eq o
+        expect( @subscription.user.update_subscribers.last.update_action.notifier ).to eq o
       end
       it "should not generate for observations outside of that place" do
         o = without_delay do
           Observation.make!(:latitude => -1 * @christchurch_lat, :longitude => @christchurch_lon)
         end
-        expect(@subscription.user.updates).to be_blank
+        expect(@subscription.user.update_subscribers).to be_blank
       end
     end
   end
@@ -3074,8 +3074,9 @@ describe Observation do
     it "generates mention updates" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
-      expect( Update.where(notifier: o).mention.count ).to eq 1
-      expect( Update.where(notifier: o).mention.first.subscriber ).to eq u
+      expect( UpdateAction.where(notifier: o, notification: "mention").count ).to eq 1
+      expect( UpdateAction.where(notifier: o, notification: "mention").first.
+        update_subscribers.first.subscriber ).to eq u
     end
   end
 

@@ -15,5 +15,5 @@ every :day, :at => "04:00" do
 end
 
 every :day, :at => "06:30" do
-  runner "Update.email_updates"
+  runner "UpdateAction.email_updates"
 end

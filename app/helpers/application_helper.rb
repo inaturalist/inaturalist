@@ -923,10 +923,7 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
-      @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
-    end
-    resource ||= update.resource
+    resource = update.resource
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
@@ -968,15 +965,9 @@ module ApplicationHelper
   end
     
   def update_tagline_for(update, options = {})
-    resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
-      @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
-    end
-    resource ||= update.resource
-    notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
-      @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
-    end
-    notifier ||= update.notifier
-    if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
+    resource = update.resource
+    notifier = update.notifier
+    if notifier.respond_to?(:user) && (notifier_user = notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
     class_name_key = update.resource.class.to_s.underscore
@@ -1060,7 +1051,7 @@ module ApplicationHelper
         else
           link_to(project.title, url_for_resource_with_host(project))
         end
-        if update.notification == Update::YOUR_OBSERVATIONS_ADDED
+        if update.notification == UpdateAction::YOUR_OBSERVATIONS_ADDED
           t(:project_curators_added_some_of_your_observations_html, url: project_url(resource), project: project.title)
         else
           t(:curators_changed_for_x_html, :x => title)
@@ -1092,7 +1083,7 @@ module ApplicationHelper
         activity_snippet(update, notifier, notifier_user, options.merge(:noun => noun))
       end
     when "TaxonChange"
-      notifier_user = update_cached(resource, :committer)
+      notifier_user = resource.committer
       if notifier_user
         notifier_class_name = t(resource.class.name.underscore)
         subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
@@ -1164,22 +1155,6 @@ module ApplicationHelper
     options[:separator] ||= ","
     options[:and] ||= t(:and)
     "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
-  end
-  
-  def update_cached(record, association)
-    unless record.respond_to?("#{association}_id")
-      return record.send(association)
-    end
-    cache_key = record.send("#{association}_id")
-    cached = if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
-      @update_cache[association.to_s.pluralize.to_sym][cache_key]
-    end
-    unless cached
-      @update_cache ||= {}
-      @update_cache[association.to_s.pluralize.to_sym] ||= {}
-      @update_cache[association.to_s.pluralize.to_sym][cache_key] = record.send(association)
-    end
-    @update_cache[association.to_s.pluralize.to_sym][cache_key]
   end
 
   def observation_field_value_for(ofv)
