@@ -6,9 +6,7 @@ Benchmark.measure do
   Observation.select(:id, :uuid).where("uuid IS NOT NULL").find_in_batches(batch_size: 10000) do |batch|
     psql.transaction do
       puts "Batch starting at ID #{batch.first.id} at #{Time.now}"
-      batch.each do |o|
-        Observation.where(id: o.id).update_all(new_uuid: o.uuid)
-      end
+      psql.execute("UPDATE observations SET new_uuid=uuid::uuid WHERE id BETWEEN #{batch.first.id} AND #{batch.last.id} AND uuid IS NOT NULL")
     end
   end
 end
