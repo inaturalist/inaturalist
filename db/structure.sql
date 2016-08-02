@@ -11687,6 +11687,7 @@ ALTER SEQUENCE update_subscribers_id_seq OWNED BY update_subscribers.id;
 --
 -- Name: updates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
+
 CREATE TABLE updates (
     id integer NOT NULL,
     subscriber_id integer,
@@ -13388,6 +13389,7 @@ ALTER TABLE ONLY update_subscribers
 ALTER TABLE ONLY updates
     ADD CONSTRAINT updates_pkey PRIMARY KEY (id);
 
+
 --
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
@@ -13780,7 +13782,6 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 --
 -- Name: index_identifications_on_category; Type: INDEX; Schema: public; Owner: -; Tablespace: 
--- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_identifications_on_category ON identifications USING btree (category);

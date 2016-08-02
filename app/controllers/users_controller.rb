@@ -537,10 +537,12 @@ class UsersController < ApplicationController
     
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
+    @display_user.icon = nil if params[:icon_delete]
     
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
-    if whitelist_params && @display_user.update_attributes(whitelist_params)
+    @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
       if @display_user.preferred_project_addition_by != preferred_project_addition_by_was &&

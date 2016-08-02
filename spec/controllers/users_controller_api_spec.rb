@@ -16,6 +16,29 @@ shared_examples_for "a signed in UsersController" do
     expect(response).to be_success
   end
 
+  describe "update" do
+    it "should remove the user icon with icon_delete param" do
+      user.icon = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+      user.save!
+      expect( user.icon.exists? ).to be true
+      put :update, id: user.id, format: :json, icon_delete: true
+      expect( response ).to be_success
+      user.reload
+      expect( user.icon.exists? ).to be false
+    end
+    it "should not remove the user icon with no user[icon] param" do
+      user.icon = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+      user.save!
+      expect( user.icon.exists? ).to be true
+      new_desc = "show me the tarweeds"
+      put :update, id: user.id, format: :json, user: { description: new_desc }
+      expect( response ).to be_success
+      user.reload
+      expect( user.description ).to eq new_desc
+      expect( user.icon.exists? ).to be true
+    end
+  end
+
   describe "new_updates" do
     it "should show recent updates" do
       o = Observation.make!(:user => user)
@@ -103,6 +126,7 @@ shared_examples_for "a signed in UsersController" do
       expect( json["test_groups"] ).to eq test_groups
     end
   end
+
 end
 
 describe UsersController, "oauth authentication" do
