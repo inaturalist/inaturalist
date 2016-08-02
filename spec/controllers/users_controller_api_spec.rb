@@ -20,22 +20,22 @@ shared_examples_for "a signed in UsersController" do
     it "should remove the user icon with icon_delete param" do
       user.icon = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
       user.save!
-      expect( user.icon.exists? ).to be true
+      expect( user.icon_file_name ).not_to be_blank
       put :update, id: user.id, format: :json, icon_delete: true
       expect( response ).to be_success
       user.reload
-      expect( user.icon.exists? ).to be false
+      expect( user.icon_file_name ).to be_blank
     end
     it "should not remove the user icon with no user[icon] param" do
       user.icon = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
       user.save!
-      expect( user.icon.exists? ).to be true
+      expect( user.icon_file_name ).not_to be_blank
       new_desc = "show me the tarweeds"
       put :update, id: user.id, format: :json, user: { description: new_desc }
       expect( response ).to be_success
       user.reload
       expect( user.description ).to eq new_desc
-      expect( user.icon.exists? ).to be true
+      expect( user.icon_file_name ).not_to be_blank
     end
   end
 
