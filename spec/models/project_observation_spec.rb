@@ -33,6 +33,16 @@ describe ProjectObservation, "creation" do
     expect(po.curator_identification_id).to eq(o.owners_identification.id)
   end
 
+  it "should set curator ID if observer is not a curator but a curator has identified the observation" do
+    o = Observation.make!
+    i = Identification.make!( observation: o, user: @project.user )
+    expect( @project ).to be_curated_by i.user
+    expect( i.project_observations.count ).to eq 0
+    po = without_delay { make_project_observation( observation: o, project: @project ) }
+    i.reload
+    expect( i.project_observations.first ).to eq po
+  end
+
   it "should touch the observation" do
     o = Observation.make!(:user => @project_user.user)
     po = ProjectObservation.create(:observation => o, :project => @project)

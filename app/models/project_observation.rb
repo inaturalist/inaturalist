@@ -89,6 +89,8 @@ class ProjectObservation < ActiveRecord::Base
   after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
+  after_create :revisit_curator_identifications_later
+
   after_save :update_project_list_if_curator_ident_changed
 
   WATCH_FIELDS_CHANGED_AT = { curator_identification_id: true }
@@ -217,6 +219,19 @@ class ProjectObservation < ActiveRecord::Base
     Project.delay(priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "Project::update_observed_taxa_count": project_id }
     ).update_observed_taxa_count(project_id)
+    true
+  end
+
+  def revisit_curator_identifications_later
+    return true if observation && observation.bulk_import
+    observation.identifications.each do |i|
+      Identification.
+        delay(
+          priority: USER_INTEGRITY_PRIORITY,
+          unique_hash: { "Identification::run_update_curator_identification": i.id }
+        ).
+        run_update_curator_identification( i.id )
+    end
     true
   end
 
