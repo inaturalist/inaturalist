@@ -244,11 +244,13 @@ class Identification < ActiveRecord::Base
   def create_observation_review
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id).first_or_create.touch
+    true
   end
 
   def remove_automated_observation_reviews
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id, user_added: false).destroy_all
+    true
   end
 
   # /Callbacks ##############################################################

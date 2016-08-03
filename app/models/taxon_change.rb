@@ -131,11 +131,14 @@ class TaxonChange < ActiveRecord::Base
       reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id)).find_each do |record|
         record_has_user = record.respond_to?(:user) && record.user
         if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-          Update.create(
-            :resource => self,
-            :notifier => self,
-            :subscriber => record.user, 
-            :notification => "committed")
+          action_attrs = {
+            resource: self,
+            notifier: self,
+            notification: "committed"
+          }
+          action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+          action.bulk_insert_subscribers( [record.user.id] )
+          UpdateAction.elastic_index!(ids: [action.id])
           notified_user_ids << record.user.id
         end
         if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)

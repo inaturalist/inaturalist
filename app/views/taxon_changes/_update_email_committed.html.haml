@@ -1,5 +1,5 @@
 - taxon_change = update_email_committed || taxon_change
-- user = updates.first.subscriber
+- user = current_user rescue @user
 %table
   %tr
     %td{:style => "vertical-align:top;"}

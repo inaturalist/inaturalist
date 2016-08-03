@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "creation" do
-  before(:each) { enable_elastic_indexing(Observation, Update) }
-  after(:each) { disable_elastic_indexing(Observation, Update) }
+  before(:each) { enable_elastic_indexing(Observation, UpdateAction) }
+  after(:each) { disable_elastic_indexing(Observation, UpdateAction) }
   it "should not allow swaps without inputs" do
     output_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
@@ -21,18 +21,18 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, Update, Taxon)
+    enable_elastic_indexing(Observation, UpdateAction, Taxon)
     prepare_swap
   end
-  after(:each) { disable_elastic_indexing(Observation, Update, Taxon) }
+  after(:each) { disable_elastic_indexing(Observation, UpdateAction, Taxon) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)
     without_delay { @swap.commit }
-    expect(@swap.updates.to_a).not_to be_blank
+    expect(@swap.update_actions.to_a).not_to be_blank
     old_id = @swap.id
     @swap.destroy
-    expect(Update.where(:resource_type => "TaxonSwap", :resource_id => old_id).to_a).to be_blank
+    expect(UpdateAction.where(resource_type: "TaxonSwap", resource_id: old_id).to_a).to be_blank
   end
 
   it "should destroy subscriptions" do
@@ -178,9 +178,9 @@ end
 describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
-    enable_elastic_indexing(Observation, Taxon, Update, Place)
+    enable_elastic_indexing(Observation, Taxon, UpdateAction, Place)
   end
-  after(:each) { disable_elastic_indexing(Observation, Taxon, Update, Place) }
+  after(:each) { disable_elastic_indexing(Observation, Taxon, UpdateAction, Place) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -195,7 +195,7 @@ describe TaxonSwap, "commit_records" do
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     expect {
       @swap.commit_records
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should generate updates for people who don't want automation" do
@@ -204,7 +204,7 @@ describe TaxonSwap, "commit_records" do
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     expect {
       @swap.commit_records
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should not update records for people who don't want automation" do
@@ -224,7 +224,7 @@ describe TaxonSwap, "commit_records" do
     end
     expect {
       @swap.commit_records
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should should update check listed taxa" do

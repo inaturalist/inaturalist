@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a signed in UsersController" do
   before(:all) { User.destroy_all }
-  before(:each) { enable_elastic_indexing( Update, Observation ) }
-  after(:each) { disable_elastic_indexing( Update, Observation ) }
+  before(:each) { enable_elastic_indexing( UpdateAction, Observation ) }
+  after(:each) { disable_elastic_indexing( UpdateAction, Observation ) }
   let(:user) { User.make! }
   it "should show email for edit" do
     get :edit, :format => :json
@@ -14,6 +14,29 @@ shared_examples_for "a signed in UsersController" do
   it "should show the dashboard" do
     get :dashboard
     expect(response).to be_success
+  end
+
+  describe "update" do
+    it "should remove the user icon with icon_delete param" do
+      user.icon = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+      user.save!
+      expect( user.icon_file_name ).not_to be_blank
+      put :update, id: user.id, format: :json, icon_delete: true
+      expect( response ).to be_success
+      user.reload
+      expect( user.icon_file_name ).to be_blank
+    end
+    it "should not remove the user icon with no user[icon] param" do
+      user.icon = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+      user.save!
+      expect( user.icon_file_name ).not_to be_blank
+      new_desc = "show me the tarweeds"
+      put :update, id: user.id, format: :json, user: { description: new_desc }
+      expect( response ).to be_success
+      user.reload
+      expect( user.description ).to eq new_desc
+      expect( user.icon_file_name ).not_to be_blank
+    end
   end
 
   describe "new_updates" do
@@ -64,7 +87,7 @@ shared_examples_for "a signed in UsersController" do
       without_delay { Comment.make!(:parent => o) }
       get :new_updates, :format => :json, :skip_view => true
       Delayed::Worker.new(:quiet => true).work_off
-      expect(user.updates.unviewed.activity.count).to be > 0
+      expect(user.update_subscribers.where("viewed_at IS NULL").count).to be > 0
     end
   end
 
@@ -103,6 +126,7 @@ shared_examples_for "a signed in UsersController" do
       expect( json["test_groups"] ).to eq test_groups
     end
   end
+
 end
 
 describe UsersController, "oauth authentication" do

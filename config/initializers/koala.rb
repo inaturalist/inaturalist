@@ -7,3 +7,5 @@ if File.exists?("/etc/ssl/certs")
 elsif File.exists?("/usr/local/share/ca-bundle.crt")
   (Koala.http_service.http_options[:ssl] ||= {})[:ca_file] = '/usr/local/share/ca-bundle.crt'
 end
+
+Koala.config.api_version = "v2.1"

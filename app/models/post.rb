@@ -7,10 +7,10 @@ class Post < ActiveRecord::Base
     :on => [:update, :create],
     :queue_if => lambda{ |post|
       conditions = { notifier_type: "Post", notifier_id: post.id }
-      existing_updates_count = Update.where(conditions).count
+      existing_updates_count = UpdateAction.where(conditions).count
       # destroy existing updates if user *unpublishes* a post
       if post.draft? && existing_updates_count > 0
-        Update.delete_and_purge(conditions)
+        UpdateAction.delete_and_purge(conditions)
         return false
       end
       return !post.draft? && existing_updates_count == 0 && post.published_at_changed?

@@ -32,9 +32,16 @@
   <%= form_for(@user, :url => person_path(@user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
     <%= error_messages_for :user %>
     <div class="column span-18 stacked">
-      <%= image_tag(@user.icon.url(:thumb), :class => 'usericon left') %>
-      <%= f.file_field(:icon, :label => t(:icon_slash_photo), :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
-      <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
+      <%= image_and_content image_tag( @user.icon.url(:thumb), class: "usericon" ) do %>
+        <%= link_to_toggle t(:change_icon), "#iconfield" %>
+        <div id="iconfield" style="display: none">
+          <%= f.file_field :icon, label: false, accept: "image/jpg,image/jpeg,image/png,image/gif" %>
+          <div>
+            <%= check_box_tag :icon_delete %>
+            <label for="icon_delete"><%=t :delete_icon? %></label>
+          </div>
+        </div>
+      <% end %>
     </div>
     <div class="column span-9">
       <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username), size: 30) %>

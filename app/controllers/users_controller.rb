@@ -411,10 +411,21 @@ class UsersController < ApplicationController
     
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
-    @updates = Update.load_additional_activity_updates(@pagination_updates)
-    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
-    @update_cache = Update.eager_load_associates(@updates)
-    @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
+    @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
+    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
+    obs = UpdateAction.components_of_class(Observation, @updates)
+    taxa = UpdateAction.components_of_class(Taxon, @updates)
+    with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
+    with_user = UpdateAction.components_with_assoc(:user, @updates)
+    Observation.preload_associations(obs, [:comments, :identifications, :photos])
+    with_taxa += obs.map(&:identifications).flatten
+    with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
+    Taxon.preload_associations(with_taxa, :taxon)
+    taxa += with_taxa.map(&:taxon)
+    Taxon.preload_associations(taxa, { taxon_names: :place_taxon_names })
+    User.preload_associations(with_user, :user)
+    @updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
+    @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
     respond_to do |format|
       format.html do
         render :partial => 'dashboard_updates', :layout => false
@@ -479,11 +490,10 @@ class UsersController < ApplicationController
       end
     end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
-      Update.user_viewed_updates(@updates)
+      UpdateAction.user_viewed_updates(@updates, current_user.id)
       session[:updates_count] = 0
     end
-    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
-    @update_cache = Update.eager_load_associates(@updates)
+    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
     respond_to do |format|
       format.html { render :layout => false }
@@ -527,10 +537,12 @@ class UsersController < ApplicationController
     
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
+    @display_user.icon = nil if params[:icon_delete]
     
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
-    if whitelist_params && @display_user.update_attributes(whitelist_params)
+    @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
       if @display_user.preferred_project_addition_by != preferred_project_addition_by_was &&

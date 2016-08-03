@@ -2,10 +2,8 @@
   project = update_email_your_observations_added || resource
   updates ||= []
   observations = updates.map do |u|
-    o = if @update_cache && @update_cache[:observations]
-      @update_cache[:observations][u.notifier.observation_id]
-    end
-    o || u.notifier.observation
+    next unless u.notifier
+    u.notifier.observation
   end
   columns ||= @observation_columns || 6
   user = if defined? current_user

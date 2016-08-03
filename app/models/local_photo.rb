@@ -224,6 +224,10 @@ class LocalPhoto < Photo
         o.longitude = o.longitude * -1
       end
     end
+    if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
+      o.latitude = nil
+      o.longitude = nil
+    end
     if o.georeferenced?
       o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
     end

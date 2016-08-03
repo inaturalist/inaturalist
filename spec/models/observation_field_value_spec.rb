@@ -16,14 +16,18 @@ describe ObservationFieldValue, "creation" do
   end
 
   describe "for subscribers" do
-    before { Update.delete_all }
+    before do
+      UpdateAction.delete_all
+      UpdateSubscriber.delete_all
+    end
 
     it "should create an update for the observer if user is not observer" do
       o = Observation.make!
       ofv = without_delay do
         ObservationFieldValue.make!(:observation => o, :user => User.make!)
       end
-      expect(Update.where(:subscriber_id => o.user_id, :resource_id => o.id, :notifier_id => ofv.id).count).to eq 1
+      expect(UpdateAction.where(resource: o, notifier: ofv).first.
+        update_subscribers.where(subscriber_id: o.user_id).count).to eq 1
     end
     
     it "should not create an update for the observer if the user is the observer" do
@@ -31,7 +35,7 @@ describe ObservationFieldValue, "creation" do
       ofv = without_delay do
         ObservationFieldValue.make!(:observation => o, :user => o.user)
       end
-      expect(Update.where(:subscriber_id => o.user_id, :resource_id => o.id, :notifier_id => ofv.id).count).to eq 0
+      expect(UpdateAction.where(resource: o, notifier: ofv).count).to eq 0
     end
   end
 end
@@ -40,38 +44,45 @@ describe ObservationFieldValue, "updating for subscribers" do
   before do
     @ofv = ObservationFieldValue.make!(:value => "foo", :user => User.make!)
     @o = @ofv.observation
-    Update.delete_all
-    enable_elastic_indexing(Update)
+    UpdateAction.delete_all
+    UpdateSubscriber.delete_all
+    enable_elastic_indexing(UpdateAction)
   end
-  after(:each) { disable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(UpdateAction) }
 
   it "should create an update for the observer if user is not observer" do
     without_delay { @ofv.update_attributes(:value => "bar") }
-    expect(Update.where(:subscriber_id => @o.user_id, :resource_id => @o.id, :notifier_id => @ofv.id).count).to eq 1
+    expect(UpdateAction.where(resource: @o, notifier: @ofv).first.
+      update_subscribers.where(subscriber_id: @o.user_id).count).to eq 1
   end
 
   it "should create an update for the observer if user is not observer and the observer created the ofv" do
     ofv = without_delay { ObservationFieldValue.make!(:user => @o.user, :value => "foo", :observation => @o) }
-    Update.delete_all
+    UpdateAction.delete_all
+    UpdateSubscriber.delete_all
     without_delay { ofv.update_attributes(:value => "bar", :updater => User.make!) }
-    expect(Update.where(:subscriber_id => @o.user_id, :resource_id => @o.id, :notifier_id => ofv.id).count).to eq 1
+    expect(UpdateAction.where(resource: @o, notifier: ofv).first.
+      update_subscribers.where(subscriber_id: @o.user_id).count).to eq 1
   end
 
   it "should not create an update for the observer" do
     ofv = ObservationFieldValue.make!
     o = ofv.observation
     expect(o.user_id).to eq ofv.user_id
-    Update.delete_all
+    UpdateAction.delete_all
+    UpdateSubscriber.delete_all
     without_delay { ofv.update_attributes(:value => "bar") }
-    expect(Update.where(:subscriber_id => o.user_id, :resource_id => o.id, :notifier_id => ofv.id).count).to eq 0
+    expect(UpdateAction.where(resource: o, notifier: ofv).count).to eq 0
   end
 
   it "should not create an update for subscribers who didn't add the value" do
     u = User.make!
     without_delay { Comment.make!(:user => u, :parent => @o)}
-    Update.delete_all
+    UpdateAction.delete_all
+    UpdateSubscriber.delete_all
     without_delay { @ofv.update_attributes(:value => "bar") }
-    expect(Update.where(:subscriber_id => u.id, :resource_id => @o.id, :notifier_id => @ofv.id).count).to eq 0
+    expect(UpdateAction.where(resource: @o, notifier: @ofv).first.
+      update_subscribers.where(subscriber_id: u.id).count).to eq 0
   end
 end
 

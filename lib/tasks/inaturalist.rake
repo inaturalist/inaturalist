@@ -48,13 +48,13 @@ namespace :inaturalist do
 
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
-    min_id = Update.minimum(:id)
+    min_id = UpdateAction.minimum(:id)
     # using an ID clause to limit the number of rows in the query
-    last_id_to_delete = Update.where(["created_at < ?", 3.months.ago]).
+    last_id_to_delete = UpdateAction.where(["created_at < ?", 3.months.ago]).
       where("id < #{ min_id + 1000000 }").maximum(:id)
-    Update.delete_and_purge("id <= #{ last_id_to_delete }")
+    UpdateAction.delete_and_purge("id <= #{ last_id_to_delete }")
     # delete anything that may be left in Elasticsearch
-    Elasticsearch::Model.client.delete_by_query(index: Update.index_name,
+    Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
       body: { query: { range: { id: { lte: last_id_to_delete } } } })
 
     # # suspend subscriptions of users with no viewed updates

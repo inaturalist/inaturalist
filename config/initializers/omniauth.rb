@@ -11,15 +11,23 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     # }
   end
   if fb_cfg = CONFIG.facebook
-    opts = {:scope => 'email,user_location,user_photos,user_groups,read_stream'}
-    opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
+    opts = {:scope => 'email,user_location,user_photos'}
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
 
   if CONFIG.soundcloud
-    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, {
-      :scope => "non-expiring"
-    }
+    opts = { scope: "non-expiring" }
+    if CONFIG.ca_path || CONFIG.ca_file
+      opts[:client_options] = {
+        ssl: {
+          ca_file: CONFIG.ca_file,
+          ca_path: CONFIG.ca_path
+        }
+      }
+    elsif File.exists?( "/etc/ssl/certs" )
+      opts[:client_options] = { ssl: { ca_path: "/etc/ssl/certs" } }
+    end
+    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, opts
   end
   
   if CONFIG.flickr

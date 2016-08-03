@@ -15,7 +15,7 @@ module HasSubscribers
       
       has_many :update_subscriptions, class_name: "Subscription", as: :resource, inverse_of: :resource
       has_many :subscribers, through: :update_subscriptions, source: :user
-      has_many :updates, as: :resource
+      has_many :update_actions, as: :resource
       
       cattr_accessor :notifying_associations
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
@@ -23,8 +23,8 @@ module HasSubscribers
       Subscription.subscribable_classes << to_s
       
       after_destroy do |record|
-        Update.transaction do
-          Update.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+        UpdateAction.transaction do
+          UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
           Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
         end
         true
@@ -88,8 +88,8 @@ module HasSubscribers
       end
       
       after_destroy do |record|
-        Update.transaction do
-          Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+        UpdateAction.transaction do
+          UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
         end
         true
       end
@@ -111,7 +111,7 @@ module HasSubscribers
 
       create_callback(subscribable_association, options)
       after_destroy do |record|
-        Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
       end
     end
 
@@ -130,7 +130,7 @@ module HasSubscribers
 
       create_callback(method, options)
       after_destroy do |record|
-        Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
       end
     end
 
@@ -188,6 +188,8 @@ module HasSubscribers
       has_one_reflections     = reflections.select{|k,v| v.macro == :has_one}.map{|k,v| k.to_s}
       
       notification ||= options[:notification] || "create"
+      users_to_notify = { }
+      users_with_unviewed_from_notifier = Subscription.users_with_unviewed_updates_from(notifier)
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
         notify_owner = if options[:include_owner].is_a?(Proc)
@@ -201,28 +203,21 @@ module HasSubscribers
             if options[:if]
               next unless options[:if].call(notifier, subscribable, Subscription.new(resource: subscribable, user: subscribable.user))
             end
-            u = Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
-              :notification => notification)
-            unless u.valid?
-              Rails.logger.error "[ERROR #{Time.now}] Tried to create an invalid update for the owner: #{u.errors.full_messages.to_sentence}"
-            end
+            users_to_notify[subscribable] ||= [ ]
+            users_to_notify[subscribable] << subscribable.user_id
           end
         end
         
         subscribable.update_subscriptions.with_unsuspended_users.find_each do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
           next if subscription.created_at > notifier.updated_at
-          next if subscription.has_unviewed_updates_from(notifier)
-          
+          next if users_with_unviewed_from_notifier.include?(subscription.user_id)
+
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)
           end
-          # don't index the updates in ES just yet, we'll do it in bulk later
-          u = Update.new(subscriber: subscription.user, resource: subscribable, notifier: notifier,
-            notification: notification, skip_indexing: true)
-          unless u.save
-            Rails.logger.error "[ERROR #{Time.now}] Failed to save #{u}: #{u.errors.full_messages.to_sentence}"
-          end
+          users_to_notify[subscribable] ||= [ ]
+          users_to_notify[subscribable] << subscription.user_id
         end
       }
       Observation.connection.transaction do
@@ -241,11 +236,19 @@ module HasSubscribers
           end
         end
       end
-      begin
-        # index updates for this notifier in bulk
-        Update.elastic_index!(scope: Update.where(notifier: notifier, notification: notification))
-      rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
-        raise e unless Rails.env.test?
+      if users_to_notify.length > 0
+        actions = [ ]
+        users_to_notify.each do |subscribable, user_ids|
+          action_attrs = {
+            resource: subscribable,
+            notifier: notifier,
+            notification: notification
+          }
+          action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+          action.bulk_insert_subscribers(user_ids)
+          actions << action
+        end
+        UpdateAction.elastic_index!(ids: actions.map(&:id))
       end
     end
 
@@ -261,7 +264,8 @@ module HasSubscribers
         send callback_type do |record|
           unless record.skip_updates
             if options[:queue_if].blank? || options[:queue_if].call(record)
-              record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
+              record.delay(priority: options[:priority]).
+                send(callback_method, subscribable_association)
             end
           end
           true
@@ -277,38 +281,40 @@ module HasSubscribers
 
     def notify_owner_of(association)
       options = self.class.notifies_owner_of_options[association.to_sym]
-      Update.create(
-        subscriber: send(association).user,
+      action_attrs = {
         resource: send(association),
         notifier: self,
         notification: options[:notification]
-      )
-      true
+      }
+      action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+      action.bulk_insert_subscribers( [send(association).user.id] )
+      UpdateAction.elastic_index!(ids: [action.id])
     end
 
     def notify_users(method)
       options = self.class.notifies_users_options
-      users = send(method)
       resource = if respond_to?(:parent) && !parent.is_a?(User)
         parent
       elsif respond_to?(:observation)
         observation
       end
       resource ||= self
-      base_scope = Update.where(
+      action_attrs = {
         resource: resource,
         notifier: self,
-        notification: options[:notification])
-      destroy_scope = base_scope
-      unless users.blank?
-        users.each do |u|
-          next unless u.prefers_receive_mentions?
-          base_scope.where(subscriber: u).first_or_create
-        end
-        destroy_scope = destroy_scope.
-          where("subscriber_id NOT IN (#{ users.map(&:id).join(',') })")
+        notification: options[:notification]
+      }
+      users = send(method)
+      if users.empty?
+        UpdateAction.delete_and_purge(action_attrs)
+        return
       end
-      destroy_scope.destroy_all
+      action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+      user_ids = users.map{ |u| u.prefers_receive_mentions? ? u.id : nil }.compact
+      action.bulk_insert_subscribers(user_ids)
+      UpdateSubscriber.where({ update_action_id: action.id }).
+        where("subscriber_id NOT IN (?)", user_ids).delete_all
+      UpdateAction.elastic_index!(ids: [action.id])
     end
 
   end

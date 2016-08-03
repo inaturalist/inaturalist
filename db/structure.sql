@@ -11619,6 +11619,72 @@ ALTER SEQUENCE trip_taxa_id_seq OWNED BY trip_taxa.id;
 
 
 --
+-- Name: update_actions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE update_actions (
+    id integer NOT NULL,
+    resource_id integer,
+    resource_type character varying,
+    notifier_type character varying,
+    notifier_id integer,
+    notification character varying,
+    resource_owner_id integer,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: update_actions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE update_actions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: update_actions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE update_actions_id_seq OWNED BY update_actions.id;
+
+
+--
+-- Name: update_subscribers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE update_subscribers (
+    id integer NOT NULL,
+    update_action_id integer,
+    subscriber_id integer,
+    viewed_at timestamp without time zone
+);
+
+
+--
+-- Name: update_subscribers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE update_subscribers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: update_subscribers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE update_subscribers_id_seq OWNED BY update_subscribers.id;
+
+
+--
 -- Name: updates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12512,6 +12578,20 @@ ALTER TABLE ONLY trip_taxa ALTER COLUMN id SET DEFAULT nextval('trip_taxa_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY update_actions ALTER COLUMN id SET DEFAULT nextval('update_actions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY update_subscribers ALTER COLUMN id SET DEFAULT nextval('update_subscribers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY updates ALTER COLUMN id SET DEFAULT nextval('updates_id_seq'::regclass);
 
 
@@ -13287,6 +13367,22 @@ ALTER TABLE ONLY trip_taxa
 
 
 --
+-- Name: update_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY update_actions
+    ADD CONSTRAINT update_actions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: update_subscribers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY update_subscribers
+    ADD CONSTRAINT update_subscribers_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: updates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -13686,7 +13782,6 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 --
 -- Name: index_identifications_on_category; Type: INDEX; Schema: public; Owner: -; Tablespace: 
--- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_identifications_on_category ON identifications USING btree (category);
@@ -15002,6 +15097,20 @@ CREATE INDEX index_trip_taxa_on_trip_id ON trip_taxa USING btree (trip_id);
 
 
 --
+-- Name: index_update_actions_unique; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_update_actions_unique ON update_actions USING btree (resource_id, notifier_id, resource_type, notifier_type, notification, resource_owner_id);
+
+
+--
+-- Name: index_update_subscribers_on_update_action_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_update_subscribers_on_update_action_id ON update_subscribers USING btree (update_action_id);
+
+
+--
 -- Name: index_updates_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15805,6 +15914,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160624205645');
 INSERT INTO schema_migrations (version) VALUES ('20160627194031');
 
 INSERT INTO schema_migrations (version) VALUES ('20160629221454');
+
+INSERT INTO schema_migrations (version) VALUES ('20160630024035');
 
 INSERT INTO schema_migrations (version) VALUES ('20160701031842');
 

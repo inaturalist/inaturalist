@@ -32,20 +32,25 @@ class ProjectObservation < ActiveRecord::Base
     with: :notify_observer
 
   def notify_observer(association)
-    if Update.where(subscriber_id: observation.user_id, resource: project, notification: Update::YOUR_OBSERVATIONS_ADDED).
-        where("viewed_at IS NULL").count >= 15
+    if UpdateAction.joins(:update_subscribers).
+         where(resource: project, notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).
+         where("update_subscribers.subscriber_id = ?", observation.user_id).
+         where("update_subscribers.viewed_at IS NULL").count >= 15
       return
     end
-    u = Update.create(
-      :subscriber => observation.user,
-      :resource => project,
-      :notifier => self,
-      :notification => Update::YOUR_OBSERVATIONS_ADDED
-    )
+    action_attrs = {
+      resource: project,
+      notifier: self,
+      notification: UpdateAction::YOUR_OBSERVATIONS_ADDED
+    }
+    action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+    action.bulk_insert_subscribers( [observation.user.id] )
+    UpdateAction.elastic_index!(ids: [action.id])
   end
   
   after_destroy do |record|
-    Update.where(resource: record.project, notifier: observation, notification: Update::YOUR_OBSERVATIONS_ADDED).delete_all
+    UpdateAction.where(resource: record.project, notifier: observation,
+      notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).delete_all
   end
 
   def set_curator_coordinate_access
@@ -83,6 +88,8 @@ class ProjectObservation < ActiveRecord::Base
 
   after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
   after_destroy :expire_caches
+
+  after_create :revisit_curator_identifications_later
 
   after_save :update_project_list_if_curator_ident_changed
 
@@ -212,6 +219,19 @@ class ProjectObservation < ActiveRecord::Base
     Project.delay(priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "Project::update_observed_taxa_count": project_id }
     ).update_observed_taxa_count(project_id)
+    true
+  end
+
+  def revisit_curator_identifications_later
+    return true if observation && observation.bulk_import
+    observation.identifications.each do |i|
+      Identification.
+        delay(
+          priority: USER_INTEGRITY_PRIORITY,
+          unique_hash: { "Identification::run_update_curator_identification": i.id }
+        ).
+        run_update_curator_identification( i.id )
+    end
     true
   end
 

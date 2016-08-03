@@ -2122,11 +2122,10 @@ class ObservationsController < ApplicationController
 
   def user_viewed_updates
     return unless logged_in?
-    updates_scope = Update.where([
-      "resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?",
-      @observation.id, current_user.id])
-    updates_scope.update_all(viewed_at: Time.now)
-    Update.elastic_index!(scope: updates_scope, delay: true)
+    obs_updates = UpdateAction.joins(:update_subscribers).
+      where(resource: @observation).
+      where("update_subscribers.subscriber_id = ?", current_user.id)
+    UpdateAction.user_viewed_updates(obs_updates, current_user.id)
   end
 
   def user_reviewed
@@ -2488,6 +2487,12 @@ class ObservationsController < ApplicationController
       @photo_identity_urls = []
       @photo_identities = []
       return true
+    end
+    if Rails.env.development?
+      FacebookPhoto
+      PicasaPhoto
+      LocalPhoto
+      FlickrPhoto
     end
     @photo_identities = Photo.subclasses.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
