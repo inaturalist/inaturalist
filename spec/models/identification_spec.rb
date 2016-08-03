@@ -34,15 +34,15 @@ describe Identification, "creation" do
     expect(old_ident).not_to be_current
   end
 
-  it "should not allow 2 current observations per user" do
-    ident1 = Identification.make!
-    idend2 = Identification.make!(:user => ident1.user, :observation => ident1.observation)
-    ident1.reload
-    expect(ident1).not_to be_current
-    ident1.update_attributes(:current => true)
-    expect(ident1).not_to be_valid
-    expect(ident1.errors[:current]).not_to be_blank
-  end
+  # it "should not allow 2 current observations per user" do
+  #   ident1 = Identification.make!
+  #   idend2 = Identification.make!(:user => ident1.user, :observation => ident1.observation)
+  #   ident1.reload
+  #   expect(ident1).not_to be_current
+  #   ident1.update_attributes(:current => true)
+  #   expect(ident1).not_to be_valid
+  #   expect(ident1.errors[:current]).not_to be_blank
+  # end
   
   it "should add a taxon to its observation if it's the observer's identification" do
     obs = Observation.make!

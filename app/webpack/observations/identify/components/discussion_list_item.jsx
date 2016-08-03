@@ -15,6 +15,7 @@ const DiscussionListItem = ( {
   hideAgree,
   onEdit,
   onDelete,
+  onRestore,
   currentUser
 } ) => {
   let ident;
@@ -69,11 +70,21 @@ const DiscussionListItem = ( {
   }
   let controls;
   if ( currentUser.id === user.id ) {
+    let withdrawRestore;
+    if ( identification ) {
+      if ( identification.current ) {
+        withdrawRestore = <a onClick={ onDelete }>{ I18n.t( "withdraw" ) }</a>;
+      } else {
+        withdrawRestore = <a onClick={ onRestore }>{ I18n.t( "restore" ) }</a>;
+      }
+    } else {
+      withdrawRestore = <a onClick={ onDelete }>{ I18n.t( "delete" ) }</a>;
+    }
     controls = (
       <span className="controls">
         <a onClick={ ( ) => onEdit( ) }>{ I18n.t( "edit" ) }</a>
         &middot;
-        <a onClick={ onDelete }>{ I18n.t( "delete" ) }</a>
+        { withdrawRestore }
       </span>
     );
   }
@@ -112,6 +123,7 @@ DiscussionListItem.propTypes = {
   hideAgree: PropTypes.bool,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
+  onRestore: PropTypes.func,
   currentUser: PropTypes.object
 };
 

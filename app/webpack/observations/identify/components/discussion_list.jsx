@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import DiscussionListItemContainer from "../containers/discussion_list_item_container";
 
-const DiscussionList = ( { observation, onDelete } ) => {
+const DiscussionList = ( { observation, onDelete, onRestore } ) => {
   let items = ( observation.comments || [] ).map( ( c ) => (
     Object.assign( c, {
       className: "Comment",
@@ -46,6 +46,7 @@ const DiscussionList = ( { observation, onDelete } ) => {
               onDelete( item );
             }
           } }
+          onRestore={ ( ) => onRestore( item ) }
         />
       ) ) }
     </div>
