@@ -55,7 +55,8 @@ const DiscussionList = ( { observation, onDelete, onRestore } ) => {
 
 DiscussionList.propTypes = {
   observation: PropTypes.object.isRequired,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onRestore: PropTypes.func
 };
 
 export default DiscussionList;
