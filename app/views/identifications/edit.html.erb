@@ -41,10 +41,10 @@
         <%= link_to t(:cancel), url_for(@identification.observation) + "##{id_for(@identification)}", :class => 'button' %>
       <%- end -%>
       <% if @identification.current? %>
-        <%= link_to t(:withdraw), identification_path( @identification ), method: :delete, class: "minor delete button right" %>
+        <%= link_to t(:withdraw), identification_path( @identification ), method: :delete, class: "minor delete button right", data: { loading_click: t(:loading) } %>
       <% else %>
         <span class="inter right">
-          <%= f.check_box :current, label_after: true %>
+          <%= f.check_box :current, label: t(:restore), label_after: true %>
         </span>
       <% end %>
     </div>
