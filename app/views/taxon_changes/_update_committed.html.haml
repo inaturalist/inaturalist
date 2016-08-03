@@ -1,7 +1,7 @@
 - taxon_change ||= update_committed
 .timeline-body
-  %table.table{ :style => "border-bottom:1px solid #ddd;" }
-    %thead{ :style => "background-color:#fbeed7;" }
+  %table.table{ style: "border-bottom:1px solid #ddd;" }
+    %thead{ style: "background-color:#fbeed7;" }
       %tr
         %th
           =t :taxon
@@ -11,13 +11,12 @@
       %tr
         %td
           - for taxon in taxon_change.input_taxa
-            = render "shared/taxon", :taxon => taxon, :link_url => taxon          
+            = render "shared/taxon", taxon: taxon, link_url: taxon          
         %td
           - for taxon in taxon_change.output_taxa
-            = render "shared/taxon", :taxon => taxon, :link_url => taxon
+            = render "shared/taxon", taxon: taxon, link_url: taxon
   %p
-    = formatted_user_text taxon_change.description
+    = formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
 .timeline-footer
-  = link_to t(:view_details), taxon_change, :class => "btn btn-sm btn-primary"
-  = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-sm btn-default"    
-
+  = link_to t(:view_details), taxon_change, class: "btn btn-sm btn-primary"
+  = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), class: "btn btn-sm btn-default"

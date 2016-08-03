@@ -52,7 +52,7 @@
   <div class="meta ui stacked">
     <% unless taxon_change.description.blank? -%>
       <div class="meta stacked ui">
-        <%= formatted_user_text taxon_change.description %>
+        <%= formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES %>
       </div>
     <% end -%>
     <div class="meta">
