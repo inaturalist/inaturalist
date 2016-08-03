@@ -56,7 +56,7 @@
       <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
         <span class="button"><%= link_to t(:withdraw), identification_path( identification ),
             method: :delete,
-            "data-loading-click" => t(:removing),
+            "data-loading-click" => t(:withdrawing),
             class: "removelink" -%></span>
       <% end %>
     <% end -%>
