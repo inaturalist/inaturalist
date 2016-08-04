@@ -1066,6 +1066,7 @@ en:
   extinct_in_the_wild: extinct in the wild
   extra_properties: Extra Properties
   extras: Extras
+  evidence_of_organism?: Evidence of organism?
   facebook: Facebook
   facebook_account_information: Your Facebook Account Information
   facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
@@ -1917,6 +1918,7 @@ en:
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   no_x_this_y: "No %{x} this %{y}"
   noble_curators: "%{site}'s Noble Curators"
+  non_human?: Non-human?
   none: None
   none_of_the_people_you_follow_have_updates: "None of the people you follow have made any updates yet!"
   normal: normal
@@ -2528,6 +2530,7 @@ en:
   recent: Recent
   recent_additions: Recent additions
   recent_comments_on_your_stuff: Recent Comments on Your Stuff
+  recent_evidence?: Recent evidence?
   recent_observations: Recent observations
   recent_post: Recent post
   recent_atom_observations_by: "Recent observations by %{login} (Atom)"
@@ -3022,7 +3025,7 @@ en:
   the_admin_is_the_person_who: |
     The admin is the person who created the project. They can do everything
     managers and curators can do, as well as delete the project.
-  the_community_agrees_location_doesnt: the community agrees the <strong>location doesn't looks accurate</strong> (e.g. monkeys in the middle of the ocean, hippos in office buildings, etc.)
+  the_community_agrees_location_doesnt: the community agrees the <strong>location doesn't look accurate</strong> (e.g. monkeys in the middle of the ocean, hippos in office buildings, etc.)
   the_community_agrees_organism_isnt: the community agrees the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans or intelligent space aliens)
   the_data_quality_assessment_is: The data quality assessment is a summary of an observation's accuracy. All observations start as <strong>"casual"</strong> grade, and achieve <strong>"research"</strong> grade when
   the_following_lists: the following lists
@@ -4219,6 +4222,7 @@ en:
             <li>the observation <strong>has a date</strong></li>
             <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
             <li>the observation <strong>has photos or sounds</strong></li>
+            <li>the observation <strong>isn't of a human</strong></li>
           </ul>
           <p>
             Observations become <strong>"research grade"</strong> when
@@ -4232,21 +4236,31 @@ en:
             </li>
           </ul>
           <p>
-            Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or
+            Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
           </p>
           <ul>
             <li>
-              the community agrees the <strong>location doesn't looks
+              the <strong>location doesn't look
               accurate</strong> (e.g. monkeys in the middle of the ocean,
               hippos in office buildings, etc.)
             </li>
             <li>
-              the community agrees the <strong>organism isn't
-              wild/naturalized</strong> (e.g. captive or cultivated by humans
+              the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
               or intelligent space aliens)
             </li>
             <li>
-              the community agrees the observation no longer needs an ID <em>and</em> the community ID is above family
+              the observation <strong>doesn't present evidence of an
+              organism</strong>, e.g. images of landscapes, water features,
+              rocks, etc.
+            </li>
+            <li>
+              the observation <strong>doesn't present evidence for
+              <em>recent</em> presence</strong>, where "recent" is on the
+              order of years, e.g. fossils (tracks, scat, dead leaves are all
+              ok)
+            </li>
+            <li>
+              the observation no longer needs an ID <em>and</em> the community ID is above family
             </li>
           </ul>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"

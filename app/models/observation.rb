@@ -1192,12 +1192,18 @@ class Observation < ActiveRecord::Base
   end
 
   def research_grade_candidate?
+    return false if human?
     return false unless georeferenced?
     return false unless quality_metrics_pass?
     return false unless observed_on?
     return false unless (photos? || sounds?)
     return false unless appropriate?
     true
+  end
+
+  def human?
+    t = community_taxon || taxon
+    t && t.name =~ /^Homo /
   end
   
   def research_grade?
