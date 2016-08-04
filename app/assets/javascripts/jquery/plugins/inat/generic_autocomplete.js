@@ -185,7 +185,7 @@ $.fn.genericAutocomplete = function( options ) {
     if( field.val( ) && options.resetOnChange === false ) { return; }
     // keys like arrows, tab, shift, caps-lock, etc. won't change
     // the value of the field so we don't need to reset the selection
-    nonCharacters = [ 8, 9, 16, 17, 18, 19, 20, 27, 33,
+    nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
       34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
     if( _.includes( nonCharacters, key ) ) { return; }
     field.trigger( "resetSelection" );

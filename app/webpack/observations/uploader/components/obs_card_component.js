@@ -214,6 +214,7 @@ class ObsCardComponent extends Component {
               perPage={ 6 }
               initialSelection={ obsCard.selected_taxon }
               initialTaxonID={ obsCard.taxon_id }
+              resetOnChange={ false }
               afterSelect={ r => {
                 if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
                   updateObsCard( obsCard,
