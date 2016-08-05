@@ -20,10 +20,10 @@
             = t :all_updates
           %a.btn.btn-default.dashboard_tab{ "data-tab" => "yours", "data-target-el" => "#updates_by_you", href: "#updates_by_you"}
             = t :your_content
-          %a.btn.btn-default.dashboard_tab{ "data-tab" => "comments", "data-target-el" => "#comments", href: "#comments"}
-            = t :real_time_discussions
-          %a.btn.btn-default.dashboard_tab{ "data-tab" => "following", "data-target-el" => "#following", href: "#following"}
+          %a.btn.btn-default.dashboard_tab{ "data-tab" => "following", "data-target-el" => "#following", href: "#following", title: t(:observations_from_people_taxa_and_places_youre_following) }
             = t( :following, default: "Folloing").capitalize
+          %a.btn.btn-default.dashboard_tab{ "data-tab" => "comments", "data-target-el" => "#comments", href: "#comments" }
+            = t :real_time_discussions
       .tab-content
         #updates.tab-pane.active{ data: { tab: "updates" } }
           - if !@has_updates
@@ -90,6 +90,18 @@
                 %a.btn.btn-primary{ "data-panel-type" => "updates_by_you" }= t(:got_it!)
           #updates_by_you_target
             .loading.status= t :loading
+        #following.tab-pane{ data: { tab: "following" } }
+          - unless current_user.prefers_hide_following_onboarding
+            #following_panel.panel.panel-info
+              .panel-heading
+                %a.close{ "data-panel-type" => "following" } &#215;
+                %h3.panel-title= t( "onboarding.following_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
+              .panel-body
+                = t( "onboarding.following_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
+              .panel-footer
+                %a.btn.btn-primary{ "data-panel-type" => "following" }= t(:got_it!)
+          #following_target
+            .loading.status= t :loading
         #comments.tab-pane{ data: { tab: "comments" } }
           - unless current_user.prefers_hide_comments_onboarding
             #comments_panel.panel.panel-info
@@ -101,9 +113,6 @@
               .panel-footer
                 %a.btn.btn-primary{ "data-panel-type" => "comments" }= t(:got_it!)
           #comments_target
-            .loading.status= t :loading
-        #following.tab-pane{ data: { tab: "following" } }
-          #following_target
             .loading.status= t :loading
   .col-md-4{ style: "padding-left:25px" }
     = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do

@@ -3,6 +3,7 @@
     - for key, updates in @grouped_updates
       - resource_type, resource_id, notification = key
       - resource = updates.last.resource
+      - resource_owner = updates.last.resource_owner
       - notifier = updates.last.notifier
       - is_mention = ( notification == "mention" )
       %li.observation_multiple_added
@@ -31,7 +32,7 @@
               - if is_mention
                 = link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do
                   %span.glyphicon.glyphicon-cog
-              - else
+              - elsif !is_me?( resource_owner )
                 = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "pull-right subscriptionsettings" do
                   %span.glyphicon.glyphicon-cog
               %span.time{ title: updates.last.sort_by_date.iso8601 }

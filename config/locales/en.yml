@@ -2000,6 +2000,7 @@ en:
   observations_for: Observations for
   observations_for_project: "Observations for %{project}"
   observations_from: Observations from %{date}
+  observations_from_people_taxa_and_places_youre_following: "Observations from people, places, and taxa you're following"
   observations_from_this_place: Observations from this place
   observations_from_this_project: Observations from this project
   observations_from_you: Observations by you
@@ -2078,6 +2079,12 @@ en:
       follow_panel_title_local: Follow Some Nearby Naturalists
       follow_panel_title_global: Follow Some Active Naturalists 
       follow_panel_body: If you visit these profiles and click the follow button, you'll be updated when they post observations
+      following_panel_title: Keep Track of People, Taxa, and Places
+      following_panel_body: |
+        On %{site_name} you can follow people to keep track of the
+        observations they've been posting. You can also subscribe to certain
+        species to keep tabs on new observations of those species, or do the
+        same thing with places.
       comments_panel_title: Curious what kind of discussions are happening on %{site_name}?
       comments_panel_body: <p>%{site_name} is all about sharing and discussing observations of living things. Here are some discussions happening right now...</p> <p>You'll be automatically subscribed to any discussions you contribute comments or identifications to. You can always use the Manage Subscriptions tool on the right to stop recieving updates</p>
       updates_by_you_panel_title: This tab is a quick way to filter out only updates on your content.

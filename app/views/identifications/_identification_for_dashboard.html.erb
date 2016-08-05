@@ -28,12 +28,12 @@
             (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
           <span class="btn btn-sm btn-default btn_agree">
             <%= link_to t(:agree?), {
-                 :controller => 'identifications',
-                 :action => 'agree',
-                 :observation_id => identification.observation_id,
-                 :taxon_id => identification.taxon_id },
-               :method => :post,
-               "data-loading-click" => t(:agreeing) -%>
+                 controller: "identifications",
+                 action: "agree",
+                 observation_id: identification.observation_id,
+                 taxon_id: identification.taxon_id },
+               method: :post,
+               target: "_blank" -%>
           </span>
         <% end %>
         <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
