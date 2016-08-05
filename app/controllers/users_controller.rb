@@ -408,6 +408,9 @@ class UsersController < ApplicationController
       wheres[:resource_owner_id] = current_user.id
       @you = true
     end
+    if params[:filter] == "following"
+      wheres[:notification] = %w(created_observations new_observations)
+    end
     
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
