@@ -51,9 +51,9 @@ describe Project do
       expect(p2.errors[:title]).not_to be_blank
     end
 
-    it "should notify the owner that the admin changed" do
+    it "should not notify the owner of their own new projects" do
       p = without_delay {Project.make!}
-      expect(Update.where(:resource_type => "Project", :resource_id => p.id, :subscriber_id => p.user_id).first).to be_blank
+      expect(UpdateAction.where(resource: p).first).to be_blank
     end
 
     describe "for bioblitzes" do
