@@ -102,9 +102,14 @@ class UpdateAction < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    updates = UpdateAction.joins(:update_subscribers).
-      where(["created_at BETWEEN ? AND ?", start_time, end_time]).
-      where("update_subscribers.subscriber_id = ?", user.id).limit(100)
+    updates = UpdateAction.elastic_paginate(
+      filters: [
+        { term: { subscriber_ids: user.id } },
+        { range: { created_at: { gte: start_time } } },
+        { range: { created_at: { lte: end_time } } }
+      ],
+      per_page: 100,
+      sort: { id: :asc })
     updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
