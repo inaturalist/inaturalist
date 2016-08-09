@@ -79,6 +79,8 @@ class UpdateAction < ActiveRecord::Base
           puts msg
           next
         end
+      rescue
+        Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} failed"
       end
       if email_sent
         msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} sent"
