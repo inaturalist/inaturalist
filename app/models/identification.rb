@@ -12,13 +12,14 @@ class Identification < ActiveRecord::Base
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
-  validate :uniqueness_of_current, :on => :update
+  # validate :uniqueness_of_current, :on => :update
   
-  before_create :update_other_identifications
+  before_save :update_other_identifications
   after_create  :update_observation,
                 :create_observation_review
   
-  after_commit :update_user_counter_cache,
+  after_commit :update_observation,
+               :update_user_counter_cache,
                :update_categories
 
   after_save    :update_obs_stats, 
@@ -123,6 +124,7 @@ class Identification < ActiveRecord::Base
   # Callbacks ###############################################################
 
   def update_other_identifications
+    return true unless ( current_changed? || new_record? ) && current?
     if id
       Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
         update_all(current: false)
@@ -220,9 +222,9 @@ class Identification < ActiveRecord::Base
   end
 
   def set_last_identification_as_current
-    last_current = observation.identifications.current.by(user_id).order("id ASC").last
+    last_current = observation.identifications.current.by( user_id ).order( "id ASC" ).last
     return true if last_current
-    last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
+    last_outdated = observation.identifications.outdated.by( user_id ).order( "id ASC" ).last
     if last_outdated
       begin
         Identification.where(id: last_outdated).update_all(current: true)

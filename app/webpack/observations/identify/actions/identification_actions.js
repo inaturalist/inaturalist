@@ -29,6 +29,12 @@ function deleteIdentification( ident ) {
   };
 }
 
+function updateIdentification( ident, updates ) {
+  return function ( ) {
+    return inatjs.identifications.update( ident, updates );
+  };
+}
+
 function agreeWithObservaiton( observation ) {
   return function ( dispatch ) {
     dispatch( loadingDiscussionItem( ) );
@@ -53,5 +59,6 @@ export {
   POST_IDENTIFICATION,
   agreeWithObservaiton,
   agreeWithCurrentObservation,
-  deleteIdentification
+  deleteIdentification,
+  updateIdentification
 };

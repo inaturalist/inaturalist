@@ -87,7 +87,7 @@ shared_examples_for "an IdentificationsController" do
   end
 
   describe "update" do
-    let(:identification) { Identification.make!(:user => user) }
+    let(:identification) { Identification.make!( user: user ) }
     it "should work" do
       expect {
         put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
@@ -99,6 +99,23 @@ shared_examples_for "an IdentificationsController" do
       put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
       json = JSON.parse(response.body)
       expect(json['taxon_id']).to eq identification.taxon_id
+    end
+
+    it "should mark other identifications as not current if restoring" do
+      # puts "creating new ident"
+      i2 = Identification.make!( user: user, observation: identification.observation )
+      # puts "done creating new ident"
+      identification.reload
+      expect( i2 ).to be_current
+      expect( identification ).not_to be_current
+      # puts "updating"
+      put :update, format: :json, id: identification.id, identification: { current: true }
+      # puts "response.body: #{response.body}"
+      # puts "done updating"
+      identification.reload
+      i2.reload
+      expect( i2 ).not_to be_current
+      expect( identification ).to be_current
     end
   end
 
@@ -113,21 +130,42 @@ shared_examples_for "an IdentificationsController" do
     end
     
     let(:identification) { Identification.make!(:user => user) }
-    it "should work" do
-      delete :destroy, :format => :json, :id => identification.id
-      expect(Identification.find_by_id(identification.id)).to be_blank
+
+    # it "should work" do
+    #   delete :destroy, :format => :json, :id => identification.id
+    #   expect(Identification.find_by_id(identification.id)).to be_blank
+    # end
+
+    it "should not destroy the identification" do
+      delete :destroy, format: :json, id: identification.id
+      expect( Identification.find_by_id( identification.id ) ).not_to be_blank
+    end
+    
+    it "should mark the identification as not current" do
+      expect( identification ).to be_current
+      delete :destroy, format: :json, id: identification.id
+      identification.reload
+      expect( identification ).not_to be_current
     end
 
-    it "should work if there's a pre-existing ident" do
-      i = Identification.make!(:user => user, :observation => identification.observation)
-      expect(i).to be_current
+    it "should remove the observation taxon if there are no current identifications" do
+      expect( identification.observation.taxon ).to eq identification.taxon
+      delete :destroy, format: :json, id: identification.id
       identification.reload
-      expect(identification).not_to be_current
-      delete :destroy, :id => i.id
-      expect(Identification.find_by_id(i.id)).to be_blank
-      identification.reload
-      expect(identification).to be_current
+      expect( identification.observation.taxon ).to be_blank
     end
+
+    # it "should work if there's a pre-existing ident" do
+    #   i = Identification.make!( user: user, observation: identification.observation )
+    #   expect( i ).to be_current
+    #   identification.reload
+    #   expect( identification ).not_to be_current
+    #   delete :destroy, id: i.id
+    #   i.reload
+    #   expect( i ).not_to be_current
+    #   identification.reload
+    #   expect( identification ).to be_current
+    # end
 
     it "should not leave multiple current IDs when deleting a middle ID" do
       o = Observation.make!

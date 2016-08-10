@@ -182,7 +182,7 @@ class IdentificationsController < ApplicationController
   # DELETE identification_url
   def destroy
     observation = @identification.observation
-    @identification.destroy
+    @identification.update_attributes( current: false )
     respond_to do |format|
       format.html do
         flash[:notice] = t(:identification_deleted)

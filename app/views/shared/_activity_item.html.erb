@@ -107,7 +107,13 @@
             if is_me?(item.user) && edit_url
               pieces << link_to(t(:edit), edit_url)
             end
-            if item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
+            if item.is_a?( Identification ) && is_me?( item.user )
+              if item.current?
+                pieces << link_to( t(:withdraw), item, method: :delete, id: "delete_comment_#{item.id}_button" )
+              else
+                pieces << link_to( t(:restore), identification_path( item, identification: { current: true } ), method: :put, data: { loading_click: t(:restoring) } )
+              end
+            elsif item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
               pieces << link_to(t(:delete), item,
                           :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)},
                           :method => :delete,
