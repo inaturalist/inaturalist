@@ -3,6 +3,7 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
   include ObservationSearch
+  include ActsAsUUIDable
 
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
@@ -315,13 +316,11 @@ class Observation < ActiveRecord::Base
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
-  validates_uniqueness_of :uuid
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates,
-                    :set_uuid
+                    :set_coordinates
 
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
@@ -1081,12 +1080,6 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def set_uuid
-    self.uuid ||= SecureRandom.uuid
-    self.uuid = uuid.downcase
-    true
-  end
-  
   #
   # Trim whitespace around species guess
   #

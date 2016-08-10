@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+
   acts_as_spammable fields: [ :body ]
 
   belongs_to :parent, polymorphic: true
@@ -25,6 +26,8 @@ class Comment < ActiveRecord::Base
   scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
   scope :dbsearch, lambda {|q| where("comments.body ILIKE ?", "%#{q}%")}
 
+  include ActsAsUUIDable
+
   attr_accessor :html
 
   def to_s
@@ -38,6 +41,7 @@ class Comment < ActiveRecord::Base
   def as_indexed_json
     {
       id: id,
+      uuid: uuid,
       user: user.as_indexed_json,
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
