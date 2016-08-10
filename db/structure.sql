@@ -23,6 +23,9 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
 SET search_path = public, pg_catalog;
 
 --
@@ -8175,7 +8178,8 @@ CREATE TABLE comments (
     parent_type character varying(255),
     body text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -9120,7 +9124,8 @@ CREATE TABLE identifications (
     updated_at timestamp without time zone,
     current boolean DEFAULT true,
     taxon_change_id integer,
-    category character varying
+    category character varying,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -9495,7 +9500,8 @@ CREATE TABLE observation_field_values (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     user_id integer,
-    updater_id integer
+    updater_id integer,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -10436,7 +10442,8 @@ CREATE TABLE project_observations (
     updated_at timestamp without time zone,
     curator_identification_id integer,
     tracking_code character varying(255),
-    user_id integer
+    user_id integer,
+    uuid uuid DEFAULT uuid_generate_v4()
 );
 
 
@@ -11685,44 +11692,6 @@ ALTER SEQUENCE update_subscribers_id_seq OWNED BY update_subscribers.id;
 
 
 --
--- Name: updates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE updates (
-    id integer NOT NULL,
-    subscriber_id integer,
-    resource_id integer,
-    resource_type character varying(255),
-    notifier_type character varying(255),
-    notifier_id integer,
-    notification character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    resource_owner_id integer,
-    viewed_at timestamp without time zone
-);
-
-
---
--- Name: updates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE updates_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE updates_id_seq OWNED BY updates.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12592,13 +12561,6 @@ ALTER TABLE ONLY update_subscribers ALTER COLUMN id SET DEFAULT nextval('update_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY updates ALTER COLUMN id SET DEFAULT nextval('updates_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -13380,14 +13342,6 @@ ALTER TABLE ONLY update_actions
 
 ALTER TABLE ONLY update_subscribers
     ADD CONSTRAINT update_subscribers_pkey PRIMARY KEY (id);
-
-
---
--- Name: updates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY updates
-    ADD CONSTRAINT updates_pkey PRIMARY KEY (id);
 
 
 --
@@ -15111,27 +15065,6 @@ CREATE INDEX index_update_subscribers_on_update_action_id ON update_subscribers 
 
 
 --
--- Name: index_updates_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_created_at ON updates USING btree (created_at);
-
-
---
--- Name: index_updates_on_notifier_type_and_notifier_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_notifier_type_and_notifier_id ON updates USING btree (notifier_type, notifier_id);
-
-
---
--- Name: index_updates_on_subscriber_id_and_viewed_at_and_notification; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_subscriber_id_and_viewed_at_and_notification ON updates USING btree (subscriber_id, viewed_at, notification);
-
-
---
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15285,18 +15218,16 @@ CREATE UNIQUE INDEX taggings_idx ON taggings USING btree (tag_id, taggable_id, t
 CREATE INDEX taxon_names_lower_name_index ON taxon_names USING btree (lower((name)::text));
 
 
+CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
+CREATE INDEX index_identifications_on_uuid ON identifications USING btree (uuid);
+CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
+CREATE INDEX index_project_observations_on_uuid ON project_observations USING btree (uuid);
+
 --
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
-
-
---
--- Name: updates_unique_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX updates_unique_key ON updates USING btree (resource_type, resource_id, notifier_type, notifier_id, subscriber_id, notification);
 
 
 --
@@ -15920,4 +15851,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160630024035');
 INSERT INTO schema_migrations (version) VALUES ('20160701031842');
 
 INSERT INTO schema_migrations (version) VALUES ('20160701042751');
+
+INSERT INTO schema_migrations (version) VALUES ('20160726191620');
+
+INSERT INTO schema_migrations (version) VALUES ('20160808154245');
 
