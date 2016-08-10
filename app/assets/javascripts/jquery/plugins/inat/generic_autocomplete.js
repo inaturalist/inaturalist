@@ -111,9 +111,11 @@ $.fn.genericAutocomplete = function( options ) {
     select: options.select || field.select,
     focus: options.focus || genericAutocomplete.focus,
     appendTo: options.appendTo,
-    open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) },
-    close: function () {  $( $(this).data().uiAutocomplete.menu.element ).removeClass( "open" ) }
+    open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) }
   }).data( "uiAutocomplete" );
+  field.on( "autocompleteclose", function( e, ui ) {
+    $( ac.menu.element ).removeClass( "open" )
+  } )
   if( options.menuClass && ac.menu && ac.menu.element ) {
     $( ac.menu.element ).addClass( options.menuClass );
   }

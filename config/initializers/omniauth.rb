@@ -1,5 +1,31 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  require 'openid/store/filesystem' 
+  require 'openid/store/filesystem'
+
+  # Replicate some omniauth code to bend over backwards so we can accommodate
+  # the fact that soundcloud only allows one callback URL, so we *must* send
+  # requests to them with a matching redirect_uri regardless of protocol
+  # Check out the original definition of full_host at 
+  # https://github.com/omniauth/omniauth/blob/master/lib/omniauth/strategy.rb#L411
+  OmniAuth.config.full_host = lambda do |env|
+    request = Rack::Request.new( env )
+    is_ssl =
+      request.env['HTTPS'] == 'on' ||
+        request.env['HTTP_X_FORWARDED_SSL'] == 'on' ||
+        request.env['HTTP_X_FORWARDED_SCHEME'] == 'https' ||
+        (request.env['HTTP_X_FORWARDED_PROTO'] && request.env['HTTP_X_FORWARDED_PROTO'].split(',')[0] == 'https') ||
+        request.env['rack.url_scheme'] == 'https'
+    if request.scheme && request.url.match( URI::ABS_URI )
+      uri = URI.parse(request.url.gsub(/\?.*$/, ''))
+      uri.path = ''
+      uri.scheme = 'https' if is_ssl
+      if env['omniauth.strategy'].is_a?(OmniAuth::Strategies::SoundCloud) 
+        uri.scheme = 'http'
+      end
+      uri.to_s
+    else ''
+    end
+  end
+
   if CONFIG.twitter
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
     # TODO
@@ -59,4 +85,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     end
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
   end
+
 end

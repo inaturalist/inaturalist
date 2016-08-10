@@ -416,13 +416,6 @@ TripPurpose.blueprint do
   resource { Taxon.make! }
 end
 
-Update.blueprint do
-  o = Observation.make!
-  subscriber { User.make! }
-  resource { o }
-  notifier { Comment.make!(:parent => o) }
-end
-
 UpdateAction.blueprint do
   o = Observation.make!
   resource { o }

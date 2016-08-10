@@ -310,7 +310,7 @@ const ObservationModal = ( {
                 >
                   <input
                     type="checkbox"
-                    defaultChecked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                    checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
                     onChange={function ( ) {
                       toggleReviewed( );
                     }}
