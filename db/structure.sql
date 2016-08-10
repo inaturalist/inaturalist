@@ -23,7 +23,18 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
 
 
 SET search_path = public, pg_catalog;
@@ -13483,6 +13494,13 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
+-- Name: index_comments_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
+
+
+--
 -- Name: index_conservation_statuses_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -13777,6 +13795,13 @@ CREATE INDEX index_identifications_on_user_id_and_current ON identifications USI
 
 
 --
+-- Name: index_identifications_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_identifications_on_uuid ON identifications USING btree (uuid);
+
+
+--
 -- Name: index_list_rules_on_list_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14005,6 +14030,13 @@ CREATE INDEX index_observation_field_values_on_updater_id ON observation_field_v
 --
 
 CREATE INDEX index_observation_field_values_on_user_id ON observation_field_values USING btree (user_id);
+
+
+--
+-- Name: index_observation_field_values_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
 
 
 --
@@ -14572,6 +14604,13 @@ CREATE INDEX index_project_observations_on_project_id ON project_observations US
 --
 
 CREATE INDEX index_project_observations_on_user_id ON project_observations USING btree (user_id);
+
+
+--
+-- Name: index_project_observations_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_observations_on_uuid ON project_observations USING btree (uuid);
 
 
 --
@@ -15217,11 +15256,6 @@ CREATE UNIQUE INDEX taggings_idx ON taggings USING btree (tag_id, taggable_id, t
 
 CREATE INDEX taxon_names_lower_name_index ON taxon_names USING btree (lower((name)::text));
 
-
-CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
-CREATE INDEX index_identifications_on_uuid ON identifications USING btree (uuid);
-CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
-CREATE INDEX index_project_observations_on_uuid ON project_observations USING btree (uuid);
 
 --
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
