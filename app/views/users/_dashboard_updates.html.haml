@@ -32,7 +32,7 @@
               - if is_mention
                 = link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do
                   %span.glyphicon.glyphicon-cog
-              - elsif !is_me?( resource_owner )
+              - elsif !is_me?( resource_owner ) && !resource.is_a?( TaxonChange ) && !resource.is_a?( Project )
                 = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "pull-right subscriptionsettings" do
                   %span.glyphicon.glyphicon-cog
               %span.time{ title: updates.last.sort_by_date.iso8601 }
