@@ -18,9 +18,9 @@ class Identification < ActiveRecord::Base
   after_create  :update_observation,
                 :create_observation_review
   
-  after_commit :update_observation,
-               :update_user_counter_cache,
-               :update_categories
+  after_commit :update_categories,
+               :update_observation,
+               :update_user_counter_cache
 
   after_save    :update_obs_stats, 
                 :update_curator_identification,
@@ -318,7 +318,6 @@ class Identification < ActiveRecord::Base
       maverick: [],
       removed: []
     }
-    previous_current_idents = []
     idents.sort_by(&:id).each do |ident|
       ancestor_of_community_taxon = o.community_taxon && o.community_taxon.ancestor_ids.include?( ident.taxon_id )
       descendant_of_community_taxon = o.community_taxon && ident.taxon.ancestor_ids.include?( o.community_taxon_id )
