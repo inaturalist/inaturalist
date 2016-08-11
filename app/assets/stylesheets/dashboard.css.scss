@@ -452,9 +452,6 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .row {
 .media-body > ul > li > span.location_observed {
   padding-left: 2px;
 }
-.media-body > ul > li > span > .glyphicon, .icon-identification {
-  color: #888
-}
 
 /* Observations Added - Gallery (Mulitiple Photos)
 ------------------------- */
@@ -660,8 +657,16 @@ h3.dashboard_id > .taxon > .comname {
   display: block;
 }
 
+.glyphicon-cog {
+  color: #aaa;
+}
+
 h3 .glyphicon {
-  font-size:14px;
+  font-size: 20px;
+}
+
+h3 .glyphicon.info-link {
+  font-size: 14px;
 }
 .icon_container {
   padding: 20px;
@@ -689,4 +694,9 @@ h3 .glyphicon {
 }
 .timeline-badge.plain img {
   max-width: 48px;
+}
+
+#subscriptions .list-group a,
+#subscriptions .list-group .taxon {
+  color: #333;
 }

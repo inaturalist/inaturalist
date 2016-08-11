@@ -114,48 +114,54 @@
                 %a.btn.btn-primary{ "data-panel-type" => "comments" }= t(:got_it!)
           #comments_target
             .loading.status= t :loading
-  .col-md-4{ style: "padding-left:25px" }
+  .col-md-4
     = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do
       %span.glyphicon.glyphicon-plus
       = t(:add_observations)
     - announcement = @announcements.detect{|a| a.placement == "users/dashboard#sidebar"}
     - if announcement && !user_seen_announcement?( announcement )
       = announcement.body.html_safe
-    %h3.page-header
-      = t :subscriptions
-      %span.glyphicon.glyphicon-info-sign{ "data-content" => t(:subscribe_to_places_to), "data-placement" => "top", "data-toggle" => "popover" }
-    - unless @subscriptions.blank?
-      - for resource_type, subscriptions in @subscriptions.group_by(&:resource_type)
-        %h4= t( resource_type.humanize.pluralize.downcase, default: resource_type.humanize.pluralize )
-        %ul.list-group
-          - for subscription in subscriptions
-            %li.list-group-item
-              = link_to edit_subscription_path( subscription ), class: "pull-right" do
-                %span.glyphicon.glyphicon-cog
-              = subscription.resource.try_methods( :display_name, :name, :title )
-              - if subscription.taxon
-                = "(#{subscription.taxon.name})"
-    .list-group
-      = link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "list-group-item" do
-        %span.glyphicon.glyphicon-leaf
-        = t :subscribe_to_a_taxon
-      = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "list-group-item" do
-        %span.glyphicon.glyphicon-map-marker
-        = t :subscribe_to_a_place
-      = link_to subscriptions_path, class: "list-group-item" do
-        %span.glyphicon.glyphicon-wrench
-        = t :manage_subscriptions
-    / Modal
-    #subscribeModal.modal.fade{ tabindex: "-1" }
-      .modal-dialog{ role: "document" }
-        .modal-content
-          .modal-header
-            %button.close{ "data-dismiss" => "modal", type: "button" } &#215;
-            %h4#subscribePlaceLabel.modal-title= t :subscribe_to_a_place
-            %h4#subscribeTaxonLabel.modal-title= t :subscribe_to_a_taxon
-          .modal-body
-            %p#subscribeTaxonBody= t :subscribe_to_observations_in_a_taxon
-            %p#subscribePlaceBody= t :subscribe_to_observations_in_a_place
+    #subscriptions
+      %h3.page-header
+        = t :subscriptions
+        %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => t(:subscribe_to_places_to), "data-placement" => "top", "data-toggle" => "popover" }
+        = link_to subscriptions_path, class: "pull-right" do
+          %i.glyphicon.glyphicon-cog
+      - unless @subscriptions.blank?
+        - for resource_type, subscriptions in @subscriptions.group_by(&:resource_type)
+          %h4= t( resource_type.humanize.pluralize.downcase, default: resource_type.humanize.pluralize )
+          %ul.list-group
+            - for subscription in subscriptions
+              %li.list-group-item
+                = link_to edit_subscription_path( subscription ), class: "pull-right subscriptionsettings" do
+                  %span.glyphicon.glyphicon-cog
+                - if subscription.resource_type == "Taxon"
+                  = render "shared/taxon", taxon: subscription.resource, link_url: subscription.resource
+                - else
+                  = link_to subscription.resource.try_methods( :display_name, :name, :title ), subscription.resource
+                  - if subscription.taxon
+                    = surround "(", ")" do
+                      = render "shared/taxon", taxon: subscription.taxon, link_url: subscription.taxon, no_common: true
+      .row
+        .col-sm-6
+          = link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
+            %span.glyphicon.glyphicon-leaf
+            = t :subscribe_to_a_taxon
+        .col-sm-6
+          = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
+            %span.glyphicon.glyphicon-map-marker
+            = t :subscribe_to_a_place
+      / Modal
+      #subscribeModal.modal.fade{ tabindex: "-1" }
+        .modal-dialog{ role: "document" }
+          .modal-content
+            .modal-header
+              %button.close{ "data-dismiss" => "modal", type: "button" } &#215;
+              %h4#subscribePlaceLabel.modal-title= t :subscribe_to_a_place
+              %h4#subscribeTaxonLabel.modal-title= t :subscribe_to_a_taxon
+            .modal-body
+              %p#subscribeTaxonBody= t :subscribe_to_observations_in_a_taxon
+              %p#subscribePlaceBody= t :subscribe_to_observations_in_a_place
     %h3.page-header
       = t :more
     - unless current_user.prefers_hide_getting_started_onboarding
