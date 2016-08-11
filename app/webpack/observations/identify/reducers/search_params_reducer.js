@@ -2,7 +2,8 @@ import {
   UPDATE_SEARCH_PARAMS,
   RECEIVE_OBSERVATIONS,
   UPDATE_SEARCH_PARAMS_FROM_POP,
-  UPDATE_DEFAULT_PARAMS
+  UPDATE_DEFAULT_PARAMS,
+  REPLACE_SEARCH_PARAMS
 } from "../actions";
 import _ from "lodash";
 
@@ -161,6 +162,12 @@ const searchParamsReducer = ( state = {
 }, action ) => {
   let newState = state;
   switch ( action.type ) {
+    case REPLACE_SEARCH_PARAMS:
+      newState = Object.assign( {}, {
+        default: Object.assign( {}, state.default ),
+        params: Object.assign( {}, action.params )
+      } );
+      break;
     case UPDATE_SEARCH_PARAMS:
       newState = Object.assign( {}, {
         default: Object.assign( {}, state.default ),

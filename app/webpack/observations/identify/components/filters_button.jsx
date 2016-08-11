@@ -51,13 +51,13 @@ class FiltersButton extends React.Component {
   }
 
   render( ) {
-    const { params, updateSearchParams, defaultParams } = this.props;
+    const { params, updateSearchParams, replaceSearchParams, defaultParams } = this.props;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
       $( ".FiltersButton" ).click( );
     };
-    const resetParams = ( ) => updateSearchParams( defaultParams );
+    const resetParams = ( ) => replaceSearchParams( defaultParams );
     const numFiltersSet = ( ) => {
       const diffs = _.difference( _.values( params ), _.values( defaultParams ) );
       return diffs.length > 0 ? diffs.length.toString() : "";
@@ -615,7 +615,8 @@ class FiltersButton extends React.Component {
 FiltersButton.propTypes = {
   params: PropTypes.object,
   defaultParams: PropTypes.object,
-  updateSearchParams: PropTypes.func
+  updateSearchParams: PropTypes.func,
+  replaceSearchParams: PropTypes.func
 };
 
 export default FiltersButton;
