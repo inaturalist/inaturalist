@@ -235,6 +235,7 @@ class PostsController < ApplicationController
     if !params[:older_than].blank? && ( older_than_post = Post.find_by_id( params[:older_than] ) )
       @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
     end
+    Post.preload_associations(@posts, [{ user: :site }, :stored_preferences, :parent])
     respond_to do |format|
       format.json do
         json = @posts.as_json(:include => {

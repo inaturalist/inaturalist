@@ -10,6 +10,7 @@ class ObservationPhoto < ActiveRecord::Base
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
 
   include Shared::TouchesObservationModule
+  include ActsAsUUIDable
 
   def to_s
     "<ObservationPhoto #{id} observation_id: #{observation_id} photo_id: #{photo_id}>"
@@ -33,5 +34,5 @@ class ObservationPhoto < ActiveRecord::Base
       observation_photos_count: ObservationPhoto.where(:observation_id => observation_id).count)
     true
   end
-  
+
 end

@@ -39,6 +39,7 @@ class Identification < ActiveRecord::Base
                :on => :destroy
   
   include Shared::TouchesObservationModule
+  include ActsAsUUIDable
   
   attr_accessor :skip_observation
   attr_accessor :html
@@ -102,6 +103,7 @@ class Identification < ActiveRecord::Base
   def as_indexed_json(options={})
     {
       id: id,
+      uuid: uuid,
       user: user.as_indexed_json,
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),

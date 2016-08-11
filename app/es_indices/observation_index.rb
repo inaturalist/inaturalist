@@ -20,6 +20,7 @@ class Observation < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
+      indexes :uuid, analyzer: "keyword_analyzer"
       indexes :taxon do
         indexes :names do
           indexes :name, analyzer: "ascii_snowball_analyzer"
@@ -36,15 +37,24 @@ class Observation < ActiveRecord::Base
         indexes :license_code, analyzer: "keyword_analyzer"
       end
       indexes :ofvs, type: :nested do
+        indexes :uuid, analyzer: "keyword_analyzer"
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
       end
       indexes :non_owner_ids, type: :nested do
+        indexes :uuid, analyzer: "keyword_analyzer"
       end
       indexes :field_change_times, type: :nested do
       end
       indexes :comments do
+        indexes :uuid, analyzer: "keyword_analyzer"
         indexes :body, analyzer: "ascii_snowball_analyzer"
+      end
+      indexes :project_observations do
+        indexes :uuid, analyzer: "keyword_analyzer"
+      end
+      indexes :observation_photos do
+        indexes :uuid, analyzer: "keyword_analyzer"
       end
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :tags, analyzer: "ascii_snowball_analyzer"
@@ -67,6 +77,7 @@ class Observation < ActiveRecord::Base
     t = taxon || community_taxon
     json = {
       id: id,
+      uuid: uuid,
       created_at: created,
       created_at_details: ElasticModel.date_details(created),
       created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
@@ -100,13 +111,15 @@ class Observation < ActiveRecord::Base
       identifications_most_disagree:
         (num_identification_agreements < num_identification_disagreements),
       place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
-      project_ids: (indexed_project_ids || project_observations.map(&:project_id)).compact.uniq,
+      project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
       project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
         project_observations.select{ |po| !po.curator_identification_id.nil? }.
           map(&:project_id)).compact.uniq,
       project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
         project_observations.select{ |po| po.curator_identification_id.nil? }.
           map(&:project_id)).compact.uniq,
+      project_observations: (indexed_project_ids || project_observations).map{ |po|
+        { project_id: po[:project_id], uuid: po[:uuid] } },
       reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
@@ -115,6 +128,11 @@ class Observation < ActiveRecord::Base
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
+      observation_photos: observation_photos.sort_by{ |op| op.position || op.id }.
+        reject{ |op| op.photo.blank? }.
+        each_with_index.map{ |op, i|
+          { uuid: op.uuid, photo_id: op.photo.id, position: i }
+      },
       sounds: sounds.map(&:as_indexed_json),
       non_owner_ids: others_identifications.map(&:as_indexed_json),
       identifications_count: num_identifications_by_others,
@@ -163,11 +181,11 @@ class Observation < ActiveRecord::Base
     end
     # fetch all project_ids store them in `indexed_project_ids`
     connection.execute("
-      SELECT observation_id, project_id, curator_identification_id
+      SELECT observation_id, project_id, curator_identification_id, uuid
       FROM project_observations
       WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
       if o = observations_by_id[ r["observation_id"].to_i ]
-        o.indexed_project_ids << r["project_id"].to_i
+        o.indexed_project_ids << { project_id: r["project_id"].to_i, uuid: r["uuid"] }
         # these are for the `pcid` search param
         if r["curator_identification_id"].nil?
           o.indexed_project_ids_without_curator_id << r["project_id"].to_i
