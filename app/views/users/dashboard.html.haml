@@ -133,15 +133,16 @@
           %ul.list-group
             - for subscription in subscriptions
               %li.list-group-item
-                = link_to edit_subscription_path( subscription ), class: "pull-right subscriptionsettings" do
+                = link_to edit_subscription_path( subscription ), class: "pull-right subscriptionsettings", data: { remote: false } do
                   %span.glyphicon.glyphicon-cog
                 - if subscription.resource_type == "Taxon"
                   = render "shared/taxon", taxon: subscription.resource, link_url: subscription.resource
                 - else
                   = link_to subscription.resource.try_methods( :display_name, :name, :title ), subscription.resource
                   - if subscription.taxon
-                    = surround "(", ")" do
-                      = render "shared/taxon", taxon: subscription.taxon, link_url: subscription.taxon, no_common: true
+                    %span.othernames
+                      = surround "(", ")" do
+                        = render "shared/taxon", taxon: subscription.taxon, link_url: subscription.taxon, no_common: true
       .row
         .col-sm-6
           = link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do

@@ -578,7 +578,7 @@ ul.timeline_observation > li > .timeline-panel > .timeline-heading > h2.timeline
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > .timeline-title > .time {
   border-right: 0;
 }
-a.subscriptionsettings {
+.timeline-panel a.subscriptionsettings {
   margin-top:-2px;
   color: gray
 }
@@ -689,6 +689,11 @@ h3 .glyphicon.info-link {
 .list-group-item {
   overflow: hidden;
 }
+
+.list-group-item .subscriptionsettings {
+  margin-top: 1px;
+}
+
 #observe_panel h3.panel-title {
   font-size: 20px;
 }
@@ -700,3 +705,9 @@ h3 .glyphicon.info-link {
 #subscriptions .list-group .taxon {
   color: #333;
 }
+#subscriptions .list-group .othernames,
+#subscriptions .list-group .othernames .sciname {
+  font-size: 100%;
+  color: #888;
+}
+
