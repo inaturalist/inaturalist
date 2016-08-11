@@ -54,10 +54,10 @@
              "data-loading-click" => t(:agreeing) -%></span>
       <% end %>
       <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
-        <span class="button"><%= link_to t(:remove), identification_path(identification),
-            :method => :delete,
-            "data-loading-click" => t(:removing),
-            :class => "removelink" -%></span>
+        <span class="button"><%= link_to t(:withdraw), identification_path( identification ),
+            method: :delete,
+            "data-loading-click" => t(:withdrawing),
+            class: "removelink" -%></span>
       <% end %>
     <% end -%>
     

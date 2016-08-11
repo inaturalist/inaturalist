@@ -31,23 +31,3 @@ describe IdentificationsController, "agree" do
     }.not_to raise_error
   end
 end
-
-describe IdentificationsController, "destroy" do
-  it "should work" do
-    i = Identification.make!
-    sign_in i.user
-    delete :destroy, :id => i.id
-    expect(Identification.find_by_id(i.id)).to be_blank
-  end
-
-  it "should work with multiple outdated IDs" do
-    i1 = Identification.make!
-    i2 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
-    i3 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
-    i4 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
-    sign_in i1.user
-    expect {
-      delete :destroy, :id => i2.id
-    }.not_to raise_error
-  end
-end

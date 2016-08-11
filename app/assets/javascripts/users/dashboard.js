@@ -49,6 +49,9 @@ DASHBOARD.tabSettings = function( type ) {
     if ( type === "yours" ) {
       params = { filter: "you" };
       target = "#updates_by_you_target";
+    } else if ( type === "following" ) {
+      params = { filter: "following" };
+      target = "#following_target";
     } else {
       target = "#updates_target";
     }
@@ -90,15 +93,9 @@ DASHBOARD.enableMoreButtonClickEvents = function( ) {
   $( "#more_pagination" ).unbind( "click" );
   $( "#more_pagination" ).bind( "click", function( e ) {
     e.preventDefault( );
-    DASHBOARD.fromIDs["updates"] = $( this ).data( "from" );
-    DASHBOARD.loadTab( "updates" );
-  });
-
-  $( "#more_pagination_you" ).unbind( "click" );
-  $( "#more_pagination_you" ).bind( "click", function( e ) {
-    e.preventDefault( );
-    DASHBOARD.fromIDs["yours"] = $( this ).data( "from" );
-    DASHBOARD.loadTab( "yours" );
+    var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" )
+    DASHBOARD.fromIDs[tab] = $( this ).data( "from" );
+    DASHBOARD.loadTab( tab );
   });
 }
 

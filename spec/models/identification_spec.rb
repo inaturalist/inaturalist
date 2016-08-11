@@ -36,12 +36,16 @@ describe Identification, "creation" do
 
   it "should not allow 2 current observations per user" do
     ident1 = Identification.make!
-    idend2 = Identification.make!(:user => ident1.user, :observation => ident1.observation)
+    ident2 = Identification.make!( user: ident1.user, observation: ident1.observation )
     ident1.reload
-    expect(ident1).not_to be_current
-    ident1.update_attributes(:current => true)
-    expect(ident1).not_to be_valid
-    expect(ident1.errors[:current]).not_to be_blank
+    ident2.reload
+    expect( ident1 ).not_to be_current
+    expect( ident2 ).to be_current
+    ident1.update_attributes( current: true )
+    ident1.reload
+    ident2.reload
+    expect( ident1 ).to be_current
+    expect( ident2 ).not_to be_current
   end
   
   it "should add a taxon to its observation if it's the observer's identification" do
@@ -745,8 +749,12 @@ describe Identification, "category" do
       it "should all be improving until the community taxon" do
         o.reload
         expect( o.community_taxon ).to eq @Calypte
+        puts "@sequence[2].category: #{@sequence[2].category}"
         expect( @sequence[0].category ).to eq Identification::IMPROVING
         expect( @sequence[1].category ).to eq Identification::IMPROVING
+      end
+      it "should be improving when it's the first to match the community ID" do
+        expect( @sequence[2].category ).to eq Identification::IMPROVING
       end
       it "should end with a leading ID" do
         expect( @sequence.last.category ).to eq Identification::LEADING
@@ -760,6 +768,31 @@ describe Identification, "category" do
         expect( first.category ).to eq Identification::IMPROVING
         expect( @sequence[1].category ).to eq Identification::IMPROVING
       end
+    end
+  end
+  describe "after withdrawing and restoring" do
+    before do
+      load_test_taxa
+      u1 = o.user
+      u2 = User.make!
+      @sequence = [
+        Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
+        Identification.make!( observation: o, taxon: @Calypte, user: u1 ),
+        Identification.make!( observation: o, taxon: @Calypte, user: u2 ),
+        Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
+      ]
+      @sequence.each(&:reload)
+      o.reload
+      @sequence
+    end
+    it "should not change" do
+      expect( o.community_taxon ).to eq @Calypte
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+      @sequence[2].update_attributes( current: false )
+      expect( @sequence[2] ).not_to be_current
+      @sequence[2].update_attributes( current: true )
+      @sequence[2].reload
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
     end
   end
   describe "conservative disagreement" do

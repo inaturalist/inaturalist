@@ -13,36 +13,40 @@
       color: DeepPink;
       float: right;
     }
+
+    .body_field textarea { max-width: 100%; }
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag "identifications/edit" %>
 <%- end -%>
 <h2><%=t :edit_your_identification %></h2>
-<div class="column prepend-3 span-8 append-1 mini observations">
+<div class="column prepend-2 span-9 append-1 mini observations">
   <h3><%= @identification.observation.user.login %>'s Observation</h3>
   <%= render :partial => "observations/cached_component", :locals => { 
     :observation => @identification.observation
   } %>
 </div>
-<div class="last column span-9 append-3">
+<div class="last column span-10 append-2">
   <h3><%=t :your_identification %></h3>
   <%= render :partial => "identifications/identification", :locals => { 
     :identification => @identification,
     :hide_actions => true } %>
-  <%= form_for @identification do |f| %>
-    <div class="field body_field">
-      <%= f.label :body, 'Remarks' %>
-      <%= f.text_area :body %>
-    </div>
+  <%= form_for @identification, builder: DefaultFormBuilder do |f| %>
+    <%= f.text_area :body, label: t(:remarks) %>
     <div class="buttonrow">
       <%= submit_tag t(:save_identification), :class => 'default button' %>
       <%- unless @identification.new_record? -%>
         <span class="description inter">or</span>
         <%= link_to t(:cancel), url_for(@identification.observation) + "##{id_for(@identification)}", :class => 'button' %>
       <%- end -%>
-      <%= link_to t(:delete), identification_path(@identification), 
-        :method => :delete, :class => 'minor delete button' %>
+      <% if @identification.current? %>
+        <%= link_to t(:withdraw), identification_path( @identification ), method: :delete, class: "minor delete button right", data: { loading_click: t(:withdrawing) } %>
+      <% else %>
+        <span class="inter right">
+          <%= f.check_box :current, label: t(:restore), label_after: true %>
+        </span>
+      <% end %>
     </div>
   <% end %>
 </div>

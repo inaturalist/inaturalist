@@ -1,0 +1,74 @@
+- unless @updates.blank?
+  %ul.timeline
+    - for key, updates in @grouped_updates
+      - resource_type, resource_id, notification = key
+      - resource = updates.last.resource
+      - resource_owner = updates.last.resource_owner
+      - notifier = updates.last.notifier
+      - is_mention = ( notification == "mention" )
+      %li.observation_multiple_added
+        - if notification == "committed"
+          .timeline-badge.warning
+            %i.glyphicon.glyphicon.glyphicon-random
+        - elsif ( notification == "new_observations" && resource.class.name == "Place" )
+          .timeline-badge.success
+            %i.glyphicon.glyphicon-map-marker
+        - else
+          .timeline-badge.plain
+            = link_to update_image_for( updates.last ), resource
+        - if ["activity","curator_change","invited","created_post"].include? notification
+          :ruby
+            glytype = case notification
+              when "activity" then "bookmark"
+              when "curator_change" then "user"
+              when "invited" then "send"
+              when "created_post" then "pencil"
+            end
+          .sub-badge
+            %i{ class: "glyphicon glyphicon-#{glytype}" }
+        .timeline-panel
+          .timeline-heading
+            %h2.timeline-title
+              - if is_mention
+                = link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do
+                  %span.glyphicon.glyphicon-cog
+              - elsif !is_me?( resource_owner ) && !resource.is_a?( TaxonChange ) && !resource.is_a?( Project )
+                = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "pull-right subscriptionsettings" do
+                  %span.glyphicon.glyphicon-cog
+              %span.time{ title: updates.last.sort_by_date.iso8601 }
+                %i.glyphicon.glyphicon-time
+                = compact_date( updates.last.sort_by_date )
+              = update_tagline_for( updates.last, count: updates.size )
+          - if notification == "activity" || is_mention
+            .timeline-body
+              - if updates[0].resource_type == 'Observation'
+                - observations = [updates[0].resource]
+                = render partial: 'observations/observations_component_for_dashboard', locals: { for_idents: true, observations: observations }
+              - target_id = bootstrapTargetID
+              .collapse.out{:id => "expand#{target_id}"}
+                %ul.timeline.timeline_observation
+                  - for u in updates[0..-2]
+                    - notifier = u.notifier
+                    = render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: false, no_thumb: (is_mention && notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
+              %ul.timeline.timeline_observation
+                - notifier = updates.last.notifier
+                = render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: true, no_thumb: (is_mention && notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
+            .timeline-footer
+              = link_to t( "view_#{resource_type.downcase}".to_sym, default: "View" ), resource, class: "btn btn-sm btn-primary"
+              - if updates.count > 1
+                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", autocomplete: "off", "data-target" => "#expand#{target_id}", "data-toggle" => "collapse", type: "button" }
+                  %span.expand_inactive
+                    %i.glyphicon.glyphicon-collapse-down
+                    = succeed "..." do
+                      = t(:show_more)
+                  %span.expand_active
+                    %i.glyphicon.glyphicon-collapse-up
+                    = t(:show_less)
+          - else
+            - begin
+              = render partial: "#{resource_type.underscore.pluralize}/update_#{notification}", object: resource, locals: { updates: updates, resource: resource }
+            - rescue ActionView::MissingTemplate, Errno::ENOENT
+              = "#{resource_type} #{notification}"
+  .pagination
+    - unless @pagination_updates.blank?
+      = link_to t(:more), url_for_params( from: @pagination_updates.last.id ), data: { from: @pagination_updates.last.id }, id:"more_pagination", class: "btn btn-sm btn-default"

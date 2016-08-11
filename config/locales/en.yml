@@ -2000,6 +2000,7 @@ en:
   observations_for: Observations for
   observations_for_project: "Observations for %{project}"
   observations_from: Observations from %{date}
+  observations_from_people_taxa_and_places_youre_following: "Observations from people, places, and taxa you're following"
   observations_from_this_place: Observations from this place
   observations_from_this_project: Observations from this project
   observations_from_you: Observations by you
@@ -2078,6 +2079,12 @@ en:
       follow_panel_title_local: Follow Some Nearby Naturalists
       follow_panel_title_global: Follow Some Active Naturalists 
       follow_panel_body: If you visit these profiles and click the follow button, you'll be updated when they post observations
+      following_panel_title: Keep Track of People, Taxa, and Places
+      following_panel_body: |
+        On %{site_name} you can follow people to keep track of the
+        observations they've been posting. You can also subscribe to certain
+        species to keep tabs on new observations of those species, or do the
+        same thing with places.
       comments_panel_title: Curious what kind of discussions are happening on %{site_name}?
       comments_panel_body: <p>%{site_name} is all about sharing and discussing observations of living things. Here are some discussions happening right now...</p> <p>You'll be automatically subscribed to any discussions you contribute comments or identifications to. You can always use the Manage Subscriptions tool on the right to stop recieving updates</p>
       updates_by_you_panel_title: This tab is a quick way to filter out only updates on your content.
@@ -2101,7 +2108,7 @@ en:
   only_curators_can_add_edit_scientific_names: Only curators can add/edit scientific names.
   only_curators_can_access_that_page: Only curators can access that page.
   only_files_with_10000_rows_at_a_time: Only files with 10000 rows at a time, please
-  only_letters_numbers: "Only letters and numbers, no spaces"
+  only_letters_numbers: "Only letters and numbers, no spaces, must start with a letter"
   only_one_coordinate_system_per_file: |
     Only one coordinate system can be used per file, otherwise incorrect conversion or display will occur.
   only_project_curators_can_do_that: Only project curators can do that.
@@ -2614,6 +2621,8 @@ en:
   resolved: Resolved
   resolved_by: Resolved by
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
+  restore: Restore
+  restoring: Restoring...
   results: results
   review_all: Review All
   review_verb: Review
@@ -3474,6 +3483,8 @@ en:
   wikipedia_entry: Wikipedia entry
   wikipedia_taxobox_raquo: "Wikipedia taxobox &raquo;"
   with: with
+  withdraw: Withdraw
+  withdrawing: Withdrawing...
   with_errors: With errors
   within_inaturalist: "Within %{site_name}"
   wondering_what_to_do_next: Wondering what to do next?  Why not

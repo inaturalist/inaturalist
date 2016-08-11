@@ -5,6 +5,7 @@ import {
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
   deleteIdentification,
+  updateIdentification,
   deleteComment
 } from "../actions";
 
@@ -30,6 +31,16 @@ function mapDispatchToProps( dispatch ) {
             dispatch( fetchCurrentObservation( ) );
           } );
       }
+    },
+    onRestore: ( identification ) => {
+      dispatch( loadingDiscussionItem( ) );
+      dispatch( updateIdentification( { id: identification.id, current: true } ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( ) );
+        } )
+        .then( ( ) => {
+          dispatch( fetchCurrentObservation( ) );
+        } );
     }
   };
 }
