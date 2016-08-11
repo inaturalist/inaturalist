@@ -3,6 +3,8 @@ require "spec_helper"
 describe Identification, "creation" do
 
   before(:all) { User.destroy_all }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   it "should have a taxon" do 
     @id = Identification.make!
@@ -250,6 +252,40 @@ describe Identification, "creation" do
     i = Identification.make!(:observation => o, :taxon => o.taxon)
     o.reload
     expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+  end
+
+  it "should trigger setting a taxon photo if obs became research grade" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    o = make_research_grade_candidate_observation
+    expect( o ).not_to be_research_grade
+    expect( t.photos.size ).to eq 0
+    i1 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    i2 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    t.reload
+    expect( o ).to be_research_grade
+    expect( t.photos.size ).to eq 1
+  end
+  it "should not trigger setting a taxon photo if obs was already research grade" do
+    o = without_delay { make_research_grade_observation }
+    o.taxon.taxon_photos.delete_all
+    expect( o.taxon.photos.count ).to eq 0
+    i = without_delay { Identification.make!( observation: o, taxon: o.taxon ) }
+    o.reload
+    expect( o.taxon.photos.count ).to eq 0
+  end
+  it "should not trigger setting a taxon photo if taxon already has a photo" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    t.photos << LocalPhoto.make!
+    o = make_research_grade_candidate_observation
+    expect( o ).not_to be_research_grade
+    expect( t.photos.size ).to eq 1
+    i1 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    i2 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    t.reload
+    expect( o ).to be_research_grade
+    expect( t.photos.size ).to eq 1
   end
 
   it "should update observation quality grade after disagreement" do

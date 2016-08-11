@@ -354,7 +354,8 @@ class Observation < ActiveRecord::Base
              :update_public_positional_accuracy,
              :update_mappable,
              :set_captive,
-             :update_observations_places
+             :update_observations_places,
+             :set_taxon_photo
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
@@ -2406,6 +2407,12 @@ class Observation < ActiveRecord::Base
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
     observations_places(true)
+  end
+
+  def set_taxon_photo
+    return true unless research_grade? && quality_grade_changed?
+    community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
+    true
   end
 
   def self.update_observations_places(options = { })
