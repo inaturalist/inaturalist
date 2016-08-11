@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import DiscussionListItemContainer from "../containers/discussion_list_item_container";
+import moment from "moment";
 
 const DiscussionList = ( { observation, onDelete, onRestore } ) => {
   let items = ( observation.comments || [] ).map( ( c ) => (
@@ -20,9 +21,11 @@ const DiscussionList = ( { observation, onDelete, onRestore } ) => {
     } );
   } ) );
   items = items.sort( ( a, b ) => {
-    if ( a.created_at < b.created_at ) {
+    const dateA = moment( a.created_at );
+    const dateB = moment( b.created_at );
+    if ( dateA < dateB ) {
       return -1;
-    } else if ( a.created_at > b.created_at ) {
+    } else if ( dateA > dateB ) {
       return 1;
     }
     return 0;
