@@ -185,7 +185,7 @@ class IdentificationsController < ApplicationController
     @identification.update_attributes( current: false )
     respond_to do |format|
       format.html do
-        flash[:notice] = t(:identification_deleted)
+        flash[:notice] = t(:identification_withdrawn)
         redirect_to observation
       end
       format.js do
