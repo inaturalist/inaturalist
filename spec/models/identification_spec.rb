@@ -785,7 +785,6 @@ describe Identification, "category" do
       it "should all be improving until the community taxon" do
         o.reload
         expect( o.community_taxon ).to eq @Calypte
-        puts "@sequence[2].category: #{@sequence[2].category}"
         expect( @sequence[0].category ).to eq Identification::IMPROVING
         expect( @sequence[1].category ).to eq Identification::IMPROVING
       end

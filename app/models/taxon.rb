@@ -480,7 +480,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.update_ancestor_photos(taxon, photo)
-    taxon = Taxon.find_by_id(taxon_id) unless taxon.is_a?( Taxon )
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
     return unless taxon
     photo = Photo.find_by_id( photo ) unless photo.is_a?( Photo )
     return unless photo
