@@ -16,7 +16,8 @@ const DiscussionListItem = ( {
   onEdit,
   onDelete,
   onRestore,
-  currentUser
+  currentUser,
+  loading
 } ) => {
   let ident;
   if ( identification ) {
@@ -42,6 +43,7 @@ const DiscussionListItem = ( {
         <div className="actions">
           <Button
             bsSize="xsmall"
+            disabled={ loading }
             onClick={ function ( ) {
               agreeWith( {
                 observation_id: identification.observation_id,
@@ -124,7 +126,8 @@ DiscussionListItem.propTypes = {
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
   onRestore: PropTypes.func,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  loading: PropTypes.bool
 };
 
 export default DiscussionListItem;
