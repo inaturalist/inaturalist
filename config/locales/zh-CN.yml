@@ -89,6 +89,9 @@ zh-CN:
   x_research_grade_observations_html:
     one: <span class='count'>1</span>个研究级观察</span>
     other: <span class='count'>%{count}</span> 个研究级观察</span>
+  x_research_grade_observations_to_species_html:
+    one: <span class='count'>1</span>个研究级观察ID已降级至物种或更低</span>
+    other: <span class='count'>%{count}</span>个研究级观察ID已降级至物种或更低</span>
   x_taxa_matching_current_filters:
     one: 1 个分类单元匹配当前的过滤器
     other: '%{count} 个分类群匹配当前的过滤器'
@@ -369,8 +372,11 @@ zh-CN:
   are_you_sure_you_want_to_remove_spammer: |-
     您确定您认为此用户可信吗？
     如果如此，他们所有垃圾邮件标志将会被去除。
+  are_you_sure_you_want_to_remove_these_x_taxa?: 您确定要移除这 %{x} 个分类群么？
   are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
   are_you_sure_you_want_to_remove_this_taxon: 您确定要移除此分类单元么？
+  associated_observations: 相关观察
+  associated_taxa: 相关分类群
   attention: 关注
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
@@ -463,6 +469,7 @@ zh-CN:
   bulk_import_of_filename_is_complete: '%{filename} 的大量导入完成'
   but_we_didnt_add_this_observation_to_the_x_project: 但我们不添加此观察至 %{project} 项目，因为您并未同意项目条款。
   by: 由
+  by_adding_ids_to_observations: 通过添加ID至观察
   by_everyone: 由任何人
   by_project_list: 依项目列表
   by_user: 由 %{user}
@@ -974,6 +981,7 @@ zh-CN:
   flag_reason: '&ldquo;我正在标记这个%{record}，因为'
   flag_saved: 标记已保存。
   flag_saved_thanks: 标记已保存。感谢！
+  flag_this_observation: 标记此观察
   flag_this_photo: 标记这张照片
   flagged: 已标记
   flagged_thing_explanation: 用户已标记此 %{thing} 因为
@@ -1136,9 +1144,11 @@ zh-CN:
   inaturalist_network_affiliation: iNaturalist网络关系
   inbox: 收件箱
   including: 包括
+  in_taxon?: 在分类单元
   in_the_past: 在过去
   in_the_past_week: 在上周
   inactive: 不活跃
+  inactive_taxon: 不活跃的分类单元
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
   inappropriate: 不适当？
   inat_account_action: '%{site_name} &#58; 账户 &#58; %{action_name}'
@@ -1148,6 +1158,7 @@ zh-CN:
   inaturalist_is_catching_some_zs: '%{site_name} 正在抓住一些Zs'
   inaturalist_places: '%{site_name} 地点'
   info: 信息
+  input_taxon: 输入分类单元
   insects: 昆虫
   internal_server_error: 内部服务器错误
   introduced: 引进
@@ -1374,7 +1385,7 @@ zh-CN:
       all_observations: 所有观察
       every_publicly_visible_observation: 任何在iNaturalist网络中创建的公开可见的观察
       featured_observations: 特色观察
-      gbif_network: GBIF 网络
+      gbif_network: GBIF网络
       gbif_network_description: 来自博物馆及其他由Global Biodiversity Informatics Facility指派的发现提供方的记录
       observations: 观察
       place_boundary: 地区边界
@@ -1527,6 +1538,8 @@ zh-CN:
   no_project_to_admin_login: '%{login}不管理任何项目'
   no_range_data_available: 没有范围数据可用。
   no_recent_activity: 没有最近活跃
+  no_reply_yet: 尚无恢复
+  no_results_found: 没有找到结果
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: （无主题）
@@ -1604,6 +1617,7 @@ zh-CN:
     observe_panel_body_p1_local: 需要灵感？这里有一些在附近被观察到的生命体...
     follow_panel_title_local: 关注一些附近的自然法学家
     follow_panel_title_global: 关注一些活跃的自然法学家
+    following_panel_title: 保持对人、分类群和地点的追踪
     youve_got_updates_panel_title: 您获得了更新！
   one_by_one: 一个接一个
   one_of_your_lists: 您的列表中的一个...
@@ -1971,6 +1985,8 @@ zh-CN:
   resolve: 解决
   resolved: 已解决
   resolver_said_x_html: <span class="meta">%{resolver}说：</span>“%{x}”
+  restore: 恢复
+  restoring: 正在恢复...
   results: 结果
   review_all: 复核全部
   review_verb: 复核
@@ -2095,7 +2111,7 @@ zh-CN:
   sources: 来源
   sources_youve_added: 您添加的来源
   sourcing: 提供消息
-  spam: 垃圾信息
+  spam: 垃圾邮件
   spanish: 西班牙语
   species: 物种
   species_guess: 物种猜测
@@ -2117,7 +2133,7 @@ zh-CN:
   start_new_account: 开始一个新的账户
   start_one: 开始一个
   start_typing_taxon_name: 开始输入分类名称……
-  states: 状态
+  states: 州
   stats: 统计
   stats_title: 网站统计
   status: 状态
@@ -2170,10 +2186,10 @@ zh-CN:
   taxon_map:
     data_url: 数据URL
     overlays: 覆盖图
-  taxon_change_settings: 类群更改设置
-  taxon_name: 类群名称
+  taxon_change_settings: 分类单元更改设置
+  taxon_name: 分类单元名称
   taxon_observed_by_user: '%{taxon}，由 %{user} 观察到'
-  taxon_search: 类群搜索
+  taxon_search: 分类单元搜索
   taxon_search_results_for: 类群搜索结果：
   taxon_swap_only_has_one_input: 只允许一次输入为一次交换
   taxon_swap_has_inputs_and_outputs: 交换必须既有输入又有输出
@@ -2464,6 +2480,8 @@ zh-CN:
   wikipedia_entry: 维基百科记录
   wikipedia_taxobox_raquo: 维基百科taxobox &raquo;
   with: 带
+  withdraw: 放弃
+  withdrawing: 正在放弃...
   with_errors: 带错误
   within_inaturalist: '%{site_name}之内'
   would_you_like_to: 您是否想
@@ -2484,7 +2502,7 @@ zh-CN:
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}状态'
   x_sent_you_a_new_message_on_y_html: '%{x} 在 %{y} 给您发送了一条新消息：'
-  x_site_is_a_social_network_for_naturalist: '%{site}是一个专为博物学家的社交网路！记录您对动植物的观察，与您的朋友和研究人员分享他们，并了解有关自然世界的那些事吧。'
+  x_site_is_a_social_network_for_naturalist: '%{site} 是一个专为博物学家的社交网路！记录您对动植物的观察，与您的朋友和研究人员分享他们，并了解有关自然世界的那些事吧。'
   x_wrote_a_new_post_html: '%{x}写了一个新帖子'
   x_wrote_y_new_posts_html: '%{x}写了%{y}篇新贴子'
   year: 年
@@ -2940,6 +2958,7 @@ zh-CN:
           href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 只是提醒一下，项目馆长可以查看您添加至此项目的观察中私有和被掩盖的坐标。
       edit:
+        inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         project_addition_preferences:
           any: 任何
           joined: 您加入的项目
