@@ -149,6 +149,7 @@ class IdentificationsController < ApplicationController
   end
   
   def edit
+    render layout: "bootstrap"
   end
   
   def update
@@ -182,7 +183,11 @@ class IdentificationsController < ApplicationController
   # DELETE identification_url
   def destroy
     observation = @identification.observation
-    @identification.update_attributes( current: false )
+    if params[:delete]
+      @identification.destroy
+    else
+      @identification.update_attributes( current: false )
+    end
     respond_to do |format|
       format.html do
         flash[:notice] = t(:identification_withdrawn)

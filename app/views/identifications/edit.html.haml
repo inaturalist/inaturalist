@@ -1,0 +1,33 @@
+- content_for(:title) do
+  = t :edit_your_identification
+- content_for(:extracss) do
+  = stylesheet_link_tag "identifications"
+  :css
+    .observations.mini .observation {
+      border-bottom: 0 transparent;
+    }
+- content_for(:extrajs) do
+  = javascript_include_tag "identifications/edit"
+.container
+  .row
+    .col-xs-12
+      %h2= t :edit_your_identification
+  .row
+    .col-xs-6
+      %h3=t :observation
+      .mini.observations
+        = render "observations/cached_component", observation: @identification.observation
+    .col-xs-6
+      %h3= t :your_identification
+      = render "identifications/identification", identification: @identification, hide_actions: true
+      = form_for @identification, builder: BootstrapFormBuilder do |f|
+        = f.text_area :body, label: t(:remarks)
+        = submit_tag t(:save_identification), :class => 'default button'
+        - unless @identification.new_record?
+          = link_to t(:cancel), url_for(@identification.observation) + "##{id_for(@identification)}", :class => 'button'
+        .pull-right
+          - if @identification.current?
+            = link_to t(:withdraw), identification_path( @identification ), method: :delete, class: "minor delete button right", data: { loading_click: t(:withdrawing) }
+          - else
+            = link_to t(:restore), identification_path( @identification, identification: { current: true } ), method: :put, class: "minor button", data: { loading_click: t(:restoring) }
+          = link_to t(:delete), identification_path( @identification, delete: true ), method: :delete, class: "minor delete button", data: { loading_click: t(:deleting), confirm: t(:are_you_sure?) }
