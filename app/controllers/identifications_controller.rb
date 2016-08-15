@@ -190,7 +190,11 @@ class IdentificationsController < ApplicationController
     end
     respond_to do |format|
       format.html do
-        flash[:notice] = t(:identification_withdrawn)
+        flash[:notice] = if @identification.frozen?
+          t(:identification_deleted)
+        else
+          t(:identification_withdrawn)
+        end
         redirect_to observation
       end
       format.js do
