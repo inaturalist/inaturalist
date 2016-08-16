@@ -2855,21 +2855,21 @@ describe Observation do
       expect( o ).not_to be_mappable
     end
 
-    it "should not be mappable if captive" do
-      expect(Observation.make!(latitude: 1.1, longitude: 2.2, captive: true)).not_to be_mappable
+    it "should be mappable if captive" do
+      expect(Observation.make!(latitude: 1.1, longitude: 2.2, captive: true)).to be_mappable
     end
 
-    it "should not be mappable when adding captive metric" do
+    it "should be mappable when adding captive metric" do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-      expect(o.mappable?).to be false
+      expect(o.mappable?).to be true
     end
 
-    it "should update mappable when captive metric is deleted" do
+    it "should update mappable when location metric is deleted" do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
-      q = QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+      q = QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
       expect(o.mappable?).to be false
       q.destroy
       expect(o.reload.mappable?).to be true
@@ -2879,15 +2879,6 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
-      expect(o.mappable?).to be false
-    end
-
-    it "should update mappable after multiple quality metrics are added" do
-      o = Observation.make!(latitude: 1.1, longitude: 2.2)
-      expect(o.mappable?).to be true
-      QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: true)
-      expect(o.mappable?).to be true
-      QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
       expect(o.mappable?).to be false
     end
 

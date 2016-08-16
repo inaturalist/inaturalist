@@ -9,9 +9,13 @@
         #show-filters.row
           #filters-left-col.col-xs-6
             .checkbox
-              %label
-                %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "false", "ng-false-value" => ""}
+              %label{ "ng-class" => "{ 'filter-changed': ( params.captive == 'false' ) }" }
+                %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "'false'", "ng-false-value" => ""}
                 {{ shared.t('wild') | capitalize:'title' }}
+            .checkbox
+              %label{ "ng-class" => "{ 'filter-changed': ( params.captive == 'true' ) }" }
+                %input{type: 'checkbox', "ng-model" => "params.captive", "ng-true-value" => "'true'", "ng-false-value" => ""}
+                {{ shared.t('captive') | capitalize:'title' }}
             .checkbox
               %label{ "uib-tooltip" => "{{ shared.t( 'eligible_for_research_grade' ) }}", "tooltip-placement" => "right", "ng-class" => "{ 'filter-changed': ( params.verifiable !== defaultParams.verifiable ) }" }
                 %input{ type: 'checkbox', "ng-model" => "params.verifiable", "ng-false-value" => "" }

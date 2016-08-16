@@ -2391,7 +2391,6 @@ class Observation < ActiveRecord::Base
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
     return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
-    return false if captive
     return false if inaccurate_location?
     true
   end
