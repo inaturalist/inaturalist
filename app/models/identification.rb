@@ -144,7 +144,7 @@ class Identification < ActiveRecord::Base
     attrs = {}
     if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
-      attrs = { taxon_id: taxon_id, iconic_taxon_id: taxon.iconic_taxon_id }
+      attrs = {}
       if user_id == observation.user_id
         species_guess = observation.species_guess
         unless taxon.taxon_names.exists?(name: species_guess)
