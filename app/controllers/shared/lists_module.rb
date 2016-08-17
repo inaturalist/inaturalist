@@ -650,7 +650,7 @@ private
       "listed_taxa.observations_count #{order}"
     else
       # TODO: somehow make the following not cause a filesort...
-      "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
+      "taxa.ancestry || '/' || listed_taxa.taxon_id"
     end
     find_options
   end

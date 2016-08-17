@@ -11,4 +11,3 @@ ruby script/runner "Taxon.find_duplicates"
 ruby script/runner "Taxon.find_duplicates"
 
 ruby script/runner 'Taxon.rebuild_without_callbacks'
-ruby script/runner 'ListedTaxon.update_all_taxon_attributes'

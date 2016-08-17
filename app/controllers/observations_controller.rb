@@ -1191,7 +1191,7 @@ class ObservationsController < ApplicationController
         @listed_taxa_alphabetical = @listed_taxa.to_a.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
         @listed_taxa = @listed_taxa_alphabetical if @order == ListedTaxon::ALPHABETICAL_ORDER
         @taxon_ids_by_name = {}
-        ancestor_ids = @listed_taxa.map {|lt| lt.taxon_ancestor_ids.to_s.split('/')}.flatten.uniq
+        ancestor_ids = @listed_taxa.map {|lt| lt.taxon.ancestry.to_s.split('/')}.flatten.uniq
         @orders = Taxon.where(rank: "order", id: ancestor_ids).order(:ancestry)
         @families = Taxon.where(rank: "family", id: ancestor_ids).order(:ancestry)
       end
