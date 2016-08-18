@@ -80,8 +80,11 @@ module ObservationsHelper
       link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
-    else
+    elsif display_place_guess.blank?
       content_tag(:span, t(:somewhere))
+    elsif !display_lat.blank?
+      link_to( display_place_guess.html_safe, observations_path( lat: observation.latitude, lng: observation.longitude ) ) +
+       " (#{google_coords_link}, #{osm_coords_link})".html_safe
     end
   end
 
