@@ -8,6 +8,7 @@ const SearchBar = ( {
   params,
   defaultParams,
   updateSearchParams,
+  replaceSearchParams,
   reviewAll,
   unreviewAll,
   allReviewed
@@ -45,6 +46,7 @@ const SearchBar = ( {
     </Button> <FiltersButton
       params={params}
       updateSearchParams={updateSearchParams}
+      replaceSearchParams={replaceSearchParams}
       defaultParams={defaultParams}
     />
     <Input
@@ -75,6 +77,7 @@ SearchBar.propTypes = {
   params: PropTypes.object,
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
+  replaceSearchParams: PropTypes.func,
   reviewAll: PropTypes.func,
   unreviewAll: PropTypes.func,
   allReviewed: PropTypes.bool

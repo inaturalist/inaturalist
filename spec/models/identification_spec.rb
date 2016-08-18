@@ -3,6 +3,8 @@ require "spec_helper"
 describe Identification, "creation" do
 
   before(:all) { User.destroy_all }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   it "should have a taxon" do 
     @id = Identification.make!
@@ -36,12 +38,16 @@ describe Identification, "creation" do
 
   it "should not allow 2 current observations per user" do
     ident1 = Identification.make!
-    idend2 = Identification.make!(:user => ident1.user, :observation => ident1.observation)
+    ident2 = Identification.make!( user: ident1.user, observation: ident1.observation )
     ident1.reload
-    expect(ident1).not_to be_current
-    ident1.update_attributes(:current => true)
-    expect(ident1).not_to be_valid
-    expect(ident1.errors[:current]).not_to be_blank
+    ident2.reload
+    expect( ident1 ).not_to be_current
+    expect( ident2 ).to be_current
+    ident1.update_attributes( current: true )
+    ident1.reload
+    ident2.reload
+    expect( ident1 ).to be_current
+    expect( ident2 ).not_to be_current
   end
   
   it "should add a taxon to its observation if it's the observer's identification" do
@@ -246,6 +252,40 @@ describe Identification, "creation" do
     i = Identification.make!(:observation => o, :taxon => o.taxon)
     o.reload
     expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+  end
+
+  it "should trigger setting a taxon photo if obs became research grade" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    o = make_research_grade_candidate_observation
+    expect( o ).not_to be_research_grade
+    expect( t.photos.size ).to eq 0
+    i1 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    i2 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    t.reload
+    expect( o ).to be_research_grade
+    expect( t.photos.size ).to eq 1
+  end
+  it "should not trigger setting a taxon photo if obs was already research grade" do
+    o = without_delay { make_research_grade_observation }
+    o.taxon.taxon_photos.delete_all
+    expect( o.taxon.photos.count ).to eq 0
+    i = without_delay { Identification.make!( observation: o, taxon: o.taxon ) }
+    o.reload
+    expect( o.taxon.photos.count ).to eq 0
+  end
+  it "should not trigger setting a taxon photo if taxon already has a photo" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    t.photos << LocalPhoto.make!
+    o = make_research_grade_candidate_observation
+    expect( o ).not_to be_research_grade
+    expect( t.photos.size ).to eq 1
+    i1 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    i2 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    t.reload
+    expect( o ).to be_research_grade
+    expect( t.photos.size ).to eq 1
   end
 
   it "should update observation quality grade after disagreement" do
@@ -748,6 +788,9 @@ describe Identification, "category" do
         expect( @sequence[0].category ).to eq Identification::IMPROVING
         expect( @sequence[1].category ).to eq Identification::IMPROVING
       end
+      it "should be improving when it's the first to match the community ID" do
+        expect( @sequence[2].category ).to eq Identification::IMPROVING
+      end
       it "should end with a leading ID" do
         expect( @sequence.last.category ).to eq Identification::LEADING
       end
@@ -760,6 +803,31 @@ describe Identification, "category" do
         expect( first.category ).to eq Identification::IMPROVING
         expect( @sequence[1].category ).to eq Identification::IMPROVING
       end
+    end
+  end
+  describe "after withdrawing and restoring" do
+    before do
+      load_test_taxa
+      u1 = o.user
+      u2 = User.make!
+      @sequence = [
+        Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
+        Identification.make!( observation: o, taxon: @Calypte, user: u1 ),
+        Identification.make!( observation: o, taxon: @Calypte, user: u2 ),
+        Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
+      ]
+      @sequence.each(&:reload)
+      o.reload
+      @sequence
+    end
+    it "should not change" do
+      expect( o.community_taxon ).to eq @Calypte
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+      @sequence[2].update_attributes( current: false )
+      expect( @sequence[2] ).not_to be_current
+      @sequence[2].update_attributes( current: true )
+      @sequence[2].reload
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
     end
   end
   describe "conservative disagreement" do

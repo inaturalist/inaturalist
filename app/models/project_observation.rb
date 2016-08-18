@@ -31,6 +31,8 @@ class ProjectObservation < ActiveRecord::Base
     queue_if: lambda { |record| record.user_id != record.observation.user_id },
     with: :notify_observer
 
+  include ActsAsUUIDable
+
   def notify_observer(association)
     if UpdateAction.joins(:update_subscribers).
          where(resource: project, notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).

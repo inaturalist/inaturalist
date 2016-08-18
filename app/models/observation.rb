@@ -3,6 +3,7 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
   include ObservationSearch
+  include ActsAsUUIDable
 
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
@@ -315,13 +316,11 @@ class Observation < ActiveRecord::Base
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
-  validates_uniqueness_of :uuid
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates,
-                    :set_uuid
+                    :set_coordinates
 
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
@@ -354,7 +353,8 @@ class Observation < ActiveRecord::Base
              :update_public_positional_accuracy,
              :update_mappable,
              :set_captive,
-             :update_observations_places
+             :update_observations_places,
+             :set_taxon_photo
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
@@ -1081,12 +1081,6 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def set_uuid
-    self.uuid ||= SecureRandom.uuid
-    self.uuid = uuid.downcase
-    true
-  end
-  
   #
   # Trim whitespace around species guess
   #
@@ -1511,7 +1505,6 @@ class Observation < ActiveRecord::Base
   end
 
   def set_community_taxon(options = {})
-    
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
@@ -2403,7 +2396,6 @@ class Observation < ActiveRecord::Base
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
     return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
-    return false if captive
     return false if inaccurate_location?
     true
   end
@@ -2412,6 +2404,12 @@ class Observation < ActiveRecord::Base
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
     observations_places(true)
+  end
+
+  def set_taxon_photo
+    return true unless research_grade? && quality_grade_changed?
+    community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
+    true
   end
 
   def self.update_observations_places(options = { })

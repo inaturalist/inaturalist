@@ -56,7 +56,7 @@ if( TIMEZONE ) {
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll", "$uibPosition",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {
-  $scope.currentUser = CURRENT_USER;
+  $scope.currentUser = CURRENT_USER && CURRENT_USER.id ? CURRENT_USER : null;
   $scope.shared = shared;
   $scope.possibleViews = [ "observations", "species", "identifiers", "observers" ];
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };

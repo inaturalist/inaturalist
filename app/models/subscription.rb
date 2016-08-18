@@ -2,6 +2,9 @@ class Subscription < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true, :inverse_of => :update_subscriptions
   belongs_to :user
   belongs_to :taxon # in case this subscription has taxonomic specifity
+
+  after_save :clear_caches
+  after_destroy :clear_caches
   
   validates_presence_of :resource, :user
   validates_uniqueness_of :user_id, :scope => [:resource_type, :resource_id, :taxon_id], 
@@ -30,6 +33,12 @@ class Subscription < ActiveRecord::Base
     if Place.north_america && resource_id == Place.north_america.id
       errors.add(:resource_id, "cannot subscribe to North America without conditions")
     end
+  end
+
+  def clear_caches
+    ctrl = ActionController::Base.new
+    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: true )
+    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: false )
   end
 
 end

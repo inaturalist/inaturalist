@@ -36,6 +36,7 @@ class ObservationFieldValue < ActiveRecord::Base
   attr_accessor :updater_user_id
 
   include Shared::TouchesObservationModule
+  include ActsAsUUIDable
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
 
@@ -156,6 +157,7 @@ class ObservationFieldValue < ActiveRecord::Base
 
   def as_indexed_json(options={})
     {
+      uuid: uuid,
       name: observation_field.name,
       value: self.value
     }

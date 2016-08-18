@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react";
 import DiscussionListItemContainer from "../containers/discussion_list_item_container";
+import moment from "moment";
 
-const DiscussionList = ( { observation, onDelete } ) => {
+const DiscussionList = ( { observation, onDelete, onRestore } ) => {
   let items = ( observation.comments || [] ).map( ( c ) => (
     Object.assign( c, {
       className: "Comment",
@@ -20,9 +21,11 @@ const DiscussionList = ( { observation, onDelete } ) => {
     } );
   } ) );
   items = items.sort( ( a, b ) => {
-    if ( a.created_at < b.created_at ) {
+    const dateA = moment( a.created_at );
+    const dateB = moment( b.created_at );
+    if ( dateA < dateB ) {
       return -1;
-    } else if ( a.created_at > b.created_at ) {
+    } else if ( dateA > dateB ) {
       return 1;
     }
     return 0;
@@ -46,6 +49,7 @@ const DiscussionList = ( { observation, onDelete } ) => {
               onDelete( item );
             }
           } }
+          onRestore={ ( ) => onRestore( item ) }
         />
       ) ) }
     </div>
@@ -54,7 +58,8 @@ const DiscussionList = ( { observation, onDelete } ) => {
 
 DiscussionList.propTypes = {
   observation: PropTypes.object.isRequired,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onRestore: PropTypes.func
 };
 
 export default DiscussionList;

@@ -479,13 +479,11 @@ class Taxon < ActiveRecord::Base
     true
   end
   
-  def self.update_ancestor_photos(taxon_id, photo_id)
-    unless taxon = Taxon.find_by_id(taxon_id)
-      return
-    end
-    unless photo = Photo.find_by_id(photo_id)
-      return
-    end
+  def self.update_ancestor_photos(taxon, photo)
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    return unless taxon
+    photo = Photo.find_by_id( photo ) unless photo.is_a?( Photo )
+    return unless photo
     taxon.ancestors.each do |anc|
       unless anc.photos.count > 0
         anc.photos << photo
@@ -661,6 +659,14 @@ class Taxon < ActiveRecord::Base
         :is_valid => true
       )
     end
+  end
+
+  def set_photo_from_observations
+    return true if photos.count > 0
+    return unless obs = observations.has_quality_grade( Observation::RESEARCH_GRADE ).first
+    return unless photo = obs.observation_photos.sort_by(&:position).first.try(:photo)
+    self.photos << photo
+    Taxon.update_ancestor_photos( self, photo )
   end
   
   # Override assignment method provided by has_many to ensure that all

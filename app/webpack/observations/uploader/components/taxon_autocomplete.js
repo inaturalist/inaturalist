@@ -54,11 +54,14 @@ class TaxonAutocomplete extends React.Component {
         this.idElement( ).val( null );
         if ( this.props.afterUnselect ) { this.props.afterUnselect( ); }
       }
-      this.inputElement( ).selection = null;
+      if ( this._mounted ) {
+        this.inputElement( ).selection = null;
+      }
     } );
     if ( this.props.initialSelection ) {
       this.inputElement( ).trigger( "assignSelection", this.props.initialSelection );
     }
+    this._mounted = true;
   }
 
   componentDidUpdate( prevProps ) {
@@ -70,6 +73,12 @@ class TaxonAutocomplete extends React.Component {
 
   componentWillUnmount( ) {
     this.inputElement( ).unbind( );
+    // The following unpleasantness is brought to you by the fact that the
+    // unbind() call above doesn't actually seem to unbind the resetSelection
+    // callback bound in componentDidMount. I tried various other ways of
+    // unbinding, but no luck.
+    // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
+    this._mounted = false;
     this.inputElement( ).autocomplete( "destroy" );
   }
 

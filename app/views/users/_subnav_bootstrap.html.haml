@@ -18,7 +18,7 @@
       \&nbsp;#{t(:calendar)}
   %li{:class => ('active' if current_page?(:controller => :identifications, :action => :by_login))}
     = link_to identifications_by_login_path(:login => user.login) do
-      %i.icon.icon-identification>
+      %i.glyphicon.icon.icon-identification>
       \&nbsp;#{t(:ids)}
   %li{:class => ('active' if current_page?(:controller => :lists, :action => :by_login))}
     = link_to lists_by_login_path(user.login) do
