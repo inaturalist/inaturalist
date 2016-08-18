@@ -140,6 +140,13 @@
         </td>
       </tr>
 
+      <tr>
+        <td> <%= t(:non_human?) %></td>
+        <td>
+          <%= !o.human? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
+        </td>
+      </tr>
+
       <% for metric, question in QualityMetric::METRIC_QUESTIONS  %>
         <%= render :partial => 'quality_metrics/quality_metric_row', :locals => {
           :metric => metric, 
