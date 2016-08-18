@@ -2,6 +2,9 @@
 .ObservationsGridItem {
   position: relative;
 }
+.ObservationsGridItem.borderless.thumbnail {
+  border: 1px solid #ddd;
+}
 .ObservationsGridItem.reviewed {
   opacity: 0.5;
 }
