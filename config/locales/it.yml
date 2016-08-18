@@ -1348,7 +1348,7 @@ it:
   follow_us_on: Seguici su
   follow_user: Segui %{user}
   follower: seguace
-  following: sta seguendo
+  following: seguendo
   for: di
   for_a_taxon: per un taxon
   for_a_widget_showing_recent_observations_from: Per un widget che mostra le recenti
@@ -2292,6 +2292,8 @@ it:
   observations_for: Osservazioni per
   observations_for_project: Osservazioni per %{project}
   observations_from: Osservazioni dal %{date}
+  observations_from_people_taxa_and_places_youre_following: Osservazioni di persone,
+    luoghi, e taxa che stai seguendo
   observations_from_this_place: Osservazioni per questo luogo
   observations_from_this_project: Osservazioni di questo progetto
   observations_from_you: Le mie osservazioni
@@ -2385,6 +2387,11 @@ it:
     follow_panel_title_global: Segui dei naturalisti attivi
     follow_panel_body: Se visiti questi profili e clicchi sul pulsante 'segui', sarai
       aggiornato sulle loro osservazioni
+    following_panel_title: Tiene traccia di persone, taxa e luoghi
+    following_panel_body: Su %{site_name} è possibile seguire le persone per vedere
+      le osservazioni che hanno inserito. È anche possibile iscriversi ad alcune specie
+      per tenere sotto controllo le relative nuove osservazioni, o fare la stessa
+      cosa con i luoghi.
     comments_panel_title: Sei curioso di sapere quali discussioni sono in corso su
       %{site_name}?
     comments_panel_body: <p>%{site_name} serve condividere e discutere le osservazioni
@@ -2423,7 +2430,8 @@ it:
   only_curators_can_access_that_page: Solo i curatori possono accedere a quella pagina.
   only_files_with_10000_rows_at_a_time: Solo file con 10000 righe alla volta, per
     favore
-  only_letters_numbers: Solo lettere e numeri, non spazi
+  only_letters_numbers: Solo lettere e numeri, senza spazi, deve iniziare con una
+    lettera
   only_one_coordinate_system_per_file: Per ogni file può essere utilizzato solo un
     sistema di coordinate, altrimenti si verificheranno problemi di visualizzazione
     o conversione.
@@ -2987,6 +2995,8 @@ it:
   resolved: Risolte
   resolved_by: Risolto da
   resolver_said_x_html: <span class="meta">%{resolver} ha detto,</span> "%{x}"
+  restore: Ripristina
+  restoring: Ripristino in corso...
   results: risultati
   review_all: Controlla tutto
   review_verb: Revisiona
@@ -3978,6 +3988,8 @@ it:
   wikipedia_entry: Voce di Wikipedia
   wikipedia_taxobox_raquo: Tassobox di Wikipedia &raquo;
   with: con
+  withdraw: Ritira
+  withdrawing: Ritiro in corso...
   with_errors: Con errori
   within_inaturalist: All'interno di %{site_name}
   wondering_what_to_do_next: Ti chiedi cosa fare dopo? Perché non

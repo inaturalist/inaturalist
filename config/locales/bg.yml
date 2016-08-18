@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: DCLXVI
 # Author: Exonie
+# Author: StanProg
 ---
 bg:
   licensing_your_content: Като лицензирате съдържанието си, давате легални права на
@@ -812,6 +813,7 @@ bg:
     fr: френски
     eu: баски
     gl: галисийски
+    ko: корейски
     id: индонезийски
     it: италиански
     mk: македонски
@@ -1042,7 +1044,7 @@ bg:
   only_curators_can_add_edit_scientific_names: Само кураторите могат да редактират
     научни имена.
   only_curators_can_access_that_page: Само кураторите имат достъп до тази страница.
-  only_letters_numbers: Само букви и цифри, без интервали
+  only_letters_numbers: Само букви и цифри, без интервали, започвайки с буква
   only_one_coordinate_system_per_file: Само една координатна система може да бъде
     използвана в един файл. В противен случай ще се конвертира или изобрази погрешно.
   only_project_curators_can_do_that: Само кураторите на проекта могат да правят това.
@@ -1396,7 +1398,7 @@ bg:
   reviewed: Рецензиран
   sat: съб
   satellite: сателит
-  save: Запази
+  save: Съхраняване
   save_all: Запази всичко
   save_and_add_another: Запази и добави друго
   save_and_continue: Запази и продължи

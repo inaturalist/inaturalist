@@ -2368,6 +2368,8 @@ fr:
   observations_for: Observations pour
   observations_for_project: Observations pour %{project}
   observations_from: Observations depuis %{date}
+  observations_from_people_taxa_and_places_youre_following: Observations des gens,
+    lieux et taxons que vous suivez
   observations_from_this_place: Observations dans ce lieu
   observations_from_this_project: Observations de ce projet
   observations_from_you: Observations de vous
@@ -2462,6 +2464,12 @@ fr:
     follow_panel_title_global: Suivre quelques naturalistes actifs
     follow_panel_body: Si vous visitez ces profils et cliquez sur le bouton de suivi,
       vous allez être informé lorsqu'ils posteront des observations
+    following_panel_title: Garder la trace des gens, des taxons et des lieux
+    following_panel_body: |-
+      Sur %{site_name}, vous pouvez suivre les gens pour garder trace des
+      observations qu’ils ont publiées. Vous pouvez aussi vous inscrire à certaines
+      espèces pour garder trace des nouvelles observations de celles-ci, ou faire
+      la même chose avec les lieux.
     comments_panel_title: Curieux de connaître quelles sortes de discussions ont lieu
       sur %{site_name} ?
     comments_panel_body: <p>%{site_name} est entièrement dédié au partage et à la
@@ -2504,7 +2512,8 @@ fr:
     accéder à cette page.
   only_files_with_10000_rows_at_a_time: Uniquement des fichiers de 10000 lignes à
     la fois, SVP
-  only_letters_numbers: Seulement des lettres et des chiffres, sans espace
+  only_letters_numbers: Seulement des lettres et des chiffres, sans espace, doit commencer
+    par une lettre
   only_one_coordinate_system_per_file: Un seul système de coordonnées peut être utilisé
     par fichier, sinon une conversion ou un affichage erroné se produira.
   only_project_curators_can_do_that: Seuls les responsables de l’organisation du projet
@@ -3063,6 +3072,8 @@ fr:
   resolved: Réglé
   resolved_by: Réglé par
   resolver_said_x_html: <span class="meta">%{resolver} a dit,</span> « %{x} »
+  restore: Rétablir
+  restoring: Rétablissement…
   results: résultats
   review_all: Relire tout
   review_verb: Relecture
@@ -4080,6 +4091,8 @@ fr:
   wikipedia_entry: Entrée de Wikipédia
   wikipedia_taxobox_raquo: Taxobox de Wikipédia &raquo;
   with: avec
+  withdraw: Retirer
+  withdrawing: Retrait…
   with_errors: Avec des erreurs
   within_inaturalist: Dans %{site_name}
   wondering_what_to_do_next: Vous vous demandez quoi faire maintenant? Pourquoi pas

@@ -64,6 +64,7 @@ ja:
   a_member_of_taxon_html: '%{taxon}の一つ'
   able_to_connect_flickr: Flickrアカウントとの連携ができました。
   about: 詳細
+  about_taxon_changes: 分類群変更について
   about_bioblitz_results: バイオブリッツの結果について
   about_community_taxa: コミュニティー分類群について
   about_external_links: 外部リンクについて
@@ -733,6 +734,7 @@ ja:
   disagree: 不賛成
   disconnect_provider: '%{provider}とリンク解除'
   display_listings_from_place: 場所からリストを表示
+  do_not_show_this_message_again: 今後このメッセージを表示しない
   do_you_know_where_this_species_lives: この種の生息場所がわかりますか？
   does_the_location_seem_accurate: 位置は適切？
   does_the_date_seem_accurate: 日付は適切？
@@ -760,6 +762,9 @@ ja:
   edit_field: フィールドを編集
   edit_flagged_observation: フラグ付き観察記録を編集
   edit_license: ライセンスを編集
+  edit_multiple_dates: 複数の日付を編集
+  edit_multiple_locations: 複数の場所を編集
+  edit_multiple_species: 複数の種を編集
   edit_notes: メモを編集
   edit_photos: 写真を編集
   edit_photos_for_observation_id: '%{obs_id}の観測記録の写真を編集'
@@ -946,11 +951,13 @@ ja:
   from: 次の場所から：
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
+  from_flickr_facebook_etc: Flickr、Facebookなどから
   from_in_this_place: この場所のなかから
   from_list: リストから
   from_this: こちらから
   from_photos: 写真から
   from_place: 場所から
+  from_soundcloud: Soundcloudから
   from_your_site_observations: '%{site_name}の観察記録の中から'
   from_licensed_site_observations: '%{site_name}のライセンス付き観察記録の中から'
   full_id_please: IDお願い！
@@ -982,6 +989,7 @@ ja:
   global_conservation_status: 世界保全状況
   global_names: グローバル名
   go_back: 戻る
+  going_to_your_observations: あなたの観察記録へ移行中
   good_choice_for_sharing: 科学者にデータ共有できるのでオススメ
   got_your_data_somewhere_else?: 別のところでデータを保存していますか？お手伝いできます。
   graft: 融合
@@ -1169,6 +1177,7 @@ ja:
   leave_a_comment: コメントする
   leave_this_project: このプロジェクトを退会
   not_absent: 不在ではない
+  let_us_walk_you_through: 本サイトの主な機能をご紹介します。
   lexicon: 言語/用語集
   lexicons:
     scientific_names: 学名
@@ -1794,6 +1803,8 @@ ja:
       province: 州・省
       Region: 広域
       region: 地方
+      Republic: 共和国
+      republic: 共和国
       Sports_Team: スポーツチーム
       sports_team: スポーツチーム
       State: 都道府県・州
@@ -2072,6 +2083,7 @@ ja:
   resolve_this_flag: このフラグを解決済にする
   resolved: 解決済
   resolved_by: 解決済にしたユーザー：
+  restore: 復元
   results: 結果
   roadmap: ロードマップ
   role: 役割
@@ -2187,6 +2199,7 @@ ja:
   sign_in_exclamation: ログイン
   single_observation: 単一観察記録
   sizes: サイズ
+  skip_to_next_page: 次のページへスキップ
   small: 小
   site_name_place: '%{site_name} 場所'
   site_observations_export_from_date: '%{date}の%{site_name}観察記録を書き出す'
