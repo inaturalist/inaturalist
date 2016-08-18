@@ -330,7 +330,7 @@ ko:
   at_time: '%{time} 시간에'
   atom: 원지
   authority_list:
-    iucn_red_list: IUCN 적색목록
+    iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: '%{provider}의 허용을 수락함'
   automatic_descriptions_have_been_disabled: 이 분류군은 자동 설명이 해제되었습니다.
   automatically_add_to_project: 자동으로 프로젝트에 추가
@@ -583,7 +583,7 @@ ko:
   conservation_status: 보존 상태
   conservation_status_descriptions:
     description: 목록에 포함된 이유를 명시
-    authority: 보존 상태를 제시한 단체. 본인이 지정했다면 넘어가세요.
+    authority: 이 상태를 선언한 단체입니다. 본인을 권위자로 나열하고 싶으시면 이것을 건너뛸 수 있습니다.
     place: 보존 상태 제한지역
     url: 보전 상태를 설명하는 페이지의 URL
     geoprivacy: 분류군 관찰에 대한 기본 위치보호 설정
@@ -1890,7 +1890,7 @@ ko:
     your_soundcloud_account: SoundCloud 계정
   source_list:
     inaturalist: iNaturalist
-  start_adding_observations: 관찰을 추가하기
+  start_adding_observations: 관찰 추가를 시작하기
   start_one_now: 지금 당장 시작해보세요!
   status: 상태
   stop_editing: 그만 편집하기
