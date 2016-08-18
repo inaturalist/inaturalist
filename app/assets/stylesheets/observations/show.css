@@ -105,5 +105,6 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 .photo .synclink { float: right; }
 .photoSelector {border: 0 transparent; padding:0; min-width: 725px;}
 #comments_and_identifications { position: relative;}
+#comments_and_identifications .withdrawbutton { display: none; }
 #marks { position: absolute; right: 0px; bottom: 8px;}
 #marks .button, #marks .inter {margin: 0 0 0 10px;}

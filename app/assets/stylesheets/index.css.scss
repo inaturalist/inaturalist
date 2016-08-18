@@ -1683,7 +1683,7 @@ table .numeric { text-align: center; }
 .item_content .body img {max-width: 100%;}
 .item_content .identification_image{margin-right:0.5em;}
 .item_content .identification_image,
-.item_content .identification_body{
+.item_content .identification_body {
   display:-moz-inline-stack;
   display:inline-block;
   zoom:1;
@@ -1701,6 +1701,9 @@ table .numeric { text-align: center; }
 .item_content .identification_image img{width:32px; height: 32px; vertical-align:middle;}
 .item_content .identification{padding:5px;background-color:#eee;margin-bottom:0.5em;}
 .item_content p{margin-bottom:0.5em;}
+
+.identification span.withdrawbutton { display: none; }
+.identification:hover span.withdrawbutton { display: inline; }
 
 .alert, .alert:hover {background-color: #cd0a0a; color: white; }
 .alert .ui-icon { background-image: image-url('jquery-ui/ui-icons_ffffff_256x240.png'); }
