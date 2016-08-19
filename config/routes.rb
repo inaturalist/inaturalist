@@ -272,6 +272,7 @@ Rails.application.routes.draw do
       get :invite, :as => :invite_to
       get :confirm_leave
       get :stats_slideshow
+      put "change_admin/:user_id" => "projects#change_admin", as: :change_admin
     end
     collection do
       get :calendar

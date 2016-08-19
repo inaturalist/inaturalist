@@ -26,12 +26,7 @@
           %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
         - if user.id == current_user.id && project.user_id == current_user.id
           .notice.status.box
-            Wondering why you're now
-            = role
-            for this project? The previous owner probably deleted their account, so
-            = CONFIG.site_name_short
-            assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
-            = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
+            =t "views.users.dashboard.new_project_admin_html", site_name: SITE_NAME_SHORT, help_email: CONFIG.help_email
   %p.alert.alert-info
     =t :just_a_reminder
   

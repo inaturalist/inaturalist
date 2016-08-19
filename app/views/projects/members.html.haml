@@ -5,14 +5,6 @@
     td .usericon{vertical-align:middle;}
     td{vertical-align:middle;}
     td .description{display:block;}
-    \#active .usericon{float:left;}
-    \#active .attr{display:block;padding-left:58px;color:#888;}
-    \#active .attr strong{font-weight:normal;color:#333;}
-    \#active .attr.login{font-size:120%;}
-    \#active .user{border-bottom:1px solid #ddd;padding-bottom:1em;margin-bottom:1em;}
-    \#letter_nav{font-size:100%;margin-bottom:1em;text-align:left;}
-    \#invite{float:right;}
-    \#invite .button{margin-right:0;}
     td.actions .smallbuttons:first-child {margin-bottom:5px;}
     td.actions .button {width:100%;}
     td.actions {padding-right:15px;}
@@ -44,10 +36,10 @@
         - for project_user in @project_users
           %tr
             %td
-              = link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),                     |
-                observations_by_login_path(project_user.user.login),                                             |
-                :alt => h(project_user.user.login),                                                              |
-                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" |
+              = link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+                observations_by_login_path(project_user.user.login),
+                :alt => h(project_user.user.login),
+                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}"
             %td{:width => "100%"}
               = link_to h(project_user.user.login), observations_by_login_path(project_user.user.login)
             %td

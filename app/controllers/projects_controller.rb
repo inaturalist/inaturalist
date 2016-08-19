@@ -202,6 +202,11 @@ class ProjectsController < ApplicationController
         @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
       end
     end
+    @project_curators = @project.project_users.
+      where( "role IN (?)", ProjectUser::ROLES ).
+      where( "user_id != ?", @project.user_id ).
+      limit( 100 ).
+      includes(:user).order( "users.login" )
   end
 
   def create
@@ -826,6 +831,23 @@ class ProjectsController < ApplicationController
     end
 
     render layout: "basic"
+  end
+
+  def change_admin
+    current_project_user = current_user.project_users.where( project_id: @project.id ).first
+    if current_project_user.blank? || !current_project_user.is_admin?
+      flash[:error] = t(:only_the_project_admin_can_do_that)
+      redirect_to @project
+      return
+    end
+    new_admin = User.find_by_id( params[:user_id] )
+    unless @project.curated_by?( new_admin )
+      flash[:error] = t(:only_curators_can_become_the_new_admin)
+      redirect_to @project
+      return
+    end
+    @project.update_attributes( user: new_admin )
+    redirect_back_or_default @project
   end
 
   private

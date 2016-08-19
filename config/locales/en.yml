@@ -373,6 +373,7 @@ en:
   archives: Archives
   are_you_really_sure_want_delete_this_user: Are you really, really sure you want to delete this user and all of their content?
   are_you_sure?: Are you sure?
+  are_you_sure_no_undo: Are you sure? This cannot be undone.
   are_you_sure_delete_asset: Are you sure you want to delete this asset?
   are_you_sure_delete_observation_from_project: "Are you sure you want to remove this observation from %{project}?"
   are_you_sure_delete_post: Are you sure you want to delete this post?
@@ -549,6 +550,7 @@ en:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
   change: Change
+  change_admin: Change Admin
   change_cover: Change cover
   change_descriptions:
       split: Old taxon split into multiple new taxa
@@ -1637,6 +1639,7 @@ en:
   low: low
   lowest_rank: Lowest rank
   made_a: made a
+  make_admin: Make admin
   mail_disclaimer: "%{site_name} will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to %{site}."
   main_content: Main content
   main_content_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -4410,6 +4413,7 @@ en:
             way to introduce people to biodiversity while collecting valuable
             data at the same time.
           </p>
+        change_admin_desc: Choose one of the project curators to be the new admin.
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
         end_time_desc: "End time for your bioblitz. Must be less than one year after start time"
@@ -4421,6 +4425,10 @@ en:
         icon_desc: "Will be cropped to a square"
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
+        no_curators: |
+          There are no project curators. If you want to assign a new person as
+          the admin, they must first join this project and you must make them
+          a curator.
         observation_aggregation_desc_html: |
           <p class="description">
             Observation aggregation will automatically add suitable observations to your
@@ -4620,10 +4628,10 @@ en:
         cannot_update_your_content: "%{site_name} cannot update your content automatically for this change."
         new_project_admin_html: |
           Wondering why you're now admin for this project? The previous owner
-          probably deleted their account, so %{site_name} assigned you because
-          you're a project manager or a site curator. If you don't want to be
-          the project admin, please contact 
-          <a href="mailto:%{help_email}">%{help_email}</a>
+          either assigned you as the new admin, or they deleted their account
+          and %{site_name} assigned you because you're a project manager or a
+          site curator. If you don't want to be the project admin, please
+          contact <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.

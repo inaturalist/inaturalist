@@ -304,6 +304,37 @@
     </div>
   </fieldset>
 
+  <% if @project.persisted? %>
+    <fieldset id="change-admin">
+      <legend><%=t :change_admin %></legend>
+      <p class="description">
+        <%=t "views.projects.edit.change_admin_desc" %>
+      </p>
+      <ul class="plain">
+        <% if @project_curators.blank? %>
+          <div class="nocontent">
+            <%=t "views.projects.edit.no_curators" %>
+          </div>
+        <% else %>
+          <%- for pu in @project_curators %>
+            <li class="inline smallbuttons buttonrow">
+              <span class="inter">
+                <%= link_to image_tag( pu.user.icon.url(:mini), class: "usericon" ), pu.user %>
+                <%= link_to_user pu.user %>
+              </span>
+              <%= link_to t(:make_admin), change_admin_project_path( @project, pu.user ),
+                class: "inline button smallbutton glaucous",
+                data: {
+                  method: "put",
+                  confirm: t(:are_you_sure_no_undo)
+                } %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </fieldset>
+  <% end %>
+
   <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
 
   <div class="buttons buttonrow">
