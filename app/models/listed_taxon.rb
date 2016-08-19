@@ -354,12 +354,12 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_user_id
-    self.user_id ||= list.user_id
+    self.user_id ||= list.user_id if list
     true
   end
   
   def set_source_id
-    self.source_id ||= list.source_id
+    self.source_id ||= list.source_id if list
     true
   end
   
