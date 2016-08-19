@@ -25,6 +25,9 @@
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
+    <% if @site %>
+      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% end %>
   </head>
   <body>
     <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>

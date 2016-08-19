@@ -47,6 +47,9 @@
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
+    <% if @site %>
+      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% end %>
   </head>
 <body class="browser">
   <div id="bodywrapper">
