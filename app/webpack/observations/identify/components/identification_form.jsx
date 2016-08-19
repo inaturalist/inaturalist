@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react";
-import { Button, Input } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import safeHtml from "safe-html";
 import TaxonAutocomplete from "./taxon_autocomplete";
+import INatTextArea from "./inat_text_area";
 
 const IdentificationForm = ( {
   observation: o,
@@ -53,7 +54,7 @@ const IdentificationForm = ( {
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
-    <Input type="textarea" name="body" className="form-control" />
+    <INatTextArea type="textarea" name="body" className="form-control" mentions />
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );

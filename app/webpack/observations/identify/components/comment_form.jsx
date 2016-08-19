@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
-import { Button, Input } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import INatTextArea from "./inat_text_area";
 
 // The approach of getting the form values from the event object here is based
 // on some feedback from DrMike in https://discord.gg/0ZcbPKXt5bZ6au5t. It's
@@ -21,7 +22,7 @@ const CommentForm = ( { observation, onSubmitComment, className } ) => (
     }}
   >
     <h3>{ I18n.t( "add_a_comment" ) }</h3>
-    <Input type="textarea" name="body" className="form-control" />
+    <INatTextArea name="body" className="form-control" mentions />
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );

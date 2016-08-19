@@ -235,3 +235,7 @@ li.rc-pagination-item-active a {
 body > div > [role="dialog"] .AlertModal .modal-dialog {
   margin: 100px auto;
 }
+
+.dropdown-menu.textcomplete-dropdown {
+  z-index: 1050 !important;
+}
