@@ -23,7 +23,7 @@
     <% end -%>
     
     <div class="stacked">
-      <%= link_to change_taxon.observations_count, observations_path(:taxon_id => change_taxon.id), :rel => "nofollow" %> <%= t :obs %>
+      <%= link_to change_taxon.observations_count, observations_path( taxon_id: change_taxon.id, verifiable: "any", place_id: "any" ), :rel => "nofollow" %> <%= t :obs %>
       <% unless change_taxon.conservation_status.blank? %>
         <span class='meta'>|</span>
         <%= change_taxon.conservation_status_code %>
