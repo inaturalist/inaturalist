@@ -531,40 +531,10 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         @observations = [@observation]
-        @sharing_authorizations = current_user.provider_authorizations.select do |pa|
-          pa.provider_name == "facebook" || (pa.provider_name == "twitter" && !pa.secret.blank?)
-        end
       end
       format.json  { render :json => @observation }
     end
   end
-  
-  # def quickadd
-  #   if params[:txt]
-  #     pieces = txt.split(/\sat\s|\son\s|\sin\s/)
-  #     @observation = Observation.new(:species_guess => pieces.first)
-  #     @observation.place_guess = pieces.last if pieces.size > 1
-  #     if pieces.size > 2
-  #       @observation.observed_on_string = pieces[1..-2].join(' ')
-  #     end
-  #     @observation.user = self.current_user
-  #   end
-  #   respond_to do |format|
-  #     if @observation.save
-  #       flash[:notice] = "Your observation was saved."
-  #       format.html { redirect_to :action => @user.login }
-  #       format.xml  { render :xml => @observation, :status => :created, 
-  #                            :location => @observation }
-  #       format.js   { render }
-  #     else
-  #       format.html { render :action => "new" }
-  #       format.xml  { render :xml => @observation.errors, 
-  #                            :status => :unprocessable_entity }
-  #       format.js   { render :json => @observation.errors, 
-  #                            :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
   
   # GET /observations/1/edit
   def edit

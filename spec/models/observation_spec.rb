@@ -2358,37 +2358,6 @@ describe Observation do
     end
   end
 
-  describe "queue_for_sharing" do
-    it "should queue a job if twitter ProviderAuthorization present" do
-      pa = ProviderAuthorization.make!(:provider_name => "twitter")
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"])).to be_blank
-      o = Observation.make!(:user => pa.user)
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"])).not_to be_blank
-    end
-    it "should queue a job if facebook ProviderAuthorization present" do
-      pa = ProviderAuthorization.make!(:provider_name => "facebook")
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"])).to be_blank
-      o = Observation.make!(:user => pa.user)
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"])).not_to be_blank
-    end
-    it "should not queue a job if no ProviderAuthorizations present" do
-      o = Observation.make!
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"])).to be_blank
-    end
-    it "should not queue a twitter job if twitter_sharing is 0" do
-      pa = ProviderAuthorization.make!(:provider_name => "twitter")
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"])).to be_blank
-      o = Observation.make!(:user => pa.user, :twitter_sharing => "0")
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"])).to be_blank
-    end
-    it "should not queue a facebook job if facebook_sharing is 0" do
-      pa = ProviderAuthorization.make!(:provider_name => "facebook")
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"])).to be_blank
-      o = Observation.make!(:user => pa.user, :facebook_sharing => "0")
-      expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"])).to be_blank
-    end
-  end
-
   describe "captive" do
     it "should vote yes on the wild quality metric if 1" do
       o = Observation.make!(:captive_flag => "1")

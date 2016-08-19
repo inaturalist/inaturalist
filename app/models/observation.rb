@@ -62,9 +62,6 @@ class Observation < ActiveRecord::Base
   attr_accessor :coordinate_system
   attr_accessor :geo_x
   attr_accessor :geo_y
-
-  attr_accessor :twitter_sharing
-  attr_accessor :facebook_sharing
   
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -355,8 +352,7 @@ class Observation < ActiveRecord::Base
              :set_captive,
              :update_observations_places,
              :set_taxon_photo
-  after_create :set_uri,
-               :queue_for_sharing
+  after_create :set_uri
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
   
@@ -717,11 +713,6 @@ class Observation < ActiveRecord::Base
     end
     s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
     s.gsub(/\s+/, ' ')
-  end
-
-  # returns a string for sharing on social media (fb, twitter)
-  def to_share_s
-    return self.to_plain_s(no_user: true)
   end
   
   def time_observed_at_utc
@@ -2321,53 +2312,6 @@ class Observation < ActiveRecord::Base
 
   def self.generate_csv_for_cache_key(record, options = {})
     "#{record.class.name.underscore}_#{record.id}"
-  end
-
-  # share this (and any subsequent) observations on facebook
-  def share_on_facebook(options = {})
-    fb_api = user.facebook_api
-    return nil unless fb_api
-    observations_to_share = if options[:single]
-      [self]
-    else
-      Observation.includes(:taxon).limit(100).
-        where(:user_id => user_id).
-        where("observations.id >= ?", id).
-        where("observations.taxon_id is not null")
-    end
-    observations_to_share.each do |o|
-      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:record", :observation => FakeView.observation_url(o))
-    end
-  rescue Exception => e
-    Rails.logger.error "[ERROR #{Time.now}] Failed to share Observation #{id} on Facebook: #{e}"
-  end
-
-  # share this (and any subsequent) observations on twitter
-  # if we're sharing more than one observation, this aggregates them into one tweet
-  def share_on_twitter(options = {})
-    # TODO: fully remove twitter sharing
-    return
-  end
-
-  # Share this and any future observations on twitter and/or fb (depending on user preferences)
-  def queue_for_sharing
-    u = self.user
-    ["facebook","twitter"].each do |provider_name|
-      explicitly_shared = send("#{provider_name}_sharing") == "1"
-      explicitly_not_shared = send("#{provider_name}_sharing") == "0"
-      implicitly_shared = u.prefs["share_observations_on_#{provider_name}"]
-      user_wants_to_share = explicitly_shared || (implicitly_shared && !explicitly_not_shared)
-      if u.send("#{provider_name}_identity") && user_wants_to_share
-        # don't queue up more than one job for the given sharing medium. 
-        # when the job is run, it will also share any observations made since this one. 
-        # observation aggregation for twitter happens in share_on_twitter.
-        # fb aggregation happens on their end via open graph aggregations.
-        self.delay(priority: USER_INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
-          unique_hash: { "Observation::share_on_#{provider_name}": u.id }).
-          send("share_on_#{provider_name}")
-      end
-    end
-    true
   end
 
   def update_public_positional_accuracy

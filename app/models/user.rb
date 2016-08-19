@@ -38,8 +38,6 @@ class User < ActiveRecord::Base
   preference :observation_license, :string
   preference :photo_license, :string
   preference :sound_license, :string
-  preference :share_observations_on_facebook, :boolean, :default => true
-  preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :receive_mentions, :boolean, :default => true
   preference :observations_view, :string

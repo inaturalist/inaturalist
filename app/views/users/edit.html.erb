@@ -70,21 +70,6 @@
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <%- provider_names = @user.provider_authorizations.map{|pa| pa.provider_name.downcase} %>
-      <%- if (%w(twitter facebook) & provider_names).size > 0 %>
-        <h3><%=t :sharing_settings %></h3>
-        <div id="observationsharingpreferences" class="stacked">
-          <label><%=t :automatically_share_your_observations_on %></label>
-          <% for attr_name in User::SHARING_PREFERENCES %>
-            <%- service = attr_name.gsub(/share_observations_on_/, '') %>
-            <%- if @user.has_provider_auth(service) %>
-              <%= f.check_box "prefers_#{attr_name}", 
-                :label => service.capitalize, 
-                :label_after => true %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
       <h3><%= t :email_settings %></h3>
       <div id="notificationpreferences" class="stacked">
         <label><%=t :receive_email_notifications_when_people_leave_you %></label>

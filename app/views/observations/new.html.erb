@@ -95,40 +95,6 @@
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
     <%= hidden_field_tag(:tracking_code, @tracking_code) if @tracking_code %>
 
-    <% unless @sharing_authorizations.blank? -%>
-      <div id="sharing" class="right inline buttonrow">
-        <label class="inter"><%= t(:share_on)%></label>
-        <% if fb_pa = @sharing_authorizations.detect{|pa| pa.provider_name == 'facebook'} -%>
-          <span class="inter">
-            <%= fields_for @observation do |f| %>
-              <%= f.check_box :facebook_sharing, :checked => current_user.prefers_share_observations_on_facebook? %>
-            <% end -%>
-            <label for="observation_facebook_sharing">
-              <%= image_tag favicon_url_for('http://www.facebook.com') %>
-              Facebook
-            </label>
-          </span>
-        <% end -%>
-        <% if tw_pa = @sharing_authorizations.detect{|pa| pa.provider_name == 'twitter'} -%>
-          <span class="inter">
-            <%= fields_for @observation do |f| %>
-              <%= f.check_box :twitter_sharing, :checked => current_user.prefers_share_observations_on_twitter? %>
-            <% end -%>
-            <label for="observation_twitter_sharing">
-              <%= image_tag favicon_url_for('http://www.twitter.com') %>
-              Twitter
-            </label>
-          </span>
-        <% end -%>
-        <span class="inter">
-          <%#= link_to "Prefs", edit_user_path(current_user), :class => "small", :target => "_blank" %>
-          <%= helptip "(beta)" do %>
-            <%= t :your_observation_will_get_shared_html, :url => edit_user_path(current_user) %>
-          <% end -%>
-        </span>
-      </div>
-    <% end -%>
-
     <div class="buttonrow">
       <%= submit_tag(t(:save_observation), :class => 'default button', "data-loading-click" => true) %>
       <%= submit_tag t(:save_and_add_another), :class => 'button', :style => "display:none", :id => "add_another_button" %>
