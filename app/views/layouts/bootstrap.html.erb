@@ -3,7 +3,7 @@
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=980">
     <%= render :partial => 'shared/common_stylesheets'%>

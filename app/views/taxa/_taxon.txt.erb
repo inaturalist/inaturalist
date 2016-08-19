@@ -1,5 +1,6 @@
 <%- 
-comname = taxon.common_name
+place ||= @place
+comname = common_taxon_name(taxon, place: place || @site.try(:place))
 no_common ||= false
 if taxon.rank == 'species' or taxon.rank == 'infraspecies'
   sciname = '%s' % taxon.name
