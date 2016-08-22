@@ -136,7 +136,16 @@ class ListedTaxon < ActiveRecord::Base
   # taxon in the ancestor join table, those are the leaves.
   scope :with_leaves, lambda{|scope_to_sql|
     # generate the ancestor IDs subquery
-    ancestor_ids_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(t1.ancestry, '/') AS ancestor_id")
+    ancestor_ids_sql = scope_to_sql.gsub(/^(S.*)\*/,
+      "SELECT DISTINCT regexp_split_to_table(branch_taxa.ancestry, '/') AS ancestor_id")
+    # create a new alias for joining with taxa
+    if ancestor_ids_sql.match(/ WHERE /)
+      ancestor_ids_sql = ancestor_ids_sql.gsub(/ WHERE /,
+        " INNER JOIN taxa branch_taxa ON listed_taxa.taxon_id=branch_taxa.id WHERE ")
+    else
+      ancestor_ids_sql = ancestor_ids_sql +
+        " INNER JOIN taxa branch_taxa ON listed_taxa.taxon_id=branch_taxa.id"
+    end
     # join ancestors on taxon_id
     join = <<-SQL
       LEFT JOIN (
