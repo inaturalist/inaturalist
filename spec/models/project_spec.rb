@@ -488,6 +488,7 @@ describe Project do
 
   describe "update_counts" do
     before :each do
+      enable_elastic_indexing(Observation)
       @p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_ANYONE)
       @pu = ProjectUser.make!(project: @p)
       taxon = Taxon.make!(rank: "species")
@@ -501,6 +502,7 @@ describe Project do
           observation: Observation.make!(taxon: taxon, user: @pu.user))
       end
     end
+    after(:each) { disable_elastic_indexing(Observation) }
 
     it "should update counts for all project_users in a project" do
       expect( @pu.observations_count ).to eq 0
