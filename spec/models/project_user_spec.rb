@@ -60,6 +60,41 @@ describe ProjectUser do
   before(:each) { enable_elastic_indexing(Observation, Taxon) }
   after(:each) { disable_elastic_indexing(Observation, Taxon) }
 
+  describe "updating curator_coordinate_access" do
+    it "should update past project observations from this project" do
+      pu = ProjectUser.make!
+      expect( pu.project.user ).not_to eq pu.user
+      expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
+      o = Observation.make!( user: pu.user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
+      expect( o ).not_to be_coordinates_viewable_by pu.project.user
+      po = ProjectObservation.make!( observation: o, project: pu.project, user: pu.project.user )
+      o.reload
+      expect( o ).not_to be_coordinates_viewable_by pu.project.user
+      pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
+      Delayed::Worker.new.work_off
+      pu.reload
+      expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
+      o.reload
+      expect( o ).to be_coordinates_viewable_by pu.project.user
+    end
+    it "should not update past project observations from the user's other projects" do
+      pu = ProjectUser.make!
+      o = Observation.make!( user: pu.user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
+      po = ProjectObservation.make!( observation: o, project: pu.project, user: pu.project.user )
+
+      other_pu = ProjectUser.make!( user: pu.user )
+      other_o = Observation.make!( user: other_pu.user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
+      other_po = ProjectObservation.make!( observation: other_o, project: other_pu.project, user: other_pu.project.user )
+
+      pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
+      Delayed::Worker.new.work_off
+      pu.reload
+      o.reload
+      expect( o ).to be_coordinates_viewable_by pu.project.user
+      expect( other_o ).not_to be_coordinates_viewable_by pu.project.user
+    end
+  end
+
   describe "update_taxa_counter_cache" do
     it "should set taxa_count to the number of observed species" do
       project_user = ProjectUser.make!

@@ -55,9 +55,9 @@ class ProjectObservation < ActiveRecord::Base
       notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).delete_all
   end
 
-  def set_curator_coordinate_access
+  def set_curator_coordinate_access( options = {} )
     return unless observation
-    return true unless preferred_curator_coordinate_access.nil?
+    return true unless preferred_curator_coordinate_access.nil? || options[:force]
     if project_user
       self.preferred_curator_coordinate_access = case project_user.preferred_curator_coordinate_access
       when ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER

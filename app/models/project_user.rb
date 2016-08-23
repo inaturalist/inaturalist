@@ -4,8 +4,11 @@ class ProjectUser < ActiveRecord::Base
   belongs_to :user, touch: true
   auto_subscribes :user, :to => :project
   
-  after_save :check_role, :remove_updates, :subscribe_to_assessment_sections_later,
-    :index_project
+  after_save :check_role,
+             :remove_updates,
+             :subscribe_to_assessment_sections_later,
+             :index_project,
+             :update_project_observations_later
   after_destroy :remove_updates, :index_project
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_presence_of :project, :user
@@ -63,6 +66,19 @@ class ProjectUser < ActiveRecord::Base
     return true unless role_changed? && !role.blank?
     delay(:priority => USER_INTEGRITY_PRIORITY).subscribe_to_assessment_sections
     true
+  end
+
+  def update_project_observations_later
+    return true unless preferred_curator_coordinate_access_changed?
+    delay( priority: USER_INTEGRITY_PRIORITY ).update_project_observations_curator_coordinate_access
+    true
+  end
+
+  def update_project_observations_curator_coordinate_access
+    project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
+      po.set_curator_coordinate_access( force: true )
+      po.save!
+    end
   end
 
   def subscribe_to_assessment_sections
