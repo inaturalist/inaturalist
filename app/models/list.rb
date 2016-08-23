@@ -157,8 +157,8 @@ class List < ActiveRecord::Base
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
     
     scope = if is_a?(CheckList) && is_default?
-      ListedTaxon.where(place_id: place_id).
-        select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.id")
+      ListedTaxon.joins(:taxon).where(place_id: place_id).
+        select("DISTINCT ON (taxa.ancestry || '/' || listed_taxa.taxon_id) listed_taxa.id")
     else
       ListedTaxon.where(list_id: id)
     end

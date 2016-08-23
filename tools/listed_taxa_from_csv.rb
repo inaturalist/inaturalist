@@ -97,16 +97,6 @@ puts "Copied #{count} lines into #{new_path}, leftovers in #{leftovers_fname}"
 
 puts
 run_sql "COPY listed_taxa (list_id, taxon_id, place_id, taxon_range_id, establishment_means) FROM STDIN WITH CSV", new_path
-stamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-run_sql <<-SQL
-  UPDATE listed_taxa 
-  SET 
-    taxon_ancestor_ids = taxa.ancestry,
-    created_at = '#{stamp}', 
-    updated_at = '#{stamp}'
-  FROM taxa 
-  WHERE listed_taxa.created_at IS NULL AND taxa.id = listed_taxa.taxon_id
-SQL
 
 puts
 puts "UPDATING EXISTING..."
