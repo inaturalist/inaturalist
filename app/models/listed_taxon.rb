@@ -60,7 +60,9 @@ class ListedTaxon < ActiveRecord::Base
   }
   
   scope :filter_by_taxon, lambda { |filter_taxon_id, self_and_ancestor_ids|
-    joins(:taxon).where("listed_taxa.taxon_id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?",
+    # explicit join so Arel doesn't alias the taxa table, breaking the where clause
+    joins("INNER JOIN taxa ON (listed_taxa.taxon_id=taxa.id)").
+      where("listed_taxa.taxon_id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?",
       filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")
   }
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
