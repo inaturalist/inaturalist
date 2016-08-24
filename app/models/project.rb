@@ -691,30 +691,37 @@ class Project < ActiveRecord::Base
   end
 
   def update_users_taxa_counts(options = {})
-    user_clause = options[:user_id] ? "AND o.user_id=#{ options[:user_id] }" : ""
-    results = Project.connection.execute("
-      SELECT o.user_id, count(DISTINCT COALESCE(i.taxon_id, o.taxon_id)) count
-      FROM project_observations po
-        JOIN observations o ON (po.observation_id=o.id)
-        JOIN project_users pu ON (o.user_id=pu.user_id and pu.project_id=#{ id })
-        LEFT OUTER JOIN taxa ot ON (ot.id = o.taxon_id)
-        LEFT OUTER JOIN identifications i ON (po.curator_identification_id = i.id)
-        LEFT OUTER JOIN taxa it ON (it.id = i.taxon_id)
-      WHERE
-        po.project_id = #{ id }
-        #{ user_clause }
-        AND (
-          -- observer's ident taxon is species or lower
-          ot.rank_level <= #{Taxon::SPECIES_LEVEL}
-          -- curator's ident taxon is species or lower
-          OR it.rank_level <= #{Taxon::SPECIES_LEVEL}
-        )
-      GROUP BY o.user_id")
+    # matching the node.js iNaturalistAPI filters/aggregations for species counts
+    filters = [
+      { term: { project_ids: self.id } },
+      { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
+      { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } }
+    ]
+    if options[:user_id]
+      filters << { term: { "user.id": options[:user_id] } }
+    end
+    result = Observation.elastic_search(
+      filters: filters,
+      size: 0,
+      aggregate: {
+        user_taxa: {
+          terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
+          aggs: {
+            distinct_taxa: {
+              cardinality: {
+                field: "taxon.min_species_ancestry", precision_threshold: 10000
+              }
+            }
+          }
+        }
+      }
+    )
+    return unless result && result.response && result.response.aggregations
     Project.transaction do
       project_users.update_all(taxa_count: 0) unless options[:user_id]
-      results.each do |r|
-        ProjectUser.where(project_id: id, user_id: r["user_id"]).
-          update_all(taxa_count: r["count"])
+      result.response.aggregations.user_taxa.buckets.each do |b|
+        ProjectUser.where(project_id: id, user_id: b[:key]).
+          update_all(taxa_count: b.distinct_taxa.value)
       end
     end
   end
