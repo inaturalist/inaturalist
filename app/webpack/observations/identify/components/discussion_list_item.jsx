@@ -1,9 +1,9 @@
 import React, { PropTypes } from "react";
 import moment from "moment";
-import { Button } from "react-bootstrap";
 import _ from "lodash";
 import SplitTaxon from "./split_taxon";
 import UserText from "./user_text";
+import LaddaButton from "react-ladda";
 
 const DiscussionListItem = ( {
   user,
@@ -41,18 +41,19 @@ const DiscussionListItem = ( {
     if ( !hideAgree ) {
       actions = (
         <div className="actions">
-          <Button
-            bsSize="xsmall"
+          <LaddaButton
+            buttonSize="xs"
+            buttonStyle="zoom-in"
+            spinnerColor="#cccccc"
+            className="btn btn-xs btn-default"
             disabled={ loading }
+            loading={ loading }
             onClick={ function ( ) {
-              agreeWith( {
-                observation_id: identification.observation_id,
-                taxon_id: identification.taxon.id
-              } );
+              agreeWith( identification );
             } }
           >
             { _.capitalize( I18n.t( "agree" ) ) }
-          </Button>
+          </LaddaButton>
         </div>
       );
     }
@@ -96,7 +97,7 @@ const DiscussionListItem = ( {
         <span
           dangerouslySetInnerHTML={ { __html: (
             identification ?
-              I18n.t( "users_identification_html", { user: user.login, url: `/people/${user.login}` } )
+              I18n.t( "users_identification_short_html", { user: user.login, url: `/people/${user.login}` } )
               :
               I18n.t( "users_comment_html", { user: user.login, url: `/people/${user.login}` } )
           ) } }

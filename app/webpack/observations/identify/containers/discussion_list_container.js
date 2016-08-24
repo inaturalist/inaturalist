@@ -9,8 +9,10 @@ import {
   deleteComment
 } from "../actions";
 
-function mapStateToProps( ) {
-  return { };
+function mapStateToProps( state ) {
+  return {
+    currentUserID: state.config.currentUser.id
+  };
 }
 
 function mapDispatchToProps( dispatch ) {

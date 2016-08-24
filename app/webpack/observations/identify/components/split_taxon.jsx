@@ -134,6 +134,6 @@ SplitTaxon.propTypes = {
 };
 SplitTaxon.defaultProps = {
   target: "_self"
-}
+};
 
 export default SplitTaxon;

@@ -42,7 +42,9 @@ function mapDispatchToProps( dispatch ) {
       dispatch( addComment( ) );
     },
     agreeWithCurrentObservation: ( ) => {
-      dispatch( agreeWithCurrentObservation( ) );
+      dispatch( agreeWithCurrentObservation( ) ).then( ( ) => {
+        $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+      } );
     },
     showNextObservation: ( ) => {
       dispatch( showNextObservation( ) );

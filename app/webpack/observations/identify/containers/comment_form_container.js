@@ -18,13 +18,15 @@ function mapStateToProps( state, ownProps ) {
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitComment: ( comment ) => {
-      dispatch( loadingDiscussionItem( ) );
+      dispatch( loadingDiscussionItem( comment ) );
       dispatch( postComment( comment ) )
         .catch( ( ) => {
-          dispatch( stopLoadingDiscussionItem( ) );
+          dispatch( stopLoadingDiscussionItem( comment ) );
         } )
         .then( ( ) => {
-          dispatch( fetchCurrentObservation( ownProps.observation ) );
+          dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
+            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          } );
         } );
     }
   };

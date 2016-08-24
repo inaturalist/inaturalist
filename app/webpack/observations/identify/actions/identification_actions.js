@@ -4,10 +4,13 @@ import {
   fetchCurrentObservation
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
+import { updateObservationInCollection } from "./observations_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
 import { showAlert } from "./alert_actions";
 
 const POST_IDENTIFICATION = "post_identification";
+const AGREEING_WITH_OBSERVATION = "agreeing_with_observation";
+const STOP_AGREEING_WITH_OBSERVATION = "stop_agreeing_with_observation";
 
 function postIdentification( params ) {
   return function ( dispatch ) {
@@ -38,9 +41,11 @@ function updateIdentification( ident, updates ) {
 function agreeWithObservaiton( observation ) {
   return function ( dispatch ) {
     dispatch( loadingDiscussionItem( ) );
+    dispatch( updateObservationInCollection( observation, { agreeLoading: true } ) );
     return dispatch(
       postIdentification( { observation_id: observation.id, taxon_id: observation.taxon.id } )
     ).then( ( ) => {
+      dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
       dispatch( fetchCurrentObservation( observation ) );
       dispatch( fetchObservationsStats( ) );
       dispatch( fetchIdentifiers( ) );
@@ -48,17 +53,32 @@ function agreeWithObservaiton( observation ) {
   };
 }
 
+function agreeingWithObservation( ) {
+  return { type: AGREEING_WITH_OBSERVATION };
+}
+
+function stopAgreeingWithObservation( ) {
+  return { type: STOP_AGREEING_WITH_OBSERVATION };
+}
+
 function agreeWithCurrentObservation( ) {
   return function ( dispatch, getState ) {
-    return dispatch( agreeWithObservaiton( getState( ).currentObservation.observation ) );
+    dispatch( agreeingWithObservation( ) );
+    return dispatch( agreeWithObservaiton( getState( ).currentObservation.observation ) ).then( ( ) => {
+      dispatch( stopAgreeingWithObservation( ) );
+    } );
   };
 }
 
 export {
-  postIdentification,
   POST_IDENTIFICATION,
+  AGREEING_WITH_OBSERVATION,
+  STOP_AGREEING_WITH_OBSERVATION,
+  postIdentification,
   agreeWithObservaiton,
   agreeWithCurrentObservation,
   deleteIdentification,
+  agreeingWithObservation,
+  stopAgreeingWithObservation,
   updateIdentification
 };

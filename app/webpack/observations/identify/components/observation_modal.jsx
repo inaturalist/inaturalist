@@ -11,6 +11,7 @@ import {
   Popover,
   Tooltip
 } from "react-bootstrap";
+import LaddaButton from "react-ladda";
 import _ from "lodash";
 import moment from "moment";
 import DiscussionListContainer from "../containers/discussion_list_container";
@@ -38,7 +39,8 @@ const ObservationModal = ( {
   agreeWithCurrentObservation,
   currentUserIdentification,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  agreeingWithObservation
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -329,15 +331,18 @@ const ObservationModal = ( {
                 }
                 container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <Button
-                  bsStyle="default"
+                <LaddaButton
+                  buttonStyle="zoom-in"
+                  className="btn btn-default"
+                  spinnerColor="#cccccc"
                   disabled={ !showAgree( ) }
+                  loading={ agreeingWithObservation }
                   onClick={ function ( ) {
                     agreeWithCurrentObservation( );
                   } }
                 >
                   <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
-                </Button>
+                </LaddaButton>
               </OverlayTrigger>
               <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
                 <i className="icon-identification"></i> { I18n.t( "add_id" ) }
@@ -367,7 +372,8 @@ ObservationModal.propTypes = {
   agreeWithCurrentObservation: PropTypes.func,
   currentUserIdentification: PropTypes.object,
   showNextObservation: PropTypes.func,
-  showPrevObservation: PropTypes.func
+  showPrevObservation: PropTypes.func,
+  agreeingWithObservation: PropTypes.bool
 };
 
 export default ObservationModal;

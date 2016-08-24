@@ -8,8 +8,24 @@ import {
   LOADING_DISCUSSION_ITEM,
   STOP_LOADING_DISCUSSION_ITEM,
   RECEIVE_OBSERVATIONS,
-  UPDATE_CURRENT_OBSERVATION
+  UPDATE_CURRENT_OBSERVATION,
+  AGREEING_WITH_OBSERVATION,
+  STOP_AGREEING_WITH_OBSERVATION
 } from "../actions";
+
+const updateLoadingForItemInObs = ( item, observation, isLoading ) => {
+  const obs = _.cloneDeep( observation );
+  let existingItem;
+  if ( item.className === "Identification" ) {
+    existingItem = _.find( obs.identifications, i => i.id === item.id );
+  } else {
+    existingItem = _.find( obs.comments, i => i.id === item.id );
+  }
+  if ( existingItem ) {
+    existingItem.loading = isLoading;
+  }
+  return obs;
+};
 
 const currentObservationReducer = ( state = {}, action ) => {
   switch ( action.type ) {
@@ -52,17 +68,37 @@ const currentObservationReducer = ( state = {}, action ) => {
         identificationFormVisible: true,
         commentFormVisible: false
       } );
-    case LOADING_DISCUSSION_ITEM:
+    case LOADING_DISCUSSION_ITEM: {
       return Object.assign( {}, state, {
+        observation:
+          action.item ?
+            updateLoadingForItemInObs( action.item, state.observation, true )
+            :
+            state.observation,
+        loadingDiscussionItem: true,
         identificationFormVisible: false,
-        commentFormVisible: false,
-        loadingDiscussionItem: true
+        commentFormVisible: false
       } );
-    case STOP_LOADING_DISCUSSION_ITEM:
+    }
+    case STOP_LOADING_DISCUSSION_ITEM: {
       return Object.assign( {}, state, {
+        observation:
+          action.item ?
+            updateLoadingForItemInObs( action.item, state.observation, false )
+            :
+            state.observation,
+        loadingDiscussionItem: false,
         identificationFormVisible: false,
-        commentFormVisible: false,
-        loadingDiscussionItem: false
+        commentFormVisible: false
+      } );
+    }
+    case AGREEING_WITH_OBSERVATION:
+      return Object.assign( {}, state, {
+        agreeingWithObservation: true
+      } );
+    case STOP_AGREEING_WITH_OBSERVATION:
+      return Object.assign( {}, state, {
+        agreeingWithObservation: false
       } );
     case RECEIVE_OBSERVATIONS:
       return Object.assign( { }, state, { observation: null } );
