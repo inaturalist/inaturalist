@@ -40,15 +40,47 @@ class IdentificationsController < ApplicationController
   
   def by_login
     block_if_spammer(@selected_user) && return
-    scope = @selected_user.identifications_for_others.order("identifications.id DESC")
-    unless params[:on].blank?
-      scope = scope.on(params[:on])
+    params[:page] = params[:page].to_i
+    params[:page] = 1 unless params[:page] > 0
+    user_filter = { term: { "non_owner_ids.user.id": @selected_user.id } }
+    date_parts = Identification.conditions_for_date("col", params[:on])
+    # only if conditions_for_date determines a valid range will it return
+    # an array of [ condition_to_interpolate, min_date, max_date ]
+    if date_parts.length == 3
+      date_filters = [
+        { range: { "non_owner_ids.created_at": { gte: date_parts[1] } } },
+        { range: { "non_owner_ids.created_at": { lte: date_parts[2] } } }
+      ]
     end
-    @identifications = scope.page( params[:page] ).per_page( limited_per_page ).includes(
+    result = Observation.elastic_search(
+      complex_wheres: [ { nested: {
+        path: "non_owner_ids",
+        query: { bool: { must: [ user_filter, date_filters ].flatten.compact } }
+      } } ],
+      size: limited_per_page,
+      from: (params[:page] - 1) * limited_per_page,
+      sort: { "non_owner_ids.created_at": {
+        order: "desc",
+        mode: "max",
+        nested_path: "non_owner_ids",
+        nested_filter: user_filter
+      } }
+    )
+    # pluck the proper Identification IDs from the obs results
+    ids = result.response.hits.hits.map{ |h| h._source.non_owner_ids.detect{ |i|
+      i.user.id == @selected_user.id
+    } }.compact.map{ |i| i.id }
+    # fetch the Identification instances and preload
+    instances = Identification.where(id: ids).order(id: :desc).includes(
       { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
       { taxon: [{taxon_names: :place_taxon_names}, :photos] },
       :user
     )
+    # turn the instances into a WillPaginate Collection
+    @identifications = WillPaginate::Collection.create(params[:page], limited_per_page,
+      result.response.hits.total) do |pager|
+      pager.replace(instances.to_a)
+    end
     respond_to do |format|
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)

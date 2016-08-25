@@ -345,11 +345,7 @@ class Place < ActiveRecord::Base
     return true if self.swlng.to_f.abs > 180 || self.nelng.to_f.abs > 180
     self.swlng.to_f > 0 && self.nelng.to_f < 0
   end
-  
-  def contains_lat_lng?(lat, lng)
-    swlat <= lat && nelat >= lat && swlng <= lng && nelng >= lng
-  end
-  
+
   def editable_by?(user)
     return false if user.blank?
     return true if user.is_admin?

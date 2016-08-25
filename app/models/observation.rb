@@ -2352,7 +2352,9 @@ class Observation < ActiveRecord::Base
 
   def set_taxon_photo
     return true unless research_grade? && quality_grade_changed?
-    community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
+    unless taxon.photos.any?
+      community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
+    end
     true
   end
 
