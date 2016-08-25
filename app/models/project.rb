@@ -675,17 +675,27 @@ class Project < ActiveRecord::Base
   end
 
   def update_users_observations_counts
-    results = project_observations.
-      joins(:observation).
-      joins(project: :project_users).
-      where("observations.user_id = project_users.user_id").
-      group("observations.user_id").
-      distinct.count("observations.id")
     Project.transaction do
+      # set all counts to zero
       project_users.update_all(observations_count: 0)
-      results.each do |user_id, count|
-        ProjectUser.where(project_id: id, user_id: user_id).
-          update_all(observations_count: count)
+      user_ids = project_users.pluck(:user_id).uniq.sort
+      user_ids.in_groups_of(500, false) do |uids|
+        # matching the node.js iNaturalistAPI filters/aggregations for obs counts
+        result = Observation.elastic_search(
+          filters: [
+            { term: { project_ids: self.id } },
+            { terms: { "user.id": uids } }
+          ],
+          size: 0,
+          aggregate: {
+            top_observers: { terms: { field: "user.id", size: 0 } } }
+        )
+        if result && result.response && result.response.aggregations
+          result.response.aggregations.top_observers.buckets.each do |b|
+            ProjectUser.where(project_id: id, user_id: b[:key]).
+              update_all(observations_count: b.doc_count)
+          end
+        end
       end
     end
   end
