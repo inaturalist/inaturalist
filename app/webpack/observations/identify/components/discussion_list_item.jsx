@@ -44,7 +44,8 @@ const DiscussionListItem = ( {
           <LaddaButton
             buttonSize="xs"
             buttonStyle="zoom-in"
-            spinnerColor="#cccccc"
+            spinnerColor="#666666"
+            spinnerSize={15}
             className="btn btn-xs btn-default"
             disabled={ loading }
             loading={ loading }

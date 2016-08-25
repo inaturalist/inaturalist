@@ -334,7 +334,7 @@ const ObservationModal = ( {
                 <LaddaButton
                   buttonStyle="zoom-in"
                   className="btn btn-default"
-                  spinnerColor="#cccccc"
+                  spinnerColor="#666666"
                   disabled={ !showAgree( ) }
                   loading={ agreeingWithObservation }
                   onClick={ function ( ) {
