@@ -691,37 +691,36 @@ class Project < ActiveRecord::Base
   end
 
   def update_users_taxa_counts(options = {})
-    # matching the node.js iNaturalistAPI filters/aggregations for species counts
-    filters = [
-      { term: { project_ids: self.id } },
-      { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
-      { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } }
-    ]
-    if options[:user_id]
-      filters << { term: { "user.id": options[:user_id] } }
-    end
-    result = Observation.elastic_search(
-      filters: filters,
-      size: 0,
-      aggregate: {
-        user_taxa: {
-          terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
-          aggs: {
-            distinct_taxa: {
-              cardinality: {
-                field: "taxon.min_species_ancestry", precision_threshold: 10000
-              }
-            }
-          }
-        }
-      }
-    )
-    return unless result && result.response && result.response.aggregations
     Project.transaction do
+      # set all counts to zero
       project_users.update_all(taxa_count: 0) unless options[:user_id]
-      result.response.aggregations.user_taxa.buckets.each do |b|
-        ProjectUser.where(project_id: id, user_id: b[:key]).
-          update_all(taxa_count: b.distinct_taxa.value)
+      user_ids = options[:user_id] ? [ options[:user_id] ] :
+        project_users.pluck(:user_id).uniq.sort
+      user_ids.in_groups_of(500, false) do |uids|
+        # matching the node.js iNaturalistAPI filters/aggregations for species counts
+        filters = [
+          { term: { project_ids: self.id } },
+          { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
+          { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
+          { terms: { "user.id": uids } }
+        ]
+        result = Observation.elastic_search(
+          filters: filters,
+          size: 0,
+          aggregate: {
+            user_taxa: {
+              terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
+              aggs: {
+                distinct_taxa: {
+                  cardinality: {
+                    field: "taxon.min_species_ancestry", precision_threshold: 10000 } } } } }
+        )
+        if result && result.response && result.response.aggregations
+          result.response.aggregations.user_taxa.buckets.each do |b|
+            ProjectUser.where(project_id: id, user_id: b[:key]).
+              update_all(taxa_count: b.distinct_taxa.value)
+          end
+        end
       end
     end
   end

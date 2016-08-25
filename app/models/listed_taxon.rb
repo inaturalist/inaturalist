@@ -61,8 +61,8 @@ class ListedTaxon < ActiveRecord::Base
   
   scope :filter_by_taxon, lambda { |filter_taxon_id, self_and_ancestor_ids|
     # explicit join so Arel doesn't alias the taxa table, breaking the where clause
-    joins("INNER JOIN taxa ON (listed_taxa.taxon_id=taxa.id)").
-      where("listed_taxa.taxon_id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?",
+    joins("INNER JOIN taxa taxon_filter ON (listed_taxa.taxon_id=taxon_filter.id)").
+      where("listed_taxa.taxon_id = ? OR taxon_filter.ancestry = ? OR taxon_filter.ancestry LIKE ?",
       filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")
   }
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
@@ -85,7 +85,7 @@ class ListedTaxon < ActiveRecord::Base
     where("establishment_means IN (?)", means)
   }
 
-  scope :from_place_or_list, lambda{|place_id, list_id| where("(place_id = ? OR list_id = ?)", place_id, list_id)}
+  scope :from_place_or_list, lambda{|place_id, list_id| where("(listed_taxa.place_id = ? OR listed_taxa.list_id = ?)", place_id, list_id)}
   scope :from_place_or_list_with_observed_from_place, lambda{|place_id, list_id| where("((place_id = ?) OR (list_id = ? AND last_observation_id IS NULL))", place_id, list_id)}
 
   scope :acceptable_taxa, lambda{|taxa_ids| where("listed_taxa.taxon_id IN (?)", taxa_ids)}
