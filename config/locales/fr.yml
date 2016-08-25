@@ -632,6 +632,7 @@ fr:
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe
     pas
   cant_merge_a_taxon_with_itself: Impossible de fusionner un taxon avec lui-même.
+  captive: En captivité
   captive_cultivated: En captivité/cultivé
   card: Carte
   case_plural: s
@@ -1275,6 +1276,7 @@ fr:
   extinct_in_the_wild: disparue à l’état sauvage
   extra_properties: Propriétés supplémentaires
   extras: Suppléments
+  evidence_of_organism?: Preuve d’un organisme ?
   facebook: Facebook
   facebook_account_information: Les informations de votre compte Facebook
   facebook_account_not_linked: '%{user} n’a plus de compte Facebook lié, donc %{site_name}
@@ -1551,6 +1553,7 @@ fr:
   identification_saved: Identification enregistrée!
   identification_summary: Résumé de l’identification
   identification_updated: Identification mise à jour!
+  identification_withdrawn: Identification retirée.
   identifications: Identifications
   identifications_by: Identifications de %{user}
   identified?: identifié
@@ -2273,6 +2276,7 @@ fr:
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
   no_x_this_y: Aucun %{x} durant %{y}
   noble_curators: Responsables éminents de l’organisation d’%{site}
+  non_human?: Non-humain ?
   none: Aucun
   none_of_the_people_you_follow_have_updates: Aucune des personnes que vous suivez
     n’a encore fait de mise à jour!
@@ -2980,6 +2984,7 @@ fr:
   recent: Récent
   recent_additions: Ajouts récents
   recent_comments_on_your_stuff: Commentaires récents sur vos trucs
+  recent_evidence?: Preuve récente ?
   recent_observations: Observations récentes
   recent_post: Note récente
   recent_atom_observations_by: Observations récentes de %{login} (Atom)
@@ -4918,36 +4923,46 @@ fr:
 
           <ul>
             <li>l’observation <strong>a une date</strong></li>
-            <li>l’observation <strong>est géoréférencée</strong> (c.-à-d. a des coordonnées de long/lat)</li>
+            <li>l’observation <strong>est géoréférencée</strong> (c.-à-d. a des coordonnées de longitude/lattitude)</li>
             <li>l’observation <strong>a des photos ou des sons</strong></li>
-          </ul>
+            <li>l’observation <strong>n’est pas d’un humain</strong></li></ul>
           <p>
             Les observations deviennent <strong>« état recherché »</strong> quand
           </p>
           <ul>
             <li>
-              la <strong>communauté de %{site_name} est d’accord avec l’ID de l’observateur</strong>, où une identifiaction
-              « en accord » en est une qui correspond exactement ou est un taxon enfant de
+              la <strong>communauté de %{site_name} est d’accord avec l’ID de l’observateur</strong>, où une identification
+              « en accord » en est une qui correspond exactement, ou est un taxon enfant de
               l’ID de l’observateur. Par exemple, si Scott dit que c’est un mammifère et que Ken-ichi
               dit que c’est un <em>Homo sapiens</em>, alors Ken-ichi est d’accord avec Scott.
             </li>
           </ul>
           <p>
-            Les observations seront ramenées à <strong>« occasionnel »</strong> si les conditions ci-dessus ne sont pas respectées ou si
+            Les observations seront ramenées à <strong>« occasionnel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté est d’accord
           </p>
           <ul>
             <li>
-              la communauté es d’accord sur le fait que la <strong>localisation ne semble pas
+               la <strong>localisation ne semble pas
               exacte</strong> (par ex. des singes au milieu de l’océan,
               des hippopotames dans des immeubles, etc.)
             </li>
             <li>
-              la communauté est d’accord sur le fait que l’<strong>organisme n’est pas
+              l’<strong>organisme n’est pas
               sauvage/naturalisé</strong> (par ex. en captivité ou cultivé par des humains
               ou une espèce extraterrestre intelligente)
             </li>
             <li>
-              la communauté est d’accord sur le fait que l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
+              l’observation <strong>ne montre aucune preuve d’un
+              organisme</strong>, par ex. des images de paysage, de pièces d’eau,
+              de rochers, etc.
+            </li>
+            <li>
+              l’observation <strong>ne présente pas de preuve récente (~100 ans) de
+              l’organisme</strong> (par ex. des fossiles, mais des traces, des excréments ou des feuilles mortes
+              sont ok)
+            </li>
+            <li>
+              l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
             </li>
           </ul>
         score_desc: score = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords
