@@ -686,7 +686,11 @@ private
   end
 
   def require_editor
-    @list.editable_by?(current_user)
+    unless @list.editable_by?(current_user)
+      flash[:notice] = t(:only_the_owner_of_this_list_can_do_that)
+      redirect_to @list
+      return false
+    end    
   end
 
   def require_listed_taxa_editor
