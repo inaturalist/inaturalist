@@ -166,11 +166,11 @@ class CheckListsController < ApplicationController
   end
   
   def lock_down_default_check_lists
+    return true unless @list.is_default?
     if logged_in? && current_user.is_admin?
       flash[:notice] = t(:you_can_edit_this_default_check_list_because)
       return true
-    end
-    if @list.is_default?
+    else
       flash[:error] = t(:you_cant_do_that_for_the_default_check_list_place)
       redirect_to @list
     end
