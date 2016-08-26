@@ -113,16 +113,15 @@ class ProjectUser < ActiveRecord::Base
       errors.add(:user, "hasn't been invited to this project")
     end
   end
-  
+
   def update_observations_counter_cache
-    update_attributes(:observations_count => project_observations.count)
+    project.update_users_observations_counts(user_id: user_id)
   end
-  
-  # set taxa_count on project user, which is the number of taxa observed by this user, favoring the curator ident
+
   def update_taxa_counter_cache
     project.update_users_taxa_counts(user_id: user_id)
   end
-  
+
   def check_role
     return true unless role_changed?
     if role_was.blank?

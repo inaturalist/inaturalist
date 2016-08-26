@@ -674,11 +674,12 @@ class Project < ActiveRecord::Base
     update_users_taxa_counts
   end
 
-  def update_users_observations_counts
+  def update_users_observations_counts(options = {})
     Project.transaction do
       # set all counts to zero
-      project_users.update_all(observations_count: 0)
-      user_ids = project_users.pluck(:user_id).uniq.sort
+      project_users.update_all(observations_count: 0) unless options[:user_id]
+      user_ids = options[:user_id] ? [ options[:user_id] ] :
+        project_users.pluck(:user_id).uniq.sort
       user_ids.in_groups_of(500, false) do |uids|
         # matching the node.js iNaturalistAPI filters/aggregations for obs counts
         result = Observation.elastic_search(
