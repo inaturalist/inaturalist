@@ -67,7 +67,7 @@ describe Place, "updating" do
   end
 end
 
-describe Place, "import by WOEID" do
+describe Place, "import by WOEID", disabled: ENV["TRAVIS_CI"] do
   before(:each) do
     @woeid = '28337864';
     @place = Place.import_by_woeid(@woeid)
