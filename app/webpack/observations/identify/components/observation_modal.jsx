@@ -337,8 +337,8 @@ const ObservationModal = ( {
                     agreeWithCurrentObservation( );
                   } }
                 >
-                  <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check"}></i>
-                  <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
+                  <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
+                  </i> { _.capitalize( I18n.t( "agree" ) ) }
                 </Button>
               </OverlayTrigger>
               <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >

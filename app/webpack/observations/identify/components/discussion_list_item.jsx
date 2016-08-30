@@ -48,7 +48,7 @@ const DiscussionListItem = ( {
               agreeWith( identification );
             } }
           >
-            <i className={ loading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check"}>
+            <i className={ loading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
             </i> { _.capitalize( I18n.t( "agree" ) ) }
           </Button>
         </div>
