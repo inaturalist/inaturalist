@@ -674,47 +674,64 @@ class Project < ActiveRecord::Base
     update_users_taxa_counts
   end
 
-  def update_users_observations_counts
-    results = project_observations.
-      joins(:observation).
-      joins(project: :project_users).
-      where("observations.user_id = project_users.user_id").
-      group("observations.user_id").
-      distinct.count("observations.id")
+  def update_users_observations_counts(options = {})
     Project.transaction do
-      project_users.update_all(observations_count: 0)
-      results.each do |user_id, count|
-        ProjectUser.where(project_id: id, user_id: user_id).
-          update_all(observations_count: count)
+      # set all counts to zero
+      project_users.update_all(observations_count: 0) unless options[:user_id]
+      user_ids = options[:user_id] ? [ options[:user_id] ] :
+        project_users.pluck(:user_id).uniq.sort
+      user_ids.in_groups_of(500, false) do |uids|
+        # matching the node.js iNaturalistAPI filters/aggregations for obs counts
+        result = Observation.elastic_search(
+          filters: [
+            { term: { project_ids: self.id } },
+            { terms: { "user.id": uids } }
+          ],
+          size: 0,
+          aggregate: {
+            top_observers: { terms: { field: "user.id", size: 0 } } }
+        )
+        if result && result.response && result.response.aggregations
+          result.response.aggregations.top_observers.buckets.each do |b|
+            ProjectUser.where(project_id: id, user_id: b[:key]).
+              update_all(observations_count: b.doc_count)
+          end
+        end
       end
     end
   end
 
   def update_users_taxa_counts(options = {})
-    user_clause = options[:user_id] ? "AND o.user_id=#{ options[:user_id] }" : ""
-    results = Project.connection.execute("
-      SELECT o.user_id, count(DISTINCT COALESCE(i.taxon_id, o.taxon_id)) count
-      FROM project_observations po
-        JOIN observations o ON (po.observation_id=o.id)
-        JOIN project_users pu ON (o.user_id=pu.user_id and pu.project_id=#{ id })
-        LEFT OUTER JOIN taxa ot ON (ot.id = o.taxon_id)
-        LEFT OUTER JOIN identifications i ON (po.curator_identification_id = i.id)
-        LEFT OUTER JOIN taxa it ON (it.id = i.taxon_id)
-      WHERE
-        po.project_id = #{ id }
-        #{ user_clause }
-        AND (
-          -- observer's ident taxon is species or lower
-          ot.rank_level <= #{Taxon::SPECIES_LEVEL}
-          -- curator's ident taxon is species or lower
-          OR it.rank_level <= #{Taxon::SPECIES_LEVEL}
-        )
-      GROUP BY o.user_id")
     Project.transaction do
+      # set all counts to zero
       project_users.update_all(taxa_count: 0) unless options[:user_id]
-      results.each do |r|
-        ProjectUser.where(project_id: id, user_id: r["user_id"]).
-          update_all(taxa_count: r["count"])
+      user_ids = options[:user_id] ? [ options[:user_id] ] :
+        project_users.pluck(:user_id).uniq.sort
+      user_ids.in_groups_of(500, false) do |uids|
+        # matching the node.js iNaturalistAPI filters/aggregations for species counts
+        filters = [
+          { term: { project_ids: self.id } },
+          { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
+          { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
+          { terms: { "user.id": uids } }
+        ]
+        result = Observation.elastic_search(
+          filters: filters,
+          size: 0,
+          aggregate: {
+            user_taxa: {
+              terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
+              aggs: {
+                distinct_taxa: {
+                  cardinality: {
+                    field: "taxon.min_species_ancestry", precision_threshold: 10000 } } } } }
+        )
+        if result && result.response && result.response.aggregations
+          result.response.aggregations.user_taxa.buckets.each do |b|
+            ProjectUser.where(project_id: id, user_id: b[:key]).
+              update_all(taxa_count: b.distinct_taxa.value)
+          end
+        end
       end
     end
   end

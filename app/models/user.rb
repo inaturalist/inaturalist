@@ -740,8 +740,17 @@ class User < ActiveRecord::Base
 
   def self.update_identifications_counter_cache(user_id)
     return unless user = User.find_by_id(user_id)
-    User.where(id: user_id).update_all(
-      identifications_count: user.identifications_for_others.count)
+    result = Observation.elastic_search(
+      complex_wheres: [ { nested: {
+        path: "non_owner_ids",
+        query: { bool: { must: [
+          { term: { "non_owner_ids.user.id": user_id } }
+        ] } }
+      } } ],
+      size: 0
+    )
+    count = (result && result.response) ? result.response.hits.total : 0
+    User.where(id: user_id).update_all(identifications_count: count)
   end
 
   def to_plain_s

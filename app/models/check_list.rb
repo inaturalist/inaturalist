@@ -148,11 +148,11 @@ class CheckList < List
     return true unless comprehensive?
     ancestry = [taxon.ancestry, taxon.id].compact.join('/')
     conditions = [
-      "place_id = ? AND list_id != ? AND (taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", 
+      "place_id = ? AND list_id != ? AND (taxa.ancestry = ? OR taxa.ancestry LIKE ?)",
       place_id, id, ancestry, "#{ancestry}/%"
     ]
     that = self
-    ListedTaxon.where(conditions).find_each do |lt|
+    ListedTaxon.joins(:taxon).where(conditions).find_each do |lt|
       next if that.listed_taxa.exists?(:taxon_id => lt.taxon_id)
       ListedTaxon.where(id: lt.id).update_all(occurrence_status_level: ListedTaxon::ABSENT)
     end

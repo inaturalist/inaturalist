@@ -112,6 +112,8 @@ end
 describe ProjectsController, "update" do
   let(:project) { Project.make! }
   let(:user) { project.user }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   before { sign_in user }
   it "should work for the owner" do
     put :update, id: project.id, project: {title: "the new title"}

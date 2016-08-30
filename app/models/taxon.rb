@@ -378,7 +378,6 @@ class Taxon < ActiveRecord::Base
     set_iconic_taxon
     return true if id_changed?
     return true if skip_after_move
-    update_listed_taxa
     update_life_lists
     update_obs_iconic_taxa
     conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, "#{ancestry}/#{id}", "#{ancestry}/#{id}/%"]
@@ -782,41 +781,7 @@ class Taxon < ActiveRecord::Base
     return false if rank_level.blank?
     rank_level < SPECIES_LEVEL
   end
-  
-  # Updated the "cached" ancestor values in all listed taxa with this taxon
-  def update_listed_taxa
-    return true if ancestry.blank?
-    return true if ancestry_callbacks_disabled?
-    return true unless ancestry_changed?
-    Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(id, ancestry_was)
-    true
-  end
-  
-  def self.update_listed_taxa_for(taxon, ancestry_was)
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return true unless taxon
-    ListedTaxon.where(taxon_id: taxon.id).update_all(taxon_ancestor_ids: taxon.ancestry)
-    old_ancestry = ancestry_was
-    old_ancestry = old_ancestry.blank? ? taxon.id : "#{old_ancestry}/#{taxon.id}"
-    new_ancestry = taxon.ancestry
-    new_ancestry = new_ancestry.blank? ? taxon.id : "#{new_ancestry}/#{taxon.id}"
-    if !ListedTaxon.where("taxon_ancestor_ids = ?", old_ancestry.to_s).exists? &&
-       !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
-      return
-    end
-    max = ListedTaxon.calculate(:maximum, :id)
-    offset = 0
-    batch_size = 10000
-    scope = ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%")
-    ( ( max - offset ) / batch_size ).times do |i|
-      start = offset + i * batch_size
-      stop  = offset + i * batch_size + batch_size - 1
-      scope.where( "id BETWEEN ? AND ?", start, stop ).
-        update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
-      sleep 1
-    end
-  end
-  
+
   def update_life_lists(options = {})
     ids = options[:skip_ancestors] ? [id] : [id, ancestor_ids].flatten.compact
     if ListRule.exists?([
@@ -953,7 +918,6 @@ class Taxon < ActiveRecord::Base
     end
     
     LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-    Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(self, reject.ancestry)
     
     %w(flags).each do |association|
       send(association, :reload => true).each do |associate|
@@ -1665,7 +1629,7 @@ class Taxon < ActiveRecord::Base
     scope.find_each do |t|
       Taxon.where(id: t.id).update_all(observations_count:
         Observation.elastic_search(
-          where: { "taxon.ancestor_ids" => t.id }).total_entries)
+          where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
     end
   end
 

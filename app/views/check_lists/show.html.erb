@@ -312,7 +312,8 @@
                 <%= t("occurrence_status_levels.absent").downcase %>
               <% end -%>
               <%= label :occurrence_status, :any do %>
-                <%= radio_button_tag :occurrence_status, :any, @occurrence_status == 'any' %>
+                <%= radio_button_tag :occurrence_status, :any,
+                      !@occurrence_status || @occurrence_status == 'any' %>
                 <%= t(:any).downcase %>
               <% end -%>
             </div>

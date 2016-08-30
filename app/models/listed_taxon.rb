@@ -25,7 +25,6 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :source # if added b/c of a published source
   
   before_validation :nilify_blanks
-  before_validation :set_ancestor_taxon_ids
   before_validation :update_cache_columns
   before_create :set_place_id
   before_create :set_updater_id
@@ -60,7 +59,12 @@ class ListedTaxon < ActiveRecord::Base
     end
   }
   
-  scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
+  scope :filter_by_taxon, lambda { |filter_taxon_id, self_and_ancestor_ids|
+    # explicit join so Arel doesn't alias the taxa table, breaking the where clause
+    joins("INNER JOIN taxa taxon_filter ON (listed_taxa.taxon_id=taxon_filter.id)").
+      where("listed_taxa.taxon_id = ? OR taxon_filter.ancestry = ? OR taxon_filter.ancestry LIKE ?",
+      filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")
+  }
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
   scope :find_listed_taxa_from_default_list, lambda{|place_id| where("listed_taxa.place_id = ? AND primary_listing = ?", place_id, true)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
@@ -81,7 +85,7 @@ class ListedTaxon < ActiveRecord::Base
     where("establishment_means IN (?)", means)
   }
 
-  scope :from_place_or_list, lambda{|place_id, list_id| where("(place_id = ? OR list_id = ?)", place_id, list_id)}
+  scope :from_place_or_list, lambda{|place_id, list_id| where("(listed_taxa.place_id = ? OR listed_taxa.list_id = ?)", place_id, list_id)}
   scope :from_place_or_list_with_observed_from_place, lambda{|place_id, list_id| where("((place_id = ?) OR (list_id = ? AND last_observation_id IS NULL))", place_id, list_id)}
 
   scope :acceptable_taxa, lambda{|taxa_ids| where("listed_taxa.taxon_id IN (?)", taxa_ids)}
@@ -92,10 +96,11 @@ class ListedTaxon < ActiveRecord::Base
   scope :with_occurrence_status_levels_approximating_present, -> { where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL") }
 
   scope :with_threatened_status, ->(place_id) {
+    joins(:taxon).
     joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
     where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))").
-    select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*").
-    order("taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count")
+    select("DISTINCT ON (taxa.ancestry || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*").
+    order("taxa.ancestry || '/' || listed_taxa.taxon_id, listed_taxa.observations_count")
   }
   scope :with_species, -> { joins(:taxon).where(taxa: { rank_level: 10 }) }
   
@@ -131,10 +136,18 @@ class ListedTaxon < ActiveRecord::Base
   # in a join table. Since those are *only* the ancestors, if you join the
   # original query on taxon_id and select those that do *not* have a matching
   # taxon in the ancestor join table, those are the leaves.
-  scope :with_leaves, lambda{|scope_to_sql| 
+  scope :with_leaves, lambda{|scope_to_sql|
     # generate the ancestor IDs subquery
-    ancestor_ids_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
-    ancestor_ids_sql + " AND taxon_ancestor_ids IS NOT NULL"
+    ancestor_ids_sql = scope_to_sql.gsub(/^(S.*)\*/,
+      "SELECT DISTINCT regexp_split_to_table(branch_taxa.ancestry, '/') AS ancestor_id")
+    # create a new alias for joining with taxa
+    if ancestor_ids_sql.match(/ WHERE /)
+      ancestor_ids_sql = ancestor_ids_sql.gsub(/ WHERE /,
+        " INNER JOIN taxa branch_taxa ON listed_taxa.taxon_id=branch_taxa.id WHERE ")
+    else
+      ancestor_ids_sql = ancestor_ids_sql +
+        " INNER JOIN taxa branch_taxa ON listed_taxa.taxon_id=branch_taxa.id"
+    end
     # join ancestors on taxon_id
     join = <<-SQL
       LEFT JOIN (
@@ -217,7 +230,7 @@ class ListedTaxon < ActiveRecord::Base
                 :skip_index_taxon
   
   def ancestry
-    taxon_ancestor_ids
+    taxon.ancestry
   end
   
   def to_s
@@ -327,16 +340,6 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
   
-  def set_ancestor_taxon_ids
-    return true unless taxon
-    unless taxon.ancestry.blank?
-      self.taxon_ancestor_ids = taxon.ancestry
-    else
-      self.taxon_ancestor_ids = '' # this should probably be in the db...
-    end
-    true
-  end
-
   def set_old_list
     @old_list = self.list
   end
@@ -700,21 +703,9 @@ class ListedTaxon < ActiveRecord::Base
   def taxon_common_name
     taxon.common_name.try(:name)
   end
-  
+
   def user_login
     user.try(:login)
-  end
-  
-  # Update the taxon_ancestors of ALL listed_taxa. Note this will be
-  # slow and memory intensive, so it should only be run from a script.
-  def self.update_all_taxon_attributes
-    start_time = Time.now
-    Rails.logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
-    Taxon.where("listed_taxa_count IS NOT NULL").find_each do |taxon|
-      taxon.update_listed_taxa
-    end
-    Rails.logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
-      "(#{Time.now - start_time}s)"
   end
 
   def expire_caches
