@@ -28,7 +28,6 @@ const ObservationsGridItem = ( {
   if ( o.reviewed_by.indexOf( o.user.id ) >= 0 ) {
     numReviewers = numReviewers - 1;
   }
-  console.log( "[DEBUG] o.currentUserAgrees: ", o.currentUserAgrees );
   const agreeButton = (
     <OverlayTrigger
       placement="bottom"
