@@ -23,14 +23,16 @@ function mapStateToProps( state, ownProps ) {
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitIdentification: ( identification, options = {} ) => {
-      dispatch( loadingDiscussionItem( ) );
+      dispatch( loadingDiscussionItem( identification ) );
       const boundPostIdentification = ( ) => {
         dispatch( postIdentification( identification ) )
         .catch( ( ) => {
-          dispatch( stopLoadingDiscussionItem( ) );
+          dispatch( stopLoadingDiscussionItem( identification ) );
         } )
         .then( ( ) => {
-          dispatch( fetchCurrentObservation( ownProps.observation ) );
+          dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
+            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          } );
           dispatch( fetchObservationsStats( ) );
           dispatch( fetchIdentifiers( ) );
         } );
@@ -40,7 +42,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
           title: I18n.t( "heads_up" ),
           onConfirm: boundPostIdentification,
           onCancel: ( ) => {
-            dispatch( stopLoadingDiscussionItem( ) );
+            dispatch( stopLoadingDiscussionItem( identification ) );
             dispatch( addIdentification( ) );
           }
         } ) );

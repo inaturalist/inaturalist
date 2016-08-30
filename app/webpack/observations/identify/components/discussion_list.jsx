@@ -1,8 +1,9 @@
 import React, { PropTypes } from "react";
 import DiscussionListItemContainer from "../containers/discussion_list_item_container";
 import moment from "moment";
+import _ from "lodash";
 
-const DiscussionList = ( { observation, onDelete, onRestore } ) => {
+const DiscussionList = ( { observation, onDelete, onRestore, currentUserID } ) => {
   let items = ( observation.comments || [] ).map( ( c ) => (
     Object.assign( c, {
       className: "Comment",
@@ -11,7 +12,12 @@ const DiscussionList = ( { observation, onDelete, onRestore } ) => {
     } )
   ) );
   const taxonIds = new Set( );
-  items = items.concat( ( observation.identifications || [] ).map( ( i ) => {
+  const idents = ( observation.identifications || [] );
+  const currentUserIdent = _.find( idents, i => currentUserID && i.user.id === currentUserID );
+  if ( currentUserIdent ) {
+    taxonIds.add( currentUserIdent.taxon.id );
+  }
+  items = items.concat( idents.map( ( i ) => {
     const hideAgree = taxonIds.has( i.taxon.id ) || !i.taxon.is_active;
     taxonIds.add( i.taxon.id );
     return Object.assign( i, {
@@ -59,7 +65,8 @@ const DiscussionList = ( { observation, onDelete, onRestore } ) => {
 DiscussionList.propTypes = {
   observation: PropTypes.object.isRequired,
   onDelete: PropTypes.func,
-  onRestore: PropTypes.func
+  onRestore: PropTypes.func,
+  currentUserID: PropTypes.number
 };
 
 export default DiscussionList;

@@ -18,25 +18,31 @@ function mapStateToProps( state, ownProps ) {
     return {
       hideAgree,
       currentUser: state.config.currentUser,
-      loading: state.currentObservation.loadingDiscussionItem
+      loading: ownProps.identification ? ownProps.identification.loading : false
     };
   }
   return {
     currentUser: state.config.currentUser,
-    loading: state.currentObservation.loadingDiscussionItem
+    loading: ownProps.identification ? ownProps.identification.loading : false
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    agreeWith: ( params ) => {
-      dispatch( loadingDiscussionItem( ) );
+    agreeWith: ( identification ) => {
+      const params = {
+        taxon_id: identification.taxon.id,
+        observation_id: identification.observation_id
+      };
+      dispatch( loadingDiscussionItem( identification ) );
       dispatch( postIdentification( params ) )
         .catch( ( ) => {
-          dispatch( stopLoadingDiscussionItem( ) );
+          dispatch( stopLoadingDiscussionItem( identification ) );
         } )
         .then( ( ) => {
-          dispatch( fetchCurrentObservation( ) );
+          dispatch( fetchCurrentObservation( ) ).then( ( ) => {
+            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          } );
           dispatch( fetchObservationsStats( ) );
           dispatch( fetchIdentifiers( ) );
         } );
