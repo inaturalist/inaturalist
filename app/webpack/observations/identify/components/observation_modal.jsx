@@ -11,7 +11,6 @@ import {
   Popover,
   Tooltip
 } from "react-bootstrap";
-import LaddaButton from "react-ladda";
 import _ from "lodash";
 import moment from "moment";
 import DiscussionListContainer from "../containers/discussion_list_container";
@@ -331,18 +330,16 @@ const ObservationModal = ( {
                 }
                 container={ $( "#wrapper.bootstrap" ).get( 0 ) }
               >
-                <LaddaButton
-                  buttonStyle="zoom-in"
-                  className="btn btn-default"
-                  spinnerColor="#666666"
-                  disabled={ !showAgree( ) }
-                  loading={ agreeingWithObservation }
+                <Button
+                  bsStyle="default"
+                  disabled={ agreeingWithObservation || !showAgree( ) }
                   onClick={ function ( ) {
                     agreeWithCurrentObservation( );
                   } }
                 >
+                  <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check"}></i>
                   <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
-                </LaddaButton>
+                </Button>
               </OverlayTrigger>
               <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
                 <i className="icon-identification"></i> { I18n.t( "add_id" ) }

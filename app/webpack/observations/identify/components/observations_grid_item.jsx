@@ -1,10 +1,10 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 import {
+  Button,
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
-import LaddaButton from "react-ladda";
 import SplitTaxon from "./split_taxon";
 import UserImage from "./user_image";
 
@@ -38,22 +38,18 @@ const ObservationsGridItem = ( {
       }
       container={ $( "#wrapper.bootstrap" ).get( 0 ) }
     >
-      <LaddaButton
+      <Button
         id={`agree-btn-${o.id}`}
-        buttonSize="xs"
-        buttonStyle="zoom-in"
-        spinnerColor="#666666"
-        spinnerSize={15}
-        className={o.currentUserAgrees ? "btn btn-xs btn-success" : "btn btn-xs btn-default"}
-        loading={ o.agreeLoading }
-        disabled={ !o.taxon || o.currentUserAgrees }
+        bsSize="xs"
+        bsStyle={o.currentUserAgrees ? "success" : "default"}
+        disabled={ o.agreeLoading || !o.taxon || o.currentUserAgrees}
         onClick={ function ( ) {
           onAgree( o );
         } }
       >
-        <i className="fa fa-check">
+        <i className={ o.agreeLoading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check"}>
         </i> { _.capitalize( I18n.t( "agree" ) ) }
-      </LaddaButton>
+      </Button>
     </OverlayTrigger>
   );
   const showAgree = o.taxon && o.taxon.rank_level <= 10 && o.taxon.is_active;

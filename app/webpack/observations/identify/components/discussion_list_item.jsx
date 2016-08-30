@@ -1,9 +1,9 @@
 import React, { PropTypes } from "react";
 import moment from "moment";
+import { Button } from "react-bootstrap";
 import _ from "lodash";
 import SplitTaxon from "./split_taxon";
 import UserText from "./user_text";
-import LaddaButton from "react-ladda";
 
 const DiscussionListItem = ( {
   user,
@@ -41,20 +41,16 @@ const DiscussionListItem = ( {
     if ( !hideAgree ) {
       actions = (
         <div className="actions">
-          <LaddaButton
-            buttonSize="xs"
-            buttonStyle="zoom-in"
-            spinnerColor="#666666"
-            spinnerSize={15}
-            className="btn btn-xs btn-default"
+          <Button
+            bsSize="xsmall"
             disabled={ loading }
-            loading={ loading }
             onClick={ function ( ) {
               agreeWith( identification );
             } }
           >
-            { _.capitalize( I18n.t( "agree" ) ) }
-          </LaddaButton>
+            <i className={ loading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check"}>
+            </i> { _.capitalize( I18n.t( "agree" ) ) }
+          </Button>
         </div>
       );
     }
