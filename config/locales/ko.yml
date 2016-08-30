@@ -451,7 +451,7 @@ ko:
     split: 구 분류군을 여러 개의 새로운 분류군으로 나눔
     merge: 여러 개의 분류군을 하나의 분류군으로 통합
     swap: 1대1 이름 변경
-    drop: '유효하지 않은 분류군: 역사적 목적이나 파트너 호환성을 위해 유지'
+    drop: '완전히 유효하지 않은 분류군 개념: 역사적 목적이나 파트너 호환성을 위해 유지'
     stage: 바뀜 그룹의 일부로 배포를 위한 비활성 개념을 준비
   change_geoprivacy: 위치보호 변경
   change_group: 그룹 바꾸기
@@ -920,6 +920,7 @@ ko:
   extinct_in_the_wild: 야생에서 멸종
   extra_properties: 추가 특징들
   extras: 엑스트라들
+  evidence_of_organism?: 생물의 증거가 있습니까?
   facebook: 페이스북
   facebook_account_information: 페이스북 계정 정보
   facebook_account_not_linked: '%{user}님이 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이(가)
@@ -1588,6 +1589,7 @@ ko:
   no_wikipedia_page_for_taxon: 이 분류군은 위키백과 페이지가 없습니다.
   no_x_this_y: '%{y}에 %{x} 없음'
   noble_curators: '%{site}의 고귀한 큐레이터들'
+  non_human?: 사람이 아닙니까?
   none: 없음
   none_of_the_people_you_follow_have_updates: 아직 팔로우하는 사람들이 업데이트하지 않았습니다!
   normal: 보통
@@ -1796,6 +1798,7 @@ ko:
   real_time_discussions: 실시간 토론
   reason: 이유
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
+  recent_evidence?: 최근의 증거가 있습니까?
   recent_observations: 최근 관찰
   recent_atom_observations_by: '%{login}의 최근 관찰 (Atom)'
   recently_finished: 최근에 완료됨
