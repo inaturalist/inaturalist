@@ -180,7 +180,7 @@
     latitude: @project.latitude,
     longitude: @project.longitude,
     map_type: @project.map_type,
-    observation_layers: [ { project_id: @project.id, observations: @observations } ] ) %>
+    observation_layers: [ { project_id: @project.id, captive: "any", observations: @observations } ] ) %>
   <div class="stacked">
     <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   </div>
