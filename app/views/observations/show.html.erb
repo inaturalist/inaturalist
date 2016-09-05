@@ -1,6 +1,6 @@
 <% content_for(:title) do %>
   <% if @observation.taxon %>
-    <%= [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?} %>
+    <%=raw [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?} %>
   <% elsif @observation.species_guess.blank? %>
     <%= @observation.species_guess %>
   <%- else -%>
