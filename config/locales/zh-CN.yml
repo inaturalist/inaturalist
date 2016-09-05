@@ -346,6 +346,7 @@ zh-CN:
   and_help_the_inaturalist_community_grow: 并帮助%{site_name}社区成长。
   and_make_some_new: 并制作一些新的
   and_other_taxa: '&amp; 其他分类'
+  and_un_license_all_your_observations: 并且取消您观察记录的协议授权
   and_you_havent_linked: ……并且您没有连接这些外部账户之一，您应首先通过 %{site_name} 登录，然后编辑您的详细信息并从这里连接您的账户。否则
     %{site_name} 可能无从得知两个账户是否已连接，并尝试为您创建一个新的账户！
   and_x_more_people!:
@@ -417,7 +418,11 @@ zh-CN:
   ascending: 升序
   aside_from_extraordinary_circumstances: 除了特殊情况外，我们也不会向您询问您的密码。
   assessment: 评定
+  assessment_has_benn_completed: 评定已完成
+  assessment_sections: 评定区间
+  assessment_was_deleted: 评定已删除。
   assessment_was_successfully_created: 已成功创建评价。
+  assessment_was_successfully_updated: 评定已成功更新。
   assessment_x: '%{assessment} 评定'
   assessments: 评定
   associations: 关联
@@ -1004,7 +1009,7 @@ zh-CN:
   facebook: 脸书
   facebook_account_information: 您的Facebook账户信息
   facebook_account_not_linked: '%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。'
-  facebook_access_token_expired: 访问token已过期。%{user}需要重新连接他们的Facebook账户。
+  facebook_access_token_expired: 访问令牌已过期。%{user}需要重新连接他们的Facebook账户。
   facebook_confirmation: Facebook需要确认您想要将您的账户连接到%{site_name}
   facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
   facebook_options: Facebook选项
@@ -1235,7 +1240,7 @@ zh-CN:
   identifications_by: 由 %{user} 做出的身份证明
   identified?: 已认证
   identifiers: 标识符
-  identotron: 鉴定精灵
+  identotron: Identotron
   identotron_help: Identotron帮助
   ids: ID
   ids_made_for_others: 由其他人做出的ID
@@ -1245,8 +1250,7 @@ zh-CN:
     href="%{feedback_url}">反馈群组</a>提交信息。
   if_you_have_trouble_with_the_site: 如果您在使用本网站时遇到问题，请查看我们的帮助区：
   if_you_use: 如果您使用
-  if_youd_like_us_to_share_your_observations_with: 如果您愿意让我们将您的观察记录和数据合作者进行分享，请确定您已经将您的观察记录进行Creative
-    Commons协议授权。
+  if_youd_like_us_to_share_your_observations_with: 如果您愿意让我们将您的观察记录和数据合作者进行分享，请确定您已经将您的观察记录进行知识共享协议授权。
   if_you_want_to_change_the_name: 如果您希望更改名称
   if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
   if_your_search_comes_up: 如果您的搜索结果为空，您可以通过搜索选项在我们的外部物种名称提供者那里进行同样的搜索：
@@ -1345,9 +1349,9 @@ zh-CN:
   joined_any_projects: 已加入任何项目
   joining: 正在加入……
   journal: 杂志
-  journal_archives_for: 日志存档
+  journal_archives_for: 日记存档，用于
   journal_post: 日记发布
-  journal_post_deleted: 日志项已删除。
+  journal_post_deleted: 日记帖子已删除。
   jpg_png_or_gif: JPG、PNG或GIF
   jump_to_letter: 跳转至信件
   just_added!: 添加了！
@@ -1371,7 +1375,7 @@ zh-CN:
   leaderboard_most:
     species: '%{time} 内的最多物种'
     observations: 在 %{time} 的多数观察
-    identifications: '%{time}中最多的鉴定记录'
+    identifications: '%{time}中的最多鉴定'
   learn!: 学习！
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
@@ -1380,7 +1384,7 @@ zh-CN:
   leave_a_comment: 留下评论
   leave_this_project: 离开这个项目
   leaves: 离开
-  legacy_authentication_notice_html: 你似乎在使用旧版网站的密码。请<a href="%{url}">更改您的密码</a>到新版。
+  legacy_authentication_notice_html: 看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
   lexicons:
@@ -1422,10 +1426,9 @@ zh-CN:
     waray_waray: 瓦瑞瓦瑞语
   less: 更少
   license_descriptions_and_images: 许可协议和图片
-  licensed_site_photos: 已协议授权的%{site_name}照片
+  licensed_site_photos: 已授权的 %{site_name} 照片
   licensing: 授权协议
-  licensing_your_content_gives_others_legal: 对您的内容进行协议授权，可以授予遵守该协议的其他人使用您内容的合法权利。%{site_name}使用您Creative
-    Commons协议授权的内容同其他数据合作伙伴进行分享，比如
+  licensing_your_content_gives_others_legal: 对您的内容进行协议授权，可以授予遵守该协议的其他人使用您内容的合法权利。%{site_name}使用您知识共享协议授权的内容同其他数据合作伙伴进行分享，比如
   life: 生命
   life!: 生命！
   life_list: '%{user}的生命清单'
@@ -1439,12 +1442,12 @@ zh-CN:
   link_your_facebook_account: 链接您的Facebook账户
   link_your_flickr_account: 链接您的Flickr账户
   link_your_flickr_account_with_inat: 将您的Flickr账户与 %{site_name} 链接
-  link_your_flickr_account_with_inat_so: 将您的Flickr账户连接到%{site_name}，以便您由此增加您的观察记录的照片。
+  link_your_flickr_account_with_inat_so: 将您的Flickr账户连接到%{site_name}，这样您可以添加您观察的照片。
   link_your_picasa_account: 链接您的Picasa账户
   linked_facebook: 您的%{site_name}账户目前已链接到您的Facebook账户。
   linked_facebook_automaticaly: 另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name}
     账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？
-  linked_facebook_howto: 要将Facebook关联到%{site_name}，请点击右侧链接，登入Facebook.com。
+  linked_facebook_howto: 要将Facebook连接到%{site_name}，请点击右侧链接，并登录至Facebook.com。
   linked_facebook_password: 我们将不会询问您的Facebook密码（但是Facebook可能检查按钮发送给您的URL并确保那是Facebook.com）。我们也将不会更改您的Facebook数据，除非您要求我们去做。
   linked_flickr: 您的%{site_name}账户目前已链接到您的Flickr账户。
   linked_flickr_automatically: 另请注意，如果您通过Flickr登录至 %{site_name}，我们将自动重新连接您的 %{site_name}
@@ -1785,7 +1788,7 @@ zh-CN:
   onboarding:
     observe_panel_body_p1_local: 需要灵感？这里有一些在附近被观察到的生命体...
     observe_panel_body_p2: 到户外去，观察一种生物吧。找到一些野生生物，照一张清晰、整体的照片吧。如果您已经有某些野生动物的照片，可以<a
-      href="%{new_observation_path}">现在就添加进来</a>。您也可以使用%{site_name}的移动端应用程序来做您的观察记录。
+      href="%{new_observation_path}">现在就添加进来</a>。您也可以使用%{site_name}的移动端应用程序来做您的观察。
     follow_panel_title_local: 关注一些附近的自然法学家
     follow_panel_title_global: 关注一些活跃的自然法学家
     following_panel_title: 保持对人、分类群和地点的追踪
@@ -1902,18 +1905,18 @@ zh-CN:
       estate: 房地产
       Governorate: 省
       governorate: 省
-      Historical_County: 历史上的县级行政区
-      historical_county: 历史上的县级行政区
-      Historical_State: 历史上的省级行政区
-      historical_state: 历史上的省级行政区
+      Historical_County: 历史县
+      historical_county: 历史县
+      Historical_State: 历史状态
+      historical_state: 历史状态
       Intersection: 交叉
       intersection: 交集
       Island: 岛
       island: 岛
       Land_Feature: 地貌
       land_feature: 地貌
-      Local_Administrative_Area: 本地辖区
-      local_administrative_area: 本地辖区
+      Local_Administrative_Area: 本地行政区域
+      local_administrative_area: 本地行政区域
       Local_Authority: 地方政权
       local_authority: 地方政权
       Miscellaneous: 杂项
@@ -1922,15 +1925,15 @@ zh-CN:
       municipality: 直辖市
       Nationality: 国籍
       nationality: 国籍
-      Nearby_Building: 附近的建筑物
-      nearby_building: 附近的建筑物
+      Nearby_Building: 附近的建筑
+      nearby_building: 附近的建筑
       open_space: 开放空间
       Parish: 教区
       parish: 教区
       Prefecture_City: 地级市
       prefecture_city: 地级市
       Point_of_Interest: 兴趣点
-      point_of_interest: 感兴趣的地点
+      point_of_interest: 兴趣点
       Postal_Code: 邮政编码
       postal_code: 邮政编码
       Province: 省
@@ -1941,7 +1944,7 @@ zh-CN:
       republic: 共和国
       Shire: 郡
       shire: 郡
-      Sports_Team: 体育队
+      Sports_Team: 运动队
       State: 州
       state: 州
       Street: 街道
@@ -1964,11 +1967,11 @@ zh-CN:
       unknown: 未知
       Zone: 地区
       zone: 地带
-  place_guess: 地点猜测结果
+  place_guess: 地方猜想
   place_imported: 地点已导入！
-  place_must_have_a_boundary_defined: 地点需要定义边界
+  place_must_have_a_boundary_defined: 地点必须定义边界。
   place_name: 地名
-  place_notes: 地点注记
+  place_notes: 地点注释
   place_subscription: 地点订阅
   place_type_name: 地点类型名称
   place_updated: 地点已更新！
@@ -2023,7 +2026,7 @@ zh-CN:
   places_merged_successfully: 地点已成功合并！
   plants: 植物
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
-  please_add_this_observation_to: 请将这一观察记录添加到
+  please_add_this_observation_to: 请将这一观察添加至
   please_add_this_to_x_html: 请将此添加至 %{x}
   please_confirm_your_inat_username: 请确认您在%{site_name}的用户名
   please_confirm_your_account_html: 请花一秒钟<a href="%{url}">确认您的账户</a>。
@@ -2068,13 +2071,13 @@ zh-CN:
   project_list_defaults:
     title: '%{owner_name}的清单'
     description: '%{owner_name}的物种列表'
-  project_curators_added_some_of_your_observations_html: <a href="%{url}">%{project}</a>的巡视员添加了您的一些观察记录
+  project_curators_added_some_of_your_observations_html: <a href="%{url}">%{project}</a>的馆长添加了您的一些观察
   project_id: 项目 ID
   project_members: '%{project} 成员'
   project_membership_model_description: 您的项目是对所有人开放的，还是仅对您邀请的人开放？
   project_name: 项目名称
-  project_observation_settings: 项目观察记录设置
-  project_observations: 项目观察记录
+  project_observation_settings: 项目观察设置
+  project_observations: 项目观察
   project_post: 项目贴子
   project_rules: 项目规则
   project_settings: 项目设置
@@ -2094,7 +2097,7 @@ zh-CN:
   projects_in_x: 在 %{x} 中的项目
   projects_youve_joined: 您加入的项目
   protozoans: 原生动物
-  provider_authorizations: 提供者授权
+  provider_authorizations: 提供方授权
   public_domain: 公有领域
   publish: 发布
   purple: 紫色
@@ -2269,7 +2272,7 @@ zh-CN:
   see_something_wrong_with_taxon: 在此分类单元看到一些问题了么？请让馆长知道。
   seen_it?: 看见它了么？
   seen_one: 找到一个了么？
-  select_all: 选择全部
+  select_all: 全选
   select_an_album: 选择一个相册
   select: 选择
   select_one_or_more_photos: 请选择一个或多个照片
