@@ -49,6 +49,11 @@
         %dd Created an ID, obs, comment, or post in the previous 30 days
   .row
     .col-md-12
+      %h3 Observations by platform
+      #platforms.stacked.vis
+        .loading.status=t :loading
+  .row
+    .col-md-12
       %h3 Time to ID (hours, 1 week moving window)
       #ttid.stacked.vis
         .loading.status=t :loading
@@ -87,8 +92,8 @@
       #observations.stacked.vis
         .loading.status=t :loading
     .col-md-6
-      %h3 Observations By Rank
-      #ranks.stacked.vis
+      %h3=t :platforms
+      #cumulative-platforms.stacked.vis
         .loading.status=t :loading
   .row
     .col-md-6
@@ -99,6 +104,12 @@
       %h3 Projects
       #projects.stacked.vis
         .loading.status=t :loading
-      
-  #ranks_pie.stacked
-    .loading.status=t :loading
+  .row
+    .col-md-6
+      %h3 Observations By Rank
+      #ranks.stacked.vis
+        .loading.status=t :loading
+    .col-md-6
+      %h3 Ranks
+      #ranks_pie.stacked.vis
+        .loading.status=t :loading
