@@ -52,6 +52,29 @@
       %h3 Observations by platform
       #platforms.stacked.vis
         .loading.status=t :loading
+    .col-md-6
+      %dl.meta
+        %dt Website
+        %dd
+          Created via
+          = link_to "iNaturalist", "http://www.inaturalist.org/"
+          or
+          = link_to "iNaturalist network", wiki_page_url("network")
+          websites
+        %dt iPhone
+        %dd
+          Created via the
+          = link_to "iNaturalist iPhone app", (@site ? @site.iphone_app_url : CONFIG.iphone_app_url)
+    .col-md-6
+      %dl.meta
+        %dt Android
+        %dd
+          Created via the
+          = link_to "iNaturalist Android app", (@site ? @site.android_app_url : CONFIG.android_app_url)
+        %dt Other
+        %dd
+          Created via other applications
+          = link_to "built by developers", wiki_page_url("developers")
   .row
     .col-md-12
       %h3 Time to ID (hours, 1 week moving window)
@@ -88,16 +111,16 @@
         %dd Signed up in prev 7 days and added 0 obs
   .row
     .col-md-6
-      %h3 Observations (cumulative)
+      %h3 Observations
       #observations.stacked.vis
         .loading.status=t :loading
     .col-md-6
-      %h3=t :platforms
+      %h3 Observations by platform
       #cumulative-platforms.stacked.vis
         .loading.status=t :loading
   .row
     .col-md-6
-      %h3=t :cumulative_users
+      %h3 Users
       #cumulative-users.stacked.vis
         .loading.status=t :loading
     .col-md-6
@@ -106,7 +129,7 @@
         .loading.status=t :loading
   .row
     .col-md-6
-      %h3 Observations By Rank
+      %h3 Observations by rank
       #ranks.stacked.vis
         .loading.status=t :loading
     .col-md-6
