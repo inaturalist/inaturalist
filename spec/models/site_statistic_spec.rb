@@ -2,6 +2,11 @@ require File.expand_path("../../spec_helper", __FILE__)
 
 describe SiteStatistic do
 
+  before :all do
+    OauthApplication.make!(name: "iNaturalist Android App")
+    OauthApplication.make!(name: "iNaturalist iPhone App")
+  end
+
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do
       expect( SiteStatistic.stats_generated_for_day?).to be false

@@ -1,7 +1,7 @@
 class SiteStatistic < ActiveRecord::Base
 
   STAT_TYPES = [ :observations, :users, :projects,
-    :taxa, :identifications, :identifier ]
+    :taxa, :identifications, :identifier, :platforms, :platforms_cumulative ]
 
   def self.generate_stats_for_day(at_time = Time.now, options = {})
     at_time = at_time.utc.end_of_day
@@ -170,6 +170,38 @@ class SiteStatistic < ActiveRecord::Base
       memo[pair[0]] = pair[1].to_numeric
       memo
     end
+  end
+
+  def self.platforms_stats(at_time = Time.now)
+    at_time = at_time.utc
+    { web: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
+        where("oauth_application_id IS NULL").count,
+      iphone: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
+        where(oauth_application_id: OauthApplication.inaturalist_iphone_app.id).count,
+      android: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
+        where(oauth_application_id: OauthApplication.inaturalist_android_app.id).count,
+      other: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
+        where("oauth_application_id IS NOT NULL").
+        where("oauth_application_id NOT IN (?,?)",
+          OauthApplication.inaturalist_iphone_app.id,
+          OauthApplication.inaturalist_android_app.id).count
+    }
+  end
+
+  def self.platforms_cumulative_stats(at_time = Time.now)
+    at_time = at_time.utc
+    { web: Observation.where("created_at <= ?", at_time).
+        where("oauth_application_id IS NULL").count,
+      iphone: Observation.where("created_at <= ?", at_time).
+        where(oauth_application_id: OauthApplication.inaturalist_iphone_app.id).count,
+      android: Observation.where("created_at <= ?", at_time).
+        where(oauth_application_id: OauthApplication.inaturalist_android_app.id).count,
+      other: Observation.where("created_at <= ?", at_time).
+        where("oauth_application_id IS NOT NULL").
+        where("oauth_application_id NOT IN (?,?)",
+          OauthApplication.inaturalist_iphone_app.id,
+          OauthApplication.inaturalist_android_app.id).count
+    }
   end
 
 end
