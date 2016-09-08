@@ -1872,7 +1872,7 @@ class Observation < ActiveRecord::Base
   end
   
   def url
-    observation_url(self, ActionMailer::Base.default_url_options)
+    uri
   end
   
   def user_login
