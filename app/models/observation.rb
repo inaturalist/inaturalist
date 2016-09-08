@@ -1561,6 +1561,8 @@ class Observation < ActiveRecord::Base
     scope = Observation.with_identifications_of( taxon )
     scope.find_in_batches(batch_size: batch_size) do |batch|
       if options[:place]
+        # using Elasticsearch for place filtering so we don't
+        # get bogged down by huge geometries in Postgresql
         es_params = { id: batch, place_id: options[:place], per_page: batch_size }
         reassess_coordinates_of( Observation.page_of_results( es_params ) )
       else

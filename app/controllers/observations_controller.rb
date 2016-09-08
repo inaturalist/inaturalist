@@ -1389,6 +1389,7 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
+    search_params.delete(:id)
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
