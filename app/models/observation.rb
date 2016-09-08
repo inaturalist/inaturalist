@@ -1557,28 +1557,37 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of( taxon, options = {} )
+    batch_size = 500
     scope = Observation.with_identifications_of( taxon )
-    scope = scope.in_place( options[:place] ) if options[:place]
-    scope.find_in_batches do |batch|
-      batch.each do |o|
-        o.obscure_coordinates_for_threatened_taxa
-        o.obscure_place_guess
-        next unless o.coordinates_changed? || o.place_guess_changed?
-        Observation.where( id: o.id ).update_all(
-          latitude: o.latitude,
-          longitude: o.longitude,
-          private_latitude: o.private_latitude,
-          private_longitude: o.private_longitude,
-          geom: o.geom,
-          private_geom: o.private_geom,
-          place_guess: o.place_guess,
-          private_place_guess: o.private_place_guess
-        )
+    scope.find_in_batches(batch_size: batch_size) do |batch|
+      if options[:place]
+        es_params = { id: batch, place_id: options[:place], per_page: batch_size }
+        reassess_coordinates_of( Observation.page_of_results( es_params ) )
+      else
+        reassess_coordinates_of( batch )
       end
-      Observation.elastic_index!( ids: batch.map(&:id) )
     end
   end
-  
+
+  def self.reassess_coordinates_of( observations )
+    observations.each do |o|
+      o.obscure_coordinates_for_threatened_taxa
+      o.obscure_place_guess
+      next unless o.coordinates_changed? || o.place_guess_changed?
+      Observation.where( id: o.id ).update_all(
+        latitude: o.latitude,
+        longitude: o.longitude,
+        private_latitude: o.private_latitude,
+        private_longitude: o.private_longitude,
+        geom: o.geom,
+        private_geom: o.private_geom,
+        place_guess: o.place_guess,
+        private_place_guess: o.private_place_guess
+      )
+    end
+    Observation.elastic_index!( ids: observations.map(&:id) )
+  end
+
   def self.find_observations_of(taxon)
     Observation.joins(:taxon).
       where("observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", taxon).find_each do |o|
