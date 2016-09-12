@@ -18,6 +18,7 @@
 # Author: Orikrin1998
 # Author: Robby
 # Author: Spasmedevivre
+# Author: Urhixidur
 # Author: Wladek92
 # Author: Yasten
 ---
@@ -4631,8 +4632,8 @@ fr:
         we_also_support_picasa_html: 'Nous acceptons également Picasa: <a href="%{url}">Configurez
           votre compte Picasa &raquo;</a>'
         we_also_support_uploading_photos: |-
-          Nous acceptons aussi le téléchargement direct de photo sur %{site_name}, mais il peut être un peu
-          lent, donc nous n’autorisons qu’un seul téléchargement à la fois. L’utilisation de Flickr ou de Picasa est
+          Nous acceptons aussi le téléversement direct de photo sur %{site_name}, mais il peut être un peu
+          lent, donc nous n’autorisons qu’un seul téléversement à la fois. L’utilisation de Flickr ou de Picasa est
           sans doute plus rapide si vous utilisez déjà ces services.
         what_are_tags?: Que sont les étiquettes?
         tags_are_keywords_you_can_add_to_an_html: "Les étiquettes sont des mots-clés
@@ -4862,13 +4863,13 @@ fr:
         community_taxon_desc_html: |-
           <p class="ui">
             Le taxon de la communauté (ou l’identification de la communauté) représente
-            Le taxon que la communauté d’%{site_name} estime être représenté dans une
-            observation. Si vous êtes intéressé de connaître la façon dont nous choisissons le
+            le taxon que la communauté d’%{site_name} estime être représenté dans une
+            observation. Si vous êtes intéressé à connaître la façon dont nous choisissons le
             taxon de la communauté, consultez les notes sur l’algorithme ci-dessous. En
             général, nous essayons de <strong>choisir un taxon avec lequel plus de 2/3
             les personnes ayant fait une identification sont d’accord</strong>. Quelquefois, ça veut dire
             qu’il faut choisir un taxon de plus haut rang qui contient un certain nombre de
-            taxons qui s’opposent(par ex. vous pensez que c’est une couleuvre tachetée et je pense que
+            taxons qui s’opposent (par ex. vous pensez que c’est une couleuvre tachetée et je pense que
             c’est un serpent à sonnettes. iNat choisira donc le sous-ordre des Serpents qui
             contient tous les serpents). L’algorithme favorise aussi légèrement les
             taxons en conflit, parce que nous avons remarqué que les dissidents ont souvent
@@ -4879,7 +4880,7 @@ fr:
             avec des partenaires d’échange de données, pour associer les observations du même taxon sur le
             site, pour mettre à jour votre liste des êtres vivants, etc. Si, pour une raison quelconque, vous n’êtes
             pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui veut dire
-            que votre ID est celle utilisée pour s’associer aux autres observations,
+            que votre identifiant est celui utilisé pour s’associer aux autres observations,
             pour mettre à jour les listes des êtres vivants, etc. Ça signifie aussi que votre observation ne pourra devenir
             de calibre recherche que quand la communauté sera d’accord avec <em>vous</em>.
             Si vous n’aimez pas du tout l’idée des taxons de la communauté, vous pouvez choisir
@@ -4888,12 +4889,12 @@ fr:
           <p class="ui">
             <strong>L’algorithme :</strong> pour tous les taxons identifiés et les taxons qui les contiennent
             (par ex. genre <i>Homo</i> contient <i>Homo sapiens</i>), évaluez-les selon
-            le ratio entre le nombre d’ID cumulés pour
-            ce taxon et la somme des ID cumulées, le nombre d’ID
-            plus conservateurs ajoutés après le premier ID de ce taxon
-            et le nombre d’ID qui sont complètement différents (c.-à-d. ID
+            le rapport entre le nombre d’identifications cumulées pour
+            ce taxon et la somme des identifications cumulées, le nombre d’identifications
+            plus conservatrices ajoutées après la première identification de ce taxon
+            et le nombre d’identifications qui sont complètement différentes (c.-à-d. identifications
             des taxons qui ne contiennent pas le taxon évalué). Pour les
-            taxons identifiés qui ont un score de plus de 2/3 et au moins 2
+            taxons identifiés qui ont un pointage de plus de 2/3 et au moins 2
             identifications, choisissez le taxon du rang le plus bas.
           </p>
         cumulative_count_desc: Nombre d’identifications pour un taxon distinct et
@@ -4965,8 +4966,8 @@ fr:
               l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
             </li>
           </ul>
-        score_desc: score = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords
-          sur les ancêtres)
+        score_desc: pointage = nombre cumulé/(nombre cumulé + nombre en désaccord
+          + désaccords sur les ancêtres)
       user_stats:
         user_stats_desc: |-
           Les statistiques utilisateurs sont limitées aux 500 premières par nombre d’observations
