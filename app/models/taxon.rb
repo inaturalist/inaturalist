@@ -1331,6 +1331,29 @@ class Taxon < ActiveRecord::Base
     nil
   end
 
+  def popular_terms_and_observations
+    terms = [ ]
+    response = INatAPIService.observations_popular_field_values(taxon_id: id, per_page: 3)
+    if response && response.results && response.results.any?
+      response.results.each do |r|
+        terms << {
+          controlled_attribute: ControlledTerm.find(r["controlled_attribute_id"]),
+          controlled_value: ControlledTerm.find(r["controlled_value_id"]),
+          count: r["count"],
+          observations: Observation.page_of_results(
+            taxon_id: id,
+            term_id: r["controlled_attribute_id"],
+            term_value_id: r["controlled_value_id"],
+            order_by: "votes",
+            per_page: 9
+          )
+        }
+      end
+    end
+    terms.delete_if{ |t| t[:observations].blank? }
+    terms
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)

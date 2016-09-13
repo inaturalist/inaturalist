@@ -424,3 +424,11 @@ h2 .named_ancestor {font-size: 80%;}
   display: block;
   float: left;
 }
+
+#rightcol .controlled_term {
+  width: 250px;
+  float: left;
+  img {
+    width: 65px;
+  }
+}

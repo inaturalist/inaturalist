@@ -1,0 +1,24 @@
+%h2 Controlled Terms
+
+
+%h3
+  Attributes
+%ul
+  - ControlledTerm.attributes.order(id: :asc).each do |ct|
+    = render partial: "term", locals: { term: ct }
+    - if ct.values.any?
+      %ul
+        - ct.values.each do |cv|
+          = render partial: "term", locals: { term: cv }
+
+%h3
+  Unassigned Values
+%ul
+  - ControlledTerm.unassigned_values.order(id: :asc).each do |ct|
+    = render partial: "term", locals: { term: ct }
+
+%hr
+
+%h3 Create a new term
+%ul
+  = render partial: "form"

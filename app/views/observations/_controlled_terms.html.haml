@@ -1,0 +1,26 @@
+%br
+%br
+%div
+  - if @observation.controlled_terms_resources.any?
+    - @observation.controlled_terms_resources.each do |ctr|
+      = link_to ctr.controlled_attribute.label, observations_path(term_id: ctr.controlled_attribute.id)
+      \=>
+      = link_to ctr.controlled_value.label, observations_path(term_id: ctr.controlled_attribute.id, term_value_id: ctr.controlled_value.id)
+      - if ctr.controlled_value.icon.exists?
+        = image_tag ctr.controlled_value.icon.url, style: "max-width: 30px; max-height: 30px;"
+      = link_to t(:delete), ctr, method: :delete, data: { confirm: t(:are_you_sure?) }
+      %br
+- attrs = ControlledTerm.active.attributes
+- attrs = attrs.for_taxon(@observation.taxon_id) if @observation.taxon_id
+- unless attrs.blank?
+  = "Can you fill in any of this information?"
+  = form_for ControlledTermsResource.new do |f|
+    - values = [ ]
+    - attrs.each{ |a| values << [a.label, nil]; a.values.each{ |b| values << [raw(("&nbsp;"*4)+b.label), b.id] } }
+    = f.hidden_field :resource_type, value: "Observation"
+    = f.hidden_field :resource_id, value: @observation.id
+    = f.label :controlled_attribute_id
+    = f.select :controlled_attribute_id, attrs.map{ |a| [a.label, a.id] }.unshift(["", nil])
+    = f.label :controlled_value_id
+    = f.select :controlled_value_id, values.unshift(["", nil])
+    = f.submit "Assign"

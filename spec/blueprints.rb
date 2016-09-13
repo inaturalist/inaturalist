@@ -44,6 +44,22 @@ ConservationStatus.blueprint do
   geoprivacy { Observation::OBSCURED }
 end
 
+ControlledTerm.blueprint do
+  label { Faker::Lorem.word }
+  definition { Faker::Lorem.paragraph }
+end
+
+ControlledTermValue.blueprint do
+  controlled_attribute { ControlledTerm.make! }
+  controlled_value { ControlledTerm.make!(is_value: true) }
+end
+
+ControlledTermsResource.blueprint do
+  controlled_attribute { ControlledTerm.make! }
+  controlled_value { ControlledTerm.make! }
+  resource { Observation.make! }
+end
+
 Flag.blueprint do
   user { User.make! }
   flag { Faker::Name.name }

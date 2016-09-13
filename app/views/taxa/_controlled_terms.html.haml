@@ -1,0 +1,13 @@
+- terms = @taxon.popular_terms_and_observations
+- if terms.any?
+  - terms.each do |t|
+    .controlled_term
+      %h4
+        = link_to "#{t[:controlled_attribute].label}", observations_path(taxon_id: @taxon.id, term_id: t[:controlled_attribute].id, subview: "grid")
+        \:
+        = link_to "#{t[:controlled_value].label}", observations_path(taxon_id: @taxon.id,  term_id: t[:controlled_attribute].id, term_value_id: t[:controlled_value].id, subview: "grid")
+      .observations.stacked.mini
+        - t[:observations].each do |o|
+          %a{ href: observation_path(o) }
+            = image_tag o.photos.first.square_url
+

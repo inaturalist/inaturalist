@@ -125,6 +125,7 @@ class Observation < ActiveRecord::Base
       user: user ? user.as_indexed_json : nil,
       taxon: t ? t.as_indexed_json(for_observation: true) : nil,
       ofvs: observation_field_values.uniq.map(&:as_indexed_json),
+      controlled_terms_test: controlled_terms_resources.map(&:as_indexed_json),
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
@@ -492,6 +493,23 @@ class Observation < ActiveRecord::Base
         ] } }
       end
     end
+
+    if p[:term_id]
+      nested_query = {
+        nested: {
+          path: "controlled_terms_test",
+          query: { bool: { must: [ { match: {
+            "controlled_terms_test.controlled_attribute_id": p[:term_id] } } ] }
+          }
+        }
+      }
+      if p[:term_value_id]
+        nested_query[:nested][:query][:bool][:must] <<
+          { match: { "controlled_terms_test.controlled_value_id": p[:term_value_id] } }
+      end
+      complex_wheres << nested_query
+    end
+
     if p[:ofv_params]
       p[:ofv_params].each do |k,v|
         # use a nested query to search within a single nested

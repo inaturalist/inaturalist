@@ -1,0 +1,10 @@
+%li{ style: "font-weight: #{term.active ? 'bold' : 'normal'}" }
+  = term.label
+  - if term.valid_within_taxon
+    [ within
+    = link_to term.valid_within_taxon.name, term.valid_within_taxon
+    ]
+  - if term.icon.exists?
+    = image_tag term.icon.url, style: "max-width: 30px; max-height: 30px;"
+  = link_to t(:edit), [ :edit, term ]
+  = link_to t(:delete), term, method: :delete, data: { confirm: t(:are_you_sure?) }

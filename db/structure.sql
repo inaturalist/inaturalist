@@ -582,6 +582,110 @@ ALTER SEQUENCE conservation_statuses_id_seq OWNED BY conservation_statuses.id;
 
 
 --
+-- Name: controlled_term_values; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE controlled_term_values (
+    id integer NOT NULL,
+    controlled_attribute_id integer,
+    controlled_value_id integer
+);
+
+
+--
+-- Name: controlled_term_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_term_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_term_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_term_values_id_seq OWNED BY controlled_term_values.id;
+
+
+--
+-- Name: controlled_terms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE controlled_terms (
+    id integer NOT NULL,
+    ontology_uri text,
+    uri text,
+    label character varying,
+    definition character varying,
+    valid_within_clade integer,
+    valid_above_clade integer,
+    icon_file_name character varying,
+    icon_content_type character varying,
+    icon_file_size character varying,
+    icon_updated_at character varying,
+    is_value boolean DEFAULT false,
+    active boolean DEFAULT false,
+    user_id integer
+);
+
+
+--
+-- Name: controlled_terms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_terms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_terms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_terms_id_seq OWNED BY controlled_terms.id;
+
+
+--
+-- Name: controlled_terms_resources; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE controlled_terms_resources (
+    id integer NOT NULL,
+    resource_id integer,
+    resource_type character varying,
+    controlled_attribute_id integer,
+    controlled_value_id integer,
+    user_id integer
+);
+
+
+--
+-- Name: controlled_terms_resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_terms_resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_terms_resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_terms_resources_id_seq OWNED BY controlled_terms_resources.id;
+
+
+--
 -- Name: counties_simplified_01; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4253,6 +4357,28 @@ ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('cons
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY controlled_term_values ALTER COLUMN id SET DEFAULT nextval('controlled_term_values_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms ALTER COLUMN id SET DEFAULT nextval('controlled_terms_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms_resources ALTER COLUMN id SET DEFAULT nextval('controlled_terms_resources_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+
 ALTER TABLE ONLY counties_simplified_01 ALTER COLUMN id SET DEFAULT nextval('counties_simplified_01_id_seq'::regclass);
 
 
@@ -4941,6 +5067,30 @@ ALTER TABLE ONLY comments
 
 ALTER TABLE ONLY conservation_statuses
     ADD CONSTRAINT conservation_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_term_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_values
+    ADD CONSTRAINT controlled_term_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms
+    ADD CONSTRAINT controlled_terms_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_terms_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms_resources
+    ADD CONSTRAINT controlled_terms_resources_pkey PRIMARY KEY (id);
 
 
 --
@@ -8138,5 +8288,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160809221731');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809221754');
 
-INSERT INTO schema_migrations (version) VALUES ('20160818234437');
+INSERT INTO schema_migrations (version) VALUES ('20160815154039');
 
+INSERT INTO schema_migrations (version) VALUES ('20160818234437');
