@@ -141,7 +141,11 @@ const setUrl = ( newParams, defaultParams ) => {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
-    urlState[k] = v;
+    if ( _.isArray( v ) ) {
+      urlState[k] = v.join( "," );
+    } else {
+      urlState[k] = v;
+    }
   } );
   if ( !newParams.place_id && defaultParams.place_id ) {
     urlState.place_id = "any";
