@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import _ from "lodash";
+import moment from "moment";
 import C3Chart from "../../../observations/identify/components/c3chart";
 
 function mapStateToProps( state ) {
@@ -32,9 +33,11 @@ function mapStateToProps( state ) {
         x: {
           type: "timeseries",
           tick: {
+            culling: true,
             values: years.map( y => `${y}-06-15` ),
             format: "%Y"
-          }
+          },
+          extent: [moment( ).subtract( 10, "years" ).toDate( ), new Date( )]
         },
         y: {
           show: false,
@@ -55,7 +58,8 @@ function mapStateToProps( state ) {
       },
       tooltip: {
         format: {
-          title: d => `${I18n.t( "date.abbr_month_names" )[d.getMonth( ) + 1].toUpperCase( )} ${d.getFullYear( )}`
+          title: d => `${I18n.t( "date.abbr_month_names" )[d.getMonth( ) + 1].toUpperCase( )} ${d.getFullYear( )} ${I18n.t( "observations" ).toUpperCase( )}`,
+          name: name => I18n.t( name ),
         }
       },
       regions

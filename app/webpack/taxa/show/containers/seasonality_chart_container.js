@@ -36,6 +36,12 @@ function mapStateToProps( state ) {
     },
     point: {
       show: false
+    },
+    tooltip: {
+      format: {
+        title: i => `${I18n.t( "date.month_names" )[i + 1].toUpperCase( )} ${I18n.t( "observations" ).toUpperCase( )}`,
+        name: name => I18n.t( name )
+      }
     }
   };
   return { config, className: "SeasonalityChart FrequencyChart" };
