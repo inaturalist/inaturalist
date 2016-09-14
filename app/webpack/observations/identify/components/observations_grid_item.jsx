@@ -42,12 +42,12 @@ const ObservationsGridItem = ( {
         id={`agree-btn-${o.id}`}
         bsSize="xs"
         bsStyle={o.currentUserAgrees ? "success" : "default"}
-        disabled={ !o.taxon || o.currentUserAgrees}
-        onClick={ ( ) => {
+        disabled={ o.agreeLoading || !o.taxon || o.currentUserAgrees}
+        onClick={ function ( ) {
           onAgree( o );
         } }
       >
-        <i className="fa fa-check">
+        <i className={ o.agreeLoading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
         </i> { _.capitalize( I18n.t( "agree" ) ) }
       </Button>
     </OverlayTrigger>

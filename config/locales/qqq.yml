@@ -24,6 +24,7 @@ qqq:
   x_identifications: |-
     Number of identifications
     {{Identical|Identification}}
+  x_identifications_: '{{Identical|Identification}}'
   x_ids: '{{Identical|ID}}'
   x_lists: |-
     Number of lists. Note: you *must* translate both one: and other:
@@ -127,6 +128,7 @@ qqq:
   animals: '{{Identical|Animal}}'
   announcements: '{{Identical|Announcement}}'
   apply_darr: '{{Identical|Apply}}'
+  appropriate?: '{{Identical|Appropriate}}'
   archives: '{{Identical|Archive}}'
   are_you_sure?: '{{Identical|Are you sure?}}'
   are_you_sure_delete_observation_from_project: where project is the name of a project
@@ -323,6 +325,7 @@ qqq:
     {{Identical|Editing}}
   editing_x_in_y: where x and y are resources being edited
   email: '{{Identical|E-mail}}'
+  embed: '{{Identical|Embed}}'
   end: '{{Identical|End}}'
   endemic_to_x: where x is a place
   error_updating_photo: where photo_errors are a description of the error
@@ -688,6 +691,8 @@ qqq:
       Miscellaneous: '{{Identical|Miscellaneous}}'
       Nationality: '{{Identical|Nationality}}'
       nationality: '{{Identical|Nationality}}'
+      Postal_Code: '{{Identical|Postal code}}'
+      postal_code: '{{Identical|Postal code}}'
       Province: '{{Identical|Province}}'
       province: '{{Identical|Province}}'
       Region: '{{Identical|Region}}'
@@ -785,6 +790,7 @@ qqq:
   removing: '{{Identical|Removing}}'
   reply: '{{Identical|Reply}}'
   required: '{{Identical|Required}}'
+  research: '{{Identical|Research}}'
   resolved: '{{Identical|Resolved}}'
   resolver_said_x_html: where resolver is the name of a user and x is a message
   restore: '{{Identical|Restore}}'
@@ -794,16 +800,20 @@ qqq:
   role: '{{Identical|Role}}'
   row_singular_or_plural: '{{Identical|Row}}'
   row_number_i_was_parsed_as: where row is a number
+  said: '{{Identical|Said}}'
   sat: Abbreviation for Saturday, a day of the week.
   save: '{{Identical|Save}}'
   second_person_possessive_singular: |-
     where noun is a resource like an observation
     used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
   second_person_possessive_singular_: where noun is a resource like an observation
+  select_all: '{{Identical|Select all}}'
   select: '{{Identical|Select}}'
   select_photos_from_your_photo_stream: where site_name is the name of a site
+  selected: '{{Identical|Selected}}'
   send: '{{Identical|Send}}'
   sending: '{{Identical|Sending}}'
+  sent: '{{Identical|Sent}}'
   september: '{{Identical|September}}'
   settings: '{{Identical|Settings}}'
   show: '{{Identical|Show}}'
@@ -819,6 +829,7 @@ qqq:
   site_observations_export_from_date: where site_name is the name of a site
   site_taxon_page: where site_name is the name of a site
   some_of_those_photos_couldnt_be_saved: where error describes the error
+  something_: '{{Identical|Something}}'
   something_went_wrong_deleting_the_taxon_name: where taxon_name is the name of the
     taxon
   sorry_there_were_problems_with_your_request: where project_user describes the problem
@@ -1200,10 +1211,18 @@ qqq:
       less_than_x_minutes: number of minutes
       less_than_x_seconds: number of seconds
       over_x_years: number of years
-      x_days: number of days
-      x_minutes: number of minutes
-      x_months: number of months
-      x_seconds: number of seconds
+      x_days: |-
+        number of days
+        {{Identical|Day}}
+      x_minutes: |-
+        number of minutes
+        {{Identical|Minute}}
+      x_months: |-
+        number of months
+        {{Identical|Month}}
+      x_seconds: |-
+        number of seconds
+        {{Identical|Second}}
     prompts:
       day: '{{Identical|Day}}'
       hour: '{{Identical|Hour}}'
@@ -1308,6 +1327,7 @@ qqq:
         value: '{{Identical|Value}}'
       taxon:
         name: '{{Identical|Name}}'
+        locked: '{{Identical|Locked}}'
   i18n:
     inflections:
       gender:

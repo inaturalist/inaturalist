@@ -84208,7 +84208,6 @@
 	        x: {
 	          type: "timeseries",
 	          tick: {
-	            // format: "%Y-%m",
 	            values: years.map(function (y) {
 	              return y + "-06-15";
 	            }),

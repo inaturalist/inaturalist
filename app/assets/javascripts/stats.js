@@ -30,10 +30,12 @@ Stats.loadChartsFromJSON = function( json ) {
   Stats.load7ObsUsersSpark( json );
 
   Stats.loadObservations7Days( json );
+  Stats.loadPlatforms( json );
   Stats.loadTTID( json );
   Stats.loadUsers( json );
   Stats.loadObservations( json );
   Stats.loadCumulativeUsers( json );
+  Stats.loadCumulativePlatforms( json );
   Stats.loadProjects( json );
   Stats.loadRanks( json );
   Stats.loadRanksPie( json );
@@ -124,7 +126,35 @@ Stats.loadObservations = function( json ) {
       { label: "Research Grade" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.observations.count, stat.data.observations.research_grade ]
+      stat.data.platforms_cumulative = stat.data.platforms_cumulative || { };
+      return [
+        new Date(stat.created_at),
+        stat.data.observations.count,
+        stat.data.observations.research_grade
+      ];
+    })
+  }));
+};
+
+Stats.loadCumulativePlatforms = function( json ) {
+  google.setOnLoadCallback(Stats.simpleChart({
+    element_id: "cumulative-platforms",
+    chartOptions: { isStacked: true },
+    series: [
+      { label: "Website" },
+      { label: "iPhone" },
+      { label: "Android" },
+      { label: "Other" }
+    ],
+    data: _.map( json, function( stat ) {
+      stat.data.platforms_cumulative = stat.data.platforms_cumulative || { };
+      return [
+        new Date(stat.created_at),
+        stat.data.platforms_cumulative.web,
+        stat.data.platforms_cumulative.iphone,
+        stat.data.platforms_cumulative.android,
+        stat.data.platforms_cumulative.other
+      ];
     })
   }));
 };
@@ -150,6 +180,29 @@ Stats.loadObservations7Days = function( json ) {
         stat.data.observations.community_identified_to_genus,
         stat.data.observations.today,
         stat.data.users.active
+      ];
+    })
+  }));
+};
+
+Stats.loadPlatforms = function( json ) {
+  google.setOnLoadCallback(Stats.simpleChart({
+    element_id: "platforms",
+    chartType: google.visualization.AnnotationChart,
+    series: [
+      { label: "Website" },
+      { label: "iPhone" },
+      { label: "Android" },
+      { label: "Other" }
+    ],
+    data: _.map( json, function( stat ) {
+      stat.data.platforms = stat.data.platforms || { };
+      return [
+        new Date(stat.created_at),
+        stat.data.platforms.web,
+        stat.data.platforms.iphone,
+        stat.data.platforms.android,
+        stat.data.platforms.other
       ];
     })
   }));
@@ -301,7 +354,6 @@ Stats.simpleChart = function( options ) {
   } else if( options.chartType === google.visualization.PieChart ) {
     data.addColumn( 'string', 'Key' );
     data.addColumn( 'number', 'Value' );
-    chartOptions.height = 600;
   } else if (options.chartType = google.visualization.AnnotationChart) {
     data.addColumn( 'date', 'Date' );
     chartOptions.min = 0

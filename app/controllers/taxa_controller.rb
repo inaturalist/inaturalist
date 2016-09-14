@@ -816,14 +816,7 @@ class TaxaController < ApplicationController
   private
   def add_places_from_paste
     place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
-    @places = Place.where(place_type: Place::PLACE_TYPE_CODES['Country'], name: place_names)
-    @places ||= []
-    (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
-      ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
-      next if ydn_places.blank?
-      @places << Place.import_by_woeid(ydn_places.first.woeid, user: current_user)
-    end
-    
+    @places = Place.where( admin_level: Place::COUNTRY_LEVEL ).where( "lower(name) IN (?)", place_names )
     @listed_taxa = @places.map do |place| 
       place.check_list.try(:add_taxon, @taxon, :user_id => current_user.id)
     end.select{|p| p.valid?}

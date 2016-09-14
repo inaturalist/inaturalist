@@ -38,7 +38,8 @@ const ObservationModal = ( {
   agreeWithCurrentObservation,
   currentUserIdentification,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  agreeingWithObservation
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -331,12 +332,13 @@ const ObservationModal = ( {
               >
                 <Button
                   bsStyle="default"
-                  disabled={ !showAgree( ) }
+                  disabled={ agreeingWithObservation || !showAgree( ) }
                   onClick={ function ( ) {
                     agreeWithCurrentObservation( );
                   } }
                 >
-                  <i className="fa fa-check"></i> { _.capitalize( I18n.t( "agree" ) ) }
+                  <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
+                  </i> { _.capitalize( I18n.t( "agree" ) ) }
                 </Button>
               </OverlayTrigger>
               <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
@@ -367,7 +369,8 @@ ObservationModal.propTypes = {
   agreeWithCurrentObservation: PropTypes.func,
   currentUserIdentification: PropTypes.object,
   showNextObservation: PropTypes.func,
-  showPrevObservation: PropTypes.func
+  showPrevObservation: PropTypes.func,
+  agreeingWithObservation: PropTypes.bool
 };
 
 export default ObservationModal;

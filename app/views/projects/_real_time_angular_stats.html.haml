@@ -1,6 +1,6 @@
 - extra ||= nil
 %div{ "ng-app": "ProjectStats", "ng-controller": "ProjectStatsController",
-      "ng-init": "initParams({ project_id: #{ project.id }, place_id: 'any', verifiable: 'any' })" }
+      "ng-init": "initParams({ project_id: #{ project.id }, place_id: 'any', verifiable: 'any', captive: 'any' })" }
   .counts
     %label= t :totals
     .totalcount.stat.numerical

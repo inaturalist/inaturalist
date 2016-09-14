@@ -11,4 +11,13 @@ class OauthApplication < Doorkeeper::Application
     :url => ":s3_alias_url"
   validates_attachment_content_type :image, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
+
+  def self.inaturalist_android_app
+    OauthApplication.where(name: "iNaturalist Android App").first
+  end
+
+  def self.inaturalist_iphone_app
+    OauthApplication.where(name: "iNaturalist iPhone App").first
+  end
+
 end

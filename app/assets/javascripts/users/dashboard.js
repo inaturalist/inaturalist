@@ -81,7 +81,7 @@ DASHBOARD.fetchContent = function( fetchURL, type, target ) {
       // show the content
       $( target ).html( data );
       // enable jQuery click events on loaded `more` buttons
-      DASHBOARD.enableMoreButtonClickEvents( );
+      DASHBOARD.enableMoreButtonClickEvents( target );
       if ( type !== "comments" ) {
         $( ".subscriptionsettings" ).subscriptionSettings( );
       }
@@ -89,9 +89,9 @@ DASHBOARD.fetchContent = function( fetchURL, type, target ) {
   });
 };
 
-DASHBOARD.enableMoreButtonClickEvents = function( ) {
-  $( "#more_pagination" ).unbind( "click" );
-  $( "#more_pagination" ).bind( "click", function( e ) {
+DASHBOARD.enableMoreButtonClickEvents = function( target ) {
+  $( target ).find( "#more_pagination" ).unbind( "click" );
+  $( target ).find( "#more_pagination" ).bind( "click", function( e ) {
     e.preventDefault( );
     var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" )
     DASHBOARD.fromIDs[tab] = $( this ).data( "from" );

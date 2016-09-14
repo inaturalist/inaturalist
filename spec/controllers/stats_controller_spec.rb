@@ -3,6 +3,8 @@ require "spec_helper"
 describe StatsController do
 
   before :all do
+    OauthApplication.make!(name: "iNaturalist Android App")
+    OauthApplication.make!(name: "iNaturalist iPhone App")
     [ Time.now, 1.day.ago, 1.week.ago ].each do |t|
       Observation.make!(taxon: Taxon.make!(rank: "species"),
         created_at: t)

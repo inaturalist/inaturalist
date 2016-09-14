@@ -12,9 +12,9 @@ describe Emailer, "updates_notification" do
     @user = @observation.user
     Inaturalist::Application.config.action_mailer.default_url_options[:host] =
       CONFIG.site_url =~ /localhost:3000/ ? "localhost:3000" : URI.parse(CONFIG.site_url).host
-    enable_elastic_indexing(UpdateAction)
+    enable_elastic_indexing( UpdateAction, Taxon )
   end
-  after(:each) { disable_elastic_indexing(UpdateAction) }
+  after(:each) { disable_elastic_indexing( UpdateAction, Taxon ) }
   
   it "should work when recipient has a blank locale" do
     @user.update_attributes(:locale => "")

@@ -259,7 +259,8 @@ class Observation < ActiveRecord::Base
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
       { http_param: :place_id, es_field: "place_ids" },
-      { http_param: :site_id, es_field: "site_id" }
+      { http_param: :site_id, es_field: "site_id" },
+      { http_param: :id, es_field: "id" }
     ].each do |filter|
       unless p[ filter[:http_param] ].blank? || p[ filter[:http_param] ] == "any"
         search_filters << { terms: { filter[:es_field] =>

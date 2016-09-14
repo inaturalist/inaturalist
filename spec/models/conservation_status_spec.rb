@@ -4,7 +4,9 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 describe ConservationStatus, "creation" do
   before(:each) do
     @taxon = Taxon.make!(:rank => Taxon::SPECIES)
+    enable_elastic_indexing( Observation )
   end
+  after(:each) { disable_elastic_indexing( Observation ) }
 
   it "should obscure observations of taxon" do
     o = Observation.make!(:taxon => @taxon, :latitude => 1, :longitude => 1)

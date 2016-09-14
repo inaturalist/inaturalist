@@ -79,7 +79,8 @@ function fetchCurrentObservation( observation = null ) {
           currentUserIdentification.taxon_id === newObs.taxon_id;
         dispatch( updateObservationInCollection( newObs, {
           captiveByCurrentUser,
-          reviewedByCurrentUser
+          reviewedByCurrentUser,
+          currentUserAgrees: newObs.currentUserAgrees
         } ) );
         const currentState = getState();
         if (
@@ -224,11 +225,11 @@ function toggleReviewed( optionalObs = null ) {
   };
 }
 
-function loadingDiscussionItem( ) {
-  return { type: LOADING_DISCUSSION_ITEM };
+function loadingDiscussionItem( item ) {
+  return { type: LOADING_DISCUSSION_ITEM, item };
 }
-function stopLoadingDiscussionItem( ) {
-  return { type: STOP_LOADING_DISCUSSION_ITEM };
+function stopLoadingDiscussionItem( item ) {
+  return { type: STOP_LOADING_DISCUSSION_ITEM, item };
 }
 
 

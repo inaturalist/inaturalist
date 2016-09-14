@@ -4,11 +4,13 @@
 # Author: AndroidOSUser
 # Author: Angelocl
 # Author: Cgalindo
+# Author: Cristofer Alves
 # Author: Fasouzafreitas
 # Author: Julianagatti
 # Author: LucyDiniz
 # Author: Luk3
 # Author: Peter Fernando
+# Author: Tim Vincent
 # Author: Vonmatter
 # Author: Walesson
 ---
@@ -121,6 +123,9 @@ pt-BR:
   accept: Aceito
   accept_community_identifications: Aceito as identificações sugeridas pela comunidade
   accuracy: Precisão (Acurácia)
+  accuracy_m: |2-
+
+    Precisão (m)
   accuracy_meters: Precisão (Acurácia em metros)
   accuracy_of_the_coordinates: Precisão (Acurácia) das coordenadas em metros. Você
     pode editar este campo clicando no link acima ou clicando em um ponto no mapa
@@ -130,6 +135,7 @@ pt-BR:
   actions: ações
   activate_user: Ativar usuário
   active: ativo
+  activity_settings: Configurações de atividade
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} from a work by %{original}
   add: Adicionar
   add_a: Adicionar uma
@@ -218,6 +224,7 @@ pt-BR:
     do Flickr associadas as observações selecionadas.
   add_to: Adicione a
   add_to_a_scheme: Adicione a um esquema
+  add_to_a_project: Adicionar a um projeto
   add_to_calendar: Adicionar ao calendário
   add_to_checklist: Adicione a checklist
   add_to_favorites: Adicionar aos favoritos
@@ -254,6 +261,7 @@ pt-BR:
   agree: Concordo
   agree?: Você concorda?
   agree_to_the_project_terms: Aceita os termos do projeto
+  agree_with_current_taxon: Concordo com taxon atual
   agreeing: Concordando...
   aka: também conhecido como
   all: Todas
@@ -281,6 +289,7 @@ pt-BR:
     birds: Aves
     chromista: Chromista - algas pardas e parentes
     fungi: Fungos
+    fungi_including_lichens: Fungos, incluindo Líquenes
     insects: Insetos
     mammals: Mamíferos
     mollusks: Moluscos
@@ -334,6 +343,7 @@ pt-BR:
       other: '%{count} outros animais'
   all_taxa_in_this_guide: Todas as espécies e grupos deste guia
   all_taxonomic_groups: '&laquo; Todos os Grupos Taxonômicos'
+  all_updates: Todas as atualizações
   all_your_observations_will_default_this_time_zone: Todas as suas observações serão
     feitas neste horário local a não ser que você especifique de maneira diferente.
   all_your_observations_will_default_to_this_time_zone: Todas as observações terão
@@ -406,6 +416,7 @@ pt-BR:
   are_you_sure_remove_curator: Você tem certeza que deseja remover %{user} como coordenador?
   are_you_sure_remove_from_project: Você tem certeza que deseja remover %{user} deste
     projeto?
+  are_you_sure_remove_photo: Tem certeza de que deseja remover esta foto?
   are_you_sure_remove_taxon_from_list: Você tem certeza que quer remover este táxon
     da lista?
   are_you_sure_remove_taxon_from_place: Confirme a exclusão deste táxon de %{place}'s
@@ -459,6 +470,7 @@ pt-BR:
     deseja remover este táxon da lista de verificação de %{place}?
   associated_observations: Associar observações
   associated_taxa: Associar táxons
+  attention: Atenção
   you_sure_delete_list: Tem certeza que gostaria de apagar esta lista?
   you_sure_delete_taxon_from_list?: Você tem certeza que deseja remover %{taxon} da
     lista?
@@ -517,6 +529,7 @@ pt-BR:
   back_to_x_assessment: Volte para as avaliações de %{project}
   back_to_x_history: Voltar para %{x} histórico
   back_to_x_journal: Voltar para %{user}'s boletim informativo
+  back_to_x_blog: Voltar ao blog de %{x}
   back_to_x_observations: Voltar para as observações de %{user}
   back_to_your_lists: Voltar para sua lista
   back_to_your_journal: Voltar para seu diário
@@ -530,20 +543,24 @@ pt-BR:
   beacuse_we_recently_changed_auth_system: Recentemente devido a alterações no sistema
     de autenticação de usuários, foi necessário zerar sua senha.
   because: porque
+  because_of: por causa de
   before_importing_photos: antes de importar fotos
   before_you_can_contribute_your_observations: antes de poder contribuir com sua observações.
   belives_this_is_a_comprehensive_list_of: acredita que esta é uma lista compreensiva
     de
   bg_color: Cor BG
+  bioblitz: Bioblitz
   birds: aves
   black: preto
   blog_widget: Blog Widget
   blue: azul
+  blue_butterfly_etc: azul, borboleta, etc.
   blue_icons_represent_political_units: Ícones azuis representam unidades políticas
     como países, estados, cidades e ainda, os ícones verdes representam diferentes
     tipos de espaços abertos (parques, reservas). Se você der zoom e aproximar, irá
     ver outros lugares pequenos.
   body: Mensagem
+  bounding_box: Quadro Delimitador
   breadcrumbs: Rastros de navegação
   breadcrumbs_description: Você esta substituindo o h1 e ações padrão, certifique-se
     de incluir os itens importantes para este projeto e lembre-se que a largura máxima
@@ -555,6 +572,7 @@ pt-BR:
   browse: Explorar
   browse_all_projects: Procure todos os projetos
   browse_all_species: Procure todas as espécies
+  browse_observations: Procurar Observações
   browse_projects: Explore os Projetos
   browse_species_that_occur_near_this_observation: Procure espécies que ocorrem próximas
     desta observação.
@@ -575,17 +593,17 @@ pt-BR:
   cant_flag_an_object_that_doesnt_exist: Não pode marcar com alerta um objeto que
     não existe
   cant_merge_a_taxon_with_itself: Não pode combinar um táxon com ele mesmo.
+  captive: Cativo
   captive_cultivated: Em cativeiro / cultivada
   card: Identificação
   case_plural: s
   casual: casual
   catalogue_of_life: Catálogo da Vida
+  categories: categorias
   cc_attribution_license: Licenças de Atribuição Creative Commons
   cc_by_description: Esta licença permite que outros distribuam, remixem, adaptem
     ou criem obras derivadas, mesmo que para uso com fins comerciais, contanto que
-    seja dado crédito pela criação original. Esta é a licença menos restritiva de
-    todas as oferecidas, em termos de quais usos outras pessoas podem fazer de sua
-    obra.
+    seja dado crédito pela criação original.
   cc_by_name: Atribuição (by)
   cc_by_nc_description: Esta licença permite que outros remixem, adaptem, e criem
     obras derivadas sobre a obra licenciada, sendo vedado o uso com fins comerciais.
@@ -681,6 +699,7 @@ pt-BR:
   check_list_source: Fonte <span class="meta">(opcional)</span>
   check_lists_for: Outras Check Lists para %{place}
   check_out_my_observations_at: Se desejar, você pode ver minhas observações em
+  check_out_our_blog: Confira nosso Blog
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando
     identificar se assemelha.
   check_out_your_life_list: Reveja sua Lista de Vida
@@ -708,6 +727,7 @@ pt-BR:
   choose_from_your_lists: Escolha das suas listas
   choose_good_default_photos: Escolha com atenção as imagens licenciadas apra Crative
     Commons do Flickr
+  choose_photos: Escolha fotos
   choose_photos_for_this_taxon: Escolhas fotos para este táxon
   choose_photos_to_tag_from_photostream: Escolha fotos para marcar do seu Photostream
   choose_place: Escolha um lugar
@@ -1402,6 +1422,7 @@ pt-BR:
   id_please: Identificar Por favor!
   id_please_expandable_html: Identificar<span class='full'> Por favor</span>!
   identify: Identificar
+  identify_title: Identificar
   identification: Identificação
   identification_deleted: Identificação apagada.
   identification_saved: Identificação salva!

@@ -587,6 +587,7 @@ ca:
   cant_flag_an_object_that_doesnt_exist: No podeu posar una marca a un contingut que
     no existeix
   cant_merge_a_taxon_with_itself: No podeu combinar aquest tàxon amb ell mateix.
+  captive: Captiu
   captive_cultivated: En captivitat / cultivat
   card: Targeta
   case_plural: s
@@ -1204,6 +1205,7 @@ ca:
   extinct_in_the_wild: extingit en estat silvestre
   extra_properties: Propietats extres
   extras: Extres
+  evidence_of_organism?: Evidència d'organisme?
   facebook: Facebook
   facebook_account_information: Informació del vostre compte de Facebook
   facebook_account_not_linked: L'usuari %{user} no té un enllaç a un compte de facebook,
@@ -1474,6 +1476,7 @@ ca:
   identification_saved: Identificació desada!
   identification_summary: Resum de la identificació
   identification_updated: Identificació actualitzada!
+  identification_withdrawn: Identificació retirada.
   identifications: Identificacions
   identifications_by: Identificacions de %{user}
   identified?: identificat
@@ -1825,6 +1828,7 @@ ca:
     fr: Francès
     eu: Basc
     gl: Gallec
+    ko: Coreà
     id: Indonesi
     it: Italià
     mk: Macedònic
@@ -1936,9 +1940,9 @@ ca:
   mentioned_you_in_noun_by_html: '%{user} us ha esmentat a %{noun} de %{by}'
   mentioned_you_in_a_x_on_noun_html: '%{user} us ha esmentat en un %{x} a %{noun}'
   mentioned_you_in_an_x_on_noun_html: '%{user} us ha esmentat en un %{x} a %{noun}'
-  mentioned_you_in_a_x_on_noun_by_html: '%{user} us ha esmentat a un %{x} en %{noun}
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} us ha esmentat a una %{x} en %{noun}
     de %{by}'
-  mentioned_you_in_an_x_on_noun_by_html: '%{user} us ha esmentat a un %{x} en %{noun}
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} us ha esmentat a una %{x} en %{noun}
     de %{by}'
   mentions: Mencions
   merge: Combina
@@ -2179,6 +2183,7 @@ ca:
   no_wikipedia_page_for_taxon: No hi ha cap pàgina a Viquipèdia per a aquest tàxon.
   no_x_this_y: No hi ha %{x} d’aquest %{y}
   noble_curators: Supervisors actius d'%{site}
+  non_human?: No humà?
   none: Cap
   none_of_the_people_you_follow_have_updates: Les persones que seguiu encara no han
     fet cap actualització!
@@ -2265,6 +2270,8 @@ ca:
   observations_for: Observacions per a
   observations_for_project: Observacions per a %{project}
   observations_from: Observacions de %{date}
+  observations_from_people_taxa_and_places_youre_following: Observacions de persones,
+    llocs, i taxa que esteu seguint
   observations_from_this_place: Observacions d'aquest lloc
   observations_from_this_project: Observacions d'aquest projecte
   observations_from_you: Les vostres observacions
@@ -2359,6 +2366,7 @@ ca:
     follow_panel_title_global: Seguiu alguns naturalistes actius
     follow_panel_body: Si visiteu aquests perfils i premeu el botó per seguir-los,
       rebreu actualitzacions quan publiquin les seves observacions
+    following_panel_title: Seguir la Pista de Persones, Taxa, i Llocs
     comments_panel_title: Tens curiositat per conèixer quines discussions tenen lloc
       a %{site_name}
     comments_panel_body: <p>%{site_name} està dedicat a compartir i discutir observacions
@@ -2863,6 +2871,7 @@ ca:
   recent: Recent
   recent_additions: Registres recents
   recent_comments_on_your_stuff: Comentaris recents sobre els vostres continguts
+  recent_evidence?: Proves recents?
   recent_observations: Observacions recents
   recent_post: Notes recents
   recent_atom_observations_by: Observacions recents de %{login} (Atom)
@@ -2958,6 +2967,8 @@ ca:
   resolved: Resolt
   resolved_by: Resolt per
   resolver_said_x_html: <span class="meta">"%{resolver}" va dir:</span> "%{x}"
+  restore: Restaura
+  restoring: Restaurant...
   results: resultats
   review_all: Revisar-ho tot
   review_verb: Revisa
@@ -3354,6 +3365,7 @@ ca:
   taxon_change_settings: Configuració del canvi de tàxon
   taxon_merge: fusió de tàxon
   taxon_name: Nom del tàxon
+  taxon_observed_by_user: '%{taxon} observat per %{user}'
   taxon_photos_updated: S'han actualitzat les fotos del tàxon.
   taxon_range: Rang de tàxon
   taxon_removed_from_list: Tàxon eliminat de la llista.
@@ -3730,8 +3742,8 @@ ca:
     de fulla de càlcul haurien de permetre-us exportar a CSV amb aquest format.
   user: Usuari
   user_added_an_observation_html: '%{user} ha afegit una observació'
-  user_added_a_x: '%{user} va afegir un %{x}'
-  user_added_an_x: '%{user} va afegir un %{x}'
+  user_added_a_x: '%{user} ha afegit una %{x}'
+  user_added_an_x: '%{user} ha afegit una %{x}'
   user_added_an_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
   user_added_a_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
   user_added_an_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
@@ -3943,6 +3955,8 @@ ca:
   wikipedia_entry: Entrada de Viquipèdia
   wikipedia_taxobox_raquo: Fitxa de tàxon a Viquipèdia »
   with: amb
+  withdraw: Retirar
+  withdrawing: Retirant...
   with_errors: Amb errors
   within_inaturalist: Dins %{site_name}
   wondering_what_to_do_next: No sabeu què fer ara? Per què no
