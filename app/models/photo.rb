@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
-  attr_accessor :api_response
+  attr_accessor :api_response, :orphan
   serialize :metadata
 
   include Shared::LicenseModule
@@ -298,10 +298,10 @@ class Photo < ActiveRecord::Base
 
   def create_deleted_photo
     DeletedPhoto.create(
-      :photo_id => id,
-      :user_id => user_id
+      photo_id: id,
+      user_id: user_id,
+      orphan: orphan || false
     )
-    true
   end
 
 end
