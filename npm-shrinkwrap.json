@@ -369,7 +369,7 @@
     },
     "babel-register": {
       "version": "6.9.0",
-      "from": "babel-register@>=6.9.0 <7.0.0",
+      "from": "babel-register@latest",
       "resolved": "https://registry.npmjs.org/babel-register/-/babel-register-6.9.0.tgz"
     },
     "babel-runtime": {
@@ -861,11 +861,6 @@
       "from": "escope@>=3.6.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/escope/-/escope-3.6.0.tgz"
     },
-    "espree": {
-      "version": "3.1.4",
-      "from": "espree@3.1.4",
-      "resolved": "https://registry.npmjs.org/espree/-/espree-3.1.4.tgz"
-    },
     "esprima-fb": {
       "version": "15001.1.0-dev-harmony-fb",
       "from": "esprima-fb@>=15001.1.0-dev-harmony-fb <15002.0.0",
@@ -1031,6 +1026,11 @@
       "version": "0.0.2",
       "from": "format-number-with-string@0.0.2",
       "resolved": "https://registry.npmjs.org/format-number-with-string/-/format-number-with-string-0.0.2.tgz"
+    },
+    "fs.realpath": {
+      "version": "1.0.0",
+      "from": "fs.realpath@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
     },
     "fsevents": {
       "version": "1.0.12",
@@ -1883,9 +1883,9 @@
       "resolved": "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz"
     },
     "inaturalistjs": {
-      "version": "0.1.4",
-      "from": "inaturalist/inaturalistjs",
-      "resolved": "git://github.com/inaturalist/inaturalistjs.git#272a515b9ecca8f37f28e27380cab6cf7ea9a690"
+      "version": "0.1.6",
+      "from": "../inaturalistjs",
+      "resolved": "file:../inaturalistjs"
     },
     "indent-string": {
       "version": "2.1.0",

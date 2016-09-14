@@ -155,6 +155,18 @@ class TaxaController < ApplicationController
         nil
       end
     end
+
+    if params[:test] == "taxon-page"
+      respond_to do |format|
+        @json_opts = Taxon.default_json_options
+        @json_opts[:include][:taxon_names] = {}
+        @json_opts[:include][:iconic_taxon] = {only: [:id, :name]}
+        @json_opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
+        Taxon.preload_associations( @taxon, { taxon_photos: :photo } )
+        return render layout: "bootstrap", action: "show2"
+      end
+    end
+    
     return render_404 unless @taxon
     
     respond_to do |format|

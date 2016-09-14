@@ -1,0 +1,28 @@
+@import "../colors";
+
+.SeasonalityChart .c3-line {
+  stroke-width: 3px;
+}
+
+.FrequencyChart .c3-axis line,
+.FrequencyChart .c3-axis path {
+  stroke: #aaa;
+}
+.FrequencyChart .c3-axis text {
+  fill: #aaa;
+}
+.FrequencyChart .c3-axis-x .tick line {
+   display: none;
+}
+
+.SeasonalityChart .c3-target-verifiable path {
+  stroke-dasharray: 5, 5;
+}
+.HistoryChart .c3-target-verifiable path {
+  stroke-dasharray: 1, 1;
+}
+
+.FrequencyChart .c3-region {
+  fill: #999;
+  opacity: 1;
+}
