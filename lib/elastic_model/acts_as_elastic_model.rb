@@ -5,8 +5,10 @@ module ActsAsElasticModel
   included do
     include Elasticsearch::Model
 
+    attr_accessor :skip_indexing
+
     # load the index definition, if it exists
-    index_path = File.join(Rails.root, "app/es_indices/#{ name.downcase }_index.rb")
+    index_path = File.join(Rails.root, "app/es_indices/#{ name.underscore }_index.rb")
     if File.exists?(index_path)
       ActiveSupport::Dependencies.require_or_load(index_path)
     end
@@ -27,7 +29,7 @@ module ActsAsElasticModel
     class << self
       def elastic_search(options = {})
         begin
-          __elasticsearch__.search(ElasticModel.search_hash(options), preference: "_local")
+          __elasticsearch__.search(ElasticModel.search_hash(options), preference: "_primary_first")
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_search failed: #{ e }"

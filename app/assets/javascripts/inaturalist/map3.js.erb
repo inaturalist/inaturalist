@@ -194,9 +194,7 @@ google.maps.Map.prototype.removeObservations = function(observations) {
   var map = this;
   if (typeof(observations) == "undefined") {
     $.each(map.observations, function(k,v) {
-      map.removeMarker(v)
-      v.setMap(null)
-      delete map.observations[k]
+      map.removeObservation( { id: k } );
       delete map.observationBounds
     });
   } else {
@@ -452,7 +450,6 @@ iNaturalist.Map.createMap = function(options) {
     }
   })
   map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
-  
   if ( !options.disableFullscreen ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   }
@@ -495,7 +492,12 @@ iNaturalist.Map.createObservationIcon = function(options) {
     var iconSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONS' : 'ICONS'
     var iconicTaxonIconsSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONIC_TAXON_ICONS' : 'ICONIC_TAXON_ICONS'
     var iconicTaxonName = options.observation.iconic_taxon_name
-    if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
+    if (!iconicTaxonName && options.observation.iconic_taxon) {
+      iconicTaxonName = options.observation.iconic_taxon.name;
+    }
+    if (!iconicTaxonName && options.observation.taxon) {
+      iconicTaxonName = options.observation.taxon.iconic_taxon_name;
+    }
     if (iconicTaxonName) {
       iconPath = _.clone( iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName] );
       if( options.observation.quality_grade != "research" ) {
@@ -569,7 +571,6 @@ iNaturalist.FullScreenControl = function(map) {
     map.setCenter(oldCenter)
     $(document).bind('keyup', window.fullscreenEscapeHandler)
   }
-  
   controlUI.toggle(enterFullScreen, exitFullScreen)
   return controlDiv;
 }
@@ -689,7 +690,7 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
 iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
-  controlDiv.style.padding = '5px';
+  controlDiv.style.margin = '14px 10px 0';
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)
@@ -715,6 +716,10 @@ iNaturalist.OverlayControl = function(map, options) {
 
 iNaturalist.OverlayControl.prototype.removeOverlayControl = function(title) {
   $("li[data-title='"+title+"']", this.div).remove()
+}
+
+iNaturalist.OverlayControl.prototype.removeAll = function( ) {
+  $("li[data-title]", this.div).remove()
 }
 
 // Given an array of wax.g map layers (overlayMapTypes), add a single
@@ -819,6 +824,12 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
       .attr("name", options.taxon.name);
     var primaryName = options.taxon.common_name ?
       options.taxon.common_name.name : options.taxon.to_styled_s;
+    if ( !primaryName ) {
+      primaryName = options.taxon.preferred_common_name;
+    }
+    if ( !primaryName ) {
+      primaryName = options.taxon.name;
+    }
     // prepare the label for the input, the taxon's scientific Name
     taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
     // append the checkbox and label
@@ -901,7 +912,7 @@ var appendValidParamsToURL = function( url, options ) {
   _.each( options, function( value, key ) {
     if( options.endpoint === "grid" ) { key = key.replace("grid_", ""); }
     if( options.endpoint === "points" ) { key = key.replace("point_", ""); }
-    if( _.contains( options.validParams, key ) ) {
+    if( _.includes( options.validParams, key ) ) {
       params[ key ] = value;
     }
     if ( key.match( /field[:%]\w+/ ) ) {
@@ -1017,6 +1028,18 @@ function postgisTileservers( ) {
   return elasticsearchTileservers( );
 }
 
+google.maps.Map.prototype.removeAllLayers = function( ) {
+  for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
+    var mapType = this.overlayMapTypes.getAt(i),
+        title = mapType.title;
+    mapType.interactivity.remove();
+    this.overlayMapTypes.removeAt(i);
+    if( this._overlayControl ) {
+      this._overlayControl.removeOverlayControl(title)
+    }
+  }
+}
+
 google.maps.Map.prototype.removeObservationsLayer = function(title) {
   for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
     if( this.overlayMapTypes.getAt(i).title == title ) {
@@ -1057,7 +1080,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'native', 'verifiable', 'popular', 'has', 'photos', 'sounds',
     'photo_license', 'created_d1', 'created_d2', 'not_in_project',
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
-    'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id' ];
+    'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
+    'taxon_ids', 'changed_fields', 'changed_since', 'change_project_id' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -1180,23 +1204,21 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
         interactionOn = true;
         map.setOptions({ draggableCursor: 'pointer' });
         if (o.e.type == 'click') {
-          // this is ugly but works, until Google maps changes and breaks it.
-          // The main map div contains a single div. That div's first element
-          // contains the main map stuff. The third element in that
-          // div (with z-index: 3) is a div 100% wide and high representing the
-          // map panel.
-          // The main goal here is to only respond to clicks on the map and only
-          // on the map, and nothing that might be shown over the map, like
-          // another infowindow or other Google Maps, or custom map, UI
-          var clickableDiv = $($($(map.div).children()[0]).children()[0]).children()[2];
           // if a native infoWindow was just opened, don't let another one open
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
             return false;
           }
-          // require the click to be on the map itself and not any other
-          // element on top of the map, including Google Maps UI, custom
-          // overlays, or observation infoWindows
-          if(clickableDiv !== o.e.target) { return false; }
+          // this is ugly but works, until Google maps changes and breaks it.
+          // The main map div contains a div with z-index:0 that sets the cursor.
+          // The third element in that div (with z-index: 3) is the lowest level
+          // element that will capture any mouse events from the user.
+          // The main goal here is to only respond to clicks on the map and only
+          // on the map, and nothing that might be shown over the map, like
+          // another infowindow or other Google Maps, or custom map, UI.
+          // needs to be asynchronous so the selector resolves
+          var googleMainMapDiv = $(map.div).find("div[style*='cursor'][style*='z-index: 0']");
+          var googleMapInteractionsDiv = $(googleMainMapDiv).children()[2];
+          if(googleMapInteractionsDiv !== o.e.target) { return false; }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room
@@ -1253,6 +1275,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
 
 google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, options ) {
   options = options || { };
+  iw.close( );
   if( options.pixelOffset ) {
     // proper window placement for non-obscured markers
     iw.setOptions({ pixelOffset: options.pixelOffset });

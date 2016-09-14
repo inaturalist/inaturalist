@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Andreas Plank
 # Author: Danieleseglie
+# Author: Exonie
 # Author: Frog7301
 # Author: Liuxinyu970226
 # Author: Macofe
@@ -10,6 +11,7 @@
 # Author: Robby
 # Author: Siebrand
 # Author: Sudachi
+# Author: Walter Klosse
 # Author: 아라
 ---
 qqq:
@@ -22,6 +24,8 @@ qqq:
   x_identifications: |-
     Number of identifications
     {{Identical|Identification}}
+  x_identifications_: '{{Identical|Identification}}'
+  x_ids: '{{Identical|ID}}'
   x_lists: |-
     Number of lists. Note: you *must* translate both one: and other:
     {{Identical|List}}
@@ -32,6 +36,7 @@ qqq:
   x_observations: |-
     Number of observations
     {{Identical|Observation}}
+  x_observations_: '{{Identical|Observation}}'
   x_observations_html: |-
     Number of observations, with the count in a span of class 'count'
     {{Identical|Observation}}
@@ -73,6 +78,7 @@ qqq:
     and just above the map. See https://www.inaturalist.org/projects/herps-of-texas/journal/1869
   account: '{{Identical|Account}}'
   accept: '{{Identical|Accept}}'
+  accept_community_identifications: An option (checkbox) in the account settings page
   accuracy: '{{Identical|Accuracy}}'
   accuracy_meters: '{{Identical|Accuracy}}'
   acquaintances: '{{Identical|Acquaintance}}'
@@ -114,12 +120,15 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: an doesnt exist in czech language
+  an_: an doesnt exist in czech language
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
   animals: '{{Identical|Animal}}'
   announcements: '{{Identical|Announcement}}'
   apply_darr: '{{Identical|Apply}}'
+  appropriate?: '{{Identical|Appropriate}}'
   archives: '{{Identical|Archive}}'
   are_you_sure?: '{{Identical|Are you sure?}}'
   are_you_sure_delete_observation_from_project: where project is the name of a project
@@ -135,6 +144,7 @@ qqq:
   are_you_sure_you_want_to_remove_these_x_taxa?: where x is a number
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: where place is the name
     of a place
+  attention: '{{Identical|Attention}}'
   you_sure_delete_taxon_from_list?: where taxon is the name of a taxon
   asc: Abbreviation of "Ascending".
   assessment_x: where assessment is the display name of an assessment
@@ -214,11 +224,13 @@ qqq:
   comprehensive?: '{{Identical|Comprehensive}}'
   configure: '{{Identical|Configure}}'
   configure_a_widget_to_show: where site_name is the name of the site
+  confirm: '{{Identical|Confirm}}'
   confirmed: '{{Identical|Confirmed}}'
   connect_to_provider: where provider is an external provider like Facebook
   connecting_your_inat_account_to_accounts_other_sites: where site_name is the name
     of the site
   contest: '{{Identical|Contest}}'
+  continue: '{{Identical|Continue}}'
   contributions: '{{Identical|Contribution}}'
   contributors_to_project: where project is the name of a project
   controls: '{{Identical|Control}}'
@@ -313,6 +325,7 @@ qqq:
     {{Identical|Editing}}
   editing_x_in_y: where x and y are resources being edited
   email: '{{Identical|E-mail}}'
+  embed: '{{Identical|Embed}}'
   end: '{{Identical|End}}'
   endemic_to_x: where x is a place
   error_updating_photo: where photo_errors are a description of the error
@@ -339,6 +352,7 @@ qqq:
   feeds: '{{Identical|Feed}}'
   failed: '{{Identical|Failed}}'
   fields: '{{Identical|Field}}'
+  fields_: '{{Identical|Field}}'
   filter: '{{Identical|Filter}}'
   filters: '{{Identical|Filter}}'
   find: '{{Identical|Find}}'
@@ -367,9 +381,12 @@ qqq:
   full_screen: '{{Identical|Full screen}}'
   general: '{{Identical|General}}'
   geoprivacy: See [[wiktionary:geoprivacy|geoprivacy on Wiktionary]] for hints.
+  get_started: '{{Identical|Get started}}'
   getting_started: '{{Identical|Getting started}}'
   go: '{{Identical|Go}}'
+  got_it!: '{{Identical|Got it}}'
   grant_role: where grant is removed/added and role is a role like admin
+  grid: '{{Identical|Grid}}'
   group: '{{Identical|Group}}'
   guidelines: '{{Identical|Guideline}}'
   hate_me_facebook: where site_name is the name of the site
@@ -384,6 +401,7 @@ qqq:
   identify: |-
     Second-person verb, used as a button label
     {{Identical|Identify}}
+  identify_title: '{{Identical|Identify}}'
   identifications: '{{Identical|Identification}}'
   identifications_by: where user is the name of a user
   identified?: '{{Identical|Identified}}'
@@ -468,11 +486,14 @@ qqq:
   lists: '{{Identical|List}}'
   load: '{{Identical|Load}}'
   loading: '{{Identical|Loading}}'
+  locales_: '{{Identical|Locale}}'
   locales:
     en: '{{Identical|English}}'
     es: '{{Identical|Spanish}}'
     fr: '{{Identical|French}}'
+    it: '{{Identical|Italian}}'
     pt: '{{Identical|Portuguese}}'
+  localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
   log_in: '{{Identical|Log in}}'
@@ -485,6 +506,7 @@ qqq:
   mail_disclaimer: where site_name is the name of the site
   main_content_description: '{{notranslate}}'
   make_this_your_default_license: where type is a
+  manage: '{{Identical|Manage}}'
   manager: '{{Identical|Manager}}'
   managers: '{{Identical|Manager}}'
   map: '{{Identical|Map}}'
@@ -495,6 +517,7 @@ qqq:
       checklist_places_description: Description of what checklist places are
       range: '{{Identical|Range}}'
   maptype_for_places: '{{notranslate}}'
+  mark_as_reviewed: '{{Identical|Mark as reviewed}}'
   matching_species_will_shown_up_here: where place is the name of a place
   maybe_your_signed_in_with: where omniauth is the name of an external provider like
     Facebook
@@ -507,6 +530,9 @@ qqq:
     as eating
   message: '{{Identical|Message}}'
   messages: '{{Identical|Message}}'
+  momentjs:
+    shortRelativeTime:
+      future: '{{Identical|In}}'
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'
@@ -517,6 +543,7 @@ qqq:
   more_info: '{{Identical|More information}}'
   more_info_title: '{{Identical|More information}}'
   most: '{{Identical|Most}}'
+  multiple: '{{Identical|Multiple}}'
   must_be_less_than_x_MB: where x is the file size as a number
   must_have_observation_field: where opened is the name of an observation field like
     eating
@@ -589,6 +616,7 @@ qqq:
     present: '{{Identical|Present}}'
     common: '{{Identical|Common}}'
   of: '{{Identical|Of}}'
+  ok: '{{Identical|OK}}'
   on_: '{{Identical|On}}'
   on_date: where date is a date
   on_day: '{{Identical|On}}'
@@ -622,6 +650,7 @@ qqq:
   photo_by_id_attribution: where id is an identifier and attribution is the author's
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
+  photo_s: '{{Identical|Photo}}'
   photos: '{{Identical|Photo}}'
   photos_size:
     small: '{{Identical|Small}}'
@@ -653,6 +682,7 @@ qqq:
       county: '{{Identical|County}}'
       District: '{{Identical|District}}'
       district: '{{Identical|District}}'
+      division: '{{Identical|Division}}'
       Drainage: '{{Identical|Drainage}}'
       estate: '{{Identical|Estate}}'
       intersection: '{{Identical|Intersection}}'
@@ -661,10 +691,14 @@ qqq:
       Miscellaneous: '{{Identical|Miscellaneous}}'
       Nationality: '{{Identical|Nationality}}'
       nationality: '{{Identical|Nationality}}'
+      Postal_Code: '{{Identical|Postal code}}'
+      postal_code: '{{Identical|Postal code}}'
       Province: '{{Identical|Province}}'
       province: '{{Identical|Province}}'
       Region: '{{Identical|Region}}'
       region: '{{Identical|Region}}'
+      Republic: '{{Identical|Republic}}'
+      republic: '{{Identical|Republic}}'
       State: '{{Identical|State}}'
       state: '{{Identical|State}}'
       Street: '{{Identical|Street}}'
@@ -681,6 +715,8 @@ qqq:
       Town: '{{Identical|Town}}'
       town: '{{Identical|Town}}'
       undefined: '{{Identical|Undefined}}'
+      Unknown: '{{Identical|Unknown}}'
+      unknown: '{{Identical|Unknown}}'
       zone: '{{Identical|Zone}}'
   places_name:
     europe: '{{Identical|Europe}}'
@@ -704,6 +740,7 @@ qqq:
   privacy: '{{Identical|Privacy policy}}'
   privacy_policy: '{{Identical|Privacy policy}}'
   private: '{{Identical|Private}}'
+  proceed: '{{Identical|Proceed}}'
   processing: '{{Identical|Processing}}'
   processing3p: '{{Identical|Processing}}'
   profile: '{{Identical|Profile}}'
@@ -734,14 +771,17 @@ qqq:
     epifamily: See [[w:en:Biological classification]], [[:w:en:Taxonomic_rank#All_ranks]],
       [[wiktionary:epifamily]] for details.
     family: '{{Identical|Family}}'
+    species: '{{Identical|Species}}'
     form: '{{Identical|Form}}'
   reason: '{{Identical|Reason}}'
+  received: '{{Identical|Received}}'
   recent: '{{Identical|Recent}}'
   recent_atom_observations_by: where login is the name of a user
   recent_observations_by: where login is the name of a user
   recently_active_projects_from_place: where place is the name of a place
   recently_created_projects_from_place: where place is the name of a place
   record!: '{{Identical|Record}}'
+  red: '{{Identical|Red}}'
   refresh: '{{Identical|Refresh}}'
   register_for_this_event_at_x_html: where x is an external resource like EventBrite
   remove: '{{Identical|Remove}}'
@@ -750,29 +790,38 @@ qqq:
   removing: '{{Identical|Removing}}'
   reply: '{{Identical|Reply}}'
   required: '{{Identical|Required}}'
+  research: '{{Identical|Research}}'
+  resolved: '{{Identical|Resolved}}'
   resolver_said_x_html: where resolver is the name of a user and x is a message
+  restore: '{{Identical|Restore}}'
   results: '{{Identical|Result}}'
   review_verb: '{{Identical|Review}}'
   reviewed: '{{Identical|Reviewed}}'
   role: '{{Identical|Role}}'
   row_singular_or_plural: '{{Identical|Row}}'
   row_number_i_was_parsed_as: where row is a number
+  said: '{{Identical|Said}}'
   sat: Abbreviation for Saturday, a day of the week.
   save: '{{Identical|Save}}'
   second_person_possessive_singular: |-
     where noun is a resource like an observation
     used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
   second_person_possessive_singular_: where noun is a resource like an observation
+  select_all: '{{Identical|Select all}}'
   select: '{{Identical|Select}}'
   select_photos_from_your_photo_stream: where site_name is the name of a site
+  selected: '{{Identical|Selected}}'
   send: '{{Identical|Send}}'
   sending: '{{Identical|Sending}}'
+  sent: '{{Identical|Sent}}'
   september: '{{Identical|September}}'
   settings: '{{Identical|Settings}}'
   show: '{{Identical|Show}}'
   showing_taxa_from_place: where place is the name of a place
   show_taxa_from_place: where place is the name of a place
+  sign_in: '{{Identical|Sign in}}'
   sign_in_with_provider: where provider is an external provider like Facebook
+  simple: '{{Identical|Simple}}'
   sign_in_exclamation: '{{Identical|Sign in}}'
   sizes: '{{Identical|Size}}'
   small: '{{Identical|Small}}'
@@ -780,6 +829,7 @@ qqq:
   site_observations_export_from_date: where site_name is the name of a site
   site_taxon_page: where site_name is the name of a site
   some_of_those_photos_couldnt_be_saved: where error describes the error
+  something_: '{{Identical|Something}}'
   something_went_wrong_deleting_the_taxon_name: where taxon_name is the name of the
     taxon
   sorry_there_were_problems_with_your_request: where project_user describes the problem
@@ -799,6 +849,7 @@ qqq:
   source_: '{{Identical|Source}}'
   sources: '{{Identical|Source}}'
   spam: '{{Identical|Spam}}'
+  species: '{{Identical|Species}}'
   species_header: '{{Identical|Species}}'
   standard: '{{Identical|Standard}}'
   start: '{{Identical|Start}}'
@@ -820,6 +871,7 @@ qqq:
   tagging: '{{Identical|Tagging}}'
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
+  taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
   text_: '{{Identical|Text}}'
@@ -830,7 +882,8 @@ qqq:
   the_user_x_has_been_unsuspended: where user is the name of a user
   the_world_is_full_of_interesting_places: where site is the name of a site
   there_are_x_synonyms_html: number of synonyms
-  there_isnt_a_wikipedia_article_titled_x_html: where x is the title of the article
+  there_isnt_a_wikipedia_article_titled_x_html: where x is the title of the article,
+    feel free to change en.wikipedia.org to your language edition's domain if needed.
   there_merge_problems_with_the_merge: where merged_error describes the error
   there_was_a_problem_saving_your_identification: where error describes the error
   there_were_problems_adding_taxa: where errors describes the error
@@ -858,6 +911,7 @@ qqq:
   too_many_observations_csv: where max_rows is the maximum number of rows
   tools: '{{Identical|Tool}}'
   total: '{{Identical|Total}}'
+  totals: '{{Identical|Total}}'
   "true": '{{Identical|True}}'
   tue: Abbreviation for Tuesday, a day of the week.
   twitter: '{{Identical|Twitter}}'
@@ -873,6 +927,9 @@ qqq:
   update_with_site_content: where site_name is the name of the site
   updated: '{{Identical|Updated}}'
   upload: '{{Identical|Upload}}'
+  uploader:
+    tooltips:
+      add: This is the tooltip of the button "Add" in the uploader form.
   use_name_as_a_placeholder: where name is the name of a new taxon not yet in our
     database
   user: '{{Identical|User}}'
@@ -970,6 +1027,7 @@ qqq:
   where_do_x_live: where taxa is the name of a taxon
   where_does_x_live: where taxa is the name of a taxon
   widget: '{{Identical|Widget}}'
+  withdraw: '{{Identical|Withdraw}}'
   within_inaturalist: where site_name is the name of a site
   x_admin: where login is the name of a user
   x_deleted: where x is the name of something that was deleted
@@ -1153,10 +1211,18 @@ qqq:
       less_than_x_minutes: number of minutes
       less_than_x_seconds: number of seconds
       over_x_years: number of years
-      x_days: number of days
-      x_minutes: number of minutes
-      x_months: number of months
-      x_seconds: number of seconds
+      x_days: |-
+        number of days
+        {{Identical|Day}}
+      x_minutes: |-
+        number of minutes
+        {{Identical|Minute}}
+      x_months: |-
+        number of months
+        {{Identical|Month}}
+      x_seconds: |-
+        number of seconds
+        {{Identical|Second}}
     prompts:
       day: '{{Identical|Day}}'
       hour: '{{Identical|Hour}}'
@@ -1251,6 +1317,9 @@ qqq:
       place:
         code: '{{Identical|Code}}'
         name: '{{Identical|Name}}'
+        parent_id: |-
+          The parent place of the newly created place.
+          (see http://www.inaturalist.org/places/new )
       flag:
         reason: '{{Identical|Reason}}'
         flag: '{{Identical|Flag}}'
@@ -1258,6 +1327,7 @@ qqq:
         value: '{{Identical|Value}}'
       taxon:
         name: '{{Identical|Name}}'
+        locked: '{{Identical|Locked}}'
   i18n:
     inflections:
       gender:

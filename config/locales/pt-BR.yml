@@ -4,8 +4,13 @@
 # Author: AndroidOSUser
 # Author: Angelocl
 # Author: Cgalindo
+# Author: Cristofer Alves
 # Author: Fasouzafreitas
 # Author: Julianagatti
+# Author: LucyDiniz
+# Author: Luk3
+# Author: Peter Fernando
+# Author: Tim Vincent
 # Author: Vonmatter
 # Author: Walesson
 ---
@@ -32,6 +37,9 @@ pt-BR:
   x_identifications:
     one: 1 identificação
     other: '%{count} identificações'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDs'
   x_lists:
     one: 1 lista
     other: '%{count} listas'
@@ -115,6 +123,9 @@ pt-BR:
   accept: Aceito
   accept_community_identifications: Aceito as identificações sugeridas pela comunidade
   accuracy: Precisão (Acurácia)
+  accuracy_m: |2-
+
+    Precisão (m)
   accuracy_meters: Precisão (Acurácia em metros)
   accuracy_of_the_coordinates: Precisão (Acurácia) das coordenadas em metros. Você
     pode editar este campo clicando no link acima ou clicando em um ponto no mapa
@@ -124,6 +135,7 @@ pt-BR:
   actions: ações
   activate_user: Ativar usuário
   active: ativo
+  activity_settings: Configurações de atividade
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} from a work by %{original}
   add: Adicionar
   add_a: Adicionar uma
@@ -212,6 +224,7 @@ pt-BR:
     do Flickr associadas as observações selecionadas.
   add_to: Adicione a
   add_to_a_scheme: Adicione a um esquema
+  add_to_a_project: Adicionar a um projeto
   add_to_calendar: Adicionar ao calendário
   add_to_checklist: Adicione a checklist
   add_to_favorites: Adicionar aos favoritos
@@ -248,6 +261,7 @@ pt-BR:
   agree: Concordo
   agree?: Você concorda?
   agree_to_the_project_terms: Aceita os termos do projeto
+  agree_with_current_taxon: Concordo com taxon atual
   agreeing: Concordando...
   aka: também conhecido como
   all: Todas
@@ -275,6 +289,7 @@ pt-BR:
     birds: Aves
     chromista: Chromista - algas pardas e parentes
     fungi: Fungos
+    fungi_including_lichens: Fungos, incluindo Líquenes
     insects: Insetos
     mammals: Mamíferos
     mollusks: Moluscos
@@ -328,6 +343,7 @@ pt-BR:
       other: '%{count} outros animais'
   all_taxa_in_this_guide: Todas as espécies e grupos deste guia
   all_taxonomic_groups: '&laquo; Todos os Grupos Taxonômicos'
+  all_updates: Todas as atualizações
   all_your_observations_will_default_this_time_zone: Todas as suas observações serão
     feitas neste horário local a não ser que você especifique de maneira diferente.
   all_your_observations_will_default_to_this_time_zone: Todas as observações terão
@@ -400,6 +416,7 @@ pt-BR:
   are_you_sure_remove_curator: Você tem certeza que deseja remover %{user} como coordenador?
   are_you_sure_remove_from_project: Você tem certeza que deseja remover %{user} deste
     projeto?
+  are_you_sure_remove_photo: Tem certeza de que deseja remover esta foto?
   are_you_sure_remove_taxon_from_list: Você tem certeza que quer remover este táxon
     da lista?
   are_you_sure_remove_taxon_from_place: Confirme a exclusão deste táxon de %{place}'s
@@ -453,6 +470,7 @@ pt-BR:
     deseja remover este táxon da lista de verificação de %{place}?
   associated_observations: Associar observações
   associated_taxa: Associar táxons
+  attention: Atenção
   you_sure_delete_list: Tem certeza que gostaria de apagar esta lista?
   you_sure_delete_taxon_from_list?: Você tem certeza que deseja remover %{taxon} da
     lista?
@@ -511,6 +529,7 @@ pt-BR:
   back_to_x_assessment: Volte para as avaliações de %{project}
   back_to_x_history: Voltar para %{x} histórico
   back_to_x_journal: Voltar para %{user}'s boletim informativo
+  back_to_x_blog: Voltar ao blog de %{x}
   back_to_x_observations: Voltar para as observações de %{user}
   back_to_your_lists: Voltar para sua lista
   back_to_your_journal: Voltar para seu diário
@@ -524,20 +543,24 @@ pt-BR:
   beacuse_we_recently_changed_auth_system: Recentemente devido a alterações no sistema
     de autenticação de usuários, foi necessário zerar sua senha.
   because: porque
+  because_of: por causa de
   before_importing_photos: antes de importar fotos
   before_you_can_contribute_your_observations: antes de poder contribuir com sua observações.
   belives_this_is_a_comprehensive_list_of: acredita que esta é uma lista compreensiva
     de
   bg_color: Cor BG
+  bioblitz: Bioblitz
   birds: aves
   black: preto
   blog_widget: Blog Widget
   blue: azul
+  blue_butterfly_etc: azul, borboleta, etc.
   blue_icons_represent_political_units: Ícones azuis representam unidades políticas
     como países, estados, cidades e ainda, os ícones verdes representam diferentes
     tipos de espaços abertos (parques, reservas). Se você der zoom e aproximar, irá
     ver outros lugares pequenos.
   body: Mensagem
+  bounding_box: Quadro Delimitador
   breadcrumbs: Rastros de navegação
   breadcrumbs_description: Você esta substituindo o h1 e ações padrão, certifique-se
     de incluir os itens importantes para este projeto e lembre-se que a largura máxima
@@ -549,6 +572,7 @@ pt-BR:
   browse: Explorar
   browse_all_projects: Procure todos os projetos
   browse_all_species: Procure todas as espécies
+  browse_observations: Procurar Observações
   browse_projects: Explore os Projetos
   browse_species_that_occur_near_this_observation: Procure espécies que ocorrem próximas
     desta observação.
@@ -569,17 +593,17 @@ pt-BR:
   cant_flag_an_object_that_doesnt_exist: Não pode marcar com alerta um objeto que
     não existe
   cant_merge_a_taxon_with_itself: Não pode combinar um táxon com ele mesmo.
+  captive: Cativo
   captive_cultivated: Em cativeiro / cultivada
   card: Identificação
   case_plural: s
   casual: casual
   catalogue_of_life: Catálogo da Vida
+  categories: categorias
   cc_attribution_license: Licenças de Atribuição Creative Commons
   cc_by_description: Esta licença permite que outros distribuam, remixem, adaptem
     ou criem obras derivadas, mesmo que para uso com fins comerciais, contanto que
-    seja dado crédito pela criação original. Esta é a licença menos restritiva de
-    todas as oferecidas, em termos de quais usos outras pessoas podem fazer de sua
-    obra.
+    seja dado crédito pela criação original.
   cc_by_name: Atribuição (by)
   cc_by_nc_description: Esta licença permite que outros remixem, adaptem, e criem
     obras derivadas sobre a obra licenciada, sendo vedado o uso com fins comerciais.
@@ -675,6 +699,7 @@ pt-BR:
   check_list_source: Fonte <span class="meta">(opcional)</span>
   check_lists_for: Outras Check Lists para %{place}
   check_out_my_observations_at: Se desejar, você pode ver minhas observações em
+  check_out_our_blog: Confira nosso Blog
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando
     identificar se assemelha.
   check_out_your_life_list: Reveja sua Lista de Vida
@@ -702,6 +727,7 @@ pt-BR:
   choose_from_your_lists: Escolha das suas listas
   choose_good_default_photos: Escolha com atenção as imagens licenciadas apra Crative
     Commons do Flickr
+  choose_photos: Escolha fotos
   choose_photos_for_this_taxon: Escolhas fotos para este táxon
   choose_photos_to_tag_from_photostream: Escolha fotos para marcar do seu Photostream
   choose_place: Escolha um lugar
@@ -1005,6 +1031,7 @@ pt-BR:
   disconnect_provider: Desconecte-se de %{provider}
   display_listings_added_by_curators: Mostre listas adicionadas pelos coordenadores
   display_listings_from_place: Mostre listas por lugar
+  drop_it: Solte
   do_you_know_where_this_species_lives: Você sabe onde esta espécie vive?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Você estuda nematóides?
     Você é o maior especialista do mundo em taxonomia de cracas? Você gosta mesmo
@@ -1046,6 +1073,7 @@ pt-BR:
   edit_field: Editar campo
   edit_flagged_observation: Editar Observação com Alerta
   edit_license: Modificar licença
+  edit_multiple_descriptions: Editar múltiplas descrições
   edit_notes: Alterar anotações
   edit_photos: Alterar fotos
   edit_photos_for_observation_id: Editar fotos da Observação %{obs_id}
@@ -1105,7 +1133,6 @@ pt-BR:
   embed_this_assessment: Inserir esta avaliação em seu site
   embed_widget_project: Inserir um widget para este projeto em seu site
   enable_offline_access: Habilite acesso offline
-  enable_offline_access_for_iphone: Habilite acesso offline para iPhone
   end: Fim
   endangered: em perigo
   endemic: endêmica
@@ -1311,6 +1338,7 @@ pt-BR:
   georeferenced?: georeferenciado
   get_current_position: Obtenha a posição atual
   get_started_raquo: Comece &raquo;
+  get_started: Começar
   getting_started: Primeiros passos
   give_it_some_detail: Inclua alguns detalhes!
   global_conservation_status: Estado de conservação global
@@ -1394,6 +1422,7 @@ pt-BR:
   id_please: Identificar Por favor!
   id_please_expandable_html: Identificar<span class='full'> Por favor</span>!
   identify: Identificar
+  identify_title: Identificar
   identification: Identificação
   identification_deleted: Identificação apagada.
   identification_saved: Identificação salva!
@@ -1827,8 +1856,9 @@ pt-BR:
   message: Mensagem
   messages: Mensagens
   mixed_licenses: licenças combinadas
-  misleading_or_illegal_content_html: Conteúdo ilegal ou falso, insultos étnicos e raciais,
-    etc.
+  misleading_or_illegal_content_html: Conteúdo ilegal ou falso, insultos étnicos e
+    raciais, etc. Para mais sobre nossa definição de "apropriado", veja as <a href="/help#inappropriate">Perguntas
+    frequentes</a>.
   mobile_app_for: Aplicativo de celular para
   mobile_apps_for: Aplicativos de celulares para
   mobile_view_available: Modo de visualização disponível para celulares
@@ -2077,6 +2107,7 @@ pt-BR:
     "deve ser Anfíbio" e "deve ser Réptil", então o projeto aceitará observações de
     répteis e anfíbios.'
   observation_was_deleted: Observação foi apagada.
+  observation_without_photo: Observação sem foto
   observation_would_like_some_help: '%{user} gostaria de ajuda para identificar isto!'
   observations: Observações
   observations_by: Observações por
@@ -2359,6 +2390,7 @@ pt-BR:
       town: cidade
       Undefined: Não definido
       undefined: indefinido
+      Unknown: Desconhecido
       Zone: Zona
       zone: zona
   place_guess: Estimativa de localização
@@ -2504,7 +2536,8 @@ pt-BR:
   project_user_was_invalid: 'Usuário do projeto é inválido: %{project_user}'
   project_was_successfully_created: Projeto foi criado com sucesso.
   project_was_successfully_updated: Projeto foi atualizado com sucesso.
-  project_x_was_delete: '%{project} foi eliminado'
+  project_x_was_delete: '%{project} foi eliminado (favor aguardar alguns minutos para
+    que seja removido do site)'
   projects: Projetos
   projects_description: Projetos são uma maneira de reunir suas observações com outras
     pessoas no %{site_name}.  Esteja você interessado em começar um projeto de ciência
@@ -2611,6 +2644,9 @@ pt-BR:
   remove_from_project: Remova do projeto
   remove_this_section: Remova esta seção
   remove_manager: Remover moderador
+  remove_observations:
+    one: Remover 1 observação?
+    other: Remover %{count} observações?
   remove_project_user: Remova usuário do projeto
   remove_selected: Remova selecionado
   remove_tags: Remova marcações
@@ -2733,6 +2769,7 @@ pt-BR:
     as listas que faltam observações, na lista geral do seu projeto
   select_one_or_more_photos: Selecione uma ou mais fotos
   select_none: Limpar seleção
+  select_observations_to_edit: Selecione observações para editar...
   select_photos_from_your_photo_stream: Selecione fotos de sites de armazenamento
     de imagens externos para converte-las em %{site_name} observações. Data, horário
     e local serão automaticamente inseridos com base em metadados, de preferência
@@ -2775,8 +2812,6 @@ pt-BR:
     blog ou site!
   show_only: 'Mostrar somente:'
   show_taxa_from_both: (exibir táxons de ambas as listas)
-  show_the_total_number_of: Exibir o número total de táxons na lista deste projeto
-    ao lado do número de táxons observado.
   show_total_listed_taxa: Exibir a lista total de espécies
   showing_observations_by: exibindo observações por
   showing_one_to: Exibindo 1 -
@@ -2913,7 +2948,7 @@ pt-BR:
   species_guess: Estimativa de espécies
   species_guide: Guia de espécies
   species_header: Espécies
-  species_name: Nomes de espécies
+  species_name: Nome de espécie
   species_or_lower: espécies ou grupos de organismos
   species_search: Busca por Espécies
   species_taxon_name: Espécies / Nomes dos táxons
@@ -3043,7 +3078,7 @@ pt-BR:
   taxonomic_tags_for_flickr: Marcações Taxonômicas para Flickr
   taxonomic_tree_browser: Explorador da Árvore Taxonômica
   tell_everyone_a_little_about_you: Conte um pouco sobre você
-  tell_the_world_a_little_about_yourself: Conte para o mundo um pouco sobre você
+  tell_the_world_a_little_about_yourself: Conte-nos sobre você
   terms: Termos
   terms_and_rules_html: Termos &amp; Regras
   terms_new_users: Novos usuários devem aceitar os termos antes de entrar neste projeto.
@@ -3140,6 +3175,8 @@ pt-BR:
     ao adicionar sua observação neste projeto:'
   there_were_problems_importing_that_place: 'Aconteceram alguns problemas ao importar
     este lugar: %{place_error}'
+  there_were_problems_importing_that_place_geometry: 'Aconteceram alguns problemas
+    ao importar este lugar: %{error}'
   there_were_some_problems_saving_this_observation: Ocorreram alguns problemas ao
     salvar esta observação
   there_were_some_problems_saving_those_colors: 'Aconteceram alguns problemas ao salvar
@@ -3209,6 +3246,7 @@ pt-BR:
   this_taxon_was_originally_imported_from: 'Este táxon foi originalmente importado
     de um provedor externo de nomes:'
   this_tool_is_experimental: Esta ferramenta é experimental, então por favor
+  this_user_has_been_suspended: Este(a) usuário(a) foi suspenso(a)
   this_will_add_listed_taxa: Isto irá adicionar táxons listados a partir das suas
     observações. Isto pode levar um tempo, então por favor utilize com moderação e
     em pequenas listas de verificação
@@ -3426,7 +3464,6 @@ pt-BR:
   view_more_recent_observations: Ver mais observações recentes
   view_nbsp: Ver &nbsp;
   view_non_mobile_site: Ver o site convencional (sem ser a verão para celulares)
-  view_post: Ver publicação
   view_observation: Ver observação
   view_observations: Ver observações
   view_observations_by_everyone: Ver as observações de todos
@@ -3443,6 +3480,7 @@ pt-BR:
     observações do %{site_name}, e mais! Nós montamos informações de diversas fontes
     diferentes e combinamos elas para um resumo rápido de cada espécie em cada local.
   view_place: Ver lugar
+  view_post: Ver publicação
   view_projects_from_place: Ver projetos do %{place}
   view_real_time_stats_in_a_new_window: Veja o status em tempo real em uma nova janela
   view_site_name_observations_html: Veja as observações de <strong>%{site_name}</strong>
@@ -3836,8 +3874,8 @@ pt-BR:
           até que você publique.
       generating_mobile_archive_tip_html: Isto pode levar algum tempo, então tente
         atualizar esta página em alguns minutos.
-      mobile_downloads_tip_html: Você pode baixar esta guia para seu aplicativo
-        do iPhone para ser utilizada offline.
+      mobile_downloads_tip_html: Este guia pode ser baixado para o aplicativo móvel
+        para ser utilizado offline.
       mobile_downloads_help_html: |-
         <p>Isto irá criar um arquivo para download de todos os dados e mídia associados a este guia, desta forma todos os usuários de iPhone poderão acessar o guia mesmo sem conexão a internet. O arquivo será gerado após alguns minutos, mas após habilitar esta opção o arquivo será atualizado automaticamente e qualquer alteração no guia será incluída.</p>
         <p class="alert error status">
@@ -4098,8 +4136,8 @@ pt-BR:
           táxons adicionados pelos administradores, táxons observados e identificados
           por coordenadores, e táxons categorizados como observações de pesquisa.
     observations:
-      copy_tip: Adicione uma nova observação copiando esta data, local, fotos e campos
-        de observação.
+      copy_tip: Adicione uma nova observação copiando a data, local, fotos e campos
+        de observação desta observação.
       captive_help_html: |-
         O organismo observado é uma espécie <strong>cultivada</strong> ou
         <strong>domesticada</strong>? Por exemplo, sua observação foi realizada <strong> em um jardim,
@@ -4167,6 +4205,9 @@ pt-BR:
         tag_list: Lista de Marcações separadas por vírgulas
         positioning_method: Como as coordenadas foram determinadas
         positioning_device: Equipamento utilizado para determinar coordenadas
+      identify:
+        unreview_all_tooltip: Remover status revisto para todas as observações na
+          página
       import:
         coordinate_systems_help: '%{site_name} aceita coordenadas utilizando diferentes
           sistemas, então quando você providenciar coordenadas em um sistema diferente
@@ -4366,12 +4407,6 @@ pt-BR:
         invite_only_description: A participação neste projeto como membro só pode
           ser feita através de convite. Se você deseja entrar no grupo. por favor
           contate um dos administradores abaixo e solicite um convite.
-      members:
-        bioblitz_notice_html: <strong>Nota:</strong> esta é somente uma lista de pessoas
-          que entraram neste projeto explicitamente. Como este é um projeto bioblitz
-          e as estatísticas são calculadas com todas as observações adicionadas neste
-          local e períodos específicos, pode ser que existam muitos outros participantes
-          que não estão listados aqui.
       show:
         bioblitz_results_desc_html: "<p>\n  Diferente de projetos regulares, as bioblitz
           divulgam o status do evento abaixo de\n  <em>todas</em> observações naquele
@@ -4393,9 +4428,6 @@ pt-BR:
           \n  moderada do projeto, faça questão de garantir que seus participantes
           entrem no projeto \n  e adicionem as observações deles como fariam em um
           projeto normal.\n</p>"
-        project_observations_desc: Serão incluídas apenas observações submetidas especificamente
-          a este projeto, e não contempla os demais registros realizados ainda que
-          na mesma data, horário e local.
         curated_checklist_desc: Esta é a lista de verificação moderada e a lista de
           contagem dos táxons de observações explicitas adicionadas à esta projeto,
           nem todas as observações foram gravadas neste local e neste período do evento.
@@ -4468,7 +4500,7 @@ pt-BR:
       show:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.
-        this_user_was_banned: O usuário foi banido
+        this_user_was_banned: O usuário foi suspenso
     welcome:
       index:
         welcome_message_html: "para %{image}, onde você pode <strong>gravar</strong>

@@ -10,6 +10,29 @@ class IdentificationsController < ApplicationController
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
   }
+
+  def index
+    @identifications = Identification.order( "id desc" ).page( params[:page] ).per_page( 100 )
+    @identifications = @identifications.where( category: params[:category] ) if Identification::CATEGORIES.include?( params[:category] )
+    if params[:user_id]
+      if user = ( User.find_by_id( params[:user_id] ) || User.find_by_login( params[:user_id] ) )
+        @identifications = @identifications.by( user )
+      end
+    end
+    if params[:current].blank? || params[:current].yesish?
+      @identifications = @identifications.current
+    elsif params[:current].noish?
+      @identifications = @identifications.outdated
+    end
+    if params[:for] == "others"
+      @identifications = @identifications.joins(:observation).where( "observations.user_id != identifications.user_id" )
+    end
+    @identifications = @identifications.of( params[:taxon_id] ) if params[:taxon_id]
+    @counts = @identifications.where("category IS NOT NULL").group(:category).count
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
     
   def show
     redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
@@ -17,28 +40,90 @@ class IdentificationsController < ApplicationController
   
   def by_login
     block_if_spammer(@selected_user) && return
-    scope = @selected_user.identifications_for_others.
-      order("identifications.created_at DESC")
-    unless params[:on].blank?
-      scope = scope.on(params[:on])
+    params[:page] = params[:page].to_i
+    params[:page] = 1 unless params[:page] > 0
+    user_filter = { term: { "non_owner_ids.user.id": @selected_user.id } }
+    date_parts = Identification.conditions_for_date("col", params[:on])
+    # only if conditions_for_date determines a valid range will it return
+    # an array of [ condition_to_interpolate, min_date, max_date ]
+    if date_parts.length == 3
+      date_filters = [
+        { range: { "non_owner_ids.created_at": { gte: date_parts[1] } } },
+        { range: { "non_owner_ids.created_at": { lte: date_parts[2] } } }
+      ]
     end
-    @identifications = scope.page(params[:page]).per_page(20)
-    Identification.preload_associations(@identifications, [
-      { observation: [ :user, :photos, :taxon ] }, :taxon, :user ])
-    @identifications_by_obs_id = @identifications.index_by(&:observation_id)
-    @observations = @identifications.collect(&:observation)
-    @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
-      includes(:observation, :taxon)
-    @other_id_stats = {}
-    @other_ids.group_by(&:observation).each do |obs, ids|
-      user_ident = @identifications_by_obs_id[obs.id]
-      agreements = ids.select do |ident|
-        ident.in_agreement_with?(user_ident)
+    result = Observation.elastic_search(
+      complex_wheres: [ { nested: {
+        path: "non_owner_ids",
+        query: { bool: { must: [ user_filter, date_filters ].flatten.compact } }
+      } } ],
+      size: limited_per_page,
+      from: (params[:page] - 1) * limited_per_page,
+      sort: { "non_owner_ids.created_at": {
+        order: "desc",
+        mode: "max",
+        nested_path: "non_owner_ids",
+        nested_filter: user_filter
+      } }
+    )
+    # pluck the proper Identification IDs from the obs results
+    ids = result.response.hits.hits.map{ |h| h._source.non_owner_ids.detect{ |i|
+      i.user.id == @selected_user.id
+    } }.compact.map{ |i| i.id }
+    # fetch the Identification instances and preload
+    instances = Identification.where(id: ids).order(id: :desc).includes(
+      { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
+      { taxon: [{taxon_names: :place_taxon_names}, :photos] },
+      :user
+    )
+    # turn the instances into a WillPaginate Collection
+    @identifications = WillPaginate::Collection.create(params[:page], limited_per_page,
+      result.response.hits.total) do |pager|
+      pager.replace(instances.to_a)
+    end
+    respond_to do |format|
+      format.html do
+        @identifications_by_obs_id = @identifications.index_by(&:observation_id)
+        @observations = @identifications.collect(&:observation)
+        @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
+          includes(:observation, :taxon)
+        @other_id_stats = {}
+        @other_ids.group_by(&:observation).each do |obs, ids|
+          user_ident = @identifications_by_obs_id[obs.id]
+          agreements = ids.select do |ident|
+            ident.in_agreement_with?(user_ident)
+          end
+          @other_id_stats[obs.id] = {
+            :num_agreements => agreements.size,
+            :num_disagreements => ids.size - agreements.size
+          }
+        end
       end
-      @other_id_stats[obs.id] = {
-        :num_agreements => agreements.size,
-        :num_disagreements => ids.size - agreements.size
-      }
+      format.json do
+        pagination_headers_for( @identifications )
+        taxon_options = {
+          only: [:id, :name, :rank],
+          methods: [:default_name, :photo_url, :iconic_taxon_name]
+        }
+        render json: @identifications.as_json( include: [
+          {
+            taxon: taxon_options
+          }, 
+          {
+            observation: {
+              only: [:id, :species_guess],
+              methods: [:iconic_taxon_name],
+              include: {
+                taxon: taxon_options,
+                photos: {
+                  only: [:id, :square_url, :thumb_url, :small_url, :medium_url, :large_url],
+                  methods: [:license_code, :attribution]
+                }
+              }
+            }
+          }
+        ] )
+      end
     end
   end
   
@@ -69,6 +154,7 @@ class IdentificationsController < ApplicationController
         end
         
         format.json do
+          Observation.refresh_es_index
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(
             :methods => [:html], 
@@ -95,6 +181,7 @@ class IdentificationsController < ApplicationController
   end
   
   def edit
+    render layout: "bootstrap"
   end
   
   def update
@@ -105,7 +192,10 @@ class IdentificationsController < ApplicationController
           flash[:notice] = msg
           redirect_to @identification.observation
         end
-        format.json { render :json => @identification }
+        format.json do
+          Observation.refresh_es_index
+          render :json => @identification
+        end
       end
     else
       msg = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
@@ -125,14 +215,28 @@ class IdentificationsController < ApplicationController
   # DELETE identification_url
   def destroy
     observation = @identification.observation
-    @identification.destroy
+    if params[:delete]
+      @identification.destroy
+    else
+      @identification.update_attributes( current: false )
+    end
     respond_to do |format|
       format.html do
-        flash[:notice] = t(:identification_deleted)
+        flash[:notice] = if @identification.frozen?
+          t(:identification_deleted)
+        else
+          t(:identification_withdrawn)
+        end
         redirect_to observation
       end
-      format.js { render :status => :ok, :json => nil }
-      format.json { render :status => :ok, :json => nil }
+      format.js do
+        Observation.refresh_es_index
+        render :status => :ok, :json => nil
+      end
+      format.json do
+        Observation.refresh_es_index
+        render :status => :ok, :json => nil
+      end
     end
   end
   

@@ -36,13 +36,14 @@ class CommentsController < ApplicationController
       group(find_options[:group]).paginate(page: find_options[:page]).
       order(find_options[:order])
     @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
-    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id)).
-      where("created_at >= '#{ @comments.last.try(:created_at) }'").sort_by{|c| c.id}
-    @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
+    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id))
+    @extra_ids = Identification.where(observation_id: @comments.map(&:parent_id)).includes(:observation)
+    @extra_comments_and_ids = [@extra_comments,@extra_ids].flatten
+    @comments_by_parent_id = @extra_comments_and_ids.sort_by{|c| c.created_at}.group_by{|c| (c.respond_to? :observation_id) ? [c.observation.class.to_s,c.observation_id].join("_") : [c.parent.class.to_s,c.parent_id].join("_") }
     respond_to do |format|
       format.html do
         if params[:partial]
-          render :partial => 'listing', :collection => @comments, :layout => false
+          render :partial => 'listing_for_dashboard', :collection => @comments, :layout => false
         end
       end
     end
@@ -86,6 +87,7 @@ class CommentsController < ApplicationController
           else
             @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
           end
+          Observation.refresh_es_index
           render :json => @comment.to_json(:methods => [:html])
         else
           render :status => :unprocessable_entity, :json => {:errors => @comment.errors.full_messages}
@@ -108,6 +110,7 @@ class CommentsController < ApplicationController
         redirect_to_parent
       end
       format.json do
+        Observation.refresh_es_index
         @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
         render :json => @comment.to_json(:methods => [:html])
       end
@@ -137,7 +140,8 @@ class CommentsController < ApplicationController
         flash[:notice] = t(:comment_deleted)
         redirect_back_or_default(parent)
       end
-      format.js do
+      format.any(:js, :json) do
+        Observation.refresh_es_index
         head :ok
       end
     end

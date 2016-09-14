@@ -16,6 +16,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       if resource.active_for_authentication?
+        last_ip = request.env['REMOTE_ADDR']
+        last_ip = request.env["HTTP_X_FORWARDED_FOR"] if last_ip.split(".")[0..1].join(".") == "10.183"
+        last_ip = request.env["HTTP_X_CLUSTER_CLIENT_IP"] if last_ip.split(".")[0..1].join(".") == "10.183"        
+        resource.update_attribute(:last_ip, last_ip)
+        
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
         respond_with(resource) do |format|

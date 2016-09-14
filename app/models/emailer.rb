@@ -4,18 +4,23 @@ class Emailer < ActionMailer::Base
   helper :taxa
   helper :users
 
+  after_action :set_sendgrid_headers
+
   default :from =>     "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
           :reply_to => CONFIG.noreply_email
   
-  def invite(address, params, user) 
+  def invite_user(address, params, user) 
     Invite.create(:user => user, :invite_address => address)
     @user = user
     @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
     @personal_message = params[:personal_message]
+    set_locale
     @sending_user = params[:sender_name]
-    mail(set_site_specific_opts.merge(:to => address)) do |format|
-      format.text
-    end
+    mail(set_site_specific_opts.merge(
+      :to => address,
+      :subject => @subject
+    ))
+    reset_locale
   end
   
   def project_invitation_notification(project_invitation)
@@ -44,8 +49,7 @@ class Emailer < ActionMailer::Base
     return if user.prefers_no_email
     @user = user
     set_locale
-    @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
-    @update_cache = Update.eager_load_associates(updates)
+    @grouped_updates = UpdateAction.group_and_sort(updates, :skip_past_activity => true)
     mail(set_site_specific_opts.merge(
       :to => user.email,
       :subject => t(:updates_notification_email_subject, :prefix => subject_prefix, :date => Date.today)
@@ -161,6 +165,19 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def moimport_finished( mot, errors = {}, warnings = {} )
+    @user = mot.user
+    set_locale
+    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
+    @errors = errors
+    @warnings = warnings
+    @exception = mot.exception
+    mail(set_site_specific_opts.merge(
+      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+    ))
+    reset_locale
+  end
+
   private
   def default_url_options
     opts = Rails.application.config.action_mailer.default_url_options.dup
@@ -217,5 +234,13 @@ class Emailer < ActionMailer::Base
         :reply_to => CONFIG.noreply_email
       }
     end
+  end
+
+  def set_sendgrid_headers
+    mailer = self.class.name
+    headers "X-SMTPAPI" => {
+      category:    [ mailer, "#{mailer}##{action_name}" ],
+      unique_args: { environment: Rails.env }
+    }.to_json
   end
 end

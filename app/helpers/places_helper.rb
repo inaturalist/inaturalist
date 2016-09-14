@@ -30,7 +30,7 @@ module PlacesHelper
   end
   
   def google_static_map_for_place_url(place, options = {})
-    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
+    return if CONFIG.google.blank? || CONFIG.google.browser_api_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
@@ -39,7 +39,7 @@ module PlacesHelper
       :size => '200x200',
       :sensor => 'false',
       :port => false,
-      :key => CONFIG.google.simple_key
+      :key => CONFIG.google.browser_api_key
     }.merge(options)
     url_for(url_for_options)
   end

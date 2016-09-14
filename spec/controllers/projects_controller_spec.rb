@@ -112,6 +112,8 @@ end
 describe ProjectsController, "update" do
   let(:project) { Project.make! }
   let(:user) { project.user }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   before { sign_in user }
   it "should work for the owner" do
     put :update, id: project.id, project: {title: "the new title"}
@@ -139,5 +141,30 @@ describe ProjectsController, "update" do
     put :update, id: project.id, project: {prefers_aggregation: true}
     project.reload
     expect( project ).not_to be_prefers_aggregation
+  end
+  it "should not allow a non-curator to turn off observation aggregation" do
+    project.update_attributes(place: make_place_with_geom, prefers_aggregation: true)
+    expect( project ).to be_aggregation_allowed
+    expect( project ).to be_prefers_aggregation
+    put :update, id: project.id, project: {prefers_aggregation: false}
+    project.reload
+    expect( project ).to be_prefers_aggregation
+  end
+end
+
+describe ProjectsController, "destroy" do
+  let( :project ) { Project.make! }
+  before do
+    sign_in project.user
+  end
+  it "should not actually destroy the project" do
+    delete :destroy, id: project.id
+    expect( Project.find_by_id( project.id ) ).not_to be_blank
+  end
+  it "should queue a job to destroy the project" do
+    delete :destroy, id: project.id
+    expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
+    expect( Delayed::Job.where("unique_hash = '{:\"Project::sane_destroy\"=>#{project.id}}'").
+      count ).to eq 1
   end
 end

@@ -8,6 +8,28 @@
         PLACE = <%=json_escape @project.place.to_json(:methods => [:kml_url]).html_safe %>,
         SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
+    $( function( ) {
+      $("form.project_form").confirmModal({
+        condition: function( ) {
+          return $("#aggregation").is(":visible") &&
+            $("#project_prefers_aggregation").prop( "checked" );
+        },
+        text: function( ) {
+          var rules = $(".observationrules ul").clone( );
+          rules.find( "a" ).remove( );
+          var text = I18n.t( "you_are_setting_this_project_to_aggregate", {
+            rules: rules[0].outerHTML
+          });
+          return text;
+        },
+        onCancel: function( ) {
+          var button = $( "input[name='commit']" );
+          button.enable( );
+          button.removeClass( "description" );
+          button.attr( "value", button.data( "originalValue" ) );
+        }
+      });
+    });
   </script>
   <%= javascript_include_tag "observations/observation_fields",
                              'map_bundle',
@@ -21,7 +43,7 @@
 
   <div class="column span-12">
     <%= f.text_field :title, :required => true %>
-    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{ |type| [ t( type.gsub( " ", "_" ), default: type ).downcase, type ] },
       :include_blank => t(:normal),
       :description => t(:project_type_description) %>
   </div>
@@ -107,7 +129,7 @@
       <div class="column span-7">
         <%= f.text_field :latitude, :label => t(:latitude) %>
         <%= f.text_field :longitude, :label => t(:longitude)%>
-        <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
+        <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t(type, default: type).downcase, type]} %>
         <%= f.text_field :zoom_level %>
         <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
         <% if @place -%>
@@ -152,6 +174,8 @@
     </p>
 
     <ul>
+      <li id="observed_after_rule" style="display:none" />
+      <li id="observed_before_rule" style="display:none" />
       <%= f.fields_for :project_observation_rules do |por| %>
         <li>
           <%= por.object.terms %>
@@ -279,6 +303,37 @@
       </div>
     </div>
   </fieldset>
+
+  <% if @project.persisted? %>
+    <fieldset id="change-admin">
+      <legend><%=t :change_admin %></legend>
+      <p class="description">
+        <%=t "views.projects.edit.change_admin_desc" %>
+      </p>
+      <ul class="plain">
+        <% if @project_curators.blank? %>
+          <div class="nocontent">
+            <%=t "views.projects.edit.no_curators" %>
+          </div>
+        <% else %>
+          <%- for pu in @project_curators %>
+            <li class="inline smallbuttons buttonrow">
+              <span class="inter">
+                <%= link_to image_tag( pu.user.icon.url(:mini), class: "usericon" ), pu.user %>
+                <%= link_to_user pu.user %>
+              </span>
+              <%= link_to t(:make_admin), change_admin_project_path( @project, pu.user ),
+                class: "inline button smallbutton glaucous",
+                data: {
+                  method: "put",
+                  confirm: t(:are_you_sure_no_undo)
+                } %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </fieldset>
+  <% end %>
 
   <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
 

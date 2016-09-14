@@ -13,6 +13,7 @@ class TaxonChange < ActiveRecord::Base
   
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
+  validate :taxa_below_order
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -130,11 +131,14 @@ class TaxonChange < ActiveRecord::Base
       reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id)).find_each do |record|
         record_has_user = record.respond_to?(:user) && record.user
         if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-          Update.create(
-            :resource => self,
-            :notifier => self,
-            :subscriber => record.user, 
-            :notification => "committed")
+          action_attrs = {
+            resource: self,
+            notifier: self,
+            notification: "committed"
+          }
+          action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+          action.bulk_insert_subscribers( [record.user.id] )
+          UpdateAction.elastic_index!(ids: [action.id])
           notified_user_ids << record.user.id
         end
         if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
@@ -212,7 +216,7 @@ class TaxonChange < ActiveRecord::Base
 
   def commit_records_later
     return true unless committed_on_changed? && committed?
-    delay(:priority => NOTIFICATION_PRIORITY).commit_records
+    delay(:priority => USER_PRIORITY).commit_records
     true
   end
 
@@ -227,6 +231,46 @@ class TaxonChange < ActiveRecord::Base
     taxon_ids = [taxon_id, taxon_change_taxa.map(&:taxon_id)].flatten.compact
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "input and output taxa must be unique")
+    end
+  end
+
+  def taxa_below_order
+    return true if user && user.is_admin?
+    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level >= Taxon::ORDER_LEVEL }
+      errors.add(:base, "only admins can move around taxa at order-level and above")
+    end
+    true
+  end
+
+  def move_input_children_to_output( target_input_taxon )
+    unless target_input_taxon.is_a?( Taxon )
+      target_input_taxon = Taxon.find_by_id( target_input_taxon )
+    end
+    if target_input_taxon.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == target_input_taxon.rank
+      target_input_taxon.children.active.each do |child|
+        tc = TaxonSwap.new(
+          user: user,
+          change_group: (change_group || "#{self.class.name}-#{id}-children"),
+          source: source,
+          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}"
+        )
+        tc.add_input_taxon( child )
+        output_child_name = child.name.sub( target_input_taxon.name, output_taxon.name)
+        unless output_child = output_taxon.children.detect{|c| c.name == output_child_name }
+          output_child = Taxon.new(
+            name: output_child_name,
+            rank: child.rank,
+            is_active: false
+          )
+          output_child.save!
+          output_child.update_attributes( parent: output_taxon )
+        end
+        tc.add_output_taxon( output_child )
+        tc.save!
+        tc.commit
+      end
+    else
+      target_input_taxon.children.active.each { |child| child.move_to_child_of( output_taxon ) }
     end
   end
 

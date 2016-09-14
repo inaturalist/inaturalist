@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   before_filter :sign_out_spammers
 
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 18
+  HEADER_VERSION = 19
   
   alias :logged_in? :user_signed_in?
 
@@ -53,7 +53,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    @site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
+    @site ||= CONFIG.site unless Rails.env.test?
+    if ( !@site || !@site.is_a?( Site ) ) && CONFIG.site_id
+      @site = Site.find_by_id(CONFIG.site_id)
+      CONFIG.site = @site unless Rails.env.test?
+    end
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
   end
 
@@ -80,6 +84,10 @@ class ApplicationController < ActionController::Base
       current_user.try(:locale) || I18n.default_locale
     I18n.locale = current_user.try(:locale) if I18n.locale.blank?
     I18n.locale = I18n.default_locale if I18n.locale.blank?
+    unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
+      I18n.locale = I18n.default_locale
+    end
+    true
   end
 
   def sign_out_spammers
@@ -245,7 +253,7 @@ class ApplicationController < ActionController::Base
   def load_user_by_login
     @login = params[:login].to_s.downcase
     @selected_user =  @login.blank? ? nil :
-      User.where("lower(login) = ?", @login).first
+      User.where("lower(login) = ?", @login).take
     return render_404 unless @selected_user
   end
 
@@ -503,6 +511,7 @@ class ApplicationController < ActionController::Base
   # redirect.
   def authenticate_user!(*args)
     if request.get? && !logged_in?
+      session[:return_to] = request.fullpath
       session[:return_to_for_new_user] = request.fullpath
     end
     super

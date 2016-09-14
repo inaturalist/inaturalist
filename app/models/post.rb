@@ -7,13 +7,13 @@ class Post < ActiveRecord::Base
     :on => [:update, :create],
     :queue_if => lambda{ |post|
       conditions = { notifier_type: "Post", notifier_id: post.id }
-      existing_updates_count = Update.where(conditions).count
+      existing_updates_count = UpdateAction.where(conditions).count
       # destroy existing updates if user *unpublishes* a post
       if post.draft? && existing_updates_count > 0
-        Update.delete_and_purge(conditions)
+        UpdateAction.delete_and_purge(conditions)
         return false
       end
-      return !post.draft? && existing_updates_count == 0
+      return !post.draft? && existing_updates_count == 0 && post.published_at_changed?
     },
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'
@@ -46,7 +46,7 @@ class Post < ActiveRecord::Base
 
   ALLOWED_TAGS = %w(
     a abbr acronym b blockquote br cite code dl dt em embed h1 h2 h3 h4 h5 h6 hr i
-    iframe img li object ol p param pre small strong sub sup tt ul
+    iframe img li object ol p param pre s small strike strong sub sup tt ul
     table tr td th
     audio source
     div

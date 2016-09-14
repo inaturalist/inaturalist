@@ -56,7 +56,7 @@
                 <%= raw t 'people_added.observation',
                   observation_link: link_to(t(:observation).downcase, update),
                   taxon_link: update.taxon ? link_to(update.species_guess, update.taxon) : t(:something_),
-                  vow_or_con: (update.taxon ? update.species_guess : t(:something_)).first.downcase %>
+                  vow_or_con: (update.species_guess ? update.species_guess : t(:something_)).first.downcase %>
               <%- when 'Identification' %>
                 <%
                   if update.observation

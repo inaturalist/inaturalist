@@ -1,7 +1,8 @@
 :ruby
+  @selected_user ||= user
   model_name ||= controller.class.to_s.underscore.humanize.split.first
   title ||= if is_me?(@selected_user)
-    if ![ 'Journal', 'Profile' ].include?(model_name)
+    if model_name != 'Journal'
       t(:second_person_possessive_singular, :noun => t(model_name.downcase).downcase)
     else
       t(:second_person_possessive_singular_, :noun => t(model_name.downcase).downcase)
@@ -12,11 +13,20 @@
   before ||= nil
   after ||= nil
   after_title ||= nil
-#pageheader.col-md-12
+.col-md-12
   = before
-  = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
-  %h2
-    = title
-    = after_title
-  = render :partial => 'users/subnav', :locals => { :user => @selected_user }
+  %h1
+    = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
+    -if controller.controller_name=="users" && ( controller.action_name=="show" || controller.action_name=="dashboard" )
+      = @selected_user.login
+      - if logged_in? && is_not_me?(@selected_user)
+        = link_to new_message_path(:to => @selected_user.login), :class => 'btn btn-primary btn-xs' do
+          %span.glyphicon.glyphicon-envelope>
+          \&nbsp;#{t(:message)}
+        \&nbsp;
+        = friend_button current_user, @selected_user, {:id => 'follow_button'}
+    -else
+      = title
+      = after_title
+  = render :partial => 'users/subnav_bootstrap', :locals => { :user => @selected_user }
   = after

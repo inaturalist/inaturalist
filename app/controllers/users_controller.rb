@@ -1,6 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :edit, :dashboard, :new_updates ], :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!,
+    only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
+    if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
@@ -16,7 +18,7 @@ class UsersController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
   
-  MOBILIZED = [:show, :dashboard, :new, :create]
+  MOBILIZED = [:show, :new, :create]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
 
@@ -24,23 +26,30 @@ class UsersController < ApplicationController
     request.parameters[:action] == "search" && request.format.json? }
 
   caches_action :dashboard,
-    :expires_in => 1.hour,
-    :cache_path => Proc.new {|c|
+    expires_in: 15.minutes,
+    cache_path: Proc.new {|c|
       c.send(
         :home_url,
+        user_id: c.instance_variable_get("@current_user").id,
+        ssl: c.request.ssl?
+      )
+    },
+    if: Proc.new {|c|
+      (c.params.keys - %w(action controller format)).blank?
+    }
+
+  caches_action :dashboard_updates,
+    :expires_in => 15.minutes,
+    :cache_path => Proc.new {|c|
+      c.send(
+        :dashboard_updates_url,
         :user_id => c.instance_variable_get("@current_user").id,
-        :mobile => c.request.format.mobile?,
         :ssl => c.request.ssl?
       )
     },
     :if => Proc.new {|c| 
       (c.params.keys - %w(action controller format)).blank?
     }
-  # caches_action :updates_count,
-  #   expires_in: 15.minutes,
-  #   cache_path: Proc.new { |c|
-  #     updates_count_path(user_id: c.instance_variable_get("@current_user").id)
-  #   }
   cache_sweeper :user_sweeper, :only => [:update]
   
   def new
@@ -63,7 +72,6 @@ class UsersController < ApplicationController
     if success && @user.errors.empty?
       flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => CONFIG.site_name)
       self.current_user = @user
-      @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
     else
       respond_to do |format|
@@ -146,7 +154,8 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    @user.delay(:priority => USER_PRIORITY).sane_destroy
+    @user.delay(priority: USER_PRIORITY,
+      unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)
     flash[:notice] = "#{@user.login} has been removed from #{CONFIG.site_name} " + 
       "(it may take up to an hour to completely delete all associated content)"
@@ -162,6 +171,8 @@ class UsersController < ApplicationController
           flag.save!
         end
         @user.unsuspend!
+      else
+        @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
     redirect_to :back
@@ -174,15 +185,19 @@ class UsersController < ApplicationController
     unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
-        scope = klass.limit(30).
-          order("#{klass.table_name}.id DESC").
-          where("#{klass.table_name}.created_at > ?", 1.week.ago).
-          joins(:user).
-          where("users.id IS NOT NULL").
-          preload(:user)
-        scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-        @updates += scope.all
+        if klass == Observation && !@site.prefers_site_only_users?
+          @updates += Observation.page_of_results( d1: 1.week.ago.to_s )
+        else
+          scope = klass.limit(30).
+            order("#{klass.table_name}.id DESC").
+            where("#{klass.table_name}.created_at > ?", 1.week.ago).
+            joins(:user).
+            where("users.id IS NOT NULL")
+          scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
+          @updates += scope.all
+        end
       end
+      Observation.preload_associations(@updates, :user)
       @updates.delete_if do |u|
         (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
       end
@@ -240,8 +255,9 @@ class UsersController < ApplicationController
   def search
     scope = User.active
     @q = params[:q].to_s
+    escaped_q = @q.gsub(/(%|_)/){ |m| "\\" + m }
     unless @q.blank?
-      wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
+      wildcard_q = (@q.size == 1 ? "#{escaped_q}%" : "%#{escaped_q.downcase}%")
       conditions = if logged_in? && @q =~ Devise.email_regexp
         ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
@@ -299,6 +315,7 @@ class UsersController < ApplicationController
         @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
+        render layout: "bootstrap"
       end
       format.json { render :json => @selected_user.to_json(User.default_json_options) }
       format.mobile
@@ -314,7 +331,71 @@ class UsersController < ApplicationController
     counts_for_users
   end
   
-  def dashboard
+  def get_nearby_taxa_obs_counts search_params
+    elastic_params =  Observation.params_to_elastic_query(search_params)
+    species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: { species: { "taxon.id": 4 } })).response.aggregations
+    nearby_taxa_results = species_counts.species.buckets
+  end
+  
+  def get_local_onboarding_content
+    local_onboarding_content = {local_results: false, target_taxa: nil, to_follows: nil}
+    if (current_user.latitude.nil? || current_user.longitude.nil?) #show global content
+      search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+      nearby_taxa_results = get_nearby_taxa_obs_counts( search_params )
+      local_onboarding_content[:local_results] = false
+    else #have latitude and longitude so show local content
+      if current_user.lat_lon_acc_admin_level == 0 || current_user.lat_lon_acc_admin_level == 1 #use place_id to fetch content from country or state
+        place = Place.containing_lat_lng(current_user.latitude, current_user.longitude).where(admin_level: current_user.lat_lon_acc_admin_level).first
+        if place
+          search_params = { verifiable: true, place_id: place.id, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+          nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+          nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+        else
+          nearby_taxa_obs_count = 0
+        end
+      else #use lat-lon and radius to fetch content
+        local_onboarding_content[:local_results] = true        
+        search_params = { verifiable: true, lat: current_user.latitude, lng: current_user.longitude, radius: 1, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+        nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+        nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+        if nearby_taxa_obs_count < 50
+          search_params[:radius] = 100  # expand radius
+          nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+          nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+          if nearby_taxa_obs_count < 50
+            search_params[:d1] = 12.months.ago.to_s  # expand time period
+            nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+            nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+            if nearby_taxa_obs_count < 50
+              search_params[:radius] = 1000 # expand radius
+              nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+              nearby_taxa_obs_count = nearby_taxa_results.map{ |b| b["doc_count"] }.sum
+            end
+          end
+        end
+      end
+      if nearby_taxa_obs_count < 50 #not enough content so settle for global results
+        search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
+        nearby_taxa_results = get_nearby_taxa_obs_counts(search_params)
+        local_onboarding_content[:local_results] = false
+      end
+    end
+    
+    #fetch target_taxa from results
+    target_taxa_ids = nearby_taxa_results.map{ |b| b["key"] }
+    target_taxa = Taxon.where("id IN (?)", target_taxa_ids)
+    local_onboarding_content[:target_taxa] = target_taxa if target_taxa.length > 0
+
+    #fetch followers from results
+    follower_ids = Observation.elastic_user_observation_counts(Observation.params_to_elastic_query(search_params), 4)[:counts].map{|u| u["user_id"]}
+    follower_ids.delete(current_user.id) #exclude the current user
+    followers = User.where("id IN (?)", follower_ids)
+    local_onboarding_content[:to_follows] = followers if followers.length > 0
+
+    return local_onboarding_content
+  end
+
+  def dashboard_updates
     filters = [ ]
     wheres = { }
     if params[:from]
@@ -325,39 +406,67 @@ class UsersController < ApplicationController
     end
     if params[:filter] == "you"
       wheres[:resource_owner_id] = current_user.id
+      @you = true
     end
+    if params[:filter] == "following"
+      wheres[:notification] = %w(created_observations new_observations)
+    end
+    
     @pagination_updates = current_user.recent_notifications(
       filters: filters, wheres: wheres, per_page: 50)
-    @updates = Update.load_additional_activity_updates(@pagination_updates)
-    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
-    @update_cache = Update.eager_load_associates(@updates)
-    @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
-    @month_observations = current_user.observations.
-      where([ "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
-      Date.today.month, Date.today.year ]).select(:id, :observed_on)
+    @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
+    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
+    obs = UpdateAction.components_of_class(Observation, @updates)
+    taxa = UpdateAction.components_of_class(Taxon, @updates)
+    with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
+    with_user = UpdateAction.components_with_assoc(:user, @updates)
+    Observation.preload_associations(obs, [:comments, :identifications, :photos])
+    with_taxa += obs.map(&:identifications).flatten
+    with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
+    Taxon.preload_associations(with_taxa, :taxon)
+    taxa += with_taxa.map(&:taxon)
+    Taxon.preload_associations(taxa, { taxon_names: :place_taxon_names })
+    User.preload_associations(with_user, :user)
+    @updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
+    @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
     respond_to do |format|
       format.html do
-        scope = Announcement.where('placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc).limit(5)
-        @announcements = scope.in_locale(I18n.locale)
-        @announcements = scope.in_locale(I18n.locale.to_s.split('-').first) if @announcements.blank?
+        render :partial => 'dashboard_updates', :layout => false
+      end
+    end
+  end
+  
+  def dashboard
+    @has_updates = (current_user.recent_notifications.count > 0)
+    @local_onboarding_content = get_local_onboarding_content
+    respond_to do |format|
+      format.html do
+        scope = Announcement.
+          where( 'placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc ).
+          limit( 5 )
+        base_scope = scope
+        scope = scope.where( site_id: nil )
+        @announcements = scope.in_locale( I18n.locale )
+        @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+        @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
-          @flags = Flag.order("id desc").where("resolved = ?", false).
+          @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
             includes(:user, :resolver, :comments).limit(5)
           @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
             includes(:taxon_names).limit(5).active
         end
+        render layout: "bootstrap"
       end
-      format.mobile
     end
   end
   
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
-      wheres: { notification: [ :activity, :mention ] }).total_entries
+      wheres: { notification: [ :activity, :mention ] }, per_page: 1).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
@@ -384,11 +493,10 @@ class UsersController < ApplicationController
       end
     end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
-      Update.user_viewed_updates(@updates)
+      UpdateAction.user_viewed_updates(@updates, current_user.id)
       session[:updates_count] = 0
     end
-    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
-    @update_cache = Update.eager_load_associates(@updates)
+    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
     respond_to do |format|
       format.html { render :layout => false }
@@ -405,7 +513,7 @@ class UsersController < ApplicationController
             :crypted_password, :salt, :old_preferences, :activation_code,
             :remember_token, :last_ip, :suspended_at, :suspension_reason,
             :icon_content_type, :icon_file_name, :icon_file_size,
-            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url
+            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url, :latitude, :longitude, :lat_lon_acc_admin_level
           ],
           :methods => [
             :user_icon_url, :medium_user_icon_url, :original_user_icon_url
@@ -432,10 +540,12 @@ class UsersController < ApplicationController
     
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
+    @display_user.icon = nil if params[:icon_delete]
     
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
-    if whitelist_params && @display_user.update_attributes(whitelist_params)
+    @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
       if @display_user.preferred_project_addition_by != preferred_project_addition_by_was &&
@@ -514,6 +624,10 @@ class UsersController < ApplicationController
       end
     end
     render :head => :no_content, :layout => false, :text => nil
+  end
+
+  def api_token
+    render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
   end
 
 protected
@@ -707,6 +821,7 @@ protected
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
       :site_id,
+      :test_groups,
       :time_zone
     )
   end

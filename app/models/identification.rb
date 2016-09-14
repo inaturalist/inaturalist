@@ -12,14 +12,16 @@ class Identification < ActiveRecord::Base
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
-  validate :uniqueness_of_current, :on => :update
+  # validate :uniqueness_of_current, :on => :update
   
-  before_create :update_other_identifications
-  after_create  :update_observation, 
+  before_save :update_other_identifications
+  after_create  :update_observation,
                 :create_observation_review
   
-  after_commit :update_user_counter_cache
-                
+  after_commit :update_categories,
+               :update_observation,
+               :update_user_counter_cache
+
   after_save    :update_obs_stats, 
                 :update_curator_identification,
                 :update_quality_metrics
@@ -37,10 +39,25 @@ class Identification < ActiveRecord::Base
                :on => :destroy
   
   include Shared::TouchesObservationModule
+  include ActsAsUUIDable
   
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
+
+  %w(improving supporting leading maverick).each do |category|
+    const_set category.upcase, category
+    define_method "#{category}?" do
+      self.category == category
+    end
+  end
+  CATEGORIES = [
+    IMPROVING,
+    SUPPORTING,
+    LEADING,
+    MAVERICK
+  ]
+
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| 
@@ -86,6 +103,7 @@ class Identification < ActiveRecord::Base
   def as_indexed_json(options={})
     {
       id: id,
+      uuid: uuid,
       user: user.as_indexed_json,
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
@@ -108,6 +126,7 @@ class Identification < ActiveRecord::Base
   # Callbacks ###############################################################
 
   def update_other_identifications
+    return true unless ( current_changed? || new_record? ) && current?
     if id
       Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
         update_all(current: false)
@@ -118,23 +137,25 @@ class Identification < ActiveRecord::Base
     true
   end
   
-  # Update the observation if you're adding an ID to your own obs
+  # Update the observation
   def update_observation
     return true unless observation
     return true if skip_observation
     attrs = {}
-    if user_id == observation.user_id
+    if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
-      # update the species_guess
-      species_guess = observation.species_guess
-      unless taxon.taxon_names.exists?(name: species_guess)
-        species_guess = taxon.common_name.try(:name) || taxon.name
+      attrs = {}
+      if user_id == observation.user_id
+        species_guess = observation.species_guess
+        unless taxon.taxon_names.exists?(name: species_guess)
+          species_guess = taxon.common_name.try(:name) || taxon.name
+        end
+        attrs[:species_guess] = species_guess
       end
-      attrs = { species_guess: species_guess, taxon_id: taxon_id, iconic_taxon_id: taxon.iconic_taxon_id }
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
-          observation.id, self.user_id ] }
-      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+          observation.id, observation.user_id ] }
+      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
     end
     observation.identifications.reload
     observation.set_community_taxon(force: true)
@@ -203,7 +224,9 @@ class Identification < ActiveRecord::Base
   end
 
   def set_last_identification_as_current
-    last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
+    last_current = observation.identifications.current.by( user_id ).order( "id ASC" ).last
+    return true if last_current
+    last_outdated = observation.identifications.outdated.by( user_id ).order( "id ASC" ).last
     if last_outdated
       begin
         Identification.where(id: last_outdated).update_all(current: true)
@@ -225,11 +248,13 @@ class Identification < ActiveRecord::Base
   def create_observation_review
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id).first_or_create.touch
+    true
   end
 
   def remove_automated_observation_reviews
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id, user_added: false).destroy_all
+    true
   end
 
   # /Callbacks ##############################################################
@@ -244,6 +269,7 @@ class Identification < ActiveRecord::Base
     o = options[:observation] || observation
     return false if o.taxon_id.blank?
     return false if o.user_id == user_id
+    return false if o.identifications.count == 1
     return true if taxon_id == o.taxon_id
     taxon.in_taxon? o.taxon_id
   end
@@ -252,6 +278,7 @@ class Identification < ActiveRecord::Base
     return false if frozen?
     o = options[:observation] || observation
     return false if o.user_id == user_id
+    return false if o.identifications.count == 1
     !is_agreement?(options)
   end
   
@@ -270,6 +297,54 @@ class Identification < ActiveRecord::Base
     if captive_flag == "1"
       QualityMetric.vote(user, observation, QualityMetric::WILD, false)
     end
+    true
+  end
+
+  def self.update_categories_for_observation( o, options = {} )
+    unless options[:skip_reload]
+      o = Observation.where( id: o ).includes(:community_taxon).first
+    end
+    return unless o
+    if options[:skip_reload]
+      idents = o.identifications
+    else
+      idents = Identification.
+        select( "id, taxon_id, current" ).
+        includes(:taxon).
+        where( observation_id: o.id )
+    end
+    categories = {
+      improving: [],
+      leading: [],
+      supporting: [],
+      maverick: [],
+      removed: []
+    }
+    idents.sort_by(&:id).each do |ident|
+      ancestor_of_community_taxon = o.community_taxon && o.community_taxon.ancestor_ids.include?( ident.taxon_id )
+      descendant_of_community_taxon = o.community_taxon && ident.taxon.ancestor_ids.include?( o.community_taxon_id )
+      matches_community_taxon = o.community_taxon && ( ident.taxon_id == o.community_taxon_id )
+      progressive = ( categories[:improving] + categories[:supporting] ).flatten.detect { |i|
+        i.taxon.self_and_ancestor_ids.include?( ident.taxon_id )
+      }.blank?
+      if o.community_taxon.blank? || descendant_of_community_taxon
+        categories[:leading] << ident
+      elsif ( ancestor_of_community_taxon || matches_community_taxon ) && progressive
+        categories[:improving] << ident
+      elsif !ancestor_of_community_taxon && !descendant_of_community_taxon && !matches_community_taxon
+        categories[:maverick] << ident
+      else
+        categories[:supporting] << ident
+      end
+    end
+    categories.each do |category, idents|
+      next if idents.compact.blank?
+      Identification.where( id: idents.map(&:id) ).update_all( category: category )
+    end
+  end
+
+  def update_categories
+    Identification.update_categories_for_observation( observation )
     true
   end
 
@@ -306,6 +381,8 @@ class Identification < ActiveRecord::Base
         ).update_observed_taxa_count(po.project_id)
       end
     end
+    obs.reload
+    obs.elastic_index!
   end
   
   def self.run_revisit_curator_identification(observation_id, user_id)
@@ -339,6 +416,8 @@ class Identification < ActiveRecord::Base
         ).update_observed_taxa_count(po.project_id)
       end
     end
+    obs.reload
+    obs.elastic_index!
   end
 
   def self.update_for_taxon_change(taxon_change, taxon, options = {})

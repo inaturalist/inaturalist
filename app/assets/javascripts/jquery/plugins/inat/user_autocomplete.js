@@ -1,6 +1,6 @@
 $.fn.userAutocomplete = function( options ) {
   options = options || { };
-  if( !options.id_el ) { return; }
+  if( !options.idEl ) { return; }
   var field = this;
 
   field.template = function( item ) {
@@ -12,7 +12,6 @@ $.fn.userAutocomplete = function( options ) {
   };
 
   field.genericAutocomplete( _.extend( options, {
-    extra_class: "user",
     source: function( request, response ) {
       $.ajax({
       url: "/people/search.json",
@@ -24,7 +23,6 @@ $.fn.userAutocomplete = function( options ) {
           order: "activity"
         },
         success: function( data ) {
-          console.log(data);
           response( _.map( data, function( r ) {
             r.id = r.login;
             r.title = r.login;

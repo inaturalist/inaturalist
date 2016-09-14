@@ -128,11 +128,11 @@ class TaxonName < ActiveRecord::Base
     true
   end
 
-  def as_json(options = {})
+  def as_json( options = {} )
     if options.blank?
       options[:only] = [:id, :name, :lexicon, :is_valid]
     end
-    super(options)
+    super( options )
   end
 
   def as_indexed_json(options={})
@@ -168,7 +168,7 @@ class TaxonName < ActiveRecord::Base
     place_id = options[:place_id] unless options[:place_id].blank?
     place_id ||= (options[:place].is_a?(Place) ? options[:place].id : options[:place]) unless options[:place].blank?
     place_id ||= options[:user].place_id unless options[:user].blank?
-    if place_id.blank? && ( site = Site.find_by_id( CONFIG.site_id ) )
+    if place_id.blank? && ( site = CONFIG.site || Site.find_by_id( CONFIG.site_id ) )
       place_id ||= site.place_id unless site.place_id.blank?
     end
     place = (options[:place].is_a?(Place) ? options[:place] : Place.find_by_id(place_id)) unless place_id.blank?
@@ -203,9 +203,10 @@ class TaxonName < ActiveRecord::Base
     end
   end
 
-  def serializable_hash(options = {})
+  def serializable_hash(options = nil)
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
+    options ||= { }
     options[:except] ||= []
     options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :creator_id, :updater_id]
     if options[:only]
@@ -233,6 +234,7 @@ class TaxonName < ActiveRecord::Base
     when "indonesian" then "id"
     when "italian" then "it"
     when "japanese" then "ja"
+    when "korean" then "ko"
     when "maori" then "mi"
     when "maya" then "myn"
     when "portuguese" then "pt"
@@ -256,6 +258,7 @@ class TaxonName < ActiveRecord::Base
     when /^fr/      then 'french'
     when /^iw/      then 'hebrew'
     when /^ja/      then 'japanese'
+    when /^ko/      then 'korean'
     when /^pt/      then 'portuguese'
     when /zh.CN/i   then 'chinese_simplified'
     when /^zh/      then 'chinese_traditional'

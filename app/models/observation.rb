@@ -3,6 +3,7 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
   include ObservationSearch
+  include ActsAsUUIDable
 
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
@@ -34,6 +35,13 @@ class Observation < ActiveRecord::Base
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
+  WATCH_FIELDS_CHANGED_AT = {
+    geom: true,
+    observed_on: true,
+    place_guess: true,
+    positional_accuracy: true
+  }
+  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
@@ -54,9 +62,6 @@ class Observation < ActiveRecord::Base
   attr_accessor :coordinate_system
   attr_accessor :geo_x
   attr_accessor :geo_y
-
-  attr_accessor :twitter_sharing
-  attr_accessor :facebook_sharing
   
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -132,6 +137,7 @@ class Observation < ActiveRecord::Base
     "latitude", 
     "longitude",
     "positional_accuracy",
+    "private_place_guess",
     "private_latitude",
     "private_longitude",
     "private_positional_accuracy",
@@ -180,6 +186,7 @@ class Observation < ActiveRecord::Base
     "latitude", 
     "longitude",
     "positional_accuracy",
+    "private_place_guess",
     "private_latitude",
     "private_longitude",
     "private_positional_accuracy",
@@ -246,6 +253,8 @@ class Observation < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :project_observations_with_changes, -> {
+    joins(:model_attribute_changes) }, class_name: "ProjectObservation"
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
@@ -286,13 +295,15 @@ class Observation < ActiveRecord::Base
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
-  validates_inclusion_of :coordinate_system,
-    :in => proc { CONFIG.coordinate_systems.to_h.keys.map(&:to_s) },
-    :message => "'%{value}' is not a valid coordinate system",
-    :allow_blank => true,
-    :if => lambda {|o|
-      CONFIG.coordinate_systems
-    }
+  validate do
+    unless coordinate_system.blank?
+      begin
+        RGeo::CoordSys::Proj4.new( coordinate_system )
+      rescue RGeo::Error::UnsupportedOperation
+        errors.add( :coordinate_system, "is not a valid Proj4 string" )
+      end
+    end
+  end
   # See /config/locale/en.yml for field labels for `geo_x` and `geo_y`
   validates_numericality_of :geo_x,
     :allow_blank => true,
@@ -324,10 +335,11 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
+              :obscure_place_guess,
               :set_iconic_taxon
-  
+
   before_update :handle_id_please_on_update, :set_quality_grade
-                 
+
   after_save :refresh_lists,
              :refresh_check_lists,
              :update_out_of_range_later,
@@ -338,9 +350,9 @@ class Observation < ActiveRecord::Base
              :update_public_positional_accuracy,
              :update_mappable,
              :set_captive,
-             :update_observations_places
-  after_create :set_uri,
-               :queue_for_sharing
+             :update_observations_places,
+             :set_taxon_photo
+  after_create :set_uri
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
   
@@ -465,6 +477,21 @@ class Observation < ActiveRecord::Base
     c = taxon.descendant_conditions.to_sql
     c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
     joins(:taxon).where(c)
+  }
+
+  scope :with_identifications_of, lambda { |taxon|
+    taxon = Taxon.find_by_id( taxon.to_i ) unless taxon.is_a? Taxon
+    return where( "1 = 2" ) unless taxon
+    c = taxon.descendant_conditions.to_sql
+    c = c.gsub( '"taxa"."ancestry"', 'it."ancestry"' )
+    # I'm not using TaxonAncestor here b/c updating observations for changes
+    # in conservation status uses this scope, and when a cons status changes,
+    # we don't want to skip any taxa that have moved around the tree since the
+    # last time the denormalizer ran
+    select( "DISTINCT observations.*").
+    joins( :identifications ).
+    joins( "JOIN taxa it ON it.id = identifications.taxon_id" ).
+    where( "identifications.current AND (it.id = ? or #{c})", taxon.id ) 
   }
   
   scope :at_or_below_rank, lambda {|rank| 
@@ -684,20 +711,15 @@ class Observation < ActiveRecord::Base
     unless self.time_observed_at.blank? || options[:no_time]
       s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
-    s += " #{I18n.t(:by).downcase} #{self.user.try(:login)}" unless options[:no_user]
+    s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
     s.gsub(/\s+/, ' ')
-  end
-
-  # returns a string for sharing on social media (fb, twitter)
-  def to_share_s
-    return self.to_plain_s(no_user: true)
   end
   
   def time_observed_at_utc
     time_observed_at.try(:utc)
   end
   
-  def serializable_hash(options = {})
+  def serializable_hash(options = nil)
     # for some reason, in some cases options was still nil
     options ||= { }
     # making a deep copy of the options so they don't get modified
@@ -719,8 +741,8 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
-      options[:except] += [:place_guess] if coordinates_obscured?
+      options[:except] += [:private_latitude, :private_longitude,
+        :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]
@@ -1049,7 +1071,7 @@ class Observation < ActiveRecord::Base
     end
     true
   end
-  
+
   #
   # Trim whitespace around species guess
   #
@@ -1114,8 +1136,8 @@ class Observation < ActiveRecord::Base
   end
   
   def appropriate?
-    return false if flags.detect{ |f| f.resolved == false }
-    return false if observation_photos_count > 0 && photos.detect{ |p| p.flags.detect{ |f| f.resolved == false } }
+    return false if flagged?
+    return false if observation_photos_count > 0 && photos.detect{ |p| p.flagged? }
     true
   end
   
@@ -1155,12 +1177,18 @@ class Observation < ActiveRecord::Base
   end
 
   def research_grade_candidate?
+    return false if human?
     return false unless georeferenced?
     return false unless quality_metrics_pass?
     return false unless observed_on?
     return false unless (photos? || sounds?)
     return false unless appropriate?
     true
+  end
+
+  def human?
+    t = community_taxon || taxon
+    t && t.name =~ /^Homo /
   end
   
   def research_grade?
@@ -1287,7 +1315,8 @@ class Observation < ActiveRecord::Base
     lat = private_latitude.blank? ? latitude : private_latitude
     lon = private_longitude.blank? ? longitude : private_longitude
     t = taxon || community_taxon
-    taxon_geoprivacy = t ? t.geoprivacy(:latitude => lat, :longitude => lon) : nil
+    target_taxon_ids = [[t.try(:id)] + identifications.current.pluck(:taxon_id)].flatten.compact.uniq
+    taxon_geoprivacy = Taxon.max_geoprivacy( target_taxon_ids, latitude: lat, longitude: lon )
     case taxon_geoprivacy
     when OBSCURED
       obscure_coordinates unless coordinates_obscured?
@@ -1303,7 +1332,6 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates
-    self.place_guess = obscured_place_guess
     return if latitude.blank? || longitude.blank?
     if latitude_changed? || longitude_changed?
       self.private_latitude = latitude
@@ -1312,18 +1340,54 @@ class Observation < ActiveRecord::Base
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
     end
-    self.latitude, self.longitude = Observation.random_neighbor_lat_lon(private_latitude, private_longitude)
+    self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
     set_geom_from_latlon
+    true
+  end
+
+
+  def obscure_place_guess
+    # puts "obscure_place_guess, coordinates_private?: #{coordinates_private?}"
+    # return true unless latitude_changed? || 
+    public_place_guess = Observation.place_guess_from_latlon(
+      private_latitude,
+      private_longitude,
+      acc: calculate_public_positional_accuracy,
+      user: user
+    )
+    if coordinates_private?
+      # puts "obscure_place_guess, place_guess_changed?: #{place_guess_changed?}"
+      # puts "obscure_place_guess, place_guess: #{place_guess}"
+      # puts "obscure_place_guess, private_place_guess: #{private_place_guess}"
+      if place_guess_changed? && place_guess == private_place_guess
+        self.place_guess = nil
+      elsif !place_guess.blank? && place_guess != public_place_guess
+        self.private_place_guess = place_guess
+        self.place_guess = nil
+      end
+    elsif coordinates_obscured?
+      if place_guess_changed?
+        if place_guess == private_place_guess
+          self.place_guess = public_place_guess
+        else
+          self.private_place_guess = place_guess
+          self.place_guess = public_place_guess
+        end
+      elsif private_latitude_changed? && private_place_guess.blank?
+        self.private_place_guess = place_guess
+        self.place_guess = public_place_guess
+      end
+    else
+      unless place_guess_changed? || private_place_guess.blank?
+        self.place_guess = private_place_guess
+      end
+      self.private_place_guess = nil
+    end
+    true
   end
   
   def lat_lon_in_place_guess?
     !place_guess.blank? && place_guess !~ /[a-cf-mo-rt-vx-z]/i && !place_guess.scan(COORDINATE_REGEX).blank?
-  end
-  
-  def obscured_place_guess
-    return place_guess if place_guess.blank?
-    return nil if lat_lon_in_place_guess?
-    place_guess.sub(/^\d[\d\-A-z]+\s+/, '')
   end
   
   def unobscure_coordinates
@@ -1384,7 +1448,6 @@ class Observation < ActiveRecord::Base
     #   print n[:score].to_s.ljust(width)
     #   puts
     # end
-
     return unless node
     node[:taxon]
   end
@@ -1433,7 +1496,11 @@ class Observation < ActiveRecord::Base
   end
 
   def set_community_taxon(options = {})
-    self.community_taxon = get_community_taxon(options)
+    community_taxon = get_community_taxon(options)
+    self.community_taxon = community_taxon
+    if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
+      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+    end
     true
   end
 
@@ -1470,13 +1537,13 @@ class Observation < ActiveRecord::Base
   def set_taxon_from_community_taxon
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     # obs opted out or user opted out
     elsif prefers_community_taxon == false || !user.prefers_community_taxa?
       owners_identification.try(:taxon_id)
     # implicitly opted in
     else
-      community_taxon_id || owners_identification.try(:taxon_id)
+      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats(:skip_save => true)
@@ -1488,59 +1555,41 @@ class Observation < ActiveRecord::Base
     end
     true
   end
-  
-  def self.obscure_coordinates_for_observations_of(taxon, options = {})
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return unless taxon
-    scope = Observation.of(taxon)
-    scope = scope.in_place(options[:place]) if options[:place]
-    scope.find_each do |o|
-      o.obscure_coordinates
-      Observation.where(id: o.id).update_all(
-        place_guess: o.place_guess,
-        latitude: o.latitude,
-        longitude: o.longitude,
-        private_latitude: o.private_latitude,
-        private_longitude: o.private_longitude,
-        geom: o.geom,
-        private_geom: o.private_geom
-      )
-    end
-  end
-  
-  def self.unobscure_coordinates_for_observations_of(taxon)
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return unless taxon
-    Observation.find_observations_of(taxon) do |o|
-      o.unobscure_coordinates
-      Observation.where(id: o.id).update_all(
-        latitude: o.latitude,
-        longitude: o.longitude,
-        private_latitude: o.private_latitude,
-        private_longitude: o.private_longitude,
-        geom: o.geom,
-        private_geom: o.private_geom
-      )
+
+  def self.reassess_coordinates_for_observations_of( taxon, options = {} )
+    batch_size = 500
+    scope = Observation.with_identifications_of( taxon )
+    scope.find_in_batches(batch_size: batch_size) do |batch|
+      if options[:place]
+        # using Elasticsearch for place filtering so we don't
+        # get bogged down by huge geometries in Postgresql
+        es_params = { id: batch, place_id: options[:place], per_page: batch_size }
+        reassess_coordinates_of( Observation.page_of_results( es_params ) )
+      else
+        reassess_coordinates_of( batch )
+      end
     end
   end
 
-  def self.reassess_coordinates_for_observations_of(taxon, options = {})
-    scope = Observation.of(taxon).joins(:taxon)
-    scope = scope.in_place(options[:place]) if options[:place]
-    scope.find_each do |o|
+  def self.reassess_coordinates_of( observations )
+    observations.each do |o|
       o.obscure_coordinates_for_threatened_taxa
-      next unless o.coordinates_changed?
-      Observation.where(id: o.id).update_all(
+      o.obscure_place_guess
+      next unless o.coordinates_changed? || o.place_guess_changed?
+      Observation.where( id: o.id ).update_all(
         latitude: o.latitude,
         longitude: o.longitude,
         private_latitude: o.private_latitude,
         private_longitude: o.private_longitude,
         geom: o.geom,
-        private_geom: o.private_geom
+        private_geom: o.private_geom,
+        place_guess: o.place_guess,
+        private_place_guess: o.private_place_guess
       )
     end
+    Observation.elastic_index!( ids: observations.map(&:id) )
   end
-  
+
   def self.find_observations_of(taxon)
     Observation.joins(:taxon).
       where("observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", taxon).find_each do |o|
@@ -1651,24 +1700,35 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def set_place_guess_from_latlon
-    return true unless place_guess.blank?
-    sys_places = system_places
-    return true if sys_places.blank?
+  def self.place_guess_from_latlon( lat, lon, options = {} )
+    sys_places = Observation.system_places_for_latlon( lat, lon, options )
+    return if sys_places.blank?
     sys_places_codes = sys_places.map(&:code)
-    first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?('US')
+    user = options[:user]
+    locale = options[:locale]
+    locale ||= user.locale if user
+    locale ||= I18n.locale
+    first_name = if sys_places[0].admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
       "#{sys_places[0].name} County"
     else
-      I18n.t( sys_places[0].name, locale: user.locale, default: sys_places[0].name )
+      I18n.t( sys_places[0].name, locale: locale, default: sys_places[0].name )
     end
-    remaining_names = system_places[1..-1].map do |p|
-      if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?('US')
+    remaining_names = sys_places[1..-1].map do |p|
+      if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        p.code.blank? ? I18n.t( p.name, locale: user.locale, default: p.name ) : p.code
+        p.code.blank? ? I18n.t( p.name, locale: locale, default: p.name ) : p.code
       end
     end
-    self.place_guess = [first_name, remaining_names].flatten.join(', ')
+    [first_name, remaining_names].flatten.join( ", " )
+  end
+
+  def set_place_guess_from_latlon
+    return true unless place_guess.blank?
+    return true if coordinates_private?
+    if guess = Observation.place_guess_from_latlon( latitude, longitude, { acc: calculate_public_positional_accuracy, user: user } )
+      self.place_guess = guess
+    end
     true
   end
   
@@ -1790,8 +1850,8 @@ class Observation < ActiveRecord::Base
   # include ActionController::UrlWriter
   include Rails.application.routes.url_helpers
   
-  def image_url
-    url = observation_image_url(self, :size => "medium")
+  def image_url(options = {})
+    url = observation_image_url(self, options.merge(size: "medium"))
     url =~ /^http/ ? url : nil
   end
   
@@ -1812,7 +1872,7 @@ class Observation < ActiveRecord::Base
   end
   
   def url
-    observation_url(self, ActionMailer::Base.default_url_options)
+    uri
   end
   
   def user_login
@@ -1830,6 +1890,8 @@ class Observation < ActiveRecord::Base
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
+        num_agreements = 0 if current_idents.count <= 1
+        num_disagreements = 0 if current_idents.count <= 1
       else
         num_agreements    = current_idents.select{|ident| ident.is_agreement?(:observation => self)}.size
         num_disagreements = current_idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
@@ -1873,6 +1935,7 @@ class Observation < ActiveRecord::Base
       o.set_community_taxon
       o.update_stats(:skip_save => true)
       o.save
+      Identification.update_categories_for_observation( o )
     end
     Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
@@ -1923,12 +1986,8 @@ class Observation < ActiveRecord::Base
     lon = private_longitude || longitude
     Observation.uncertainty_cell_diagonal_meters( lat, lon )
   end
-  
-  def places
-    return [] unless georeferenced?
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = public_positional_accuracy || private_positional_accuracy || positional_accuracy
+
+  def self.places_for_latlon( lat, lon, acc )
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
 
     # At present we use PostGIS GEOMETRY types, which are a bit stupid about
@@ -1950,25 +2009,36 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  # For obscured coordinates only return default place types that weren't
-  # made by users. This is not ideal, but hopefully will get around honey
-  # pots.
+  def places
+    return [] unless georeferenced?
+    lat = private_latitude || latitude
+    lon = private_longitude || longitude
+    acc = private_positional_accuracy || positional_accuracy
+    Observation.places_for_latlon( lat, lon, acc )
+  end
+  
   def public_places
-    all_places = places
-    return if all_places.blank?
-    return all_places unless coordinates_obscured?
-    system_places(:places => all_places)
+    return [] unless georeferenced?
+    return [] if geoprivacy == PRIVATE
+    lat = private_latitude || latitude
+    lon = private_longitude || longitude
+    acc = public_positional_accuracy || positional_accuracy
+    Observation.places_for_latlon( lat, lon, acc )
   end
 
-  # The places that are theoretically controlled by site admins
-  def system_places(options = {})
-    all_places = options[:places] || places
+  def self.system_places_for_latlon( lat, lon, options = {} )
+    all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
     all_places.select do |p| 
       p.user_id.blank? && (
         [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
         p.place_type == Place::PLACE_TYPE_CODES['Open Space']
       )
     end
+  end
+
+  # The places that are theoretically controlled by site admins
+  def system_places(options = {})
+    Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
   end
 
   def intersecting_places
@@ -2158,7 +2228,7 @@ class Observation < ActiveRecord::Base
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new(CONFIG.coordinate_systems.send(self.coordinate_system.to_sym).proj4)
+      from = RGeo::CoordSys::Proj4.new(self.coordinate_system)
 
       # ... to WGS84
       to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)
@@ -2255,80 +2325,6 @@ class Observation < ActiveRecord::Base
     "#{record.class.name.underscore}_#{record.id}"
   end
 
-  # share this (and any subsequent) observations on facebook
-  def share_on_facebook(options = {})
-    fb_api = user.facebook_api
-    return nil unless fb_api
-    observations_to_share = if options[:single]
-      [self]
-    else
-      Observation.includes(:taxon).limit(100).
-        where(:user_id => user_id).
-        where("observations.id >= ?", id).
-        where("observations.taxon_id is not null")
-    end
-    observations_to_share.each do |o|
-      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:record", :observation => FakeView.observation_url(o))
-    end
-  rescue Exception => e
-    Rails.logger.error "[ERROR #{Time.now}] Failed to share Observation #{id} on Facebook: #{e}"
-  end
-
-  # share this (and any subsequent) observations on twitter
-  # if we're sharing more than one observation, this aggregates them into one tweet
-  def share_on_twitter(options = {})
-    u = self.user
-    twit_api = u.twitter_api
-    return nil unless twit_api
-    observations_to_share = if options[:single]
-      [self]
-    else
-      Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
-    end
-    observations_to_share_count = observations_to_share.count
-    tweet_text = "I added "
-    tweet_text += observations_to_share_count > 1 ? "#{observations_to_share_count} observations" : "an observation"
-    url = if observations_to_share_count == 1
-      FakeView.observation_url(self)
-    else
-      dates = observations_to_share.map(&:observed_on).uniq.compact
-      if dates.size == 1
-        d = dates.first
-        FakeView.calendar_date_url(u.login, d.year, d.month, d.day)
-      else
-        FakeView.observations_by_login_url(u.login)
-      end
-    end
-    url = if url =~ /\?/
-      "#{url}&#{id}"
-    else
-      "#{url}?#{id}"
-    end
-    tweet_text += " to #{SITE_NAME} #{url}"
-    twit_api.update(tweet_text)
-  end
-
-  # Share this and any future observations on twitter and/or fb (depending on user preferences)
-  def queue_for_sharing
-    u = self.user
-    ["facebook","twitter"].each do |provider_name|
-      explicitly_shared = send("#{provider_name}_sharing") == "1"
-      explicitly_not_shared = send("#{provider_name}_sharing") == "0"
-      implicitly_shared = u.prefs["share_observations_on_#{provider_name}"]
-      user_wants_to_share = explicitly_shared || (implicitly_shared && !explicitly_not_shared)
-      if u.send("#{provider_name}_identity") && user_wants_to_share
-        # don't queue up more than one job for the given sharing medium. 
-        # when the job is run, it will also share any observations made since this one. 
-        # observation aggregation for twitter happens in share_on_twitter.
-        # fb aggregation happens on their end via open graph aggregations.
-        self.delay(priority: USER_INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
-          unique_hash: { "Observation::share_on_#{provider_name}": u.id }).
-          send("share_on_#{provider_name}")
-      end
-    end
-    true
-  end
-
   def update_public_positional_accuracy
     update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
   end
@@ -2355,7 +2351,6 @@ class Observation < ActiveRecord::Base
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
     return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
-    return false if captive
     return false if inaccurate_location?
     true
   end
@@ -2364,6 +2359,14 @@ class Observation < ActiveRecord::Base
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
     observations_places(true)
+  end
+
+  def set_taxon_photo
+    return true unless research_grade? && quality_grade_changed?
+    unless taxon.photos.any?
+      community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
+    end
+    true
   end
 
   def self.update_observations_places(options = { })
@@ -2433,11 +2436,12 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.as_csv(scope, methods)
+  def self.as_csv(scope, methods, options = {})
     CSV.generate do |csv|
       csv << methods
       scope.each do |item|
-        csv << methods.map{ |m| item.send(m) }
+        # image_url gets options, which will include an SSL boolean
+        csv << methods.map{ |m| m == :image_url ? item.send(m, options) : item.send(m) }
       end
     end
   end
@@ -2506,6 +2510,22 @@ class Observation < ActiveRecord::Base
     description.mentioned_users
   end
 
+  def last_changed(params={})
+    changes = field_changes_to_index
+    # only consider the fields requested
+    if params[:changed_fields] && fields = params[:changed_fields].split(",")
+      changes = changes.select{ |c| fields.include?(c[:field_name]) }
+    end
+    # ignore any projects other than those selected
+    if params[:change_project_id]
+      changes = changes.select do |c|
+        c[:project_id].blank? || c[:project_id] == params[:change_project_id]
+      end
+    end
+    # return the max of the remaining dates
+    field_changes_to_index.map{ |c| c[:changed_at] }.max
+  end
+
   # Show count of all faves on this observation. cached_votes_total stores the
   # count of all votes without a vote_scope, which for an Observation means
   # the faves, but since that might vary from model to model based on how we
@@ -2558,6 +2578,10 @@ class Observation < ActiveRecord::Base
 
   def self.index_observations_for_user(user_id)
     Observation.elastic_index!( scope: Observation.by( user_id ) )
+  end
+
+  def self.refresh_es_index
+    Observation.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
 end

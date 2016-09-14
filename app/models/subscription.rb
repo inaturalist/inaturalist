@@ -2,6 +2,9 @@ class Subscription < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true, :inverse_of => :update_subscriptions
   belongs_to :user
   belongs_to :taxon # in case this subscription has taxonomic specifity
+
+  after_save :clear_caches
+  after_destroy :clear_caches
   
   validates_presence_of :resource, :user
   validates_uniqueness_of :user_id, :scope => [:resource_type, :resource_id, :taxon_id], 
@@ -18,15 +21,10 @@ class Subscription < ActiveRecord::Base
     "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
   end
 
-  def has_unviewed_updates_from(notifier)
-    Update.exists?([
-      "subscriber_id = ? AND notifier_type = ? AND notifier_id = ? AND viewed_at IS NULL",
-      user_id, notifier.class.to_s, notifier.id ])
-    # this is the elasticsearch way of doing the same
-    # Update.elastic_search(where: {
-    #   subscriber_id: user_id, notifier_type: notifier.class.to_s,
-    #   notifier_id: notifier.id
-    # }, filters: [{ not: { exists: { field: :viewed_at } } }]).total_entries > 0
+  def self.users_with_unviewed_updates_from(notifier)
+    UpdateSubscriber.joins(:update_action).where(update_actions: {
+      notifier_type: notifier.class.to_s, notifier_id: notifier.id },
+      viewed_at: nil).map(&:subscriber_id)
   end
 
   def cannot_subscribe_to_north_america
@@ -35,6 +33,12 @@ class Subscription < ActiveRecord::Base
     if Place.north_america && resource_id == Place.north_america.id
       errors.add(:resource_id, "cannot subscribe to North America without conditions")
     end
+  end
+
+  def clear_caches
+    ctrl = ActionController::Base.new
+    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: true )
+    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: false )
   end
 
 end

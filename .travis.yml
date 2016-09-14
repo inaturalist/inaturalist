@@ -8,7 +8,7 @@ cache:
   bundler: true
 
 rvm:
-  - 2.2.2
+  - 2.3.1
 
 addons:
   postgresql: "9.3"
@@ -19,11 +19,10 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - psql -U postgres -c "create extension postgis"
-  - sudo -u postgres createdb template_postgis
-  - sudo -u postgres psql template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
-  - sudo -u postgres psql -q template_postgis < /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql
-  - sudo -u postgres psql -q template_postgis < /usr/share/postgresql/9.3/contrib/postgis-2.1/spatial_ref_sys.sql
-  - curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.1.1/elasticsearch-2.1.1.deb && sudo dpkg -i --force-confnew elasticsearch-2.1.1.deb
+  - psql -U postgres -c 'create extension "uuid-ossp"'
+  - createdb -O postgres template_postgis
+  - psql -U postgres template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
+  - curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.2/elasticsearch-2.3.2.deb && sudo dpkg -i --force-confnew elasticsearch-2.3.2.deb
   - sudo /usr/share/elasticsearch/bin/plugin install analysis-kuromoji
   - sudo /usr/share/elasticsearch/bin/plugin install delete-by-query
   - sudo service elasticsearch start

@@ -1,5 +1,31 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  require 'openid/store/filesystem' 
+  require 'openid/store/filesystem'
+
+  # Replicate some omniauth code to bend over backwards so we can accommodate
+  # the fact that soundcloud only allows one callback URL, so we *must* send
+  # requests to them with a matching redirect_uri regardless of protocol
+  # Check out the original definition of full_host at 
+  # https://github.com/omniauth/omniauth/blob/master/lib/omniauth/strategy.rb#L411
+  OmniAuth.config.full_host = lambda do |env|
+    request = Rack::Request.new( env )
+    is_ssl =
+      request.env['HTTPS'] == 'on' ||
+        request.env['HTTP_X_FORWARDED_SSL'] == 'on' ||
+        request.env['HTTP_X_FORWARDED_SCHEME'] == 'https' ||
+        (request.env['HTTP_X_FORWARDED_PROTO'] && request.env['HTTP_X_FORWARDED_PROTO'].split(',')[0] == 'https') ||
+        request.env['rack.url_scheme'] == 'https'
+    if request.scheme && request.url.match( URI::ABS_URI )
+      uri = URI.parse(request.url.gsub(/\?.*$/, ''))
+      uri.path = ''
+      uri.scheme = 'https' if is_ssl
+      if env['omniauth.strategy'].is_a?(OmniAuth::Strategies::SoundCloud) 
+        uri.scheme = 'http'
+      end
+      uri.to_s
+    else ''
+    end
+  end
+
   if CONFIG.twitter
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
     # TODO
@@ -11,15 +37,23 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     # }
   end
   if fb_cfg = CONFIG.facebook
-    opts = {:scope => 'email,user_location,user_photos,user_groups,read_stream'}
-    opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
+    opts = {:scope => 'email,user_location,user_photos'}
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
 
   if CONFIG.soundcloud
-    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, {
-      :scope => "non-expiring"
-    }
+    opts = { scope: "non-expiring" }
+    if CONFIG.ca_path || CONFIG.ca_file
+      opts[:client_options] = {
+        ssl: {
+          ca_file: CONFIG.ca_file,
+          ca_path: CONFIG.ca_path
+        }
+      }
+    elsif File.exists?( "/etc/ssl/certs" )
+      opts[:client_options] = { ssl: { ca_path: "/etc/ssl/certs" } }
+    end
+    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, opts
   end
   
   if CONFIG.flickr
@@ -51,4 +85,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     end
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
   end
+
 end

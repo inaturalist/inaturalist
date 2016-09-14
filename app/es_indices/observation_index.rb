@@ -7,17 +7,20 @@ class Observation < ActiveRecord::Base
     :indexed_project_ids_without_curator_id
 
   scope :load_for_index, -> { includes(
-    :user, :confirmed_reviews, :flags, :quality_metrics,
+    :user, :confirmed_reviews, :flags,
+    :model_attribute_changes,
+    { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user ] },
-    { comments: [ :user ] } ) }
+    { identifications: :user },
+    { comments: :user } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
+      indexes :uuid, analyzer: "keyword_analyzer"
       indexes :taxon do
         indexes :names do
           indexes :name, analyzer: "ascii_snowball_analyzer"
@@ -34,13 +37,24 @@ class Observation < ActiveRecord::Base
         indexes :license_code, analyzer: "keyword_analyzer"
       end
       indexes :ofvs, type: :nested do
+        indexes :uuid, analyzer: "keyword_analyzer"
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
       end
       indexes :non_owner_ids, type: :nested do
+        indexes :uuid, analyzer: "keyword_analyzer"
+      end
+      indexes :field_change_times, type: :nested do
       end
       indexes :comments do
+        indexes :uuid, analyzer: "keyword_analyzer"
         indexes :body, analyzer: "ascii_snowball_analyzer"
+      end
+      indexes :project_observations do
+        indexes :uuid, analyzer: "keyword_analyzer"
+      end
+      indexes :observation_photos do
+        indexes :uuid, analyzer: "keyword_analyzer"
       end
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :tags, analyzer: "ascii_snowball_analyzer"
@@ -63,6 +77,7 @@ class Observation < ActiveRecord::Base
     t = taxon || community_taxon
     json = {
       id: id,
+      uuid: uuid,
       created_at: created,
       created_at_details: ElasticModel.date_details(created),
       created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
@@ -87,7 +102,6 @@ class Observation < ActiveRecord::Base
       geoprivacy: geoprivacy,
       faves_count: cached_votes_total,
       cached_votes_total: cached_votes_total,
-      verifiable: research_grade_candidate?,
       num_identification_agreements: num_identification_agreements,
       num_identification_disagreements: num_identification_disagreements,
       identifications_most_agree:
@@ -97,13 +111,15 @@ class Observation < ActiveRecord::Base
       identifications_most_disagree:
         (num_identification_agreements < num_identification_disagreements),
       place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
-      project_ids: (indexed_project_ids || project_observations.map(&:project_id)).compact.uniq,
+      project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
       project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
         project_observations.select{ |po| !po.curator_identification_id.nil? }.
           map(&:project_id)).compact.uniq,
       project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
         project_observations.select{ |po| po.curator_identification_id.nil? }.
           map(&:project_id)).compact.uniq,
+      project_observations: (indexed_project_ids || project_observations).map{ |po|
+        { project_id: po[:project_id], uuid: po[:uuid] } },
       reviewed_by: confirmed_reviews.map(&:user_id),
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
@@ -112,12 +128,18 @@ class Observation < ActiveRecord::Base
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
+      observation_photos: observation_photos.sort_by{ |op| op.position || op.id }.
+        reject{ |op| op.photo.blank? }.
+        each_with_index.map{ |op, i|
+          { uuid: op.uuid, photo_id: op.photo.id, position: i }
+      },
       sounds: sounds.map(&:as_indexed_json),
       non_owner_ids: others_identifications.map(&:as_indexed_json),
       identifications_count: num_identifications_by_others,
       comments: comments.map(&:as_indexed_json),
       comments_count: comments.size,
       obscured: coordinates_obscured? || geoprivacy_obscured?,
+      field_change_times: field_changes_to_index,
       location: (latitude && longitude) ?
         ElasticModel.point_latlon(latitude, longitude) : nil,
       private_location: (private_latitude && private_longitude) ?
@@ -159,11 +181,11 @@ class Observation < ActiveRecord::Base
     end
     # fetch all project_ids store them in `indexed_project_ids`
     connection.execute("
-      SELECT observation_id, project_id, curator_identification_id
+      SELECT observation_id, project_id, curator_identification_id, uuid
       FROM project_observations
       WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
       if o = observations_by_id[ r["observation_id"].to_i ]
-        o.indexed_project_ids << r["project_id"].to_i
+        o.indexed_project_ids << { project_id: r["project_id"].to_i, uuid: r["uuid"] }
         # these are for the `pcid` search param
         if r["curator_identification_id"].nil?
           o.indexed_project_ids_without_curator_id << r["project_id"].to_i
@@ -237,7 +259,8 @@ class Observation < ActiveRecord::Base
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
       { http_param: :place_id, es_field: "place_ids" },
-      { http_param: :site_id, es_field: "site_id" }
+      { http_param: :site_id, es_field: "site_id" },
+      { http_param: :id, es_field: "id" }
     ].each do |filter|
       unless p[ filter[:http_param] ].blank? || p[ filter[:http_param] ] == "any"
         search_filters << { terms: { filter[:es_field] =>
@@ -515,7 +538,7 @@ class Observation < ActiveRecord::Base
       { species_guess: sort_order }
     when "votes"
       { cached_votes_total: sort_order }
-    when "id"
+    when "id", "observations.id"
       { id: sort_order }
     else
       { created_at: sort_order }
@@ -532,6 +555,38 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    if p[:changed_since]
+      if changedDate = DateTime.parse(p[:changed_since])
+        nested_query = {
+          nested: {
+            path: "field_change_times",
+            query: { filtered: { query: {
+              bool: {
+                must: [ { range: { "field_change_times.changed_at":
+                  { gte: changedDate.strftime("%F") }}}]
+              }
+            }}}
+          }
+        }
+        if p[:changed_fields]
+          # one of these fields must have changed (and have that recorded by Rails)
+          nested_query[:nested][:query][:filtered][:query][:bool][:must] << {
+            terms: { "field_change_times.field_name": p[:changed_fields].split(",") }
+          }
+        end
+        if p[:change_project_id]
+          # project curator ID must have changed for these projects
+          nested_query[:nested][:query][:filtered][:query][:bool][:must] << {
+            or: [
+              { terms: { "field_change_times.project_id": p[:change_project_id].split(",") } },
+              { not: { exists: { field: "field_change_times.project_id" } } }
+            ]
+          }
+        end
+        complex_wheres << nested_query
+      end
+    end
+
     if p[:popular].yesish?
       search_filters << { range: { cached_votes_total: { gte: 1 } } }
     elsif p[:popular].noish?
@@ -540,7 +595,10 @@ class Observation < ActiveRecord::Base
     if p[:min_id]
       search_filters << { range: { id: { gte: p[:min_id] } } }
     end
-    
+    if p[:max_id]
+      search_filters << { range: { id: { lte: p[:max_id] } } }
+    end
+
     { where: search_wheres,
       complex_wheres: complex_wheres,
       filters: search_filters,
@@ -605,6 +663,28 @@ class Observation < ActiveRecord::Base
       ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = t.establishment_means_in_place?(
       "endemic", places)
+  end
+
+  # returns an array of change hashes:
+  #   [ { field_name: "geom", changed_at: ... },
+  #     { field_name: "curator_identification_id",
+  #       project_id: 1, changed_at: ... } ]
+  def field_changes_to_index
+    # get all the changes for this observation
+    changes = model_attribute_changes.map do |c|
+      { field_name: c.field_name, changed_at: c.changed_at }
+    end
+    # get all the project curator IDs for this obs
+    if project_observations_with_changes.length > 0
+      changes += project_observations_with_changes.map do |po|
+        po.model_attribute_changes.map do |c|
+          return unless c.field_name == "curator_identification_id"
+          { field_name: "project_curator_id", project_id: po.project_id,
+              changed_at: c.changed_at }
+        end
+      end.flatten.compact
+    end
+    changes
   end
 
 end

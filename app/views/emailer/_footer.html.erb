@@ -1,19 +1,122 @@
 <%-
-  site = @user.site || @site
-  site_logo = site.logo.url if site
-  site_logo ||= CONFIG.logo 
-  site_url = @site ? @site.url : root_url
-  img_url = if site_logo =~ /http/
-    site_logo
-  else
-    FakeView.uri_join(site_url, FakeView.image_url(site_logo))
-  end
-  site_name = @site ? @site.name : CONFIG.site_name
+  @site = @user.site ||= Site.find_by_id(CONFIG.site_id)
+  blog_url = @site ? @site.blog_url : CONFIG.blog_url
+  twitter_url = @site ? @site.twitter_url : CONFIG.twitter_url
+  facebook_url = @site ? @site.facebook_url : CONFIG.facebook_url
+  android_app_url = @site ? @site.android_app_url : CONFIG.android_app_url
+  iphone_app_url = @site ? @site.iphone_app_url : CONFIG.iphone_app_url
+  custom_email_footer_leftside = @site ? @site.custom_email_footer_leftside : CONFIG.custom_email_footer_leftside
+  custom_email_footer_rightside = @site ? @site.custom_email_footer_rightside : CONFIG.custom_email_footer_rightside
 -%>
-<div style="border-top: 1px solid #eee; margin-top: 10px; padding-top:10px; color: #777; font-size:smaller;">
-  <p>
-    <%=t :edit_your_settings_to_unsubscribe_html, :url => generic_edit_user_url %>
-  </p>
-
-  <a href="<%= site_url %>"><img valign="middle" src="<%= img_url %>" alt="<%= site_name %>"/></a>
-</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+          	    <td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                  <table border="0" cellpadding="20" cellspacing="0" width="100%" id="templateColumns" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #F4F4F4;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #CCCCCC;border-collapse: collapse !important;">
+                    <tr mc:repeatable>
+                      <td align="left" valign="top" style="padding-bottom: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="templateColumnContainer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline;width: 260px;border-collapse: collapse !important;">
+                          <tr>
+                            <td class="leftColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 0;padding-bottom: 20px;padding-left: 0;text-align: left;">
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+                                <tr>
+                                  <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+                                      <tr>
+                                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                          <a href="<%= android_app_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
+                                            <img alt="Android app on Google Play" src="http://static.inaturalist.org/wiki_page_attachments/412-original.png" width="130" height="38" style="padding: 10px 10px 10px 10px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
+                                          </a>
+                                        </td>
+                                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                          <a href="<%= iphone_app_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
+                                            <img alt="iPhone app in the Apple App Store" src="http://static.inaturalist.org/wiki_page_attachments/414-original.png" width="130" style="padding: 10px 10px 10px 10px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>   
+                            </td>
+                          </tr>
+                        </table>
+                        <table align="right" border="0" cellpadding="0" cellspacing="0" class="templateColumnContainer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline;width: 260px;border-collapse: collapse !important;">
+                          <tr>
+                            <td class="rightColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 0;padding-bottom: 20px;padding-left: 0;text-align: left;">
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+                                <tr>
+                                  <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+                                      <tr>
+                                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                          <%- unless facebook_url.blank? %>
+                                            <a href="<%= facebook_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
+                                              <img src="http://static.inaturalist.org/wiki_page_attachments/530-original.png" style="padding: 10px 10px 10px 10px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
+                                            </a>
+                                          <%- end %>  
+                                        </td>
+                                        <td style="font-size: 0;line-height: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;" width="5">&nbsp;</td>
+                                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                          <%- unless twitter_url.blank? %>
+                                            <a href="<%= twitter_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
+                                              <img src="http://static.inaturalist.org/wiki_page_attachments/529-original.png" style="padding: 10px 10px 10px 5px;display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
+                                            </a>
+                                          <%- end %>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                  <td class="footerContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
+                                    <%- unless blog_url.blank? %>
+                                      <a href="<%= blog_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:check_out_our_blog) %></a>
+                                    <%- end %>
+                                  </td>
+                                </tr>
+                              </table>   
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>              
+              <tr>
+                <td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                  <table border="0" cellpadding="20" cellspacing="0" width="100%" id="templateColumns" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #F4F4F4;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #CCCCCC;border-collapse: collapse !important;">
+                    <tr mc:repeatable>
+                      <td align="left" valign="top" style="padding-bottom: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="templateColumnContainer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline;width: 260px;border-collapse: collapse !important;">
+                          <tr>
+                            <td class="leftColumnContent footerContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
+                              <%= raw custom_email_footer_leftside %>
+                              <br>
+                              <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
+                              <br>
+                              <a href="<%= generic_edit_user_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
+                            </td>
+                          </tr>
+                        </table>
+                        <table align="right" border="0" cellpadding="0" cellspacing="0" class="templateColumnContainer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline;width: 260px;border-collapse: collapse !important;">
+                          <tr>
+                            <td class="rightColumnContent" style="padding: 10px 10px 10px 10px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 0;padding-bottom: 20px;padding-left: 0;text-align: right;" align="right">
+                              <%= raw custom_email_footer_rightside %>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>                                                                
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>

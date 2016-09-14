@@ -10,7 +10,7 @@ describe ProjectUserInvitation, "creation" do
   it "should create an update for the user" do
     expect {
       ProjectUserInvitation.make!
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should not be possible for members of the project" do
@@ -21,12 +21,12 @@ describe ProjectUserInvitation, "creation" do
 end
 
 describe ProjectUserInvitation, "deletion" do
-  before(:each) { enable_elastic_indexing( Update ) }
-  after(:each) { disable_elastic_indexing( Update ) }
+  before(:each) { enable_elastic_indexing( UpdateAction ) }
+  after(:each) { disable_elastic_indexing( UpdateAction ) }
   it "should delete updates" do
     pui = without_delay { ProjectUserInvitation.make! }
-    expect( Update.where(resource: pui).count ).to eq 1
+    expect( UpdateAction.where(resource: pui).count ).to eq 1
     without_delay { pui.destroy }
-    expect( Update.where(resource: pui).count ).to eq 0
+    expect( UpdateAction.where(resource: pui).count ).to eq 0
   end
 end

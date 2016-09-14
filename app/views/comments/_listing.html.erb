@@ -3,7 +3,6 @@
   extra ||= nil
 -%>
 <div class="column span-24 commentitem lined">
-
   <div class="column span-24">
     <%- case comment.parent.class.to_s -%>
     <%- when "Observation" -%>
@@ -63,7 +62,7 @@
   
   <div class="last column span-16">
     <% if @comments_by_parent_id -%>
-      <%= render :partial => "shared/activity_item", :collection => @comments_by_parent_id[comment.parent_id] %>
+      <%= render :partial => "shared/activity_item", :collection => @comments_by_parent_id[[comment.parent.class.to_s,comment.parent_id].join("_")] %>
     <% else %>
       <%= render :partial => "shared/activity_item", :object => comment %>
     <% end -%>

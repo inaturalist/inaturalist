@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t(:editing_project, :project=>"#{@project.title}") %>
+  <%= @title = t( :editing_project, project: @project.title ) %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">

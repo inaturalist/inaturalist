@@ -35,17 +35,30 @@ class LocalPhoto < Photo
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
-      path: "photos/:id/:style.:extension",
-      url: ":s3_alias_url"
+      #
+      #  NOTE: the path used to be "photos/:id/:style.:extension" as of
+      #  2016-07-15, but that wasn't setting the extension based on the detected
+      #  content type, just echoing what was in the file name. So if you're
+      #  trying to use file.url or file.path for photos older than 2016-07-15,
+      #  you'll probably want to fetch the original from original_url first
+      #  before you do any work on the photo.
+      #
+      path: "photos/:id/:style.:content_type_extension",
+      url: ":s3_alias_url",
+      only_process: [ :original, :large ]
     )
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension"
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      only_process: [ :original, :large ]
     )
   end
 
-  process_in_background :file
+  process_in_background :file,
+    only_process: [ :medium, :small, :thumb, :square ],
+    processing_image_url: :processing_image_fallback
+
   # we want to grab metadata from remote photos so make sure
   # to pull the metadata from the true original, i.e. before
   # post_processing which creates thumbnails
@@ -61,7 +74,7 @@ class LocalPhoto < Photo
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
-  attr_accessor :rotation
+  attr_accessor :rotation, :skip_delay
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
@@ -127,12 +140,50 @@ class LocalPhoto < Photo
       url = reference_file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
+    unless new_record?
+      updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
+    end
     Photo.where(id: id).update_all(updates)
     true
   end
 
+  def reset_file_from_original
+    interpolated_original_url = FakeView.image_url( self.file.url(:original) )
+    
+    # If we're using local file storage and using some kind of development-ish
+    # setup, it probably means we're running a single server process, which
+    # means running a HEAD request while *this* request is running is going to
+    # cause problems, but it also means that the original file is *probably*
+    # there so we can skip this file reset business.
+    return if interpolated_original_url =~ /localhost/
+
+    # If the original file is there under the current path, no need to do anythign
+    return if Photo.valid_remote_photo_url?( interpolated_original_url )
+    
+    # If it's not, check the old path
+    old_interpolated_original_url = FakeView.image_url(
+      Paperclip::Interpolations.interpolate("photos/:id/:style.:extension", self.file, "original")
+    )
+    url = if Photo.valid_remote_photo_url?( old_interpolated_original_url )
+      old_interpolated_original_url
+    
+    # If it's not at the old path, use the cached original_url if it's not copyright infringement
+    elsif original_url !~ /copyright/
+      FakeView.image_url( original_url )
+
+    # If this is a copyright violation AND we don't have access to an original file, we're screwed.
+    else
+      raise "We no longer have access to the original file."
+    end
+
+    io = open( URI.parse( url ) )
+    Timeout::timeout(10) do
+      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+  end
+
   def repair(options = {})
+    reset_file_from_original
     self.file.reprocess!
     set_urls
     [self, {}]
@@ -173,6 +224,10 @@ class LocalPhoto < Photo
         o.longitude = o.longitude * -1
       end
     end
+    if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
+      o.latitude = nil
+      o.longitude = nil
+    end
     if o.georeferenced?
       o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
     end
@@ -186,17 +241,7 @@ class LocalPhoto < Photo
       end
     end
     unless metadata[:dc].blank?
-      photo_taxa = to_taxa(valid: true)
-      candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
-      if candidate.blank?
-        photo_taxa = to_taxa
-        candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
-      end
-      if photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
-        o.species_guess = candidate.name
-      else
-        o.taxon = candidate
-      end
+      o.taxon = to_taxon
       if o.taxon
         tags = to_tags(with_title: true).map(&:downcase)
         o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
@@ -236,11 +281,11 @@ class LocalPhoto < Photo
   end
 
   def rotate!(degrees = 90)
+    reset_file_from_original
     self.rotation = degrees
     self.rotation -= 360 if self.rotation >= 360
     self.rotation += 360 if self.rotation <= -360
-    self.file.post_processing = true
-    self.file.reprocess!
+    self.file.reprocess_without_delay!
     self.save
   end
 

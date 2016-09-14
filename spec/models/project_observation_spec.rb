@@ -2,10 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectObservation, "creation" do
   before(:each) do
-    enable_elastic_indexing( Observation, Place, Update )
+    enable_elastic_indexing( Observation, Place, UpdateAction )
     setup_project_and_user
   end
-  after(:each) { disable_elastic_indexing( Observation, Place, Update ) }
+  after(:each) { disable_elastic_indexing( Observation, Place, UpdateAction ) }
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
@@ -31,6 +31,16 @@ describe ProjectObservation, "creation" do
     o = Observation.make!(:user => @project.user, :taxon => Taxon.make!)
     po = without_delay {make_project_observation(:observation => o, :project => @project, :user => o.user)}
     expect(po.curator_identification_id).to eq(o.owners_identification.id)
+  end
+
+  it "should set curator ID if observer is not a curator but a curator has identified the observation" do
+    o = Observation.make!
+    i = Identification.make!( observation: o, user: @project.user )
+    expect( @project ).to be_curated_by i.user
+    expect( i.project_observations.count ).to eq 0
+    po = without_delay { make_project_observation( observation: o, project: @project ) }
+    i.reload
+    expect( i.project_observations.first ).to eq po
   end
 
   it "should touch the observation" do
@@ -83,11 +93,73 @@ describe ProjectObservation, "creation" do
     expect( po ).to be_valid
   end
 
+  it "should validates bioblitz time range" do
+    start_time = Time.parse("2016-01-01T20:00:00-07:00")
+    end_time = Time.parse("2016-01-01T20:00:00-07:00")
+    p = Project.make!(
+      project_type: Project::BIOBLITZ_TYPE,
+      start_time: start_time,
+      end_time: end_time,
+      prefers_range_by_date: false
+    )
+    # equal to start time
+    o = Observation.make!(observed_on_string: start_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # equal to end time
+    o = Observation.make!(observed_on_string: end_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 minute earlier
+    o = Observation.make!(observed_on_string: (start_time - 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+    # 1 minute later
+    o = Observation.make!(observed_on_string: (end_time + 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+  end
+
+  it "should validates bioblitz date range" do
+    start_time = Time.parse("2016-01-01T20:00:00-07:00")
+    end_time = Time.parse("2016-01-01T20:00:00-07:00")
+    p = Project.make!(
+      project_type: Project::BIOBLITZ_TYPE,
+      start_time: start_time,
+      end_time: end_time,
+      prefers_range_by_date: true
+    )
+    # equal to start time
+    o = Observation.make!(observed_on_string: start_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # equal to end time
+    o = Observation.make!(observed_on_string: end_time.to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 minute earlier
+    o = Observation.make!(observed_on_string: (start_time - 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 minute later
+    o = Observation.make!(observed_on_string: (end_time + 1.minute).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to be_valid
+    # 1 day earlier
+    o = Observation.make!(observed_on_string: (start_time - 1.day).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+    # 1 day later
+    o = Observation.make!(observed_on_string: (end_time + 1.day).to_s)
+    po = ProjectObservation.make(project: p, observation: o)
+    expect(po).to_not be_valid
+  end
+
   describe "updates" do
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
-      expect( Update.last.subscriber ).to eq po.observation.user
+      expect( UpdateSubscriber.last.subscriber ).to eq po.observation.user
     end
     it "should not be generated if the observer added to the project" do
       without_delay do
@@ -95,13 +167,13 @@ describe ProjectObservation, "creation" do
         p = Project.make!
         expect {
           ProjectObservation.make!(observation: o, user: o.user, project: p)
-        }.not_to change(Update, :count)
+        }.not_to change(UpdateAction, :count)
       end
     end
     it "should generate updates on the project" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
-      expect( Update.last.resource ).to eq po.project
+      expect( UpdateAction.last.resource ).to eq po.project
     end
 
     it "should not generate more than 30 updates" do
@@ -112,19 +184,21 @@ describe ProjectObservation, "creation" do
           ProjectObservation.make!(user: pu.user, project: pu.project, observation: Observation.make!(user: observer))
         end
       end
-      expect( Update.where(subscriber_id: observer.id, notification: Update::YOUR_OBSERVATIONS_ADDED).count ).to eq 15
+      expect( UpdateSubscriber.joins(:update_action).where(subscriber_id: observer.id).
+        where("update_actions.notification = ?", UpdateAction::YOUR_OBSERVATIONS_ADDED).
+        count ).to eq 15
     end
   end
 end
 
 describe ProjectObservation, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, Update, Place)
+    enable_elastic_indexing(Observation, UpdateAction, Place)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
   end
-  after(:each) { disable_elastic_indexing(Observation, Update, Place) }
+  after(:each) { disable_elastic_indexing(Observation, UpdateAction, Place) }
 
   it "should queue a DJ job for the list" do
     stamp = Time.now
@@ -152,9 +226,9 @@ describe ProjectObservation, "destruction" do
   it "should delete associated updates" do
     pu = ProjectUser.make!(role: ProjectUser::CURATOR)
     po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
-    expect( Update.where(notifier: po).count ).to eq 1
+    expect( UpdateAction.where(notifier: po).count ).to eq 1
     po.destroy
-    expect( Update.where(notifier: po).count ).to eq 0
+    expect( UpdateAction.where(notifier: po).count ).to eq 0
   end
 end
 

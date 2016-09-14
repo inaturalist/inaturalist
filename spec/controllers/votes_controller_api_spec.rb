@@ -27,11 +27,11 @@ shared_examples_for "a VotesController" do
     end
 
     it "should generate an update for the owner of the votable resource" do
-      expect( Update.where(subscriber: o.user).count ).to eq 0
+      expect( UpdateSubscriber.where(subscriber: o.user).count ).to eq 0
       without_delay do
         post :vote, format: 'json', resource_type: 'observation', resource_id: o.id
       end
-      expect( Update.where(subscriber: o.user).count ).to eq 1
+      expect( UpdateSubscriber.where(subscriber: o.user).count ).to eq 1
     end
 
     it "should subscribe the voter to updates on the votable" do

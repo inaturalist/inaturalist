@@ -157,8 +157,8 @@ class List < ActiveRecord::Base
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
     
     scope = if is_a?(CheckList) && is_default?
-      ListedTaxon.where(place_id: place_id).
-        select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.id")
+      ListedTaxon.joins(:taxon).where(place_id: place_id).
+        select("DISTINCT ON (taxa.ancestry || '/' || listed_taxa.taxon_id) listed_taxa.id")
     else
       ListedTaxon.where(list_id: id)
     end
@@ -300,7 +300,7 @@ class List < ActiveRecord::Base
     end
     target_list_ids = refresh_with_observation_lists(observation, options)
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
-    listed_taxa = ListedTaxon.joins(:list).
+    listed_taxa = ListedTaxon.
       where("listed_taxa.taxon_id IN (?) AND listed_taxa.list_id IN (?)", taxon_ids, target_list_ids)
     if respond_to?(:create_new_listed_taxa_for_refresh)
       unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects
@@ -309,8 +309,12 @@ class List < ActiveRecord::Base
     end
     listed_taxa.each do |lt|
       Rails.logger.info "[INFO #{Time.now}] List.refresh_with_observation, refreshing #{lt}"
+      # delay taxon indexing
+      lt.skip_index_taxon = true
       refresh_listed_taxon(lt)
     end
+    # index taxa in bulk
+    Taxon.elastic_index!(ids: listed_taxa.map(&:taxon_id).uniq)
     Rails.logger.info "[INFO #{Time.now}] Finished List.refresh_with_observation for #{observation}"
   end
   

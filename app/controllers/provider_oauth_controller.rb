@@ -92,7 +92,7 @@ class ProviderOauthController < ApplicationController
       pa.user
     end
     user ||= begin
-      fb = Koala::Facebook::GraphAndRestAPI.new(provider_token)
+      fb = Koala::Facebook::API.new(provider_token)
       r = fb.get_object('me')
       user = User.joins(:provider_authorizations).
         where("provider_authorizations.provider_uid = ?", r['id']).

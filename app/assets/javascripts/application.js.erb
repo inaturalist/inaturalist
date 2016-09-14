@@ -357,7 +357,6 @@ $(document).ready(function() {
     })
   }, 1000)
 
-  $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
 
   var menuCloseInitiated;
@@ -374,7 +373,7 @@ $(document).ready(function() {
       if( checkTime != menuCloseInitiated ) return;
       closeHeaderSubnav( $('a:first', item) );
       $(".ui-autocomplete").hide( );
-    }, 400, menuCloseInitiated );
+    }, 200, menuCloseInitiated );
   });
 })
 
@@ -983,6 +982,22 @@ $.fn.subscriptionSettings = function() {
       };
       thisOptions.ajax = null;
     }
+    if ( $( this ).data( "remote" ) === false ) {
+      thisOptions.content.ajax.success = function( data, status ) {
+        this.set('content.text', data);
+        $('.taxonchooser', this.elements.content).simpleTaxonSelector({
+          afterSelect: function(wrapper, taxon, options) {
+            var form = $(wrapper).parents('form:first'),
+                data = form.serialize() + '&format=json'
+            $.ajax({
+              url: form.attr('action'),
+              type: 'post',
+              data: data
+            })
+          }
+        })
+      }
+    }
     $(this).qtip(thisOptions)
     $(this).click(function() {return false})
   })
@@ -1075,47 +1090,6 @@ $(document).on('ajax:before', '.project_user_invitation .acceptlink', function()
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
 })
-
-$(document).on('click', '.add_matching_link', function(e) {
-  var link = this,
-      url = $(this).attr('href').replace(/add_matching/, 'preview_matching'),
-      projectId = url.match(/projects\/(.+?)\/preview_matching/)[1]
-  e.preventDefault()
-  e.stopImmediatePropagation()
-  $('#add_matching_link_dialog').remove()
-  var dialog = $('<div></div>').attr('id', 'add_matching_link_dialog')
-    .addClass('dialog')
-    .html('<div class="loading status">' + I18n.t('loading') + '</div>')
-  $.ajax({url: url, type: 'get'})
-    .success(function(data) { dialog.html(data) })
-    .fail(function() {
-      dialog.dialog('close')
-      showJoinProjectDialog(projectId, {originalInput: link})
-    })
-  $(document.body).append(dialog)
-  dialog.dialog({modal: true, title: "Add matching observations to project", width: 400, height: 400})
-  return false  
-})
-
-function remoteDialog(url, options) {
-  var options = options || {},
-      dialogId = url.replace(/[^A-z0-9]+/g, '-').replace(/^\W+/, ''),
-      dialog = $('#'+dialogId)
-  if (dialog.length == 0) {
-    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
-    dialog.attr('id', dialogId)
-    dialog.load(url)
-    dialog.dialog({
-      modal: true,
-      title: options.title,
-      width: 760,
-      minHeight: 300
-    })
-  } else {
-    $(dialog).dialog('open')
-  }
-  return false
-}
 
 function showJoinProjectDialog(projectId, options) {
   options = options || {}
@@ -1549,6 +1523,64 @@ $.fn.isolatedScroll = function( ) {
     }
   });
   return this;
+};
+
+// used to provide a jquery-ui modal dialog confirmation
+// currently limited to submitting forms, but could easily
+// be extened to use with links
+$.fn.confirmModal = function( options ) {
+  var that = this;
+  var action = $(this).is("form") ? "submit" : "click";
+  that.on( action, function( e, opts ) {
+    // `Proceed` will force click, and we want that to submit
+    if( opts && opts.forceSubmit ) { return; }
+    // don't show the modal unless the condition is met
+    if( _.isFunction( options.condition ) && !options.condition( ) ) { return; }
+    // skip the form submit
+    e.preventDefault( );
+
+    var dialogDiv = $( "<div/>" ).addClass( "dialog" );
+    // prepare Proceed/Cancel buttons
+    var confirm = $( "<input/>" ).addClass( "default button" ).
+      attr({ type: "button", value: I18n.t( "proceed" ) });
+    var cancel = $( "<input/>" ).addClass( "button" ).
+      attr({ type: "button", value: I18n.t( "cancel" ) });
+    // prepare Proceed/Cancel actions
+    confirm.on( "click", function( ) {
+      dialogDiv.dialog( "close" );
+      that.trigger( action, { forceSubmit: true } );
+    });
+    cancel.on( "click", function( ) {
+      dialogDiv.dialog( "close" );
+      if( _.isFunction( options.onCancel ) ) {
+        options.onCancel( );
+      }
+    });
+
+    // populate and display the modal dialog
+    var buttonsDiv =  $( "<div/>" ).addClass( "foot" ).
+      append( confirm ).append( cancel );
+    if( options.silencePreference ) {
+      var checkbox = $( "<input type='checkbox' id='silence' />" );
+      checkbox.on( "click", function( ) {
+        var pref = { };
+        pref[ options.silencePreference ] = $(this).is(":checked");
+        updateSession( pref );
+      });
+      buttonsDiv.append( checkbox );
+      buttonsDiv.append( $( "<label for='silence'>" ).
+        append( I18n.t( "do_not_show_this_message_again" ) ));
+    }
+    // text might be a method that is evaluated in real time
+    var text = _.isFunction( options.text ) ? options.text( ) : options.text; 
+    dialogDiv.append( $( "<p/>" ).append( text ) ).append( buttonsDiv );
+    $( document.body ).append( dialogDiv )
+    dialogDiv.dialog({ modal: true, title: I18n.t( "attention" ),
+      dialogClass: "confirm-modal", minWidth: 450, maxWidth: 600 });
+    dialogDiv.centerDialog( );
+    // just making sure nothing is highlighted, which looks weird
+    $( ":focus" ).blur( );
+  });
 };
 
 $(document).ready(function() {

@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
-  has_many :project_observations, :dependent => :destroy
+  has_many :project_observations, :dependent => :delete_all
   has_many :project_invitations, :dependent => :destroy
   has_many :project_user_invitations, :dependent => :delete_all
   has_many :users, :through => :project_users
@@ -13,8 +13,8 @@ class Project < ActiveRecord::Base
   has_one :project_list, :dependent => :destroy
   has_many :listed_taxa, :through => :project_list
   has_many :taxa, :through => :listed_taxa
-  has_many :project_assets, :dependent => :destroy
-  has_one :custom_project, :dependent => :destroy
+  has_many :project_assets, :dependent => :delete_all
+  has_one :custom_project, :dependent => :delete
   has_many :project_observation_fields, -> { order("position") }, :dependent => :destroy, :inverse_of => :project
   has_many :observation_fields, :through => :project_observation_fields
   has_many :posts, :as => :parent, :dependent => :destroy
@@ -54,7 +54,10 @@ class Project < ActiveRecord::Base
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
   preference :membership_model, :string, :default => MEMBERSHIP_OPEN
-  
+
+  NPS_BIOBLITZ_PROJECT_NAME = "2016 National Parks Bioblitz - NPS Servicewide"
+  NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
+
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
   validates_length_of :title, :within => 1..100
@@ -82,6 +85,12 @@ class Project < ActiveRecord::Base
     longitude = longitude.to_f
     where("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
     order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
+  }
+  scope :featured_near_point, lambda {|latitude, longitude|
+    latitude = latitude.to_f
+    longitude = longitude.to_f
+    featured.where("projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
+    order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) END")
   }
   scope :from_source_url, lambda {|url| where(:source_url => url) }
   scope :in_place, lambda{|place|
@@ -166,7 +175,19 @@ class Project < ActiveRecord::Base
       super
     end
   end
-  
+
+  def preferred_start_date_or_time
+    return unless start_time
+    time = start_time.in_time_zone(user.time_zone)
+    prefers_range_by_date? ? Date.parse(time.iso8601.split('T').first) : time
+  end
+
+  def preferred_end_date_or_time
+    return unless end_time
+    time = end_time.in_time_zone(user.time_zone)
+    prefers_range_by_date? ? Date.parse(time.iso8601.split('T').first) : time
+  end
+
   def strip_title
     self.title = title.strip
     true
@@ -240,21 +261,20 @@ class Project < ActiveRecord::Base
     project_observation_rules.map{|por| por.terms}.join('|')
   end
 
-  def matching_project_observation_rule_terms
-    matching_project_observation_rules.map{|por| por.terms}.join('|')
-  end
-
-  def matching_project_observation_rules
-    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced? verifiable?)
-    project_observation_rules.select{|rule| matching_operators.include?(rule.operator)}
-  end
-  
   def project_observations_count
     project_observations.count
+  end
+
+  def posts_count
+    posts.count
   end
   
   def featured_at_utc
     featured_at.try(:utc)
+  end
+
+  def featured?
+    !featured_at.blank?
   end
 
   def reset_last_aggregated_at
@@ -269,43 +289,19 @@ class Project < ActiveRecord::Base
     tracking_codes.split(',').map{|c| c.strip}.include?(code)
   end
 
-  def observations_matching_rules
-    scope = Observation.all
-    place_ids = [ ]
-    project_observation_rules.each do |rule|
-      case rule.operator
-      when "in_taxon?"
-        scope = scope.of(rule.operand)
-      when "observed_in_place?"
-        place_ids << rule.operand.try(:id) || rule.operand
-      when "on_list?"
-        scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
-          joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
-      when "identified?"
-        scope = scope.where("observations.taxon_id IS NOT NULL")
-      when "georeferenced?"
-        scope = scope.where("observations.geom IS NOT NULL")
-      when "verifiable?"
-        scope = scope.where("observations.quality_grade IN (?,?)",
-          Observation::NEEDS_ID, Observation::RESEARCH_GRADE)
-      end
-    end
-    unless place_ids.empty?
-      scope = scope.in_places(place_ids)
-    end
-    scope
-  end
-
   def observations_url_params(options = {})
     params = { }
     if start_time && end_time
       if prefers_range_by_date?
         params.merge!(
-          d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
-          d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
+          d1: preferred_start_date_or_time.to_s,
+          d2: preferred_end_date_or_time.to_s
         )
       else
-        params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+        params.merge!(
+          d1: preferred_start_date_or_time.iso8601,
+          d2: preferred_end_date_or_time.iso8601
+        )
       end
     end
     taxon_ids = []
@@ -661,7 +657,7 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
-    return true if place && place.bbox_area < 141
+    return true if place && place.bbox_area.to_f < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
     return true if project_observation_rules.where("operator IN (?)", %w(observed_in_place?)).map{ |r|
       r.operand && r.operand.bbox_area < 141
@@ -671,6 +667,73 @@ class Project < ActiveRecord::Base
 
   def bioblitz?
     project_type == BIOBLITZ_TYPE
+  end
+
+  def update_counts
+    update_users_observations_counts
+    update_users_taxa_counts
+  end
+
+  def update_users_observations_counts(options = {})
+    Project.transaction do
+      # set all counts to zero
+      project_users.update_all(observations_count: 0) unless options[:user_id]
+      user_ids = options[:user_id] ? [ options[:user_id] ] :
+        project_users.pluck(:user_id).uniq.sort
+      user_ids.in_groups_of(500, false) do |uids|
+        # matching the node.js iNaturalistAPI filters/aggregations for obs counts
+        result = Observation.elastic_search(
+          filters: [
+            { term: { project_ids: self.id } },
+            { terms: { "user.id": uids } }
+          ],
+          size: 0,
+          aggregate: {
+            top_observers: { terms: { field: "user.id", size: 0 } } }
+        )
+        if result && result.response && result.response.aggregations
+          result.response.aggregations.top_observers.buckets.each do |b|
+            ProjectUser.where(project_id: id, user_id: b[:key]).
+              update_all(observations_count: b.doc_count)
+          end
+        end
+      end
+    end
+  end
+
+  def update_users_taxa_counts(options = {})
+    Project.transaction do
+      # set all counts to zero
+      project_users.update_all(taxa_count: 0) unless options[:user_id]
+      user_ids = options[:user_id] ? [ options[:user_id] ] :
+        project_users.pluck(:user_id).uniq.sort
+      user_ids.in_groups_of(500, false) do |uids|
+        # matching the node.js iNaturalistAPI filters/aggregations for species counts
+        filters = [
+          { term: { project_ids: self.id } },
+          { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
+          { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
+          { terms: { "user.id": uids } }
+        ]
+        result = Observation.elastic_search(
+          filters: filters,
+          size: 0,
+          aggregate: {
+            user_taxa: {
+              terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
+              aggs: {
+                distinct_taxa: {
+                  cardinality: {
+                    field: "taxon.min_species_ancestry", precision_threshold: 10000 } } } } }
+        )
+        if result && result.response && result.response.aggregations
+          result.response.aggregations.user_taxa.buckets.each do |b|
+            ProjectUser.where(project_id: id, user_id: b[:key]).
+              update_all(taxa_count: b.distinct_taxa.value)
+          end
+        end
+      end
+    end
   end
 
   class ProjectAggregatorAlreadyRunning < StandardError; end
@@ -716,8 +779,10 @@ class Project < ActiveRecord::Base
       Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
         # don't use first_or_create here
-        po = ProjectObservation.where(project: self, observation: o).first ||
-          ProjectObservation.create(project: self, observation: o)
+        po = transaction do
+          ProjectObservation.where(project: self, observation: o).first ||
+            ProjectObservation.create(project: self, observation: o)
+        end
         if po && !po.errors.any?
           added += 1
         else
@@ -729,6 +794,7 @@ class Project < ActiveRecord::Base
       observations = nil
       page += 1
     end
+    update_counts
     update_attributes(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end
@@ -776,4 +842,17 @@ class Project < ActiveRecord::Base
     Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
     raise e
   end
+
+  def sane_destroy
+    project_observations.delete_all
+    posts.select("id, parent_type, parent_id, user_id").find_each(&:destroy)
+    destroy
+  end
+
+  def node_api_species_count
+    response = INatAPIService.observations_species_counts(
+      project_id: self.id, per_page: 0, ttl: 300)
+    (response && response.total_results) || 0
+  end
+
 end

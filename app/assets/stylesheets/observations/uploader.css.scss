@@ -1,0 +1,769 @@
+@import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+
+body {
+  background-color: #eee;
+}
+.input-group.date {
+  display: none;
+}
+.input-group, .form-group {
+  margin: 10px 0;
+}
+.form-control[readonly] {
+  background-color: white;
+}
+
+input.failed, textarea.failed {
+  border-color: #d9534f !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
+}
+
+
+// Navbar
+.navbar {
+  border-radius: 0px;
+  position: fixed;
+  width: 100%;
+  margin-top: -100px;
+  z-index: 1001;
+  .navbar-brand {
+    img {
+      height: 24px;
+    }
+  }
+}
+
+.nav_add_obs {
+  padding-top: 0;
+  margin-top: 32px;
+  margin-left: 0px;
+  // border-width: 0 0 1px 0;
+  border: 0;
+  background-color: white;
+  box-shadow: 0px 3px 10px #e7e7e7;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  top: 20px;
+  .navbar-right {
+    margin-right: 0px;
+  }
+  #add_photos > div {
+    display: inline;
+  }
+  .select {
+    margin-top: 6px;
+    border-left: 1px solid #e7e7e7;
+    margin-left: 10px;
+    padding-left: 10px;
+    &.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+    }
+  }
+  .glyphicon, input[type="checkbox"] {
+    margin-right: 4px;
+  }
+  label {
+    font-weight: normal;
+    margin: 1px;
+  }
+}
+
+.profile-pic {
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  margin: 0 5px 0 0
+}
+.dropdown .dropdown-profile {
+  padding: 10px;
+}
+
+
+
+// No-image intro menu
+
+.intro {
+  text-align: center;
+  height: 300px;
+  padding-top: 3%;
+  font-size: 1.3em;
+  .drag_or_choose {
+    padding-bottom: 30px;
+    p {
+      padding: 20px 0;
+    }
+  }
+  .dropdown {
+    border-top: 1px dashed #a7a7a7;
+    padding: 30px 150px 0px;
+  }
+  .dropdown-menu {
+    margin: 0px 150px;
+  }
+  button .glyphicon {
+    margin-left: 10px;
+    top: 3px;
+    font-size: 0.9em;
+  }
+  .hover {
+    display: none;
+    p {
+      line-height: 150px;
+    }
+  }
+}
+
+
+
+// Main content structure
+
+.row-fluid {
+  .col-fixed-250 {
+    width: 250px;
+    float: left;
+    overflow: visible;
+    position: fixed;
+    z-index: 10;
+  }
+  .col-offset-290 {
+    margin-left: 275px;
+    position: inherit;
+    width: 70%;
+  }
+  .left-col-padding {
+    padding-left: 5px;
+    padding-right: 10px;
+  }
+}
+
+.uploader {
+  min-width: 800px;
+  margin-top: 100px;
+  &.hover {
+    opacity: 0.7;
+    cursor: copy;
+    .intro {
+      .start {
+        display: none;
+      }
+      .hover {
+        display: block;
+      }
+    }
+    .left-col-padding, .nav_add_obs > div {
+      opacity: 0;
+    }
+  }
+  & > .container-fluid {
+    margin-top: 20px;
+  }
+}
+
+.leftColumn {
+  .head {
+    font-size: 18px;
+    font-weight: 400;
+    .count {
+      font-weight: bold;
+    }
+  }
+  .panel, .panel-heading, .panel-body {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .panel-body {
+    border: 0px !important;
+  }
+  .panel-group {
+    margin-bottom: 10px;
+    .panel-heading {
+      margin: 5px 0px;
+    }
+    .panel-title {
+      a {
+        display: block;
+      }
+      .icon {
+        margin-right: 10px;
+      }
+      .toggle {
+        float: right;
+        top: 4px;
+      }
+    }
+    .panel {
+      border-top: 1px solid #DFDFDF;
+      border-bottom: 0px;
+      border-radius: 0px;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    .panel+.panel {
+      margin: 0px;
+    }
+    .panel:last-child {
+      border-bottom: 1px solid #DFDFDF;
+    }
+  }
+  .panel-heading {
+    .panel-title {
+      font-weight: normal;
+      font-size: 14px;
+      .glyphicon {
+        margin-left: 10px;
+        font-size: 0.8em;
+        -moz-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        &.rotate {
+          -moz-transform: rotate(90deg);
+          -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+        }
+      }
+      &.contents {
+        font-weight: bold;
+      }
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .tags {
+    & > span {
+      float: left;
+      margin-right: 10px;
+      line-height: 2;
+    }
+  }
+  .badge.count {
+    float: right;
+    padding: 3px 6px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+    background-color: #74ac00;
+  }
+  .taglist {
+    margin-bottom: 10px;
+    line-height: 1.8em;
+    .badge {
+      margin-left: 5px;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 1px 7px;
+      span.wrap {
+        display: inline-block;
+        max-width: 190px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        vertical-align: text-top;
+      }
+      span.field {
+        max-width: 130px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    .field {
+      font-weight: 600;
+      margin-right: 3px;
+      letter-spacing: normal;
+    }
+    .glyphicon {
+      margin-left: 5px;
+      opacity: 0.3;
+      z-index: 3;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .observation-field {
+    h4 {
+      font-size: 16px;
+    }
+    caption {
+      display: block;
+      padding-top: 0px;
+    }
+    padding-bottom: 15px;
+    .help-block {
+      margin-bottom: 0px;
+    }
+    button.standalone[type="submit"] {
+      margin-top: 10px;
+    }
+  }
+  .options {
+    border-top: 1px solid #DFDFDF;
+    padding-top: 10px;
+    color: black;
+    a {
+      color: black;
+    }
+    .glyphicon-new-window {
+      margin-left: 5px;
+    }
+  }
+}
+
+
+
+// Card grid
+
+ul.obs {
+  padding: 0;
+  margin: 0
+}
+ul.obs > li {
+  float: left;
+  list-style: none;
+  margin: 10px;
+  &:hover {
+    .card {
+      box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
+      .btn-close, .btn-close-photo, .btn-enlarge {
+        display: block;
+      }
+    }
+  }
+}
+ul.obs > li .card {
+  margin: 3px;
+  width: 220px;
+  position: relative;
+  &.ui-selecting {
+    box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
+  }
+  &.selected {
+    box-shadow: 0 0 0 3px rgba(116, 172, 0, 1);
+  }
+  &.dragging {
+    box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
+  }
+  &.hover, &.dragOver {
+    box-shadow: 0 0 0 5px rgba(116, 172, 0, 1);
+  }
+  &.dragOver.dragging {
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.8);
+  }
+  textarea {
+    resize: none;
+  }
+  .photoDrag {
+    cursor: -webkit-grab; cursor: -moz-grab;
+  }
+  .caption {
+    padding: 0 9px;
+  }
+  .img-container img {
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+  }
+  .photo-count {
+    text-align: center;
+    font-size: 11px;
+    margin: 5px 0 0 0;
+    color: #3d3d3d;
+  }
+  .btn-close,.btn-close-photo {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    font-size: 10px;
+    background-color: #555;
+    border: 0;
+    border-radius: 22px;
+    height: 22px;
+    width: 22px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+    outline: none;
+  }
+  .btn-close {
+    right: -7px;
+    top: -10px;
+  }
+  .label-captive {
+    position: absolute;
+    color: white;
+    left: 0px;
+    top: 0px;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: orange;
+    border: 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 24px;
+    width: 24px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    z-index: 2;
+    outline: none;
+  }
+  .btn-close-photo {
+    right: -3px;
+    top: 0px;
+  }
+  .btn-enlarge {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    background-color: #5D5D5D;
+    border: 0;
+    border-radius: 2px;
+    height: 28px;
+    width: 28px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0.8;
+    right: 5px;
+    bottom: 15px;
+    display: none;
+    outline: none;
+  }
+  .btn-enlarge:hover {
+    opacity: 1.0;
+  }
+  .btn-close-photo:hover, .btn-close:hover {
+    background-color: red;
+  }
+  .img-container {
+    text-align: center;
+    height: 144px;
+    line-height: 144px;
+    .placeholder .glyphicon {
+      line-height: 144px;
+      font-size: 100px;
+      opacity: 0.07;
+    }
+    .gallery-item > .glyphicon {
+      line-height: 144px;
+      font-size: 40px;
+      opacity: 0.07;
+    }
+    img {
+      max-height: 142px;
+      max-width: 180px;
+      width: auto;
+      margin-bottom: 10px;
+    }
+    .carousel {
+      .carousel-control {
+        background: none;
+        height: 50px;
+        margin-top: 45px;
+        text-shadow: none;
+        opacity: 1;
+        width: 1%;
+        span {
+          font-size: 14px;
+          margin-top: -10px;
+        }
+        .glyphicon-chevron-right, .glyphicon-chevron-left {
+          color: #555;
+          &:hover {
+            color: black;
+          }
+        }
+      }
+      .gallery-item {
+        display: inline-block;
+        position: relative;
+        .zoom {
+          bottom: 0px;
+          right: 0px;
+        }
+      }
+      .item.next, .item.prev, .item.left, .item.right {
+        .btn-close-photo, .btn-enlarge {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+#react-images-container .figureShadow--jss-0-5 {
+  box-shadow: none;
+}
+
+
+// Model dialogs
+
+.modal {
+  &.location {
+    .modal-header {
+      .glyphicon {
+        font-size: 0.9em;
+        margin-right: 5px;
+      }
+    }
+    .modal-dialog {
+      width: 700px;
+    }
+    .modal-body {
+      height: 400px;
+      padding: 10px;
+    }
+    .modal-header {
+      padding: 10px 10px 5px 10px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      background: #337ab7;
+
+      h4 {
+        color: white;
+      }
+    }
+    .modal-footer {
+      text-align: center;
+      button {
+        min-width: 110px;
+        margin: 0px 20px;
+      }
+    }
+    .form-group {
+      display: inline-block;
+      margin: 0px 10px;
+      input {
+        width: 100px;
+        &.notes {
+          width: 250px;
+        }
+      }
+    }
+    .close {
+      color: white;
+      opacity: 0.6;
+      text-shadow: 0 1px 0 #333;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .map {
+    height: 310px;
+    .photo-marker {
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      margin-left: -25px;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        border: 2px solid white;
+        border-radius: 3px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+      }
+    }
+  }
+  .form {
+    margin-top: 10px;
+    display: flex;
+    option {
+      height: 0px;
+    }
+  }
+
+  &.confirm {
+    .modal-dialog {
+      width: 450px;
+      margin-top: 150px;
+    }
+    .text {
+      line-height: 28px;
+      font-size: 1.3em;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .modal-footer {
+      padding: 10px;
+      .buttons {
+        text-align: center;
+      }
+      button {
+        min-width: 100px;
+        margin: 0px 10px;
+      }
+    }
+    .projects {
+      margin: 10px 20px;
+      font-size: 0.9em;
+      .count {
+        display: block;
+        margin: 0px 20px 10px;
+        font-size: 0.9em;
+        line-height: 1;
+        color: #666;
+      }
+    }
+  }
+
+  &.status .modal-dialog, &.remove .modal-dialog {
+    margin-top: 200px;
+  }
+
+  &.status {
+    h3 {
+      margin: 20px;
+      text-align: center;
+    }
+  }
+}
+
+
+
+// Included components
+
+.ac-chooser {
+  width: 100%;
+  .ac-select-thumb {
+    float: inherit;
+    padding: 0px;
+    width: 39px;
+    &.input-sm {
+      width: 33px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &:contains('img') {
+      border: none;
+      background: none;
+    }
+    &.has-photo {
+      border: none;
+      background: none;
+      padding: 0px;
+    }
+  }
+}
+.ui-autocomplete {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  &.open {
+    opacity: 1;
+  }
+  .ac-result {
+    font-size: 0.9em;
+  }
+}
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
+  position: absolute;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  height: auto;
+  margin-top: 37px;
+  td span {
+    height: auto;
+  }
+  &:before {
+    right: 110px;
+  }
+  &:after {
+    right: 111px;
+  }
+  .btn {
+    box-shadow: none;
+  }
+}
+
+// Google location search autocomplete results
+.pac-container {
+  z-index: 1100;
+}
+
+// so the lightbox image viewer shows above the fixed toolbar
+.container--jss-0-0 {
+  z-index: 100001 !important;
+}
+
+
+
+@media (min-width: 992px) {
+  .col-md-12 {
+    width: auto;
+    float: none;
+  }
+}
+
+// Removing navbar collapse feature of responsive bootstrap
+
+@media (min-width: 1px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav>li {
+    float: left;
+    margin: 0;
+  }
+  .navbar-right {
+    float: right!important;
+    margin-right: -15px;
+  }
+  .container-fluid>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+    float: left;
+  }
+  .navbar-form {
+    width: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .navbar-toggle {
+    display: none;
+  }
+  .navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+  }
+  .navbar-right .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  .dropdown-menu {
+    position: absolute !important;
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
+  }
+}

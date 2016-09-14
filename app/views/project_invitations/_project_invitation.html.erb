@@ -44,9 +44,4 @@
       <% end -%>
     </nobr>
   </div>
-  <% if false && is_me?(observation.user) && (project.matching_project_observation_rules.count > 0 || observation.taxon_id) -%>
-    <div class="clear right project_invitation_extra">
-      <%= render 'project_invitations/import_button', :project => project, :taxon_id => observation.taxon_id %>
-    </div>
-  <% end -%>
 </div>

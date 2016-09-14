@@ -32,9 +32,16 @@
   <%= form_for(@user, :url => person_path(@user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
     <%= error_messages_for :user %>
     <div class="column span-18 stacked">
-      <%= image_tag(@user.icon.url(:thumb), :class => 'usericon left') %>
-      <%= f.file_field(:icon, :label => t(:icon_slash_photo), :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
-      <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
+      <%= image_and_content image_tag( @user.icon.url(:thumb), class: "usericon" ) do %>
+        <%= link_to_toggle t(:change_icon), "#iconfield" %>
+        <div id="iconfield" style="display: none">
+          <%= f.file_field :icon, label: false, accept: "image/jpg,image/jpeg,image/png,image/gif" %>
+          <div>
+            <%= check_box_tag :icon_delete %>
+            <label for="icon_delete"><%=t :delete_icon? %></label>
+          </div>
+        </div>
+      <% end %>
     </div>
     <div class="column span-9">
       <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username), size: 30) %>
@@ -46,12 +53,13 @@
         {:selected => @user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
       <%-
-        locales = I18N_SUPPORTED_LOCALES.map do |l| 
+        locales = I18N_SUPPORTED_LOCALES.map do |l|
+          next if l.to_s == "iw"
           translated_label = t("locales.#{l}", locale: l, default: nil)
           viewer_label = t("locales.#{l}", default: l)
           label = [viewer_label, translated_label].compact.uniq.join(' / ')
           [label, l]
-        end.sort_by(&:first)
+        end.compact.sort_by(&:first)
       -%>
       <%= f.select :locale, 
         locales, 
@@ -62,21 +70,6 @@
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <%- provider_names = @user.provider_authorizations.map{|pa| pa.provider_name.downcase} %>
-      <%- if (%w(twitter facebook) & provider_names).size > 0 %>
-        <h3><%=t :sharing_settings %></h3>
-        <div id="observationsharingpreferences" class="stacked">
-          <label><%=t :automatically_share_your_observations_on %></label>
-          <% for attr_name in User::SHARING_PREFERENCES %>
-            <%- service = attr_name.gsub(/share_observations_on_/, '') %>
-            <%- if @user.has_provider_auth(service) %>
-              <%= f.check_box "prefers_#{attr_name}", 
-                :label => service.capitalize, 
-                :label_after => true %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
       <h3><%= t :email_settings %></h3>
       <div id="notificationpreferences" class="stacked">
         <label><%=t :receive_email_notifications_when_people_leave_you %></label>

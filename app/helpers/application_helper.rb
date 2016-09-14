@@ -70,28 +70,28 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to t(:stop_following_user, :user => potential_friend.login), 
+    unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
       url_options.merge(:remove_friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
         :datatype => "json",
         :method => :put,
         :id => dom_id(potential_friend, 'unfriend_link'),
-        :class => "unfriend_link",
+        :class => "btn btn-primary btn-xs unfriend_link",
         :style => already_friends ? "" : "display:none"
       )
-    friend_link = link_to t(:follow_user, :user=> potential_friend.login), 
+    friend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:follow_user, :user=> potential_friend.login)}".html_safe, 
       url_options.merge(:friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
         :method => :put,
         :datatype => "json",
         :id => dom_id(potential_friend, 'friend_link'),
-        :class => "friend_link",
+        :class => "btn btn-primary btn-xs friend_link",
         :style => (!already_friends && user != potential_friend) ? "" : "display:none"
       )
     
-    content_tag :span, (friend_link + unfriend_link).html_safe, :class => "friend_button"
+    content_tag :span, (friend_link + unfriend_link).html_safe
   end
   
   def char_wrap(text, len)
@@ -274,6 +274,20 @@ module ApplicationHelper
       photo.native_page_url,
       link_options
     )
+  end
+  
+  def stripped_first_paragraph_of_text(text,split = nil)
+    return text if text.blank?
+    split ||= "\n\n"
+    text = text.split(split)[0]
+    text = strip_tags(text).html_safe
+  end
+  
+  def remaining_paragraphs_of_text(text,split)
+    return text if text.blank?
+    paragraphs = text.split(split)
+    text = paragraphs[1..paragraphs.length].join(split)
+    Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
   
   def formatted_user_text(text, options = {})
@@ -800,17 +814,16 @@ module ApplicationHelper
   end
 
   def google_static_map_for_observation_url(o, options = {})
-    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
+    return if CONFIG.google.blank? || CONFIG.google.browser_api_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
       :center => "#{o.latitude},#{o.longitude}",
       :zoom => o.map_scale || 7,
       :size => '200x200',
-      :sensor => 'false',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
       :port => false,
-      :key => CONFIG.google.simple_key
+      :key => CONFIG.google.browser_api_key
     }.merge(options)
     url_for(url_for_options)
   end
@@ -910,10 +923,7 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
-      @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
-    end
-    resource ||= update.resource
+    resource = update.resource
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
@@ -950,16 +960,14 @@ module ApplicationHelper
     end
   end
   
+  def bootstrapTargetID
+     return rand(36**8).to_s(36)
+  end
+    
   def update_tagline_for(update, options = {})
-    resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
-      @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
-    end
-    resource ||= update.resource
-    notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
-      @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
-    end
-    notifier ||= update.notifier
-    if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
+    resource = update.resource
+    notifier = update.notifier
+    if notifier.respond_to?(:user) && (notifier_user = notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
     class_name_key = update.resource.class.to_s.underscore
@@ -1043,7 +1051,7 @@ module ApplicationHelper
         else
           link_to(project.title, url_for_resource_with_host(project))
         end
-        if update.notification == Update::YOUR_OBSERVATIONS_ADDED
+        if update.notification == UpdateAction::YOUR_OBSERVATIONS_ADDED
           t(:project_curators_added_some_of_your_observations_html, url: project_url(resource), project: project.title)
         else
           t(:curators_changed_for_x_html, :x => title)
@@ -1075,7 +1083,7 @@ module ApplicationHelper
         activity_snippet(update, notifier, notifier_user, options.merge(:noun => noun))
       end
     when "TaxonChange"
-      notifier_user = update_cached(resource, :committer)
+      notifier_user = resource.committer
       if notifier_user
         notifier_class_name = t(resource.class.name.underscore)
         subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
@@ -1147,22 +1155,6 @@ module ApplicationHelper
     options[:separator] ||= ","
     options[:and] ||= t(:and)
     "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
-  end
-  
-  def update_cached(record, association)
-    unless record.respond_to?("#{association}_id")
-      return record.send(association)
-    end
-    cache_key = record.send("#{association}_id")
-    cached = if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
-      @update_cache[association.to_s.pluralize.to_sym][cache_key]
-    end
-    unless cached
-      @update_cache ||= {}
-      @update_cache[association.to_s.pluralize.to_sym] ||= {}
-      @update_cache[association.to_s.pluralize.to_sym][cache_key] = record.send(association)
-    end
-    @update_cache[association.to_s.pluralize.to_sym][cache_key]
   end
 
   def observation_field_value_for(ofv)
@@ -1255,9 +1247,8 @@ module ApplicationHelper
   end
 
   def google_maps_js(options = {})
-    sensor = options[:sensor] ? 'true' : 'false'
     libraries = options[:libraries] || []
-    params = "sensor=#{sensor}"
+    params = "key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
@@ -1387,7 +1378,6 @@ module ApplicationHelper
   def hyperlink_mentions(text)
     linked_text = text.dup
     linked_text.mentioned_users.each do |u|
-
       linked_text.gsub!(/(\B)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
     end
     linked_text

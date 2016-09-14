@@ -18,6 +18,8 @@ class ObservationFieldValue < ActiveRecord::Base
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
 
+  after_save :update_observation_field_counts
+
   notifies_subscribers_of :observation, :notification => "activity",
     :on => :save,
     :include_owner => lambda {|ofv, observation|
@@ -34,6 +36,7 @@ class ObservationFieldValue < ActiveRecord::Base
   attr_accessor :updater_user_id
 
   include Shared::TouchesObservationModule
+  include ActsAsUUIDable
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
 
@@ -148,8 +151,13 @@ class ObservationFieldValue < ActiveRecord::Base
     end
   end
 
+  def update_observation_field_counts
+    observation_field.update_counts
+  end
+
   def as_indexed_json(options={})
     {
+      uuid: uuid,
       name: observation_field.name,
       value: self.value
     }

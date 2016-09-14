@@ -3,13 +3,16 @@
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=980">
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
+    <% if logged_in? -%>
+      <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
+    <% end -%>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
     <% end -%>
@@ -22,9 +25,12 @@
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
+    <% if @site %>
+      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% end %>
   </head>
   <body>
-    <div id="bodywrapper">
+    <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
       <% unless @headless -%>
         <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
           <%= render :partial => 'shared/header' %>
@@ -84,7 +90,11 @@
       <% end -%>
       var CURRENT_USER;
       <% if logged_in? -%>
-        CURRENT_USER = { id: <%= current_user.id %>, login: '<%= current_user.login %>' };
+        CURRENT_USER = {
+          id: <%= current_user.id %>,
+          login: '<%= current_user.login %>',
+          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>
+        };
       <% end -%>
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
     </script>
@@ -95,10 +105,10 @@
       var btn = $.fn.button.noConflict()
       $.fn.btn = btn
     </script>
-    <%= google_maps_js libraries: %w(places geometry) %>
-    <%= javascript_include_tag "map_bundle" %>
+    <%= google_maps_js libraries: %w(places geometry drawing) %>
+    <%= javascript_include_tag "map_bundle" unless @minimal_header %>
     <%= yield :extrajs %>
-    <% if logged_in? -%>
+    <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setTimeout(getUpdatesCount, 1000)

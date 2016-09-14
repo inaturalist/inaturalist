@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 4.2.0"
+gem 'rails', "~> 4.2.6"
 
 gem 'apipie-rails'
 gem 'aasm'
@@ -44,7 +44,7 @@ gem "friendly_id", "~> 5.1.0"
 gem 'gdata', :git => 'git://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
-gem 'google-api-client'
+gem 'google-api-client', "=0.8.6"
 gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'htmlentities'
@@ -60,15 +60,18 @@ gem 'mocha', :require => false
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
 gem 'nokogiri'
 gem "non-stupid-digest-assets"
-gem 'omniauth-facebook'
+gem "omniauth"
+gem "omniauth-oauth2", " 1.3.1"
+gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
-gem "omniauth-google-oauth2"
-gem 'omniauth-soundcloud'
+gem "omniauth-google-oauth2", "~> 0.4.1"
+gem 'omniauth-soundcloud', git: "git://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "4.2.1"
-gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
+gem 'delayed_paperclip', git: 'git://github.com/jrgifford/delayed_paperclip.git',
+  ref: '8f11882ee945bf56affe8df4f591e5171581aac3'
 gem 'pg'
 gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
@@ -76,8 +79,6 @@ gem 'rails-observers'
 gem 'rakismet'
 gem 'RedCloth'
 gem 'rest-client', :require => 'rest_client'
-gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
-gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
@@ -119,14 +120,17 @@ group :test, :development, :prod_dev do
   gem "binding_of_caller"
   gem 'thin', '~> 1.6.3'
   gem 'capybara', '~> 2.4'
+  gem 'puma'
 end
 
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
-  gem "rspec-rails"
+  gem "rspec", "~> 3.4.0"
+  gem "rspec-rails", "~> 3.4.2"
   gem "rspec-html-matchers"
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem "chromedriver-helper"
+  gem "webmock"
 end

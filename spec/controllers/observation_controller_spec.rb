@@ -65,6 +65,19 @@ describe ObservationsController do
         post :create, observation: {species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s}, project_id: p.id
       }.not_to raise_error
     end
+
+    it "should work with a custom coordinate system" do
+      nztm_proj4 = "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+      post :create, observation: {
+        geo_x: 1889191,
+        geo_y: 5635569,
+        coordinate_system: nztm_proj4
+      }
+      o = user.observations.last
+      expect( o.latitude ).to eq -39.380943828
+      expect( o.longitude ).to eq 176.3574072522
+    end
+
   end
   
   describe "update" do
@@ -145,10 +158,11 @@ describe ObservationsController do
 
   describe "show" do
     render_views
-    it "should now include the place_guess when coordinates obscured" do
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: "Duluth, MN")
+    it "should not include the place_guess when coordinates obscured" do
+      original_place_guess = "Duluth, MN"
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
       get :show, id: o.id
-      expect( response.body ).not_to be =~ /#{o.place_guess}/
+      expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
@@ -159,9 +173,10 @@ describe ObservationsController do
   describe "show.mobile" do
     render_views
     it "should now include the place_guess when coordinates obscured" do
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: "Duluth, MN")
+      original_place_guess = "Duluth, MN"
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
       get :show, format: "mobile", id: o.id
-      expect( response.body ).not_to be =~ /#{o.place_guess}/
+      expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
   end
   
@@ -197,8 +212,8 @@ describe ObservationsController do
   end
 
   describe "project" do
-    before(:each) { enable_elastic_indexing( Observation, Update ) }
-    after(:each) { disable_elastic_indexing( Observation, Update ) }
+    before(:each) { enable_elastic_indexing( Observation, UpdateAction ) }
+    after(:each) { disable_elastic_indexing( Observation, UpdateAction ) }
     render_views
 
     describe "viewed by project curator" do
@@ -446,12 +461,19 @@ describe ObservationsController do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation, Update ) }
-    after(:each) { disable_elastic_indexing( Observation, Update ) }
+    before(:each) { enable_elastic_indexing( Observation, UpdateAction ) }
+    after(:each) { disable_elastic_indexing( Observation, UpdateAction ) }
+    render_views
     it "should just ignore project slugs for projects that don't exist" do
       expect {
         get :index, projects: 'imaginary-project'
       }.not_to raise_error
+    end
+
+    it "should include https image urls in widget response" do
+      make_research_grade_observation
+      get :index, protocol: :https, format: :widget
+      expect( response.body ).to match /s3.amazonaws.com/
     end
   end
 
@@ -552,8 +574,9 @@ describe ObservationsController, "new_bulk_csv" do
   let(:headers) do
     %w(taxon_name date_observed description place_name latitude longitude tags geoprivacy)
   end
+  let(:user) { User.make! }
   before do
-    sign_in User.make!
+    sign_in user
   end
   it "should not allow you to enqueue the same file twice" do
     Delayed::Job.delete_all
@@ -586,5 +609,67 @@ describe ObservationsController, "new_bulk_csv" do
     expect( Delayed::Job.count ).to eq 1
     post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
     expect( Delayed::Job.count ).to eq 2
+  end
+
+  it "should create observations" do
+    Delayed::Job.delete_all
+    Observation.by( user ).destroy_all
+    expect( Observation.by( user ).count ).to eq 0
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        '37.7693',
+        '-122.46565',
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    Taxon.make!( name: "Homo sapiens" )
+    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    Delayed::Worker.new.work_off
+    expect( Observation.by( user ).count ).to eq 1
+  end
+
+  it "should create observations with custom coordinate systems" do
+    stub_config :coordinate_systems => {
+      :nztm2000 => {
+        :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
+        :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+      },
+      :nzmg => {
+        :label => "NZMG (New Zealand Map Grid), EPSG:27200",
+        :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+      }
+    }
+    expect(CONFIG.coordinate_systems).not_to be_blank
+    Delayed::Job.delete_all
+    Observation.by( user ).destroy_all
+    expect( Observation.by( user ).count ).to eq 0
+    CSV.open(work_path, 'w') do |csv|
+      csv << headers
+      csv << [
+        'Homo sapiens',
+        '2015-01-01',
+        'Too many of them',
+        'San Francisco',
+        5635569, # these coordinates should be NZMG for Lat -39.380943828, Lon 176.3574072522
+        1889191,
+        'foo,bar',
+        'open'
+      ]
+      csv
+    end
+    Taxon.make!( name: "Homo sapiens" )
+    post :new_bulk_csv, upload: {
+      datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv'),
+      coordinate_system: "nzmg"
+    }
+    Delayed::Worker.new.work_off
+    expect( Observation.by( user ).count ).to eq 1
   end
 end

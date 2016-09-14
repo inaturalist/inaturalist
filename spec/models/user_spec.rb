@@ -10,7 +10,8 @@ bad_logins = [
   "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
   'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 
   'period.', 'm', 
-  'this_is_the_longest_login_ever_written_by_man'
+  'this_is_the_longest_login_ever_written_by_man',
+  "password", "new"
 ]
 
 describe User do
@@ -100,6 +101,13 @@ describe User do
     it "should not allow time_zone to be a blank string" do
       expect( User.make( time_zone: "" ) ).not_to be_valid
     end
+    
+    it "should set latitude and longitude" do
+      u = User.make(:last_ip => "12.189.20.126")
+      u.save
+      expect(u.latitude).to_not be_blank
+      expect(u.longitude).to_not be_blank
+    end
   end
 
   describe "update" do
@@ -163,8 +171,8 @@ describe User do
   end
   describe 'disallows illegitimate logins:' do
     bad_logins.each do |login_str|
-      it "'#{login_str}'" do
-        expect(User.make(login: login_str)).not_to be_valid
+      it login_str do
+        expect( User.make(login: login_str) ).not_to be_valid
       end
     end
   end
@@ -319,7 +327,7 @@ describe User do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     before(:each) do
-      enable_elastic_indexing([ Observation, Taxon, Place, Update ])
+      enable_elastic_indexing([ Observation, Taxon, Place, UpdateAction ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -329,7 +337,7 @@ describe User do
         end
       end
     end
-    after(:each) { disable_elastic_indexing([ Observation, Place, Update ]) }
+    after(:each) { disable_elastic_indexing([ Observation, Place, UpdateAction ]) }
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -430,16 +438,16 @@ describe User do
       m = without_delay do
         ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
       end
-      Update.destroy_all
-      old_count = Update.count
+      UpdateSubscriber.destroy_all
+      old_count = UpdateSubscriber.count
       start = Time.now
       without_delay { @user.sane_destroy }
-      new_updates = Update.where("created_at >= ?", start).to_a
+      new_updates = UpdateSubscriber.joins(:update_action).to_a
       expect(new_updates.size).to eq p.project_users.count
       # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
       u = new_updates.detect{|o| o.subscriber_id == m.user_id}
       expect(u).not_to be_blank
-      expect(u.resource).to eq(p)
+      expect(u.update_action.resource).to eq(p)
     end
 
     it "should generate a notification update for new project owners even if they're new members" do
@@ -448,18 +456,18 @@ describe User do
       a = without_delay do
         make_admin
       end
-      Update.delete_all
-      old_count = Update.count
+      UpdateSubscriber.delete_all
+      old_count = UpdateSubscriber.count
       start = Time.now
 
       without_delay { @user.sane_destroy }
       p.reload
-      new_updates = Update.where("created_at >= ?", start).to_a
+      new_updates = UpdateSubscriber.joins(:update_action).to_a
       expect(new_updates.size).to eq p.project_users.count
       # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
       u = new_updates.detect{|o| o.subscriber_id == a.id}
       expect(u).not_to be_blank
-      expect(u.resource).to eq(p)
+      expect(u.update_action.resource).to eq(p)
     end
 
     it "should not destroy project journal posts" do
@@ -713,34 +721,34 @@ describe User do
   describe "mentions" do
     it "can prefer to not get mentions" do
       u = User.make!
-      expect( u.updates.count ).to eq 0
+      expect( u.update_subscribers.count ).to eq 0
       without_delay { Comment.make!(body: "hey @#{ u.login }") }
       without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      expect( u.updates.count ).to eq 2
+      expect( u.update_subscribers.count ).to eq 2
       u.update_attributes(prefers_receive_mentions: false)
       without_delay { Comment.make!(body: "hey @#{ u.login }") }
       # the mention count remains the same
-      expect( u.updates.count ).to eq 2
+      expect( u.update_subscribers.count ).to eq 2
     end
 
     it "can prefer to not get mentions in emails" do
       u = User.make!
-      expect( u.updates.count ).to eq 0
+      expect( u.update_subscribers.count ).to eq 0
       without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      expect( u.updates.count ).to eq 1
+      expect( u.update_subscribers.count ).to eq 1
       deliveries = ActionMailer::Base.deliveries.size
       u.update_attributes(prefers_mention_email_notification: false)
-      Update.email_updates_to_user(u, 1.hour.ago, Time.now)
+      UpdateAction.email_updates_to_user(u, 1.hour.ago, Time.now)
       expect( ActionMailer::Base.deliveries.size ).to eq deliveries
       u.update_attributes(prefers_mention_email_notification: true)
-      Update.email_updates_to_user(u, 1.hour.ago, Time.now)
+      UpdateAction.email_updates_to_user(u, 1.hour.ago, Time.now)
       expect( ActionMailer::Base.deliveries.size ).to eq (deliveries + 1)
     end
   end
 
   describe "prefers_redundant_identification_notifications" do
-    before(:each) { enable_elastic_indexing( Observation, Update ) }
-    after(:each) { disable_elastic_indexing( Observation, Update ) }
+    before(:each) { enable_elastic_indexing( Observation, UpdateAction ) }
+    after(:each) { disable_elastic_indexing( Observation, UpdateAction ) }
 
     let(:u) { User.make! }
     let(:genus) { Taxon.make!(rank: Taxon::GENUS) }
@@ -757,15 +765,15 @@ describe User do
       end
       it "should allow identifications that match with the subscriber" do
         without_delay { Identification.make!(observation: o, taxon: species) }
-        expect( u.updates.count ).to eq 1
+        expect( u.update_subscribers.count ).to eq 1
       end
       it "should allow identifications of taxa that are descendants of the subscriber's taxon" do
         without_delay { Identification.make!(observation: o, taxon: subspecies) }
-        expect( u.updates.count ).to eq 1
+        expect( u.update_subscribers.count ).to eq 1
       end
       it "should allow identifications of taxa that are ancestors of the subscriber's taxon" do
         without_delay { Identification.make!(observation: o, taxon: genus) }
-        expect( u.updates.count ).to eq 1
+        expect( u.update_subscribers.count ).to eq 1
       end
     end
 
@@ -777,21 +785,21 @@ describe User do
       end
       it "should suppress identifications that match with the subscriber" do
         without_delay { Identification.make!(observation: o, taxon: species) }
-        expect( u.updates.count ).to eq 0
+        expect( u.update_subscribers.count ).to eq 0
       end
       it "should allow identifications of taxa that are descendants of the subscriber's taxon" do
         without_delay { Identification.make!(observation: o, taxon: subspecies) }
-        expect( u.updates.count ).to eq 1
+        expect( u.update_subscribers.count ).to eq 1
       end
       it "should allow identifications of taxa that are ancestors of the subscriber's taxon" do
         without_delay { Identification.make!(observation: o, taxon: genus) }
-        expect( u.updates.count ).to eq 1
+        expect( u.update_subscribers.count ).to eq 1
       end
       it "should allow notification if subscriber has no identification" do
         obs = Observation.make!(user: u)
         expect( obs.owners_identification ).to be_blank
         without_delay { Identification.make!(observation: obs) }
-        expect( u.updates.count ).to eq 1
+        expect( u.update_subscribers.count ).to eq 1
       end
     end
   end

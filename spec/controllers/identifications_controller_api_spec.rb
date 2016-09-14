@@ -87,7 +87,7 @@ shared_examples_for "an IdentificationsController" do
   end
 
   describe "update" do
-    let(:identification) { Identification.make!(:user => user) }
+    let(:identification) { Identification.make!( user: user ) }
     it "should work" do
       expect {
         put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
@@ -100,6 +100,23 @@ shared_examples_for "an IdentificationsController" do
       json = JSON.parse(response.body)
       expect(json['taxon_id']).to eq identification.taxon_id
     end
+
+    it "should mark other identifications as not current if restoring" do
+      # puts "creating new ident"
+      i2 = Identification.make!( user: user, observation: identification.observation )
+      # puts "done creating new ident"
+      identification.reload
+      expect( i2 ).to be_current
+      expect( identification ).not_to be_current
+      # puts "updating"
+      put :update, format: :json, id: identification.id, identification: { current: true }
+      # puts "response.body: #{response.body}"
+      # puts "done updating"
+      identification.reload
+      i2.reload
+      expect( i2 ).not_to be_current
+      expect( identification ).to be_current
+    end
   end
 
   describe "destroy" do
@@ -111,22 +128,130 @@ shared_examples_for "an IdentificationsController" do
     after(:all) do
       DatabaseCleaner.strategy = :transaction
     end
-    
+
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
     let(:identification) { Identification.make!(:user => user) }
-    it "should work" do
-      delete :destroy, :format => :json, :id => identification.id
-      expect(Identification.find_by_id(identification.id)).to be_blank
+
+    # it "should work" do
+    #   delete :destroy, :format => :json, :id => identification.id
+    #   expect(Identification.find_by_id(identification.id)).to be_blank
+    # end
+
+    it "should not destroy the identification" do
+      delete :destroy, format: :json, id: identification.id
+      expect( Identification.find_by_id( identification.id ) ).not_to be_blank
+    end
+    
+    it "should mark the identification as not current" do
+      expect( identification ).to be_current
+      delete :destroy, format: :json, id: identification.id
+      identification.reload
+      expect( identification ).not_to be_current
     end
 
-    it "should work if there's a pre-existing ident" do
-      i = Identification.make!(:user => user, :observation => identification.observation)
-      expect(i).to be_current
+    it "should remove the observation taxon if there are no current identifications" do
+      expect( identification.observation.taxon ).to eq identification.taxon
+      delete :destroy, format: :json, id: identification.id
       identification.reload
-      expect(identification).not_to be_current
-      delete :destroy, :id => i.id
-      expect(Identification.find_by_id(i.id)).to be_blank
-      identification.reload
-      expect(identification).to be_current
+      expect( identification.observation.taxon ).to be_blank
+    end
+
+    # it "should work if there's a pre-existing ident" do
+    #   i = Identification.make!( user: user, observation: identification.observation )
+    #   expect( i ).to be_current
+    #   identification.reload
+    #   expect( identification ).not_to be_current
+    #   delete :destroy, id: i.id
+    #   i.reload
+    #   expect( i ).not_to be_current
+    #   identification.reload
+    #   expect( identification ).to be_current
+    # end
+
+    it "should not leave multiple current IDs when deleting a middle ID" do
+      o = Observation.make!
+      i1 = Identification.make!( user: user, observation: o )
+      i2 = Identification.make!( user: user, observation: o )
+      i3 = Identification.make!( user: user, observation: o )
+      delete :destroy, id: i2.id
+      i1.reload
+      i3.reload
+      expect( i3 ).to be_current
+      expect( i1 ).not_to be_current
+    end
+  end
+
+  describe "by_login" do
+    before(:all) { load_test_taxa }
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+    it "should return identifications by the selected user" do
+      ident = Identification.make!( user: user )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      expect( json.detect{|i| i["id"] == ident.id } ).not_to be_blank
+    end
+    it "should not return identifications not by the selected user" do
+      ident = Identification.make!
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      expect( json.detect{|i| i["id"] == ident.id } ).to be_blank
+    end
+    describe "response should include the" do
+      let(:ident) { Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) ) }
+      let(:json_ident) do
+        expect( ident ).not_to be_blank
+        get :by_login, format: :json, login: user.login
+        json = JSON.parse( response.body )
+        json.detect{|i| i["id"] == ident.id }
+      end
+      it "taxon" do
+        expect( json_ident["taxon"]["id"] ).to eq ident.taxon_id
+      end
+      it "observation" do
+        expect( json_ident["observation"]["id"] ).to eq ident.observation_id
+      end
+      it "observation's taxon" do
+        expect( json_ident["observation"]["taxon"]["id"] ).to eq ident.observation.taxon_id
+      end
+      it "observation photo URL" do
+        expect( json_ident["observation"]["photos"][0]["medium_url"] ).to eq ident.observation.photos.first.medium_url
+      end
+      it "observation iconic_taxon_name" do
+        expect( ident.observation.iconic_taxon_name ).not_to be_blank
+        expect( json_ident["observation"]["iconic_taxon_name"] ).to eq ident.observation.iconic_taxon_name
+      end
+    end
+    it "should include locale-specific taxon name" do
+      ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
+      tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS["Spanish"] )
+      user.update_attributes( locale: "es" )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      json_ident = json.detect{|i| i["id"] == ident.id }
+      expect( json_ident["taxon"]["default_name"]["name"] ).to eq tn.name
+    end
+    it "should include place-specific taxon name" do
+      ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
+      place = Place.make!
+      tn = TaxonName.make!( taxon: ident.taxon )
+      ptn = PlaceTaxonName.make!( taxon_name: tn, place: place )
+      user.update_attributes( place: place )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      json_ident = json.detect{|i| i["id"] == ident.id }
+      expect( json_ident["taxon"]["default_name"]["name"] ).to eq tn.name
+    end
+    it "should include locale-specific observation taxon name" do
+      ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
+      tn = TaxonName.make!( taxon: ident.observation.taxon, lexicon: TaxonName::LEXICONS["Spanish"] )
+      user.update_attributes( locale: "es" )
+      get :by_login, format: :json, login: user.login
+      json = JSON.parse( response.body )
+      json_ident = json.detect{|i| i["id"] == ident.id }
+      expect( json_ident["observation"]["taxon"]["default_name"]["name"] ).to eq tn.name
     end
   end
 end

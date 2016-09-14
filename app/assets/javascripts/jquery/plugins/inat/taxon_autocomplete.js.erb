@@ -118,8 +118,8 @@ autocompleter.createWrappingDiv = function( field, options ) {
 
 $.fn.taxonAutocomplete = function( options ) {
   options = options || { };
-  options.id_el = options.id_el || $( "#taxon_id" );
-  if( !options.id_el ) { return; }
+  options.idEl = options.idEl || $( "#taxon_id" );
+  if( !options.idEl ) { return; }
   var field = this;
   field.template = autocompleter.taxonTemplate;
   var source = function( request, response ) {
@@ -129,7 +129,7 @@ $.fn.taxonAutocomplete = function( options ) {
       cache: true,
       data: {
         q: request.term,
-        per_page: 10,
+        per_page: options.perPage || 10,
         locale: I18n.locale,
         preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
       },
@@ -137,13 +137,13 @@ $.fn.taxonAutocomplete = function( options ) {
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers
-        if( options.search_external !== false ) {
+        if( options.searchExternal !== false ) {
           results.push({
             type: "search_external",
             title: I18n.t("search_external_name_providers")
           });
         }
-        if( options.show_placeholder && !options.id_el.val( ) && field.val( ) ) {
+        if( options.showPlaceholder && !options.idEl.val( ) && field.val( ) ) {
           results.unshift({
             type: "placeholder",
             title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
@@ -157,7 +157,7 @@ $.fn.taxonAutocomplete = function( options ) {
   };
   var select = function( e, ui ) {
     // clicks on the View link should not count as selection
-    if( e.toElement && $(e.toElement).hasClass( "ac-view" ) ) {
+    if( e && e.toElement && $(e.toElement).hasClass( "ac-view" ) ) {
       return false;
     }
     // they selected the search external name provider option
@@ -166,7 +166,8 @@ $.fn.taxonAutocomplete = function( options ) {
       var thisSearch = Math.random();
       ac.searchInProgress = thisSearch;
       $.ajax({
-        url: "/taxa/search.json?per_page=10&include_external=1&partial=elastic&q=" + field.val( ),
+        url: "/taxa/search.json?per_page="+ options.perPage +
+          "&include_external=1&partial=elastic&q=" + field.val( ),
         dataType: "json",
         beforeSend: function(XMLHttpRequest) {
           // replace 'search external' with a loading indicator
@@ -192,7 +193,7 @@ $.fn.taxonAutocomplete = function( options ) {
                 title: I18n.t("no_results_found")
               });
             }
-            if( options.show_placeholder && field.val( ) ) {
+            if( options.showPlaceholder && field.val( ) ) {
               data.unshift({
                 type: "placeholder",
                 title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
@@ -210,7 +211,7 @@ $.fn.taxonAutocomplete = function( options ) {
       // the result list while the external search is happening
       ac.keepOpen = true;
       setTimeout( function( ){ ac.keepOpen = false; }, 10 );
-      e.preventDefault( );
+      if( e ) { e.preventDefault( ); }
       return false;
     }
     // show the best name in the search field
@@ -218,7 +219,7 @@ $.fn.taxonAutocomplete = function( options ) {
       field.val( ui.item.title || ui.item.name );
     }
     // set the hidden taxon_id
-    options.id_el.val( ui.item.id );
+    options.idEl.val( ui.item.id );
     // set the selection's thumbnail image
     field.wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
     field.selection = ui.item;
@@ -238,30 +239,15 @@ $.fn.taxonAutocomplete = function( options ) {
   };
 
   var ac = field.genericAutocomplete( _.extend( { }, {
-    extra_class: "taxon",
+    extraClass: "taxon",
     source: source,
     select: select,
     focus: focus,
     createWrappingDiv: autocompleter.createWrappingDiv
   }, options ));
   if( !ac ) { return; }
-  ac._close = function( event ) {
-    if( this.keepOpen ) { return; }
-    if( this.menu.element.is( ":visible" ) ) {
-      var that = this;
-      that.menu.blur( );
-      // delaying the close slightly so that the keydown callback below
-      // happens before the menu has disappeared. So the return key
-      // doesn't automatically submit the form unless we want that
-      setTimeout( function( ){
-        that.menu.element.hide( );
-        that.isNewMenu = true;
-        that._trigger( "close", event );
-      }, 10 );
-    }
-  };
   field.bind( "assignSelection", function( e, t ) {
-    options.id_el.val( t.id );
+    options.idEl.val( t.id );
     t.title = t.preferred_common_name || t.name;
     field.val( t.title );
     var photo = autocompleter.defaultPhotoForResult(t)
@@ -270,11 +256,12 @@ $.fn.taxonAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
-    if( options.id_el.val( ) !== null ) {
-      options.id_el.val( null );
+    if( options.idEl.val( ) !== null ) {
       field.wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
-      if( options.afterUnselect ) { options.afterUnselect( ); }
     }
     field.selection = null;
   });
+  if( options.initialSelection ) {
+    field.trigger( "assignSelection", options.initialSelection );
+  }
 };

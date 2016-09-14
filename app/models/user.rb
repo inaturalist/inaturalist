@@ -38,8 +38,6 @@ class User < ActiveRecord::Base
   preference :observation_license, :string
   preference :photo_license, :string
   preference :sound_license, :string
-  preference :share_observations_on_facebook, :boolean, :default => true
-  preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :receive_mentions, :boolean, :default => true
   preference :observations_view, :string
@@ -56,7 +54,14 @@ class User < ActiveRecord::Base
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
   preference :location_details, :boolean, default: false
   preference :redundant_identification_notifications, :boolean, default: true
-
+  preference :skip_coarer_id_modal, default: false
+  preference :hide_observe_onboarding, default: false
+  preference :hide_follow_onboarding, default: false
+  preference :hide_activity_onboarding, default: false
+  preference :hide_getting_started_onboarding, default: false
+  preference :hide_updates_by_you_onboarding, default: false
+  preference :hide_comments_onboarding, default: false
+  preference :hide_following_onboarding, default: false
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -122,7 +127,8 @@ class User < ActiveRecord::Base
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
-  has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
+  has_many :update_subscribers, foreign_key: :subscriber_id, dependent: :delete_all
+  has_many :update_subscriber_actions, source: :update_action, through: :update_subscribers
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
@@ -132,6 +138,7 @@ class User < ActiveRecord::Base
   before_validation :strip_name, :strip_login
   before_save :set_time_zone
   before_save :whitelist_licenses
+  before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -142,7 +149,7 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-
+  
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
     :message => "must be JPG, PNG, or GIF"
@@ -165,12 +172,15 @@ class User < ActiveRecord::Base
   validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
   validates_format_of       :login,     with: login_regex, message: bad_login_message
+  validates_exclusion_of    :login,     in: %w(password new edit create update delete destroy)
+
+  validates_exclusion_of    :password,     in: %w(password)
 
   validates_length_of       :name,      maximum: 100, allow_blank: true
 
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
-  validates_length_of       :time_zone, minimum: 5, allow_nil: true
+  validates_length_of       :time_zone, minimum: 3, allow_nil: true
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -351,18 +361,6 @@ class User < ActiveRecord::Base
     @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
-  # returns a Twitter object to make (authenticated) api calls
-  # see twitter gem docs for available methods: https://github.com/sferik/twitter
-  def twitter_api
-    return nil unless twitter_identity
-    @twitter_api ||= Twitter::Client.new do |config|
-      config.consumer_key = CONFIG.twitter.key
-      config.consumer_secret = CONFIG.twitter.secret
-      config.access_token = twitter_identity.token,
-      config.access_token_secret = twitter_identity.secret
-    end
-  end
-
   # returns nil or the twitter ProviderAuthorization
   def twitter_identity
     @twitter_identity ||= has_provider_auth('twitter')
@@ -427,7 +425,65 @@ class User < ActiveRecord::Base
     end
     true
   end
-
+    
+  def get_lat_lon_from_ip
+    return true if last_ip.nil?
+    url = URI.parse('http://geoip.inaturalist.org/')
+    http = Net::HTTP.new(url.host, url.port)
+    http.read_timeout = 0.5
+    http.open_timeout = 0.5
+    latitude = nil
+    longitude = nil
+    lat_lon_acc_admin_level = nil
+    begin
+      resp = http.start() {|http|
+        http.get("/?ip=#{last_ip}")
+      }
+      data = resp.body
+      begin
+        result = JSON.parse(data)
+        if result["results"]["country"] == ""
+          lat_lon_acc_admin_level = nil #no idea where
+          latitude = nil
+          longitude = nil          
+        else #know the country at least
+          ll = result["results"]["ll"]
+          latitude = ll[0]
+          longitude = ll[1]
+          if result["results"]["city"] == ""
+            if result["results"]["region"] == ""
+              lat_lon_acc_admin_level = 0  #probably just know the country
+            else
+              lat_lon_acc_admin_level = 1 #also probably know the state
+            end
+          else
+            lat_lon_acc_admin_level = 2 #also probably know the county
+          end
+        end
+      rescue
+        latitude = nil
+        longitude = nil
+        lat_lon_acc_admin_level = nil
+        Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
+      end
+    rescue Timeout::Error => e
+      latitude = nil
+      longitude = nil
+      lat_lon_acc_admin_level = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip timeout"
+    end
+    self.latitude = latitude
+    self.longitude = longitude
+    self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
+  end
+  
+  def get_lat_lon_from_ip_if_last_ip_changed
+    return true if last_ip.nil?
+    if last_ip_changed? || latitude.nil?
+      get_lat_lon_from_ip
+    end
+  end
+  
   def published_name
     name.blank? ? login : name
   end
@@ -640,12 +696,12 @@ class User < ActiveRecord::Base
     options[:wheres] ||= { }
     options[:per_page] ||= 10
     if options[:unviewed]
-      options[:filters] << { not: { exists: { field: :viewed_at } } }
+      options[:filters] << { not: { term: { viewed_subscriber_ids: id } } }
     elsif options[:viewed]
-      options[:filters] << { range: { viewed_at: { gt: 1.day.ago } } }
+      options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_id: id } }
-    Update.elastic_paginate(
+    options[:filters] << { term: { subscriber_ids: id } }
+    UpdateAction.elastic_paginate(
       where: options[:wheres],
       filters: options[:filters],
       per_page: options[:per_page],
@@ -684,8 +740,17 @@ class User < ActiveRecord::Base
 
   def self.update_identifications_counter_cache(user_id)
     return unless user = User.find_by_id(user_id)
-    User.where(id: user_id).update_all(
-      identifications_count: user.identifications_for_others.count)
+    result = Observation.elastic_search(
+      complex_wheres: [ { nested: {
+        path: "non_owner_ids",
+        query: { bool: { must: [
+          { term: { "non_owner_ids.user.id": user_id } }
+        ] } }
+      } } ],
+      size: 0
+    )
+    count = (result && result.response) ? result.response.hits.total : 0
+    User.where(id: user_id).update_all(identifications_count: count)
   end
 
   def to_plain_s
@@ -701,6 +766,10 @@ class User < ActiveRecord::Base
 
   def subscribed_to?(resource)
     subscriptions.where(resource: resource).exists?
+  end
+
+  def recent_observation_fields
+    ObservationField.recently_used_by(self).limit(10)
   end
 
 end

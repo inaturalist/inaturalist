@@ -14,8 +14,8 @@
 </p>
 
 <p>
-  <b><%=t :locale %>:</b>
-  <%= @announcement.locale %>
+  <b><%=t "locales_" %>:</b>
+  <%= @announcement.locales.join(", ") %>
 </p>
 
 <p>

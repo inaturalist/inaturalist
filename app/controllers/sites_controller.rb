@@ -1,8 +1,7 @@
 class SitesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_required
   before_filter :load_site, :only => [:show, :edit, :update, :destroy]
-  before_filter :site_admin_required, :only => [:edit, :update]
+  before_filter :site_admin_required
   before_filter :setup_pref_groups, :only => [:new, :create, :edit, :update, :show]
 
   layout "bootstrap"
@@ -67,6 +66,9 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @record.update_attributes(params[:site])
+        if CONFIG.site && CONFIG.site.id == @record.id
+          CONFIG.site = @record
+        end
         format.html { redirect_to @record, notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,42 +1,32 @@
 - project ||= update_curator_change
-- for update in updates
-  :ruby
-    project_user = update.notifier
-    user = project_user.user
-    role = if project_user.user_id == project_user.project.user_id
-      "the admin"
-    elsif project_user.role.to_s =~ /^[aeiou]/
-      "an #{project_user.role}"
-    else
-      "a #{project_user.role}"
-    end
-  .stacked.curatorupdate
-    = image_and_content user_image(user, :size => "thumb"), :image_size => 48 do
-      - if is_me?(user)
-        You are now
-      - else
-        = link_to_user user
-        is now
-      = role
-      for
-      = surround '', '.' do
-        = link_to project.title, project
-      - unless user.description.blank? || is_me?(user)
-        Here's a little about
-        = surround '', ': ' do
-          = user.login
-        %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
-      - unless is_me?(user)
-        %div= link_to "View more about #{user.login}", user, :class => "readmore"
-      - if user.id == current_user.id && project.user_id == current_user.id
-        .notice.status.box
-          Wondering why you're now
-          = role
-          for this project? The previous owner probably deleted their account, so
-          = CONFIG.site_name_short
-          assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
-          = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
-%p.ui
-  Just a reminder, project curators can see the private and obscured
-  coordinates of observations you add to this project.
+.timeline-body
+  - for update in updates
+    :ruby
+      project_user = update.notifier
+      user = project_user.user
+      role = if project_user.user_id == project_user.project.user_id
+        "the <strong>admin</strong>".html_safe
+      elsif project_user.role.to_s =~ /^[aeiou]/
+        "an <strong>#{project_user.role}</strong>".html_safe
+      else
+        "a <strong>#{project_user.role}</strong>".html_safe
+      end
+    %ul
+      %li
+        - if is_me?(user)
+          =t :you_are_now
+        - else
+          = link_to_user user
+          =t :is_now
+        = role
+        - unless user.description.blank? || is_me?(user)
+          =t :heres_a_little_about
+          = surround '', ': ' do
+            = user.login
+          %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
+        - if user.id == current_user.id && project.user_id == current_user.id
+          .notice.status.box
+            =t "views.users.dashboard.new_project_admin_html", site_name: SITE_NAME_SHORT, help_email: CONFIG.help_email
+  %p.alert.alert-info
+    =t :just_a_reminder
   

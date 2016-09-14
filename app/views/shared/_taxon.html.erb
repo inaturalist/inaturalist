@@ -1,7 +1,9 @@
 <%-
   taxon ||= @taxon
   include_article ||= false
+  one_name ||= false
   singular ||= false
+  exclude_rank ||= false
   no_common ||= false
   place ||= nil
   comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
@@ -17,14 +19,18 @@
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
   else
-    rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", :default => taxon.rank).capitalize : t(:unknown_rank)
-    rank = content_tag(:span, rank, :class => 'rank')
-    sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
+    if exclude_rank
+      sciname = "<span class=\"sciname\">#{taxon.name}</span>" 
+    else
+      rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", :default => taxon.rank).capitalize : t(:unknown_rank)
+      rank = content_tag(:span, rank, :class => 'rank')
+      sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
+    end
   end
   include_id ||= false
   sciname += " #{taxon.id}" if include_id
   sciname += " [inactive]" unless taxon.is_active?
-
+  
   include_parens ||= true unless include_parens == false
   link_url ||= nil
   singular ||= false
@@ -38,6 +44,8 @@
   if named_ancestor == true
     named_ancestor = taxon.ancestors.reverse.detect{|t| !t.common_name.blank?}
   end
+  truncate ||= false
+  trunclength = truncate ? 23 : 500
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>
@@ -62,17 +70,22 @@
   <span class="<%= taxon_class %>">
     <span class="comname <%= 'display_name' if named_ancestor %>">
       <% if link_url %>
-        <%= link_to(singular ? comname.singularize : comname, link_url) %>
+        <%= link_to(singular ? truncate(comname.singularize, length: trunclength) : truncate(comname, length: trunclength), link_url) %>
       <% else %>
-        <%= singular ? comname.singularize : comname %>
+        <%= singular ? truncate(comname.singularize, length: trunclength) : truncate(comname, length: trunclength) %>
       <% end %>
     </span>
-    <span class="othernames">
-      <% if include_parens %>
-        (<%= sciname.html_safe %>)
-      <% else %>
-        <%= sciname.html_safe %>
-      <% end %>
-    </span>
+    <% if truncate %>
+      <br/>
+    <% end %>
+    <%- unless one_name %>
+      <span class="othernames">
+        <% if include_parens %>
+          (<%= sciname.html_safe %>)
+        <% else %>
+          <%= sciname.html_safe %>
+        <% end %>
+      </span>
+    <% end -%>
   </span>
 <% end -%>

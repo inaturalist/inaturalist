@@ -14,6 +14,9 @@ ja:
   x_followers:
     one: 1人のフォロワー
     other: '%{count}人のフォロワー'
+  x_ids:
+    one: 1 ID
+    other: '%{count} ID'
   x_lists:
     one: 1件のリスト
     other: '%{count}件のリスト'
@@ -24,6 +27,9 @@ ja:
     one: <span class="count">1</span>個の該当する分類群
     other: <span class="count">%{count}</span>個の該当する分類群
   x_observations:
+    one: 1件の観察記録
+    other: '%{count}件の観察記録'
+  x_observations_:
     one: 1件の観察記録
     other: '%{count}件の観察記録'
   x_observations_link_html:
@@ -53,10 +59,12 @@ ja:
   a: 一つの
   a_: 一つの
   a_community_for_naturalist: ナチュラリストのためのコミュニティー
+  a_flag_for_x: '%{x}用のフラグ'
   a_greasemonkey_script: Greasemonkeyスクリプトを使用しています
   a_member_of_taxon_html: '%{taxon}の一つ'
   able_to_connect_flickr: Flickrアカウントとの連携ができました。
   about: 詳細
+  about_taxon_changes: 分類群変更について
   about_bioblitz_results: バイオブリッツの結果について
   about_community_taxa: コミュニティー分類群について
   about_external_links: 外部リンクについて
@@ -90,10 +98,13 @@ ja:
   add_a_flag: フラグを追加
   add_a_link_raquo: リンクを追加 &raquo;
   add_a_name: 名前を追加
+  add_a_new_change_group: 新規変更グループを追加
   add_a_new_observation_to_id_please!: ID依頼の新規観察記録を追加
   add_a_place_raquo: 場所を追加 &raquo;
   add_a_single_observation: 1件のの観測記録を追加
   add_a_taxon: 分類群（taxon）を追加
+  add_all_your_matching_obs_of_this_taxon: この分類群に該当するすべての観察記録を追加
+  add_all_your_matching_obs_to_this_project: 該当する自分のすべての観察記録をこのプロジェクトに追加
   add_an_assessment: 評定を追加
   add_an_identification: IDを追加
   add_an_observation: 観察記録の追加
@@ -116,6 +127,7 @@ ja:
   add_edit_more_fields: フィールドの追加・編集
   add_description: '%{description_name}を追加'
   add_from_your_observations: 自分の観測記録から追加
+  add_listed_taxa_from_observations: リスト記載分類群を観察記録から追加
   add_higher_level_taxon: より高い階級の分類群を追加（例：鳥類）
   add_id: IDを追加
   add_it_to_place_raquo: 場所に追加 &raquo;
@@ -149,6 +161,7 @@ ja:
   add_taxon_range: 分類群の分布・生息区域を追加
   add_taxonomic_tags_to: 選択されたFlickr写真に分類群タグを付ける &raquo;
   add_to: 次の場所に追加：
+  add_to_a_scheme: スキームに追加
   add_to_calendar: カレンダーに追加
   add_to_checklist: チェックリストに追加
   add_to_favorites: お気に入りに追加
@@ -165,6 +178,7 @@ ja:
   added_an: 追加した：
   added_by: 追加者
   added_by_user_on_date_html: '%{date}に%{user}によって追加されました'
+  added_identifications_to: は別のユーザーの観察記録に追加した同定がありません
   added_on: 追加日付
   added_to: 完了しました。追加先：
   added_to_favorites: お気に入りに追加しました
@@ -207,6 +221,7 @@ ja:
     birds: 鳥類
     chromista: クロミスタ
     fungi: 菌類
+    fungi_including_lichens: 地衣類を含む菌類
     insects: 昆虫類
     mammals: 哺乳類
     mollusks: 軟体動物
@@ -300,6 +315,8 @@ ja:
   are_you_sure_leave_this_project: このプロジェクトを退会して本当によろしいですか？
   are_you_sure_merge_these_places: この場所を統合して本当によろしいですか？この操作は元に戻すことができません。
   are_you_sure_remove_curator: '%{user}からキュレーター管理の権限を取消しても本当によろしいですか？'
+  are_you_sure_remove_from_project: このプロジェクトから%{user}を退会させて本当によろしいですか？
+  are_you_sure_remove_photo: この写真を本当に削除してよろしいですか？
   are_you_sure_remove_taxon_from_list: リストからこの分類群を削除して本当によろしいですか？
   are_you_sure_remove_taxon_from_place: この分類群を%{place}のチェックリストから取り除いて本当によろしいですか？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
@@ -327,6 +344,7 @@ ja:
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: '%{place}のチェックリストからこの分類群を削除して本当によろしいですか？'
   associated_observations: 関連している観測記録
   associated_taxa: 関連する分類群
+  attention: 注意
   you_sure_delete_list: このリストを削除して本当によろしいですか？
   you_sure_delete_taxon_from_list?: リストから%{taxon}を削除して本当によろしいですか？
   asc: 昇順
@@ -344,9 +362,13 @@ ja:
   atom: Atom
   authority_list:
     iucn_red_list: IUCNレッドリスト
+  authorize_permissions_from_provider: '%{provider}の権限を承認'
+  automatic_descriptions_have_been_disabled: この分類群の自動説明が使用できません。
   automatically_add_to_project: プロジェクトに自動的に追加
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
   automatically_share_your_observations_on: 観測記録を自動的にシェアー
+  automatically_id_new: 新規観察記録を自動的に次のIDを付与：
+  automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
   back: 戻る
   back_to: 次へ戻る：
   back_to_albums: アルバムに戻る
@@ -384,13 +406,16 @@ ja:
   batch_edit: 一括編集
   batch_edit_taxa_for_x_html: '%{x}の分類群一括編集'
   batch_operations: 一括操作
+  because: その理由は：
   before_importing_photos: 写真をインポートする前に
   bg_color: 背景色
   birds: 鳥類
   black: 黒
   blog_widget: ブログ用のウィジェット
   blue: 青
+  blue_butterfly_etc: 青, チョウチョウ, など
   body: 本文
+  bounding_box: 境界ボックス
   breadcrumbs: パンくずリスト
   brief_caption: 短い説明
   brief_description_on_what_you_observed: 観察内容の短い説明
@@ -487,6 +512,7 @@ ja:
   clear: クリア
   clear_color_filters: 色フィルターを解除
   clear_search: 検索フィルターを解除
+  click_add_an_observation_to_the_lower_right: '%{site_name_short}へようこそ！右下の「観察記録を追加」をクリックしてください。まだ済んでいなければ、サインインまたは会員登録画面が表示されます'
   click_on_map_to_draw_shape_around_place: 場所を囲むようにマップをクリックし、境界線を作ってください
   click_on_the_map_to: マップで観察された場所をクリックし、観察記録を置きましょう。
   click_the_map: 場所を追加するには、<strong>マップをクリック</strong>
@@ -513,6 +539,7 @@ ja:
   committing: 確定中...
   community_id: '<strong>コミュニティー</strong>ID:'
   community_id_at_species_or_lower?: 種以下の階級によるコミニュティIDの有無？
+  community_supported_id: コミュニティーによるID?
   compare_with: 次と比較する：
   comparing: 比較しています
   comparing_list_to_list: '%{list1} と%{list2}を比較しています'
@@ -532,9 +559,11 @@ ja:
   connecting_to_facebook: Facebookに接続中...
   conservation_status: 保全状況
   conservation_status_descriptions:
+    description: 記載理由
     url: 保全状況を明記するウェブページのURL
     iucn: 相当するIUCNレッドリスト記号
   conservation_summary: 保全概要
+  contain_all_descendants?: リストにはこの場所で生息する当分類群のすべての種が含まれていますか？
   contest: コンテスト
   contributions: 提供コンテンツ
   contributions_from: 提供者：
@@ -553,6 +582,8 @@ ja:
     some_rights_reserved_by: (c) %{name}, いくつかの権利を保有 (%{license_short})
     all_rights_reserved: (c) %{name}, 全ての権利を保有
     no_known_copyright_restrictions: '%{name}, 著作権の制限は報告されていない (%{license_name})'
+    no_rights_reserved: 何の権利も保有しない
+    no_rights_reserved_by: '%{name}, 何の権利も保有しません %{license_name}'
     anonymous: 匿名
     public_domain: パブリックドメイン
     copyright: 著作権
@@ -577,6 +608,7 @@ ja:
   create_a_new_field: 新規フィールドを作成
   create_a_new_place: 新規場所を作成
   create_a_new_taxon: 新規分類群を作成
+  create_a_query: クエリーを作成
   create_an_account: アカウント作成
   create_new_taxon: 新規タクソン作成
   create_observations: 観測記録を作成
@@ -596,7 +628,9 @@ ja:
   curated_count: キュレーター管理回数
   curation: キュレーター管理
   curator: キュレーター管理者
+  curators_changed_for_x_html: '%{x}のキュレーターが変わりました'
   curators: キュレーター管理者
+  curator_identification: キューレータによるID
   current_password: 現在のパスワード
   custom_project_fields: プロジェクト専用フィールド
   custom_project_was_successfully_created: カスタムプロジェクトは無事作成されました。
@@ -652,6 +686,7 @@ ja:
     dayNamesShort: '[''日'',''月'',''火'',''水'',''木'',''金'',''土'']'
     dayNamesMin: '[''日'',''月'',''火'',''水'',''木'',''金'',''土'']'
   date_time: 日付と時刻
+  dates: 年月日
   datetime_: 日付と時刻
   day: 日
   default: 既定
@@ -683,6 +718,8 @@ ja:
   describe_your_interest_in_nature: 自然への関心を説明してください
   description: 説明
   description_from: 説明提供先：
+  description_slash_tags: 説明／タグ
+  description_tags_more: 説明／タグ／その他情報
   desription: 説明
   destroy: 破棄
   details: 詳細
@@ -696,6 +733,8 @@ ja:
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
   disagree: 不賛成
   disconnect_provider: '%{provider}とリンク解除'
+  display_listings_from_place: 場所からリストを表示
+  do_not_show_this_message_again: 今後このメッセージを表示しない
   do_you_know_where_this_species_lives: この種の生息場所がわかりますか？
   does_the_location_seem_accurate: 位置は適切？
   does_the_date_seem_accurate: 日付は適切？
@@ -714,14 +753,18 @@ ja:
   drafts: 下書き
   edit: 編集
   edit_a_batch_of_observations: 観察記録の一括編集
-  edit_account_settings_and_profile: アカウント設定及びプロフィールの編集
+  edit_account_settings_and_profile: アカウント設定・プロフィール編集
   edit_assessment: 評定を編集
   edit_body: 本文を編集
   edit_colors: 色を編集
   edit_comment: コメントを編集
   edit_custom_project_fields: プロジェクト専用フィールドを編集
   edit_field: フィールドを編集
+  edit_flagged_observation: フラグ付き観察記録を編集
   edit_license: ライセンスを編集
+  edit_multiple_dates: 複数の日付を編集
+  edit_multiple_locations: 複数の場所を編集
+  edit_multiple_species: 複数の種を編集
   edit_notes: メモを編集
   edit_photos: 写真を編集
   edit_photos_for_observation_id: '%{obs_id}の観測記録の写真を編集'
@@ -752,6 +795,9 @@ ja:
   editing_custom_project_fields_for: プロジェクト専用フィールド編集中：
   editing_observation_field: 観測記録のフィールドを編集中
   editing_observation_id: '%{obs_id}の観測記録を編集中'
+  editing_observations:
+    one: <span class="count">1</span>件の観察記録を編集中：
+    other: <span class="count">%{count}</span>件の観察記録を編集中：
   editing_project: '%{project}を編集中'
   editing_project_asset: プロジェクトアセット編集中：
   editing_subscription_to_x_html: '%{x}の購読を編集中'
@@ -761,6 +807,7 @@ ja:
   editing_this: '%{elem}を編集中'
   editing_x_in_y: '%{y}の中の%{x}を編集中'
   eg: 例：
+  eligible_for_research_grade: 研究用候補
   email: 電子メール
   email_address_for_comments_and_other_feedback: コメント及びフィードバックのための電子メールアドレス
   email_addresses_to_receive_invites: 招待を受ける電子メールアドレス
@@ -771,7 +818,6 @@ ja:
   embed_this_assessment: 評定を埋め込む
   embed_widget_project: プロジェクトのウィジェットをホームページに掲載しましょう
   enable_offline_access: オフラインアクセスを有効にする
-  enable_offline_access_for_iphone: iPhoneのためのオフラインアクセスを有効にする
   end: 終了
   endangered: 絶滅危惧IB類
   endemic: 固有種
@@ -791,25 +837,36 @@ ja:
     arrived_in_the_region_via_anthropogenic_means: 外来
   event_in_progress: 進行中のイベント
   event_registration_url: イベント登録URL
+  event_stats: イベントの統計情報
   event_url: イベントURL
+  events_only: イベントのみ
+  every_species_seen_by: 次のユーザが観察したすべての種：
   everyone: 全てのユーザー
   everyone_journal_posts: みんなのジャーナル投稿
   everywhere: すべての場所
+  exact_date: 正確な日付�
+  exact_location: 正確な位置情報
   exact_rank: 階級指定
   existing_flags: 既存のフラグ
   exit_full_screen: 全画面表示を終了
+  expand_days: カレンダーを展開
+  expand_updates: 更新履歴を展開
   explore!: 探検
   explore_everyones_observations: 皆の観察記録を見よう
   export: エクスポート
   export_observations: 観測記録をエクスポート
+  export_with_private_coordinates: 非公開位置情報付きのエキスポート
   exporting: エクスポート中...
   external_links: 外部リンク
   extinct: 絶命
   extinct_in_the_wild: 野生絶滅
-  extras: おまけ
+  extra_properties: その他のプロパティー
+  extras: その他の機能
   facebook: Facebook
   facebook_account_information: あなたのFacebookアカウント情報
+  facebook_account_not_linked: '%{user}のFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。'
   facebook_options: Facebook設定
+  failed_to_find_your_location: 現在地を特定できませんでした。
   failed_to_repair_photo: '写真の修復作業は失敗しました: %{errors}'
   "false": 偽
   faq: よくあるご質問
@@ -817,6 +874,7 @@ ja:
   favorite_taxa: お気に入り分類群
   favorites: お気に入り
   fblocale: 英語（アメリカ）
+  featured_projects_from_place: '%{place}からの注目プロジェクト'
   feedback: フィードバック
   feedback_group: フィードバックグループ
   feeds: フィード
@@ -830,6 +888,7 @@ ja:
   filling_out_your_profile: あなたのプロフィールを完成させましょう
   filter: 絞り込む
   filter_by: 絞り込み条件
+  filter_by_curator_identification: キュレーターIDで絞り込む
   filter_by_place: 場所でフィルター
   filter_by_place_taxon_and_color: 場所、分類群、そして色でフィルター
   filter_list_by_this_taxon: この分類群でリストをフィルター
@@ -846,10 +905,14 @@ ja:
   find_some_people_to_follow: フォローするユーザーを探す
   find_species: 種を探す
   find_suitable_observations: 適切な観察記録を検索
+  find_unsuitable_observations: 不適切な観察記録を検索
+  find_your_current_location: 現在地を取得
+  finished: 完了
   first_confirmed_inat_observation: '%{site_name}で初確認済の観察記録'
   first_connect_your_provider_account_to_your_site: まず、%{provider}のアカウントを%{site_name}と接続しましょう。
   first_inat_observation: 初めての%{site_name}観察記録
   first_observer: 初観測者
+  first_report: 初めての通告
   flag: フラグ
   flag_an_item: 項目をフラグ
   flag_as_spammer: スパマーとしてフラグ付けする
@@ -865,6 +928,7 @@ ja:
   flagged_thing_explanation: 次の理由により、この%{thing}にフラグが付けられました：
   flagger: フラグ付けたユーザー：
   flags: フラグ
+  flags_for: フラグ目的：
   flags_on_users_content: '%{user}のコンテンツに付けられたフラグ'
   flickr_account_information: あなたのFlickrアカウント情報
   flickr_has_no_creative_commons: Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません
@@ -880,16 +944,20 @@ ja:
   follow_user: '%{user}をフォロー'
   follower: フォロワー
   following: フォロー中
+  for_a_taxon: 分類群用
+  for_more_information: に詳細情報を確認してください。
   forgot_your_password: パスワードを忘れた場合
   fri: 金
   from: 次の場所から：
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
+  from_flickr_facebook_etc: Flickr、Facebookなどから
   from_in_this_place: この場所のなかから
   from_list: リストから
   from_this: こちらから
   from_photos: 写真から
   from_place: 場所から
+  from_soundcloud: Soundcloudから
   from_your_site_observations: '%{site_name}の観察記録の中から'
   from_licensed_site_observations: '%{site_name}のライセンス付き観察記録の中から'
   full_id_please: IDお願い！
@@ -919,10 +987,14 @@ ja:
   getting_started: はじめに
   give_it_some_detail: 詳しく書きましょう！
   global_conservation_status: 世界保全状況
+  global_names: グローバル名
+  go_back: 戻る
+  going_to_your_observations: あなたの観察記録へ移行中
   good_choice_for_sharing: 科学者にデータ共有できるのでオススメ
   got_your_data_somewhere_else?: 別のところでデータを保存していますか？お手伝いできます。
   graft: 融合
   grafting: 融合中...
+  grant_role: に%{role}役割を%{grant}しました
   gray: グレー
   green: 緑
   grey: 灰
@@ -940,6 +1012,7 @@ ja:
   guide_was_successfully_updated: ガイドは無事更新されました
   guidelines: ガイドライン
   has_already_been_flagged_by: こちらはすでにフラグ付けられました
+  has_one_or_more_faves: お気に入り登録件数が1件以上
   has_photos: 写真あり
   has_sounds: 音声あり
   hasnt_contributed_any_observations: はまだこのプロジェクトに観察記録を提供していません
@@ -984,10 +1057,14 @@ ja:
   identifications_by: '%{user}の同定'
   identified?: 同定済
   ids: ID
+  ids_made_for_others: 他のユーザのためのID
   if_you_dont_want_us_to_share_your_data: あなたが提供したデータを共有してほしくない場合、
   if_you_have_trouble_with_the_site: お困りのことがありませんか？ヘルプをご覧ください：
+  if_you_use: ご利用ですか？
   if_you_want_to_change_the_name: 名称を変更したければ
   ignore: 無視
+  ignore_times: 時間を無視する
+  image_must_be_exactly: 画像の大きさは高さ400px以下、幅はちょうど950pxでなけれなりません。
   import: インポート
   import_all_photos_as_observations: すべての写真を観測記録としてインポート
   import_as_an_observation: 観測記録としてインポート
@@ -1000,16 +1077,25 @@ ja:
   import_observations: 観測記録をインポート
   import_observations_from_a_photo: 写真共有サイト及びパソコンの写真ファイルから観察記録をインポート
   import_photos: 写真をインポート
+  import_sounds: 音声データをインポート
   import_tags_from_csv: CSVからタグをインポート
   importing: インポート中...
   inaturalist_network_affiliation: iNaturalistネットワーク所属
   inbox: 受信箱
   including: 次を含む：
+  in_taxon?: 次の分類群の中
   in_the_past: ここ
   in_the_past_week: ここ1週間以内
+  inactive: 廃止
   inactive_taxon: 無効な分類群
+  inactive_taxon_concepts_are: 廃止された分類群概念は分類学上無効と見なされたもの、または分類群変更待ちの状態です。廃止された分類群は履歴残すために、また一部のパートナーサイトとの互換性を維持するために必要です。
+  inappropriate: 不適切な内容？
+  inat_believes_this_is_a_complete_listing: '%{site_name}は、この場所における当分類群のリストとして完全なものだと認識しています。'
   inat_user_profile: '%{site_name}: %{user}さんのプロフィール'
+  inat_will_be_back_on: '%{site_name}の復旧予定時間は'
+  inaturalist_is_an_online_community: '%{site_name}は自然大好きなナチュラリストのためのオンラインコミュニティーです！写真を追加すると、学習の次の研究に貢献できます：'
   inaturalist_is_catching_some_zs: '%{site_name}は現在お休み中'
+  inaturalist_observations_by: '%{site_name} &#58; %{login}による観察記録'
   inaturalist_places: '%{site_name} 場所'
   info: 情報
   input_taxon: 分類群を入力
@@ -1031,6 +1117,7 @@ ja:
   invite_someone_to: '%{name}に人を紹介しましょう！'
   invite_to_project: プロジェクトに招待
   invite_your_friends: 友人を招待する
+  invite_your_friends_description: '%{site_name}をより大きくより良いコミュニティーにしましょう。友達を参加するように招待を送りましょう！'
   inviteonly: 招待のみ
   invited: 招待済
   invited_to_the_following_projects: 次のプロジェクトに招待した：
@@ -1090,11 +1177,13 @@ ja:
   leave_a_comment: コメントする
   leave_this_project: このプロジェクトを退会
   not_absent: 不在ではない
+  let_us_walk_you_through: 本サイトの主な機能をご紹介します。
   lexicon: 言語/用語集
   lexicons:
     scientific_names: 学名
     afrikaans: アフリカーンス語
     bengali: ベンガル語
+    catalan: カタロニア語
     cebuano: セブアノ語
     creole_french: クレオール語（フランス語）
     creole_portuguese: クレオール語（ポルトガル語）
@@ -1188,6 +1277,7 @@ ja:
   loading_wikipedia_description: ウィキペディアより情報を読み込み中...
   locale_description: 地域設定で表記言語、日付のフォーマットなどが変えられます
   locales:
+    br: ブルトン語
     ca: カタルーニャ語
     en: 英語
     en-US: 英語（アメリカ）
@@ -1197,6 +1287,9 @@ ja:
     fr: フランス語
     eu: バスク語
     gl: ガリシア語
+    ko: 韓国語
+    id: インドネシア語
+    it: イタリア語
     mk: マケドニア語
     pt: ポルトガル語
     pt-BR: ポルトガル語（ブラジル）
@@ -1237,6 +1330,7 @@ ja:
   make_sure_the_default_photo_looks_good: 大きいサイズで表示されてもキレイな写真をデフォルトにしてください
   make_taxonomic_flickr_tags_for_taxon_raquo: この分類群のFlickr用分類学上タグを作成 &raquo;
   make_this_your_default_license: デフォルの%{type}トライセンスにする
+  make_this_the_primary_listing: 主要記載にする
   mammals: 哺乳類
   manage_all_your_subscriptions: 購読管理
   manage_names: 名称を管理
@@ -1245,9 +1339,11 @@ ja:
   managers: 管理者
   manually_create_new_place: 手動で新規場所を作成
   map: マップ
+  map_legend: 地図記号一覧
   maps:
     overlays:
       all_observations: すべての観察記録
+      featured_observations: 注目の観察記録
       gbif_network: GBIFネットワーク
       observations: 観察記録
       place_boundary: 場所範囲
@@ -1256,9 +1352,11 @@ ja:
       range: 分布・生息区域
   map_tooltip: マップを表示
   map_for: マップ：
+  matched_several_different_taxa: いくつか異なる分類群と一致しました
   media: メディア
   medium: 中
   members: メンバー一覧
+  mentioned_you_in_noun_html: '%{user}があなたについて%{noun}を投稿しました'
   merge: 統合
   merge_it_with_another_place: 他の場所と統合
   merging: 統合しています
@@ -1273,7 +1371,7 @@ ja:
   momentjs:
     shortRelativeTime:
       past: '%s'
-      s: 秒
+      s: 1秒
       m: 1分
       mm: '%dm'
       h: 1時間
@@ -1286,9 +1384,11 @@ ja:
       yy: '%dy'
   mon: 月
   month: 月
+  months: ヶ月
   months_ago: '%{text}前'
   more: 続き
   more_fields: 追加フィールド
+  more_filters: その他のフィルター
   more_info: 詳細情報
   more_info_title: 詳細情報
   more_journal_posts: ジャーナル投稿を更に表示
@@ -1299,6 +1399,7 @@ ja:
   most_observations: 最も多くの観察記録
   most_species: 最も多くの種
   most_observed_species: 最も多くの種を観察した
+  must_be_observed_in: 次の場所で観察する必要があります
   must_be_less_than_x_MB: '%{x} MBより小さいファイルでなければなりません'
   must_have_x: '%{x}がなければなりません'
   n_ago: '%{n}前'
@@ -1307,13 +1408,16 @@ ja:
   n_person_agrees: '%{amount}人が賛成'
   n_person_disagrees: '%{amount}人が不賛成'
   name: 名称
+  name_entered: 名称入力済
   name_llaves: '[名称]'
   name_of_the_place_you: 観察を行った場所の名称
+  name_or_username: 氏名またはユーザー名
   name_provider: 名称提供先
   name_providers:
     col: Catalogue of Life
     ubio: uBio
     nzor: New Zealand Organisms Register
+  named_based_url_might_change: 名称に依存するURLは変更する可能性がありますが、これは変わりません。
   names: 名称
   names_for_taxon_html: '%{taxon}の名称一覧'
   naturalised: 帰化された
@@ -1328,12 +1432,15 @@ ja:
     culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: 北東緯度
   ne_lon: 北東経度
+  near: 近い
   near_threatened: 準絶滅危惧種
+  nearby: 付近
   nearby_observations: 近隣観測記録
   need_id_help?: 識別協力を依頼する？
   needs_id: 要ID
   Needs_ID!: 要ID!
   needs_id_expandable_html: <span class='full'>要</span>ID
+  needs_to_be_identified: 要ID
   new_announcement: 新着お知らせ
   new_assessment: 新規評定
   new_check_list: 新規チェックリスト
@@ -1390,6 +1497,7 @@ ja:
   no_license_all_rights_reserved: ライセンスなし（著作権を全て留保する）
   no_link_flickr: いいえ、結構です。
   no_managers_set: 管理者が指定されていません
+  no_matching_article_from_x: '%{x}に一致する記事がありません'
   no_matching_invitations: 該当する招待がありません
   no_matching_observations: 一致する観察記録がありません
   no_matching_places: 一致する場所がありません
@@ -1398,6 +1506,8 @@ ja:
   no_matching_users: 一致するユーザーありません
   no_members_yet: メンバーはまだありません。
   no_messages_yet: メッセージはまだありません。
+  no_mobilized_version_of_that_view: 現在の表示はモバイルに対応していません。
+  no_more_mail_from_site: '%{site_name}からのメール配信停止ご希望ですか？配信設定はこちらで変更できます：'
   no_more_taxa_to_load: 未読込の分類群がありません
   no_more_updates: 新着情報がありません！
   no_nearby_observations: 近くに観測記録ありません
@@ -1413,6 +1523,7 @@ ja:
   no_one_posted_anything_yet: まだ投稿がありません！
   no_ones_observed: 観察したユーザーがいません
   no_photos: 写真がありません
+  no_places_available: 有効な場所がありません
   no_places_selected: 場所は選択されていません
   no_post_yet: 投稿まだありません
   no_project_selected: プロジェクトは選択されていません
@@ -1421,10 +1532,13 @@ ja:
   no_projects_yet: プロジェクトはまだありません
   no_range_data_available: 分布・生息区域データありません
   no_recent_activity: 新着情報がありません
+  no_recently_active: 最近更新されたプロジェクトはありません
   no_reply_yet: 返事はまだありません
   no_results_found: 該当するものはありません
   no_results_for: 該当するものはありません
   no_results_matching: 該当するものはありません
+  no_sections_available: 使用可能なセクションがありません
+  no_species_have_been_listed: この場所のリストに種がまだ含まれていません
   no_species_on_this_list: リストに種はまだありません！
   no_subject_parens: （件名なし）
   no_summary_from_wikipedia: ウィキペディアに記述ありません
@@ -1439,6 +1553,7 @@ ja:
   noble_curators: '%{site}のキュレーター管理者の紹介'
   none: 該当する項目ありません
   none_of_the_people_you_follow_have_updates: フォローするユーザーから新着情報がありません
+  normal: 通常
   not_completed: 未完成
   not_evaluated: 未評価
   not_filtering: フィルターなし
@@ -1446,11 +1561,16 @@ ja:
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_finding_what_looking_for: お探しのもの見つかりませんか？
   not_found: 見つかりません
+  not_linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていない&#59;
+  not_linked_flickr: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている&#59;
   not_logged_in: ログインしていません
   not_on_this_list: このリストに含まれていません
   not_seeing_what_looking_for: お探しのもの見つかりませんか？
   not_yet: まだ
   note: メモ
+  note_you_can_modify_the_height_attribute: ウェブページに合うように、'height'属性を調整することができます
+  notify_me_of_mentions: 私についての投稿（例@username)の通知を受け取る
+  notify_me_about_redundant_identifications: ID承認の通知を受け取る
   number_of_observations: 観測記録数
   number_selected: '# 選択済み'
   numeric_: 数値
@@ -1467,6 +1587,7 @@ ja:
   observations_by_you_on_date: '%{date}のあなたの観察記録'
   observation_calendar_for: '%{user}観察記録カレンダー（%{year}）'
   observation_contest: 観察記録コンテスト
+  observation_curation: 観察記録キュレーション
   observation_date: 日付
   observation_date?: 日付？
   observation_field: 観測記録フィールド
@@ -1476,6 +1597,7 @@ ja:
   observation_rights_html: 観察記録 %{rights}
   observation_rules: 観測記録ルール
   observation_was_deleted: 観察記録が削除されました
+  observation_would_like_some_help: '%{user}はID協力を依頼しています'
   observations: 観察記録
   observations_added_by_x_html: '%{x}によって追加された観察記録'
   observations_by: 観察者：
@@ -1497,17 +1619,22 @@ ja:
   observations_obscured: 観察記録（位置情報不明瞭）
   observations_of_taxon: '%{taxon_name}の観測記録'
   observations_per_month: 観測記録件数 / 月
+  observations_removed_from_the_project: 「%{project}」というプロジェクトから観察記録が削除されました
   observations_saved: 観測記録が保存されました！
   observations_specifying_this_field: このフィールドを使用している観察記録
   observations_title: みんなの観測記録
+  observations_w: 次を含む観察記録：
+  observations_w_field: 次のフィールドを含む観察記録：
   observations_was_successfully_updated: 観察記録が無事更新されました
   observations_week: 観測記録件数 / 週
   observations_widget: 観察記録ウィジェット
   observationcounts_refreshed: 観察記録数更新済
   observed: 観察済
   observed_by: 観測者：
+  observed_in_place?: 観察場所：
   observed_on: 観測日時
   observer: 観察者
+  observers: 観察者
   observer_short: 観察者
   occurence_status_describes_how: 分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href=\"http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）
   occurrence_status: 分布状況
@@ -1516,15 +1643,19 @@ ja:
     present: 生息
     common: 一般
     uncommon: 希少
+    irregular: イレギュラー
     doubtful: 不在疑惑
     absent: 不在
+  of: の
   of_least_concern: 軽度懸念
   offensive_inappropriate: 不快／不適切
   official_blog: 公式ブログ
   offline_access_enabled: オフラインアクセス対応
+  ok: OK
   on_your_life_list: 自分のライフリストに
   one_by_one: １個ずつ
   one_of_your_lists: 自分のリストに
+  only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
   only_administrators_may_access_that_page: このページはサイト管理者以外の方はアクセスできません。
   only_accepts_taxa: 分類群以外の入力不可
   only_files_with_10000_rows_at_a_time: 一つファイルにつき10000列までのデータでお願いします
@@ -1534,6 +1665,8 @@ ja:
   only_showing_taxa_from: リスト内の分類群のみ表示中
   only_species: 種のみ
   only_species_and_subspecies: 種、亜種および品種のみ
+  only_the_author_of_this_post_can_do_that: 投稿の投稿者ではないとできません。いたずらしちゃダメですよ。
+  only_the_owner_of_this_list_can_do_that: リストの作成者ではないとできません。いたずらしちゃダメですよ。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
   open: 公開
   open_description: 絶命の恐れがある場合を除き、分類群の位置情報が一般公開されます
@@ -1543,6 +1676,7 @@ ja:
   or_choose_high_level_taxa: '... もしくは上級の分類群から選択'
   or_if_you_dont_want_email: 全てのメールが不要な場合はこちら...
   or_invite_your_friends: または、友人を招待する
+  or_post_message_to_google_group: またはGoogleグループでメッセージを投稿してください
   or_upload: またはアップロード
   orange: 橙
   order: 目
@@ -1550,10 +1684,14 @@ ja:
   organisms: 生物
   original: オリジナル
   originally_flagged_by: 最初にフラグ付けしたユーザー：
+  original_page_url_for_this_photo: この写真のオリジナルページURL
   original_rights_holder: 元の権利保持者
   organism_appears_captive_cultivated: 生き物は 飼育/栽培のものと思われる
   other: その他
   other_animals: その他の動物
+  other_animals_plural:
+    one: その他の動物
+    other: その他の動物
   other_annimals: その他の動物
   our_blog: iNaturalistブログ
   out_of_range: 分布・生息区域外
@@ -1564,6 +1702,7 @@ ja:
   password: パスワード
   password_confirmation: パスワード確認
   paste: 貼り付け
+  paste_in_a_bunch_of_names: たくさんの名称を、行ごとに一つずつを貼り付けた後、ボトンを押すとバッチで処理します
   paste_in_a_comma_separated_list: カンマ区切りで国名のリストを貼り付けてください
   pdf: PDF
   pdf_slash_print: PDF / 印刷
@@ -1585,6 +1724,9 @@ ja:
   photo_attribution: 写真 %{attribution}
   photo_by_id_attribution: 写真 %{id}, %{attribution}
   photo_deleted: 写真が削除されました
+  photo_licensing: 写真ライセンス
+  photo_s: 写真
+  photo_type: 写真の種類
   photo_urls_repaired: 写真のURLは復元できました
   photos: 写真
   photos_or_sounds?: 写真もしくは音声？
@@ -1641,12 +1783,18 @@ ja:
       local_administrative_area: 自治区
       Miscellaneous: その他
       miscellaneous: その他
+      Municipality: 市町村
+      municipality: 市町村
       Nationality: 国籍
       nationality: 国籍
       Nearby_Building: 近辺の建物
       nearby_building: 近辺の建物
+      Nearby_Intersection: 近所の交差点
+      nearby_intersection: 近所の交差点
       Open_Space: 空地
       open_space: 空地
+      Parish: 教会区
+      parish: 教会区
       Point_of_Interest: 目印
       point_of_interest: 目印
       Postal_Code: 郵便番号
@@ -1655,6 +1803,8 @@ ja:
       province: 州・省
       Region: 広域
       region: 地方
+      Republic: 共和国
+      republic: 共和国
       Sports_Team: スポーツチーム
       sports_team: スポーツチーム
       State: 都道府県・州
@@ -1665,6 +1815,8 @@ ja:
       street_segment: 道路区間
       Suburb: 郊外
       suburb: 郊外
+      Supername: 集合名称
+      supername: 集合名称
       Territory: 領地
       territory: 領地
       Time_Zone: 時間帯
@@ -1672,17 +1824,23 @@ ja:
       Town: 市町村
       town: 市町村
       Undefined: 未定義
+      undefined: 未定義
+      Unknown: 不明
       Zone: ゾーン
       zone: ゾーン
+  place_guess: 場所の推測
   place_imported: 場所がインポートされました！
   place_must_have_a_boundary_defined: 境界を指定しなければなりません
   place_name: 地名
   place_notes: 場所メモ
   place_subscription: 場所購読
+  place_too_big_for_check_list: この場所は広大すぎるなため、チェックリストに対応していません。チェックリストの計算に膨大な費用がかかりますので、サイト管理者が追加した場合を除き、広域な場所では許可されていません。しかし、この場所はプロジェクトの境界設定と観察クエリ用にご利用いただけます。
   place_type_name: 場所種類の名称
   place_updated: 場所が更新されました！
   placement: 配置
   places: 場所
+  places_added_by_members_of_the_community: コミュニティーメンバーによって追加された場所
+  places_maintained_by_site_admins: サイト管理者によって管理されている場所
   places_name:
     afghanistan: アフガニスタン
     africa: アフリカ
@@ -1726,16 +1884,22 @@ ja:
     united_states: アメリカ
     virgin_islands: ヴァージン諸島
     west_africa: 西アフリカ
+  places_of_interest: 注目の場所
   places_merged_successfully: 場所は無事統合できました！
   plants: 植物
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
   please_add_this_observation_to: この観察記録をこちらにご追加ください：
   please_add_this_to_x_html: '%{x}に追加してください'
+  please_be_careful_particulary_when: この分類群が記載されている出版物名をご記入ください
   please_check_for_you_confirmation_email: '%{site_name}へようこそ！登録確認メールをご覧いただく前に、ご自由に見てください。'
+  please_cite_the_published_source_of_taxon: この分類群が記載されている出版物名をご記入ください
   please_confirm_your_inat_username: '%{site_name}のユーザネームをご確認ください'
+  please_confirm_your_account_html: ぜひ<a href=\"%{url}\">アカウント認証</a>をお済ませください。
   please_enter_a_new_pass: 新規パスワードを入力し、ご確認ください。
   please_fix_your_csv_and_try_again: CSVデータを直し、再度お試しください
   please_hold_on_while_the_file: ファイル作成が完了するまでしばらくお待ちください。たくさんの観察記録があれば数分かかる場合があります。
+  please_hold_on_while_the_file_is_generated: ファイルが生成されるまでしばらくお待ちください。長いリストの場合、数分かかることがあります。
+  popular: 人気
   position: 位置
   positional_accuracy: 位置精密さ
   possessive_user: '%{user}の'
@@ -1748,7 +1912,9 @@ ja:
   powered_by: 搭載ソフト：
   powered_by_inaturalist_open_source_software_html: <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalistオープンソースソフト</a>搭載
+  present: 生息
   preview: プレビュー
+  preview_of_synced_observation: 同期済の観察記録の<strong>プレビュー</strong>です。<a href=\"%{url}\">取り消しますか？</a>
   preview_your_message: メッセージをプレビュー
   previewing: プレビュー中
   previous: 前へ
@@ -1758,6 +1924,7 @@ ja:
   privacy: プライバシー・ポリシー
   privacy_policy: プライバシー・ポリシー
   private: 非公開
+  proceed: 続行
   processing: 処理中
   processing3p: 処理中...
   profile: プロフィール
@@ -1766,14 +1933,20 @@ ja:
   project_assets: プロジェクトアセット
   project_cover: プロジェクトカバー
   project_created_on: が%{date}にこのプロジェクトを作成しました
+  project_curator_id: プロジェクトキュレーターID
+  project_curator_tools: プロジェクトキュレーターツール
+  project_curators: プロジェクトキュレーター
   project_group_label: グループ
   project_home: プロジェクトホーム
   project_icon: プロジェクトアイコン
   project_invitations: プロジェクトへの招待
   project_journal_posts: プロジェクトのジャーナル投稿
   project_list: プロジェクトリスト
+  project_list_defaults:
+    title: '%{owner_name}のチェックリスト'
   project_id: プロジェクトID
   project_members: '%{project}のメンバー'
+  project_name: プロジェクト名
   project_observation_settings: プロジェクト観察記録設定
   project_observations: プロジェクトの観測記録
   project_post: プロジェクト投稿
@@ -1785,7 +1958,7 @@ ja:
   project_user_was_invalid: プロジェクトユーザーは無効です：%{project_user}
   project_was_successfully_created: プロジェクトは無事作成されました
   project_was_successfully_updated: プロジェクトは無事更新されました
-  project_x_was_delete: '%{project}は削除されました'
+  project_x_was_delete: '%{project}は削除されました (ウェブサイト上から削除されるまで数分を要する場合があります)'
   projects: プロジェクト
   projects_from_place: '%{place}からのプロジェクト'
   projects_in_x: '%{x}の中のプロジェクト'
@@ -1795,6 +1968,9 @@ ja:
   public_domain: パブリックドメイン
   publish: 公開
   purple: 紫
+  quality_grade: データ品質
+  quality_grade_colon: データ品質：
+  query: クエリ
   range: 分布・生息区域
   range_from: 分布範囲情報提供先：
   rank: 階級
@@ -1810,7 +1986,9 @@ ja:
     superorder: 上目
     order: 目
     suborder: 亜目
+    infraorder: 下目
     superfamily: 上科
+    epifamily: 上科
     family: 科
     subfamily: 亜科
     supertribe: 上族
@@ -1826,16 +2004,22 @@ ja:
   read_our_getting_started_guide: 「はじめてのユーザーガイド」をお読みください
   read_the_full_wikipedia: ウィキペディア記事の全部を読む
   ready_to_get_started?: 始める準備はOKですか？
+  real_time_stats: リアルタイム統計データ
   reason: 理由
   reason_you_are_flagging_this_item: フラグ付けの理由
   receive_email_notifications_when_people_leave_you: 以下の内容のメール配信を希望します：
   receive_updates_from_this_project: このプロジェクトより新着情報を受信する
+  received: 受取済
+  recent: 新着
   recent_additions: 最新の観察記録
   recent_comments_on_your_stuff: あなたへの新着コメント
   recent_observations: 最新の観察記録
   recent_post: 新着投稿
   recent_atom_observations_by: '%{login}の最新観察記録'
+  recent_observations_by: '%{login}の新着観察記録'
   recent_updates: 新着更新
+  recently_active_projects_from_everywhere: 世界中から最近活動があったプロジェクト
+  recently_active_projects_from_place: '%{place}の最近活動があったプロジェクト'
   recently_created: 最近作成された
   recently_created_projects_from_everywhere: 世界中の最近作成されたプロジェクト
   recently_created_projects_from_place: '%{place}の最近作成されたプロジェクト'
@@ -1844,6 +2028,7 @@ ja:
   recently_resolved: 最近解決済み
   record!: 記録
   red: 赤
+  redo_search_in_map: マップ範囲内で再検索
   redo_search_in_map_area: マップ範囲内で再検索
   refresh: 更新
   refresh_listed_taxa: リストの分類群を更新
@@ -1863,6 +2048,9 @@ ja:
   remove_from_guide: ガイドから取り除く
   remove_from_list: リストから外す
   remove_from_project: プロジェクトから除去
+  remove_observations:
+    one: 1件の観察記録を除去しますか？
+    other: '%{count}件の観察記録を除去しますか？'
   remove_place: 場所を取り除く
   remove_project_user: プロジェクトユーザーを取り除く
   remove_selected: 選択された項目を取り除く
@@ -1873,22 +2061,29 @@ ja:
   removed_project_user: プロジェクトユーザーを取り除きました
   removing: 除去中...
   reorder_by_taxonomy: 分類群の順番で並び替える
+  replace_parentesis: （置換）
+  replacing: 置換中
   reply: 返信
+  report_any_problems: 問題を報告
   reptiles: 爬虫類
   request_id_help: 識別協力を依頼
+  request_password: パスワード再設定
   request_timed_out: リクエストがタイムアウトしました
   required: 必須
   required_field: 必須フィールド
+  required_columns_in_order: 必要な列を次の順に
   research: 研究
   research_grade: 研究用
   research_grade_expandable_html: 研究<span class='full'>用データ</span>
   research_grade_short_html: 研究<span class='full'>用データ</span>
   research_quality: 研究用
+  reset_search_filters: 検索フィルターを解除
   reset_your_password: パスワードをリセット
   resolve: 解決済にする
   resolve_this_flag: このフラグを解決済にする
   resolved: 解決済
   resolved_by: 解決済にしたユーザー：
+  restore: 復元
   results: 結果
   roadmap: ロードマップ
   role: 役割
@@ -1902,11 +2097,14 @@ ja:
     must_be_georeferenced: 位置情報が必要です
     must_be_identified: 同定済みでなければなりません
     must_be_on_list: リストに入っていなければなりません
+    must_be_observed_in_place: 次の場所で観察されなければなりません
+    must_be_in: 分類群に含まれなければなりません
   sat: 土
   satellite: 航空写真
   save: 保存
   save_all: すべて保存
   save_and_add_another: 保存し、さらにもう一つを追加
+  save_and_add_taxa: 保存し、種を追加する
   save_changes: 変更を保存
   save_colors: 色を保存
   save_comment: コメントを保存
@@ -1920,7 +2118,12 @@ ja:
   save_photos: 写真を保存
   save_place: 場所を保存
   saving: 保存中...
+  saving_num_of_count_observations:
+    one: 観察記録を保存中...
+    other: '%{count}件中%{num}件目の観察記録を保存中...'
   saving_verb: 保存中
+  schemes: スキーム
+  schemes_including: 次の含むスキーム
   scientific_names: 学名
   search: 検索
   search_all_fields: すべてのフィールドを検索
@@ -1972,10 +2175,17 @@ ja:
   share_on: 次のサービスで共有
   sharing_settings: 共有設定
   show: 表示
+  show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
+  show_default_taxon_photos: 分類群の既定写真を表示
   show_kml: KMLを表示
   show_observation_photos: 観測記録の写真を表示
   show_observations_from: 次のユーザの観察記録を表示：
+  show_off_your_recent_observations: 最近の観察記録を自分のブログまたホームページで紹介しよう！
+  show_only: '表示限定:'
+  show_total_listed_taxa: リストのすべての分類群を表示
+  showing_observations_by: 次のユーザの観察記録を表示中：
   showing_taxa_from_place: '%{place}からの分類群を表示中'
+  show_taxa_from_place: '%{place}からの分類群を表示'
   showing_taxa_from_everywhere: すべての場所からの分類群を表示中
   show_taxa_from_everywhere: すべての場所からの分類群を表示
   sign_in: ログイン
@@ -1985,16 +2195,21 @@ ja:
   sign_up: ユーザー登録
   sign_up_exclamation: 新規ユーザー登録！
   similar_species: 近縁種
+  simple: 簡易
   sign_in_exclamation: ログイン
   single_observation: 単一観察記録
   sizes: サイズ
+  skip_to_next_page: 次のページへスキップ
   small: 小
   site_name_place: '%{site_name} 場所'
   site_observations_export_from_date: '%{date}の%{site_name}観察記録を書き出す'
   site_taxon_page: '%{site_name}分類群ページ'
   some_agree: 多少賛成
+  some_observations_failed: 一部の観察記録は、プロジェクトに追加できませんでした
   some_of_those_photos_couldnt_be_saved: いくつかの写真は保存できませんでした：%{error}
   some_rights_reserved: いくつかの権利を保有
+  something: 何か
+  something_: 何か
   something_went_wrong_adding: 種をリストに追加する際に問題が発生しました
   something_went_wrong_deleting_the_taxon_name: 分類群名称の%{taxon_name}を削除する際に問題が発生しました
   something_went_wrong_updating: リスト更新する際に問題が発生しました
@@ -2061,9 +2276,12 @@ ja:
   spanish: スペイン語
   species: 種
   species_from_around_the_world: 世界各地の種
+  species_guess: 種の推測
   species_guide: 種ガイド
   species_header: 種
   species_name: 種名
+  species_name_cap: 種名
+  species_names: 種名
   species_or_lower: 種と種より下級
   species_search: 種を検索
   species_taxon_name: 種・分類群の名称
@@ -2087,6 +2305,7 @@ ja:
   stats: 統計
   stats_title: サイト統計
   status: 状況
+  status_in_place: '%{place}で%{status}'
   still_no_luck?: それでもダメですか？
   still_needs_id?: それでもIDが必要ですか？
   stop_editing: 編集をやめる
@@ -2095,6 +2314,9 @@ ja:
   stuff_just_added: あなたの新着追加項目
   submit: 送信
   submit_comment: コメントを投稿
+  submit_observations:
+    one: 1件の観察記録を送信
+    other: '%{count}件の観察記録を送信'
   submitted: 投稿済
   subscribe_to_this: こちらを購読
   subscribe_to_this_observation: この観察記録に購読
@@ -2128,6 +2350,7 @@ ja:
   taxon_deleted: 分類群（taxon）が削除されました
   taxon_doesnt_have_a_range: 分類群には分布・生息区域がありません
   taxon_id: 分類群のID
+  taxon_ids: 分類群のID
   taxon_map:
     gbif_occurrences: GBIF分布記録
     data_url: データURL
@@ -2153,7 +2376,7 @@ ja:
   taxonomic_tags_for_flickr: Flickr用のタクソンタグ付け
   taxonomic_tree_browser: 系統樹ブラウザ
   tell_everyone_a_little_about_you: みんなに自己紹介しましょう
-  tell_the_world_a_little_about_yourself: 世界に自己紹介しましょう
+  tell_the_world_a_little_about_yourself: 自己紹介しましょう
   terms: 規約
   terms_and_rules_html: 規約及び規則
   terms_new_users: プロジェクトに参加する条件として、同意しなければならない規約
@@ -2170,7 +2393,11 @@ ja:
   that_observation_no_longer_exists: お探しの観測記録はもう存在しません
   that_project_doesnt_exist: お探しのプロジェクトは存在しません。
   that_role_doesnt_exist: その役割は存在しません
+  that_will_insert_a_link_to: すべてのFlickr写真ページにこのツールへのリンクが挿入されます
+  thats_okay_we_forget: ご心配無用！管理者もよく忘れてしまいます。パスワードリセットを送るために、アカウント作成用のメールアドレスをご記入ください。
   thats_not_a_real_date: 入力した日付は無効です
+  the_community_agrees_location_doesnt: コミュニティーの意見では、<strong>位置情報が正確ではない</strong>ようです。（例：海の真ん中に猿がいたり、オフィスビルの中にカバがいるなど）
+  the_community_agrees_organism_isnt: コミュニティーに意見では、<strong>当生き物は野生または帰化されたものではない</strong>ようです。（例：人間または宇宙人により飼育されている生き物）
   the_data_quality_assessment_is: データ質評定とは、観察記録の精度を示すものです。すべての観察記録の初期状態は<strong>「カジュアル」</strong>となっていますが、<strong>「研究用」</strong>状態になるには
   the_following_lists: 次のリスト
   the_following_observations_could: 次の観察記録は%{link}に追加できませんでした
@@ -2187,6 +2414,12 @@ ja:
   the_species_listed_below_were_not_found_in_the_site_database: 以下の種は%{site_name}データベースで見つかりませんでした。
   the_user_x_has_been_suspended: '%{user}というユーザーは利用停止されました'
   the_user_x_has_been_unsuspended: '%{user}というユーザーは利用停止の処分が解除されました'
+  the_world: 世界中
+  the_world_is_full_of_interesting_places: 世界には面白い場所がいっぱいあり、どれにも珍しく素晴らしい生き物が生きています。世界の反対側でも、近所でも、どこでも面白い生き物を見つけることができます。%{site_name}の「場所」機能で世界中の生き物を探すことができます。ぜひ探してみてください！
+  the_world_is_full_of_interesting_places_short: 世界には面白い場所がいっぱいあり、どれにも珍しく素晴らしい生き物が生きています。世界の反対側でも、近所でも、どこでも面白い生き物を見つけることができます。
+  there_are_x_synonyms_html:
+    one: <span class='count'>1つ</span>シノニムが存在します</span>
+    other: <span class='count'>%{count}つ</span>シノニムが存在します</span>
   there_is_no_wikipedia_page_matching: 一致するウィキペディアページがありません
   there_merge_problems_with_the_merge: 統合エラーが発生しました：%{merged_errors}
   there_was_a_problem_saving_your_identification: 同定を保存する際にエラーが発生しました：%{error}
@@ -2197,23 +2430,36 @@ ja:
   there_were_problems_importing_that_place: 指定の場所をインポートする際に問題が発生しました：%{place_error}
   there_were_some_problems_saving_this_observation: この観察記録を保存する際に問題が発生しました
   there_were_some_problems_saving_those_colors: 色を保存する際に問題が発生しました：%{error}
+  there_were_some_problems_with: CSVファイルにエラーが発生しました。失敗した行を修正の上、再度お試しください。iNaturalist側の問題であれば、ぜひご連絡ください。
   there_were_some_problems_with_fields: 以下のフィールドに問題があります：
   these_folks_kindly_volunteer_to: 分類群の管理、さまざまな問題対応などを行っているボランティアの皆さんです。
   they_already_have_iNat_accounts: 招待した方はすでに%{site_name}のユーザーです
   they_have_been_invited: '...はすでに招待を受けています'
+  third_person_possessive_singular: '%{object_phrase}の%{noun}'
   this: この
   this_is_a: これは
+  this_is_a_life_list_of: 次のユーザのライフリスト：
   this_is_a_life_list_from_place_html: '%{place}のライフリスト'
   this_is_a_life_list_of_taxon_in_place: '%{place}における%{taxon}のライフリスト'
   this_is_taking_forever: 予想以上に時間がかかっています。後ほどまたお試しください。
   this_job_failed_to_run: 実行できませんでした。%{email}にご連絡ください。
   this_list_is_empty!: このリストに項目がありません！
+  this_list_only_accepts_taxa_that_are: このリストは次の条件を満たす分類群のみを追加することができます：
+  this_observation_has_been_incorporated_into_the_following_external_websites: この観察記録データが次の外部サイトに提供されています：
+  this_observation_lies_outside_the: この観察記録が%{site_name}のデータベース上にあるこの種の生息域の外にあるようです。もしかしたら、${site_name}の生息域データに不備があるか、IDが異なるか、迷鳥のような突発的な移動なのか、また生息域拡大なのかもしれません
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
   this_place_has_no_check_list: この場所にはチェックリストがないため、ガイドが存在しません。
   this_species: この種
   this_species_has_no_colors: この種の色が指定されていません。種検索を改善するために、この種の色を選んでください
+  this_taxon_change_has_been_commited: <strong>この分類群変更が確定されました</strong>。分類群を編集しないでください。その他のフィールド編集は可です。
+  this_taxon_concept_is_inactive: この分類群概念は廃止されました
   this_taxon_has_no_default_photo: この分類群のデファルト写真がありません
+  this_taxon_is_inactive_this_means: この分類群は<strong>廃止</strong>されています。変わりに%{site_name}のキュレーターが現在一般的に認められている分類学的な概念を使用していることになります。
+  this_taxon_name_was_originally_imported: この分類群は次の外部名称提供データベースよりインポートされたものです：
   this_taxon_was_originally_imported_from: この分類群は外部名称提供データベースよりインポートされたものです
+  this_tool_is_experimental: このツールは実験的なものなので、必ず
+  this_user_has_been_suspended: この利用者は利用停止されました
+  this_will_try_to_add_tags_to_your_flickr: Flickr上の写真にタグ追加を試みます。実行しますか？
   those_observations_no_longer_exist: お探しの観測記録は存在しません
   threatened: 絶滅危惧種
   thu: 木
@@ -2221,11 +2467,15 @@ ja:
   time_ago: '%{time}前'
   title: タイトル
   title_and_description: タイトルおよび説明
+  to_add_comments: すれば、コメントを投稿することができます
+  to_add_identifications: すれば、IDを追加することができます
+  to_add_ids: すれば、IDを追加することができます
   to_the_bat_cave: いざ〜出発！
   today: 今日
   tools: ツール
   top_5_identifiers: 同定の達人（ベスト５人）
   total: 合計
+  totals: 合計
   total_members: メンバー人数
   total_observations: 合計観察記録数
   total_users: 合計ユーザー数
@@ -2242,6 +2492,7 @@ ja:
   type_source_name: ソース名を入力
   type_species_name: 種名を入力
   type_taxon_name: 分類群名を入力
+  type_taxon_name_and_click_lookup: 分類群名称を入力し、検索をクリックしてください
   un_license_this_observation: この観察記録のライセンスを解除
   unclassified: 未分類
   ungrafted_taxa: 未融合の分類群
@@ -2255,6 +2506,7 @@ ja:
   unsubscribe: 購読解除
   unsubscribe_from_this: 購読停止
   unsuspend_user: ユーザー利用停止を解除
+  unverifiable: 確認できない
   update: 更新
   update_past: 過去の%{type}を更新
   update_photos: 写真を更新
@@ -2271,6 +2523,10 @@ ja:
   upload_a_csv_file: CSVファイルをアップロード
   upload_photos: 写真をアップロード
   uploaded_by: アップロードしたユーザー：
+  uploader:
+    tooltips:
+      add: 観察記録を追加
+      remove_photo: 写真を除去
   US_states: アメリカの州
   usage_stats: 利用状況
   user: ユーザー
@@ -2285,6 +2541,7 @@ ja:
   user_follows: '%{user}がフォローしているユーザー'
   user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
   user_invited_you_to_join_html: '%{user}から招待が届いています：'
+  user_invited_your_x_to_a_project_html: '%{user}があなたの%{x}をプロジェクトに招待しました'
   user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
   user_is_a_naturalist: '%{user}はナチュラリストです！'
   user_s: '%{user}の'
@@ -2295,11 +2552,13 @@ ja:
   username_or_user_id: ユーザー名もしくユーザーID
   users: ユーザー
   users_id: '%{user}さんのID'
+  users_comment_html: <a href='%{url}'>%{user}</a>のコメント
   users_latest_observations_on_site: '%{site}における%{user}の最新観察記録'
   users_observations: '%{user}の観測記録'
   users_profile: '%{user}のプロフィール'
   using_a_license: ライセンスの使用
   valid_interrogation: 有効?
+  valid_options_are: 有効な選択肢：
   view: 表示
   view_all: すべてを表示
   view_all_members: すべてのメンバーを表示
@@ -2329,9 +2588,9 @@ ja:
   view_more_recent_observations: 新着観察記録をさらに表示
   view_nbsp: 表示 &nbsp;
   view_non_mobile_site: PCサイトを表示
-  view_post: 投稿を表示
   view_observation: 観察記録を表示
   view_observations: 観測記録を表示
+  view_observation_flags: 観測記録フラグを表示
   view_observations_by_everyone: みんなの観察記録を表示
   view_observations_raquo: 観察記録を表示 &raquo;
   view_on: 次のサイトで表示：
@@ -2341,15 +2600,20 @@ ja:
   view_original: オリジナルを表示
   view_original_by: '%{photo}で%{by}のオリジナルを表示'
   view_place: 場所を表示
+  view_post: 投稿を表示
   view_projects_from_place: '%{place}のプロジェクトを表示'
+  view_real_time_stats_in_a_new_window: 新規ウィンドウでリアルタイム統計データを表示
+  view_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示
   view_stats: 統計データを表示
   view_taxon_changes: 分類群変更履歴を表示
   view_taxon_page: 分類群ページを表示
   view_taxon_page_for: こちらの分類群ページを表示
+  view_taxon_page_for_this_x: この%{x}の分類群ページを表示
   view_taxonomic_changes: 分類群変更履歴を表示
   view_terms: 規約を閲覧
   view_the_observation: 観察記録を表示
   view_the_range: 分布・生息区域を表示
+  view_unidentified_observations: 未IDの観察記録を表示...
   view_user_observations: '%{user}の観測記録を表示'
   view_xs_journal: '%{x}のジャーナルを表示'
   view_your_dashboard: ダッシュボードを表示
@@ -2367,6 +2631,7 @@ ja:
   we_care_privacy: あなたの個人情報及びプライバシーは大切です。
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_currently_support_flickr_for_image_hosting: 現在、Flickrの画像ホースティングサービスに対応しています。
+  we_didnt_find_any_photos: 指定の検索項目で該当する写真が見つかりません
   we_had_a_problem_flagging_that_item: その項目にフラグを付ける際に問題が発生しました：%{flag_error}
   we_had_trouble_saving_comment: コメントを保存できませんでした
   wed: 水
@@ -2402,6 +2667,7 @@ ja:
   widget: ウィジェット
   widget_code: ウィジェットコード
   wikipedia_entry: ウィキペディアの記事
+  wikipedia_taxobox_raquo: ウィキペディア分類群ボックス&raquo;
   within_inaturalist: '%{site_name}内'
   wondering_what_to_do_next: 次何しましょうか？よかったら
   would_you_like_to: よかったら
@@ -2411,6 +2677,9 @@ ja:
   x_does_not_exist: '%{x}は存在しません'
   x_journal: '%{user}さんのジャーナル'
   x_journal_middot: '%{user}のジャーナル &middot;'
+  x_observations_failed:
+    one: 1件の観察失敗記録
+    other: '%{count}件の観察失敗記録'
   x_project_journal: '%{project}の%{name}'
   x_project_stats: '%{project}の統計'
   x_site_is_a_social_network_for_naturalist: '%{site}はナチュラリストのためのソーシャルネットワークです！植物や動物の観察を記録し、友人と研究者に共有し、自然についてもっと知りましょう！'
@@ -2434,6 +2703,7 @@ ja:
   you_can_accept_invitations: ここで招待を承諾することができます
   you_can_choose_observations_associated: このジャーナル投稿に関連付ける観察記録を選択することができます。
   you_cant_delete_a_project_list: プロジェクトリストを削除することができません
+  you_cant_delete_observation_fields_that_people_are_using: 現在使われている観察フィールドを削除することができません
   you_cant_flag_that: それをフラグ付けすることができません
   you_cant_leave_a_project_you_created: 自分が作成したプロジェクトから退会することはできません
   you_cant_remove_other_peoples_observations: 他人の観察記録を削除することができません
@@ -2452,6 +2722,7 @@ ja:
   you_must_have_a_header_row: 見出し行が必要です。
   you_must_select_a_csv_file_to_upload: アップロードするCSVファイルを選択する必要があります。
   you_must_select_at_least_one_taxon: 一つ以上の分類群を選択しなければなりません
+  you_must_select_dates_to_compare: 比較したい日付お選びください
   you_need_to_select_at_least_one_photo: 写真を一つ以上選択しなければなりません
   you_need_to_select_some_observations_first: まずは観察記録を選択する必要があります
   you_sure_delete_asset?: このアセットを削除して本当によろしいですか？
@@ -2461,6 +2732,7 @@ ja:
   you_sure_delete_project?: このプロジェクトを削除して本当によろしいですか？
   you_sure_delete_this_observation: この観察記録を削除して本当によろしいですか？
   you_sure_remove_taxon_from?: '%{list}からこの分類群を削除して本当によろしいですか？'
+  you_sure_remove_this_invitation?: この招待を取り消しても本当によろしいですか？
   you_sure_remove_this_observation?: この観察記録を除去して本当によろしいですか？
   your: あなたの
   your_: あなたの
@@ -2474,11 +2746,13 @@ ja:
   your_home: あなたのホーム
   your_id: あなたのID
   your_identification: あなたのID
+  your_inat_account_has_been_activated: あなたの%{inat}アカウントは無事作成することができました。
   your_life_list: あなたのライフリスト！
   your_month_observations: あなたの%{month}の観察記録
   your_name_was_saved: 名前が保存されました。
   your_new_password_is: 新しいパスワードは：
   your_observations: あなたの観察記録
+  your_observations_couldnt_be_added_to_that_project: 指定のプロジェクトに観察記録を追加できません：%{errors}
   your_photos_have_been_tagged: あなたの写真はタグ付けされました！
   your_picasa_account: あなたのPicasaアカウント
   your_picasa_account_info: あなたのPicasaアカウント情報
@@ -2492,13 +2766,17 @@ ja:
   youre_following: フォロー中：
   youre_viewing_all_observations: すべての観測記録を表示中
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示中
+  youve_seen_it_want_to: 観察済です！よかったら、
   youve_successfully_linked_your_provider_account: あなたの%{provider}アカウントと無事接続できました。
   zoom_in: 拡大
   zoom_out: 縮小
   none_of_the_people_you_follow_have_any_updates_yet: フォローしているユーザーから更新がありません。
+  verifiable: 確認できる
   views:
     views: 閲覧回数
     guides:
+      edit:
+        add_color_tags_help: 選択中の分類群に紐付いている色から色タグを追加
       pdf_layouts:
         grid: グリッド
         journal: ジャーナル
@@ -2513,6 +2791,7 @@ ja:
         who_is_behind_inaturalist?: '%{site_name}チーム紹介'
         who_is_behind_inaturalist: '%{site_name}チーム紹介'
         how_do_i_contact_inaturalist?: '%{site_name}に連絡するにはどうしたらいい？'
+        what_is_considered_inappropriate_content?: 不適切なコンテンツとは？
         what_is_an_observation?: 観測記録とは？
         can_i_add_photos_without_a_flickr_account?: Flickrアカウントがなくても写真を追加することができますか？
         what_are_tags?: タグとは？
@@ -2522,21 +2801,41 @@ ja:
         i_observed_a_species: ある種の生き物を観察しました。どうして自分のライフリストに表示されないのですか？
     observations:
       export:
+        choose_columns_desc: エキスポート対象の列を選択してください
+        receive_an_email_with_your_data: メールで自分のデータを受信
+        receive_an_email_with_your_data_help: 用意できたら、エキスポートデータが添付されたメールで送られます。
         well_email_you: 準備ができましたら電子メールでお知らせします。
         created_on_help: 作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015
       field_descriptions:
+        observed_on_string: 観察者が入力した日時
         time_zone: 観察地の時間帯
+        latitude: 公開緯度
+        longitude: 公開経度
+        private_latitude: 非公開緯度（観察記録が非公開または不明瞭な場合）
         user_login: 観察者のユーザネーム
+        created_at: 観察記録の作成日時
+        updated_at: 観察記録の最新更新日時
+        quality_grade: この観察記録のデータ品質レベル。詳しくはヘルプをご覧ください。
+        license: 観察記録のユーザー指定ライセンス
         url: 観測記録のURL
+        image_url: デフォルト画像のURL
+        tag_list: カンマ区切りのタグリスト
+      show:
+        allow_curator_coordinate_access_desc_html: この観察記録の非公開位置情報をプロジェクトキュレーターに表示を許可
     photos:
       inviter:
         automatically_add_to_project: プロジェクトに自動的に追加する
     places:
       index:
         adding_new_places: 新規場所の追加
+    posts:
+      formatting_simple_help: 自動的にURLをリンクに変換し、改行を挿入
     projects:
       confirm_leave:
+        what_would_you_like: プロジェクト内の観察記録をどうしますか
         keep_observations_label: プロジェクトの観察記録をそのまま残します
+        keep_observations_desc: 観察記録がそのままプロジェクト内に残り、プロジェクトキュレーターが引き続き非公開な位置情報をアクセスできます
+        remove_observations_label: このプロジェクトから自分の全ての観察記録を取り除く
       edit:
         end_time_desc: バイオブリッツの終了時間。開始時間より1年未満の期間でなければなりません。
         icon_desc: 正方形にトリミングされます
@@ -2544,11 +2843,18 @@ ja:
           class=\"description\">\n <li>ファイル名が.logo.jpg, .logo.png,などで終わるものはプロジェクトページでプロジェクトアイコンの代わりに使用されます</li>\n<li>KML及びKMZファイルはプロジェクトページ上のマップに追加されます</li>\n</ol>
         rules:
           captive: 飼育/栽培
+          wild: 野生であるか、帰化されている
           georeferenced: 座標あり
           has_media: メディア（写真または音声）あり
           has_a_photo: 写真あり
           has_a_sound: 音声あり
           identified: 判定あり
+          in_taxon: 分類群に含まれている
+          observed_in_place: 場所で観察されている
+          on_list: プロジェクトリストの分類群に含まれている
+        submission_models:
+          any: 誰でも
+          curators: プロジェクトキュレーター
       project_user_curator_coordinate_access_labels:
         observer: あなた
     shared:
@@ -2561,12 +2867,32 @@ ja:
       edit:
         project_addition_preferences:
           joined: 自分の参加しているプロジェクト
+      show:
+        this_user_was_banned: このユーザーは利用停止されました
     welcome:
       index:
+        connect_with_nature: 自然とふれ合おう
+        observations_to_date: 件の観察記録（これまで）
         species_observed: 観察された種
+        people_signed_up: 人が参加しています
+        how_it_works: ご利用方法
+        record_your_observations: 観察した生き物を記録しよう
+        share_with_fellow_naturalists: 同じナチュラリスト仲間と情報共有しよう
+        discuss_your_findings: 見つけたものについて話し合いましょう
         contribute_to_science: 科学への貢献をする
+        nature_at_your_fingertips: 自然の世界があなたの指先で
+        keep_track: 記録を残そう
+        create_useful_data: 研究に役立つデータを作ろう
+        help_scientists: いつどこで生き物が発生しているかという情報を科学者と資源管理者に提供し、協力しよう
+        crowdsource_identifications: 世界中のユーザーから判定を受けよう
+        connect_with_experts: 観察した生き物を判定できる専門家と交流しよう
+        become_a_citizen_scientist: 市民科学者になりましょう
+        find_a_project: 興味があるプロジェクトに参加してみませんか？それとも、新しいプロジェクトを立ち上げてみませんか？
         learn_about_nature: 自然について学ぶ
+        build_your_knowledge: 他のナチュラリストとの交流し、助け合いながら自分の知識を向上させます
+        works_on_all_your_devices: すべてのデバイスに対応しています
         who_uses_site_name: 誰が%{site_name}を使うのか？
+        join_today: 今すぐ新規ユーザー登録を
   date:
     abbr_day_names:
     - 日
@@ -2625,6 +2951,28 @@ ja:
       about_x_hours:
         one: 約1時間
         other: 約%{count}時間
+      about_x_months:
+        one: 約1ヶ月
+        other: 約%{count}ヶ月
+      about_x_years:
+        one: 約1年
+        other: 約%{count}年
+      half_a_minute: 約30秒
+      over_x_years:
+        one: 1年以上
+        other: '%{count}年以上'
+      x_days:
+        one: 1日
+        other: '%{count}日'
+      x_minutes:
+        one: 1分
+        other: '%{count}分'
+      x_months:
+        one: 1ヶ月
+        other: '%{count}ヶ月'
+      x_seconds:
+        one: 1秒
+        other: '%{count}秒'
     prompts:
       day: 日
       hour: 時間
@@ -2635,13 +2983,28 @@ ja:
   errors:
     format: '%{attribute} %{message}'
     messages:
+      blank: は空白以外でなければなりません
       even: 偶数でなければなりません
+      exclusion: は保留中
+      greater_than: '%{count}より大きくなければなりません'
+      greater_than_or_equal_to: '%{count}以上でなければなりません'
+      inclusion: はリストに含まれていません
       invalid: は無効
+      less_than: '%{count}より小さくなければなりません'
+      less_than_or_equal_to: '%{count}以下でなければなりません'
       not_a_number: は数字ではありません
       not_an_integer: 整数でなければならない
       odd: 奇数でなければならない
       record_invalid: 認証は失敗しました：%{errors}
       taken: 既に取得されています
+      too_long:
+        one: は長すぎます（最大は1文字）
+        other: は長すぎます（最大は%{count}文字）
+      too_short:
+        one: は短すぎます（最小は1文字）
+        other: は短すぎます（最小は%{count}文字）
+    template:
+      body: 次のフィールドに問題がありました：
   helpers:
     select:
       prompt: 選択してください
@@ -2688,18 +3051,32 @@ ja:
   time:
     am: 午前
     formats:
+      short: '%b%d日 %H:%M'
       rfc: '%Y年%B%d日'
       day_month_year: '%Y年%B%d日'
     pm: 午後
   activemodel:
     errors:
       messages:
+        even: 偶数でなければなりません
+        exclusion: は保留中
+        greater_than: '%{count}より大きくなければなりません'
+        greater_than_or_equal_to: '%{count}以上でなければなりません'
         inclusion: はリストに含まれていません
         invalid: は無効
+        less_than: '%{count}より小さくなければなりません'
+        less_than_or_equal_to: '%{count}以下でなければなりません'
         not_a_number: は数字ではありません
         not_an_integer: 整数でなければならない
         odd: 奇数でなければならない
         record_invalid: 認証は失敗しました：%{errors}
+        taken: 既に取得されています
+        too_long:
+          one: は長すぎます（最大は1文字）
+          other: は長すぎます（最大は%{count}文字）
+        too_short:
+          one: は短すぎます（最小は1文字）
+          other: は短すぎます（最小は%{count}文字）
       template:
         body: 以下のフィールドに問題があります：
   activerecord:
@@ -2713,6 +3090,10 @@ ja:
           attributes:
             base:
               guide_has_too_many_taxa: ガイドは最大５００件の分類群までとなっています
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: 'DNAは次の値のみ有効です: A, T, C, G'
     attributes:
       assessment:
         description: 説明
@@ -2720,12 +3101,15 @@ ja:
         title: タイトル
         body: 本文
       conservation_status:
+        status: 状態
         description: 説明
         place_id: 場所
         url: URL
         geoprivacy: 位置情報プライバシー
+        iucn: IUCN相当
       guide:
         source_url: ソースURL
+        published_at: 出版物
       project:
         title: タイトル
         project_icon: プロジェクトアイコン
@@ -2734,17 +3118,25 @@ ja:
         end_time: 終了時間
         event_url: イベント参加登録URL
         terms: 規約
+        map_type: 地図タイプ
+        zoom_level: ズーム レベル
         prefers_place_boundary_visible: 場所の境界線をマップで表示
+        tracking_codes: 追跡コード
         source_url: ソースURL
         start_time: 開始日時
+      project_observation:
+        user_id: 投稿者
       place:
+        code: コード
         display_name: 表示名称
         latitude: 緯度
         longitude: 経度
+        name: 場所名
         parent_id: 親
         place_type: 場所種類
         prefers_check_lists: チェックリスト許可されている？
       flag:
+        reason: 理由
         flag: フラグ
       observation:
         geo_x: 東距
@@ -2754,6 +3146,7 @@ ja:
         rank: 階級
         parent_id: 親ID
         auto_photos: 自動写真
+        auto_description: 自動説明
         wikipedia_title: ウィキペディアのタイトル
         wikipedia_summary: ウィキペディアより概要
         source_url: ソースURL
@@ -2763,6 +3156,7 @@ ja:
       source:
         title: タイトル
         url: URL
+        citation: 引用
   i18n:
     inflections:
       :@vow_or_con:
@@ -2771,6 +3165,11 @@ ja:
       gender:
         m: 雄
         f: 雌
+        identification: :@f
+        observation_field: :@m
+        post: :@m
+        taxon: :@m
+  wild: 野生
   will_paginate:
     previous_label: '&#8592; 前へ'
     next_label: 次へ &#8594;

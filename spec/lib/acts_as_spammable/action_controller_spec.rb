@@ -2,6 +2,9 @@ require "spec_helper"
 
 describe ObservationsController, type: :controller do
 
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   render_views
   let(:spammer) { User.make!(spammer: true) }
   let(:curator) { make_curator }
@@ -30,7 +33,7 @@ describe ObservationsController, type: :controller do
   it "returns a 403 when spammer content is viewed by average users" do
     get :show, id: spammer_content.id
     expect(response.response_code).to eq 403
-    expect(response.body).to match /This user was banned/
+    expect(response.body).to match /This user was suspended/
   end
 
   it "adds a flash message when spammer content is viewed by curators" do

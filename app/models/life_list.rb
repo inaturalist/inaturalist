@@ -220,7 +220,15 @@ class LifeList < List
   end
 
   def default_description
-    "Every species seen by #{owner_name}"
+    nil
+  end
+
+  def description
+    if user && id == user.life_list_id
+      nil
+    else
+      read_attribute(:description)
+    end
   end
 
   private

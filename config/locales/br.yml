@@ -14,12 +14,21 @@ br:
     ent emgefreek adalek ma vo roet anv skiantel an takson-mañ. P'ho po enrollet an
     takson nevez-mañ e c'hallot ouzhpennañ anvioù all amañ (anvioù boutin, anvioù
     skiantel dispredet ha kement se...).
+  x_comments:
+    one: 1{count} evezhiadenn
+    other: '%{count} evezhiadenn'
   x_followers:
     one: 1 vleunienn
     other: '%{count} bleunienn'
   x_identifications:
     one: 1 anaoudadur
     other: '%{count} anaoudadurioù'
+  x_identifications_:
+    one: 1 anaoudadur
+    other: '%{count} anaoudadurioù'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDoù'
   x_lists:
     one: 1 roll
     other: '%{count} roll'
@@ -40,13 +49,13 @@ br:
     other: <span class='count'>%{count}</span> evezhiadennoù
   x_observations_link_html:
     one: <a href='%{url}'>1</a> evezhiadenn
-    other: <a href='%{url}'>%{count}</a> evezhiadennoù
+    other: <a href='%{url}'>%{count} evezhiadennoù</a>
   x_people:
     one: 1 den
     other: '%{count} den'
   x_faves:
-    one: 1 Pennroll
-    other: '%{count} Pennrolloù'
+    one: 1 pennroll
+    other: '%{count} pennrolloù'
   x_people_like_this:
     one: 1 den a blij an dra-mañ dezhañ
     other: '%{count} tud a blij an dra-mañ dezho'
@@ -78,6 +87,7 @@ br:
   a_member_of_taxon_html: un ezel eus %{taxon}
   able_to_connect_flickr: Dreist ! Gallet hon eus kevreañ ouzh ho kont Flickr.
   about: Diwar-benn
+  about_taxon_changes: Diwar-benn ar c'hemmoù taksonoù
   about_bioblitz_results: Diwar-benn disoc'hoù bioblitz
   about_community_taxa: Diwar-benn taksonioù ar gumuniezh
   about_external_links: Diwar-benn liammoù diavaez
@@ -94,6 +104,7 @@ br:
   acc: Acc (m)
   account: Kont
   accept: Degemer
+  accept_community_identifications: Degemer anaoudurioù ar gumuniezh
   accuracy: Pizhder
   accuracy_meters: Pizhder (metroù)
   accuracy_of_the_coordinates: Pizhder ar roadennoù e metr. Gallout a reot kemmañ
@@ -104,6 +115,7 @@ br:
   actions: Oberoù
   activate_user: Gweredekaat an implijer
   active: oberiant
+  activity_settings: Arventennoù obererezh
   adapted_by_name_from_a_work_by_original: Azasaet gant %{name} ouzh ul labour gant
     {original}
   add: Ouzhpennañ
@@ -127,6 +139,7 @@ br:
   add_all_your_matching_obs_to_this_project: Ouzhpennañ hoc'h holl evezhiadennoù a
     glot gant ar raktres-mañ
   add_an_assessment: Ouzhpennañ ur priziadur
+  add_an_identification: Ouzhpennañ un anaoudadur
   add_an_observation: Ouzhpennañ un evezhiadenn
   add_an_observation?: Ouzhpennañ un evezhiadenn ?
   add_an_observation_of: Ouzhpennañ un evezhiadenn diwar-benn %{taxon}
@@ -191,6 +204,7 @@ br:
     Flickr kevelet gant an evezhiadennoù dibabet.
   add_to: Ouzhpennañ da
   add_to_a_scheme: Ouzhpennañ d'ur raktres
+  add_to_a_project: Ouzhpennañ d'ur raktres
   add_to_calendar: Ouzhpennañ d'an deiziadur
   add_to_checklist: Ouzhpennañ d'ar roll kontrollañ
   add_to_favorites: Ouzhpennañ d'ar pennrolloù
@@ -211,6 +225,8 @@ br:
   added_as_a_part_of: Ouzhpenn evel lodenn eus ur/un/ul
   added_by: Ouzhpennet gant
   added_by_user_on_date_html: Ouzhpennet gant %{user} d'an %{date}
+  added_identifications_to: Anaoudadurioù ouzhpennet da evezhiadennoù n'eus forzh
+    peseurt den.
   added_on: Ouzhpennet d'an
   added_to: Ouzhpennet da
   added_to_favorites: Ouzhpennañ d'ar pennrolloù
@@ -245,6 +261,7 @@ br:
     rank:
       kingdom: Rouantelezh
       class: Rummad
+      phylum: Skourrad
       species: Spesadoù
       order: Urzh
     amphibians: Divelfenneged
@@ -253,6 +270,7 @@ br:
     birds: Laboused
     chromista: Chromista
     fungi: Togoù-touseg
+    fungi_including_lichens: Kabelloù-touseg,liken hag all
     insects: Amprevaned
     mammals: Bronneged
     mollusks: Blotviled
@@ -299,17 +317,23 @@ br:
       other: '%{count} loened all'
   all_taxa_in_this_guide: Taksonoù all er sturlevr-mañ
   all_taxonomic_groups: '&laquo; An holl strolladoù taksonomek'
+  all_updates: An holl hizivadurioù
   all_your_observations_will_default_this_time_zone: Holl hoc'h evezhiadennoù a vo
     er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
   all_your_observations_will_default_to_this_time_zone: Holl hoc'h evezhiadennoù a
     vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
   all_your_projects: Ho holl raktresoù
   allow_any: aotren n'eus forzh peseurt
+  allow_curator_coordinate_access: Aotren ar moned d'ar roadennoù gant ar gourseller
+  allow_project_curators_to_view_your_private_coordinates: Aotren goursellerien ar
+    raktres da welet hoc'h evezhiadennoù prevez
   allowed_html: HTML aotreet
   allowed_values: Talvoudoù aotreet
   alphabetical: Lizherennek
   alphabetical_order: Dre urzh al lizherenneg
   amphibians: Divelfenneged
+  amphibiaweb_doesnt_have_info_about_species: N'en deus AmphibiaWeb tamm titouroù
+    diwar-benn ar spesad-mañ.
   amphibiaweb_taxonomy: Taskonomiezh AmphibiaWeb
   an: ar/an/al
   an_: ar/an/al
@@ -338,6 +362,8 @@ br:
   apply_to_selected: Arloet ouzh an dibab
   apply_fields: Arloañ ar maeziennoù
   apply_darr: Arloañ &darr;
+  apply_these_settings_to_all: Lakaat an arventennoù-mañ da dalvezout d'an holl evezhiadennoù
+    amañ dindan.
   arachnids: araknided
   archives: Dielloù
   are_you_really_sure_want_delete_this_user: Ha sur eo hoc'h eus c'hoant da zilemel
@@ -360,6 +386,8 @@ br:
     "atebeg an aozadur" ?
   are_you_sure_remove_from_project: Ha sur eo hoc'h eus c'hoant da dennañ %{user}
     eus ar raktres ?
+  are_you_sure_remove_photo: Ha sur oc'h e fell deoc'h diverkañ al luc'hskeudenn-mañ
+    ?
   are_you_sure_remove_taxon_from_list: Ha sur eo hoc'h eus c'hoant da dennañ an takson-mañ
     eus ar roll ?
   are_you_sure_remove_taxon_from_place: Ha sur eo hoc'h eus c'hoant da dennañ an takson-mañ
@@ -380,6 +408,9 @@ br:
   are_you_sure_want_delete_this_name: Ha sur oc'h ho peus c'hoant da zilemel an anv-mañ
     ?
   are_you_sure_want_join: Ha sur oc'h e fell deoc'h dont ganimp ?
+  are_you_sure_you_want_sync_this: Ha sur oc'h e fell deoc'h sinkronelaat roadennoù
+    an evezhiadenn-mañ gant al luc'hskeudenn Flickr-mañ ? Koll a rit ar c'hemmoù ho
+    peus graet er furmskrid-mañ, met gallout a reot distreiñ d'hoc'h eilad enrollet.
   are_you_sure_you_want_to_commit_this_change: Ha sur eo hoc'h eus c'hoant da gadarnaat
     ar c'hemm-se ? Ne c'hallo ket an ober-se bezañ nullet.
   are_you_sure_you_want_to_delete_this: Ha sur eo hoc'h eus c'hoant da zilemel an
@@ -406,6 +437,8 @@ br:
     an takson-mañ ?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Ha sur eo hoc'h eus c'hoant
     da zilemel an takson-mañ eus ar roll kontrollañ %{place} ?
+  associated_taxa: Taksonoù kar
+  attention: Diwall
   you_sure_delete_list: Ha sur eo hoc'h eus c'hoant da zilemel ar roll-mañ ?
   you_sure_delete_taxon_from_list?: Ha sur eo hoc'h eus c'hoant da zilemel %{taxon}
     eus ar roll-mañ ?
@@ -416,11 +449,17 @@ br:
   assessment: Priziadur
   assessment_has_benn_completed: Echu eo ar priziadur
   assessment_was_deleted: Dilamet eo bet ar priziadur.
+  assessment_was_successfully_created: Krouet mat eo bet ar priziadur.
+  assessment_was_successfully_updated: Hizivaet mat eo bet ar priziadur.
+  assessment_x: Priziadur %{assessment}
+  assessments: priziadurioù
   associations: Kevredigezhioù
   at: e
   at_any_time_change: Ne vern pegoulz (<span class="button">kemmañ</span>)
   at_time: e %{time}
   atom: Atom
+  authority_list:
+    iucn_red_list: Listenn ruz an UICN
   automatic_descriptions_have_been_disabled: Diweredekaet eo bet an deskrivadurioù
     emgefreek evit an takson-mañ.
   automatically_add_to_project: Ouzhpennañ ent engefre d'ar raktres
@@ -463,20 +502,28 @@ br:
   beacuse_we_recently_changed_auth_system: Evel m'hon eus kemmet hor reizhiad anaout
     implijerien nevez zo ez eo bet adderaouekaet ho ker-tremen marteze.
   because: abalamour da
+  because_of: en abeg da
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
   before_you_can_contribute_your_observations: a-raok gallout kemer perzh gant hoc'h
     evezhiadennoù
   belives_this_is_a_comprehensive_list_of: a soñj dezhañ ez eo ur roll klok eus
+  bg_color: Liv an drekleur
+  bioblitz: Bioblitz
   birds: laboused
   black: du
   blog_widget: Widged bloc'h
   blue: glas
+  blue_butterfly_etc: glas, balafenn ha kement zo...
   body: Korf
+  brief_caption: Alc'hwez berr
+  brief_description_on_what_you_observed: Deskrivadur berr eus ar pezh ho peus gwelet
   brief_description_of_what_you_saw: Deskrivadur berr eus ar pezh ho peus gwelet
   brown: Gell
   browse: Furchal
   browse_all_projects: Furchal an holl raktresoù
   browse_all_species: Furchal an holl spesadoù
+  browse_observations: Furchal an arselladennoù
+  browse_people: Furchal an dud
   browse_projects: Furchal ar raktresoù
   browse_species_that_occur_near_this_observation: Furchal an holl spesadoù e-kichen
     an evezhiadenn-mañ.
@@ -527,15 +574,24 @@ br:
   check_list_place: Roll kontrollañ %{place}
   check_list_updated: Roll kontrollañ hizivaet!
   check_list_source: Tarzh <span class="meta">(facultatif)</span>
+  check_out_our_blog: Gwiriañ hor Blog
+  check_out_your_life_list: Gwiriañ ho roll boudoù bev
   checklist: Roll kontrollañ
   checklist_places: Lec'hioù eus ar roll kontrollañ
   checklist_places_absent: Lec'hioù eus ar roll kontrollañ (ezvezant)
   choose_a_list_above: Dibab ul listenn a-us.
   choose_a_place: Dibab ul lec'h
   choose_a_taxon: Dibab un takson (diret)
+  choose_cc_licensed_photos_html: Dibabit <a href="http://creativecommons.org/">digeriñ</a>  al
+    luc'hskeudennoù dindan aotre pe dibabit diwar an evezhiadennoù %{site_name}. Klaskit
+    dibab skeudennoù hag a<em>laka wel arc'hwelioù diagnostik</em> hag a zo diskwelet
+    mat evel arlunioù</em>. An <em>hini gentañ eo an arlun kentañ</em>
   chose_columns: Dibab ar bannoù
   choose_files_from_your_computer: Dibab ar restroù en hoc'h urzhiataer
   choose_from_your_lists: Dibab adalek ho listennoù
+  choose_good_default_photos: Dibab luc'hskeudennoù mat dre ziouer diwar renabl luc'hskeudennoù
+    Creative Commons gant Flickr
+  choose_photos: Dibab al luc'hskeudennoù
   choose_photos_for_this_taxon: Dibabit ho luc'hskeudennoù evit an takson-mañ
   choose_place: Dibab ul lec'h
   choose_rule: Dibab ur reolenn
@@ -563,9 +619,11 @@ br:
   collapse_updates: Digreskiñ an hivizadurioù
   colors: Livioù
   columns: Bannoù
+  combine: Kenaozañ
   comma_separated_please: Dispartiet gant skejoù, mar plij
   comment_preview: Alberzh an evezhiadenn
   comment: evezhiadenn
+  comment_feed: Lanv evezhiadennoù
   comment_deleted: Evezhiadenn dilamet
   commented: Evezhiet
   comments: Evezhiadennoù
@@ -804,6 +862,9 @@ br:
   editing_custom_project_fields_for: Kemmañ ar maeziennoù raktres personelaet evit
   editing_observation_field: Kemmañ ar vaezienn arsellet
   editing_observation_id: Kemmañ an Arselladenn %{obs_id}
+  editing_observations:
+    one: 'Kemmañ<span class="count">1</span> arselladenn:'
+    other: 'Kemmañ<span class="count">%{count}</span> arselladennoù:'
   editing_project: Kemmañ %{project}
   editing_subscription_to_x_html: Kemmañ ar c'houmanant da %{x}
   editing_taxon_link: Kemmañ al liamm a denn d'an takson
@@ -814,11 +875,13 @@ br:
   either: Pe
   either_that_user_doesnt_exist_or: N'eus ket eus an implijer-mañ pe emaoc'h o heuliañ
     anezhañ dija
+  eligible_for_research_grade: A c'hall bezañ degemeret el live enklask
   email: Postel
   email_addresses_description: Chomlec'hioù Kenrouedad dispartiet gant skejoù, bevennet
     da 60 bep 30 deiz
   email_address_for_comments_and_other_feedback: Chomlec'h elektronek evit an evezhiadennoù
   email_addresses_to_receive_invites: Chomlec'hioù elektronek evit resev ar pedadennoù
+  email_copyright: Copyright &copy; %{x}, pep gwir miret strizh
   email_settings: Arventennoù ar postel
   embed: Enframmañ
   embed_a_widget_for_this_taxon_on_website: Enframmañ ur widged evit an takson-mañ
@@ -826,8 +889,9 @@ br:
   embed_place_widget: Enframmañ ur widged eus al lec'h
   embed_widget_project: Enframmañ ur widged evit ar raktres en ho lec'hienn Web
   enable_offline_access: Gweredekaat ar moned ezlinenn
-  enable_offline_access_for_iphone: Gweredekaat ar moned ezlinenn evit IPhone
   end: Dibenn
+  endangered: o vont da get
+  endemic: endemek
   establishment:
     native: henvroad
     endemic: endemek
@@ -837,18 +901,24 @@ br:
     native_and_occurs_nowhere_else: Henvroad ha n'eus anezhañ e lec'h all ebet
     arrived_in_the_region_via_anthropogenic_means: Erruet er rannvro gant doareoù
       deneiat
+  event_url: URL an obererezh
+  events_only: Darvoudoù hepken
+  every_species_seen_by: Pep spesad gwelet gant
   everyone: An holl dud
   everywhere: E pep lec'h
   exact_location: Lec'hiadur resis
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
+  exit_full_screen: Kuitaat ar mod skramm leun
   expand_days: diorren an deizioù
   expand_updates: diorren an hizivadurioù
   explore!: Ergerzhit !
   export: Ezporzhiañ
   export_observations: Ezporzhiañ an evezhiadennoù
+  export_with_private_coordinates: Ezporzhiañ gant roadennoù prevez
   exporting: Oc'h ezporzhiañ...
   external_links: Liammoù diavaez
+  extinct: Aet da get
   extra_properties: Arventennoù ouzhpenn
   extras: Ouzhpennadennoù
   facebook: Facebook
@@ -864,6 +934,7 @@ br:
   facebook_options: Dibarzhioù Facebook
   "false": Faos
   faq: Foar ar Goulennoù
+  Family: Kerentiad
   fblocale: Er_SUA
   feature_this_project: Lakaat a raktres-mañ e talvoud ?
   featured: Lakaet da dalvezout
@@ -879,6 +950,9 @@ br:
     ha ma n'eo ket bet graet gant un den bennak dija evit mirout ne vefe ket krouet
     ar memes maeziennoù div wech.
   fields: Maeziennoù
+  fields_: Maeziennoù
+  fields_can_only_be_edited_by_the_people_who: Ne c'hall ar maeziennoù bezañ cheñchet
+    nemet gant an dud o deus krouet anezho ha gant an dud karget eus aozadur al lec'hienn
   fields_merged: Maeziennoù kendeuzet
   file_should_be_in_the_following_format: 'Ret eo d''ar restr bezañ er furmad-mañ
     : an an takson, deskrivadur'
@@ -888,6 +962,7 @@ br:
   filling_out_your_profile: O leuniañ ho profil
   filter: Silañ
   filter_by: Silañ dre
+  filter_by_curator_identification: Sil dre anavezout ar penn raktres
   filter_by_place: Silañ dre lec'h
   filter_by_place_taxon_and_color: Silañ dre lec'h, taxon ha liv war-bouez kontrolloù.
   filter_list_by_this_taxon: Silañ ar roll-mañ dre dakson
@@ -903,11 +978,17 @@ br:
   find_places: Kavout lec'hioù
   find_some_people_to_follow: Kavout tud da heuliañ
   find_species: Kavout spesadoù
+  find_suitable_observations: Kavout arselladennoù a-vod
+  find_unsuitable_observations: Kavout arselladennoù ne zereont ket
+  find_your_current_location: Kavout ho lec'hiadur bremañ
+  finished: Echuet eo
+  finished_with_page: Echuet eo gant ar bajenn
   first_confirmed_inat_observation: Evezhiadenn gentañ %{site_name}kadarnaet
   first_connect_your_provider_account_to_your_site: 'Da gentañ, kevreit ho kont %{provider}
     ouzh %{site_name} :'
   first_inat_observation: Evezhiadenn gentañ %{site_name}
   first_observer: Evezhiadenn gentañ
+  first_report: Danevell gentañ
   flag: Banniel
   flag_an_item: Merkañ un elfenn
   flag_as_spammer: Merkañ evel ur strober
@@ -923,7 +1004,11 @@ br:
   flickr_tagger: Liketenniñ al luc'hskeudennoù Flickr
   flickr_tags: Liketennoù Flickr
   flickr_youre_all_set: Prest oc'h da gregiñ da ergerzhout %{site_name}
+  follow_us: Heulhit ac'hanomp war
+  follow_us_on: Heulhit ac'hanomp war
+  follow_user: Heuliañ %{user}
   follower: Koumananter
+  following: Emaoc'h o heuliañ
   for: evit
   for_a_taxon: evit un takson
   for_more_information: Evit gouzout hiroc'h.
@@ -938,6 +1023,10 @@ br:
   from_photos: Diwar luc'hskeudennoù
   from_place: Diwar al lec'h
   from_your_site_observations: Diwar evezhiadennoù %{site_name}
+  full_id_please: ID, mar plij !
+  full_id_please!: ID, mar plij !
+  full_id_please?: ID, mar plij !
+  full_screen: Skramm leun
   fungi:
     one: tog-touseg
     other: togoù-touseg
@@ -957,10 +1046,14 @@ br:
   georeferenced?: Douarlec'hiet
   get_current_position: Kaout al lec'hiadur a vremañ
   get_started_raquo: Loc'hañ &raquo;
+  get_started: Kregiñ
   getting_started: Loc'hañ
+  getting_started_guide: Sturlevr evit kregiñ ganti
   give_it_some_detail: Roit titouroù !
   global_names: Anvioù hollek
   go: Mont
+  go_back: Distreiñ
+  grant_role: '%{grant} (%roll} %{role}'
   gray: gris
   green: gwer
   grey: gris
@@ -980,6 +1073,7 @@ br:
   guide_was_successfully_updated: Hizivaet da vat eo bet ar sturlevr-mañ.
   has_already_been_flagged_by: zo bet disklêriet gant
   has_been: zo bet
+  hello: <test>
   help: Skoazell
   help_faq: Skoazell / Foar ar Goulennoù
   here_are_3_examples: Setu 3 skouer a roadennoù stummet mat
@@ -990,6 +1084,7 @@ br:
   hi_user: Demat, %{user}
   hide: Kuzhat
   hide_details: Kuzhat munudoù
+  high: uhel
   highest_rank: Renk uhelañ
   home: Degemer
   home_faq: FAG
@@ -1005,12 +1100,21 @@ br:
   id_please!: ID, mar plij !
   id_please: ID, mar plij
   identify: Anaout
+  ids: IDoù
   import: Enporzhiañ
+  import_from_other_photo_sites: Enporzhiañ eus lec'hiennoù luc'hskeudennoù all
   import_from_photos: Enporzhiañ diwar luc'hskeudennoù
+  import_from_yahoo: Enporzhiañ eus Yahoo
+  import_observations: Enporzhiañ an arselladennoù
+  import_observations_from_a_photo: Enporzhiañ arselladennoù eus ur pourchaser luc'hskeudennoù
+    pe eus ur restr en hoc'h ardivink.
   import_photos: Enporzhiañ luc'hskeudennoù
+  import_sounds: Enporzhiañ ar sonioù
+  import_tags_from_csv: Enporzhiañ ar balizennoù eus ur restr CSV
   importing: Oc'h enporzhiañ...
   in: e-barzh
   in_: e-barzh
+  in_n: e %{n}
   inbox: boest resev
   including: en ur gontañ e-barzh
   in_order_to_login_and_using_site_visit_url: 'Evit gallout kevreañ ha kregiñ da implijout
@@ -1029,6 +1133,7 @@ br:
     an  naturelourien ! En ur ouzhpennañ ho luc''hskeudenn e c''hallot skoazellañ
     an enklaskerien da c''houzout hiroc''h.'
   inaturalist_is_catching_some_zs: '%{site_name} a rank diskuizhañ un tammig'
+  inaturalist_observations_by: '%{site_name} &#58; Arselladennoù %{login}'
   inaturalist_places: Lec'hioù %{site_name}
   info: Titouroù
   input_taxon: Ebarzhiñ un takson
@@ -1064,11 +1169,13 @@ br:
   kml_file_size_error: Ar furmad KML a rank bezañ 1Mo da nebeutañ
   labels: Labelioù
   large: bras
+  last_confirmed_observation: Arselladenn diwezhañ kardarnaet
   last_seen: Gwelet ar wech diwezhañ
   lat: Led
   latitude: Ledred
   latitude_in_decimals: Ledred e derezioù degel, da skouer 38,123
   latitude_slash_y_coord_slash_northing: Ledred / daveennoù y / daveennoù
+  layers: Gwiskadoù
   layout: Pajennaozañ
   leaderboards: Renkadurioù
   leaderboard_most:
@@ -1091,6 +1198,7 @@ br:
     scientific_names: Anvioù skiantel
     afrikaans: Afrikaans
     bengali: Bengali
+    catalan: Katalaneg
     creole_french: kreoleg (Galleg)
     creole_portuguese: Kreoleg (Portugaleg)
     dutch: Nederlandeg
@@ -1108,7 +1216,13 @@ br:
     turkish: Turkeg
   less: Nebeutoc'h
   license_descriptions_and_images: Deskrivadurioù ha skeudennoù eus an aotre-implijout
+  licensing: Aotre-implijout
+  life: Bev
+  life!: Bev !
+  life_list: Roll ar bevien %{user}
   life_list_updated: Roll hizivaet ar bevien!
+  life_list_first: enskrivadur kentañ war roll ar bevien
+  life_list_firsts: enskrivadurioù kentañ war roll ar bodoù bev
   link: Liamm
   link_or_unlink_your_facebook_account: Liammañ pe diliammañ ho kont Facebook
   link_or_unlink_your_flickr_account: Liammañ pe diliammañ ho kot Flickr
@@ -1125,6 +1239,7 @@ br:
   list_saved: Roll saveteet
   list_updated: Roll hizivaet!
   list_views:
+    plain: plaen
     taxonomic: taksonomek
     photo: Skeudenn
   list_was_successfully_created: Ar roll zo bet krouet da vat.
@@ -1212,10 +1327,16 @@ br:
   messages: Kemennadennoù
   mixed_licenses: aotreoù-implijout kemmesk
   mollusks: blotviled
+  momentjs:
+    shortRelativeTime:
+      future: e %s
+      h: 1 e
   mon: Lun
   month: Miz
   more: Muioc'h
   more_fields: Muioc'h a vaeziennoù
+  more_filters: Muioc'h a siloù
+  more_import_options: Muioc'h a zibarzhoù enporzhiañ
   more_info: Gouzout hiroc'h
   more_info_title: Gouzout hiroc'h
   more_observations: Muioc'h a evezhiadennoù
@@ -1225,6 +1346,9 @@ br:
   most_observations: Ar muiañ a evezhiadennoù
   most_species: Ar muiañ a spesadoù
   must_have_x: a rank kaout %{x}
+  n_ago: '%{n}zo'
+  n_people_agrees: '%{amount} a dud zo a-du'
+  n_people_disagrees: '%{amount} a dud n''emaint ket a-du'
   name: Anv
   name_entered: Anv ebarzhet
   name_llaves: '[ANV]'
@@ -1237,10 +1361,13 @@ br:
   names_for_taxon_html: Anvioù %{taxon}
   ne_lat: Led B.
   ne_lon: Hed B.
+  near: e-kichen
+  nearby: Tostik
   new_check_list_for: Krouiñ ur roll gwiriañ nevez evit %{place} &raquo;
   new_custom_field_for: Maezienn personelaet nevez evit
   new_flag_for: Banniel nevez evit
   new_guide: Sturlevr nevez
+  new_list: Roll nevez
   new_members: Izili nevez
   new_message: Kemennadenn nevez
   new_password: Ger-tremen nevez
@@ -1276,10 +1403,14 @@ br:
   no_project_to_admin_current_user: Ne verit rakres ebet
   no_project_to_admin_login: '%{login} ne ver raktres ebet'
   no_projects_yet: Raktres ebet betek-henn
+  no_x_this_y: '%{x}evet e-pad %{y}'
+  none: Hini ebet
+  normal: reizh
   not_found: N'eo ket bet kavet
   not_yet: Pas c'hoazh
   note: Notenn
   number_of_observations: Niver a evezhiadennoù
+  number_selected: niv. dibabet
   numeric_: niverel
   obscured: Kuzhet
   obscured_or_private: Kuzhet pe prevez
@@ -1293,6 +1424,7 @@ br:
     absent: ezvezant
   of: eus
   offline_access_enabled: Moned ezlinenn gweredekaet
+  ok: Mat eo
   on_: gweredekaet
   on_date: d'an %{date}
   on_day: gweredekaet
@@ -1381,8 +1513,12 @@ br:
       airport: Aerborzh
       Building: O sevel
       building: o sevel
+      Canton: Kanton
+      canton: kanton
       Colloquial: Kaozeek
       colloquial: kaozeek
+      Commune: Kumun
+      commune: kumun
       Continent: Kevandir
       continent: kevandir
       Country: Bro
@@ -1425,6 +1561,8 @@ br:
       province: proviñs
       Region: Rannvro
       region: rannvro
+      Shire: Kontelezh
+      shire: kontelez
       Sports_Team: Skipailh sport
       sports_team: skipaih sport
       State: Stad

@@ -1,6 +1,6 @@
 <% content_for(:title) do %>
   <% if @observation.taxon %>
-    <%= [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?} %>
+    <%=raw [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?} %>
   <% elsif @observation.species_guess.blank? %>
     <%= @observation.species_guess %>
   <%- else -%>
@@ -34,8 +34,8 @@
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
   <% end -%>
-  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
-  <meta property="twitter:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
+  <meta property="og:title" content="<%= @shareable_title %>"/> 
+  <meta property="twitter:title" content="<%=t :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
     <meta property="og:image" content="<%= @shareable_image_url %>"/> 
     <meta name="twitter:card" content="photo">
@@ -79,6 +79,7 @@
         OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
           :force_coordinate_visibility => @coordinates_viewable,
           :include => [ {:user => {:only => :login} }, :taxon, :iconic_taxon ]).html_safe %>;
+    var showIDConfirmation = <%= (logged_in? && current_user.prefers_skip_coarer_id_modal) ? "false" : "true" %>;
 </script>
 <% end %>
 
@@ -121,10 +122,14 @@
         <%= render "shared/taxon", 
           :taxon => @observation.taxon, 
           :link_url => @observation.taxon %>
-      <%- elsif !@observation.species_guess.blank? -%>
-        <%= @observation.species_guess -%>
       <%- else -%>
-        <%=t :something %>
+        <%=t :unknown %>
+        <%- if !@observation.species_guess.blank? -%>
+          <span class="placeholder">
+            
+            (<%=t :placeholder %>: <%= truncate(@observation.species_guess, length: 50) -%>)
+          </span>
+        <% end -%>
       <% end -%>
     </span>
     <span class="observedby">
@@ -434,6 +439,20 @@
         <%- taxon_ids[item.taxon_id] = taxon_ids[item.taxon_id].to_i + 1 %>
       <% end %>
     <% end -%>
+
+    <%= feature_test :idcats, audience: [:users] do %>
+      <% if @users_who_can_help && @users_who_can_help.size > 0 %>
+        <h4>People Who Can Help</h4>
+        <ul>
+          <% @users_who_can_help.each do |u| %>
+            <li>
+              <%= link_to_user u %>
+              (<%= link_to "Improving idents of obs taxon", identifications_path( user_id: u.login, taxon_id: @observation.taxon_id, category: Identification::IMPROVING, current: "any" ) %>)
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
     
     <div id="forms" class="ui-tabs">
       <ul class="clear">

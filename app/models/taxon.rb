@@ -38,7 +38,9 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :taxon_schemes, :through => :taxon_scheme_taxa
   has_many :lists, :through => :listed_taxa
-  has_many :places, :through => :listed_taxa
+  has_many :places,
+    -> { where( "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ) },
+    through: :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
@@ -78,10 +80,10 @@ class Taxon < ActiveRecord::Base
                           :scope => [:ancestry, :is_active],
                           :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
                           :message => "already used as a child of this taxon's parent"
-  validates_uniqueness_of :source_identifier,
-                          :scope => [:source_id],
-                          :message => "already exists",
-                          :allow_blank => true
+  # validates_uniqueness_of :source_identifier,
+  #                         :scope => [:source_id],
+  #                         :message => "already exists",
+  #                         :allow_blank => true
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -154,6 +156,7 @@ class Taxon < ActiveRecord::Base
     'sub-family'      => 'subfamily',
     'gen'             => 'genus',
     'sp'              => 'species',
+    'spp'             => 'species',
     'infraspecies'    => 'subspecies',
     'ssp'             => 'subspecies',
     'sub-species'     => 'subspecies',
@@ -367,7 +370,7 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_ID', Taxon::ICONIC_TAXA.index_by(&:id))
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
-  
+
   # Callbacks ###############################################################
   
   def handle_after_move
@@ -375,7 +378,6 @@ class Taxon < ActiveRecord::Base
     set_iconic_taxon
     return true if id_changed?
     return true if skip_after_move
-    update_listed_taxa
     update_life_lists
     update_obs_iconic_taxa
     conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, "#{ancestry}/#{id}", "#{ancestry}/#{id}/%"]
@@ -476,13 +478,11 @@ class Taxon < ActiveRecord::Base
     true
   end
   
-  def self.update_ancestor_photos(taxon_id, photo_id)
-    unless taxon = Taxon.find_by_id(taxon_id)
-      return
-    end
-    unless photo = Photo.find_by_id(photo_id)
-      return
-    end
+  def self.update_ancestor_photos(taxon, photo)
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    return unless taxon
+    photo = Photo.find_by_id( photo ) unless photo.is_a?( Photo )
+    return unless photo
     taxon.ancestors.each do |anc|
       unless anc.photos.count > 0
         anc.photos << photo
@@ -659,6 +659,14 @@ class Taxon < ActiveRecord::Base
       )
     end
   end
+
+  def set_photo_from_observations
+    return true if photos.count > 0
+    return unless obs = observations.has_quality_grade( Observation::RESEARCH_GRADE ).first
+    return unless photo = obs.observation_photos.sort_by(&:position).first.try(:photo)
+    self.photos << photo
+    Taxon.update_ancestor_photos( self, photo )
+  end
   
   # Override assignment method provided by has_many to ensure that all
   # callbacks on photos and taxon_photos get called, including after_destroy
@@ -773,32 +781,7 @@ class Taxon < ActiveRecord::Base
     return false if rank_level.blank?
     rank_level < SPECIES_LEVEL
   end
-  
-  # Updated the "cached" ancestor values in all listed taxa with this taxon
-  def update_listed_taxa
-    return true if ancestry.blank?
-    return true if ancestry_callbacks_disabled?
-    return true unless ancestry_changed?
-    Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(id, ancestry_was)
-    true
-  end
-  
-  def self.update_listed_taxa_for(taxon, ancestry_was)
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return true unless taxon
-    ListedTaxon.where(taxon_id: taxon.id).update_all(taxon_ancestor_ids: taxon.ancestry)
-    old_ancestry = ancestry_was
-    old_ancestry = old_ancestry.blank? ? taxon.id : "#{old_ancestry}/#{taxon.id}"
-    new_ancestry = taxon.ancestry
-    new_ancestry = new_ancestry.blank? ? taxon.id : "#{new_ancestry}/#{taxon.id}"
-    if !ListedTaxon.where("taxon_ancestor_ids = ?", old_ancestry.to_s).exists? &&
-       !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
-      return
-    end
-    ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%").
-      update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
-  end
-  
+
   def update_life_lists(options = {})
     ids = options[:skip_ancestors] ? [id] : [id, ancestor_ids].flatten.compact
     if ListRule.exists?([
@@ -863,7 +846,7 @@ class Taxon < ActiveRecord::Base
     w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
     
-    if summary = w.summary(wname)
+    if summary = w.summary(wname, options)
       pre_trunc = summary
       summary = summary.split[0..75].join(' ')
       summary += '...' if pre_trunc > summary
@@ -935,7 +918,6 @@ class Taxon < ActiveRecord::Base
     end
     
     LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-    Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(self, reject.ancestry)
     
     %w(flags).each do |association|
       send(association, :reload => true).each do |associate|
@@ -1096,20 +1078,27 @@ class Taxon < ActiveRecord::Base
     end
   end
 
-  def geoprivacy(options = {})
-    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", self_and_ancestor_ids).order("iucn ASC").last
+  def self.max_geoprivacy( taxon_ids, options = {} )
+    target_taxon_ids = [
+      taxon_ids,
+      Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}
+    ].flatten.compact.uniq
+    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).order("iucn ASC").last
     if global_status && global_status.geoprivacy == Observation::PRIVATE
       return global_status.geoprivacy
     end
-    geoprivacies = [global_status.try(:geoprivacy)]
+    geoprivacies = [ global_status.try(:geoprivacy) ]
     geoprivacies += ConservationStatus.
-      where("taxon_id IN (?)", self_and_ancestor_ids).
-      for_lat_lon(options[:latitude], options[:longitude]).pluck(:geoprivacy)
-    geoprivacies = geoprivacies.uniq.reject{|gp| gp.blank? || gp == Observation::OPEN}
+      where( "taxon_id IN (?)", target_taxon_ids ).
+      for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
+    geoprivacies = geoprivacies.uniq.reject{ |gp| gp.blank? || gp == Observation::OPEN }
     return geoprivacies.first if geoprivacies.size == 1
-    return Observation::PRIVATE if geoprivacies.include?(Observation::PRIVATE)
+    return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED unless geoprivacies.blank?
-    ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
+  end
+
+  def geoprivacy( options = {} )
+    Taxon.max_geoprivacy( [id], options )
   end
 
   def add_to_intersecting_places
@@ -1247,8 +1236,10 @@ class Taxon < ActiveRecord::Base
     taxon
   end
 
-  def editable_by?(user)
-    user.is_curator? || user.is_admin?
+  def editable_by?( user )
+    return false unless user.is_a?( User )
+    return true if user.is_admin?
+    user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 
   def mergeable_by?(user, reject)
@@ -1638,7 +1629,7 @@ class Taxon < ActiveRecord::Base
     scope.find_each do |t|
       Taxon.where(id: t.id).update_all(observations_count:
         Observation.elastic_search(
-          where: { "taxon.ancestor_ids" => t.id }).total_entries)
+          where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
     end
   end
 

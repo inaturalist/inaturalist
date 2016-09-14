@@ -2,7 +2,9 @@ class ProjectObservationRule < Rule
   OPERAND_OPERATORS_CLASSES = {
     "observed_in_place?" => "Place",
     "in_taxon?" => "Taxon",
-    "has_observation_field?" => "ObservationField"
+    "has_observation_field?" => "ObservationField",
+    "observed_after?" => "Time",
+    "observed_before?" => "Time"
   }
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
@@ -32,7 +34,11 @@ class ProjectObservationRule < Rule
     if operator == "observed_in_place?" && operand
       "#{I18n.t(:must_be_observed_in)} #{send(:operand).display_name}"
     elsif operator == "has_observation_field?" && operand
-      I18n.t(:must_have_observation_field, :operand => operand.name)
+      I18n.t(:must_have_observation_field, operand: operand.name)
+    elsif operator == "observed_after?" && operand
+      I18n.t(:must_be_observed_after, operand: operand.name)
+    elsif operator == "observed_before?" && operand
+      I18n.t(:must_be_observed_before, operand: operand.name)
     elsif operator =~ /has.+/
       thing_it_has = operator.split('_')[1..-1].join('_').gsub(/\?/, '')
       I18n.t(:must_have_x, :x => I18n.t(thing_it_has, :default => thing_it_has.humanize.downcase))

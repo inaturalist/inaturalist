@@ -1,25 +1,31 @@
 <%-
   place = update_new_observations || resource
   updates ||= []
-  observations = if @update_cache && @update_cache[:observations]
-    updates.map{|u| @update_cache[:observations][u.notifier_id]}
-  else
-    updates.map{|u| u.notifier}
-  end.compact
+  observations = updates.map{|u| u.notifier}
+  target_id = bootstrapTargetID
 -%>
 
-<div class="updatecontent">
-  <div class="observationcontrols stacked"></div>
-  
-  <div class="observations <%= observations.size > 1 ? 'medium grid' : 'mini' %> stacked">
-    <%- compact do %>
-      <%= render :partial => "observations/cached_component", :collection => observations %>
-    <% end -%>
-  </div>
-  
-  <div class="meta">
-    <%= link_to t(:view_more_observations), observations_url(:place_id => place.id) %>
-    <%= t(:from).downcase %>
-    <%= link_to place.display_name, place %>
-  </div>
+<div class="timeline-body">
+  <%= render partial: 'observations/observations_component_for_dashboard', locals: {observations: observations, target_id: target_id} %>
 </div>
+<%- if observations.count > 1 %>
+  <%- 
+    created_at_times = observations.map{|o| o.created_at.blank? ? nil : o.created_at }.compact.uniq.sort
+    created_d1 = created_at_times.min.strftime( "%Y-%m-%dT%H:%M:%S%z" )
+    created_d2 = ( created_at_times.max+1.second ).strftime( "%Y-%m-%dT%H:%M:%S%z" )
+    url_params = { verifiable: "any", place_id: place.id, created_d1: created_d1, created_d2: created_d2, subview: "grid" }
+  -%>
+  <div class="timeline-footer">
+    <%= link_to t(:view_observations), observations_path( url_params ), class: "btn btn-sm btn-primary" %>
+    <%= link_to identify_observations_path( url_params ), class: "btn btn-sm btn-default" do %>
+      <i class="icon icon-identification"></i>
+      <%= t(:identify_title) %>
+    <% end %>
+    <% if observations.count > 4 -%>
+      <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
+        <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <%= t(:show_more) %>...</span>
+        <span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <%= t(:show_less) %></span>
+      </button>
+    <% end -%>    
+  </div>
+<% end %>

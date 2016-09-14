@@ -19,7 +19,7 @@ describe TaxonStage, "commit_records" do
 end
 
 def prepare_stage
-  @output_taxon = Taxon.make!(:is_active => false)
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, is_active: false)
   @stage = TaxonStage.make
   @stage.add_output_taxon(@output_taxon)
   @stage.save!

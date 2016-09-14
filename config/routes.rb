@@ -115,6 +115,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
+  post '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback_post
   delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'
@@ -133,6 +134,8 @@ Rails.application.routes.draw do
   get '/users/curation' => 'users#curation', :as => :curate_users
   get '/users/updates_count' => 'users#updates_count', :as => :updates_count
   get '/users/new_updates' => 'users#new_updates', :as => :new_updates
+  get '/users/api_token' => 'users#api_token', :as => :api_token
+  get '/users/dashboard_updates' => 'users#dashboard_updates', :as => :dashboard_updates
   
   resources :users, :except => [:new, :create] do
     resources :flags
@@ -153,7 +156,7 @@ Rails.application.routes.draw do
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
-  resources :photos, :only => [:show, :update, :destroy] do
+  resources :photos, :only => [:show, :update, :destroy, :create] do
     resources :flags
     collection do
       get 'repair' => :fix
@@ -184,11 +187,15 @@ Rails.application.routes.draw do
       get :phylogram
       get :export
       get :map
+      get :identify
+      get :moimport
+      post :moimport
     end
     member do
       put :viewed_updates
       patch :update_fields
       post :review
+      delete :review, as: "unreview"
     end
   end
 
@@ -262,10 +269,10 @@ Rails.application.routes.draw do
 
   resources :projects do
     member do
-      post :add_matching, :as => :add_matching_to
-      get :preview_matching, :as => :preview_matching_for
       get :invite, :as => :invite_to
       get :confirm_leave
+      get :stats_slideshow
+      put "change_admin/:user_id" => "projects#change_admin", as: :change_admin
     end
     collection do
       get :calendar
@@ -463,6 +470,8 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :summary
+      get :observation_weeks
+      get :nps_bioblitz
     end
   end
 

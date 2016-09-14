@@ -75,6 +75,10 @@ class ObservationsExportFlowTask < FlowTask
     includes << { observation_field_values: :observation_field }
     includes << :photos if export_columns.detect{ |c| c == 'image_url' }
     includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
+    if params[:changed_since]
+      includes << :model_attribute_changes
+      includes << { project_observations_with_changes: :model_attribute_changes }
+    end
     includes
   end
 
@@ -86,6 +90,7 @@ class ObservationsExportFlowTask < FlowTask
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
     json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
+    json_opts[:methods] = [:last_changed] if export_columns.include?("last_changed")
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
     open(json_path, "w") do |f|
       f << "["
@@ -127,7 +132,11 @@ class ObservationsExportFlowTask < FlowTask
           logger.info "Obs #{obs_i} (#{observation.id})" if @debug
           csv << columns.map do |c|
             c = "cached_tag_list" if c == "tag_list"
-            observation.send(c) rescue nil
+            if c == "last_changed"
+              observation.send(c, params) rescue nil
+            else
+              observation.send(c) rescue nil
+            end
           end
           obs_i += 1
         end
@@ -163,11 +172,11 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def export_columns
-    export_columns = options[:columns] || []
-    export_columns = export_columns.select{|k,v| v == "1"}.keys if export_columns.is_a?(Hash)
-    export_columns = Observation::CSV_COLUMNS if export_columns.blank?
-    ofv_columns = export_columns.select{|c| c.index("field:")}
-    export_columns = (export_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns
+    exp_columns = options[:columns] || []
+    exp_columns = exp_columns.select{|k,v| v == "1"}.keys if exp_columns.is_a?(Hash)
+    exp_columns = Observation::CSV_COLUMNS if exp_columns.blank?
+    ofv_columns = exp_columns.select{|c| c.index("field:")}
+    exp_columns = (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns
     viewer_curates_project = if projects = params[:projects]
       if projects.size == 1
         project = Project.find(projects[0]) rescue nil
@@ -179,11 +188,13 @@ class ObservationsExportFlowTask < FlowTask
         filter_user === user
       end
     end
-
-    unless viewer_curates_project || viewer_is_owner
-      export_columns = export_columns.select{|c| c !~ /^private_/}
+    if params[:changed_since]
+      exp_columns << "last_changed"
     end
-    export_columns
+    unless viewer_curates_project || viewer_is_owner
+      exp_columns = exp_columns.select{|c| c !~ /^private_/}
+    end
+    exp_columns
   end
 
   def enqueue_options

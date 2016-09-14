@@ -66,6 +66,8 @@ if OPTS.created_on
   end
 end
 
+es_cmd = "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+
 system "rm -rf resurrect_#{session_id}*"
 
 puts "Exporting from observations..."
@@ -90,6 +92,7 @@ has_many_reflections.each do |k, reflection|
   next unless reflection.klass.column_names.include?(reflection.foreign_key)
   next unless reflection.options[:dependent] == :destroy
   next if k.to_s == "observation_photos"
+  next if k.to_s == "model_attribute_changes"
   puts "Exporting #{k}..."
   fname = "resurrect_#{session_id}-#{reflection.table_name}.csv"
   unless table_names.include?(reflection.table_name)
@@ -168,4 +171,6 @@ scp resurrect_#{session_id}.tgz inaturalist@taricha:deployment/production/curren
 ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
 tar xzvf resurrect_#{session_id}.tgz
 #{resurrection_cmds.uniq.join("\n")}
+source /usr/local/rvm/scripts/rvm 
+#{es_cmd}
 EOT

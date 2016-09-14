@@ -18,7 +18,12 @@
       stroke-width: 1.5px;
     }
     .tline { stroke: #73AC13; }
+    .tpoint {
+      stroke: #73AC13;
+      fill: #73AC13;
+    }
     .uline { stroke: #FF4500; }
+    .taxon-tip img { max-width: 50px; vertical-align: middle; }
 = content_for :extrajs do
   = javascript_include_tag "d3.min"
   :javascript
@@ -49,7 +54,6 @@
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     d3.json(window.location.href.replace(/\?/, '.json?'), function(error, data) {
       data = data.observations
-      console.log("[DEBUG] loaded data: ", data)
       var taxa = {},
           users = {},
           accObsCount = 0,
@@ -62,6 +66,7 @@
         taxa[d.taxon_id] = taxa[d.taxon_id] || 0
         if (taxa[d.taxon_id] == 0) {
           accTaxCount += 1
+          d.newTaxonID = d.taxon_id
         }
         taxa[d.taxon_id] = accTaxCount
         d.accTaxCount = accTaxCount
@@ -93,6 +98,34 @@
           .datum(data)
           .attr("class", "uline line")
           .attr("d", uline);
+      svg.append('svg:g').selectAll( ".tpoint" ).data( data )
+        .enter()
+          .append( "svg:circle")
+            .attr( "class", "tpoint" )
+            .attr('cx', function( d ) { return x(d.timeObservedAt) })
+            .attr('cy', function( d ) { return y( d.accTaxCount ) })
+            .attr('r', 2 );
+      $( "svg circle" ).qtip( $.extend( {}, QTIP_DEFAULTS, {
+        content: function( e, api ) {
+          var d = this[0].__data__;
+          if ( d.newTaxonID ) {
+            $.getJSON( `/taxa/${d.newTaxonID}.json?partial=tip`, function( json ) {
+              var html = "<i>"+json.name+"</i>";
+              if ( json.common_name ) {
+                html = json.common_name.name + " (" + html + ")";
+              }
+              if ( json.default_photo ) {
+                html = "<img src='"+json.default_photo.small_url+"' /> " + html;
+              }
+              html = "<div class='taxon-tip'>"+html+"</div>";
+              api.set( "content.text", html );
+            } );
+            return "Loading...";
+          } else {
+            return "No new taxon"
+          }
+        }
+      } ) );
     })
 - unless @stats_adequately_scoped
   .container-fluid

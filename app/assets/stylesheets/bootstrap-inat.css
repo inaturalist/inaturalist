@@ -82,7 +82,17 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
   background-color:transparent;
   padding:0;
   text-shadow:none;
+  font-weight: normal;
+  text-align: left;
 }
+.observations.mini .user,
+.observations.mini .observed_on,
+.observations.mini .created_at,
+.observations.mini .tags,
+.observations.mini .place {
+  padding-left: 95px;
+}
+.observations.mini .icon{top:3px;}
 .observationcontrols label {display:inline-block;}
 .item_user {float: left;margin-right: 10px;}
 .item_content {float: left; }
@@ -163,7 +173,7 @@ mark { padding: 0; }
 }
 
 .ac-select-thumb { float: none; display: inline-block; }
-.ac-select-thumb img { width: 32px; height: 32px; }
+.ac-select-thumb img { width: 33px; height: 33px; }
 
 textarea:focus,
 input[type="text"]:focus,
@@ -196,3 +206,21 @@ input[type="color"]:focus,
 }
 
 .fa-spin { transform: none; }
+
+.form-inline button,
+.form-inline .form-group {
+  margin-left: 5px;
+}
+.form-inline button:first-child,
+.form-inline .form-group:first-child {
+  margin-left: 0;
+}
+.form-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.nav-tabs.user-subnav .glyphicon,
+.nav-tabs.user-subnav .fa,
+.nav-tabs.user-subnav .icon {
+  margin-right: 0.3em;
+}

@@ -20,10 +20,19 @@ class EolPhoto < Photo
       eol_page_id = search_xml.at("entry/id").try(:text)
     end
     return [] if eol_page_id.blank?
-    limit = (options[:limit] || 36).to_i
-    limit = 100 if limit > 100
+    per_page = (options[:per_page] || 36).to_i
+    per_page = 100 if per_page > 100
     eol_page_xml = begin
-      eol.page(eol_page_id, :licenses => 'any', :images => limit, :text => 0, :videos => 0, :details => 1)
+      eol.page(eol_page_id,
+        licenses: "any",
+        images_page: options[:page],
+        images_per_page: per_page,
+        maps_per_page: 0,
+        texts_per_page: 0,
+        videos_per_page: 0,
+        sounds_per_page: 0,
+        details: 1
+      )
     rescue OpenURI::HTTPError => e
       return []
     end

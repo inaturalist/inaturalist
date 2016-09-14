@@ -3,6 +3,8 @@ require "spec_helper"
 describe Identification, "creation" do
 
   before(:all) { User.destroy_all }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   it "should have a taxon" do 
     @id = Identification.make!
@@ -36,12 +38,16 @@ describe Identification, "creation" do
 
   it "should not allow 2 current observations per user" do
     ident1 = Identification.make!
-    idend2 = Identification.make!(:user => ident1.user, :observation => ident1.observation)
+    ident2 = Identification.make!( user: ident1.user, observation: ident1.observation )
     ident1.reload
-    expect(ident1).not_to be_current
-    ident1.update_attributes(:current => true)
-    expect(ident1).not_to be_valid
-    expect(ident1.errors[:current]).not_to be_blank
+    ident2.reload
+    expect( ident1 ).not_to be_current
+    expect( ident2 ).to be_current
+    ident1.update_attributes( current: true )
+    ident1.reload
+    ident2.reload
+    expect( ident1 ).to be_current
+    expect( ident2 ).not_to be_current
   end
   
   it "should add a taxon to its observation if it's the observer's identification" do
@@ -50,6 +56,57 @@ describe Identification, "creation" do
     identification = Identification.make!(:user => obs.user, :observation => obs, :taxon => Taxon.make!)
     obs.reload
     expect(obs.taxon_id).to eq identification.taxon.id
+  end
+  
+  it "should add a taxon to its observation if it's someone elses identification" do
+    obs = Observation.make!
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).to eq identification.taxon.id
+    expect(obs.community_taxon).to be_blank
+  end
+  
+  it "shouldn't add a taxon to its observation if it's someone elses identification but the observation user rejects community IDs" do
+    u = User.make!(:prefers_community_taxa => false)
+    obs = Observation.make!(:user => u)
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).to be_blank
+    expect(obs.community_taxon).to be_blank
+  end
+  
+  it "shouldn't create an ID by the obs owner if someone else adds an ID" do
+    obs = Observation.make!
+    expect(obs.taxon_id).to be_blank
+    expect(obs.identifications.count).to eq 0
+    identification = Identification.make!(:observation => obs, :taxon => Taxon.make!)
+    obs.reload
+    expect(obs.taxon_id).not_to be_blank
+    expect(obs.identifications.count).to eq 1
+  end
+  
+  it "should not modify species_guess to an observation if there's a taxon_id and the taxon_id didn't change" do
+    obs = Observation.make!
+    taxon = Taxon.make!
+    taxon2 = Taxon.make!
+    identification = Identification.make!(
+      :user => obs.user,
+      :observation => obs,
+      :taxon => taxon
+    )
+    obs.reload
+    user = User.make!
+    identification = Identification.make!(
+      :user => user,
+      :observation => obs,
+      :taxon => taxon2
+    )
+    obs.reload
+    expect(obs.species_guess).to eq taxon.name
   end
   
   it "should add a species_guess to a newly identified observation if the owner identified it and the species_guess was nil" do
@@ -111,6 +168,20 @@ describe Identification, "creation" do
     expect(obs.num_identification_disagreements).to eq old_count
   end
   
+  it "should NOT increment the observations num_identification_agreements or num_identification_disagreements if theres just one ID" do
+    taxon = Taxon.make!
+    obs = Observation.make!
+    old_agreement_count = obs.num_identification_agreements
+    old_disagreement_count = obs.num_identification_disagreements
+    expect(obs.community_taxon).to be_blank
+    Identification.make!(:observation => obs, :taxon => taxon)
+    obs.reload
+    expect(obs.num_identification_agreements).to eq old_agreement_count
+    expect(obs.num_identification_disagreements).to eq old_disagreement_count
+    expect(obs.community_taxon).to be_blank
+    expect(obs.identifications.count).to eq 1
+  end
+  
   it "should consider an identification with a taxon that is a child of " + 
      "the observation's taxon to be in agreement" do
     taxon = Taxon.make!
@@ -147,11 +218,13 @@ describe Identification, "creation" do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should incremement for an ident on someone else's observation, with delay" do
+      taxon = Taxon.make!
+      obs = Observation.make!(taxon: taxon)
       user = User.make!
       Delayed::Job.destroy_all
       expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 0
-      Identification.make!(user: user)
+      Identification.make!(user: user, observation: obs, taxon: taxon)
       expect( Delayed::Job.count ).to be > 1
       user.reload
       expect( user.identifications_count ).to eq 0
@@ -179,6 +252,40 @@ describe Identification, "creation" do
     i = Identification.make!(:observation => o, :taxon => o.taxon)
     o.reload
     expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+  end
+
+  it "should trigger setting a taxon photo if obs became research grade" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    o = make_research_grade_candidate_observation
+    expect( o ).not_to be_research_grade
+    expect( t.photos.size ).to eq 0
+    i1 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    i2 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    t.reload
+    expect( o ).to be_research_grade
+    expect( t.photos.size ).to eq 1
+  end
+  it "should not trigger setting a taxon photo if obs was already research grade" do
+    o = without_delay { make_research_grade_observation }
+    o.taxon.taxon_photos.delete_all
+    expect( o.taxon.photos.count ).to eq 0
+    i = without_delay { Identification.make!( observation: o, taxon: o.taxon ) }
+    o.reload
+    expect( o.taxon.photos.count ).to eq 0
+  end
+  it "should not trigger setting a taxon photo if taxon already has a photo" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    t.photos << LocalPhoto.make!
+    o = make_research_grade_candidate_observation
+    expect( o ).not_to be_research_grade
+    expect( t.photos.size ).to eq 1
+    i1 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    i2 = without_delay { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    t.reload
+    expect( o ).to be_research_grade
+    expect( t.photos.size ).to eq 1
   end
 
   it "should update observation quality grade after disagreement" do
@@ -277,13 +384,13 @@ describe Identification, "deletion" do
   end
   
   before(:each) do
-    @observation = Observation.make!(:taxon => Taxon.make!)
+    @observation = Observation.make!(:taxon => Taxon.make!, :prefers_community_taxon => false)
     @unknown_obs = Observation.make!(:user => @observation.user)
     @identification = Identification.make!(:observation => @observation, :taxon => @observation.taxon)
   end
   
   it "should remove the taxon associated with the observation if it's the " +
-     "observer's identification" do
+     "observer's identification and obs does not prefers_community_taxon" do
     expect(@observation.taxon).not_to be(nil)
     expect(@observation.valid?).to be(true)
     @observation.reload
@@ -295,6 +402,23 @@ describe Identification, "deletion" do
     doomed_ident.destroy
     @observation.reload
     expect(@observation.taxon_id).to be(nil)
+  end
+  
+  it "should NOT remove the taxon associated with the observation if it's the " +
+     "observer's identification and obs prefers_community_taxon " do
+    @observation_prefers_community_taxon = Observation.make!(:taxon => Taxon.make!)
+    @identification_prefers_community_taxon = Identification.make!(:observation => @observation_prefers_community_taxon, :taxon => @observation_prefers_community_taxon.taxon)
+    expect(@observation_prefers_community_taxon.taxon).not_to be(nil)
+    expect(@observation_prefers_community_taxon.valid?).to be(true)
+    @observation_prefers_community_taxon.reload
+    expect(@observation_prefers_community_taxon.identifications.length).to be >= 1
+    doomed_ident = @observation_prefers_community_taxon.identifications.select do |ident| 
+      ident.user_id == @observation_prefers_community_taxon.user_id
+    end.first
+    expect(doomed_ident.user_id).to be(@observation_prefers_community_taxon.user_id)
+    doomed_ident.destroy
+    @observation_prefers_community_taxon.reload
+    expect(@observation_prefers_community_taxon.taxon_id).not_to be(nil)
   end
   
   it "should decrement the observation's num_identification_agreements if this was an agreement" do
@@ -544,8 +668,240 @@ describe Identification do
     it "generates mention updates" do
       u = User.make!
       i = without_delay { Identification.make!(body: "hey @#{ u.login }") }
-      expect( Update.where(notifier: i).mention.count ).to eq 1
-      expect( Update.where(notifier: i).mention.first.subscriber ).to eq u
+      expect( UpdateAction.where(notifier: i, notification: "mention").count ).to eq 1
+      expect( UpdateAction.where(notifier: i, notification: "mention").first.
+        update_subscribers.first.subscriber).to eq u
+    end
+  end
+
+  describe "run_update_curator_identification" do
+    it "indexes the observation in elasticsearch" do
+      o = Observation.make!
+      p = Project.make!
+      pu = ProjectUser.make!(user: o.user, project: p)
+      po = ProjectObservation.make!(observation: o, project: p)
+      i = Identification.make!(user: p.user, observation: o)
+      expect( Observation.page_of_results(project_id: p.id, pcid: true).
+        total_entries ).to eq 0
+      Identification.run_update_curator_identification(i)
+      expect( Observation.page_of_results(project_id: p.id, pcid: true).
+        total_entries ).to eq 1
+    end
+  end
+end
+
+describe Identification, "category" do
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
+  let( :o ) { Observation.make! }
+  let(:parent) { Taxon.make!( rank: Taxon::GENUS ) }
+  let(:child) { Taxon.make!( rank: Taxon::SPECIES, parent: parent ) }
+  describe "should be improving when" do
+    it "is the first that matches the community ID among several IDs" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      o.reload
+      i1.reload
+      expect( o.community_taxon ).to eq i1.taxon
+      expect( i1.observation.identifications.count ).to eq 2
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+    it "qualifies but isn't current" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+      i3 = Identification.make!( observation: o, taxon: child, user: i1.user )
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+    it "is an ancestor of the community taxon and was not added after the first ID of the community taxon" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i3 = Identification.make!( observation: o, taxon: child )
+      i4 = Identification.make!( observation: o, taxon: child )
+      o.reload
+      expect( o.community_taxon ).to eq child
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+    end
+  end
+  describe "should be maverick when" do
+    it "the community taxon is not an ancestor" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      i3 = Identification.make!( observation: o )
+      i3.reload
+      expect( i3.category ).to eq Identification::MAVERICK
+    end
+    # it "is a higher-rank disagreement with the community taxon" do
+    #   i1 = Identification.make!( observation: o, taxon: child )
+    #   i2 = Identification.make!( observation: o, taxon: child )
+    #   i3 = Identification.make!( observation: o, taxon: child )
+    #   i4 = Identification.make!( observation: o, taxon: parent )
+    #   i4.reload
+    #   expect( i4.category ).to eq Identification::MAVERICK
+    # end
+  end
+  describe "should be leading when" do
+    it "is the only ID" do
+      i = Identification.make!
+      expect( i.category ).to eq Identification::LEADING
+    end
+    it "has a taxon that is a descendant of the community taxon" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: parent )
+      i3 = Identification.make!( observation: o, taxon: child )
+      expect( i3.category ).to eq Identification::LEADING
+    end
+  end
+  describe "should be supporting when" do
+    it "matches the community taxon but is not the first to do so" do
+      i1 = Identification.make!( observation: o )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
+      expect( i2.category ).to eq Identification::SUPPORTING
+    end
+    it "descends from the community taxon but is not the first identification of that taxon" do
+      i1 = Identification.make!( observation: o, taxon: parent )
+      i2 = Identification.make!( observation: o, taxon: child )
+      i3 = Identification.make!( observation: o, taxon: child )
+      expect( i3.category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "examples: " do
+    let(:o) { Observation.make! }
+    describe "sequence of IDs along the same ancestry" do
+      before do
+        load_test_taxa
+        @sequence = [
+          Identification.make!( observation: o, taxon: @Chordata ),
+          Identification.make!( observation: o, taxon: @Aves ),
+          Identification.make!( observation: o, taxon: @Calypte ),
+          Identification.make!( observation: o, taxon: @Calypte_anna )
+        ]
+        @sequence.each(&:reload)
+        @sequence
+      end
+      it "should all be improving until the community taxon" do
+        o.reload
+        expect( o.community_taxon ).to eq @Calypte
+        expect( @sequence[0].category ).to eq Identification::IMPROVING
+        expect( @sequence[1].category ).to eq Identification::IMPROVING
+      end
+      it "should be improving when it's the first to match the community ID" do
+        expect( @sequence[2].category ).to eq Identification::IMPROVING
+      end
+      it "should end with a leading ID" do
+        expect( @sequence.last.category ).to eq Identification::LEADING
+      end
+      it "should continue to have improving IDs even if the first identifier agrees with the last" do
+        first = @sequence[0]
+        i = Identification.make!( observation: o, taxon: @sequence[-1].taxon, user: first.user )
+        first.reload
+        @sequence[1].reload
+        expect( first ).not_to be_current
+        expect( first.category ).to eq Identification::IMPROVING
+        expect( @sequence[1].category ).to eq Identification::IMPROVING
+      end
+    end
+  end
+  describe "after withdrawing and restoring" do
+    before do
+      load_test_taxa
+      u1 = o.user
+      u2 = User.make!
+      @sequence = [
+        Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
+        Identification.make!( observation: o, taxon: @Calypte, user: u1 ),
+        Identification.make!( observation: o, taxon: @Calypte, user: u2 ),
+        Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
+      ]
+      @sequence.each(&:reload)
+      o.reload
+      @sequence
+    end
+    it "should not change" do
+      expect( o.community_taxon ).to eq @Calypte
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+      @sequence[2].update_attributes( current: false )
+      expect( @sequence[2] ).not_to be_current
+      @sequence[2].update_attributes( current: true )
+      @sequence[2].reload
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "conservative disagreement" do
+    before do
+      load_test_taxa
+      @sequence = [
+        Identification.make!( observation: o, taxon: @Calypte_anna ),
+        Identification.make!( observation: o, taxon: @Calypte ),
+        Identification.make!( observation: o, taxon: @Calypte )
+      ]
+      @sequence.each(&:reload)
+    end
+    it "should consider disagreements that match the community taxon to be improving" do
+      expect( o.community_taxon ).to eq @Calypte
+      expect( @sequence[1].category ).to eq Identification::IMPROVING
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
+    end
+    # it "should consider the identification people disagreed with to be maverick" do
+    #   expect( @sequence[0].category ).to eq Identification::MAVERICK
+    # end
+  end
+  describe "single user redundant identifications" do
+    before do
+      load_test_taxa
+      user = User.make!
+      @sequence = [
+        Identification.make!( observation: o, user: user, taxon: @Calypte ),
+        Identification.make!( observation: o, user: user, taxon: @Calypte )
+      ]
+      @sequence.each(&:reload)
+    end
+    it "should leave the current ID as leading" do
+      expect( @sequence.last ).to be_current
+      expect( @sequence.last.category ).to eq Identification::LEADING
+    end
+  end
+  describe "disagreement within a genus" do
+    before do
+      load_test_taxa
+      @sequence = []
+      @sequence << Identification.make!( observation: o, taxon: @Calypte_anna )
+      @sequence << Identification.make!( observation: o, taxon: Taxon.make!( parent: @Calypte, rank: Taxon::SPECIES ) )
+      @sequence << Identification.make!( observation: o, taxon: Taxon.make!( parent: @Calypte, rank: Taxon::SPECIES ) )
+      @sequence.each(&:reload)
+      o.reload
+      expect( o.community_taxon ).to eq @Calypte
+    end
+    it "should have all leading IDs" do
+      expect( @sequence[0].category ).to eq Identification::LEADING
+      expect( @sequence[1].category ).to eq Identification::LEADING
+      expect( @sequence[2].category ).to eq Identification::LEADING
+    end
+  end
+  describe "disagreement with revision" do
+    before do
+      load_test_taxa
+      user = User.make!
+      @sequence = []
+      @sequence << Identification.make!( observation: o, taxon: @Calypte, user: user )
+      @sequence << Identification.make!( observation: o, taxon: @Calypte_anna, user: user )
+      @sequence << Identification.make!( observation: o, taxon: @Calypte )
+      @sequence.each(&:reload)
+      o.reload
+      expect( o.community_taxon ).to eq @Calypte
+    end
+    # it "should be supporting, maverick, improving" do
+    #   expect( @sequence[0].category ).to eq Identification::SUPPORTING
+    #   expect( @sequence[1].category ).to eq Identification::MAVERICK
+    #   expect( @sequence[2].category ).to eq Identification::IMPROVING
+    # end
+    it "should be improving, leading, supporting" do
+      expect( @sequence[0].category ).to eq Identification::IMPROVING
+      expect( @sequence[1].category ).to eq Identification::LEADING
+      expect( @sequence[2].category ).to eq Identification::SUPPORTING
     end
   end
 end

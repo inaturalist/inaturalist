@@ -1,13 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 def setup_taxon_merge
-  @input_taxon1 = Taxon.make!
-  @input_taxon2 = Taxon.make!
-  @output_taxon = Taxon.make!
+  @input_taxon1 = Taxon.make!( rank: Taxon::GENUS )
+  @input_taxon2 = Taxon.make!( rank: Taxon::GENUS )
+  @output_taxon = Taxon.make!( rank: Taxon::GENUS )
   @merge = TaxonMerge.make
-  @merge.add_input_taxon(@input_taxon1)
-  @merge.add_input_taxon(@input_taxon2)
-  @merge.add_output_taxon(@output_taxon)
+  @merge.add_input_taxon( @input_taxon1 )
+  @merge.add_input_taxon( @input_taxon2 )
+  @merge.add_output_taxon( @output_taxon )
   @merge.save!
 end
 
@@ -86,6 +86,69 @@ describe TaxonMerge, "commit" do
     @merge.commit
     @output_taxon.reload
     expect(@output_taxon).to be_is_active
+  end
+
+  it "should move children from the input to the output taxon" do
+    @input_taxon1.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
+    @input_taxon2.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
+    child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::FAMILY )
+    descendant1 = Taxon.make!( parent: child1, rank: Taxon::GENUS )
+    child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::FAMILY )
+    descendant2 = Taxon.make!( parent: child2, rank: Taxon::GENUS )
+    expect( @merge ).to be_valid
+    without_delay { @merge.commit }
+    child1.reload
+    child2.reload
+    descendant1.reload
+    descendant2.reload
+    expect( child1.parent ).to eq @output_taxon
+    expect( descendant1.ancestor_ids ).to include @output_taxon.id
+    expect( child2.parent ).to eq @output_taxon
+    expect( descendant2.ancestor_ids ).to include @output_taxon.id
+  end
+
+  describe "should make swaps for all children when swapping a" do
+    it "genus" do
+      @input_taxon1.update_attributes( rank: Taxon::GENUS, name: "Hyla", rank_level: Taxon::GENUS_LEVEL )
+      @input_taxon2.update_attributes( rank: Taxon::GENUS, name: "Rana", rank_level: Taxon::GENUS_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris", rank_level: Taxon::GENUS_LEVEL )
+      child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+      child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SPECIES, name: "Rana clamitans", rank_level: Taxon::SPECIES_LEVEL )
+      [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
+      without_delay { @merge.commit }
+      [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
+      expect( child1.parent ).to eq @input_taxon1
+      expect( child2.parent ).to eq @input_taxon2
+      child_swap1 = child1.taxon_change_taxa.first.taxon_change
+      child_swap2 = child2.taxon_change_taxa.first.taxon_change
+      expect( child_swap1 ).not_to be_blank
+      expect( child_swap2 ).not_to be_blank
+      expect( child_swap1.output_taxon.name ).to eq "Pseudacris regilla"
+      expect( child_swap2.output_taxon.name ).to eq "Pseudacris clamitans"
+      expect( child_swap1.output_taxon.parent ).to eq @output_taxon
+      expect( child_swap2.output_taxon.parent ).to eq @output_taxon
+    end
+    it "species" do
+      @input_taxon1.update_attributes( rank: Taxon::GENUS, name: "Hyla regilla", rank_level: Taxon::GENUS_LEVEL )
+      @input_taxon2.update_attributes( rank: Taxon::GENUS, name: "Rana clamitans", rank_level: Taxon::GENUS_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris regilla", rank_level: Taxon::GENUS_LEVEL )
+      child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Hyla regilla foo", rank_level: Taxon::SPECIES_LEVEL )
+      child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SPECIES, name: "Rana clamitans foo", rank_level: Taxon::SPECIES_LEVEL )
+      [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
+      without_delay { @merge.commit }
+      [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
+      expect( child1.parent ).to eq @input_taxon1
+      expect( child2.parent ).to eq @input_taxon2
+      child_swap1 = child1.taxon_change_taxa.first.taxon_change
+      child_swap2 = child2.taxon_change_taxa.first.taxon_change
+      expect( child_swap1 ).not_to be_blank
+      expect( child_swap2 ).not_to be_blank
+      expect( child_swap1.output_taxon.name ).to eq "Pseudacris regilla foo"
+      expect( child_swap2.output_taxon.name ).to eq "Pseudacris regilla foo"
+      expect( child_swap1.output_taxon.parent ).to eq @output_taxon
+      expect( child_swap2.output_taxon.parent ).to eq @output_taxon
+      expect( child_swap2.output_taxon ).to eq child_swap1.output_taxon
+    end
   end
 end
 

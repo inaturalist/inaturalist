@@ -51,8 +51,8 @@ $(document).ready(function() {
   $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
 
   $('#new_identification_form .species_guess').taxonAutocomplete({
-    id_el: $("input.ac_hidden_taxon_id"),
-    extra_class: "identification",
+    idEl: $("input.ac_hidden_taxon_id"),
+    extraClass: "identification",
     afterSelect: function(wrapper) {
       var button = $('#new_identification_form').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);
@@ -247,6 +247,31 @@ $(document).ready(function() {
 
   $('#comment_body').textcompleteUsers( );
   $('#identification_body').textcompleteUsers( );
+
+  if( showIDConfirmation ) {
+    $("#new_identification").confirmModal({
+      silencePreference: "prefers_skip_coarer_id_modal",
+      condition: function( ) {
+        var obs = window.observation;
+        if( !obs || !obs.taxon || !obs.taxon.rank_level ||
+            !obs.taxon.rank_level ) { return false; }
+        var idTaxon = $( "#new_identification_form .species_guess" ).
+          data( "autocomplete" ).selectedItem;
+        if( idTaxon && idTaxon.rank_level > obs.taxon.rank_level ) { return true; }
+      },
+      text: function( ) {
+        var idTaxon = $( "#new_identification_form .species_guess" ).
+          data( "autocomplete" ).selectedItem;
+        var newName = idTaxon.preferred_common_name || idTaxon.name;
+        var currentName = $("#pageheader span.taxon a").text( );
+        var text = I18n.t( "your_coarser_id", {
+          coarser_taxon_name: newName,
+          finer_taxon_name: currentName });
+        return text;
+      }
+    });
+  }
+
 })
 
 $(document).on('click', '#add_more_photos_link', function() {

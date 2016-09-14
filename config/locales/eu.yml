@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: An13sa
+# Author: Asierog
 # Author: Cgalindo
 # Author: Macofe
 # Author: Sator
@@ -207,6 +208,8 @@ eu:
   added_identifications_to: ez diozu identifikaziorik gehitu inoren oharrei.
   added_on: 'Egun honetan gehitua:'
   added_to: 'Honetarako gehituta:'
+  added_to_favorites: Gustukoetara gehitua
+  added_to_favorites_html: <a href="%{url}">Gustukoetara</a> gehitua
   adding: Gehitzen...
   adding_observations: Oharrak gehitu
   adding_to_your_life_list: Zure bizitzako zerrendara gehituta
@@ -331,6 +334,7 @@ eu:
   announcements: Iragarkiak
   any: Edozein
   apply_to_selected: Hautatutakoei aplikatu
+  apply_geoprivacy: Geopribatasuna aplikatu
   apply_darr: Aplikatu ↓
   apply_these_settings_to_all: Ezarpen hauek beheko ohar guztiei aplikatu
   appropriate?: Egokia?
@@ -493,11 +497,10 @@ eu:
   catalogue_of_life: Bizitzako katalogoa
   categories: kategoriak
   cc_attribution_license: Creative Commons-eko esleipen-lizentzia
-  cc_by_description: Lizentzia honek beste pertsona batzuei beren lanetik abiatuta
+  cc_by_description: Lizentzia honek beste pertsona batzuei zure lanetik abiatuta
     banatzea, konbinatzea, doitzea eta eraikitzea ahalbidetzen die, baita merkataritzako
-    xedeekin ere, kredituetan beren sorkuntza originala aipatzen duten heinean, betiere.
-    Hau da eskainitako lizentzien artean malguena. Ahalik eta hedapen handienerako
-    eta lizentziari lotutako materialen erabilerarako gomendatzen da.
+    xedeekin ere, kredituetan beren sorkuntza originalagatik aipatzen zaituzten heinean,
+    betiere.
   cc_by_name: Esleipena
   cc_by_nc_description: Lizentzia honek birbanaketa (merkataritzakoa eta ez-merkataritzakoa)
     ahalbidetzen du, aldaketarik gabe eta osotasunean, kredituekin, banatzen bada,
@@ -1552,8 +1555,8 @@ eu:
   message: Mezua
   messages: Mezuak
   mixed_licenses: Lizentzia konbinatua
-  misleading_or_illegal_content_html: Legez kontrako edukia, iruzurrezkoa, arrazista, xenofoboa
-    eta abar.
+  misleading_or_illegal_content_html: Legez kontrako edukia, iruzurrezkoa, arrazista,
+    xenofoboa eta abar.
   mobile_apps_for: 'Mugikorretako aplikazioak hauetarako:'
   mobile_view_available: Telefono mugikorrerako ikuspegia eskuragarri
   mollusks: moluskuak
@@ -2411,8 +2414,6 @@ eu:
   show_off_your_recent_observations: Argitaratu behaketak zure blogean edo web orrian!
   show_only: Erakutsi soilik
   show_taxa_from_both: (bi zerrendetako taxonak berriro erakutsi)
-  show_the_total_number_of: Proiektuen zerrendetan espezie edo talde kopuru totala
-    erakutsi, behatutako espezie edo talde kopuruarekin batera.
   show_total_listed_taxa: Espezie edo taldeen zerrenda totala erakutsi
   showing_observations_by: 'Honek egindako behaketak erakutsi:'
   showing_one_to: 1 erakusten -
@@ -2982,7 +2983,6 @@ eu:
   view_more_recent_observations: Duela gutxiko behaketa gehiago ikusi
   view_nbsp: Ikusi  
   view_non_mobile_site: Mugikorretarako egokitu gabeko webguneak ikusi
-  view_post: Sarrera ikusi
   view_observation: Behaketa ikusi
   view_observations: Behaketak ikusi
   view_observations_raquo: Behaketak ikusi »
@@ -2999,6 +2999,7 @@ eu:
     behaketei eta are gehiago! Iturri ugaritako informazioa bildu eta konbinatu dugu,
     leku bakoitzeko espezieen laburpen txikia eskaintzeko.
   view_place: Lekua ikusi
+  view_post: Sarrera ikusi
   view_stats: Ekarpenak ikusi
   view_taxon_changes: Taxonaren aldaketak ikusi
   view_taxon_page: Taxonaren orrialdea ikusi

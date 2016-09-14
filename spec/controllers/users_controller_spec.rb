@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController, "dashboard" do
-  before(:each) { enable_elastic_indexing(Update) }
-  after(:each) { disable_elastic_indexing(Update) }
+  before(:each) { enable_elastic_indexing(Observation, UpdateAction) }
+  after(:each) { disable_elastic_indexing(Observation, UpdateAction) }
   it "should be accessible when signed in" do
     user = User.make!
     sign_in user
@@ -14,14 +14,6 @@ end
 describe UsersController, "update" do
   let(:user) { User.make! }
   before { sign_in user }
-  it "should allow you to change sharing preferences" do
-    expect( user.prefers_share_observations_on_facebook ).to be true
-    expect( user.prefers_share_observations_on_twitter ).to be true
-    patch :update, id: user.id, user: {prefers_share_observations_on_facebook: "0", prefers_share_observations_on_twitter: "0"}
-    user.reload
-    expect( user.prefers_share_observations_on_facebook ).to be false
-    expect( user.prefers_share_observations_on_twitter ).to be false
-  end
 
   it "changes updated_at when changing preferred_project_addition_by" do
     expect {
@@ -36,8 +28,17 @@ describe UsersController, "update" do
 end
 
 describe UsersController, "delete" do
+  let(:user) { User.make! }
+
+  it "destroys in a delayed job" do
+    sign_in user
+    delete :destroy, id: user.id
+    expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
+    expect( Delayed::Job.where("unique_hash = '{:\"User::sane_destroy\"=>#{user.id}}'").
+      count ).to eq 1
+  end
+
   it "should be possible for the user" do
-    user = User.make!
     sign_in user
     without_delay { delete :destroy, :id => user.id }
     expect(response).to be_redirect
@@ -45,7 +46,6 @@ describe UsersController, "delete" do
   end
   
   it "should be impossible for everyone else" do
-    user = User.make!
     nogoodnik = User.make!
     sign_in nogoodnik
     delete :destroy, :id => user.id
@@ -129,6 +129,23 @@ describe UsersController, "set_spammer" do
       expect( f.resolver ).to be_blank
     end
 
+    it "sets the user_id of the flag to the current_user" do
+      u = User.make!
+      post :set_spammer, id: u.id, spammer: "true"
+      u.reload
+      expect( u.flags.last.user ).to eq @curator
+    end
+
+    it "resolves the spam flag on the user when setting to non-spammer" do
+      u = User.make!( spammer: true )
+      post :set_spammer, id: u.id, spammer: "true"
+      u.reload
+      flag = u.flags.detect{|f| f.flag == Flag::SPAM}
+      expect( flag ).not_to be_blank
+      post :set_spammer, id: u.id, spammer: "false"
+      flag.reload
+      expect( flag ).to be_resolved
+    end
   end
 end
 

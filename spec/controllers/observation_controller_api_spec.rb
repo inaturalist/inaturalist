@@ -117,13 +117,27 @@ shared_examples_for "an ObservationsController" do
       expect(o.description).to eq "this is a WOAH"
     end
 
-    it "should duplicate observations with the same uuid if made by different users" do
-      # in theory this is statistically impossible if people use rfc4122 UUIDs, but people and statistics are evil
+    it "should be invalid for observations with the same uuid if the existing was by a differnet user" do
       uuid = "some really long identifier"
-      o = Observation.make!(:uuid => uuid)
-      post :create, :format => :json, :observation => {:uuid => uuid}
-      expect(Observation.where(:uuid => uuid).count).to eq 2
+      o = Observation.make!( uuid: uuid )
+      post :create, format: :json, observation: { uuid: uuid }
+      expect( response.status ).to eq 422
+      expect( Observation.where( uuid: uuid ).count ).to eq 1
     end
+
+    it "should set the uuid even if it wasn't included in the request" do
+      post :create, format: :json, observation: { species_guess: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["uuid"] ).not_to be_blank
+    end
+
+    it "should not override a uuid in the request" do
+      uuid = "some really long identifier"
+      post :create, format: :json, observation: { uuid: uuid }
+      json = JSON.parse( response.body )[0]
+      expect( json["uuid"] ).to eq uuid
+    end
+
   end
 
   describe "destroy" do
@@ -141,6 +155,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
     it "should provide private coordinates for user's observation" do
       o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
       get :show, :format => :json, :id => o.id
@@ -445,6 +462,14 @@ shared_examples_for "an ObservationsController" do
       expect( o.identifications.count ).to eq 3
     end
 
+    it "shoudld remove the taxon when taxon_id is blank" do
+      o = Observation.make!( user: user, taxon: Taxon.make! )
+      expect( o.taxon ).not_to be_blank
+      put :update, format: :json, id: o.id, observation: { taxon_id: nil }
+      o.reload
+      expect( o.taxon ).to be_blank
+    end
+
     it "should mark as captive in response to captive_flag" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
@@ -460,6 +485,74 @@ shared_examples_for "an ObservationsController" do
       o.reload
       qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
       expect( qm ).to be_agree
+    end
+
+    it "should remove place_guess when changing geoprivacy to private" do
+      original_place_guess = "foo"
+      o = Observation.make!( user: user, place_guess: original_place_guess, latitude: 1, longitude: 1 )
+      expect( o.place_guess ).to eq original_place_guess
+      put :update, format: :json, id: o.id, observation: { geoprivacy: Observation::PRIVATE }
+      o.reload
+      expect( o.place_guess ).to be_blank
+    end
+
+    it "should return private coordinates if geoprivacy is private" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
+      put :update, format: :json, id: o.id, observation: { description: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["private_latitude"] ).not_to be_blank
+    end
+
+    it "should return private coordinates if geoprivacy is obscured" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      put :update, format: :json, id: o.id, observation: { description: "foo" }
+      json = JSON.parse( response.body )[0]
+      expect( json["private_latitude"] ).not_to be_blank
+    end
+
+    describe "private_place_guess" do
+      let(:p) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL, name: "Freedonia" ) }
+      let(:original_place_guess) { "super secret place" }
+      let(:o) {
+        Observation.make!(
+          latitude: p.latitude,
+          longitude: p.longitude,
+          geoprivacy: Observation::OBSCURED,
+          place_guess: original_place_guess,
+          user: user
+        )
+      }
+      it "should not change if the obscured place_guess is submitted" do
+        obscured_place_guess = o.place_guess
+        expect( obscured_place_guess ).to eq p.name
+        put :update, format: :json, id: o.id, observation: { place_guess: original_place_guess, description: "foo" }
+        o.reload
+        expect( o.description ).to eq "foo"
+        expect( o ). to be_coordinates_obscured
+        expect( o.place_guess ).to eq obscured_place_guess
+        expect( o.private_place_guess ).to eq original_place_guess
+      end
+      it "should change with a new place_guess" do
+        obscured_place_guess = o.place_guess
+        new_place_guess = "a totally different place"
+        put :update, format: :json, id: o.id, observation: { place_guess: new_place_guess }
+        o.reload
+        expect( o.place_guess ).to eq obscured_place_guess
+        expect( o.private_place_guess ).to eq new_place_guess
+      end
+      it "should not change when updating an observation of a threatened taxon" do
+        o = Observation.make!(
+          taxon: make_threatened_taxon,
+          latitude: 1,
+          longitude: 1,
+          place_guess: original_place_guess,
+          user: user
+        )
+        expect( o.private_place_guess ).to eq original_place_guess
+        put :update, format: :json, id: o.id, observation: { description: "foo" }
+        o.reload
+        expect( o.private_place_guess ).to eq original_place_guess
+      end
     end
   end
 
@@ -539,8 +632,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Place ) }
+    before(:each) { enable_elastic_indexing( Observation, Place, UpdateAction ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, UpdateAction ) }
 
     it "should allow search" do
       expect {
@@ -1233,12 +1326,24 @@ shared_examples_for "an ObservationsController" do
       end
     end
 
+    describe "csv" do
+      render_views
+      it "should render" do
+        o = make_research_grade_observation
+        get :index, format: :csv
+        CSV.parse( response.body, headers: true ) do |row|
+          expect( row["species_guess"] ).to eq o.species_guess
+          expect( row["image_url"] ).not_to be_blank
+        end
+      end
+    end
+
     describe "HTML format" do
       render_views
       before{ @o = make_research_grade_observation }
       it "should show the angular app" do
         # the angular app doesn't need to load any observations
-        Observation.should_not_receive(:get_search_params)
+        expect( Observation ).not_to receive(:get_search_params)
         get :index, format: :html
         expect(response.body).to include "ng-controller='MapController'"
         expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
@@ -1246,7 +1351,7 @@ shared_examples_for "an ObservationsController" do
 
       it "can render a partial instead" do
         # we need observations to render all other partials/formats
-        Observation.should_receive(:get_search_params)
+        expect( Observation ).to receive(:get_search_params)
         get :index, format: :html, partial: "observation_component"
         expect(response.body).to_not include "ng-controller='MapController'"
         expect( response.body ).to have_tag("div.user a", text: @o.user.login)
@@ -1307,20 +1412,22 @@ shared_examples_for "an ObservationsController" do
 
   describe "viewed_updates" do
     before do
-      enable_elastic_indexing(Update)
+      enable_elastic_indexing(UpdateAction)
       without_delay do
         @o = Observation.make!(:user => user)
         @c = Comment.make!(:parent => @o)
         @i = Identification.make!(:observation => @o)
       end
     end
-    after(:each) { disable_elastic_indexing(Update) }
+    after(:each) { disable_elastic_indexing(UpdateAction) }
 
     it "should mark all updates from this observation for the signed in user as viewed" do
-      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource: @o).
+        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 2
       put :viewed_updates, :format => :json, :id => @o.id
-      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource: @o).
+        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 0
     end
 
@@ -1329,16 +1436,19 @@ shared_examples_for "an ObservationsController" do
         o = Observation.make!(:user => user)
         c = Comment.make!(:parent => o)
       end
-      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
+        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 3
       put :viewed_updates, :format => :json, :id => @o.id
-      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
+        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 1
     end
 
     it "should not mark other updates from this observation as viewed" do
       put :viewed_updates, :format => :json, :id => @o.id
-      num_updates_for_commenter = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => @c.user_id).count
+      num_updates_for_commenter = UpdateAction.joins(:update_subscribers).where(resource: @o).
+        where("subscriber_id = ?", @c.user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_commenter).to eq 1
     end
   end
@@ -1483,6 +1593,32 @@ shared_examples_for "an ObservationsController" do
         expect(response).not_to be_success
         o.reload
         expect(o.observation_field_values).to be_blank
+      end
+    end
+  end
+
+  describe "review" do
+    let(:o) { Observation.make! }
+    it "should mark an observation as reviewed by the current user" do
+      post :review, format: :json, id: o.id
+      o.reload
+      expect( o ).to be_reviewed_by user
+    end
+    describe "should unreview" do
+      before do
+        ObservationReview.make!( observation: o, user: user )
+        o.reload
+        expect( o ).to be_reviewed_by user
+      end
+      it "should unreview in response to a param" do
+        post :review, format: :json, id: o.id, reviewed: "false"
+        o.reload
+        expect( o ).not_to be_reviewed_by user
+      end
+      it "should unreview in response to DELETE" do
+        delete :review, format: :json, id: o.id
+        o.reload
+        expect( o ).not_to be_reviewed_by user
       end
     end
   end

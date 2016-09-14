@@ -8,7 +8,7 @@
     <% if logged_in? && @provider_authorizations -%>
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
-    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <%= favicon_link_tag %>
     <%= stylesheet_link_tag 'blueprint_bundle' %>
     <%= render :partial => 'shared/common_stylesheets'%>
@@ -47,6 +47,9 @@
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
+    <% if @site %>
+      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% end %>
   </head>
 <body class="browser">
   <div id="bodywrapper">

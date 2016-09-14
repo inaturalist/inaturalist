@@ -134,7 +134,8 @@ LocalPhoto.blueprint do
   large_url         { 'http://staticdev.inaturalist.org/photos/1234/large.jpg' }
   original_url      { 'http://staticdev.inaturalist.org/photos/1234/original.jpg' }
   native_page_url   { "http://localhost:3000/photos/1234" }
-  file_content_type { 'image/jpeg' }
+  file_content_type { "image/jpeg" }
+  file_file_name    { "foo.jpg" }
   file_updated_at   { Time.now }
 end
 
@@ -415,9 +416,8 @@ TripPurpose.blueprint do
   resource { Taxon.make! }
 end
 
-Update.blueprint do
+UpdateAction.blueprint do
   o = Observation.make!
-  subscriber { User.make! }
   resource { o }
   notifier { Comment.make!(:parent => o) }
 end

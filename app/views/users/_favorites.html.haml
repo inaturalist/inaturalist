@@ -1,0 +1,8 @@
+- taxon ||= listed_taxon.taxon
+.col-md-3.col-sm-3
+  .thumbnail
+    = link_to taxon_path(taxon) do
+      %div.scaledimg{ style: "background-image: url('#{taxon_image_url(taxon, size: "medium")}')" }
+    .caption
+      = link_to taxon_path(taxon) do
+        = render(:partial => 'shared/taxon', :object => taxon, :locals => { :include_parens => false, :exclude_rank => true, :one_name => true})

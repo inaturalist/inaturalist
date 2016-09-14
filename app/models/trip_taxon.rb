@@ -6,9 +6,10 @@ class TripTaxon < ActiveRecord::Base
 
   delegate :ancestry, :ancestor_ids, to: :taxon
 
-  def serializable_hash(options = {})
+  def serializable_hash(options = nil)
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
+    options ||= { }
     options[:methods] ||= []
     options[:methods] += [:created_at_utc, :updated_at_utc]
     if options[:except]

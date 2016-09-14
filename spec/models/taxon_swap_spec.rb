@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "creation" do
-  before(:each) { enable_elastic_indexing(Observation, Update) }
-  after(:each) { disable_elastic_indexing(Observation, Update) }
+  before(:each) { enable_elastic_indexing(Observation, UpdateAction) }
+  after(:each) { disable_elastic_indexing(Observation, UpdateAction) }
   it "should not allow swaps without inputs" do
-    output_taxon = Taxon.make!
+    output_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
     swap.add_output_taxon(output_taxon)
     expect(swap.input_taxa).to be_blank
@@ -12,7 +12,7 @@ describe TaxonSwap, "creation" do
   end
 
   it "should not allow swaps without outputs" do
-    input_taxon = Taxon.make!
+    input_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
     swap.add_input_taxon(input_taxon)
     expect(swap).not_to be_valid
@@ -21,18 +21,18 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, Update)
+    enable_elastic_indexing(Observation, UpdateAction, Taxon)
     prepare_swap
   end
-  after(:each) { disable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, UpdateAction, Taxon) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)
     without_delay { @swap.commit }
-    expect(@swap.updates.to_a).not_to be_blank
+    expect(@swap.update_actions.to_a).not_to be_blank
     old_id = @swap.id
     @swap.destroy
-    expect(Update.where(:resource_type => "TaxonSwap", :resource_id => old_id).to_a).to be_blank
+    expect(UpdateAction.where(resource_type: "TaxonSwap", resource_id: old_id).to_a).to be_blank
   end
 
   it "should destroy subscriptions" do
@@ -124,14 +124,63 @@ describe TaxonSwap, "commit" do
     @output_taxon.reload
     expect(@output_taxon).to be_is_active
   end
+
+  it "should move children from the input to the output taxon" do
+    child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
+    descendant = Taxon.make!( parent: child )
+    without_delay { @swap.commit }
+    child.reload
+    descendant.reload
+    expect( child.parent ).to eq @output_taxon
+    expect( descendant.ancestor_ids ).to include @output_taxon.id
+  end
+
+  it "should not move inactive children from the input to the output taxon" do
+    child = Taxon.make!( parent: @input_taxon, is_active: false )
+    descendant = Taxon.make!( parent: child, is_active: false )
+    without_delay { @swap.commit }
+    child.reload
+    descendant.reload
+    expect( child.parent ).to eq @input_taxon
+    expect( descendant.ancestor_ids ).to include @input_taxon.id
+  end
+
+  describe "should make swaps for all children when swapping a" do
+    it "genus" do
+      @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla", rank_level: Taxon::GENUS_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris", rank_level: Taxon::GENUS_LEVEL )
+      child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      without_delay { @swap.commit }
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      expect( child.parent ).to eq @input_taxon
+      child_swap = child.taxon_change_taxa.first.taxon_change
+      expect( child_swap ).not_to be_blank
+      expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
+      expect( child_swap.output_taxon.parent ).to eq @output_taxon
+    end
+    it "species" do
+      @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
+      child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      without_delay { @swap.commit }
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      expect( child.parent ).to eq @input_taxon
+      child_swap = child.taxon_change_taxa.first.taxon_change
+      expect( child_swap ).not_to be_blank
+      expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla foo"
+      expect( child_swap.output_taxon.parent ).to eq @output_taxon
+    end
+  end
 end
 
 describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
-    enable_elastic_indexing(Observation, Taxon, Update, Place)
+    enable_elastic_indexing(Observation, Taxon, UpdateAction, Place)
   end
-  after(:each) { disable_elastic_indexing(Observation, Taxon, Update, Place) }
+  after(:each) { disable_elastic_indexing(Observation, Taxon, UpdateAction, Place) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -146,7 +195,7 @@ describe TaxonSwap, "commit_records" do
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     expect {
       @swap.commit_records
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should generate updates for people who don't want automation" do
@@ -155,7 +204,7 @@ describe TaxonSwap, "commit_records" do
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     expect {
       @swap.commit_records
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should not update records for people who don't want automation" do
@@ -175,7 +224,7 @@ describe TaxonSwap, "commit_records" do
     end
     expect {
       @swap.commit_records
-    }.to change(Update, :count).by(1)
+    }.to change(UpdateAction, :count).by(1)
   end
 
   it "should should update check listed taxa" do
@@ -317,8 +366,8 @@ describe TaxonSwap, "commit_records" do
 end
 
 def prepare_swap
-  @input_taxon = Taxon.make!
-  @output_taxon = Taxon.make!
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY )
   @swap = TaxonSwap.make
   @swap.add_input_taxon(@input_taxon)
   @swap.add_output_taxon(@output_taxon)

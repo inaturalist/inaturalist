@@ -27,6 +27,8 @@ class TaxaController < ApplicationController
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip]
+  before_filter :taxon_curator_required, :only => [:edit, :update,
+    :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
     :browse, :search]
   before_filter :ensure_flickr_write_permission, :only => [
@@ -39,6 +41,7 @@ class TaxaController < ApplicationController
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
   ALLOWED_SHOW_PARTIALS = %w(chooser)
+  ALLOWED_PHOTO_PARTIALS = %w(photo)
   MOBILIZED = [:show, :index]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
@@ -83,9 +86,11 @@ class TaxaController < ApplicationController
           :iconic_taxon, :photos, :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
         featured_taxa_obs = @featured_taxa.map do |taxon|
-          scope = taxon.observations.order("id DESC")
-          scope = scope.where(:site_id => @site) if @site
-          scope.first
+          taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
+          if @site
+            taxon_obs_params[:site_id] = @site.id
+          end
+          Observation.page_of_results(taxon_obs_params).first
         end.compact
         Observation.preload_associations(featured_taxa_obs, :user)
         @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
@@ -96,21 +101,16 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          q = if @site
-            "SELECT * from observations WHERE taxon_id IS NOT NULL
-             AND site_id = #{@site.id} AND observed_on >= '#{1.month.ago.to_date}'
-             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
-          else
-            "SELECT * from observations WHERE taxon_id IS NOT NULL
-             AND observed_on >= '#{1.month.ago.to_date}'
-             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+          recent_params = { d1: 1.month.ago.to_date.to_s,
+            quality_grade: :research, order_by: :observed_on }
+          if @site
+            recent_params[:site_id] = @site.id
           end
-          @recent = Observation.
-            select("DISTINCT ON (taxon_id) *").
-            from("(#{q}) AS observations").
-            includes(:taxon => [ { taxon_names: :place_taxon_names }, :photos ]).
-            limit(5)
-          @recent = @recent.where(:site_id => @site.id) if @site && CONFIG.site_only_observations
+          # group by taxon ID and get the first obs of each taxon
+          @recent = Observation.page_of_results(recent_params).
+            group_by(&:taxon_id).map{ |k,v| v.first }[0...5]
+          Observation.preload_associations(@recent,{
+            taxon: [ { taxon_names: :place_taxon_names }, :photos ] } )
           @recent = @recent.sort_by(&:id).reverse
         end
       end
@@ -129,9 +129,12 @@ class TaxaController < ApplicationController
           @taxa = Taxon::ICONIC_TAXA
         end
         pagination_headers_for @taxa
+        Taxon.preload_associations(@taxa, [
+          { taxon_photos: { photo: :user } }, :taxon_descriptions,
+          { taxon_names: :place_taxon_names }, :iconic_taxon ] )
         options = Taxon.default_json_options
         options[:include].merge!(
-          :iconic_taxon => {:only => [:id, :name]}, 
+          :iconic_taxon => {:only => [:id, :name]},
           :taxon_names => {:only => [:id, :name, :lexicon]}
         )
         options[:methods] += [:common_name, :image_url, :default_name]
@@ -169,15 +172,22 @@ class TaxaController < ApplicationController
         end
         if @place
           @conservation_status = @conservation_statuses.detect do |cs|
-            cs.place_id == @place.id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+            @place.id == cs.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+          end
+          @conservation_status ||= @conservation_statuses.detect do |cs|
+            @place.self_and_ancestor_ids.include?( cs.place_id ) && cs.iucn > Taxon::IUCN_LEAST_CONCERN
           end
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
         if @place
-          @listed_taxon = @taxon.listed_taxa.joins(:place).includes(:place).
+          @listed_taxon = @taxon.listed_taxa.includes(:place).
+            where(place_id: @place.id).
+            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).first
+          @listed_taxon ||= @taxon.listed_taxa.joins(:place).includes(:place).
             where(place_id: @place.self_and_ancestor_ids).
-            order("(places.ancestry || '/' || places.id) DESC, establishment_means").first
+            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).
+            order("admin_level DESC, (places.ancestry || '/' || places.id) DESC, establishment_means").first
         end
         
         @children = @taxon.children.where(:is_active => @taxon.is_active).
@@ -186,7 +196,13 @@ class TaxaController < ApplicationController
         @iconic_taxa = Taxon::ICONIC_TAXA
         
         @check_listed_taxa = ListedTaxon.page(1).
-          select("min(listed_taxa.id) AS id, listed_taxa.place_id, listed_taxa.taxon_id, min(listed_taxa.list_id) AS list_id, min(establishment_means) AS establishment_means").
+          select("
+            min(listed_taxa.id) AS id,
+            listed_taxa.place_id,
+            listed_taxa.taxon_id,
+            min(listed_taxa.list_id) AS list_id,
+            min(establishment_means) AS establishment_means,
+            max(occurrence_status_level) AS occurrence_status_level").
           includes(:place, :list).
           group(:place_id, :taxon_id).
           where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
@@ -201,11 +217,8 @@ class TaxaController < ApplicationController
         end
 
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
-
-        @observations = Observation.of(@taxon).recently_added.
-          preload(:projects, :taxon, :stored_preferences, :flags,
-            :quality_metrics, { user: :stored_preferences },
-            { photos: :flags } ).limit(12)
+        @observations = Observation.page_of_results(
+          taxon_id: @taxon.id, per_page: 12, order_by: "id", order: "desc")
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
         end
@@ -639,7 +652,7 @@ class TaxaController < ApplicationController
       Rails.logger.error "[ERROR #{Time.now}] Flickr error: #{e}"
       @photos = @taxon.photos
     end
-    if params[:partial]
+    if params[:partial] && ALLOWED_PHOTO_PARTIALS.include?( params[:partial] )
       key = {:controller => 'taxa', :action => 'photos', :id => @taxon.id, :partial => params[:partial]}
       if fragment_exist?(key)
         content = read_fragment(key)
@@ -791,14 +804,7 @@ class TaxaController < ApplicationController
   private
   def add_places_from_paste
     place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
-    @places = Place.where(place_type: Place::PLACE_TYPE_CODES['Country'], name: place_names)
-    @places ||= []
-    (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
-      ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
-      next if ydn_places.blank?
-      @places << Place.import_by_woeid(ydn_places.first.woeid, user: current_user)
-    end
-    
+    @places = Place.where( admin_level: Place::COUNTRY_LEVEL ).where( "lower(name) IN (?)", place_names )
     @listed_taxa = @places.map do |place| 
       place.check_list.try(:add_taxon, @taxon, :user_id => current_user.id)
     end.select{|p| p.valid?}
@@ -880,7 +886,7 @@ class TaxaController < ApplicationController
   
   def refresh_wikipedia_summary
     begin
-      summary = @taxon.set_wikipedia_summary
+      summary = @taxon.set_wikipedia_summary(force_update: true)
     rescue Timeout::Error => e
       error_text = e.message
     end
@@ -1434,10 +1440,21 @@ class TaxaController < ApplicationController
     end
   end
   
-
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
       select('DISTINCT authority').where("authority IS NOT NULL").
       map(&:authority).compact.reject(&:blank?).map(&:strip).sort
+  end
+
+  def taxon_curator_required
+    unless @taxon.editable_by?( current_user )
+      flash[:notice] = t(:only_administrators_may_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
+    end
   end
 end
