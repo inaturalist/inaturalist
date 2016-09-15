@@ -295,7 +295,7 @@ it:
   all_places: Tutti i Luoghi
   all_projects: Tutti i progetti
   all_rights_reserved: Tutti i diritti riservati
-  all_species: Tutte le Specie
+  all_species: Tutte le specie
   all_taxa:
     rank:
       kingdom: Regno
@@ -421,6 +421,7 @@ it:
   are_you_really_sure_want_delete_this_user: Sei veramente, veramente sicuro di voler
     cancellare questo utente e tutti i suoi contenuti?
   are_you_sure?: Sei sicuro?
+  are_you_sure_no_undo: Sei sicuro? Questa azione non può essere annullata.
   are_you_sure_delete_asset: Sei sicuro di voler cancellare questa risorsa?
   are_you_sure_delete_observation_from_project: Sei sicuro di voler rimuovere questa
     ossevazione da %{project}?
@@ -1126,7 +1127,7 @@ it:
   edit_the_observation: Modifica l'osservazione
   edit_this_link: Modifica questo link
   edit_your_account: modifica il tuo account
-  edit_your_account_and_profile_html: Modifica il tuo account &amp; il tuo profilo
+  edit_your_account_and_profile_html: Modifica il tuo account & il tuo profilo
   edit_your_default_settings: Modifica le tue impostazioni predefinite
   edit_your_global_project_settings: Modifica le impostazioni globali del progetto
   edit_your_identification: Modifica la tua identificazione
@@ -3118,10 +3119,8 @@ it:
     tutto il mondo.
   set_license: Imposta la licenza
   settings: impostazioni
-  share_on: Condividi su
   share_your_observation_with_researchers_by: Condividi la tua osservazione con i
     ricercatori in
-  sharing_settings: Impostazioni di condivisione
   short_code_for_this_place: Codice breve per questo luogo, ad esempio, US per gli
     Stati Uniti
   short_or_abbreviated_title_for_display: Tittolo corto o abbreviato per la visualizzazione
@@ -3377,7 +3376,7 @@ it:
   take_me_facebook: Si, vai a Facebook!
   take_me_flickr!: Si, vai a Flickr!
   taxa: Taxa
-  taxa_all_species_html: Taxa &middot; Tutte le Specie
+  taxa_all_species_html: Tutte le specie
   taxa_needing_curation: Taxa che necessitano di revisione
   taxa_observed: taxa osservati
   taxa_to_include: Taxa da includere
@@ -3818,6 +3817,7 @@ it:
     al progetto %{project_title}
   users_id: ID di %{user}
   users_identification_html: identificazione di <a href='%{url}'>%{user}</a>
+  users_identification_short_html: ID <a href='%{url}'>%{user}</a>
   users_comment_html: commento di <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Le osservazioni più recenti di %{user} su %{site}
   users_observations: Le osservazioni di %{user}
@@ -5073,10 +5073,10 @@ it:
         cannot_update_your_content: '%{site_name} non può aggiornare automaticamente
           i tuoi contenuti per questa modifica.'
         new_project_admin_html: Perché non amministri questo progetto? Il precedente
-          amministratore ha probabilmente cancellato il suo account, così %{site_name}
-          l'ha assegnato a te in quanto sei uno dei  gestori o sei un curatore del
-          sito. Se non vuoi essere amministratore del progetto per favore contatta
-          <a href="mailto:%{help_email}">%{help_email}</a>
+          amministratore ti ha assegnato come amministratore, o ha cancellato il suo
+          account e %{site_name} l'ha assegnato a te in quanto sei uno dei  gestori
+          o sei un curatore del sito. Se non vuoi essere amministratore del progetto
+          per favore contatta <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: Solo un promemoria... i curatori del progetto possono vedere
           le coordinate private ed oscurate delle osservazioni che tu aggiungi al
           progetto.

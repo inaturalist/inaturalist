@@ -2367,6 +2367,9 @@ ca:
     follow_panel_body: Si visiteu aquests perfils i premeu el botó per seguir-los,
       rebreu actualitzacions quan publiquin les seves observacions
     following_panel_title: Seguir la Pista de Persones, Taxa, i Llocs
+    following_panel_body: |-
+      A %{site_name} pots seguir persones per conèixer
+      les observacions que hagin publicat. També pots subscriure't a algunes espècies per seguir les seves noves observacions, o fer el mateix amb llocs.
     comments_panel_title: Tens curiositat per conèixer quines discussions tenen lloc
       a %{site_name}
     comments_panel_body: <p>%{site_name} està dedicat a compartir i discutir observacions
@@ -2407,7 +2410,8 @@ ca:
     pàgina.
   only_files_with_10000_rows_at_a_time: Només arxius de 10000 files cadascun, si us
     plau.
-  only_letters_numbers: Només lletres i xifres, sense espais
+  only_letters_numbers: Només lletres i xifres, sense espais, i ha de començar per
+    una lletra
   only_one_coordinate_system_per_file: Només es pot utilitzar un sistema de coordenades
     per fitxer, en cas contrari la conversió o localització seran incorrectes.
   only_project_curators_can_do_that: Només els supervisors del projecte poden fer
@@ -2771,7 +2775,7 @@ ca:
   project_id_or_url_slug: ID o enllaç del projecte, ex. 333 o el-vostre-projecte
   project_invitations: Invitacions al Projecte
   project_journal_posts: Notes diàries del projecte
-  project_list: Llista de projectes
+  project_list: Llista del projecte
   project_list_defaults:
     title: Llista de comprovació de %{owner_name}
     description: La llista d'espècies de %{owner_name}
@@ -3086,10 +3090,8 @@ ca:
     part del món.
   set_license: Estableix llicència
   settings: Propietats
-  share_on: Comparteix per
   share_your_observation_with_researchers_by: Compartiu la vostra observació amb investigadors
     a través de
-  sharing_settings: Compartint els ajustos
   short_code_for_this_place: Codi curt per al país, ex. MX per a Mèxic
   short_or_abbreviated_title_for_display: Normalment és una abreviatura del títol
     quan l'espai és molt limitat (màxim 10 caràcters).
@@ -3427,8 +3429,8 @@ ca:
     Pot fer les mateixes tasques que un gestor o un supervisor i és l'únic que pot
     eliminar el projecte.
   the_community_agrees_location_doesnt: la comunitat creu que la <strong>ubicació
-    és incorrecta</strong> (és a dir, micos enmig de l'oceà, hipopòtams en edificis,
-    etc.)
+    no és acurada</strong> (per exemple, micos enmig de l'oceà, hipopòtams en edificis
+    d'oficines, etc.)
   the_community_agrees_organism_isnt: la comunitat creu que l'<strong>organisme no
     és salvatge/aclimatat</strong> (és a dir, està captiu o és conreat per humans
     o alienígenes espacials intel·ligents)
@@ -4662,16 +4664,21 @@ ca:
              <li>l'observació <strong>té una data</​strong></li>
              <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
              <li>l'observació <strong>s'acompanya de fotos o sons</ strong></li>
+          <li>l'observació <strong>no és d'un humà</strong></li>
           </ul>
           <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
           <ul>
             <li>la comunitat de %{site_name} <strong>està d'acord amb la ID donada per l'observador</strong>, on estar "d'acord" amb la identificació significa que es coincideix exactament o que és un tàxon fill de la ID de l'observador. Per exemple, si Joan diu que és un mamífer i Josep diu que és <em>Homo sapiens</em>, llavors Josep està d'acord amb Joan.</li>
           </ul>
-          <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o</p>
+          <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>
           <ul>
-            <li>la comunitat considera que la <strong>ubicació no és prou precisa</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
-            <li>la comunitat està d'acord en que l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
-            <li>la comunitat està d'acord en que l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
+            <li>la <strong>ubicació no és prou precisa</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
+            <li>l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
+           <li>l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.
+            </li>
+            <li>l'observació <strong>no mostra evidències recents (~100 anys) d'organismes</strong> (e.g. fòssils, però sí que són correctes les pistes, excrements i fulles mortes)
+            </li>
+            <li>l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
           de desacord + desacords en l'avantpassat )
       user_stats:

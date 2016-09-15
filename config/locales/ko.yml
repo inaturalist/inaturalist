@@ -264,6 +264,7 @@ ko:
   archives: 기록 보관소
   are_you_really_sure_want_delete_this_user: 정말 이 사용자와 모든 정보를 삭제할까요? 정말 확실한가요?
   are_you_sure?: 확실합니까?
+  are_you_sure_no_undo: 확실합니까? 이 동작은 취소할 수 없습니다.
   are_you_sure_delete_asset: 이 자산을 삭제하시겠습니까?
   are_you_sure_delete_observation_from_project: 이 관찰을 %{project}에서 삭제하시겠습니까?
   are_you_sure_delete_post: 이 게시글을 삭제하겠습니까?
@@ -1864,7 +1865,6 @@ ko:
   september: 9월
   set_license: 라이선스 설정
   settings: 설정
-  sharing_settings: 공유 설정
   show: 보이기
   show_kml: KML 보이기
   show_less: 덜 보기
@@ -1909,6 +1909,7 @@ ko:
   tags: 태그
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
+  taxa_all_species_html: 모든 종
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
@@ -1948,6 +1949,7 @@ ko:
   username_or_user_id: 사용자 이름이나 사용자 ID
   users: 사용자
   users_id: '%{user}의 ID'
+  users_identification_short_html: <a href='%{url}'>%{user}</a> ID
   users_profile: '%{user}의 프로필'
   valid_interrogation: 유효합니까?
   valid_options_are: '유효한 옵션:'
