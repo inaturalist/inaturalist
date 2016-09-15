@@ -1320,6 +1320,7 @@ shared_examples_for "an ObservationsController" do
       render_views
       it "should render results" do
         o = make_research_grade_observation
+        expect( o.photos ).not_to be_blank
         get :index, format: :dwc
         xml = Nokogiri::XML(response.body)
         expect( xml.at_xpath('//dwr:SimpleDarwinRecordSet').children.size ).not_to be_blank

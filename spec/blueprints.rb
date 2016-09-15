@@ -156,6 +156,7 @@ end
 Observation.blueprint do
   user { User.make! }
   license { Observation::CC_BY }
+  description { Faker::Lorem.sentence }
 end
 
 ObservationField.blueprint do
