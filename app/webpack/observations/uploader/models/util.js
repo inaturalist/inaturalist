@@ -1,5 +1,6 @@
 import _ from "lodash";
 import fetch from "isomorphic-fetch";
+import moment from "moment-timezone";
 
 const util = class util {
 
@@ -58,6 +59,22 @@ const util = class util {
     return _.size( _.pickBy( files, f =>
       f.uploadState === "pending" || f.uploadState === "uploading"
     ) );
+  }
+
+  static dateInvalid( dateString ) {
+    let invalidDate = false;
+    if ( dateString ) {
+      const m = moment( dateString );
+      const now = moment( );
+      // valid dates must at least have year/month/day
+      if ( !moment( dateString.split( " " )[0], "YYYY/MM/DD", true ).isValid( ) ) {
+        invalidDate = true;
+      } else if ( !m.isValid( ) || ( m.isAfter( now ) && !m.isSame( now, "day" ) ) ) {
+        // dates in the future are also invalid
+        invalidDate = true;
+      }
+    }
+    return invalidDate;
   }
 
 };

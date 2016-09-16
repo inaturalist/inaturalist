@@ -2,6 +2,7 @@ import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
 import actions from "../actions/actions";
 import moment from "moment-timezone";
+import util from "../models/util";
 
 const ObsCard = class ObsCard {
   constructor( attrs ) {
@@ -111,7 +112,9 @@ const ObsCard = class ObsCard {
     };
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
     if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
-    if ( this.date ) { params.observation.observed_on_string = this.date; }
+    if ( this.date && !util.dateInvalid( this.date ) ) {
+      params.observation.observed_on_string = this.date;
+    }
     const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
       f => f.photo.id ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }

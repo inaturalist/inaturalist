@@ -8,6 +8,7 @@ import _ from "lodash";
 import moment from "moment-timezone";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
+import util from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
@@ -169,6 +170,8 @@ class ObsCardComponent extends Component {
         photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
       }
     }
+    const invalidDate = util.dateInvalid( obsCard.date );
+
     return cardDropTarget( photoDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
         <Dropzone
@@ -246,7 +249,7 @@ class ObsCardComponent extends Component {
                 updateObsCard( obsCard, { date: dateString, selected_date: dateString } )
               }
             />
-            <div className="input-group"
+            <div className={ `input-group${invalidDate ? " has-error" : ""}` }
               onClick= { () => {
                 if ( this.refs.datetime ) {
                   this.refs.datetime.onClick( );

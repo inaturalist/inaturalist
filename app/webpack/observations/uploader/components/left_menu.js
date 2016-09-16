@@ -8,6 +8,7 @@ import SelectionBasedComponent from "./selection_based_component";
 import ObservationFieldsChooser from "./observation_fields_chooser";
 import ProjectsChooser from "./projects_chooser";
 import TagsChooser from "./tags_chooser";
+import util from "../models/util";
 
 class LeftMenu extends SelectionBasedComponent {
 
@@ -51,12 +52,7 @@ class LeftMenu extends SelectionBasedComponent {
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
     let multipleGeoprivacy = !commonGeoprivacy && (
       <option>{ I18n.t( "multiple_select_option" ) }</option> );
-    let geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_open" );
-    if ( commonGeoprivacy === "obscured" ) {
-      geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_obscured" );
-    } else if ( commonGeoprivacy === "private" ) {
-      geoprivacyTooltip = I18n.t( "uploader.tooltips.geo_private" );
-    }
+    const invalidDate = util.dateInvalid( commonDate );
     return (
       <div>
         <TaxonAutocomplete
@@ -95,7 +91,7 @@ class LeftMenu extends SelectionBasedComponent {
           onChange={ dateString => updateSelectedObsCards(
             { date: dateString, selected_date: dateString } ) }
         />
-        <div className="input-group"
+        <div className={ `input-group${invalidDate ? " has-error" : ""}` }
           onClick= { ( ) => {
             if ( this.refs.datetime ) {
               this.refs.datetime.onClick( );
