@@ -1,3 +1,5 @@
+import iNaturalistJS from "inaturalistjs";
+
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 
 export default function reducer( state = {}, action ) {
@@ -14,4 +16,11 @@ export function setTaxon( taxon ) {
     type: SET_TAXON,
     taxon
   };
+}
+
+export function fetchTaxon( taxon ) {
+  return ( dispatch ) =>
+    iNaturalistJS.taxa.fetch( taxon.id ).then( response => {
+      dispatch( setTaxon( response.results[0] ) );
+    } );
 }

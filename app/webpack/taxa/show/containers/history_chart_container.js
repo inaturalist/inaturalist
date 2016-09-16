@@ -59,7 +59,7 @@ function mapStateToProps( state ) {
       tooltip: {
         format: {
           title: d => `${I18n.t( "date.abbr_month_names" )[d.getMonth( ) + 1].toUpperCase( )} ${d.getFullYear( )} ${I18n.t( "observations" ).toUpperCase( )}`,
-          name: name => I18n.t( name ),
+          name: name => I18n.t( name )
         }
       },
       regions

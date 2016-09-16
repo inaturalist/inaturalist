@@ -1,9 +1,65 @@
 @import "../colors";
 
+#TaxonHeader .taxon .display-name {
+  color: black;
+  font-weight: bold;
+}
+
+#TaxonHeader .has-com-name .sciname {
+  font-size: 80%;
+}
+
+#TaxonHeader .PlaceChooser {
+  margin-top: 30px;
+}
+
+#TaxonHeader .PlaceChooser .fa-map-marker, {
+  color: #aaa;
+}
+
+#TaxonHeader .PlaceChooser a, {
+  color: #333;
+}
+
+#hero {
+  background-color: #eee;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+#charts {
+  background-color: #e6e6e6;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #ddd;
+}
+
+#charts a {
+  color: #333;
+}
+
+#charts .nav-tabs {
+  margin-bottom: 0;
+  margin-top: -1px;
+}
+#charts .nav-tabs > li {
+  margin-left: -1px;
+}
+#charts .tab-content {
+  background-color: white;
+  padding: 20px;
+}
+
+#charts a:focus,
+#charts a:active {   
+  border-color: none;
+  box-shadow: none;
+  outline: 0 none;
+}
+
 .SeasonalityChart .c3-line {
   stroke-width: 3px;
 }
-
 .FrequencyChart .c3-axis line,
 .FrequencyChart .c3-axis path {
   stroke: #aaa;

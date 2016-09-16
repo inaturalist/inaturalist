@@ -86,7 +86,7 @@
       var PREFERRED_PLACE;
       <% if place = (user_place || site_place) -%>
       PREFERRED_PLACE = <%= json_escape (user_place || site_place).
-        to_json(only: [:id, :name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var CURRENT_USER;
       <% if logged_in? -%>

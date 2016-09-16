@@ -1,16 +1,18 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import {
   Button,
   Tab,
   Tabs
 } from "react-bootstrap";
-import TaxonCrumbs from "./taxon_crumbs";
+import SplitTaxon from "../../../observations/identify/components/split_taxon";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import SeasonalityChartContainer from "../containers/seasonality_chart_container";
 import HistoryChartContainer from "../containers/history_chart_container";
+import PlaceChooser from "./place_chooser";
+import TaxonCrumbs from "./taxon_crumbs";
 
-const App = () => (
+const App = ( { taxon, place, setPlace } ) => (
   <div id="TaxonDetail">
     <Grid>
       <Row className="preheader">
@@ -20,34 +22,49 @@ const App = () => (
           <Button bsSize="xs" className="pull-right">Search</Button>
         </Col>
       </Row>
-      <Row className="header">
+      <Row id="TaxonHeader">
         <Col xs={12}>
-          <h1 className="pull-left">Taxon Name</h1>
-          <Button className="pull-right">Choose Place</Button>
+          <h1 className="pull-left">
+            <SplitTaxon taxon={taxon} />
+          </h1>
+          <PlaceChooser
+            place={place}
+            className="pull-right"
+            setPlace={setPlace}
+            clearPlace={ ( ) => setPlace( null ) }
+          />
         </Col>
       </Row>
-      <Row className="hero">
-        <Col xs={6}>
-          <PhotoPreviewContainer />
-        </Col>
-        <Col xs={6}>
-          <Row>
-            <Col xs={12}>
-              Leaderboards
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Tabs defaultActiveKey={101}>
-                <Tab eventKey={101} title="Seasonality">
-                  <SeasonalityChartContainer />
-                </Tab>
-                <Tab eventKey={102} title="History">
-                  <HistoryChartContainer />
-                </Tab>
-              </Tabs>
-            </Col>
-          </Row>
+    </Grid>
+    <Grid fluid>
+      <Row id="hero">
+        <Col xs={12}>
+          <Grid>
+            <Row>
+              <Col xs={6}>
+                <PhotoPreviewContainer />
+              </Col>
+              <Col xs={6}>
+                <Row>
+                  <Col xs={12}>
+                    Leaderboards
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <Tabs id="charts" defaultActiveKey={101}>
+                      <Tab eventKey={101} title="Seasonality">
+                        <SeasonalityChartContainer />
+                      </Tab>
+                      <Tab eventKey={102} title="History" unmountOnExit>
+                        <HistoryChartContainer />
+                      </Tab>
+                    </Tabs>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Grid>
         </Col>
       </Row>
       <Row>
@@ -80,5 +97,11 @@ const App = () => (
     </Grid>
   </div>
 );
+
+App.propTypes = {
+  taxon: PropTypes.object,
+  place: PropTypes.object,
+  setPlace: PropTypes.func
+};
 
 export default App;

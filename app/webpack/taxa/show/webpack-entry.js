@@ -4,9 +4,9 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
-import App from "./components/app";
+import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "./ducks/config";
-import taxonReducer, { setTaxon } from "./ducks/taxon";
+import taxonReducer, { setTaxon, fetchTaxon } from "./ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency
@@ -44,6 +44,7 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 
 if ( TAXON !== undefined && TAXON !== null ) {
   store.dispatch( setTaxon( TAXON ) );
+  store.dispatch( fetchTaxon( TAXON ) );
   store.dispatch( fetchMonthFrequency( TAXON ) );
   store.dispatch( fetchMonthOfYearFrequency( TAXON ) );
 }
@@ -54,7 +55,7 @@ window.onpopstate = ( ) => {
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById( "app" )
 );

@@ -230,6 +230,7 @@ $.fn.genericAutocomplete = function( options ) {
     field.trigger( "resetSelection" );
     field.val( null );
     if( field.searchClear ) { $(field.searchClear).hide( ); }
+    if( options.afterClear ) { options.afterClear( ); }
   });
   if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {
