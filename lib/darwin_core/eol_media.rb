@@ -32,6 +32,7 @@ module DarwinCore
     # delegation.
     def self.adapt(record, options = {})
       record.extend(InstanceMethods)
+      record.extend(DarwinCore::Helpers)
       record.observation = options[:observation]
       record.set_view(options[:view])
       record
@@ -142,7 +143,7 @@ module DarwinCore
       end
       
       def description
-        view.strip_tags(DarwinCore.filter_text(observation.description)) unless (observation.blank? || observation.description.blank?)
+        view.strip_tags(dwc_filter_text(observation.description)) unless (observation.blank? || observation.description.blank?)
       end
       
       protected
