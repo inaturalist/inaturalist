@@ -1,7 +1,26 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 
-const SplitTaxon = ( { taxon, url, target, noParens, placeholder, displayClassName } ) => {
+const SplitTaxon = ( {
+  taxon,
+  url,
+  target,
+  noParens,
+  placeholder,
+  displayClassName,
+  forceRank
+} ) => {
+  const LinkElement = url ? "a" : "span";
+  let title = "";
+  if ( taxon ) {
+    if ( taxon.rank_level > 10 ) {
+      title += _.capitalize( taxon.rank );
+    }
+    title += ` ${taxon.name}`;
+    if ( taxon.preferred_common_name ) {
+      title = `${taxon.preferred_common_name} (${title})`;
+    }
+  }
   const taxonClass = ( ) => {
     let cssClass = "taxon";
     if ( taxon ) {
@@ -28,38 +47,38 @@ const SplitTaxon = ( { taxon, url, target, noParens, placeholder, displayClassNa
   const displayName = ( ) => {
     if ( taxon && taxon.preferred_common_name ) {
       return (
-        <a
+        <LinkElement
           className={`comname display-name ${displayClassName || ""}`}
           href={ url }
           target={ target }
         >
           { taxon.preferred_common_name }
-        </a>
+        </LinkElement>
       );
     } else if ( !taxon ) {
       if ( placeholder ) {
         return (
           <span>
-            <a
+            <LinkElement
               className={`noname display-name ${displayClassName || ""}`}
               href={ url }
               target={ target }
             >
               { I18n.t( "unknown" ) }
-            </a> <span className="altname">
+            </LinkElement> <span className="altname">
               ({ I18n.t( "placeholder" ) }: { placeholder })
             </span>
           </span>
         );
       }
       return (
-        <a
+        <LinkElement
           className={`noname display-name ${displayClassName || ""}`}
           href={ url }
           target={ target }
         >
           { I18n.t( "unknown" ) }
-        </a>
+        </LinkElement>
       );
     }
     return "";
@@ -69,7 +88,7 @@ const SplitTaxon = ( { taxon, url, target, noParens, placeholder, displayClassNa
       return "";
     }
     const taxonRank = ( ) => {
-      if ( taxon.preferred_common_name && taxon.rank_level > 10 ) {
+      if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank_level > 10 ) {
         return (
           <span className="rank">
             { _.capitalize( taxon.rank ) }
@@ -83,14 +102,14 @@ const SplitTaxon = ( { taxon, url, target, noParens, placeholder, displayClassNa
       sciNameClass += ` display-name ${displayClassName || ""}`;
     }
     return (
-      <a
+      <LinkElement
         className={sciNameClass}
         href={ url }
         target={ target }
       >
         { taxonRank( ) }
         { taxon.name }
-      </a>
+      </LinkElement>
     );
   };
   const inactive = ( ) => {
@@ -111,13 +130,12 @@ const SplitTaxon = ( { taxon, url, target, noParens, placeholder, displayClassNa
     );
   };
   return (
-    <div className="SplitTaxon">
+    <div className="SplitTaxon" title={title}>
       <span className={taxonClass( )}>
-        <a
+        <LinkElement
           href={ url }
           className={iconClass( )}
-        >
-        </a>
+        />
         { displayName( ) } { sciName( ) } { inactive( ) }
       </span>
     </div>
@@ -130,7 +148,8 @@ SplitTaxon.propTypes = {
   target: PropTypes.string,
   noParens: PropTypes.bool,
   placeholder: PropTypes.string,
-  displayClassName: PropTypes.string
+  displayClassName: PropTypes.string,
+  forceRank: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

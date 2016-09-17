@@ -42,12 +42,15 @@ export function setMonthOfYearFrequecy( key, frequency ) {
 }
 
 export function fetchMonthFrequencyVerifiable( taxon ) {
-  return ( dispatch ) => {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
     const params = {
       date_field: "observed",
       interval: "month",
-      taxon_id: taxon.id,
-      verifiable: true
+      taxon_id: t.id,
+      verifiable: true,
+      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
     };
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "verifiable", response.results.month ) );
@@ -56,12 +59,15 @@ export function fetchMonthFrequencyVerifiable( taxon ) {
 }
 
 export function fetchMonthFrequencyResearchGrade( taxon ) {
-  return ( dispatch ) => {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
     const params = {
       date_field: "observed",
       interval: "month",
-      taxon_id: taxon.id,
-      quality_grade: "research"
+      taxon_id: t.id,
+      quality_grade: "research",
+      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
     };
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "research", response.results.month ) );
@@ -77,12 +83,15 @@ export function fetchMonthFrequency( taxon ) {
 }
 
 export function fetchMonthOfYearFrequencyVerifiable( taxon ) {
-  return ( dispatch ) => {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
     const params = {
       date_field: "observed",
       interval: "month_of_year",
-      taxon_id: taxon.id,
-      verifiable: true
+      taxon_id: t.id,
+      verifiable: true,
+      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
     };
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "verifiable", response.results.month_of_year ) );
@@ -91,12 +100,15 @@ export function fetchMonthOfYearFrequencyVerifiable( taxon ) {
 }
 
 export function fetchMonthOfYearFrequencyResearchGrade( taxon ) {
-  return ( dispatch ) => {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
     const params = {
       date_field: "observed",
       interval: "month_of_year",
-      taxon_id: taxon.id,
-      quality_grade: "research"
+      taxon_id: t.id,
+      quality_grade: "research",
+      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
     };
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "research", response.results.month_of_year ) );

@@ -6,6 +6,7 @@ import {
   Tabs
 } from "react-bootstrap";
 import SplitTaxon from "../../../observations/identify/components/split_taxon";
+import TaxonMap from "../../../observations/identify/components/taxon_map";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import SeasonalityChartContainer from "../containers/seasonality_chart_container";
 import HistoryChartContainer from "../containers/history_chart_container";
@@ -17,8 +18,14 @@ const App = ( { taxon, place, setPlace } ) => (
     <Grid>
       <Row className="preheader">
         <Col xs={12}>
-          <TaxonCrumbs />
-          <a href="foo"><i className="fa fa-link"></i></a>
+          <TaxonCrumbs
+            taxon={taxon}
+            ancestors={taxon.ancestors}
+            url={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
+          />
+          <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
+            <i className="glyphicon glyphicon-link"></i>
+          </a>
           <Button bsSize="xs" className="pull-right">Search</Button>
         </Col>
       </Row>
@@ -69,29 +76,104 @@ const App = ( { taxon, place, setPlace } ) => (
       </Row>
       <Row>
         <Col xs={12}>
-          <Tabs defaultActiveKey={1}>
-            <Tab eventKey={1} title="Map">
-              Map
-            </Tab>
-            <Tab eventKey={2} title="Articles">
-              Articles
-            </Tab>
-            <Tab eventKey={3} title="Highlights">
-              Highlights
-            </Tab>
-            <Tab eventKey={4} title="Interactions">
-              Interactions
-            </Tab>
-            <Tab eventKey={5} title="Taxonomy">
-              Taxonomy
-            </Tab>
-            <Tab eventKey={6}title="Names">
-              Names
-            </Tab>
-            <Tab eventKey={7} title="Status">
-              Status
-            </Tab>
-          </Tabs>
+          <Grid>
+            <Row>
+              <Col xs={12}>
+                <ul className="nav nav-tabs" role="tablist">
+                  <li role="presentation" className="active">
+                    <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "articles" ) }</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#highlights-tab" role="tab" data-toggle="tab">{ I18n.t( "highlights" ) }</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#interactions-tab" role="tab" data-toggle="tab">{ I18n.t( "interactions" ) }</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#names-tab" role="tab" data-toggle="tab">{ I18n.t( "names" ) }</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
+                  </li>
+                </ul>
+              </Col>
+            </Row>
+          </Grid>
+
+          <div className="tab-content">
+            <div role="tabpanel" className="tab-pane active" id="map-tab">
+              <TaxonMap
+                className="row"
+                scrollwheel={false}
+                showAllLayer={false}
+                minZoom={2}
+                taxonLayers={[{
+                  taxon,
+                  observations: true
+                }] }
+              />
+            </div>
+            <div role="tabpanel" className="tab-pane" id="articles-tab">
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    articles go here
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            <div role="tabpanel" className="tab-pane" id="highlights-tab">
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    highlights go here
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            <div role="tabpanel" className="tab-pane" id="interactions-tab">
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    interactions go here
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            <div role="tabpanel" className="tab-pane" id="taxonomy-tab">
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    taxonomy goes here
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            <div role="tabpanel" className="tab-pane" id="names-tab">
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    names go here
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            <div role="tabpanel" className="tab-pane" id="status-tab">
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    status goes here
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+          </div>
         </Col>
       </Row>
     </Grid>

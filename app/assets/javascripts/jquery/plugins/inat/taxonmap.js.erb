@@ -35,6 +35,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.taxonLayers = options.taxonLayers || $(elt).data('taxon-layers');
   options.mapTypeControl = (options.mapTypeControl !== false && $(elt).data('map-type-control') !== true);
   options.zoomControl = (options.zoomControl !== false && $(elt).data('zoom-control') !== false);
+  options.scrollwheel = (options.scrollwheel !== false && $(elt).data('scrollwheel') !== false);
   options.overlayMenu = (options.overlayMenu !== false && $(elt).data('overlay-menu') !== false);
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
   options.showAllLayer = options.showAllLayer != null ? options.showAllLayer : $(elt).data('show-all-layer');
@@ -88,6 +89,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         backgroundColor: '#E3EAF6',
         zoomControl: (options.zoomControl !== false),
         zoomControlOptions: options.zoomControlOptions,
+        scrollwheel: (options.scrollwheel !== false),
         styles: [
           {
             stylers: [

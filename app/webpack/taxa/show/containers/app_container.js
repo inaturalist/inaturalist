@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import App from "../components/app";
 import { setConfig } from "../ducks/config";
+import { fetchMonthFrequency, fetchMonthOfYearFrequency } from "../ducks/observations";
+
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +13,11 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setPlace: ( place ) => dispatch( setConfig( { preferredPlace: place } ) )
+    setPlace: ( place ) => {
+      dispatch( setConfig( { preferredPlace: place } ) );
+      dispatch( fetchMonthFrequency( ) );
+      dispatch( fetchMonthOfYearFrequency( ) );
+    }
   };
 }
 

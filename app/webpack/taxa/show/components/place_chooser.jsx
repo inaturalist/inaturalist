@@ -3,7 +3,6 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 
 class PlaceChooser extends React.Component {
   constructor( props ) {
-    console.log( "[DEBUG] props: ", props );
     super( props );
     this.state = {
       editing: false

@@ -70,11 +70,11 @@
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1273);
+	var _taxon = __webpack_require__(1274);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _observations = __webpack_require__(1274);
+	var _observations = __webpack_require__(1273);
 
 	var _observations2 = _interopRequireDefault(_observations);
 
@@ -79244,7 +79244,19 @@
 	  var noParens = _ref.noParens;
 	  var placeholder = _ref.placeholder;
 	  var displayClassName = _ref.displayClassName;
+	  var forceRank = _ref.forceRank;
 
+	  var LinkElement = url ? "a" : "span";
+	  var title = "";
+	  if (taxon) {
+	    if (taxon.rank_level > 10) {
+	      title += _lodash2.default.capitalize(taxon.rank);
+	    }
+	    title += " " + taxon.name;
+	    if (taxon.preferred_common_name) {
+	      title = taxon.preferred_common_name + " (" + title + ")";
+	    }
+	  }
 	  var taxonClass = function taxonClass() {
 	    var cssClass = "taxon";
 	    if (taxon) {
@@ -79269,10 +79281,9 @@
 	    }
 	  };
 	  var displayName = function displayName() {
-	    console.log("[DEBUG] taxon: ", taxon);
 	    if (taxon && taxon.preferred_common_name) {
 	      return _react2.default.createElement(
-	        "a",
+	        LinkElement,
 	        {
 	          className: "comname display-name " + (displayClassName || ""),
 	          href: url,
@@ -79286,7 +79297,7 @@
 	          "span",
 	          null,
 	          _react2.default.createElement(
-	            "a",
+	            LinkElement,
 	            {
 	              className: "noname display-name " + (displayClassName || ""),
 	              href: url,
@@ -79307,7 +79318,7 @@
 	        );
 	      }
 	      return _react2.default.createElement(
-	        "a",
+	        LinkElement,
 	        {
 	          className: "noname display-name " + (displayClassName || ""),
 	          href: url,
@@ -79323,7 +79334,7 @@
 	      return "";
 	    }
 	    var taxonRank = function taxonRank() {
-	      if (taxon.preferred_common_name && taxon.rank_level > 10) {
+	      if ((forceRank || taxon.preferred_common_name) && taxon.rank_level > 10) {
 	        return _react2.default.createElement(
 	          "span",
 	          { className: "rank" },
@@ -79337,7 +79348,7 @@
 	      sciNameClass += " display-name " + (displayClassName || "");
 	    }
 	    return _react2.default.createElement(
-	      "a",
+	      LinkElement,
 	      {
 	        className: sciNameClass,
 	        href: url,
@@ -79368,11 +79379,11 @@
 	  };
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "SplitTaxon" },
+	    { className: "SplitTaxon", title: title },
 	    _react2.default.createElement(
 	      "span",
 	      { className: taxonClass() },
-	      _react2.default.createElement("a", {
+	      _react2.default.createElement(LinkElement, {
 	        href: url,
 	        className: iconClass()
 	      }),
@@ -79391,7 +79402,8 @@
 	  target: _react.PropTypes.string,
 	  noParens: _react.PropTypes.bool,
 	  placeholder: _react.PropTypes.string,
-	  displayClassName: _react.PropTypes.string
+	  displayClassName: _react.PropTypes.string,
+	  forceRank: _react.PropTypes.bool
 	};
 	SplitTaxon.defaultProps = {
 	  target: "_self"
@@ -79438,7 +79450,132 @@
 /* 898 */,
 /* 899 */,
 /* 900 */,
-/* 901 */,
+/* 901 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(559);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 React wrapper for our taxonmap jQuery method. The jquery method takes about
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 a billion potential params. Here they are:
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   allLayerDescription: "Every publicly visible observation created in the iNaturalist network",
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   allLayerLabel: "All observations",
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   clickable: false,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   controlPosition: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   disableFullscreen: false,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   elastic_params: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   enableShowAllLayer: false,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   featuredLayerDescription: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   featuredLayerLabel: "Featured observations",
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   flagLetters: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   gbifLayerDescription: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   gbifLayerHover: "Records from museums and other occurrence providers distributed " +
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "by the Global Biodiversity Informatics Facility",
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   gbifLayerLabel: "GBIF network"
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   latitude: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   longitude: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   mapStyle: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   mapType: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   mapTypeControl: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   maxX: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   maxY: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   minX: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   minY: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   minZoom: NaN
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   observationLayers: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   observations: [
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     // array of observation json objects
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ],
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   overlayMenu: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   placeLayerDescription: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   placeLayerLabel: "Place boundary"
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   placeLayers: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   showAccuracy: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   showAllLayer: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   showRange: undefined,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonLayers: [
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       gbif: {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         disabled: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       },
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       observations: {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         observation_id: 123
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       },
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       places: {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         disabled: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       },
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       taxon: // taxon-like object, though common_name and to_styled_s attributes are supported
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ],
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonObservationsLayerDescription: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonObservationsLayerLabel: "Observations"
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonPlacesLayerDescription: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonPlacesLayerHover: "Places where this taxon has been listed"
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonPlacesLayerLabel: "Checklist places"
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonRangeLayerDescription: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   taxonRangeLayerLabel: "Range"
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   urlCoords: undefined
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   zoomControl: true
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   zoomLevel: 8
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+	var TaxonMap = function (_React$Component) {
+	  _inherits(TaxonMap, _React$Component);
+
+	  function TaxonMap() {
+	    _classCallCheck(this, TaxonMap);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TaxonMap).apply(this, arguments));
+	  }
+
+	  _createClass(TaxonMap, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      var domNode = _reactDom2.default.findDOMNode(this);
+	      $(domNode).taxonMap(this.props);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement("div", { className: "TaxonMap " + this.props.className, style: { minHeight: "10px" } });
+	    }
+	  }]);
+
+	  return TaxonMap;
+	}(_react2.default.Component);
+
+	TaxonMap.propTypes = {
+	  className: _react.PropTypes.string,
+	  observations: _react.PropTypes.array
+	};
+
+	exports.default = TaxonMap;
+
+/***/ },
 /* 902 */,
 /* 903 */,
 /* 904 */,
@@ -79928,6 +80065,8 @@
 
 	var _config = __webpack_require__(1272);
 
+	var _observations = __webpack_require__(1273);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
@@ -79940,7 +80079,9 @@
 	function mapDispatchToProps(dispatch) {
 	  return {
 	    setPlace: function setPlace(place) {
-	      return dispatch((0, _config.setConfig)({ preferredPlace: place }));
+	      dispatch((0, _config.setConfig)({ preferredPlace: place }));
+	      dispatch((0, _observations.fetchMonthFrequency)());
+	      dispatch((0, _observations.fetchMonthOfYearFrequency)());
 	    }
 	  };
 	}
@@ -79968,6 +80109,10 @@
 	var _split_taxon = __webpack_require__(862);
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
+
+	var _taxon_map = __webpack_require__(901);
+
+	var _taxon_map2 = _interopRequireDefault(_taxon_map);
 
 	var _photo_preview_container = __webpack_require__(1263);
 
@@ -80007,11 +80152,15 @@
 	        _react2.default.createElement(
 	          _reactBootstrap.Col,
 	          { xs: 12 },
-	          _react2.default.createElement(_taxon_crumbs2.default, null),
+	          _react2.default.createElement(_taxon_crumbs2.default, {
+	            taxon: taxon,
+	            ancestors: taxon.ancestors,
+	            url: "/taxa/" + taxon.id + "-" + taxon.name.split(" ").join("-")
+	          }),
 	          _react2.default.createElement(
 	            "a",
-	            { href: "foo" },
-	            _react2.default.createElement("i", { className: "fa fa-link" })
+	            { href: "/taxa/" + taxon.id + "-" + taxon.name.split(" ").join("-") },
+	            _react2.default.createElement("i", { className: "glyphicon glyphicon-link" })
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Button,
@@ -80108,42 +80257,202 @@
 	          _reactBootstrap.Col,
 	          { xs: 12 },
 	          _react2.default.createElement(
-	            _reactBootstrap.Tabs,
-	            { defaultActiveKey: 1 },
+	            _reactBootstrap.Grid,
+	            null,
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 1, title: "Map" },
-	              "Map"
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { xs: 12 },
+	                _react2.default.createElement(
+	                  "ul",
+	                  { className: "nav nav-tabs", role: "tablist" },
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation", className: "active" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#map-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("map")
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#articles-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("articles")
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#highlights-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("highlights")
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#interactions-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("interactions")
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#taxonomy-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("taxonomy")
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#names-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("names")
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "li",
+	                    { role: "presentation" },
+	                    _react2.default.createElement(
+	                      "a",
+	                      { href: "#status-tab", role: "tab", "data-toggle": "tab" },
+	                      I18n.t("status")
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "tab-content" },
+	            _react2.default.createElement(
+	              "div",
+	              { role: "tabpanel", className: "tab-pane active", id: "map-tab" },
+	              _react2.default.createElement(_taxon_map2.default, {
+	                className: "row",
+	                scrollwheel: false,
+	                showAllLayer: false,
+	                minZoom: 2,
+	                taxonLayers: [{
+	                  taxon: taxon,
+	                  observations: true
+	                }]
+	              })
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 2, title: "Articles" },
-	              "Articles"
+	              "div",
+	              { role: "tabpanel", className: "tab-pane", id: "articles-tab" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 12 },
+	                    "articles go here"
+	                  )
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 3, title: "Highlights" },
-	              "Highlights"
+	              "div",
+	              { role: "tabpanel", className: "tab-pane", id: "highlights-tab" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 12 },
+	                    "highlights go here"
+	                  )
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 4, title: "Interactions" },
-	              "Interactions"
+	              "div",
+	              { role: "tabpanel", className: "tab-pane", id: "interactions-tab" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 12 },
+	                    "interactions go here"
+	                  )
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 5, title: "Taxonomy" },
-	              "Taxonomy"
+	              "div",
+	              { role: "tabpanel", className: "tab-pane", id: "taxonomy-tab" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 12 },
+	                    "taxonomy goes here"
+	                  )
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 6, title: "Names" },
-	              "Names"
+	              "div",
+	              { role: "tabpanel", className: "tab-pane", id: "names-tab" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 12 },
+	                    "names go here"
+	                  )
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Tab,
-	              { eventKey: 7, title: "Status" },
-	              "Status"
+	              "div",
+	              { role: "tabpanel", className: "tab-pane", id: "status-tab" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 12 },
+	                    "status goes here"
+	                  )
+	                )
+	              )
 	            )
 	          )
 	        )
@@ -80179,8 +80488,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
+	  if (!state.taxon.taxon || !state.taxon.taxon.defaultPhoto) {
+	    return { photos: [] };
+	  }
 	  return {
-	    photos: [] // state.taxon.taxon.taxon_photos.map( tp => tp.photo )
+	    photos: [state.taxon.taxon.defaultPhoto] // state.taxon.taxon.taxon_photos.map( tp => tp.photo )
 	  };
 	}
 
@@ -80210,12 +80522,22 @@
 
 	var PhotoPreview = function PhotoPreview(_ref) {
 	  var photos = _ref.photos;
+
+	  if (photos.length === 0) {
+	    return _react2.default.createElement("div", { className: "PhotoPreview" });
+	  }
+	  var single = photos[0];
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "PhotoPreview" },
-	    photos.map(function (p) {
-	      return _react2.default.createElement("img", { key: "taxon-photo-" + p.id, src: p.square_url });
-	    })
+	    _react2.default.createElement("img", { src: single.medium_url, className: "img-responsive" }),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "others" },
+	      photos.map(function (p) {
+	        return _react2.default.createElement("img", { key: "taxon-photo-" + p.id, src: p.photoUrl("square") });
+	      })
+	    )
 	  );
 	};
 
@@ -98322,8 +98644,6 @@
 	  function PlaceChooser(props) {
 	    _classCallCheck(this, PlaceChooser);
 
-	    console.log("[DEBUG] props: ", props);
-
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlaceChooser).call(this, props));
 
 	    _this.state = {
@@ -98444,19 +98764,175 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(403);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _reactBootstrap = __webpack_require__(607);
+
+	var _split_taxon = __webpack_require__(862);
+
+	var _split_taxon2 = _interopRequireDefault(_split_taxon);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var TaxonCrumbs = function TaxonCrumbs() {
-	  return _react2.default.createElement(
-	    "span",
-	    { className: "TaxonCrumbs" },
-	    "Life / Animals / whatever"
-	  );
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TaxonCrumbs = function (_React$Component) {
+	  _inherits(TaxonCrumbs, _React$Component);
+
+	  function TaxonCrumbs(props) {
+	    _classCallCheck(this, TaxonCrumbs);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TaxonCrumbs).call(this, props));
+
+	    _this.state = {
+	      ancestorsShown: false,
+	      childrenSHown: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(TaxonCrumbs, [{
+	    key: "showAncestors",
+	    value: function showAncestors() {
+	      this.setState({ ancestorsShown: true });
+	    }
+	  }, {
+	    key: "hideAncestors",
+	    value: function hideAncestors() {
+	      this.setState({ ancestorsShown: false });
+	    }
+	  }, {
+	    key: "showChildren",
+	    value: function showChildren() {
+	      this.setState({ childrenShown: true });
+	    }
+	  }, {
+	    key: "hideChildren",
+	    value: function hideChildren() {
+	      this.setState({ childrenShown: false });
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      var taxon = this.props.taxon;
+	      var ancestors = this.props.ancestors;
+	      var children = taxon.children || [];
+	      var ancestorTaxa = _lodash2.default.filter(ancestors, function (t) {
+	        return t.name !== "Life" && t.id !== taxon.id;
+	      });
+	      var expandControl = void 0;
+	      var contractControl = void 0;
+	      var urlForTaxon = function urlForTaxon(t) {
+	        return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
+	      };
+	      var second = void 0;
+	      if (ancestorTaxa.length > 0) {
+	        var t = ancestorTaxa.shift();
+	        second = _react2.default.createElement(
+	          "li",
+	          null,
+	          _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t) })
+	        );
+	      }
+	      if (ancestorTaxa.length > 0) {
+	        if (this.state.ancestorsShown) {
+	          contractControl = _react2.default.createElement(
+	            "a",
+	            { className: "contract-control", href: "#", onClick: function onClick() {
+	                return _this2.hideAncestors();
+	              } },
+	            _react2.default.createElement("i", { className: "glyphicon glyphicon-circle-arrow-left" })
+	          );
+	        } else {
+	          expandControl = _react2.default.createElement(
+	            "li",
+	            null,
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", onClick: function onClick() {
+	                  return _this2.showAncestors();
+	                } },
+	              "..."
+	            )
+	          );
+	        }
+	      }
+	      return _react2.default.createElement(
+	        "ul",
+	        { className: "TaxonCrumbs inline" },
+	        _react2.default.createElement(
+	          "li",
+	          null,
+	          _react2.default.createElement(_split_taxon2.default, { taxon: ancestors[0] })
+	        ),
+	        second,
+	        expandControl,
+	        ancestorTaxa.map(function (t) {
+	          return _react2.default.createElement(
+	            "li",
+	            {
+	              key: "taxon-crumbs-" + t.id,
+	              className: _this2.state.ancestorsShown ? "" : "hidden"
+	            },
+	            _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t) })
+	          );
+	        }),
+	        _react2.default.createElement(
+	          "li",
+	          null,
+	          _react2.default.createElement(_split_taxon2.default, { taxon: taxon }),
+	          _react2.default.createElement(
+	            _reactBootstrap.OverlayTrigger,
+	            {
+	              trigger: "click",
+	              placement: "bottom",
+	              overlay: _react2.default.createElement(
+	                _reactBootstrap.Popover,
+	                { id: "taxon-crumbs-children" },
+	                children.map(function (t) {
+	                  return _react2.default.createElement(
+	                    "div",
+	                    { className: "child", key: "taxon-crumbs-children-" + t.id },
+	                    _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t), forceRank: true })
+	                  );
+	                })
+	              )
+	            },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsSize: "xs", bsStyle: "link" },
+	              _react2.default.createElement("i", { className: "fa fa-caret-down" })
+	            )
+	          ),
+	          contractControl
+	        )
+	      );
+	    }
+	  }]);
+
+	  return TaxonCrumbs;
+	}(_react2.default.Component);
+
+	TaxonCrumbs.propTypes = {
+	  taxon: _react.PropTypes.object,
+	  ancestors: _react.PropTypes.array
 	};
+
+	TaxonCrumbs.defaultProps = { ancestors: [] };
 
 	exports.default = TaxonCrumbs;
 
@@ -98497,55 +98973,6 @@
 
 /***/ },
 /* 1273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = reducer;
-	exports.setTaxon = setTaxon;
-	exports.fetchTaxon = fetchTaxon;
-
-	var _inaturalistjs = __webpack_require__(586);
-
-	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SET_TAXON = "taxa-show/taxon/SET_TAXON";
-
-	function reducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case SET_TAXON:
-	      console.log("[DEBUG] reducing SET_TAXON");
-	      return { taxon: action.taxon };
-	    default:
-	      return state;
-	  }
-	}
-
-	function setTaxon(taxon) {
-	  return {
-	    type: SET_TAXON,
-	    taxon: taxon
-	  };
-	}
-
-	function fetchTaxon(taxon) {
-	  return function (dispatch) {
-	    return _inaturalistjs2.default.taxa.fetch(taxon.id).then(function (response) {
-	      dispatch(setTaxon(response.results[0]));
-	    });
-	  };
-	}
-
-/***/ },
-/* 1274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98609,12 +99036,15 @@
 	}
 
 	function fetchMonthFrequencyVerifiable(taxon) {
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
 	    var params = {
 	      date_field: "observed",
 	      interval: "month",
-	      taxon_id: taxon.id,
-	      verifiable: true
+	      taxon_id: t.id,
+	      verifiable: true,
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
 	    };
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthFrequecy("verifiable", response.results.month));
@@ -98623,12 +99053,15 @@
 	}
 
 	function fetchMonthFrequencyResearchGrade(taxon) {
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
 	    var params = {
 	      date_field: "observed",
 	      interval: "month",
-	      taxon_id: taxon.id,
-	      quality_grade: "research"
+	      taxon_id: t.id,
+	      quality_grade: "research",
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
 	    };
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthFrequecy("research", response.results.month));
@@ -98644,12 +99077,15 @@
 	}
 
 	function fetchMonthOfYearFrequencyVerifiable(taxon) {
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
 	    var params = {
 	      date_field: "observed",
 	      interval: "month_of_year",
-	      taxon_id: taxon.id,
-	      verifiable: true
+	      taxon_id: t.id,
+	      verifiable: true,
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
 	    };
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthOfYearFrequecy("verifiable", response.results.month_of_year));
@@ -98658,12 +99094,15 @@
 	}
 
 	function fetchMonthOfYearFrequencyResearchGrade(taxon) {
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
 	    var params = {
 	      date_field: "observed",
 	      interval: "month_of_year",
-	      taxon_id: taxon.id,
-	      quality_grade: "research"
+	      taxon_id: t.id,
+	      quality_grade: "research",
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
 	    };
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthOfYearFrequecy("research", response.results.month_of_year));
@@ -98675,6 +99114,54 @@
 	  return function (dispatch) {
 	    dispatch(fetchMonthOfYearFrequencyVerifiable(taxon));
 	    dispatch(fetchMonthOfYearFrequencyResearchGrade(taxon));
+	  };
+	}
+
+/***/ },
+/* 1274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = reducer;
+	exports.setTaxon = setTaxon;
+	exports.fetchTaxon = fetchTaxon;
+
+	var _inaturalistjs = __webpack_require__(586);
+
+	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SET_TAXON = "taxa-show/taxon/SET_TAXON";
+
+	function reducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case SET_TAXON:
+	      return { taxon: action.taxon };
+	    default:
+	      return state;
+	  }
+	}
+
+	function setTaxon(taxon) {
+	  return {
+	    type: SET_TAXON,
+	    taxon: taxon
+	  };
+	}
+
+	function fetchTaxon(taxon) {
+	  return function (dispatch) {
+	    return _inaturalistjs2.default.taxa.fetch(taxon.id).then(function (response) {
+	      dispatch(setTaxon(response.results[0]));
+	    });
 	  };
 	}
 
