@@ -98839,14 +98839,23 @@
 	      var urlForTaxon = function urlForTaxon(t) {
 	        return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
 	      };
-	      var second = void 0;
+	      var firstVisibleAncestor = void 0;
+	      var lastVisibleAncestor = void 0;
 	      if (ancestorTaxa.length > 0) {
-	        var t = ancestorTaxa.shift();
-	        second = _react2.default.createElement(
+	        var fva = ancestorTaxa.shift();
+	        firstVisibleAncestor = _react2.default.createElement(
 	          "li",
 	          null,
-	          _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t) })
+	          _react2.default.createElement(_split_taxon2.default, { taxon: fva, url: urlForTaxon(fva) })
 	        );
+	        if (ancestorTaxa.length > 0) {
+	          var lva = ancestorTaxa.pop();
+	          lastVisibleAncestor = _react2.default.createElement(
+	            "li",
+	            null,
+	            _react2.default.createElement(_split_taxon2.default, { taxon: lva, url: urlForTaxon(lva) })
+	          );
+	        }
 	      }
 	      if (ancestorTaxa.length > 0) {
 	        if (this.state.ancestorsShown) {
@@ -98879,7 +98888,7 @@
 	          null,
 	          _react2.default.createElement(_split_taxon2.default, { taxon: ancestors[0] })
 	        ),
-	        second,
+	        firstVisibleAncestor,
 	        expandControl,
 	        ancestorTaxa.map(function (t) {
 	          return _react2.default.createElement(
@@ -98891,6 +98900,7 @@
 	            _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t) })
 	          );
 	        }),
+	        lastVisibleAncestor,
 	        _react2.default.createElement(
 	          "li",
 	          null,

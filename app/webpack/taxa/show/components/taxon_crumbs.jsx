@@ -40,14 +40,23 @@ class TaxonCrumbs extends React.Component {
     let expandControl;
     let contractControl;
     const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}?test=taxon-page`;
-    let second;
+    let firstVisibleAncestor;
+    let lastVisibleAncestor;
     if ( ancestorTaxa.length > 0 ) {
-      const t = ancestorTaxa.shift( );
-      second = (
+      const fva = ancestorTaxa.shift( );
+      firstVisibleAncestor = (
         <li>
-          <SplitTaxon taxon={t} url={urlForTaxon( t )} />
+          <SplitTaxon taxon={fva} url={urlForTaxon( fva )} />
         </li>
       );
+      if ( ancestorTaxa.length > 0 ) {
+        const lva = ancestorTaxa.pop( );
+        lastVisibleAncestor = (
+          <li>
+            <SplitTaxon taxon={lva} url={urlForTaxon( lva )} />
+          </li>
+        );
+      }
     }
     if ( ancestorTaxa.length > 0 ) {
       if ( this.state.ancestorsShown ) {
@@ -67,7 +76,7 @@ class TaxonCrumbs extends React.Component {
         <li>
           <SplitTaxon taxon={ancestors[0]} />
         </li>
-        { second }
+        { firstVisibleAncestor }
         { expandControl }
         { ancestorTaxa.map( t => (
           <li
@@ -77,6 +86,7 @@ class TaxonCrumbs extends React.Component {
             <SplitTaxon taxon={t} url={urlForTaxon( t )} />
           </li>
         ) ) }
+        { lastVisibleAncestor }
         <li>
           <SplitTaxon taxon={taxon} />
           <OverlayTrigger
