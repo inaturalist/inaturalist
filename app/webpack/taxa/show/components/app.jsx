@@ -1,17 +1,18 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import {
-  Button,
   Tab,
   Tabs
 } from "react-bootstrap";
 import SplitTaxon from "../../../observations/identify/components/split_taxon";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
+import TaxonAutocomplete from "../../../observations/identify/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import SeasonalityChartContainer from "../containers/seasonality_chart_container";
 import HistoryChartContainer from "../containers/history_chart_container";
 import PlaceChooser from "./place_chooser";
 import TaxonCrumbs from "./taxon_crumbs";
+import { urlForTaxon } from "../util";
 
 const App = ( { taxon, place, setPlace } ) => (
   <div id="TaxonDetail">
@@ -26,7 +27,17 @@ const App = ( { taxon, place, setPlace } ) => (
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="glyphicon glyphicon-link"></i>
           </a>
-          <Button bsSize="xs" className="pull-right">Search</Button>
+          <div className="pull-right">
+            <TaxonAutocomplete
+              inputClassName="input-sm"
+              bootstrapClear
+              searchExternal={false}
+              afterSelect={ function ( result ) {
+                window.location = urlForTaxon( result.item );
+              } }
+              position={{ my: "right top", at: "right bottom", collision: "none" }}
+            />
+          </div>
         </Col>
       </Row>
       <Row id="TaxonHeader">

@@ -6,6 +6,7 @@ import {
   Popover
 } from "react-bootstrap";
 import SplitTaxon from "../../../observations/identify/components/split_taxon";
+import { urlForTaxon } from "../util";
 
 class TaxonCrumbs extends React.Component {
   constructor( props ) {
@@ -39,7 +40,6 @@ class TaxonCrumbs extends React.Component {
     const ancestorTaxa = _.filter( ancestors, t => t.name !== "Life" && t.id !== taxon.id );
     let expandControl;
     let contractControl;
-    const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}?test=taxon-page`;
     let firstVisibleAncestor;
     let lastVisibleAncestor;
     if ( ancestorTaxa.length > 0 ) {

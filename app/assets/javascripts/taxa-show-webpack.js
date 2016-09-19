@@ -66,15 +66,15 @@
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(1272);
+	var _config = __webpack_require__(1273);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1274);
+	var _taxon = __webpack_require__(1275);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _observations = __webpack_require__(1273);
+	var _observations = __webpack_require__(1274);
 
 	var _observations2 = _interopRequireDefault(_observations);
 
@@ -79449,7 +79449,136 @@
 /* 897 */,
 /* 898 */,
 /* 899 */,
-/* 900 */,
+/* 900 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(559);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactBootstrap = __webpack_require__(607);
+
+	var _inaturalistjs = __webpack_require__(586);
+
+	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TaxonAutocomplete = function (_React$Component) {
+	  _inherits(TaxonAutocomplete, _React$Component);
+
+	  function TaxonAutocomplete(props, context) {
+	    _classCallCheck(this, TaxonAutocomplete);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TaxonAutocomplete).call(this, props, context));
+
+	    _this.fetchTaxon = _this.fetchTaxon.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(TaxonAutocomplete, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      var domNode = _reactDom2.default.findDOMNode(this);
+	      var opts = Object.assign({}, this.props, {
+	        idEl: $("input[name='taxon_id']", domNode),
+	        preventEnterSubmit: true
+	      });
+	      $("input[name='taxon_name']", domNode).taxonAutocomplete(opts);
+	      this.fetchTaxon();
+	    }
+	  }, {
+	    key: "componentDidUpdate",
+	    value: function componentDidUpdate(prevProps) {
+	      if (this.props.initialTaxonID && this.props.initialTaxonID !== prevProps.initialTaxonID) {
+	        this.fetchTaxon();
+	      }
+	    }
+	  }, {
+	    key: "fetchTaxon",
+	    value: function fetchTaxon() {
+	      var _this2 = this;
+
+	      if (this.props.initialTaxonID) {
+	        _inaturalistjs2.default.taxa.fetch(this.props.initialTaxonID).then(function (r) {
+	          if (r.results.length > 0) {
+	            _this2.updateTaxon({ taxon: r.results[0] });
+	          }
+	        });
+	      }
+	    }
+	  }, {
+	    key: "updateTaxon",
+	    value: function updateTaxon() {
+	      var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	      var domNode = _reactDom2.default.findDOMNode(this);
+	      if (options.taxon) {
+	        $("input[name='taxon_name']", domNode).trigger("assignSelection", options.taxon);
+	      }
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "span",
+	        { className: "TaxonAutocomplete " + this.props.className },
+	        _react2.default.createElement(_reactBootstrap.Input, {
+	          type: "search",
+	          name: "taxon_name",
+	          value: this.props.value,
+	          className: "form-control " + this.props.inputClassName,
+	          onChange: this.props.onChange,
+	          placeholder: I18n.t("species"),
+	          autoComplete: "off"
+	        }),
+	        _react2.default.createElement(_reactBootstrap.Input, { type: "hidden", name: "taxon_id" })
+	      );
+	    }
+	  }]);
+
+	  return TaxonAutocomplete;
+	}(_react2.default.Component);
+
+	TaxonAutocomplete.propTypes = {
+	  onChange: _react.PropTypes.func,
+	  resetOnChange: _react.PropTypes.bool,
+	  bootstrapClear: _react.PropTypes.bool,
+	  searchExternal: _react.PropTypes.bool,
+	  showPlaceholder: _react.PropTypes.bool,
+	  allowPlaceholders: _react.PropTypes.bool,
+	  afterSelect: _react.PropTypes.func,
+	  afterUnselect: _react.PropTypes.func,
+	  value: _react.PropTypes.string,
+	  initialSelection: _react.PropTypes.object,
+	  initialTaxonID: _react.PropTypes.number,
+	  perPage: _react.PropTypes.number,
+	  className: _react.PropTypes.string,
+	  inputClassName: _react.PropTypes.string,
+	  position: _react.PropTypes.object
+	};
+
+	exports.default = TaxonAutocomplete;
+
+/***/ },
 /* 901 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -80063,9 +80192,9 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(1272);
+	var _config = __webpack_require__(1273);
 
-	var _observations = __webpack_require__(1273);
+	var _observations = __webpack_require__(1274);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -80114,6 +80243,10 @@
 
 	var _taxon_map2 = _interopRequireDefault(_taxon_map);
 
+	var _taxon_autocomplete = __webpack_require__(900);
+
+	var _taxon_autocomplete2 = _interopRequireDefault(_taxon_autocomplete);
+
 	var _photo_preview_container = __webpack_require__(1263);
 
 	var _photo_preview_container2 = _interopRequireDefault(_photo_preview_container);
@@ -80133,6 +80266,8 @@
 	var _taxon_crumbs = __webpack_require__(1271);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
+
+	var _util = __webpack_require__(1272);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -80163,9 +80298,17 @@
 	            _react2.default.createElement("i", { className: "glyphicon glyphicon-link" })
 	          ),
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { bsSize: "xs", className: "pull-right" },
-	            "Search"
+	            "div",
+	            { className: "pull-right" },
+	            _react2.default.createElement(_taxon_autocomplete2.default, {
+	              inputClassName: "input-sm",
+	              bootstrapClear: true,
+	              searchExternal: false,
+	              afterSelect: function afterSelect(result) {
+	                window.location = (0, _util.urlForTaxon)(result.item);
+	              },
+	              position: { my: "right top", at: "right bottom", collision: "none" }
+	            })
 	          )
 	        )
 	      ),
@@ -98780,6 +98923,8 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
+	var _util = __webpack_require__(1272);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -98836,9 +98981,6 @@
 	      });
 	      var expandControl = void 0;
 	      var contractControl = void 0;
-	      var urlForTaxon = function urlForTaxon(t) {
-	        return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
-	      };
 	      var firstVisibleAncestor = void 0;
 	      var lastVisibleAncestor = void 0;
 	      if (ancestorTaxa.length > 0) {
@@ -98846,14 +98988,14 @@
 	        firstVisibleAncestor = _react2.default.createElement(
 	          "li",
 	          null,
-	          _react2.default.createElement(_split_taxon2.default, { taxon: fva, url: urlForTaxon(fva) })
+	          _react2.default.createElement(_split_taxon2.default, { taxon: fva, url: (0, _util.urlForTaxon)(fva) })
 	        );
 	        if (ancestorTaxa.length > 0) {
 	          var lva = ancestorTaxa.pop();
 	          lastVisibleAncestor = _react2.default.createElement(
 	            "li",
 	            null,
-	            _react2.default.createElement(_split_taxon2.default, { taxon: lva, url: urlForTaxon(lva) })
+	            _react2.default.createElement(_split_taxon2.default, { taxon: lva, url: (0, _util.urlForTaxon)(lva) })
 	          );
 	        }
 	      }
@@ -98897,7 +99039,7 @@
 	              key: "taxon-crumbs-" + t.id,
 	              className: _this2.state.ancestorsShown ? "" : "hidden"
 	            },
-	            _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t) })
+	            _react2.default.createElement(_split_taxon2.default, { taxon: t, url: (0, _util.urlForTaxon)(t) })
 	          );
 	        }),
 	        lastVisibleAncestor,
@@ -98917,7 +99059,7 @@
 	                  return _react2.default.createElement(
 	                    "div",
 	                    { className: "child", key: "taxon-crumbs-children-" + t.id },
-	                    _react2.default.createElement(_split_taxon2.default, { taxon: t, url: urlForTaxon(t), forceRank: true })
+	                    _react2.default.createElement(_split_taxon2.default, { taxon: t, url: (0, _util.urlForTaxon)(t), forceRank: true })
 	                  );
 	                })
 	              )
@@ -98955,6 +99097,21 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	var urlForTaxon = function urlForTaxon(t) {
+	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
+	};
+
+	exports.urlForTaxon = urlForTaxon;
+
+/***/ },
+/* 1273 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = reducer;
 	exports.setConfig = setConfig;
 	// ACTIONS
@@ -98982,7 +99139,7 @@
 	}
 
 /***/ },
-/* 1273 */
+/* 1274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -99128,7 +99285,7 @@
 	}
 
 /***/ },
-/* 1274 */
+/* 1275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

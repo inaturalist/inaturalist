@@ -224,3 +224,15 @@ input[type="color"]:focus,
 .nav-tabs.user-subnav .icon {
   margin-right: 0.3em;
 }
+
+.ac-chooser {
+  display: flex;
+  position: relative;
+}
+.ac-select-thumb {
+  line-height: 33px;
+}
+.ui-autocomplete-input {
+  flex: 2;
+  min-width: 100px; // apparently required for IE
+}

@@ -47,12 +47,12 @@ class TaxonAutocomplete extends React.Component {
 
   render( ) {
     return (
-      <span className="TaxonAutocomplete">
+      <span className={`TaxonAutocomplete ${this.props.className}`}>
         <Input
           type="search"
           name="taxon_name"
           value={this.props.value}
-          className="form-control"
+          className={`form-control ${this.props.inputClassName}`}
           onChange={this.props.onChange}
           placeholder={ I18n.t( "species" ) }
           autoComplete="off"
@@ -75,7 +75,10 @@ TaxonAutocomplete.propTypes = {
   value: PropTypes.string,
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
-  perPage: PropTypes.number
+  perPage: PropTypes.number,
+  className: PropTypes.string,
+  inputClassName: PropTypes.string,
+  position: PropTypes.object
 };
 
 export default TaxonAutocomplete;

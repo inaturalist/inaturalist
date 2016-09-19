@@ -25,17 +25,6 @@
   color: black;
 }
 
-.ac-chooser {
-  display: flex;
-  position: relative;
-}
-.ac-select-thumb {
-  line-height: 33px;
-}
-.ui-autocomplete-input {
-  flex: 2;
-  min-width: 100px; // apparently required for IE
-}
 body > div > [role="dialog"] .searchclear.glyphicon,
 .searchclear.glyphicon {
   position: absolute;
