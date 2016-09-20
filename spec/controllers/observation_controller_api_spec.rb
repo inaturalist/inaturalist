@@ -209,7 +209,7 @@ shared_examples_for "an ObservationsController" do
     it "should include comment user icons" do
       o = Observation.make!
       c = Comment.make!(:parent => o)
-      c.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      c.user.update_attributes(:s3_icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
       get :show, :format => :json, :id => o.id
       response_obs = JSON.parse(response.body)
       expect(response_obs['comments'].first['user']['user_icon_url']).not_to be_blank
@@ -226,7 +226,7 @@ shared_examples_for "an ObservationsController" do
     it "should include identification user icons" do
       o = Observation.make!
       i = Identification.make!(:observation => o)
-      i.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      i.user.update_attributes(:s3_icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
       get :show, :format => :json, :id => o.id
       response_obs = JSON.parse(response.body)
       expect(response_obs['identifications'].first['user']['user_icon_url']).not_to be_blank
