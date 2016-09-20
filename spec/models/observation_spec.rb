@@ -2884,10 +2884,35 @@ describe Observation do
       o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
       expect( o ).to be_mappable
     end
+
     it "should be mappable for threatened taxa" do
       o = make_observation_of_threatened
       expect( o ).to be_mappable
     end
+
+    it "should not be mappable if its not evidence of an orgamism" do
+      o = make_research_grade_observation
+      expect(o.mappable?).to be true
+      QualityMetric.make!(observation: o, metric: QualityMetric::EVIDENCE, agree: false)
+      expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if its flagged" do
+      o = make_research_grade_observation
+      expect(o.mappable?).to be true
+      Flag.make!(flaggable: o, flag: Flag::SPAM)
+      expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if its photo is flagged" do
+      o = make_research_grade_observation
+      op = ObservationPhoto.make!(observation: o)
+      expect(o.mappable?).to be true
+      Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
+      o.reload
+      expect(o.mappable?).to be false
+    end
+
   end
 
   describe "observations_places" do
