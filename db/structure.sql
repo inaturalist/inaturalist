@@ -4028,7 +4028,7 @@ CREATE TABLE users (
     latitude double precision,
     longitude double precision,
     test_groups character varying,
-    lat_lon_acc_admin_level integer
+    lat_lon_acc_admin_level integer,
     s3_icon_file_name character varying,
     s3_icon_content_type character varying,
     s3_icon_file_size integer,
