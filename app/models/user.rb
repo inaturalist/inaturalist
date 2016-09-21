@@ -134,7 +134,7 @@ class User < ActiveRecord::Base
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       path: "/attachments/users/icons/:id/:style.:s3_icon_type_extension",
-      default_url: "#{ FakeView.root_url }attachment_defaults/users/icons/defaults/:style.png",
+      default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
       url: ":s3_alias_url"
     )
   else
