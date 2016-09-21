@@ -9,13 +9,17 @@ import configReducer, { setConfig } from "./ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon } from "./ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
-  fetchMonthOfYearFrequency
+  fetchMonthOfYearFrequency,
+  fetchRecentObservations,
+  fetchFirstObservation
 } from "./ducks/observations";
+import leadersReducer, { fetchLeaders } from "./ducks/leaders";
 
 const rootReducer = combineReducers( {
   config: configReducer,
   taxon: taxonReducer,
-  observations: observationsReducer
+  observations: observationsReducer,
+  leaders: leadersReducer
 } );
 
 const store = createStore(
@@ -45,8 +49,9 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 if ( TAXON !== undefined && TAXON !== null ) {
   store.dispatch( setTaxon( TAXON ) );
   store.dispatch( fetchTaxon( TAXON ) );
-  store.dispatch( fetchMonthFrequency( TAXON ) );
-  store.dispatch( fetchMonthOfYearFrequency( TAXON ) );
+  store.dispatch( fetchMonthFrequency( ) );
+  store.dispatch( fetchMonthOfYearFrequency( ) );
+  store.dispatch( fetchLeaders( ) );
 }
 
 window.onpopstate = ( ) => {

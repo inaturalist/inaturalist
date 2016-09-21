@@ -97,6 +97,39 @@
   color: #aaa;
   padding: 0;
   margin: 0 10px 0 0;
+  line-height: 28px;
+  display: inline-block;
+}
+.TaxonCrumbs .inner {
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.TaxonCrumbs.contracted .inner {
+  max-width: 0;
+  -webkit-transition: max-width 0.5s;
+  transition: max-width 0.5s;
+}
+.TaxonCrumbs.expanded .inner {
+  max-width: 2048px;
+  -webkit-transition: max-width 1s;
+  transition: max-width 1s;
+}
+.TaxonCrumbs.contracted .expand-control {
+  display: inline-block;
+}
+.TaxonCrumbs.expanded .expand-control {
+  display: none;
+}
+.TaxonCrumbs.contracted .contract-control {
+  display: none;
+}
+.TaxonCrumbs.expanded .contract-control {
+  display: inline-block;
+}
+.TaxonCrumbs .inner ul {
+  margin: 0;
+  padding: 0;
   display: inline-block;
 }
 .TaxonCrumbs .taxon a {
@@ -142,10 +175,49 @@
   transform: rotate(45deg);
 }
 
-
 .preheader .ac-select-thumb {
   line-height: 28px;
 }
 .preheader .ac-select-thumb i {
   font-size: 22px;
+}
+.preheader .form-group {
+  margin: 0;
+}
+
+.LeaderItem {
+  margin: 20px 0 30px;
+}
+.LeaderItem .img-wrapper i {
+  font-size: 32px;
+  margin: auto;
+  line-height: 40px;
+  color: #666;
+}
+.LeaderItem .img-wrapper {
+  border-radius: 100px;
+  border: 1px solid #bbb;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  overflow: hidden;
+}
+.LeaderItem h4 {
+  margin: 3px 0;
+}
+.LeaderItem .name,
+.LeaderItem .extra a {
+  font-weight: bold;
+}
+.LeaderItem .value {
+  margin-right: 3px;
+}
+.LeaderItem .extra a:after {
+  content: '\0020 \00BB';
+}
+.LeaderItem .extra i {
+  color: #666;
+}
+.NumObservations .img-wrapper i {
+  font-size: 24px;
 }
