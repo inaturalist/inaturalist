@@ -4,6 +4,7 @@
 # Author: DCLXVI
 # Author: Exonie
 # Author: StanProg
+# Author: Vodnokon4e
 ---
 bg:
   licensing_your_content: Като лицензирате съдържанието си, давате легални права на
@@ -509,7 +510,7 @@ bg:
     статут или да използвате просто търсене.
   edit: Редактирай
   edit_account_settings_and_profile: Промени настройките на акаунта и профила
-  edit_your_account_and_profile_html: Редактиране на акаунт и профил
+  edit_your_account_and_profile_html: Редактиране на вашия акаунт и профил
   edit_your_identification: Промени разпознаването си
   edit_your_profile: Редактирай профила си
   edit_your_settings_for_this_project: Промени настройките си за този проект
@@ -1909,9 +1910,10 @@ bg:
     users:
       dashboard:
         new_project_admin_html: Чудите се защо сега Вие сте администратор на този
-          проект? Вероятно предишният администратор е изтрил акаунта си и затова %{site_name}
-          е назначил Вас, тъй като сте били управител на проекта или куратор. Ако
-          не искате да бъдете администратор, моля свържете се с <a href="mailto:%{help_email}">%{help_email}</a>
+          проект? Вероятно предишният собственик ви е посочил като нов администратор
+          или е изтрил акаунта си и затова %{site_name} е назначил Вас, тъй като сте
+          били управител на проекта или куратор. Ако не искате да бъдете администратор,
+          моля свържете се с <a href="mailto:%{help_email}">%{help_email}</a>
       edit:
         project_addition_preferences:
           joined: Проекти, в които участвате

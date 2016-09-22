@@ -18,6 +18,7 @@
 # Author: Nemo bis
 # Author: Oggioniale
 # Author: Rippitippi
+# Author: Saracrovetto
 # Author: Statix64
 ---
 it:
@@ -35,10 +36,10 @@ it:
     <a href="http://picasaweb.google.com">Picasa</a>, e
     <a href="http://facebook.com">Facebook</a>
     per l'hosting delle immagini.
-  a_default_taxon_name_will_automatically_created: Un taxon di default sarà creato
-    automaticamente a partire dal nome scientifico di questa unità tassonomica. Non
+  a_default_taxon_name_will_automatically_created: "Un taxon di default sarà creato
+    automaticamente a partire dal nome scientifico di questa unità tassonomica. \nNon
     appena avrai salvato questo nuovo taxon, potrai aggiungere qui nuovi nomi (nomi
-    comuni, nomi scientifici in disuso, ecc.).
+    comuni, nomi scientifici in disuso, ecc.)."
   x_comments:
     one: 1 commento
     other: '%{count} commenti'
@@ -658,6 +659,7 @@ it:
   cc_by_sa_name: Attribuzione-Condividi allo Stesso Modo
   cc_used_under_a: Creative Commons, utilizzato sotto una
   change: Modifica
+  change_admin: Cambia amministratore
   change_cover: Cambia copertina
   change_descriptions:
     split: Vecchio taxon suddiviso in nuovi taxa
@@ -1898,6 +1900,7 @@ it:
   low: basso
   lowest_rank: Il rango più basso
   made_a: fatto un
+  make_admin: Rendi amministratore
   mail_disclaimer: '%{site_name} non permette ai suoi utenti di mandarti altri inviti
     utilizzando il nostro sistema di inviti. Per favore riporta l''abuso a %{site}.'
   main_content: Contenuto principale
@@ -4900,6 +4903,7 @@ it:
           Un Bioblitz è un evento in cui i partecipanti cercano di osservare più specie possibili entro un periodo di tempo determinato.
           È un modo divertente per introdurre le persone alla biodiversità e nello stesso tempo raccogliere dati utili.
           </p>
+        change_admin_desc: Scegli uno dei curatori del progetto quale nuovo amministratore.
         cover_desc: Immagine del banner, opzionale, che apparirà in alto nella pagina
           del tuo progetto. Deve essere larga 950 px e alta meno di 400 px.
         custom_project_fields_means: Personalizza il banner del progetto, aggiungi
@@ -4913,6 +4917,9 @@ it:
         icon_desc: Sarà ritagliato ad un quadrato
         last_aggregated_at_desc: Ora in cui l'ultimo aggregatore ha finito di aggiungere
           le osservazioni al progetto
+        no_curators: Non esistono curatori del progetto. Se vuoi rendere qualcuno
+          un amministratore, questo deve prima unirsi al progetto e poi tu devi renderlo
+          curatore.
         observation_aggregation_desc_html: |-
           <p class="description">
           L'aggregatore di osservazioni aggiungerà automaticamente al tuo progetto le osservazioni pertinenti in base alle regole specificate. Poiché non c'è modo di rimuovere tante osservazioni in una volta sola, questo strumento è potenzialmente pericoloso, quindi assicurati di aver scelto il luogo e il taxon giusto, o ti ritroverai molte osservazioni non pertinenti che dovrai rimuovere manualmente.

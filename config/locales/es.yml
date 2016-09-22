@@ -407,6 +407,7 @@ es:
   are_you_really_sure_want_delete_this_user: ¿Estás verdaderamente seguro que deseas
     eliminar a este usuario y todo su contenido?
   are_you_sure?: ¿Estás seguro?
+  are_you_sure_no_undo: ¿Estás seguro? Esto no se puede deshacer.
   are_you_sure_delete_asset: ¿Estás seguro que deseas eliminar esta posesión?
   are_you_sure_delete_observation_from_project: ¿Estás seguro de que deseas remover
     esta observación de %{project}?
@@ -641,6 +642,7 @@ es:
   cc_by_sa_name: Atribución-Compartir igual
   cc_used_under_a: Creative Commons, usada bajo una
   change: Cambiar
+  change_admin: Cambiar administrador
   change_cover: Cambiar la cubierta
   change_descriptions:
     split: La especie o grupo es separada
@@ -1108,7 +1110,7 @@ es:
   edit_the_observation: Modificar la observación
   edit_this_link: Modificar este vínculo
   edit_your_account: modificar tu cuenta
-  edit_your_account_and_profile_html: Modificar su cuenta y Perfil
+  edit_your_account_and_profile_html: Modificar tu cuenta y tu perfil
   edit_your_default_settings: Editar la configuración predeterminada
   edit_your_global_project_settings: Editar tu configuración global de proyectos
   edit_your_identification: Modificar su identificación
@@ -3331,7 +3333,7 @@ es:
   take_me_facebook: ¡Sí, lléveme a Facebook!
   take_me_flickr!: ¡Sí, lléveme a Flickr!
   taxa: Taxones
-  taxa_all_species_html: Taxones &middot; Todas las especies
+  taxa_all_species_html: Todas las especies
   taxa_needing_curation: Taxones que necesitan curación
   taxa_observed: especies o grupos observados
   taxa_to_include: Especies o grupos a incluir
@@ -3765,6 +3767,7 @@ es:
     a %{project_title}
   users_id: Identificación de %{user}
   users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
+  users_identification_short_html: Identificador de <a href='%{url}'>%{user}</a>
   users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Lates observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}

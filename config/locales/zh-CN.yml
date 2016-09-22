@@ -544,6 +544,7 @@ zh-CN:
   cc_by_sa_name: 署名-相同方式共享
   cc_used_under_a: 知识共享，使用
   change: 更改
+  change_admin: 更改管理员
   change_cover: 更改封面
   change_descriptions:
     split: 旧分类单元分成多个新分类单元
@@ -1530,6 +1531,7 @@ zh-CN:
   lookup_user_rarr: 查找用户 &rarr;
   low: 低
   made_a: 做一个
+  make_admin: 做为管理员
   main_content: 主内容
   make_one: 制作一个？
   make_this_your_default_license: 将其作为您的默认 %{type} 许可协议
@@ -2438,7 +2440,7 @@ zh-CN:
   take_me_facebook: 是的，带我前往Facebook！
   take_me_flickr!: 是的，带我去Flickr！
   taxa: 分类单元
-  taxa_all_species_html: 分类群 &middot; 所有物种
+  taxa_all_species_html: 所有物种
   taxon: 类群
   taxon_: 分类单元
   taxon_id: 分类单元ID
@@ -3150,8 +3152,10 @@ zh-CN:
     projects:
       edit:
         bioblitz_create_a_new_place_html: '%{link}，确信它有一个边界，然后回到这里并重试。'
+        change_admin_desc: 选择一位项目馆长作为新管理员。
         custom_project_fields_means: 自定义项目标志，添加一些内容，及编辑CSS。
         icon_desc: 将被裁剪成正方形
+        no_curators: 这里没有项目馆长。如果您希望分配新人作为管理员，他必须首先加入此项目，并且您必须将其提拔为馆长。
         observation_aggregation_desc_html: |-
           <p class="description">
             观察聚合将自动添加观察至您项目的地方边界，或添加至您项目的规则分类单元中。Since there's no way to remove many observations from a project
@@ -3243,7 +3247,7 @@ zh-CN:
         about_html: 分类群可以有很多常用名。我们全域支持一个默认的常用名，它可在此处通过拖动名字至列表顶部更改。您也可以通过编辑名字和添加地点指定不同地点的默认名，但请只当不同地点有冲突名字时这样做。
     users:
       dashboard:
-        new_project_admin_html: 想知道您为什么现在成为这个项目的管理员了么？之前的所有者可能删除了他们的账户，所以%{site_name}分配给您，因为您是一位项目经理或网站监护人。如果您不希望成为项目管理员，请联络<a
+        new_project_admin_html: 想知道您为什么现在成为这个项目的管理员了么？之前的所有者分配您作为新管理员，或者他删除了其账户，并因为您是一位项目经理或网站馆长，从而%{site_name}分配给您。如果您不希望成为项目管理员，请联络<a
           href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 只是提醒一下，项目馆长可以查看您添加至此项目的观察中私有和被掩盖的坐标。
       edit:

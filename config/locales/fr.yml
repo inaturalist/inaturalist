@@ -430,6 +430,7 @@ fr:
   are_you_really_sure_want_delete_this_user: Êtes-vous vraiment certain de vouloir
     supprimer cet utilisateur et tout son contenu?
   are_you_sure?: Êtes-vous certain ?
+  are_you_sure_no_undo: Êtes-vous sûr ? Cela ne peut pas être annulé.
   are_you_sure_delete_asset: Êtes-vous certain de vouloir supprimer ce bien?
   are_you_sure_delete_observation_from_project: Êtes-vous certain de vouloir supprimer
     cette observation de %{project}?
@@ -687,6 +688,7 @@ fr:
   cc_by_sa_name: Attribution-Partage des conditions
   cc_used_under_a: Creative Commons, utilisé sous une
   change: Modifier
+  change_admin: Changer d’administrateur
   change_cover: Modifier la couverture
   change_descriptions:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
@@ -1175,7 +1177,7 @@ fr:
   edit_the_observation: Modifier l’observation
   edit_this_link: Modifier ce lien
   edit_your_account: modifier votre compte
-  edit_your_account_and_profile_html: Modifier votre compte &amp; et votre profil
+  edit_your_account_and_profile_html: Modifier votre compte et votre profil
   edit_your_default_settings: Modifier vos paramètres par défaut
   edit_your_global_project_settings: Modifier vos paramètres de projet globaux
   edit_your_identification: Modifier votre identification
@@ -1965,6 +1967,7 @@ fr:
   low: bas
   lowest_rank: Rang le moins élevé
   made_a: a fait un
+  make_admin: Rendre administrateur
   mail_disclaimer: '%{site_name} ne permettra pas à ses utilisateurs de vous envoyer
     des invitations supplémentaires au moyen de notre système d’invitation. Merci
     de signaler les abus d’invitation à %{site}.'
@@ -3465,7 +3468,7 @@ fr:
   take_me_facebook: Oui, amenez-moi sur Facebook!
   take_me_flickr!: Oui, amenez-moi sur Flickr!
   taxa: Taxons
-  taxa_all_species_html: Taxons &middot; Toutes espèces
+  taxa_all_species_html: Toutes espèces
   taxa_needing_curation: Taxons nécessitant une organisation
   taxa_observed: taxons observés
   taxa_to_include: Taxons à inclure
@@ -3915,6 +3918,7 @@ fr:
     à %{project_title}
   users_id: ID de %{user}
   users_identification_html: identification de <a href='%{url}'>%{user}</a>
+  users_identification_short_html: ID de <a href='%{url}'>%{user}</a>
   users_comment_html: commentaire de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: dernières observations de %{user} sur %{site}
   users_observations: observations de %{user}
@@ -5101,6 +5105,8 @@ fr:
             amusante d’initier les gens à la biodiversité tout en récoltant des données
             précieuses.
           </p>
+        change_admin_desc: Choisir un des superviseurs du projet pour être le nouvel
+          administrateur.
         cover_desc: Image de bannière facultative qui apparaîtra en haut de votre
           page de projet. Elle doit faire 950px de large et moins de 400px de haut.
         custom_project_fields_means: Personnalisez la bannière du projet, ajoutez
@@ -5115,6 +5121,9 @@ fr:
         icon_desc: Sera retaillé en un carré
         last_aggregated_at_desc: Moment où l’agrégateur a terminé d’ajouter des observations
           à ce projet
+        no_curators: Il n’y a pas de superviseur de projet. Si vous voulez affecter
+          une nouvelle personne comme administrateur, elle doit d’abord rejoindre
+          ce projet, et vous devez la rendre superviseur.
         observation_aggregation_desc_html: |-
           <p class="description">
             L’agrégation d’observations ajoutera automatiquement vos observations appropriées à votre
@@ -5313,9 +5322,11 @@ fr:
           votre contenu pour ce changement.'
         new_project_admin_html: |-
           Vous vous demandez pourquoi vous êtes désormais administrateur de ce projet ? Le précédent propriétaire
-          a sans doute supprimé son compte et %{site_name} vous a donc choisi parce que
-          vous êtes un gestionnaire de projet ou un responsable de l’organisation du site. Si vous ne voulez pas être
-          l’administrateur du projet, veuillez contacter <a href="mailto:%{help_email}">%{help_email}</a>
+          vous a soit affecté comme nouvel administrateur, soit a supprimé son compte
+          et %{site_name} vous a choisi parce que
+          vous êtes un gestionnaire de projet ou un
+          responsable de l’organisation du site. Si vous ne voulez pas être l’administrateur du projet, veuillez
+          contacter <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |-
           Un simple rappel : les responsables de l’organisation du projet peuvent voir
           les coordonnées privées ou masquées des observations que vous ajoutez à
