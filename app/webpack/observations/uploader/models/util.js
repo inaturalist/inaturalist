@@ -64,12 +64,12 @@ const util = class util {
   static dateInvalid( dateString ) {
     let invalidDate = false;
     if ( dateString ) {
-      const m = moment( dateString );
       const now = moment( );
       // valid dates must at least have year/month/day
-      if ( !moment( dateString.split( " " )[0], "YYYY/MM/DD", true ).isValid( ) ) {
+      const onlyDate = moment( dateString.split( " " )[0], "YYYY/MM/DD", true );
+      if ( !onlyDate.isValid( ) ) {
         invalidDate = true;
-      } else if ( !m.isValid( ) || ( m.isAfter( now ) && !m.isSame( now, "day" ) ) ) {
+      } else if ( onlyDate.isAfter( now ) && !onlyDate.isSame( now, "day" ) ) {
         // dates in the future are also invalid
         invalidDate = true;
       }

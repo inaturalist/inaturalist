@@ -24,8 +24,10 @@
   <% if @representative_photo -%>
     <%- og_description += " &mdash; Photo: #{@representative_photo.attribution}" -%>
     <meta property="og:image" content="<%= image_url @representative_photo.medium_url %>"/>
+    <meta property="twitter:image" content="<%= image_url @representative_photo.medium_url %>"/>
   <% elsif @representative_listed_taxon %>
     <meta property="og:image" content="<%= image_url iconic_taxon_image_url(@representative_listed_taxon.taxon, :size => 200) %>"/>
+    <meta property="twitter:image" content="<%= image_url iconic_taxon_image_url(@representative_listed_taxon.taxon, :size => 200) %>"/>
   <% end -%>
   <meta property="og:description" content="<%= html_attributize og_description %>"/>
 <%- end -%>

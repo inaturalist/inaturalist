@@ -283,6 +283,7 @@ class Photo < ActiveRecord::Base
       attribution: attribution,
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
+    json[:native_page_url] = native_page_url if options[:native_page_url]
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
       json["#{ size }_url"] = best_url(size)

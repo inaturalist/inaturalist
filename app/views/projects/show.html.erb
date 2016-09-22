@@ -7,6 +7,7 @@
   <meta property="og:title" content="<%= @project.title %>"/> 
   <% unless @project.icon.blank? -%>
     <meta property="og:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="twitter:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <% unless @fb_admin_ids.blank? -%>
