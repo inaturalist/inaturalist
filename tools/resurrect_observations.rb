@@ -14,6 +14,7 @@ EOS
   opt :observation, "Observation ID(s) to resurrect", :short => "-o", :type => :string
   opt :observed_on, "Observed date to resurrect observations from, format: YYYY-MM-DD", :short => "-d", :type => :string
   opt :created_on, "Created date to resurrect observations from, format: YYYY-MM-DD", :short => "-c", :type => :string
+  opt :dbname, "Database to connect export from", short: "-n", type: :string, default: ActiveRecord::Base.connection.current_database
 end
 
 OPTS = opts
@@ -72,17 +73,17 @@ system "rm -rf resurrect_#{session_id}*"
 
 puts "Exporting from observations..."
 fname = "resurrect_#{session_id}-observations.csv"
-cmd = "psql inaturalist_production -c \"COPY (SELECT * FROM observations WHERE #{@where.join(' AND ')}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{OPTS.dbname} -c \"COPY (SELECT * FROM observations WHERE #{@where.join(' AND ')}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy observations FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{OPTS.dbname} -c \"\\copy observations FROM '#{fname}' WITH CSV\""
 
 puts "Exporting from photos..."
 fname = "resurrect_#{session_id}-photos.csv"
-cmd = "psql inaturalist_production -c \"COPY (SELECT p.* FROM photos p JOIN observation_photos op ON (p.id=op.photo_id) JOIN observations ON (op.observation_id=observations.id) WHERE #{@where.join(' AND ')}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{OPTS.dbname} -c \"COPY (SELECT p.* FROM photos p JOIN observation_photos op ON (p.id=op.photo_id) JOIN observations ON (op.observation_id=observations.id) WHERE #{@where.join(' AND ')}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy photos FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{OPTS.dbname} -c \"\\copy photos FROM '#{fname}' WITH CSV\""
 
 update_statements = []
 
@@ -104,10 +105,10 @@ has_many_reflections.each do |k, reflection|
       JOIN observations ON #{reflection.table_name}.#{reflection.foreign_key} = observations.id
     WHERE #{@where.join(' AND ')}
   SQL
-  cmd = "psql inaturalist_production -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+  cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
   system cmd
   puts "\t#{cmd}"
-  resurrection_cmds << "psql inaturalist_production -c \"\\copy #{reflection.table_name} FROM '#{fname}' WITH CSV\""
+  resurrection_cmds << "psql #{OPTS.dbname} -c \"\\copy #{reflection.table_name} FROM '#{fname}' WITH CSV\""
 end
 
 puts "Exporting from photos..."
@@ -119,10 +120,10 @@ sql = <<-SQL
     JOIN observations ON observations.id = observation_photos.observation_id
   WHERE #{@where.join(' AND ')}
 SQL
-cmd = "psql inaturalist_production -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy photos FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{OPTS.dbname} -c \"\\copy photos FROM '#{fname}' WITH CSV\""
 
 puts "Exporting from observation_photos..."
 fname = "resurrect_#{session_id}-observation_photos.csv"
@@ -133,10 +134,10 @@ sql = <<-SQL
     JOIN observations ON observations.id = observation_photos.observation_id
   WHERE #{@where.join(' AND ')}
 SQL
-cmd = "psql inaturalist_production -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy observation_photos FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{OPTS.dbname} -c \"\\copy observation_photos FROM '#{fname}' WITH CSV\""
 
 puts "Exporting from sounds..."
 fname = "resurrect_#{session_id}-sounds.csv"
@@ -147,10 +148,10 @@ sql = <<-SQL
     JOIN observations ON observations.id = observation_sounds.observation_id
   WHERE #{@where.join(' AND ')}
 SQL
-cmd = "psql inaturalist_production -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy sounds FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{OPTS.dbname} -c \"\\copy sounds FROM '#{fname}' WITH CSV\""
 
 
 cmd = "tar cvzf resurrect_#{session_id}.tgz resurrect_#{session_id}-*"
