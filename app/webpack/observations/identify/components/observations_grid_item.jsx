@@ -32,7 +32,6 @@ const ObservationsGridItem = ( {
     <OverlayTrigger
       placement="bottom"
       trigger="hover"
-      delayShow={1000}
       rootClose
       overlay={
         <Tooltip id={`agree-tooltip-${o.id}`}>
