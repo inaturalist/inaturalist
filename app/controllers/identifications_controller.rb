@@ -12,23 +12,37 @@ class IdentificationsController < ApplicationController
   }
 
   def index
-    @identifications = Identification.order( "id desc" ).page( params[:page] ).per_page( 100 )
-    @identifications = @identifications.where( category: params[:category] ) if Identification::CATEGORIES.include?( params[:category] )
+    per_page = 100
+    search_params = { order_by: "id", order: "desc", per_page: per_page, page: params[:page] || 1 }
+    if Identification::CATEGORIES.include?( params[:category] )
+      search_params[:category] = params[:category]
+    end
     if params[:user_id]
       if user = ( User.find_by_id( params[:user_id] ) || User.find_by_login( params[:user_id] ) )
-        @identifications = @identifications.by( user )
+        search_params[:user_id] = user.id
       end
     end
     if params[:current].blank? || params[:current].yesish?
-      @identifications = @identifications.current
+      search_params[:current] = "true"
     elsif params[:current].noish?
-      @identifications = @identifications.outdated
+      search_params[:current] = "false"
     end
     if params[:for] == "others"
-      @identifications = @identifications.joins(:observation).where( "observations.user_id != identifications.user_id" )
+      search_params[:own_observation] = "false"
     end
-    @identifications = @identifications.of( params[:taxon_id] ) if params[:taxon_id]
-    @counts = @identifications.where("category IS NOT NULL").group(:category).count
+    search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
+    api_response = INatAPIService.identifications(search_params)
+    ids = Identification.where(id: api_response.results.map{ |r| r["id"] }).
+      includes(:observation, :user, { taxon: [ :taxon_names, :photos ] }).order(id: :desc)
+    Observation.preload_for_component(ids.map(&:observation), logged_in: logged_in?)
+    @identifications = WillPaginate::Collection.create(params[:page] || 1, per_page,
+      api_response.total_results) do |pager|
+      pager.replace(ids)
+    end
+
+
+    counts_response = INatAPIService.identifications_categories(search_params)
+    @counts = Hash[counts_response.results.map{ |r| [ r["category"], r["count"] ] }]
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end

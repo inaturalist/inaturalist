@@ -14,18 +14,23 @@ class User < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    return {
+    json = {
       id: id,
-      login: login,
-      login_autocomplete: login,
-      name: name,
-      name_autocomplete: name,
-      icon: icon ? icon.url(:thumb) : nil,
-      observations_count: observations_count,
-      identifications_count: identifications_count,
-      journal_posts_count: journal_posts_count,
-      activity_count: observations_count + identifications_count + journal_posts_count
+      login: login
     }
+    unless options[:no_details]
+      json.merge!({
+        login_autocomplete: login,
+        name: name,
+        name_autocomplete: name,
+        icon: icon ? icon.url(:thumb) : nil,
+        observations_count: observations_count,
+        identifications_count: identifications_count,
+        journal_posts_count: journal_posts_count,
+        activity_count: observations_count + identifications_count + journal_posts_count
+      })
+    end
+    json
   end
 
 end
