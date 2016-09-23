@@ -257,6 +257,7 @@ const ObservationModal = ( {
               </OverlayTrigger>
               <OverlayTrigger
                 placement="top"
+                delayShow={1000}
                 overlay={
                   <Tooltip id="link-btn-tooltip">
                     { I18n.t( "view_observation" ) }
@@ -274,6 +275,7 @@ const ObservationModal = ( {
               <OverlayTrigger
                 placement="top"
                 trigger="hover"
+                delayShow={1000}
                 overlay={
                   <Tooltip id="captive-btn-tooltip">
                     { I18n.t( "organism_appears_captive_cultivated" ) }
@@ -297,6 +299,7 @@ const ObservationModal = ( {
             <Col xs={8}>
               <OverlayTrigger
                 placement="top"
+                delayShow={1000}
                 overlay={
                   <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
                     { I18n.t( "mark_as_reviewed" ) }
@@ -323,6 +326,7 @@ const ObservationModal = ( {
               </Button>
               <OverlayTrigger
                 placement="top"
+                delayShow={1000}
                 overlay={
                   <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
                     { I18n.t( "agree_with_current_taxon" ) }
