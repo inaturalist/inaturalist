@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
     -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
          joins(:observation) }, :class_name => "Identification"
   has_many :photos, :dependent => :destroy
+  has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
