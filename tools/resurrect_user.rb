@@ -82,7 +82,7 @@ resurrection_cmds << "psql #{dbname} -c \"\\COPY guide_taxa (#{column_names.join
 
 %w(guide_photos guide_ranges guide_sections).each do |table_name|
   puts "Exporting from #{table_name}..."
-  klass = Object.const_get( "guide_photos".camelize.singularize )
+  klass = Object.const_get( table_name.camelize.singularize )
   column_names = klass.column_names
   fname = "resurrect_#{user_id}-#{table_name}.csv"
   sql = <<-SQL
