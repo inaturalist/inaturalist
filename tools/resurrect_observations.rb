@@ -90,7 +90,7 @@ has_many_reflections.each do |k, reflection|
   # Avoid those pesky :through relats
   column_names = reflection.klass.column_names
   next unless column_names.include?(reflection.foreign_key)
-  next unless reflection.options[:dependent] == :destroy
+  next unless [:destroy, :delete_all].include?( reflection.options[:dependent] )
   next if k.to_s == "observation_photos"
   next if k.to_s == "model_attribute_changes"
   puts "Exporting #{k}..."

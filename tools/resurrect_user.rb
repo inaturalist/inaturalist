@@ -35,7 +35,7 @@ has_many_reflections.each do |k, reflection|
   # Avoid those pesky :through relats
   column_names = reflection.klass.column_names
   next unless reflection.klass.column_names.include?(reflection.foreign_key)
-  next unless reflection.options[:dependent] == :destroy
+  next unless [:destroy, :delete_all].include?( reflection.options[:dependent] )
   next if %w(observations observation_field_values project_observations identifications).include?( k.to_s )
   puts "Exporting #{k}..."
   fname = "resurrect_#{user_id}-#{reflection.table_name}.csv"
