@@ -21,13 +21,6 @@ puts "\t#{cmd}"
 system cmd
 resurrection_cmds << "psql #{dbname} -c \"\\COPY users (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
 
-# puts "Exporting from photos (except LocalPhotos, which are gone)..."
-# fname = "resurrect_#{user_id}-photos.csv"
-# cmd = "psql #{dbname} -c \"COPY (SELECT * FROM photos WHERE user_id = #{user_id} AND type != 'LocalPhoto') TO STDOUT WITH CSV\" > #{fname}"
-# puts "\t#{cmd}"
-# system cmd
-# resurrection_cmds << "psql #{dbname} -c \"\\copy photos FROM '#{fname}' WITH CSV\""
-
 update_statements = []
 
 has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
@@ -47,6 +40,23 @@ has_many_reflections.each do |k, reflection|
   puts "\t#{cmd}"
   resurrection_cmds << "psql #{dbname} -c \"\\COPY #{reflection.table_name} (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
 end
+
+puts "Exporting from identifications..."
+fname = "resurrect_#{user_id}-identifications.csv"
+column_names = Identification.column_names
+sql = <<-SQL
+  SELECT #{column_names.map{|cn| "identifications.#{cn}" }.join( ", " ) }
+  FROM 
+    identifications 
+      JOIN observations ON observations.id = identifications.observation_id
+  WHERE
+    identifications.user_id = #{user_id}
+    AND observations.user_id != #{user_id}
+SQL
+cmd = "psql #{dbname} -c \"COPY (#{sql.gsub("\n", ' ')}) TO STDOUT WITH CSV\" > #{fname}"
+puts "\t#{cmd}"
+system cmd
+resurrection_cmds << "psql #{dbname} -c \"\\COPY identifications (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
 
 puts "Exporting from listed_taxa..."
 fname = "resurrect_#{user_id}-listed_taxa.csv"
