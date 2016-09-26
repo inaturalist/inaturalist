@@ -2,11 +2,12 @@ import { connect } from "react-redux";
 import PhotoPreview from "../components/photo_preview";
 
 function mapStateToProps( state ) {
-  if ( !state.taxon.taxon || !state.taxon.taxon.defaultPhoto ) {
+  if ( !state.taxon.taxon || !state.taxon.taxon.defaultPhotos ) {
     return { photos: [] };
   }
   return {
-    photos: [state.taxon.taxon.defaultPhoto] // state.taxon.taxon.taxon_photos.map( tp => tp.photo )
+    photos: state.taxon.taxon.defaultPhotos,
+    layout: state.taxon.taxon.rank_level > 10 && state.taxon.taxon.defaultPhotos.length >= 9 ? "grid" : "gallery"
   };
 }
 

@@ -221,3 +221,61 @@
 .NumObservations .img-wrapper i {
   font-size: 24px;
 }
+
+
+$photoPreviewThumbDim: 92px;
+$photoPreviewThumbGutter: 1px;
+$photoPreviewThumbGutterTop: 3px;
+.PhotoPreview {
+  position: relative;
+  overflow: hidden;
+}
+.PhotoPreview ul.others {
+  width: 100%;
+  background-color: rgba(0,0,0,0.25);
+}
+.PhotoPreview.gallery ul.others{
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+  flex-wrap: nowrap;
+}
+.PhotoPreview ul.others li {
+  overflow: hidden;
+  text-align: center;
+  display: inline-block;
+}
+.PhotoPreview.gallery ul.others li {
+  flex: 1;
+  flex-grow: 1;
+  vertical-align: middle;
+  width: $photoPreviewThumbDim;
+  height: $photoPreviewThumbDim;
+  line-height: $photoPreviewThumbDim;
+  margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
+}
+.PhotoPreview.grid .others {
+  line-height: 0;
+}
+.PhotoPreview.grid li {
+  width: 33.3333333333%;
+}
+.PhotoPreview .others a {
+  color: white;
+  font-weight: bold;
+}
+.PhotoPreview.grid .viewmore {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  background-color: rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}

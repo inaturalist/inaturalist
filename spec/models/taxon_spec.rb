@@ -1058,4 +1058,3 @@ describe Taxon, "editable_by?" do
   end
 end
 
-

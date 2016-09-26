@@ -9,9 +9,7 @@ import configReducer, { setConfig } from "./ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon } from "./ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
-  fetchMonthOfYearFrequency,
-  fetchRecentObservations,
-  fetchFirstObservation
+  fetchMonthOfYearFrequency
 } from "./ducks/observations";
 import leadersReducer, { fetchLeaders } from "./ducks/leaders";
 
