@@ -279,3 +279,11 @@ $photoPreviewThumbGutterTop: 3px;
   left: 0;
   width: 100%;
 }
+
+.CoverImage {
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+.CoverImage.loaded {
+  opacity: 1;
+}

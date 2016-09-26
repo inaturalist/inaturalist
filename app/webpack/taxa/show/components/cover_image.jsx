@@ -10,19 +10,27 @@ class CoverImage extends React.Component {
   }
   loadImages( props ) {
     const p = props || this.props;
+    const domNode = ReactDOM.findDOMNode( this );
+    if ( p.low ) {
+      const lowImage = new Image();
+      lowImage.src = p.low;
+      lowImage.onload = function ( ) {
+        domNode.classList.add( "loaded" );
+        domNode.style.backgroundImage = `url(${this.src})`;
+      };
+    }
     const img = new Image();
     img.src = p.src;
-    const that = this;
-    img.onload = function () {
-      ReactDOM.findDOMNode( that ).classList.add( "loaded" );
-      ReactDOM.findDOMNode( that ).style.backgroundImage = `url(${this.src})`;
+    img.onload = function ( ) {
+      domNode.classList.add( "loaded" );
+      domNode.style.backgroundImage = `url(${this.src})`;
     };
   }
   render( ) {
     const lowResUrl = this.props.low || this.props.src;
     return (
       <div
-        className={`CoverImage ${this.props.className}`}
+        className={`CoverImage low ${this.props.className}`}
         style={{
           width: "100%",
           minHeight: this.props.height,
