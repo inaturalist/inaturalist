@@ -124,11 +124,11 @@ class User < ActiveRecord::Base
       mini: "16x16#"
     }
   }
+  s3_file_options = file_options.marshal_copy
+  s3_file_options[:styles][:large] = "500x500>"
 
   if Rails.env.production?
-    s3_file_options = file_options.marshal_copy
-    s3_file_options[:styles][:large] = "500x500>"
-    has_attached_file :s3_icon, file_options.merge(
+    has_attached_file :s3_icon, s3_file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_host_alias: CONFIG.s3_bucket,
@@ -138,7 +138,7 @@ class User < ActiveRecord::Base
       url: ":s3_alias_url"
     )
   else
-    has_attached_file :s3_icon, file_options.merge(
+    has_attached_file :s3_icon, s3_file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:s3_icon_type_extension",
       url: "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id-:style.:s3_icon_type_extension",
       default_url: "/attachment_defaults/:class/:attachment/defaults/:style.png"
