@@ -1332,7 +1332,11 @@ class Taxon < ActiveRecord::Base
     end
     if json && json["canonicalName"] == name
       if json["usageKey"]
-        tst = TaxonSchemeTaxon.create!(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        begin
+          tst = TaxonSchemeTaxon.create!(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to add GBIF taxon #{name}, ID:#{json['usageKey']}: #{e}"
+        end
         return json["usageKey"]
       else
         TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: nil)
