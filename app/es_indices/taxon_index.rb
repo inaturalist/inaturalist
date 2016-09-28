@@ -21,7 +21,7 @@ class Taxon < ActiveRecord::Base
           search_analyzer: "standard_analyzer"
         indexes :name_autocomplete_ja, analyzer: "autocomplete_analyzer_ja"
         indexes :exact, analyzer: "keyword_analyzer"
-        indexes :photos do
+        indexes :taxon_photos do
           indexes :license_code, analyzer: "keyword_analyzer"
         end
       end
@@ -76,8 +76,8 @@ class Taxon < ActiveRecord::Base
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
-        photos: photos_with_backfill(limit: 30, skip_external: true).map{ |p|
-          p.as_indexed_json(sizes: [:square, :small, :medium, :large], native_page_url: true) }
+        taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
+          map(&:as_indexed_json)
       })
     end
     json
