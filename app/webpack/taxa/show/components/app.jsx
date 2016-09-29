@@ -5,7 +5,6 @@ import {
   Tabs
 } from "react-bootstrap";
 import SplitTaxon from "../../../observations/identify/components/split_taxon";
-import TaxonMap from "../../../observations/identify/components/taxon_map";
 import TaxonAutocomplete from "../../../observations/identify/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import SeasonalityChartContainer from "../containers/seasonality_chart_container";
@@ -17,6 +16,7 @@ import FirstObserverContainer from "../containers/first_observer_container";
 import NumObservationsContainer from "../containers/num_observations_container";
 import PlaceChooser from "./place_chooser";
 import TaxonCrumbs from "./taxon_crumbs";
+import TaxonPageMap from "./taxon_page_map";
 import { urlForTaxon } from "../util";
 
 const App = ( { taxon, place, setPlace } ) => (
@@ -135,16 +135,7 @@ const App = ( { taxon, place, setPlace } ) => (
 
           <div className="tab-content">
             <div role="tabpanel" className="tab-pane active" id="map-tab">
-              <TaxonMap
-                className="row"
-                scrollwheel={false}
-                showAllLayer={false}
-                minZoom={2}
-                taxonLayers={[{
-                  taxon,
-                  observations: true
-                }] }
-              />
+              <TaxonPageMap taxon={taxon} />
             </div>
             <div role="tabpanel" className="tab-pane" id="articles-tab">
               <Grid>
