@@ -35,7 +35,7 @@
       <%= image_and_content image_tag( @user.icon.url(:thumb), class: "usericon" ) do %>
         <%= link_to_toggle t(:change_icon), "#iconfield" %>
         <div id="iconfield" style="display: none">
-          <%= f.file_field :s3_icon, label: false, accept: "image/jpg,image/jpeg,image/png,image/gif" %>
+          <%= f.file_field :icon, label: false, accept: "image/jpg,image/jpeg,image/png,image/gif" %>
           <div>
             <%= check_box_tag :icon_delete %>
             <label for="icon_delete"><%=t :delete_icon? %></label>

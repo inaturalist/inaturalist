@@ -3999,9 +3999,6 @@ CREATE TABLE users (
     deleted_at timestamp without time zone,
     time_zone character varying(255),
     description text,
-    local_icon_file_name character varying(255),
-    local_icon_content_type character varying(255),
-    local_icon_file_size integer,
     life_list_id integer,
     observations_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
@@ -4016,7 +4013,6 @@ CREATE TABLE users (
     remember_created_at timestamp without time zone,
     suspended_at timestamp without time zone,
     suspension_reason character varying(255),
-    local_icon_updated_at timestamp without time zone,
     uri character varying(255),
     locale character varying(255),
     site_id integer,
@@ -4029,11 +4025,10 @@ CREATE TABLE users (
     longitude double precision,
     test_groups character varying,
     lat_lon_acc_admin_level integer,
-    s3_icon_file_name character varying,
-    s3_icon_content_type character varying,
-    s3_icon_file_size integer,
-    s3_icon_updated_at timestamp without time zone,
-    moved_to_s3 boolean DEFAULT false
+    icon_file_name character varying,
+    icon_content_type character varying,
+    icon_file_size integer,
+    icon_updated_at timestamp without time zone
 );
 
 
@@ -8146,4 +8141,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160809221754');
 INSERT INTO schema_migrations (version) VALUES ('20160818234437');
 
 INSERT INTO schema_migrations (version) VALUES ('20160920151846');
+
+INSERT INTO schema_migrations (version) VALUES ('20160929155608');
 

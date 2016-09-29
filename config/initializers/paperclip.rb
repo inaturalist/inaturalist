@@ -11,24 +11,16 @@ module Paperclip
   end
 end
 
-Paperclip.interpolates("local_icon_type_extension") do |attachment, style|
-  ext = attachment.instance.local_icon_file_name.split(".").last.downcase
+Paperclip.interpolates("icon_type_extension") do |attachment, style|
+  ext = attachment.instance.icon_file_name.split(".").last.downcase
   unless %w(jpg jpeg png gif).include?(ext)
-    ext = attachment.instance.local_icon_content_type.split("/").last
-  end
-  ext
-end
-
-Paperclip.interpolates("s3_icon_type_extension") do |attachment, style|
-  ext = attachment.instance.s3_icon_file_name.split(".").last.downcase
-  unless %w(jpg jpeg png gif).include?(ext)
-    ext = attachment.instance.s3_icon_content_type.split("/").last
+    ext = attachment.instance.icon_content_type.split("/").last
   end
   ext
 end
 
 Paperclip.interpolates("root_url") do |attachment, style|
-  FakeView.root_url
+  FakeView.root_url.chomp("/")
 end
 
 Paperclip::UploadedFileAdapter.content_type_detector = Paperclip::FileCommandContentTypeDetector
