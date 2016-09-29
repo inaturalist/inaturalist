@@ -31,6 +31,8 @@ const ObservationsGridItem = ( {
   const agreeButton = (
     <OverlayTrigger
       placement="bottom"
+      trigger="hover"
+      rootClose
       overlay={
         <Tooltip id={`agree-tooltip-${o.id}`}>
           { I18n.t( "agree_with_current_taxon" ) }

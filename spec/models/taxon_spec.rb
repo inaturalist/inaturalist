@@ -1058,3 +1058,17 @@ describe Taxon, "editable_by?" do
   end
 end
 
+describe Taxon, "get_gbif_id" do
+  it "should work" do
+    a = Taxon.make!( name: "Chordata", rank: "phylum" )
+    t = Taxon.make!( name: "Pseudacris", rank: "genus", parent: a )
+    expect( t.get_gbif_id ).not_to be_blank
+    expect( t.taxon_scheme_taxa ).not_to be_blank
+  end
+  it "should not create a TaxonSchemeTaxon for responses that don't match the taxon's name" do
+    a = Taxon.make!( name: "Chordata", rank: "phylum" )
+    t = Taxon.make!( name: "Sorberacea", rank: "class", parent: a )
+    expect( t.get_gbif_id ).to be_blank
+    expect( t.taxon_scheme_taxa ).to be_blank
+  end
+end
