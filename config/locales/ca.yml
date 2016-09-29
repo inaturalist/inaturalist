@@ -395,6 +395,7 @@ ca:
   are_you_really_sure_want_delete_this_user: Esteu totalment segur que voleu eliminar
     aquest usuari i tot el seu contingut?
   are_you_sure?: N’esteu segur?
+  are_you_sure_no_undo: N'esteu segur? Aquesta acció no es pot desfer.
   are_you_sure_delete_asset: Esteu segur que voleu eliminar aquest arxiu?
   are_you_sure_delete_observation_from_project: Esteu segur que voleu eliminar aquesta
     observació de %{project}?
@@ -636,6 +637,7 @@ ca:
   cc_by_sa_name: Reconeixement - Compartir igual
   cc_used_under_a: Creative Commons, utilitzada amb una
   change: Canvia
+  change_admin: Canviar Administrador
   change_cover: Canvia la portada
   change_descriptions:
     split: L'antic tàxon està separat en diversos tàxons nous
@@ -1876,6 +1878,7 @@ ca:
   low: baixa
   lowest_rank: Tàxon inferior
   made_a: creà una
+  make_admin: Fer administrador
   mail_disclaimer: '%{site_name} no permetrà que els usuaris us enviïn més invitacions
     a través del nostre sistema. Us demanem que denuncieu l''abús d''invitacions a
     %{site}.'
@@ -3343,7 +3346,7 @@ ca:
   take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   taxa: Tàxons
-  taxa_all_species_html: Tàxons · Totes les espècies
+  taxa_all_species_html: Totes les espècies
   taxa_needing_curation: Tàxons que necessiten administració
   taxa_observed: tàxon observat
   taxa_to_include: Tàxons per incloure
@@ -3783,6 +3786,7 @@ ca:
     al projecte %{project_title}
   users_id: ID de %{user}
   users_identification_html: identificació de <a href="%{url}">%{user}</a>
+  users_identification_short_html: Identificació de <a href='%{url}'>%{user}</a>
   users_comment_html: comentari de <a href="%{url}">%{user}</a>
   users_latest_observations_on_site: Últimes observacions de %{user} a %{site}
   users_observations: Observacions de %{user}
@@ -4799,6 +4803,8 @@ ca:
           <p>
           Un bioblitz és un esdeveniment on els participants intenten observar tantes espècies com els sigui possible en un temps determinat. És una forma divertida d'acostar la biodiversitat a la gent mentre s'obtenen dades molt útils.
           </p>
+        change_admin_desc: Escolliu un dels supervisors del projecte per ser el nou
+          administrador
         cover_desc: Imatge del bàner opcional que apareixerà en la part superior de
           la pàgina del projecte. Ha de tenir 950 px d'amplada i menys de 400 px d’alçada.
         custom_project_fields_means: Permet modificar el bàner del projecte, afegir
@@ -4812,6 +4818,9 @@ ca:
         icon_desc: Es retallarà en un quadrat
         last_aggregated_at_desc: Moment en què l'agregador va acabar d'afegir observacions
           a aquest projecte
+        no_curators: No hi ha cap supervisor del projecte. Si voleu assignar un nou
+          administrador, primer ha d'unir-se a aquest projecte i després el podreu
+          fer supervisor.
         observation_aggregation_desc_html: |-
           <p class="description">
           L'agregació d'observacions afegeix automàticament observacions adequades als vostres projectes que compleixin les seves condicions. Donat que no és possible eliminar moltes observacions d'un projecte al moment, això pot ser potencialment perillós, per tant assegura't que has escollit les regles del lloc i tàxons correctament, o podríeu acabar amb un munt de dades inútils que haureu d'esborrar manualmente.
@@ -4970,10 +4979,10 @@ ca:
         cannot_update_your_content: '%{site_name} no pot actualitzar el vostre contingut
           automàticament per afegir-hi aquest canvi.'
         new_project_admin_html: Us pregunteu per què sou ara l'administrador d'aquest
-          projecte? El propietari anterior probablement ha esborrat el seu compte,
-          i %{site_name} us l'ha assignat perquè sou gestor del projecte o supervisor
-          del lloc web. Si no voleu ser l'administrador del projecte, poseu-vos en
-          contacte amb <a href="mailto:%{help_email}">%{help_email}</a>
+          projecte? El propietari anterior us ha designat com el nou administrador,
+          o ha esborrat el seu compte i %{site_name} us ha assignat com a administrador
+          del projecte o supervisor del lloc. Si no voleu ser l'administrador del
+          projecte, poseu-vos en contacte amb <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 'Només un recordatori: els administradors del projecte poden
           veure les coordenades privades i enfosquides de les observacions que s''agreguen
           a aquest projecte.'
