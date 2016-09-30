@@ -32,6 +32,8 @@ class TaxonRange < ActiveRecord::Base
     # :path => "taxon_ranges/:id.:extension",
     # :url => ":s3_alias_url"
 
+  after_save :derive_missing_values
+  
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
 
   def validate_geometry
@@ -46,6 +48,14 @@ class TaxonRange < ActiveRecord::Base
     nil
   end
   
+  def derive_missing_values
+    if (geom && !range.path )
+      create_kml_attachment
+    elsif (!geom && range.path)
+      create_geom_from_kml_attachment
+    end
+  end
+      
   def create_kml_attachment
     return unless geom
     wkt = RGeo::WKRep::WKTGenerator.new(convert_case: :upper).generate(geom)
@@ -79,8 +89,8 @@ class TaxonRange < ActiveRecord::Base
       if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
         self.geom = geojsongeom.features.first.geometry.as_wkt
         if geom && geom.geometry_type == RGeo::Feature::Polygon
-          f = RGeo::Geographic.simple_mercator_factory
-          self.geom = f.multi_polygon([geom])
+          factory = RGeo::Geographic.simple_mercator_factory
+          self.geom = factory.multi_polygon([geom])
         end
         self.save
       end
