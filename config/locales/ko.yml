@@ -264,6 +264,7 @@ ko:
   archives: 기록 보관소
   are_you_really_sure_want_delete_this_user: 정말 이 사용자와 모든 정보를 삭제할까요? 정말 확실한가요?
   are_you_sure?: 확실합니까?
+  are_you_sure_no_undo: 확실합니까? 이 동작은 취소할 수 없습니다.
   are_you_sure_delete_asset: 이 자산을 삭제하시겠습니까?
   are_you_sure_delete_observation_from_project: 이 관찰을 %{project}에서 삭제하시겠습니까?
   are_you_sure_delete_post: 이 게시글을 삭제하겠습니까?
@@ -446,6 +447,7 @@ ko:
   cc_by_sa_name: 저작자표시-같은공유
   cc_used_under_a: 크리에이티브 커먼즈
   change: 변경
+  change_admin: 관리자 변경
   change_cover: 겉표지 변경
   change_descriptions:
     split: 구 분류군을 여러 개의 새로운 분류군으로 나눔
@@ -830,7 +832,7 @@ ko:
   edit_the_observation: 관찰 편집
   edit_this_link: 이 링크 편집
   edit_your_account: 계정 편집
-  edit_your_account_and_profile_html: 계정 편집 &amp; 프로파일
+  edit_your_account_and_profile_html: 계정 및 프로필 편집
   edit_your_default_settings: 기본 설정 값 편집하기
   edit_your_global_project_settings: 글로벌 프로젝트 설정 편집
   edit_your_identification: 동정 편집
@@ -1380,6 +1382,7 @@ ko:
   lookup: 검색
   lookup_user_rarr: 사용자 검색 &rarr;
   low: 낮음
+  make_admin: 관리자 만들기
   manage: 관리
   manage_all_your_subscriptions: 모든 구독 정보 관리
   manage_names: 이름 관리
@@ -1864,7 +1867,6 @@ ko:
   september: 9월
   set_license: 라이선스 설정
   settings: 설정
-  sharing_settings: 공유 설정
   show: 보이기
   show_kml: KML 보이기
   show_less: 덜 보기
@@ -1909,6 +1911,7 @@ ko:
   tags: 태그
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
+  taxa_all_species_html: 모든 종
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
@@ -1948,6 +1951,7 @@ ko:
   username_or_user_id: 사용자 이름이나 사용자 ID
   users: 사용자
   users_id: '%{user}의 ID'
+  users_identification_short_html: <a href='%{url}'>%{user}</a> ID
   users_profile: '%{user}의 프로필'
   valid_interrogation: 유효합니까?
   valid_options_are: '유효한 옵션:'

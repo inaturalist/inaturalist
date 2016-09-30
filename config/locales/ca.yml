@@ -395,6 +395,7 @@ ca:
   are_you_really_sure_want_delete_this_user: Esteu totalment segur que voleu eliminar
     aquest usuari i tot el seu contingut?
   are_you_sure?: N’esteu segur?
+  are_you_sure_no_undo: N'esteu segur? Aquesta acció no es pot desfer.
   are_you_sure_delete_asset: Esteu segur que voleu eliminar aquest arxiu?
   are_you_sure_delete_observation_from_project: Esteu segur que voleu eliminar aquesta
     observació de %{project}?
@@ -636,6 +637,7 @@ ca:
   cc_by_sa_name: Reconeixement - Compartir igual
   cc_used_under_a: Creative Commons, utilitzada amb una
   change: Canvia
+  change_admin: Canviar Administrador
   change_cover: Canvia la portada
   change_descriptions:
     split: L'antic tàxon està separat en diversos tàxons nous
@@ -1876,6 +1878,7 @@ ca:
   low: baixa
   lowest_rank: Tàxon inferior
   made_a: creà una
+  make_admin: Fer administrador
   mail_disclaimer: '%{site_name} no permetrà que els usuaris us enviïn més invitacions
     a través del nostre sistema. Us demanem que denuncieu l''abús d''invitacions a
     %{site}.'
@@ -2367,6 +2370,9 @@ ca:
     follow_panel_body: Si visiteu aquests perfils i premeu el botó per seguir-los,
       rebreu actualitzacions quan publiquin les seves observacions
     following_panel_title: Seguir la Pista de Persones, Taxa, i Llocs
+    following_panel_body: |-
+      A %{site_name} pots seguir persones per conèixer
+      les observacions que hagin publicat. També pots subscriure't a algunes espècies per seguir les seves noves observacions, o fer el mateix amb llocs.
     comments_panel_title: Tens curiositat per conèixer quines discussions tenen lloc
       a %{site_name}
     comments_panel_body: <p>%{site_name} està dedicat a compartir i discutir observacions
@@ -2407,7 +2413,8 @@ ca:
     pàgina.
   only_files_with_10000_rows_at_a_time: Només arxius de 10000 files cadascun, si us
     plau.
-  only_letters_numbers: Només lletres i xifres, sense espais
+  only_letters_numbers: Només lletres i xifres, sense espais, i ha de començar per
+    una lletra
   only_one_coordinate_system_per_file: Només es pot utilitzar un sistema de coordenades
     per fitxer, en cas contrari la conversió o localització seran incorrectes.
   only_project_curators_can_do_that: Només els supervisors del projecte poden fer
@@ -2771,7 +2778,7 @@ ca:
   project_id_or_url_slug: ID o enllaç del projecte, ex. 333 o el-vostre-projecte
   project_invitations: Invitacions al Projecte
   project_journal_posts: Notes diàries del projecte
-  project_list: Llista de projectes
+  project_list: Llista del projecte
   project_list_defaults:
     title: Llista de comprovació de %{owner_name}
     description: La llista d'espècies de %{owner_name}
@@ -3086,10 +3093,8 @@ ca:
     part del món.
   set_license: Estableix llicència
   settings: Propietats
-  share_on: Comparteix per
   share_your_observation_with_researchers_by: Compartiu la vostra observació amb investigadors
     a través de
-  sharing_settings: Compartint els ajustos
   short_code_for_this_place: Codi curt per al país, ex. MX per a Mèxic
   short_or_abbreviated_title_for_display: Normalment és una abreviatura del títol
     quan l'espai és molt limitat (màxim 10 caràcters).
@@ -3341,7 +3346,7 @@ ca:
   take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   taxa: Tàxons
-  taxa_all_species_html: Tàxons · Totes les espècies
+  taxa_all_species_html: Totes les espècies
   taxa_needing_curation: Tàxons que necessiten administració
   taxa_observed: tàxon observat
   taxa_to_include: Tàxons per incloure
@@ -3427,8 +3432,8 @@ ca:
     Pot fer les mateixes tasques que un gestor o un supervisor i és l'únic que pot
     eliminar el projecte.
   the_community_agrees_location_doesnt: la comunitat creu que la <strong>ubicació
-    és incorrecta</strong> (és a dir, micos enmig de l'oceà, hipopòtams en edificis,
-    etc.)
+    no és acurada</strong> (per exemple, micos enmig de l'oceà, hipopòtams en edificis
+    d'oficines, etc.)
   the_community_agrees_organism_isnt: la comunitat creu que l'<strong>organisme no
     és salvatge/aclimatat</strong> (és a dir, està captiu o és conreat per humans
     o alienígenes espacials intel·ligents)
@@ -3781,6 +3786,7 @@ ca:
     al projecte %{project_title}
   users_id: ID de %{user}
   users_identification_html: identificació de <a href="%{url}">%{user}</a>
+  users_identification_short_html: Identificació de <a href='%{url}'>%{user}</a>
   users_comment_html: comentari de <a href="%{url}">%{user}</a>
   users_latest_observations_on_site: Últimes observacions de %{user} a %{site}
   users_observations: Observacions de %{user}
@@ -4662,16 +4668,21 @@ ca:
              <li>l'observació <strong>té una data</​strong></li>
              <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
              <li>l'observació <strong>s'acompanya de fotos o sons</ strong></li>
+          <li>l'observació <strong>no és d'un humà</strong></li>
           </ul>
           <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
           <ul>
             <li>la comunitat de %{site_name} <strong>està d'acord amb la ID donada per l'observador</strong>, on estar "d'acord" amb la identificació significa que es coincideix exactament o que és un tàxon fill de la ID de l'observador. Per exemple, si Joan diu que és un mamífer i Josep diu que és <em>Homo sapiens</em>, llavors Josep està d'acord amb Joan.</li>
           </ul>
-          <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o</p>
+          <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>
           <ul>
-            <li>la comunitat considera que la <strong>ubicació no és prou precisa</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
-            <li>la comunitat està d'acord en que l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
-            <li>la comunitat està d'acord en que l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
+            <li>la <strong>ubicació no és prou precisa</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
+            <li>l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
+           <li>l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.
+            </li>
+            <li>l'observació <strong>no mostra evidències recents (~100 anys) d'organismes</strong> (e.g. fòssils, però sí que són correctes les pistes, excrements i fulles mortes)
+            </li>
+            <li>l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
           de desacord + desacords en l'avantpassat )
       user_stats:
@@ -4792,6 +4803,8 @@ ca:
           <p>
           Un bioblitz és un esdeveniment on els participants intenten observar tantes espècies com els sigui possible en un temps determinat. És una forma divertida d'acostar la biodiversitat a la gent mentre s'obtenen dades molt útils.
           </p>
+        change_admin_desc: Escolliu un dels supervisors del projecte per ser el nou
+          administrador
         cover_desc: Imatge del bàner opcional que apareixerà en la part superior de
           la pàgina del projecte. Ha de tenir 950 px d'amplada i menys de 400 px d’alçada.
         custom_project_fields_means: Permet modificar el bàner del projecte, afegir
@@ -4805,6 +4818,9 @@ ca:
         icon_desc: Es retallarà en un quadrat
         last_aggregated_at_desc: Moment en què l'agregador va acabar d'afegir observacions
           a aquest projecte
+        no_curators: No hi ha cap supervisor del projecte. Si voleu assignar un nou
+          administrador, primer ha d'unir-se a aquest projecte i després el podreu
+          fer supervisor.
         observation_aggregation_desc_html: |-
           <p class="description">
           L'agregació d'observacions afegeix automàticament observacions adequades als vostres projectes que compleixin les seves condicions. Donat que no és possible eliminar moltes observacions d'un projecte al moment, això pot ser potencialment perillós, per tant assegura't que has escollit les regles del lloc i tàxons correctament, o podríeu acabar amb un munt de dades inútils que haureu d'esborrar manualmente.
@@ -4963,10 +4979,10 @@ ca:
         cannot_update_your_content: '%{site_name} no pot actualitzar el vostre contingut
           automàticament per afegir-hi aquest canvi.'
         new_project_admin_html: Us pregunteu per què sou ara l'administrador d'aquest
-          projecte? El propietari anterior probablement ha esborrat el seu compte,
-          i %{site_name} us l'ha assignat perquè sou gestor del projecte o supervisor
-          del lloc web. Si no voleu ser l'administrador del projecte, poseu-vos en
-          contacte amb <a href="mailto:%{help_email}">%{help_email}</a>
+          projecte? El propietari anterior us ha designat com el nou administrador,
+          o ha esborrat el seu compte i %{site_name} us ha assignat com a administrador
+          del projecte o supervisor del lloc. Si no voleu ser l'administrador del
+          projecte, poseu-vos en contacte amb <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 'Només un recordatori: els administradors del projecte poden
           veure les coordenades privades i enfosquides de les observacions que s''agreguen
           a aquest projecte.'
