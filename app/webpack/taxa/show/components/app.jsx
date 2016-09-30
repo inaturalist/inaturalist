@@ -14,9 +14,9 @@ import TopIdentifierContainer from "../containers/top_identifier_container";
 import TopSpeciesContainer from "../containers/top_species_container";
 import FirstObserverContainer from "../containers/first_observer_container";
 import NumObservationsContainer from "../containers/num_observations_container";
+import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PlaceChooser from "./place_chooser";
 import TaxonCrumbs from "./taxon_crumbs";
-import TaxonPageMap from "./taxon_page_map";
 import { urlForTaxon } from "../util";
 
 const App = ( { taxon, place, setPlace } ) => (
@@ -103,95 +103,7 @@ const App = ( { taxon, place, setPlace } ) => (
       </Row>
       <Row>
         <Col xs={12}>
-          <Grid>
-            <Row>
-              <Col xs={12}>
-                <ul className="nav nav-tabs" role="tablist">
-                  <li role="presentation" className="active">
-                    <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "articles" ) }</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#highlights-tab" role="tab" data-toggle="tab">{ I18n.t( "highlights" ) }</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#interactions-tab" role="tab" data-toggle="tab">{ I18n.t( "interactions" ) }</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#names-tab" role="tab" data-toggle="tab">{ I18n.t( "names" ) }</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
-                  </li>
-                </ul>
-              </Col>
-            </Row>
-          </Grid>
-
-          <div className="tab-content">
-            <div role="tabpanel" className="tab-pane active" id="map-tab">
-              <TaxonPageMap taxon={taxon} />
-            </div>
-            <div role="tabpanel" className="tab-pane" id="articles-tab">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    articles go here
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-            <div role="tabpanel" className="tab-pane" id="highlights-tab">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    highlights go here
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-            <div role="tabpanel" className="tab-pane" id="interactions-tab">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    interactions go here
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-            <div role="tabpanel" className="tab-pane" id="taxonomy-tab">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    taxonomy goes here
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-            <div role="tabpanel" className="tab-pane" id="names-tab">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    names go here
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-            <div role="tabpanel" className="tab-pane" id="status-tab">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    status goes here
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-          </div>
+          <TaxonPageTabsContainer />
         </Col>
       </Row>
     </Grid>

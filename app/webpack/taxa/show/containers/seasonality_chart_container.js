@@ -47,13 +47,8 @@ function mapStateToProps( state ) {
   return { config, className: "SeasonalityChart FrequencyChart" };
 }
 
-function mapDispatchToProps( ) {
-  return {};
-}
-
 const SeasonalityChartContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )( C3Chart );
 
 export default SeasonalityChartContainer;

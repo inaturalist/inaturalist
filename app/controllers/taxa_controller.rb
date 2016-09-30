@@ -26,7 +26,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip]
+    :range, :schemes, :tip, :links]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -159,8 +159,10 @@ class TaxaController < ApplicationController
     if params[:test] == "taxon-page"
       respond_to do |format|
         @json_opts = Taxon.default_json_options
-        @json_opts[:include][:taxon_names] = {}
-        @json_opts[:include][:iconic_taxon] = {only: [:id, :name]}
+        @json_opts[:include] = @json_opts[:include].merge( {
+          taxon_names: {},
+          iconic_taxon: { only: [:id, :name] }
+        } )
         @json_opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
         Taxon.preload_associations( @taxon, { taxon_photos: :photo } )
         return render layout: "bootstrap", action: "show2"
@@ -891,8 +893,23 @@ class TaxaController < ApplicationController
       @taxon.wikipedia_summary(:refresh_if_blank => true)
     end
     @describer_url = @describer.page_url(@taxon)
+    if @describer
+      response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+      response.headers["X-Describer-URL"] = @describer_url
+    end
     respond_to do |format|
       format.html { render :partial => "description" }
+    end
+  end
+
+  def links
+    places_exist = ListedTaxon.where("place_id IS NOT NULL AND taxon_id = ?", @taxon).exists?
+    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: places_exist )
+    respond_to do |format|
+      format.json { render json: taxon_links.map{ |tl| {
+        taxon_link: tl,
+        url: tl.url_for_taxon( @taxon )
+      } } }
     end
   end
   

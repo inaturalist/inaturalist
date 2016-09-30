@@ -15,13 +15,8 @@ function mapStateToProps( state ) {
   };
 }
 
-function mapDispatchToProps( ) {
-  return {};
-}
-
 const PhotoPreviewContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )( PhotoPreview );
 
 export default PhotoPreviewContainer;

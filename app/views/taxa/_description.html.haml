@@ -5,7 +5,7 @@
   - css_class += " #{@describer.name.split('::').last.underscore}_description"
   - css_class += " wikipedia_description" if @describer.ancestors.include?(TaxonDescribers::Wikipedia)
 #taxon_description{:class => css_class}
-  %h3
+  %h3.taxon_description_header
     =t :description_from
     - if @describer
       = select_tag :from, options_for_select(@describers.sort_by(&:name).map{|d| [d.describer_name, d.name.split('::').last]}, :selected => @describer.name.split('::').last)

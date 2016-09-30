@@ -341,6 +341,7 @@ Rails.application.routes.draw do
       get 'schemes', :as => "schemes_for", :constraints => {:format => [:html, :mobile]}
       get 'tip'
       get 'names', :to => 'taxon_names#taxon'
+      get 'links'
     end
     collection do
       get 'synonyms'

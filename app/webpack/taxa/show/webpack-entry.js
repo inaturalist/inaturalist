@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "./ducks/config";
-import taxonReducer, { setTaxon, fetchTaxon } from "./ducks/taxon";
+import taxonReducer, { setTaxon, fetchTaxon, setDescription } from "./ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency
