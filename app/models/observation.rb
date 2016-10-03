@@ -2352,6 +2352,8 @@ class Observation < ActiveRecord::Base
     return false if latitude.blank? && longitude.blank?
     return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
     return false if inaccurate_location?
+    return false unless passes_quality_metric?(QualityMetric::EVIDENCE)
+    return false unless appropriate?
     true
   end
 

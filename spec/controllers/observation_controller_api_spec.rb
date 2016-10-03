@@ -138,6 +138,23 @@ shared_examples_for "an ObservationsController" do
       expect( json["uuid"] ).to eq uuid
     end
 
+    it "should default to using CONFIG.site_id" do
+      site =  Site.make!
+      CONFIG.site_id = site.id
+      post :create, format: :json, observation: { uuid: SecureRandom.uuid }
+      json = JSON.parse( response.body )[0]
+      expect( json["site_id"] ).to eq site.id
+    end
+
+    it "should accept other site_ids" do
+      site =  Site.make!
+      CONFIG.site_id = site.id
+      newsite = Site.make!
+      post :create, format: :json, observation: { uuid: SecureRandom.uuid, site_id: newsite.id }
+      json = JSON.parse( response.body )[0]
+      expect( json["site_id"] ).to eq newsite.id
+    end
+
   end
 
   describe "destroy" do

@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
     -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
          joins(:observation) }, :class_name => "Identification"
   has_many :photos, :dependent => :destroy
+  has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
@@ -198,7 +199,7 @@ class User < ActiveRecord::Base
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
-  bad_login_message = "use only letters, numbers, and -_ please.".freeze
+  bad_login_message = "begin with a letter and use only letters, numbers, and -_ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
   domain_tld_regex  = '(?:[A-Z]+)'.freeze
@@ -603,7 +604,7 @@ class User < ActiveRecord::Base
     requested_login = requested_login.to_s
     requested_login = "naturalist" if requested_login.blank?
     # strip out everything but letters and numbers so we can pass the login format regex validation
-    requested_login = requested_login.downcase.split('').select do |l| 
+    requested_login = requested_login.sub(/^\d*/, '').downcase.split('').select do |l| 
       ('a'..'z').member?(l) || ('0'..'9').member?(l)
     end.join('')
     suggested_login = requested_login

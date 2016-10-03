@@ -78,14 +78,40 @@ namespace :inaturalist do
       secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
     bucket = AWS::S3.new.buckets[CONFIG.s3_bucket]
 
-    DeletedPhoto.where("created_at >= ?", 6.months.ago).
-      select(:id, :photo_id).find_each do |p|
+    DeletedPhoto.still_in_s3.
+      where("(orphan=false AND created_at >= ?) OR (orphan=true AND created_at >= ?)",
+        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
       images = bucket.objects.with_prefix("photos/#{ p.photo_id }/").to_a
       if images.any?
         bucket.objects.delete(images)
+        p.update_attributes(removed_from_s3: true)
       end
     end
   end
+
+  desc "Delete orphaned photos"
+  task :delete_orphaned_photos => :environment do
+    first_id = Photo.minimum(:id)
+    last_id = Photo.maximum(:id)
+    index = 0
+    batch_size = 10000
+    # using `where id BETWEEN` instead of .find_each or similar, which use
+    # LIMIT and create fewer, but longer-running queries
+    while index <= last_id
+      photos = Photo.joins("left join observation_photos op on (photos.id=op.photo_id)").
+        joins("left join taxon_photos tp on (photos.id=tp.photo_id)").
+        joins("left join guide_photos gp on (photos.id=gp.photo_id)").
+        where("op.id IS NULL and tp.id IS NULL and gp.id IS NULL").
+        where("photos.id BETWEEN ? AND ?", index, index + batch_size)
+      photos.each do |p|
+        # set the orphan attribute on Photo, which will set the same on DeletedPhoto
+        p.orphan = true
+        p.destroy
+      end
+      index += batch_size
+    end
+  end
+
 
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do

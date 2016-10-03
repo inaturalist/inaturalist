@@ -1304,7 +1304,17 @@ class Taxon < ActiveRecord::Base
       return tst.source_identifier
     end
     # make sure the GBIF TaxonScheme exists
-    gbif = TaxonScheme.find_or_create_by(title: "GBIF")
+    gbif = TaxonScheme.where( title: "GBIF" ).first
+    unless gbif = TaxonScheme.where( title: "GBIF" ).first
+      unless gbif_source = Source.where( url: "http://www.gbif.org" ).first
+        gbif_source = Source.create!(
+          title: "Global Biodiversity Information Facility",
+          in_text: "GBIF",
+          url: "http://www.gbif.org"
+        )
+      end
+      gbif = TaxonScheme.create!( title: "GBIF", source: gbif_source )
+    end
     # return their ID if we know it
     if scheme = TaxonSchemeTaxon.where(taxon_scheme: gbif, taxon_id: id).first
       return scheme.source_identifier
@@ -1320,9 +1330,13 @@ class Taxon < ActiveRecord::Base
       Rails.logger.error "[ERROR #{Time.now}] #{e}"
       nil
     end
-    if json
+    if json && json["canonicalName"] == name
       if json["usageKey"]
-        TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        begin
+          tst = TaxonSchemeTaxon.create!(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to add GBIF taxon #{name}, ID:#{json['usageKey']}: #{e}"
+        end
         return json["usageKey"]
       else
         TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: nil)
