@@ -84,6 +84,16 @@ describe TaxonName, 'creation' do
     tn = TaxonName.make!(:lexicon => TaxonName::LEXICONS[:ENGLISH], :is_valid => false)
     expect(tn.is_valid).to be false
   end
+    
+  it "should create new name positions that will place them at the end of lists" do
+    t = Taxon.make!
+    tn1 = TaxonName.make!(name: "first", taxon: t)
+    expect(tn1.position).to eq 1
+    tn2 = TaxonName.make!(name: "second", taxon: t)
+    expect(tn2.position).to eq 2
+    tn2 = TaxonName.make!(name: "third", taxon: t)
+    expect(tn2.position).to eq 3
+  end
 end
 
 describe TaxonName, "strip_author" do
