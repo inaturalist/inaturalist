@@ -540,8 +540,7 @@ class UsersController < ApplicationController
     
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
-    @display_user.local_icon = nil if params[:icon_delete]
-    @display_user.s3_icon = nil if params[:icon_delete]
+    @display_user.icon = nil if params[:icon_delete]
     
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
@@ -785,13 +784,10 @@ protected
 
   def whitelist_params
     return if params[:user].blank?
-    if !params[:icon].blank? && params[:s3_icon].blank?
-      params[:s3_icon] = params[:icon]
-    end
     params.require(:user).permit(
       :description,
       :email,
-      :s3_icon,
+      :icon,
       :icon_url,
       :lists_by_login_order,
       :lists_by_login_sort,

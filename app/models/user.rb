@@ -120,40 +120,29 @@ class User < ActiveRecord::Base
     processors: [:deanimator],
     styles: {
       original: "2048x2048>",
+      large: "500x500>",
       medium: "300x300>",
       thumb: "48x48#",
       mini: "16x16#"
     }
   }
-  s3_file_options = file_options.marshal_copy
-  s3_file_options[:styles][:large] = "500x500>"
 
   if Rails.env.production?
-    has_attached_file :s3_icon, s3_file_options.merge(
+    has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
-      path: "/attachments/users/icons/:id/:style.:s3_icon_type_extension",
+      path: "/attachments/users/icons/:id/:style.:icon_type_extension",
       default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
       url: ":s3_alias_url"
     )
   else
-    has_attached_file :s3_icon, s3_file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:s3_icon_type_extension",
-      url: "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id-:style.:s3_icon_type_extension",
+    has_attached_file :icon, file_options.merge(
+      path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+      url: "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id-:style.:icon_type_extension",
       default_url: "/attachment_defaults/:class/:attachment/defaults/:style.png"
     )
-  end
-
-  has_attached_file :local_icon, file_options.merge(
-    path: ":rails_root/public/attachments/:class/icons/:id-:style.:local_icon_type_extension",
-    url: "#{ CONFIG.attachments_host }/attachments/:class/icons/:id-:style.:local_icon_type_extension",
-    default_url: "/attachment_defaults/:class/icons/defaults/:style.png"
-  )
-
-  def icon
-    moved_to_s3 ? s3_icon : local_icon
   end
 
   # Roles
@@ -179,16 +168,13 @@ class User < ActiveRecord::Base
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
-  after_save :set_moved_to_s3
   after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
   
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
-  validates_attachment_content_type :local_icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
-    :message => "must be JPG, PNG, or GIF"
-  validates_attachment_content_type :s3_icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
     :message => "must be JPG, PNG, or GIF"
 
   validates_presence_of     :login
@@ -432,12 +418,6 @@ class User < ActiveRecord::Base
   def update_observation_sites
     observations.update_all(site_id: site_id)
     Observation.elastic_index!(scope: Observation.by(self))
-  end
-
-  def set_moved_to_s3
-    if !moved_to_s3 && s3_icon.file?
-      update_column(:moved_to_s3, true)
-    end
   end
 
   def merge(reject)
