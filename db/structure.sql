@@ -758,7 +758,9 @@ CREATE TABLE deleted_photos (
     user_id integer,
     photo_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    removed_from_s3 boolean DEFAULT false NOT NULL,
+    orphan boolean DEFAULT false NOT NULL
 );
 
 
@@ -8144,3 +8146,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160920151846');
 
 INSERT INTO schema_migrations (version) VALUES ('20160929155608');
 
+INSERT INTO schema_migrations (version) VALUES ('20160913224325');

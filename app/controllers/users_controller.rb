@@ -600,7 +600,7 @@ class UsersController < ApplicationController
       if @display_user.blank?
         flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
-        @observations = @display_user.observations.order("id desc").limit(10)
+        @observations = Observation.page_of_results( user_id: @display_user.id )
       end
     end
   end
