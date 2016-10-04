@@ -149,10 +149,10 @@ export function setObservationsCount( count ) {
   };
 }
 
-export function fetchRecentObservations( ) {
+export function fetchRecentObservations( taxon ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const t = s.taxon.taxon;
+    const t = taxon || s.taxon.taxon;
     const p = s.config.preferredPlace;
     const params = {
       taxon_id: t.id,
@@ -172,10 +172,10 @@ export function setFirstObservation( observation ) {
   };
 }
 
-export function fetchFirstObservation( ) {
+export function fetchFirstObservation( taxon ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const t = s.taxon.taxon;
+    const t = taxon || s.taxon.taxon;
     const p = s.config.preferredPlace;
     const params = {
       taxon_id: t.id,

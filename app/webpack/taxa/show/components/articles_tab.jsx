@@ -49,7 +49,7 @@ const ArticlesTab = ( { taxonId, description, descriptionSource, descriptionSour
 );
 
 ArticlesTab.propTypes = {
-  taxonId: PropTypes.integer,
+  taxonId: PropTypes.number,
   description: PropTypes.string,
   descriptionSource: PropTypes.string,
   descriptionSourceUrl: PropTypes.string,

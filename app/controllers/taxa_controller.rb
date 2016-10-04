@@ -163,7 +163,15 @@ class TaxaController < ApplicationController
           taxon_names: {},
           iconic_taxon: { only: [:id, :name] }
         } )
-        @json_opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
+        @json_opts[:methods] += [
+          :common_name,
+          :image_url,
+          :taxon_range_kml_url,
+          :html,
+          :default_photo,
+          :taxon_changes_count,
+          :taxon_schemes_count
+        ]
         Taxon.preload_associations( @taxon, { taxon_photos: :photo } )
         return render layout: "bootstrap", action: "show2"
       end

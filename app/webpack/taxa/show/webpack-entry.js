@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "./ducks/config";
-import taxonReducer, { setTaxon, fetchTaxon, setDescription } from "./ducks/taxon";
+import taxonReducer, { setTaxon, fetchTaxon, setCount } from "./ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency
@@ -46,10 +46,16 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 
 if ( TAXON !== undefined && TAXON !== null ) {
   store.dispatch( setTaxon( TAXON ) );
+  if ( TAXON.taxon_changes_count ) {
+    store.dispatch( setCount( "taxonChangesCount", TAXON.taxon_changes_count) );
+  }
+  if ( TAXON.taxon_schemes_count ) {
+    store.dispatch( setCount( "taxonSchemesCount", TAXON.taxon_schemes_count) );
+  }
   store.dispatch( fetchTaxon( TAXON ) );
-  store.dispatch( fetchMonthFrequency( ) );
-  store.dispatch( fetchMonthOfYearFrequency( ) );
-  store.dispatch( fetchLeaders( ) );
+  store.dispatch( fetchMonthFrequency( TAXON ) );
+  store.dispatch( fetchMonthOfYearFrequency( TAXON ) );
+  store.dispatch( fetchLeaders( TAXON ) );
 }
 
 window.onpopstate = ( ) => {

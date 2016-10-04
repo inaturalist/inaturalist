@@ -2,7 +2,8 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonPageMap from "./taxon_page_map";
-import ArtclesTabContainer from "../containers/articles_tab_container";
+import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
+import ArticlesTabContainer from "../containers/articles_tab_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -62,7 +63,7 @@ class TaxonPageTabs extends React.Component {
             <TaxonPageMap taxon={this.props.taxon} />
           </div>
           <div role="tabpanel" className="tab-pane" id="articles-tab">
-            <ArtclesTabContainer />
+            <ArticlesTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="highlights-tab">
             <Grid>
@@ -86,7 +87,7 @@ class TaxonPageTabs extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12}>
-                  taxonomy goes here
+                  <TaxonomyTabContainer />
                 </Col>
               </Row>
             </Grid>

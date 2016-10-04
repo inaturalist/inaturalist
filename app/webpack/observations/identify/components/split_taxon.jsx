@@ -8,7 +8,8 @@ const SplitTaxon = ( {
   noParens,
   placeholder,
   displayClassName,
-  forceRank
+  forceRank,
+  showIcon
 } ) => {
   const LinkElement = url ? "a" : "span";
   let title = "";
@@ -21,6 +22,18 @@ const SplitTaxon = ( {
       title = `${taxon.preferred_common_name} (${title})`;
     }
   }
+  const icon = ( ) => {
+    if ( !showIcon ) {
+      return null;
+    }
+    let iconClass = "icon icon-iconic-";
+    if ( taxon && taxon.iconic_taxon_name ) {
+      iconClass += taxon.iconic_taxon_name.toString( ).toLowerCase( );
+    } else {
+      iconClass += "unknown";
+    }
+    return <LinkElement href={ url } className={iconClass} />;
+  };
   const taxonClass = ( ) => {
     let cssClass = "taxon";
     if ( taxon ) {
@@ -35,14 +48,6 @@ const SplitTaxon = ( {
       cssClass += " no-parens";
     }
     return cssClass;
-  };
-  const iconClass = ( ) => {
-    let cssClass = "icon icon-iconic-";
-    if ( taxon ) {
-      cssClass += taxon.iconic_taxon_name;
-    } else {
-      cssClass += "unknown";
-    }
   };
   const displayName = ( ) => {
     if ( taxon && taxon.preferred_common_name ) {
@@ -81,11 +86,11 @@ const SplitTaxon = ( {
         </LinkElement>
       );
     }
-    return "";
+    return null;
   };
   const sciName = ( ) => {
     if ( !taxon ) {
-      return "";
+      return null;
     }
     const taxonRank = ( ) => {
       if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank_level > 10 ) {
@@ -95,7 +100,7 @@ const SplitTaxon = ( {
           </span>
         );
       }
-      return "";
+      return null;
     };
     let sciNameClass = `sciname ${taxon.rank}`;
     if ( !taxon.preferred_common_name ) {
@@ -114,7 +119,7 @@ const SplitTaxon = ( {
   };
   const inactive = ( ) => {
     if ( !taxon || taxon.is_active ) {
-      return "";
+      return null;
     }
     return (
       <span className="inactive">
@@ -130,15 +135,9 @@ const SplitTaxon = ( {
     );
   };
   return (
-    <div className="SplitTaxon" title={title}>
-      <span className={taxonClass( )}>
-        <LinkElement
-          href={ url }
-          className={iconClass( )}
-        />
-        { displayName( ) } { sciName( ) } { inactive( ) }
-      </span>
-    </div>
+    <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
+      { icon( ) }{ displayName( ) }{ sciName( ) }{ inactive( ) }
+    </span>
   );
 };
 
@@ -149,7 +148,8 @@ SplitTaxon.propTypes = {
   noParens: PropTypes.bool,
   placeholder: PropTypes.string,
   displayClassName: PropTypes.string,
-  forceRank: PropTypes.bool
+  forceRank: PropTypes.bool,
+  showIcon: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

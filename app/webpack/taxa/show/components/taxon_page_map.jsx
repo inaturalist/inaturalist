@@ -4,7 +4,7 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 const TaxonPageMap = ( { taxon } ) => {
   let loading;
   let taxonMap;
-  if ( taxon && taxon.listed_taxa ) {
+  if ( taxon ) {
     const t = Object.assign( { }, taxon, {
       to_styled_s: `<i>${taxon.name}</i>`
     } );

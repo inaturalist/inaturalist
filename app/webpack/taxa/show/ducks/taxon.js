@@ -4,8 +4,9 @@ import iNaturalistJS from "inaturalistjs";
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
 const SET_LINKS = "taxa-show/taxon/SET_LINKS";
+const SET_COUNT = "taxa-show/taxon/SET_COUNT";
 
-export default function reducer( state = {}, action ) {
+export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
   switch ( action.type ) {
     case SET_TAXON:
@@ -20,6 +21,10 @@ export default function reducer( state = {}, action ) {
       break;
     case SET_LINKS:
       newState.links = action.links;
+      break;
+    case SET_COUNT:
+      newState.counts = state.counts || {};
+      newState.counts[action.count] = action.value;
       break;
     default:
       // nothing to see here
@@ -47,6 +52,14 @@ export function setLinks( links ) {
   return {
     type: SET_LINKS,
     links
+  };
+}
+
+export function setCount( count, value ) {
+  return {
+    type: SET_COUNT,
+    count,
+    value
   };
 }
 

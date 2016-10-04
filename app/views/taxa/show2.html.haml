@@ -1,6 +1,6 @@
 - @no_footer_gap = true
 - content_for :title do
-  TODO Taxon Detail
+  = render "taxa/taxon.txt.erb", taxon: @taxon
 - content_for :extrajs do
   :javascript
     var TAXON = #{ @taxon.to_json( @json_opts ) };

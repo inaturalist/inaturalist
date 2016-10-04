@@ -1032,7 +1032,9 @@ google.maps.Map.prototype.removeAllLayers = function( ) {
   for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
     var mapType = this.overlayMapTypes.getAt(i),
         title = mapType.title;
-    mapType.interactivity.remove();
+    if ( mapType.interactivity ) {
+      mapType.interactivity.remove();
+    }
     this.overlayMapTypes.removeAt(i);
     if( this._overlayControl ) {
       this._overlayControl.removeOverlayControl(title)

@@ -539,6 +539,14 @@ class Taxon < ActiveRecord::Base
     taxon_ancestors_as_ancestor.count
   end
 
+  def taxon_changes_count
+    taxon_changes.count
+  end
+
+  def taxon_schemes_count
+    taxon_schemes.count
+  end
+
   #
   # Test whether this taxon's range overlaps a place
   #

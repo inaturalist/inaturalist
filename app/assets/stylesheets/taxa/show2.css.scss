@@ -289,3 +289,49 @@ $photoPreviewThumbGutterTop: 3px;
   opacity: 1;
 }
 
+
+.SplitTaxon > *:after {
+  content: '\0020';
+}
+.SplitTaxon > *:first-child {
+  content: '';
+}
+
+.TaxonomyTab .taxonomy {
+  list-style: none;
+}
+.TaxonomyTab .taxonomy li {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.TaxonomyTab .taxonomy li:before,
+.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname {
+  content: '\21B3';
+  color: #999;
+}
+.TaxonomyTab .taxonomy li.root {
+  margin-left: 0;
+}
+.TaxonomyTab .taxonomy li.root:before {
+  content: '';
+}
+.TaxonomyTab .taxonomy .taxon a {
+  color: #333;
+}
+
+.TaxonomyTab .taxonomy li.current > .SplitTaxon {
+  font-weight: bold;
+}
+
+.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname,
+.TaxonomyTab .taxonomy i {
+  font-size: smaller;
+}
+
+.TaxonomyTab .links a {
+  color: #333;
+}
+.TaxonomyTab .links i {
+  color: $inat-green;
+  margin-right: 5px;
+}

@@ -29,13 +29,11 @@ export function setLeader( key, leader ) {
   };
 }
 
-const defaultObservationParams = ( state ) => {
-  return {
-    verifiable: true,
-    taxon_id: state.taxon.taxon.id,
-    place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
-  };
-};
+const defaultObservationParams = ( state ) => ( {
+  verifiable: true,
+  taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
+  place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
+} );
 
 export function fetchTopObserver( ) {
   return function ( dispatch, getState ) {
@@ -69,17 +67,17 @@ export function fetchTopSpecies( ) {
   };
 }
 
-export function fetchLeaders( ) {
+export function fetchLeaders( selectedTaxon ) {
   return ( dispatch, getState ) => {
-    const taxon = getState( ).taxon.taxon;
+    const taxon = selectedTaxon || getState( ).taxon.taxon;
     dispatch( fetchTopObserver( ) );
     dispatch( fetchTopIdentifier( ) );
     if ( taxon.rank_level <= 10 ) {
-      dispatch( fetchFirstObserver( ) );
+      dispatch( fetchFirstObserver( taxon ) );
     } else {
-      dispatch( fetchTopSpecies( ) );
+      dispatch( fetchTopSpecies( taxon ) );
     }
-    dispatch( fetchRecentObservations( ) );
-    dispatch( fetchFirstObservation( ) );
+    dispatch( fetchRecentObservations( taxon ) );
+    dispatch( fetchFirstObservation( taxon ) );
   };
 }

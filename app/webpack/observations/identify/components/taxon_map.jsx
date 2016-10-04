@@ -69,6 +69,12 @@ import ReactDOM from "react-dom";
 
 class TaxonMap extends React.Component {
   componentDidMount( ) {
+    this.setMapFromProps( );
+  }
+  componentDidUpdate( ) {
+    this.setMapFromProps( );
+  }
+  setMapFromProps( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( domNode ).taxonMap( this.props );
   }
