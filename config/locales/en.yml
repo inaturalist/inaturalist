@@ -108,6 +108,7 @@ en:
   about_licenses: About licenses
   about_licensing: About licensing
   about_life!: About Life!
+  about_names: About Names
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
   about_the_taxobox_raquo: "About the taxobox &raquo;"
@@ -124,6 +125,7 @@ en:
   accuracy_meters: Accuracy (meters)
   accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
   acquaintances: acquaintances
+  action: Action
   actions: Actions
   activate_user: Activate user
   active: active
@@ -1449,6 +1451,7 @@ en:
   kml_file_size_error: "KML must be less than 1 MB in size"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
+  language_slash_type: Language / Type
   large: large
   last_confirmed_observation: Last confirmed observation
   last_inat_observation: "Last %{site_name} observation"
@@ -4606,6 +4609,35 @@ en:
       not_found:
         sorry_that_doesnt_exist: Sorry, that doesn't exist!
         even_our_dedicated_search_mole_couldnt: Even our dedicated search mole couldn't find anything!
+    taxa:
+      show:
+        about_names_desc: |
+          <p>
+            Most categories of organisms have "common names" in spoken
+            languages. These names are usually recognizable, easy to pronounce,
+            and stable over time, but many organisms have several different
+            names in different places, even in the same language, which can make
+            it difficult to communicate about these organisms without confusion.
+            Scientists address this problem by using a single "scientific name"
+            for each category of organism that conforms to the rules of
+            <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>,
+            but these names tend to be based on Latin, a language nobody
+            speaks, so they are not as memorable as common names for many
+            people. Scientific names can also reflect an organism's taxonomic
+            placement, so they can change when scientists develop more
+            accurate theories about the evolutionary relationships of
+            different organisms, again reducing their usefullness in
+            commuinication, even among people who know scientific names.
+          </p>
+          <p>
+            The old adage sums it up: "Common names change from place to
+            place, and scientific names change from time to time."
+          </p>
+          <p>
+            We try to address these shortcomings by showing both common
+            and scientific names wherever possible, and choosing common names
+            based on the language and geographic preferences of the viewer.
+          </p>
     taxon_names:
       form:
         new_name_guidelines_html: |

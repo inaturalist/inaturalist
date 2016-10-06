@@ -3,14 +3,22 @@ import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonPageMap from "./taxon_page_map";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
+import NamesTabContainer from "../containers/names_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
-      if ( !this.props.description && e.target.hash === "#articles-tab" ) {
-        this.props.fetchArticlesContent( );
+      switch ( e.target.hash ) {
+        case "#articles-tab":
+          this.props.fetchArticlesContent( );
+          break;
+        case "#names-tab":
+          this.props.fetchNames( );
+          break;
+        default:
+          // it's cool, you probably have what you need
       }
     } );
   }
@@ -96,7 +104,7 @@ class TaxonPageTabs extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12}>
-                  names go here
+                  <NamesTabContainer />
                 </Col>
               </Row>
             </Grid>
@@ -118,8 +126,8 @@ class TaxonPageTabs extends React.Component {
 
 TaxonPageTabs.propTypes = {
   taxon: PropTypes.object,
-  description: PropTypes.string,
-  fetchArticlesContent: PropTypes.func
+  fetchArticlesContent: PropTypes.func,
+  fetchNames: PropTypes.func
 };
 
 export default TaxonPageTabs;

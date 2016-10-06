@@ -1,5 +1,6 @@
 @import "../colors";
 @import "show/wikipedia";
+@import "../shared/user_text";
 
 #TaxonHeader h1 {
   margin-top: 10px;
@@ -328,10 +329,28 @@ $photoPreviewThumbGutterTop: 3px;
   font-size: smaller;
 }
 
-.TaxonomyTab .links a {
+.tab-links a {
+  display: block;
   color: #333;
 }
-.TaxonomyTab .links i {
+.tab-links a:before {
+  content: '\203A';
+  float: right;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 17px;
+  color: #999;
+  margin-left: 5px;
+}
+.tab-links i {
   color: $inat-green;
-  margin-right: 5px;
+  margin-right: 10px;
+}
+
+.NamesTab {
+  margin-bottom: 20px;
+}
+
+.NamesTab .sciname {
+  font-style: italic;
 }

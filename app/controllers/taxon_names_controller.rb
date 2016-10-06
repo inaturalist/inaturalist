@@ -10,74 +10,32 @@ class TaxonNamesController < ApplicationController
   layout "bootstrap"
     
   def index
-    find_options = {
-      :order => "name ASC",
-      :limit => 10
-    }
+    per_page = params[:per_page].to_i
+    per_page = 30 if per_page <= 0
+    per_page = 200 if per_page > 200
+    @taxon_names = TaxonName.page( params[:page] ).per_page( per_page )
 
     if params[:q]
-      # &q= allows for the searching of keywords by splitting the words into tokens
-      find_options[:conditions] = ["name LIKE ?", '%'+params[:q].split(' ').join('%')+'%']
+      @taxon_names = @taxon_names.where( "name LIKE ?", "%#{params[:q].split( " " ).join( "%" )}%" )
     elsif params[:name]
-      # &name= searches for an exact name match.
-      find_options[:conditions] = ["name LIKE ?", params[:name]] if params[:name]
+      @taxon_names = @taxon_names.where( "name LIKE ?", params[:name] )
     end
     
     if params[:taxon_id]
-      find_options[:conditions] = update_conditions(
-        find_options[:conditions], 
-        ["AND taxon_id = ?", params[:taxon_id].to_i]
-      )
+      @taxon_names = @taxon_names.where( taxon_id: params[:taxon_id] )
     end
     
-    find_options[:limit] = params[:limit] if params[:limit]
+    @taxon_names = @taxon_names.limit( params[:limit] ) if params[:limit]
     
-    @taxon_names = TaxonName.find(:all, find_options)
-    
-    if params[:q] && exact = TaxonName.find_by_name(params[:q])
-      @taxon_names.insert(0, exact) unless @taxon_names.include?(exact)
+    if params[:q] && ( exact = TaxonName.find_by_name( params[:q] ) )
+      @taxon_names = @taxon_names.to_a
+      @taxon_names.insert( 0, exact ) unless @taxon_names.include?( exact )
     end
-    
-    @status = nil
-    if params[:include_external]
-      if params[:force_external] or (@taxon_names.empty? and params[:q])
-        begin
-          @external_taxon_names = TaxonName.find_external(params[:q])
-          @taxon_names += @external_taxon_names
-        rescue Timeout::Error => e
-          if @taxon_names.empty? && !@taxon_names.map{|tn| tn.taxon}.include?(nil)
-            @status = e.message
-          end
-        end
-      end
-    end
-    
-    # TODO: generate alternate spellings & suggestions using Google, Yahoo, 
-    # etc.
-    # @suggestions = nil
-    # if @taxon_names.empty?
-    #   @suggestions = TaxonName.suggest_alternatives_to(query)
-    # end
+
+    pagination_headers_for( @taxon_names )
     
     respond_to do |format|
-      format.html do
-        if params[:autocomplete] # for use by shared/_select_taxa_search partial
-          render :layout => false,
-                 :partial => 'autocomplete_unordered_list',
-                 :locals => {:names => @taxon_names}
-          return
-        end
-        return redirect_to @taxon || @taxon_names.first.taxon
-      end
-      format.xml  { render :xml => @taxon_names.to_xml(:include => :taxon) }
-      format.json do
-        if @status
-          render(:json => { :status => @status }.to_json)
-        else
-          render(:json => @taxon_names.to_json(:include => {
-            :taxon => {:include => :iconic_taxon}}))
-        end
-      end
+      format.json { render json: @taxon_names }
     end
   end
 

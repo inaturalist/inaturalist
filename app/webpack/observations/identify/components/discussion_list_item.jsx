@@ -3,7 +3,7 @@ import moment from "moment";
 import { Button } from "react-bootstrap";
 import _ from "lodash";
 import SplitTaxon from "./split_taxon";
-import UserText from "./user_text";
+import UserText from "../../../shared/components/user_text";
 
 const DiscussionListItem = ( {
   user,

@@ -18,7 +18,7 @@ import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SplitTaxon from "./split_taxon";
 import TaxonMap from "./taxon_map";
-import UserText from "./user_text";
+import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 
 const ObservationModal = ( {

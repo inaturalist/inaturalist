@@ -5,6 +5,7 @@ const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
 const SET_LINKS = "taxa-show/taxon/SET_LINKS";
 const SET_COUNT = "taxa-show/taxon/SET_COUNT";
+const SET_NAMES = "taxa-show/taxon/SET_NAMES";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -25,6 +26,9 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_COUNT:
       newState.counts = state.counts || {};
       newState.counts[action.count] = action.value;
+      break;
+    case SET_NAMES:
+      newState.names = action.names;
       break;
     default:
       // nothing to see here
@@ -63,6 +67,13 @@ export function setCount( count, value ) {
   };
 }
 
+export function setNames( names ) {
+  return {
+    type: SET_NAMES,
+    names
+  }
+}
+
 export function fetchTaxon( taxon ) {
   return ( dispatch ) =>
     iNaturalistJS.taxa.fetch( taxon.id ).then( response => {
@@ -94,6 +105,20 @@ export function fetchLinks( ) {
     fetch( `/taxa/${taxon.id}/links.json` ).then(
       response => {
         response.json( ).then( json => dispatch( setLinks( json ) ) );
+      },
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchNames( taxon ) {
+  return ( dispatch, getState ) => {
+    const t = taxon || getState( ).taxon.taxon;
+    fetch( `/taxon_names.json?taxon_id=${t.id}` ).then(
+      response => {
+        response.json( ).then( json => dispatch( setNames( json ) ) );
       },
       error => {
         console.log( "[DEBUG] error: ", error );

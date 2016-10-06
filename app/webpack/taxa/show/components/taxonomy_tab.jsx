@@ -49,16 +49,20 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount } ) => {
           { renderTaxonomy( tree ) }
         </Col>
         <Col xs={4}>
-          <ul className="links list-group">
+          <ul className="tab-links list-group">
             <li className="list-group-item">
               <span className="badge">{ taxonChangesCount }</span>
-              <i className="fa fa-random">
-              </i> <a href={`/taxon_changes?taxon_id=${taxon.id}`}>{ I18n.t( "taxon_changes" ) }</a>
+              <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
+                <i className="fa fa-random"></i>
+                { I18n.t( "taxon_changes" ) }
+              </a>
             </li>
             <li className="list-group-item">
-              <span className="badge">{ taxonSchemesCount }</span>
-              <i className="glyphicon glyphicon-list-alt">
-              </i> <a href={`/taxa/${taxon.id}/schemes`}>{ I18n.t( "taxon_schemes" ) }</a>
+              <a href={`/taxa/${taxon.id}/schemes`}>
+                <span className="badge pull-right">{ taxonSchemesCount }</span>
+                <i className="glyphicon glyphicon-list-alt"></i>
+                { I18n.t( "taxon_schemes" ) }
+              </a>
             </li>
           </ul>
         </Col>

@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
 import TaxonPageTabs from "../components/taxon_page_tabs";
-import { fetchDescription, fetchLinks } from "../ducks/taxon";
+import { fetchDescription, fetchLinks, fetchNames } from "../ducks/taxon";
 
 function mapStateToProps( state ) {
   return {
-    taxon: state.taxon.taxon,
-    description: state.taxon.description
+    taxon: state.taxon.taxon
   };
 }
 
@@ -14,7 +13,8 @@ function mapDispatchToProps( dispatch ) {
     fetchArticlesContent: ( ) => {
       dispatch( fetchDescription( ) );
       dispatch( fetchLinks( ) );
-    }
+    },
+    fetchNames: ( ) => dispatch( fetchNames( ) )
   };
 }
 
