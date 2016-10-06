@@ -338,7 +338,7 @@ class Observation < ActiveRecord::Base
               :obscure_place_guess,
               :set_iconic_taxon
 
-  before_update :handle_id_please_on_update, :set_quality_grade
+  before_update :set_quality_grade
 
   after_save :refresh_lists,
              :refresh_check_lists,
@@ -460,7 +460,7 @@ class Observation < ActiveRecord::Base
   }
   
   scope :has_geo, -> { where("latitude IS NOT NULL AND longitude IS NOT NULL") }
-  scope :has_id_please, -> { where("id_please IS TRUE") }
+  scope :has_id_please, -> { where( "quality_grade = ?", NEEDS_ID ) }
   scope :has_photos, -> { where("observation_photos_count > 0") }
   scope :has_sounds, -> { where("observation_sounds_count > 0") }
   scope :has_quality_grade, lambda {|quality_grade|
@@ -2488,17 +2488,6 @@ class Observation < ActiveRecord::Base
 
   def casual?
     quality_grade == CASUAL
-  end
-
-  def handle_id_please_on_update
-    return true unless id_please_changed? && !@id_please_handled
-    @id_please_handled = true
-    if id_please?
-      vote_by voter: user, vote: true, vote_scope: :needs_id
-    else
-      unvote voter: user, vote: true, vote_scope: :needs_id
-    end
-    quality_grade_will_change!
   end
 
   def flagged_with(flag, options)

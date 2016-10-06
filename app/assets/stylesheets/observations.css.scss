@@ -332,7 +332,7 @@
 .observations.grid .actions ul.editview {display:none;}
 .observations.grid .observation .actions ul li:after {content:'';}
 .observations.grid .research_grade_notice, 
-.observations.grid .id_please_notice {
+.observations.grid .needs_id_notice {
   top: 0px;
   right: 0px;
 }
@@ -346,7 +346,7 @@
 .observations.grid .readable,
 .observations.grid p,
 .observations.grid .research_grade_notice, 
-.observations.grid .id_please_notice,
+.observations.grid .needs_id_notice,
 .observations.grid .actions .counts {
   font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
   font-size: 8pt;
@@ -354,7 +354,7 @@
 }
 .observations.grid .species_guess a,
 .observations.grid .research_grade_notice, 
-.observations.grid .id_please_notice,
+.observations.grid .needs_id_notice,
 .observations.grid .actions .counts {
   padding: 2px;
   z-index:1;
@@ -366,47 +366,26 @@
 }
 .observations.grid .observation:hover .species_guess a,
 .observations.grid .observation:hover .research_grade_notice, 
-.observations.grid .observation:hover .id_please_notice,
+.observations.grid .observation:hover .needs_id_notice,
 .observations.grid .observation:hover .actions .counts {
   opacity: 1;
 }
-.observations.grid .idandrg .id_please_notice {top: 1.5em;}
+.observations.grid .idandrg .needs_id_notice {top: 1.5em;}
 .observations.grid .species_guess a {
   left: 0;
   bottom: 0;
   width:100%;
   text-align:left;
 }
-/*.observations.grid .observation:hover .species_guess a {
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(rgba(0,0,0,0.2)));
-  background-image: -webkit-linear-gradient(top, transparent, rgba(0,0,0,0.2));
-  background-image:    -moz-linear-gradient(top, transparent, rgba(0,0,0,0.2));
-  background-image:     -ms-linear-gradient(top, transparent, rgba(0,0,0,0.2));
-  background-image:      -o-linear-gradient(top, transparent, rgba(0,0,0,0.2));
-}
-.observations.grid .observation:hover .actions {
-  width: 100%;
-  height: 2em;
-  z-index:1;
-  display: block;
-  position:absolute;
-  top: 0;
-  left: 0;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0.2)), to(transparent));
-  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.2), transparent);
-  background-image:    -moz-linear-gradient(top, rgba(0,0,0,0.2), transparent);
-  background-image:     -ms-linear-gradient(top, rgba(0,0,0,0.2), transparent);
-  background-image:      -o-linear-gradient(top, rgba(0,0,0,0.2), transparent);
-}*/
 .observations.grid .research_grade_notice,
-.observations.grid .id_please_notice {-webkit-border-radius:0px;-moz-border-radius:0px;border:0 transparent;border-radius:0px;padding:2px 5px; white-space: nowrap;}
+.observations.grid .needs_id_notice {-webkit-border-radius:0px;-moz-border-radius:0px;border:0 transparent;border-radius:0px;padding:2px 5px; white-space: nowrap;}
 .observations.grid .research_grade_notice,
-.observations.grid .id_please_notice,
+.observations.grid .needs_id_notice,
 .observations.grid .observation .actions .counts,
 .observations.grid .observation .actions .counts .count,
 .observations.grid .observation .actions .counts a {color:white;}
 .observations.grid .research_grade_notice .full,
-.observations.grid .id_please_notice .full { display:none; }
+.observations.grid .needs_id_notice .full { display:none; }
 .observations.grid .ui-icon-comment {
   position:relative; 
   width:12px; 
@@ -449,11 +428,11 @@
 .observations.medium.grid .photos img { width:auto; position:absolute;}
 .observations.medium.grid .species_guess a { padding: 5px;}
 .observations.medium.grid .research_grade_notice, 
-.observations.medium.grid .id_please_notice,
+.observations.medium.grid .needs_id_notice,
 .observations.medium.grid .actions .counts {width:auto;padding: 3px 5px;}
 .observations.medium.grid .icon {top: 40px;}
 .observations.medium.grid .observation:hover .research_grade_notice .full,
-.observations.medium.grid .observation:hover .id_please_notice .full { display:inline; }
+.observations.medium.grid .observation:hover .needs_id_notice .full { display:inline; }
 
 /* Infowindow */
 .observations.infowindow {
@@ -622,12 +601,6 @@
   text-align: left;
 }
 
-.observation.new #id_please_fields {
-  display:inline;
-  width: auto;
-  float: right;
-}
-
 .observation.new .details {
   margin: 0;
   padding-left: 0;
@@ -641,17 +614,6 @@
 
 .observation.new .okcancel.buttons {
   float: right;
-}
-
-.observation.new #id_please_wrapper {
-  width: auto; 
-  float: right; 
-  line-height: 100%;
-  margin: 5px 0 0 0.4em;
-}
-
-.observation.new #id_please_wrapper input {
-  margin: 0;
 }
 
 .observation.new .status {
@@ -716,25 +678,6 @@
 
 .observationform .place_guess_field { margin-bottom: 5px;}
 .observationform #other .other.latlonfields { margin-bottom: 5px; }
-
-.observationform .field .id_please {
-  position: absolute;
-  top: 0;
-  right: 0;
-  vertical-align: middle;
-}
-
-.observationform .field .id_please input {
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-}
-
-.observationform .field .id_please label {
-  display: inline;
-  font-weight: normal;
-  color: #888;
-}
 
 .observationform .latlonfields.open label{display:block;}
 
@@ -802,7 +745,7 @@
 
 .ui-tooltip.observations .observation {border: 0 transparent; margin-bottom: 0;}
 .observations .idandrg .research_grade_notice .full,
-.observations .idandrg .id_please_notice .full { display:none; }
+.observations .idandrg .needs_id_notice .full { display:none; }
 
 #obsheader {
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */

@@ -46,11 +46,6 @@
           <%- else -%>
             <%= o.hidden_field(:taxon_id) %>
           <% end -%>
-          
-          <div class="id_please_field">
-            <%= o.check_box :id_please %>
-            <%= o.label :id_please, t(:full_id_please?), :class => 'description' %>
-          </div>
         </div>
         <div class="column span-7">
           <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>

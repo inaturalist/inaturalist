@@ -835,30 +835,6 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
 
-      describe "with id_please" do
-        it "should be needs_id if user checked id_please on update" do
-          o = make_research_grade_observation
-          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-          o.update_attributes(id_please: true)
-          o.reload
-          expect( o.quality_grade ).to eq Observation::NEEDS_ID
-        end
-        
-        it "should add vote for needs_id if user checks id_please on update" do
-          o = make_research_grade_observation
-          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
-          o.update_attributes(id_please: true)
-          o.reload
-          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 1
-        end
-
-        it "should not add vote for needs_id if user checks id_please on create" do
-          o = make_research_grade_observation(id_please: true)
-          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
-        end
-      end
-
       it "should work with query" do
         o_needs_id = make_research_grade_candidate_observation
         o_needs_id.reload
@@ -1317,9 +1293,11 @@ describe Observation do
     end
   
     it "should find observations requesting identification" do 
-      obs = Observation.has_id_please
-      expect(obs).to include(@pos)
-      expect(obs).not_to include(@neg)
+      pos = make_research_grade_candidate_observation
+      expect( pos.quality_grade ).to eq Observation::NEEDS_ID
+      observations = Observation.has_id_please
+      expect( observations ).to include( pos )
+      expect( observations ).not_to include( @neg )
     end
   
     it "should find observations with photos" do

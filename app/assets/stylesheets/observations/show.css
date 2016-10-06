@@ -39,7 +39,6 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 #community_taxon_summary th.taxon {width:100%;}
 #community_taxon_summary td.score {white-space: nowrap;}
 .observations.infowindow .observation {width:auto; min-width: 200px;}
-.buttonrow.inline #added_to_id_please .inter {float: left;}
 #pageheader #tools {margin: 10px 0 5px;}
 #tools div {display: inline-block;}
 #tools a {min-height: 17px; display: inline-block; margin-right: 20px; font-size: 110%;}
@@ -97,7 +96,6 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 #identifications .identification_body{float:left;width:200px;}
 .identification_group{margin-bottom:10px;}
 #projects .box{padding:5px;}
-.id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
 #day_observations img {width: 32px; margin-bottom: 5px;}
 .quality_assessment {width:100%;}
 .photoSelectorSelected {float: right; width: 175px;}
