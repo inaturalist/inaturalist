@@ -338,6 +338,8 @@ class Observation < ActiveRecord::Base
               :obscure_place_guess,
               :set_iconic_taxon
 
+  before_update :set_quality_grade
+
   after_save :refresh_lists,
              :refresh_check_lists,
              :update_out_of_range_later,
