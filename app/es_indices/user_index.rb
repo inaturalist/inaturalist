@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
       login_autocomplete: login,
       name: name,
       name_autocomplete: name,
-      icon: icon ? icon.url(:thumb) : nil,
+      icon: icon.file? ? icon.url(:thumb) : nil,
       observations_count: observations_count,
       identifications_count: identifications_count,
       journal_posts_count: journal_posts_count,
