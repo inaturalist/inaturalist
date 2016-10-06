@@ -16,7 +16,7 @@
       - @taxon_names.each_with_index do |tn,i|
         %li
           = form_for tn, :remote => true, :html => {:class => "inline unstacked", "data-type" => "json"} do |f|
-            = f.text_field :position, :class => "sortable-position"
+            = f.text_field :position, :class => "sortable-position", :value => i
           %span{:class => "taxon_name #{tn.lexicon.split.join('_')}#{' invalid' unless tn.is_valid?}"}
             = tn.name
           %span.meta
