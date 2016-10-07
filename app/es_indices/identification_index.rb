@@ -14,23 +14,22 @@ class Identification < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    preload_for_elastic_index
-    created = created_at.in_time_zone(observation.timezone_object || "UTC")
+    created = created_at.in_time_zone((observation && observation.timezone_object) || "UTC")
     json = {
       id: id,
       uuid: uuid,
-      user: user.as_indexed_json(no_details: true),
+      user: user ? user.as_indexed_json(no_details: true) : nil,
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
       body: body,
       category: category,
       current: current
     }
-    unless options[:no_details]
+    if observation && taxon && !options[:no_details]
       json.merge!({
         own_observation: (user_id == observation.user_id),
         current_taxon: (taxon_id == observation.taxon_id),
-        taxon: taxon.as_indexed_json(no_details: true),
+        taxon: taxon.as_indexed_json(no_details: true, for_identification: true),
         observation: observation.as_indexed_json(no_details: true)
       })
     end
@@ -38,7 +37,7 @@ class Identification < ActiveRecord::Base
   end
 
   def self.prepare_batch_for_index(identifications)
-    obs = identifications.map(&:observation)
+    obs = identifications.map(&:observation).compact
     # bulk load the IDs' observations' places
     Observation.prepare_batch_for_index(obs, { places: true })
   end

@@ -139,7 +139,7 @@ class Observation < ActiveRecord::Base
             { uuid: op.uuid, photo_id: op.photo.id, position: i }
         },
         sounds: sounds.map(&:as_indexed_json),
-        non_owner_ids: others_identifications.map(&:as_indexed_json),
+        non_owner_ids: others_identifications.map{ |i| i.as_indexed_json(no_details: true) },
         identifications_count: num_identifications_by_others,
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,

@@ -54,6 +54,10 @@ class Taxon < ActiveRecord::Base
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active,
     }
+    if options[:for_identification]
+      json[:ancestors] = json[:ancestor_ids].reject{ |aid| aid == 48460 }.
+        map{ |aid| { id: aid } }
+    end
     json[:ancestry] = json[:ancestor_ids].join(",")
     json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
       json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
