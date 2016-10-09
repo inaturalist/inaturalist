@@ -402,6 +402,7 @@ class TaxaController < ApplicationController
 
     page = params[:page] ? params[:page].to_i : 1
     user_per_page = params[:per_page] ? params[:per_page].to_i : 24
+    user_per_page = 24 if user_per_page == 0
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
 
