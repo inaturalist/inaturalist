@@ -18,7 +18,6 @@ const NamesTab = ( { taxon, names } ) => (
             { names.map( n => (
               <tr key={`taxon-names-${n.id}`}>
                 <td>
-                  <i className="flag-icon flag-icon-us"></i>
                   { n.lexicon }
                 </td>
                 <td

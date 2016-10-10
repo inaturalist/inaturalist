@@ -52,6 +52,9 @@ export function fetchTopIdentifier( ) {
 export function fetchFirstObserver( ) {
   return function ( dispatch, getState ) {
     return inatjs.observations.search( defaultObservationParams( getState( ) ) ).then( response => {
+      if ( !response.results[0] ) {
+        return;
+      }
       dispatch( setLeader( "firstObserver", {
         user: response.results[0].user,
         observeration: response.results[0]

@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonPageMap from "./taxon_page_map";
+import StatusTab from "./status_tab";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import NamesTabContainer from "../containers/names_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
@@ -113,7 +114,7 @@ class TaxonPageTabs extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12}>
-                  status goes here
+                  <StatusTab statuses={this.props.taxon.conservationStatuses || []} />
                 </Col>
               </Row>
             </Grid>
