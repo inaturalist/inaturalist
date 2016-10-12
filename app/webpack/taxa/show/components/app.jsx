@@ -17,6 +17,7 @@ import NumObservationsContainer from "../containers/num_observations_container";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PlaceChooser from "./place_chooser";
 import TaxonCrumbs from "./taxon_crumbs";
+import StatusHeader from "./status_header";
 import { urlForTaxon } from "../util";
 
 const App = ( { taxon, place, setPlace } ) => (
@@ -63,6 +64,11 @@ const App = ( { taxon, place, setPlace } ) => (
       <Row id="hero">
         <Col xs={12}>
           <Grid>
+            <Row>
+              <Col xs={12}>
+                { taxon.conservationStatus ? <StatusHeader status={taxon.conservationStatus} /> : null }
+              </Col>
+            </Row>
             <Row>
               <Col xs={6}>
                 <PhotoPreviewContainer />

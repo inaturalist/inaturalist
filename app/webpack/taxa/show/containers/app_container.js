@@ -3,6 +3,7 @@ import App from "../components/app";
 import { setConfig } from "../ducks/config";
 import { fetchMonthFrequency, fetchMonthOfYearFrequency } from "../ducks/observations";
 import { fetchLeaders } from "../ducks/leaders";
+import { fetchTaxon } from "../ducks/taxon";
 
 function mapStateToProps( state ) {
   return {
@@ -15,6 +16,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     setPlace: ( place ) => {
       dispatch( setConfig( { preferredPlace: place } ) );
+      dispatch( fetchTaxon( ) );
       dispatch( fetchMonthFrequency( ) );
       dispatch( fetchMonthOfYearFrequency( ) );
       dispatch( fetchLeaders( ) );

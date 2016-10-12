@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
+import _ from "lodash";
 import TaxonPageMap from "./taxon_page_map";
 import StatusTab from "./status_tab";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
@@ -114,7 +115,10 @@ class TaxonPageTabs extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12}>
-                  <StatusTab statuses={this.props.taxon.conservationStatuses || []} />
+                  <StatusTab
+                    statuses={this.props.taxon.conservationStatuses}
+                    listedTaxa={_.filter( this.props.taxon.listed_taxa, lt => lt.establishment_means )}
+                  />
                 </Col>
               </Row>
             </Grid>

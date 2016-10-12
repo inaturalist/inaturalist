@@ -101,16 +101,17 @@ en:
   a_member_of_taxon_html: "a member of %{taxon}"
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
-  about_taxon_changes: About Taxon Changes
   about_bioblitz_results: About bioblitz results
-  about_conservation_status: About Conservation Status
   about_community_taxa: About community taxa
+  about_conservation_status: About Conservation Status
+  about_establishment_means: About Establishment Means
   about_external_links: About External Links
   about_licenses: About licenses
   about_licensing: About licensing
   about_life!: About Life!
   about_names: About Names
   about_places: About Places
+  about_taxon_changes: About Taxon Changes
   about_the_cc_licenses: About Creative Commons licenses
   about_the_taxobox_raquo: "About the taxobox &raquo;"
   about_these_licenses: About these licenses
@@ -2849,6 +2850,7 @@ en:
     your_soundcloud_account: your SoundCloud account
   source: Source
   source_: 'Source:'
+  source_list_: "Source List"
   source_list:
     ubio: uBio
     catalogue_of_life: Catalogue of Life
@@ -3461,6 +3463,8 @@ en:
   we_didnt_find_any_photos: We didn't find any photos using the search terms you provided.
   we_had_a_problem_flagging_that_item: "We had a problem flagging that item: %{flag_error}"
   we_had_trouble_saving_comment: "We had trouble saving that comment:"
+  we_have_no_conservation_status_for_this_taxon: We have no conservation status for this taxon
+  we_have_no_establishment_data_for_this_taxon: "We have no establishment data for this taxon"
   we_import_our_taxonomic_data:  "We import our taxonomic data from some external taxonomic databases, include the Catalogue of Life and uBio. A few of our taxa have also been entered manually, and any user can add new names for taxa.  If you can't find a taxon or a name, try"
   we_know_is_inconvenience_but_will_allow_grow: "We know this is an inconvenience, but our new authorization system will allow %{sitename} to grow well into the future and provide you with some added security."
   we_support_flickr: We currently support Flickr for image hosting and hope to add other image hosts shortly.
@@ -4640,7 +4644,13 @@ en:
             and scientific names wherever possible, and choosing common names
             based on the language and geographic preferences of the viewer.
           </p>
-        about_conservation_status_desc: The conservation status summarizes the risk of extinction for a group of organisms.
+        about_conservation_status_desc: |
+          The conservation status summarizes the risk of extinction for a group of organisms.
+        about_establishment_desc: |
+          "Establishment means" describes how a species arrived where it
+          currently occurs. Introduced means it arrived because of human
+          activity, while native means it arrived without human assistance.
+          Endemic species only occur in a specific place and nowhere else.
     taxon_names:
       form:
         new_name_guidelines_html: |

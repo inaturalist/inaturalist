@@ -3,12 +3,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 
-// Things I need from cons statuses
-// * place admin_level or ancestry to sort
-// * status_text
-// * iucn status and name (not just the code)
-
-const StatusTab = ( { statuses } ) => {
+const StatusTab = ( { statuses, listedTaxa } ) => {
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -16,93 +11,152 @@ const StatusTab = ( { statuses } ) => {
     }
     return sortKey;
   } );
+  const sortedListedTaxa = _.sortBy( listedTaxa, lt => {
+    let sortKey = "-";
+    if ( lt.place ) {
+      sortKey = `${lt.place.admin_level}-${lt.place.name}`;
+    }
+    return sortKey;
+  } );
+  let statusSection;
+  if ( statuses.length > 0 ) {
+    statusSection = (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>{ I18n.t( "place" ) }</th>
+            <th>{ I18n.t( "conservation_status" ) }</th>
+            <th>{ I18n.t( "source" ) }</th>
+          </tr>
+        </thead>
+        <tbody>
+          { sortedStatuses.map( status => {
+            let text = status.statusText( );
+            text = I18n.t( text, { defaultValue: text } );
+            text = _.capitalize( text );
+            if ( !text.match( /\(${status.status}\)/ ) ) {
+              text += ` (${status.status})`;
+            }
+            let flagClass;
+            switch ( status.iucnStatusCode( ) ) {
+              case "LC":
+                flagClass = "text-success";
+                break;
+              case "NT":
+              case "VU":
+                flagClass = "text-warning";
+                break;
+              case "CR":
+              case "EN":
+                flagClass = "text-danger";
+                break;
+              default:
+                // ok
+            }
+            return (
+              <tr
+                key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
+              >
+                <td>
+                  <div className="media">
+                    <div className="media-left">
+                      <a href={`/places/${status.place ? status.place.id : null}`}>
+                        <i className={`fa fa-invert fa-${status.place ? "map-marker" : "globe"}`}></i>
+                      </a>
+                    </div>
+                    <div className="media-body">
+                      <a href={`/places/${status.place ? status.place.id : null}`}>
+                        { status.place ? status.place.display_name : _.capitalize( I18n.t( "globally" ) ) }
+                      </a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <i className={`glyphicon glyphicon-flag ${flagClass}`}>
+                  </i> { text }
+                  { status.description && status.description.length > 0 ? (
+                    <UserText
+                      truncate={550}
+                      className="text-muted"
+                      text={ status.description }
+                    />
+                  ) : null }
+                </td>
+                <td>
+                  { status.url ? (
+                    <div className="media">
+                      <div className="media-body">
+                        <a href={status.url}>
+                          { status.authority }
+                        </a>
+                      </div>
+                      <div className="media-right">
+                        <a href={`/places/${status.place ? status.place.id : null}`}>
+                          <i className="glyphicon glyphicon-new-window"></i>
+                        </a>
+                      </div>
+                    </div>
+                  ) : null }
+                </td>
+              </tr>
+            );
+          } ) }
+        </tbody>
+      </table>
+    );
+  }
+  let establishmentSection;
+  if ( sortedListedTaxa.length > 0 ) {
+    establishmentSection = (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>{ I18n.t( "place" ) }</th>
+            <th>{ I18n.t( "establishment_means" ) }</th>
+            <th>{ I18n.t( "source_list_" ) }</th>
+            <th>{ I18n.t( "details" ) }</th>
+          </tr>
+        </thead>
+        <tbody>
+          { sortedListedTaxa.map( lt => (
+            <tr
+              key={`listed-taxon-${lt.id}`}
+            >
+              <td>
+                <div className="media">
+                  <div className="media-left">
+                    <a href={`/places/${lt.place ? lt.place.id : null}`}>
+                      <i className={`fa fa-invert fa-${lt.place ? "map-marker" : "globe"}`}></i>
+                    </a>
+                  </div>
+                  <div className="media-body">
+                    <a href={`/places/${lt.place ? lt.place.id : null}`}>
+                      { lt.place ? lt.place.name : _.capitalize( I18n.t( "globally" ) ) }
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td>
+                { lt.establishment_means }
+              </td>
+              <td>
+                <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
+              </td>
+              <td>
+                <a href={`/listed_taxa/${lt.id}`}>{ I18n.t( "view" ) }</a>
+              </td>
+            </tr>
+          ) ) }
+        </tbody>
+      </table>
+    );
+  }
   return (
     <Grid className="StatusTab">
-      <Row>
+      <Row className="conservation-status">
         <Col xs={8}>
           <h2>{ I18n.t( "conservation_status" ) }</h2>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>{ I18n.t( "place" ) }</th>
-                <th>{ I18n.t( "conservation_status" ) }</th>
-                <th>{ I18n.t( "source" ) }</th>
-              </tr>
-            </thead>
-            <tbody>
-              { sortedStatuses.map( status => {
-                let text = status.statusText( );
-                text = I18n.t( text, { defaultValue: text } );
-                text = _.capitalize( text );
-                if ( !text.match( /\(${status.status}\)/ ) ) {
-                  text += ` (${status.status})`;
-                }
-                let flagClass;
-                switch ( status.iucnStatusCode( ) ) {
-                  case "LC":
-                    flagClass = "text-success";
-                    break;
-                  case "NT":
-                  case "VU":
-                    flagClass = "text-warning";
-                    break;
-                  case "CR":
-                  case "EN":
-                    flagClass = "text-danger";
-                    break;
-                  default:
-                    // ok
-                }
-                return (
-                  <tr
-                    key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
-                  >
-                    <td>
-                      <div className="media">
-                        <div className="media-left">
-                          <a href={`/places/${status.place ? status.place.id : null}`}>
-                            <i className={`fa fa-invert fa-${status.place ? "map-marker" : "globe"}`}></i>
-                          </a>
-                        </div>
-                        <div className="media-body">
-                          <a href={`/places/${status.place ? status.place.id : null}`}>
-                            { status.place ? status.place.display_name : _.capitalize( I18n.t( "globally" ) ) }
-                          </a>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <i className={`glyphicon glyphicon-flag ${flagClass}`}>
-                      </i> { text }
-                      { status.description && status.description.length > 0 ? (
-                        <UserText
-                          truncate={550}
-                          className="text-muted"
-                          text={ status.description }
-                        />
-                      ) : null }
-                    </td>
-                    <td>
-                      { status.url ? (
-                        <div className="media">
-                          <div className="media-body">
-                            <a href={status.url}>
-                              { status.authority }
-                            </a>
-                          </div>
-                          <div className="media-right">
-                            <a href={`/places/${status.place ? status.place.id : null}`}>
-                              <i className="glyphicon glyphicon-new-window"></i>
-                            </a>
-                          </div>
-                        </div>
-                      ) : null }
-                    </td>
-                  </tr>
-                );
-              } ) }
-            </tbody>
-          </table>
+          { statusSection || I18n.t( "we_have_no_conservation_status_for_this_taxon" ) }
         </Col>
         <Col xs={4}>
           <h3>{ I18n.t( "about_conservation_status" ) }</h3>
@@ -148,12 +202,34 @@ const StatusTab = ( { statuses } ) => {
           </ul>
         </Col>
       </Row>
+      <Row className="establishment-means">
+        <Col xs={8}>
+          <h2>{ I18n.t( "establishment_means" ) }</h2>
+          { establishmentSection || I18n.t( "we_have_no_establishment_data_for_this_taxon" ) }
+        </Col>
+        <Col xs={4}>
+          <h3>{ I18n.t( "about_establishment_means" ) }</h3>
+          <p>
+            {
+              I18n.t( "views.taxa.show.about_establishment_desc" )
+            } <a
+              href="https://en.wikipedia.org/wiki/Conservation_status"
+            >{ I18n.t( "more" ) } <i className="glyphicon glyphicon-new-window"></i></a>
+          </p>
+        </Col>
+      </Row>
     </Grid>
   );
 };
 
 StatusTab.propTypes = {
-  statuses: PropTypes.array
+  statuses: PropTypes.array,
+  listedTaxa: PropTypes.array
+};
+
+StatusTab.defaultProps = {
+  statuses: [],
+  listedTaxa: []
 };
 
 export default StatusTab;
