@@ -7,6 +7,7 @@ import StatusTab from "./status_tab";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import NamesTabContainer from "../containers/names_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
+import InteractionsTabContainer from "../containers/interactions_tab_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -18,6 +19,9 @@ class TaxonPageTabs extends React.Component {
           break;
         case "#names-tab":
           this.props.fetchNames( );
+          break;
+        case "#interactions-tab":
+          this.props.fetchInteractions( );
           break;
         default:
           // it's cool, you probably have what you need
@@ -88,7 +92,7 @@ class TaxonPageTabs extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12}>
-                  interactions go here
+                  <InteractionsTabContainer />
                 </Col>
               </Row>
             </Grid>
@@ -132,7 +136,8 @@ class TaxonPageTabs extends React.Component {
 TaxonPageTabs.propTypes = {
   taxon: PropTypes.object,
   fetchArticlesContent: PropTypes.func,
-  fetchNames: PropTypes.func
+  fetchNames: PropTypes.func,
+  fetchInteractions: PropTypes.func
 };
 
 export default TaxonPageTabs;

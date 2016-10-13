@@ -1,11 +1,12 @@
-import fetch from "isomorphic-fetch";
 import iNaturalistJS from "inaturalistjs";
+import { fetch } from "../util";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
 const SET_LINKS = "taxa-show/taxon/SET_LINKS";
 const SET_COUNT = "taxa-show/taxon/SET_COUNT";
 const SET_NAMES = "taxa-show/taxon/SET_NAMES";
+const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -30,6 +31,8 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_NAMES:
       newState.names = action.names;
       break;
+    case SET_INTERACTIONS:
+      newState.interactions = action.interactions;
     default:
       // nothing to see here
   }
@@ -71,6 +74,13 @@ export function setNames( names ) {
   return {
     type: SET_NAMES,
     names
+  };
+}
+
+export function setInteractions( interactions ) {
+  return {
+    type: SET_INTERACTIONS,
+    interactions
   };
 }
 
@@ -125,6 +135,20 @@ export function fetchNames( taxon ) {
     fetch( `/taxon_names.json?taxon_id=${t.id}` ).then(
       response => {
         response.json( ).then( json => dispatch( setNames( json ) ) );
+      },
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchInteractions( taxon ) {
+  return ( dispatch, getState ) => {
+    const t = taxon || getState( ).taxon.taxon;
+    fetch( `http://api.globalbioticinteractions.org/interaction?sourceTaxon=${t.name}&type=json.v2` ).then(
+      response => {
+        response.json( ).then( json => dispatch( setInteractions( json ) ) );
       },
       error => {
         console.log( "[DEBUG] error: ", error );
