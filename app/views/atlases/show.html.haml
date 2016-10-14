@@ -13,7 +13,8 @@
   = t :for
   = link_to @atlas.taxon.name, @atlas.taxon
 
-= link_to "alter", {:controller => 'atlases', :action => 'alter_atlas_presence', :taxon_id => 18, :place_id => 10 }, :method => :post, :remote => true, :id => "alter"
+%p
+  = link_to "alter", {:controller => 'atlases', :action => 'alter_atlas_presence', :taxon_id => 18, :place_id => 10 }, :method => :post, :remote => true, :id => "alter"
 
 %h3
   = "alterations"
@@ -26,3 +27,5 @@
     = atlas_alteration.action
     = t :on
     = atlas_alteration.created_at
+
+= link_to t(:edit), edit_atlas_path(@atlas)
