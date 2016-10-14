@@ -29459,17 +29459,9 @@
 	            )
 	          )
 	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Row,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { xs: 12 },
-	          _react2.default.createElement(_taxon_page_tabs_container2.default, null)
-	        )
 	      )
-	    )
+	    ),
+	    _react2.default.createElement(_taxon_page_tabs_container2.default, null)
 	  );
 	};
 
@@ -98943,92 +98935,32 @@
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane", id: "highlights-tab" },
-	            _react2.default.createElement(
-	              _reactBootstrap.Grid,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12 },
-	                  "highlights go here"
-	                )
-	              )
-	            )
+	            "highlights go here"
 	          ),
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane", id: "interactions-tab" },
-	            _react2.default.createElement(
-	              _reactBootstrap.Grid,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12 },
-	                  _react2.default.createElement(_interactions_tab_container2.default, null)
-	                )
-	              )
-	            )
+	            _react2.default.createElement(_interactions_tab_container2.default, null)
 	          ),
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane", id: "taxonomy-tab" },
-	            _react2.default.createElement(
-	              _reactBootstrap.Grid,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12 },
-	                  _react2.default.createElement(_taxonomy_tab_container2.default, null)
-	                )
-	              )
-	            )
+	            _react2.default.createElement(_taxonomy_tab_container2.default, null)
 	          ),
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane", id: "names-tab" },
-	            _react2.default.createElement(
-	              _reactBootstrap.Grid,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12 },
-	                  _react2.default.createElement(_names_tab_container2.default, null)
-	                )
-	              )
-	            )
+	            _react2.default.createElement(_names_tab_container2.default, null)
 	          ),
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane", id: "status-tab" },
-	            _react2.default.createElement(
-	              _reactBootstrap.Grid,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Col,
-	                  { xs: 12 },
-	                  _react2.default.createElement(_status_tab2.default, {
-	                    statuses: this.props.taxon.conservationStatuses,
-	                    listedTaxa: _lodash2.default.filter(this.props.taxon.listed_taxa, function (lt) {
-	                      return lt.establishment_means;
-	                    })
-	                  })
-	                )
-	              )
-	            )
+	            _react2.default.createElement(_status_tab2.default, {
+	              statuses: this.props.taxon.conservationStatuses,
+	              listedTaxa: _lodash2.default.filter(this.props.taxon.listed_taxa, function (lt) {
+	                return lt.establishment_means;
+	              })
+	            })
 	          )
 	        )
 	      );
@@ -99082,7 +99014,6 @@
 	      };
 	    }
 	    taxonMap = _react2.default.createElement(_taxon_map2.default, {
-	      className: "row",
 	      scrollwheel: false,
 	      showAllLayer: false,
 	      minZoom: 2,

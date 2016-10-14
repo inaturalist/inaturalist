@@ -80,52 +80,22 @@ class TaxonPageTabs extends React.Component {
             <ArticlesTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="highlights-tab">
-            <Grid>
-              <Row>
-                <Col xs={12}>
-                  highlights go here
-                </Col>
-              </Row>
-            </Grid>
+            highlights go here
           </div>
           <div role="tabpanel" className="tab-pane" id="interactions-tab">
-            <Grid>
-              <Row>
-                <Col xs={12}>
-                  <InteractionsTabContainer />
-                </Col>
-              </Row>
-            </Grid>
+            <InteractionsTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="taxonomy-tab">
-            <Grid>
-              <Row>
-                <Col xs={12}>
-                  <TaxonomyTabContainer />
-                </Col>
-              </Row>
-            </Grid>
+            <TaxonomyTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="names-tab">
-            <Grid>
-              <Row>
-                <Col xs={12}>
-                  <NamesTabContainer />
-                </Col>
-              </Row>
-            </Grid>
+            <NamesTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="status-tab">
-            <Grid>
-              <Row>
-                <Col xs={12}>
-                  <StatusTab
-                    statuses={this.props.taxon.conservationStatuses}
-                    listedTaxa={_.filter( this.props.taxon.listed_taxa, lt => lt.establishment_means )}
-                  />
-                </Col>
-              </Row>
-            </Grid>
+            <StatusTab
+              statuses={this.props.taxon.conservationStatuses}
+              listedTaxa={_.filter( this.props.taxon.listed_taxa, lt => lt.establishment_means )}
+            />
           </div>
         </div>
       </div>

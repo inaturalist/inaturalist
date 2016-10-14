@@ -107,12 +107,8 @@ const App = ( { taxon, place, setPlace } ) => (
           </Grid>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12}>
-          <TaxonPageTabsContainer />
-        </Col>
-      </Row>
     </Grid>
+    <TaxonPageTabsContainer />
   </div>
 );
 

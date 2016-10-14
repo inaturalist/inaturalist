@@ -33,7 +33,7 @@
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
   margin-top: 10px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 #charts {
@@ -389,4 +389,39 @@ $endangeredColor: #D12F19;
   background-color: transparentize( $endangeredColor, 0.90 );
   border-color: transparentize( $endangeredColor, 0.80 );
   color: $endangeredColor;
+}
+
+.TaxonPageTabs .tab-content {
+  border-top: 1px solid #ccc;
+}
+
+.TaxonPageTabs .nav.nav-tabs {
+  border: 0 transparent;
+  margin-bottom: 0px;
+}
+
+.TaxonPageTabs .nav-tabs > li > a {
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px 30px 16px;
+}
+.TaxonPageTabs .nav-tabs > li > a {
+  border: 0 transparent;
+  border-bottom: 2px solid transparent;
+}
+.TaxonPageTabs .nav-tabs > li.active > a,
+.TaxonPageTabs .nav-tabs > li > a:hover,
+.TaxonPageTabs .nav-tabs > li > a:focus,
+.TaxonPageTabs .nav-tabs > li.active > a:hover,
+.TaxonPageTabs .nav-tabs > li.active > a:focus {
+  border: 0 transparent;
+  border-bottom: 2px solid $inat-green;
+  background-color: inherit;
+  color: black;
+  font-weight: 800;
+}
+
+.HighlightsTab, .InteractionsTab, .TaxonomyTab, .NamesTab {
+  padding-top: 20px;
 }

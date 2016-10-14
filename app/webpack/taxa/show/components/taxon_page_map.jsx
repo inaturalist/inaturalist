@@ -15,7 +15,6 @@ const TaxonPageMap = ( { taxon } ) => {
     }
     taxonMap = (
       <TaxonMap
-        className="row"
         scrollwheel={false}
         showAllLayer={false}
         minZoom={2}
