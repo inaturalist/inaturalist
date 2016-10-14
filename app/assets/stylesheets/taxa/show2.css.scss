@@ -206,6 +206,7 @@
 }
 .LeaderItem h4 {
   margin: 3px 0;
+  text-transform: none;
 }
 .LeaderItem .name,
 .LeaderItem .extra a {
@@ -424,4 +425,8 @@ $endangeredColor: #D12F19;
 
 .HighlightsTab, .InteractionsTab, .TaxonomyTab, .NamesTab {
   padding-top: 20px;
+}
+
+.ArticlesTab .taxon_description_header {
+  display: none;
 }

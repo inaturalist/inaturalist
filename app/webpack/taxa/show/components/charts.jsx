@@ -16,6 +16,7 @@ class Charts extends React.Component {
       },
       axis: {
         y: {
+          min: 0,
           show: true,
           padding: {
             bottom: 0

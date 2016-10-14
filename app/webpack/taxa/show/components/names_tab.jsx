@@ -6,6 +6,9 @@ const NamesTab = ( { taxon, names } ) => (
   <Grid className="NamesTab">
     <Row>
       <Col xs={8}>
+        <h2 className={ `text-center ${names.length > 0 ? "hidden" : ""}`}>
+          <i className="fa fa-refresh fa-spin"></i>
+        </h2>
         <table className="table table-striped">
           <thead>
             <tr>

@@ -24,11 +24,15 @@ class InteractionsTab extends React.Component {
       <Grid className="InteractionsTab">
         <Row>
           <Col xs={8}>
+            <h2 className={ `text-center ${this.props.interactions.length > 0 ? "hidden" : ""}`}>
+              <i className="fa fa-refresh fa-spin"></i>
+            </h2>
             <ul>
               { _.map( interactionsByType, ( typedInteractions, type ) => (
                 <li key={`interactions-${type}`}>
                   <strong>
-                    { _.startCase( type ) }: { I18n.t( "x_species", { count: typedInteractions.length } ) }
+                    { _.startCase( type ) }:
+                    { I18n.t( "x_species", { count: typedInteractions.length } ) }
                   </strong>
                   <ul>
                     { typedInteractions.map( interaction => {
@@ -47,11 +51,15 @@ class InteractionsTab extends React.Component {
                       return (
                         <li key={interaction.target_taxon_external_id}>
                           <a
-                            href={`/taxa/${interaction.target.name}?test=taxon-page#interactions-tab`}
+                            href={
+                              `/taxa/${interaction.target.name}?test=taxon-page#interactions-tab`
+                            }
                             className={`taxon ${iconicTaxonName} ${rank}`}
                           >
                             <i className={`icon-iconic-${iconicTaxonName.toLowerCase( )}`}>
-                            </i> <span className="display-name sciname">{ interaction.target.name }</span>
+                            </i> <span
+                              className="display-name sciname"
+                            >{ interaction.target.name }</span>
                           </a>
                         </li>
                       );
@@ -116,6 +124,10 @@ class InteractionsTab extends React.Component {
 
 InteractionsTab.propTypes = {
   interactions: PropTypes.array
+};
+
+InteractionsTab.defaultProps = {
+  interactions: []
 };
 
 export default InteractionsTab;

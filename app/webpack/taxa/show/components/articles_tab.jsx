@@ -1,16 +1,29 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 
-const ArticlesTab = ( { taxonId, description, descriptionSource, descriptionSourceUrl, links } ) => (
-  <Grid>
+const ArticlesTab = ( {
+  taxonId,
+  description,
+  descriptionSource,
+  descriptionSourceUrl,
+  links
+} ) => (
+  <Grid className="ArticlesTab">
     <Row>
       <Col xs={8}>
-        <h2>
-          { I18n.t( "source_" ) } { descriptionSource } <a href={descriptionSourceUrl}>
-            <i className="fa fa-external-link"></i>
-          </a>
+        <h2
+          className={`text-center ${description ? "hidden" : ""}`}
+        >
+          <i className="fa fa-refresh fa-spin"></i>
         </h2>
-        <div dangerouslySetInnerHTML={{ __html: description }}></div>
+        <div className={description ? "" : "hidden"}>
+          <h2>
+            { I18n.t( "source_" ) } { descriptionSource } <a href={descriptionSourceUrl}>
+              <i className="fa fa-external-link"></i>
+            </a>
+          </h2>
+          <div dangerouslySetInnerHTML={{ __html: description }}></div>
+        </div>
       </Col>
       <Col xs={3} xsOffset={1}>
         <h2>{ I18n.t( "more_info" ) }</h2>
