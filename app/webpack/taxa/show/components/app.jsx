@@ -1,14 +1,8 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import {
-  Tab,
-  Tabs
-} from "react-bootstrap";
 import SplitTaxon from "../../../observations/identify/components/split_taxon";
 import TaxonAutocomplete from "../../../observations/identify/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
-import SeasonalityChartContainer from "../containers/seasonality_chart_container";
-import HistoryChartContainer from "../containers/history_chart_container";
 import ChartsContainer from "../containers/charts_container";
 import TopObserverContainer from "../containers/top_observer_container";
 import TopIdentifierContainer from "../containers/top_identifier_container";
