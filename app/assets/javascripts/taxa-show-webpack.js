@@ -66,19 +66,19 @@
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(900);
+	var _config = __webpack_require__(903);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(895);
+	var _taxon = __webpack_require__(898);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _observations = __webpack_require__(901);
+	var _observations = __webpack_require__(850);
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(902);
+	var _leaders = __webpack_require__(904);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
@@ -29201,13 +29201,13 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(900);
+	var _config = __webpack_require__(903);
 
-	var _observations = __webpack_require__(901);
+	var _observations = __webpack_require__(850);
 
-	var _leaders = __webpack_require__(902);
+	var _leaders = __webpack_require__(904);
 
-	var _taxon = __webpack_require__(895);
+	var _taxon = __webpack_require__(898);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29270,43 +29270,47 @@
 
 	var _history_chart_container2 = _interopRequireDefault(_history_chart_container);
 
-	var _top_observer_container = __webpack_require__(848);
+	var _charts_container = __webpack_require__(848);
+
+	var _charts_container2 = _interopRequireDefault(_charts_container);
+
+	var _top_observer_container = __webpack_require__(851);
 
 	var _top_observer_container2 = _interopRequireDefault(_top_observer_container);
 
-	var _top_identifier_container = __webpack_require__(850);
+	var _top_identifier_container = __webpack_require__(853);
 
 	var _top_identifier_container2 = _interopRequireDefault(_top_identifier_container);
 
-	var _top_species_container = __webpack_require__(851);
+	var _top_species_container = __webpack_require__(854);
 
 	var _top_species_container2 = _interopRequireDefault(_top_species_container);
 
-	var _first_observer_container = __webpack_require__(852);
+	var _first_observer_container = __webpack_require__(855);
 
 	var _first_observer_container2 = _interopRequireDefault(_first_observer_container);
 
-	var _num_observations_container = __webpack_require__(853);
+	var _num_observations_container = __webpack_require__(856);
 
 	var _num_observations_container2 = _interopRequireDefault(_num_observations_container);
 
-	var _taxon_page_tabs_container = __webpack_require__(854);
+	var _taxon_page_tabs_container = __webpack_require__(857);
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _place_chooser = __webpack_require__(896);
+	var _place_chooser = __webpack_require__(899);
 
 	var _place_chooser2 = _interopRequireDefault(_place_chooser);
 
-	var _taxon_crumbs = __webpack_require__(898);
+	var _taxon_crumbs = __webpack_require__(901);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(899);
+	var _status_header = __webpack_require__(902);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
-	var _util = __webpack_require__(886);
+	var _util = __webpack_require__(889);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29439,20 +29443,7 @@
 	                  _react2.default.createElement(
 	                    _reactBootstrap.Col,
 	                    { xs: 12 },
-	                    _react2.default.createElement(
-	                      _reactBootstrap.Tabs,
-	                      { id: "charts", defaultActiveKey: 101 },
-	                      _react2.default.createElement(
-	                        _reactBootstrap.Tab,
-	                        { eventKey: 101, title: "Seasonality" },
-	                        _react2.default.createElement(_seasonality_chart_container2.default, null)
-	                      ),
-	                      _react2.default.createElement(
-	                        _reactBootstrap.Tab,
-	                        { eventKey: 102, title: "History", unmountOnExit: true },
-	                        _react2.default.createElement(_history_chart_container2.default, null)
-	                      )
-	                    )
+	                    _react2.default.createElement(_charts_container2.default, null)
 	                  )
 	                )
 	              )
@@ -98392,7 +98383,562 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _leader_item = __webpack_require__(849);
+	var _charts = __webpack_require__(849);
+
+	var _charts2 = _interopRequireDefault(_charts);
+
+	var _observations = __webpack_require__(850);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function mapStateToProps(state) {
+	  return {
+	    monthOfYearFrequency: state.observations.monthOfYearFrequency,
+	    monthFrequency: state.observations.monthFrequency
+	  };
+	}
+
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    fetchMonthOfYearFrequency: function fetchMonthOfYearFrequency() {
+	      return dispatch((0, _observations.fetchMonthOfYearFrequency)());
+	    },
+	    fetchMonthFrequency: function fetchMonthFrequency() {
+	      return dispatch((0, _observations.fetchMonthFrequency)());
+	    }
+	  };
+	}
+
+	var ChartsContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps, null, { pure: false })(_charts2.default);
+
+	exports.default = ChartsContainer;
+
+/***/ },
+/* 849 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(300);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(456);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _lodash = __webpack_require__(734);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _c = __webpack_require__(743);
+
+	var _c2 = _interopRequireDefault(_c);
+
+	var _moment = __webpack_require__(746);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Charts = function (_React$Component) {
+	  _inherits(Charts, _React$Component);
+
+	  function Charts() {
+	    _classCallCheck(this, Charts);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Charts).call(this));
+
+	    _this.defaultC3Config = {
+	      data: {
+	        colors: {
+	          verifiable: "#aaaaaa",
+	          research: "#74ac00"
+	        }
+	      },
+	      axis: {
+	        y: {
+	          show: true,
+	          padding: {
+	            bottom: 0
+	          }
+	        }
+	      },
+	      legend: {
+	        show: false
+	      },
+	      point: {
+	        show: false
+	      }
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Charts, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      var domNode = _reactDom2.default.findDOMNode(this);
+	      this.renderSeasonalityChart();
+	      $("a[data-toggle=tab]", domNode).on("shown.bs.tab", function (e) {
+	        switch (e.target.hash) {
+	          case "#charts-seasonality":
+	            if (!_this2.props.monthOfYearFrequency || !_this2.props.monthOfYearFrequency.verifiable) {
+	              _this2.props.fetchMonthOfYearFrequency();
+	            }
+	            if (_this2.seasonalityChart) {
+	              _this2.seasonalityChart.flush();
+	            }
+	            break;
+	          case "#charts-history":
+	            if (!_this2.props.monthFrequency || !_this2.props.monthFrequency.verifiable) {
+	              _this2.props.fetchMonthFrequency();
+	            }
+	            // this.renderHistoryChart( );
+	            if (_this2.historyChart) {
+	              _this2.historyChart.flush();
+	            }
+	            break;
+	          default:
+	          // it's cool, you probably have what you need
+	        }
+	      });
+	    }
+	  }, {
+	    key: "shouldComponentUpdate",
+	    value: function shouldComponentUpdate(nextProps) {
+	      // You would think the following would work, but it doesn't. For some
+	      // reason there's never a point where nextProps and this.props are
+	      // different.
+	      // if (
+	      //   _.isEqual( nextProps.monthOfYearFrequency.verifiable, this.props.monthOfYearFrequency.verifiable )
+	      //   &&
+	      //   _.isEqual( nextProps.monthFrequency.verifiable, this.props.monthFrequency.verifiable )
+	      // ) {
+	      //   return false;
+	      // }
+	      return true;
+	    }
+	  }, {
+	    key: "componentDidUpdate",
+	    value: function componentDidUpdate() {
+	      if (this.props.monthOfYearFrequency.verifiable) {
+	        this.renderSeasonalityChart();
+	      }
+	      if (this.props.monthFrequency.verifiable) {
+	        this.renderHistoryChart();
+	      }
+	    }
+	  }, {
+	    key: "renderSeasonalityChart",
+	    value: function renderSeasonalityChart() {
+	      var verifiableFrequency = this.props.monthOfYearFrequency.verifiable || {};
+	      var researchFrequency = this.props.monthOfYearFrequency.research || {};
+	      var keys = _lodash2.default.keys(verifiableFrequency).map(function (k) {
+	        return parseInt(k, 0);
+	      }).sort(function (a, b) {
+	        return a - b;
+	      });
+	      var config = _lodash2.default.defaultsDeep({}, this.defaultC3Config, {
+	        data: {
+	          columns: [["verifiable"].concat(_toConsumableArray(keys.map(function (i) {
+	            return verifiableFrequency[i.toString()] || 0;
+	          }))), ["research"].concat(_toConsumableArray(keys.map(function (i) {
+	            return researchFrequency[i.toString()] || 0;
+	          })))]
+	        },
+	        axis: {
+	          x: {
+	            type: "category",
+	            categories: keys.map(function (i) {
+	              return I18n.t("date.abbr_month_names")[i].toUpperCase();
+	            })
+	          }
+	        },
+	        tooltip: {
+	          format: {
+	            title: function title(i) {
+	              return I18n.t("date.month_names")[i + 1].toUpperCase() + " " + I18n.t("observations").toUpperCase();
+	            },
+	            name: function name(_name) {
+	              return I18n.t(_name);
+	            }
+	          }
+	        }
+	      });
+	      var mountNode = $(".SeasonalityChart", _reactDom2.default.findDOMNode(this)).get(0);
+	      this.seasonalityChart = _c2.default.generate(Object.assign({ bindto: mountNode }, config));
+	    }
+	  }, {
+	    key: "renderHistoryChart",
+	    value: function renderHistoryChart() {
+	      var verifiableFrequency = this.props.monthFrequency.verifiable || {};
+	      var researchFrequency = this.props.monthFrequency.research || {};
+	      var dates = _lodash2.default.keys(verifiableFrequency).sort();
+	      var years = _lodash2.default.uniq(dates.map(function (d) {
+	        return new Date(d).getFullYear();
+	      })).sort();
+	      var chunks = _lodash2.default.chunk(years, 2);
+	      var regions = chunks.map(function (pair) {
+	        return {
+	          start: pair[0] + "-01-01",
+	          end: pair[0] + 1 + "-01-01"
+	        };
+	      });
+	      var config = _lodash2.default.defaultsDeep({}, this.defaultC3Config, {
+	        data: {
+	          x: "x",
+	          columns: [["x"].concat(_toConsumableArray(dates)), ["verifiable"].concat(_toConsumableArray(dates.map(function (d) {
+	            return verifiableFrequency[d] || 0;
+	          }))), ["research"].concat(_toConsumableArray(dates.map(function (d) {
+	            return researchFrequency[d] || 0;
+	          })))]
+	        },
+	        axis: {
+	          x: {
+	            type: "timeseries",
+	            tick: {
+	              culling: true,
+	              values: years.map(function (y) {
+	                return y + "-06-15";
+	              }),
+	              format: "%Y"
+	            },
+	            extent: [(0, _moment2.default)().subtract(10, "years").toDate(), new Date()]
+	          }
+	        },
+	        zoom: {
+	          enabled: true,
+	          rescale: true
+	        },
+	        tooltip: {
+	          format: {
+	            title: function title(d) {
+	              return I18n.t("date.abbr_month_names")[d.getMonth() + 1].toUpperCase() + " " + d.getFullYear() + " " + I18n.t("observations").toUpperCase();
+	            },
+	            name: function name(_name2) {
+	              return I18n.t(_name2);
+	            }
+	          }
+	        },
+	        regions: regions
+	      });
+	      var mountNode = $(".HistoryChart", _reactDom2.default.findDOMNode(this)).get(0);
+	      this.historyChart = _c2.default.generate(Object.assign({ bindto: mountNode }, config));
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { id: "charts", className: "Charts" },
+	        _react2.default.createElement(
+	          "ul",
+	          { className: "nav nav-tabs", role: "tablist" },
+	          _react2.default.createElement(
+	            "li",
+	            { role: "presentation", className: "active" },
+	            _react2.default.createElement(
+	              "a",
+	              {
+	                href: "#charts-seasonality",
+	                "aria-controls": "charts-seasonality",
+	                role: "tab",
+	                "data-toggle": "tab"
+	              },
+	              I18n.t("seasonality")
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "li",
+	            { role: "presentation" },
+	            _react2.default.createElement(
+	              "a",
+	              {
+	                href: "#charts-history",
+	                "aria-controls": "charts-history",
+	                role: "tab",
+	                "data-toggle": "tab"
+	              },
+	              I18n.t("history")
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "tab-content" },
+	          _react2.default.createElement(
+	            "div",
+	            { role: "tabpanel", className: "tab-pane active", id: "charts-seasonality" },
+	            _react2.default.createElement("div", { className: "SeasonalityChart FrequencyChart" })
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { role: "tabpanel", className: "tab-pane", id: "charts-history" },
+	            _react2.default.createElement("div", { className: "HistoryChart FrequencyChart" })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Charts;
+	}(_react2.default.Component);
+
+	Charts.propTypes = {
+	  monthOfYearFrequency: _react.PropTypes.object,
+	  monthFrequency: _react.PropTypes.object,
+	  fetchMonthOfYearFrequency: _react.PropTypes.func,
+	  fetchMonthFrequency: _react.PropTypes.func
+	};
+
+	exports.default = Charts;
+
+/***/ },
+/* 850 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = reducer;
+	exports.setMonthFrequecy = setMonthFrequecy;
+	exports.setMonthOfYearFrequecy = setMonthOfYearFrequecy;
+	exports.fetchMonthFrequencyVerifiable = fetchMonthFrequencyVerifiable;
+	exports.fetchMonthFrequencyResearchGrade = fetchMonthFrequencyResearchGrade;
+	exports.fetchMonthFrequency = fetchMonthFrequency;
+	exports.fetchMonthOfYearFrequencyVerifiable = fetchMonthOfYearFrequencyVerifiable;
+	exports.fetchMonthOfYearFrequencyResearchGrade = fetchMonthOfYearFrequencyResearchGrade;
+	exports.fetchMonthOfYearFrequency = fetchMonthOfYearFrequency;
+	exports.setRecentObservations = setRecentObservations;
+	exports.setObservationsCount = setObservationsCount;
+	exports.fetchRecentObservations = fetchRecentObservations;
+	exports.setFirstObservation = setFirstObservation;
+	exports.fetchFirstObservation = fetchFirstObservation;
+
+	var _inaturalistjs = __webpack_require__(737);
+
+	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
+	var SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FREQUENCY";
+	var SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS";
+	var SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
+	var SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
+
+	function reducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? { monthOfYearFrequency: {}, monthFrequency: {} } : arguments[0];
+	  var action = arguments[1];
+
+	  var newState = Object.assign({}, state);
+	  switch (action.type) {
+	    case SET_MONTH_FREQUENCY:
+	      newState.monthFrequency = Object.assign(newState.monthFrequency, _defineProperty({}, action.key, action.frequency));
+	      break;
+	    case SET_MONTH_OF_YEAR_FREQUENCY:
+	      newState.monthOfYearFrequency = Object.assign(newState.monthOfYearFrequency, _defineProperty({}, action.key, action.frequency));
+	      break;
+	    case SET_RECENT_OBSERVATIONS:
+	      newState.recent = action.observations;
+	      break;
+	    case SET_OBSERVATIONS_COUNT:
+	      newState.total = action.count;
+	      break;
+	    case SET_FIRST_OBSERVATION:
+	      newState.first = action.observation;
+	      break;
+	    default:
+	    // leave it alone
+	  }
+	  return newState;
+	}
+
+	function setMonthFrequecy(key, frequency) {
+	  return {
+	    type: SET_MONTH_FREQUENCY,
+	    key: key,
+	    frequency: frequency
+	  };
+	}
+
+	function setMonthOfYearFrequecy(key, frequency) {
+	  return {
+	    type: SET_MONTH_OF_YEAR_FREQUENCY,
+	    key: key,
+	    frequency: frequency
+	  };
+	}
+
+	function fetchMonthFrequencyVerifiable(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var params = {
+	      date_field: "observed",
+	      interval: "month",
+	      taxon_id: t.id,
+	      verifiable: true,
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+	    };
+	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
+	      dispatch(setMonthFrequecy("verifiable", response.results.month));
+	    });
+	  };
+	}
+
+	function fetchMonthFrequencyResearchGrade(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var params = {
+	      date_field: "observed",
+	      interval: "month",
+	      taxon_id: t.id,
+	      quality_grade: "research",
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+	    };
+	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
+	      dispatch(setMonthFrequecy("research", response.results.month));
+	    });
+	  };
+	}
+
+	function fetchMonthFrequency(taxon) {
+	  return function (dispatch) {
+	    dispatch(fetchMonthFrequencyVerifiable(taxon));
+	    dispatch(fetchMonthFrequencyResearchGrade(taxon));
+	  };
+	}
+
+	function fetchMonthOfYearFrequencyVerifiable(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var params = {
+	      date_field: "observed",
+	      interval: "month_of_year",
+	      taxon_id: t.id,
+	      verifiable: true,
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+	    };
+	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
+	      dispatch(setMonthOfYearFrequecy("verifiable", response.results.month_of_year));
+	    });
+	  };
+	}
+
+	function fetchMonthOfYearFrequencyResearchGrade(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var params = {
+	      date_field: "observed",
+	      interval: "month_of_year",
+	      taxon_id: t.id,
+	      quality_grade: "research",
+	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+	    };
+	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
+	      dispatch(setMonthOfYearFrequecy("research", response.results.month_of_year));
+	    });
+	  };
+	}
+
+	function fetchMonthOfYearFrequency(taxon) {
+	  return function (dispatch) {
+	    dispatch(fetchMonthOfYearFrequencyVerifiable(taxon));
+	    dispatch(fetchMonthOfYearFrequencyResearchGrade(taxon));
+	  };
+	}
+
+	function setRecentObservations(observations) {
+	  return {
+	    type: SET_RECENT_OBSERVATIONS,
+	    observations: observations
+	  };
+	}
+
+	function setObservationsCount(count) {
+	  return {
+	    type: SET_OBSERVATIONS_COUNT,
+	    count: count
+	  };
+	}
+
+	function fetchRecentObservations(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var p = s.config.preferredPlace;
+	    var params = {
+	      taxon_id: t.id,
+	      place_id: p ? p.id : null
+	    };
+	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
+	      dispatch(setRecentObservations(response.results));
+	      dispatch(setObservationsCount(response.total_results));
+	    });
+	  };
+	}
+
+	function setFirstObservation(observation) {
+	  return {
+	    type: SET_FIRST_OBSERVATION,
+	    observation: observation
+	  };
+	}
+
+	function fetchFirstObservation(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var p = s.config.preferredPlace;
+	    var params = {
+	      taxon_id: t.id,
+	      place_id: p ? p.id : null,
+	      order: "asc",
+	      per_page: 1
+	    };
+	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
+	      dispatch(setFirstObservation(response.results[0]));
+	    });
+	  };
+	}
+
+/***/ },
+/* 851 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(457);
+
+	var _leader_item = __webpack_require__(852);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -98424,7 +98970,7 @@
 	exports.default = TopObserverContainer;
 
 /***/ },
-/* 849 */
+/* 852 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98520,7 +99066,7 @@
 	exports.default = LeaderItem;
 
 /***/ },
-/* 850 */
+/* 853 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98531,7 +99077,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _leader_item = __webpack_require__(849);
+	var _leader_item = __webpack_require__(852);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -98563,7 +99109,7 @@
 	exports.default = TopIdentifierContainer;
 
 /***/ },
-/* 851 */
+/* 854 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98574,7 +99120,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _leader_item = __webpack_require__(849);
+	var _leader_item = __webpack_require__(852);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -98611,7 +99157,7 @@
 	exports.default = TopSpeciesContainer;
 
 /***/ },
-/* 852 */
+/* 855 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98622,7 +99168,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _leader_item = __webpack_require__(849);
+	var _leader_item = __webpack_require__(852);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -98653,7 +99199,7 @@
 	exports.default = FirstObserverContainer;
 
 /***/ },
-/* 853 */
+/* 856 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98664,7 +99210,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _leader_item = __webpack_require__(849);
+	var _leader_item = __webpack_require__(852);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -98693,7 +99239,7 @@
 	exports.default = NumObservationsContainer;
 
 /***/ },
-/* 854 */
+/* 857 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98704,11 +99250,11 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _taxon_page_tabs = __webpack_require__(855);
+	var _taxon_page_tabs = __webpack_require__(858);
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
-	var _taxon = __webpack_require__(895);
+	var _taxon = __webpack_require__(898);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -98738,7 +99284,7 @@
 	exports.default = TaxonPageTabsContainer;
 
 /***/ },
-/* 855 */
+/* 858 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98763,27 +99309,27 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _taxon_page_map = __webpack_require__(856);
+	var _taxon_page_map = __webpack_require__(859);
 
 	var _taxon_page_map2 = _interopRequireDefault(_taxon_page_map);
 
-	var _status_tab = __webpack_require__(858);
+	var _status_tab = __webpack_require__(861);
 
 	var _status_tab2 = _interopRequireDefault(_status_tab);
 
-	var _taxonomy_tab_container = __webpack_require__(884);
+	var _taxonomy_tab_container = __webpack_require__(887);
 
 	var _taxonomy_tab_container2 = _interopRequireDefault(_taxonomy_tab_container);
 
-	var _names_tab_container = __webpack_require__(889);
+	var _names_tab_container = __webpack_require__(892);
 
 	var _names_tab_container2 = _interopRequireDefault(_names_tab_container);
 
-	var _articles_tab_container = __webpack_require__(891);
+	var _articles_tab_container = __webpack_require__(894);
 
 	var _articles_tab_container2 = _interopRequireDefault(_articles_tab_container);
 
-	var _interactions_tab_container = __webpack_require__(893);
+	var _interactions_tab_container = __webpack_require__(896);
 
 	var _interactions_tab_container2 = _interopRequireDefault(_interactions_tab_container);
 
@@ -98980,7 +99526,7 @@
 	exports.default = TaxonPageTabs;
 
 /***/ },
-/* 856 */
+/* 859 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98993,7 +99539,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _taxon_map = __webpack_require__(857);
+	var _taxon_map = __webpack_require__(860);
 
 	var _taxon_map2 = _interopRequireDefault(_taxon_map);
 
@@ -99050,7 +99596,7 @@
 	exports.default = TaxonPageMap;
 
 /***/ },
-/* 857 */
+/* 860 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -99186,7 +99732,7 @@
 	exports.default = TaxonMap;
 
 /***/ },
-/* 858 */
+/* 861 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -99205,7 +99751,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _user_text = __webpack_require__(859);
+	var _user_text = __webpack_require__(862);
 
 	var _user_text2 = _interopRequireDefault(_user_text);
 
@@ -99586,7 +100132,7 @@
 	exports.default = StatusTab;
 
 /***/ },
-/* 859 */
+/* 862 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -99601,11 +100147,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _safeHtml = __webpack_require__(860);
+	var _safeHtml = __webpack_require__(863);
 
 	var _safeHtml2 = _interopRequireDefault(_safeHtml);
 
-	var _htmlTruncate = __webpack_require__(883);
+	var _htmlTruncate = __webpack_require__(886);
 
 	var _htmlTruncate2 = _interopRequireDefault(_htmlTruncate);
 
@@ -99743,11 +100289,11 @@
 	exports.default = UserText;
 
 /***/ },
-/* 860 */
+/* 863 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var parse5 = __webpack_require__(861);
-	var _ = __webpack_require__(882);
+	var parse5 = __webpack_require__(864);
+	var _ = __webpack_require__(885);
 
 	function escapeHtml(s) {
 	  return s.replace(/\&/g, '&amp;').replace(/</g, '&lt;').replace(/\>/g, '&gt;').replace(/\"/g, '&quot;');
@@ -99833,39 +100379,39 @@
 
 
 /***/ },
-/* 861 */
+/* 864 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.Parser = __webpack_require__(862);
-	exports.SimpleApiParser = __webpack_require__(876);
+	exports.Parser = __webpack_require__(865);
+	exports.SimpleApiParser = __webpack_require__(879);
 	exports.TreeSerializer =
-	exports.Serializer = __webpack_require__(878);
-	exports.JsDomParser = __webpack_require__(879);
+	exports.Serializer = __webpack_require__(881);
+	exports.JsDomParser = __webpack_require__(882);
 
 	exports.TreeAdapters = {
-	    default: __webpack_require__(872),
-	    htmlparser2: __webpack_require__(881)
+	    default: __webpack_require__(875),
+	    htmlparser2: __webpack_require__(884)
 	};
 
 
 /***/ },
-/* 862 */
+/* 865 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Tokenizer = __webpack_require__(863),
-	    OpenElementStack = __webpack_require__(868),
-	    FormattingElementList = __webpack_require__(870),
-	    LocationInfoMixin = __webpack_require__(871),
-	    DefaultTreeAdapter = __webpack_require__(872),
-	    Doctype = __webpack_require__(873),
-	    ForeignContent = __webpack_require__(874),
-	    Utils = __webpack_require__(875),
-	    UNICODE = __webpack_require__(865),
-	    HTML = __webpack_require__(869);
+	var Tokenizer = __webpack_require__(866),
+	    OpenElementStack = __webpack_require__(871),
+	    FormattingElementList = __webpack_require__(873),
+	    LocationInfoMixin = __webpack_require__(874),
+	    DefaultTreeAdapter = __webpack_require__(875),
+	    Doctype = __webpack_require__(876),
+	    ForeignContent = __webpack_require__(877),
+	    Utils = __webpack_require__(878),
+	    UNICODE = __webpack_require__(868),
+	    HTML = __webpack_require__(872);
 
 	//Aliases
 	var $ = HTML.TAG_NAMES,
@@ -102684,15 +103230,15 @@
 
 
 /***/ },
-/* 863 */
+/* 866 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Preprocessor = __webpack_require__(864),
-	    LocationInfoMixin = __webpack_require__(866),
-	    UNICODE = __webpack_require__(865),
-	    NAMED_ENTITY_TRIE = __webpack_require__(867);
+	var Preprocessor = __webpack_require__(867),
+	    LocationInfoMixin = __webpack_require__(869),
+	    UNICODE = __webpack_require__(868),
+	    NAMED_ENTITY_TRIE = __webpack_require__(870);
 
 	//Aliases
 	var $ = UNICODE.CODE_POINTS,
@@ -105007,12 +105553,12 @@
 
 
 /***/ },
-/* 864 */
+/* 867 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var UNICODE = __webpack_require__(865);
+	var UNICODE = __webpack_require__(868);
 
 	//Aliases
 	var $ = UNICODE.CODE_POINTS;
@@ -105128,7 +105674,7 @@
 
 
 /***/ },
-/* 865 */
+/* 868 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -105182,7 +105728,7 @@
 
 
 /***/ },
-/* 866 */
+/* 869 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -105268,7 +105814,7 @@
 
 
 /***/ },
-/* 867 */
+/* 870 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -105280,12 +105826,12 @@
 
 
 /***/ },
-/* 868 */
+/* 871 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var HTML = __webpack_require__(869);
+	var HTML = __webpack_require__(872);
 
 	//Aliases
 	var $ = HTML.TAG_NAMES,
@@ -105665,7 +106211,7 @@
 
 
 /***/ },
-/* 869 */
+/* 872 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -105939,7 +106485,7 @@
 
 
 /***/ },
-/* 870 */
+/* 873 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -106112,14 +106658,14 @@
 
 
 /***/ },
-/* 871 */
+/* 874 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var OpenElementStack = __webpack_require__(868),
-	    Tokenizer = __webpack_require__(863),
-	    HTML = __webpack_require__(869);
+	var OpenElementStack = __webpack_require__(871),
+	    Tokenizer = __webpack_require__(866),
+	    HTML = __webpack_require__(872);
 
 
 	//Aliases
@@ -106315,7 +106861,7 @@
 
 
 /***/ },
-/* 872 */
+/* 875 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -106521,7 +107067,7 @@
 
 
 /***/ },
-/* 873 */
+/* 876 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -106661,13 +107207,13 @@
 
 
 /***/ },
-/* 874 */
+/* 877 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Tokenizer = __webpack_require__(863),
-	    HTML = __webpack_require__(869);
+	var Tokenizer = __webpack_require__(866),
+	    HTML = __webpack_require__(872);
 
 	//Aliases
 	var $ = HTML.TAG_NAMES,
@@ -106924,7 +107470,7 @@
 
 
 /***/ },
-/* 875 */
+/* 878 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -106943,14 +107489,14 @@
 
 
 /***/ },
-/* 876 */
+/* 879 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Tokenizer = __webpack_require__(863),
-	    TokenizerProxy = __webpack_require__(877),
-	    Utils = __webpack_require__(875);
+	var Tokenizer = __webpack_require__(866),
+	    TokenizerProxy = __webpack_require__(880),
+	    Utils = __webpack_require__(878);
 
 	//Default options
 	var DEFAULT_OPTIONS = {
@@ -107056,15 +107602,15 @@
 
 
 /***/ },
-/* 877 */
+/* 880 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Tokenizer = __webpack_require__(863),
-	    ForeignContent = __webpack_require__(874),
-	    UNICODE = __webpack_require__(865),
-	    HTML = __webpack_require__(869);
+	var Tokenizer = __webpack_require__(866),
+	    ForeignContent = __webpack_require__(877),
+	    UNICODE = __webpack_require__(868),
+	    HTML = __webpack_require__(872);
 
 	//Aliases
 	var $ = HTML.TAG_NAMES,
@@ -107184,15 +107730,15 @@
 
 
 /***/ },
-/* 878 */
+/* 881 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var DefaultTreeAdapter = __webpack_require__(872),
-	    Doctype = __webpack_require__(873),
-	    Utils = __webpack_require__(875),
-	    HTML = __webpack_require__(869);
+	var DefaultTreeAdapter = __webpack_require__(875),
+	    Doctype = __webpack_require__(876),
+	    Utils = __webpack_require__(878),
+	    HTML = __webpack_require__(872);
 
 	//Aliases
 	var $ = HTML.TAG_NAMES,
@@ -107368,13 +107914,13 @@
 
 
 /***/ },
-/* 879 */
+/* 882 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var Parser = __webpack_require__(862),
-	    ParsingUnit = __webpack_require__(880);
+	var Parser = __webpack_require__(865),
+	    ParsingUnit = __webpack_require__(883);
 
 	//API
 	exports.parseDocument = function (html, treeAdapter) {
@@ -107413,7 +107959,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(295)))
 
 /***/ },
-/* 880 */
+/* 883 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -107472,12 +108018,12 @@
 
 
 /***/ },
-/* 881 */
+/* 884 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Doctype = __webpack_require__(873);
+	var Doctype = __webpack_require__(876);
 
 	//Conversion tables for DOM Level1 structure emulation
 	var nodeTypes = {
@@ -107795,7 +108341,7 @@
 
 
 /***/ },
-/* 882 */
+/* 885 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -109349,7 +109895,7 @@
 
 
 /***/ },
-/* 883 */
+/* 886 */
 /***/ function(module, exports) {
 
 	/**
@@ -109588,7 +110134,7 @@
 
 
 /***/ },
-/* 884 */
+/* 887 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -109599,7 +110145,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _taxonomy_tab = __webpack_require__(885);
+	var _taxonomy_tab = __webpack_require__(888);
 
 	var _taxonomy_tab2 = _interopRequireDefault(_taxonomy_tab);
 
@@ -109618,7 +110164,7 @@
 	exports.default = TaxonomyTabContainer;
 
 /***/ },
-/* 885 */
+/* 888 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -109633,7 +110179,7 @@
 
 	var _reactBootstrap = __webpack_require__(481);
 
-	var _util = __webpack_require__(886);
+	var _util = __webpack_require__(889);
 
 	var _split_taxon = __webpack_require__(733);
 
@@ -109749,7 +110295,7 @@
 	exports.default = TaxonomyTab;
 
 /***/ },
-/* 886 */
+/* 889 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -109759,7 +110305,7 @@
 	});
 	exports.fetch = exports.urlForTaxon = undefined;
 
-	var _isomorphicFetch = __webpack_require__(887);
+	var _isomorphicFetch = __webpack_require__(890);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -109778,19 +110324,19 @@
 	exports.fetch = fetch;
 
 /***/ },
-/* 887 */
+/* 890 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(888);
+	__webpack_require__(891);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 888 */
+/* 891 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -110229,7 +110775,7 @@
 
 
 /***/ },
-/* 889 */
+/* 892 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110240,7 +110786,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _names_tab = __webpack_require__(890);
+	var _names_tab = __webpack_require__(893);
 
 	var _names_tab2 = _interopRequireDefault(_names_tab);
 
@@ -110258,7 +110804,7 @@
 	exports.default = NamesTabContainer;
 
 /***/ },
-/* 890 */
+/* 893 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110273,7 +110819,7 @@
 
 	var _reactBootstrap = __webpack_require__(481);
 
-	var _user_text = __webpack_require__(859);
+	var _user_text = __webpack_require__(862);
 
 	var _user_text2 = _interopRequireDefault(_user_text);
 
@@ -110404,7 +110950,7 @@
 	exports.default = NamesTab;
 
 /***/ },
-/* 891 */
+/* 894 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110415,7 +110961,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _articles_tab = __webpack_require__(892);
+	var _articles_tab = __webpack_require__(895);
 
 	var _articles_tab2 = _interopRequireDefault(_articles_tab);
 
@@ -110436,7 +110982,7 @@
 	exports.default = ArticlesTabContainer;
 
 /***/ },
-/* 892 */
+/* 895 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110544,7 +111090,7 @@
 	exports.default = ArticlesTab;
 
 /***/ },
-/* 893 */
+/* 896 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110555,7 +111101,7 @@
 
 	var _reactRedux = __webpack_require__(457);
 
-	var _interactions_tab = __webpack_require__(894);
+	var _interactions_tab = __webpack_require__(897);
 
 	var _interactions_tab2 = _interopRequireDefault(_interactions_tab);
 
@@ -110572,7 +111118,7 @@
 	exports.default = InteractionsTabContainer;
 
 /***/ },
-/* 894 */
+/* 897 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110748,7 +111294,7 @@
 	exports.default = InteractionsTab;
 
 /***/ },
-/* 895 */
+/* 898 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110773,7 +111319,7 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
-	var _util = __webpack_require__(886);
+	var _util = __webpack_require__(889);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110931,7 +111477,7 @@
 	}
 
 /***/ },
-/* 896 */
+/* 899 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110946,7 +111492,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _place_autocomplete = __webpack_require__(897);
+	var _place_autocomplete = __webpack_require__(900);
 
 	var _place_autocomplete2 = _interopRequireDefault(_place_autocomplete);
 
@@ -111075,7 +111621,7 @@
 	exports.default = PlaceChooser;
 
 /***/ },
-/* 897 */
+/* 900 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111189,7 +111735,7 @@
 	exports.default = PlaceAutocomplete;
 
 /***/ },
-/* 898 */
+/* 901 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111214,7 +111760,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _util = __webpack_require__(886);
+	var _util = __webpack_require__(889);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -111386,7 +111932,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 899 */
+/* 902 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111459,7 +112005,7 @@
 	exports.default = StatusHeader;
 
 /***/ },
-/* 900 */
+/* 903 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -111494,224 +112040,7 @@
 	}
 
 /***/ },
-/* 901 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = reducer;
-	exports.setMonthFrequecy = setMonthFrequecy;
-	exports.setMonthOfYearFrequecy = setMonthOfYearFrequecy;
-	exports.fetchMonthFrequencyVerifiable = fetchMonthFrequencyVerifiable;
-	exports.fetchMonthFrequencyResearchGrade = fetchMonthFrequencyResearchGrade;
-	exports.fetchMonthFrequency = fetchMonthFrequency;
-	exports.fetchMonthOfYearFrequencyVerifiable = fetchMonthOfYearFrequencyVerifiable;
-	exports.fetchMonthOfYearFrequencyResearchGrade = fetchMonthOfYearFrequencyResearchGrade;
-	exports.fetchMonthOfYearFrequency = fetchMonthOfYearFrequency;
-	exports.setRecentObservations = setRecentObservations;
-	exports.setObservationsCount = setObservationsCount;
-	exports.fetchRecentObservations = fetchRecentObservations;
-	exports.setFirstObservation = setFirstObservation;
-	exports.fetchFirstObservation = fetchFirstObservation;
-
-	var _inaturalistjs = __webpack_require__(737);
-
-	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
-	var SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FREQUENCY";
-	var SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS";
-	var SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
-	var SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
-
-	function reducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? { monthOfYearFrequency: {}, monthFrequency: {} } : arguments[0];
-	  var action = arguments[1];
-
-	  var newState = Object.assign({}, state);
-	  switch (action.type) {
-	    case SET_MONTH_FREQUENCY:
-	      newState.monthFrequency = Object.assign(newState.monthFrequency, _defineProperty({}, action.key, action.frequency));
-	      break;
-	    case SET_MONTH_OF_YEAR_FREQUENCY:
-	      newState.monthOfYearFrequency = Object.assign(newState.monthOfYearFrequency, _defineProperty({}, action.key, action.frequency));
-	      break;
-	    case SET_RECENT_OBSERVATIONS:
-	      newState.recent = action.observations;
-	      break;
-	    case SET_OBSERVATIONS_COUNT:
-	      newState.total = action.count;
-	      break;
-	    case SET_FIRST_OBSERVATION:
-	      newState.first = action.observation;
-	      break;
-	    default:
-	    // leave it alone
-	  }
-	  return newState;
-	}
-
-	function setMonthFrequecy(key, frequency) {
-	  return {
-	    type: SET_MONTH_FREQUENCY,
-	    key: key,
-	    frequency: frequency
-	  };
-	}
-
-	function setMonthOfYearFrequecy(key, frequency) {
-	  return {
-	    type: SET_MONTH_OF_YEAR_FREQUENCY,
-	    key: key,
-	    frequency: frequency
-	  };
-	}
-
-	function fetchMonthFrequencyVerifiable(taxon) {
-	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
-	      date_field: "observed",
-	      interval: "month",
-	      taxon_id: t.id,
-	      verifiable: true,
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
-	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
-	      dispatch(setMonthFrequecy("verifiable", response.results.month));
-	    });
-	  };
-	}
-
-	function fetchMonthFrequencyResearchGrade(taxon) {
-	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
-	      date_field: "observed",
-	      interval: "month",
-	      taxon_id: t.id,
-	      quality_grade: "research",
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
-	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
-	      dispatch(setMonthFrequecy("research", response.results.month));
-	    });
-	  };
-	}
-
-	function fetchMonthFrequency(taxon) {
-	  return function (dispatch) {
-	    dispatch(fetchMonthFrequencyVerifiable(taxon));
-	    dispatch(fetchMonthFrequencyResearchGrade(taxon));
-	  };
-	}
-
-	function fetchMonthOfYearFrequencyVerifiable(taxon) {
-	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
-	      date_field: "observed",
-	      interval: "month_of_year",
-	      taxon_id: t.id,
-	      verifiable: true,
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
-	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
-	      dispatch(setMonthOfYearFrequecy("verifiable", response.results.month_of_year));
-	    });
-	  };
-	}
-
-	function fetchMonthOfYearFrequencyResearchGrade(taxon) {
-	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
-	      date_field: "observed",
-	      interval: "month_of_year",
-	      taxon_id: t.id,
-	      quality_grade: "research",
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
-	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
-	      dispatch(setMonthOfYearFrequecy("research", response.results.month_of_year));
-	    });
-	  };
-	}
-
-	function fetchMonthOfYearFrequency(taxon) {
-	  return function (dispatch) {
-	    dispatch(fetchMonthOfYearFrequencyVerifiable(taxon));
-	    dispatch(fetchMonthOfYearFrequencyResearchGrade(taxon));
-	  };
-	}
-
-	function setRecentObservations(observations) {
-	  return {
-	    type: SET_RECENT_OBSERVATIONS,
-	    observations: observations
-	  };
-	}
-
-	function setObservationsCount(count) {
-	  return {
-	    type: SET_OBSERVATIONS_COUNT,
-	    count: count
-	  };
-	}
-
-	function fetchRecentObservations(taxon) {
-	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var p = s.config.preferredPlace;
-	    var params = {
-	      taxon_id: t.id,
-	      place_id: p ? p.id : null
-	    };
-	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
-	      dispatch(setRecentObservations(response.results));
-	      dispatch(setObservationsCount(response.total_results));
-	    });
-	  };
-	}
-
-	function setFirstObservation(observation) {
-	  return {
-	    type: SET_FIRST_OBSERVATION,
-	    observation: observation
-	  };
-	}
-
-	function fetchFirstObservation(taxon) {
-	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var p = s.config.preferredPlace;
-	    var params = {
-	      taxon_id: t.id,
-	      place_id: p ? p.id : null,
-	      order: "asc",
-	      per_page: 1
-	    };
-	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
-	      dispatch(setFirstObservation(response.results[0]));
-	    });
-	  };
-	}
-
-/***/ },
-/* 902 */
+/* 904 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111731,7 +112060,7 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
-	var _observations = __webpack_require__(901);
+	var _observations = __webpack_require__(850);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

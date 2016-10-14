@@ -9,6 +9,7 @@ import TaxonAutocomplete from "../../../observations/identify/components/taxon_a
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import SeasonalityChartContainer from "../containers/seasonality_chart_container";
 import HistoryChartContainer from "../containers/history_chart_container";
+import ChartsContainer from "../containers/charts_container";
 import TopObserverContainer from "../containers/top_observer_container";
 import TopIdentifierContainer from "../containers/top_identifier_container";
 import TopSpeciesContainer from "../containers/top_species_container";
@@ -92,14 +93,7 @@ const App = ( { taxon, place, setPlace } ) => (
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <Tabs id="charts" defaultActiveKey={101}>
-                      <Tab eventKey={101} title="Seasonality">
-                        <SeasonalityChartContainer />
-                      </Tab>
-                      <Tab eventKey={102} title="History" unmountOnExit>
-                        <HistoryChartContainer />
-                      </Tab>
-                    </Tabs>
+                    <ChartsContainer />
                   </Col>
                 </Row>
               </Col>
