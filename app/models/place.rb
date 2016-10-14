@@ -478,7 +478,7 @@ class Place < ActiveRecord::Base
       return
     end
     other_attrs.delete(:user)
-    other_attrs.merge!(:geom => geom, :place_id => self.id)
+    other_attrs.merge!(:geom => geom, :place => self)
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
