@@ -42,7 +42,9 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
+  after_create :log_create_in_atlas
   before_destroy :set_old_list
+  before_destroy :log_destroy_in_atlas
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
 
@@ -486,6 +488,41 @@ class ListedTaxon < ActiveRecord::Base
         AND (#{Place.send(:sanitize_sql, place.descendant_conditions.to_sql)})
     SQL
     ActiveRecord::Base.connection.execute(sql)
+  end
+  
+  def is_atlased?
+    if list.is_a?(CheckList) && list.is_default?
+      if atlas = Atlas.where(taxon_id: taxon_id).first
+        if atlas.places.map(&:id).include? place_id
+          return true
+        end
+      end
+    end
+    return false
+  end
+  
+  def log_create_in_atlas
+    if is_atlased?
+      atlas = Atlas.where(taxon_id: taxon_id).first
+      AtlasAlteration.create(
+        atlas_id: atlas.id,
+        user_id: user_id,
+        place_id: place_id,
+        action: "created"
+      )
+    end
+  end
+  
+  def log_destroy_in_atlas
+    if is_atlased?
+      atlas = Atlas.where(taxon_id: taxon_id).first
+      AtlasAlteration.create(
+        atlas_id: atlas.id,
+        user_id: user_id,
+        place_id: place_id,
+        action: "destroyed"
+      )
+    end
   end
   
   # Retrievest the first and last observations and the month counts. Note that

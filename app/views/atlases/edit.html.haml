@@ -1,0 +1,7 @@
+%h2
+  = "edit atlas"
+  - if @atlas.taxon
+    = t :for
+    = link_to @atlas.taxon.name, @atlas.taxon
+%p= "explode/collapse places"
+%p= "delete atlas"

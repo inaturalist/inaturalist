@@ -1,0 +1,28 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "atlases/show"
+  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
+  = javascript_include_tag "https://d3js.org/d3.v3.min.js"
+  = javascript_include_tag "https://d3js.org/d3.geo.projection.v0.min.js"
+  = javascript_include_tag "https://d3js.org/topojson.v1.min.js"
+  = javascript_include_tag "atlases/show"
+  = javascript_tag "world = #{@atlas_place_json.to_json.html_safe};"
+  = javascript_tag "taxon_id = #{@atlas.taxon_id}"
+
+%h2
+  = "show atlas"
+  = t :for
+  = link_to @atlas.taxon.name, @atlas.taxon
+
+= link_to "alter", {:controller => 'atlases', :action => 'alter_atlas_presence', :taxon_id => 18, :place_id => 10 }, :method => :post, :remote => true, :id => "alter"
+
+%h3
+  = "alterations"
+  
+- @atlas_alterations.each do |atlas_alteration|
+  %p
+    = "listing for"
+    = atlas_alteration.place_id
+    = t :for
+    = atlas_alteration.action
+    = t :on
+    = atlas_alteration.created_at

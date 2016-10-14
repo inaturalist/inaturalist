@@ -1,0 +1,13 @@
+$(function() {
+  var place_id = <%= @place_id %>;
+  var presence = <%= @presence %>;
+  if(presence){
+    var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
+    element.style("fill", "yellow");
+  }else{
+    var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
+    element.style("fill", "#ccc");
+  }
+});
+
+
