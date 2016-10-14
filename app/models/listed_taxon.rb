@@ -718,7 +718,8 @@ class ListedTaxon < ActiveRecord::Base
       !user_id && 
       !updater_id && 
       comments_count.to_i == 0 &&
-      list.is_default?
+      list.is_default? &&
+      !is_atlased?
   end
   
   def introduced?
