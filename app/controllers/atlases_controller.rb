@@ -7,11 +7,13 @@ class AtlasesController < ApplicationController
   
   def edit
     @atlas = Atlas.find(params[:id])
+    @exploded_atlas_places = @atlas.exploded_atlas_places
+    @atlas_places = @atlas.places
   end
   
   def show
     @atlas = Atlas.find(params[:id])
-    @atlas_places = @atlas.places[0..10]
+    @atlas_places = @atlas.places
     @atlas_presence_places = @atlas.presence_places
     @atlas_alterations = @atlas.atlas_alterations
     @atlas_place_json = {

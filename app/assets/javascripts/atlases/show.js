@@ -53,7 +53,7 @@ $(function() {
         alter_link.text("list selected place "+d.id+" as present?");
       }else{
         element.style("stroke", "#000");
-        alter_link.text("unlis selected place "+d.id+" as absent?");        
+        alter_link.text("unlist selected place "+d.id+" as absent?");        
       }
     });
  
