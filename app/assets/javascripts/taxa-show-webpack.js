@@ -111735,8 +111735,8 @@
 
 	function mapStateToProps(state) {
 	  return {
-	    trendingTaxa: state.taxon.trending,
-	    rareTaxa: state.taxon.rare
+	    trendingTaxa: state.taxon.trending ? state.taxon.trending.slice(0, 20) : [],
+	    rareTaxa: state.taxon.rare ? state.taxon.rare.slice(0, 20) : []
 	  };
 	}
 
@@ -111821,7 +111821,9 @@
 	              src: taxon.defaultPhoto.photoUrl("medium"),
 	              low: taxon.defaultPhoto.photoUrl("square"),
 	              height: 100
-	            }) : _react2.default.createElement("i", { className: "icon-iconic-" + taxon.iconic_taxon_name.toLowerCase() });
+	            }) : _react2.default.createElement("i", {
+	              className: "icon-iconic-" + (taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase() : "unknown")
+	            });
 	            return _react2.default.createElement(
 	              "a",
 	              {
@@ -112089,7 +112091,7 @@
 	    var t = taxon || s.taxon.taxon;
 	    var params = {
 	      taxon_id: t.id,
-	      order: "ASC",
+	      order: "asc",
 	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
 	    };
 	    _inaturalistjs2.default.observations.speciesCounts(params).then(function (response) {

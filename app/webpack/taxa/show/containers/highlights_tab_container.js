@@ -3,8 +3,8 @@ import HighlightsTab from "../components/highlights_tab";
 
 function mapStateToProps( state ) {
   return {
-    trendingTaxa: state.taxon.trending,
-    rareTaxa: state.taxon.rare
+    trendingTaxa: state.taxon.trending ? state.taxon.trending.slice( 0, 20 ) : [],
+    rareTaxa: state.taxon.rare ? state.taxon.rare.slice( 0, 20 ) : []
   };
 }
 

@@ -206,7 +206,7 @@ export function fetchRare( taxon ) {
     const t = taxon || s.taxon.taxon;
     const params = {
       taxon_id: t.id,
-      order: "ASC",
+      order: "asc",
       place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
     };
     iNaturalistJS.observations.speciesCounts( params ).then(

@@ -33,7 +33,11 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => (
                 height={100}
               />
             ) : (
-              <i className={`icon-iconic-${taxon.iconic_taxon_name.toLowerCase( )}`}></i>
+              <i
+                className={
+                  `icon-iconic-${taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase( ) : "unknown"}`
+                }
+              ></i>
             );
             return (
               <a
