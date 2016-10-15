@@ -8,6 +8,7 @@ import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import NamesTabContainer from "../containers/names_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
+import HighlightsTabContainer from "../containers/highlights_tab_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -22,6 +23,10 @@ class TaxonPageTabs extends React.Component {
           break;
         case "#interactions-tab":
           this.props.fetchInteractions( );
+          break;
+        case "#highlights-tab":
+          this.props.fetchTrendingTaxa( );
+          this.props.fetchRareTaxa( );
           break;
         default:
           // it's cool, you probably have what you need
@@ -68,6 +73,9 @@ class TaxonPageTabs extends React.Component {
                 <li role="presentation">
                   <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
                 </li>
+                <li role="presentation">
+                  <a href="#related-tab" role="tab" data-toggle="tab">{ I18n.t( "related_species" ) }</a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -80,7 +88,7 @@ class TaxonPageTabs extends React.Component {
             <ArticlesTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="highlights-tab">
-            highlights go here
+            <HighlightsTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="interactions-tab">
             <InteractionsTabContainer />
@@ -97,6 +105,9 @@ class TaxonPageTabs extends React.Component {
               listedTaxa={_.filter( this.props.taxon.listed_taxa, lt => lt.establishment_means )}
             />
           </div>
+          <div role="tabpanel" className="tab-pane" id="related-tab">
+            related species
+          </div>
         </div>
       </div>
     );
@@ -107,7 +118,9 @@ TaxonPageTabs.propTypes = {
   taxon: PropTypes.object,
   fetchArticlesContent: PropTypes.func,
   fetchNames: PropTypes.func,
-  fetchInteractions: PropTypes.func
+  fetchInteractions: PropTypes.func,
+  fetchRareTaxa: PropTypes.func,
+  fetchTrendingTaxa: PropTypes.func
 };
 
 export default TaxonPageTabs;

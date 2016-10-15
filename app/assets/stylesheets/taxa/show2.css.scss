@@ -430,3 +430,20 @@ $endangeredColor: #D12F19;
 .ArticlesTab .taxon_description_header {
   display: none;
 }
+
+.HighlightsTab .trending,
+.HighlightsTab .rare {
+  line-height: 0;
+}
+.HighlightsTab .trending a,
+.HighlightsTab .rare a {
+  display: inline-block;
+  width: 100px;
+  margin: 0 10px 10px 0;
+  vertical-align: top;
+  text-align: center;
+}
+.HighlightsTab .trending i,
+.HighlightsTab .rare i {
+  font-size: 100px;
+}

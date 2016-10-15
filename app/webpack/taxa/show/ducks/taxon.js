@@ -1,5 +1,6 @@
 import iNaturalistJS from "inaturalistjs";
 import { fetch } from "../util";
+import moment from "moment";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
@@ -7,6 +8,8 @@ const SET_LINKS = "taxa-show/taxon/SET_LINKS";
 const SET_COUNT = "taxa-show/taxon/SET_COUNT";
 const SET_NAMES = "taxa-show/taxon/SET_NAMES";
 const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
+const SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
+const SET_RARE = "taxa-show/taxon/SET_RARE";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -33,6 +36,13 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_INTERACTIONS:
       newState.interactions = action.interactions;
+      break;
+    case SET_TRENDING:
+      newState.trending = action.taxa;
+      break;
+    case SET_RARE:
+      newState.rare = action.taxa;
+      break;
     default:
       // nothing to see here
   }
@@ -81,6 +91,20 @@ export function setInteractions( interactions ) {
   return {
     type: SET_INTERACTIONS,
     interactions
+  };
+}
+
+export function setTrending( taxa ) {
+  return {
+    type: SET_TRENDING,
+    taxa
+  };
+}
+
+export function setRare( taxa ) {
+  return {
+    type: SET_RARE,
+    taxa
   };
 }
 
@@ -156,3 +180,42 @@ export function fetchInteractions( taxon ) {
     );
   };
 }
+
+export function fetchTrending( taxon ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
+    const params = {
+      taxon_id: t.id,
+      d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" ),
+      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+    };
+    iNaturalistJS.observations.speciesCounts( params ).then(
+      response =>
+        dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchRare( taxon ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
+    const params = {
+      taxon_id: t.id,
+      order: "ASC",
+      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+    };
+    iNaturalistJS.observations.speciesCounts( params ).then(
+      response =>
+        dispatch( setRare( response.results.map( r => r.taxon ) ) ),
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
