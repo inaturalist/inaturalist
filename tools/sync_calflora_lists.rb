@@ -173,7 +173,7 @@ def find_external_taxon_for(name)
 rescue Timeout::Error => e
   puts "\t\t\tTimed out, skipping"
   nil
-rescue TaxonNameAdapterError => e
+rescue TaxonNameAdapterError, NameProviderError => e
   puts "\t\t\tFailed to add TaxonName: #{e.message}"
   nil
 end
