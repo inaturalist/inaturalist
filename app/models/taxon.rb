@@ -667,6 +667,14 @@ class Taxon < ActiveRecord::Base
     self.photos << photo
     Taxon.update_ancestor_photos( self, photo )
   end
+
+  # mostly just a convenience for populating an empty database
+  def set_photo_from_external
+    return true if photos.count > 0
+    return unless photo = photos_with_backfill.first
+    self.photos << photo
+    Taxon.update_ancestor_photos( self, photo )
+  end
   
   # Override assignment method provided by has_many to ensure that all
   # callbacks on photos and taxon_photos get called, including after_destroy

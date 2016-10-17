@@ -64,7 +64,12 @@ CSV.foreach(csv_path) do |row|
     next
   end
 
-  unless taxon = Taxon.import(sciname)
+  taxon = begin
+    Taxon.import(sciname)
+  rescue NameProviderError
+    nil
+  end
+  unless taxon
     errors << [sciname, "couldn't import a taxon"]
     puts "\t"+errors.last.last
     next
