@@ -44282,6 +44282,9 @@
 		        };
 		      });
 		    }
+		    if (_this.conservation_status && _this.conservation_status !== undefined) {
+		      _this.conservationStatus = new ConservationStatus(_this.conservation_status);
+		    }
 		    if (_this.conservation_statuses && _this.conservation_statuses !== undefined) {
 		      _this.conservationStatuses = _this.conservation_statuses.map(function (cs) {
 		        return new ConservationStatus(cs);
@@ -44479,9 +44482,15 @@
 		          return this.normaStatus();
 		        default:
 		          switch (this.status.toLowerCase()) {
-		            case ("se", "fe", "le", "e"):
+		            case "se":
+		            case "fe":
+		            case "le":
+		            case "e":
 		              return "endangered";
-		            case ("st", "ft", "lt", "t"):
+		            case "st":
+		            case "ft":
+		            case "lt":
+		            case "t":
 		              return "threatened";
 		            case "sc":
 		              return "special concern";
@@ -45164,8 +45173,8 @@
 
 		  _createClass(taxa, null, [{
 		    key: "fetch",
-		    value: function fetch(ids) {
-		      return iNaturalistAPI.fetch("taxa", ids).then(Taxon.typifyResultsResponse);
+		    value: function fetch(ids, params) {
+		      return iNaturalistAPI.fetch("taxa", ids, params).then(Taxon.typifyResultsResponse);
 		    }
 		  }, {
 		    key: "autocomplete",
