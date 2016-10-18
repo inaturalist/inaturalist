@@ -19,12 +19,14 @@ const InteractionsTab = ( { interactions } ) => {
     "Actinopterygii",
     "Chromista"
   ];
-  let status = (
-    <h2 className="text-center">
-      <i className="fa fa-refresh fa-spin"></i>
-    </h2>
-  );
-  if ( interactions && interactions.length === 0 ) {
+  let status;
+  if ( !interactions ) {
+    status = (
+      <h2 className="text-center">
+        <i className="fa fa-refresh fa-spin"></i>
+      </h2>
+    );
+  } else if ( interactions && interactions.length === 0 ) {
     status = (
       <h3 className="text-muted text-center">
         { I18n.t( "no_interaction_data_available" ) }
