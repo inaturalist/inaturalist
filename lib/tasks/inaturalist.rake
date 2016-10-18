@@ -127,7 +127,7 @@ namespace :inaturalist do
                  "date_added", "observation_date", "date_picker",
                  "views.observations.export.taking_a_while",
                  "place_geo.geo_planet_place_types",
-                 "ranks", "research", "asc", "desc",
+                 "ranks", "research", "asc", "desc", "maps",
                  "date_format.month", "momentjs", "endemic", "native", 
                  "introduced", "casual", "status_globally", "status_in_place",
                  "number_selected", "you_are_setting_this_project_to_aggregate",

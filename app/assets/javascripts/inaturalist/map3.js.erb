@@ -752,8 +752,8 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     .attr("name", title)
     .attr("checked", ! options.disabled);
   li.append( checkbox, label );
-  if( options.endpoint === "gbif" && options.taxon && options.taxon.gbif_id ) {
-     li.append("<a href='http://www.gbif.org/species/" + options.taxon.gbif_id +
+  if( options.endpoint === "gbif" && options.gbif_id ) {
+     li.append("<a href='http://www.gbif.org/species/" + options.gbif_id +
        "' target='_blank'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
   }
   if( options.taxon ) {
@@ -962,7 +962,7 @@ var GBIFMapColors = function( ) {
 
 google.maps.Map.prototype.addGBIFLayer = function( options ) {
   var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
-    options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
+    options.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
   return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
 };
 
