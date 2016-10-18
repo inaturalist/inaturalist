@@ -18,14 +18,12 @@ const TaxonPageMap = ( { taxon } ) => {
         scrollwheel={false}
         showAllLayer={false}
         minZoom={2}
-        gbifLayerLabel={I18n.t( "gbif_network" )}
+        gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
         taxonLayers={[{
           taxon: t,
           observations: true,
           gbif: { disabled: true },
-          places: t.listed_taxa && t.listed_taxa.length > 0,
-
-          // TODO set to false based on taxon response
+          places: true,
           ranges: true
         }]}
       />

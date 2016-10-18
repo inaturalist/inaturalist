@@ -26,7 +26,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links]
+    :range, :schemes, :tip, :links, :map_layers]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -822,7 +822,16 @@ class TaxaController < ApplicationController
     end
     render :layout => false
   end
-  
+
+  def map_layers
+    render json: {
+      id: @taxon.id,
+      ranges: @taxon.taxon_ranges.any?,
+      gbif_id: @taxon.get_gbif_id,
+      listed_places: @taxon.listed_taxa.joins(place: :place_geometry).any?
+    }
+  end
+
   private
   def add_places_from_paste
     place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)

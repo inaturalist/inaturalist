@@ -342,6 +342,7 @@ Rails.application.routes.draw do
       get 'tip'
       get 'names', :to => 'taxon_names#taxon'
       get 'links'
+      get "map_layers"
     end
     collection do
       get 'synonyms'

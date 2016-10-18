@@ -211,53 +211,59 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
 };
 
 inatTaxonMap.addTaxonLayers = function( map, options ) {
-  if( options.taxonLayers ) {
-    _.each( options.taxonLayers, function( layer ) {
-      if( layer.places && layer.taxon ) {
-        layerOptions = _.isObject( layer.places ) ?
-          layer.places : { };
-        map.addTaxonPlacesLayer( _.defaults( layerOptions, {
-          taxon: layer.taxon,
-          title: options.taxonPlacesLayerLabel,
-          description: options.taxonPlacesLayerDescription,
-          hover: options.taxonPlacesLayerHover,
-          controlPosition: options.controlPosition
-        }));
-      }
-      if( layer.ranges ) {
-        layerOptions = _.isObject( layer.ranges ) ?
-          layer.ranges : { };
-        map.addTaxonRangeLayer( _.defaults( layerOptions, {
-          taxon: layer.taxon,
-          title: options.taxonRangeLayerLabel,
-          description: options.taxonRangeLayerDescription,
-          hover: options.taxonRangeLayerHover,
-          controlPosition: options.controlPosition
-        }));
-      }
-      if( layer.observations ) {
-        layerOptions = _.isObject( layer.observations ) ?
-          layer.observations : { };
-        map.addObservationsLayer( options.taxonObservationsLayerLabel, _.defaults( layerOptions, {
-          taxon: layer.taxon,
-          description: options.taxonObservationsLayerDescription,
-          hover: options.taxonObservationsLayerHover,
-          controlPosition: options.controlPosition,
-          mapStyle: options.mapStyle
-        }));
-      }
-      if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {
-        layerOptions = _.isObject( layer.gbif ) ?
-          layer.gbif : { };
-        map.addGBIFLayer( _.defaults( layerOptions, {
-          taxon: layer.taxon,
-          title: options.gbifLayerLabel,
-          description: options.gbifLayerDescription,
-          hover: options.gbifLayerHover,
-          controlPosition: options.controlPosition
-        }));
-      }
+  if( !options.taxonLayers ) { return; }
+  _.each( options.taxonLayers, function( layer ) {
+    if( !( layer.taxon && layer.taxon.id ) ) { return; }
+    $.getJSON( "/taxa/" + layer.taxon.id + "/map_layers", function( taxonData ) {
+      inatTaxonMap.addTaxonLayer( map, layer, options, taxonData );
     });
+  });
+};
+
+inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
+  if( layer.places && layer.taxon && taxonData.listed_places ) {
+    layerOptions = _.isObject( layer.places ) ?
+      layer.places : { };
+    map.addTaxonPlacesLayer( _.defaults( layerOptions, {
+      taxon: layer.taxon,
+      title: options.taxonPlacesLayerLabel,
+      description: options.taxonPlacesLayerDescription,
+      hover: options.taxonPlacesLayerHover,
+      controlPosition: options.controlPosition
+    }));
+  }
+  if( layer.ranges && taxonData.ranges ) {
+    layerOptions = _.isObject( layer.ranges ) ?
+      layer.ranges : { };
+    map.addTaxonRangeLayer( _.defaults( layerOptions, {
+      taxon: layer.taxon,
+      title: options.taxonRangeLayerLabel,
+      description: options.taxonRangeLayerDescription,
+      hover: options.taxonRangeLayerHover,
+      controlPosition: options.controlPosition
+    }));
+  }
+  if( layer.observations ) {
+    layerOptions = _.isObject( layer.observations ) ?
+      layer.observations : { };
+    map.addObservationsLayer( options.taxonObservationsLayerLabel, _.defaults( layerOptions, {
+      taxon: layer.taxon,
+      description: options.taxonObservationsLayerDescription,
+      hover: options.taxonObservationsLayerHover,
+      controlPosition: options.controlPosition,
+      mapStyle: options.mapStyle
+    }));
+  }
+  if( layer.gbif && taxonData.gbif_id ) {
+    layerOptions = _.isObject( layer.gbif ) ? layer.gbif : { };
+    map.addGBIFLayer( _.defaults( layerOptions, {
+      taxon: layer.taxon,
+      gbif_id: taxonData.gbif_id,
+      title: options.gbifLayerLabel,
+      description: options.gbifLayerDescription,
+      hover: options.gbifLayerHover,
+      controlPosition: options.controlPosition
+    }));
   }
 };
 
