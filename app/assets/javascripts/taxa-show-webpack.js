@@ -66,11 +66,11 @@
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(1452);
+	var _config = __webpack_require__(1456);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1448);
+	var _taxon = __webpack_require__(1449);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
@@ -78,7 +78,7 @@
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(1453);
+	var _leaders = __webpack_require__(1457);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
@@ -91027,13 +91027,13 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(1452);
+	var _config = __webpack_require__(1456);
 
 	var _observations = __webpack_require__(1426);
 
-	var _leaders = __webpack_require__(1453);
+	var _leaders = __webpack_require__(1457);
 
-	var _taxon = __webpack_require__(1448);
+	var _taxon = __webpack_require__(1449);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91092,43 +91092,27 @@
 
 	var _charts_container2 = _interopRequireDefault(_charts_container);
 
-	var _top_observer_container = __webpack_require__(1427);
+	var _leaders = __webpack_require__(1428);
 
-	var _top_observer_container2 = _interopRequireDefault(_top_observer_container);
+	var _leaders2 = _interopRequireDefault(_leaders);
 
-	var _top_identifier_container = __webpack_require__(1429);
-
-	var _top_identifier_container2 = _interopRequireDefault(_top_identifier_container);
-
-	var _top_species_container = __webpack_require__(1430);
-
-	var _top_species_container2 = _interopRequireDefault(_top_species_container);
-
-	var _first_observer_container = __webpack_require__(1431);
-
-	var _first_observer_container2 = _interopRequireDefault(_first_observer_container);
-
-	var _num_observations_container = __webpack_require__(1432);
-
-	var _num_observations_container2 = _interopRequireDefault(_num_observations_container);
-
-	var _taxon_page_tabs_container = __webpack_require__(1433);
+	var _taxon_page_tabs_container = __webpack_require__(1435);
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _place_chooser = __webpack_require__(1449);
+	var _place_chooser = __webpack_require__(1453);
 
 	var _place_chooser2 = _interopRequireDefault(_place_chooser);
 
-	var _taxon_crumbs = __webpack_require__(1450);
+	var _taxon_crumbs = __webpack_require__(1454);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(1451);
+	var _status_header = __webpack_require__(1455);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
-	var _util = __webpack_require__(1439);
+	var _util = __webpack_require__(1427);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91227,34 +91211,7 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { xs: 6 },
-	                _react2.default.createElement(
-	                  _reactBootstrap.Row,
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6 },
-	                    _react2.default.createElement(_top_observer_container2.default, null)
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6 },
-	                    _react2.default.createElement(_top_identifier_container2.default, null)
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Row,
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6 },
-	                    taxon.rank_level > 10 ? _react2.default.createElement(_top_species_container2.default, null) : _react2.default.createElement(_first_observer_container2.default, null)
-	                  ),
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6 },
-	                    _react2.default.createElement(_num_observations_container2.default, null)
-	                  )
-	                ),
+	                _react2.default.createElement(_leaders2.default, { taxon: taxon }),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Row,
 	                  null,
@@ -91670,6 +91627,7 @@
 	          min: 0,
 	          show: true,
 	          padding: {
+	            left: 0,
 	            bottom: 0
 	          }
 	        }
@@ -91705,7 +91663,6 @@
 	            if (!_this2.props.monthFrequency || !_this2.props.monthFrequency.verifiable) {
 	              _this2.props.fetchMonthFrequency();
 	            }
-	            // this.renderHistoryChart( );
 	            if (_this2.historyChart) {
 	              _this2.historyChart.flush();
 	            }
@@ -91717,7 +91674,7 @@
 	    }
 	  }, {
 	    key: "shouldComponentUpdate",
-	    value: function shouldComponentUpdate(nextProps) {
+	    value: function shouldComponentUpdate() {
 	      // You would think the following would work, but it doesn't. For some
 	      // reason there's never a point where nextProps and this.props are
 	      // different.
@@ -91881,11 +91838,25 @@
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane active", id: "charts-seasonality" },
+	            _react2.default.createElement(
+	              "div",
+	              {
+	                className: "no-content text-muted text-center " + (_lodash2.default.isEmpty(this.props.monthFrequency.verifiable) ? "" : "hidden")
+	              },
+	              I18n.t("no_observations_yet")
+	            ),
 	            _react2.default.createElement("div", { className: "SeasonalityChart FrequencyChart" })
 	          ),
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane", id: "charts-history" },
+	            _react2.default.createElement(
+	              "div",
+	              {
+	                className: "no-content text-muted text-center " + (_lodash2.default.isEmpty(this.props.monthFrequency.verifiable) ? "" : "hidden")
+	              },
+	              I18n.t("no_observations_yet")
+	            ),
 	            _react2.default.createElement("div", { className: "HistoryChart FrequencyChart" })
 	          )
 	        )
@@ -109700,6 +109671,8 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
+	var _util = __webpack_require__(1427);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -109753,85 +109726,67 @@
 	  };
 	}
 
-	function fetchMonthFrequencyVerifiable(taxon) {
+	function fetchMonthFrequencyVerifiable() {
 	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
 	      date_field: "observed",
-	      interval: "month",
-	      taxon_id: t.id,
-	      verifiable: true,
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
+	      interval: "month"
+	    });
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthFrequecy("verifiable", response.results.month));
 	    });
 	  };
 	}
 
-	function fetchMonthFrequencyResearchGrade(taxon) {
+	function fetchMonthFrequencyResearchGrade() {
 	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
 	      date_field: "observed",
 	      interval: "month",
-	      taxon_id: t.id,
-	      quality_grade: "research",
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
+	      quality_grade: "research"
+	    });
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthFrequecy("research", response.results.month));
 	    });
 	  };
 	}
 
-	function fetchMonthFrequency(taxon) {
+	function fetchMonthFrequency() {
 	  return function (dispatch) {
-	    dispatch(fetchMonthFrequencyVerifiable(taxon));
-	    dispatch(fetchMonthFrequencyResearchGrade(taxon));
+	    dispatch(fetchMonthFrequencyVerifiable());
+	    dispatch(fetchMonthFrequencyResearchGrade());
 	  };
 	}
 
-	function fetchMonthOfYearFrequencyVerifiable(taxon) {
+	function fetchMonthOfYearFrequencyVerifiable() {
 	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
 	      date_field: "observed",
-	      interval: "month_of_year",
-	      taxon_id: t.id,
-	      verifiable: true,
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
+	      interval: "month_of_year"
+	    });
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthOfYearFrequecy("verifiable", response.results.month_of_year));
 	    });
 	  };
 	}
 
-	function fetchMonthOfYearFrequencyResearchGrade(taxon) {
+	function fetchMonthOfYearFrequencyResearchGrade() {
 	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var params = {
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
 	      date_field: "observed",
 	      interval: "month_of_year",
-	      taxon_id: t.id,
-	      quality_grade: "research",
-	      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
+	      quality_grade: "research"
+	    });
 	    return _inaturalistjs2.default.observations.histogram(params).then(function (response) {
 	      dispatch(setMonthOfYearFrequecy("research", response.results.month_of_year));
 	    });
 	  };
 	}
 
-	function fetchMonthOfYearFrequency(taxon) {
+	function fetchMonthOfYearFrequency() {
 	  return function (dispatch) {
-	    dispatch(fetchMonthOfYearFrequencyVerifiable(taxon));
-	    dispatch(fetchMonthOfYearFrequencyResearchGrade(taxon));
+	    dispatch(fetchMonthOfYearFrequencyVerifiable());
+	    dispatch(fetchMonthOfYearFrequencyResearchGrade());
 	  };
 	}
 
@@ -109849,16 +109804,9 @@
 	  };
 	}
 
-	function fetchRecentObservations(taxon) {
+	function fetchRecentObservations() {
 	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var p = s.config.preferredPlace;
-	    var params = {
-	      taxon_id: t.id,
-	      place_id: p ? p.id : null
-	    };
-	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
+	    return _inaturalistjs2.default.observations.search((0, _util.defaultObservationParams)(getState())).then(function (response) {
 	      dispatch(setRecentObservations(response.results));
 	      dispatch(setObservationsCount(response.total_results));
 	    });
@@ -109872,17 +109820,12 @@
 	  };
 	}
 
-	function fetchFirstObservation(taxon) {
+	function fetchFirstObservation() {
 	  return function (dispatch, getState) {
-	    var s = getState();
-	    var t = taxon || s.taxon.taxon;
-	    var p = s.config.preferredPlace;
-	    var params = {
-	      taxon_id: t.id,
-	      place_id: p ? p.id : null,
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
 	      order: "asc",
 	      per_page: 1
-	    };
+	    });
 	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
 	      dispatch(setFirstObservation(response.results[0]));
 	    });
@@ -109898,39 +109841,38 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxon = undefined;
 
-	var _reactRedux = __webpack_require__(560);
+	var _isomorphicFetch = __webpack_require__(994);
 
-	var _leader_item = __webpack_require__(1428);
-
-	var _leader_item2 = _interopRequireDefault(_leader_item);
+	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function mapStateToProps(state) {
-	  var leader = state.leaders.topObserver;
-	  var taxon = state.taxon.taxon;
-	  var props = {
-	    label: I18n.t("top_observer"),
-	    iconClassName: "icon-person",
-	    valueIconClassName: "fa fa-binoculars",
-	    linkText: I18n.t("leaderboard"),
-	    name: I18n.t("unknown")
+	var urlForTaxon = function urlForTaxon(t) {
+	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
+	};
+	var urlForUser = function urlForUser(u) {
+	  return "/people/" + u.login;
+	};
+
+	// Light wrapper around isomorphic fetch to ensure credentials are always passed through
+	var fetch = function fetch(url, options) {
+	  return (0, _isomorphicFetch2.default)(url, Object.assign({}, options, { credentials: "same-origin" }));
+	};
+
+	var defaultObservationParams = function defaultObservationParams(state) {
+	  return {
+	    verifiable: true,
+	    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
+	    place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
 	  };
-	  if (!leader || !leader.user) {
-	    return props;
-	  }
-	  return Object.assign(props, {
-	    name: leader.user.login,
-	    imageUrl: leader.user.icon_url,
-	    value: leader.observation_count,
-	    linkUrl: "/observations?taxon_id=" + taxon.id + "&view=observers"
-	  });
-	}
+	};
 
-	var TopObserverContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
-
-	exports.default = TopObserverContainer;
+	exports.urlForTaxon = urlForTaxon;
+	exports.urlForUser = urlForUser;
+	exports.fetch = fetch;
+	exports.defaultObservationParams = defaultObservationParams;
 
 /***/ },
 /* 1428 */
@@ -109946,87 +109888,71 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactBootstrap = __webpack_require__(607);
+
+	var _top_observer_container = __webpack_require__(1429);
+
+	var _top_observer_container2 = _interopRequireDefault(_top_observer_container);
+
+	var _top_identifier_container = __webpack_require__(1431);
+
+	var _top_identifier_container2 = _interopRequireDefault(_top_identifier_container);
+
+	var _top_species_container = __webpack_require__(1432);
+
+	var _top_species_container2 = _interopRequireDefault(_top_species_container);
+
+	var _first_observer_container = __webpack_require__(1433);
+
+	var _first_observer_container2 = _interopRequireDefault(_first_observer_container);
+
+	var _num_observations_container = __webpack_require__(1434);
+
+	var _num_observations_container2 = _interopRequireDefault(_num_observations_container);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var LeaderItem = function LeaderItem(_ref) {
-	  var className = _ref.className;
-	  var label = _ref.label;
-	  var name = _ref.name;
-	  var imageUrl = _ref.imageUrl;
-	  var iconClassName = _ref.iconClassName;
-	  var value = _ref.value;
-	  var valueIconClassName = _ref.valueIconClassName;
-	  var extra = _ref.extra;
-	  var linkText = _ref.linkText;
-	  var linkUrl = _ref.linkUrl;
+	var Leaders = function Leaders(_ref) {
+	  var taxon = _ref.taxon;
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "LeaderItem media " + className },
+	    { className: "Leaders" },
 	    _react2.default.createElement(
-	      "div",
-	      { className: "media-left" },
+	      _reactBootstrap.Row,
+	      null,
 	      _react2.default.createElement(
-	        "div",
-	        { className: "img-wrapper" },
-	        imageUrl ? _react2.default.createElement("img", { src: imageUrl, className: "img-responsive" }) : _react2.default.createElement("i", { className: iconClassName })
+	        _reactBootstrap.Col,
+	        { xs: 6 },
+	        _react2.default.createElement(_top_observer_container2.default, null)
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 6 },
+	        _react2.default.createElement(_top_identifier_container2.default, null)
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "div",
-	      { className: "media-body" },
+	      _reactBootstrap.Row,
+	      null,
 	      _react2.default.createElement(
-	        "h4",
-	        null,
-	        label ? label + ":" : null,
-	        " ",
-	        _react2.default.createElement(
-	          "span",
-	          { className: "name" },
-	          name
-	        )
+	        _reactBootstrap.Col,
+	        { xs: 6 },
+	        taxon.rank_level > 10 ? _react2.default.createElement(_top_species_container2.default, null) : _react2.default.createElement(_first_observer_container2.default, null)
 	      ),
 	      _react2.default.createElement(
-	        "div",
-	        { className: "extra" },
-	        valueIconClassName ? _react2.default.createElement("i", { className: valueIconClassName }) : extra,
-	        " ",
-	        value ? _react2.default.createElement(
-	          "span",
-	          { className: "value" },
-	          value
-	        ) : null,
-	        " ",
-	        _react2.default.createElement(
-	          "a",
-	          {
-	            href: linkUrl
-	          },
-	          linkText
-	        )
+	        _reactBootstrap.Col,
+	        { xs: 6 },
+	        _react2.default.createElement(_num_observations_container2.default, null)
 	      )
 	    )
 	  );
 	};
 
-	LeaderItem.propTypes = {
-	  className: _react.PropTypes.string,
-	  label: _react.PropTypes.string,
-	  name: _react2.default.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
-	  imageUrl: _react.PropTypes.string,
-	  iconClassName: _react.PropTypes.string,
-	  value: _react.PropTypes.number,
-	  valueIconClassName: _react.PropTypes.string,
-	  linkText: _react.PropTypes.string,
-	  linkUrl: _react.PropTypes.string,
-	  extra: _react.PropTypes.string
+	Leaders.propTypes = {
+	  taxon: _react.PropTypes.object
 	};
 
-	LeaderItem.defaultProps = {
-	  iconClassName: "icon-species-unknown",
-	  linkText: I18n.t("view")
-	};
-
-	exports.default = LeaderItem;
+	exports.default = Leaders;
 
 /***/ },
 /* 1429 */
@@ -110040,36 +109966,41 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1428);
+	var _leader_item = __webpack_require__(1430);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
+
+	var _util = __webpack_require__(1427);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
-	  var leader = state.leaders.topIdentifier;
+	  var leader = state.leaders.topObserver;
 	  var taxon = state.taxon.taxon;
 	  var props = {
-	    label: I18n.t("top_identifier"),
+	    label: I18n.t("top_observer"),
+	    noContent: true,
 	    iconClassName: "icon-person",
 	    valueIconClassName: "fa fa-binoculars",
 	    linkText: I18n.t("leaderboard"),
-	    name: I18n.t("unknown")
+	    name: I18n.t("no_observations")
 	  };
 	  if (!leader || !leader.user) {
 	    return props;
 	  }
 	  return Object.assign(props, {
 	    name: leader.user.login,
+	    noContent: false,
 	    imageUrl: leader.user.icon_url,
-	    value: leader.count,
-	    linkUrl: "/observations?taxon_id=" + taxon.id + "&view=identifiers"
+	    value: leader.observation_count,
+	    linkUrl: "/observations?taxon_id=" + taxon.id + "&view=observers",
+	    url: (0, _util.urlForUser)(leader.user)
 	  });
 	}
 
-	var TopIdentifierContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
+	var TopObserverContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
 
-	exports.default = TopIdentifierContainer;
+	exports.default = TopObserverContainer;
 
 /***/ },
 /* 1430 */
@@ -110081,43 +110012,104 @@
 	  value: true
 	});
 
-	var _reactRedux = __webpack_require__(560);
+	var _react = __webpack_require__(403);
 
-	var _leader_item = __webpack_require__(1428);
-
-	var _leader_item2 = _interopRequireDefault(_leader_item);
+	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function mapStateToProps(state) {
-	  var leader = state.leaders.topSpecies;
-	  var props = {
-	    label: I18n.t("top_species"),
-	    iconClassName: "icon-iconic-unknown",
-	    valueIconClassName: "fa fa-binoculars",
-	    linkText: I18n.t("observations"),
-	    name: I18n.t("unknown")
-	  };
-	  if (!leader || !leader.taxon) {
-	    return props;
-	  }
-	  var imageUrl = void 0;
-	  if (leader.taxon.defaultPhoto) {
-	    imageUrl = leader.taxon.defaultPhoto.photoUrl("small");
-	  } else {
-	    props.iconClassName = "icon icon-iconic-" + leader.taxon.iconicTaxonName().toLowerCase();
-	  }
-	  return Object.assign(props, {
-	    name: leader.taxon.preferred_common_name || leader.taxon.name,
-	    imageUrl: imageUrl,
-	    value: leader.count,
-	    linkUrl: "/observations?taxon_id=" + leader.taxon.id
-	  });
-	}
+	var LeaderItem = function LeaderItem(_ref) {
+	  var noContent = _ref.noContent;
+	  var className = _ref.className;
+	  var label = _ref.label;
+	  var name = _ref.name;
+	  var imageUrl = _ref.imageUrl;
+	  var iconClassName = _ref.iconClassName;
+	  var value = _ref.value;
+	  var valueIconClassName = _ref.valueIconClassName;
+	  var extra = _ref.extra;
+	  var linkText = _ref.linkText;
+	  var linkUrl = _ref.linkUrl;
+	  var url = _ref.url;
 
-	var TopSpeciesContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
+	  var extraContent = _react2.default.createElement(
+	    "div",
+	    { className: "extra" },
+	    valueIconClassName ? _react2.default.createElement("i", { className: valueIconClassName }) : extra,
+	    " ",
+	    value ? _react2.default.createElement(
+	      "span",
+	      { className: "value" },
+	      value
+	    ) : null,
+	    " ",
+	    _react2.default.createElement(
+	      "a",
+	      {
+	        href: linkUrl
+	      },
+	      linkText
+	    )
+	  );
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "LeaderItem media " + (noContent ? "no-content" : "") + " " + className },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "media-left" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "img-wrapper" },
+	        _react2.default.createElement(
+	          "a",
+	          { href: url },
+	          imageUrl ? _react2.default.createElement("img", { src: imageUrl, className: "img-responsive" }) : _react2.default.createElement("i", { className: iconClassName })
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "media-body" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "item-label" },
+	        label
+	      ),
+	      _react2.default.createElement(
+	        "h4",
+	        { className: "name" },
+	        _react2.default.createElement(
+	          "a",
+	          { href: url },
+	          name
+	        )
+	      ),
+	      noContent ? null : extraContent
+	    )
+	  );
+	};
 
-	exports.default = TopSpeciesContainer;
+	LeaderItem.propTypes = {
+	  noContent: _react.PropTypes.bool,
+	  className: _react.PropTypes.string,
+	  label: _react.PropTypes.string,
+	  name: _react2.default.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	  imageUrl: _react.PropTypes.string,
+	  iconClassName: _react.PropTypes.string,
+	  value: _react.PropTypes.number,
+	  valueIconClassName: _react.PropTypes.string,
+	  linkText: _react.PropTypes.string,
+	  linkUrl: _react.PropTypes.string,
+	  extra: _react.PropTypes.string,
+	  url: _react.PropTypes.string
+	};
+
+	LeaderItem.defaultProps = {
+	  iconClassName: "icon-species-unknown",
+	  linkText: I18n.t("view")
+	};
+
+	exports.default = LeaderItem;
 
 /***/ },
 /* 1431 */
@@ -110131,35 +110123,39 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1428);
+	var _leader_item = __webpack_require__(1430);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
+
+	var _util = __webpack_require__(1427);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
-	  var first = state.observations.first;
+	  var leader = state.leaders.topIdentifier;
+	  var taxon = state.taxon.taxon;
 	  var props = {
-	    label: I18n.t("first_observer"),
-	    iconClassName: "fa fa-user",
-	    countIconClassName: "fa fa-binoculars",
-	    linkText: I18n.t("leaderboard")
+	    label: I18n.t("top_identifier"),
+	    iconClassName: "icon-person",
+	    valueIconClassName: "fa fa-binoculars",
+	    linkText: I18n.t("leaderboard"),
+	    name: I18n.t("no_identifications")
 	  };
-	  if (!first) {
+	  if (!leader || !leader.user) {
 	    return props;
 	  }
 	  return Object.assign(props, {
-	    name: first.user.login,
-	    imageUrl: first.user.icon_url,
-	    linkUrl: "/observations/" + first.id,
-	    linkText: I18n.t("view"),
-	    extra: I18n.localize("date.formats.month_day_year", first.observed_on)
+	    name: leader.user.login,
+	    imageUrl: leader.user.icon_url,
+	    value: leader.count,
+	    linkUrl: "/observations?taxon_id=" + taxon.id + "&view=identifiers",
+	    url: (0, _util.urlForUser)(leader.user)
 	  });
 	}
 
-	var FirstObserverContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
+	var TopIdentifierContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
 
-	exports.default = FirstObserverContainer;
+	exports.default = TopIdentifierContainer;
 
 /***/ },
 /* 1432 */
@@ -110173,7 +110169,105 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1428);
+	var _leader_item = __webpack_require__(1430);
+
+	var _leader_item2 = _interopRequireDefault(_leader_item);
+
+	var _util = __webpack_require__(1427);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function mapStateToProps(state) {
+	  var leader = state.leaders.topSpecies;
+	  var props = {
+	    label: I18n.t("top_species"),
+	    noContent: true,
+	    iconClassName: "icon-iconic-unknown",
+	    valueIconClassName: "fa fa-binoculars",
+	    linkText: I18n.t("observations"),
+	    name: I18n.t("no_species_observed")
+	  };
+	  if (!leader || !leader.taxon) {
+	    return props;
+	  }
+	  props.noContent = false;
+	  var imageUrl = void 0;
+	  if (leader.taxon.defaultPhoto) {
+	    imageUrl = leader.taxon.defaultPhoto.photoUrl("small");
+	  } else {
+	    props.iconClassName = "icon icon-iconic-" + leader.taxon.iconicTaxonName().toLowerCase();
+	  }
+	  return Object.assign(props, {
+	    name: leader.taxon.preferred_common_name || leader.taxon.name,
+	    imageUrl: imageUrl,
+	    value: leader.count,
+	    linkUrl: "/observations?taxon_id=" + leader.taxon.id,
+	    url: (0, _util.urlForTaxon)(leader.taxon)
+	  });
+	}
+
+	var TopSpeciesContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
+
+	exports.default = TopSpeciesContainer;
+
+/***/ },
+/* 1433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(560);
+
+	var _leader_item = __webpack_require__(1430);
+
+	var _leader_item2 = _interopRequireDefault(_leader_item);
+
+	var _util = __webpack_require__(1427);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function mapStateToProps(state) {
+	  var first = state.observations.first;
+	  var props = {
+	    label: I18n.t("first_observer"),
+	    iconClassName: "icon-person",
+	    countIconClassName: "fa fa-binoculars",
+	    linkText: I18n.t("leaderboard")
+	  };
+	  if (!first) {
+	    return props;
+	  }
+	  return Object.assign(props, {
+	    name: first.user.login,
+	    imageUrl: first.user.icon_url,
+	    linkUrl: "/observations/" + first.id,
+	    linkText: I18n.t("view"),
+	    extra: I18n.localize("date.formats.month_day_year", first.observed_on),
+	    url: (0, _util.urlForUser)(first.user)
+	  });
+	}
+
+	var FirstObserverContainer = (0, _reactRedux.connect)(mapStateToProps)(_leader_item2.default);
+
+	exports.default = FirstObserverContainer;
+
+/***/ },
+/* 1434 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(560);
+
+	var _leader_item = __webpack_require__(1430);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -110185,8 +110279,9 @@
 	  var props = {
 	    iconClassName: "fa fa-binoculars",
 	    className: "NumObservations",
-	    name: "?",
-	    linkText: I18n.t("observations")
+	    label: I18n.t("total_observations"),
+	    name: 0,
+	    linkText: I18n.t("view")
 	  };
 	  if (!count) {
 	    return props;
@@ -110202,7 +110297,7 @@
 	exports.default = NumObservationsContainer;
 
 /***/ },
-/* 1433 */
+/* 1435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110213,11 +110308,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _taxon_page_tabs = __webpack_require__(1434);
+	var _taxon_page_tabs = __webpack_require__(1436);
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
-	var _taxon = __webpack_require__(1448);
+	var _taxon = __webpack_require__(1449);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110253,7 +110348,7 @@
 	exports.default = TaxonPageTabsContainer;
 
 /***/ },
-/* 1434 */
+/* 1436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110278,31 +110373,31 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _taxon_page_map = __webpack_require__(1435);
+	var _taxon_page_map = __webpack_require__(1437);
 
 	var _taxon_page_map2 = _interopRequireDefault(_taxon_page_map);
 
-	var _status_tab = __webpack_require__(1436);
+	var _status_tab = __webpack_require__(1438);
 
 	var _status_tab2 = _interopRequireDefault(_status_tab);
 
-	var _taxonomy_tab_container = __webpack_require__(1437);
+	var _taxonomy_tab_container = __webpack_require__(1439);
 
 	var _taxonomy_tab_container2 = _interopRequireDefault(_taxonomy_tab_container);
 
-	var _names_tab_container = __webpack_require__(1440);
+	var _names_tab_container = __webpack_require__(1441);
 
 	var _names_tab_container2 = _interopRequireDefault(_names_tab_container);
 
-	var _articles_tab_container = __webpack_require__(1442);
+	var _articles_tab_container = __webpack_require__(1443);
 
 	var _articles_tab_container2 = _interopRequireDefault(_articles_tab_container);
 
-	var _interactions_tab_container = __webpack_require__(1444);
+	var _interactions_tab_container = __webpack_require__(1445);
 
 	var _interactions_tab_container2 = _interopRequireDefault(_interactions_tab_container);
 
-	var _highlights_tab_container = __webpack_require__(1446);
+	var _highlights_tab_container = __webpack_require__(1447);
 
 	var _highlights_tab_container2 = _interopRequireDefault(_highlights_tab_container);
 
@@ -110352,6 +110447,7 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "TaxonPageTabs" },
@@ -110366,7 +110462,7 @@
 	              { xs: 12 },
 	              _react2.default.createElement(
 	                "ul",
-	                { className: "nav nav-tabs", role: "tablist" },
+	                { id: "main-tabs", className: "nav nav-tabs", role: "tablist" },
 	                _react2.default.createElement(
 	                  "li",
 	                  { role: "presentation", className: "active" },
@@ -110387,7 +110483,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  "li",
-	                  { role: "presentation" },
+	                  { role: "presentation", className: speciesOrLower ? "hidden" : "" },
 	                  _react2.default.createElement(
 	                    "a",
 	                    {
@@ -110400,7 +110496,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  "li",
-	                  { role: "presentation" },
+	                  { role: "presentation", className: speciesOrLower ? "" : "hidden" },
 	                  _react2.default.createElement(
 	                    "a",
 	                    {
@@ -110431,7 +110527,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  "li",
-	                  { role: "presentation" },
+	                  { role: "presentation", className: speciesOrLower ? "" : "hidden" },
 	                  _react2.default.createElement(
 	                    "a",
 	                    { href: "#status-tab", role: "tab", "data-toggle": "tab" },
@@ -110440,7 +110536,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  "li",
-	                  { role: "presentation" },
+	                  { role: "presentation", className: speciesOrLower ? "" : "hidden" },
 	                  _react2.default.createElement(
 	                    "a",
 	                    { href: "#related-tab", role: "tab", "data-toggle": "tab" },
@@ -110453,7 +110549,7 @@
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "tab-content" },
+	          { id: "main-tabs-content", className: "tab-content" },
 	          _react2.default.createElement(
 	            "div",
 	            { role: "tabpanel", className: "tab-pane active", id: "map-tab" },
@@ -110466,12 +110562,20 @@
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { role: "tabpanel", className: "tab-pane", id: "highlights-tab" },
+	            {
+	              role: "tabpanel",
+	              className: "tab-pane " + (speciesOrLower ? "hidden" : ""),
+	              id: "highlights-tab"
+	            },
 	            _react2.default.createElement(_highlights_tab_container2.default, null)
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { role: "tabpanel", className: "tab-pane", id: "interactions-tab" },
+	            {
+	              role: "tabpanel",
+	              className: "tab-pane " + (speciesOrLower ? "" : "hidden"),
+	              id: "interactions-tab"
+	            },
 	            _react2.default.createElement(_interactions_tab_container2.default, null)
 	          ),
 	          _react2.default.createElement(
@@ -110486,7 +110590,11 @@
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { role: "tabpanel", className: "tab-pane", id: "status-tab" },
+	            {
+	              role: "tabpanel",
+	              className: "tab-pane " + (speciesOrLower ? "" : "hidden"),
+	              id: "status-tab"
+	            },
 	            _react2.default.createElement(_status_tab2.default, {
 	              statuses: this.props.taxon.conservationStatuses,
 	              listedTaxa: _lodash2.default.filter(this.props.taxon.listed_taxa, function (lt) {
@@ -110496,7 +110604,11 @@
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { role: "tabpanel", className: "tab-pane", id: "related-tab" },
+	            {
+	              role: "tabpanel",
+	              className: "tab-pane " + (speciesOrLower ? "" : "hidden"),
+	              id: "related-tab"
+	            },
 	            "related species"
 	          )
 	        )
@@ -110519,7 +110631,7 @@
 	exports.default = TaxonPageTabs;
 
 /***/ },
-/* 1435 */
+/* 1437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110589,7 +110701,7 @@
 	exports.default = TaxonPageMap;
 
 /***/ },
-/* 1436 */
+/* 1438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110989,7 +111101,7 @@
 	exports.default = StatusTab;
 
 /***/ },
-/* 1437 */
+/* 1439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111000,7 +111112,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _taxonomy_tab = __webpack_require__(1438);
+	var _taxonomy_tab = __webpack_require__(1440);
 
 	var _taxonomy_tab2 = _interopRequireDefault(_taxonomy_tab);
 
@@ -111019,7 +111131,7 @@
 	exports.default = TaxonomyTabContainer;
 
 /***/ },
-/* 1438 */
+/* 1440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111034,7 +111146,7 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _util = __webpack_require__(1439);
+	var _util = __webpack_require__(1427);
 
 	var _split_taxon = __webpack_require__(862);
 
@@ -111150,36 +111262,7 @@
 	exports.default = TaxonomyTab;
 
 /***/ },
-/* 1439 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.fetch = exports.urlForTaxon = undefined;
-
-	var _isomorphicFetch = __webpack_require__(994);
-
-	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var urlForTaxon = function urlForTaxon(t) {
-	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
-	};
-
-	// Light wrapper around isomorphic fetch to ensure credentials are always passed through
-	var fetch = function fetch(url, options) {
-	  return (0, _isomorphicFetch2.default)(url, Object.assign({}, options, { credentials: "same-origin" }));
-	};
-
-	exports.urlForTaxon = urlForTaxon;
-	exports.fetch = fetch;
-
-/***/ },
-/* 1440 */
+/* 1441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111190,7 +111273,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _names_tab = __webpack_require__(1441);
+	var _names_tab = __webpack_require__(1442);
 
 	var _names_tab2 = _interopRequireDefault(_names_tab);
 
@@ -111208,7 +111291,7 @@
 	exports.default = NamesTabContainer;
 
 /***/ },
-/* 1441 */
+/* 1442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111359,7 +111442,7 @@
 	exports.default = NamesTab;
 
 /***/ },
-/* 1442 */
+/* 1443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111370,7 +111453,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _articles_tab = __webpack_require__(1443);
+	var _articles_tab = __webpack_require__(1444);
 
 	var _articles_tab2 = _interopRequireDefault(_articles_tab);
 
@@ -111391,7 +111474,7 @@
 	exports.default = ArticlesTabContainer;
 
 /***/ },
-/* 1443 */
+/* 1444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111510,7 +111593,7 @@
 	exports.default = ArticlesTab;
 
 /***/ },
-/* 1444 */
+/* 1445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111521,7 +111604,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _interactions_tab = __webpack_require__(1445);
+	var _interactions_tab = __webpack_require__(1446);
 
 	var _interactions_tab2 = _interopRequireDefault(_interactions_tab);
 
@@ -111538,7 +111621,7 @@
 	exports.default = InteractionsTabContainer;
 
 /***/ },
-/* 1445 */
+/* 1446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111546,8 +111629,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(403);
 
@@ -111561,171 +111642,156 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var InteractionsTab = function InteractionsTab(_ref) {
+	  var interactions = _ref.interactions;
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var InteractionsTab = function (_React$Component) {
-	  _inherits(InteractionsTab, _React$Component);
-
-	  function InteractionsTab() {
-	    _classCallCheck(this, InteractionsTab);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(InteractionsTab).apply(this, arguments));
+	  var interactionsByType = _lodash2.default.groupBy(interactions || [], "interaction_type");
+	  var iconicTaxonNames = ["Protozoa", "Plantae", "Fungi", "Animalia", "Mollusca", "Arachnida", "Insecta", "Amphibia", "Reptilia", "Aves", "Mammalia", "Actinopterygii", "Chromista"];
+	  var status = _react2.default.createElement(
+	    "h2",
+	    { className: "text-center" },
+	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
+	  );
+	  if (interactions && interactions.length === 0) {
+	    status = _react2.default.createElement(
+	      "h3",
+	      { className: "text-muted text-center" },
+	      I18n.t("no_interaction_data_available")
+	    );
 	  }
-
-	  _createClass(InteractionsTab, [{
-	    key: "render",
-	    value: function render() {
-	      var interactionsByType = _lodash2.default.groupBy(this.props.interactions, "interaction_type");
-	      var iconicTaxonNames = ["Protozoa", "Plantae", "Fungi", "Animalia", "Mollusca", "Arachnida", "Insecta", "Amphibia", "Reptilia", "Aves", "Mammalia", "Actinopterygii", "Chromista"];
-	      return _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        { className: "InteractionsTab" },
+	  return _react2.default.createElement(
+	    _reactBootstrap.Grid,
+	    { className: "InteractionsTab" },
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 8 },
+	        status,
 	        _react2.default.createElement(
-	          _reactBootstrap.Row,
+	          "ul",
 	          null,
+	          _lodash2.default.map(interactionsByType, function (typedInteractions, type) {
+	            return _react2.default.createElement(
+	              "li",
+	              { key: "interactions-" + type },
+	              _react2.default.createElement(
+	                "strong",
+	                null,
+	                _lodash2.default.startCase(type),
+	                ":",
+	                I18n.t("x_species", { count: typedInteractions.length })
+	              ),
+	              _react2.default.createElement(
+	                "ul",
+	                null,
+	                typedInteractions.map(function (interaction) {
+	                  var iconicTaxonName = void 0;
+	                  if (interaction.target.path) {
+	                    iconicTaxonName = _lodash2.default.last(_lodash2.default.intersection(iconicTaxonNames, interaction.target.path.split(" | ")));
+	                  }
+	                  iconicTaxonName = iconicTaxonName || "unknown";
+	                  var rank = void 0;
+	                  if (interaction.target.name.split(" ").length > 1) {
+	                    rank = "species";
+	                  }
+	                  return _react2.default.createElement(
+	                    "li",
+	                    { key: interaction.target_taxon_external_id },
+	                    _react2.default.createElement(
+	                      "a",
+	                      {
+	                        href: "/taxa/" + interaction.target.name + "?test=taxon-page#interactions-tab",
+	                        className: "taxon " + iconicTaxonName + " " + rank
+	                      },
+	                      _react2.default.createElement("i", { className: "icon-iconic-" + iconicTaxonName.toLowerCase() }),
+	                      " ",
+	                      _react2.default.createElement(
+	                        "span",
+	                        {
+	                          className: "display-name sciname"
+	                        },
+	                        interaction.target.name
+	                      )
+	                    )
+	                  );
+	                })
+	              )
+	            );
+	          })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 4 },
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "About Interactions"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Most organisms interact with other organisms in some way or another, and how they do so usually defines how they fit into an ecosystem. These intereactions come to us from ",
 	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 8 },
-	            _react2.default.createElement(
-	              "h2",
-	              { className: "text-center " + (this.props.interactions.length > 0 ? "hidden" : "") },
-	              _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
-	            ),
-	            _react2.default.createElement(
-	              "ul",
-	              null,
-	              _lodash2.default.map(interactionsByType, function (typedInteractions, type) {
-	                return _react2.default.createElement(
-	                  "li",
-	                  { key: "interactions-" + type },
-	                  _react2.default.createElement(
-	                    "strong",
-	                    null,
-	                    _lodash2.default.startCase(type),
-	                    ":",
-	                    I18n.t("x_species", { count: typedInteractions.length })
-	                  ),
-	                  _react2.default.createElement(
-	                    "ul",
-	                    null,
-	                    typedInteractions.map(function (interaction) {
-	                      var iconicTaxonName = void 0;
-	                      if (interaction.target.path) {
-	                        iconicTaxonName = _lodash2.default.last(_lodash2.default.intersection(iconicTaxonNames, interaction.target.path.split(" | ")));
-	                      }
-	                      iconicTaxonName = iconicTaxonName || "unknown";
-	                      var rank = void 0;
-	                      if (interaction.target.name.split(" ").length > 1) {
-	                        rank = "species";
-	                      }
-	                      return _react2.default.createElement(
-	                        "li",
-	                        { key: interaction.target_taxon_external_id },
-	                        _react2.default.createElement(
-	                          "a",
-	                          {
-	                            href: "/taxa/" + interaction.target.name + "?test=taxon-page#interactions-tab",
-	                            className: "taxon " + iconicTaxonName + " " + rank
-	                          },
-	                          _react2.default.createElement("i", { className: "icon-iconic-" + iconicTaxonName.toLowerCase() }),
-	                          " ",
-	                          _react2.default.createElement(
-	                            "span",
-	                            {
-	                              className: "display-name sciname"
-	                            },
-	                            interaction.target.name
-	                          )
-	                        )
-	                      );
-	                    })
-	                  )
-	                );
-	              })
-	            )
+	            "a",
+	            { href: "http://www.globalbioticinteractions.org/" },
+	            "Global Biotic Interactions (GLoBI)"
 	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 4 },
-	            _react2.default.createElement(
-	              "h3",
-	              null,
-	              "About Interactions"
-	            ),
-	            _react2.default.createElement(
-	              "p",
-	              null,
-	              "Most organisms interact with other organisms in some way or another, and how they do so usually defines how they fit into an ecosystem. These intereactions come to us from ",
+	          ", a database and webservice that combines interaction data from numerous sources, including iNaturalist. You can actually contribute to this database by adding the \"Eating\", \"Eaten by\", and \"Host\" observation fields to observations that demonstrate those interactions."
+	        ),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Learn More"
+	        ),
+	        _react2.default.createElement(
+	          "ul",
+	          { className: "tab-links list-group" },
+	          [{
+	            id: 1,
+	            url: "http://www.globalbioticinteractions.org",
+	            host: "globalbioticinteractions.org",
+	            text: "Global Biotic Interactions (GLoBI)"
+	          }, {
+	            id: 2,
+	            url: "https://en.wikipedia.org/wiki/Biological_interaction",
+	            host: "en.wikipedia.org",
+	            text: "About Biological Interactions"
+	          }].map(function (link) {
+	            return _react2.default.createElement(
+	              "li",
+	              { className: "list-group-item", key: "status-link-" + link.id },
 	              _react2.default.createElement(
 	                "a",
-	                { href: "http://www.globalbioticinteractions.org/" },
-	                "Global Biotic Interactions (GLoBI)"
-	              ),
-	              ", a database and webservice that combines interaction data from numerous sources, including iNaturalist. You can actually contribute to this database by adding the \"Eating\", \"Eaten by\", and \"Host\" observation fields to observations that demonstrate those interactions."
-	            ),
-	            _react2.default.createElement(
-	              "h3",
-	              null,
-	              "Learn More"
-	            ),
-	            _react2.default.createElement(
-	              "ul",
-	              { className: "tab-links list-group" },
-	              [{
-	                id: 1,
-	                url: "http://www.globalbioticinteractions.org",
-	                host: "globalbioticinteractions.org",
-	                text: "Global Biotic Interactions (GLoBI)"
-	              }, {
-	                id: 2,
-	                url: "https://en.wikipedia.org/wiki/Biological_interaction",
-	                host: "en.wikipedia.org",
-	                text: "About Biological Interactions"
-	              }].map(function (link) {
-	                return _react2.default.createElement(
-	                  "li",
-	                  { className: "list-group-item", key: "status-link-" + link.id },
-	                  _react2.default.createElement(
-	                    "a",
-	                    {
-	                      href: link.url,
-	                      style: {
-	                        backgroundImage: "url( http://www.google.com/s2/favicons?domain=" + link.host + " )",
-	                        backgroundRepeat: "no-repeat",
-	                        padding: "1px 0 1px 25px",
-	                        backgroundPosition: "0 2px"
-	                      }
-	                    },
-	                    link.text
-	                  )
-	                );
-	              })
-	            )
-	          )
+	                {
+	                  href: link.url,
+	                  style: {
+	                    backgroundImage: "url( http://www.google.com/s2/favicons?domain=" + link.host + " )",
+	                    backgroundRepeat: "no-repeat",
+	                    padding: "1px 0 1px 25px",
+	                    backgroundPosition: "0 2px"
+	                  }
+	                },
+	                link.text
+	              )
+	            );
+	          })
 	        )
-	      );
-	    }
-	  }]);
-
-	  return InteractionsTab;
-	}(_react2.default.Component);
+	      )
+	    )
+	  );
+	};
 
 	InteractionsTab.propTypes = {
 	  interactions: _react.PropTypes.array
 	};
 
-	InteractionsTab.defaultProps = {
-	  interactions: []
-	};
-
 	exports.default = InteractionsTab;
 
 /***/ },
-/* 1446 */
+/* 1447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111736,7 +111802,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _highlights_tab = __webpack_require__(1447);
+	var _highlights_tab = __webpack_require__(1448);
 
 	var _highlights_tab2 = _interopRequireDefault(_highlights_tab);
 
@@ -111758,7 +111824,7 @@
 	exports.default = HighlightsTabContainer;
 
 /***/ },
-/* 1447 */
+/* 1448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111777,13 +111843,75 @@
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
-	var _util = __webpack_require__(1439);
+	var _util = __webpack_require__(1427);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var HighlightsTab = function HighlightsTab(_ref) {
 	  var trendingTaxa = _ref.trendingTaxa;
 	  var rareTaxa = _ref.rareTaxa;
+
+	  var trending = _react2.default.createElement(
+	    "p",
+	    { className: "text-muted text-center" },
+	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
+	    I18n.t("loading")
+	  );
+	  if (trendingTaxa && trendingTaxa.length > 0) {
+	    trending = trendingTaxa.map(function (taxon) {
+	      return _react2.default.createElement(
+	        "a",
+	        {
+	          key: "rare-taxon-" + taxon.id,
+	          href: (0, _util.urlForTaxon)(taxon),
+	          title: taxon.preferred_common_name || taxon.name
+	        },
+	        _react2.default.createElement(_cover_image2.default, {
+	          src: taxon.defaultPhoto.photoUrl("medium"),
+	          low: taxon.defaultPhoto.photoUrl("square"),
+	          height: 100
+	        })
+	      );
+	    });
+	  } else if (trendingTaxa.length === 0) {
+	    trending = _react2.default.createElement(
+	      "p",
+	      { className: "text-muted text-center" },
+	      "Nothing below this taxon observed in the last month."
+	    );
+	  }
+	  var rare = _react2.default.createElement(
+	    "p",
+	    { className: "text-muted text-center" },
+	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
+	    I18n.t("loading")
+	  );
+	  if (rareTaxa && rareTaxa.length > 0) {
+	    rare = rareTaxa.map(function (taxon) {
+	      var img = taxon.defaultPhoto ? _react2.default.createElement(_cover_image2.default, {
+	        src: taxon.defaultPhoto.photoUrl("medium"),
+	        low: taxon.defaultPhoto.photoUrl("square"),
+	        height: 100
+	      }) : _react2.default.createElement("i", {
+	        className: "icon-iconic-" + (taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase() : "unknown")
+	      });
+	      return _react2.default.createElement(
+	        "a",
+	        {
+	          key: "rare-taxon-" + taxon.id,
+	          href: (0, _util.urlForTaxon)(taxon),
+	          title: taxon.preferred_common_name || taxon.name
+	        },
+	        img
+	      );
+	    });
+	  } else if (rareTaxa.length === 0) {
+	    rare = _react2.default.createElement(
+	      "p",
+	      { className: "text-muted text-center" },
+	      I18n.t("no_observations_yet")
+	    );
+	  }
 	  return _react2.default.createElement(
 	    _reactBootstrap.Grid,
 	    { className: "HighlightsTab" },
@@ -111799,23 +111927,14 @@
 	          _react2.default.createElement(
 	            "h2",
 	            null,
-	            "Trending"
+	            I18n.t("trending")
 	          ),
-	          trendingTaxa.map(function (taxon) {
-	            return _react2.default.createElement(
-	              "a",
-	              {
-	                key: "rare-taxon-" + taxon.id,
-	                href: (0, _util.urlForTaxon)(taxon),
-	                title: taxon.preferred_common_name || taxon.name
-	              },
-	              _react2.default.createElement(_cover_image2.default, {
-	                src: taxon.defaultPhoto.photoUrl("medium"),
-	                low: taxon.defaultPhoto.photoUrl("square"),
-	                height: 100
-	              })
-	            );
-	          })
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            I18n.t("views.taxa.show.trending_desc")
+	          ),
+	          trending
 	        ),
 	        _react2.default.createElement(
 	          "div",
@@ -111823,26 +111942,14 @@
 	          _react2.default.createElement(
 	            "h2",
 	            null,
-	            "Rare"
+	            I18n.t("rare")
 	          ),
-	          rareTaxa.map(function (taxon) {
-	            var img = taxon.defaultPhoto ? _react2.default.createElement(_cover_image2.default, {
-	              src: taxon.defaultPhoto.photoUrl("medium"),
-	              low: taxon.defaultPhoto.photoUrl("square"),
-	              height: 100
-	            }) : _react2.default.createElement("i", {
-	              className: "icon-iconic-" + (taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase() : "unknown")
-	            });
-	            return _react2.default.createElement(
-	              "a",
-	              {
-	                key: "rare-taxon-" + taxon.id,
-	                href: (0, _util.urlForTaxon)(taxon),
-	                title: taxon.preferred_common_name || taxon.name
-	              },
-	              img
-	            );
-	          })
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            I18n.t("views.taxa.show.rare_desc")
+	          ),
+	          rare
 	        )
 	      )
 	    )
@@ -111854,15 +111961,10 @@
 	  rareTaxa: _react.PropTypes.array
 	};
 
-	HighlightsTab.defaultProps = {
-	  trendingTaxa: [],
-	  rareTaxa: []
-	};
-
 	exports.default = HighlightsTab;
 
 /***/ },
-/* 1448 */
+/* 1449 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111891,11 +111993,15 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
-	var _util = __webpack_require__(1439);
+	var _util = __webpack_require__(1427);
 
 	var _moment = __webpack_require__(299);
 
 	var _moment2 = _interopRequireDefault(_moment);
+
+	var _querystring = __webpack_require__(1450);
+
+	var _querystring2 = _interopRequireDefault(_querystring);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112065,7 +112171,13 @@
 	function fetchInteractions(taxon) {
 	  return function (dispatch, getState) {
 	    var t = taxon || getState().taxon.taxon;
-	    (0, _util.fetch)("http://api.globalbioticinteractions.org/interaction?sourceTaxon=" + t.name + "&type=json.v2").then(function (response) {
+	    var params = {
+	      sourceTaxon: t.name,
+	      type: "json.v2",
+	      accordingTo: "iNaturalist"
+	    };
+	    var url = "http://api.globalbioticinteractions.org/interaction?" + _querystring2.default.stringify(params);
+	    (0, _util.fetch)(url).then(function (response) {
 	      response.json().then(function (json) {
 	        return dispatch(setInteractions(json));
 	      });
@@ -112114,7 +112226,173 @@
 	}
 
 /***/ },
-/* 1449 */
+/* 1450 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.decode = exports.parse = __webpack_require__(1451);
+	exports.encode = exports.stringify = __webpack_require__(1452);
+
+
+/***/ },
+/* 1451 */
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+	'use strict';
+
+	// If obj.hasOwnProperty has been overridden, then calling
+	// obj.hasOwnProperty(prop) will break.
+	// See: https://github.com/joyent/node/issues/1707
+	function hasOwnProperty(obj, prop) {
+	  return Object.prototype.hasOwnProperty.call(obj, prop);
+	}
+
+	module.exports = function(qs, sep, eq, options) {
+	  sep = sep || '&';
+	  eq = eq || '=';
+	  var obj = {};
+
+	  if (typeof qs !== 'string' || qs.length === 0) {
+	    return obj;
+	  }
+
+	  var regexp = /\+/g;
+	  qs = qs.split(sep);
+
+	  var maxKeys = 1000;
+	  if (options && typeof options.maxKeys === 'number') {
+	    maxKeys = options.maxKeys;
+	  }
+
+	  var len = qs.length;
+	  // maxKeys <= 0 means that we should not limit keys count
+	  if (maxKeys > 0 && len > maxKeys) {
+	    len = maxKeys;
+	  }
+
+	  for (var i = 0; i < len; ++i) {
+	    var x = qs[i].replace(regexp, '%20'),
+	        idx = x.indexOf(eq),
+	        kstr, vstr, k, v;
+
+	    if (idx >= 0) {
+	      kstr = x.substr(0, idx);
+	      vstr = x.substr(idx + 1);
+	    } else {
+	      kstr = x;
+	      vstr = '';
+	    }
+
+	    k = decodeURIComponent(kstr);
+	    v = decodeURIComponent(vstr);
+
+	    if (!hasOwnProperty(obj, k)) {
+	      obj[k] = v;
+	    } else if (Array.isArray(obj[k])) {
+	      obj[k].push(v);
+	    } else {
+	      obj[k] = [obj[k], v];
+	    }
+	  }
+
+	  return obj;
+	};
+
+
+/***/ },
+/* 1452 */
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+	'use strict';
+
+	var stringifyPrimitive = function(v) {
+	  switch (typeof v) {
+	    case 'string':
+	      return v;
+
+	    case 'boolean':
+	      return v ? 'true' : 'false';
+
+	    case 'number':
+	      return isFinite(v) ? v : '';
+
+	    default:
+	      return '';
+	  }
+	};
+
+	module.exports = function(obj, sep, eq, name) {
+	  sep = sep || '&';
+	  eq = eq || '=';
+	  if (obj === null) {
+	    obj = undefined;
+	  }
+
+	  if (typeof obj === 'object') {
+	    return Object.keys(obj).map(function(k) {
+	      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+	      if (Array.isArray(obj[k])) {
+	        return obj[k].map(function(v) {
+	          return ks + encodeURIComponent(stringifyPrimitive(v));
+	        }).join(sep);
+	      } else {
+	        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+	      }
+	    }).join(sep);
+
+	  }
+
+	  if (!name) return '';
+	  return encodeURIComponent(stringifyPrimitive(name)) + eq +
+	         encodeURIComponent(stringifyPrimitive(obj));
+	};
+
+
+/***/ },
+/* 1453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112258,7 +112536,7 @@
 	exports.default = PlaceChooser;
 
 /***/ },
-/* 1450 */
+/* 1454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112283,7 +112561,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _util = __webpack_require__(1439);
+	var _util = __webpack_require__(1427);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112455,7 +112733,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1451 */
+/* 1455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112528,7 +112806,7 @@
 	exports.default = StatusHeader;
 
 /***/ },
-/* 1452 */
+/* 1456 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -112563,7 +112841,7 @@
 	}
 
 /***/ },
-/* 1453 */
+/* 1457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112584,6 +112862,8 @@
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
 	var _observations = __webpack_require__(1426);
+
+	var _util = __webpack_require__(1427);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112612,17 +112892,9 @@
 	  };
 	}
 
-	var defaultObservationParams = function defaultObservationParams(state) {
-	  return {
-	    verifiable: true,
-	    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-	    place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
-	  };
-	};
-
 	function fetchTopObserver() {
 	  return function (dispatch, getState) {
-	    return _inaturalistjs2.default.observations.observers(defaultObservationParams(getState())).then(function (response) {
+	    return _inaturalistjs2.default.observations.observers((0, _util.defaultObservationParams)(getState())).then(function (response) {
 	      return dispatch(setLeader("topObserver", response.results[0]));
 	    });
 	  };
@@ -112630,7 +112902,7 @@
 
 	function fetchTopIdentifier() {
 	  return function (dispatch, getState) {
-	    return _inaturalistjs2.default.observations.identifiers(defaultObservationParams(getState())).then(function (response) {
+	    return _inaturalistjs2.default.observations.identifiers((0, _util.defaultObservationParams)(getState())).then(function (response) {
 	      return dispatch(setLeader("topIdentifier", response.results[0]));
 	    });
 	  };
@@ -112638,7 +112910,7 @@
 
 	function fetchFirstObserver() {
 	  return function (dispatch, getState) {
-	    return _inaturalistjs2.default.observations.search(defaultObservationParams(getState())).then(function (response) {
+	    return _inaturalistjs2.default.observations.search((0, _util.defaultObservationParams)(getState())).then(function (response) {
 	      if (!response.results[0]) {
 	        return;
 	      }
@@ -112652,7 +112924,7 @@
 
 	function fetchTopSpecies() {
 	  return function (dispatch, getState) {
-	    return _inaturalistjs2.default.observations.speciesCounts(defaultObservationParams(getState())).then(function (response) {
+	    return _inaturalistjs2.default.observations.speciesCounts((0, _util.defaultObservationParams)(getState())).then(function (response) {
 	      return dispatch(setLeader("topSpecies", response.results[0]));
 	    });
 	  };

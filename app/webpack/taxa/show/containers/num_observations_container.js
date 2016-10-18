@@ -7,8 +7,9 @@ function mapStateToProps( state ) {
   const props = {
     iconClassName: "fa fa-binoculars",
     className: "NumObservations",
-    name: "?",
-    linkText: I18n.t( "observations" )
+    label: I18n.t( "total_observations" ),
+    name: 0,
+    linkText: I18n.t( "view" )
   };
   if ( !count ) {
     return props;

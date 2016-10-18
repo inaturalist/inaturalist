@@ -3,6 +3,7 @@ import {
   fetchRecentObservations,
   fetchFirstObservation
 } from "./observations";
+import { defaultObservationParams } from "../util";
 
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
 
@@ -28,12 +29,6 @@ export function setLeader( key, leader ) {
     leader
   };
 }
-
-const defaultObservationParams = ( state ) => ( {
-  verifiable: true,
-  taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-  place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
-} );
 
 export function fetchTopObserver( ) {
   return function ( dispatch, getState ) {

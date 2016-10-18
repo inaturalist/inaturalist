@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 
 const LeaderItem = ( {
+  noContent,
   className,
   label,
   name,
@@ -10,32 +11,47 @@ const LeaderItem = ( {
   valueIconClassName,
   extra,
   linkText,
-  linkUrl
-} ) => (
-  <div className={`LeaderItem media ${className}`}>
-    <div className="media-left">
-      <div className="img-wrapper">
-        { imageUrl ? <img src={imageUrl} className="img-responsive" /> : <i className={iconClassName} /> }
+  linkUrl,
+  url
+} ) => {
+  const extraContent = (
+    <div className="extra">
+      {
+        valueIconClassName ? <i className={valueIconClassName} /> : extra
+      } {
+        value ? <span className="value">{ value }</span> : null
+      } <a
+        href={linkUrl}
+      >
+        { linkText }
+      </a>
+    </div>
+  );
+  return (
+    <div className={`LeaderItem media ${noContent ? "no-content" : ""} ${className}`}>
+      <div className="media-left">
+        <div className="img-wrapper">
+          <a href={url}>
+            {
+              imageUrl ?
+              <img src={imageUrl} className="img-responsive" />
+              :
+              <i className={iconClassName} />
+            }
+          </a>
+        </div>
+      </div>
+      <div className="media-body">
+        <div className="item-label">{ label }</div>
+        <h4 className="name"><a href={url}>{ name }</a></h4>
+        { noContent ? null : extraContent }
       </div>
     </div>
-    <div className="media-body">
-      <h4>{ label ? `${label}:` : null} <span className="name">{ name }</span></h4>
-      <div className="extra">
-        {
-          valueIconClassName ? <i className={valueIconClassName} /> : extra
-        } {
-          value ? <span className="value">{ value }</span> : null
-        } <a
-          href={linkUrl}
-        >
-          { linkText }
-        </a>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 LeaderItem.propTypes = {
+  noContent: PropTypes.bool,
   className: PropTypes.string,
   label: PropTypes.string,
   name: React.PropTypes.oneOfType( [
@@ -48,7 +64,8 @@ LeaderItem.propTypes = {
   valueIconClassName: PropTypes.string,
   linkText: PropTypes.string,
   linkUrl: PropTypes.string,
-  extra: PropTypes.string
+  extra: PropTypes.string,
+  url: PropTypes.string
 };
 
 LeaderItem.defaultProps = {

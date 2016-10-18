@@ -53,6 +53,16 @@
 #charts .nav-tabs > li {
   margin-left: -1px;
 }
+#charts .tab-pane {
+  position: relative;
+}
+#charts .no-content {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: 20px;
+}
 #charts .tab-content {
   background-color: white;
   padding: 20px;
@@ -188,7 +198,7 @@
 }
 
 .LeaderItem {
-  margin: 20px 0 30px;
+  margin: 20px 0 20px;
 }
 .LeaderItem .img-wrapper i {
   font-size: 32px;
@@ -204,13 +214,29 @@
   text-align: center;
   overflow: hidden;
 }
+.LeaderItem .item-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 5px;
+}
 .LeaderItem h4 {
-  margin: 3px 0;
+  // margin: 3px 0;
   text-transform: none;
+  margin: 0px 0px 3px 0px;
 }
 .LeaderItem .name,
 .LeaderItem .extra a {
   font-weight: bold;
+}
+.LeaderItem.no-content .name {
+  text-transform: capitalize;
+}
+.LeaderItem .name a {
+  color: black;
+}
+.LeaderItem .extra a {
+  white-space: nowrap;
 }
 .LeaderItem .value {
   margin-right: 3px;
@@ -446,4 +472,13 @@ $endangeredColor: #D12F19;
 .HighlightsTab .trending i,
 .HighlightsTab .rare i {
   font-size: 100px;
+}
+
+#main-tabs {
+  display: flex;
+}
+#main-tabs.nav-tabs > li {
+  float: none;
+  flex-grow: 1;
+  text-align: center;
 }

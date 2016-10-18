@@ -34,19 +34,20 @@ class TaxonPageTabs extends React.Component {
     } );
   }
   render( ) {
+    const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
     return (
       <div className="TaxonPageTabs">
         <Grid>
           <Row>
             <Col xs={12}>
-              <ul className="nav nav-tabs" role="tablist">
+              <ul id="main-tabs" className="nav nav-tabs" role="tablist">
                 <li role="presentation" className="active">
                   <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
                 </li>
                 <li role="presentation">
                   <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "articles" ) }</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" className={speciesOrLower ? "hidden" : ""}>
                   <a
                     href="#highlights-tab"
                     role="tab"
@@ -55,7 +56,7 @@ class TaxonPageTabs extends React.Component {
                     { I18n.t( "highlights" ) }
                   </a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
                   <a
                     href="#interactions-tab"
                     role="tab"
@@ -70,27 +71,35 @@ class TaxonPageTabs extends React.Component {
                 <li role="presentation">
                   <a href="#names-tab" role="tab" data-toggle="tab">{ I18n.t( "names" ) }</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
                   <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
                   <a href="#related-tab" role="tab" data-toggle="tab">{ I18n.t( "related_species" ) }</a>
                 </li>
               </ul>
             </Col>
           </Row>
         </Grid>
-        <div className="tab-content">
+        <div id="main-tabs-content" className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="map-tab">
             <TaxonPageMap taxon={this.props.taxon} />
           </div>
           <div role="tabpanel" className="tab-pane" id="articles-tab">
             <ArticlesTabContainer />
           </div>
-          <div role="tabpanel" className="tab-pane" id="highlights-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${speciesOrLower ? "hidden" : ""}`}
+            id="highlights-tab"
+          >
             <HighlightsTabContainer />
           </div>
-          <div role="tabpanel" className="tab-pane" id="interactions-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
+            id="interactions-tab"
+          >
             <InteractionsTabContainer />
           </div>
           <div role="tabpanel" className="tab-pane" id="taxonomy-tab">
@@ -99,13 +108,21 @@ class TaxonPageTabs extends React.Component {
           <div role="tabpanel" className="tab-pane" id="names-tab">
             <NamesTabContainer />
           </div>
-          <div role="tabpanel" className="tab-pane" id="status-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
+            id="status-tab"
+          >
             <StatusTab
               statuses={this.props.taxon.conservationStatuses}
               listedTaxa={_.filter( this.props.taxon.listed_taxa, lt => lt.establishment_means )}
             />
           </div>
-          <div role="tabpanel" className="tab-pane" id="related-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
+            id="related-tab"
+          >
             related species
           </div>
         </div>

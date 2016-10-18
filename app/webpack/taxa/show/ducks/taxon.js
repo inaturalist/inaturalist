@@ -1,6 +1,7 @@
 import iNaturalistJS from "inaturalistjs";
 import { fetch } from "../util";
 import moment from "moment";
+import querystring from "querystring";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
@@ -170,7 +171,13 @@ export function fetchNames( taxon ) {
 export function fetchInteractions( taxon ) {
   return ( dispatch, getState ) => {
     const t = taxon || getState( ).taxon.taxon;
-    fetch( `http://api.globalbioticinteractions.org/interaction?sourceTaxon=${t.name}&type=json.v2` ).then(
+    const params = {
+      sourceTaxon: t.name,
+      type: "json.v2",
+      accordingTo: "iNaturalist"
+    };
+    const url = `http://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
+    fetch( url ).then(
       response => {
         response.json( ).then( json => dispatch( setInteractions( json ) ) );
       },

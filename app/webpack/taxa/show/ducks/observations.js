@@ -1,4 +1,5 @@
 import iNaturalistJS from "inaturalistjs";
+import { defaultObservationParams } from "../util";
 
 const SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
 const SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FREQUENCY";
@@ -53,85 +54,67 @@ export function setMonthOfYearFrequecy( key, frequency ) {
   };
 }
 
-export function fetchMonthFrequencyVerifiable( taxon ) {
+export function fetchMonthFrequencyVerifiable( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const params = {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       date_field: "observed",
-      interval: "month",
-      taxon_id: t.id,
-      verifiable: true,
-      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+      interval: "month"
+    } );
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "verifiable", response.results.month ) );
     } );
   };
 }
 
-export function fetchMonthFrequencyResearchGrade( taxon ) {
+export function fetchMonthFrequencyResearchGrade( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const params = {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       date_field: "observed",
       interval: "month",
-      taxon_id: t.id,
-      quality_grade: "research",
-      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+      quality_grade: "research"
+    } );
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "research", response.results.month ) );
     } );
   };
 }
 
-export function fetchMonthFrequency( taxon ) {
+export function fetchMonthFrequency( ) {
   return ( dispatch ) => {
-    dispatch( fetchMonthFrequencyVerifiable( taxon ) );
-    dispatch( fetchMonthFrequencyResearchGrade( taxon ) );
+    dispatch( fetchMonthFrequencyVerifiable( ) );
+    dispatch( fetchMonthFrequencyResearchGrade( ) );
   };
 }
 
-export function fetchMonthOfYearFrequencyVerifiable( taxon ) {
+export function fetchMonthOfYearFrequencyVerifiable( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const params = {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       date_field: "observed",
-      interval: "month_of_year",
-      taxon_id: t.id,
-      verifiable: true,
-      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+      interval: "month_of_year"
+    } );
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "verifiable", response.results.month_of_year ) );
     } );
   };
 }
 
-export function fetchMonthOfYearFrequencyResearchGrade( taxon ) {
+export function fetchMonthOfYearFrequencyResearchGrade( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const params = {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       date_field: "observed",
       interval: "month_of_year",
-      taxon_id: t.id,
-      quality_grade: "research",
-      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+      quality_grade: "research"
+    } );
     return iNaturalistJS.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "research", response.results.month_of_year ) );
     } );
   };
 }
 
-export function fetchMonthOfYearFrequency( taxon ) {
+export function fetchMonthOfYearFrequency( ) {
   return ( dispatch ) => {
-    dispatch( fetchMonthOfYearFrequencyVerifiable( taxon ) );
-    dispatch( fetchMonthOfYearFrequencyResearchGrade( taxon ) );
+    dispatch( fetchMonthOfYearFrequencyVerifiable( ) );
+    dispatch( fetchMonthOfYearFrequencyResearchGrade( ) );
   };
 }
 
@@ -149,20 +132,14 @@ export function setObservationsCount( count ) {
   };
 }
 
-export function fetchRecentObservations( taxon ) {
-  return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const p = s.config.preferredPlace;
-    const params = {
-      taxon_id: t.id,
-      place_id: p ? p.id : null
-    };
-    return ( iNaturalistJS.observations.search( params ).then( response => {
+export function fetchRecentObservations( ) {
+  return ( dispatch, getState ) =>
+    iNaturalistJS.observations.search(
+      defaultObservationParams( getState( ) )
+    ).then( response => {
       dispatch( setRecentObservations( response.results ) );
       dispatch( setObservationsCount( response.total_results ) );
-    } ) );
-  };
+    } );
 }
 
 export function setFirstObservation( observation ) {
@@ -172,17 +149,12 @@ export function setFirstObservation( observation ) {
   };
 }
 
-export function fetchFirstObservation( taxon ) {
+export function fetchFirstObservation( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const p = s.config.preferredPlace;
-    const params = {
-      taxon_id: t.id,
-      place_id: p ? p.id : null,
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       order: "asc",
       per_page: 1
-    };
+    } );
     return ( iNaturalistJS.observations.search( params ).then( response => {
       dispatch( setFirstObservation( response.results[0] ) );
     } ) );

@@ -19,6 +19,7 @@ class Charts extends React.Component {
           min: 0,
           show: true,
           padding: {
+            left: 0,
             bottom: 0
           }
         }
@@ -48,7 +49,6 @@ class Charts extends React.Component {
           if ( !this.props.monthFrequency || !this.props.monthFrequency.verifiable ) {
             this.props.fetchMonthFrequency( );
           }
-          // this.renderHistoryChart( );
           if ( this.historyChart ) {
             this.historyChart.flush( );
           }
@@ -58,7 +58,7 @@ class Charts extends React.Component {
       }
     } );
   }
-  shouldComponentUpdate( nextProps ) {
+  shouldComponentUpdate( ) {
     // You would think the following would work, but it doesn't. For some
     // reason there's never a point where nextProps and this.props are
     // different.
@@ -182,9 +182,24 @@ class Charts extends React.Component {
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="charts-seasonality">
-            <div className="SeasonalityChart FrequencyChart"></div>
+            <div
+              className={
+                `no-content text-muted text-center ${_.isEmpty( this.props.monthFrequency.verifiable ) ? "" : "hidden"}`
+              }
+            >
+              { I18n.t( "no_observations_yet" ) }
+            </div>
+            <div className="SeasonalityChart FrequencyChart">
+            </div>
           </div>
           <div role="tabpanel" className="tab-pane" id="charts-history">
+            <div
+              className={
+                `no-content text-muted text-center ${_.isEmpty( this.props.monthFrequency.verifiable ) ? "" : "hidden"}`
+              }
+            >
+              { I18n.t( "no_observations_yet" ) }
+            </div>
             <div className="HistoryChart FrequencyChart"></div>
           </div>
         </div>

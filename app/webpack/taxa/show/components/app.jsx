@@ -4,11 +4,7 @@ import SplitTaxon from "../../../observations/identify/components/split_taxon";
 import TaxonAutocomplete from "../../../observations/identify/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
-import TopObserverContainer from "../containers/top_observer_container";
-import TopIdentifierContainer from "../containers/top_identifier_container";
-import TopSpeciesContainer from "../containers/top_species_container";
-import FirstObserverContainer from "../containers/first_observer_container";
-import NumObservationsContainer from "../containers/num_observations_container";
+import Leaders from "../components/leaders";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PlaceChooser from "./place_chooser";
 import TaxonCrumbs from "./taxon_crumbs";
@@ -69,22 +65,7 @@ const App = ( { taxon, place, setPlace } ) => (
                 <PhotoPreviewContainer />
               </Col>
               <Col xs={6}>
-                <Row>
-                  <Col xs={6}>
-                    <TopObserverContainer />
-                  </Col>
-                  <Col xs={6}>
-                    <TopIdentifierContainer />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={6}>
-                    { taxon.rank_level > 10 ? <TopSpeciesContainer /> : <FirstObserverContainer /> }
-                  </Col>
-                  <Col xs={6}>
-                    <NumObservationsContainer />
-                  </Col>
-                </Row>
+                <Leaders taxon={taxon} />
                 <Row>
                   <Col xs={12}>
                     <ChartsContainer />

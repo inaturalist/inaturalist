@@ -1865,9 +1865,11 @@ en:
   no_flags: No flags this time
   no_flickr_photos_tagged: No Flickr photos tagged!
   no_header_row: No header row
+  no_identifications: No identifications
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
     user: "%{user} hasn't added identifications to anyone's observations."
+  no_interaction_data_available: No interaction data available
   no_favorites_added:
     current_user: You haven't added favorites yet.
     user: "%{user} hasn't added favorites."
@@ -1919,6 +1921,7 @@ en:
   no_sections_available: No sections available.
   no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessments yet.
   no_species_have_been_listed: No species have been listed for this place yet!
+  no_species_observed: No species observed
   no_species_on_this_list: No species on this list yet!
   no_species_on_this_list_for_owner_html: |
     You can start adding species to this list directly, or if this is a life
@@ -2538,6 +2541,7 @@ en:
       variety: variety
       form: form
       leaves: leaves
+  rare: Rare
   ray_finned_fishes: ray-finned fishes
   re_apply_list_rules: Re-apply list rules
   re_order_photos: "Re-order photos &raquo;"
@@ -3228,6 +3232,7 @@ en:
   total_unique_observers: Total unique observers
   total_users: "total users,"
   'true': 'True'
+  trending: Trending
   trusted_project?: Trusted project?
   try_adding_species_form: Try adding some species using the form on this page.
   try_wikipedia: Try Wikipedia?
@@ -4654,6 +4659,8 @@ en:
           currently occurs. Introduced means it arrived because of human
           activity, while native means it arrived without human assistance.
           Endemic species only occur in a specific place and nowhere else.
+        trending_desc: Most-observed taxa in the last month
+        rare_desc: Least-observed taxa for all time
     taxon_names:
       form:
         new_name_guidelines_html: |
