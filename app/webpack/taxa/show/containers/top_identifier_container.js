@@ -10,7 +10,8 @@ function mapStateToProps( state ) {
     iconClassName: "icon-person",
     valueIconClassName: "fa fa-binoculars",
     linkText: I18n.t( "leaderboard" ),
-    name: I18n.t( "no_identifications" )
+    name: I18n.t( "no_identifications" ),
+    noContent: true
   };
   if ( !leader || !leader.user ) {
     return props;
@@ -20,7 +21,8 @@ function mapStateToProps( state ) {
     imageUrl: leader.user.icon_url,
     value: leader.count,
     linkUrl: `/observations?taxon_id=${taxon.id}&view=identifiers`,
-    url: urlForUser( leader.user )
+    url: urlForUser( leader.user ),
+    noContent: false
   } );
 }
 

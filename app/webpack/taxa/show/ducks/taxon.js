@@ -1,7 +1,7 @@
 import iNaturalistJS from "inaturalistjs";
-import { fetch } from "../util";
 import moment from "moment";
 import querystring from "querystring";
+import { fetch, defaultObservationParams } from "../util";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
@@ -188,15 +188,11 @@ export function fetchInteractions( taxon ) {
   };
 }
 
-export function fetchTrending( taxon ) {
+export function fetchTrending( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const params = {
-      taxon_id: t.id,
-      d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" ),
-      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" )
+    } );
     iNaturalistJS.observations.speciesCounts( params ).then(
       response =>
         dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
@@ -207,15 +203,11 @@ export function fetchTrending( taxon ) {
   };
 }
 
-export function fetchRare( taxon ) {
+export function fetchRare( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const t = taxon || s.taxon.taxon;
-    const params = {
-      taxon_id: t.id,
-      order: "asc",
-      place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      order: "asc"
+    } );
     iNaturalistJS.observations.speciesCounts( params ).then(
       response =>
         dispatch( setRare( response.results.map( r => r.taxon ) ) ),

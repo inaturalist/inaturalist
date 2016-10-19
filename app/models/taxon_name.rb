@@ -31,6 +31,8 @@ class TaxonName < ActiveRecord::Base
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
   after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
+  after_save :index_taxon
+  after_destroy :index_taxon
 
   accepts_nested_attributes_for :place_taxon_names, :allow_destroy => true
   
@@ -243,6 +245,10 @@ class TaxonName < ActiveRecord::Base
     else
       "und"
     end
+  end
+
+  def index_taxon
+    taxon.elastic_index!
   end
 
   def self.localizable_lexicon(lexicon)

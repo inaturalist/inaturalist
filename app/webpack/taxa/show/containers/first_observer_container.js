@@ -8,12 +8,15 @@ function mapStateToProps( state ) {
     label: I18n.t( "first_observer" ),
     iconClassName: "icon-person",
     countIconClassName: "fa fa-binoculars",
-    linkText: I18n.t( "leaderboard" )
+    linkText: I18n.t( "leaderboard" ),
+    name: I18n.t( "no_observations" ),
+    noContent: true
   };
   if ( !first ) {
     return props;
   }
   return Object.assign( props, {
+    noContent: false,
     name: first.user.login,
     imageUrl: first.user.icon_url,
     linkUrl: `/observations/${first.id}`,

@@ -9,14 +9,16 @@ function mapStateToProps( state ) {
     className: "NumObservations",
     label: I18n.t( "total_observations" ),
     name: 0,
-    linkText: I18n.t( "view" )
+    linkText: I18n.t( "view" ),
+    noContent: true
   };
   if ( !count ) {
     return props;
   }
   return Object.assign( props, {
     name: count,
-    linkUrl: `/observations?taxon_id=${taxon.id}`
+    linkUrl: `/observations?taxon_id=${taxon.id}`,
+    noContent: false
   } );
 }
 

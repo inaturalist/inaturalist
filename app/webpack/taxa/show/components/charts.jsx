@@ -21,6 +21,9 @@ class Charts extends React.Component {
           padding: {
             left: 0,
             bottom: 0
+          },
+          tick: {
+            outer: false
           }
         }
       },

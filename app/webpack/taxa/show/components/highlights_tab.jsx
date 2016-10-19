@@ -3,11 +3,11 @@ import { Grid, Row, Col } from "react-bootstrap";
 import CoverImage from "./cover_image";
 import { urlForTaxon } from "../util";
 
-const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => {
+const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
   let trending = (
     <p className="text-muted text-center">
       <i className="fa fa-refresh fa-spin"></i>
-      { I18n.t( "loading") }
+      { I18n.t( "loading" ) }
     </p>
   );
   if ( trendingTaxa && trendingTaxa.length > 0 ) {
@@ -16,6 +16,7 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => {
         key={`rare-taxon-${taxon.id}`}
         href={urlForTaxon( taxon )}
         title={taxon.preferred_common_name || taxon.name}
+        className="taxon-link"
       >
         <CoverImage
           src={taxon.defaultPhoto.photoUrl( "medium" )}
@@ -34,7 +35,7 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => {
   let rare = (
     <p className="text-muted text-center">
       <i className="fa fa-refresh fa-spin"></i>
-      { I18n.t( "loading") }
+      { I18n.t( "loading" ) }
     </p>
   );
   if ( rareTaxa && rareTaxa.length > 0 ) {
@@ -57,6 +58,7 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => {
           key={`rare-taxon-${taxon.id}`}
           href={urlForTaxon( taxon )}
           title={taxon.preferred_common_name || taxon.name}
+          className="taxon-link"
         >
           { img }
         </a>
@@ -74,14 +76,21 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => {
       <Row>
         <Col xs={12}>
           <div className="trending">
-            <h2>{ I18n.t( "trending" ) }</h2>
+            <h2>
+              { I18n.t( "trending" ) }
+              <a href={trendingUrl} className="readmore">
+                { I18n.t( "view_all" ) }
+              </a>
+            </h2>
             <p>
               { I18n.t( "views.taxa.show.trending_desc" ) }
             </p>
             { trending }
           </div>
           <div className="rare">
-            <h2>{ I18n.t( "rare" ) }</h2>
+            <h2>
+              { I18n.t( "rare" ) }
+            </h2>
             <p>
               { I18n.t( "views.taxa.show.rare_desc" ) }
             </p>
@@ -95,7 +104,9 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa } ) => {
 
 HighlightsTab.propTypes = {
   trendingTaxa: PropTypes.array,
-  rareTaxa: PropTypes.array
+  rareTaxa: PropTypes.array,
+  trendingUrl: PropTypes.string,
+  rareUrl: PropTypes.string
 };
 
 export default HighlightsTab;

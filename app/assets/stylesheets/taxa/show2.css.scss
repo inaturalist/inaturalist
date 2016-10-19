@@ -33,7 +33,6 @@
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
   margin-top: 10px;
-  // margin-bottom: 20px;
 }
 
 #charts {
@@ -85,7 +84,8 @@
 .FrequencyChart .c3-axis text {
   fill: #aaa;
 }
-.FrequencyChart .c3-axis-x .tick line {
+.FrequencyChart .c3-axis-x .tick line,
+.FrequencyChart .c3-axis-y .tick line {
    display: none;
 }
 
@@ -308,7 +308,9 @@ $photoPreviewThumbGutterTop: 3px;
   left: 0;
   width: 100%;
 }
-
+.PhotoPreview li:hover .photo-hover {
+  display: block;
+}
 .CoverImage {
   opacity: 0;
   transition: opacity 0.5s linear;
@@ -380,6 +382,10 @@ $photoPreviewThumbGutterTop: 3px;
 
 .NamesTab .sciname {
   font-style: italic;
+}
+
+.NamesTab .outdated .sciname {
+  text-decoration: line-through;
 }
 
 .StatusTab .media-body {
@@ -461,8 +467,7 @@ $endangeredColor: #D12F19;
 .HighlightsTab .rare {
   line-height: 0;
 }
-.HighlightsTab .trending a,
-.HighlightsTab .rare a {
+.HighlightsTab .taxon-link {
   display: inline-block;
   width: 100px;
   margin: 0 10px 10px 0;
@@ -472,6 +477,11 @@ $endangeredColor: #D12F19;
 .HighlightsTab .trending i,
 .HighlightsTab .rare i {
   font-size: 100px;
+}
+.HighlightsTab .readmore {
+  font-size: 18px;
+  font-weight: 100;
+  margin-left: 10px;
 }
 
 #main-tabs {
