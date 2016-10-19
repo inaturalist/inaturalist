@@ -5,5 +5,7 @@ class CreateExplodedAtlasPlaces < ActiveRecord::Migration
       t.references :place
       t.timestamps null: false
     end
+    add_index :atlas_id
+    add_index :place_id
   end
 end

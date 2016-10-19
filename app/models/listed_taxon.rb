@@ -518,7 +518,7 @@ class ListedTaxon < ActiveRecord::Base
       atlas = Atlas.where(taxon_id: taxon_id).first
       AtlasAlteration.create(
         atlas_id: atlas.id,
-        user_id: user_id,
+        user_id: updater.id,
         place_id: place_id,
         action: "destroyed"
       )

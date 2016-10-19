@@ -22,7 +22,6 @@ class AtlasesController < ApplicationController
         {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
       }
     }
-    @listed_taxon = ListedTaxon.where(place_id: @atlas_presence_places.first.id).first
   end
   
   def create
