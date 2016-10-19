@@ -2093,9 +2093,9 @@ en:
         species to keep tabs on new observations of those species, or do the
         same thing with places.
       comments_panel_title: Curious what kind of discussions are happening on %{site_name}?
-      comments_panel_body: <p>%{site_name} is all about sharing and discussing observations of living things. Here are some discussions happening right now...</p> <p>You'll be automatically subscribed to any discussions you contribute comments or identifications to. You can always use the Manage Subscriptions tool on the right to stop recieving updates</p>
+      comments_panel_body: <p>%{site_name} is all about sharing and discussing observations of living things. Here are some discussions happening right now...</p> <p>You'll be automatically subscribed to any discussions you contribute comments or identifications to. You can always use the Manage Subscriptions tool on the right to stop receiving updates</p>
       updates_by_you_panel_title: This tab is a quick way to filter out only updates on your content.
-      updates_by_you_panel_body: Remember, in the 'All updates' tab you'll recieve updates not just on your own content but also on content from people you follow and the taxa or places that you subscribe to using the Subscriptions tool on the right.
+      updates_by_you_panel_body: Remember, in the 'All updates' tab you'll receive updates not just on your own content but also on content from people you follow and the taxa or places that you subscribe to using the Subscriptions tool on the right.
       youve_got_updates_panel_title: You've got updates!
       youve_got_updates_panel_body_p1: Stay current with updates on the following...
       youve_got_updates_panel_body_p2: |
@@ -2103,7 +2103,7 @@ en:
           <li><strong>Your Content:</strong> Activity on your observations such as comments, identifications, or faves from the %{site_name} community. You will also receive updates when someone adds your observation to a project or annotated it with additional fields.</li>
           <li><strong>People:</strong> New observations or journal posts from the people you follow.</li>
           <li><strong>Organisms, Projects & Places:</strong> New observations from specific organisms or places you're subscribed to'. You can also join projects to be updated when they publish project journal posts.</li>
-          <li><strong>Discussions you've engaged in:</strong> Commenting or adding identifications to someone elses content automatically subscribes you to any new activity on this content. Use the 'Manage your subscriptions' tool to stop recieving updates.</li>
+          <li><strong>Discussions you've engaged in:</strong> Commenting or adding identifications to someone else's content automatically subscribes you to any new activity on this content. Use the 'Manage your subscriptions' tool to stop receiving updates.</li>
         </ul>
   one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
@@ -4244,10 +4244,8 @@ en:
           </p>
           <ul>
             <li>
-              the %{site_name} <strong>community agrees with the observer's ID</strong>, where an "agreeing"
-              identification is one that matches exactly or is of a child taxon of the
-              observer's ID. For example, if Scott says it's a mammal and Ken-ichi
-              says it's <em>Homo sapiens</em>, then Ken-ichi agrees with Scott.
+              the %{site_name} <strong>community agrees on species-level ID or lower</strong>, i.e.
+              when more than 2/3 of identifiers agree on a taxon
             </li>
           </ul>
           <p>

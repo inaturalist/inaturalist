@@ -835,30 +835,6 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
 
-      describe "with id_please" do
-        it "should be needs_id if user checked id_please on update" do
-          o = make_research_grade_observation
-          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-          o.update_attributes(id_please: true)
-          o.reload
-          expect( o.quality_grade ).to eq Observation::NEEDS_ID
-        end
-        
-        it "should add vote for needs_id if user checks id_please on update" do
-          o = make_research_grade_observation
-          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
-          o.update_attributes(id_please: true)
-          o.reload
-          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 1
-        end
-
-        it "should not add vote for needs_id if user checks id_please on create" do
-          o = make_research_grade_observation(id_please: true)
-          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-          expect( o.get_upvotes(vote_scope: 'needs_id').size ).to eq 0
-        end
-      end
-
       it "should work with query" do
         o_needs_id = make_research_grade_candidate_observation
         o_needs_id.reload
@@ -1317,9 +1293,11 @@ describe Observation do
     end
   
     it "should find observations requesting identification" do 
-      obs = Observation.has_id_please
-      expect(obs).to include(@pos)
-      expect(obs).not_to include(@neg)
+      pos = make_research_grade_candidate_observation
+      expect( pos.quality_grade ).to eq Observation::NEEDS_ID
+      observations = Observation.has_id_please
+      expect( observations ).to include( pos )
+      expect( observations ).not_to include( @neg )
     end
   
     it "should find observations with photos" do
@@ -2884,10 +2862,35 @@ describe Observation do
       o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
       expect( o ).to be_mappable
     end
+
     it "should be mappable for threatened taxa" do
       o = make_observation_of_threatened
       expect( o ).to be_mappable
     end
+
+    it "should not be mappable if its not evidence of an orgamism" do
+      o = make_research_grade_observation
+      expect(o.mappable?).to be true
+      QualityMetric.make!(observation: o, metric: QualityMetric::EVIDENCE, agree: false)
+      expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if its flagged" do
+      o = make_research_grade_observation
+      expect(o.mappable?).to be true
+      Flag.make!(flaggable: o, flag: Flag::SPAM)
+      expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if its photo is flagged" do
+      o = make_research_grade_observation
+      op = ObservationPhoto.make!(observation: o)
+      expect(o.mappable?).to be true
+      Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
+      o.reload
+      expect(o.mappable?).to be false
+    end
+
   end
 
   describe "observations_places" do

@@ -5,6 +5,7 @@
   %meta{content: SITE_NAME, property: "og:title"}
   - if @site
     %meta{content: image_url(@site.logo_square.url), property: "og:image"}
+    %meta{content: image_url(@site.logo_square.url), property: "twitter:image"}
   %meta{content: root_url, property: "og:url"}
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: SITE_NAME), property: "og:description"}
 - content_for(:title) do

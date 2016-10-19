@@ -369,6 +369,7 @@ zh-CN:
   archives: 档案
   are_you_really_sure_want_delete_this_user: 您真的，真的确定要删除这位用户及其所有内容么？
   are_you_sure?: 您确定么？
+  are_you_sure_no_undo: 您确定么？这不能被恢复。
   are_you_sure_delete_asset: 您确定要删除此资产么？
   are_you_sure_delete_observation_from_project: 您确定要从%{project}中移除这一条观察记录吗？
   are_you_sure_delete_post: 您确定要删除此帖子么？
@@ -543,6 +544,7 @@ zh-CN:
   cc_by_sa_name: 署名-相同方式共享
   cc_used_under_a: 知识共享，使用
   change: 更改
+  change_admin: 更改管理员
   change_cover: 更改封面
   change_descriptions:
     split: 旧分类单元分成多个新分类单元
@@ -1199,7 +1201,7 @@ zh-CN:
   heads_up_you_have_multiple: 请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。
   hello: <test>
   help: 帮助
-  help_confirm_observations!: 请帮助进行观察记录的确认！
+  help_confirm_observations!: 帮助确认观察！
   help_faq: 帮助 / 常见问题
   help_out!: 帮个忙！
   helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
@@ -1256,12 +1258,12 @@ zh-CN:
   if_your_search_comes_up: 如果您的搜索结果为空，您可以通过搜索选项在我们的外部物种名称提供者那里进行同样的搜索：
   ignore: 忽略
   ignore_times: 忽略时间
-  image_must_be_exactly: 图像宽必须为精确的950px，高至多为400px
+  image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
   imperiled: 危及
   import: 导入
-  import_all_photos_as_observations: 将所有照片导入为观察记录
-  import_as_an_observation: 将其导入为一条观察记录
-  import_as_another_observation: 要将其导入为另一条观察记录？
+  import_all_photos_as_observations: 将所有照片导入为观察
+  import_as_an_observation: 作为观察导入
+  import_as_another_observation: 作为其他观察导入么？
   import_date_time_location_taxonomic: 从此照片导入日期、时间、位置、描述和分类信息。
   import_from_csv: 从CSV导入
   import_from_other_photo_sites: 从其他照片网站导入
@@ -1288,12 +1290,12 @@ zh-CN:
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
   inappropriate: 不适当？
   inat_account_action: '%{site_name} &#58; 账户 &#58; %{action_name}'
-  inat_believes_this_is_a_complete_listing: '%{site_name}认为这是这一分类单元在此地的完整列表。'
+  inat_believes_this_is_a_complete_listing: '%{site_name}相信这是此地区内，这种分类单元的完整列表。'
   inat_user_profile: '%{site_name}：%{user}的详细资料'
   inat_will_be_back_on: '%{site_name} 将会回到它的脚/翅膀/鱼鳍/触手/伪足上'
   inaturalist_is_an_online_community: '%{site_name}是一个在线的自然法学派社群！通过添加您的照片，您可以帮助研究员了解有关'
   inaturalist_is_catching_some_zs: '%{site_name} 正在抓住一些Zs'
-  inaturalist_observations_by: '%{site_name}&#58;%{login}的观察记录'
+  inaturalist_observations_by: '%{site_name}&#58;由%{login}做出的观察'
   inaturalist_places: '%{site_name} 地点'
   info: 信息
   input_taxon: 输入分类单元
@@ -1529,6 +1531,7 @@ zh-CN:
   lookup_user_rarr: 查找用户 &rarr;
   low: 低
   made_a: 做一个
+  make_admin: 做为管理员
   main_content: 主内容
   make_one: 制作一个？
   make_this_your_default_license: 将其作为您的默认 %{type} 许可协议
@@ -2295,8 +2298,6 @@ zh-CN:
   september: 九月
   set_license: 设置许可协议
   settings: 设置
-  share_on: 分享到
-  sharing_settings: 分享设置
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   show: 显示
   show_counts: 显示基于列表上的计数。
@@ -2439,7 +2440,7 @@ zh-CN:
   take_me_facebook: 是的，带我前往Facebook！
   take_me_flickr!: 是的，带我去Flickr！
   taxa: 分类单元
-  taxa_all_species_html: 分类群 &middot; 所有物种
+  taxa_all_species_html: 所有物种
   taxon: 类群
   taxon_: 分类单元
   taxon_id: 分类单元ID
@@ -2640,6 +2641,7 @@ zh-CN:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
   users_id: '%{user} 的ID'
   users_identification_html: <a href='%{url}'>%{user}</a>的身份证明
+  users_identification_short_html: <a href='%{url}'>%{user}</a>的ID
   users_comment_html: <a href='%{url}'>%{user}</a> 的评论
   users_observations: '%{user}的观察'
   users_profile: '%{user}的详细信息'
@@ -3150,8 +3152,10 @@ zh-CN:
     projects:
       edit:
         bioblitz_create_a_new_place_html: '%{link}，确信它有一个边界，然后回到这里并重试。'
+        change_admin_desc: 选择一位项目馆长作为新管理员。
         custom_project_fields_means: 自定义项目标志，添加一些内容，及编辑CSS。
         icon_desc: 将被裁剪成正方形
+        no_curators: 这里没有项目馆长。如果您希望分配新人作为管理员，他必须首先加入此项目，并且您必须将其提拔为馆长。
         observation_aggregation_desc_html: |-
           <p class="description">
             观察聚合将自动添加观察至您项目的地方边界，或添加至您项目的规则分类单元中。Since there's no way to remove many observations from a project
@@ -3243,7 +3247,7 @@ zh-CN:
         about_html: 分类群可以有很多常用名。我们全域支持一个默认的常用名，它可在此处通过拖动名字至列表顶部更改。您也可以通过编辑名字和添加地点指定不同地点的默认名，但请只当不同地点有冲突名字时这样做。
     users:
       dashboard:
-        new_project_admin_html: 想知道您为什么现在成为这个项目的管理员了么？之前的所有者可能删除了他们的账户，所以%{site_name}分配给您，因为您是一位项目经理或网站监护人。如果您不希望成为项目管理员，请联络<a
+        new_project_admin_html: 想知道您为什么现在成为这个项目的管理员了么？之前的所有者分配您作为新管理员，或者他删除了其账户，并因为您是一位项目经理或网站馆长，从而%{site_name}分配给您。如果您不希望成为项目管理员，请联络<a
           href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 只是提醒一下，项目馆长可以查看您添加至此项目的观察中私有和被掩盖的坐标。
       edit:

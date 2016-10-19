@@ -25,7 +25,7 @@ class ObservationsController < ApplicationController
     if: lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
-  before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
+  before_filter :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
                 :unless => lambda { authenticated_with_oauth? },
@@ -34,7 +34,6 @@ class ObservationsController < ApplicationController
                             :of,
                             :show,
                             :by_login,
-                            :id_please,
                             :nearby,
                             :widget,
                             :project,
@@ -441,7 +440,6 @@ class ObservationsController < ApplicationController
   # An attempt at creating a simple new page for batch add
   def new
     @observation = Observation.new(:user => current_user)
-    @observation.id_please = params[:id_please]
     @observation.time_zone = current_user.time_zone
 
     if params[:copy] && (copy_obs = Observation.find_by_id(params[:copy])) && copy_obs.user_id == current_user.id
@@ -615,8 +613,10 @@ class ObservationsController < ApplicationController
       o.assign_attributes(observation_params(observation))
       o.user = current_user
       o.user_agent = request.user_agent
-      o.site = @site || current_user.site
-      o.site = o.site.becomes(Site) if o.site
+      unless o.site_id
+        o.site = @site || current_user.site
+        o.site = o.site.becomes(Site) if o.site
+      end
       if doorkeeper_token && (a = doorkeeper_token.application)
         o.oauth_application = a.becomes(OauthApplication)
       end
@@ -1275,27 +1275,6 @@ class ObservationsController < ApplicationController
     delayed_csv(path_for_csv, @selected_user)
   end
   
-  # shows observations in need of an ID
-  def id_please
-    params[:quality_grade] = Observation::NEEDS_ID
-    params[:reviewed] = 'false'
-    search_params = Observation.get_search_params(params,
-      current_user: current_user, site: @site)
-    search_params = Observation.apply_pagination_options(search_params)
-    @observations = Observation.page_of_results(search_params)
-    Observation.preload_for_component(@observations, logged_in: !!current_user)
-    Observation.preload_associations(@observations, [
-      { identifications: [ :taxon, :user ] } ])
-    @top_identifiers = User.order("identifications_count DESC").limit(5)
-    set_up_instance_variables(search_params)
-    if @site && @site.site_only_users
-      @top_identifiers = @top_identifiers.where(:site_id => @site)
-    end
-    respond_to do |format|
-      format.html
-    end
-  end
-  
   # Renders observation components as form fields for inclusion in 
   # observation-picking form widgets
   def selector
@@ -1860,7 +1839,6 @@ class ObservationsController < ApplicationController
       :geo_y,
       :geoprivacy,
       :iconic_taxon_id,
-      :id_please,
       :latitude,
       :license,
       :location_is_exact,
@@ -1883,6 +1861,7 @@ class ObservationsController < ApplicationController
       :time_zone,
       :uuid,
       :zic_time_zone,
+      :site_id,
       observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
     )
   end

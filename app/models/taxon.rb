@@ -678,7 +678,28 @@ class Taxon < ActiveRecord::Base
       taxon_photos.build(:photo => photo) unless photos.detect{|p| p.id == photo.id}
     end
   end
-  
+
+
+  def taxon_photos_with_backfill(options = {})
+    options[:limit] ||= 9
+    if taxon_photos.loaded?
+      chosen_taxon_photos = taxon_photos.sort_by{|tp| tp.position || tp.id }[0...options[:limit]]
+    else
+      chosen_taxon_photos = taxon_photos.includes(:photo).
+        order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
+        limit(options[:limit])
+    end
+    if chosen_taxon_photos.size < options[:limit]
+      descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes(:photo).
+        order("taxon_photos.id ASC").
+        limit(options[:limit] - chosen_taxon_photos.size).
+        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'").
+        where("taxon_photos.id NOT IN (?)", chosen_taxon_photos.map(&:id))
+      chosen_taxon_photos += descendant_taxon_photos.to_a
+    end
+    chosen_taxon_photos
+  end
+
   #
   # Fetches associated user-selected FlickrPhotos if they exist, otherwise
   # gets the the first :limit Create Commons-licensed photos tagged with the
@@ -686,20 +707,8 @@ class Taxon < ActiveRecord::Base
   # array: part FlickrPhotos, part api responses
   #
   def photos_with_backfill(options = {})
-    options[:limit] ||= 9
-    chosen_photos = taxon_photos.includes(:photo).
-      order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
-      limit(options[:limit]).map{ |tp| tp.photo }
-    if chosen_photos.size < options[:limit]
-      new_photos = Photo.joins({:taxon_photos => :taxon}).
-        order("taxon_photos.id ASC").
-        limit(options[:limit] - chosen_photos.size).
-        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'")
-      if new_photos.size > 0
-        new_photos = new_photos.where("photos.id NOT IN (?)", chosen_photos)
-      end
-      chosen_photos += new_photos.to_a
-    end
+    chosen_taxon_photos = taxon_photos_with_backfill(options)
+    chosen_photos = chosen_taxon_photos.map(&:photo)
     flickr_chosen_photos = []
     if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
       search_params = {
@@ -717,10 +726,10 @@ class Taxon < ActiveRecord::Base
       else
         []
       end
-    end
-    flickr_ids = chosen_photos.map{|p| p.native_photo_id}
-    chosen_photos += flickr_chosen_photos.reject do |fp|
-      flickr_ids.include?(fp.id)
+      flickr_ids = chosen_photos.map{ |p| p.native_photo_id }
+      chosen_photos += flickr_chosen_photos.reject do |fp|
+        flickr_ids.include?(fp.id)
+      end
     end
     chosen_photos.to_a
   end
@@ -1304,7 +1313,17 @@ class Taxon < ActiveRecord::Base
       return tst.source_identifier
     end
     # make sure the GBIF TaxonScheme exists
-    gbif = TaxonScheme.find_or_create_by(title: "GBIF")
+    gbif = TaxonScheme.where( title: "GBIF" ).first
+    unless gbif = TaxonScheme.where( title: "GBIF" ).first
+      unless gbif_source = Source.where( url: "http://www.gbif.org" ).first
+        gbif_source = Source.create!(
+          title: "Global Biodiversity Information Facility",
+          in_text: "GBIF",
+          url: "http://www.gbif.org"
+        )
+      end
+      gbif = TaxonScheme.create!( title: "GBIF", source: gbif_source )
+    end
     # return their ID if we know it
     if scheme = TaxonSchemeTaxon.where(taxon_scheme: gbif, taxon_id: id).first
       return scheme.source_identifier
@@ -1320,9 +1339,13 @@ class Taxon < ActiveRecord::Base
       Rails.logger.error "[ERROR #{Time.now}] #{e}"
       nil
     end
-    if json
+    if json && json["canonicalName"] == name
       if json["usageKey"]
-        TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        begin
+          tst = TaxonSchemeTaxon.create!(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to add GBIF taxon #{name}, ID:#{json['usageKey']}: #{e}"
+        end
         return json["usageKey"]
       else
         TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: nil)

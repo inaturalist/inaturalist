@@ -623,6 +623,13 @@ describe User do
       expect(suggestion).not_to be_blank
       expect(suggestion.size).to be <= User::MAX_LOGIN_SIZE
     end
+    
+    it "should not suggest logins that begin with a number" do
+      suggestion = User.suggest_login("2bornot2b")
+      expect(suggestion).not_to be_blank
+      expect(suggestion).not_to start_with '2'
+    end
+    
   end
 
   describe "community taxa preference" do

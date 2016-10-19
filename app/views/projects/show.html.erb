@@ -7,6 +7,7 @@
   <meta property="og:title" content="<%= @project.title %>"/> 
   <% unless @project.icon.blank? -%>
     <meta property="og:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="twitter:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <% unless @fb_admin_ids.blank? -%>
@@ -318,7 +319,7 @@
       </li>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe,
-          project_observations_url(@project), class: "navlink" %>
+          project_observations_url( @project, pcid: true ), class: "navlink" %>
       </li>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t( :identify_observations )}".html_safe,

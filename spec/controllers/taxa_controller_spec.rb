@@ -201,6 +201,22 @@ describe TaxaController do
       expect(assigns(:taxa)).to include t
     end
   end
+  
+  describe "search" do
+    before(:each) { enable_elastic_indexing([ Taxon ]) }
+    after(:each) { disable_elastic_indexing([ Taxon ]) }
+    render_views
+    it "should find a taxon by name" do
+      t = Taxon.make!
+      get :search, q: t.name
+      expect(response.body).to be =~ /<span class="sciname">.*?#{t.name}.*?<\/span>/m
+    end
+    it "should not raise an exception with an invalid per page value" do
+      t = Taxon.make!
+      get :search, q: t.name, per_page: 'foo'
+      expect(response).to be_success
+    end
+  end
 
   describe "observation_photos" do
     it "should include photos from observations" do

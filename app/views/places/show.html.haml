@@ -16,6 +16,7 @@
     %meta{:content => CONFIG.facebook.admin_ids.join(','), :property => "fb:admins"}
   %meta{:content => "#{t(:learn_about_the_species_live_in) + "#{@place.display_name}"}!", :name => "description", :property => "og:description"}
   %meta{:content => uri_join(root_url, path_to_image(CONFIG.logo_icon_square_big)), :property => "og:image"}
+  %meta{:content => uri_join(root_url, path_to_image(CONFIG.logo_icon_square_big)), :property => "twitter:image"}
 - content_for(:extrajs) do
   = google_maps_js
   :javascript

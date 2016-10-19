@@ -38,9 +38,9 @@
   <meta property="twitter:title" content="<%=t :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
     <meta property="og:image" content="<%= @shareable_image_url %>"/> 
+    <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
     <meta name="twitter:card" content="photo">
   <% elsif @observation.taxon %>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon, :size => 200) %>"/> 
     <meta name="twitter:card" content="summary">
   <% end -%>
   <meta property="og:determiner" content="auto" /> 

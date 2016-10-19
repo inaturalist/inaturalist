@@ -30,5 +30,13 @@ class TaxonPhoto < ActiveRecord::Base
     Rails.cache.delete(taxon.photos_with_external_cache_key)
     true
   end
-  
+
+  def as_indexed_json(options={})
+    {
+      taxon_id: taxon_id,
+      photo: photo.as_indexed_json(sizes: [:square, :small, :medium, :large], native_page_url: true)
+    }
+
+  end
+
 end

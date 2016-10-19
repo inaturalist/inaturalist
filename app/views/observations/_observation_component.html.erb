@@ -39,7 +39,7 @@ Some notes:
   css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
   if observation.needs_id?
-    css_class += ' id_please'
+    css_class += ' needs_id'
     css_class += ' idandrg' if observation.research_grade?
   elsif observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
@@ -205,7 +205,7 @@ Some notes:
       <ul class="bubbles">
         <% if observation.needs_id? -%>
           <li class="last">
-            <%= link_to t(:needs_id_expandable_html), obs_url, :class => "id_please_notice",
+            <%= link_to t(:needs_id_expandable_html), obs_url, :class => "needs_id_notice",
               "data-tip" => t(:needs_to_be_identified),
               "data-tip-show-delay" => 1000 %>
           </li>
