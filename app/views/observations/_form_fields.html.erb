@@ -25,10 +25,6 @@
           end
         -%>
         <%= o.hidden_field(:taxon_id, :value => taxon.try(:id), :alt => alt, :rel => (taxon ? taxon_image_url(taxon) : nil)) %>
-        <div class="id_please">
-          <%= o.check_box(:id_please) %>
-          <%= o.label(:id_please, t(:full_id_please?)) %>
-        </div>
       </div>
       
       <!-- <div class="field">

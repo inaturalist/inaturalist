@@ -1,7 +1,7 @@
 function updatePositions(container, sortable) {
   $selection = $(sortable+':visible', container)
   $selection.each(function() {
-    $('input[name*="position"]', this).val($selection.index(this) + 1)
+    $('input[name*="position"]', this).val($selection.index(this))
     $('input[name*="position"]', this).parents('form:first').submit()
   })
 }

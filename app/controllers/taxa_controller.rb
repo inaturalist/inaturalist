@@ -402,6 +402,7 @@ class TaxaController < ApplicationController
 
     page = params[:page] ? params[:page].to_i : 1
     user_per_page = params[:per_page] ? params[:per_page].to_i : 24
+    user_per_page = 24 if user_per_page == 0
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
 
@@ -502,12 +503,13 @@ class TaxaController < ApplicationController
           @all_colors = Color.all
         end
         
-        if params[:partial]
-          partial_path = if params[:partial] == "taxon"
-            "shared/#{params[:partial]}.html.erb"
-          else
-            "taxa/#{params[:partial]}.html.erb"
-          end
+        partial_path = if params[:partial] == "taxon" 
+          "shared/#{params[:partial]}.html.erb"
+        elsif params[:partial] 
+          "taxa/#{params[:partial]}.html.erb"
+        end       
+        
+        if partial_path && lookup_context.find_all(partial_path).any?
           render :partial => partial_path, :locals => {
             :js_link => params[:js_link]
           }

@@ -1,11 +1,32 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 Paperclip::Storage::Filesystem.stubbed_for_tests = false
 
+describe TaxonRange, "derive_missing_values" do
+  it "should do nothing with blank range and geometry" do
+    tr = TaxonRange.new
+    expect(tr).not_to receive(:create_kml_attachment)
+    expect(tr).not_to receive(:create_geom_from_kml_attachment)
+    tr.run_callbacks :save
+  end
+  
+  it "should derive KML when only geometry is present" do
+    tr = TaxonRange.new(geom: true)
+    expect(tr).to receive(:create_kml_attachment)
+    expect(tr).not_to receive(:create_geom_from_kml_attachment)
+    tr.run_callbacks :save
+  end
+  
+  it "should derive geom when only KML is present" do
+    tr = TaxonRange.new(range: Tempfile.new(['temp', '.kml']))
+    expect(tr).not_to receive(:create_kml_attachment)
+    expect(tr).to receive(:create_geom_from_kml_attachment)
+    tr.run_callbacks :save
+  end
+end
+
 describe TaxonRange, "create_kml_attachment" do
   it "should create an kml attachment from geometry" do
     tr = make_taxon_range_with_geom
-    expect(tr.range).to be_blank
-    tr.create_kml_attachment
     expect(tr.range).not_to be_blank
     kml = open(tr.range.path).read
     expect(kml).to be =~ /<kml /
@@ -40,9 +61,6 @@ describe TaxonRange, "create_geom_from_kml_attachment" do
     f.write(kml)
     f.rewind
     tr = TaxonRange.make!(:range => f)
-    expect(tr.range).not_to be_blank
-    expect(tr.geom).to be_blank
-    tr.create_geom_from_kml_attachment
     expect(tr.geom).not_to be_blank
     expect(TaxonRange.where("ST_Contains(geom, ST_Point(0.5,0.5)) AND id = ?", tr)).not_to be_blank
   end

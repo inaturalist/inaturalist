@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
-  attr_accessor :api_response
+  attr_accessor :api_response, :orphan
   serialize :metadata
 
   include Shared::LicenseModule
@@ -284,6 +284,7 @@ class Photo < ActiveRecord::Base
       attribution: attribution,
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
+    json[:native_page_url] = native_page_url if options[:native_page_url]
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
       json["#{ size }_url"] = best_url(size)
@@ -299,10 +300,10 @@ class Photo < ActiveRecord::Base
 
   def create_deleted_photo
     DeletedPhoto.create(
-      :photo_id => id,
-      :user_id => user_id
+      photo_id: id,
+      user_id: user_id,
+      orphan: orphan || false
     )
-    true
   end
 
 end

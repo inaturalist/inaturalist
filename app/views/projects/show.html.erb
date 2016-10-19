@@ -319,7 +319,7 @@
       </li>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe,
-          project_observations_url(@project), class: "navlink" %>
+          project_observations_url( @project, pcid: true ), class: "navlink" %>
       </li>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t( :identify_observations )}".html_safe,

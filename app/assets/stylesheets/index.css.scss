@@ -1499,7 +1499,6 @@ abbr.date {border:0 transparent;}
 
 .research_grade_notice, 
 .research_notice,
-.id_please_notice,
 .needs_id_notice, 
 .comprehensive_notice {
   -webkit-border-radius:5px;
@@ -1519,12 +1518,10 @@ a.research_grade_notice:hover,
 a.research_notice:hover {
   color:#326412;
 }
-.id_please_notice,
 .needs_id_notice {
   background-color:#FFEE91;
   color:#85743D;
 }
-a.id_please_notice:hover,
 a.needs_id_notice:hover {
   color:#584925;
 }
