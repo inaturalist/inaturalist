@@ -18,6 +18,7 @@
 # Author: Nemo bis
 # Author: Oggioniale
 # Author: Rippitippi
+# Author: Saracrovetto
 # Author: Statix64
 ---
 it:
@@ -35,10 +36,10 @@ it:
     <a href="http://picasaweb.google.com">Picasa</a>, e
     <a href="http://facebook.com">Facebook</a>
     per l'hosting delle immagini.
-  a_default_taxon_name_will_automatically_created: Un taxon di default sarà creato
-    automaticamente a partire dal nome scientifico di questa unità tassonomica. Non
+  a_default_taxon_name_will_automatically_created: "Un taxon di default sarà creato
+    automaticamente a partire dal nome scientifico di questa unità tassonomica. \nNon
     appena avrai salvato questo nuovo taxon, potrai aggiungere qui nuovi nomi (nomi
-    comuni, nomi scientifici in disuso, ecc.).
+    comuni, nomi scientifici in disuso, ecc.)."
   x_comments:
     one: 1 commento
     other: '%{count} commenti'
@@ -295,7 +296,7 @@ it:
   all_places: Tutti i Luoghi
   all_projects: Tutti i progetti
   all_rights_reserved: Tutti i diritti riservati
-  all_species: Tutte le Specie
+  all_species: Tutte le specie
   all_taxa:
     rank:
       kingdom: Regno
@@ -421,6 +422,7 @@ it:
   are_you_really_sure_want_delete_this_user: Sei veramente, veramente sicuro di voler
     cancellare questo utente e tutti i suoi contenuti?
   are_you_sure?: Sei sicuro?
+  are_you_sure_no_undo: Sei sicuro? Questa azione non può essere annullata.
   are_you_sure_delete_asset: Sei sicuro di voler cancellare questa risorsa?
   are_you_sure_delete_observation_from_project: Sei sicuro di voler rimuovere questa
     ossevazione da %{project}?
@@ -657,6 +659,7 @@ it:
   cc_by_sa_name: Attribuzione-Condividi allo Stesso Modo
   cc_used_under_a: Creative Commons, utilizzato sotto una
   change: Modifica
+  change_admin: Cambia amministratore
   change_cover: Cambia copertina
   change_descriptions:
     split: Vecchio taxon suddiviso in nuovi taxa
@@ -1126,7 +1129,7 @@ it:
   edit_the_observation: Modifica l'osservazione
   edit_this_link: Modifica questo link
   edit_your_account: modifica il tuo account
-  edit_your_account_and_profile_html: Modifica il tuo account &amp; il tuo profilo
+  edit_your_account_and_profile_html: Modifica il tuo account & il tuo profilo
   edit_your_default_settings: Modifica le tue impostazioni predefinite
   edit_your_global_project_settings: Modifica le impostazioni globali del progetto
   edit_your_identification: Modifica la tua identificazione
@@ -1897,6 +1900,7 @@ it:
   low: basso
   lowest_rank: Il rango più basso
   made_a: fatto un
+  make_admin: Rendi amministratore
   mail_disclaimer: '%{site_name} non permette ai suoi utenti di mandarti altri inviti
     utilizzando il nostro sistema di inviti. Per favore riporta l''abuso a %{site}.'
   main_content: Contenuto principale
@@ -3118,10 +3122,8 @@ it:
     tutto il mondo.
   set_license: Imposta la licenza
   settings: impostazioni
-  share_on: Condividi su
   share_your_observation_with_researchers_by: Condividi la tua osservazione con i
     ricercatori in
-  sharing_settings: Impostazioni di condivisione
   short_code_for_this_place: Codice breve per questo luogo, ad esempio, US per gli
     Stati Uniti
   short_or_abbreviated_title_for_display: Tittolo corto o abbreviato per la visualizzazione
@@ -3377,7 +3379,7 @@ it:
   take_me_facebook: Si, vai a Facebook!
   take_me_flickr!: Si, vai a Flickr!
   taxa: Taxa
-  taxa_all_species_html: Taxa &middot; Tutte le Specie
+  taxa_all_species_html: Tutte le specie
   taxa_needing_curation: Taxa che necessitano di revisione
   taxa_observed: taxa osservati
   taxa_to_include: Taxa da includere
@@ -3818,6 +3820,7 @@ it:
     al progetto %{project_title}
   users_id: ID di %{user}
   users_identification_html: identificazione di <a href='%{url}'>%{user}</a>
+  users_identification_short_html: ID <a href='%{url}'>%{user}</a>
   users_comment_html: commento di <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Le osservazioni più recenti di %{user} su %{site}
   users_observations: Le osservazioni di %{user}
@@ -4900,6 +4903,7 @@ it:
           Un Bioblitz è un evento in cui i partecipanti cercano di osservare più specie possibili entro un periodo di tempo determinato.
           È un modo divertente per introdurre le persone alla biodiversità e nello stesso tempo raccogliere dati utili.
           </p>
+        change_admin_desc: Scegli uno dei curatori del progetto quale nuovo amministratore.
         cover_desc: Immagine del banner, opzionale, che apparirà in alto nella pagina
           del tuo progetto. Deve essere larga 950 px e alta meno di 400 px.
         custom_project_fields_means: Personalizza il banner del progetto, aggiungi
@@ -4913,6 +4917,9 @@ it:
         icon_desc: Sarà ritagliato ad un quadrato
         last_aggregated_at_desc: Ora in cui l'ultimo aggregatore ha finito di aggiungere
           le osservazioni al progetto
+        no_curators: Non esistono curatori del progetto. Se vuoi rendere qualcuno
+          un amministratore, questo deve prima unirsi al progetto e poi tu devi renderlo
+          curatore.
         observation_aggregation_desc_html: |-
           <p class="description">
           L'aggregatore di osservazioni aggiungerà automaticamente al tuo progetto le osservazioni pertinenti in base alle regole specificate. Poiché non c'è modo di rimuovere tante osservazioni in una volta sola, questo strumento è potenzialmente pericoloso, quindi assicurati di aver scelto il luogo e il taxon giusto, o ti ritroverai molte osservazioni non pertinenti che dovrai rimuovere manualmente.
@@ -5073,10 +5080,10 @@ it:
         cannot_update_your_content: '%{site_name} non può aggiornare automaticamente
           i tuoi contenuti per questa modifica.'
         new_project_admin_html: Perché non amministri questo progetto? Il precedente
-          amministratore ha probabilmente cancellato il suo account, così %{site_name}
-          l'ha assegnato a te in quanto sei uno dei  gestori o sei un curatore del
-          sito. Se non vuoi essere amministratore del progetto per favore contatta
-          <a href="mailto:%{help_email}">%{help_email}</a>
+          amministratore ti ha assegnato come amministratore, o ha cancellato il suo
+          account e %{site_name} l'ha assegnato a te in quanto sei uno dei  gestori
+          o sei un curatore del sito. Se non vuoi essere amministratore del progetto
+          per favore contatta <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: Solo un promemoria... i curatori del progetto possono vedere
           le coordinate private ed oscurate delle osservazioni che tu aggiungi al
           progetto.

@@ -675,6 +675,14 @@ class Taxon < ActiveRecord::Base
     self.photos << photo
     Taxon.update_ancestor_photos( self, photo )
   end
+
+  # mostly just a convenience for populating an empty database
+  def set_photo_from_external
+    return true if photos.count > 0
+    return unless photo = photos_with_backfill.first
+    self.photos << photo
+    Taxon.update_ancestor_photos( self, photo )
+  end
   
   # Override assignment method provided by has_many to ensure that all
   # callbacks on photos and taxon_photos get called, including after_destroy
@@ -1349,7 +1357,11 @@ class Taxon < ActiveRecord::Base
     end
     if json && json["canonicalName"] == name
       if json["usageKey"]
-        tst = TaxonSchemeTaxon.create!(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        begin
+          tst = TaxonSchemeTaxon.create!(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to add GBIF taxon #{name}, ID:#{json['usageKey']}: #{e}"
+        end
         return json["usageKey"]
       else
         TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: nil)

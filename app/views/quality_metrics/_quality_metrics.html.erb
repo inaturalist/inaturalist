@@ -190,7 +190,7 @@
           <% if o.research_grade? -%>
             <span class="research_grade_notice"><%= t(:research, default: 'Research').capitalize %></span>
           <% elsif o.needs_id? %>
-            <span class="id_please_notice"><%=t :needs_id_expandable_html %></span>
+            <span class="needs_id_notice"><%=t :needs_id_expandable_html %></span>
           <% else %>
             <%= t(o.quality_grade, default: o.quality_grade).capitalize %>
           <% end -%>
@@ -205,7 +205,7 @@
   <% if o.research_grade? -%>
     <span class="research_grade_notice"><%= t(:research, default: 'Research').capitalize %></span>
   <% elsif o.needs_id? %>
-    <span class="id_please_notice"><%=t :needs_id_expandable_html %></span>
+    <span class="needs_id_notice"><%=t :needs_id_expandable_html %></span>
   <% else %>
     <%= t(o.quality_grade, default: o.quality_grade).capitalize %>
   <% end -%>

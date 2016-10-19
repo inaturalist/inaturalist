@@ -27,6 +27,7 @@ class TaxonName < ActiveRecord::Base
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
+  before_create {|name| name.position = name.taxon.taxon_names.size}
   before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names

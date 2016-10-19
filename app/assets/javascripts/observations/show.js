@@ -90,16 +90,6 @@ $(document).ready(function() {
       "padding": "1px 0 1px 20px"
     })
   })
-  
-  $('#added_to_id_please .button')
-    .bind('ajax:before', function() {
-      $('#added_to_id_please').fadeOut(function() {$('#need_id_help').fadeIn()})
-    })
-    
-  $('#need_id_help .button')
-    .bind('ajax:before', function() {
-      $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
-    })
 
   var qtip = $('#add-to-project-button').qtip('api');
   if( qtip ) {

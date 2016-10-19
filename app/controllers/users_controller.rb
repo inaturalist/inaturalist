@@ -544,6 +544,7 @@ class UsersController < ApplicationController
     
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
+
     @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
     if @display_user.save
       # user changed their project addition rules and nothing else, so

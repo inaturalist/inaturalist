@@ -1071,4 +1071,12 @@ describe Taxon, "get_gbif_id" do
     expect( t.get_gbif_id ).to be_blank
     expect( t.taxon_scheme_taxa ).to be_blank
   end
+  it "should not error and return GBIF ID is there is no valid scientific name" do
+    a = Taxon.make!( name: "Chordata", rank: "phylum" )
+    t = Taxon.make!( name: "Dugongidae", rank: "family", parent: a )
+    t.taxon_names.update_all(is_valid: false)
+    expect { t.get_gbif_id }.not_to raise_error
+    expect( t.get_gbif_id ).to_not be_blank
+    expect( t.taxon_scheme_taxa ).to be_blank
+  end
 end
