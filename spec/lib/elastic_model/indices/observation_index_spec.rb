@@ -148,7 +148,8 @@ describe "Observation Index" do
     5.times{ Identification.make!(observation: o) }
     json = o.as_indexed_json
     expect( json[:non_owner_ids].length ).to eq 5
-    expect( json[:non_owner_ids].first ).to eq o.identifications.first.as_indexed_json
+    expect( json[:non_owner_ids].first ).to eq o.identifications.first.
+      as_indexed_json(no_details: true)
   end
 
   describe "params_to_elastic_query" do
