@@ -1,5 +1,6 @@
 class Atlas < ActiveRecord::Base
   belongs_to :taxon
+  belongs_to :user
   has_many :exploded_atlas_places, :inverse_of => :atlas, :dependent => :delete_all
   has_many :atlas_alterations, :inverse_of => :atlas, :dependent => :delete_all
   

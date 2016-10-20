@@ -468,6 +468,72 @@ ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
 
 
 --
+-- Name: atlas_alterations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE atlas_alterations (
+    id integer NOT NULL,
+    atlas_id integer,
+    user_id integer,
+    place_id integer,
+    action character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: atlas_alterations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE atlas_alterations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: atlas_alterations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE atlas_alterations_id_seq OWNED BY atlas_alterations.id;
+
+
+--
+-- Name: atlases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE atlases (
+    id integer NOT NULL,
+    user_id integer,
+    taxon_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: atlases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE atlases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: atlases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE atlases_id_seq OWNED BY atlases.id;
+
+
+--
 -- Name: colors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -817,6 +883,38 @@ CREATE SEQUENCE deleted_users_id_seq
 --
 
 ALTER SEQUENCE deleted_users_id_seq OWNED BY deleted_users.id;
+
+
+--
+-- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE exploded_atlas_places (
+    id integer NOT NULL,
+    atlas_id integer,
+    place_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE exploded_atlas_places_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE exploded_atlas_places_id_seq OWNED BY exploded_atlas_places.id;
 
 
 --
@@ -4234,6 +4332,20 @@ ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY atlas_alterations ALTER COLUMN id SET DEFAULT nextval('atlas_alterations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY atlases ALTER COLUMN id SET DEFAULT nextval('atlases_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
 
 
@@ -4298,6 +4410,13 @@ ALTER TABLE ONLY deleted_photos ALTER COLUMN id SET DEFAULT nextval('deleted_pho
 --
 
 ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('exploded_atlas_places_id_seq'::regclass);
 
 
 --
@@ -4922,6 +5041,22 @@ ALTER TABLE ONLY assessments
 
 
 --
+-- Name: atlas_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY atlas_alterations
+    ADD CONSTRAINT atlas_alterations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: atlases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY atlases
+    ADD CONSTRAINT atlases_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4999,6 +5134,14 @@ ALTER TABLE ONLY deleted_photos
 
 ALTER TABLE ONLY deleted_users
     ADD CONSTRAINT deleted_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY exploded_atlas_places
+    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -5743,6 +5886,41 @@ CREATE INDEX index_assessments_on_user_id ON assessments USING btree (user_id);
 
 
 --
+-- Name: index_atlas_alterations_on_atlas_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlas_alterations_on_atlas_id ON atlas_alterations USING btree (atlas_id);
+
+
+--
+-- Name: index_atlas_alterations_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlas_alterations_on_place_id ON atlas_alterations USING btree (place_id);
+
+
+--
+-- Name: index_atlas_alterations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlas_alterations_on_user_id ON atlas_alterations USING btree (user_id);
+
+
+--
+-- Name: index_atlases_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlases_on_taxon_id ON atlases USING btree (taxon_id);
+
+
+--
+-- Name: index_atlases_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlases_on_user_id ON atlases USING btree (user_id);
+
+
+--
 -- Name: index_colors_taxa_on_taxon_id_and_color_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5880,6 +6058,20 @@ CREATE INDEX index_deleted_users_on_login ON deleted_users USING btree (login);
 --
 
 CREATE INDEX index_deleted_users_on_user_id ON deleted_users USING btree (user_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_atlas_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exploded_atlas_places_on_atlas_id ON exploded_atlas_places USING btree (atlas_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exploded_atlas_places_on_place_id ON exploded_atlas_places USING btree (place_id);
 
 
 --
@@ -8142,8 +8334,15 @@ INSERT INTO schema_migrations (version) VALUES ('20160809221754');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818234437');
 
+INSERT INTO schema_migrations (version) VALUES ('20160913224325');
+
 INSERT INTO schema_migrations (version) VALUES ('20160920151846');
 
 INSERT INTO schema_migrations (version) VALUES ('20160929155608');
 
-INSERT INTO schema_migrations (version) VALUES ('20160913224325');
+INSERT INTO schema_migrations (version) VALUES ('20161012202458');
+
+INSERT INTO schema_migrations (version) VALUES ('20161012202803');
+
+INSERT INTO schema_migrations (version) VALUES ('20161012204604');
+

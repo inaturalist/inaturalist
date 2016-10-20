@@ -22,6 +22,11 @@ AssessmentSection.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+Atlas.blueprint do
+  taxon { Taxon.make }
+  user { user.make }
+end
+
 CheckList.blueprint do
   place { Place.make! }
 end

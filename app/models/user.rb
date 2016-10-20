@@ -115,6 +115,7 @@ class User < ActiveRecord::Base
   has_many :editing_guides, :through => :guide_users, :source => :guide
   has_many :created_guide_sections, :class_name => "GuideSection", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
   has_many :updated_guide_sections, :class_name => "GuideSection", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
+  has_many :atlases, :inverse_of => :user, :dependent => :nullify
   
   file_options = {
     processors: [:deanimator],
