@@ -54,20 +54,21 @@ class Taxon < ActiveRecord::Base
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
       parent_id: parent_id,
-      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
+      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ).
+        reject{ |aid| aid == Taxon::LIFE.id },
       is_active: is_active,
     }
-    if options[:for_identification]
-      json[:ancestors] = json[:ancestor_ids].reject{ |aid| aid == 48460 }.
-        map{ |aid| { id: aid } }
-    end
     json[:ancestry] = json[:ancestor_ids].join(",")
     json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
       json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
+    if options[:for_identification]
+      json[:ancestors] = json[:min_species_ancestry].split(",").
+        map{ |aid| { id: aid.to_i } }
+    end
     unless options[:no_details]
       json[:names] = taxon_names.
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
-        map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) },
+        map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
     end
     unless options[:for_observation] || options[:no_details]
