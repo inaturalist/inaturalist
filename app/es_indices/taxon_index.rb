@@ -64,7 +64,7 @@ class Taxon < ActiveRecord::Base
     json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
       json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     if options[:for_identification]
-      json[:ancestors] = json[:min_species_ancestry].split(",").
+      json[:min_species_ancestors] = json[:min_species_ancestry].split(",").
         map{ |aid| { id: aid.to_i } }
     end
     unless options[:no_details]
