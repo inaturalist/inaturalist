@@ -516,9 +516,10 @@ class ListedTaxon < ActiveRecord::Base
   def log_destroy_in_atlas
     if is_atlased?
       atlas = Atlas.where(taxon_id: taxon_id).first
+      updater_id = updater.nil? ? nil : updater.id
       AtlasAlteration.create(
         atlas_id: atlas.id,
-        user_id: updater.id,
+        user_id: updater_id,
         place_id: place_id,
         action: "destroyed"
       )

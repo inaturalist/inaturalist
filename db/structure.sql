@@ -5886,6 +5886,41 @@ CREATE INDEX index_assessments_on_user_id ON assessments USING btree (user_id);
 
 
 --
+-- Name: index_atlas_alterations_on_atlas_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlas_alterations_on_atlas_id ON atlas_alterations USING btree (atlas_id);
+
+
+--
+-- Name: index_atlas_alterations_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlas_alterations_on_place_id ON atlas_alterations USING btree (place_id);
+
+
+--
+-- Name: index_atlas_alterations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlas_alterations_on_user_id ON atlas_alterations USING btree (user_id);
+
+
+--
+-- Name: index_atlases_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlases_on_taxon_id ON atlases USING btree (taxon_id);
+
+
+--
+-- Name: index_atlases_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_atlases_on_user_id ON atlases USING btree (user_id);
+
+
+--
 -- Name: index_colors_taxa_on_taxon_id_and_color_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6023,6 +6058,20 @@ CREATE INDEX index_deleted_users_on_login ON deleted_users USING btree (login);
 --
 
 CREATE INDEX index_deleted_users_on_user_id ON deleted_users USING btree (user_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_atlas_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exploded_atlas_places_on_atlas_id ON exploded_atlas_places USING btree (atlas_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exploded_atlas_places_on_place_id ON exploded_atlas_places USING btree (place_id);
 
 
 --
