@@ -46,7 +46,7 @@ $(function() {
       places.style("stroke", "#fff");
       var alter_link = d3.selectAll("#alter"); 
       alter_link.style("opacity", 1);
-      alter_link.attr("href","/atlases/alter_atlas_presence?place_id="+d.id+"&amp;taxon_id=18")
+      alter_link.attr("href","/atlases/alter_atlas_presence?place_id="+d.id+"&amp;taxon_id="+taxon_id)
       var element = d3.selectAll(".listing_"+d.id+"_"+taxon_id);
       if(element.style("fill") == "rgb(204, 204, 204)"){
         element.style("stroke", "#000");        
