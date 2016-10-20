@@ -6,6 +6,9 @@ class TaxonPhoto < ActiveRecord::Base
   after_destroy :destroy_orphan_photo
   after_destroy :unfeature_taxon
   after_destroy :expire_caches
+
+  after_save :index_taxon
+  after_destroy :index_taxon
   
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
@@ -36,7 +39,10 @@ class TaxonPhoto < ActiveRecord::Base
       taxon_id: taxon_id,
       photo: photo.as_indexed_json(sizes: [:square, :small, :medium, :large], native_page_url: true)
     }
+  end
 
+  def index_taxon
+    taxon.elastic_index!
   end
 
 end

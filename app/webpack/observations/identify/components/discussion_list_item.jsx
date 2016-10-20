@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import moment from "moment";
 import { Button } from "react-bootstrap";
 import _ from "lodash";
-import SplitTaxon from "./split_taxon";
+import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 
 const DiscussionListItem = ( {

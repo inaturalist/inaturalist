@@ -12,12 +12,14 @@ import observationsReducer, {
   fetchMonthOfYearFrequency
 } from "./ducks/observations";
 import leadersReducer, { fetchLeaders } from "./ducks/leaders";
+import photoModalReducer from "./ducks/photo_modal";
 
 const rootReducer = combineReducers( {
   config: configReducer,
   taxon: taxonReducer,
   observations: observationsReducer,
-  leaders: leadersReducer
+  leaders: leadersReducer,
+  photoModal: photoModalReducer
 } );
 
 const store = createStore(

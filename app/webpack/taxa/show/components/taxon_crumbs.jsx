@@ -5,7 +5,7 @@ import {
   OverlayTrigger,
   Popover
 } from "react-bootstrap";
-import SplitTaxon from "../../../observations/identify/components/split_taxon";
+import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../util";
 
 class TaxonCrumbs extends React.Component {

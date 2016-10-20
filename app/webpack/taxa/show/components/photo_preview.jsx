@@ -1,42 +1,55 @@
 import React, { PropTypes } from "react";
 import CoverImage from "./cover_image";
+import { urlForTaxon } from "../util";
+import SplitTaxon from "../../../shared/components/split_taxon";
 
 class PhotoPreview extends React.Component {
   constructor( ) {
     super( );
     this.state = {
-      photos: []
+      taxonPhotos: []
     };
   }
 
   componentWillReceiveProps( newProps ) {
-    let photos;
+    let taxonPhotos;
     if ( newProps.layout === "gallery" ) {
-      photos = newProps.photos.length === 1 ? [] : newProps.photos.slice( 0, 5 );
+      taxonPhotos = newProps.taxonPhotos.slice( 0, 5 );
     } else {
-      photos = newProps.photos.slice( 0, 9 );
+      taxonPhotos = newProps.taxonPhotos.slice( 0, 9 );
     }
     this.state = {
-      current: newProps.photos[0],
-      photos
+      current: newProps.taxonPhotos[0],
+      taxonPhotos
     };
   }
 
   showPhoto( photoId ) {
-    this.setState( {
-      current: this.state.photos.find( p => p.id === photoId )
-    } );
+    const newTaxonPhoto = this.state.taxonPhotos.find( p => p.photo.id === photoId );
+    if ( newTaxonPhoto ) {
+      this.setState( {
+        current: newTaxonPhoto
+      } );
+    }
   }
 
   render( ) {
     const layout = this.props.layout;
     const height = layout === "gallery" ? 98 : 185;
     let currentPhoto;
+    const showTaxonPhotoModal = this.props.showTaxonPhotoModal;
+    if ( this.state.taxonPhotos.length === 0 ) {
+      return (
+        <div className="text-center text-muted">
+          { I18n.t( "no_photos" ) }
+        </div>
+      );
+    }
     if ( this.state.current && layout === "gallery" ) {
       currentPhoto = (
         <CoverImage
-          src={this.state.current.photoUrl( "large" )}
-          low={this.state.current.photoUrl( "small" )}
+          src={this.state.current.photo.photoUrl( "large" )}
+          low={this.state.current.photo.photoUrl( "small" )}
           height={550}
         />
       );
@@ -45,24 +58,74 @@ class PhotoPreview extends React.Component {
       <div className={`PhotoPreview ${layout}`}>
         { currentPhoto }
         <ul className="plain others">
-          { this.state.photos.map( p => (
-            <li key={ `taxon-photo-${p.id}` }>
-              <a
-                href=""
-                onClick={ e => {
-                  e.preventDefault( );
-                  this.showPhoto( p.id );
-                  return false;
-                } }
-              >
-                <CoverImage
-                  src={ layout === "gallery" ? p.photoUrl( "small" ) : p.photoUrl( "small" ) }
-                  low={ layout === "gallery" ? p.photoUrl( "small" ) : p.photoUrl( "medium" ) }
-                  height={height}
-                />
-              </a>
-            </li>
-          ) ) }
+          { this.state.taxonPhotos.map( tp => {
+            const coverImage = (
+              <CoverImage
+                src={ layout === "gallery" ? tp.photo.photoUrl( "small" ) : tp.photo.photoUrl( "small" ) }
+                low={ layout === "gallery" ? tp.photo.photoUrl( "small" ) : tp.photo.photoUrl( "medium" ) }
+                height={height}
+              />
+            );
+            let content;
+            if ( layout === "grid" ) {
+              content = (
+                <span className="photoItem">
+                  <div className="photo-hover">
+                    <div className="actions">
+                      <button
+                        className="btn btn-link"
+                        onClick={ e => {
+                          e.preventDefault( );
+                          showTaxonPhotoModal( tp );
+                          return false;
+                        } }
+                      >
+                        <i className="fa fa-search-plus"></i>
+                        { I18n.t( "enlarge" ) }
+                      </button>
+                      <button
+                        className="btn btn-link"
+                        onClick={ e => {
+                          e.preventDefault( );
+                          alert( "TODO" );
+                          return false;
+                        } }
+                      >
+                        <i className="fa fa-picture-o"></i>
+                        { I18n.t( "view_all" ) }
+                      </button>
+                    </div>
+                    <div className="photo-taxon">
+                      <SplitTaxon taxon={tp.taxon} noParens url={urlForTaxon( tp.taxon )} />
+                      <a href={urlForTaxon( tp.taxon )} className="btn btn-link">
+                        <i className="fa fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </div>
+                  { coverImage }
+                </span>
+              );
+            } else {
+              content = (
+                <a
+                  className="photoItem"
+                  href=""
+                  onClick={ e => {
+                    e.preventDefault( );
+                    this.showPhoto( tp.photo.id );
+                    return false;
+                  } }
+                >
+                  { coverImage }
+                </a>
+              );
+            }
+            return (
+              <li key={ `taxon-photo-${tp.taxon.id}-${tp.photo.id}` }>
+                { content }
+              </li>
+            );
+          } ) }
           <li className="viewmore">
             <a href=""
               onClick={ e => {
@@ -81,8 +144,9 @@ class PhotoPreview extends React.Component {
 }
 
 PhotoPreview.propTypes = {
-  photos: PropTypes.array,
-  layout: PropTypes.string
+  taxonPhotos: PropTypes.array,
+  layout: PropTypes.string,
+  showTaxonPhotoModal: PropTypes.func
 };
 
 PhotoPreview.defaultProps = { layout: "gallery" };

@@ -1,11 +1,12 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import SplitTaxon from "../../../observations/identify/components/split_taxon";
+import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../observations/identify/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
 import Leaders from "../components/leaders";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
+import PhotoModalContainer from "../containers/photo_modal_container";
 import PlaceChooser from "./place_chooser";
 import TaxonCrumbs from "./taxon_crumbs";
 import StatusHeader from "./status_header";
@@ -78,6 +79,7 @@ const App = ( { taxon, place, setPlace } ) => (
       </Row>
     </Grid>
     <TaxonPageTabsContainer />
+    <PhotoModalContainer />
   </div>
 );
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import { urlForTaxon } from "../util";
-import SplitTaxon from "../../../observations/identify/components/split_taxon";
+import SplitTaxon from "../../../shared/components/split_taxon";
 
 const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount } ) => {
   const currentTaxon = Object.assign( { }, taxon );

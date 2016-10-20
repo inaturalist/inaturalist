@@ -221,7 +221,6 @@
   margin-bottom: 5px;
 }
 .LeaderItem h4 {
-  // margin: 3px 0;
   text-transform: none;
   margin: 0px 0px 3px 0px;
 }
@@ -255,9 +254,10 @@
 $photoPreviewThumbDim: 92px;
 $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
+$photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview {
   position: relative;
-  overflow: hidden;
+  margin-bottom: $photoPreviewGridViewMoreHeight;
 }
 .PhotoPreview ul.others {
   width: 100%;
@@ -276,7 +276,6 @@ $photoPreviewThumbGutterTop: 3px;
 }
 .PhotoPreview ul.others li {
   overflow: hidden;
-  text-align: center;
   display: inline-block;
 }
 .PhotoPreview.gallery ul.others li {
@@ -296,21 +295,83 @@ $photoPreviewThumbGutterTop: 3px;
 }
 .PhotoPreview .others a {
   color: white;
+}
+.PhotoPreview .viewmore {
+  text-align: center;
   font-weight: bold;
 }
 .PhotoPreview.grid .viewmore {
   display: block;
-  height: 50px;
-  line-height: 50px;
-  background-color: rgba(0,0,0,0.2);
+  height: $photoPreviewGridViewMoreHeight;
+  line-height: $photoPreviewGridViewMoreHeight;
+  background-color: #333;
   position: absolute;
-  bottom: 10px;
+  bottom: -1 * $photoPreviewGridViewMoreHeight;
   left: 0;
   width: 100%;
 }
-.PhotoPreview li:hover .photo-hover {
+.PhotoPreview li {
+  position: relative;
+}
+.PhotoPreview li .photo-hover {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  line-height: 1.2;
+  font-weight: 100;
+}
+.PhotoPreview.grid li:hover .photo-hover {
   display: block;
 }
+.PhotoPreview .actions {
+  position: absolute;
+  top: 50%;
+  margin-top: -80px;
+}
+.PhotoPreview .btn-link {
+  color: #ddd;
+}
+.PhotoPreview .actions .btn-link {
+  font-size: 80%;
+  padding: 20px;
+}
+.PhotoPreview .actions .btn-link i {
+  display: block;
+  font-size: 300%;
+  margin-bottom: 10px;
+}
+.PhotoPreview .actions .btn-link:first-child {
+  border-right: 2px solid rgba(255,255,255,0.2);
+}
+.PhotoPreview .btn-link:hover {
+  text-decoration: none;
+  color: white;
+}
+.PhotoPreview .btn-link {
+  text-transform: uppercase;
+}
+.PhotoPreview .photo-taxon {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.4);
+  font-weight: 100;
+  font-size: 90%;
+}
+.PhotoPreview .photo-taxon .display-name {
+  font-size: 120%;
+  display: block;
+}
+.PhotoPreview .photo-taxon i {
+  font-size: 150%;
+}
+
 .CoverImage {
   opacity: 0;
   transition: opacity 0.5s linear;
@@ -492,3 +553,52 @@ $endangeredColor: #D12F19;
   flex-grow: 1;
   text-align: center;
 }
+
+.PhotoModal .btn.nav-button {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 100px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  line-height: 30px;
+  text-align: center;
+  left: -100px;
+}
+.PhotoModal .nav-button.next {
+  left: auto;
+  right: -100px;
+}
+.PhotoModal .modal-dialog {
+  height: 100%;
+}
+.PhotoModal .modal-content {
+  height: 90%;
+  padding: 20px;
+}
+.PhotoModal .SplitTaxon {
+  font-size: 130%;
+  display: block;
+}
+.PhotoModal .SplitTaxon a {
+  color: black;
+}
+.PhotoModal .display-name {
+  font-size: 150%;
+}
+.PhotoModal .photo-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.PhotoModal .photo-modal-content .photo-container {
+  flex-grow: 2;
+}
+.PhotoModal .photo-modal-content .container-fluid {
+  width: 100%;
+  line-height: 1.2;
+  margin-top: 10px;
+}
+
