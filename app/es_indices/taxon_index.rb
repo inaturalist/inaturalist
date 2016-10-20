@@ -54,8 +54,7 @@ class Taxon < ActiveRecord::Base
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
       parent_id: parent_id,
-      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ).
-        reject{ |aid| aid == Taxon::LIFE.id },
+      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active,
     }
     if Taxon::LIFE
