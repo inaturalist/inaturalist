@@ -58,6 +58,9 @@ class Taxon < ActiveRecord::Base
         reject{ |aid| aid == Taxon::LIFE.id },
       is_active: is_active,
     }
+    if Taxon::LIFE
+      json[:ancestor_ids].delete(Taxon::LIFE.id)
+    end
     json[:ancestry] = json[:ancestor_ids].join(",")
     json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
       json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
