@@ -5,7 +5,8 @@ function mapStateToProps( state ) {
   return {
     taxon: state.taxon.taxon,
     taxonChangesCount: state.taxon.counts.taxonChangesCount,
-    taxonSchemesCount: state.taxon.counts.taxonSchemesCount
+    taxonSchemesCount: state.taxon.counts.taxonSchemesCount,
+    names: state.taxon.names
   };
 }
 

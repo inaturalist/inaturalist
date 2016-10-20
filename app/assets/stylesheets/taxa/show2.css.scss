@@ -2,6 +2,10 @@
 @import "show/wikipedia";
 @import "../shared/user_text";
 
+#TaxonDetail > .container-fluid {
+  min-width: 980px;
+}
+
 #TaxonHeader h1 {
   margin-top: 10px;
 }
@@ -329,14 +333,16 @@ $photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview .actions {
   position: absolute;
   top: 50%;
-  margin-top: -80px;
+  margin-top: -70px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .PhotoPreview .btn-link {
   color: #ddd;
 }
 .PhotoPreview .actions .btn-link {
   font-size: 80%;
-  padding: 20px;
 }
 .PhotoPreview .actions .btn-link i {
   display: block;
@@ -419,6 +425,14 @@ $photoPreviewGridViewMoreHeight: 50px;
   font-size: smaller;
 }
 
+.TaxonomyTab .sciname {
+  font-style: italic;
+}
+
+.TaxonomyTab .outdated .sciname {
+  text-decoration: line-through;
+}
+
 .tab-links a {
   display: block;
   color: #333;
@@ -435,18 +449,6 @@ $photoPreviewGridViewMoreHeight: 50px;
 .tab-links i {
   color: $inat-green;
   margin-right: 10px;
-}
-
-.NamesTab {
-  margin-bottom: 20px;
-}
-
-.NamesTab .sciname {
-  font-style: italic;
-}
-
-.NamesTab .outdated .sciname {
-  text-decoration: line-through;
 }
 
 .StatusTab .media-body {
@@ -602,3 +604,9 @@ $endangeredColor: #D12F19;
   margin-top: 10px;
 }
 
+.curation-tab .dropdown {
+  float: right;
+}
+#curation-dropdown {
+  margin-top: 14px;
+}

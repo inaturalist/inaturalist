@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
-import _ from "lodash";
 import PhotoPreview from "../components/photo_preview";
 import { showPhotoModal, setPhotoModal } from "../ducks/photo_modal";
 
 function mapStateToProps( state ) {
-  if ( !state.taxon.taxon || !state.taxon.taxon.taxonPhotos ) {
+  if ( !state.taxon.taxonPhotos ) {
     return { taxonPhotos: [] };
   }
   let layout = "gallery";
-  const taxonPhotos = _.uniqBy( state.taxon.taxon.taxonPhotos, tp => tp.photo.id );
+  const taxonPhotos = state.taxon.taxonPhotos;
   if ( state.taxon.taxon.rank_level > 10 && taxonPhotos.length >= 9 ) {
     layout = "grid";
   }

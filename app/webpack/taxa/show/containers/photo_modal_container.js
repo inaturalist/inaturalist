@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import PhotoModal from "../components/photo_modal";
-import { hidePhotoModal } from "../ducks/photo_modal";
+import {
+  hidePhotoModal,
+  showNext as showNextPhoto,
+  showPrev as showPrevPhoto
+} from "../ducks/photo_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -13,10 +17,10 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     showNext: ( ) => {
-      // TODO
+      dispatch( showNextPhoto( ) );
     },
     showPrev: ( ) => {
-      // TODO
+      dispatch( showPrevPhoto( ) );
     },
     onClose: ( ) => dispatch( hidePhotoModal( ) )
   };

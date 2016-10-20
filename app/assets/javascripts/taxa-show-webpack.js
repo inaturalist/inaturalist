@@ -66,11 +66,11 @@
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(1459);
+	var _config = __webpack_require__(1457);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1453);
+	var _taxon = __webpack_require__(1451);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
@@ -78,7 +78,7 @@
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(1460);
+	var _leaders = __webpack_require__(1458);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
@@ -91036,13 +91036,13 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(1459);
+	var _config = __webpack_require__(1457);
 
 	var _observations = __webpack_require__(1428);
 
-	var _leaders = __webpack_require__(1460);
+	var _leaders = __webpack_require__(1458);
 
-	var _taxon = __webpack_require__(1453);
+	var _taxon = __webpack_require__(1451);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91109,19 +91109,19 @@
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _photo_modal_container = __webpack_require__(1454);
+	var _photo_modal_container = __webpack_require__(1452);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
-	var _place_chooser = __webpack_require__(1456);
+	var _place_chooser = __webpack_require__(1454);
 
 	var _place_chooser2 = _interopRequireDefault(_place_chooser);
 
-	var _taxon_crumbs = __webpack_require__(1457);
+	var _taxon_crumbs = __webpack_require__(1455);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(1458);
+	var _status_header = __webpack_require__(1456);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
@@ -91265,10 +91265,6 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _lodash = __webpack_require__(590);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
 	var _photo_preview = __webpack_require__(1420);
 
 	var _photo_preview2 = _interopRequireDefault(_photo_preview);
@@ -91278,13 +91274,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
-	  if (!state.taxon.taxon || !state.taxon.taxon.taxonPhotos) {
+	  if (!state.taxon.taxonPhotos) {
 	    return { taxonPhotos: [] };
 	  }
 	  var layout = "gallery";
-	  var taxonPhotos = _lodash2.default.uniqBy(state.taxon.taxon.taxonPhotos, function (tp) {
-	    return tp.photo.id;
-	  });
+	  var taxonPhotos = state.taxon.taxonPhotos;
 	  if (state.taxon.taxon.rank_level > 10 && taxonPhotos.length >= 9) {
 	    layout = "grid";
 	  }
@@ -91360,7 +91354,6 @@
 	    value: function componentWillReceiveProps(newProps) {
 	      var taxonPhotos = void 0;
 	      if (newProps.layout === "gallery") {
-	        // taxonPhotos = newProps.taxonPhotos.length === 1 ? [] : newProps.taxonPhotos.slice( 0, 5 );
 	        taxonPhotos = newProps.taxonPhotos.slice(0, 5);
 	      } else {
 	        taxonPhotos = newProps.taxonPhotos.slice(0, 9);
@@ -91380,8 +91373,6 @@
 	        this.setState({
 	          current: newTaxonPhoto
 	        });
-	      } else {
-	        console.log("[DEBUG] failed to find photo matching ", photoId);
 	      }
 	    }
 	  }, {
@@ -91667,7 +91658,7 @@
 
 /***/ },
 /* 1423 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
@@ -91678,6 +91669,15 @@
 	exports.setPhotoModal = setPhotoModal;
 	exports.showPhotoModal = showPhotoModal;
 	exports.hidePhotoModal = hidePhotoModal;
+	exports.showNext = showNext;
+	exports.showPrev = showPrev;
+
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var SET_PHOTO_MODAL = "taxa-show/photo_modal/SET_PHOTO_MODAL";
 	var SHOW_PHOTO_MODAL = "taxa-show/photo_modal/SHOW_PHOTO_MODAL";
 	var HIDE_PHOTO_MODAL = "taxa-show/photo_modal/HIDE_PHOTO_MODAL";
@@ -91718,6 +91718,44 @@
 
 	function hidePhotoModal() {
 	  return { type: HIDE_PHOTO_MODAL };
+	}
+
+	function showNext() {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var taxonPhotos = s.taxon.taxonPhotos;
+	    var currentPhoto = s.photoModal.photo;
+	    var currentIndex = _lodash2.default.findIndex(taxonPhotos, function (tp) {
+	      return tp.photo.id === currentPhoto.id;
+	    });
+	    if (currentIndex < 0) {
+	      return;
+	    }
+	    var newTaxonPhoto = taxonPhotos[0];
+	    if (currentIndex < taxonPhotos.length - 1) {
+	      newTaxonPhoto = taxonPhotos[currentIndex + 1];
+	    }
+	    dispatch(setPhotoModal(newTaxonPhoto.photo, newTaxonPhoto.taxon));
+	  };
+	}
+
+	function showPrev() {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var taxonPhotos = s.taxon.taxonPhotos;
+	    var currentPhoto = s.photoModal.photo;
+	    var currentIndex = _lodash2.default.findIndex(taxonPhotos, function (tp) {
+	      return tp.photo.id === currentPhoto.id;
+	    });
+	    if (currentIndex < 0) {
+	      return;
+	    }
+	    var newTaxonPhoto = taxonPhotos[taxonPhotos.length - 1];
+	    if (currentIndex > 0) {
+	      newTaxonPhoto = taxonPhotos[currentIndex - 1];
+	    }
+	    dispatch(setPhotoModal(newTaxonPhoto.photo, newTaxonPhoto.taxon));
+	  };
 	}
 
 /***/ },
@@ -110477,13 +110515,14 @@
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
-	var _taxon = __webpack_require__(1453);
+	var _taxon = __webpack_require__(1451);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
 	  return {
-	    taxon: state.taxon.taxon
+	    taxon: state.taxon.taxon,
+	    currentUser: state.config.currentUser
 	  };
 	}
 
@@ -110550,19 +110589,15 @@
 
 	var _taxonomy_tab_container2 = _interopRequireDefault(_taxonomy_tab_container);
 
-	var _names_tab_container = __webpack_require__(1442);
-
-	var _names_tab_container2 = _interopRequireDefault(_names_tab_container);
-
-	var _articles_tab_container = __webpack_require__(1444);
+	var _articles_tab_container = __webpack_require__(1442);
 
 	var _articles_tab_container2 = _interopRequireDefault(_articles_tab_container);
 
-	var _interactions_tab_container = __webpack_require__(1446);
+	var _interactions_tab_container = __webpack_require__(1444);
 
 	var _interactions_tab_container2 = _interopRequireDefault(_interactions_tab_container);
 
-	var _highlights_tab_container = __webpack_require__(1448);
+	var _highlights_tab_container = __webpack_require__(1446);
 
 	var _highlights_tab_container2 = _interopRequireDefault(_highlights_tab_container);
 
@@ -110594,7 +110629,7 @@
 	          case "#articles-tab":
 	            _this2.props.fetchArticlesContent();
 	            break;
-	          case "#names-tab":
+	          case "#taxonomy-tab":
 	            _this2.props.fetchNames();
 	            break;
 	          case "#interactions-tab":
@@ -110612,7 +110647,70 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _this3 = this;
+
 	      var speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
+	      var curationTab = void 0;
+	      if (this.props.currentUser) {
+	        var isCurator = this.props.currentUser.roles.indexOf("curator") >= 0;
+	        curationTab = _react2.default.createElement(
+	          "li",
+	          { className: "curation-tab" },
+	          _react2.default.createElement(
+	            _reactBootstrap.Dropdown,
+	            {
+	              id: "curation-dropdown",
+	              pullRight: true,
+	              onSelect: function onSelect(eventKey) {
+	                switch (eventKey) {
+	                  case 1:
+	                    window.location = "/taxa/" + _this3.props.taxon.id + "/flags/new";
+	                    break;
+	                  case 2:
+	                    window.location = "/taxa/" + _this3.props.taxon.id + "/edit_photos";
+	                    break;
+	                  default:
+	                    window.location = "/taxa/" + _this3.props.taxon.id + "/edit";
+	                }
+	              }
+	            },
+	            _react2.default.createElement(
+	              _reactBootstrap.Dropdown.Toggle,
+	              null,
+	              _react2.default.createElement("i", { className: "fa fa-cog" }),
+	              " ",
+	              I18n.t("curation")
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Dropdown.Menu,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                {
+	                  className: isCurator ? "" : "hidden",
+	                  eventKey: "1"
+	                },
+	                I18n.t("flag_for_curation")
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                {
+	                  eventKey: "2"
+	                },
+	                I18n.t("edit_photos")
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                {
+	                  className: isCurator ? "" : "hidden",
+	                  eventKey: "3"
+	                },
+	                I18n.t("edit_taxon")
+	              )
+	            )
+	          )
+	        );
+	      }
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "TaxonPageTabs" },
@@ -110683,15 +110781,6 @@
 	                ),
 	                _react2.default.createElement(
 	                  "li",
-	                  { role: "presentation" },
-	                  _react2.default.createElement(
-	                    "a",
-	                    { href: "#names-tab", role: "tab", "data-toggle": "tab" },
-	                    I18n.t("names")
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  "li",
 	                  { role: "presentation", className: speciesOrLower ? "" : "hidden" },
 	                  _react2.default.createElement(
 	                    "a",
@@ -110707,7 +110796,8 @@
 	                    { href: "#related-tab", role: "tab", "data-toggle": "tab" },
 	                    I18n.t("related_species")
 	                  )
-	                )
+	                ),
+	                curationTab
 	              )
 	            )
 	          )
@@ -110750,11 +110840,6 @@
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { role: "tabpanel", className: "tab-pane", id: "names-tab" },
-	            _react2.default.createElement(_names_tab_container2.default, null)
-	          ),
-	          _react2.default.createElement(
-	            "div",
 	            {
 	              role: "tabpanel",
 	              className: "tab-pane " + (speciesOrLower ? "" : "hidden"),
@@ -110790,7 +110875,8 @@
 	  fetchNames: _react.PropTypes.func,
 	  fetchInteractions: _react.PropTypes.func,
 	  fetchRareTaxa: _react.PropTypes.func,
-	  fetchTrendingTaxa: _react.PropTypes.func
+	  fetchTrendingTaxa: _react.PropTypes.func,
+	  currentUser: _react.PropTypes.object
 	};
 
 	exports.default = TaxonPageTabs;
@@ -111285,7 +111371,8 @@
 	  return {
 	    taxon: state.taxon.taxon,
 	    taxonChangesCount: state.taxon.counts.taxonChangesCount,
-	    taxonSchemesCount: state.taxon.counts.taxonSchemesCount
+	    taxonSchemesCount: state.taxon.counts.taxonSchemesCount,
+	    names: state.taxon.names
 	  };
 	}
 
@@ -111309,11 +111396,19 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
 	var _util = __webpack_require__(1422);
 
 	var _split_taxon = __webpack_require__(862);
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
+
+	var _user_text = __webpack_require__(870);
+
+	var _user_text2 = _interopRequireDefault(_user_text);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -111321,6 +111416,7 @@
 	  var taxon = _ref.taxon;
 	  var taxonChangesCount = _ref.taxonChangesCount;
 	  var taxonSchemesCount = _ref.taxonSchemesCount;
+	  var names = _ref.names;
 
 	  var currentTaxon = Object.assign({}, taxon);
 	  var tree = [];
@@ -111363,12 +111459,20 @@
 	      })
 	    );
 	  };
+	  var sortedNames = _lodash2.default.sortBy(names, function (n) {
+	    return [n.lexicon, n.name];
+	  });
 	  return _react2.default.createElement(
 	    _reactBootstrap.Grid,
 	    { className: "TaxonomyTab" },
 	    _react2.default.createElement(
 	      _reactBootstrap.Row,
 	      null,
+	      _react2.default.createElement(
+	        "h2",
+	        null,
+	        I18n.t("taxonomy")
+	      ),
 	      _react2.default.createElement(
 	        _reactBootstrap.Col,
 	        { xs: 8 },
@@ -111412,79 +111516,7 @@
 	          )
 	        )
 	      )
-	    )
-	  );
-	};
-
-	TaxonomyTab.propTypes = {
-	  taxon: _react.PropTypes.object,
-	  taxonChangesCount: _react.PropTypes.number,
-	  taxonSchemesCount: _react.PropTypes.number
-	};
-
-	exports.default = TaxonomyTab;
-
-/***/ },
-/* 1442 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _reactRedux = __webpack_require__(560);
-
-	var _names_tab = __webpack_require__(1443);
-
-	var _names_tab2 = _interopRequireDefault(_names_tab);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function mapStateToProps(state) {
-	  return {
-	    taxon: state.taxon.taxon,
-	    names: state.taxon.names
-	  };
-	}
-
-	var NamesTabContainer = (0, _reactRedux.connect)(mapStateToProps)(_names_tab2.default);
-
-	exports.default = NamesTabContainer;
-
-/***/ },
-/* 1443 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(403);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactBootstrap = __webpack_require__(607);
-
-	var _user_text = __webpack_require__(870);
-
-	var _user_text2 = _interopRequireDefault(_user_text);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NamesTab = function NamesTab(_ref) {
-	  var taxon = _ref.taxon;
-	  var names = _ref.names;
-
-	  var sortedNames = _.sortBy(names, function (n) {
-	    return [n.lexicon, n.name];
-	  });
-	  return _react2.default.createElement(
-	    _reactBootstrap.Grid,
-	    { className: "NamesTab" },
+	    ),
 	    _react2.default.createElement(
 	      _reactBootstrap.Row,
 	      null,
@@ -111493,8 +111525,8 @@
 	        { xs: 8 },
 	        _react2.default.createElement(
 	          "h2",
-	          { className: "text-center " + (names.length > 0 ? "hidden" : "") },
-	          _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
+	          null,
+	          I18n.t("names")
 	        ),
 	        _react2.default.createElement(
 	          "table",
@@ -111556,6 +111588,11 @@
 	              );
 	            })
 	          )
+	        ),
+	        _react2.default.createElement(
+	          "h2",
+	          { className: "text-center " + (names.length > 0 ? "hidden" : "") },
+	          _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -111599,20 +111636,21 @@
 	  );
 	};
 
-	NamesTab.propTypes = {
+	TaxonomyTab.propTypes = {
 	  taxon: _react.PropTypes.object,
+	  taxonChangesCount: _react.PropTypes.number,
+	  taxonSchemesCount: _react.PropTypes.number,
 	  names: _react.PropTypes.array
 	};
 
-	NamesTab.defaultProps = {
-	  taxon: {},
+	TaxonomyTab.defaultProps = {
 	  names: []
 	};
 
-	exports.default = NamesTab;
+	exports.default = TaxonomyTab;
 
 /***/ },
-/* 1444 */
+/* 1442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111623,7 +111661,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _articles_tab = __webpack_require__(1445);
+	var _articles_tab = __webpack_require__(1443);
 
 	var _articles_tab2 = _interopRequireDefault(_articles_tab);
 
@@ -111644,7 +111682,7 @@
 	exports.default = ArticlesTabContainer;
 
 /***/ },
-/* 1445 */
+/* 1443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111763,7 +111801,7 @@
 	exports.default = ArticlesTab;
 
 /***/ },
-/* 1446 */
+/* 1444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111774,7 +111812,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _interactions_tab = __webpack_require__(1447);
+	var _interactions_tab = __webpack_require__(1445);
 
 	var _interactions_tab2 = _interopRequireDefault(_interactions_tab);
 
@@ -111791,7 +111829,7 @@
 	exports.default = InteractionsTabContainer;
 
 /***/ },
-/* 1447 */
+/* 1445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111963,7 +112001,7 @@
 	exports.default = InteractionsTab;
 
 /***/ },
-/* 1448 */
+/* 1446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111974,7 +112012,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _highlights_tab = __webpack_require__(1449);
+	var _highlights_tab = __webpack_require__(1447);
 
 	var _highlights_tab2 = _interopRequireDefault(_highlights_tab);
 
@@ -111982,7 +112020,7 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _querystring = __webpack_require__(1450);
+	var _querystring = __webpack_require__(1448);
 
 	var _querystring2 = _interopRequireDefault(_querystring);
 
@@ -112016,7 +112054,7 @@
 	exports.default = HighlightsTabContainer;
 
 /***/ },
-/* 1449 */
+/* 1447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112167,17 +112205,17 @@
 	exports.default = HighlightsTab;
 
 /***/ },
-/* 1450 */
+/* 1448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.decode = exports.parse = __webpack_require__(1451);
-	exports.encode = exports.stringify = __webpack_require__(1452);
+	exports.decode = exports.parse = __webpack_require__(1449);
+	exports.encode = exports.stringify = __webpack_require__(1450);
 
 
 /***/ },
-/* 1451 */
+/* 1449 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -112263,7 +112301,7 @@
 
 
 /***/ },
-/* 1452 */
+/* 1450 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -112333,7 +112371,7 @@
 
 
 /***/ },
-/* 1453 */
+/* 1451 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112366,9 +112404,13 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _querystring = __webpack_require__(1450);
+	var _querystring = __webpack_require__(1448);
 
 	var _querystring2 = _interopRequireDefault(_querystring);
+
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
 
 	var _util = __webpack_require__(1422);
 
@@ -112391,6 +112433,9 @@
 	  switch (action.type) {
 	    case SET_TAXON:
 	      newState.taxon = action.taxon;
+	      newState.taxonPhotos = _lodash2.default.uniqBy(newState.taxon.taxonPhotos, function (tp) {
+	        return tp.photo.id;
+	      });
 	      break;
 	    case SET_DESCRIPTION:
 	      newState.description = {
@@ -112587,7 +112632,7 @@
 	}
 
 /***/ },
-/* 1454 */
+/* 1452 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112598,7 +112643,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1455);
+	var _photo_modal = __webpack_require__(1453);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
@@ -112617,10 +112662,10 @@
 	function mapDispatchToProps(dispatch) {
 	  return {
 	    showNext: function showNext() {
-	      // TODO
+	      dispatch((0, _photo_modal3.showNext)());
 	    },
 	    showPrev: function showPrev() {
-	      // TODO
+	      dispatch((0, _photo_modal3.showPrev)());
 	    },
 	    onClose: function onClose() {
 	      return dispatch((0, _photo_modal3.hidePhotoModal)());
@@ -112633,7 +112678,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1455 */
+/* 1453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112762,7 +112807,7 @@
 	exports.default = PhotoModal;
 
 /***/ },
-/* 1456 */
+/* 1454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112906,7 +112951,7 @@
 	exports.default = PlaceChooser;
 
 /***/ },
-/* 1457 */
+/* 1455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113103,7 +113148,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1458 */
+/* 1456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113176,7 +113221,7 @@
 	exports.default = StatusHeader;
 
 /***/ },
-/* 1459 */
+/* 1457 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -113211,7 +113256,7 @@
 	}
 
 /***/ },
-/* 1460 */
+/* 1458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

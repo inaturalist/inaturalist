@@ -11,7 +11,8 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    taxon: state.taxon.taxon
+    taxon: state.taxon.taxon,
+    currentUser: state.config.currentUser
   };
 }
 

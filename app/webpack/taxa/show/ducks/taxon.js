@@ -1,6 +1,7 @@
 import iNaturalistJS from "inaturalistjs";
 import moment from "moment";
 import querystring from "querystring";
+import _ from "lodash";
 import { fetch, defaultObservationParams } from "../util";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
@@ -17,6 +18,7 @@ export default function reducer( state = { counts: {} }, action ) {
   switch ( action.type ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
+      newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
       break;
     case SET_DESCRIPTION:
       newState.description = {

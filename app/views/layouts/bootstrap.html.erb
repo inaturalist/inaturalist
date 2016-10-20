@@ -93,7 +93,8 @@
         CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
-          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>
+          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>,
+          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
         };
       <% end -%>
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
