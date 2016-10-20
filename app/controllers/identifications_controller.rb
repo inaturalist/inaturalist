@@ -12,7 +12,7 @@ class IdentificationsController < ApplicationController
   }
 
   def index
-    per_page = 100
+    per_page = 50
     search_params = { order_by: "id", order: "desc", per_page: per_page, page: params[:page] || 1 }
     if Identification::CATEGORIES.include?( params[:category] )
       search_params[:category] = params[:category]
@@ -33,7 +33,7 @@ class IdentificationsController < ApplicationController
     search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
     api_response = INatAPIService.identifications(search_params)
     ids = Identification.where(id: api_response.results.map{ |r| r["id"] }).
-      includes(:observation, :user, { taxon: [ :taxon_names, :photos ] }).order(id: :desc)
+      includes(:observation, :user, { taxon: [ { taxon_names: :place_taxon_names }, :photos ] }).order(id: :desc)
     Observation.preload_for_component(ids.map(&:observation), logged_in: logged_in?)
     @identifications = WillPaginate::Collection.create(params[:page] || 1, per_page,
       api_response.total_results) do |pager|
