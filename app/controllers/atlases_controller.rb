@@ -57,15 +57,18 @@ class AtlasesController < ApplicationController
     end
   end
   
+  ## Custom actions ############################################################
+  
   def alter_atlas_presence
     taxon_id = params[:taxon_id]
     @place_id = params[:place_id]
     if listed_taxon = ListedTaxon.where(taxon_id: taxon_id, place_id: @place_id).first
+      listed_taxon.updater = current_user
       listed_taxon.destroy
       @presence = false
     else
       list_id = Place.find(@place_id).check_list_id
-      ListedTaxon.create(taxon_id: taxon_id, place_id: @place_id, list_id: list_id)
+      ListedTaxon.create(taxon_id: taxon_id, place_id: @place_id, list_id: list_id, user_id: current_user.id)
       @presence = true
     end
     

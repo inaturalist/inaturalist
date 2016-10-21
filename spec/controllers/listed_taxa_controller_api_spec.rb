@@ -82,3 +82,36 @@ describe ListedTaxaController, "update" do
     end
   end
 end
+
+describe ListedTaxaController, "destroy" do
+  it "should destroy" do
+    taxon = Taxon.make!
+    place = Place.make!
+    check_list = List.find(place.check_list_id)
+    @user = User.make!
+    check_listed_taxon = check_list.add_taxon(taxon, options = {user_id: @user.id})    
+    admin = make_admin
+    http_login(admin)
+    delete :destroy, :format => :json, :id => check_listed_taxon.id
+    expect(ListedTaxon.find_by_id(check_listed_taxon.id)).to be_blank  
+  end
+  it "should log atlas_alterations if listed_taxa is_atlased? on destroy" do
+    taxon = Taxon.make!
+    atlas_place = Place.make!(admin_level: 0)
+    atlas_place_check_list = List.find(atlas_place.check_list_id)
+    @user = User.make!
+    check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
+    atlas = Atlas.make!(user: @other_user, taxon: taxon)
+    expect(check_listed_taxon.is_atlased?).to be true  
+    admin = make_admin
+    http_login(admin)
+    delete :destroy, :format => :json, :id => check_listed_taxon.id
+    expect(ListedTaxon.find_by_id(check_listed_taxon.id)).to be_blank  
+    expect(AtlasAlteration.where(
+      atlas_id: atlas.id,
+      user_id: admin.id,
+      place_id: atlas_place.id,
+      action: "destroyed"
+    ).first).not_to be_blank
+  end
+end

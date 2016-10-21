@@ -9,6 +9,7 @@
   = javascript_tag "taxon_id = #{@atlas.taxon_id}"
 
 %h2
+  = current_user.id
   = "show atlas"
   = t :for
   = link_to @atlas.taxon.name, @atlas.taxon
