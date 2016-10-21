@@ -8,6 +8,9 @@ class ExplodedAtlasPlacesController < ApplicationController
       place_id: @exploded_atlas_place.place_id,
       action: "exploded"
     )
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
     
   def destroy
@@ -19,6 +22,9 @@ class ExplodedAtlasPlacesController < ApplicationController
       place_id: @exploded_atlas_place.place_id,
       action: "collapsed"
     )
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
    
 end
