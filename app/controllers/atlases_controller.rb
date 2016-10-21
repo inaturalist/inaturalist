@@ -16,24 +16,23 @@ class AtlasesController < ApplicationController
   def show
     @atlas = Atlas.find(params[:id])
     @atlas_places = @atlas.places
-    @atlas_presence_places = @atlas.presence_places
-    @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse_order
-    @atlas_place_json = {
-      type: "FeatureCollection", 
-      features: @atlas_places.map{|p| 
-        {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, name: p.name, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
-      }
-    }
-    
+    @atlas_presence_places = @atlas.presence_places    
     respond_to do |format|
-      format.html
+      format.html do
+        @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse
+        @atlas_place_json = {
+          type: "FeatureCollection", 
+          features: @atlas_places.map{|p| 
+            {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, name: p.name, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
+          }
+        }
+      end
       format.json { render :json => @atlas_presence_places.to_json }
     end
   end
   
   def create
     @atlas = Atlas.new(params[:atlas])
-
     respond_to do |format|
       if @atlas.save
         format.html { redirect_to(@atlas, :notice => 'Atlas was successfully created.') }
@@ -69,6 +68,7 @@ class AtlasesController < ApplicationController
   def alter_atlas_presence
     taxon_id = params[:taxon_id]
     @place_id = params[:place_id]
+    place_name = Place.find(@place_id).name
     if listed_taxon = ListedTaxon.where(taxon_id: taxon_id, place_id: @place_id).first
       listed_taxon.updater = current_user
       listed_taxon.destroy
@@ -81,17 +81,18 @@ class AtlasesController < ApplicationController
     
     respond_to do |format|
       atlas = Atlas.where(taxon_id: taxon_id).first
-      atlas_alteration = AtlasAlteration.where(place_id: @place_id, atlas_id: atlas.id, action: @presence ? "created" : "destroyed").last
-      user_string = atlas_alteration.user_id.nil? ? "" : "<a href='/user/#{atlas_alteration.user_id}'>#{atlas_alteration.user.login}</a>"
-      @alteration_row = "<tr>
-        <th scope='row'>#{atlas_alteration.id}</th>
-        <td><a href='/places/#{atlas_alteration.place_id}'>#{atlas_alteration.place.name}</a></td>
-        <td>#{atlas_alteration.action}</td>
-        <td>#{user_string}</td>
-        <td>#{atlas_alteration.created_at}</td>
-      </tr>".gsub(/\s+/, ' ').strip
-      puts @alteration_row
-      format.js
+      atlas_alteration = AtlasAlteration.where(place_id: @place_id, atlas_id: atlas.id, action: @presence ? "listed" : "unlisted").last
+      user_login = atlas_alteration.user_id.nil? ? nil : atlas_alteration.user.login
+      format.json { render json: {user_login: user_login, place_name: place_name, place_id: @place_id, presence: @presence, atlas_alteration: atlas_alteration}, status: :ok}
     end
   end
+  
+  def destroy_all_alterations
+    atlas_id = params[:atlas_id]
+    AtlasAlteration.where(atlas_id: atlas_id).destroy_all
+    respond_to do |format| 
+      format.json { render json: {}, status: :ok}
+    end
+  end
+  
 end

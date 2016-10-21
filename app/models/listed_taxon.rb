@@ -508,7 +508,7 @@ class ListedTaxon < ActiveRecord::Base
         atlas_id: atlas.id,
         user_id: user_id,
         place_id: place_id,
-        action: "created"
+        action: "listed"
       )
     end
   end
@@ -521,7 +521,7 @@ class ListedTaxon < ActiveRecord::Base
         atlas_id: atlas.id,
         user_id: updater_id,
         place_id: place_id,
-        action: "destroyed"
+        action: "unlisted"
       )
     end
   end

@@ -18,10 +18,10 @@
       .pull-right= link_to t(:edit), edit_atlas_path(@atlas)
   #map
   %p
-    = link_to "alter", {:controller => 'atlases', :action => 'alter_atlas_presence', :taxon_id => 18, :place_id => 10 }, :method => :post, :remote => true, :id => "alter"
+    = link_to "alter", alter_atlas_presence_path(@atlas), :id => "alter"
 
   %h3
-    = "Alterations"
+    = "Recent Alterations"
 
   %table.table.table-striped
     %thead
@@ -39,6 +39,9 @@
           %td= atlas_alteration.action
           %td= atlas_alteration.user.nil? ? "" : (link_to atlas_alteration.user.login, atlas_alteration.user)
           %td= atlas_alteration.created_at
-
+  - if @atlas_alterations.count == 0
+    .no_alterations="No alterations to this atlas yet"
+  - else
+    = link_to "Clear Alteration Log", destroy_all_alterations_path(@atlas.id), :data => {:id => @atlas.id, :confirm => "are you sure? This will delete all alterations for this atlas"}, :id => "destroy_all_alterations", :class => "btn btn-danger"
   
       

@@ -1,4 +1,25 @@
 $(function() {
+  
+  $('#destroy_all_alterations').on('click', function(event){
+    event.preventDefault();    
+    var $this = $(this);    
+    var atlas_id = $this.attr("data-id");
+    $.ajax({
+      type: "POST",
+      url: $this.attr('href'),
+      data: { atlas_id: atlas_id },
+      success: function(data){
+        $("tbody#alteration tr").fadeOut();
+        $("table").append("<div class='no_alteration'>No alterations to this atlas yet</div>");
+        $this.fadeOut();
+      },
+      error: function(data){
+        console.log("error");
+      },
+      dataType: 'JSON'
+    });
+  });
+      
   var width = 960,
       height = 580;
 
@@ -46,7 +67,8 @@ $(function() {
       places.style("stroke", "#fff");
       var alter_link = d3.selectAll("#alter"); 
       alter_link.style("opacity", 1);
-      alter_link.attr("href","/atlases/alter_atlas_presence?place_id="+d.id+"&amp;taxon_id="+taxon_id)
+      alter_link.attr("data-taxon_id",taxon_id);
+      alter_link.attr("data-place_id",d.id);
       var element = d3.selectAll(".listing_"+d.id+"_"+taxon_id);
       if(element.style("fill") == "rgb(204, 204, 204)"){
         element.style("stroke", "#000");        
@@ -56,6 +78,44 @@ $(function() {
         alter_link.text("Click here to unlist "+d.name);        
       }
     });
+  
+  $('#alter').on('click', function(event){
+    event.preventDefault();   
+    var $this = $(this);
+    var taxon_id = $this.attr("data-taxon_id");
+    var place_id = $this.attr("data-place_id");
+    $.ajax({
+      type: "POST",
+      url: $this.attr('href'),
+      data: { place_id: place_id, taxon_id: taxon_id },
+      success: function(data){
+        console.log("success");
+        var place_id = data.place_id;
+        var presence = data.presence;
+        if(presence){
+          var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
+          element.style("fill", "yellow");
+        }else{
+          var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
+          element.style("fill", "#ccc");
+        }
+        
+        var alteration_row = "<tr><th scope='row'>"+data.atlas_alteration.id+"</th><td><a href='/places/"+place_id+"'>"+data.place_name+"</a></td><td>"+data.atlas_alteration.action+"</td><td><a href='/users/"+data.atlas_alteration.user_id+"'>"+data.user_login+"</a></td><td>"+data.atlas_alteration.created_at+"</td></tr>";
+        if($("#alteration tr:last")){
+          $("#alteration").append(alteration_row);
+          $(".no_alterations").fadeOut();
+        }else{
+          $("#alteration tr:last").after(alteration_row);  
+        }
+       $(".no_alterations").fadeOut();
+       
+      },
+      error: function(data){
+        console.log("error");
+      },
+      dataType: 'JSON'
+    });
+  });  
  
 });
 

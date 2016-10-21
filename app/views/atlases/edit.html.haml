@@ -1,3 +1,7 @@
+- content_for :extrahead do
+  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
+  = javascript_include_tag "atlases/edit"
+
 .container
   .row
     .col-xs-12
@@ -5,7 +9,6 @@
         = "Edit Atlas"
         = t :for
         = link_to @atlas.taxon.name, @atlas.taxon
-
   %h3
     = "Exploded Atlas Places"
   %table.table.table-striped
@@ -13,15 +16,13 @@
       %tr
         %th="Place"
         %th="Action"
-    %tbody
+    %tbody.exploded
       - @exploded_atlas_places.each do |exploded_atlas_place|
         %tr
           %td= link_to exploded_atlas_place.place.name, exploded_atlas_place.place
-          %td= link_to "collapse", exploded_atlas_place_path(exploded_atlas_place), 
-            :remote => true,
-            :method => :delete,
-            :data => { :confirm => "are you sure?", type: 'json'},
-            :class => "default button"
+          %td= link_to "collapse", exploded_atlas_place_path(exploded_atlas_place), :id => exploded_atlas_place.id, :class => "collapse_button"
+  - if @exploded_atlas_places.count == 0
+    .no_exploded="No atlas places have been exploded"
   %h3
     = "Atlas Places"
   %table.table.table-striped
@@ -29,16 +30,11 @@
       %tr
         %th="Place"
         %th="Action"
-    %tbody
+    %tbody.places
       - @atlas_places.each do |atlas_place|
         %tr
           %td= link_to atlas_place.name, atlas_place
-          %td= link_to "explode", exploded_atlas_places_path,
-            :remote => true,
-            :method => :post,
-            "data-type" => 'json',
-            "data-params" => "#{{ :place_id => atlas_place.id, :atlas_id => @atlas.id }.to_query}", 
-            :class => "default button"
+          %td= link_to "explode", exploded_atlas_places_path, :id => "#{atlas_place.id}_#{@atlas.id}", :class => "explode_button"
   
   = link_to t(:back), @atlas, :class => "button"
   = link_to t(:delete), @atlas, :method => :delete, :class => "btn btn-danger"

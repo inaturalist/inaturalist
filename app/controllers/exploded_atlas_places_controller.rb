@@ -9,12 +9,14 @@ class ExplodedAtlasPlacesController < ApplicationController
       action: "exploded"
     )
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render json: {place_id: @exploded_atlas_place.place_id, place_name: @exploded_atlas_place.place.name} }
     end
   end
     
   def destroy
     @exploded_atlas_place = ExplodedAtlasPlace.find(params[:id])
+    place_id = @exploded_atlas_place.place_id
+    place_name = @exploded_atlas_place.place.name
     @exploded_atlas_place.destroy
     AtlasAlteration.create(
       atlas_id: @exploded_atlas_place.atlas_id,
@@ -23,7 +25,7 @@ class ExplodedAtlasPlacesController < ApplicationController
       action: "collapsed"
     )
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render json: {place_id: place_id, place_name: place_name} }
     end
   end
    

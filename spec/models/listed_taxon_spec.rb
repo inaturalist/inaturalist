@@ -118,7 +118,7 @@ describe ListedTaxon do
         atlas_id: atlas.id,
         user_id: @user.id,
         place_id: atlas_place.id,
-        action: "created"
+        action: "listed"
       ).first).not_to be_blank
     end
   end
@@ -141,7 +141,7 @@ describe ListedTaxon do
         atlas_id: atlas.id,
         user_id: @other_user.id,
         place_id: atlas_place.id,
-        action: "destroyed"
+        action: "unlisted"
       ).first).not_to be_blank
     end
   end

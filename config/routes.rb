@@ -482,6 +482,7 @@ Rails.application.routes.draw do
   
   resources :atlases
   post ':atlases/alter_atlas_presence' => 'atlases#alter_atlas_presence', :as => :alter_atlas_presence
+  post ':atlases/destroy_all_alterations' => 'atlases#destroy_all_alterations', :as => :destroy_all_alterations
   resources :exploded_atlas_places
   
   get '/calendar/:login' => 'calendars#index', :as => :calendar
