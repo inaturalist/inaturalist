@@ -75,6 +75,8 @@ class AtlasesController < ApplicationController
       @presence = false
     else
       list_id = Place.find(@place_id).check_list_id
+      Rails.logger.debug "[DEBUG] before_create, taxon_id: #{taxon_id}, list_id: #{list_id}"
+      Rails.logger.debug "[DEBUG] would be unique? #{ListedTaxon.where(taxon_id: taxon_id, list_id: list_id).count == 0}"
       ListedTaxon.create(taxon_id: taxon_id, place_id: @place_id, list_id: list_id, user_id: current_user.id)
       @presence = true
     end
