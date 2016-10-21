@@ -1,35 +1,47 @@
-%h2
-  = "Edit Atlas"
-  - if @atlas.taxon
-    = t :for
-    = link_to @atlas.taxon.name, @atlas.taxon
-%h3
-  = "Exploded Atlas Places"
-- @exploded_atlas_places.each do |exploded_atlas_place|
-  %p
-    = exploded_atlas_place.place_id
-    = link_to "collapse", exploded_atlas_place_path(exploded_atlas_place), 
-      :remote => true,
-      :method => :delete,
-      :data => { :confirm => "are you sure?", type: 'json'},
-      :class => "last button delete pale remove_link",
-      :style => 'float: right; margin: 0'
+.container
+  .row
+    .col-xs-12
+      %h2.pull-left
+        = "Edit Atlas"
+        = t :for
+        = link_to @atlas.taxon.name, @atlas.taxon
 
-%h3
-  = "Atlas Places"
-- @atlas_places.each do |atlas_place|
-  %p
-    = atlas_place.id
-    = link_to "explode", exploded_atlas_places_path,
-      :remote => true,
-      :method => :post,
-      "data-type" => 'json',
-      "data-params" => "#{{ :place_id => atlas_place.id, :atlas_id => @atlas.id }.to_query}", 
-      :class => "last button pale right add_link",
-      :style => 'float: right; margin: 0;'
-
-= link_to t(:back), @atlas, :class => "button"
-= link_to t(:delete), @atlas, :method => :delete, :class => "minor delete button"
+  %h3
+    = "Exploded Atlas Places"
+  %table.table.table-striped
+    %thead
+      %tr
+        %th="Place"
+        %th="Action"
+    %tbody
+      - @exploded_atlas_places.each do |exploded_atlas_place|
+        %tr
+          %td= link_to exploded_atlas_place.place.name, exploded_atlas_place.place
+          %td= link_to "collapse", exploded_atlas_place_path(exploded_atlas_place), 
+            :remote => true,
+            :method => :delete,
+            :data => { :confirm => "are you sure?", type: 'json'},
+            :class => "default button"
+  %h3
+    = "Atlas Places"
+  %table.table.table-striped
+    %thead
+      %tr
+        %th="Place"
+        %th="Action"
+    %tbody
+      - @atlas_places.each do |atlas_place|
+        %tr
+          %td= link_to atlas_place.name, atlas_place
+          %td= link_to "explode", exploded_atlas_places_path,
+            :remote => true,
+            :method => :post,
+            "data-type" => 'json',
+            "data-params" => "#{{ :place_id => atlas_place.id, :atlas_id => @atlas.id }.to_query}", 
+            :class => "default button"
+  
+  = link_to t(:back), @atlas, :class => "button"
+  = link_to t(:delete), @atlas, :method => :delete, :class => "btn btn-danger"
 
 
 

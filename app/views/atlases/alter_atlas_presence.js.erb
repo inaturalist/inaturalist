@@ -1,6 +1,8 @@
 $(function() {
   var place_id = <%= @place_id %>;
   var presence = <%= @presence %>;
+  var alteration_row = "<%= @alteration_row %>";
+  alteration_row = $("<div />").html(alteration_row).text();
   if(presence){
     var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
     element.style("fill", "yellow");
@@ -8,6 +10,14 @@ $(function() {
     var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
     element.style("fill", "#ccc");
   }
+  
+  if($("#alteration tr:last")){
+    $("#alteration").append(alteration_row);
+  }else{
+    $("#alteration tr:last").after(alteration_row);
+  }
+      
+
 });
 
 

@@ -14,9 +14,9 @@ $(function() {
 
   var graticule = d3.geo.graticule();
 
-  var svg = d3.select("h2").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+  var svg = d3.select("#map").append("svg") 
+    .attr("viewBox", "0 0 " + width + " " + height)
+    .attr("preserveAspectRatio", "xMinYMin meet");
 
   svg.append("defs").append("path")
     .datum({type: "Sphere"})
@@ -50,10 +50,10 @@ $(function() {
       var element = d3.selectAll(".listing_"+d.id+"_"+taxon_id);
       if(element.style("fill") == "rgb(204, 204, 204)"){
         element.style("stroke", "#000");        
-        alter_link.text("list selected place "+d.id+" as present?");
+        alter_link.text("Click here to list "+d.name);
       }else{
         element.style("stroke", "#000");
-        alter_link.text("unlist selected place "+d.id+" as absent?");        
+        alter_link.text("Click here to unlist "+d.name);        
       }
     });
  

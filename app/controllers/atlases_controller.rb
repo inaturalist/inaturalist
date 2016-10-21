@@ -1,5 +1,7 @@
 class AtlasesController < ApplicationController
-  before_filter :curator_required
+  before_filter :authenticate_user!
+  before_filter :admin_required
+  layout "bootstrap"
   
   def new
     @atlas = Atlas.new(:taxon_id => params[:taxon_id].to_i)
@@ -7,7 +9,7 @@ class AtlasesController < ApplicationController
   
   def edit
     @atlas = Atlas.find(params[:id])
-    @exploded_atlas_places = @atlas.exploded_atlas_places
+    @exploded_atlas_places = @atlas.exploded_atlas_places.includes(:place)
     @atlas_places = @atlas.places
   end
   
@@ -15,13 +17,18 @@ class AtlasesController < ApplicationController
     @atlas = Atlas.find(params[:id])
     @atlas_places = @atlas.places
     @atlas_presence_places = @atlas.presence_places
-    @atlas_alterations = @atlas.atlas_alterations
+    @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse_order
     @atlas_place_json = {
       type: "FeatureCollection", 
       features: @atlas_places.map{|p| 
-        {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
+        {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, name: p.name, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
       }
     }
+    
+    respond_to do |format|
+      format.html
+      format.json { render :json => @atlas_presence_places.to_json }
+    end
   end
   
   def create
@@ -29,7 +36,7 @@ class AtlasesController < ApplicationController
 
     respond_to do |format|
       if @atlas.save
-        format.html { redirect_to(@atlas.taxon || taxa_path, :notice => 'Atlas was successfully created.') }
+        format.html { redirect_to(@atlas, :notice => 'Atlas was successfully created.') }
       else
         format.html { render :action => "new" }
       end
@@ -73,6 +80,17 @@ class AtlasesController < ApplicationController
     end
     
     respond_to do |format|
+      atlas = Atlas.where(taxon_id: taxon_id).first
+      atlas_alteration = AtlasAlteration.where(place_id: @place_id, atlas_id: atlas.id, action: @presence ? "created" : "destroyed").last
+      user_string = atlas_alteration.user_id.nil? ? "" : "<a href='/user/#{atlas_alteration.user_id}'>#{atlas_alteration.user.login}</a>"
+      @alteration_row = "<tr>
+        <th scope='row'>#{atlas_alteration.id}</th>
+        <td><a href='/places/#{atlas_alteration.place_id}'>#{atlas_alteration.place.name}</a></td>
+        <td>#{atlas_alteration.action}</td>
+        <td>#{user_string}</td>
+        <td>#{atlas_alteration.created_at}</td>
+      </tr>".gsub(/\s+/, ' ').strip
+      puts @alteration_row
       format.js
     end
   end

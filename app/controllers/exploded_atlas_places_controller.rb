@@ -4,7 +4,7 @@ class ExplodedAtlasPlacesController < ApplicationController
     @exploded_atlas_place.save
     AtlasAlteration.create(
       atlas_id: @exploded_atlas_place.atlas_id,
-      user_id: current_user,
+      user_id: current_user.id,
       place_id: @exploded_atlas_place.place_id,
       action: "exploded"
     )
@@ -18,7 +18,7 @@ class ExplodedAtlasPlacesController < ApplicationController
     @exploded_atlas_place.destroy
     AtlasAlteration.create(
       atlas_id: @exploded_atlas_place.atlas_id,
-      user_id: current_user,
+      user_id: current_user.id,
       place_id: @exploded_atlas_place.place_id,
       action: "collapsed"
     )

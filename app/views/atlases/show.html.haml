@@ -8,24 +8,37 @@
   = javascript_tag "world = #{@atlas_place_json.to_json.html_safe};"
   = javascript_tag "taxon_id = #{@atlas.taxon_id}"
 
-%h2
-  = "show atlas"
-  = t :for
-  = link_to @atlas.taxon.name, @atlas.taxon
-
-%p
-  = link_to "alter", {:controller => 'atlases', :action => 'alter_atlas_presence', :taxon_id => 18, :place_id => 10 }, :method => :post, :remote => true, :id => "alter"
-
-%h3
-  = "alterations"
-  
-- @atlas_alterations.each do |atlas_alteration|
+.container
+  .row
+    .col-xs-12
+      %h2.pull-left
+        = "Atlas"
+        = t :for
+        = link_to @atlas.taxon.name, @atlas.taxon
+      .pull-right= link_to t(:edit), edit_atlas_path(@atlas)
+  #map
   %p
-    = "listing for"
-    = atlas_alteration.place_id
-    = t :for
-    = atlas_alteration.action
-    = t :on
-    = atlas_alteration.created_at
+    = link_to "alter", {:controller => 'atlases', :action => 'alter_atlas_presence', :taxon_id => 18, :place_id => 10 }, :method => :post, :remote => true, :id => "alter"
 
-= link_to t(:edit), edit_atlas_path(@atlas)
+  %h3
+    = "Alterations"
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th="#"
+        %th="Place"
+        %th="Action"
+        %th="Login"
+        %th="Date"
+    %tbody#alteration
+      - @atlas_alterations.each do |atlas_alteration|
+        %tr
+          %th{:scope => "row"}=atlas_alteration.id
+          %td= link_to atlas_alteration.place.name, atlas_alteration.place
+          %td= atlas_alteration.action
+          %td= atlas_alteration.user.nil? ? "" : (link_to atlas_alteration.user.login, atlas_alteration.user)
+          %td= atlas_alteration.created_at
+
+  
+      
