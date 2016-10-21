@@ -29,24 +29,6 @@ class Taxon < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    # Temporary hack to figure out why some taxa are being indexed w/o
-    # all taxon_names. Checking indexed_place_ids which will be assigned during
-    # bluk indexing, and we're pretty sure the bulk indexing is working OK
-    if indexed_place_ids.nil? && !options[:for_observation] && !options[:no_details]
-      begin
-        # comparing .count (always runs a COUNT() query) to .length (always
-        # selects records and counts them). I suspect some taxa are preloading
-        # just some names, and then getting indexed with those names only
-        raise "Taxon names out of sync" if taxon_names.count != taxon_names.length
-      rescue Exception => e
-        Logstasher.write_exception(e, reference: "Taxon.elastic_index! names sync")
-        Rails.logger.error "[Warning] Taxon.elastic_index! has a problem: #{ e }"
-        Rails.logger.error "Names before reload:\n#{ taxon_names.join("\n") }"
-        taxon_names.reload
-        Rails.logger.error "Names after reload:\n#{ taxon_names.join("\n") }"
-        Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-      end
-    end
     json = {
       id: id,
       name: name,
@@ -57,15 +39,21 @@ class Taxon < ActiveRecord::Base
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active,
     }
-    if Taxon::LIFE
-      json[:ancestor_ids].delete(Taxon::LIFE.id)
-    end
-    json[:ancestry] = json[:ancestor_ids].join(",")
-    json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-      json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     if options[:for_identification]
-      json[:min_species_ancestors] = json[:min_species_ancestry].split(",").
-        map{ |aid| { id: aid.to_i } }
+      if Taxon::LIFE
+        json[:ancestor_ids].delete(Taxon::LIFE.id)
+      end
+      json[:ancestry] = json[:ancestor_ids].join(",")
+      json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
+        json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
+      unless options[:for_observation]
+        json[:min_species_ancestors] = json[:min_species_ancestry].split(",").
+          map{ |aid| { id: aid.to_i } }
+      end
+    else
+      json[:ancestry] = json[:ancestor_ids].join(",")
+      json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
+        json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
     unless options[:no_details]
       json[:names] = taxon_names.

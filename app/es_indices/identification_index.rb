@@ -30,7 +30,7 @@ class Identification < ActiveRecord::Base
         own_observation: (user_id == observation.user_id),
         current_taxon: (taxon_id == observation.taxon_id),
         taxon: taxon.as_indexed_json(no_details: true, for_identification: true),
-        observation: observation.as_indexed_json(no_details: true)
+        observation: observation.as_indexed_json(no_details: true, for_identification: true)
       })
     end
     json

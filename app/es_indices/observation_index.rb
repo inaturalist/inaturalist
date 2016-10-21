@@ -88,7 +88,9 @@ class Observation < ActiveRecord::Base
         quality_grade: quality_grade,
         captive: captive,
         user: user ? user.as_indexed_json(no_details: true) : nil,
-        taxon: t ? t.as_indexed_json(for_observation: true, no_details: options[:no_details]) : nil
+        taxon: t ? t.as_indexed_json(for_observation: true,
+          no_details: options[:no_details],
+          for_identification: options[:for_identification]) : nil
     }
 
     unless options[:no_details]
