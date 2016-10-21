@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include ActsAsSpammable::User
+  include ActsAsElasticModel
 
   acts_as_voter
   acts_as_spammable :fields => [ :description ],
@@ -778,13 +779,6 @@ class User < ActiveRecord::Base
 
   def to_plain_s
     "User #{login}"
-  end
-
-  def as_indexed_json(options={})
-    {
-      id: id,
-      login: login
-    }
   end
 
   def subscribed_to?(resource)

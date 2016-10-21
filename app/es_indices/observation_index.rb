@@ -71,90 +71,96 @@ class Observation < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    preload_for_elastic_index
+    preload_for_elastic_index unless options[:no_details]
     # some timezones are invalid
     created = created_at.in_time_zone(timezone_object || "UTC")
     t = taxon || community_taxon
     json = {
-      id: id,
-      uuid: uuid,
-      created_at: created,
-      created_at_details: ElasticModel.date_details(created),
-      created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
-      updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
-      observed_on: datetime.blank? ? nil : datetime.to_date,
-      observed_on_details: ElasticModel.date_details(datetime),
-      time_observed_at: time_observed_at_in_zone,
-      observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
-      time_zone_offset: timezone_offset,
-      site_id: site_id,
-      uri: uri,
-      description: description,
-      mappable: mappable,
-      species_guess: species_guess.blank? ? nil : species_guess,
-      place_guess: place_guess.blank? ? nil : place_guess,
-      observed_on_string: observed_on_string,
-      quality_grade: quality_grade,
-      id_please: id_please,
-      out_of_range: out_of_range,
-      captive: captive,
-      license_code: license ? license.downcase : nil,
-      geoprivacy: geoprivacy,
-      faves_count: cached_votes_total,
-      cached_votes_total: cached_votes_total,
-      num_identification_agreements: num_identification_agreements,
-      num_identification_disagreements: num_identification_disagreements,
-      identifications_most_agree:
-        (num_identification_agreements > num_identification_disagreements),
-      identifications_some_agree:
-        (num_identification_agreements > 0),
-      identifications_most_disagree:
-        (num_identification_agreements < num_identification_disagreements),
-      place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
-      project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
-      project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
-        project_observations.select{ |po| !po.curator_identification_id.nil? }.
-          map(&:project_id)).compact.uniq,
-      project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
-        project_observations.select{ |po| po.curator_identification_id.nil? }.
-          map(&:project_id)).compact.uniq,
-      project_observations: (indexed_project_ids || project_observations).map{ |po|
-        { project_id: po[:project_id], uuid: po[:uuid] } },
-      reviewed_by: confirmed_reviews.map(&:user_id),
-      tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
-      user: user ? user.as_indexed_json : nil,
-      taxon: t ? t.as_indexed_json(for_observation: true) : nil,
-      ofvs: observation_field_values.uniq.map(&:as_indexed_json),
-      photos: observation_photos.sort_by{ |op| op.position || op.id }.
-        reject{ |op| op.photo.blank? }.
-        map{ |op| op.photo.as_indexed_json },
-      observation_photos: observation_photos.sort_by{ |op| op.position || op.id }.
-        reject{ |op| op.photo.blank? }.
-        each_with_index.map{ |op, i|
-          { uuid: op.uuid, photo_id: op.photo.id, position: i }
-      },
-      sounds: sounds.map(&:as_indexed_json),
-      non_owner_ids: others_identifications.map(&:as_indexed_json),
-      identifications_count: num_identifications_by_others,
-      comments: comments.map(&:as_indexed_json),
-      comments_count: comments.size,
-      obscured: coordinates_obscured? || geoprivacy_obscured?,
-      field_change_times: field_changes_to_index,
-      location: (latitude && longitude) ?
-        ElasticModel.point_latlon(latitude, longitude) : nil,
-      private_location: (private_latitude && private_longitude) ?
-        ElasticModel.point_latlon(private_latitude, private_longitude) : nil,
-      geojson: (latitude && longitude) ?
-        ElasticModel.point_geojson(latitude, longitude) : nil,
-      private_geojson: (private_latitude && private_longitude) ?
-        ElasticModel.point_geojson(private_latitude, private_longitude) : nil
+        id: id,
+        uuid: uuid,
+        site_id: site_id,
+        created_at: created,
+        created_at_details: ElasticModel.date_details(created),
+        observed_on: datetime.blank? ? nil : datetime.to_date,
+        observed_on_details: ElasticModel.date_details(datetime),
+        time_observed_at: time_observed_at_in_zone,
+        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
+        quality_grade: quality_grade,
+        captive: captive,
+        user: user ? user.as_indexed_json(no_details: true) : nil,
+        taxon: t ? t.as_indexed_json(for_observation: true, no_details: options[:no_details]) : nil
     }
-    add_taxon_statuses(json, t) if t && json[:taxon]
+
+    unless options[:no_details]
+      json.merge!({
+        created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
+        updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
+        observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
+        time_zone_offset: timezone_offset,
+        uri: uri,
+        description: description,
+        mappable: mappable,
+        species_guess: species_guess.blank? ? nil : species_guess,
+        place_guess: place_guess.blank? ? nil : place_guess,
+        observed_on_string: observed_on_string,
+        id_please: id_please,
+        out_of_range: out_of_range,
+        license_code: license ? license.downcase : nil,
+        geoprivacy: geoprivacy,
+        faves_count: cached_votes_total,
+        cached_votes_total: cached_votes_total,
+        num_identification_agreements: num_identification_agreements,
+        num_identification_disagreements: num_identification_disagreements,
+        identifications_most_agree:
+          (num_identification_agreements > num_identification_disagreements),
+        identifications_some_agree:
+          (num_identification_agreements > 0),
+        identifications_most_disagree:
+          (num_identification_agreements < num_identification_disagreements),
+        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
+        project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
+        project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
+          project_observations.select{ |po| !po.curator_identification_id.nil? }.
+            map(&:project_id)).compact.uniq,
+        project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
+          project_observations.select{ |po| po.curator_identification_id.nil? }.
+            map(&:project_id)).compact.uniq,
+        project_observations: (indexed_project_ids || project_observations).map{ |po|
+          { project_id: po[:project_id], uuid: po[:uuid] } },
+        reviewed_by: confirmed_reviews.map(&:user_id),
+        tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
+        ofvs: observation_field_values.uniq.map(&:as_indexed_json),
+        photos: observation_photos.sort_by{ |op| op.position || op.id }.
+          reject{ |op| op.photo.blank? }.
+          map{ |op| op.photo.as_indexed_json },
+        observation_photos: observation_photos.sort_by{ |op| op.position || op.id }.
+          reject{ |op| op.photo.blank? }.
+          each_with_index.map{ |op, i|
+            { uuid: op.uuid, photo_id: op.photo.id, position: i }
+        },
+        sounds: sounds.map(&:as_indexed_json),
+        non_owner_ids: others_identifications.map{ |i| i.as_indexed_json(no_details: true) },
+        identifications_count: num_identifications_by_others,
+        comments: comments.map(&:as_indexed_json),
+        comments_count: comments.size,
+        obscured: coordinates_obscured? || geoprivacy_obscured?,
+        field_change_times: field_changes_to_index,
+        location: (latitude && longitude) ?
+          ElasticModel.point_latlon(latitude, longitude) : nil,
+        private_location: (private_latitude && private_longitude) ?
+          ElasticModel.point_latlon(private_latitude, private_longitude) : nil,
+        geojson: (latitude && longitude) ?
+          ElasticModel.point_geojson(latitude, longitude) : nil,
+        private_geojson: (private_latitude && private_longitude) ?
+          ElasticModel.point_geojson(private_latitude, private_longitude) : nil
+      })
+      add_taxon_statuses(json, t) if t && json[:taxon]
+    end
     json
   end
 
   # to quickly fetch tag names and project_ids when bulk indexing
-  def self.prepare_batch_for_index(observations)
+  def self.prepare_batch_for_index(observations, options = {})
     # make sure we default all caches to empty arrays
     # this prevents future lookups for instances with no results
     observations.each{ |o|
@@ -168,46 +174,52 @@ class Observation < ActiveRecord::Base
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
-    # fetch all tag names store them in `indexed_tag_names`
-    connection.execute("
-      SELECT ts.taggable_id, t.name
-      FROM taggings ts
-      JOIN tags t ON (ts.tag_id = t.id)
-      WHERE ts.taggable_type='Observation' AND
-      ts.taggable_id IN (#{ batch_ids_string })").to_a.each do |r|
-      if o = observations_by_id[ r["taggable_id"].to_i ]
-        o.indexed_tag_names << r["name"]
+    if !options || options[:tags]
+      # fetch all tag names store them in `indexed_tag_names`
+      connection.execute("
+        SELECT ts.taggable_id, t.name
+        FROM taggings ts
+        JOIN tags t ON (ts.tag_id = t.id)
+        WHERE ts.taggable_type='Observation' AND
+        ts.taggable_id IN (#{ batch_ids_string })").to_a.each do |r|
+        if o = observations_by_id[ r["taggable_id"].to_i ]
+          o.indexed_tag_names << r["name"]
+        end
       end
     end
     # fetch all project_ids store them in `indexed_project_ids`
-    connection.execute("
-      SELECT observation_id, project_id, curator_identification_id, uuid
-      FROM project_observations
-      WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-      if o = observations_by_id[ r["observation_id"].to_i ]
-        o.indexed_project_ids << { project_id: r["project_id"].to_i, uuid: r["uuid"] }
-        # these are for the `pcid` search param
-        if r["curator_identification_id"].nil?
-          o.indexed_project_ids_without_curator_id << r["project_id"].to_i
-        else
-          o.indexed_project_ids_with_curator_id << r["project_id"].to_i
+    if !options || options[:projects]
+      connection.execute("
+        SELECT observation_id, project_id, curator_identification_id, uuid
+        FROM project_observations
+        WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
+        if o = observations_by_id[ r["observation_id"].to_i ]
+          o.indexed_project_ids << { project_id: r["project_id"].to_i, uuid: r["uuid"] }
+          # these are for the `pcid` search param
+          if r["curator_identification_id"].nil?
+            o.indexed_project_ids_without_curator_id << r["project_id"].to_i
+          else
+            o.indexed_project_ids_with_curator_id << r["project_id"].to_i
+          end
         end
       end
     end
     # fetch all place_ids store them in `indexed_place_ids`
-    connection.execute("
-      SELECT observation_id, place_id
-      FROM observations_places
-      WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-      if o = observations_by_id[ r["observation_id"].to_i ]
-        o.indexed_place_ids << r["place_id"].to_i
+    if !options || options[:places]
+      connection.execute("
+        SELECT observation_id, place_id
+        FROM observations_places
+        WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
+        if o = observations_by_id[ r["observation_id"].to_i ]
+          o.indexed_place_ids << r["place_id"].to_i
+        end
       end
-    end
-    place_ids = observations.map(&:indexed_place_ids).flatten.uniq.compact
-    places_by_id = Hash[ Place.where(id: place_ids).map{ |p| [ p.id, p ] } ]
-    observations.each do |o|
-      unless o.indexed_place_ids.blank?
-        o.indexed_places = places_by_id.values_at(*o.indexed_place_ids).compact
+      place_ids = observations.map(&:indexed_place_ids).flatten.uniq.compact
+      places_by_id = Hash[ Place.where(id: place_ids).map{ |p| [ p.id, p ] } ]
+      observations.each do |o|
+        unless o.indexed_place_ids.blank?
+          o.indexed_places = places_by_id.values_at(*o.indexed_place_ids).compact
+        end
       end
     end
   end
