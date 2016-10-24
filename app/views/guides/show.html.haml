@@ -6,7 +6,7 @@
   :javascript
     var GUIDE = #{json_escape @guide.to_json.html_safe}
   = javascript_include_tag "underscore.min", "map_bundle", "guides/show"
-.container-fluid
+.container
   %ul.breadcrumb
     %li
       = link_to t(:guides), guides_path

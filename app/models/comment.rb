@@ -42,7 +42,7 @@ class Comment < ActiveRecord::Base
     {
       id: id,
       uuid: uuid,
-      user: user.as_indexed_json,
+      user: user.as_indexed_json(no_details: true),
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
       body: body

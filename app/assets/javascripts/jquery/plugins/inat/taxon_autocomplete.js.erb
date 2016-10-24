@@ -166,7 +166,7 @@ $.fn.taxonAutocomplete = function( options ) {
       var thisSearch = Math.random();
       ac.searchInProgress = thisSearch;
       $.ajax({
-        url: "/taxa/search.json?per_page="+ options.perPage +
+        url: "/taxa/search.json?per_page="+ (options.perPage || 10) +
           "&include_external=1&partial=elastic&q=" + field.val( ),
         dataType: "json",
         beforeSend: function(XMLHttpRequest) {

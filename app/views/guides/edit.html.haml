@@ -7,7 +7,7 @@
     var GUIDE = #{json_escape @guide.to_json.html_safe},
         PLACE = #{json_escape @guide.place.to_json.html_safe}
   = javascript_include_tag 'jquery/plugins/jquery.labelize', 'jquery/plugins/jquery.latLonSelector', 'guides/edit'
-.container-fluid
+.container
   %ul.breadcrumb
     %li
       = link_to t(:back_to_x, :noun => @guide.title), @guide, :class => "back"

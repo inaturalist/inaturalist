@@ -1,5 +1,6 @@
 #encoding: utf-8
 class Identification < ActiveRecord::Base
+  include ActsAsElasticModel
   acts_as_spammable fields: [ :body ],
                     comment_type: "item-description",
                     automated: false
@@ -20,7 +21,8 @@ class Identification < ActiveRecord::Base
   
   after_commit :update_categories,
                :update_observation,
-               :update_user_counter_cache
+               :update_user_counter_cache,
+               unless: Proc.new { |i| i.observation.destroyed? }
 
   after_save    :update_obs_stats, 
                 :update_curator_identification,
@@ -36,7 +38,8 @@ class Identification < ActiveRecord::Base
                  :revisit_curator_identification, 
                  :set_last_identification_as_current,
                  :remove_automated_observation_reviews,
-               :on => :destroy
+               :on => :destroy,
+               unless: Proc.new { |i| i.observation.destroyed? }
   
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -98,17 +101,6 @@ class Identification < ActiveRecord::Base
 
   def to_plain_s(options = {})
     "Identification #{id} by #{user.login}"
-  end
-
-  def as_indexed_json(options={})
-    {
-      id: id,
-      uuid: uuid,
-      user: user.as_indexed_json,
-      created_at: created_at,
-      created_at_details: ElasticModel.date_details(created_at),
-      body: body
-    }
   end
 
   # Validations ###############################################################

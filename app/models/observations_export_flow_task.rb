@@ -164,7 +164,7 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def query
-    @query ||= inputs.first.extra[:query]
+    @query ||= (inputs.first && inputs.first.extra[:query])
   end
 
   def params
