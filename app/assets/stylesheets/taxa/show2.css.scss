@@ -518,7 +518,7 @@ $endangeredColor: #D12F19;
   font-weight: 800;
 }
 
-.HighlightsTab, .InteractionsTab, .TaxonomyTab, .NamesTab {
+.InteractionsTab {
   padding-top: 20px;
 }
 
@@ -609,4 +609,37 @@ $endangeredColor: #D12F19;
 }
 #curation-dropdown {
   margin-top: 14px;
+}
+
+.SimilarTab {
+  margin-bottom: 20px;
+}
+.SimilarTab .thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+}
+.SimilarTab .thumbnail {
+  border: 1px solid #ddd;
+  width: 13.2%;
+  display: inline-block;
+  margin: 5px;
+  padding: 0;
+}
+.SimilarTab .thumbnail .photo {
+  height: 130px;
+  font-size: 100px;
+  text-align: center;
+  line-height: 120px;
+}
+
+.SimilarTab .thumbnail .taxon .display-name {
+  color: black;
+  display: block;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.SimilarTab .thumbnail .taxon .sciname {
+  white-space: normal;
 }

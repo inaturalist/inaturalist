@@ -66,11 +66,11 @@
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(1457);
+	var _config = __webpack_require__(1459);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1451);
+	var _taxon = __webpack_require__(1453);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
@@ -78,7 +78,7 @@
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(1458);
+	var _leaders = __webpack_require__(1460);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
@@ -44174,7 +44174,8 @@
 		function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 		var iNaturalistAPI = __webpack_require__(2),
-		    Identification = __webpack_require__(14);
+		    Identification = __webpack_require__(14),
+		    Taxon = __webpack_require__(15);
 
 		var identifications = function () {
 		  function identifications() {
@@ -44195,6 +44196,19 @@
 		    key: "delete",
 		    value: function _delete(params, options) {
 		      return iNaturalistAPI.delete("identifications/:id", params, options);
+		    }
+		  }, {
+		    key: "similar_species",
+		    value: function similar_species(params, options) {
+		      return iNaturalistAPI.get("identifications/similar_species", params, options).then(function (response) {
+		        if (response.results) {
+		          response.results = response.results.map(function (r) {
+		            r.taxon = new Taxon(r.taxon);
+		            return r;
+		          });
+		        }
+		        return response;
+		      });
 		    }
 		  }]);
 
@@ -44293,6 +44307,16 @@
 		    if (_this.conservation_statuses && _this.conservation_statuses !== undefined) {
 		      _this.conservationStatuses = _this.conservation_statuses.map(function (cs) {
 		        return new ConservationStatus(cs);
+		      });
+		    }
+		    if (_this.ancestors && _this.ancestors !== undefined) {
+		      _this.ancestorTaxa = _this.ancestors.map(function (a) {
+		        return new Taxon(a);
+		      });
+		    }
+		    if (_this.children && _this.children !== undefined) {
+		      _this.childTaxa = _this.children.map(function (a) {
+		        return new Taxon(a);
 		      });
 		    }
 		    return _this;
@@ -91036,13 +91060,13 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(1457);
+	var _config = __webpack_require__(1459);
 
 	var _observations = __webpack_require__(1428);
 
-	var _leaders = __webpack_require__(1458);
+	var _leaders = __webpack_require__(1460);
 
-	var _taxon = __webpack_require__(1451);
+	var _taxon = __webpack_require__(1453);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91109,19 +91133,19 @@
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _photo_modal_container = __webpack_require__(1452);
+	var _photo_modal_container = __webpack_require__(1454);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
-	var _place_chooser = __webpack_require__(1454);
+	var _place_chooser = __webpack_require__(1456);
 
 	var _place_chooser2 = _interopRequireDefault(_place_chooser);
 
-	var _taxon_crumbs = __webpack_require__(1455);
+	var _taxon_crumbs = __webpack_require__(1457);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(1456);
+	var _status_header = __webpack_require__(1458);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
@@ -110515,7 +110539,7 @@
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
-	var _taxon = __webpack_require__(1451);
+	var _taxon = __webpack_require__(1453);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110543,6 +110567,9 @@
 	    },
 	    fetchRareTaxa: function fetchRareTaxa() {
 	      return dispatch((0, _taxon.fetchRare)());
+	    },
+	    fetchSimilarTaxa: function fetchSimilarTaxa() {
+	      return dispatch((0, _taxon.fetchSimilar)());
 	    }
 	  };
 	}
@@ -110601,6 +110628,10 @@
 
 	var _highlights_tab_container2 = _interopRequireDefault(_highlights_tab_container);
 
+	var _similar_tab_container = __webpack_require__(1451);
+
+	var _similar_tab_container2 = _interopRequireDefault(_similar_tab_container);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -110639,6 +110670,9 @@
 	            _this2.props.fetchTrendingTaxa();
 	            _this2.props.fetchRareTaxa();
 	            break;
+	          case "#similar-tab":
+	            _this2.props.fetchSimilarTaxa();
+	            break;
 	          default:
 	          // it's cool, you probably have what you need
 	        }
@@ -110651,7 +110685,7 @@
 
 	      var speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
 	      var curationTab = void 0;
-	      if (this.props.currentUser) {
+	      if (this.props.currentUser && this.props.currentUser.id) {
 	        var isCurator = this.props.currentUser.roles.indexOf("curator") >= 0;
 	        curationTab = _react2.default.createElement(
 	          "li",
@@ -110793,8 +110827,8 @@
 	                  { role: "presentation", className: speciesOrLower ? "" : "hidden" },
 	                  _react2.default.createElement(
 	                    "a",
-	                    { href: "#related-tab", role: "tab", "data-toggle": "tab" },
-	                    I18n.t("related_species")
+	                    { href: "#similar-tab", role: "tab", "data-toggle": "tab" },
+	                    I18n.t("similar_species")
 	                  )
 	                ),
 	                curationTab
@@ -110857,9 +110891,9 @@
 	            {
 	              role: "tabpanel",
 	              className: "tab-pane " + (speciesOrLower ? "" : "hidden"),
-	              id: "related-tab"
+	              id: "similar-tab"
 	            },
-	            "related species"
+	            _react2.default.createElement(_similar_tab_container2.default, null)
 	          )
 	        )
 	      );
@@ -110876,7 +110910,8 @@
 	  fetchInteractions: _react.PropTypes.func,
 	  fetchRareTaxa: _react.PropTypes.func,
 	  fetchTrendingTaxa: _react.PropTypes.func,
-	  currentUser: _react.PropTypes.object
+	  currentUser: _react.PropTypes.object,
+	  fetchSimilarTaxa: _react.PropTypes.func
 	};
 
 	exports.default = TaxonPageTabs;
@@ -112379,6 +112414,145 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _reactRedux = __webpack_require__(560);
+
+	var _similar_tab = __webpack_require__(1452);
+
+	var _similar_tab2 = _interopRequireDefault(_similar_tab);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function mapStateToProps(state) {
+	  return {
+	    taxon: state.taxon.taxon,
+	    taxa: state.taxon.similar
+	  };
+	}
+
+	function mapDispatchToProps() {
+	  return {};
+	}
+
+	var SimilarTabContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_similar_tab2.default);
+
+	exports.default = SimilarTabContainer;
+
+/***/ },
+/* 1452 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(607);
+
+	var _cover_image = __webpack_require__(1421);
+
+	var _cover_image2 = _interopRequireDefault(_cover_image);
+
+	var _split_taxon = __webpack_require__(862);
+
+	var _split_taxon2 = _interopRequireDefault(_split_taxon);
+
+	var _util = __webpack_require__(1422);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SimilarTab = function SimilarTab(_ref) {
+	  var taxon = _ref.taxon;
+	  var taxa = _ref.taxa;
+
+	  var content = void 0;
+	  if (taxa && taxa.length > 0) {
+	    content = taxa.map(function (similarTaxon) {
+	      var img = similarTaxon.defaultPhoto ? _react2.default.createElement(_cover_image2.default, {
+	        src: similarTaxon.defaultPhoto.photoUrl("medium"),
+	        low: similarTaxon.defaultPhoto.photoUrl("square"),
+	        height: 130,
+	        className: "photo"
+	      }) : _react2.default.createElement(
+	        "div",
+	        { className: "photo" },
+	        _react2.default.createElement("i", {
+	          className: "icon-iconic-" + (similarTaxon.iconic_taxon_name ? similarTaxon.iconic_taxon_name.toLowerCase() : "unknown")
+	        })
+	      );
+	      return _react2.default.createElement(
+	        "div",
+	        { key: "similar-taxon-" + similarTaxon.id, className: "thumbnail" },
+	        _react2.default.createElement(
+	          "a",
+	          { href: (0, _util.urlForTaxon)(similarTaxon) },
+	          img
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "caption" },
+	          _react2.default.createElement(_split_taxon2.default, { taxon: similarTaxon, url: (0, _util.urlForTaxon)(similarTaxon), noParens: true })
+	        )
+	      );
+	    });
+	  } else if (taxa) {
+	    content = _react2.default.createElement(
+	      "p",
+	      null,
+	      "No misidentifications yet"
+	    );
+	  } else {
+	    content = _react2.default.createElement(
+	      "div",
+	      { className: "loading status" },
+	      I18n.t("loading")
+	    );
+	  }
+	  return _react2.default.createElement(
+	    _reactBootstrap.Grid,
+	    { className: "SimilarTab" },
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 12 },
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          "Other taxa commonly misidentified as this species:"
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "thumbnails" },
+	          content
+	        )
+	      )
+	    )
+	  );
+	};
+
+	SimilarTab.propTypes = {
+	  taxon: _react.PropTypes.object,
+	  taxa: _react.PropTypes.array
+	};
+
+	exports.default = SimilarTab;
+
+/***/ },
+/* 1453 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = reducer;
 	exports.setTaxon = setTaxon;
 	exports.setDescription = setDescription;
@@ -112388,6 +112562,7 @@
 	exports.setInteractions = setInteractions;
 	exports.setTrending = setTrending;
 	exports.setRare = setRare;
+	exports.setSimilar = setSimilar;
 	exports.fetchTaxon = fetchTaxon;
 	exports.fetchDescription = fetchDescription;
 	exports.fetchLinks = fetchLinks;
@@ -112395,6 +112570,7 @@
 	exports.fetchInteractions = fetchInteractions;
 	exports.fetchTrending = fetchTrending;
 	exports.fetchRare = fetchRare;
+	exports.fetchSimilar = fetchSimilar;
 
 	var _inaturalistjs = __webpack_require__(586);
 
@@ -112424,6 +112600,7 @@
 	var SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 	var SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 	var SET_RARE = "taxa-show/taxon/SET_RARE";
+	var SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 
 	function reducer() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? { counts: {} } : arguments[0];
@@ -112462,6 +112639,9 @@
 	      break;
 	    case SET_RARE:
 	      newState.rare = action.taxa;
+	      break;
+	    case SET_SIMILAR:
+	      newState.similar = action.taxa;
 	      break;
 	    default:
 	    // nothing to see here
@@ -112524,6 +112704,13 @@
 	function setRare(taxa) {
 	  return {
 	    type: SET_RARE,
+	    taxa: taxa
+	  };
+	}
+
+	function setSimilar(taxa) {
+	  return {
+	    type: SET_SIMILAR,
 	    taxa: taxa
 	  };
 	}
@@ -112631,8 +112818,21 @@
 	  };
 	}
 
+	function fetchSimilar() {
+	  return function (dispatch, getState) {
+	    var params = { taxon_id: getState().taxon.taxon.id };
+	    _inaturalistjs2.default.identifications.similar_species(params).then(function (response) {
+	      return dispatch(setSimilar(response.results.map(function (r) {
+	        return r.taxon;
+	      })));
+	    }, function (error) {
+	      return console.log("[DEBUG] error: ", error);
+	    });
+	  };
+	}
+
 /***/ },
-/* 1452 */
+/* 1454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112643,7 +112843,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1453);
+	var _photo_modal = __webpack_require__(1455);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
@@ -112678,7 +112878,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1453 */
+/* 1455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112807,7 +113007,7 @@
 	exports.default = PhotoModal;
 
 /***/ },
-/* 1454 */
+/* 1456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112951,7 +113151,7 @@
 	exports.default = PlaceChooser;
 
 /***/ },
-/* 1455 */
+/* 1457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113148,7 +113348,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1456 */
+/* 1458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113221,7 +113421,7 @@
 	exports.default = StatusHeader;
 
 /***/ },
-/* 1457 */
+/* 1459 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -113256,7 +113456,7 @@
 	}
 
 /***/ },
-/* 1458 */
+/* 1460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

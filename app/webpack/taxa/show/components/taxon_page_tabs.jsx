@@ -8,6 +8,7 @@ import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
 import HighlightsTabContainer from "../containers/highlights_tab_container";
+import SimilarTabContainer from "../containers/similar_tab_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -27,6 +28,9 @@ class TaxonPageTabs extends React.Component {
           this.props.fetchTrendingTaxa( );
           this.props.fetchRareTaxa( );
           break;
+        case "#similar-tab":
+          this.props.fetchSimilarTaxa( );
+          break;
         default:
           // it's cool, you probably have what you need
       }
@@ -35,7 +39,7 @@ class TaxonPageTabs extends React.Component {
   render( ) {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
     let curationTab;
-    if ( this.props.currentUser ) {
+    if ( this.props.currentUser && this.props.currentUser.id ) {
       const isCurator = this.props.currentUser.roles.indexOf( "curator" ) >= 0;
       curationTab = (
         <li className="curation-tab">
@@ -118,7 +122,7 @@ class TaxonPageTabs extends React.Component {
                   <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
                 </li>
                 <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
-                  <a href="#related-tab" role="tab" data-toggle="tab">{ I18n.t( "related_species" ) }</a>
+                  <a href="#similar-tab" role="tab" data-toggle="tab">{ I18n.t( "similar_species" ) }</a>
                 </li>
                 { curationTab }
               </ul>
@@ -162,9 +166,9 @@ class TaxonPageTabs extends React.Component {
           <div
             role="tabpanel"
             className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
-            id="related-tab"
+            id="similar-tab"
           >
-            related species
+            <SimilarTabContainer />
           </div>
         </div>
       </div>
@@ -179,7 +183,8 @@ TaxonPageTabs.propTypes = {
   fetchInteractions: PropTypes.func,
   fetchRareTaxa: PropTypes.func,
   fetchTrendingTaxa: PropTypes.func,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  fetchSimilarTaxa: PropTypes.func
 };
 
 export default TaxonPageTabs;

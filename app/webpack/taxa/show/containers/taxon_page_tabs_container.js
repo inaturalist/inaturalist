@@ -6,7 +6,8 @@ import {
   fetchNames,
   fetchInteractions,
   fetchTrending,
-  fetchRare
+  fetchRare,
+  fetchSimilar
 } from "../ducks/taxon";
 
 function mapStateToProps( state ) {
@@ -25,7 +26,8 @@ function mapDispatchToProps( dispatch ) {
     fetchNames: ( ) => dispatch( fetchNames( ) ),
     fetchInteractions: ( ) => dispatch( fetchInteractions( ) ),
     fetchTrendingTaxa: ( ) => dispatch( fetchTrending( ) ),
-    fetchRareTaxa: ( ) => dispatch( fetchRare( ) )
+    fetchRareTaxa: ( ) => dispatch( fetchRare( ) ),
+    fetchSimilarTaxa: ( ) => dispatch( fetchSimilar( ) )
   };
 }
 

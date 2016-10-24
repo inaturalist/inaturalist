@@ -12,6 +12,7 @@ const SET_NAMES = "taxa-show/taxon/SET_NAMES";
 const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 const SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 const SET_RARE = "taxa-show/taxon/SET_RARE";
+const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -45,6 +46,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_RARE:
       newState.rare = action.taxa;
+      break;
+    case SET_SIMILAR:
+      newState.similar = action.taxa;
       break;
     default:
       // nothing to see here
@@ -107,6 +111,13 @@ export function setTrending( taxa ) {
 export function setRare( taxa ) {
   return {
     type: SET_RARE,
+    taxa
+  };
+}
+
+export function setSimilar( taxa ) {
+  return {
+    type: SET_SIMILAR,
     taxa
   };
 }
@@ -220,3 +231,12 @@ export function fetchRare( ) {
   };
 }
 
+export function fetchSimilar( ) {
+  return ( dispatch, getState ) => {
+    const params = { taxon_id: getState( ).taxon.taxon.id };
+    iNaturalistJS.identifications.similar_species( params ).then(
+      response => dispatch( setSimilar( response.results.map( r => r.taxon ) ) ),
+      error => console.log( "[DEBUG] error: ", error )
+    );
+  };
+}
