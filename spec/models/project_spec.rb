@@ -17,6 +17,19 @@ describe Project do
     expect( p.last_aggregated_at ).to be_nil
   end
 
+  it "removes start and end times from non-bioblitzes" do
+    p = Project.make!(project_type: Project::BIOBLITZ_TYPE,
+      start_time: Time.now, end_time: Time.now)
+    p.update_attributes(description: "something")
+    p.reload
+    expect( p.start_time ).to_not be_nil
+    expect( p.end_time ).to_not be_nil
+    p.update_attributes(project_type: nil)
+    p.reload
+    expect( p.start_time ).to be_nil
+    expect( p.end_time ).to be_nil
+  end
+
   describe "creation" do
     it "should automatically add the creator as a member" do
       project = Project.make!
