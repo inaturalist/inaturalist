@@ -80,41 +80,52 @@ $(function() {
     });
   
   $('#alter').on('click', function(event){
-    event.preventDefault();   
+    event.preventDefault();
+    
     var $this = $(this);
-    var taxon_id = $this.attr("data-taxon_id");
-    var place_id = $this.attr("data-place_id");
-    $.ajax({
-      type: "POST",
-      url: $this.attr('href'),
-      data: { place_id: place_id, taxon_id: taxon_id },
-      success: function(data){
-        console.log("success");
-        var place_id = data.place_id;
-        var presence = data.presence;
-        if(presence){
-          var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
-          element.style("fill", "yellow");
-        }else{
-          var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
-          element.style("fill", "#ccc");
-        }
+    if($this.hasClass("disabled")){
+      return;
+    }else{
+      $this.addClass("disabled")
+      var taxon_id = $this.attr("data-taxon_id");
+      var place_id = $this.attr("data-place_id");
+      $.ajax({
+        type: "POST",
+        url: $this.attr('href'),
+        data: { place_id: place_id, taxon_id: taxon_id },
+        success: function(data){
+          console.log("success");
+          var place_id = data.place_id;
+          var presence = data.presence;
+          var link = $(".disabled");
+          link.attr("data-taxon_id",taxon_id);
+          link.attr("data-place_id",place_id);
+          if(presence){
+            link.text("Click here to unlist "+data.place_name);  
+            var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
+            element.style("fill", "yellow");
+          }else{
+            link.text("Click here to list "+data.place_name);  
+            var element = d3.selectAll(".listing_"+place_id+"_"+taxon_id);
+            element.style("fill", "#ccc");
+          }
+          link.removeClass("disabled");
         
-        var alteration_row = "<tr><th scope='row'>"+data.atlas_alteration.id+"</th><td><a href='/places/"+place_id+"'>"+data.place_name+"</a></td><td>"+data.atlas_alteration.action+"</td><td><a href='/users/"+data.atlas_alteration.user_id+"'>"+data.user_login+"</a></td><td>"+data.atlas_alteration.created_at+"</td></tr>";
-        if($("#alteration tr:last")){
-          $("#alteration").append(alteration_row);
+          var alteration_row = "<tr><th scope='row'>"+data.atlas_alteration.id+"</th><td><a href='/places/"+place_id+"'>"+data.place_name+"</a></td><td>"+data.atlas_alteration.action+"</td><td><a href='/users/"+data.atlas_alteration.user_id+"'>"+data.user_login+"</a></td><td>"+data.atlas_alteration.created_at+"</td></tr>";
+          if($("#alteration tr:last")){
+            $("#alteration").append(alteration_row);
+            $(".no_alterations").fadeOut();
+          }else{
+            $("#alteration tr:last").after(alteration_row);  
+          }
           $(".no_alterations").fadeOut();
-        }else{
-          $("#alteration tr:last").after(alteration_row);  
-        }
-       $(".no_alterations").fadeOut();
-       
-      },
-      error: function(data){
-        console.log("error");
-      },
-      dataType: 'JSON'
-    });
+        },
+        error: function(data){
+          console.log("error");
+        },
+        dataType: 'JSON'
+      });
+    }
   });  
  
 });
