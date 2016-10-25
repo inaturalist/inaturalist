@@ -1,40 +1,19 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import CoverImage from "./cover_image";
-import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../util";
+import TaxonThumbnail from "./taxon_thumbnail";
 
-const SimilarTab = ( { taxon, taxa } ) => {
+const SimilarTab = ( { taxa } ) => {
   let content;
   if ( taxa && taxa.length > 0 ) {
-    content = taxa.map( similarTaxon => {
-      const img = similarTaxon.defaultPhoto ? (
-        <CoverImage
-          src={similarTaxon.defaultPhoto.photoUrl( "medium" )}
-          low={similarTaxon.defaultPhoto.photoUrl( "square" )}
-          height={130}
-          className="photo"
-        />
-      ) : (
-        <div className="photo">
-          <i
-            className={
-              `icon-iconic-${similarTaxon.iconic_taxon_name ? similarTaxon.iconic_taxon_name.toLowerCase( ) : "unknown"}`
-            }
-          ></i>
-        </div>
-      );
-      return (
-        <div key={`similar-taxon-${similarTaxon.id}`} className="thumbnail">
-          <a href={urlForTaxon( similarTaxon )}>{ img }</a>
-          <div className="caption">
-            <SplitTaxon taxon={similarTaxon} url={urlForTaxon( similarTaxon )} noParens />
-          </div>
-        </div>
-      );
-    } );
+    content = (
+      <div className="thumbnails">
+        { taxa.map( similarTaxon =>
+          <TaxonThumbnail taxon={similarTaxon} key={`similar-taxon-${similarTaxon.id}`} />
+        ) }
+      </div>
+    );
   } else if ( taxa ) {
-    content = <p>No misidentifications yet</p>;
+    content = <p>{ I18n.t( "no_misidentifications_yet" ) }</p>;
   } else {
     content = <div className="loading status">{ I18n.t( "loading" ) }</div>;
   }
@@ -43,11 +22,9 @@ const SimilarTab = ( { taxon, taxa } ) => {
       <Row>
         <Col xs={12}>
           <h2>
-            Other taxa commonly misidentified as this species:
+            { I18n.t( "other_taxa_commonly_misidentified_as_this_species" ) }
           </h2>
-          <div className="thumbnails">
-            { content }
-          </div>
+          { content }
         </Col>
       </Row>
     </Grid>
@@ -55,7 +32,6 @@ const SimilarTab = ( { taxon, taxa } ) => {
 };
 
 SimilarTab.propTypes = {
-  taxon: PropTypes.object,
   taxa: PropTypes.array
 };
 

@@ -1,0 +1,94 @@
+import React, { PropTypes } from "react";
+import ReactDOM from "react-dom";
+import { Button } from "react-bootstrap";
+import _ from "lodash";
+
+class Carousel extends React.Component {
+  showNext( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".carousel", domNode ).carousel( "next" );
+  }
+  showPrev( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".carousel", domNode ).carousel( "prev" );
+  }
+  render( ) {
+    let link;
+    if ( this.props.url ) {
+      link = (
+        <a href={this.props.url} className="readmore">
+          { I18n.t( "view_all" ) }
+        </a>
+      );
+    }
+    let description;
+    if ( this.props.description ) {
+      description = (
+        <p>{ this.props.description }</p>
+      );
+    }
+    let noContent;
+    let nav;
+    if ( this.props.items.length === 0 ) {
+      noContent = (
+        <p className="text-muted text-center">
+          { this.props.noContent }
+        </p>
+      );
+    } else {
+      nav = (
+        <div className="carousel-controls pull-right">
+          <Button
+            className="nav-btn prev-btn"
+            onClick={ ( ) => this.showPrev( ) }
+            title={ I18n.t( "prev" ) }
+          />
+          <Button
+            className="nav-btn next-btn"
+            onClick={ ( ) => this.showNext( ) }
+            title={ I18n.t( "next" ) }
+          />
+        </div>
+      );
+    }
+    return (
+      <div className="Carousel">
+        { nav }
+        <h2>
+          { this.props.title }
+          { link }
+        </h2>
+        { description }
+        { noContent }
+        <div
+          className="carousel slide"
+          data-ride="carousel"
+          data-interval="false"
+          data-wrap="false"
+          data-keyboard="false"
+        >
+          <div className="carousel-inner">
+            { _.map( this.props.items, ( item, index ) => (
+              <div
+                key={`carousel-item-${index}`}
+                className={`item ${index === 0 ? "active" : ""}`}
+              >
+                { item }
+              </div>
+            ) ) }
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+Carousel.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  description: PropTypes.string,
+  noContent: PropTypes.string,
+  items: PropTypes.array.isRequired
+};
+
+export default Carousel;

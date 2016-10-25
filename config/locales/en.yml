@@ -1889,6 +1889,7 @@ en:
   no_matching_users: No matching users.
   no_members_yet: "No members yet."
   no_messages_yet: No messages yet
+  no_misidentifications_yet: No misidentifications yet
   no_mobilized_version_of_that_view: No mobilized version of that view.
   no_more_mail_from_site: "Don't want to receive any email from %{site_name}?  Edit your email settings at"
   no_more_taxa_to_load: No more taxa to load!
@@ -2182,6 +2183,7 @@ en:
     other: other animals
   other_annimals: Other Animals
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
+  other_taxa_commonly_misidentified_as_this_species: Other taxa commonly misidentified as this species
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
@@ -4662,6 +4664,7 @@ en:
           Endemic species only occur in a specific place and nowhere else.
         trending_desc: Most-observed taxa in the last month
         rare_desc: Least-observed taxa for all time
+        no_trending_desc: Nothing below this taxon observed in the last month
     taxon_names:
       form:
         new_name_guidelines_html: |

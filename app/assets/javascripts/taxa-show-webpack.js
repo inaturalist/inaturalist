@@ -66,11 +66,11 @@
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(1459);
+	var _config = __webpack_require__(1461);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1453);
+	var _taxon = __webpack_require__(1455);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
@@ -78,7 +78,7 @@
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(1460);
+	var _leaders = __webpack_require__(1462);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
@@ -91060,13 +91060,13 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(1459);
+	var _config = __webpack_require__(1461);
 
 	var _observations = __webpack_require__(1428);
 
-	var _leaders = __webpack_require__(1460);
+	var _leaders = __webpack_require__(1462);
 
-	var _taxon = __webpack_require__(1453);
+	var _taxon = __webpack_require__(1455);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91133,19 +91133,19 @@
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _photo_modal_container = __webpack_require__(1454);
+	var _photo_modal_container = __webpack_require__(1456);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
-	var _place_chooser = __webpack_require__(1456);
+	var _place_chooser = __webpack_require__(1458);
 
 	var _place_chooser2 = _interopRequireDefault(_place_chooser);
 
-	var _taxon_crumbs = __webpack_require__(1457);
+	var _taxon_crumbs = __webpack_require__(1459);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(1458);
+	var _status_header = __webpack_require__(1460);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
@@ -110539,7 +110539,7 @@
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
-	var _taxon = __webpack_require__(1453);
+	var _taxon = __webpack_require__(1455);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110628,7 +110628,7 @@
 
 	var _highlights_tab_container2 = _interopRequireDefault(_highlights_tab_container);
 
-	var _similar_tab_container = __webpack_require__(1451);
+	var _similar_tab_container = __webpack_require__(1453);
 
 	var _similar_tab_container2 = _interopRequireDefault(_similar_tab_container);
 
@@ -112055,7 +112055,7 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _querystring = __webpack_require__(1448);
+	var _querystring = __webpack_require__(1450);
 
 	var _querystring2 = _interopRequireDefault(_querystring);
 
@@ -112104,11 +112104,17 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _cover_image = __webpack_require__(1421);
+	var _lodash = __webpack_require__(590);
 
-	var _cover_image2 = _interopRequireDefault(_cover_image);
+	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _util = __webpack_require__(1422);
+	var _carousel = __webpack_require__(1448);
+
+	var _carousel2 = _interopRequireDefault(_carousel);
+
+	var _taxon_thumbnail = __webpack_require__(1449);
+
+	var _taxon_thumbnail2 = _interopRequireDefault(_taxon_thumbnail);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112124,29 +112130,26 @@
 	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
 	    I18n.t("loading")
 	  );
-	  if (trendingTaxa && trendingTaxa.length > 0) {
-	    trending = trendingTaxa.map(function (taxon) {
-	      return _react2.default.createElement(
-	        "a",
-	        {
-	          key: "rare-taxon-" + taxon.id,
-	          href: (0, _util.urlForTaxon)(taxon),
-	          title: taxon.preferred_common_name || taxon.name,
-	          className: "taxon-link"
-	        },
-	        _react2.default.createElement(_cover_image2.default, {
-	          src: taxon.defaultPhoto.photoUrl("medium"),
-	          low: taxon.defaultPhoto.photoUrl("square"),
-	          height: 100
-	        })
-	      );
+	  if (trendingTaxa) {
+	    trending = _react2.default.createElement(_carousel2.default, {
+	      title: I18n.t("trending"),
+	      url: trendingUrl,
+	      description: I18n.t("views.taxa.show.trending_desc"),
+	      noContent: I18n.t("views.taxa.show.no_trending_desc"),
+	      items: _lodash2.default.chunk(trendingTaxa, 6).map(function (chunk) {
+	        return _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          chunk.map(function (taxon) {
+	            return _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 2 },
+	              _react2.default.createElement(_taxon_thumbnail2.default, { taxon: taxon })
+	            );
+	          })
+	        );
+	      })
 	    });
-	  } else if (trendingTaxa.length === 0) {
-	    trending = _react2.default.createElement(
-	      "p",
-	      { className: "text-muted text-center" },
-	      "Nothing below this taxon observed in the last month."
-	    );
 	  }
 	  var rare = _react2.default.createElement(
 	    "p",
@@ -112154,32 +112157,25 @@
 	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
 	    I18n.t("loading")
 	  );
-	  if (rareTaxa && rareTaxa.length > 0) {
-	    rare = rareTaxa.map(function (taxon) {
-	      var img = taxon.defaultPhoto ? _react2.default.createElement(_cover_image2.default, {
-	        src: taxon.defaultPhoto.photoUrl("medium"),
-	        low: taxon.defaultPhoto.photoUrl("square"),
-	        height: 100
-	      }) : _react2.default.createElement("i", {
-	        className: "icon-iconic-" + (taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase() : "unknown")
-	      });
-	      return _react2.default.createElement(
-	        "a",
-	        {
-	          key: "rare-taxon-" + taxon.id,
-	          href: (0, _util.urlForTaxon)(taxon),
-	          title: taxon.preferred_common_name || taxon.name,
-	          className: "taxon-link"
-	        },
-	        img
-	      );
+	  if (rareTaxa) {
+	    rare = _react2.default.createElement(_carousel2.default, {
+	      title: I18n.t("rare"),
+	      description: I18n.t("views.taxa.show.rare_desc"),
+	      noContent: I18n.t("no_observations_yet"),
+	      items: _lodash2.default.chunk(rareTaxa, 6).map(function (chunk) {
+	        return _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          chunk.map(function (taxon) {
+	            return _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 2 },
+	              _react2.default.createElement(_taxon_thumbnail2.default, { taxon: taxon })
+	            );
+	          })
+	        );
+	      })
 	    });
-	  } else if (rareTaxa.length === 0) {
-	    rare = _react2.default.createElement(
-	      "p",
-	      { className: "text-muted text-center" },
-	      I18n.t("no_observations_yet")
-	    );
 	  }
 	  return _react2.default.createElement(
 	    _reactBootstrap.Grid,
@@ -112193,36 +112189,11 @@
 	        _react2.default.createElement(
 	          "div",
 	          { className: "trending" },
-	          _react2.default.createElement(
-	            "h2",
-	            null,
-	            I18n.t("trending"),
-	            _react2.default.createElement(
-	              "a",
-	              { href: trendingUrl, className: "readmore" },
-	              I18n.t("view_all")
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "p",
-	            null,
-	            I18n.t("views.taxa.show.trending_desc")
-	          ),
 	          trending
 	        ),
 	        _react2.default.createElement(
 	          "div",
 	          { className: "rare" },
-	          _react2.default.createElement(
-	            "h2",
-	            null,
-	            I18n.t("rare")
-	          ),
-	          _react2.default.createElement(
-	            "p",
-	            null,
-	            I18n.t("views.taxa.show.rare_desc")
-	          ),
 	          rare
 	        )
 	      )
@@ -112243,14 +112214,236 @@
 /* 1448 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	exports.decode = exports.parse = __webpack_require__(1449);
-	exports.encode = exports.stringify = __webpack_require__(1450);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(559);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactBootstrap = __webpack_require__(607);
+
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Carousel = function (_React$Component) {
+	  _inherits(Carousel, _React$Component);
+
+	  function Carousel() {
+	    _classCallCheck(this, Carousel);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Carousel).apply(this, arguments));
+	  }
+
+	  _createClass(Carousel, [{
+	    key: "showNext",
+	    value: function showNext() {
+	      var domNode = _reactDom2.default.findDOMNode(this);
+	      $(".carousel", domNode).carousel("next");
+	    }
+	  }, {
+	    key: "showPrev",
+	    value: function showPrev() {
+	      var domNode = _reactDom2.default.findDOMNode(this);
+	      $(".carousel", domNode).carousel("prev");
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      var link = void 0;
+	      if (this.props.url) {
+	        link = _react2.default.createElement(
+	          "a",
+	          { href: this.props.url, className: "readmore" },
+	          I18n.t("view_all")
+	        );
+	      }
+	      var description = void 0;
+	      if (this.props.description) {
+	        description = _react2.default.createElement(
+	          "p",
+	          null,
+	          this.props.description
+	        );
+	      }
+	      var noContent = void 0;
+	      var nav = void 0;
+	      if (this.props.items.length === 0) {
+	        noContent = _react2.default.createElement(
+	          "p",
+	          { className: "text-muted text-center" },
+	          this.props.noContent
+	        );
+	      } else {
+	        nav = _react2.default.createElement(
+	          "div",
+	          { className: "carousel-controls pull-right" },
+	          _react2.default.createElement(_reactBootstrap.Button, {
+	            className: "nav-btn prev-btn",
+	            onClick: function onClick() {
+	              return _this2.showPrev();
+	            },
+	            title: I18n.t("prev")
+	          }),
+	          _react2.default.createElement(_reactBootstrap.Button, {
+	            className: "nav-btn next-btn",
+	            onClick: function onClick() {
+	              return _this2.showNext();
+	            },
+	            title: I18n.t("next")
+	          })
+	        );
+	      }
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "Carousel" },
+	        nav,
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          this.props.title,
+	          link
+	        ),
+	        description,
+	        noContent,
+	        _react2.default.createElement(
+	          "div",
+	          {
+	            className: "carousel slide",
+	            "data-ride": "carousel",
+	            "data-interval": "false",
+	            "data-wrap": "false",
+	            "data-keyboard": "false"
+	          },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "carousel-inner" },
+	            _lodash2.default.map(this.props.items, function (item, index) {
+	              return _react2.default.createElement(
+	                "div",
+	                {
+	                  key: "carousel-item-" + index,
+	                  className: "item " + (index === 0 ? "active" : "")
+	                },
+	                item
+	              );
+	            })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Carousel;
+	}(_react2.default.Component);
+
+	Carousel.propTypes = {
+	  title: _react.PropTypes.string.isRequired,
+	  url: _react.PropTypes.string,
+	  description: _react.PropTypes.string,
+	  noContent: _react.PropTypes.string,
+	  items: _react.PropTypes.array.isRequired
+	};
+
+	exports.default = Carousel;
 
 /***/ },
 /* 1449 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _cover_image = __webpack_require__(1421);
+
+	var _cover_image2 = _interopRequireDefault(_cover_image);
+
+	var _split_taxon = __webpack_require__(862);
+
+	var _split_taxon2 = _interopRequireDefault(_split_taxon);
+
+	var _util = __webpack_require__(1422);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TaxonThumbnail = function TaxonThumbnail(_ref) {
+	  var taxon = _ref.taxon;
+	  var key = _ref.key;
+
+	  var img = taxon.defaultPhoto ? _react2.default.createElement(_cover_image2.default, {
+	    src: taxon.defaultPhoto.photoUrl("medium"),
+	    low: taxon.defaultPhoto.photoUrl("square"),
+	    height: 130,
+	    className: "photo"
+	  }) : _react2.default.createElement(
+	    "div",
+	    { className: "photo" },
+	    _react2.default.createElement("i", {
+	      className: "icon-iconic-" + (taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase() : "unknown")
+	    })
+	  );
+	  return _react2.default.createElement(
+	    "div",
+	    { key: key, className: "TaxonThumbnail thumbnail" },
+	    _react2.default.createElement(
+	      "a",
+	      { href: (0, _util.urlForTaxon)(taxon) },
+	      img
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "caption" },
+	      _react2.default.createElement(_split_taxon2.default, { taxon: taxon, url: (0, _util.urlForTaxon)(taxon), noParens: true })
+	    )
+	  );
+	};
+
+	TaxonThumbnail.propTypes = {
+	  taxon: _react.PropTypes.object.isRequired,
+	  key: _react.PropTypes.string
+	};
+
+	exports.default = TaxonThumbnail;
+
+/***/ },
+/* 1450 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.decode = exports.parse = __webpack_require__(1451);
+	exports.encode = exports.stringify = __webpack_require__(1452);
+
+
+/***/ },
+/* 1451 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -112336,7 +112529,7 @@
 
 
 /***/ },
-/* 1450 */
+/* 1452 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -112406,7 +112599,7 @@
 
 
 /***/ },
-/* 1451 */
+/* 1453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112417,7 +112610,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _similar_tab = __webpack_require__(1452);
+	var _similar_tab = __webpack_require__(1454);
 
 	var _similar_tab2 = _interopRequireDefault(_similar_tab);
 
@@ -112425,7 +112618,6 @@
 
 	function mapStateToProps(state) {
 	  return {
-	    taxon: state.taxon.taxon,
 	    taxa: state.taxon.similar
 	  };
 	}
@@ -112439,7 +112631,7 @@
 	exports.default = SimilarTabContainer;
 
 /***/ },
-/* 1452 */
+/* 1454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112454,57 +112646,29 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _cover_image = __webpack_require__(1421);
+	var _taxon_thumbnail = __webpack_require__(1449);
 
-	var _cover_image2 = _interopRequireDefault(_cover_image);
-
-	var _split_taxon = __webpack_require__(862);
-
-	var _split_taxon2 = _interopRequireDefault(_split_taxon);
-
-	var _util = __webpack_require__(1422);
+	var _taxon_thumbnail2 = _interopRequireDefault(_taxon_thumbnail);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SimilarTab = function SimilarTab(_ref) {
-	  var taxon = _ref.taxon;
 	  var taxa = _ref.taxa;
 
 	  var content = void 0;
 	  if (taxa && taxa.length > 0) {
-	    content = taxa.map(function (similarTaxon) {
-	      var img = similarTaxon.defaultPhoto ? _react2.default.createElement(_cover_image2.default, {
-	        src: similarTaxon.defaultPhoto.photoUrl("medium"),
-	        low: similarTaxon.defaultPhoto.photoUrl("square"),
-	        height: 130,
-	        className: "photo"
-	      }) : _react2.default.createElement(
-	        "div",
-	        { className: "photo" },
-	        _react2.default.createElement("i", {
-	          className: "icon-iconic-" + (similarTaxon.iconic_taxon_name ? similarTaxon.iconic_taxon_name.toLowerCase() : "unknown")
-	        })
-	      );
-	      return _react2.default.createElement(
-	        "div",
-	        { key: "similar-taxon-" + similarTaxon.id, className: "thumbnail" },
-	        _react2.default.createElement(
-	          "a",
-	          { href: (0, _util.urlForTaxon)(similarTaxon) },
-	          img
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "caption" },
-	          _react2.default.createElement(_split_taxon2.default, { taxon: similarTaxon, url: (0, _util.urlForTaxon)(similarTaxon), noParens: true })
-	        )
-	      );
-	    });
+	    content = _react2.default.createElement(
+	      "div",
+	      { className: "thumbnails" },
+	      taxa.map(function (similarTaxon) {
+	        return _react2.default.createElement(_taxon_thumbnail2.default, { taxon: similarTaxon, key: "similar-taxon-" + similarTaxon.id });
+	      })
+	    );
 	  } else if (taxa) {
 	    content = _react2.default.createElement(
 	      "p",
 	      null,
-	      "No misidentifications yet"
+	      I18n.t("no_misidentifications_yet")
 	    );
 	  } else {
 	    content = _react2.default.createElement(
@@ -112525,27 +112689,22 @@
 	        _react2.default.createElement(
 	          "h2",
 	          null,
-	          "Other taxa commonly misidentified as this species:"
+	          I18n.t("other_taxa_commonly_misidentified_as_this_species")
 	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "thumbnails" },
-	          content
-	        )
+	        content
 	      )
 	    )
 	  );
 	};
 
 	SimilarTab.propTypes = {
-	  taxon: _react.PropTypes.object,
 	  taxa: _react.PropTypes.array
 	};
 
 	exports.default = SimilarTab;
 
 /***/ },
-/* 1453 */
+/* 1455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112580,7 +112739,7 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _querystring = __webpack_require__(1448);
+	var _querystring = __webpack_require__(1450);
 
 	var _querystring2 = _interopRequireDefault(_querystring);
 
@@ -112832,7 +112991,7 @@
 	}
 
 /***/ },
-/* 1454 */
+/* 1456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112843,7 +113002,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1455);
+	var _photo_modal = __webpack_require__(1457);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
@@ -112878,7 +113037,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1455 */
+/* 1457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113007,7 +113166,7 @@
 	exports.default = PhotoModal;
 
 /***/ },
-/* 1456 */
+/* 1458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113151,7 +113310,7 @@
 	exports.default = PlaceChooser;
 
 /***/ },
-/* 1457 */
+/* 1459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113348,7 +113507,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1458 */
+/* 1460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113421,7 +113580,7 @@
 	exports.default = StatusHeader;
 
 /***/ },
-/* 1459 */
+/* 1461 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -113456,7 +113615,7 @@
 	}
 
 /***/ },
-/* 1460 */
+/* 1462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

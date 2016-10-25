@@ -547,6 +547,39 @@ $endangeredColor: #D12F19;
   margin-left: 10px;
 }
 
+$nav-btn-dim: 40px;
+.HighlightsTab .nav-btn {
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  padding: 0;
+  border: 0 transparent;
+  margin: 0 0 10px 10px;
+}
+.HighlightsTab .nav-btn:hover,
+.HighlightsTab .nav-btn:focus,
+.HighlightsTab .nav-btn:active  {
+  background: none;
+}
+.HighlightsTab .nav-btn:before {
+  display: block;
+  content: '\276E';
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  border-radius: 100px;
+  background-color: $inat-green;
+  color: white;
+  line-height: $nav-btn-dim * 1.05;
+  font-weight: bold;
+  font-size: $nav-btn-dim / 2;
+}
+❯
+.HighlightsTab .nav-btn:hover:before {
+  background-color: $inat-green-light;
+}
+.HighlightsTab .next-btn:before {
+  content: '\276F';
+}
+
 #main-tabs {
   display: flex;
 }
@@ -611,6 +644,31 @@ $endangeredColor: #D12F19;
   margin-top: 14px;
 }
 
+.TaxonThumbnail.thumbnail {
+  width: 100%;
+  border: 1px solid #ddd;
+  display: inline-block;
+  padding: 0;
+}
+.TaxonThumbnail .photo {
+  height: 130px;
+  font-size: 100px;
+  text-align: center;
+  line-height: 120px;
+}
+
+.TaxonThumbnail .taxon .display-name {
+  color: black;
+  display: block;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.TaxonThumbnail .taxon .sciname {
+  white-space: normal;
+}
+
+
 .SimilarTab {
   margin-bottom: 20px;
 }
@@ -619,27 +677,7 @@ $endangeredColor: #D12F19;
   flex-wrap: wrap;
   margin: -5px;
 }
-.SimilarTab .thumbnail {
-  border: 1px solid #ddd;
-  width: 13.2%;
-  display: inline-block;
+.SimilarTab .TaxonThumbnail {
   margin: 5px;
-  padding: 0;
-}
-.SimilarTab .thumbnail .photo {
-  height: 130px;
-  font-size: 100px;
-  text-align: center;
-  line-height: 120px;
-}
-
-.SimilarTab .thumbnail .taxon .display-name {
-  color: black;
-  display: block;
-  font-size: 120%;
-  font-weight: bold;
-}
-
-.SimilarTab .thumbnail .taxon .sciname {
-  white-space: normal;
+  width: 13.2%;
 }

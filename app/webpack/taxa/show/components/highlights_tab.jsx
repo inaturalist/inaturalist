@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import CoverImage from "./cover_image";
-import { urlForTaxon } from "../util";
+import _ from "lodash";
+import Carousel from "./carousel";
+import TaxonThumbnail from "./taxon_thumbnail";
 
 const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
   let trending = (
@@ -10,26 +11,25 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
       { I18n.t( "loading" ) }
     </p>
   );
-  if ( trendingTaxa && trendingTaxa.length > 0 ) {
-    trending = trendingTaxa.map( taxon => (
-      <a
-        key={`rare-taxon-${taxon.id}`}
-        href={urlForTaxon( taxon )}
-        title={taxon.preferred_common_name || taxon.name}
-        className="taxon-link"
-      >
-        <CoverImage
-          src={taxon.defaultPhoto.photoUrl( "medium" )}
-          low={taxon.defaultPhoto.photoUrl( "square" )}
-          height={100}
-        />
-      </a>
-    ) );
-  } else if ( trendingTaxa.length === 0 ) {
+  if ( trendingTaxa ) {
     trending = (
-      <p className="text-muted text-center">
-        Nothing below this taxon observed in the last month.
-      </p>
+      <Carousel
+        title={ I18n.t( "trending" ) }
+        url={ trendingUrl }
+        description={ I18n.t( "views.taxa.show.trending_desc" ) }
+        noContent={ I18n.t( "views.taxa.show.no_trending_desc" ) }
+        items={ _.chunk( trendingTaxa, 6 ).map( chunk => (
+          <Row>
+            {
+              chunk.map( taxon => (
+                <Col xs={2}>
+                  <TaxonThumbnail taxon={taxon} />
+                </Col>
+              ) )
+            }
+          </Row>
+        ) ) }
+      />
     );
   }
   let rare = (
@@ -38,37 +38,24 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
       { I18n.t( "loading" ) }
     </p>
   );
-  if ( rareTaxa && rareTaxa.length > 0 ) {
-    rare = rareTaxa.map( taxon => {
-      const img = taxon.defaultPhoto ? (
-        <CoverImage
-          src={taxon.defaultPhoto.photoUrl( "medium" )}
-          low={taxon.defaultPhoto.photoUrl( "square" )}
-          height={100}
-        />
-      ) : (
-        <i
-          className={
-            `icon-iconic-${taxon.iconic_taxon_name ? taxon.iconic_taxon_name.toLowerCase( ) : "unknown"}`
-          }
-        ></i>
-      );
-      return (
-        <a
-          key={`rare-taxon-${taxon.id}`}
-          href={urlForTaxon( taxon )}
-          title={taxon.preferred_common_name || taxon.name}
-          className="taxon-link"
-        >
-          { img }
-        </a>
-      );
-    } );
-  } else if ( rareTaxa.length === 0 ) {
+  if ( rareTaxa ) {
     rare = (
-      <p className="text-muted text-center">
-        { I18n.t( "no_observations_yet" ) }
-      </p>
+      <Carousel
+        title={ I18n.t( "rare" ) }
+        description={ I18n.t( "views.taxa.show.rare_desc" ) }
+        noContent={ I18n.t( "no_observations_yet" ) }
+        items={ _.chunk( rareTaxa, 6 ).map( chunk => (
+          <Row>
+            {
+              chunk.map( taxon => (
+                <Col xs={2}>
+                  <TaxonThumbnail taxon={taxon} />
+                </Col>
+              ) )
+            }
+          </Row>
+        ) ) }
+      />
     );
   }
   return (
@@ -76,24 +63,9 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
       <Row>
         <Col xs={12}>
           <div className="trending">
-            <h2>
-              { I18n.t( "trending" ) }
-              <a href={trendingUrl} className="readmore">
-                { I18n.t( "view_all" ) }
-              </a>
-            </h2>
-            <p>
-              { I18n.t( "views.taxa.show.trending_desc" ) }
-            </p>
             { trending }
           </div>
           <div className="rare">
-            <h2>
-              { I18n.t( "rare" ) }
-            </h2>
-            <p>
-              { I18n.t( "views.taxa.show.rare_desc" ) }
-            </p>
             { rare }
           </div>
         </Col>
