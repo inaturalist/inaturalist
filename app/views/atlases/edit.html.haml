@@ -37,7 +37,7 @@
           %td= link_to "explode", exploded_atlas_places_path, :id => "#{atlas_place.id}_#{@atlas.id}", :class => "explode_button"
   
   = link_to t(:back), @atlas, :class => "button"
-  = link_to t(:delete), @atlas, :method => :delete, :class => "btn btn-danger"
+  = link_to t(:delete), @atlas, :method => :delete, data: {:confirm => "are you sure?"}, :class => "btn btn-danger"
 
 
 

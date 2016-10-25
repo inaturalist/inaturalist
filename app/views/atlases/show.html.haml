@@ -42,6 +42,6 @@
   - if @atlas_alterations.count == 0
     .no_alterations="No alterations to this atlas yet"
   - else
-    = link_to "Clear Alteration Log", destroy_all_alterations_path(@atlas.id), :data => {:id => @atlas.id, :confirm => "are you sure? This will delete all alterations for this atlas"}, :id => "destroy_all_alterations", :class => "btn btn-danger"
+    = link_to "Clear Alteration Log", destroy_all_alterations_path(@atlas.id), :data => {:id => @atlas.id}, :id => "destroy_all_alterations", :class => "btn btn-danger"
   
       
