@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import CoverImage from "./cover_image";
 
 const LeaderItem = ( {
   noContent,
@@ -34,7 +35,7 @@ const LeaderItem = ( {
           <a href={url}>
             {
               imageUrl ?
-              <img src={imageUrl} className="img-responsive" />
+              <CoverImage src={imageUrl} height={45} />
               :
               <i className={iconClassName} />
             }

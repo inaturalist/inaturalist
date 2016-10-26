@@ -12,6 +12,7 @@ function mapStateToProps( state ) {
     layout = "grid";
   }
   return {
+    taxon: state.taxon.taxon,
     taxonPhotos,
     layout
   };

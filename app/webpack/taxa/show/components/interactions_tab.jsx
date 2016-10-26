@@ -117,6 +117,7 @@ const InteractionsTab = ( { interactions } ) => {
                       backgroundPosition: "0 2px"
                     }}
                   >
+                    <i className="glyphicon glyphicon-new-window pull-right"></i>
                     { link.text }
                   </a>
                 </li>

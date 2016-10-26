@@ -46,13 +46,14 @@ class TaxonPageTabs extends React.Component {
           <Dropdown
             id="curation-dropdown"
             pullRight
-            onSelect={ ( eventKey ) => {
+            onSelect={ ( e, eventKey ) => {
               switch ( eventKey ) {
-                case 1:
+                case "1":
                   window.location = `/taxa/${this.props.taxon.id}/flags/new`;
                   break;
-                case 2:
-                  window.location = `/taxa/${this.props.taxon.id}/edit_photos`;
+                case "2":
+                  // window.location = `/taxa/${this.props.taxon.id}/edit_photos`;
+                  alert( "TODO" );
                   break;
                 default:
                   window.location = `/taxa/${this.props.taxon.id}/edit`;
@@ -67,18 +68,18 @@ class TaxonPageTabs extends React.Component {
                 className={isCurator ? "" : "hidden"}
                 eventKey="1"
               >
-                { I18n.t( "flag_for_curation" ) }
+                <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
                 eventKey="2"
               >
-                { I18n.t( "edit_photos" ) }
+                <i className="fa fa-picture-o"></i> { I18n.t( "edit_photos" ) }
               </MenuItem>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="3"
               >
-                { I18n.t( "edit_taxon" ) }
+                <i className="fa fa-pencil"></i> { I18n.t( "edit_taxon" ) }
               </MenuItem>
             </Dropdown.Menu>
           </Dropdown>

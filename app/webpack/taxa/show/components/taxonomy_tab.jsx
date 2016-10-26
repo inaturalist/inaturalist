@@ -54,17 +54,17 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
         </Col>
         <Col xs={4}>
           <ul className="tab-links list-group">
-            <li className="list-group-item">
+            <li className="list-group-item internal">
               <span className="badge">{ taxonChangesCount }</span>
               <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
-                <i className="fa fa-random"></i>
+                <i className="fa fa-random accessory-icon"></i>
                 { I18n.t( "taxon_changes" ) }
               </a>
             </li>
-            <li className="list-group-item">
+            <li className="list-group-item internal">
               <a href={`/taxa/${taxon.id}/schemes`}>
                 <span className="badge pull-right">{ taxonSchemesCount }</span>
-                <i className="glyphicon glyphicon-list-alt"></i>
+                <i className="glyphicon glyphicon-list-alt accessory-icon"></i>
                 { I18n.t( "taxon_schemes" ) }
               </a>
             </li>
@@ -107,18 +107,18 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
         </Col>
         <Col xs={4}>
           <ul className="tab-links list-group">
-            <li className="list-group-item">
+            <li className="list-group-item internal">
               <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
-                <i className="fa fa-gear"></i>
+                <i className="fa fa-gear accessory-icon"></i>
                 { I18n.t( "manage_names" ) }
               </a>
             </li>
-            <li className="list-group-item">
+            <li className="list-group-item internal">
               <a
                 href={`/taxa/${taxon.id}/taxon_names/new`}
                 rel="nofollow"
               >
-                <i className="fa fa-plus"></i>
+                <i className="fa fa-plus accessory-icon"></i>
                 { I18n.t( "add_a_name" ) }
               </a>
             </li>

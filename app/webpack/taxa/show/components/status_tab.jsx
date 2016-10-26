@@ -40,15 +40,15 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
             let flagClass;
             switch ( status.iucnStatusCode( ) ) {
               case "LC":
-                flagClass = "text-success";
+                flagClass = "least-concern";
                 break;
               case "NT":
               case "VU":
-                flagClass = "text-warning";
+                flagClass = "vulnerable";
                 break;
               case "CR":
               case "EN":
-                flagClass = "text-danger";
+                flagClass = "endangered";
                 break;
               default:
                 // ok
@@ -60,14 +60,25 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                 <td>
                   <div className="media">
                     <div className="media-left">
-                      <a href={`/places/${status.place ? status.place.id : null}`}>
-                        <i className={`fa fa-invert fa-${status.place ? "map-marker" : "globe"}`}></i>
-                      </a>
+                      { status.place ?
+                        <a
+                          href={`/places/${status.place ? status.place.id : null}`}
+                          className="place-link"
+                        >
+                          <i className="fa fa-invert fa-map-marker"></i>
+                        </a>
+                        :
+                        <i className="fa fa-invert fa-globe"></i>
+                      }
                     </div>
                     <div className="media-body">
-                      <a href={`/places/${status.place ? status.place.id : null}`}>
-                        { status.place ? status.place.display_name : _.capitalize( I18n.t( "globally" ) ) }
-                      </a>
+                      { status.place ?
+                        <a href={`/places/${status.place.id}`} className="place-link">
+                          { status.place.display_name }
+                        </a>
+                        :
+                        _.capitalize( I18n.t( "globally" ) )
+                      }
                     </div>
                   </div>
                 </td>
@@ -122,17 +133,25 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
             <tr
               key={`listed-taxon-${lt.id}`}
             >
-              <td>
+              <td className="conservation-status">
                 <div className="media">
                   <div className="media-left">
-                    <a href={`/places/${lt.place ? lt.place.id : null}`}>
-                      <i className={`fa fa-invert fa-${lt.place ? "map-marker" : "globe"}`}></i>
-                    </a>
+                    { lt.place ?
+                      <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                        <i className="fa fa-invert fa-map-marker"></i>
+                      </a>
+                      :
+                      <i className="fa fa-invert fa-globe"></i>
+                    }
                   </div>
                   <div className="media-body">
-                    <a href={`/places/${lt.place ? lt.place.id : null}`}>
-                      { lt.place ? lt.place.name : _.capitalize( I18n.t( "globally" ) ) }
-                    </a>
+                    { lt.place ?
+                      <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                        { lt.place.name }
+                      </a>
+                      :
+                      _.capitalize( I18n.t( "globally" ) )
+                    }
                   </div>
                 </div>
               </td>
@@ -194,6 +213,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                       backgroundPosition: "0 2px"
                     }}
                   >
+                    <i className="glyphicon glyphicon-new-window pull-right"></i>
                     { link.text }
                   </a>
                 </li>

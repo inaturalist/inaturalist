@@ -177,7 +177,7 @@ mark { padding: 0; }
 }
 
 .ac-select-thumb { float: none; display: inline-block; }
-.ac-select-thumb img { width: 33px; height: 33px; }
+/*.ac-select-thumb img { width: 33px; height: 33px; }*/
 
 textarea:focus,
 input[type="text"]:focus,
@@ -232,6 +232,7 @@ input[type="color"]:focus,
 .ac-chooser {
   display: flex;
   position: relative;
+  align-items: stretch;
 }
 .ac-select-thumb {
   line-height: 33px;

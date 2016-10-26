@@ -187,6 +187,9 @@
   color: #aaa;
 }
 
+.preheader .ui-autocomplete-input {
+  width: 200px;
+}
 .preheader .glyphicon-link {
   transform: rotate(45deg);
 }
@@ -194,11 +197,17 @@
 .preheader .ac-select-thumb {
   line-height: 28px;
 }
+.preheader .ac-select-thumb img {
+  height: 30px;
+}
 .preheader .ac-select-thumb i {
   font-size: 22px;
 }
 .preheader .form-group {
   margin: 0;
+}
+.preheader .ac-chooser .searchclear.glyphicon {
+  top: 8px;
 }
 
 .LeaderItem {
@@ -217,6 +226,11 @@
   height: 45px;
   text-align: center;
   overflow: hidden;
+}
+.LeaderItem .CoverImage {
+  border-radius: 100px;
+  width: 45px;
+  height: 45px;
 }
 .LeaderItem .item-label {
   font-size: 10px;
@@ -377,6 +391,15 @@ $photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview .photo-taxon i {
   font-size: 150%;
 }
+.PhotoPreview.no-content {
+  display: flex;
+  flex-direction: row;
+  min-height: 533px;
+  align-items: center;
+}
+.PhotoPreview.no-content > div {
+  width: 100%;
+}
 
 .CoverImage {
   opacity: 0;
@@ -417,7 +440,7 @@ $photoPreviewGridViewMoreHeight: 50px;
 }
 
 .TaxonomyTab .taxonomy li.current > .SplitTaxon {
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname,
@@ -425,7 +448,10 @@ $photoPreviewGridViewMoreHeight: 50px;
   font-size: smaller;
 }
 
-.TaxonomyTab .sciname {
+.TaxonomyTab .sciname.species,
+.TaxonomyTab .sciname.subspecies,
+.TaxonomyTab .sciname.variety,
+.TaxonomyTab .sciname.hybrid {
   font-style: italic;
 }
 
@@ -437,7 +463,7 @@ $photoPreviewGridViewMoreHeight: 50px;
   display: block;
   color: #333;
 }
-.tab-links a:before {
+.tab-links .internal a:before {
   content: '\203A';
   float: right;
   font-weight: bold;
@@ -447,12 +473,19 @@ $photoPreviewGridViewMoreHeight: 50px;
   margin-left: 5px;
 }
 .tab-links i {
+  color: #aaa;
+}
+.tab-links .accessory-icon {
   color: $inat-green;
   margin-right: 10px;
 }
 
 .StatusTab .media-body {
   width: auto;
+}
+
+.StatusTab .place-link {
+  color: black;
 }
 
 h2, h3, h4, h5 {
@@ -485,6 +518,15 @@ $endangeredColor: #D12F19;
   background-color: transparentize( $endangeredColor, 0.90 );
   border-color: transparentize( $endangeredColor, 0.80 );
   color: $endangeredColor;
+}
+.glyphicon-flag.endangered {
+  color: $endangeredColor;
+}
+.glyphicon-flag.vulnerable {
+  color: $vulnerableColor;
+}
+.glyphicon-flag.least-concern {
+  color: $leastConcernColor;
 }
 
 .TaxonPageTabs .tab-content {
@@ -702,7 +744,7 @@ $nav-btn-dim: 40px;
 }
 
 
-.SimilarTab {
+.SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
 }
 .SimilarTab .thumbnails {

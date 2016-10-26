@@ -40,8 +40,18 @@ class PhotoPreview extends React.Component {
     const showTaxonPhotoModal = this.props.showTaxonPhotoModal;
     if ( this.state.taxonPhotos.length === 0 ) {
       return (
-        <div className="text-center text-muted">
-          { I18n.t( "no_photos" ) }
+        <div className="PhotoPreview no-content text-center text-muted">
+          <div>
+            { I18n.t( "this_taxon_has_no_default_photo" ) } <a
+              href={`/taxa/${this.props.taxon.id}/edit_photos`}
+              onClick={ ( ) => {
+                alert( "TODO" );
+                return false;
+              } }
+            >
+              { I18n.t( "want_to_add_one" ) }
+            </a>
+          </div>
         </div>
       );
     }
@@ -148,6 +158,7 @@ class PhotoPreview extends React.Component {
 }
 
 PhotoPreview.propTypes = {
+  taxon: PropTypes.object,
   taxonPhotos: PropTypes.array,
   layout: PropTypes.string,
   showTaxonPhotoModal: PropTypes.func

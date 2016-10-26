@@ -62,27 +62,27 @@
 
 	var _redux = __webpack_require__(567);
 
-	var _app_container = __webpack_require__(1417);
+	var _app_container = __webpack_require__(1415);
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
-	var _config = __webpack_require__(1461);
+	var _config = __webpack_require__(1459);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _taxon = __webpack_require__(1455);
+	var _taxon = __webpack_require__(1453);
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _observations = __webpack_require__(1428);
+	var _observations = __webpack_require__(1426);
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(1462);
+	var _leaders = __webpack_require__(1460);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
-	var _photo_modal = __webpack_require__(1423);
+	var _photo_modal = __webpack_require__(1421);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
@@ -89796,7 +89796,7 @@
 	          value: this.props.value,
 	          className: "form-control " + this.props.inputClassName,
 	          onChange: this.props.onChange,
-	          placeholder: I18n.t("species"),
+	          placeholder: this.props.placeholder,
 	          autoComplete: "off"
 	        }),
 	        _react2.default.createElement(_reactBootstrap.Input, { type: "hidden", name: "taxon_id" })
@@ -89822,7 +89822,12 @@
 	  perPage: _react.PropTypes.number,
 	  className: _react.PropTypes.string,
 	  inputClassName: _react.PropTypes.string,
-	  position: _react.PropTypes.object
+	  position: _react.PropTypes.object,
+	  placeholder: _react.PropTypes.string
+	};
+
+	TaxonAutocomplete.defaultProps = {
+	  placeholder: I18n.t("species")
 	};
 
 	exports.default = TaxonAutocomplete;
@@ -91043,9 +91048,7 @@
 /* 1412 */,
 /* 1413 */,
 /* 1414 */,
-/* 1415 */,
-/* 1416 */,
-/* 1417 */
+/* 1415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91056,17 +91059,17 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _app = __webpack_require__(1418);
+	var _app = __webpack_require__(1416);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _config = __webpack_require__(1461);
+	var _config = __webpack_require__(1459);
 
-	var _observations = __webpack_require__(1428);
+	var _observations = __webpack_require__(1426);
 
-	var _leaders = __webpack_require__(1462);
+	var _leaders = __webpack_require__(1460);
 
-	var _taxon = __webpack_require__(1455);
+	var _taxon = __webpack_require__(1453);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91094,7 +91097,7 @@
 	exports.default = AppContainer;
 
 /***/ },
-/* 1418 */
+/* 1416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91117,39 +91120,39 @@
 
 	var _taxon_autocomplete2 = _interopRequireDefault(_taxon_autocomplete);
 
-	var _photo_preview_container = __webpack_require__(1419);
+	var _photo_preview_container = __webpack_require__(1417);
 
 	var _photo_preview_container2 = _interopRequireDefault(_photo_preview_container);
 
-	var _charts_container = __webpack_require__(1424);
+	var _charts_container = __webpack_require__(1422);
 
 	var _charts_container2 = _interopRequireDefault(_charts_container);
 
-	var _leaders = __webpack_require__(1429);
+	var _leaders = __webpack_require__(1427);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
-	var _taxon_page_tabs_container = __webpack_require__(1436);
+	var _taxon_page_tabs_container = __webpack_require__(1434);
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _photo_modal_container = __webpack_require__(1456);
+	var _photo_modal_container = __webpack_require__(1454);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
-	var _place_chooser = __webpack_require__(1458);
+	var _place_chooser = __webpack_require__(1456);
 
 	var _place_chooser2 = _interopRequireDefault(_place_chooser);
 
-	var _taxon_crumbs = __webpack_require__(1459);
+	var _taxon_crumbs = __webpack_require__(1457);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(1460);
+	var _status_header = __webpack_require__(1458);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91185,6 +91188,7 @@
 	            _react2.default.createElement(_taxon_autocomplete2.default, {
 	              inputClassName: "input-sm",
 	              bootstrapClear: true,
+	              placeholder: I18n.t("search_species_"),
 	              searchExternal: false,
 	              afterSelect: function afterSelect(result) {
 	                window.location = (0, _util.urlForTaxon)(result.item);
@@ -91278,7 +91282,7 @@
 	exports.default = App;
 
 /***/ },
-/* 1419 */
+/* 1417 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91289,11 +91293,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_preview = __webpack_require__(1420);
+	var _photo_preview = __webpack_require__(1418);
 
 	var _photo_preview2 = _interopRequireDefault(_photo_preview);
 
-	var _photo_modal = __webpack_require__(1423);
+	var _photo_modal = __webpack_require__(1421);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91307,6 +91311,7 @@
 	    layout = "grid";
 	  }
 	  return {
+	    taxon: state.taxon.taxon,
 	    taxonPhotos: taxonPhotos,
 	    layout: layout
 	  };
@@ -91326,7 +91331,7 @@
 	exports.default = PhotoPreviewContainer;
 
 /***/ },
-/* 1420 */
+/* 1418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91341,11 +91346,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1421);
+	var _cover_image = __webpack_require__(1419);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	var _split_taxon = __webpack_require__(862);
 
@@ -91411,8 +91416,24 @@
 	      if (this.state.taxonPhotos.length === 0) {
 	        return _react2.default.createElement(
 	          "div",
-	          { className: "text-center text-muted" },
-	          I18n.t("no_photos")
+	          { className: "PhotoPreview no-content text-center text-muted" },
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            I18n.t("this_taxon_has_no_default_photo"),
+	            " ",
+	            _react2.default.createElement(
+	              "a",
+	              {
+	                href: "/taxa/" + this.props.taxon.id + "/edit_photos",
+	                onClick: function onClick() {
+	                  alert("TODO");
+	                  return false;
+	                }
+	              },
+	              I18n.t("want_to_add_one")
+	            )
+	          )
 	        );
 	      }
 	      if (this.state.current && layout === "gallery") {
@@ -91537,6 +91558,7 @@
 	}(_react2.default.Component);
 
 	PhotoPreview.propTypes = {
+	  taxon: _react.PropTypes.object,
 	  taxonPhotos: _react.PropTypes.array,
 	  layout: _react.PropTypes.string,
 	  showTaxonPhotoModal: _react.PropTypes.func
@@ -91547,7 +91569,7 @@
 	exports.default = PhotoPreview;
 
 /***/ },
-/* 1421 */
+/* 1419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91643,7 +91665,7 @@
 	exports.default = CoverImage;
 
 /***/ },
-/* 1422 */
+/* 1420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91685,7 +91707,7 @@
 	exports.defaultObservationParams = defaultObservationParams;
 
 /***/ },
-/* 1423 */
+/* 1421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91787,7 +91809,7 @@
 	}
 
 /***/ },
-/* 1424 */
+/* 1422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91798,11 +91820,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _charts = __webpack_require__(1425);
+	var _charts = __webpack_require__(1423);
 
 	var _charts2 = _interopRequireDefault(_charts);
 
-	var _observations = __webpack_require__(1428);
+	var _observations = __webpack_require__(1426);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91829,7 +91851,7 @@
 	exports.default = ChartsContainer;
 
 /***/ },
-/* 1425 */
+/* 1423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91852,7 +91874,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _c = __webpack_require__(1426);
+	var _c = __webpack_require__(1424);
 
 	var _c2 = _interopRequireDefault(_c);
 
@@ -92143,7 +92165,7 @@
 	exports.default = Charts;
 
 /***/ },
-/* 1426 */
+/* 1424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (window) {
@@ -92197,7 +92219,7 @@
 
 	    function ChartInternal(api) {
 	        var $$ = this;
-	        $$.d3 = window.d3 ? window.d3 :  true ? __webpack_require__(1427) : undefined;
+	        $$.d3 = window.d3 ? window.d3 :  true ? __webpack_require__(1425) : undefined;
 	        $$.api = api;
 	        $$.config = $$.getDefaultConfig();
 	        $$.data = {};
@@ -100340,7 +100362,7 @@
 	    /* jshint ignore:end */
 
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1427)], __WEBPACK_AMD_DEFINE_RESULT__ = function () { return c3; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1425)], __WEBPACK_AMD_DEFINE_RESULT__ = function () { return c3; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if ('undefined' !== typeof exports && 'undefined' !== typeof module) {
 	        module.exports = c3;
 	    } else {
@@ -100351,7 +100373,7 @@
 
 
 /***/ },
-/* 1427 */
+/* 1425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
@@ -109910,7 +109932,7 @@
 	}();
 
 /***/ },
-/* 1428 */
+/* 1426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -109937,7 +109959,7 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110099,7 +110121,7 @@
 	}
 
 /***/ },
-/* 1429 */
+/* 1427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110114,23 +110136,23 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _top_observer_container = __webpack_require__(1430);
+	var _top_observer_container = __webpack_require__(1428);
 
 	var _top_observer_container2 = _interopRequireDefault(_top_observer_container);
 
-	var _top_identifier_container = __webpack_require__(1432);
+	var _top_identifier_container = __webpack_require__(1430);
 
 	var _top_identifier_container2 = _interopRequireDefault(_top_identifier_container);
 
-	var _top_species_container = __webpack_require__(1433);
+	var _top_species_container = __webpack_require__(1431);
 
 	var _top_species_container2 = _interopRequireDefault(_top_species_container);
 
-	var _first_observer_container = __webpack_require__(1434);
+	var _first_observer_container = __webpack_require__(1432);
 
 	var _first_observer_container2 = _interopRequireDefault(_first_observer_container);
 
-	var _num_observations_container = __webpack_require__(1435);
+	var _num_observations_container = __webpack_require__(1433);
 
 	var _num_observations_container2 = _interopRequireDefault(_num_observations_container);
 
@@ -110179,7 +110201,7 @@
 	exports.default = Leaders;
 
 /***/ },
-/* 1430 */
+/* 1428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110190,11 +110212,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1431);
+	var _leader_item = __webpack_require__(1429);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110227,7 +110249,7 @@
 	exports.default = TopObserverContainer;
 
 /***/ },
-/* 1431 */
+/* 1429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110239,6 +110261,10 @@
 	var _react = __webpack_require__(403);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _cover_image = __webpack_require__(1419);
+
+	var _cover_image2 = _interopRequireDefault(_cover_image);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110287,7 +110313,7 @@
 	        _react2.default.createElement(
 	          "a",
 	          { href: url },
-	          imageUrl ? _react2.default.createElement("img", { src: imageUrl, className: "img-responsive" }) : _react2.default.createElement("i", { className: iconClassName })
+	          imageUrl ? _react2.default.createElement(_cover_image2.default, { src: imageUrl, height: 45 }) : _react2.default.createElement("i", { className: iconClassName })
 	        )
 	      )
 	    ),
@@ -110336,7 +110362,7 @@
 	exports.default = LeaderItem;
 
 /***/ },
-/* 1432 */
+/* 1430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110347,11 +110373,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1431);
+	var _leader_item = __webpack_require__(1429);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110384,7 +110410,7 @@
 	exports.default = TopIdentifierContainer;
 
 /***/ },
-/* 1433 */
+/* 1431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110395,11 +110421,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1431);
+	var _leader_item = __webpack_require__(1429);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110437,7 +110463,7 @@
 	exports.default = TopSpeciesContainer;
 
 /***/ },
-/* 1434 */
+/* 1432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110448,11 +110474,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1431);
+	var _leader_item = __webpack_require__(1429);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110485,7 +110511,7 @@
 	exports.default = FirstObserverContainer;
 
 /***/ },
-/* 1435 */
+/* 1433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110496,7 +110522,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1431);
+	var _leader_item = __webpack_require__(1429);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -110528,7 +110554,7 @@
 	exports.default = NumObservationsContainer;
 
 /***/ },
-/* 1436 */
+/* 1434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110539,11 +110565,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _taxon_page_tabs = __webpack_require__(1437);
+	var _taxon_page_tabs = __webpack_require__(1435);
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
-	var _taxon = __webpack_require__(1455);
+	var _taxon = __webpack_require__(1453);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110583,7 +110609,7 @@
 	exports.default = TaxonPageTabsContainer;
 
 /***/ },
-/* 1437 */
+/* 1435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110608,31 +110634,31 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _taxon_page_map = __webpack_require__(1438);
+	var _taxon_page_map = __webpack_require__(1436);
 
 	var _taxon_page_map2 = _interopRequireDefault(_taxon_page_map);
 
-	var _status_tab = __webpack_require__(1439);
+	var _status_tab = __webpack_require__(1437);
 
 	var _status_tab2 = _interopRequireDefault(_status_tab);
 
-	var _taxonomy_tab_container = __webpack_require__(1440);
+	var _taxonomy_tab_container = __webpack_require__(1438);
 
 	var _taxonomy_tab_container2 = _interopRequireDefault(_taxonomy_tab_container);
 
-	var _articles_tab_container = __webpack_require__(1442);
+	var _articles_tab_container = __webpack_require__(1440);
 
 	var _articles_tab_container2 = _interopRequireDefault(_articles_tab_container);
 
-	var _interactions_tab_container = __webpack_require__(1444);
+	var _interactions_tab_container = __webpack_require__(1442);
 
 	var _interactions_tab_container2 = _interopRequireDefault(_interactions_tab_container);
 
-	var _highlights_tab_container = __webpack_require__(1446);
+	var _highlights_tab_container = __webpack_require__(1444);
 
 	var _highlights_tab_container2 = _interopRequireDefault(_highlights_tab_container);
 
-	var _similar_tab_container = __webpack_require__(1453);
+	var _similar_tab_container = __webpack_require__(1451);
 
 	var _similar_tab_container2 = _interopRequireDefault(_similar_tab_container);
 
@@ -110699,13 +110725,14 @@
 	            {
 	              id: "curation-dropdown",
 	              pullRight: true,
-	              onSelect: function onSelect(eventKey) {
+	              onSelect: function onSelect(e, eventKey) {
 	                switch (eventKey) {
-	                  case 1:
+	                  case "1":
 	                    window.location = "/taxa/" + _this3.props.taxon.id + "/flags/new";
 	                    break;
-	                  case 2:
-	                    window.location = "/taxa/" + _this3.props.taxon.id + "/edit_photos";
+	                  case "2":
+	                    // window.location = `/taxa/${this.props.taxon.id}/edit_photos`;
+	                    alert("TODO");
 	                    break;
 	                  default:
 	                    window.location = "/taxa/" + _this3.props.taxon.id + "/edit";
@@ -110728,6 +110755,8 @@
 	                  className: isCurator ? "" : "hidden",
 	                  eventKey: "1"
 	                },
+	                _react2.default.createElement("i", { className: "fa fa-flag" }),
+	                " ",
 	                I18n.t("flag_for_curation")
 	              ),
 	              _react2.default.createElement(
@@ -110735,6 +110764,8 @@
 	                {
 	                  eventKey: "2"
 	                },
+	                _react2.default.createElement("i", { className: "fa fa-picture-o" }),
+	                " ",
 	                I18n.t("edit_photos")
 	              ),
 	              _react2.default.createElement(
@@ -110743,6 +110774,8 @@
 	                  className: isCurator ? "" : "hidden",
 	                  eventKey: "3"
 	                },
+	                _react2.default.createElement("i", { className: "fa fa-pencil" }),
+	                " ",
 	                I18n.t("edit_taxon")
 	              )
 	            )
@@ -110921,7 +110954,7 @@
 	exports.default = TaxonPageTabs;
 
 /***/ },
-/* 1438 */
+/* 1436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -110989,7 +111022,7 @@
 	exports.default = TaxonPageMap;
 
 /***/ },
-/* 1439 */
+/* 1437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111073,15 +111106,15 @@
 	          var flagClass = void 0;
 	          switch (status.iucnStatusCode()) {
 	            case "LC":
-	              flagClass = "text-success";
+	              flagClass = "least-concern";
 	              break;
 	            case "NT":
 	            case "VU":
-	              flagClass = "text-warning";
+	              flagClass = "vulnerable";
 	              break;
 	            case "CR":
 	            case "EN":
-	              flagClass = "text-danger";
+	              flagClass = "endangered";
 	              break;
 	            default:
 	            // ok
@@ -111100,20 +111133,23 @@
 	                _react2.default.createElement(
 	                  "div",
 	                  { className: "media-left" },
-	                  _react2.default.createElement(
+	                  status.place ? _react2.default.createElement(
 	                    "a",
-	                    { href: "/places/" + (status.place ? status.place.id : null) },
-	                    _react2.default.createElement("i", { className: "fa fa-invert fa-" + (status.place ? "map-marker" : "globe") })
-	                  )
+	                    {
+	                      href: "/places/" + (status.place ? status.place.id : null),
+	                      className: "place-link"
+	                    },
+	                    _react2.default.createElement("i", { className: "fa fa-invert fa-map-marker" })
+	                  ) : _react2.default.createElement("i", { className: "fa fa-invert fa-globe" })
 	                ),
 	                _react2.default.createElement(
 	                  "div",
 	                  { className: "media-body" },
-	                  _react2.default.createElement(
+	                  status.place ? _react2.default.createElement(
 	                    "a",
-	                    { href: "/places/" + (status.place ? status.place.id : null) },
-	                    status.place ? status.place.display_name : _lodash2.default.capitalize(I18n.t("globally"))
-	                  )
+	                    { href: "/places/" + status.place.id, className: "place-link" },
+	                    status.place.display_name
+	                  ) : _lodash2.default.capitalize(I18n.t("globally"))
 	                )
 	              )
 	            ),
@@ -111204,27 +111240,27 @@
 	            },
 	            _react2.default.createElement(
 	              "td",
-	              null,
+	              { className: "conservation-status" },
 	              _react2.default.createElement(
 	                "div",
 	                { className: "media" },
 	                _react2.default.createElement(
 	                  "div",
 	                  { className: "media-left" },
-	                  _react2.default.createElement(
+	                  lt.place ? _react2.default.createElement(
 	                    "a",
-	                    { href: "/places/" + (lt.place ? lt.place.id : null) },
-	                    _react2.default.createElement("i", { className: "fa fa-invert fa-" + (lt.place ? "map-marker" : "globe") })
-	                  )
+	                    { href: "/places/" + (lt.place ? lt.place.id : null), className: "place-link" },
+	                    _react2.default.createElement("i", { className: "fa fa-invert fa-map-marker" })
+	                  ) : _react2.default.createElement("i", { className: "fa fa-invert fa-globe" })
 	                ),
 	                _react2.default.createElement(
 	                  "div",
 	                  { className: "media-body" },
-	                  _react2.default.createElement(
+	                  lt.place ? _react2.default.createElement(
 	                    "a",
-	                    { href: "/places/" + (lt.place ? lt.place.id : null) },
-	                    lt.place ? lt.place.name : _lodash2.default.capitalize(I18n.t("globally"))
-	                  )
+	                    { href: "/places/" + (lt.place ? lt.place.id : null), className: "place-link" },
+	                    lt.place.name
+	                  ) : _lodash2.default.capitalize(I18n.t("globally"))
 	                )
 	              )
 	            ),
@@ -111328,6 +111364,7 @@
 	                    backgroundPosition: "0 2px"
 	                  }
 	                },
+	                _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window pull-right" }),
 	                link.text
 	              )
 	            );
@@ -111389,7 +111426,7 @@
 	exports.default = StatusTab;
 
 /***/ },
-/* 1440 */
+/* 1438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111400,7 +111437,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _taxonomy_tab = __webpack_require__(1441);
+	var _taxonomy_tab = __webpack_require__(1439);
 
 	var _taxonomy_tab2 = _interopRequireDefault(_taxonomy_tab);
 
@@ -111420,7 +111457,7 @@
 	exports.default = TaxonomyTabContainer;
 
 /***/ },
-/* 1441 */
+/* 1439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111439,7 +111476,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	var _split_taxon = __webpack_require__(862);
 
@@ -111525,7 +111562,7 @@
 	          { className: "tab-links list-group" },
 	          _react2.default.createElement(
 	            "li",
-	            { className: "list-group-item" },
+	            { className: "list-group-item internal" },
 	            _react2.default.createElement(
 	              "span",
 	              { className: "badge" },
@@ -111534,13 +111571,13 @@
 	            _react2.default.createElement(
 	              "a",
 	              { href: "/taxon_changes?taxon_id=" + taxon.id },
-	              _react2.default.createElement("i", { className: "fa fa-random" }),
+	              _react2.default.createElement("i", { className: "fa fa-random accessory-icon" }),
 	              I18n.t("taxon_changes")
 	            )
 	          ),
 	          _react2.default.createElement(
 	            "li",
-	            { className: "list-group-item" },
+	            { className: "list-group-item internal" },
 	            _react2.default.createElement(
 	              "a",
 	              { href: "/taxa/" + taxon.id + "/schemes" },
@@ -111549,7 +111586,7 @@
 	                { className: "badge pull-right" },
 	                taxonSchemesCount
 	              ),
-	              _react2.default.createElement("i", { className: "glyphicon glyphicon-list-alt" }),
+	              _react2.default.createElement("i", { className: "glyphicon glyphicon-list-alt accessory-icon" }),
 	              I18n.t("taxon_schemes")
 	            )
 	          )
@@ -111642,24 +111679,24 @@
 	          { className: "tab-links list-group" },
 	          _react2.default.createElement(
 	            "li",
-	            { className: "list-group-item" },
+	            { className: "list-group-item internal" },
 	            _react2.default.createElement(
 	              "a",
 	              { href: "/taxa/" + taxon.id + "/names", rel: "nofollow" },
-	              _react2.default.createElement("i", { className: "fa fa-gear" }),
+	              _react2.default.createElement("i", { className: "fa fa-gear accessory-icon" }),
 	              I18n.t("manage_names")
 	            )
 	          ),
 	          _react2.default.createElement(
 	            "li",
-	            { className: "list-group-item" },
+	            { className: "list-group-item internal" },
 	            _react2.default.createElement(
 	              "a",
 	              {
 	                href: "/taxa/" + taxon.id + "/taxon_names/new",
 	                rel: "nofollow"
 	              },
-	              _react2.default.createElement("i", { className: "fa fa-plus" }),
+	              _react2.default.createElement("i", { className: "fa fa-plus accessory-icon" }),
 	              I18n.t("add_a_name")
 	            )
 	          )
@@ -111689,7 +111726,7 @@
 	exports.default = TaxonomyTab;
 
 /***/ },
-/* 1442 */
+/* 1440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111700,7 +111737,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _articles_tab = __webpack_require__(1443);
+	var _articles_tab = __webpack_require__(1441);
 
 	var _articles_tab2 = _interopRequireDefault(_articles_tab);
 
@@ -111721,7 +111758,7 @@
 	exports.default = ArticlesTabContainer;
 
 /***/ },
-/* 1443 */
+/* 1441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111840,7 +111877,7 @@
 	exports.default = ArticlesTab;
 
 /***/ },
-/* 1444 */
+/* 1442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -111851,7 +111888,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _interactions_tab = __webpack_require__(1445);
+	var _interactions_tab = __webpack_require__(1443);
 
 	var _interactions_tab2 = _interopRequireDefault(_interactions_tab);
 
@@ -111868,7 +111905,7 @@
 	exports.default = InteractionsTabContainer;
 
 /***/ },
-/* 1445 */
+/* 1443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112023,6 +112060,7 @@
 	                    backgroundPosition: "0 2px"
 	                  }
 	                },
+	                _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window pull-right" }),
 	                link.text
 	              )
 	            );
@@ -112040,7 +112078,7 @@
 	exports.default = InteractionsTab;
 
 /***/ },
-/* 1446 */
+/* 1444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112051,7 +112089,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _highlights_tab = __webpack_require__(1447);
+	var _highlights_tab = __webpack_require__(1445);
 
 	var _highlights_tab2 = _interopRequireDefault(_highlights_tab);
 
@@ -112059,11 +112097,11 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _querystring = __webpack_require__(1450);
+	var _querystring = __webpack_require__(1448);
 
 	var _querystring2 = _interopRequireDefault(_querystring);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112093,7 +112131,7 @@
 	exports.default = HighlightsTabContainer;
 
 /***/ },
-/* 1447 */
+/* 1445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112112,11 +112150,11 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _carousel = __webpack_require__(1448);
+	var _carousel = __webpack_require__(1446);
 
 	var _carousel2 = _interopRequireDefault(_carousel);
 
-	var _taxon_thumbnail = __webpack_require__(1449);
+	var _taxon_thumbnail = __webpack_require__(1447);
 
 	var _taxon_thumbnail2 = _interopRequireDefault(_taxon_thumbnail);
 
@@ -112215,7 +112253,7 @@
 	exports.default = HighlightsTab;
 
 /***/ },
-/* 1448 */
+/* 1446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112372,7 +112410,7 @@
 	exports.default = Carousel;
 
 /***/ },
-/* 1449 */
+/* 1447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112385,7 +112423,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1421);
+	var _cover_image = __webpack_require__(1419);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -112393,7 +112431,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112437,17 +112475,17 @@
 	exports.default = TaxonThumbnail;
 
 /***/ },
-/* 1450 */
+/* 1448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.decode = exports.parse = __webpack_require__(1451);
-	exports.encode = exports.stringify = __webpack_require__(1452);
+	exports.decode = exports.parse = __webpack_require__(1449);
+	exports.encode = exports.stringify = __webpack_require__(1450);
 
 
 /***/ },
-/* 1451 */
+/* 1449 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -112533,7 +112571,7 @@
 
 
 /***/ },
-/* 1452 */
+/* 1450 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -112603,7 +112641,7 @@
 
 
 /***/ },
-/* 1453 */
+/* 1451 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112614,7 +112652,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _similar_tab = __webpack_require__(1454);
+	var _similar_tab = __webpack_require__(1452);
 
 	var _similar_tab2 = _interopRequireDefault(_similar_tab);
 
@@ -112635,7 +112673,7 @@
 	exports.default = SimilarTabContainer;
 
 /***/ },
-/* 1454 */
+/* 1452 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112650,7 +112688,7 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _taxon_thumbnail = __webpack_require__(1449);
+	var _taxon_thumbnail = __webpack_require__(1447);
 
 	var _taxon_thumbnail2 = _interopRequireDefault(_taxon_thumbnail);
 
@@ -112708,7 +112746,7 @@
 	exports.default = SimilarTab;
 
 /***/ },
-/* 1455 */
+/* 1453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112743,7 +112781,7 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _querystring = __webpack_require__(1450);
+	var _querystring = __webpack_require__(1448);
 
 	var _querystring2 = _interopRequireDefault(_querystring);
 
@@ -112751,7 +112789,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112995,7 +113033,7 @@
 	}
 
 /***/ },
-/* 1456 */
+/* 1454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113006,11 +113044,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1457);
+	var _photo_modal = __webpack_require__(1455);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
-	var _photo_modal3 = __webpack_require__(1423);
+	var _photo_modal3 = __webpack_require__(1421);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -113041,7 +113079,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1457 */
+/* 1455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113060,7 +113098,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -113198,7 +113236,7 @@
 	exports.default = PhotoModal;
 
 /***/ },
-/* 1458 */
+/* 1456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113342,7 +113380,7 @@
 	exports.default = PlaceChooser;
 
 /***/ },
-/* 1459 */
+/* 1457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113367,7 +113405,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -113550,7 +113588,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1460 */
+/* 1458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113623,7 +113661,7 @@
 	exports.default = StatusHeader;
 
 /***/ },
-/* 1461 */
+/* 1459 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -113658,7 +113696,7 @@
 	}
 
 /***/ },
-/* 1462 */
+/* 1460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113678,9 +113716,9 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
-	var _observations = __webpack_require__(1428);
+	var _observations = __webpack_require__(1426);
 
-	var _util = __webpack_require__(1422);
+	var _util = __webpack_require__(1420);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

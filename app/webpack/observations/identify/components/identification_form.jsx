@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Button } from "react-bootstrap";
 import safeHtml from "safe-html";
-import TaxonAutocomplete from "./taxon_autocomplete";
+import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import INatTextArea from "./inat_text_area";
 
 const IdentificationForm = ( {

@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonAutocomplete from "../../../observations/identify/components/taxon_autocomplete";
+import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
 import Leaders from "../components/leaders";
@@ -29,6 +29,7 @@ const App = ( { taxon, place, setPlace } ) => (
             <TaxonAutocomplete
               inputClassName="input-sm"
               bootstrapClear
+              placeholder={I18n.t( "search_species_" )}
               searchExternal={false}
               afterSelect={ function ( result ) {
                 window.location = urlForTaxon( result.item );
