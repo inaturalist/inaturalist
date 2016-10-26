@@ -18,11 +18,11 @@ class TaxonCrumbs extends React.Component {
   }
 
   showAncestors( ) {
-    this.setState( { ancestorsShown: true } );
+    this.setState( { ancestorsShown: true, childrenShown: false } );
   }
 
   hideAncestors( ) {
-    this.setState( { ancestorsShown: false } );
+    this.setState( { ancestorsShown: false, childrenShown: false } );
   }
 
   showChildren( ) {
@@ -65,31 +65,45 @@ class TaxonCrumbs extends React.Component {
         </a>
       );
       expandControl = (
-        <li className="expand-control"><a href="#" onClick={ ( ) => this.showAncestors( ) }>...</a></li>
+        <li className="expand-control">
+          <a href="#" onClick={ ( ) => this.showAncestors( ) }>...</a>
+        </li>
       );
     }
-    let descendants;
-    if ( children && children.length > 0 ) {
-      descendants = (
-        <OverlayTrigger
-          trigger="click"
-          placement="bottom"
-          overlay={
-            <Popover id="taxon-crumbs-children">
-              { children.map( t => (
-                <div className="child" key={`taxon-crumbs-children-${t.id}`}>
-                  <SplitTaxon taxon={t} url={urlForTaxon( t )} forceRank />
-                </div>
-              ) ) }
-            </Popover>
-          }
-        >
-          <Button bsSize="xs" bsStyle="link">
-            <i className="fa fa-caret-down" />
-          </Button>
-        </OverlayTrigger>
+    const crumbTaxon = targetTaxon => {
+      let descendants;
+      if ( taxon.children && taxon.children.length > 0 ) {
+        descendants = (
+          <OverlayTrigger
+            trigger="click"
+            placement="bottom"
+            rootClose
+            overlay={
+              <Popover
+                id={`taxon-crumbs-children-${targetTaxon.id}`}
+                className="taxon-crumbs-children"
+              >
+                { children.map( t => (
+                  <div className="child" key={`taxon-crumbs-children-${t.id}`}>
+                    <SplitTaxon taxon={t} url={urlForTaxon( t )} forceRank />
+                  </div>
+                ) ) }
+              </Popover>
+            }
+          >
+            <Button bsSize="xs" bsStyle="link">
+              <i className="fa fa-caret-down" />
+            </Button>
+          </OverlayTrigger>
+        );
+      }
+      return (
+        <span>
+          <SplitTaxon taxon={targetTaxon} />
+          { descendants }
+        </span>
       );
-    }
+    };
     return (
       <ul className={`TaxonCrumbs inline ${this.state.ancestorsShown ? "expanded" : "contracted"}`}>
         <li>
@@ -108,8 +122,7 @@ class TaxonCrumbs extends React.Component {
         </li>
         { lastVisibleAncestor }
         <li>
-          <SplitTaxon taxon={taxon} />
-          { descendants }
+          { crumbTaxon( taxon ) }
           { contractControl }
         </li>
       </ul>

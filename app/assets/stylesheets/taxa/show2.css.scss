@@ -175,13 +175,13 @@
   margin-left: 10px;
 }
 
-#taxon-crumbs-children .taxon a {
+.taxon-crumbs-children .taxon a {
   color: #333;
 }
-#taxon-crumbs-children .taxon.has-com-name .sciname {
+.taxon-crumbs-children .taxon.has-com-name .sciname {
   color: #aaa;
 }
-#taxon-crumbs-children .SplitTaxon:before {
+.taxon-crumbs-children .SplitTaxon:before {
   content: '\021B3';
   margin-right: 5px;
   color: #aaa;

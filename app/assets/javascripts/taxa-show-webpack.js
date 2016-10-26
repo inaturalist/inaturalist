@@ -113395,12 +113395,12 @@
 	  _createClass(TaxonCrumbs, [{
 	    key: "showAncestors",
 	    value: function showAncestors() {
-	      this.setState({ ancestorsShown: true });
+	      this.setState({ ancestorsShown: true, childrenShown: false });
 	    }
 	  }, {
 	    key: "hideAncestors",
 	    value: function hideAncestors() {
-	      this.setState({ ancestorsShown: false });
+	      this.setState({ ancestorsShown: false, childrenShown: false });
 	    }
 	  }, {
 	    key: "showChildren",
@@ -113463,32 +113463,44 @@
 	          )
 	        );
 	      }
-	      var descendants = void 0;
-	      if (children && children.length > 0) {
-	        descendants = _react2.default.createElement(
-	          _reactBootstrap.OverlayTrigger,
-	          {
-	            trigger: "click",
-	            placement: "bottom",
-	            overlay: _react2.default.createElement(
-	              _reactBootstrap.Popover,
-	              { id: "taxon-crumbs-children" },
-	              children.map(function (t) {
-	                return _react2.default.createElement(
-	                  "div",
-	                  { className: "child", key: "taxon-crumbs-children-" + t.id },
-	                  _react2.default.createElement(_split_taxon2.default, { taxon: t, url: (0, _util.urlForTaxon)(t), forceRank: true })
-	                );
-	              })
+	      var crumbTaxon = function crumbTaxon(targetTaxon) {
+	        var descendants = void 0;
+	        if (taxon.children && taxon.children.length > 0) {
+	          descendants = _react2.default.createElement(
+	            _reactBootstrap.OverlayTrigger,
+	            {
+	              trigger: "click",
+	              placement: "bottom",
+	              rootClose: true,
+	              overlay: _react2.default.createElement(
+	                _reactBootstrap.Popover,
+	                {
+	                  id: "taxon-crumbs-children-" + targetTaxon.id,
+	                  className: "taxon-crumbs-children"
+	                },
+	                children.map(function (t) {
+	                  return _react2.default.createElement(
+	                    "div",
+	                    { className: "child", key: "taxon-crumbs-children-" + t.id },
+	                    _react2.default.createElement(_split_taxon2.default, { taxon: t, url: (0, _util.urlForTaxon)(t), forceRank: true })
+	                  );
+	                })
+	              )
+	            },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsSize: "xs", bsStyle: "link" },
+	              _react2.default.createElement("i", { className: "fa fa-caret-down" })
 	            )
-	          },
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { bsSize: "xs", bsStyle: "link" },
-	            _react2.default.createElement("i", { className: "fa fa-caret-down" })
-	          )
+	          );
+	        }
+	        return _react2.default.createElement(
+	          "span",
+	          null,
+	          _react2.default.createElement(_split_taxon2.default, { taxon: targetTaxon }),
+	          descendants
 	        );
-	      }
+	      };
 	      return _react2.default.createElement(
 	        "ul",
 	        { className: "TaxonCrumbs inline " + (this.state.ancestorsShown ? "expanded" : "contracted") },
@@ -113518,8 +113530,7 @@
 	        _react2.default.createElement(
 	          "li",
 	          null,
-	          _react2.default.createElement(_split_taxon2.default, { taxon: taxon }),
-	          descendants,
+	          crumbTaxon(taxon),
 	          contractControl
 	        )
 	      );
