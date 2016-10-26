@@ -54,6 +54,10 @@ class PhotoPreview extends React.Component {
         />
       );
     }
+    const taxonPhotos = this.state.taxonPhotos;
+    if ( taxonPhotos.length === 1 ) {
+      taxonPhotos.pop( );
+    }
     return (
       <div className={`PhotoPreview ${layout}`}>
         { currentPhoto }

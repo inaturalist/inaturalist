@@ -611,11 +611,12 @@ $nav-btn-dim: 40px;
 }
 .PhotoModal .modal-content {
   height: 90%;
-  padding: 20px;
+  padding: 0px;
 }
 .PhotoModal .SplitTaxon {
   font-size: 130%;
-  display: block;
+  display: inline-block;
+  margin-right: 10px;
 }
 .PhotoModal .SplitTaxon a {
   color: black;
@@ -627,16 +628,48 @@ $nav-btn-dim: 40px;
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
+}
+.PhotoModal .photo-modal-content:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px;
+  background-color: black;
 }
 .PhotoModal .photo-modal-content .photo-container {
   flex-grow: 2;
+  padding: 20px;
 }
-.PhotoModal .photo-modal-content .container-fluid {
+.PhotoModal .photo-modal-content .photo-attribution {
+  padding: 10px;
+  background-color: black;
+  color: #ccc;
+  text-align: center;
+  font-size: smaller;
+}
+.PhotoModal .photo-modal-content .photo-attribution a {
+  color: white;
+}
+.PhotoModal .photo-modal-content .photo-attribution > * {
+  border-left: 1px solid #666;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.PhotoModal .photo-modal-content .photo-attribution > *:first-child {
+  border: 0 transparent;
+  padding: 0;
+  margin: 0;
+}
+.PhotoModal .photo-modal-content .taxon-content {
   width: 100%;
   line-height: 1.2;
-  margin-top: 10px;
+  padding: 20px;
 }
-
+.PhotoModal .taxon-link i {
+  font-size: 200%;
+  color: $inat-green;
+}
 .curation-tab .dropdown {
   float: right;
 }

@@ -91422,6 +91422,10 @@
 	          height: 550
 	        });
 	      }
+	      var taxonPhotos = this.state.taxonPhotos;
+	      if (taxonPhotos.length === 1) {
+	        taxonPhotos.pop();
+	      }
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "PhotoPreview " + layout },
@@ -113063,6 +113067,7 @@
 	var PhotoModal = function PhotoModal(_ref) {
 	  var photo = _ref.photo;
 	  var taxon = _ref.taxon;
+	  var observation = _ref.observation;
 	  var visible = _ref.visible;
 	  var onClose = _ref.onClose;
 	  var showNext = _ref.showNext;
@@ -113073,51 +113078,76 @@
 	    { className: "text-center text-muted" },
 	    I18n.t("no_photo")
 	  );
+	  var photoAttribution = void 0;
 	  if (photo) {
+	    var obsLink = void 0;
+	    if (observation) {
+	      obsLink = _react2.default.createElement(
+	        "a",
+	        { href: "/observations/" + observation.id },
+	        I18n.t("observation")
+	      );
+	    }
+	    photoAttribution = _react2.default.createElement(
+	      "div",
+	      { className: "photo-attribution" },
+	      _react2.default.createElement(
+	        "span",
+	        null,
+	        photo.attribution
+	      ),
+	      _react2.default.createElement(
+	        "a",
+	        { href: "/photos/" + photo.id },
+	        I18n.t("details")
+	      ),
+	      obsLink
+	    );
 	    photoContent = _react2.default.createElement("div", {
 	      className: "photo-container",
 	      style: {
-	        height: "100%",
 	        backgroundSize: "contain",
 	        backgroundPosition: "center",
 	        backgroundImage: "url(" + photo.photoUrl("large") + ")",
-	        backgroundRepeat: "no-repeat"
+	        backgroundRepeat: "no-repeat",
+	        position: "relative",
+	        backgroundColor: "black"
 	      }
 	    });
 	  }
 	  var taxonContent = void 0;
 	  if (taxon) {
 	    taxonContent = _react2.default.createElement(
-	      _reactBootstrap.Grid,
-	      { fluid: true },
+	      "div",
+	      { className: "taxon-content" },
 	      _react2.default.createElement(
-	        _reactBootstrap.Row,
-	        null,
+	        _reactBootstrap.Grid,
+	        { fluid: true },
 	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { xs: 12 },
+	          _reactBootstrap.Row,
+	          null,
 	          _react2.default.createElement(
-	            "a",
-	            {
-	              href: "",
-	              onClick: function onClick(e) {
-	                e.preventDefault();
-	                alert("TODO");
-	                return false;
+	            _reactBootstrap.Col,
+	            { xs: 12 },
+	            _react2.default.createElement(
+	              "a",
+	              {
+	                href: "",
+	                onClick: function onClick(e) {
+	                  e.preventDefault();
+	                  alert("TODO");
+	                  return false;
+	                },
+	                className: "btn btn-link text-center pull-right"
 	              },
-	              className: "btn btn-primary text-center pull-right"
-	            },
-	            _react2.default.createElement("i", { className: "fa fa-picture-o" }),
-	            " ",
-	            I18n.t("more_photos_of_this_species")
-	          ),
-	          _react2.default.createElement(_split_taxon2.default, { taxon: taxon, url: (0, _util.urlForTaxon)(taxon) }),
-	          _react2.default.createElement(
-	            "a",
-	            { href: (0, _util.urlForTaxon)(taxon) },
-	            _react2.default.createElement("i", { className: "fa fa-info-circle" }),
-	            " ",
-	            I18n.t("about")
+	              I18n.t("more_photos")
+	            ),
+	            _react2.default.createElement(_split_taxon2.default, { taxon: taxon, url: (0, _util.urlForTaxon)(taxon) }),
+	            _react2.default.createElement(
+	              "a",
+	              { href: (0, _util.urlForTaxon)(taxon), className: "taxon-link" },
+	              _react2.default.createElement("i", { className: "fa fa-arrow-circle-right" })
+	            )
 	          )
 	        )
 	      )
@@ -113149,6 +113179,7 @@
 	      "div",
 	      { className: "photo-modal-content" },
 	      photoContent,
+	      photoAttribution,
 	      taxonContent
 	    )
 	  );
@@ -113157,6 +113188,7 @@
 	PhotoModal.propTypes = {
 	  photo: _react.PropTypes.object,
 	  taxon: _react.PropTypes.object,
+	  observation: _react.PropTypes.object,
 	  visible: _react.PropTypes.bool,
 	  onClose: _react.PropTypes.func,
 	  showNext: _react.PropTypes.func,
