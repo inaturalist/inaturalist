@@ -101,17 +101,17 @@ describe ListedTaxaController, "destroy" do
     atlas_place_check_list = List.find(atlas_place.check_list_id)
     @user = User.make!
     check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
+    @other_user = make_admin
     atlas = Atlas.make!(user: @other_user, taxon: taxon)
     expect(check_listed_taxon.is_atlased?).to be true  
-    admin = make_admin
-    http_login(admin)
+    http_login(@other_user)
     delete :destroy, :format => :json, :id => check_listed_taxon.id
     expect(ListedTaxon.find_by_id(check_listed_taxon.id)).to be_blank  
     expect(AtlasAlteration.where(
       atlas_id: atlas.id,
-      user_id: admin.id,
+      user_id: @other_user.id,
       place_id: atlas_place.id,
-      action: "destroyed"
+      action: "unlisted"
     ).first).not_to be_blank
   end
 end
