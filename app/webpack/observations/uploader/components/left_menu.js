@@ -2,7 +2,7 @@ import _ from "lodash";
 import moment from "moment-timezone";
 import React, { PropTypes } from "react";
 import { Input, Glyphicon, Accordion, Panel, Badge } from "react-bootstrap";
-import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
+import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
 import ObservationFieldsChooser from "./observation_fields_chooser";

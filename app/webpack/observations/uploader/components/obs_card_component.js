@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
-import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
+import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
 import _ from "lodash";
 import moment from "moment-timezone";
