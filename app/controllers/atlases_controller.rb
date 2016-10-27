@@ -22,7 +22,7 @@ class AtlasesController < ApplicationController
         @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse
         @atlas_place_json = {
           type: "FeatureCollection", 
-          features: @atlas_places.map{|p| 
+          features: @atlas_places.select{|p| !(p.name == "Antarctica" && p.admin_level = 0) }.map{|p| 
             {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, name: p.name, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
           }
         }
