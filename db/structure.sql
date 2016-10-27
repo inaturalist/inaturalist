@@ -6302,7 +6302,7 @@ CREATE INDEX index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i ON 
 -- Name: index_listed_taxa_on_list_id_and_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_listed_taxa_on_list_id_and_taxon_id ON listed_taxa USING btree (list_id, taxon_id);
+CREATE INDEX index_listed_taxa_on_list_id_and_taxon_id ON listed_taxa USING btree (list_id, taxon_id);
 
 
 --
@@ -8346,5 +8346,4 @@ INSERT INTO schema_migrations (version) VALUES ('20161012202803');
 
 INSERT INTO schema_migrations (version) VALUES ('20161012204604');
 
-INSERT INTO schema_migrations (version) VALUES ('20161021233858');
 
