@@ -547,7 +547,7 @@ class Observation < ActiveRecord::Base
     sort_order = (p[:order] || "desc").downcase.to_sym
     sort = case p[:order_by]
     when "observed_on"
-      { observed_on: sort_order }
+      { observed_on: sort_order, time_observed_at: sort_order }
     when "species_guess"
       { species_guess: sort_order }
     when "votes"
