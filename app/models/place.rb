@@ -27,6 +27,7 @@ class Place < ActiveRecord::Base
   
   before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
+  after_save :reindex_projects_later, if: Proc.new { |place| place.ancestry_changed? }
   
   validates_presence_of :latitude, :longitude
   validates_numericality_of :latitude,
@@ -453,6 +454,11 @@ class Place < ActiveRecord::Base
           check_list.errors.full_messages.join(', ')
       end
     end
+    true
+  end
+
+  def reindex_projects_later
+    Project.elastic_index!( scope: Project.in_place( id ), delay: true )
     true
   end
 
