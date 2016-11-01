@@ -139,7 +139,7 @@ module DarwinCore
       fake_view = FakeView.new
       
       preloads = [
-        :taxon, 
+        { taxon: :ancestor_taxa }, 
         { user: :stored_preferences }, 
         :quality_metrics, 
         :identifications,
