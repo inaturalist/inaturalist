@@ -1425,7 +1425,8 @@ class Observation < ActiveRecord::Base
 
   def get_community_taxon(options = {})
     return if (identifications.loaded? ?
-      identifications.select(&:current?) : identifications.current).count <= 1
+      identifications.select(&:current?).select(&:persisted?) :
+      identifications.current).count <= 1
     node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
       [
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
@@ -1457,7 +1458,8 @@ class Observation < ActiveRecord::Base
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
     # work on current identifications
     ids = identifications.loaded? ?
-      identifications.select(&:current?) : identifications.current.includes(:taxon)
+      identifications.select(&:current?).select(&:persisted?) :
+      identifications.current.includes(:taxon)
     working_idents = ids.sort_by(&:id)
 
     # load all ancestor taxa implied by identifications

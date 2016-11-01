@@ -2086,6 +2086,9 @@ describe Observation do
   end
 
   describe "update_stats_for_observations_of" do
+    before(:each) { enable_elastic_indexing(Identification) }
+    after(:each) { disable_elastic_indexing(Identification) }
+
     it "should work" do
       parent = Taxon.make!
       child = Taxon.make!
