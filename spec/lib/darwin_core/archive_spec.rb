@@ -188,8 +188,8 @@ describe DarwinCore::Archive, "make_project_observations_data" do
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:each) { enable_elastic_indexing( Observation, Project, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Project, Taxon ) }
 
   it "should filter by taxon" do
     parent = Taxon.make!(rank: Taxon::GENUS)
@@ -233,6 +233,19 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).to include o_cc_by.id
     expect( ids ).to include o_cc0.id
     expect( ids ).not_to include o_cc_by_nd.id
+  end
+
+  it "should filter by project" do
+    in_project = make_research_grade_observation
+    po_in_project = ProjectObservation.make!( observation: in_project )
+    not_in_project = make_research_grade_observation
+    po_not_in_project = ProjectObservation.make!( observation: not_in_project )
+    expect( po_in_project.project ).not_to eq po_not_in_project.project
+    expect( po_in_project.project.observations ).not_to include not_in_project
+    archive = DarwinCore::Archive.new( project: po_in_project.project )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include in_project.id
+    expect( ids ).not_to include not_in_project.id
   end
 
   it "should set the license to a URI" do

@@ -31,6 +31,12 @@ module DarwinCore
         ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.find_by_name(@opts[:taxon])
       end
       logger.debug "Found taxon: #{@taxon}"
+      @project = if @opts[:project].is_a?(::Project)
+        @opts[:project]
+      else
+        ::Project.find( @opts[:project] ) rescue nil
+      end
+      logger.debug "Found project: #{@project}"
       logger.debug "Photo licenses: #{@opts[:photo_licenses].inspect}"
     end
 
@@ -120,6 +126,7 @@ module DarwinCore
       params = { license: @opts[ :licenses ] }
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
+      params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality]
       params[:site_id] = @opts[:site_id]
       params
