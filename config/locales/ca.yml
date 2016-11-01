@@ -2567,7 +2567,7 @@ ca:
       drainage: drenatge
       Estate: Immoble
       estate: immoble
-      Governorate: Governorat
+      Governorate: Districte
       governorate: governorat
       Historical_County: País històric
       historical_county: país històric
@@ -4672,7 +4672,7 @@ ca:
           </ul>
           <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
           <ul>
-            <li>la comunitat de %{site_name} <strong>està d'acord amb la ID donada per l'observador</strong>, on estar "d'acord" amb la identificació significa que es coincideix exactament o que és un tàxon fill de la ID de l'observador. Per exemple, si Joan diu que és un mamífer i Josep diu que és <em>Homo sapiens</em>, llavors Josep està d'acord amb Joan.</li>
+            <li>la comunitat de %{site_name} <strong>està d'acord amb la ID donada a nivell específic o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acuerdo amb el taxon</li>
           </ul>
           <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>
           <ul>
