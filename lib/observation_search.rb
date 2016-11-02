@@ -603,7 +603,8 @@ module ObservationSearch
       # We've started running into memory problems with ES not being able to
       # handle some aggregates on a large scale. We will query for users in
       # batches of 10,000, so if there are fewer than that we can query now.
-      if( options[:count_users] && options[:count_users] <= aggregation_user_limit )
+      if( options[:batch] == false ||
+          (options[:count_users] && options[:count_users] <= aggregation_user_limit) )
         return elastic_user_taxon_counts_batch(elastic_params, options)
       end
       # fetch a list of every user_id whose observations match the search

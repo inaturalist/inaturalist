@@ -1939,7 +1939,7 @@ class Observation < ActiveRecord::Base
         obs: {
           terms: { field: "observation.id", size: 0 }
         }
-      },
+      }
     )
     obs_ids = result.response.aggregations.obs.buckets.map{ |b| b[:key] }
     obs_ids.in_groups_of(1000) do |batch_ids|
