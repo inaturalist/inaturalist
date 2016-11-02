@@ -1425,7 +1425,7 @@ class Observation < ActiveRecord::Base
 
   def get_community_taxon(options = {})
     return if (identifications.loaded? ?
-      identifications.select(&:current?).select(&:persisted?) :
+      identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current).count <= 1
     node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
       [
@@ -1458,7 +1458,7 @@ class Observation < ActiveRecord::Base
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
     # work on current identifications
     ids = identifications.loaded? ?
-      identifications.select(&:current?).select(&:persisted?) :
+      identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
     working_idents = ids.sort_by(&:id)
 
