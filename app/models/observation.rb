@@ -719,9 +719,9 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def serializable_hash(options = nil)
+  def serializable_hash(opts = nil)
     # for some reason, in some cases options was still nil
-    options ||= { }
+    options = opts ? opts.clone : { }
     # making a deep copy of the options so they don't get modified
     # This was more effective than options.deep_dup
     if options[:include] && (options[:include].is_a?(Hash) || options[:include].is_a?(Array))

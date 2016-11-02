@@ -871,8 +871,8 @@ class Place < ActiveRecord::Base
     "place_guide_#{id}"
   end
   
-  def serializable_hash(options = nil)
-    options ||= { }
+  def serializable_hash(opts = nil)
+    options = opts ? opts.clone : { }
     options[:methods] ||= []
     options[:methods] << :place_type_name
     options[:except] ||= []
