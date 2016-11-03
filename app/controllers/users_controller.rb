@@ -438,7 +438,8 @@ class UsersController < ApplicationController
   
   def dashboard
     @has_updates = (current_user.recent_notifications.count > 0)
-    @local_onboarding_content = get_local_onboarding_content
+    # onboarding content not shown in the dashboard if a user has updates
+    @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
     respond_to do |format|
       format.html do
         scope = Announcement.
