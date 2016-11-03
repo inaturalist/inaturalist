@@ -108,6 +108,19 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
+  describe "with photo_license is any" do
+    it "should include CC_BY images" do
+      expect( p.license ).to eq Photo::CC_BY
+      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["any"])
+      expect( CSV.read(archive.make_simple_multimedia_data).size ).to eq 2
+    end
+    it "should include unlicensed images" do
+      p.update_attributes( license: nil )
+      expect( p.license ).to eq Photo::COPYRIGHT
+      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["any"])
+      expect( CSV.read(archive.make_simple_multimedia_data).size ).to eq 2
+    end
+  end
 end
 
 describe DarwinCore::Archive, "make_observation_fields_data" do

@@ -233,7 +233,7 @@ module DarwinCore
       tmp_path = File.join(@work_path, fname)
       
       params = observations_params
-      if @opts[:photo_licenses]
+      if @opts[:photo_licenses] && !@opts[:photo_licenses].include?( "any" )
         params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
       end
       params[:photo_license] ||= 'any'
