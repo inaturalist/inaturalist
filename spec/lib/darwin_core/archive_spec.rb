@@ -52,8 +52,8 @@ describe DarwinCore::Archive, "make_descriptor" do
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   let(:o) { make_research_grade_observation }
   let(:p) { 
@@ -108,16 +108,17 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
-  describe "with photo_license is any" do
+  describe "with photo_license is ignore" do
     it "should include CC_BY images" do
       expect( p.license ).to eq Photo::CC_BY
-      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["any"])
+      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["ignore"])
       expect( CSV.read(archive.make_simple_multimedia_data).size ).to eq 2
     end
     it "should include unlicensed images" do
-      p.update_attributes( license: nil )
+      without_delay { p.update_attributes( license: nil ) }
       expect( p.license ).to eq Photo::COPYRIGHT
-      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["any"])
+      p.observations.each(&:elastic_index!)
+      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["ignore"])
       expect( CSV.read(archive.make_simple_multimedia_data).size ).to eq 2
     end
   end
@@ -246,6 +247,15 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).to include o_cc_by.id
     expect( ids ).to include o_cc0.id
     expect( ids ).not_to include o_cc_by_nd.id
+  end
+
+  it "should include unlicensed observations when licenses is ignore" do
+    o = make_research_grade_observation
+    without_delay { o.update_attributes( license: nil ) }
+    expect( o.license ).to be_blank
+    archive = DarwinCore::Archive.new( licenses: [ "ignore" ] )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include o.id
   end
 
   it "should filter by project" do

@@ -123,7 +123,8 @@ module DarwinCore
     end
 
     def observations_params
-      params = { license: @opts[ :licenses ] }
+      params = {}
+      params[:license] = @opts[:licenses] unless @opts[:licenses].include?( "ignore" )
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
       params[:projects] = [@project.id] if @project
@@ -233,10 +234,12 @@ module DarwinCore
       tmp_path = File.join(@work_path, fname)
       
       params = observations_params
-      if @opts[:photo_licenses] && !@opts[:photo_licenses].include?( "any" )
-        params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
+      unless @opts[:photo_licenses].include?( "ignore")
+        if @opts[:photo_licenses] && !@opts[:photo_licenses].include?( "any" )
+          params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
+        end
+        params[:photo_license] ||= 'any'
       end
-      params[:photo_license] ||= 'any'
       params[:has] = [params[:has], 'photos'].flatten.compact
       preloads = [{observation_photos: {photo: :user}}]
       
