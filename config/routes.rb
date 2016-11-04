@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root :to => 'welcome#index'
 
   get "/set_locale", to: "application#set_locale", as: :set_locale
+  get "/terms", to: redirect( "/pages/terms" )
+  get "/privacy", to: redirect( "/pages/privacy" )
 
   resources :guide_sections do
     collection do
