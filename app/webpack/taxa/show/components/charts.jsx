@@ -23,7 +23,8 @@ class Charts extends React.Component {
             bottom: 0
           },
           tick: {
-            outer: false
+            outer: false,
+            format: d => I18n.toNumber( d, { precision: 0 } )
           }
         }
       },

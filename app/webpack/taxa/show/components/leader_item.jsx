@@ -17,25 +17,27 @@ const LeaderItem = ( {
 } ) => {
   const extraContent = (
     <div className="extra">
-      {
-        valueIconClassName ? <i className={valueIconClassName} /> : extra
-      } {
-        value ? <span className="value">{ value }</span> : null
-      } <a
+      <a
         href={linkUrl}
+        className="btn btn-primary btn-inat btn-xs"
       >
         { linkText }
-      </a>
+      </a> {
+        valueIconClassName ? <i className={valueIconClassName} /> : extra
+      } {
+        value ? <span className="value">{ I18n.toNumber( value, { precision: 0 } ) }</span> : null
+      }
     </div>
   );
   return (
     <div className={`LeaderItem media ${noContent ? "no-content" : ""} ${className}`}>
+      <div className="item-label">{ label }</div>
       <div className="media-left">
-        <div className="img-wrapper">
+        <div className={`img-wrapper ${imageUrl ? "photo" : "no-photo"}`}>
           <a href={url}>
             {
               imageUrl ?
-              <CoverImage src={imageUrl} height={45} />
+              <CoverImage src={imageUrl} height={56} />
               :
               <i className={iconClassName} />
             }
@@ -43,7 +45,6 @@ const LeaderItem = ( {
         </div>
       </div>
       <div className="media-body">
-        <div className="item-label">{ label }</div>
         <h4 className="name"><a href={url}>{ name }</a></h4>
         { noContent ? null : extraContent }
       </div>

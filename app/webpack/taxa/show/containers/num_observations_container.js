@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import LeaderItem from "../components/leader_item";
+import _ from "lodash";
 
 function mapStateToProps( state ) {
   const count = state.observations.total;
@@ -9,14 +10,14 @@ function mapStateToProps( state ) {
     className: "NumObservations",
     label: I18n.t( "total_observations" ),
     name: 0,
-    linkText: I18n.t( "view" ),
+    linkText: _.startCase( I18n.t( "view_all" ) ),
     noContent: true
   };
   if ( !count ) {
     return props;
   }
   return Object.assign( props, {
-    name: count,
+    name: I18n.toNumber( count, { precision: 0 } ),
     linkUrl: `/observations?taxon_id=${taxon.id}`,
     noContent: false
   } );

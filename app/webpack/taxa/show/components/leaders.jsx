@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import TopObserverContainer from "../containers/top_observer_container";
 import TopIdentifierContainer from "../containers/top_identifier_container";
 import TopSpeciesContainer from "../containers/top_species_container";
-import FirstObserverContainer from "../containers/first_observer_container";
+import FirstObservationContainer from "../containers/first_observation_container";
 import NumObservationsContainer from "../containers/num_observations_container";
 
 const Leaders = ( { taxon } ) => (
@@ -18,7 +18,7 @@ const Leaders = ( { taxon } ) => (
     </Row>
     <Row>
       <Col xs={6}>
-        { taxon.rank_level > 10 ? <TopSpeciesContainer /> : <FirstObserverContainer /> }
+        { taxon.rank_level > 10 ? <TopSpeciesContainer /> : <FirstObservationContainer /> }
       </Col>
       <Col xs={6}>
         <NumObservationsContainer />

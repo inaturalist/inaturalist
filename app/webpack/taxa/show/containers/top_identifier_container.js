@@ -8,10 +8,11 @@ function mapStateToProps( state ) {
   const props = {
     label: I18n.t( "top_identifier" ),
     iconClassName: "icon-person",
-    valueIconClassName: "fa fa-binoculars",
+    valueIconClassName: "icon-identification",
     linkText: I18n.t( "leaderboard" ),
     name: I18n.t( "no_identifications" ),
-    noContent: true
+    noContent: true,
+    className: "TopIdentifier"
   };
   if ( !leader || !leader.user ) {
     return props;

@@ -42,14 +42,19 @@ class PhotoPreview extends React.Component {
       return (
         <div className="PhotoPreview no-content text-center text-muted">
           <div>
-            { I18n.t( "this_taxon_has_no_default_photo" ) } <a
+            <h3>
+              { I18n.t( "this_taxon_has_no_default_photo" ) }
+            </h3>
+            <a
               href={`/taxa/${this.props.taxon.id}/edit_photos`}
-              onClick={ ( ) => {
+              className="btn btn-primary"
+              onClick={ e => {
+                e.preventDefault( );
                 alert( "TODO" );
                 return false;
               } }
             >
-              { I18n.t( "want_to_add_one" ) }
+              { I18n.t( "add_one_now" ) }
             </a>
           </div>
         </div>

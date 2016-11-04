@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import LeaderItem from "../components/leader_item";
 import { urlForTaxon } from "../util";
+import _ from "lodash";
 
 function mapStateToProps( state ) {
   const leader = state.leaders.topSpecies;
@@ -8,9 +9,9 @@ function mapStateToProps( state ) {
     label: I18n.t( "top_species" ),
     noContent: true,
     iconClassName: "icon-iconic-unknown",
-    valueIconClassName: "fa fa-binoculars",
     linkText: I18n.t( "observations" ),
-    name: I18n.t( "no_species_observed" )
+    name: I18n.t( "no_species_observed" ),
+    className: "TopSpecies"
   };
   if ( !leader || !leader.taxon ) {
     return props;
@@ -25,7 +26,9 @@ function mapStateToProps( state ) {
   return Object.assign( props, {
     name: leader.taxon.preferred_common_name || leader.taxon.name,
     imageUrl,
-    value: leader.count,
+    linkText: _.startCase( I18n.t( "x_observations", {
+      count: leader.count === 1 ? leader.count : I18n.toNumber( leader.count, { precision: 0 } )
+    } ) ),
     linkUrl: `/observations?taxon_id=${leader.taxon.id}`,
     url: urlForTaxon( leader.taxon )
   } );

@@ -55,7 +55,9 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
         <Col xs={4}>
           <ul className="tab-links list-group">
             <li className="list-group-item internal">
-              <span className="badge">{ taxonChangesCount }</span>
+              <span className="badge">
+                { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
+              </span>
               <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
                 <i className="fa fa-random accessory-icon"></i>
                 { I18n.t( "taxon_changes" ) }
@@ -63,7 +65,9 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
             </li>
             <li className="list-group-item internal">
               <a href={`/taxa/${taxon.id}/schemes`}>
-                <span className="badge pull-right">{ taxonSchemesCount }</span>
+                <span className="badge pull-right">
+                  { I18n.toNumber( taxonSchemesCount, { precision: 0 } ) }
+                </span>
                 <i className="glyphicon glyphicon-list-alt accessory-icon"></i>
                 { I18n.t( "taxon_schemes" ) }
               </a>
