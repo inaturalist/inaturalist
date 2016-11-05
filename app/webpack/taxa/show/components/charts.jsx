@@ -10,8 +10,12 @@ class Charts extends React.Component {
     this.defaultC3Config = {
       data: {
         colors: {
-          verifiable: "#aaaaaa",
+          verifiable: "#dddddd",
           research: "#74ac00"
+        },
+        types: {
+          verifiable: "line",
+          research: "area"
         }
       },
       axis: {
@@ -32,7 +36,12 @@ class Charts extends React.Component {
         show: false
       },
       point: {
-        show: false
+        r: 3,
+        focus: {
+          expand: {
+            r: 4
+          }
+        }
       }
     };
   }
@@ -83,12 +92,27 @@ class Charts extends React.Component {
       this.renderHistoryChart( );
     }
   }
+  tooltipContent( d, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
+    return `
+      <div class="frequency-chart-tooltip">
+        <div class="title">${tipTitle}</div>
+        ${d.map( item => `
+          <div>
+            <span class="swatch" style="background-color: ${color( item )}"></span>
+            <span class="column-label">${item.name}:</span>
+            <span class="value">${I18n.toNumber( item.value, { precision: 0 } )}</span>
+          </div>
+        ` ).join( "" )}
+      </div>
+    `;
+  }
   renderSeasonalityChart( ) {
     const verifiableFrequency = this.props.monthOfYearFrequency.verifiable || {};
     const researchFrequency = this.props.monthOfYearFrequency.research || {};
     const keys = _.keys(
       verifiableFrequency
     ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
+    const that = this;
     const config = _.defaultsDeep( { }, this.defaultC3Config, {
       data: {
         columns: [
@@ -103,10 +127,10 @@ class Charts extends React.Component {
         }
       },
       tooltip: {
-        format: {
-          title: i => `${I18n.t( "date.month_names" )[i + 1].toUpperCase( )} ${I18n.t( "observations" ).toUpperCase( )}`,
-          name: name => I18n.t( name )
-        }
+        contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
+          d, defaultTitleFormat, defaultValueFormat, color,
+          `${I18n.t( "observations_total" )}: ${I18n.t( "date.month_names" )[d[0].index + 1]}`
+        )
       }
     } );
     const mountNode = $( ".SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
@@ -118,6 +142,7 @@ class Charts extends React.Component {
     const dates = _.keys( verifiableFrequency ).sort( );
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
     const chunks = _.chunk( years, 2 );
+    const that = this;
     const regions = chunks.map( pair => (
       {
         start: `${pair[0]}-01-01`,
@@ -149,10 +174,12 @@ class Charts extends React.Component {
         rescale: true
       },
       tooltip: {
-        format: {
-          title: d => `${I18n.t( "date.abbr_month_names" )[d.getMonth( ) + 1].toUpperCase( )} ${d.getFullYear( )} ${I18n.t( "observations" ).toUpperCase( )}`,
-          name: name => I18n.t( name )
-        }
+        contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
+          d, defaultTitleFormat, defaultValueFormat, color,
+          `${I18n.t( "observations_total" )}:
+          ${I18n.t( "date.abbr_month_names" )[d[0].x.getMonth( ) + 1]}
+          ${d[0].x.getFullYear( )}`
+        )
       },
       regions
     } );

@@ -42,9 +42,8 @@
 }
 
 #charts {
-  background-color: #e6e6e6;
+  background-color: transparent;
   border-radius: 4px 4px 0 0;
-  border: 1px solid #ddd;
 }
 
 #charts a {
@@ -54,9 +53,6 @@
 #charts .nav-tabs {
   margin-bottom: 0;
   margin-top: -1px;
-}
-#charts .nav-tabs > li {
-  margin-left: -1px;
 }
 #charts .tab-pane {
   position: relative;
@@ -71,8 +67,16 @@
 #charts .tab-content {
   background-color: white;
   padding: 20px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
+#charts a[role="tab"]:hover {
+  background-color: white;
+  opacity: 1;
+}
+#charts a,
 #charts a:focus,
 #charts a:active {   
   border-color: none;
@@ -81,7 +85,7 @@
 }
 
 .SeasonalityChart .c3-line {
-  stroke-width: 3px;
+  stroke-width: 2px;
 }
 .FrequencyChart .c3-axis line,
 .FrequencyChart .c3-axis path {
@@ -95,20 +99,51 @@
    display: none;
 }
 
-.SeasonalityChart .c3-target-verifiable path {
-  stroke-dasharray: 5, 5;
-}
-.HistoryChart .c3-target-verifiable path {
-  stroke-dasharray: 1, 1;
-}
-
 .FrequencyChart .c3-region {
   fill: #999;
   opacity: 1;
 }
 
+.FrequencyChart .c3-circle._expanded_ {
+  stroke-width: 7px;
+  stroke: transparentize( $inat-green, 0.6 );
+  stroke-location: outside;
+}
+
+.FrequencyChart .c3-target-verifiable .c3-circle._expanded_ {
+  stroke: transparentize( #ddd, 0.6 );
+}
+
+.frequency-chart-tooltip {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px #aaa;
+  background-color: white;
+}
+.frequency-chart-tooltip .swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
+}
+.frequency-chart-tooltip .title {
+  font-weight: bold;
+}
+.frequency-chart-tooltip .column-label {
+  text-transform: capitalize;
+}
+.frequency-chart-tooltip .value {
+  font-weight: bold;
+}
+
 .TaxonMap {
   height: 600px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
 }
 
 .TaxonCrumbs {

@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 
 const TaxonPageMap = ( { taxon } ) => {
@@ -15,7 +16,6 @@ const TaxonPageMap = ( { taxon } ) => {
     }
     taxonMap = (
       <TaxonMap
-        scrollwheel={false}
         showAllLayer={false}
         minZoom={2}
         gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
@@ -33,8 +33,14 @@ const TaxonPageMap = ( { taxon } ) => {
   }
   return (
     <div className="TaxonPageMap">
-      { loading }
-      { taxonMap }
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            { loading }
+            { taxonMap }
+          </Col>
+        </Row>
+      </Grid>
     </div>
   );
 };
