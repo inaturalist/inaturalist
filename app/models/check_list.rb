@@ -301,7 +301,7 @@ class CheckList < List
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
       if atlas = Atlas.where(taxon_id: observation.taxon_id).first
-        new_place_id = new_place_id - atlas.places.map(&:id)
+        new_place_ids = new_place_ids - atlas.places.map(&:id)
       end
       add_new_listed_taxa(observation.taxon, new_place_ids)
     end
