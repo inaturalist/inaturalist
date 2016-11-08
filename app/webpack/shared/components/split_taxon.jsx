@@ -9,7 +9,8 @@ const SplitTaxon = ( {
   placeholder,
   displayClassName,
   forceRank,
-  showIcon
+  showIcon,
+  truncate
 } ) => {
   const LinkElement = url ? "a" : "span";
   let title = "";
@@ -19,7 +20,7 @@ const SplitTaxon = ( {
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
-      title = `${taxon.preferred_common_name} (${title})`;
+      title = `${taxon.preferred_common_name} (${_.trim( title )})`;
     }
   }
   const icon = ( ) => {
@@ -49,6 +50,9 @@ const SplitTaxon = ( {
     }
     return cssClass;
   };
+  const truncateText = text => (
+    truncate ? _.truncate( text, { length: truncate } ) : text
+  );
   const displayName = ( ) => {
     if ( taxon && taxon.preferred_common_name ) {
       return (
@@ -57,7 +61,7 @@ const SplitTaxon = ( {
           href={ url }
           target={ target }
         >
-          { taxon.preferred_common_name }
+          { truncateText( taxon.preferred_common_name ) }
         </LinkElement>
       );
     } else if ( !taxon ) {
@@ -113,7 +117,7 @@ const SplitTaxon = ( {
         target={ target }
       >
         { taxonRank( ) }
-        { taxon.name }
+        { truncateText( taxon.name ) }
       </LinkElement>
     );
   };
@@ -149,7 +153,8 @@ SplitTaxon.propTypes = {
   placeholder: PropTypes.string,
   displayClassName: PropTypes.string,
   forceRank: PropTypes.bool,
-  showIcon: PropTypes.bool
+  showIcon: PropTypes.bool,
+  truncate: PropTypes.number
 };
 SplitTaxon.defaultProps = {
   target: "_self"

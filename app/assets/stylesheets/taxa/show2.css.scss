@@ -151,7 +151,7 @@
   padding: 0;
   margin: 0 7px 0 0;
   line-height: 28px;
-  display: inline-block;
+  display: inline;
 }
 .TaxonCrumbs .inner {
   overflow: hidden;
@@ -480,6 +480,10 @@ $photoPreviewGridViewMoreHeight: 50px;
   content: '';
 }
 
+.TaxonomyTab h2 {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
 .TaxonomyTab .taxonomy {
   list-style: none;
 }
@@ -553,6 +557,7 @@ $photoPreviewGridViewMoreHeight: 50px;
 
 h2, h3, h4, h5 {
   text-transform: capitalize;
+  padding-bottom: 3px;
 }
 
 .StatusHeader strong {
@@ -630,6 +635,9 @@ $endangeredColor: #D12F19;
 .ArticlesTab .taxon_description_header {
   display: none;
 }
+.ArticlesTab h2 .fa-external-link {
+  font-size: 20px;
+}
 
 .HighlightsTab .trending,
 .HighlightsTab .rare {
@@ -642,8 +650,8 @@ $endangeredColor: #D12F19;
   vertical-align: top;
   text-align: center;
 }
-.HighlightsTab .trending i,
-.HighlightsTab .rare i {
+.HighlightsTab .trending .photo i,
+.HighlightsTab .rare .photo i {
   font-size: 100px;
 }
 .HighlightsTab .readmore {
@@ -683,6 +691,22 @@ $nav-btn-dim: 40px;
 }
 .HighlightsTab .next-btn:before {
   content: '\276F';
+}
+.HighlightsTab .viewall {
+  width: 100%;
+  height: 193px;
+  background-color: #333;
+  color: white;
+  display: block;
+  line-height: 193px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.HighlightsTab .viewall:hover,
+.HighlightsTab .viewall:focus {
+  color: white;
 }
 
 #main-tabs {

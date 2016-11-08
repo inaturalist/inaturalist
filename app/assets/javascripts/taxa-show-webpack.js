@@ -79521,6 +79521,7 @@
 	  var displayClassName = _ref.displayClassName;
 	  var forceRank = _ref.forceRank;
 	  var showIcon = _ref.showIcon;
+	  var truncate = _ref.truncate;
 
 	  var LinkElement = url ? "a" : "span";
 	  var title = "";
@@ -79530,7 +79531,7 @@
 	    }
 	    title += " " + taxon.name;
 	    if (taxon.preferred_common_name) {
-	      title = taxon.preferred_common_name + " (" + title + ")";
+	      title = taxon.preferred_common_name + " (" + _lodash2.default.trim(title) + ")";
 	    }
 	  }
 	  var icon = function icon() {
@@ -79560,6 +79561,9 @@
 	    }
 	    return cssClass;
 	  };
+	  var truncateText = function truncateText(text) {
+	    return truncate ? _lodash2.default.truncate(text, { length: truncate }) : text;
+	  };
 	  var displayName = function displayName() {
 	    if (taxon && taxon.preferred_common_name) {
 	      return _react2.default.createElement(
@@ -79569,7 +79573,7 @@
 	          href: url,
 	          target: target
 	        },
-	        taxon.preferred_common_name
+	        truncateText(taxon.preferred_common_name)
 	      );
 	    } else if (!taxon) {
 	      if (placeholder) {
@@ -79635,7 +79639,7 @@
 	        target: target
 	      },
 	      taxonRank(),
-	      taxon.name
+	      truncateText(taxon.name)
 	    );
 	  };
 	  var inactive = function inactive() {
@@ -79675,7 +79679,8 @@
 	  placeholder: _react.PropTypes.string,
 	  displayClassName: _react.PropTypes.string,
 	  forceRank: _react.PropTypes.bool,
-	  showIcon: _react.PropTypes.bool
+	  showIcon: _react.PropTypes.bool,
+	  truncate: _react.PropTypes.number
 	};
 	SplitTaxon.defaultProps = {
 	  target: "_self"
@@ -91173,7 +91178,7 @@
 	        { className: "preheader" },
 	        _react2.default.createElement(
 	          _reactBootstrap.Col,
-	          { xs: 12 },
+	          { xs: 8 },
 	          _react2.default.createElement(_taxon_crumbs2.default, {
 	            taxon: taxon,
 	            ancestors: taxon.ancestors,
@@ -91183,7 +91188,11 @@
 	            "a",
 	            { href: "/taxa/" + taxon.id + "-" + taxon.name.split(" ").join("-") },
 	            _react2.default.createElement("i", { className: "glyphicon glyphicon-link" })
-	          ),
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { xs: 4 },
 	          _react2.default.createElement(
 	            "div",
 	            { className: "pull-right" },
@@ -91938,7 +91947,6 @@
 	        show: false
 	      },
 	      point: {
-	        // show: false
 	        r: 3,
 	        focus: {
 	          expand: {
@@ -111557,7 +111565,9 @@
 	      taxa.map(function (t) {
 	        var className = "";
 	        var isRoot = t.id === tree[0].id;
-	        if (t.id === taxon.id) {
+	        var isTaxon = t.id === taxon.id;
+	        var shouldLinkToTaxon = !isRoot && !isTaxon;
+	        if (isTaxon) {
 	          className += "current";
 	        }
 	        if (isRoot) {
@@ -111566,13 +111576,13 @@
 	        return _react2.default.createElement(
 	          "li",
 	          { key: "taxonomy-" + t.id, className: className },
-	          _react2.default.createElement(_split_taxon2.default, { taxon: t, url: isRoot ? null : (0, _util.urlForTaxon)(t) }),
+	          _react2.default.createElement(_split_taxon2.default, { taxon: t, url: shouldLinkToTaxon ? (0, _util.urlForTaxon)(t) : null }),
 	          " ",
-	          isRoot ? null : _react2.default.createElement(
+	          shouldLinkToTaxon ? _react2.default.createElement(
 	            "a",
 	            { href: (0, _util.urlForTaxon)(t) },
 	            _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window" })
-	          ),
+	          ) : null,
 	          t.children && t.children.length > 0 ? renderTaxonomy(t.children) : null
 	        );
 	      })
@@ -111588,9 +111598,13 @@
 	      _reactBootstrap.Row,
 	      null,
 	      _react2.default.createElement(
-	        "h2",
-	        null,
-	        I18n.t("taxonomy")
+	        _reactBootstrap.Col,
+	        { xs: 12 },
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          I18n.t("taxonomy")
+	        )
 	      ),
 	      _react2.default.createElement(
 	        _reactBootstrap.Col,
@@ -111607,13 +111621,13 @@
 	            "li",
 	            { className: "list-group-item internal" },
 	            _react2.default.createElement(
-	              "span",
-	              { className: "badge" },
-	              I18n.toNumber(taxonChangesCount, { precision: 0 })
-	            ),
-	            _react2.default.createElement(
 	              "a",
 	              { href: "/taxon_changes?taxon_id=" + taxon.id },
+	              _react2.default.createElement(
+	                "span",
+	                { className: "badge pull-right" },
+	                I18n.toNumber(taxonChangesCount, { precision: 0 })
+	              ),
 	              _react2.default.createElement("i", { className: "fa fa-random accessory-icon" }),
 	              I18n.t("taxon_changes")
 	            )
@@ -111641,12 +111655,20 @@
 	      null,
 	      _react2.default.createElement(
 	        _reactBootstrap.Col,
-	        { xs: 8 },
+	        { xs: 12 },
 	        _react2.default.createElement(
 	          "h2",
 	          null,
 	          I18n.t("names")
-	        ),
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 8 },
 	        _react2.default.createElement(
 	          "table",
 	          { className: "table table-striped" },
@@ -111763,7 +111785,9 @@
 	};
 
 	TaxonomyTab.defaultProps = {
-	  names: []
+	  names: [],
+	  taxonChangesCount: 0,
+	  taxonSchemesCount: 0
 	};
 
 	exports.default = TaxonomyTab;
@@ -112210,31 +112234,48 @@
 	  var rareUrl = _ref.rareUrl;
 
 	  var trending = _react2.default.createElement(
-	    "p",
+	    "h2",
 	    { className: "text-muted text-center" },
-	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
-	    I18n.t("loading")
+	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
 	  );
-	  if (trendingTaxa) {
-	    trending = _react2.default.createElement(_carousel2.default, {
-	      title: I18n.t("trending"),
-	      url: trendingUrl,
-	      description: I18n.t("views.taxa.show.trending_desc"),
-	      noContent: I18n.t("views.taxa.show.no_trending_desc"),
-	      items: _lodash2.default.chunk(trendingTaxa, 6).map(function (chunk) {
-	        return _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          chunk.map(function (taxon) {
-	            return _react2.default.createElement(
+	  var photosPerSlide = 6;
+	  if (trendingTaxa && trendingTaxa.length > 0) {
+	    (function () {
+	      var trendingChunks = _lodash2.default.chunk(trendingTaxa, photosPerSlide);
+	      if (trendingChunks[trendingChunks.length - 1].length === photosPerSlide) {
+	        trendingChunks[trendingChunks.length - 1].pop();
+	      }
+	      trending = _react2.default.createElement(_carousel2.default, {
+	        title: I18n.t("trending"),
+	        url: trendingUrl,
+	        description: I18n.t("views.taxa.show.trending_desc"),
+	        noContent: I18n.t("views.taxa.show.no_trending_desc"),
+	        items: _lodash2.default.map(trendingChunks, function (chunk, i) {
+	          return _react2.default.createElement(
+	            _reactBootstrap.Row,
+	            { key: "trending-" + i, className: "trending-" + i },
+	            chunk.map(function (taxon) {
+	              return _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { xs: 2, key: "trending-taxon-" + taxon.id },
+	                _react2.default.createElement(_taxon_thumbnail2.default, { taxon: taxon })
+	              );
+	            }),
+	            i === trendingChunks.length - 1 ? _react2.default.createElement(
 	              _reactBootstrap.Col,
 	              { xs: 2 },
-	              _react2.default.createElement(_taxon_thumbnail2.default, { taxon: taxon })
-	            );
-	          })
-	        );
-	      })
-	    });
+	              _react2.default.createElement(
+	                "a",
+	                { href: trendingUrl, className: "viewall" },
+	                I18n.t("view_all"),
+	                " ",
+	                _react2.default.createElement("i", { className: "fa fa-arrow-circle-right" })
+	              )
+	            ) : null
+	          );
+	        })
+	      });
+	    })();
 	  }
 	  var rare = _react2.default.createElement(
 	    "p",
@@ -112247,14 +112288,14 @@
 	      title: I18n.t("rare"),
 	      description: I18n.t("views.taxa.show.rare_desc"),
 	      noContent: I18n.t("no_observations_yet"),
-	      items: _lodash2.default.chunk(rareTaxa, 6).map(function (chunk) {
+	      items: _lodash2.default.map(_lodash2.default.chunk(rareTaxa, 6), function (chunk, i) {
 	        return _react2.default.createElement(
 	          _reactBootstrap.Row,
-	          null,
+	          { key: "rare-" + i },
 	          chunk.map(function (taxon) {
 	            return _react2.default.createElement(
 	              _reactBootstrap.Col,
-	              { xs: 2 },
+	              { xs: 2, key: "rare-taxon-" + taxon.id },
 	              _react2.default.createElement(_taxon_thumbnail2.default, { taxon: taxon })
 	            );
 	          })
@@ -112335,7 +112376,12 @@
 	  function Carousel() {
 	    _classCallCheck(this, Carousel);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Carousel).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Carousel).call(this));
+
+	    _this.state = {
+	      currentIndex: 0
+	    };
+	    return _this;
 	  }
 
 	  _createClass(Carousel, [{
@@ -112343,12 +112389,14 @@
 	    value: function showNext() {
 	      var domNode = _reactDom2.default.findDOMNode(this);
 	      $(".carousel", domNode).carousel("next");
+	      this.setState({ currentIndex: this.state.currentIndex + 1 });
 	    }
 	  }, {
 	    key: "showPrev",
 	    value: function showPrev() {
 	      var domNode = _reactDom2.default.findDOMNode(this);
 	      $(".carousel", domNode).carousel("prev");
+	      this.setState({ currentIndex: this.state.currentIndex - 1 });
 	    }
 	  }, {
 	    key: "render",
@@ -112379,12 +112427,13 @@
 	          { className: "text-muted text-center" },
 	          this.props.noContent
 	        );
-	      } else {
+	      } else if (this.props.items.length > 1) {
 	        nav = _react2.default.createElement(
 	          "div",
 	          { className: "carousel-controls pull-right" },
 	          _react2.default.createElement(_reactBootstrap.Button, {
 	            className: "nav-btn prev-btn",
+	            disabled: this.state.currentIndex === 0,
 	            onClick: function onClick() {
 	              return _this2.showPrev();
 	            },
@@ -112392,6 +112441,7 @@
 	          }),
 	          _react2.default.createElement(_reactBootstrap.Button, {
 	            className: "nav-btn next-btn",
+	            disabled: this.state.currentIndex >= this.props.items.length - 1,
 	            onClick: function onClick() {
 	              return _this2.showNext();
 	            },
@@ -112427,8 +112477,8 @@
 	              return _react2.default.createElement(
 	                "div",
 	                {
-	                  key: "carousel-item-" + index,
-	                  className: "item " + (index === 0 ? "active" : "")
+	                  key: _lodash2.default.kebabCase(_this2.props.title) + "-carousel-item-" + index,
+	                  className: "carousel-item-" + index + " item " + (index === 0 ? "active" : "")
 	                },
 	                item
 	              );
@@ -112505,7 +112555,7 @@
 	    _react2.default.createElement(
 	      "div",
 	      { className: "caption" },
-	      _react2.default.createElement(_split_taxon2.default, { taxon: taxon, url: (0, _util.urlForTaxon)(taxon), noParens: true })
+	      _react2.default.createElement(_split_taxon2.default, { taxon: taxon, url: (0, _util.urlForTaxon)(taxon), noParens: true, truncate: 15 })
 	    )
 	  );
 	};
@@ -113588,7 +113638,7 @@
 	        _react2.default.createElement(
 	          "li",
 	          null,
-	          _react2.default.createElement(_split_taxon2.default, { taxon: ancestors[0] })
+	          _react2.default.createElement(_split_taxon2.default, { taxon: { name: "Life", is_active: true } })
 	        ),
 	        firstVisibleAncestor,
 	        expandControl,

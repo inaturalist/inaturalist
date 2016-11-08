@@ -24,7 +24,9 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
       { taxa.map( t => {
         let className = "";
         const isRoot = t.id === tree[0].id;
-        if ( t.id === taxon.id ) {
+        const isTaxon = t.id === taxon.id;
+        const shouldLinkToTaxon = !isRoot && !isTaxon;
+        if ( isTaxon ) {
           className += "current";
         }
         if ( isRoot ) {
@@ -32,11 +34,11 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
         }
         return (
           <li key={`taxonomy-${t.id}`} className={ className }>
-            <SplitTaxon taxon={t} url={isRoot ? null : urlForTaxon( t )} /> {
-              isRoot ?
-                null
-                :
+            <SplitTaxon taxon={t} url={shouldLinkToTaxon ? urlForTaxon( t ) : null} /> {
+              shouldLinkToTaxon ?
                 ( <a href={urlForTaxon( t )}><i className="glyphicon glyphicon-new-window"></i></a> )
+                :
+                null
             }
             { t.children && t.children.length > 0 ? renderTaxonomy( t.children ) : null }
           </li>
@@ -48,17 +50,19 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
   return (
     <Grid className="TaxonomyTab">
       <Row>
-        <h2>{ I18n.t( "taxonomy" ) }</h2>
+        <Col xs={12}>
+          <h2>{ I18n.t( "taxonomy" ) }</h2>
+        </Col>
         <Col xs={8}>
           { renderTaxonomy( tree ) }
         </Col>
         <Col xs={4}>
           <ul className="tab-links list-group">
             <li className="list-group-item internal">
-              <span className="badge">
-                { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
-              </span>
               <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
+                <span className="badge pull-right">
+                  { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
+                </span>
                 <i className="fa fa-random accessory-icon"></i>
                 { I18n.t( "taxon_changes" ) }
               </a>
@@ -76,8 +80,12 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
         </Col>
       </Row>
       <Row>
-        <Col xs={8}>
+        <Col xs={12}>
           <h2>{ I18n.t( "names" ) }</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={8}>
           <table className="table table-striped">
             <thead>
               <tr>
@@ -127,7 +135,6 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
               </a>
             </li>
           </ul>
-
           <h3>{ I18n.t( "about_names" ) }</h3>
           <UserText text={I18n.t( "views.taxa.show.about_names_desc" )} truncate={400} />
         </Col>
@@ -144,7 +151,9 @@ TaxonomyTab.propTypes = {
 };
 
 TaxonomyTab.defaultProps = {
-  names: []
+  names: [],
+  taxonChangesCount: 0,
+  taxonSchemesCount: 0
 };
 
 export default TaxonomyTab;

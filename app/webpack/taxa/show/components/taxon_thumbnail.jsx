@@ -24,7 +24,7 @@ const TaxonThumbnail = ( { taxon, key } ) => {
     <div key={key} className="TaxonThumbnail thumbnail">
       <a href={urlForTaxon( taxon )}>{ img }</a>
       <div className="caption">
-        <SplitTaxon taxon={taxon} url={urlForTaxon( taxon )} noParens />
+        <SplitTaxon taxon={taxon} url={urlForTaxon( taxon )} noParens truncate={15} />
       </div>
     </div>
   );

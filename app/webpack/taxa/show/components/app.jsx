@@ -16,7 +16,7 @@ const App = ( { taxon, place, setPlace } ) => (
   <div id="TaxonDetail">
     <Grid>
       <Row className="preheader">
-        <Col xs={12}>
+        <Col xs={8}>
           <TaxonCrumbs
             taxon={taxon}
             ancestors={taxon.ancestors}
@@ -25,6 +25,8 @@ const App = ( { taxon, place, setPlace } ) => (
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="glyphicon glyphicon-link"></i>
           </a>
+        </Col>
+        <Col xs={4}>
           <div className="pull-right">
             <TaxonAutocomplete
               inputClassName="input-sm"
