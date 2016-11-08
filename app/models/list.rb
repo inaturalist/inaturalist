@@ -158,7 +158,7 @@ class List < ActiveRecord::Base
     
     scope = if is_a?(CheckList) && is_default?
       ListedTaxon.joins(:taxon).where(place_id: place_id).
-        select("DISTINCT ON (taxa.ancestry || '/' || listed_taxa.taxon_id) listed_taxa.id")
+        select("DISTINCT ON (listed_taxa.taxon_id) listed_taxa.id")
     else
       ListedTaxon.where(list_id: id)
     end

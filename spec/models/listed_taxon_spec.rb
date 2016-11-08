@@ -106,6 +106,44 @@ describe ListedTaxon do
       lt = place.check_list.add_taxon(t)
       expect(lt.establishment_means).to eq(ListedTaxon::INTRODUCED)
     end
+    
+    it "should log atlas_alterations if listed_taxa is_atlased? on create" do
+      taxon = Taxon.make!
+      atlas_place = Place.make!(admin_level: 0)
+      atlas = Atlas.make!(user: @user, taxon: taxon)
+      atlas_place_check_list = List.find(atlas_place.check_list_id)
+      check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
+      expect(check_listed_taxon.is_atlased?).to be true
+      expect(AtlasAlteration.where(
+        atlas_id: atlas.id,
+        user_id: @user.id,
+        place_id: atlas_place.id,
+        action: "listed"
+      ).first).not_to be_blank
+    end
+  end
+  
+  describe "destroy" do
+    it "should log atlas_alterations if listed_taxa is_atlased? on destroy" do
+      taxon = Taxon.make!
+      atlas_place = Place.make!(admin_level: 0)
+      atlas_place_check_list = List.find(atlas_place.check_list_id)
+      @user = User.make!
+      check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
+      expect(check_listed_taxon.is_atlased?).to be false
+      @other_user = User.make!
+      atlas = Atlas.make!(user: @other_user, taxon: taxon)
+      expect(check_listed_taxon.is_atlased?).to be true
+      @other_user = User.make!
+      check_listed_taxon.updater = @other_user
+      check_listed_taxon.destroy
+      expect(AtlasAlteration.where(
+        atlas_id: atlas.id,
+        user_id: @other_user.id,
+        place_id: atlas_place.id,
+        action: "unlisted"
+      ).first).not_to be_blank
+    end
   end
   
   describe "check list auto removal" do

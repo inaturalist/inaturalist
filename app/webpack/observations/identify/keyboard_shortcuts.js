@@ -9,11 +9,11 @@ import {
   toggleReviewed
 } from "./actions/";
 
-const bindShortcut = ( shortcut, action, dispatch ) => {
+const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
     dispatch( action( ) );
     return false;
-  } );
+  }, options.eventType );
 };
 
 const setupKeyboardShortcuts = ( dispatch ) => {
@@ -21,9 +21,9 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   bindShortcut( "left", showPrevObservation, dispatch );
   bindShortcut( "i", addIdentification, dispatch );
   bindShortcut( "c", addComment, dispatch );
-  bindShortcut( "z", toggleCaptive, dispatch );
-  bindShortcut( "r", toggleReviewed, dispatch );
-  bindShortcut( "a", agreeWithCurrentObservation, dispatch );
+  bindShortcut( "z", toggleCaptive, dispatch, { eventType: "keyup" } );
+  bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
+  bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
 };
 
 export default setupKeyboardShortcuts;

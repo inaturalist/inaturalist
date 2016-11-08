@@ -254,6 +254,10 @@ class CheckList < List
       [:taxon, :list, {:place => {:parent => :check_list}}]).each do |listed_taxon|
       next unless listed_taxon.place.parent_id
       parent_check_list = listed_taxon.place.parent.check_list
+      if atlas = Atlas.where(taxon_id: listed_taxon.taxon_id).first
+        parent_place = listed_taxon.place.parent
+        next if atlas.places.map(&:id).include? parent_place.id
+      end
       next if parent_check_list.listed_taxa.exists?(:taxon_id => listed_taxon.taxon_id)
       parent_check_list.add_taxon(listed_taxon.taxon)
     end
@@ -296,6 +300,9 @@ class CheckList < List
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
+      if atlas = Atlas.where(taxon_id: observation.taxon_id).first
+        new_place_ids = new_place_ids - atlas.places.map(&:id)
+      end
       add_new_listed_taxa(observation.taxon, new_place_ids)
     end
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"

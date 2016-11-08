@@ -8,7 +8,7 @@
       collectionUrl: '/places/autocomplete.json',
       resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
     })
-.container-fluid
+.container
   #guidesheader.jumbotron.clear{:class => logged_in? ? 'logged_in' : nil}
     %h1= link_to t(:welcome_to_guides, :site_name => SITE_NAME), guides_path
     %p

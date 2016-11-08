@@ -54,6 +54,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors, :dependent => :delete_all
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
+  has_one :atlas, :inverse_of => :taxon
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -664,6 +665,14 @@ class Taxon < ActiveRecord::Base
     return true if photos.count > 0
     return unless obs = observations.has_quality_grade( Observation::RESEARCH_GRADE ).first
     return unless photo = obs.observation_photos.sort_by(&:position).first.try(:photo)
+    self.photos << photo
+    Taxon.update_ancestor_photos( self, photo )
+  end
+
+  # mostly just a convenience for populating an empty database
+  def set_photo_from_external
+    return true if photos.count > 0
+    return unless photo = photos_with_backfill.first
     self.photos << photo
     Taxon.update_ancestor_photos( self, photo )
   end

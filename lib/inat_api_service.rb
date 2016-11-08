@@ -3,6 +3,14 @@ module INatAPIService
   ENDPOINT = CONFIG.node_api_host
   TIMEOUT = 8
 
+  def self.identifications(params={})
+    return INatAPIService.get("/identifications", params)
+  end
+
+  def self.identifications_categories(params={})
+    return INatAPIService.get("/identifications/categories", params)
+  end
+
   def self.observations(params={})
     return INatAPIService.get("/observations", params)
   end

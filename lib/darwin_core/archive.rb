@@ -31,6 +31,12 @@ module DarwinCore
         ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.find_by_name(@opts[:taxon])
       end
       logger.debug "Found taxon: #{@taxon}"
+      @project = if @opts[:project].is_a?(::Project)
+        @opts[:project]
+      else
+        ::Project.find( @opts[:project] ) rescue nil
+      end
+      logger.debug "Found project: #{@project}"
       logger.debug "Photo licenses: #{@opts[:photo_licenses].inspect}"
     end
 
@@ -117,9 +123,11 @@ module DarwinCore
     end
 
     def observations_params
-      params = { license: @opts[ :licenses ] }
+      params = {}
+      params[:license] = @opts[:licenses] unless @opts[:licenses].include?( "ignore" )
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
+      params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality]
       params[:site_id] = @opts[:site_id]
       params
@@ -132,7 +140,7 @@ module DarwinCore
       fake_view = FakeView.new
       
       preloads = [
-        :taxon, 
+        { taxon: :ancestor_taxa }, 
         { user: :stored_preferences }, 
         :quality_metrics, 
         :identifications,
@@ -226,10 +234,12 @@ module DarwinCore
       tmp_path = File.join(@work_path, fname)
       
       params = observations_params
-      if @opts[:photo_licenses]
-        params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
+      unless @opts[:photo_licenses].include?( "ignore")
+        if @opts[:photo_licenses] && !@opts[:photo_licenses].include?( "any" )
+          params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
+        end
+        params[:photo_license] ||= 'any'
       end
-      params[:photo_license] ||= 'any'
       params[:has] = [params[:has], 'photos'].flatten.compact
       preloads = [{observation_photos: {photo: :user}}]
       

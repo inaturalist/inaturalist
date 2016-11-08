@@ -5,7 +5,7 @@
     $('#updatewitheol, #updatewithsite').on('shown.bs.modal', function () {
       $('.modal-footer .btn-primary', this).focus()
     })
-.container-fluid
+.container
   %ul.breadcrumb
     %li
       = link_to t(:back_to_x, :noun => @guide.title), edit_guide_path(@guide), :class => "back"

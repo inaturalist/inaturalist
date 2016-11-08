@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include ActsAsSpammable::User
+  include ActsAsElasticModel
 
   acts_as_voter
   acts_as_spammable :fields => [ :description ],
@@ -115,6 +116,7 @@ class User < ActiveRecord::Base
   has_many :editing_guides, :through => :guide_users, :source => :guide
   has_many :created_guide_sections, :class_name => "GuideSection", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
   has_many :updated_guide_sections, :class_name => "GuideSection", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
+  has_many :atlases, :inverse_of => :user, :dependent => :nullify
   
   file_options = {
     processors: [:deanimator],
@@ -778,13 +780,6 @@ class User < ActiveRecord::Base
 
   def to_plain_s
     "User #{login}"
-  end
-
-  def as_indexed_json(options={})
-    {
-      id: id,
-      login: login
-    }
   end
 
   def subscribed_to?(resource)

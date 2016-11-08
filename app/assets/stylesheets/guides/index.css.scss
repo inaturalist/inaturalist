@@ -37,3 +37,19 @@
   background-color: black;
   opacity: 0.5;
 }
+.media-body > h2.media-heading {
+  font-size:22px
+}
+
+.media img {
+  max-width: 100px;
+  border: 1px solid #ddd;
+}
+
+.media > div > a > img.img-rounded {
+  border-radius: 2px
+}
+
+.media  {
+  margin-bottom:15px
+}

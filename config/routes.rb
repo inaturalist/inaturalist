@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root :to => 'welcome#index'
 
   get "/set_locale", to: "application#set_locale", as: :set_locale
+  get "/terms", to: redirect( "/pages/terms" )
+  get "/privacy", to: redirect( "/pages/privacy" )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [ :create, :update, :destroy ]
@@ -484,6 +486,12 @@ Rails.application.routes.draw do
   delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
   resources :taxon_ranges, :except => [:show]
+  
+  resources :atlases
+  post ':atlases/alter_atlas_presence' => 'atlases#alter_atlas_presence', :as => :alter_atlas_presence
+  post ':atlases/destroy_all_alterations' => 'atlases#destroy_all_alterations', :as => :destroy_all_alterations
+  resources :exploded_atlas_places
+  
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   get '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date, :constraints => {

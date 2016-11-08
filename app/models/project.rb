@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
   before_save :reset_last_aggregated_at
+  before_save :remove_times_from_non_bioblitzes
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   
@@ -281,6 +282,12 @@ class Project < ActiveRecord::Base
     if start_time_changed? || end_time_changed?
       self.last_aggregated_at = nil
     end
+  end
+
+  def remove_times_from_non_bioblitzes
+    return if bioblitz?
+    self.start_time = nil
+    self.end_time = nil
   end
 
   def tracking_code_allowed?(code)

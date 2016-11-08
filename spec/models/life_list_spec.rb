@@ -5,8 +5,8 @@ describe LifeList do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  before(:each) { enable_elastic_indexing( Observation, Place ) }
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
+  before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
   describe "reload_from_observations" do
     before(:each) do
       @taxon = Taxon.make!
@@ -69,9 +69,8 @@ describe LifeList do
       @list = LifeList.make!
       @list.build_taxon_rule(@parent)
       @list.save!
-      enable_elastic_indexing( Observation )
     end
-  
+
     it "should add new taxa to the list" do
       t = Taxon.make!(:parent => @parent)
       o = Observation.make!(:user => @list.user, :taxon => t)

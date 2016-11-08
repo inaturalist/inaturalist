@@ -1186,6 +1186,24 @@ shared_examples_for "an ObservationsController" do
       expect( ids.first ).to eq obs_with_votes.id
     end
 
+    it "should sort by observed_on asc and respect time" do
+      o1 = Observation.make!( observed_on_string: "2016-10-27 10am" )
+      o2 = Observation.make!( observed_on_string: "2016-10-27 11am" )
+      get :index, format: :json, order_by: "observed_on", order: "asc"
+      ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+      expect( ids.first ).to eq o1.id
+      expect( ids.last ).to eq o2.id
+    end
+
+    it "should sort by observed_on desc and respect time" do
+      o1 = Observation.make!( observed_on_string: "2016-10-27 10am" )
+      o2 = Observation.make!( observed_on_string: "2016-10-27 11am" )
+      get :index, format: :json, order_by: "observed_on", order: "desc"
+      ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+      expect( ids.first ).to eq o2.id
+      expect( ids.last ).to eq o1.id
+    end
+
     describe "filtration by license" do
       before do
         @all_rights = Observation.make!(license: nil)

@@ -1309,7 +1309,7 @@ it:
   first_inat_observation: Prima osservazione di %{site_name}
   first_observer: 1° osservatore
   first_report: primo rapporto
-  flag: Segnalazioni
+  flag: Contrassegna
   flag_an_item: Contrassegna un elemento
   flag_as_spammer: Segna come spamm
   flag_as_non_spammer: Contrassegna come non-spam
@@ -4753,7 +4753,7 @@ it:
           </p>
           <ul>
             <li>
-              la %{site_name} <strong>community di %{site_name} concorda con l'ID dell'osservatore</strong>, quando una identificazione "in accordo" corrisponde esattamente o appartiene ha un taxon discendente dell'ID dell'osservatore. Per esempio, se Scott dice che è un mammifero and Ken-ichi dice che è <em>Homo sapiens</em>, allora Ken-ichi è d'accordo con Scott.
+              la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon
             </li>
           </ul>
           <p>
