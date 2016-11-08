@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get "/set_locale", to: "application#set_locale", as: :set_locale
 
   resources :controlled_terms
-  resources :controlled_terms_resources
+  resources :controlled_term_labels, only: [ :create, :update, :destroy ]
+  resources :controlled_term_values, only: [ :create, :destroy ]
+  resources :annotations
 
   resources :guide_sections do
     collection do

@@ -1377,6 +1377,11 @@ class Taxon < ActiveRecord::Base
     terms
   end
 
+  def has_ancestor_taxon_id(ancestor_id)
+    return true if id == ancestor_id
+    !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)

@@ -1,5 +1,5 @@
 #encoding: utf-8
-class ControlledTermsResource < ActiveRecord::Base
+class Annotation < ActiveRecord::Base
 
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
@@ -15,10 +15,14 @@ class ControlledTermsResource < ActiveRecord::Base
   validate :value_belongs_to_attribute
   validate :attribute_belongs_to_taxon
   validate :value_belongs_to_taxon
+  validate :multiple_values
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
   after_save :index_observation
+  # TODO: after_delete :reindex obs
+
+
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)
@@ -56,6 +60,19 @@ class ControlledTermsResource < ActiveRecord::Base
     if taxon_id &&
        (controlled_value && !ControlledTerm.for_taxon(taxon_id).include?(controlled_value))
       errors.add(:controlled_value, "must belong to taxon")
+    end
+  end
+
+  def multiple_values
+    return unless controlled_attribute
+    return if controlled_attribute.multivalued?
+    scope = Annotation.where( controlled_attribute: controlled_attribute,
+      resource: resource)
+    unless new_record?
+      scope = scope.where("id != ?", id)
+    end
+    if scope.count > 0
+      errors.add(:controlled_attribute, "cannot have multiple values")
     end
   end
 

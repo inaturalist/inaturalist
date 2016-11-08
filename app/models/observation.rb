@@ -251,7 +251,7 @@ class Observation < ActiveRecord::Base
   has_many :first_check_listed_taxa, -> { where("listed_taxa.place_id IS NOT NULL") }, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
   
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_many :controlled_terms_resources, as: :resource, dependent: :destroy
+  has_many :annotations, as: :resource, dependent: :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :project_observations_with_changes, -> {

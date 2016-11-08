@@ -1,3 +1,13 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "font-awesome"
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "controlled_terms/form"
+
+- content_for :delayed_js do
+  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+  = javascript_include_tag "//getbootstrap.com/dist/js/bootstrap.min.js"
+
+
+= link_to "Back to all terms", controlled_terms_path
 %h3 Edit term
-%ul
-  = render partial: "form"
+= render partial: "form"

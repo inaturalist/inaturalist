@@ -1,0 +1,8 @@
+- label = label || nil
+- if @term
+  .row
+    .terms_form.form-horizontal
+      = form_for label || ControlledTermLabel.new(controlled_term: @term) do |f|
+        = f.hidden_field :controlled_term_id, value: @term.id
+        = render partial: "controlled_term_labels/form_fields", locals: { f: f, label: label }
+        = f.submit class: "btn btn-primary"

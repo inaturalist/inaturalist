@@ -125,7 +125,7 @@ class Observation < ActiveRecord::Base
       user: user ? user.as_indexed_json : nil,
       taxon: t ? t.as_indexed_json(for_observation: true) : nil,
       ofvs: observation_field_values.uniq.map(&:as_indexed_json),
-      controlled_terms_test: controlled_terms_resources.map(&:as_indexed_json),
+      controlled_terms_test: annotations.map(&:as_indexed_json),
       photos: observation_photos.sort_by{ |op| op.position || op.id }.
         reject{ |op| op.photo.blank? }.
         map{ |op| op.photo.as_indexed_json },
