@@ -7,12 +7,12 @@ import ChartsContainer from "../containers/charts_container";
 import Leaders from "../components/leaders";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
-import PlaceChooser from "./place_chooser";
+import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonCrumbs from "./taxon_crumbs";
 import StatusHeader from "./status_header";
 import { urlForTaxon } from "../util";
 
-const App = ( { taxon, place, setPlace } ) => (
+const App = ( { taxon } ) => (
   <div id="TaxonDetail">
     <Grid>
       <Row className="preheader">
@@ -46,12 +46,7 @@ const App = ( { taxon, place, setPlace } ) => (
           <h1 className="pull-left">
             <SplitTaxon taxon={taxon} />
           </h1>
-          <PlaceChooser
-            place={place}
-            className="pull-right"
-            setPlace={setPlace}
-            clearPlace={ ( ) => setPlace( null ) }
-          />
+          <PlaceChooserContainer className="pull-right" />
         </Col>
       </Row>
     </Grid>
@@ -87,9 +82,7 @@ const App = ( { taxon, place, setPlace } ) => (
 );
 
 App.propTypes = {
-  taxon: PropTypes.object,
-  place: PropTypes.object,
-  setPlace: PropTypes.func
+  taxon: PropTypes.object
 };
 
 export default App;

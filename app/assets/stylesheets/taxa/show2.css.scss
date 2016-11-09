@@ -21,18 +21,6 @@
   font-size: 80%;
 }
 
-#TaxonHeader .PlaceChooser {
-  margin-top: 20px;
-}
-
-#TaxonHeader .PlaceChooser .fa-map-marker, {
-  color: #aaa;
-}
-
-#TaxonHeader .PlaceChooser a, {
-  color: #333;
-}
-
 #hero {
   background-color: #eee;
   border-top: 1px solid #ddd;
@@ -112,6 +100,10 @@
 
 .FrequencyChart .c3-target-verifiable .c3-circle._expanded_ {
   stroke: transparentize( #ddd, 0.6 );
+}
+
+.FrequencyChart line.c3-xgrid-focus {
+  display: none;
 }
 
 .frequency-chart-tooltip {
@@ -854,4 +846,50 @@ $nav-btn-dim: 40px;
 .btn-primary.btn-inat:focus {
   background-color: lighten($inat-green, 1%);
   border-color: lighten($inat-green, 1%);
+}
+
+.PlaceChooserPopoverTrigger {
+  margin-top: 20px;
+  cursor: pointer;
+}
+.PlaceChooserPopoverTrigger:hover {
+  opacity: 0.8;
+}
+.PlaceChooserPopoverTrigger .fa-map-marker {
+  margin-right: 5px;
+}
+.PlaceChooserPopoverTrigger.chosen .fa-map-marker {
+  color: $inat-green;
+}
+.PlaceChooserPopover.popover .popover-content {
+  padding: 10px;
+}
+.PlaceChooserPopover a {
+  color: #333;
+}
+.PlaceChooserPopover.popover .form-group {
+  margin-bottom: 5px;
+}
+.PlaceChooserPopover.popover ul {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.PlaceChooserPopover li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+.PlaceChooserPopover li:last-child {
+  border-bottom: 0 transparent;
+}
+.PlaceChooserPopover li i {
+  color: #999;
+  width: 20px;
+  text-align: center;
+}
+.PlaceChooserPopover li.current {
+  background-color: #eee;
+}
+.PlaceChooserPopover .pinned {
+  border-bottom: 2px solid #ddd;
+  font-weight: bold;
 }
