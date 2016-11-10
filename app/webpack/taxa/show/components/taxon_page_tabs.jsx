@@ -40,7 +40,9 @@ class TaxonPageTabs extends React.Component {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
     let curationTab;
     if ( this.props.currentUser && this.props.currentUser.id ) {
-      const isCurator = this.props.currentUser.roles.indexOf( "curator" ) >= 0;
+      const isCurator =
+        this.props.currentUser.roles.indexOf( "curator" ) >= 0 ||
+        this.props.currentUser.roles.indexOf( "admin" ) >= 0;
       curationTab = (
         <li className="curation-tab">
           <Dropdown

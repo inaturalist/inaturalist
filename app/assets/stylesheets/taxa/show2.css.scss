@@ -6,6 +6,11 @@
   min-width: 980px;
 }
 
+#TaxonHeader .inner {
+  display: flex;
+  justify-content: space-between;
+}
+
 #TaxonHeader h1 {
   margin-top: 10px;
   font-size: 32px;
@@ -14,11 +19,10 @@
 
 #TaxonHeader .taxon .display-name {
   color: black;
-  font-weight: bold;
 }
 
 #TaxonHeader .has-com-name .sciname {
-  font-size: 80%;
+  font-size: 20px;
 }
 
 #hero {
@@ -75,6 +79,9 @@
 .SeasonalityChart .c3-line {
   stroke-width: 2px;
 }
+.FrequencyChart {
+  height: 300px;
+}
 .FrequencyChart .c3-axis line,
 .FrequencyChart .c3-axis path {
   stroke: #aaa;
@@ -110,7 +117,7 @@
   padding: 10px;
   border: 1px solid #eee;
   border-radius: 2px;
-  box-shadow: 2px 2px 2px #aaa;
+  box-shadow: 1px 1px 10px #aaa;
   background-color: white;
 }
 .frequency-chart-tooltip .swatch {
@@ -123,13 +130,18 @@
   top: 3px;
 }
 .frequency-chart-tooltip .title {
-  font-weight: bold;
+  margin-bottom: 5px;
+}
+.frequency-chart-tooltip .title,
+.frequency-chart-tooltip .value {
+  font-weight: 600;
 }
 .frequency-chart-tooltip .column-label {
   text-transform: capitalize;
 }
-.frequency-chart-tooltip .value {
-  font-weight: bold;
+.frequency-chart-tooltip .series {
+  line-height: 0;
+  margin-bottom: 10px;
 }
 
 .TaxonMap {
@@ -145,26 +157,17 @@
   line-height: 28px;
   display: inline;
 }
-.TaxonCrumbs .inner {
-  overflow: hidden;
-  white-space: nowrap;
-  vertical-align: top;
-}
 .TaxonCrumbs.contracted .inner {
-  max-width: 0;
-  -webkit-transition: max-width 0.5s;
-  transition: max-width 0.5s;
+  display: none;
 }
 .TaxonCrumbs.expanded .inner {
-  max-width: 2048px;
-  -webkit-transition: max-width 1s;
-  transition: max-width 1s;
+  display: inline-block;
 }
 .TaxonCrumbs.contracted .expand-control {
   display: inline-block;
 }
 .TaxonCrumbs.expanded .expand-control {
-  display: none;
+  width: 0;
 }
 .TaxonCrumbs.contracted .contract-control {
   display: none;
@@ -321,7 +324,6 @@ $leaderItemImageDim: 56px;
 $photoPreviewThumbDim: 92px;
 $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
-$photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview {
   position: relative;
 }
@@ -368,7 +370,6 @@ $photoPreviewGridViewMoreHeight: 50px;
   text-transform: capitalize;
 }
 .PhotoPreview.grid .viewmore a {
-  height: 203.2px;
   background-color: #333;
   font-weight: 100;
   font-size: 20px;
@@ -486,10 +487,6 @@ $photoPreviewGridViewMoreHeight: 50px;
   content: '';
 }
 
-.TaxonomyTab h2 {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
-}
 .TaxonomyTab .taxonomy {
   list-style: none;
 }
@@ -532,6 +529,20 @@ $photoPreviewGridViewMoreHeight: 50px;
   text-decoration: line-through;
 }
 
+.tab-section > [class*="col-"] {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.tab-section:first-child > [class*="col-"] {
+  border-top: 0 transparent;
+  padding-top: 0;
+}
+
+.tab-section h3 {
+  margin-top: 0;
+}
+
 .tab-links a {
   display: block;
   color: #333;
@@ -559,6 +570,11 @@ $photoPreviewGridViewMoreHeight: 50px;
 
 .StatusTab .place-link {
   color: black;
+}
+.StatusTab th {
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: capitalize;
 }
 
 h2, h3, h4, h5 {
@@ -605,6 +621,7 @@ $endangeredColor: #D12F19;
 
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
+  padding-top: 10px;
 }
 
 .TaxonPageTabs .nav.nav-tabs {
@@ -865,6 +882,7 @@ $nav-btn-dim: 40px;
 .PlaceChooserPopoverTrigger {
   margin-top: 20px;
   cursor: pointer;
+  white-space: nowrap;
 }
 .PlaceChooserPopoverTrigger:hover {
   opacity: 0.8;

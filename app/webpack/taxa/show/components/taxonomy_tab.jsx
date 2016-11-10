@@ -53,94 +53,96 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
   const sortedNames = _.sortBy( names, n => [n.lexicon, n.name] );
   return (
     <Grid className="TaxonomyTab">
-      <Row>
+      <Row className="tab-section">
         <Col xs={12}>
-          <h2>{ I18n.t( "taxonomy" ) }</h2>
-        </Col>
-        <Col xs={8}>
-          { renderTaxonomy( tree ) }
-        </Col>
-        <Col xs={4}>
-          <ul className="tab-links list-group">
-            <li className="list-group-item internal">
-              <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
-                <span className="badge pull-right">
-                  { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
-                </span>
-                <i className="fa fa-random accessory-icon"></i>
-                { I18n.t( "taxon_changes" ) }
-              </a>
-            </li>
-            <li className="list-group-item internal">
-              <a href={`/taxa/${taxon.id}/schemes`}>
-                <span className="badge pull-right">
-                  { I18n.toNumber( taxonSchemesCount, { precision: 0 } ) }
-                </span>
-                <i className="glyphicon glyphicon-list-alt accessory-icon"></i>
-                { I18n.t( "taxon_schemes" ) }
-              </a>
-            </li>
-          </ul>
+          <Row>
+            <Col xs={8}>
+              <h3>{ I18n.t( "taxonomy" ) }</h3>
+              { renderTaxonomy( tree ) }
+            </Col>
+            <Col xs={4}>
+              <ul className="tab-links list-group">
+                <li className="list-group-item internal">
+                  <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
+                    <span className="badge pull-right">
+                      { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
+                    </span>
+                    <i className="fa fa-random accessory-icon"></i>
+                    { I18n.t( "taxon_changes" ) }
+                  </a>
+                </li>
+                <li className="list-group-item internal">
+                  <a href={`/taxa/${taxon.id}/schemes`}>
+                    <span className="badge pull-right">
+                      { I18n.toNumber( taxonSchemesCount, { precision: 0 } ) }
+                    </span>
+                    <i className="glyphicon glyphicon-list-alt accessory-icon"></i>
+                    { I18n.t( "taxon_schemes" ) }
+                  </a>
+                </li>
+              </ul>
+            </Col>
+          </Row>
         </Col>
       </Row>
-      <Row>
+      <Row className="tab-section">
         <Col xs={12}>
-          <h2>{ I18n.t( "names" ) }</h2>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={8}>
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>{ I18n.t( "language_slash_type" ) }</th>
-                <th>{ I18n.t( "name" ) }</th>
-                <th>{ I18n.t( "action" ) }</th>
-              </tr>
-            </thead>
-            <tbody>
-              { sortedNames.map( n => (
-                <tr
-                  key={`taxon-names-${n.id}`}
-                  className={!n.is_valid && n.lexicon === "Scientific Names" ? "outdated" : ""}
-                >
-                  <td>
-                    { n.lexicon }
-                  </td>
-                  <td
-                    className={ n.lexicon && n.lexicon.toLowerCase( ).match( /scientific/ ) ? "sciname" : null }
+          <Row>
+            <Col xs={8}>
+              <h3>{ I18n.t( "names" ) }</h3>
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th>{ I18n.t( "language_slash_type" ) }</th>
+                    <th>{ I18n.t( "name" ) }</th>
+                    <th>{ I18n.t( "action" ) }</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { sortedNames.map( n => (
+                    <tr
+                      key={`taxon-names-${n.id}`}
+                      className={!n.is_valid && n.lexicon === "Scientific Names" ? "outdated" : ""}
+                    >
+                      <td>
+                        { n.lexicon }
+                      </td>
+                      <td
+                        className={ n.lexicon && n.lexicon.toLowerCase( ).match( /scientific/ ) ? "sciname" : null }
+                      >
+                        { n.name }
+                      </td>
+                      <td><a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a></td>
+                    </tr>
+                  ) ) }
+                </tbody>
+              </table>
+              <h3 className={ `text-center ${names.length > 0 ? "hidden" : ""}`}>
+                <i className="fa fa-refresh fa-spin"></i>
+              </h3>
+            </Col>
+            <Col xs={4}>
+              <ul className="tab-links list-group">
+                <li className="list-group-item internal">
+                  <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
+                    <i className="fa fa-gear accessory-icon"></i>
+                    { I18n.t( "manage_names" ) }
+                  </a>
+                </li>
+                <li className="list-group-item internal">
+                  <a
+                    href={`/taxa/${taxon.id}/taxon_names/new`}
+                    rel="nofollow"
                   >
-                    { n.name }
-                  </td>
-                  <td><a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a></td>
-                </tr>
-              ) ) }
-            </tbody>
-          </table>
-          <h2 className={ `text-center ${names.length > 0 ? "hidden" : ""}`}>
-            <i className="fa fa-refresh fa-spin"></i>
-          </h2>
-        </Col>
-        <Col xs={4}>
-          <ul className="tab-links list-group">
-            <li className="list-group-item internal">
-              <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
-                <i className="fa fa-gear accessory-icon"></i>
-                { I18n.t( "manage_names" ) }
-              </a>
-            </li>
-            <li className="list-group-item internal">
-              <a
-                href={`/taxa/${taxon.id}/taxon_names/new`}
-                rel="nofollow"
-              >
-                <i className="fa fa-plus accessory-icon"></i>
-                { I18n.t( "add_a_name" ) }
-              </a>
-            </li>
-          </ul>
-          <h3>{ I18n.t( "about_names" ) }</h3>
-          <UserText text={I18n.t( "views.taxa.show.about_names_desc" )} truncate={400} />
+                    <i className="fa fa-plus accessory-icon"></i>
+                    { I18n.t( "add_a_name" ) }
+                  </a>
+                </li>
+              </ul>
+              <h4>{ I18n.t( "about_names" ) }</h4>
+              <UserText text={I18n.t( "views.taxa.show.about_names_desc" )} truncate={400} />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Grid>

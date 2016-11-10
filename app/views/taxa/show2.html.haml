@@ -3,7 +3,7 @@
   = render "taxa/taxon.txt.erb", taxon: @taxon
 - content_for :extrajs do
   :javascript
-    var TAXON = #{ @taxon.to_json( @json_opts ) };
+    var TAXON = #{ @node_taxon_json.encode }.results[0];
   = javascript_include_tag "taxa-show-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "c3", "taxa/show2"

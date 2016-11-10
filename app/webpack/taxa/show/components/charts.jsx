@@ -97,7 +97,7 @@ class Charts extends React.Component {
       <div class="frequency-chart-tooltip">
         <div class="title">${tipTitle}</div>
         ${d.map( item => `
-          <div>
+          <div class="series">
             <span class="swatch" style="background-color: ${color( item )}"></span>
             <span class="column-label">${item.name}:</span>
             <span class="value">${I18n.toNumber( item.value, { precision: 0 } )}</span>

@@ -43,10 +43,17 @@ const App = ( { taxon } ) => (
       </Row>
       <Row id="TaxonHeader">
         <Col xs={12}>
-          <h1 className="pull-left">
-            <SplitTaxon taxon={taxon} />
-          </h1>
-          <PlaceChooserContainer className="pull-right" />
+          <div className="inner">
+            <h1>
+              <SplitTaxon
+                taxon={taxon}
+                forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
+              />
+            </h1>
+            <div>
+              <PlaceChooserContainer />
+            </div>
+          </div>
         </Col>
       </Row>
     </Grid>

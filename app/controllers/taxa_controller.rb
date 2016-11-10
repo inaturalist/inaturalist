@@ -172,7 +172,7 @@ class TaxaController < ApplicationController
           :taxon_changes_count,
           :taxon_schemes_count
         ]
-        Taxon.preload_associations( @taxon, { taxon_photos: :photo } )
+        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
         return render layout: "bootstrap", action: "show2"
       end
     end

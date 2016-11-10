@@ -35,7 +35,7 @@ class PhotoPreview extends React.Component {
 
   render( ) {
     const layout = this.props.layout;
-    const height = layout === "gallery" ? 98 : 203.2;
+    const height = layout === "gallery" ? 98 : 196.5;
     let currentPhoto;
     const showTaxonPhotoModal = this.props.showTaxonPhotoModal;
     if ( this.state.taxonPhotos.length === 0 ) {
@@ -65,7 +65,7 @@ class PhotoPreview extends React.Component {
         <CoverImage
           src={this.state.current.photo.photoUrl( "large" )}
           low={this.state.current.photo.photoUrl( "small" )}
-          height={610}
+          height={590}
         />
       );
     }
@@ -152,6 +152,7 @@ class PhotoPreview extends React.Component {
                 alert( "TODO" );
                 return false;
               } }
+              style={{ height: layout === "grid" ? `${height}px` : "inherit" }}
             >
               <span className="inner">
                 <span>{ I18n.t( "view_more" )}</span>
