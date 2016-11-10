@@ -16,7 +16,7 @@ class PhotoPreview extends React.Component {
     if ( newProps.layout === "gallery" ) {
       taxonPhotos = newProps.taxonPhotos.slice( 0, 5 );
     } else {
-      taxonPhotos = newProps.taxonPhotos.slice( 0, 9 );
+      taxonPhotos = newProps.taxonPhotos.slice( 0, 8 );
     }
     this.state = {
       current: newProps.taxonPhotos[0],
@@ -35,7 +35,7 @@ class PhotoPreview extends React.Component {
 
   render( ) {
     const layout = this.props.layout;
-    const height = layout === "gallery" ? 98 : 185;
+    const height = layout === "gallery" ? 98 : 203.2;
     let currentPhoto;
     const showTaxonPhotoModal = this.props.showTaxonPhotoModal;
     if ( this.state.taxonPhotos.length === 0 ) {
@@ -65,7 +65,7 @@ class PhotoPreview extends React.Component {
         <CoverImage
           src={this.state.current.photo.photoUrl( "large" )}
           low={this.state.current.photo.photoUrl( "small" )}
-          height={550}
+          height={610}
         />
       );
     }
@@ -153,7 +153,10 @@ class PhotoPreview extends React.Component {
                 return false;
               } }
             >
-              { I18n.t( "view_more" )} <i className="fa fa-arrow-circle-right"></i>
+              <span className="inner">
+                <span>{ I18n.t( "view_more" )}</span>
+                <i className="fa fa-arrow-circle-right"></i>
+              </span>
             </a>
           </li>
         </ul>

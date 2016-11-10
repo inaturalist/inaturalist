@@ -4,7 +4,7 @@ import { urlForTaxon } from "../util";
 import _ from "lodash";
 
 function mapStateToProps( state ) {
-  const leader = state.leaders.topSpecies;
+  const leader = Object.assign( {}, state.leaders.topSpecies );
   const props = {
     label: I18n.t( "top_species" ),
     noContent: true,
@@ -26,9 +26,9 @@ function mapStateToProps( state ) {
   return Object.assign( props, {
     name: leader.taxon.preferred_common_name || leader.taxon.name,
     imageUrl,
-    linkText: _.startCase( I18n.t( "x_observations", {
+    linkText: I18n.t( "x_observations_", {
       count: leader.count === 1 ? leader.count : I18n.toNumber( leader.count, { precision: 0 } )
-    } ) ),
+    } ),
     linkUrl: `/observations?taxon_id=${leader.taxon.id}`,
     url: urlForTaxon( leader.taxon )
   } );

@@ -324,7 +324,6 @@ $photoPreviewThumbGutterTop: 3px;
 $photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview {
   position: relative;
-  margin-bottom: $photoPreviewGridViewMoreHeight;
 }
 .PhotoPreview ul.others {
   width: 100%;
@@ -366,22 +365,35 @@ $photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview .viewmore {
   text-align: center;
   font-weight: bold;
+  text-transform: capitalize;
 }
-.PhotoPreview.grid .viewmore {
-  display: block;
-  height: $photoPreviewGridViewMoreHeight;
-  line-height: $photoPreviewGridViewMoreHeight;
+.PhotoPreview.grid .viewmore a {
+  height: 203.2px;
   background-color: #333;
-  position: absolute;
-  bottom: -1 * $photoPreviewGridViewMoreHeight;
-  left: 0;
+  font-weight: 100;
+  font-size: 20px;
+  display: block;
+  position: relative;
+}
+.PhotoPreview.grid .viewmore a .inner {
   width: 100%;
+  line-height: 1.6;
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+}
+.PhotoPreview.grid .viewmore a .inner .fa {
+  margin-top: 5px;
+  display: block;
+}
+.PhotoPreview.gallery .viewmore .fa {
+  margin-left: 5px;
 }
 .PhotoPreview li {
   position: relative;
 }
 .PhotoPreview li .photo-hover {
-  display: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -389,9 +401,11 @@ $photoPreviewGridViewMoreHeight: 50px;
   color: white;
   line-height: 1.2;
   font-weight: 100;
+  opacity: 0;
+  transition: opacity 0.2s linear;
 }
 .PhotoPreview.grid li:hover .photo-hover {
-  display: block;
+  opacity: 1;
 }
 .PhotoPreview .actions {
   position: absolute;

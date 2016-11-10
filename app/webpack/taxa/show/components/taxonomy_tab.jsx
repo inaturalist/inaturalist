@@ -8,15 +8,19 @@ import UserText from "../../../shared/components/user_text";
 const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) => {
   const currentTaxon = Object.assign( { }, taxon );
   const tree = [];
-  if ( taxon && taxon.ancestors ) {
-    const ancestors = Object.assign( [], currentTaxon.ancestors );
-    ancestors.push( currentTaxon );
-    tree.push( Object.assign( {}, ancestors.shift( ) ) );
-    let lastAncestor = tree[0];
-    for ( let i = 0; i < ancestors.length; i++ ) {
-      lastAncestor.children = lastAncestor.children || [];
-      lastAncestor.children.push( Object.assign( {}, ancestors[i] ) );
-      lastAncestor = lastAncestor.children[lastAncestor.children.length - 1];
+  if ( taxon ) {
+    if ( taxon.ancestors ) {
+      const ancestors = Object.assign( [], currentTaxon.ancestors );
+      ancestors.push( currentTaxon );
+      tree.push( Object.assign( {}, ancestors.shift( ) ) );
+      let lastAncestor = tree[0];
+      for ( let i = 0; i < ancestors.length; i++ ) {
+        lastAncestor.children = lastAncestor.children || [];
+        lastAncestor.children.push( Object.assign( {}, ancestors[i] ) );
+        lastAncestor = lastAncestor.children[lastAncestor.children.length - 1];
+      }
+    } else {
+      tree.push( taxon );
     }
   }
   const renderTaxonomy = taxa => (
@@ -104,7 +108,7 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
                     { n.lexicon }
                   </td>
                   <td
-                    className={ n.lexicon.toLowerCase( ).match( /scientific/ ) ? "sciname" : null }
+                    className={ n.lexicon && n.lexicon.toLowerCase( ).match( /scientific/ ) ? "sciname" : null }
                   >
                     { n.name }
                   </td>
