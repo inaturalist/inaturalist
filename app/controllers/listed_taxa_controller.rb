@@ -163,7 +163,7 @@ class ListedTaxaController < ApplicationController
         end
       end
     end
-    
+    @listed_taxon.updater = current_user
     @listed_taxon.destroy
     
     respond_to do |format|

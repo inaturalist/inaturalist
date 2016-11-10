@@ -696,8 +696,8 @@ end
 
 describe Taxon, "moving" do
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
   
   before(:each) do
     load_test_taxa

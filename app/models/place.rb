@@ -27,6 +27,7 @@ class Place < ActiveRecord::Base
   
   before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
+  after_save :reindex_projects_later, if: Proc.new { |place| place.ancestry_changed? }
   
   validates_presence_of :latitude, :longitude
   validates_numericality_of :latitude,
@@ -456,6 +457,11 @@ class Place < ActiveRecord::Base
     true
   end
 
+  def reindex_projects_later
+    Project.elastic_index!( scope: Project.in_place( id ), delay: true )
+    true
+  end
+
   def too_big_for_check_list?
     # 9000 is about the size of Africa, debeatable if checklists for places
     # bigger than that are actually useful
@@ -865,8 +871,8 @@ class Place < ActiveRecord::Base
     "place_guide_#{id}"
   end
   
-  def serializable_hash(options = nil)
-    options ||= { }
+  def serializable_hash(opts = nil)
+    options = opts ? opts.clone : { }
     options[:methods] ||= []
     options[:methods] << :place_type_name
     options[:except] ||= []

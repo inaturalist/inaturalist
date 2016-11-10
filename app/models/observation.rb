@@ -719,9 +719,9 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def serializable_hash(options = nil)
+  def serializable_hash(opts = nil)
     # for some reason, in some cases options was still nil
-    options ||= { }
+    options = opts ? opts.clone : { }
     # making a deep copy of the options so they don't get modified
     # This was more effective than options.deep_dup
     if options[:include] && (options[:include].is_a?(Hash) || options[:include].is_a?(Array))
@@ -1424,7 +1424,9 @@ class Observation < ActiveRecord::Base
   ##### Community Taxon #########################################################
 
   def get_community_taxon(options = {})
-    return unless identifications.current.count > 1
+    return if (identifications.loaded? ?
+      identifications.select(&:current?).select(&:persisted?).uniq :
+      identifications.current).count <= 1
     node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
       [
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
@@ -1455,7 +1457,10 @@ class Observation < ActiveRecord::Base
   def community_taxon_nodes(options = {})
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
     # work on current identifications
-    working_idents = identifications.current.includes(:taxon).sort_by(&:id)
+    ids = identifications.loaded? ?
+      identifications.select(&:current?).select(&:persisted?).uniq :
+      identifications.current.includes(:taxon)
+    working_idents = ids.sort_by(&:id)
 
     # load all ancestor taxa implied by identifications
     ancestor_ids = working_idents.map{|i| i.taxon.ancestor_ids}.flatten.uniq.compact
@@ -1924,18 +1929,31 @@ class Observation < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     descendant_conditions = taxon.descendant_conditions.to_a
-    Observation.includes(:taxon, :identifications).
-        select("observations.*").
-        joins("LEFT OUTER JOIN taxa otaxa ON otaxa.id = observations.taxon_id").
-        joins("LEFT OUTER JOIN identifications idents ON idents.observation_id = observations.id").
-        joins("LEFT OUTER JOIN taxa itaxa ON itaxa.id = idents.taxon_id").
-        where("otaxa.id = ? OR otaxa.ancestry = ? OR otaxa.ancestry LIKE ? OR itaxa.id = ? OR itaxa.ancestry = ? OR itaxa.ancestry LIKE ?", 
-          taxon.id, descendant_conditions[10].val, descendant_conditions[4].val,
-          taxon.id, descendant_conditions[10].val, descendant_conditions[4].val).find_each do |o|
-      o.set_community_taxon
-      o.update_stats(:skip_save => true)
-      o.save
-      Identification.update_categories_for_observation( o )
+    result = Identification.elastic_search(
+      filters: [ { or: [
+        { term: { "taxon.ancestor_ids": taxon.id } },
+        { term: { "observation.taxon.ancestor_ids": taxon.id } },
+      ]}],
+      size: 0,
+      aggregate: {
+        obs: {
+          terms: { field: "observation.id", size: 0 }
+        }
+      }
+    )
+    obs_ids = result.response.aggregations.obs.buckets.map{ |b| b[:key] }
+    obs_ids.in_groups_of(1000) do |batch_ids|
+      Observation.includes(:taxon, { identifications: :taxon }, :flags,
+        { photos: :flags }, :quality_metrics, :sounds, :votes_for).where(id: batch_ids).find_each do |o|
+        o.set_community_taxon
+        o.update_stats(skip_save: true)
+        if o.changed?
+          o.skip_indexing = true
+          o.save
+          Identification.update_categories_for_observation( o )
+        end
+      end
+      Observation.elastic_index!(ids: batch_ids)
     end
     Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
@@ -2460,9 +2478,21 @@ class Observation < ActiveRecord::Base
     community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
   end
 
+  def needs_id_upvotes_count
+    votes_for.loaded? ?
+     votes_for.select{ |v| v.vote_flag? && v.vote_scope == "needs_id" }.size :
+     get_upvotes(vote_scope: "needs_id").size
+  end
+
+  def needs_id_downvotes_count
+    votes_for.loaded? ?
+      votes_for.select{ |v| !v.vote_flag? && v.vote_scope == "needs_id" }.size :
+      get_downvotes(vote_scope: "needs_id").size
+  end
+
   def needs_id_vote_score
-    uvotes = get_upvotes(vote_scope: 'needs_id').size
-    dvotes = get_downvotes(vote_scope: 'needs_id').size
+    uvotes = needs_id_upvotes_count
+    dvotes = needs_id_downvotes_count
     if uvotes == 0 && dvotes == 0
       nil
     elsif uvotes == 0
@@ -2475,11 +2505,11 @@ class Observation < ActiveRecord::Base
   end
 
   def voted_out_of_needs_id?
-    get_downvotes(vote_scope: 'needs_id').size > get_upvotes(vote_scope: 'needs_id').size
+    needs_id_downvotes_count > needs_id_upvotes_count
   end
 
   def voted_in_to_needs_id?
-    get_upvotes(vote_scope: 'needs_id').size > get_downvotes(vote_scope: 'needs_id').size
+    needs_id_upvotes_count > needs_id_downvotes_count
   end
 
   def needs_id?

@@ -438,7 +438,8 @@ class UsersController < ApplicationController
   
   def dashboard
     @has_updates = (current_user.recent_notifications.count > 0)
-    @local_onboarding_content = get_local_onboarding_content
+    # onboarding content not shown in the dashboard if a user has updates
+    @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
     respond_to do |format|
       format.html do
         scope = Announcement.
@@ -749,7 +750,7 @@ protected
     end
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
     elastic_query = Observation.params_to_elastic_query(elastic_params)
-    counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5)
+    counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5, batch: false)
     user_counts = Hash[ counts.map{ |c| [ c["user_id"], c["count_all"] ] } ]
     users = User.where(id: user_counts.keys).group_by(&:id)
     Hash[ user_counts.map{ |id,c| [ users[id].first, c ] } ]
@@ -759,27 +760,44 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    scope = Identification.group("identifications.user_id").
-      joins(:observation, :user).
-      where("identifications.user_id != observations.user_id").
-      order('count_all desc').
-      limit(5)
+    site_filter = @site && @site.prefers_site_only_users?
+    filters = [ { term: { own_observation: false } } ]
     if per == 'month'
       date = Date.parse("#{ year }-#{ month }-1")
-      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
-        date, date + 1.month)
+      filters << { range: { created_at: {
+        gte: date,
+        lte: date + 1.month
+      }}}
     else
       date = Date.parse("#{ year }-1-1")
-      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
-        date, date + 1.year)
+      filters << { range: { created_at: {
+        gte: date,
+        lte: date + 1.year
+      }}}
     end
-    scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-    counts = scope.count.to_a
-    users = User.where("id IN (?)", counts.map(&:first))
-    counts.inject({}) do |memo, item|
-      memo[users.detect{|u| u.id == item.first}] = item.last
-      memo
+
+    result = Identification.elastic_search(
+      filters: filters,
+      size: 0,
+      aggregate: {
+        obs: {
+          terms: { field: "user.id", size: site_filter ? 200 : 20 }
+        }
+      }
+    )
+
+    user_counts = result.response.aggregations.obs.
+      buckets.map{ |b| { user_id: b["key"], count: b["doc_count"] } }
+    users_scope = User.where(id: user_counts.map{ |uc| uc[:user_id] })
+    if @site && @site.prefers_site_only_users?
+      # only return users associated with the site
+      users_scope = users_scope.where(site_id: @site.id)
     end
+    users = Hash[users_scope.map{ |u| [ u.id, u ] }]
+    # assign user instances into their user_counts
+    user_counts.each{ |uc| uc[:user] = users[uc[:user_id]] if users[uc[:user_id]] }
+    # return the top 5 user_counts with users
+    Hash[user_counts.select{ |uc| uc[:user] }[0...5].map{ |uc| [ uc[:user], uc[:count] ]}]
   end
 
   def whitelist_params

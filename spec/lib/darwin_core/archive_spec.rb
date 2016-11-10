@@ -52,8 +52,8 @@ describe DarwinCore::Archive, "make_descriptor" do
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   let(:o) { make_research_grade_observation }
   let(:p) { 
@@ -108,6 +108,20 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
+  describe "with photo_license is ignore" do
+    it "should include CC_BY images" do
+      expect( p.license ).to eq Photo::CC_BY
+      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["ignore"])
+      expect( CSV.read(archive.make_simple_multimedia_data).size ).to eq 2
+    end
+    it "should include unlicensed images" do
+      without_delay { p.update_attributes( license: nil ) }
+      expect( p.license ).to eq Photo::COPYRIGHT
+      p.observations.each(&:elastic_index!)
+      archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["ignore"])
+      expect( CSV.read(archive.make_simple_multimedia_data).size ).to eq 2
+    end
+  end
 end
 
 describe DarwinCore::Archive, "make_observation_fields_data" do
@@ -188,8 +202,8 @@ describe DarwinCore::Archive, "make_project_observations_data" do
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:each) { enable_elastic_indexing( Observation, Project, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Project, Taxon ) }
 
   it "should filter by taxon" do
     parent = Taxon.make!(rank: Taxon::GENUS)
@@ -233,6 +247,28 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).to include o_cc_by.id
     expect( ids ).to include o_cc0.id
     expect( ids ).not_to include o_cc_by_nd.id
+  end
+
+  it "should include unlicensed observations when licenses is ignore" do
+    o = make_research_grade_observation
+    without_delay { o.update_attributes( license: nil ) }
+    expect( o.license ).to be_blank
+    archive = DarwinCore::Archive.new( licenses: [ "ignore" ] )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include o.id
+  end
+
+  it "should filter by project" do
+    in_project = make_research_grade_observation
+    po_in_project = ProjectObservation.make!( observation: in_project )
+    not_in_project = make_research_grade_observation
+    po_not_in_project = ProjectObservation.make!( observation: not_in_project )
+    expect( po_in_project.project ).not_to eq po_not_in_project.project
+    expect( po_in_project.project.observations ).not_to include not_in_project
+    archive = DarwinCore::Archive.new( project: po_in_project.project )
+    ids = CSV.read(archive.make_occurrence_data, headers: true).map{|r| r[0].to_i}
+    expect( ids ).to include in_project.id
+    expect( ids ).not_to include not_in_project.id
   end
 
   it "should set the license to a URI" do

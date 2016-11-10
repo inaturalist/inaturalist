@@ -63,7 +63,6 @@ module Shared::ListsModule
       main_list = set_scopes(@list, @filter_taxon, listed_taxa)
 
       @listed_taxa = main_list.where(@find_options[:conditions]).
-        includes(@find_options[:include]).
         paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
         order(@find_options[:order])
 
@@ -74,9 +73,12 @@ module Shared::ListsModule
       main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa)
     end
     @listed_taxa ||= main_list.where(@find_options[:conditions]).
-      includes(@find_options[:include]).
       paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
       order(@find_options[:order])
+
+    if @find_options[:order].match( /^taxa/ )
+      @listed_taxa = @listed_taxa.joins(:taxon)
+    end
 
     respond_to do |format|
       format.html do
@@ -86,7 +88,7 @@ module Shared::ListsModule
         end
         @allow_batch_adding = allow_batch_adding(@list, current_user)
 
-
+        ListedTaxon.preload_associations(@listed_taxa, @find_options[:include])
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts ||= get_iconic_taxon_counts(@list, @iconic_taxa, main_list)
         @total_listed_taxa ||= @listed_taxa.count
@@ -184,6 +186,10 @@ module Shared::ListsModule
         if @listed_taxa.respond_to?(:scoped) && params[:order_by].blank?
           @listed_taxa = @listed_taxa.reorder("listed_taxa.observations_count DESC")
         end
+        @listed_taxa = @listed_taxa.to_a
+        ListedTaxon.preload_associations(@listed_taxa, [
+          { taxon: [ { taxon_names: :place_taxon_names }, { photos: :user }, :taxon_descriptions ]}
+        ])
         render :json => {
           :list => @list,
           :listed_taxa => @listed_taxa.as_json(
@@ -516,12 +522,11 @@ private
       :per_page => per_page,
       :include => [
         :list, :user, :first_observation, :last_observation,
-        {:taxon => [:iconic_taxon, :photos, :taxon_names]}
+        {:taxon => [:iconic_taxon, :photos, { taxon_names: :place_taxon_names }]}
       ]
     }
     # This scope uses an eager load which won't load all 2nd order associations (e.g. taxon names), so they'll have to loaded when needed
     find_options[:include] = [ :last_observation, {:taxon => [:iconic_taxon, :photos]} ] if filter_by_taxon?
-
     set_options_order(find_options)
   end
 

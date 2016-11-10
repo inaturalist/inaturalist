@@ -63,12 +63,15 @@
 .grid .photo:link .icon {
   display: none;
 }
+.grid .photo.iconic {
+  background-color: #ccc;
+}
 .grid .photo.iconic .icon,
 .grid .photo.iconic .icon:hover,
 .grid .photo.iconic .icon:active,
 .grid .photo.iconic .icon:visited,
 .grid .photo.iconic .icon:link {
-  color: #eee;
+  color: white;
   display: inline-block;
 }
 .grid .photo .sound-icon { display: none; }
@@ -81,33 +84,33 @@
 .grid .photo {
   height: 120px;
   line-height: 110px;
-  font-size: 80px;
+  font-size: 60px;
 }
 @media (min-width: 768px) {
   .grid .photo {
     height: 157.5px;
     line-height: 140px;
-    font-size: 120px;
+    font-size: 90px;
   }
 }
 @media (min-width: 992px) {
   .grid .photo {
     height: 212.5px;
-    font-size: 180px;
+    font-size: 135px;
   }
 }
 @media (min-width: 1200px) {
   .grid .photo {
     height: 262.5px;
     line-height: 240px;
-    font-size: 210px;
+    font-size: 180px;
   }
 }
 
 .bootstrap-10 .grid .photo {
   height: 212px;
   line-height: 180px;
-  font-size: 100px;
+  font-size: 75px;
 }
 @media (min-width: 768px) {
   .bootstrap-10 .grid .photo {
@@ -119,14 +122,14 @@
   .bootstrap-10 .grid .photo {
     height: 172px;
     line-height: 142px;
-    font-size: 150px;
+    font-size: 112px;
   }
 }
 @media (min-width: 1200px) {
   .bootstrap-10 .grid .photo {
     height: 212px;
     line-height: 180px;
-    font-size: 150px;
+    font-size: 112px;
   }
 }
 .grid .caption {
@@ -810,8 +813,9 @@ inat-taxon { white-space: nowrap; }
   display: inline-block;
   font-size: 50px;
   line-height: 70px;
-  color: #eee;
+  color: white;
 }
+#result-table .img.iconic .sound-icon,
 #result-table .img .sound-icon {
   display: none;
 }

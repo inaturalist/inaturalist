@@ -45,4 +45,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural /^(.*)([Cc])ache$/i, '\1\2aches'
   inflect.singular /^(.*)([Cc])aches$/i, '\1\2ache'
   inflect.singular /^(.*)([Cc])ache$/i, '\1\2ache'
+  
+  inflect.plural /^(atlas)$/i, '\1es'
+  inflect.singular /^(atlas)es/i, '\1'
 end

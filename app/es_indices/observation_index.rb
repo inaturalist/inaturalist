@@ -176,7 +176,7 @@ class Observation < ActiveRecord::Base
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
-    if !options || options[:tags]
+    if options.blank? || options[:tags]
       # fetch all tag names store them in `indexed_tag_names`
       connection.execute("
         SELECT ts.taggable_id, t.name
@@ -190,7 +190,7 @@ class Observation < ActiveRecord::Base
       end
     end
     # fetch all project_ids store them in `indexed_project_ids`
-    if !options || options[:projects]
+    if options.blank? || options[:projects]
       connection.execute("
         SELECT observation_id, project_id, curator_identification_id, uuid
         FROM project_observations
@@ -207,7 +207,7 @@ class Observation < ActiveRecord::Base
       end
     end
     # fetch all place_ids store them in `indexed_place_ids`
-    if !options || options[:places]
+    if options.blank? || options[:places]
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
@@ -547,7 +547,7 @@ class Observation < ActiveRecord::Base
     sort_order = (p[:order] || "desc").downcase.to_sym
     sort = case p[:order_by]
     when "observed_on"
-      { observed_on: sort_order }
+      { observed_on: sort_order, time_observed_at: sort_order }
     when "species_guess"
       { species_guess: sort_order }
     when "votes"
