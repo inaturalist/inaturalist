@@ -1,6 +1,12 @@
 #encoding: utf-8
 class Annotation < ActiveRecord::Base
 
+  acts_as_votable
+  # acts_as_votable automatically includes `has_subscribers` but
+  # we don't want people to subscribe to annotations. Without this,
+  # voting on annotations would invoke auto-subscription to the votable
+  SUBSCRIBABLE = false
+
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
   belongs_to :resource, polymorphic: true
@@ -20,9 +26,9 @@ class Annotation < ActiveRecord::Base
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
   after_save :index_observation
-  # TODO: after_delete :reindex obs
+  after_destroy :index_observation
 
-
+  attr_accessor :skip_indexing
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)
@@ -82,16 +88,25 @@ class Annotation < ActiveRecord::Base
     end
   end
 
+  def vote_score
+    get_likes.size - get_dislikes.size
+  end
+
+  def votable_callback
+    index_observation
+  end
+
   def as_indexed_json(options={})
     {
       controlled_attribute_id: controlled_attribute_id,
       controlled_value_id: controlled_value_id,
-      attribute_value: [controlled_attribute_id, controlled_value_id].join("|")
+      attribute_value: [controlled_attribute_id, controlled_value_id].join("|"),
+      vote_score: vote_score
     }
   end
 
   def index_observation
-    if resource.is_a?(Observation)
+    if resource.is_a?(Observation) && !skip_indexing
       Observation.elastic_index!(ids: [resource.id])
     end
   end

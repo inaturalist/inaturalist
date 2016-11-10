@@ -7,16 +7,32 @@ module ActsAsVotable
     belongs_to :observation, -> { where(votes: { votable_type: "Observation" }) },
       foreign_key: "votable_id"
 
-    notifies_owner_of :votable, notification: "activity", 
+    notifies_owner_of :votable, notification: "activity",
       queue_if: lambda { |record| record.vote_scope.blank? }
 
-    auto_subscribes :user, :to => :votable
+    auto_subscribes :user, to: :votable
+
+    after_save :run_votable_callback
+    after_destroy :run_votable_callback
 
     alias_method :user, :voter
 
     def user_id
       voter_id
     end
+
+    def unsubscribable?
+      votable &&
+        votable.class.const_defined?("SUBSCRIBABLE") &&
+        votable.class.const_get("SUBSCRIBABLE") == false
+    end
+
+    def run_votable_callback
+      if votable.respond_to?(:votable_callback)
+        votable.votable_callback
+      end
+    end
+
   end
 
   module Votable

@@ -1,68 +1,80 @@
 - primary_term_label = (@term && @term.term_label || ControlledTermLabel.new)
-.container
+- term = @term || ControlledTerm.new
+.container.form-horizontal
   .row
-    .form-horizontal
-      = form_for @term || ControlledTerm.new do |f|
-        .form-group
-          %label.col-sm-2.control-label Ontology URI
-          .col-sm-10
-            = f.text_field :ontology_uri, class: "form-control"
-        .form-group
-          %label.col-sm-2.control-label URI
-          .col-sm-10
-            = f.text_field :uri, class: "form-control"
-        .form-group
-          %label.col-sm-2.control-label Valid Within Clade
-          .col-sm-10
-            = f.text_field :valid_within_clade, class: "form-control"
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            .checkbox
-              %label
-                = f.check_box :is_value
-                Is a value?
-              %label
-                = f.check_box :active
-                Active?
-        = f.fields_for primary_term_label do |ctl_f|
-          = ctl_f.hidden_field :id, value: primary_term_label.id
-          = render partial: "controlled_term_labels/form_fields", locals: { f: ctl_f, label: primary_term_label }
-        = f.submit class: "btn btn-primary"
-
-
-- if @term
-  - if @term.is_value?
-    %br
-    %br
-    %hr
-    .row
-      %h3 Attribute Associations
-    - @term.controlled_term_value_attrs.each do |ctv|
+    = form_for term do |f|
+      = f.fields_for primary_term_label do |ctl_f|
+        = ctl_f.hidden_field :id, value: primary_term_label.id
+        = render partial: "controlled_term_labels/form_fields", locals: { f: ctl_f, label: primary_term_label }
       .row
-        = ctv.controlled_attribute.label
-        = button_to t(:delete), ctv, method: :delete, data: { confirm: t(:are_you_sure?) }
-    .row
-      .form-horizontal
-        = form_for ControlledTermValue.new do |f|
-          = f.hidden_field :controlled_value_id, value: @term.id
+        .col-md-12
           .form-group
-            %label.col-sm-2.control-label Value for attribute
+            %label.col-sm-2.control-label Ontology URI
             .col-sm-10
-              = f.select :controlled_attribute_id, ControlledTerm.attributes.map{ |t| [ t.label, t.id ] }, class: "form-control"
+              = f.text_field :ontology_uri, class: "form-control"
+          .form-group
+            %label.col-sm-2.control-label URI
+            .col-sm-10
+              = f.text_field :uri, class: "form-control"
+          .form-group
+            %label.col-sm-2.control-label Valid Within Clade
+            .col-sm-10
+              = f.hidden_field :valid_within_clade, "data-ac-taxon-id": true
+              %input.form-control{ type: "text", name: "valid_within_clade_q", "data-initial-taxon": term && term.valid_within_taxon ? term.valid_within_taxon.to_json : nil }
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              .checkbox
+                %label
+                  = f.check_box :is_value
+                  Is a value?
+                - unless term.is_value?
+                  %label
+                    = f.check_box :multivalued
+                    Multivalued?
+                %label
+                  = f.check_box :active
+                  Active?
+      .row
+        .col-md-12.text-center
           = f.submit class: "btn btn-primary"
 
-  - @term.labels.where("id != ?", primary_term_label).order(:id).each do |l|
+
+  - if term
+    - if term.is_value?
+      %br
+      %br
+      %hr
+      .row
+        %h3 Attribute Associations
+      - term.controlled_term_value_attrs.each do |ctv|
+        .row
+          .form-group
+            %label.col-sm-2.control-label= ctv.controlled_attribute.label
+            .col-sm-10
+              = button_to "remove association", ctv, method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-danger"
+      - if term.possible_attribute_associates.any?
+        .row
+          = form_for ControlledTermValue.new do |f|
+            = f.hidden_field :controlled_value_id, value: term.id
+            .form-group
+              %label.col-sm-2.control-label
+                = f.select :controlled_attribute_id, term.possible_attribute_associates, class: "form-control"
+              .col-sm-10
+                = f.submit "Create attribute association", class: "btn btn-primary"
+
+    - term.labels.where("id != ?", primary_term_label).order(:id).each do |l|
+      %br
+      %br
+      %hr
+      .row
+        %h3
+          = "Label: #{l.label} (#{l.locale})"
+          = button_to "Delete label", l, method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-danger"
+        = render partial: "controlled_term_labels/form", locals: { label: l }
     %br
     %br
     %hr
     .row
-      %h3
-        = "Label: #{l.label} (#{l.locale})"
-      = render partial: "controlled_term_labels/form", locals: { label: l }
-  %br
-  %br
-  %hr
-  .row
-    %h3 Create a New Label
-    = render partial: "controlled_term_labels/form"
+      %h3 Create a New Label
+      = render partial: "controlled_term_labels/form"
 

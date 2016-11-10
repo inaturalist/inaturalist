@@ -1,38 +1,33 @@
-%br
-%br
-- if @observation.annotations.any?
-  - opts = { locale: I18n.locale }
-  - opts[:taxon] = @observation.taxon if @observation.taxon
+- opts = { locale: I18n.locale }
+- opts[:taxon] = @observation.taxon if @observation.taxon
+- unless @observation.available_controlled_terms.blank? && @observation.annotations.blank?
   .annotations
-    - @observation.annotations.each do |ctr|
-      - atr_label_term = ctr.controlled_attribute.term_label(opts)
-      - val_label_term = ctr.controlled_value.term_label(opts)
-      .annotation
-        .attribute
-          = link_to atr_label_term.label, observations_path(term_id: ctr.controlled_attribute.id)
-          \=>
-        .value
-          = link_to val_label_term.label, observations_path(term_id: ctr.controlled_attribute.id, term_value_id: ctr.controlled_value.id)
+    %h3
+      = "Annotations"
+    - if @observation.annotations.any?
+      - @observation.annotations.sort_by{ |a| a.vote_score }.reverse.each do |anno|
+        .annotation{ class: anno.vote_score < 0 ? "downvoted" : nil }
+          - atr_label_term = anno.controlled_attribute.term_label(opts)
+          - val_label_term = anno.controlled_value.term_label(opts)
+          = link_to atr_label_term.label, observations_path(term_id: anno.controlled_attribute.id)
+          /-->
+          = link_to val_label_term.label, observations_path(term_id: anno.controlled_attribute.id, term_value_id: anno.controlled_value.id)
           - if val_label_term.icon.exists?
             = image_tag val_label_term.icon.url, style: "max-width: 30px; max-height: 30px;"
-        .actions
-          - if logged_in? && (current_user == ctr.user || current_user == @observation.user)
-            = link_to t(:delete), ctr, method: :delete, data: { confirm: t(:are_you_sure?) }
-          - unless logged_in? && current_user == ctr.user
-            Up | Down
-- attrs = ControlledTerm.active.attributes
-- attrs = attrs.for_taxon(@observation.taxon_id) if @observation.taxon_id
-- unless attrs.blank?
-  = "Can you fill in any of this information?"
-  = form_for Annotation.new do |f|
-    - values = [ ]
-    - attrs.each do |a|
-      - values << [a.label(opts), nil]
-      - a.values.each{ |b| values << [raw(("&nbsp;"*4)+b.label(opts)), b.id] }
-    = f.hidden_field :resource_type, value: "Observation"
-    = f.hidden_field :resource_id, value: @observation.id
-    = f.label :controlled_attribute_id
-    = f.select :controlled_attribute_id, attrs.map{ |a| [a.label(opts), a.id] }.unshift(["", nil])
-    = f.label :controlled_value_id
-    = f.select :controlled_value_id, values.unshift(["", nil])
-    = f.submit "Assign"
+          - if logged_in? && (current_user == anno.user || current_user == @observation.user)
+            = button_to t(:delete), anno, method: :delete, data: { confirm: t(:are_you_sure?) }
+          - unless logged_in? && current_user == anno.user
+            .votes
+              = button_to "Up (#{anno.get_likes.size})", vote_path("annotation", anno.id, format: :json), method: :post
+              = button_to "Down (#{anno.get_dislikes.size})", vote_path("annotation", anno.id, vote: false, format: :json), method: :post
+              - if anno.votes_for.where(voter: current_user).any?
+                = button_to "Unvote", unvote_path("annotation", anno.id, format: :json), method: :delete
+    - @observation.available_controlled_terms.each do |a|
+      = form_for Annotation.new do |f|
+        - values = a.prepared_values.map{ |b| [ b.label(opts), b.id ] }
+        = f.hidden_field :resource_type, value: "Observation"
+        = f.hidden_field :resource_id, value: @observation.id
+        = f.label :controlled_attribute_id, a.label
+        = f.hidden_field :controlled_attribute_id, value: a.id
+        = f.select :controlled_value_id, values
+        = f.submit "Assign"

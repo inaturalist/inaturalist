@@ -18,7 +18,7 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
     return "<i class='fa fa-search'></i>";
   }
-  return result.photoTag( );
+  return result.photoTag ? result.photoTag( ) : null;
 };
 
 // return the best name in the locale, or defaulting to EN

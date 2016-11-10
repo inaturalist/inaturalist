@@ -2556,6 +2556,16 @@ class Observation < ActiveRecord::Base
     cached_votes_total
   end
 
+  def available_controlled_terms
+    attrs = ControlledTerm.active.attributes
+    attrs = attrs.for_taxon(taxon_id) if taxon_id
+    attrs -= annotations.map(&:controlled_attribute).select{ |ct| !ct.multivalued? }
+    attrs.each do |ct|
+      ct.prepared_values = ct.values_for_observation(self)
+    end
+    attrs.delete_if{ |ct| ct.prepared_values.blank? }
+  end
+
   def self.dedupe_for_user(user, options = {})
     unless user.is_a?(User)
       u = User.find_by_id(user) 

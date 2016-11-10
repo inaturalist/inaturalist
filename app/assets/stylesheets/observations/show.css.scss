@@ -109,11 +109,13 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 
 .annotations {
   display: block;
-  .annotation {
+  form.button_to, .votes {
     display: inline-block;
-    & > div {
-      width: 100px;
-      float: left;
+  }
+  .annotation {
+    padding: 5px;
+    &.downvoted {
+      background: #f2dede;
     }
   }
 }

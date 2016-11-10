@@ -512,14 +512,16 @@ class Observation < ActiveRecord::Base
       nested_query = {
         nested: {
           path: "controlled_terms_test",
-          query: { bool: { must: [ { match: {
-            "controlled_terms_test.controlled_attribute_id": p[:term_id] } } ] }
+          query: { bool: { must: [
+            { term: { "controlled_terms_test.controlled_attribute_id": p[:term_id] } },
+            { range: { "controlled_terms_test.vote_score": { gte: 0 } } }
+          ] }
           }
         }
       }
       if p[:term_value_id]
         nested_query[:nested][:query][:bool][:must] <<
-          { match: { "controlled_terms_test.controlled_value_id": p[:term_value_id] } }
+          { term: { "controlled_terms_test.controlled_value_id": p[:term_value_id] } }
       end
       complex_wheres << nested_query
     end

@@ -1,13 +1,15 @@
 #encoding: utf-8
 class ControlledTerm < ActiveRecord::Base
 
-  has_many :controlled_term_values, foreign_key: "controlled_attribute_id",
+  has_many :controlled_term_values, foreign_key: :controlled_attribute_id,
     class_name: "ControlledTermValue", dependent: :destroy
-  has_many :controlled_term_value_attrs, foreign_key: "controlled_value_id",
+  has_many :controlled_term_value_attrs, foreign_key: :controlled_value_id,
     class_name: "ControlledTermValue", dependent: :destroy
   has_many :labels, class_name: "ControlledTermLabel", dependent: :destroy
   has_many :values, through: :controlled_term_values, source: :controlled_value
   has_many :attrs, through: :controlled_term_value_attrs, source: :controlled_attribute
+  has_many :value_annotations, class_name: "Annotation", foreign_key: :controlled_value_id
+  has_many :attribute_annotations, class_name: "Annotation", foreign_key: :controlled_attribute_id
   belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
     class_name: "Taxon"
 
@@ -27,24 +29,40 @@ class ControlledTerm < ActiveRecord::Base
     where("controlled_terms.valid_within_clade IS NULL OR ta.taxon_id=?", taxon).distinct
   }
 
+  attr_accessor :prepared_values
+
   def term_label(options = { })
     options[:locale] = options[:locale].to_s || "en"
+    all_labels = labels.order(:id)
     if options[:taxon] && options[:taxon].is_a?(Taxon)
-      if match = labels.detect{ |l| l.locale == options[:locale] &&
+      if match = all_labels.detect{ |l| l.locale == options[:locale] &&
           l.valid_within_taxon && options[:taxon].has_ancestor_taxon_id(l.valid_within_taxon.id) }
         return match
       end
     end
-    if match = labels.detect{ |l| l.locale == options[:locale] }
+    if match = all_labels.detect{ |l| l.locale == options[:locale] }
       return match
     end
-    labels.first
+    all_labels.first
   end
 
   def label(options = { })
     if tl = term_label(options)
       tl.label
     end
+  end
+
+  def possible_attribute_associates
+    return unless is_value?
+    scope = ControlledTerm.attributes
+    if controlled_term_value_attrs.any?
+      scope = scope.where("id NOT IN (?)", controlled_term_value_attrs.map(&:controlled_attribute_id))
+    end
+    scope.map{ |t| [ t.label, t.id ] }
+  end
+
+  def values_for_observation(o)
+    values - o.annotations.where(controlled_attribute: self).map{ |ct| ct.controlled_value }
   end
 
 end
