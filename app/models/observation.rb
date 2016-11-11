@@ -1178,6 +1178,7 @@ class Observation < ActiveRecord::Base
 
   def research_grade_candidate?
     return false if human?
+    return false unless positional_accuracy_lt_5km?
     return false unless georeferenced?
     return false unless quality_metrics_pass?
     return false unless observed_on?
@@ -1186,6 +1187,11 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def positional_accuracy_lt_5km?
+    return true if positional_accuracy.nil?
+    positional_accuracy < 5000
+  end
+  
   def human?
     t = community_taxon || taxon
     t && t.name =~ /^Homo /
