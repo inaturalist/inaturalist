@@ -2644,7 +2644,7 @@ fr:
   pick_a_username: Choisissez un nom d’utilisateur
   pink: rose
   place: Lieu
-  placeholder: Élément de substitution
+  placeholder: Signet (élément de substitution)
   place_added_to_inat_by: Lieu ajouté à %{site_name} par
   place_deleted: Lieu supprimé.
   place_geo:
@@ -3863,7 +3863,7 @@ fr:
   US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
   use_name_as_a_placeholder: Utilisez <span class='ac-placeholder'>"%{name}"</span>
-    comme trou
+    comme signet
   use_this_form_to_create_a_new: |-
     Utilisez ce formulaire pour créer l’ébauche d’un modification taxonomique décrivant une proposition de
     séparation, de fusion ou d'échange de taxons actifs.
@@ -4934,10 +4934,8 @@ fr:
           </p>
           <ul>
             <li>
-              la <strong>communauté de %{site_name} est d’accord avec l’ID de l’observateur</strong>, où une identification
-              « en accord » en est une qui correspond exactement, ou est un taxon enfant de
-              l’ID de l’observateur. Par exemple, si Scott dit que c’est un mammifère et que Ken-ichi
-              dit que c’est un <em>Homo sapiens</em>, alors Ken-ichi est d’accord avec Scott.
+              la <strong>communauté de %{site_name} est d’accord avec l’ID au niveau de l’espèce ou en dessous</strong>, c.-à-d.
+              quand plus de 2/3 des identifieurs sont d’accord sur un taxon
             </li>
           </ul>
           <p>
