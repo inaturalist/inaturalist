@@ -197,6 +197,7 @@
 
     <% unless @list.listed_taxa.empty? -%>
       <div id="stats" class="clear">
+        <h3><%= link_to_toggle t(:stats), "#innerstats", :class => 'open' %></h3>
         <div id="innerstats"> 
           <a href="<%= url_for(params.merge(:page => 1, :taxon => nil, :iconic_taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
             <div class="readable title">
