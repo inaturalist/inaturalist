@@ -4942,11 +4942,12 @@ it:
             <li>I file KML e KMZ saranno aggiunti sulla mappa nella pagina del Progetto</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Puoi creare una lista di progetto personalizzzata e collegarla al tuo progetto. Questo può essere utile per:</p>
-          <ol class="description">
-            <li>Limitare le osservazioni consentite a quelle dei taxa elencati nella lista utilizzando la regola 'deve appartenere ai taxa della lista del progetto'.</li>
-            <li>Tener traccia di quanti taxa della lista sono stati spuntati dalle osservazioni aggiunte al progetto</li>
-          </ol>
+          <p class="description">
+            Puoi creare una lista di progetto personalizzzata e collegarla al
+            tuo progetto. Questo può essere utile per limitare le osservazioni
+            consentite a quelle dei taxa elencati nella lista utilizzando la
+            regola 'deve appartenere ai taxa della lista del progetto'.
+          </p>
         rules:
           captive: essere in cattività/coltivato
           wild: essere selvatico/naturalizzato

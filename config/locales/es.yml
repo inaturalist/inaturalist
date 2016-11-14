@@ -4947,11 +4947,13 @@ es:
             <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Puedes crear un lista personalizada de taxones del proyecto y enlazarla al proyecto. Esto puede ser útil para:</p>
-          <ol class="description">
-           <li>Restringir las observaciones que se añaden al proyecto a aquellas que se ajusten a los taxones en la lista a través de una regla 'debe ser un taxón de la lista del proyecto'.</li>
-           <li>Realizar un seguimiento de cuántos taxones en la lista han sido identificados con observaciones añadidas al proyecto</li>
-          </ol>
+          <p class="description">
+            Puedes crear un lista personalizada de taxones del proyecto y
+            enlazarla al proyecto. Esto puede ser útil para restringir las
+            observaciones que se añaden al proyecto a aquellas que se ajusten a
+            los taxones en la lista a través de una regla 'debe ser un taxón de
+            la lista del proyecto'.
+          </p>
         rules:
           captive: ser cautivo/cultivada
           wild: ser salvaje/naturalizó

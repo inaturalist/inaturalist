@@ -5149,11 +5149,13 @@ fr:
             <li>Les fichiers KML et KMZ seront ajoutés à la carte de la page du projet</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Vous pouvez créer une liste de projet personnalisée de taxons et la lier à votre projet. Cela peut être utile pour :</p>
-          <ol class="description">
-            <li>Restreindre les observations ajoutées à votre projet à celles qui correspondent aux taxons de votre liste via la règle 'doit être un taxon de la liste du projet'.</li>
-            <li>Garder trace de combien de taxons de votre liste ont été associés à des observations ajoutées au peojet</li>
-          </ol>
+          <p class="description">
+            Vous pouvez créer une liste de projet personnalisée de taxons et la
+            lier à votre projet. Cela peut être utile pour restreindre les
+            observations ajoutées à votre projet à celles qui correspondent aux
+            taxons de votre liste via la règle 'doit être un taxon de la liste
+            du projet'.
+          </p>            
         rules:
           captive: être captif/cultivé
           wild: être sauvage/acclimaté

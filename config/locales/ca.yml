@@ -4855,11 +4855,13 @@ ca:
           <li>Els arxius KML i KMZ s'afegiran al mapa a la pàgina del projecte</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Podeu crear una llista personalitzada de tàxons per aquest projecte enllaçar-la. Això pot ser útil per:</p>
-          <ol class="description">
-           <li>Restringir les observacions que s'afegeixen al vostre projecte a aquelles en que hi coincideix el taxó amb la llista a través de la regla 'ha de ser espècie de la llista del projecte".</li>
-           <li>Fer el seguiment de quants tàxons de la llista han estat observats i afegits al projecte</li>
-          </ol>
+          <p class="description">
+            Podeu crear una llista personalitzada de tàxons per aquest projecte
+            enllaçar-la. Això pot ser útil per restringir les observacions que
+            s'afegeixen al vostre projecte a aquelles en que hi coincideix el
+            taxó amb la llista a través de la regla 'ha de ser espècie de la
+            llista del projecte".
+          </p>
         rules:
           captive: captiva/conreada
           wild: salvatge/naturalitzada
