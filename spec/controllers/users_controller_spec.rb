@@ -58,6 +58,26 @@ describe UsersController, "search" do
     get :search
     expect(response).to be_success
   end
+
+  it "should results as json sorted by login" do
+    User.make!(login: "aperson")
+    User.make!(login: "person")
+    get :search, format: :json
+    results = JSON.parse(response.body)
+    expect(response).to be_success
+    expect(results[0]["login"]).to eq "aperson"
+    expect(results[1]["login"]).to eq "person"
+  end
+
+  it "should return exact matches first" do
+    User.make!(login: "aperson")
+    User.make!(login: "person")
+    get :search, format: :json, q: "person"
+    results = JSON.parse(response.body)
+    expect(response).to be_success
+    expect(results[0]["login"]).to eq "person"
+    expect(results[1]["login"]).to eq "aperson"
+  end
 end
 
 describe UsersController, "set_spammer" do

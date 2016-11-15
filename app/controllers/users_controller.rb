@@ -258,19 +258,28 @@ class UsersController < ApplicationController
     escaped_q = @q.gsub(/(%|_)/){ |m| "\\" + m }
     unless @q.blank?
       wildcard_q = (@q.size == 1 ? "#{escaped_q}%" : "%#{escaped_q.downcase}%")
-      conditions = if logged_in? && @q =~ Devise.email_regexp
-        ["email = ?", @q]
+      if logged_in? && @q =~ Devise.email_regexp
+        conditions = ["email = ?", @q]
+        exact_conditions = conditions
       elsif @q =~ /\w+\s+\w+/
-        ["lower(name) LIKE ?", wildcard_q]
+        conditions = ["lower(name) LIKE ?", wildcard_q]
+        exact_conditions = ["lower(name) = ?", @q]
       else
-        ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+        conditions = ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+        exact_conditions = ["lower(login) = ? OR lower(name) = ?", @q, @q]
       end
+      exact_ids = User.active.where(exact_conditions).pluck(:id)
       scope = scope.where(conditions)
     end
     if params[:order] == "activity"
       scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
     else
-      scope = scope.order("login")
+      if exact_ids.blank?
+        scope = scope.order("login")
+      else
+        scope = scope.select("*, (id IN (#{exact_ids.join(',')})) as is_exact")
+        scope = scope.order("is_exact DESC, login ASC")
+      end
     end
     params[:per_page] = params[:per_page] || 30
     params[:per_page] = 30 if params[:per_page].to_i > 30
