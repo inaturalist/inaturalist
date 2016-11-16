@@ -144,6 +144,7 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv(options = {})
+    CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     controller = options[:controller] || FakeView.new
     attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
        last_observation url created_at updated_at taxon_common_name confirmed_observations_count unconfirmed_observations_count)
@@ -156,22 +157,23 @@ class List < ActiveRecord::Base
     tmp_path = File.join(Dir::tmpdir, fname)
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
     
-    scope = if is_a?(CheckList) && is_default?
-      ListedTaxon.joins(:taxon).where(place_id: place_id).
-        select("DISTINCT ON (listed_taxa.taxon_id) listed_taxa.id")
+    is_default_checklist = (is_a?(CheckList) && is_default?)
+    scope = if is_default_checklist
+      ListedTaxon.joins(:taxon).where(place_id: place_id)
     else
       ListedTaxon.where(list_id: id)
     end
-    # using a nested query here because DISTINCT ON is picky with .order
-    scope = ListedTaxon.where(id: scope).
-      includes({ taxon: { taxon_names: :place_taxon_names } },
-        :user, :first_observation, :last_observation)
+    scope = scope.includes({ taxon: { taxon_names: :place_taxon_names } },
+      :user, :first_observation, :last_observation)
     
     ancestor_cache = {}
+    taxa_recorded = {}
     CSV.open(tmp_path, 'w') do |csv|
       csv << headers
       scope.find_each do |lt|
         next if lt.taxon.blank?
+        next if is_default_checklist && taxa_recorded[lt.taxon.id]
+        taxa_recorded[lt.taxon.id] = true if is_default_checklist
         row = []
         if options[:taxonomic]
           ancestor_ids = lt.taxon.ancestor_ids.map{|tid| tid.to_i}
