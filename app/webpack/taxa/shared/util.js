@@ -1,6 +1,7 @@
 import isomorphicFetch from "isomorphic-fetch";
 
 const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}?test=taxon-page`;
+const urlForTaxonPhotos = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}/browse_photos`;
 const urlForUser = ( u ) => `/people/${u.login}`;
 
 // Light wrapper around isomorphic fetch to ensure credentials are always passed through
@@ -15,6 +16,7 @@ const defaultObservationParams = ( state ) => ( {
 
 export {
   urlForTaxon,
+  urlForTaxonPhotos,
   urlForUser,
   fetch,
   defaultObservationParams

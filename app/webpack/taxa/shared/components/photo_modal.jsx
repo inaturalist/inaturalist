@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Modal, Button, Grid, Row, Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../util";
+import { urlForTaxon, urlForTaxonPhotos } from "../../shared/util";
 
 const PhotoModal = ( {
   photo,
@@ -53,12 +53,7 @@ const PhotoModal = ( {
           <Row>
             <Col xs={12}>
               <a
-                href=""
-                onClick={ e => {
-                  e.preventDefault( );
-                  alert( "TODO" );
-                  return false;
-                } }
+                href={urlForTaxonPhotos( taxon )}
                 className="btn btn-link text-center pull-right"
               >
                 { I18n.t( "more_photos" ) }

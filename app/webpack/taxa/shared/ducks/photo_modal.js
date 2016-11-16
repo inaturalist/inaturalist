@@ -10,6 +10,7 @@ export default function reducer( state = { visible: false }, action ) {
     case SET_PHOTO_MODAL:
       newState.photo = action.photo;
       newState.taxon = action.taxon;
+      newState.observation = action.observation;
       break;
     case SHOW_PHOTO_MODAL:
       newState.visible = true;
@@ -23,11 +24,12 @@ export default function reducer( state = { visible: false }, action ) {
   return newState;
 }
 
-export function setPhotoModal( photo, taxon ) {
+export function setPhotoModal( photo, taxon, observation ) {
   return {
     type: SET_PHOTO_MODAL,
     photo,
-    taxon
+    taxon,
+    observation
   };
 }
 
@@ -39,36 +41,41 @@ export function hidePhotoModal( ) {
   return { type: HIDE_PHOTO_MODAL };
 }
 
-export function showNext( ) {
+//
+// showNext and showPrev both receive a function that takes the state as an
+// argument and returns "photo container" objects that each have a photo
+// attribute and optional taxon and observation attributes
+//
+export function showNext( getPhotos ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const taxonPhotos = s.taxon.taxonPhotos;
+    const photoContainers = getPhotos( s );
     const currentPhoto = s.photoModal.photo;
-    const currentIndex = _.findIndex( taxonPhotos, tp => tp.photo.id === currentPhoto.id );
+    const currentIndex = _.findIndex( photoContainers, pc => pc.photo.id === currentPhoto.id );
     if ( currentIndex < 0 ) {
       return;
     }
-    let newTaxonPhoto = taxonPhotos[0];
-    if ( currentIndex < taxonPhotos.length - 1 ) {
-      newTaxonPhoto = taxonPhotos[currentIndex + 1];
+    let newPhotoContainer = photoContainers[0];
+    if ( currentIndex < photoContainers.length - 1 ) {
+      newPhotoContainer = photoContainers[currentIndex + 1];
     }
-    dispatch( setPhotoModal( newTaxonPhoto.photo, newTaxonPhoto.taxon ) );
+    dispatch( setPhotoModal( newPhotoContainer.photo, newPhotoContainer.taxon ) );
   };
 }
 
-export function showPrev( ) {
+export function showPrev( getPhotos ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const taxonPhotos = s.taxon.taxonPhotos;
+    const photoContainers = getPhotos( s );
     const currentPhoto = s.photoModal.photo;
-    const currentIndex = _.findIndex( taxonPhotos, tp => tp.photo.id === currentPhoto.id );
+    const currentIndex = _.findIndex( photoContainers, pc => pc.photo.id === currentPhoto.id );
     if ( currentIndex < 0 ) {
       return;
     }
-    let newTaxonPhoto = taxonPhotos[taxonPhotos.length - 1];
+    let newPhotoContainer = photoContainers[photoContainers.length - 1];
     if ( currentIndex > 0 ) {
-      newTaxonPhoto = taxonPhotos[currentIndex - 1];
+      newPhotoContainer = photoContainers[currentIndex - 1];
     }
-    dispatch( setPhotoModal( newTaxonPhoto.photo, newTaxonPhoto.taxon ) );
+    dispatch( setPhotoModal( newPhotoContainer.photo, newPhotoContainer.taxon ) );
   };
 }

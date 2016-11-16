@@ -6,7 +6,7 @@ import {
   Popover
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../util";
+import { urlForTaxon } from "../../shared/util";
 
 class TaxonCrumbs extends React.Component {
   constructor( props ) {
@@ -120,10 +120,22 @@ class TaxonCrumbs extends React.Component {
           </li>
         ) ) }
         { lastVisibleAncestor }
-        <li>
-          { crumbTaxon( taxon ) }
-          { contractControl }
-        </li>
+        { this.props.currentText ? (
+          <li>
+            <SplitTaxon taxon={taxon} url={urlForTaxon( taxon )} />
+          </li>
+        ) : null }
+        { this.props.currentText ? (
+          <li>
+            { this.props.currentText }
+            { contractControl }
+          </li>
+        ) : (
+          <li>
+            { crumbTaxon( taxon ) }
+            { contractControl }
+          </li>
+        )}
       </ul>
     );
   }
@@ -131,7 +143,8 @@ class TaxonCrumbs extends React.Component {
 
 TaxonCrumbs.propTypes = {
   taxon: PropTypes.object,
-  ancestors: PropTypes.array
+  ancestors: PropTypes.array,
+  currentText: PropTypes.string
 };
 
 TaxonCrumbs.defaultProps = { ancestors: [] };

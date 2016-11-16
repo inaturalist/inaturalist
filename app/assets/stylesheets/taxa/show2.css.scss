@@ -391,69 +391,69 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview.gallery .viewmore .fa {
   margin-left: 5px;
 }
-.PhotoPreview li {
+.TaxonPhoto {
   position: relative;
+  .photo-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    line-height: 1.2;
+    font-weight: 100;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+  }
+  .actions {
+    position: absolute;
+    top: 50%;
+    margin-top: -70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .btn-link:first-child {
+      border-right: 2px solid rgba(255,255,255,0.2);
+    }
+  }
+  .btn-link {
+    font-size: 80%;
+    color: #ddd;
+    text-transform: uppercase;
+    i {
+      display: block;
+      font-size: 300%;
+      margin-bottom: 10px;
+    }
+  }
+  .btn-link:hover {
+    text-decoration: none;
+    color: white;
+  }
+  .photo-taxon {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.4);
+    font-weight: 100;
+    font-size: 90%;
+  }
+  .photo-taxon .display-name {
+    font-size: 120%;
+    display: block;
+  }
+  .photo-taxon i {
+    font-size: 150%;
+  }
+  .SplitTaxon a {
+    color: white;
+  }
 }
-.PhotoPreview li .photo-hover {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  color: white;
-  line-height: 1.2;
-  font-weight: 100;
-  opacity: 0;
-  transition: opacity 0.2s linear;
-}
-.PhotoPreview.grid li:hover .photo-hover {
+.TaxonPhoto:hover .photo-hover {
   opacity: 1;
-}
-.PhotoPreview .actions {
-  position: absolute;
-  top: 50%;
-  margin-top: -70px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.PhotoPreview .btn-link {
-  color: #ddd;
-}
-.PhotoPreview .actions .btn-link {
-  font-size: 80%;
-}
-.PhotoPreview .actions .btn-link i {
-  display: block;
-  font-size: 300%;
-  margin-bottom: 10px;
-}
-.PhotoPreview .actions .btn-link:first-child {
-  border-right: 2px solid rgba(255,255,255,0.2);
-}
-.PhotoPreview .btn-link:hover {
-  text-decoration: none;
-  color: white;
-}
-.PhotoPreview .btn-link {
-  text-transform: uppercase;
-}
-.PhotoPreview .photo-taxon {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: rgba(0,0,0,0.4);
-  font-weight: 100;
-  font-size: 90%;
-}
-.PhotoPreview .photo-taxon .display-name {
-  font-size: 120%;
-  display: block;
-}
-.PhotoPreview .photo-taxon i {
-  font-size: 150%;
 }
 .PhotoPreview.no-content {
   display: flex;

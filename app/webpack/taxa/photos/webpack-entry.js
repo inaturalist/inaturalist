@@ -4,21 +4,16 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
-import AppContainer from "./containers/app_container";
+import photosReducer, { fetchObservationPhotos } from "./ducks/photos";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon, fetchTaxon, setCount } from "../shared/ducks/taxon";
-import observationsReducer, {
-  fetchMonthFrequency,
-  fetchMonthOfYearFrequency
-} from "./ducks/observations";
-import leadersReducer, { fetchLeaders } from "./ducks/leaders";
+import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
 import photoModalReducer from "../shared/ducks/photo_modal";
+import App from "./components/app";
 
 const rootReducer = combineReducers( {
+  photos: photosReducer,
   config: configReducer,
   taxon: taxonReducer,
-  observations: observationsReducer,
-  leaders: leadersReducer,
   photoModal: photoModalReducer
 } );
 
@@ -49,16 +44,8 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 
 if ( TAXON !== undefined && TAXON !== null ) {
   store.dispatch( setTaxon( TAXON ) );
-  if ( TAXON.taxon_changes_count ) {
-    store.dispatch( setCount( "taxonChangesCount", TAXON.taxon_changes_count) );
-  }
-  if ( TAXON.taxon_schemes_count ) {
-    store.dispatch( setCount( "taxonSchemesCount", TAXON.taxon_schemes_count) );
-  }
   store.dispatch( fetchTaxon( TAXON ) );
-  store.dispatch( fetchMonthFrequency( TAXON ) );
-  store.dispatch( fetchMonthOfYearFrequency( TAXON ) );
-  store.dispatch( fetchLeaders( TAXON ) );
+  store.dispatch( fetchObservationPhotos( ) );
 }
 
 window.onpopstate = ( ) => {
@@ -67,7 +54,7 @@ window.onpopstate = ( ) => {
 
 render(
   <Provider store={store}>
-    <AppContainer />
+    <App taxon={TAXON} />
   </Provider>,
   document.getElementById( "app" )
 );

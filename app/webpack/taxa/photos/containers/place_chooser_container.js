@@ -1,8 +1,5 @@
 import { connect } from "react-redux";
 import { setConfig } from "../../../shared/ducks/config";
-import { fetchMonthFrequency, fetchMonthOfYearFrequency } from "../ducks/observations";
-import { fetchLeaders } from "../ducks/leaders";
-import { fetchTaxon } from "../../shared/ducks/taxon";
 import PlaceChooserPopover from "../../shared/components/place_chooser_popover";
 
 function mapStateToProps( state ) {
@@ -15,10 +12,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   const setPlace = ( place ) => {
     dispatch( setConfig( { chosenPlace: place } ) );
-    dispatch( fetchTaxon( ) );
-    dispatch( fetchMonthFrequency( ) );
-    dispatch( fetchMonthOfYearFrequency( ) );
-    dispatch( fetchLeaders( ) );
+    // TODO get photos
   };
   return {
     setPlace,

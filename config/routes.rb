@@ -345,6 +345,7 @@ Rails.application.routes.draw do
       get 'names', :to => 'taxon_names#taxon'
       get 'links'
       get "map_layers"
+      get "browse_photos"
     end
     collection do
       get 'synonyms'

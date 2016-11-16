@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import HighlightsTab from "../components/highlights_tab";
 import moment from "moment";
 import querystring from "querystring";
-import { defaultObservationParams } from "../util";
+import { defaultObservationParams } from "../../shared/util";
 
 function mapStateToProps( state ) {
   const trendingParams = Object.assign( { }, defaultObservationParams( state ), {

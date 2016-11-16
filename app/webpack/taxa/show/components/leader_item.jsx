@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import CoverImage from "./cover_image";
+import CoverImage from "../../../shared/components/cover_image";
 
 const LeaderItem = ( {
   noContent,

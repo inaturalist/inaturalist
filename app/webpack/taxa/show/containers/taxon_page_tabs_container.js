@@ -8,7 +8,7 @@ import {
   fetchTrending,
   fetchRare,
   fetchSimilar
-} from "../ducks/taxon";
+} from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
   return {

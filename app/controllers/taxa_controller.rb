@@ -26,7 +26,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -158,23 +158,12 @@ class TaxaController < ApplicationController
 
     if params[:test] == "taxon-page"
       respond_to do |format|
-        @json_opts = Taxon.default_json_options
-        @json_opts[:include] = @json_opts[:include].merge( {
-          taxon_names: {},
-          iconic_taxon: { only: [:id, :name] }
-        } )
-        @json_opts[:methods] += [
-          :common_name,
-          :image_url,
-          :taxon_range_kml_url,
-          :html,
-          :default_photo,
-          :taxon_changes_count,
-          :taxon_schemes_count
-        ]
-        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
-        return render layout: "bootstrap", action: "show2"
+        format.html do
+          @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
+          render layout: "bootstrap", action: "show2"
+        end
       end
+      return
     end
     
     return render_404 unless @taxon
@@ -311,6 +300,15 @@ class TaxaController < ApplicationController
         render :json => @taxon.to_json(opts)
       end
       format.node { render :json => jit_taxon_node(@taxon) }
+    end
+  end
+
+  def browse_photos
+    respond_to do |format|
+      format.html do
+        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
+        render layout: "bootstrap"
+      end
     end
   end
 

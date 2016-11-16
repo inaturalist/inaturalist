@@ -1,5 +1,5 @@
 import iNaturalistJS from "inaturalistjs";
-import { defaultObservationParams } from "../util";
+import { defaultObservationParams } from "../../shared/util";
 
 const SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
 const SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FREQUENCY";

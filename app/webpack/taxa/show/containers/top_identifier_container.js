@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import LeaderItem from "../components/leader_item";
-import { urlForUser } from "../util";
+import { urlForUser } from "../../shared/util";
 
 function mapStateToProps( state ) {
   const leader = state.leaders.topIdentifier;

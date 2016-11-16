@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
-import CoverImage from "./cover_image";
+import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../util";
+import { urlForTaxon } from "../../shared/util";
 
 const TaxonThumbnail = ( { taxon, key } ) => {
   const img = taxon.defaultPhoto ? (

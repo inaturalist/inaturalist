@@ -1,27 +1,19 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
-import PhotoPreviewContainer from "../containers/photo_preview_container";
-import ChartsContainer from "../containers/charts_container";
-import Leaders from "../components/leaders";
-import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
-import PhotoModalContainer from "../containers/photo_modal_container";
+import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import PlaceChooserContainer from "../containers/place_chooser_container";
-import TaxonCrumbs from "../../shared/components/taxon_crumbs";
-import StatusHeader from "./status_header";
+import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
+import PhotoBrowserContainer from "../containers/photo_browser_container";
+import PhotoModalContainer from "../containers/photo_modal_container";
 import { urlForTaxon } from "../../shared/util";
 
 const App = ( { taxon } ) => (
-  <div id="TaxonDetail">
+  <div id="Photos">
     <Grid>
       <Row className="preheader">
         <Col xs={8}>
-          <TaxonCrumbs
-            taxon={taxon}
-            ancestors={taxon.ancestors}
-            url={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
-          />
+          <TaxonCrumbsContainer />
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="glyphicon glyphicon-link"></i>
           </a>
@@ -45,7 +37,7 @@ const App = ( { taxon } ) => (
         <Col xs={12}>
           <div className="inner">
             <h1>
-              <SplitTaxon
+              Photos of <SplitTaxon
                 taxon={taxon}
                 forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
               />
@@ -60,30 +52,10 @@ const App = ( { taxon } ) => (
     <Grid fluid>
       <Row id="hero">
         <Col xs={12}>
-          <Grid>
-            <Row>
-              <Col xs={12}>
-                { taxon.conservationStatus ? <StatusHeader status={taxon.conservationStatus} /> : null }
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={6}>
-                <PhotoPreviewContainer />
-              </Col>
-              <Col xs={6}>
-                <Leaders taxon={taxon} />
-                <Row>
-                  <Col xs={12}>
-                    <ChartsContainer />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Grid>
+          <PhotoBrowserContainer />
         </Col>
       </Row>
     </Grid>
-    <TaxonPageTabsContainer />
     <PhotoModalContainer />
   </div>
 );

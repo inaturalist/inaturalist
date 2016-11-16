@@ -3,7 +3,7 @@ import {
   fetchRecentObservations,
   fetchFirstObservation
 } from "./observations";
-import { defaultObservationParams } from "../util";
+import { defaultObservationParams } from "../../shared/util";
 
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
 

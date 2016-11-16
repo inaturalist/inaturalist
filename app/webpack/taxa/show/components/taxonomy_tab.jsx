@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
-import { urlForTaxon } from "../util";
+import { urlForTaxon } from "../../shared/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
-import CoverImage from "./cover_image";
-import { urlForTaxon } from "../util";
-import SplitTaxon from "../../../shared/components/split_taxon";
+import CoverImage from "../../../shared/components/cover_image";
+import { urlForTaxonPhotos } from "../../shared/util";
+import TaxonPhoto from "../../shared/components/taxon_photo";
 
 class PhotoPreview extends React.Component {
   constructor( ) {
@@ -78,52 +78,15 @@ class PhotoPreview extends React.Component {
         { currentPhoto }
         <ul className="plain others">
           { this.state.taxonPhotos.map( tp => {
-            const coverImage = (
-              <CoverImage
-                src={ layout === "gallery" ? tp.photo.photoUrl( "small" ) : tp.photo.photoUrl( "small" ) }
-                low={ layout === "gallery" ? tp.photo.photoUrl( "small" ) : tp.photo.photoUrl( "medium" ) }
-                height={height}
-              />
-            );
             let content;
             if ( layout === "grid" ) {
-              content = (
-                <span className="photoItem">
-                  <div className="photo-hover">
-                    <div className="actions">
-                      <button
-                        className="btn btn-link"
-                        onClick={ e => {
-                          e.preventDefault( );
-                          showTaxonPhotoModal( tp );
-                          return false;
-                        } }
-                      >
-                        <i className="fa fa-search-plus"></i>
-                        { I18n.t( "enlarge" ) }
-                      </button>
-                      <button
-                        className="btn btn-link"
-                        onClick={ e => {
-                          e.preventDefault( );
-                          alert( "TODO" );
-                          return false;
-                        } }
-                      >
-                        <i className="fa fa-picture-o"></i>
-                        { I18n.t( "view_all" ) }
-                      </button>
-                    </div>
-                    <div className="photo-taxon">
-                      <SplitTaxon taxon={tp.taxon} noParens url={urlForTaxon( tp.taxon )} />
-                      <a href={urlForTaxon( tp.taxon )} className="btn btn-link">
-                        <i className="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                  { coverImage }
-                </span>
-              );
+              content = <TaxonPhoto
+                photo={tp.photo}
+                photoHeight={height}
+                taxon={tp.taxon}
+                showTaxonPhotoModal={showTaxonPhotoModal}
+                className="photoItem"
+              />;
             } else {
               content = (
                 <a
@@ -135,7 +98,11 @@ class PhotoPreview extends React.Component {
                     return false;
                   } }
                 >
-                  { coverImage }
+                  <CoverImage
+                    src={ tp.photo.photoUrl( "small" ) }
+                    low={ tp.photo.photoUrl( "small" ) }
+                    height={height}
+                  />
                 </a>
               );
             }
@@ -146,12 +113,7 @@ class PhotoPreview extends React.Component {
             );
           } ) }
           <li className="viewmore">
-            <a href=""
-              onClick={ e => {
-                e.preventDefault( );
-                alert( "TODO" );
-                return false;
-              } }
+            <a href={urlForTaxonPhotos( this.props.taxon )}
               style={{ height: layout === "grid" ? `${height}px` : "inherit" }}
             >
               <span className="inner">
