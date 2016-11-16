@@ -110,9 +110,10 @@ class SiteStatistic < ActiveRecord::Base
         select("taxa.rank_level, count(distinct observations.id) as count").
         group("taxa.rank_level").
         order("count(distinct observations.id) desc").
-        collect{ |a|
-          [ Taxon::RANK_LEVELS.select{ |k,v| v == a["rank_level"] }.first.first, a["count"].to_i ]
-        }
+        collect{ |a| [
+          Taxon::RANK_LEVELS.select{ |k,v| v == a["rank_level"] }.first.try(:first) || "other",
+          a["count"].to_i
+        ]}
       ]
     }
   end

@@ -880,7 +880,7 @@ it:
     no_rights_reserved: nessun diritto riservato
     no_rights_reserved_by: '%{name}, nessun diritto riservato (%{license_name})'
     anonymous: anonimo
-    public_domain: dominio pubblico
+    public_domain: pubblico dominio
     copyright: copyright
     no_copyright: nessun copyright (CC0)
     attribution_noncommercial_sharealike_license: Licenza Attribuzione-Non Commerciale-Condividi
@@ -2853,7 +2853,7 @@ it:
   provider_authorizations: Autorizzazioni dei fornitori
   public_coordinates_obscured_by: Coordinate pubbliche oscurate nel raggio di %{distance}
     Km
-  public_domain: Dominio Pubblico
+  public_domain: Pubblico dominio
   publish: Pubblica
   purple: viola
   quality_grade: Qualità
@@ -4942,11 +4942,12 @@ it:
             <li>I file KML e KMZ saranno aggiunti sulla mappa nella pagina del Progetto</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Puoi creare una lista di progetto personalizzzata e collegarla al tuo progetto. Questo può essere utile per:</p>
-          <ol class="description">
-            <li>Limitare le osservazioni consentite a quelle dei taxa elencati nella lista utilizzando la regola 'deve appartenere ai taxa della lista del progetto'.</li>
-            <li>Tener traccia di quanti taxa della lista sono stati spuntati dalle osservazioni aggiunte al progetto</li>
-          </ol>
+          <p class="description">
+            Puoi creare una lista di progetto personalizzzata e collegarla al
+            tuo progetto. Questo può essere utile per limitare le osservazioni
+            consentite a quelle dei taxa elencati nella lista utilizzando la
+            regola 'deve appartenere ai taxa della lista del progetto'.
+          </p>
         rules:
           captive: essere in cattività/coltivato
           wild: essere selvatico/naturalizzato

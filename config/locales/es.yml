@@ -3741,7 +3741,8 @@ es:
       remove_photo: Quitar foto
       remove_observation: Eliminar observación
   uploading_num_of_count_photos:
-    other: 'uno = subiendo foto... '
+    one: Subiendo foto...
+    other: Subiendo %{num} de %{count} fotos...
   url_identifier_of_a_project_derived_from: Dirección web / identificador del proyecto
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
@@ -4946,11 +4947,13 @@ es:
             <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Puedes crear un lista personalizada de taxones del proyecto y enlazarla al proyecto. Esto puede ser útil para:</p>
-          <ol class="description">
-           <li>Restringir las observaciones que se añaden al proyecto a aquellas que se ajusten a los taxones en la lista a través de una regla 'debe ser un taxón de la lista del proyecto'.</li>
-           <li>Realizar un seguimiento de cuántos taxones en la lista han sido identificados con observaciones añadidas al proyecto</li>
-          </ol>
+          <p class="description">
+            Puedes crear un lista personalizada de taxones del proyecto y
+            enlazarla al proyecto. Esto puede ser útil para restringir las
+            observaciones que se añaden al proyecto a aquellas que se ajusten a
+            los taxones en la lista a través de una regla 'debe ser un taxón de
+            la lista del proyecto'.
+          </p>
         rules:
           captive: ser cautivo/cultivada
           wild: ser salvaje/naturalizó

@@ -254,15 +254,6 @@ CREATE FUNCTION crc32(word text) RETURNS bigint
 
 
 --
--- Name: st_aslatlontext(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_aslatlontext(geometry) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT ST_AsLatLonText($1, '') $_$;
-
-
---
 -- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
 --
 
@@ -2972,7 +2963,6 @@ CREATE TABLE projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    show_from_place boolean,
     last_aggregated_at timestamp without time zone
 );
 
@@ -3147,7 +3137,7 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
@@ -4121,9 +4111,9 @@ CREATE TABLE users (
     spam_count integer DEFAULT 0,
     last_active date,
     subscriptions_suspended_at timestamp without time zone,
-    test_groups character varying,
     latitude double precision,
     longitude double precision,
+    test_groups character varying,
     lat_lon_acc_admin_level integer,
     icon_file_name character varying,
     icon_content_type character varying,
@@ -8347,4 +8337,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161012202803');
 INSERT INTO schema_migrations (version) VALUES ('20161012204604');
 
 INSERT INTO schema_migrations (version) VALUES ('20161020190217');
+
+INSERT INTO schema_migrations (version) VALUES ('20161110221032');
 

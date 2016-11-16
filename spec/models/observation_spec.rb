@@ -729,6 +729,12 @@ describe Observation do
         expect( o.community_taxon ).to eq t
         expect( o.quality_grade ).to eq Observation::CASUAL
       end
+      
+      it "should be casual unless the positional_accuracy is < 5km" do
+        o = make_research_grade_observation( positional_accuracy: 6000 )
+        expect( o.positional_accuracy ).to eq 6000
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
 
       it "should be casual if flagged" do
         o = make_research_grade_observation

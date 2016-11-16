@@ -15,7 +15,7 @@ end
 describe ProjectList, "refresh_with_observation" do
   before { enable_elastic_indexing(Observation, UpdateAction) }
   after { disable_elastic_indexing(Observation, UpdateAction) }
-  it "should remove taxa with no more confirming observations" do
+  it "should not remove taxa with no more confirming observations" do
     p = Project.make!
     pl = p.project_list
     t1 = Taxon.make!
@@ -26,7 +26,7 @@ describe ProjectList, "refresh_with_observation" do
     po = ProjectObservation.make!(:project => p, :observation => o, :user => o.user)
     ProjectList.refresh_with_observation(o)
     pl.reload
-    pl.taxon_ids.should include(o.taxon_id) #
+    pl.taxon_ids.should_not include(o.taxon_id) #
     o = Observation.find(o.id)
     o.update_attributes(:taxon => t2)
     i = Identification.make!(:observation => o, :taxon => t2)
@@ -37,10 +37,10 @@ describe ProjectList, "refresh_with_observation" do
       :taxon_id_was => t1.id, :user_id => o.user_id, :created_at => o.created_at)
     pl.reload
     pl.taxon_ids.should_not include(t1.id)
-    pl.taxon_ids.should include(t2.id)
+    pl.taxon_ids.should_not include(t2.id)
   end
   
-  it "should add taxa from research grade observations added to the project" do
+  it "should not add taxa from research grade observations added to the project" do
     p = Project.make!
     pl = p.project_list
     t1 = Taxon.make!(rank: Taxon::SPECIES)
@@ -49,10 +49,10 @@ describe ProjectList, "refresh_with_observation" do
     po = ProjectObservation.make!(:project => p, :observation => o)
     Delayed::Worker.new(:quiet => true).work_off
     pl.reload
-    pl.taxon_ids.should include(o.taxon_id) #
+    pl.taxon_ids.should_not include(o.taxon_id) #
   end
   
-  it "should add taxa to project list from project observations made by curators" do
+  it "should not add taxa to project list from project observations made by curators" do
     p = Project.make!
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
     t = Taxon.make!
@@ -62,7 +62,7 @@ describe ProjectList, "refresh_with_observation" do
     po.curator_identification_id.should eq(o.owners_identification.id)
     cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
     pl = p.project_list
-    pl.taxon_ids.should include(cid_taxon_id)  
+    pl.taxon_ids.should_not include(cid_taxon_id)  
   end
   
   it "should confirm a species when a subspecies was observed" do
@@ -77,7 +77,7 @@ describe ProjectList, "refresh_with_observation" do
     lt.last_observation.should eq(po.observation)
   end
   
-  it "should add taxa observed by project curators on reload" do
+  it "should not add taxa observed by project curators on reload" do
     p = Project.make!
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
     t = Taxon.make!
@@ -87,27 +87,8 @@ describe ProjectList, "refresh_with_observation" do
     po.curator_identification_id.should eq(o.owners_identification.id)
     cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
     pl = p.project_list
-    pl.taxon_ids.should include(cid_taxon_id)
-    lt = ListedTaxon.where(:list_id => pl.id, :taxon_id => cid_taxon_id).first
-    lt.destroy
     pl.taxon_ids.should_not include(cid_taxon_id)
-    LifeList.reload_from_observations(pl)
-    pl.taxon_ids.should include(cid_taxon_id)
-  end
-end
-
-describe ProjectList, "reload_from_observations" do
-  before(:each) { enable_elastic_indexing(Observation, UpdateAction) }
-  after(:each) { disable_elastic_indexing(Observation, UpdateAction) }
-  it "should not delete manually added taxa when descendant taxa have been observed" do
-    p = Project.make!
-    pl = p.project_list
-    species = Taxon.make!(:rank => "species")
-    subspecies = Taxon.make!(:rank => "subspecies", :parent => species)
-    lt = pl.add_taxon(species, :manually_added => true, :user => p.user)
-    po = make_project_observation(:project => p, :taxon => subspecies)
-    Delayed::Worker.new(:quiet => true).work_off
-    ProjectList.reload_from_observations(pl)
-    ListedTaxon.find_by_id(lt.id).should_not be_blank
+    lt.destroy if lt = ListedTaxon.where(:list_id => pl.id, :taxon_id => cid_taxon_id).first
+    pl.taxon_ids.should_not include(cid_taxon_id)
   end
 end

@@ -2427,6 +2427,7 @@ en:
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
   popular: popular
   position: Position
+  position_accurate_to_within_5km?: Position accurate to within 5km?
   positional_accuracy: Positional accuracy
   possessive_user: "%{user}'s"
   post: Post
@@ -4493,11 +4494,12 @@ en:
             <li>KML and KMZ files will be added to the map on the project page</li>
           </ol>
         project_list_desc_html: |
-          <p class="description">You can create a custom project list of taxa and link it to your project. This can be useful to:</p>
-          <ol class="description">
-            <li>Restrict observations added to your project to those matching taxa on your list via the 'must be taxon on the project list' rule.</li>
-            <li>Keep track of how many taxa on your list have been checked off with observations added to the project</li>
-          </ol>
+          <p class="description">
+            You can create a custom project list of taxa and link it to your
+            project. This can be useful to restrict observations added to your
+            project to those matching taxa on your list via the "must be taxon
+            on the project list" rule.
+          </p>
         rules:
           captive: be captive/cultivated
           wild: be wild/naturalized
