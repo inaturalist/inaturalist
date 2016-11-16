@@ -9,7 +9,7 @@
       @title += ", #{link_to(@list.owner_name, @list.user ? lists_by_login_path(@list.user.login) : @list.owner)}"
     end
   -%>
-  <%= strip_tags(@title) %>
+  <%= raw strip_tags(@title) %>
 <% end %>
 
 <%- content_for(:extrahead) do -%>

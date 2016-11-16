@@ -22,6 +22,7 @@ const ObsCard = class ObsCard {
       tags: [],
       observation_field_values: [],
       projects: [],
+      changedFields: { },
       /* global TIMEZONE */
       time_zone: TIMEZONE
     };
@@ -75,17 +76,14 @@ const ObsCard = class ObsCard {
     const newMetadata = { };
     const fileMetadata = Object.assign( { }, file.metadata, file.serverMetadata );
     _.each( fileMetadata, ( v, k ) => {
-      if ( _.isEmpty(this[k]) ) { newMetadata[k] = v; }
+      if ( _.isEmpty( this[k] ) &&
+          !_.isBoolean( this[k] ) &&
+          !_.isNumber( this[k] ) &&
+          !_.has( this.changedFields, k ) ) {
+        newMetadata[k] = v;
+      }
     } );
     return newMetadata;
-  }
-
-  additionalPhotoMetadata( files ) {
-    const updates = { };
-    _.each( files || this.files, f => {
-      Object.assign( updates, f.additionalPhotoMetadata( Object.assign( { }, this, updates ) ) );
-    } );
-    return updates;
   }
 
   save( dispatch ) {

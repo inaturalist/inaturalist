@@ -273,16 +273,11 @@ class LeftMenu extends SelectionBasedComponent {
     return (
       <div className="ofvs">
         <form onSubmit={ this.submitFieldValue }>
-          <div className="input-group">
-            <div className="input-group-addon input-sm">
-              <Glyphicon glyph="th-list" />
-            </div>
-            <input
-              type="text"
-              className="form-control ofv-field"
-              placeholder={ I18n.t( "add_a_field" ) }
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control ofv-field"
+            placeholder={ I18n.t( "add_a_field" ) }
+          />
           <input type="hidden" name="observation_field_id" value={ field && field.id } />
           <div className="taglist">
             { _.map( commonOfvs, ( t, i ) => {

@@ -66,16 +66,11 @@ class ProjectsChooser extends SelectionBasedComponent {
     return (
       <div className="projects">
         <form onSubmit={this.chooseFirstProject}>
-          <div className="input-group">
-            <div className="input-group-addon input-sm">
-              <Glyphicon glyph="briefcase" />
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder={ I18n.t( "add_to_a_project" ) }
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control"
+            placeholder={ I18n.t( "add_to_a_project" ) }
+          />
         </form>
         <div className="taglist">
           { _.map( commonProjects, ( p, i ) => {
