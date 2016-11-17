@@ -7,12 +7,16 @@ import {
 } from "../../shared/ducks/photo_modal";
 
 function mapStateToProps( state ) {
-  return {
+  const props = {
     photo: state.photoModal.photo,
     taxon: state.photoModal.taxon,
     observation: state.photoModal.observation,
     visible: state.photoModal.visible
   };
+  if ( state.photoModal.observation ) {
+    props.photoLinkUrl = `/observations/${state.photoModal.observation.id}`;
+  }
+  return props;
 }
 
 function mapDispatchToProps( dispatch ) {

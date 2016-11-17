@@ -83271,18 +83271,22 @@
 
 	var _photos = __webpack_require__(1417);
 
+	var _config = __webpack_require__(1419);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
 	  if (state.photos.observationPhotos && state.photos.observationPhotos.length > 0) {
 	    return {
 	      observationPhotos: state.photos.observationPhotos,
-	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
+	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage,
+	      layout: state.config.layout
 	    };
 	  }
 	  return {
 	    observationPhotos: [],
-	    hasMorePhotos: false
+	    hasMorePhotos: false,
+	    layout: state.config.layout
 	  };
 	}
 
@@ -83294,6 +83298,9 @@
 	    },
 	    loadMorePhotos: function loadMorePhotos() {
 	      dispatch((0, _photos.fetchMorePhotos)());
+	    },
+	    setLayout: function setLayout(layout) {
+	      dispatch((0, _config.setConfig)({ layout: layout }));
 	    }
 	  };
 	}
@@ -83320,6 +83327,8 @@
 
 	var _reactInfiniteScroller2 = _interopRequireDefault(_reactInfiniteScroller);
 
+	var _reactBootstrap = __webpack_require__(607);
+
 	var _taxon_photo = __webpack_require__(1433);
 
 	var _taxon_photo2 = _interopRequireDefault(_taxon_photo);
@@ -83331,37 +83340,91 @@
 	  var _showTaxonPhotoModal = _ref.showTaxonPhotoModal;
 	  var loadMorePhotos = _ref.loadMorePhotos;
 	  var hasMorePhotos = _ref.hasMorePhotos;
+	  var layout = _ref.layout;
+	  var setLayout = _ref.setLayout;
 	  return _react2.default.createElement(
-	    "div",
-	    { className: "PhotoBrowser" },
+	    _reactBootstrap.Grid,
+	    { className: "PhotoBrowser " + layout },
 	    _react2.default.createElement(
-	      _reactInfiniteScroller2.default,
-	      {
-	        loadMore: function loadMore() {
-	          return loadMorePhotos();
-	        },
-	        hasMore: hasMorePhotos,
-	        loader: _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 12 },
+	        _react2.default.createElement(
 	          "div",
-	          { className: "loading" },
-	          _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
-	          " ",
-	          I18n.t("loading")
+	          { id: "controls" },
+	          _react2.default.createElement(
+	            _reactBootstrap.ButtonGroup,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              {
+	                active: layout === "fluid",
+	                title: I18n.t("fluid_layout"),
+	                onClick: function onClick() {
+	                  return setLayout("fluid");
+	                }
+	              },
+	              "Fluid"
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              {
+	                active: layout === "grid",
+	                title: I18n.t("grid_layout"),
+	                onClick: function onClick() {
+	                  return setLayout("grid");
+	                }
+	              },
+	              _react2.default.createElement("i", { className: "glyphicon glyphicon-th-large" })
+	            )
+	          )
 	        )
-	      },
-	      observationPhotos.map(function (observationPhoto) {
-	        var itemDim = 170;
-	        return _react2.default.createElement(_taxon_photo2.default, {
-	          key: "taxon-photo-" + observationPhoto.photo.id,
-	          photo: observationPhoto.photo,
-	          taxon: observationPhoto.observation.taxon,
-	          observation: observationPhoto.observation,
-	          photoHeight: itemDim,
-	          showTaxonPhotoModal: function showTaxonPhotoModal() {
-	            return _showTaxonPhotoModal(observationPhoto.photo, observationPhoto.observation.taxon, observationPhoto.observation);
-	          }
-	        });
-	      })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 12 },
+	        _react2.default.createElement(
+	          _reactInfiniteScroller2.default,
+	          {
+	            loadMore: function loadMore() {
+	              return loadMorePhotos();
+	            },
+	            hasMore: hasMorePhotos,
+	            className: "photos",
+	            loader: _react2.default.createElement(
+	              "div",
+	              { className: "loading" },
+	              _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
+	              " ",
+	              I18n.t("loading")
+	            )
+	          },
+	          observationPhotos.map(function (observationPhoto) {
+	            var itemDim = 180;
+	            var width = itemDim;
+	            if (layout === "fluid") {
+	              width = itemDim / observationPhoto.photo.dimensions().height * observationPhoto.photo.dimensions().width;
+	            }
+	            return _react2.default.createElement(_taxon_photo2.default, {
+	              key: "taxon-photo-" + observationPhoto.photo.id,
+	              photo: observationPhoto.photo,
+	              taxon: observationPhoto.observation.taxon,
+	              observation: observationPhoto.observation,
+	              width: width,
+	              height: itemDim,
+	              showTaxonPhotoModal: function showTaxonPhotoModal() {
+	                return _showTaxonPhotoModal(observationPhoto.photo, observationPhoto.observation.taxon, observationPhoto.observation);
+	              }
+	            });
+	          })
+	        )
+	      )
 	    )
 	  );
 	};
@@ -83370,11 +83433,14 @@
 	  observationPhotos: _react.PropTypes.array.isRequired,
 	  showTaxonPhotoModal: _react.PropTypes.func.isRequired,
 	  loadMorePhotos: _react.PropTypes.func.isRequired,
-	  hasMorePhotos: _react.PropTypes.bool
+	  hasMorePhotos: _react.PropTypes.bool,
+	  layout: _react.PropTypes.string,
+	  setLayout: _react.PropTypes.func.isRequired
 	};
 
 	PhotoBrowser.defaultProps = {
-	  observationPhotos: []
+	  observationPhotos: [],
+	  layout: "fluid"
 	};
 
 	exports.default = PhotoBrowser;
@@ -83579,12 +83645,16 @@
 	  var photo = _ref.photo;
 	  var taxon = _ref.taxon;
 	  var observation = _ref.observation;
-	  var photoHeight = _ref.photoHeight;
+	  var width = _ref.width;
+	  var height = _ref.height;
 	  var showTaxonPhotoModal = _ref.showTaxonPhotoModal;
 	  var className = _ref.className;
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "TaxonPhoto " + className },
+	    {
+	      className: "TaxonPhoto " + className,
+	      style: { width: width }
+	    },
 	    _react2.default.createElement(
 	      "div",
 	      { className: "photo-hover" },
@@ -83626,9 +83696,9 @@
 	      )
 	    ),
 	    _react2.default.createElement(_cover_image2.default, {
-	      src: photo.photoUrl("small"),
-	      low: photo.photoUrl("medium"),
-	      height: photoHeight
+	      src: photo.photoUrl("medium"),
+	      low: photo.photoUrl("small"),
+	      height: height
 	    })
 	  );
 	};
@@ -83637,7 +83707,8 @@
 	  photo: _react.PropTypes.object.isRequired,
 	  taxon: _react.PropTypes.object.isRequired,
 	  showTaxonPhotoModal: _react.PropTypes.func.isRequired,
-	  photoHeight: _react.PropTypes.number.isRequired,
+	  width: _react.PropTypes.number,
+	  height: _react.PropTypes.number.isRequired,
 	  observation: _react.PropTypes.object,
 	  className: _react.PropTypes.string
 	};
@@ -83761,12 +83832,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
-	  return {
+	  var props = {
 	    photo: state.photoModal.photo,
 	    taxon: state.photoModal.taxon,
 	    observation: state.photoModal.observation,
 	    visible: state.photoModal.visible
 	  };
+	  if (state.photoModal.observation) {
+	    props.photoLinkUrl = "/observations/" + state.photoModal.observation.id;
+	  }
+	  return props;
 	}
 
 	function mapDispatchToProps(dispatch) {
@@ -83828,6 +83903,7 @@
 	  var onClose = _ref.onClose;
 	  var showNext = _ref.showNext;
 	  var showPrev = _ref.showPrev;
+	  var photoLinkUrl = _ref.photoLinkUrl;
 
 	  var photoContent = _react2.default.createElement(
 	    "div",
@@ -83841,7 +83917,7 @@
 	      obsLink = _react2.default.createElement(
 	        "a",
 	        { href: "/observations/" + observation.id },
-	        I18n.t("observation")
+	        I18n.t("view_observation")
 	      );
 	    }
 	    photoAttribution = _react2.default.createElement(
@@ -83859,7 +83935,9 @@
 	      ),
 	      obsLink
 	    );
-	    photoContent = _react2.default.createElement("div", {
+	    var PhotoElement = photoLinkUrl ? "a" : "div";
+	    photoContent = _react2.default.createElement(PhotoElement, {
+	      href: photoLinkUrl,
 	      className: "photo-container",
 	      style: {
 	        backgroundSize: "contain",
@@ -83943,7 +84021,8 @@
 	  visible: _react.PropTypes.bool,
 	  onClose: _react.PropTypes.func,
 	  showNext: _react.PropTypes.func,
-	  showPrev: _react.PropTypes.func
+	  showPrev: _react.PropTypes.func,
+	  photoLinkUrl: _react.PropTypes.string
 	};
 
 	exports.default = PhotoModal;

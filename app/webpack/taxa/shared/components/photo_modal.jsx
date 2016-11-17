@@ -10,7 +10,8 @@ const PhotoModal = ( {
   visible,
   onClose,
   showNext,
-  showPrev
+  showPrev,
+  photoLinkUrl
 } ) => {
   let photoContent = (
     <div className="text-center text-muted">
@@ -21,7 +22,7 @@ const PhotoModal = ( {
   if ( photo ) {
     let obsLink;
     if ( observation ) {
-      obsLink = <a href={`/observations/${observation.id}`}>{ I18n.t( "observation" ) }</a>;
+      obsLink = <a href={`/observations/${observation.id}`}>{ I18n.t( "view_observation" ) }</a>;
     }
     photoAttribution = (
       <div className="photo-attribution">
@@ -30,8 +31,10 @@ const PhotoModal = ( {
         { obsLink }
       </div>
     );
+    const PhotoElement = photoLinkUrl ? "a" : "div";
     photoContent = (
-      <div
+      <PhotoElement
+        href={photoLinkUrl}
         className="photo-container"
         style={{
           backgroundSize: "contain",
@@ -41,8 +44,7 @@ const PhotoModal = ( {
           position: "relative",
           backgroundColor: "black"
         }}
-      >
-      </div>
+      />
     );
   }
   let taxonContent;
@@ -97,7 +99,8 @@ PhotoModal.propTypes = {
   visible: PropTypes.bool,
   onClose: PropTypes.func,
   showNext: PropTypes.func,
-  showPrev: PropTypes.func
+  showPrev: PropTypes.func,
+  photoLinkUrl: PropTypes.string
 };
 
 export default PhotoModal;

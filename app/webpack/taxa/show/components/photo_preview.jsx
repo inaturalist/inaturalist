@@ -80,13 +80,15 @@ class PhotoPreview extends React.Component {
           { this.state.taxonPhotos.map( tp => {
             let content;
             if ( layout === "grid" ) {
-              content = <TaxonPhoto
-                photo={tp.photo}
-                photoHeight={height}
-                taxon={tp.taxon}
-                showTaxonPhotoModal={showTaxonPhotoModal}
-                className="photoItem"
-              />;
+              content = (
+                <TaxonPhoto
+                  photo={tp.photo}
+                  height={height}
+                  taxon={tp.taxon}
+                  showTaxonPhotoModal={showTaxonPhotoModal}
+                  className="photoItem"
+                />
+              );
             } else {
               content = (
                 <a

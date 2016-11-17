@@ -93101,12 +93101,16 @@
 	  var photo = _ref.photo;
 	  var taxon = _ref.taxon;
 	  var observation = _ref.observation;
-	  var photoHeight = _ref.photoHeight;
+	  var width = _ref.width;
+	  var height = _ref.height;
 	  var showTaxonPhotoModal = _ref.showTaxonPhotoModal;
 	  var className = _ref.className;
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "TaxonPhoto " + className },
+	    {
+	      className: "TaxonPhoto " + className,
+	      style: { width: width }
+	    },
 	    _react2.default.createElement(
 	      "div",
 	      { className: "photo-hover" },
@@ -93148,9 +93152,9 @@
 	      )
 	    ),
 	    _react2.default.createElement(_cover_image2.default, {
-	      src: photo.photoUrl("small"),
-	      low: photo.photoUrl("medium"),
-	      height: photoHeight
+	      src: photo.photoUrl("medium"),
+	      low: photo.photoUrl("small"),
+	      height: height
 	    })
 	  );
 	};
@@ -93159,7 +93163,8 @@
 	  photo: _react.PropTypes.object.isRequired,
 	  taxon: _react.PropTypes.object.isRequired,
 	  showTaxonPhotoModal: _react.PropTypes.func.isRequired,
-	  photoHeight: _react.PropTypes.number.isRequired,
+	  width: _react.PropTypes.number,
+	  height: _react.PropTypes.number.isRequired,
 	  observation: _react.PropTypes.object,
 	  className: _react.PropTypes.string
 	};
@@ -93295,6 +93300,7 @@
 	  var onClose = _ref.onClose;
 	  var showNext = _ref.showNext;
 	  var showPrev = _ref.showPrev;
+	  var photoLinkUrl = _ref.photoLinkUrl;
 
 	  var photoContent = _react2.default.createElement(
 	    "div",
@@ -93308,7 +93314,7 @@
 	      obsLink = _react2.default.createElement(
 	        "a",
 	        { href: "/observations/" + observation.id },
-	        I18n.t("observation")
+	        I18n.t("view_observation")
 	      );
 	    }
 	    photoAttribution = _react2.default.createElement(
@@ -93326,7 +93332,9 @@
 	      ),
 	      obsLink
 	    );
-	    photoContent = _react2.default.createElement("div", {
+	    var PhotoElement = photoLinkUrl ? "a" : "div";
+	    photoContent = _react2.default.createElement(PhotoElement, {
+	      href: photoLinkUrl,
 	      className: "photo-container",
 	      style: {
 	        backgroundSize: "contain",
@@ -93410,7 +93418,8 @@
 	  visible: _react.PropTypes.bool,
 	  onClose: _react.PropTypes.func,
 	  showNext: _react.PropTypes.func,
-	  showPrev: _react.PropTypes.func
+	  showPrev: _react.PropTypes.func,
+	  photoLinkUrl: _react.PropTypes.string
 	};
 
 	exports.default = PhotoModal;
@@ -93819,7 +93828,7 @@
 	            if (layout === "grid") {
 	              content = _react2.default.createElement(_taxon_photo2.default, {
 	                photo: tp.photo,
-	                photoHeight: height,
+	                height: height,
 	                taxon: tp.taxon,
 	                showTaxonPhotoModal: showTaxonPhotoModal,
 	                className: "photoItem"

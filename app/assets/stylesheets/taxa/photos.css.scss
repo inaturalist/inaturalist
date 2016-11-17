@@ -1,10 +1,14 @@
 .PhotoBrowser {
-  margin: -5px;
-  line-height: 0;
+  .photos {
+    margin: -5px;
+    line-height: 0;
+  }
   .TaxonPhoto {
     display: inline-block;
-    width: 170px;
     margin: 5px;
+  }
+  .TaxonPhoto .actions {
+    margin-top: -60px;
   }
   .loading {
     color: #999;
@@ -12,4 +16,23 @@
     margin: 20px;
     text-align: center;
   }
+}
+
+.PhotoBrowser.grid {
+  .TaxonPhoto {
+    // width: 170px;
+  } 
+}
+.PhotoBrowser.fluid {
+  .photos {
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  .TaxonPhoto {
+    flex-grow: 1;
+  }
+}
+
+#controls {
+  margin-bottom: 20px;
 }

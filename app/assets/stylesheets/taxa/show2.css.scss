@@ -369,6 +369,9 @@ $photoPreviewThumbGutterTop: 3px;
   font-weight: bold;
   text-transform: capitalize;
 }
+.PhotoPreview .viewmore a {
+  display: block;
+}
 .PhotoPreview.grid .viewmore a {
   background-color: #333;
   font-weight: 100;
@@ -399,7 +402,7 @@ $photoPreviewThumbGutterTop: 3px;
     height: 100%;
     background-color: rgba(0,0,0,0.5);
     color: white;
-    line-height: 1.2;
+    line-height: 19px;
     font-weight: 100;
     opacity: 0;
     transition: opacity 0.2s linear;
@@ -792,6 +795,9 @@ $nav-btn-dim: 40px;
 .PhotoModal .photo-modal-content .photo-container {
   flex-grow: 2;
   padding: 20px;
+}
+.PhotoModal .photo-modal-content .photo-container:hover {
+  opacity: 1;
 }
 .PhotoModal .photo-modal-content .photo-attribution {
   padding: 10px;

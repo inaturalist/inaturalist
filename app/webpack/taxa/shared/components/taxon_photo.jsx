@@ -7,11 +7,15 @@ const TaxonPhoto = ( {
   photo,
   taxon,
   observation,
-  photoHeight,
+  width,
+  height,
   showTaxonPhotoModal,
   className
 } ) => (
-  <div className={`TaxonPhoto ${className}`}>
+  <div
+    className={`TaxonPhoto ${className}`}
+    style={{ width }}
+  >
     <div className="photo-hover">
       <div className="actions">
         <button
@@ -41,9 +45,9 @@ const TaxonPhoto = ( {
       </div>
     </div>
     <CoverImage
-      src={ photo.photoUrl( "small" ) }
-      low={ photo.photoUrl( "medium" ) }
-      height={photoHeight}
+      src={ photo.photoUrl( "medium" ) }
+      low={ photo.photoUrl( "small" ) }
+      height={height}
     />
   </div>
 );
@@ -52,7 +56,8 @@ TaxonPhoto.propTypes = {
   photo: PropTypes.object.isRequired,
   taxon: PropTypes.object.isRequired,
   showTaxonPhotoModal: PropTypes.func.isRequired,
-  photoHeight: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number.isRequired,
   observation: PropTypes.object,
   className: PropTypes.string
 };
