@@ -81850,7 +81850,9 @@
 	});
 	exports.default = reducer;
 	exports.setObservationPhotos = setObservationPhotos;
+	exports.appendObservationPhotos = appendObservationPhotos;
 	exports.fetchObservationPhotos = fetchObservationPhotos;
+	exports.fetchMorePhotos = fetchMorePhotos;
 
 	var _inaturalistjs = __webpack_require__(586);
 
@@ -81865,16 +81867,25 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
+	var APPEND_OBSERVATION_PHOTOS = "taxa-photos/photos/APPEND_OBSERVATION_PHOTOS";
 
 	function reducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? { counts: {} } : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? { observationPhotos: [] } : arguments[0];
 	  var action = arguments[1];
 
 	  var newState = Object.assign({}, state);
 	  switch (action.type) {
 	    case SET_OBSERVATION_PHOTOS:
-	      console.log("[DEBUG] dispatching SET_OBSERVATION_PHOTOS");
 	      newState.observationPhotos = action.observationPhotos;
+	      newState.totalResults = action.totalResults;
+	      newState.page = action.page;
+	      newState.perPage = action.perPage;
+	      break;
+	    case APPEND_OBSERVATION_PHOTOS:
+	      newState.observationPhotos = newState.observationPhotos.concat(action.observationPhotos);
+	      newState.totalResults = action.totalResults;
+	      newState.page = action.page;
+	      newState.perPage = action.perPage;
 	      break;
 	    default:
 	    // ok
@@ -81882,23 +81893,49 @@
 	  return newState;
 	}
 
-	function setObservationPhotos(observationPhotos) {
+	function setObservationPhotos(observationPhotos, totalResults, page, perPage) {
 	  return {
 	    type: SET_OBSERVATION_PHOTOS,
-	    observationPhotos: observationPhotos
+	    observationPhotos: observationPhotos,
+	    totalResults: totalResults,
+	    page: page,
+	    perPage: perPage
 	  };
 	}
 
-	function fetchObservationPhotos() {
+	function appendObservationPhotos(observationPhotos, totalResults, page, perPage) {
+	  return {
+	    type: APPEND_OBSERVATION_PHOTOS,
+	    observationPhotos: observationPhotos,
+	    totalResults: totalResults,
+	    page: page,
+	    perPage: perPage
+	  };
+	}
+
+	function fetchObservationPhotos(page, perPage) {
 	  return function (dispatch, getState) {
-	    return _inaturalistjs2.default.observations.search((0, _util.defaultObservationParams)(getState())).then(function (response) {
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
+	      page: page,
+	      perPage: perPage
+	    });
+	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
 	      var observationPhotos = _lodash2.default.flatten(response.results.map(function (observation) {
 	        return observation.photos.map(function (photo) {
 	          return { photo: photo, observation: observation };
 	        });
 	      }));
-	      dispatch(setObservationPhotos(observationPhotos));
+	      dispatch(appendObservationPhotos(observationPhotos, response.total_results, response.page, response.per_page));
 	    });
+	  };
+	}
+
+	function fetchMorePhotos() {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var page = s.photos.page + 1;
+	    var perPage = s.photos.perPage;
+	    dispatch(fetchObservationPhotos(page, perPage));
 	  };
 	}
 
@@ -82581,7 +82618,7 @@
 
 	var _photo_browser_container2 = _interopRequireDefault(_photo_browser_container);
 
-	var _photo_modal_container = __webpack_require__(1434);
+	var _photo_modal_container = __webpack_require__(1435);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
@@ -83232,16 +83269,20 @@
 
 	var _photo_modal = __webpack_require__(1424);
 
+	var _photos = __webpack_require__(1417);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
 	  if (state.photos.observationPhotos && state.photos.observationPhotos.length > 0) {
 	    return {
-	      observationPhotos: state.photos.observationPhotos
+	      observationPhotos: state.photos.observationPhotos,
+	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
 	    };
 	  }
 	  return {
-	    observationPhotos: []
+	    observationPhotos: [],
+	    hasMorePhotos: false
 	  };
 	}
 
@@ -83250,6 +83291,9 @@
 	    showTaxonPhotoModal: function showTaxonPhotoModal(photo, taxon, observation) {
 	      dispatch((0, _photo_modal.setPhotoModal)(photo, taxon, observation));
 	      dispatch((0, _photo_modal.showPhotoModal)());
+	    },
+	    loadMorePhotos: function loadMorePhotos() {
+	      dispatch((0, _photos.fetchMorePhotos)());
 	    }
 	  };
 	}
@@ -83272,7 +83316,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _taxon_photo = __webpack_require__(1432);
+	var _reactInfiniteScroller = __webpack_require__(1432);
+
+	var _reactInfiniteScroller2 = _interopRequireDefault(_reactInfiniteScroller);
+
+	var _taxon_photo = __webpack_require__(1433);
 
 	var _taxon_photo2 = _interopRequireDefault(_taxon_photo);
 
@@ -83281,28 +83329,48 @@
 	var PhotoBrowser = function PhotoBrowser(_ref) {
 	  var observationPhotos = _ref.observationPhotos;
 	  var _showTaxonPhotoModal = _ref.showTaxonPhotoModal;
+	  var loadMorePhotos = _ref.loadMorePhotos;
+	  var hasMorePhotos = _ref.hasMorePhotos;
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "PhotoBrowser" },
-	    observationPhotos.map(function (observationPhoto) {
-	      var itemDim = 170;
-	      return _react2.default.createElement(_taxon_photo2.default, {
-	        key: "taxon-photo-" + observationPhoto.photo.id,
-	        photo: observationPhoto.photo,
-	        taxon: observationPhoto.observation.taxon,
-	        observation: observationPhoto.observation,
-	        photoHeight: itemDim,
-	        showTaxonPhotoModal: function showTaxonPhotoModal() {
-	          return _showTaxonPhotoModal(observationPhoto.photo, observationPhoto.observation.taxon, observationPhotos.observation);
-	        }
-	      });
-	    })
+	    _react2.default.createElement(
+	      _reactInfiniteScroller2.default,
+	      {
+	        loadMore: function loadMore() {
+	          return loadMorePhotos();
+	        },
+	        hasMore: hasMorePhotos,
+	        loader: _react2.default.createElement(
+	          "div",
+	          { className: "loading" },
+	          _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" }),
+	          " ",
+	          I18n.t("loading")
+	        )
+	      },
+	      observationPhotos.map(function (observationPhoto) {
+	        var itemDim = 170;
+	        return _react2.default.createElement(_taxon_photo2.default, {
+	          key: "taxon-photo-" + observationPhoto.photo.id,
+	          photo: observationPhoto.photo,
+	          taxon: observationPhoto.observation.taxon,
+	          observation: observationPhoto.observation,
+	          photoHeight: itemDim,
+	          showTaxonPhotoModal: function showTaxonPhotoModal() {
+	            return _showTaxonPhotoModal(observationPhoto.photo, observationPhoto.observation.taxon, observationPhoto.observation);
+	          }
+	        });
+	      })
+	    )
 	  );
 	};
 
 	PhotoBrowser.propTypes = {
 	  observationPhotos: _react.PropTypes.array.isRequired,
-	  showTaxonPhotoModal: _react.PropTypes.func.isRequired
+	  showTaxonPhotoModal: _react.PropTypes.func.isRequired,
+	  loadMorePhotos: _react.PropTypes.func.isRequired,
+	  hasMorePhotos: _react.PropTypes.bool
 	};
 
 	PhotoBrowser.defaultProps = {
@@ -83313,6 +83381,176 @@
 
 /***/ },
 /* 1432 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(559);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var InfiniteScroll = function (_Component) {
+	    _inherits(InfiniteScroll, _Component);
+
+	    function InfiniteScroll(props) {
+	        _classCallCheck(this, InfiniteScroll);
+
+	        var _this = _possibleConstructorReturn(this, (InfiniteScroll.__proto__ || Object.getPrototypeOf(InfiniteScroll)).call(this, props));
+
+	        _this.scrollListener = _this.scrollListener.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(InfiniteScroll, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.pageLoaded = this.props.pageStart;
+	            this.attachScrollListener();
+	        }
+	    }, {
+	        key: 'componentDidUpdate',
+	        value: function componentDidUpdate() {
+	            this.attachScrollListener();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _props = this.props;
+	            var children = _props.children;
+	            var element = _props.element;
+	            var hasMore = _props.hasMore;
+	            var initialLoad = _props.initialLoad;
+	            var loader = _props.loader;
+	            var loadMore = _props.loadMore;
+	            var pageStart = _props.pageStart;
+	            var threshold = _props.threshold;
+	            var useWindow = _props.useWindow;
+
+	            var props = _objectWithoutProperties(_props, ['children', 'element', 'hasMore', 'initialLoad', 'loader', 'loadMore', 'pageStart', 'threshold', 'useWindow']);
+
+	            return _react2.default.createElement(element, props, children, hasMore && (loader || this._defaultLoader));
+	        }
+	    }, {
+	        key: 'calculateTopPosition',
+	        value: function calculateTopPosition(el) {
+	            if (!el) {
+	                return 0;
+	            }
+	            return el.offsetTop + this.calculateTopPosition(el.offsetParent);
+	        }
+	    }, {
+	        key: 'scrollListener',
+	        value: function scrollListener() {
+	            var el = _reactDom2.default.findDOMNode(this);
+	            var scrollEl = window;
+
+	            var offset = void 0;
+	            if (this.props.useWindow) {
+	                var scrollTop = scrollEl.pageYOffset !== undefined ? scrollEl.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+	                offset = this.calculateTopPosition(el) + el.offsetHeight - scrollTop - window.innerHeight;
+	            } else {
+	                offset = el.scrollHeight - el.parentNode.scrollTop - el.parentNode.clientHeight;
+	            }
+
+	            if (offset < Number(this.props.threshold)) {
+	                this.detachScrollListener();
+	                // Call loadMore after detachScrollListener to allow for non-async loadMore functions
+	                if (typeof this.props.loadMore == 'function') {
+	                    this.props.loadMore(this.pageLoaded += 1);
+	                }
+	            }
+	        }
+	    }, {
+	        key: 'attachScrollListener',
+	        value: function attachScrollListener() {
+	            if (!this.props.hasMore) {
+	                return;
+	            }
+
+	            var scrollEl = window;
+	            if (this.props.useWindow == false) {
+	                scrollEl = _reactDom2.default.findDOMNode(this).parentNode;
+	            }
+
+	            scrollEl.addEventListener('scroll', this.scrollListener);
+	            scrollEl.addEventListener('resize', this.scrollListener);
+
+	            if (this.props.initialLoad) {
+	                this.scrollListener();
+	            }
+	        }
+	    }, {
+	        key: 'detachScrollListener',
+	        value: function detachScrollListener() {
+	            var scrollEl = window;
+	            if (this.props.useWindow == false) {
+	                scrollEl = _reactDom2.default.findDOMNode(this).parentNode;
+	            }
+
+	            scrollEl.removeEventListener('scroll', this.scrollListener);
+	            scrollEl.removeEventListener('resize', this.scrollListener);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            this.detachScrollListener();
+	        }
+
+	        // Set a defaut loader for all your `InfiniteScroll` components
+
+	    }, {
+	        key: 'setDefaultLoader',
+	        value: function setDefaultLoader(loader) {
+	            this._defaultLoader = loader;
+	        }
+	    }]);
+
+	    return InfiniteScroll;
+	}(_react.Component);
+
+	InfiniteScroll.propTypes = {
+	    element: _react.PropTypes.string,
+	    hasMore: _react.PropTypes.bool,
+	    initialLoad: _react.PropTypes.bool,
+	    loadMore: _react.PropTypes.func.isRequired,
+	    pageStart: _react.PropTypes.number,
+	    threshold: _react.PropTypes.number,
+	    useWindow: _react.PropTypes.bool
+	};
+	InfiniteScroll.defaultProps = {
+	    element: 'div',
+	    hasMore: false,
+	    initialLoad: true,
+	    pageStart: 0,
+	    threshold: 250,
+	    useWindow: true
+	};
+	exports.default = InfiniteScroll;
+	module.exports = exports['default'];
+
+
+/***/ },
+/* 1433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83329,7 +83567,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _cover_image = __webpack_require__(1433);
+	var _cover_image = __webpack_require__(1434);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -83407,7 +83645,7 @@
 	exports.default = TaxonPhoto;
 
 /***/ },
-/* 1433 */
+/* 1434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83503,7 +83741,7 @@
 	exports.default = CoverImage;
 
 /***/ },
-/* 1434 */
+/* 1435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83514,7 +83752,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1435);
+	var _photo_modal = __webpack_require__(1436);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
@@ -83559,7 +83797,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1435 */
+/* 1436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -62,7 +62,7 @@
 
 	var _redux = __webpack_require__(567);
 
-	var _app_container = __webpack_require__(1436);
+	var _app_container = __webpack_require__(1437);
 
 	var _app_container2 = _interopRequireDefault(_app_container);
 
@@ -74,11 +74,11 @@
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _observations = __webpack_require__(1444);
+	var _observations = __webpack_require__(1445);
 
 	var _observations2 = _interopRequireDefault(_observations);
 
-	var _leaders = __webpack_require__(1470);
+	var _leaders = __webpack_require__(1471);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
@@ -93071,7 +93071,8 @@
 /***/ },
 /* 1430 */,
 /* 1431 */,
-/* 1432 */
+/* 1432 */,
+/* 1433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93088,7 +93089,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _cover_image = __webpack_require__(1433);
+	var _cover_image = __webpack_require__(1434);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -93166,7 +93167,7 @@
 	exports.default = TaxonPhoto;
 
 /***/ },
-/* 1433 */
+/* 1434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93262,8 +93263,8 @@
 	exports.default = CoverImage;
 
 /***/ },
-/* 1434 */,
-/* 1435 */
+/* 1435 */,
+/* 1436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93415,7 +93416,7 @@
 	exports.default = PhotoModal;
 
 /***/ },
-/* 1436 */
+/* 1437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93426,7 +93427,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _app = __webpack_require__(1437);
+	var _app = __webpack_require__(1438);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -93447,7 +93448,7 @@
 	exports.default = AppContainer;
 
 /***/ },
-/* 1437 */
+/* 1438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93470,27 +93471,27 @@
 
 	var _taxon_autocomplete2 = _interopRequireDefault(_taxon_autocomplete);
 
-	var _photo_preview_container = __webpack_require__(1438);
+	var _photo_preview_container = __webpack_require__(1439);
 
 	var _photo_preview_container2 = _interopRequireDefault(_photo_preview_container);
 
-	var _charts_container = __webpack_require__(1440);
+	var _charts_container = __webpack_require__(1441);
 
 	var _charts_container2 = _interopRequireDefault(_charts_container);
 
-	var _leaders = __webpack_require__(1445);
+	var _leaders = __webpack_require__(1446);
 
 	var _leaders2 = _interopRequireDefault(_leaders);
 
-	var _taxon_page_tabs_container = __webpack_require__(1452);
+	var _taxon_page_tabs_container = __webpack_require__(1453);
 
 	var _taxon_page_tabs_container2 = _interopRequireDefault(_taxon_page_tabs_container);
 
-	var _photo_modal_container = __webpack_require__(1468);
+	var _photo_modal_container = __webpack_require__(1469);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
-	var _place_chooser_container = __webpack_require__(1469);
+	var _place_chooser_container = __webpack_require__(1470);
 
 	var _place_chooser_container2 = _interopRequireDefault(_place_chooser_container);
 
@@ -93498,7 +93499,7 @@
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
-	var _status_header = __webpack_require__(1471);
+	var _status_header = __webpack_require__(1472);
 
 	var _status_header2 = _interopRequireDefault(_status_header);
 
@@ -93636,7 +93637,7 @@
 	exports.default = App;
 
 /***/ },
-/* 1438 */
+/* 1439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93647,7 +93648,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_preview = __webpack_require__(1439);
+	var _photo_preview = __webpack_require__(1440);
 
 	var _photo_preview2 = _interopRequireDefault(_photo_preview);
 
@@ -93685,7 +93686,7 @@
 	exports.default = PhotoPreviewContainer;
 
 /***/ },
-/* 1439 */
+/* 1440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93700,13 +93701,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1433);
+	var _cover_image = __webpack_require__(1434);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
 	var _util = __webpack_require__(1418);
 
-	var _taxon_photo = __webpack_require__(1432);
+	var _taxon_photo = __webpack_require__(1433);
 
 	var _taxon_photo2 = _interopRequireDefault(_taxon_photo);
 
@@ -93888,7 +93889,7 @@
 	exports.default = PhotoPreview;
 
 /***/ },
-/* 1440 */
+/* 1441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93899,11 +93900,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _charts = __webpack_require__(1441);
+	var _charts = __webpack_require__(1442);
 
 	var _charts2 = _interopRequireDefault(_charts);
 
-	var _observations = __webpack_require__(1444);
+	var _observations = __webpack_require__(1445);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -93930,7 +93931,7 @@
 	exports.default = ChartsContainer;
 
 /***/ },
-/* 1441 */
+/* 1442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -93953,7 +93954,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _c = __webpack_require__(1442);
+	var _c = __webpack_require__(1443);
 
 	var _c2 = _interopRequireDefault(_c);
 
@@ -94255,7 +94256,7 @@
 	exports.default = Charts;
 
 /***/ },
-/* 1442 */
+/* 1443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (window) {
@@ -94309,7 +94310,7 @@
 
 	    function ChartInternal(api) {
 	        var $$ = this;
-	        $$.d3 = window.d3 ? window.d3 :  true ? __webpack_require__(1443) : undefined;
+	        $$.d3 = window.d3 ? window.d3 :  true ? __webpack_require__(1444) : undefined;
 	        $$.api = api;
 	        $$.config = $$.getDefaultConfig();
 	        $$.data = {};
@@ -102452,7 +102453,7 @@
 	    /* jshint ignore:end */
 
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1443)], __WEBPACK_AMD_DEFINE_RESULT__ = function () { return c3; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1444)], __WEBPACK_AMD_DEFINE_RESULT__ = function () { return c3; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if ('undefined' !== typeof exports && 'undefined' !== typeof module) {
 	        module.exports = c3;
 	    } else {
@@ -102463,7 +102464,7 @@
 
 
 /***/ },
-/* 1443 */
+/* 1444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
@@ -112022,7 +112023,7 @@
 	}();
 
 /***/ },
-/* 1444 */
+/* 1445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112211,7 +112212,7 @@
 	}
 
 /***/ },
-/* 1445 */
+/* 1446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112226,23 +112227,23 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _top_observer_container = __webpack_require__(1446);
+	var _top_observer_container = __webpack_require__(1447);
 
 	var _top_observer_container2 = _interopRequireDefault(_top_observer_container);
 
-	var _top_identifier_container = __webpack_require__(1448);
+	var _top_identifier_container = __webpack_require__(1449);
 
 	var _top_identifier_container2 = _interopRequireDefault(_top_identifier_container);
 
-	var _top_species_container = __webpack_require__(1449);
+	var _top_species_container = __webpack_require__(1450);
 
 	var _top_species_container2 = _interopRequireDefault(_top_species_container);
 
-	var _first_observation_container = __webpack_require__(1450);
+	var _first_observation_container = __webpack_require__(1451);
 
 	var _first_observation_container2 = _interopRequireDefault(_first_observation_container);
 
-	var _num_observations_container = __webpack_require__(1451);
+	var _num_observations_container = __webpack_require__(1452);
 
 	var _num_observations_container2 = _interopRequireDefault(_num_observations_container);
 
@@ -112291,7 +112292,7 @@
 	exports.default = Leaders;
 
 /***/ },
-/* 1446 */
+/* 1447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112302,7 +112303,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1447);
+	var _leader_item = __webpack_require__(1448);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -112340,7 +112341,7 @@
 	exports.default = TopObserverContainer;
 
 /***/ },
-/* 1447 */
+/* 1448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112353,7 +112354,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1433);
+	var _cover_image = __webpack_require__(1434);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -112454,7 +112455,7 @@
 	exports.default = LeaderItem;
 
 /***/ },
-/* 1448 */
+/* 1449 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112465,7 +112466,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1447);
+	var _leader_item = __webpack_require__(1448);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -112503,7 +112504,7 @@
 	exports.default = TopIdentifierContainer;
 
 /***/ },
-/* 1449 */
+/* 1450 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112514,7 +112515,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1447);
+	var _leader_item = __webpack_require__(1448);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -112562,7 +112563,7 @@
 	exports.default = TopSpeciesContainer;
 
 /***/ },
-/* 1450 */
+/* 1451 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112573,7 +112574,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1447);
+	var _leader_item = __webpack_require__(1448);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -112608,7 +112609,7 @@
 	exports.default = FirstObserverContainer;
 
 /***/ },
-/* 1451 */
+/* 1452 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112619,7 +112620,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _leader_item = __webpack_require__(1447);
+	var _leader_item = __webpack_require__(1448);
 
 	var _leader_item2 = _interopRequireDefault(_leader_item);
 
@@ -112655,7 +112656,7 @@
 	exports.default = NumObservationsContainer;
 
 /***/ },
-/* 1452 */
+/* 1453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112666,7 +112667,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _taxon_page_tabs = __webpack_require__(1453);
+	var _taxon_page_tabs = __webpack_require__(1454);
 
 	var _taxon_page_tabs2 = _interopRequireDefault(_taxon_page_tabs);
 
@@ -112710,7 +112711,7 @@
 	exports.default = TaxonPageTabsContainer;
 
 /***/ },
-/* 1453 */
+/* 1454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -112735,31 +112736,31 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _taxon_page_map = __webpack_require__(1454);
+	var _taxon_page_map = __webpack_require__(1455);
 
 	var _taxon_page_map2 = _interopRequireDefault(_taxon_page_map);
 
-	var _status_tab = __webpack_require__(1455);
+	var _status_tab = __webpack_require__(1456);
 
 	var _status_tab2 = _interopRequireDefault(_status_tab);
 
-	var _taxonomy_tab_container = __webpack_require__(1456);
+	var _taxonomy_tab_container = __webpack_require__(1457);
 
 	var _taxonomy_tab_container2 = _interopRequireDefault(_taxonomy_tab_container);
 
-	var _articles_tab_container = __webpack_require__(1458);
+	var _articles_tab_container = __webpack_require__(1459);
 
 	var _articles_tab_container2 = _interopRequireDefault(_articles_tab_container);
 
-	var _interactions_tab_container = __webpack_require__(1460);
+	var _interactions_tab_container = __webpack_require__(1461);
 
 	var _interactions_tab_container2 = _interopRequireDefault(_interactions_tab_container);
 
-	var _highlights_tab_container = __webpack_require__(1462);
+	var _highlights_tab_container = __webpack_require__(1463);
 
 	var _highlights_tab_container2 = _interopRequireDefault(_highlights_tab_container);
 
-	var _similar_tab_container = __webpack_require__(1466);
+	var _similar_tab_container = __webpack_require__(1467);
 
 	var _similar_tab_container2 = _interopRequireDefault(_similar_tab_container);
 
@@ -113055,7 +113056,7 @@
 	exports.default = TaxonPageTabs;
 
 /***/ },
-/* 1454 */
+/* 1455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113136,7 +113137,7 @@
 	exports.default = TaxonPageMap;
 
 /***/ },
-/* 1455 */
+/* 1456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113556,7 +113557,7 @@
 	exports.default = StatusTab;
 
 /***/ },
-/* 1456 */
+/* 1457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113567,7 +113568,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _taxonomy_tab = __webpack_require__(1457);
+	var _taxonomy_tab = __webpack_require__(1458);
 
 	var _taxonomy_tab2 = _interopRequireDefault(_taxonomy_tab);
 
@@ -113587,7 +113588,7 @@
 	exports.default = TaxonomyTabContainer;
 
 /***/ },
-/* 1457 */
+/* 1458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113880,7 +113881,7 @@
 	exports.default = TaxonomyTab;
 
 /***/ },
-/* 1458 */
+/* 1459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -113891,7 +113892,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _articles_tab = __webpack_require__(1459);
+	var _articles_tab = __webpack_require__(1460);
 
 	var _articles_tab2 = _interopRequireDefault(_articles_tab);
 
@@ -113912,7 +113913,7 @@
 	exports.default = ArticlesTabContainer;
 
 /***/ },
-/* 1459 */
+/* 1460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114031,7 +114032,7 @@
 	exports.default = ArticlesTab;
 
 /***/ },
-/* 1460 */
+/* 1461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114042,7 +114043,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _interactions_tab = __webpack_require__(1461);
+	var _interactions_tab = __webpack_require__(1462);
 
 	var _interactions_tab2 = _interopRequireDefault(_interactions_tab);
 
@@ -114059,7 +114060,7 @@
 	exports.default = InteractionsTabContainer;
 
 /***/ },
-/* 1461 */
+/* 1462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114232,7 +114233,7 @@
 	exports.default = InteractionsTab;
 
 /***/ },
-/* 1462 */
+/* 1463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114243,7 +114244,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _highlights_tab = __webpack_require__(1463);
+	var _highlights_tab = __webpack_require__(1464);
 
 	var _highlights_tab2 = _interopRequireDefault(_highlights_tab);
 
@@ -114285,7 +114286,7 @@
 	exports.default = HighlightsTabContainer;
 
 /***/ },
-/* 1463 */
+/* 1464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114304,11 +114305,11 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _carousel = __webpack_require__(1464);
+	var _carousel = __webpack_require__(1465);
 
 	var _carousel2 = _interopRequireDefault(_carousel);
 
-	var _taxon_thumbnail = __webpack_require__(1465);
+	var _taxon_thumbnail = __webpack_require__(1466);
 
 	var _taxon_thumbnail2 = _interopRequireDefault(_taxon_thumbnail);
 
@@ -114424,7 +114425,7 @@
 	exports.default = HighlightsTab;
 
 /***/ },
-/* 1464 */
+/* 1465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114590,7 +114591,7 @@
 	exports.default = Carousel;
 
 /***/ },
-/* 1465 */
+/* 1466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114603,7 +114604,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1433);
+	var _cover_image = __webpack_require__(1434);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -114655,7 +114656,7 @@
 	exports.default = TaxonThumbnail;
 
 /***/ },
-/* 1466 */
+/* 1467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114666,7 +114667,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _similar_tab = __webpack_require__(1467);
+	var _similar_tab = __webpack_require__(1468);
 
 	var _similar_tab2 = _interopRequireDefault(_similar_tab);
 
@@ -114687,7 +114688,7 @@
 	exports.default = SimilarTabContainer;
 
 /***/ },
-/* 1467 */
+/* 1468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114702,7 +114703,7 @@
 
 	var _reactBootstrap = __webpack_require__(607);
 
-	var _taxon_thumbnail = __webpack_require__(1465);
+	var _taxon_thumbnail = __webpack_require__(1466);
 
 	var _taxon_thumbnail2 = _interopRequireDefault(_taxon_thumbnail);
 
@@ -114760,7 +114761,7 @@
 	exports.default = SimilarTab;
 
 /***/ },
-/* 1468 */
+/* 1469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114771,7 +114772,7 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1435);
+	var _photo_modal = __webpack_require__(1436);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
@@ -114810,7 +114811,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1469 */
+/* 1470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114823,9 +114824,9 @@
 
 	var _config = __webpack_require__(1419);
 
-	var _observations = __webpack_require__(1444);
+	var _observations = __webpack_require__(1445);
 
-	var _leaders = __webpack_require__(1470);
+	var _leaders = __webpack_require__(1471);
 
 	var _taxon = __webpack_require__(1420);
 
@@ -114863,7 +114864,7 @@
 	exports.default = PlaceChooserContainer;
 
 /***/ },
-/* 1470 */
+/* 1471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -114883,7 +114884,7 @@
 
 	var _inaturalistjs2 = _interopRequireDefault(_inaturalistjs);
 
-	var _observations = __webpack_require__(1444);
+	var _observations = __webpack_require__(1445);
 
 	var _util = __webpack_require__(1418);
 
@@ -114968,7 +114969,7 @@
 	}
 
 /***/ },
-/* 1471 */
+/* 1472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
