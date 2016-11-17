@@ -2036,6 +2036,7 @@ zh-CN:
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
   popular: 热门
   position: 位置
+  position_accurate_to_within_5km?: 位置精确到5千米了么？
   possessive_user: '%{user}的'
   post: 帖子
   post_published: 贴子已发布！
@@ -2058,7 +2059,7 @@ zh-CN:
   privacy_policy: 隐私政策
   private: 私有
   private_description: 坐标已从地图中完全隐藏，真坐标只对您和您添加观察的项目的馆长可见。带私有坐标的观察仍将被使用以验证地点核对表。
-  proceed: 继续
+  proceed: 已处理
   processing: 处理中
   processing3p: 处理中...
   profile: 个人信息
@@ -3175,6 +3176,12 @@ zh-CN:
              OR your project only accepts observations of certain taxa
             </li>
           </ol>
+        project_list_desc_html: |-
+          <p class="description">
+            您可以创建定制分类项目列表，并链接至您的项目。This can be useful to restrict observations added to your
+            project to those matching taxa on your list via the "must be taxon
+            on the project list" rule.
+          </p>
         rules:
           wild: 野生的/训化的
           georeferenced: 有坐标

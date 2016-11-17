@@ -2753,6 +2753,7 @@ it:
     file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
   popular: popolare
   position: Posizione
+  position_accurate_to_within_5km?: Posizione precisa entro 5 km?
   positional_accuracy: Precisione della posizione
   possessive_user: di %{user}
   post: Post
@@ -4943,9 +4944,9 @@ it:
           </ol>
         project_list_desc_html: |-
           <p class="description">
-            Puoi creare una lista di progetto personalizzzata e collegarla al
-            tuo progetto. Questo può essere utile per limitare le osservazioni
-            consentite a quelle dei taxa elencati nella lista utilizzando la
+            Puoi creare una lista di progetto personalizzata e collegarla al
+            tuo progetto. Questo può essere utile per limitare le osservazioni aggiunte al tuo progetto
+            a quelle dei taxa elencati nella lista utilizzando la
             regola 'deve appartenere ai taxa della lista del progetto'.
           </p>
         rules:
