@@ -2,13 +2,14 @@
 
 @font-face {
   font-family: "inaturalisticons";
-  src:asset-data-url("inaturalisticons.eot");
-  src:asset-url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
-    asset-data-url("inaturalisticons.woff") format("woff"),
-    asset-data-url("inaturalisticons.ttf") format("truetype"),
-    asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
+  src:url("inaturalisticons.eot");
+  src:url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
+    url("inaturalisticons.woff") format("woff"),
+    url("inaturalisticons.ttf") format("truetype"),
+    url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
+
 }
 
 [data-icon]:before {
@@ -135,4 +136,16 @@
 }
 .icon-layers:before {
   content: "\e021";
+}
+.icon-link:before {
+  content: "\e016";
+}
+.icon-photo-grid:before {
+  content: "\e022";
+}
+.icon-photo-quilt:before {
+  content: "\e023";
+}
+.icon-link-external:before {
+  content: "\e024";
 }

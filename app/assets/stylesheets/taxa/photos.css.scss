@@ -18,11 +18,6 @@
   }
 }
 
-.PhotoBrowser.grid {
-  .TaxonPhoto {
-    // width: 170px;
-  } 
-}
 .PhotoBrowser.fluid {
   .photos {
     display: flex;
@@ -35,4 +30,12 @@
 
 #controls {
   margin-bottom: 20px;
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+  }
+
+  .control-group {
+    margin-right: 20px;
+  }
 }

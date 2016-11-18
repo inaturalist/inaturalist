@@ -14,7 +14,7 @@ const TaxonPhoto = ( {
 } ) => (
   <div
     className={`TaxonPhoto ${className}`}
-    style={{ width }}
+    style={{ width, maxWidth: 2 * width }}
   >
     <div className="photo-hover">
       <div className="actions">

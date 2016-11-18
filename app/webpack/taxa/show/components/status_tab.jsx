@@ -186,7 +186,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                   I18n.t( "views.taxa.show.about_conservation_status_desc" )
                 } <a
                   href="https://en.wikipedia.org/wiki/Conservation_status"
-                >{ I18n.t( "more" ) } <i className="glyphicon glyphicon-new-window"></i></a>
+                >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
               </p>
               <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
               <ul className="tab-links list-group">
@@ -215,7 +215,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                           backgroundPosition: "0 2px"
                         }}
                       >
-                        <i className="glyphicon glyphicon-new-window pull-right"></i>
+                        <i className="icon-link-external pull-right"></i>
                         { link.text }
                       </a>
                     </li>
@@ -240,7 +240,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                   I18n.t( "views.taxa.show.about_establishment_desc" )
                 } <a
                   href="https://en.wikipedia.org/wiki/Conservation_status"
-                >{ I18n.t( "more" ) } <i className="glyphicon glyphicon-new-window"></i></a>
+                >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
               </p>
             </Col>
           </Row>

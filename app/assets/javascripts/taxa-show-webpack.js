@@ -93109,7 +93109,7 @@
 	    "div",
 	    {
 	      className: "TaxonPhoto " + className,
-	      style: { width: width }
+	      style: { width: width, maxWidth: 2 * width }
 	    },
 	    _react2.default.createElement(
 	      "div",
@@ -93538,7 +93538,7 @@
 	          _react2.default.createElement(
 	            "a",
 	            { href: "/taxa/" + taxon.id + "-" + taxon.name.split(" ").join("-") },
-	            _react2.default.createElement("i", { className: "glyphicon glyphicon-link" })
+	            _react2.default.createElement("i", { className: "icon-link" })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -113458,7 +113458,7 @@
 	                },
 	                I18n.t("more"),
 	                " ",
-	                _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window" })
+	                _react2.default.createElement("i", { className: "icon-link-external" })
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -113494,7 +113494,7 @@
 	                        backgroundPosition: "0 2px"
 	                      }
 	                    },
-	                    _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window pull-right" }),
+	                    _react2.default.createElement("i", { className: "icon-link-external pull-right" }),
 	                    link.text
 	                  )
 	                );
@@ -113543,7 +113543,7 @@
 	                },
 	                I18n.t("more"),
 	                " ",
-	                _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window" })
+	                _react2.default.createElement("i", { className: "icon-link-external" })
 	              )
 	            )
 	          )
@@ -113674,7 +113674,7 @@
 	          shouldLinkToTaxon ? _react2.default.createElement(
 	            "a",
 	            { href: (0, _util.urlForTaxon)(t) },
-	            _react2.default.createElement("i", { className: "glyphicon glyphicon-new-window" })
+	            _react2.default.createElement("i", { className: "icon-link-external" })
 	          ) : null,
 	          t.children && t.children.length > 0 ? renderTaxonomy(t.children) : null
 	        );
@@ -113974,7 +113974,7 @@
 	            _react2.default.createElement(
 	              "a",
 	              { href: descriptionSourceUrl },
-	              _react2.default.createElement("i", { className: "fa fa-external-link" })
+	              _react2.default.createElement("i", { className: "icon-link-external" })
 	            )
 	          ),
 	          _react2.default.createElement("div", { dangerouslySetInnerHTML: { __html: description } })
@@ -114020,7 +114020,8 @@
 	            href: "/taxon_links/new?taxon_id=" + taxonId,
 	            className: "btn btn-primary btn-block"
 	          },
-	          _react2.default.createElement("i", { className: "glyphicon glyphicon-link" }),
+	          _react2.default.createElement("i", { className: "icon-link" }),
+	          " ",
 	          I18n.t("add_link")
 	        )
 	      )

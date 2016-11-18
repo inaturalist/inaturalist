@@ -40,7 +40,7 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
           <li key={`taxonomy-${t.id}`} className={ className }>
             <SplitTaxon taxon={t} url={shouldLinkToTaxon ? urlForTaxon( t ) : null} /> {
               shouldLinkToTaxon ?
-                ( <a href={urlForTaxon( t )}><i className="glyphicon glyphicon-new-window"></i></a> )
+                ( <a href={urlForTaxon( t )}><i className="icon-link-external"></i></a> )
                 :
                 null
             }

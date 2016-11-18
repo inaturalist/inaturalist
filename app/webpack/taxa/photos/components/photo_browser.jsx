@@ -5,7 +5,10 @@ import {
   Row,
   Col,
   ButtonGroup,
-  Button
+  Button,
+  DropdownButton,
+  MenuItem,
+  Dropdown
 } from "react-bootstrap";
 import TaxonPhoto from "../../shared/components/taxon_photo";
 
@@ -15,28 +18,60 @@ const PhotoBrowser = ( {
   loadMorePhotos,
   hasMorePhotos,
   layout,
-  setLayout
+  setLayout,
+  terms,
+  setTerm
 } ) => (
   <Grid className={`PhotoBrowser ${layout}`}>
     <Row>
       <Col xs={12}>
         <div id="controls">
-          <ButtonGroup>
+          <ButtonGroup className="control-group">
             <Button
               active={layout === "fluid"}
               title={I18n.t( "fluid_layout" )}
               onClick={( ) => setLayout( "fluid" )}
             >
-              Fluid
+              <i className="icon-photo-quilt"></i>
             </Button>
             <Button
               active={layout === "grid"}
               title={I18n.t( "grid_layout" )}
               onClick={( ) => setLayout( "grid" )}
             >
-              <i className="glyphicon glyphicon-th-large"></i>
+              <i className="icon-photo-grid"></i>
             </Button>
           </ButtonGroup>
+          { terms.map( term => (
+            <span key={`term-${term}`} className="control-group">
+              <Dropdown
+                id={`term-chooser-${term.name}`}
+                onSelect={ ( event, key ) => setTerm( term.name, key ) }
+              >
+                <Dropdown.Toggle bsClass="link">
+                  { term.name }: <strong>{ term.selectedValue || I18n.t( "any" ) }</strong>
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="super-colors">
+                  <MenuItem
+                    key={`term-chooser-item-${term.name}-any`}
+                    eventKey={"any"}
+                    active={term.selectedValue === "any" || !term.selectedValue}
+                  >
+                    { I18n.t( "any" ) }
+                  </MenuItem>
+                  { term.values.map( value => (
+                    <MenuItem
+                      key={`term-chooser-item-${term.name}-${value}`}
+                      eventKey={value}
+                      active={term.selectedValue === value}
+                    >
+                      { value }
+                    </MenuItem>
+                  ) ) }
+                </Dropdown.Menu>
+              </Dropdown>
+            </span>
+          ) ) }
         </div>
       </Col>
     </Row>
@@ -86,12 +121,21 @@ PhotoBrowser.propTypes = {
   loadMorePhotos: PropTypes.func.isRequired,
   hasMorePhotos: PropTypes.bool,
   layout: PropTypes.string,
-  setLayout: PropTypes.func.isRequired
+  setLayout: PropTypes.func.isRequired,
+  terms: PropTypes.arrayOf(
+    PropTypes.shape( {
+      name: PropTypes.string,
+      values: PropTypes.array,
+      selectedValue: PropTypes.string
+    } )
+  ),
+  setTerm: PropTypes.func
 };
 
 PhotoBrowser.defaultProps = {
   observationPhotos: [],
-  layout: "fluid"
+  layout: "fluid",
+  terms: []
 };
 
 export default PhotoBrowser;

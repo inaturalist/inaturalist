@@ -81851,6 +81851,7 @@
 	exports.default = reducer;
 	exports.setObservationPhotos = setObservationPhotos;
 	exports.appendObservationPhotos = appendObservationPhotos;
+	exports.updateObservationParams = updateObservationParams;
 	exports.fetchObservationPhotos = fetchObservationPhotos;
 	exports.fetchMorePhotos = fetchMorePhotos;
 
@@ -81868,9 +81869,13 @@
 
 	var SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
 	var APPEND_OBSERVATION_PHOTOS = "taxa-photos/photos/APPEND_OBSERVATION_PHOTOS";
+	var UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS";
 
 	function reducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? { observationPhotos: [] } : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {
+	    observationPhotos: [],
+	    observationParams: {}
+	  } : arguments[0];
 	  var action = arguments[1];
 
 	  var newState = Object.assign({}, state);
@@ -81886,6 +81891,14 @@
 	      newState.totalResults = action.totalResults;
 	      newState.page = action.page;
 	      newState.perPage = action.perPage;
+	      break;
+	    case UPDATE_OBSERVATION_PARAMS:
+	      newState.observationParams = Object.assign({}, state.observationParams, action.params);
+	      _lodash2.default.forEach(newState.observationParams, function (v, k) {
+	        if (v === null || v === undefined || typeof v === "string" && v.length === 0) {
+	          delete newState.observationParams[k];
+	        }
+	      });
 	      break;
 	    default:
 	    // ok
@@ -81913,11 +81926,21 @@
 	  };
 	}
 
-	function fetchObservationPhotos(page, perPage) {
+	function updateObservationParams(params) {
+	  return {
+	    type: UPDATE_OBSERVATION_PARAMS,
+	    params: params
+	  };
+	}
+
+	function fetchObservationPhotos() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
 	  return function (dispatch, getState) {
-	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
-	      page: page,
-	      perPage: perPage
+	    var s = getState();
+	    var params = Object.assign({}, (0, _util.defaultObservationParams)(s), s.photos.observationParams, {
+	      page: options.page,
+	      per_page: options.perPage
 	    });
 	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
 	      var observationPhotos = _lodash2.default.flatten(response.results.map(function (observation) {
@@ -81925,7 +81948,11 @@
 	          return { photo: photo, observation: observation };
 	        });
 	      }));
-	      dispatch(appendObservationPhotos(observationPhotos, response.total_results, response.page, response.per_page));
+	      var action = appendObservationPhotos;
+	      if (options.reload) {
+	        action = setObservationPhotos;
+	      }
+	      dispatch(action(observationPhotos, response.total_results, response.page, response.per_page));
 	    });
 	  };
 	}
@@ -81935,7 +81962,7 @@
 	    var s = getState();
 	    var page = s.photos.page + 1;
 	    var perPage = s.photos.perPage;
-	    dispatch(fetchObservationPhotos(page, perPage));
+	    dispatch(fetchObservationPhotos({ page: page, perPage: perPage }));
 	  };
 	}
 
@@ -83263,6 +83290,10 @@
 
 	var _reactRedux = __webpack_require__(560);
 
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
 	var _photo_browser = __webpack_require__(1431);
 
 	var _photo_browser2 = _interopRequireDefault(_photo_browser);
@@ -83275,18 +83306,48 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	function mapStateToProps(state) {
+	  var terms = [];
+	  if (state.taxon.taxon && state.taxon.taxon.iconic_taxon_name === "Insecta") {
+	    var selectedValue = void 0;
+	    if (state.photos.observationParams["field:Insect life stage"]) {
+	      selectedValue = state.photos.observationParams["field:Insect life stage"];
+	    }
+	    terms.push({
+	      name: "Insect life stage",
+	      values: ["adult", "teneral", "pupa", "nymph", "larva", "egg"],
+	      selectedValue: selectedValue
+	    });
+	  }
+	  if (state.taxon.taxon && _lodash2.default.find(state.taxon.taxon.ancestors, function (a) {
+	    return a.name === "Magnoliophyta";
+	  })) {
+	    var _selectedValue = void 0;
+	    var fieldName = "Flowering Phenology";
+	    if (state.photos.observationParams["field:" + fieldName]) {
+	      _selectedValue = state.photos.observationParams["field:" + fieldName];
+	    }
+	    terms.push({
+	      name: fieldName,
+	      values: ["bare", "budding", "flower", "fruit"],
+	      selectedValue: _selectedValue
+	    });
+	  }
 	  if (state.photos.observationPhotos && state.photos.observationPhotos.length > 0) {
 	    return {
 	      observationPhotos: state.photos.observationPhotos,
 	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage,
-	      layout: state.config.layout
+	      layout: state.config.layout,
+	      terms: terms
 	    };
 	  }
 	  return {
 	    observationPhotos: [],
 	    hasMorePhotos: false,
-	    layout: state.config.layout
+	    layout: state.config.layout,
+	    terms: terms
 	  };
 	}
 
@@ -83301,6 +83362,11 @@
 	    },
 	    setLayout: function setLayout(layout) {
 	      dispatch((0, _config.setConfig)({ layout: layout }));
+	    },
+	    setTerm: function setTerm(term, value) {
+	      var key = "field:" + term;
+	      dispatch((0, _photos.updateObservationParams)(_defineProperty({}, key, value === "any" ? null : value)));
+	      dispatch((0, _photos.fetchObservationPhotos)({ reload: true }));
 	    }
 	  };
 	}
@@ -83342,6 +83408,8 @@
 	  var hasMorePhotos = _ref.hasMorePhotos;
 	  var layout = _ref.layout;
 	  var setLayout = _ref.setLayout;
+	  var terms = _ref.terms;
+	  var setTerm = _ref.setTerm;
 	  return _react2.default.createElement(
 	    _reactBootstrap.Grid,
 	    { className: "PhotoBrowser " + layout },
@@ -83356,7 +83424,7 @@
 	          { id: "controls" },
 	          _react2.default.createElement(
 	            _reactBootstrap.ButtonGroup,
-	            null,
+	            { className: "control-group" },
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
 	              {
@@ -83366,7 +83434,7 @@
 	                  return setLayout("fluid");
 	                }
 	              },
-	              "Fluid"
+	              _react2.default.createElement("i", { className: "icon-photo-quilt" })
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
@@ -83377,9 +83445,59 @@
 	                  return setLayout("grid");
 	                }
 	              },
-	              _react2.default.createElement("i", { className: "glyphicon glyphicon-th-large" })
+	              _react2.default.createElement("i", { className: "icon-photo-grid" })
 	            )
-	          )
+	          ),
+	          terms.map(function (term) {
+	            return _react2.default.createElement(
+	              "span",
+	              { key: "term-" + term, className: "control-group" },
+	              _react2.default.createElement(
+	                _reactBootstrap.Dropdown,
+	                {
+	                  id: "term-chooser-" + term.name,
+	                  onSelect: function onSelect(event, key) {
+	                    return setTerm(term.name, key);
+	                  }
+	                },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Dropdown.Toggle,
+	                  { bsClass: "link" },
+	                  term.name,
+	                  ": ",
+	                  _react2.default.createElement(
+	                    "strong",
+	                    null,
+	                    term.selectedValue || I18n.t("any")
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Dropdown.Menu,
+	                  { className: "super-colors" },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    {
+	                      key: "term-chooser-item-" + term.name + "-any",
+	                      eventKey: "any",
+	                      active: term.selectedValue === "any" || !term.selectedValue
+	                    },
+	                    I18n.t("any")
+	                  ),
+	                  term.values.map(function (value) {
+	                    return _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      {
+	                        key: "term-chooser-item-" + term.name + "-" + value,
+	                        eventKey: value,
+	                        active: term.selectedValue === value
+	                      },
+	                      value
+	                    );
+	                  })
+	                )
+	              )
+	            );
+	          })
 	        )
 	      )
 	    ),
@@ -83435,12 +83553,19 @@
 	  loadMorePhotos: _react.PropTypes.func.isRequired,
 	  hasMorePhotos: _react.PropTypes.bool,
 	  layout: _react.PropTypes.string,
-	  setLayout: _react.PropTypes.func.isRequired
+	  setLayout: _react.PropTypes.func.isRequired,
+	  terms: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    name: _react.PropTypes.string,
+	    values: _react.PropTypes.array,
+	    selectedValue: _react.PropTypes.string
+	  })),
+	  setTerm: _react.PropTypes.func
 	};
 
 	PhotoBrowser.defaultProps = {
 	  observationPhotos: [],
-	  layout: "fluid"
+	  layout: "fluid",
+	  terms: []
 	};
 
 	exports.default = PhotoBrowser;
@@ -83653,7 +83778,7 @@
 	    "div",
 	    {
 	      className: "TaxonPhoto " + className,
-	      style: { width: width }
+	      style: { width: width, maxWidth: 2 * width }
 	    },
 	    _react2.default.createElement(
 	      "div",

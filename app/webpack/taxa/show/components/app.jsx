@@ -23,7 +23,7 @@ const App = ( { taxon } ) => (
             url={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
           />
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
-            <i className="glyphicon glyphicon-link"></i>
+            <i className="icon-link"></i>
           </a>
         </Col>
         <Col xs={4}>

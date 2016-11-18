@@ -19,7 +19,7 @@ const ArticlesTab = ( {
         <div className={description ? "" : "hidden"}>
           <h2>
             { I18n.t( "source_" ) } { descriptionSource } <a href={descriptionSourceUrl}>
-              <i className="fa fa-external-link"></i>
+              <i className="icon-link-external"></i>
             </a>
           </h2>
           <div dangerouslySetInnerHTML={{ __html: description }}></div>
@@ -53,8 +53,7 @@ const ArticlesTab = ( {
           href={`/taxon_links/new?taxon_id=${taxonId}`}
           className="btn btn-primary btn-block"
         >
-          <i className="glyphicon glyphicon-link"></i>
-          { I18n.t( "add_link" ) }
+          <i className="icon-link"></i> { I18n.t( "add_link" ) }
         </a>
       </Col>
     </Row>
