@@ -4,7 +4,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
-import photosReducer, { fetchObservationPhotos } from "./ducks/photos";
+import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photos";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
 import photoModalReducer from "../shared/ducks/photo_modal";
@@ -45,12 +45,17 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 if ( TAXON !== undefined && TAXON !== null ) {
   store.dispatch( setTaxon( TAXON ) );
   store.dispatch( fetchTaxon( TAXON ) );
-  store.dispatch( fetchObservationPhotos( ) );
+  const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+  store.dispatch( hydrateFromUrlParams( urlParams ) );
+  window.onpopstate = e => {
+    // user returned from BACK
+    store.dispatch( hydrateFromUrlParams( e.state ) );
+  };
+  // without this condition we get a race condition. ugly, i know...
+  if ( !urlParams.place_id ) {
+    store.dispatch( reloadPhotos( ) );
+  }
 }
-
-window.onpopstate = ( ) => {
-  // user returned from BACK
-};
 
 render(
   <Provider store={store}>

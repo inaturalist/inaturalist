@@ -91,7 +91,10 @@ const PhotoBrowser = ( {
             { group.groupObject ?
               <SplitTaxon
                 taxon={group.groupObject}
-                url={urlForTaxonPhotos( group.groupObject )}
+                url={urlForTaxonPhotos(
+                  group.groupObject,
+                  $.deparam( window.location.search.replace( /^\?/, "" ) )
+                ) }
               /> : group.groupName }
           </h3>
           <div className="photos">

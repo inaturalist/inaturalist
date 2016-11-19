@@ -91984,13 +91984,23 @@
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var urlForTaxon = function urlForTaxon(t) {
 	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
 	};
-	var urlForTaxonPhotos = function urlForTaxonPhotos(t) {
-	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "/browse_photos";
+	var urlForTaxonPhotos = function urlForTaxonPhotos(t, params) {
+	  var url = "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "/browse_photos";
+	  if (params) {
+	    url += "?" + _lodash2.default.map(params, function (v, k) {
+	      return k + "=" + v;
+	    }).join("&");
+	  }
+	  return url;
 	};
 	var urlForUser = function urlForUser(u) {
 	  return "/people/" + u.login;

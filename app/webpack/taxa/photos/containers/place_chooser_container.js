@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
-import { setConfig } from "../../../shared/ducks/config";
-import { reloadPhotos } from "../ducks/photos";
+import { reloadPhotos, setConfigAndUrl } from "../ducks/photos";
 import PlaceChooserPopover from "../../shared/components/place_chooser_popover";
 
 function mapStateToProps( state ) {
@@ -12,7 +11,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   const setPlace = ( place ) => {
-    dispatch( setConfig( { chosenPlace: place } ) );
+    dispatch( setConfigAndUrl( { chosenPlace: place } ) );
     dispatch( reloadPhotos( ) );
   };
   return {

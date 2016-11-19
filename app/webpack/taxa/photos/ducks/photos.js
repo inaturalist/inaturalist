@@ -9,6 +9,38 @@ const UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS"
 const SET_PHOTOS_GROUP = "taxa-photos/photos/SET_PHOTOS_GROUP";
 const CLEAR_GROUPED_PHOTOS = "taxa-photos/photos/CLEAR_GROUPED_PHOTOS";
 
+const setUrl = ( newParams, defaultParams = {
+  layout: "fluid",
+  order_by: "votes"
+} ) => {
+  // don't put defaults in the URL
+  const urlState = {};
+  _.forEach( newParams, ( v, k ) => {
+    if ( !v ) {
+      return;
+    }
+    if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
+      return;
+    }
+    if ( _.isArray( v ) ) {
+      urlState[k] = v.join( "," );
+    } else {
+      urlState[k] = v;
+    }
+  } );
+  if ( !newParams.place_id ) {
+    urlState.place_id = "any";
+  }
+  const title = `Photos: ${$.param( urlState )}`;
+  const newUrl = [
+    window.location.origin,
+    window.location.pathname,
+    _.isEmpty( urlState ) ? "" : "?",
+    _.isEmpty( urlState ) ? "" : $.param( urlState )
+  ].join( "" );
+  history.pushState( urlState, title, newUrl );
+};
+
 export default function reducer( state = {
   observationPhotos: [],
   observationParams: {
@@ -186,11 +218,34 @@ function fetchPhotosGroupedByParam( param, values ) {
   };
 }
 
+function setUrlFromState( state ) {
+  const urlState = Object.assign( { }, state.photos.observationParams, {
+    grouping: state.config.grouping ? state.config.grouping.param : null,
+    layout: state.config.layout ? state.config.layout : "fluid",
+    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
+  } );
+  setUrl( urlState );
+}
+
+export function updateObservationParamsAndUrl( params ) {
+  return function ( dispatch, getState ) {
+    dispatch( updateObservationParams( params ) );
+    setUrlFromState( getState( ) );
+  };
+}
+
+export function setConfigAndUrl( params ) {
+  return function ( dispatch, getState ) {
+    dispatch( setConfig( params ) );
+    setUrlFromState( getState( ) );
+  };
+}
+
 export function setGrouping( param, values ) {
   return function ( dispatch, getState ) {
     dispatch( clearGroupedPhotos( ) );
     if ( param ) {
-      dispatch( setConfig( { grouping: { param, values } } ) );
+      dispatch( setConfigAndUrl( { grouping: { param, values } } ) );
       if ( param === "taxon_id" ) {
         const taxon = getState( ).taxon.taxon;
         dispatch( fetchPhotosGroupedByParam( "taxon_id", taxon.children ) );
@@ -198,7 +253,7 @@ export function setGrouping( param, values ) {
         dispatch( fetchPhotosGroupedByParam( param, values ) );
       }
     } else {
-      dispatch( setConfig( { grouping: null } ) );
+      dispatch( setConfigAndUrl( { grouping: { } } ) );
       dispatch( fetchObservationPhotos( { reload: true } ) );
     }
   };
@@ -211,6 +266,36 @@ export function reloadPhotos( ) {
       dispatch( setGrouping( state.config.grouping.param, state.config.grouping.values ) );
     } else {
       dispatch( fetchObservationPhotos( { reload: true } ) );
+    }
+  };
+}
+
+export function hydrateFromUrlParams( params ) {
+  return function ( dispatch ) {
+    if ( params.grouping ) {
+      dispatch( setGrouping( params.grouping ) );
+    }
+    if ( params.order_by ) {
+      dispatch( updateObservationParams( { order_by: params.order_by } ) );
+    }
+    if ( params.layout ) {
+      dispatch( setConfig( { layout: params.layout } ) );
+    }
+    if ( params.place_id ) {
+      if ( params.place_id === "any" ) {
+        dispatch( setConfig( { chosenPlace: null } ) );
+        dispatch( reloadPhotos( ) );
+      } else {
+        inatjs.places.fetch( params.place_id ).then(
+          response => {
+            dispatch( setConfig( { chosenPlace: response.results[0] } ) );
+            dispatch( reloadPhotos( ) );
+          },
+          error => {
+            console.log( "[DEBUG] error: ", error );
+          }
+        );
+      }
     }
   };
 }

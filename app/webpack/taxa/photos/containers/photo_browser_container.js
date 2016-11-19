@@ -4,11 +4,11 @@ import PhotoBrowser from "../components/photo_browser";
 import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
 import {
   fetchMorePhotos,
-  updateObservationParams,
+  updateObservationParamsAndUrl,
   setGrouping,
-  reloadPhotos
+  reloadPhotos,
+  setConfigAndUrl
 } from "../ducks/photos";
-import { setConfig } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
   const terms = [];
@@ -78,18 +78,18 @@ function mapDispatchToProps( dispatch ) {
       dispatch( fetchMorePhotos( ) );
     },
     setLayout: layout => {
-      dispatch( setConfig( { layout } ) );
+      dispatch( setConfigAndUrl( { layout } ) );
     },
     setTerm: ( term, value ) => {
       const key = `field:${term}`;
-      dispatch( updateObservationParams( { [key]: value === "any" ? null : value } ) );
+      dispatch( updateObservationParamsAndUrl( { [key]: value === "any" ? null : value } ) );
       dispatch( reloadPhotos( ) );
     },
     setGrouping: ( param, values ) => {
       dispatch( setGrouping( param, values ) );
     },
     setParam: ( key, value ) => {
-      dispatch( updateObservationParams( { [key]: value } ) );
+      dispatch( updateObservationParamsAndUrl( { [key]: value } ) );
       dispatch( reloadPhotos( ) );
     }
   };

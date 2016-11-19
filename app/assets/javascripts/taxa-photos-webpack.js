@@ -112,12 +112,17 @@
 	if (TAXON !== undefined && TAXON !== null) {
 	  store.dispatch((0, _taxon.setTaxon)(TAXON));
 	  store.dispatch((0, _taxon.fetchTaxon)(TAXON));
-	  store.dispatch((0, _photos.fetchObservationPhotos)());
+	  var urlParams = $.deparam(window.location.search.replace(/^\?/, ""));
+	  store.dispatch((0, _photos.hydrateFromUrlParams)(urlParams));
+	  window.onpopstate = function (e) {
+	    // user returned from BACK
+	    store.dispatch((0, _photos.hydrateFromUrlParams)(e.state));
+	  };
+	  // without this condition we get a race condition. ugly, i know...
+	  if (!urlParams.place_id) {
+	    store.dispatch((0, _photos.reloadPhotos)());
+	  }
 	}
-
-	window.onpopstate = function () {
-	  // user returned from BACK
-	};
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -81859,8 +81864,11 @@
 	exports.clearGroupedPhotos = clearGroupedPhotos;
 	exports.fetchObservationPhotos = fetchObservationPhotos;
 	exports.fetchMorePhotos = fetchMorePhotos;
+	exports.updateObservationParamsAndUrl = updateObservationParamsAndUrl;
+	exports.setConfigAndUrl = setConfigAndUrl;
 	exports.setGrouping = setGrouping;
 	exports.reloadPhotos = reloadPhotos;
+	exports.hydrateFromUrlParams = hydrateFromUrlParams;
 
 	var _inaturalistjs = __webpack_require__(586);
 
@@ -81883,6 +81891,35 @@
 	var UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS";
 	var SET_PHOTOS_GROUP = "taxa-photos/photos/SET_PHOTOS_GROUP";
 	var CLEAR_GROUPED_PHOTOS = "taxa-photos/photos/CLEAR_GROUPED_PHOTOS";
+
+	var setUrl = function setUrl(newParams) {
+	  var defaultParams = arguments.length <= 1 || arguments[1] === undefined ? {
+	    layout: "fluid",
+	    order_by: "votes"
+	  } : arguments[1];
+
+	  // don't put defaults in the URL
+	  var urlState = {};
+	  _lodash2.default.forEach(newParams, function (v, k) {
+	    if (!v) {
+	      return;
+	    }
+	    if (defaultParams[k] !== undefined && defaultParams[k] === v) {
+	      return;
+	    }
+	    if (_lodash2.default.isArray(v)) {
+	      urlState[k] = v.join(",");
+	    } else {
+	      urlState[k] = v;
+	    }
+	  });
+	  if (!newParams.place_id) {
+	    urlState.place_id = "any";
+	  }
+	  var title = "Photos: " + $.param(urlState);
+	  var newUrl = [window.location.origin, window.location.pathname, _lodash2.default.isEmpty(urlState) ? "" : "?", _lodash2.default.isEmpty(urlState) ? "" : $.param(urlState)].join("");
+	  history.pushState(urlState, title, newUrl);
+	};
 
 	function reducer() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? {
@@ -82039,11 +82076,34 @@
 	  };
 	}
 
+	function setUrlFromState(state) {
+	  var urlState = Object.assign({}, state.photos.observationParams, {
+	    grouping: state.config.grouping ? state.config.grouping.param : null,
+	    layout: state.config.layout ? state.config.layout : "fluid",
+	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
+	  });
+	  setUrl(urlState);
+	}
+
+	function updateObservationParamsAndUrl(params) {
+	  return function (dispatch, getState) {
+	    dispatch(updateObservationParams(params));
+	    setUrlFromState(getState());
+	  };
+	}
+
+	function setConfigAndUrl(params) {
+	  return function (dispatch, getState) {
+	    dispatch((0, _config.setConfig)(params));
+	    setUrlFromState(getState());
+	  };
+	}
+
 	function setGrouping(param, values) {
 	  return function (dispatch, getState) {
 	    dispatch(clearGroupedPhotos());
 	    if (param) {
-	      dispatch((0, _config.setConfig)({ grouping: { param: param, values: values } }));
+	      dispatch(setConfigAndUrl({ grouping: { param: param, values: values } }));
 	      if (param === "taxon_id") {
 	        var taxon = getState().taxon.taxon;
 	        dispatch(fetchPhotosGroupedByParam("taxon_id", taxon.children));
@@ -82051,7 +82111,7 @@
 	        dispatch(fetchPhotosGroupedByParam(param, values));
 	      }
 	    } else {
-	      dispatch((0, _config.setConfig)({ grouping: null }));
+	      dispatch(setConfigAndUrl({ grouping: {} }));
 	      dispatch(fetchObservationPhotos({ reload: true }));
 	    }
 	  };
@@ -82064,6 +82124,33 @@
 	      dispatch(setGrouping(state.config.grouping.param, state.config.grouping.values));
 	    } else {
 	      dispatch(fetchObservationPhotos({ reload: true }));
+	    }
+	  };
+	}
+
+	function hydrateFromUrlParams(params) {
+	  return function (dispatch) {
+	    if (params.grouping) {
+	      dispatch(setGrouping(params.grouping));
+	    }
+	    if (params.order_by) {
+	      dispatch(updateObservationParams({ order_by: params.order_by }));
+	    }
+	    if (params.layout) {
+	      dispatch((0, _config.setConfig)({ layout: params.layout }));
+	    }
+	    if (params.place_id) {
+	      if (params.place_id === "any") {
+	        dispatch((0, _config.setConfig)({ chosenPlace: null }));
+	        dispatch(reloadPhotos());
+	      } else {
+	        _inaturalistjs2.default.places.fetch(params.place_id).then(function (response) {
+	          dispatch((0, _config.setConfig)({ chosenPlace: response.results[0] }));
+	          dispatch(reloadPhotos());
+	        }, function (error) {
+	          console.log("[DEBUG] error: ", error);
+	        });
+	      }
 	    }
 	  };
 	}
@@ -82083,13 +82170,23 @@
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
+	var _lodash = __webpack_require__(590);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var urlForTaxon = function urlForTaxon(t) {
 	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
 	};
-	var urlForTaxonPhotos = function urlForTaxonPhotos(t) {
-	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "/browse_photos";
+	var urlForTaxonPhotos = function urlForTaxonPhotos(t, params) {
+	  var url = "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "/browse_photos";
+	  if (params) {
+	    url += "?" + _lodash2.default.map(params, function (v, k) {
+	      return k + "=" + v;
+	    }).join("&");
+	  }
+	  return url;
 	};
 	var urlForUser = function urlForUser(u) {
 	  return "/people/" + u.login;
@@ -83110,8 +83207,6 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _config = __webpack_require__(1419);
-
 	var _photos = __webpack_require__(1417);
 
 	var _place_chooser_popover = __webpack_require__(1429);
@@ -83129,7 +83224,7 @@
 
 	function mapDispatchToProps(dispatch) {
 	  var setPlace = function setPlace(place) {
-	    dispatch((0, _config.setConfig)({ chosenPlace: place }));
+	    dispatch((0, _photos.setConfigAndUrl)({ chosenPlace: place }));
 	    dispatch((0, _photos.reloadPhotos)());
 	  };
 	  return {
@@ -83407,8 +83502,6 @@
 
 	var _photos = __webpack_require__(1417);
 
-	var _config = __webpack_require__(1419);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -83468,18 +83561,18 @@
 	      dispatch((0, _photos.fetchMorePhotos)());
 	    },
 	    setLayout: function setLayout(layout) {
-	      dispatch((0, _config.setConfig)({ layout: layout }));
+	      dispatch((0, _photos.setConfigAndUrl)({ layout: layout }));
 	    },
 	    setTerm: function setTerm(term, value) {
 	      var key = "field:" + term;
-	      dispatch((0, _photos.updateObservationParams)(_defineProperty({}, key, value === "any" ? null : value)));
+	      dispatch((0, _photos.updateObservationParamsAndUrl)(_defineProperty({}, key, value === "any" ? null : value)));
 	      dispatch((0, _photos.reloadPhotos)());
 	    },
 	    setGrouping: function setGrouping(param, values) {
 	      dispatch((0, _photos.setGrouping)(param, values));
 	    },
 	    setParam: function setParam(key, value) {
-	      dispatch((0, _photos.updateObservationParams)(_defineProperty({}, key, value)));
+	      dispatch((0, _photos.updateObservationParamsAndUrl)(_defineProperty({}, key, value)));
 	      dispatch((0, _photos.reloadPhotos)());
 	    }
 	  };
@@ -83610,7 +83703,7 @@
 	            null,
 	            group.groupObject ? _react2.default.createElement(_split_taxon2.default, {
 	              taxon: group.groupObject,
-	              url: (0, _util.urlForTaxonPhotos)(group.groupObject)
+	              url: (0, _util.urlForTaxonPhotos)(group.groupObject, $.deparam(window.location.search.replace(/^\?/, "")))
 	            }) : group.groupName
 	          ),
 	          _react2.default.createElement(

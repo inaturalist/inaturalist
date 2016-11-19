@@ -1,7 +1,14 @@
 import isomorphicFetch from "isomorphic-fetch";
+import _ from "lodash";
 
 const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}?test=taxon-page`;
-const urlForTaxonPhotos = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}/browse_photos`;
+const urlForTaxonPhotos = ( t, params ) => {
+  let url = `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}/browse_photos`;
+  if ( params ) {
+    url += `?${_.map( params, ( v, k ) => `${k}=${v}` ).join( "&" )}`;
+  }
+  return url;
+};
 const urlForUser = ( u ) => `/people/${u.login}`;
 
 // Light wrapper around isomorphic fetch to ensure credentials are always passed through
