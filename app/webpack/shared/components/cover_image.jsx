@@ -31,19 +31,16 @@ class CoverImage extends React.Component {
     if ( domNode.classList.contains( "loaded" ) ) {
       return;
     }
-    if ( p.low && !domNode.classList.contains( "low-loaded" ) ) {
-      const lowImage = new Image();
-      lowImage.src = p.low;
-      lowImage.onload = function ( ) {
-        domNode.classList.add( "low-loaded" );
+    if ( p.low ) {
+      domNode.style.backgroundImage = `url(${p.low})`;
+      const img = new Image( );
+      img.src = p.src;
+      img.onload = function ( ) {
+        domNode.classList.add( "loaded" );
         domNode.style.backgroundImage = `url(${this.src})`;
-        const img = new Image();
-        img.src = p.src;
-        img.onload = function ( ) {
-          domNode.classList.add( "loaded" );
-          domNode.style.backgroundImage = `url(${this.src})`;
-        };
       };
+    } else {
+      domNode.style.backgroundImage = `url(${p.src})`;
     }
   }
   idForUrl( url ) {

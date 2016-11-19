@@ -84335,19 +84335,16 @@
 	      if (domNode.classList.contains("loaded")) {
 	        return;
 	      }
-	      if (p.low && !domNode.classList.contains("low-loaded")) {
-	        var lowImage = new Image();
-	        lowImage.src = p.low;
-	        lowImage.onload = function () {
-	          domNode.classList.add("low-loaded");
+	      if (p.low) {
+	        domNode.style.backgroundImage = "url(" + p.low + ")";
+	        var img = new Image();
+	        img.src = p.src;
+	        img.onload = function () {
+	          domNode.classList.add("loaded");
 	          domNode.style.backgroundImage = "url(" + this.src + ")";
-	          var img = new Image();
-	          img.src = p.src;
-	          img.onload = function () {
-	            domNode.classList.add("loaded");
-	            domNode.style.backgroundImage = "url(" + this.src + ")";
-	          };
 	        };
+	      } else {
+	        domNode.style.backgroundImage = "url(" + p.src + ")";
 	      }
 	    }
 	  }, {
