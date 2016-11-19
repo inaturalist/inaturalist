@@ -11,23 +11,23 @@ class CoverImage extends React.Component {
     this.loadOrDelayImages( newProps );
   }
   loadOrDelayImages( props ) {
+    const domNode = ReactDOM.findDOMNode( this );
     const p = props || this.props;
     if ( p.lazyLoad ) {
       const os = new OnScreen( );
       const selector = `#${this.idForUrl( p.src )}`;
       os.on( "enter", selector, element => {
         if ( !element.classList.contains( "loaded" ) ) {
-          this.loadImages( p );
+          this.loadImages( p, domNode );
         }
         os.off( "enter", selector );
       } );
       return;
     }
-    this.loadImages( p );
+    this.loadImages( p, domNode );
   }
-  loadImages( props ) {
+  loadImages( props, domNode ) {
     const p = props || this.props;
-    const domNode = ReactDOM.findDOMNode( this );
     if ( domNode.classList.contains( "loaded" ) ) {
       return;
     }
@@ -37,14 +37,14 @@ class CoverImage extends React.Component {
       lowImage.onload = function ( ) {
         domNode.classList.add( "low-loaded" );
         domNode.style.backgroundImage = `url(${this.src})`;
+        const img = new Image();
+        img.src = p.src;
+        img.onload = function ( ) {
+          domNode.classList.add( "loaded" );
+          domNode.style.backgroundImage = `url(${this.src})`;
+        };
       };
     }
-    const img = new Image();
-    img.src = p.src;
-    img.onload = function ( ) {
-      domNode.classList.add( "loaded" );
-      domNode.style.backgroundImage = `url(${this.src})`;
-    };
   }
   idForUrl( url ) {
     return `cover-image-${_.kebabCase( url )}`;

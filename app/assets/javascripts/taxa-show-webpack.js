@@ -93244,6 +93244,7 @@
 	    value: function loadOrDelayImages(props) {
 	      var _this2 = this;
 
+	      var domNode = _reactDom2.default.findDOMNode(this);
 	      var p = props || this.props;
 	      if (p.lazyLoad) {
 	        var _ret = function () {
@@ -93251,7 +93252,7 @@
 	          var selector = "#" + _this2.idForUrl(p.src);
 	          os.on("enter", selector, function (element) {
 	            if (!element.classList.contains("loaded")) {
-	              _this2.loadImages(p);
+	              _this2.loadImages(p, domNode);
 	            }
 	            os.off("enter", selector);
 	          });
@@ -93262,13 +93263,12 @@
 
 	        if ((typeof _ret === "undefined" ? "undefined" : _typeof(_ret)) === "object") return _ret.v;
 	      }
-	      this.loadImages(p);
+	      this.loadImages(p, domNode);
 	    }
 	  }, {
 	    key: "loadImages",
-	    value: function loadImages(props) {
+	    value: function loadImages(props, domNode) {
 	      var p = props || this.props;
-	      var domNode = _reactDom2.default.findDOMNode(this);
 	      if (domNode.classList.contains("loaded")) {
 	        return;
 	      }
@@ -93278,14 +93278,14 @@
 	        lowImage.onload = function () {
 	          domNode.classList.add("low-loaded");
 	          domNode.style.backgroundImage = "url(" + this.src + ")";
+	          var img = new Image();
+	          img.src = p.src;
+	          img.onload = function () {
+	            domNode.classList.add("loaded");
+	            domNode.style.backgroundImage = "url(" + this.src + ")";
+	          };
 	        };
 	      }
-	      var img = new Image();
-	      img.src = p.src;
-	      img.onload = function () {
-	        domNode.classList.add("loaded");
-	        domNode.style.backgroundImage = "url(" + this.src + ")";
-	      };
 	    }
 	  }, {
 	    key: "idForUrl",
