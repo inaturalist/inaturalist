@@ -5,9 +5,7 @@ import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
 import {
   fetchMorePhotos,
   updateObservationParams,
-  fetchObservationPhotos,
   setGrouping,
-  setObservationParam,
   reloadPhotos
 } from "../ducks/photos";
 import { setConfig } from "../../../shared/ducks/config";

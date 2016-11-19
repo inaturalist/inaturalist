@@ -41,7 +41,12 @@ const PhotoBrowser = ( {
       let width = itemDim;
       if ( layout === "fluid" ) {
         itemDim = itemDim + 50;
-        width = itemDim / observationPhoto.photo.dimensions( ).height * observationPhoto.photo.dimensions( ).width;
+        const dims = observationPhoto.photo.dimensions( );
+        if ( dims ) {
+          width = itemDim / dims.height * dims.width;
+        } else {
+          width = itemDim;
+        }
       }
       return (
         <TaxonPhoto

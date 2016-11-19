@@ -157,6 +157,7 @@ export function fetchMorePhotos( ) {
 function fetchPhotosGroupedByParam( param, values ) {
   return function ( dispatch, getState ) {
     const s = getState( );
+    const limit = 12;
     _.forEach( values, value => {
       let groupName = value;
       let groupObject;
@@ -169,13 +170,16 @@ function fetchPhotosGroupedByParam( param, values ) {
         defaultObservationParams( s ),
         s.photos.observationParams,
         {
-          per_page: 12,
+          per_page: limit,
           [param]: groupName
         }
       );
       dispatch( setPhotosGroup( groupName, [], groupObject ) );
       inatjs.observations.search( params ).then( response => {
-        const observationPhotos = observationPhotosFromObservations( response.results );
+        let observationPhotos = observationPhotosFromObservations( response.results );
+        if ( observationPhotos.length > limit ) {
+          observationPhotos = _.uniqBy( observationPhotos, op => op.observation.id );
+        }
         dispatch( setPhotosGroup( groupName, observationPhotos, groupObject ) );
       } );
     } );

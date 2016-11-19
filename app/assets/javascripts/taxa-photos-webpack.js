@@ -82014,6 +82014,7 @@
 	function fetchPhotosGroupedByParam(param, values) {
 	  return function (dispatch, getState) {
 	    var s = getState();
+	    var limit = 12;
 	    _lodash2.default.forEach(values, function (value) {
 	      var groupName = value;
 	      var groupObject = void 0;
@@ -82022,11 +82023,16 @@
 	        groupObject = value;
 	      }
 	      var params = Object.assign({}, (0, _util.defaultObservationParams)(s), s.photos.observationParams, _defineProperty({
-	        per_page: 12
+	        per_page: limit
 	      }, param, groupName));
 	      dispatch(setPhotosGroup(groupName, [], groupObject));
 	      _inaturalistjs2.default.observations.search(params).then(function (response) {
 	        var observationPhotos = observationPhotosFromObservations(response.results);
+	        if (observationPhotos.length > limit) {
+	          observationPhotos = _lodash2.default.uniqBy(observationPhotos, function (op) {
+	            return op.observation.id;
+	          });
+	        }
 	        dispatch(setPhotosGroup(groupName, observationPhotos, groupObject));
 	      });
 	    });
@@ -83106,6 +83112,8 @@
 
 	var _config = __webpack_require__(1419);
 
+	var _photos = __webpack_require__(1417);
+
 	var _place_chooser_popover = __webpack_require__(1429);
 
 	var _place_chooser_popover2 = _interopRequireDefault(_place_chooser_popover);
@@ -83122,7 +83130,7 @@
 	function mapDispatchToProps(dispatch) {
 	  var setPlace = function setPlace(place) {
 	    dispatch((0, _config.setConfig)({ chosenPlace: place }));
-	    // TODO get photos
+	    dispatch((0, _photos.reloadPhotos)());
 	  };
 	  return {
 	    setPlace: setPlace,
@@ -83546,7 +83554,12 @@
 	      var width = itemDim;
 	      if (layout === "fluid") {
 	        itemDim = itemDim + 50;
-	        width = itemDim / observationPhoto.photo.dimensions().height * observationPhoto.photo.dimensions().width;
+	        var dims = observationPhoto.photo.dimensions();
+	        if (dims) {
+	          width = itemDim / dims.height * dims.width;
+	        } else {
+	          width = itemDim;
+	        }
 	      }
 	      return _react2.default.createElement(_taxon_photo2.default, {
 	        key: "taxon-photo-" + observationPhoto.photo.id,
