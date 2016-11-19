@@ -1,6 +1,6 @@
 - @no_footer_gap = true
 - content_for :title do
-  = render "taxa/taxon.txt.erb", taxon: @taxon
+  =t :photos_of_taxon_html, taxon: render( "taxa/taxon.txt.erb", taxon: @taxon )
 - content_for :extrajs do
   :javascript
     var TAXON = #{ @node_taxon_json.encode }.results[0];

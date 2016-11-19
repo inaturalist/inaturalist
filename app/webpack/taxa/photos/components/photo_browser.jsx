@@ -1,122 +1,257 @@
 import React, { PropTypes } from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import _ from "lodash";
 import {
   Grid,
   Row,
   Col,
   ButtonGroup,
   Button,
-  DropdownButton,
   MenuItem,
   Dropdown
 } from "react-bootstrap";
+import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../shared/components/taxon_photo";
+import { urlForTaxonPhotos } from "../../shared/util";
 
 const PhotoBrowser = ( {
-  observationPhotos,
-  showTaxonPhotoModal,
-  loadMorePhotos,
+  groupedPhotos,
+  grouping,
   hasMorePhotos,
   layout,
+  loadMorePhotos,
+  observationPhotos,
+  params,
+  setGrouping,
   setLayout,
-  terms,
-  setTerm
-} ) => (
-  <Grid className={`PhotoBrowser ${layout}`}>
-    <Row>
-      <Col xs={12}>
-        <div id="controls">
-          <ButtonGroup className="control-group">
-            <Button
-              active={layout === "fluid"}
-              title={I18n.t( "fluid_layout" )}
-              onClick={( ) => setLayout( "fluid" )}
-            >
-              <i className="icon-photo-quilt"></i>
-            </Button>
-            <Button
-              active={layout === "grid"}
-              title={I18n.t( "grid_layout" )}
-              onClick={( ) => setLayout( "grid" )}
-            >
-              <i className="icon-photo-grid"></i>
-            </Button>
-          </ButtonGroup>
-          { terms.map( term => (
-            <span key={`term-${term}`} className="control-group">
+  setParam,
+  setTerm,
+  showTaxonPhotoModal,
+  terms
+} ) => {
+  let sortedGroupedPhotos;
+  if ( grouping.param === "taxon_id" ) {
+    sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name );
+  } else {
+    sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), "groupName" );
+  }
+  const renderObservationPhotos = obsPhotos => (
+    obsPhotos.map( observationPhoto => {
+      let itemDim = 183;
+      let width = itemDim;
+      if ( layout === "fluid" ) {
+        itemDim = itemDim + 50;
+        width = itemDim / observationPhoto.photo.dimensions( ).height * observationPhoto.photo.dimensions( ).width;
+      }
+      return (
+        <TaxonPhoto
+          key={`taxon-photo-${observationPhoto.photo.id}`}
+          photo={observationPhoto.photo}
+          taxon={observationPhoto.observation.taxon}
+          observation={observationPhoto.observation}
+          width={width}
+          height={itemDim}
+          showTaxonPhotoModal={ ( ) => showTaxonPhotoModal(
+            observationPhoto.photo,
+            observationPhoto.observation.taxon,
+            observationPhoto.observation
+          ) }
+        />
+      );
+    } )
+  );
+  const renderUngroupedPhotos = ( ) => (
+    <InfiniteScroll
+      loadMore={( ) => loadMorePhotos( )}
+      hasMore={ hasMorePhotos }
+      className="photos"
+      loader={
+        <div className="loading">
+          <i className="fa fa-refresh fa-spin"></i>
+        </div>
+      }
+    >
+      { observationPhotos.length === 0 ?
+        <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
+        : null
+      }
+      { renderObservationPhotos( observationPhotos ) }
+    </InfiniteScroll>
+  );
+  const renderGroupedPhotos = ( ) => (
+    <div>
+      { sortedGroupedPhotos.map( group => (
+        <div key={`group-${group.groupName}`} className="photo-group">
+          <h3>
+            { group.groupObject ?
+              <SplitTaxon
+                taxon={group.groupObject}
+                url={urlForTaxonPhotos( group.groupObject )}
+              /> : group.groupName }
+          </h3>
+          <div className="photos">
+            { group.observationPhotos.length === 0 ?
+              <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
+              : null
+            }
+            { renderObservationPhotos( group.observationPhotos ) }
+          </div>
+        </div>
+      ) ) }
+    </div>
+  );
+  const orderByDisplay = key => {
+    if ( key === "created_at" ) {
+      return I18n.t( "date_added" );
+    }
+    return I18n.t( "faves" );
+  };
+  const groupingDisplay = param => {
+    if ( param === "taxon_id" ) {
+      return I18n.t( "taxonomic" );
+    } else if ( param ) {
+      const displayText = param.replace( "field:", "" );
+      return I18n.t( displayText, { defaultValue: displayText } );
+    }
+    return I18n.t( "none" );
+  };
+  return (
+    <Grid className={`PhotoBrowser ${layout}`}>
+      <Row>
+        <Col xs={12}>
+          <div id="controls">
+            <ButtonGroup className="control-group">
+              <Button
+                active={layout === "fluid"}
+                title={I18n.t( "fluid_layout" )}
+                onClick={( ) => setLayout( "fluid" )}
+              >
+                <i className="icon-photo-quilt"></i>
+              </Button>
+              <Button
+                active={layout === "grid"}
+                title={I18n.t( "grid_layout" )}
+                onClick={( ) => setLayout( "grid" )}
+              >
+                <i className="icon-photo-grid"></i>
+              </Button>
+            </ButtonGroup>
+            <span className="control-group">
               <Dropdown
-                id={`term-chooser-${term.name}`}
-                onSelect={ ( event, key ) => setTerm( term.name, key ) }
+                id="grouping-control"
+                onSelect={ ( event, key ) => {
+                  if ( key === "none" ) {
+                    setGrouping( null );
+                  } else if ( key === "taxon_id" ) {
+                    setGrouping( "taxon_id" );
+                  } else {
+                    setGrouping(
+                      `field:${key}`,
+                      _.find( terms, t => t.name === key ).values
+                    );
+                  }
+                } }
               >
                 <Dropdown.Toggle bsClass="link">
-                  { term.name }: <strong>{ term.selectedValue || I18n.t( "any" ) }</strong>
+                  Grouping: <strong>{ groupingDisplay( grouping.param ) }</strong>
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="super-colors">
+                <Dropdown.Menu>
                   <MenuItem
-                    key={`term-chooser-item-${term.name}-any`}
-                    eventKey={"any"}
-                    active={term.selectedValue === "any" || !term.selectedValue}
+                    eventKey={"none"}
+                    active={!grouping.param}
                   >
-                    { I18n.t( "any" ) }
+                    { groupingDisplay( null ) }
                   </MenuItem>
-                  { term.values.map( value => (
+                  <MenuItem
+                    eventKey={"taxon_id"}
+                    active={grouping.param === "taxon_id"}
+                  >
+                    { groupingDisplay( "taxon_id" ) }
+                  </MenuItem>
+                  { terms.map( term => (
                     <MenuItem
-                      key={`term-chooser-item-${term.name}-${value}`}
-                      eventKey={value}
-                      active={term.selectedValue === value}
+                      key={`grouping-chooser-item-${term.name}`}
+                      eventKey={term.name}
+                      active={grouping.param === `field:${term.name}`}
                     >
-                      { value }
+                      { term.name }
                     </MenuItem>
                   ) ) }
                 </Dropdown.Menu>
               </Dropdown>
             </span>
-          ) ) }
-        </div>
-      </Col>
-    </Row>
-    <Row>
-      <Col xs={12}>
-        <InfiniteScroll
-          loadMore={( ) => loadMorePhotos( )}
-          hasMore={ hasMorePhotos }
-          className="photos"
-          loader={
-            <div className="loading">
-              <i className="fa fa-refresh fa-spin"></i> { I18n.t( "loading" ) }
-            </div>
-          }
-        >
-          { observationPhotos.map( observationPhoto => {
-            const itemDim = 180;
-            let width = itemDim;
-            if ( layout === "fluid" ) {
-              width = itemDim / observationPhoto.photo.dimensions( ).height * observationPhoto.photo.dimensions( ).width;
-            }
-            return (
-              <TaxonPhoto
-                key={`taxon-photo-${observationPhoto.photo.id}`}
-                photo={observationPhoto.photo}
-                taxon={observationPhoto.observation.taxon}
-                observation={observationPhoto.observation}
-                width={width}
-                height={itemDim}
-                showTaxonPhotoModal={ ( ) => showTaxonPhotoModal(
-                  observationPhoto.photo,
-                  observationPhoto.observation.taxon,
-                  observationPhoto.observation
-                ) }
-              />
-            );
-          } ) }
-        </InfiniteScroll>
-      </Col>
-    </Row>
-  </Grid>
-);
+            { terms.map( term => (
+              <span key={`term-${term}`} className="control-group">
+                <Dropdown
+                  id={`term-chooser-${term.name}`}
+                  onSelect={ ( event, key ) => setTerm( term.name, key ) }
+                >
+                  <Dropdown.Toggle bsClass="link">
+                    { term.name }: <strong>{ term.selectedValue || I18n.t( "any" ) }</strong>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <MenuItem
+                      key={`term-chooser-item-${term.name}-any`}
+                      eventKey={"any"}
+                      active={term.selectedValue === "any" || !term.selectedValue}
+                    >
+                      { I18n.t( "any" ) }
+                    </MenuItem>
+                    { term.values.map( value => (
+                      <MenuItem
+                        key={`term-chooser-item-${term.name}-${value}`}
+                        eventKey={value}
+                        active={term.selectedValue === value}
+                      >
+                        { value }
+                      </MenuItem>
+                    ) ) }
+                  </Dropdown.Menu>
+                </Dropdown>
+              </span>
+            ) ) }
+            <span className="control-group">
+              <Dropdown
+                id="sort-control"
+                onSelect={ ( event, key ) => {
+                  setParam( "order_by", key );
+                } }
+              >
+                <Dropdown.Toggle bsClass="link">
+                  { I18n.t( "order_by" ) }: <strong>{ orderByDisplay( params.order_by ) }</strong>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem
+                    eventKey={"votes"}
+                    active={params.order_by === "votes"}
+                  >
+                    { orderByDisplay( "votes" ) }
+                  </MenuItem>
+                  <MenuItem
+                    eventKey={"created_at"}
+                    active={grouping === "created_at"}
+                  >
+                    { orderByDisplay( "created_at" ) }
+                  </MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+            </span>
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          { sortedGroupedPhotos && sortedGroupedPhotos.length > 0 ?
+            renderGroupedPhotos( ) : renderUngroupedPhotos( ) }
+        </Col>
+      </Row>
+    </Grid>
+  );
+};
 
 PhotoBrowser.propTypes = {
   observationPhotos: PropTypes.array.isRequired,
+  groupedPhotos: PropTypes.object,
   showTaxonPhotoModal: PropTypes.func.isRequired,
   loadMorePhotos: PropTypes.func.isRequired,
   hasMorePhotos: PropTypes.bool,
@@ -129,13 +264,19 @@ PhotoBrowser.propTypes = {
       selectedValue: PropTypes.string
     } )
   ),
-  setTerm: PropTypes.func
+  setTerm: PropTypes.func,
+  grouping: PropTypes.object,
+  setGrouping: PropTypes.func,
+  params: PropTypes.object,
+  setParam: PropTypes.func
 };
 
 PhotoBrowser.defaultProps = {
   observationPhotos: [],
   layout: "fluid",
-  terms: []
+  terms: [],
+  grouping: {},
+  groupedPhotos: {}
 };
 
 export default PhotoBrowser;

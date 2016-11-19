@@ -37,7 +37,7 @@ const App = ( { taxon } ) => (
         <Col xs={12}>
           <div className="inner">
             <h1>
-              Photos of <SplitTaxon
+              { I18n.t( "photos_of" ) } <SplitTaxon
                 taxon={taxon}
                 forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
               />

@@ -5,12 +5,24 @@ import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
 import {
   fetchMorePhotos,
   updateObservationParams,
-  fetchObservationPhotos
+  fetchObservationPhotos,
+  setGrouping,
+  setObservationParam,
+  reloadPhotos
 } from "../ducks/photos";
 import { setConfig } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
   const terms = [];
+  const props = {
+    observationPhotos: [],
+    hasMorePhotos: false,
+    layout: state.config.layout,
+    grouping: state.config.grouping,
+    groupedPhotos: state.photos.groupedPhotos,
+    terms,
+    params: state.photos.observationParams
+  };
   if ( state.taxon.taxon && state.taxon.taxon.iconic_taxon_name === "Insecta" ) {
     let selectedValue;
     if ( state.photos.observationParams["field:Insect life stage"] ) {
@@ -50,19 +62,12 @@ function mapStateToProps( state ) {
     } );
   }
   if ( state.photos.observationPhotos && state.photos.observationPhotos.length > 0 ) {
-    return {
+    return Object.assign( props, {
       observationPhotos: state.photos.observationPhotos,
-      hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage ),
-      layout: state.config.layout,
-      terms
-    };
+      hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
+    } );
   }
-  return {
-    observationPhotos: [],
-    hasMorePhotos: false,
-    layout: state.config.layout,
-    terms
-  };
+  return props;
 }
 
 function mapDispatchToProps( dispatch ) {
@@ -80,7 +85,14 @@ function mapDispatchToProps( dispatch ) {
     setTerm: ( term, value ) => {
       const key = `field:${term}`;
       dispatch( updateObservationParams( { [key]: value === "any" ? null : value } ) );
-      dispatch( fetchObservationPhotos( { reload: true } ) );
+      dispatch( reloadPhotos( ) );
+    },
+    setGrouping: ( param, values ) => {
+      dispatch( setGrouping( param, values ) );
+    },
+    setParam: ( key, value ) => {
+      dispatch( updateObservationParams( { [key]: value } ) );
+      dispatch( reloadPhotos( ) );
     }
   };
 }
