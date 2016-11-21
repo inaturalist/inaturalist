@@ -6,6 +6,8 @@ module ActsAsVotable
 
     belongs_to :observation, -> { where(votes: { votable_type: "Observation" }) },
       foreign_key: "votable_id"
+    belongs_to :identification, -> { where(votes: { votable_type: "Identification" }) },
+      foreign_key: "votable_id"
 
     notifies_owner_of :votable, notification: "activity",
       queue_if: lambda { |record| record.vote_scope.blank? }
@@ -36,6 +38,7 @@ module ActsAsVotable
   end
 
   module Votable
+
     def faves
       votes_for.where(vote_flag: true, vote_scope: nil)
     end

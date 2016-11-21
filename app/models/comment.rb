@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
 
   acts_as_spammable fields: [ :body ]
+  acts_as_votable
+  SUBSCRIBABLE = false
 
   belongs_to :parent, polymorphic: true
   belongs_to :user

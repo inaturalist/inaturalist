@@ -538,6 +538,15 @@
 
   <%= render partial: "controlled_terms" %>
 
+  <%- if @taxon.helpful_ids_and_comments.any? %>
+    <div class="last column span-20">
+      <h3>Helpful IDs and Comments</h3>
+      <%- @taxon.helpful_ids_and_comments.each do |r| %>
+        <%= render :partial => "shared/activity_item", locals: { activity_item: r } %>
+      <% end -%>
+    </div>
+  <% end -%>
+
   <div class="last column span-20">
     <div id="taxon_links" class="right tabs">
       <ul>

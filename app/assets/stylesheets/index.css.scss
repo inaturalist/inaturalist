@@ -1059,6 +1059,8 @@ ul.leafylist li li:first-child {
 .item .comment_actions {display:none;}
 .item:hover .comment_actions {display:inline;}
 .comment {overflow:hidden;}
+.item .helpful { color: #888; }
+.item .helpful form { display: inline-block; }
 
 #pageheader #tools{margin-top:0.5em;}
 .count, .count a { color: #74AC00; }
