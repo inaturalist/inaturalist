@@ -11,19 +11,27 @@ import mousetrap from "mousetrap";
 
 class PlaceChooserPopover extends React.Component {
 
-  constructor( ) {
-    super( );
+  constructor( props ) {
+    super( props );
     this.state = {
       places: [],
       current: -1
     };
   }
 
+  componentDidMount( ) {
+    this.setPlacesFromProps( this.props );
+  }
+
   componentWillReceiveProps( newProps ) {
-    if ( newProps.defaultPlace ) {
+    this.setPlacesFromProps( newProps );
+  }
+
+  setPlacesFromProps( props ) {
+    if ( props.defaultPlace ) {
       let newPlaces = this.state.places;
-      newPlaces = _.filter( newPlaces, p => p.id !== newProps.defaultPlace.id );
-      newPlaces.splice( 0, 0, newProps.defaultPlace );
+      newPlaces = _.filter( newPlaces, p => p.id !== props.defaultPlace.id );
+      newPlaces.splice( 0, 0, props.defaultPlace );
       this.setState( { places: newPlaces } );
     }
   }

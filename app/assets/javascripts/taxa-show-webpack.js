@@ -92886,10 +92886,10 @@
 	var PlaceChooserPopover = function (_React$Component) {
 	  _inherits(PlaceChooserPopover, _React$Component);
 
-	  function PlaceChooserPopover() {
+	  function PlaceChooserPopover(props) {
 	    _classCallCheck(this, PlaceChooserPopover);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlaceChooserPopover).call(this));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlaceChooserPopover).call(this, props));
 
 	    _this.state = {
 	      places: [],
@@ -92899,14 +92899,24 @@
 	  }
 
 	  _createClass(PlaceChooserPopover, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      this.setPlacesFromProps(this.props);
+	    }
+	  }, {
 	    key: "componentWillReceiveProps",
 	    value: function componentWillReceiveProps(newProps) {
-	      if (newProps.defaultPlace) {
+	      this.setPlacesFromProps(newProps);
+	    }
+	  }, {
+	    key: "setPlacesFromProps",
+	    value: function setPlacesFromProps(props) {
+	      if (props.defaultPlace) {
 	        var newPlaces = this.state.places;
 	        newPlaces = _lodash2.default.filter(newPlaces, function (p) {
-	          return p.id !== newProps.defaultPlace.id;
+	          return p.id !== props.defaultPlace.id;
 	        });
-	        newPlaces.splice(0, 0, newProps.defaultPlace);
+	        newPlaces.splice(0, 0, props.defaultPlace);
 	        this.setState({ places: newPlaces });
 	      }
 	    }
@@ -93125,47 +93135,23 @@
 	      "div",
 	      { className: "photo-hover" },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "actions" },
-	        _react2.default.createElement(
-	          "button",
-	          {
-	            className: "btn btn-link",
-	            onClick: function onClick(e) {
-	              e.preventDefault();
-	              showTaxonPhotoModal(photo, taxon, observation);
-	              return false;
-	            }
-	          },
-	          _react2.default.createElement("i", { className: "fa fa-search-plus" }),
-	          I18n.t("enlarge")
-	        ),
-	        _react2.default.createElement(
-	          "a",
-	          {
-	            href: (0, _util.urlForTaxonPhotos)(taxon),
-	            className: "btn btn-link"
-	          },
-	          _react2.default.createElement("i", { className: "fa fa-picture-o" }),
-	          I18n.t("view_all")
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "photo-taxon" },
-	        _react2.default.createElement(_split_taxon2.default, { taxon: taxon, noParens: true, url: (0, _util.urlForTaxon)(taxon) }),
-	        _react2.default.createElement(
-	          "a",
-	          { href: (0, _util.urlForTaxon)(taxon), className: "btn btn-link" },
-	          _react2.default.createElement("i", { className: "fa fa-info-circle" })
-	        )
+	        "button",
+	        {
+	          className: "btn btn-link",
+	          onClick: function onClick(e) {
+	            e.preventDefault();
+	            showTaxonPhotoModal(photo, taxon, observation);
+	            return false;
+	          }
+	        },
+	        _react2.default.createElement("i", { className: "fa fa-search-plus" }),
+	        I18n.t("enlarge")
 	      )
 	    ),
 	    _react2.default.createElement(_cover_image2.default, {
 	      src: photo.photoUrl("medium"),
 	      low: photo.photoUrl("small"),
-	      height: height,
-	      lazyLoad: true
+	      height: height
 	    })
 	  );
 	};
@@ -93759,8 +93745,8 @@
 	      ),
 	      _react2.default.createElement(
 	        "a",
-	        { href: "/photos/" + photo.id },
-	        I18n.t("details")
+	        { href: "/photos/" + photo.id, title: I18n.t("details") },
+	        _react2.default.createElement("i", { className: "fa fa-info-circle" })
 	      ),
 	      obsLink
 	    );

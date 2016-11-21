@@ -48,7 +48,6 @@ const TaxonPhoto = ( {
       src={ photo.photoUrl( "medium" ) }
       low={ photo.photoUrl( "small" ) }
       height={height}
-      lazyLoad
     />
   </div>
 );

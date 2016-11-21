@@ -27,7 +27,9 @@ const PhotoModal = ( {
     photoAttribution = (
       <div className="photo-attribution">
         <span>{ photo.attribution }</span>
-        <a href={`/photos/${photo.id}`}>{ I18n.t( "details" ) }</a>
+        <a href={`/photos/${photo.id}`} title={ I18n.t( "details" ) }>
+          <i className="fa fa-info-circle"></i>
+        </a>
         { obsLink }
       </div>
     );
