@@ -7,7 +7,7 @@
     DASHBOARD_TAB = "#{params[:tab] || 'updates'}";
     DASHBOARD_FROM = "#{params[:from]}";
   = javascript_include_tag "map_bundle", "d3.min", "observations/observation_fields", "users/dashboard"
-.container.main{ style: "background-color:white" }
+.container
   - if announcement = @announcements.detect{|a| a.placement == "users/dashboard"}
     .column.span-24
       = announcement.body.html_safe
