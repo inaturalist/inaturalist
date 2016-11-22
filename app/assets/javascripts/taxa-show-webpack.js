@@ -91978,7 +91978,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
+	exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
 
 	var _isomorphicFetch = __webpack_require__(994);
 
@@ -91987,6 +91987,10 @@
 	var _lodash = __webpack_require__(590);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _react = __webpack_require__(403);
+
+	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -92015,8 +92019,57 @@
 	  return {
 	    verifiable: true,
 	    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
+	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
+	    ttl: -1
 	  };
+	};
+
+	var localizedPhotoAttribution = function localizedPhotoAttribution(photo) {
+	  var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+	  var separator = options.separator || "";
+	  var userName = options.name || "";
+	  if (userName.length === 0) userName = photo.native_realname || userName;
+	  if (userName.length === 0) userName = photo.native_username || userName;
+	  var user = photo.user || options.user;
+	  if (user && userName.length === 0) {
+	    userName = user.name || user.login || userName;
+	  }
+	  userName = userName.length === 0 ? I18n.t("unknown") : userName;
+	  var s = void 0;
+	  if (photo.license_code === "pd") {
+	    s = I18n.t("copyright.no_known_copyright_restrictions", {
+	      name: userName,
+	      license_name: I18n.t("public_domain")
+	    });
+	  } else if (photo.license_code === "cc0") {
+	    s = _lodash2.default.capitalize(I18n.t("by_user", { user: userName }));
+	  } else {
+	    s = "(c) " + userName;
+	  }
+	  var url = void 0;
+	  var rights = I18n.t("all_rights_reserved");
+	  if (photo.license_code) {
+	    s += separator;
+	    if (photo.license_code === "cc0") {
+	      url = "http://creativecommons.org/publicdomain/zero/1.0/";
+	      rights = I18n.t("copyright.no_rights_reserved") + " (CC0)";
+	    } else {
+	      url = "http://creativecommons.org/licenses/" + photo.license_code.replace(/cc\-?/, "") + "/4.0";
+	      rights = I18n.t("some_rights_reserved") + "\n        (" + photo.license_code.replace(/cc\-?/, "CC ").toUpperCase() + ")";
+	    }
+	  }
+	  return _react2.default.createElement(
+	    "span",
+	    null,
+	    s,
+	    ", ",
+	    url ? _react2.default.createElement(
+	      "a",
+	      { href: url, title: photo.license_code },
+	      rights
+	    ) : rights
+	  );
 	};
 
 	exports.urlForTaxon = urlForTaxon;
@@ -92024,6 +92077,7 @@
 	exports.urlForUser = urlForUser;
 	exports.fetch = fetch;
 	exports.defaultObservationParams = defaultObservationParams;
+	exports.localizedPhotoAttribution = localizedPhotoAttribution;
 
 /***/ },
 /* 1419 */
@@ -93105,15 +93159,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _split_taxon = __webpack_require__(862);
-
-	var _split_taxon2 = _interopRequireDefault(_split_taxon);
-
 	var _cover_image = __webpack_require__(1434);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
-
-	var _util = __webpack_require__(1418);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -93144,8 +93192,7 @@
 	            return false;
 	          }
 	        },
-	        _react2.default.createElement("i", { className: "fa fa-search-plus" }),
-	        I18n.t("enlarge")
+	        _react2.default.createElement("i", { className: "fa fa-search-plus" })
 	      )
 	    ),
 	    _react2.default.createElement(_cover_image2.default, {
@@ -93738,11 +93785,9 @@
 	    photoAttribution = _react2.default.createElement(
 	      "div",
 	      { className: "photo-attribution" },
-	      _react2.default.createElement(
-	        "span",
-	        null,
-	        photo.attribution
-	      ),
+	      (0, _util.localizedPhotoAttribution)(photo, {
+	        name: observation ? observation.user.name || observation.user.login : null
+	      }),
 	      _react2.default.createElement(
 	        "a",
 	        { href: "/photos/" + photo.id, title: I18n.t("details") },

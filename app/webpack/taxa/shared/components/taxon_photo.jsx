@@ -1,7 +1,5 @@
 import React, { PropTypes } from "react";
-import SplitTaxon from "../../../shared/components/split_taxon";
 import CoverImage from "../../../shared/components/cover_image";
-import { urlForTaxon, urlForTaxonPhotos } from "../../shared/util";
 
 const TaxonPhoto = ( {
   photo,
@@ -17,32 +15,16 @@ const TaxonPhoto = ( {
     style={{ width, maxWidth: 2 * width }}
   >
     <div className="photo-hover">
-      <div className="actions">
-        <button
-          className="btn btn-link"
-          onClick={ e => {
-            e.preventDefault( );
-            showTaxonPhotoModal( photo, taxon, observation );
-            return false;
-          } }
-        >
-          <i className="fa fa-search-plus"></i>
-          { I18n.t( "enlarge" ) }
-        </button>
-        <a
-          href={urlForTaxonPhotos( taxon )}
-          className="btn btn-link"
-        >
-          <i className="fa fa-picture-o"></i>
-          { I18n.t( "view_all" ) }
-        </a>
-      </div>
-      <div className="photo-taxon">
-        <SplitTaxon taxon={taxon} noParens url={urlForTaxon( taxon )} />
-        <a href={urlForTaxon( taxon )} className="btn btn-link">
-          <i className="fa fa-info-circle"></i>
-        </a>
-      </div>
+      <button
+        className="btn btn-link"
+        onClick={ e => {
+          e.preventDefault( );
+          showTaxonPhotoModal( photo, taxon, observation );
+          return false;
+        } }
+      >
+        <i className="fa fa-search-plus"></i>
+      </button>
     </div>
     <CoverImage
       src={ photo.photoUrl( "medium" ) }

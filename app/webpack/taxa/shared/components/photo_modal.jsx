@@ -1,7 +1,11 @@
 import React, { PropTypes } from "react";
 import { Modal, Button, Grid, Row, Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon, urlForTaxonPhotos } from "../../shared/util";
+import {
+  urlForTaxon,
+  urlForTaxonPhotos,
+  localizedPhotoAttribution
+} from "../../shared/util";
 
 const PhotoModal = ( {
   photo,
@@ -26,7 +30,11 @@ const PhotoModal = ( {
     }
     photoAttribution = (
       <div className="photo-attribution">
-        <span>{ photo.attribution }</span>
+        {
+          localizedPhotoAttribution( photo, {
+            name: observation ? ( observation.user.name || observation.user.login ) : null
+          } )
+        }
         <a href={`/photos/${photo.id}`} title={ I18n.t( "details" ) }>
           <i className="fa fa-info-circle"></i>
         </a>
