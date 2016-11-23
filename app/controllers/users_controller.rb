@@ -189,7 +189,7 @@ class UsersController < ApplicationController
           @updates += Observation.page_of_results( d1: 1.week.ago.to_s )
         else
           scope = klass.limit(30).
-            order("#{klass.table_name}.id DESC").
+            order("#{klass.table_name}.created_at DESC").
             where("#{klass.table_name}.created_at > ?", 1.week.ago).
             joins(:user).
             where("users.id IS NOT NULL")
