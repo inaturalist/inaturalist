@@ -45,17 +45,12 @@ class PhotoPreview extends React.Component {
             <h3>
               { I18n.t( "this_taxon_has_no_default_photo" ) }
             </h3>
-            <a
-              href={`/taxa/${this.props.taxon.id}/edit_photos`}
+            <button
               className="btn btn-primary"
-              onClick={ e => {
-                e.preventDefault( );
-                alert( "TODO" );
-                return false;
-              } }
+              onClick={ ( ) => this.props.showPhotoChooserModal( ) }
             >
               { I18n.t( "add_one_now" ) }
-            </a>
+            </button>
           </div>
         </div>
       );
@@ -134,7 +129,8 @@ PhotoPreview.propTypes = {
   taxon: PropTypes.object,
   taxonPhotos: PropTypes.array,
   layout: PropTypes.string,
-  showTaxonPhotoModal: PropTypes.func
+  showTaxonPhotoModal: PropTypes.func,
+  showPhotoChooserModal: PropTypes.func
 };
 
 PhotoPreview.defaultProps = { layout: "gallery" };

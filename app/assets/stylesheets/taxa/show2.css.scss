@@ -901,3 +901,21 @@ $nav-btn-dim: 40px;
   border-bottom: 2px solid #ddd;
   font-weight: bold;
 }
+
+.ChosenPhoto {
+  display: inline-block;
+  position: relative;
+  border: 2px solid transparent;
+}
+.ChosenPhoto i {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: white;
+}
+.ChosenPhoto.hovering {
+  border: 2px dashed #ddd;
+}
+.ChosenPhoto.hovering img {
+  opacity: 0.5;
+}

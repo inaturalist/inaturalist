@@ -13,6 +13,8 @@ const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 const SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 const SET_RARE = "taxa-show/taxon/SET_RARE";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
+const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
+const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -49,6 +51,12 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_SIMILAR:
       newState.similar = action.taxa;
+      break;
+    case SHOW_PHOTO_CHOOSER:
+      newState.photoChooserVisible = true;
+      break;
+    case HIDE_PHOTO_CHOOSER:
+      newState.photoChooserVisible = false;
       break;
     default:
       // nothing to see here
@@ -120,6 +128,14 @@ export function setSimilar( taxa ) {
     type: SET_SIMILAR,
     taxa
   };
+}
+
+export function showPhotoChooser( ) {
+  return { type: SHOW_PHOTO_CHOOSER };
+}
+
+export function hidePhotoChooser( ) {
+  return { type: HIDE_PHOTO_CHOOSER };
 }
 
 export function fetchTaxon( taxon ) {
