@@ -7,7 +7,8 @@ import {
   fetchInteractions,
   fetchTrending,
   fetchRare,
-  fetchSimilar
+  fetchSimilar,
+  showPhotoChooser
 } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
@@ -27,7 +28,8 @@ function mapDispatchToProps( dispatch ) {
     fetchInteractions: ( ) => dispatch( fetchInteractions( ) ),
     fetchTrendingTaxa: ( ) => dispatch( fetchTrending( ) ),
     fetchRareTaxa: ( ) => dispatch( fetchRare( ) ),
-    fetchSimilarTaxa: ( ) => dispatch( fetchSimilar( ) )
+    fetchSimilarTaxa: ( ) => dispatch( fetchSimilar( ) ),
+    showPhotoChooserModal: ( ) => dispatch( showPhotoChooser( ) )
   };
 }
 

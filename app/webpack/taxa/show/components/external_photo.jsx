@@ -1,54 +1,49 @@
 import React, { PropTypes } from "react";
 import { DragSource as dragSource } from "react-dnd";
-
-const TYPE = "DraggablePhoto";
+import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
+import PhotoChoserPhoto from "./photo_chooser_photo";
 
 const sourceSpec = {
-  beginDrag: props => {
-    return {
-      id: props.id,
-      origin: "external"
-    };
-  },
-  endDrag: ( props, monitor, component ) => {
+  beginDrag: props => ( {
+    id: props.id,
+    chooserID: props.chooserID,
+    origin: "external"
+  } ),
+  endDrag: ( props, monitor ) => {
     if ( monitor.didDrop( ) ) {
-      console.log( "[DEBUG] dropped ExternalPhoto" );
       if ( typeof( props.droppedPhoto ) === "function" ) {
-        console.log( "[DEBUG] firing droppedPhoto" );
         props.droppedPhoto( );
       }
     } else {
-      console.log( "[DEBUG] DID NOT drop ExternalPhoto" );
       props.didNotDropPhoto( );
     }
   }
 };
 
-const sourceCollect = ( connect, monitor ) => {
-  return {
-    connectDragSource: connect.dragSource( ),
-    isDragging: monitor.isDragging( )
-  };
-};
+const sourceCollect = ( connect, monitor ) => ( {
+  connectDragSource: connect.dragSource( ),
+  isDragging: monitor.isDragging( )
+} );
 
 class ExternalPhoto extends React.Component {
   render( ) {
     const {
       connectDragSource,
       src,
-      isDragging
+      isDragging,
+      infoURL,
+      chooserID
     } = this.props;
     return connectDragSource(
       <div
-        style={{
-          display: "inline-block"
-        }}
+        className={
+          `ExternalPhoto ${PHOTO_CHOOSER_DRAGGABLE_TYPE} ${isDragging ? "dragging" : null}`
+        }
       >
-        <img
+        <PhotoChoserPhoto
+          infoURL={infoURL}
           src={src}
-          style={{
-            opacity: isDragging ? 0.5 : 1
-          }}
+          chooserID={chooserID}
         />
       </div>
     );
@@ -61,7 +56,13 @@ ExternalPhoto.propTypes = {
   isDragging: PropTypes.bool,
   moveCard: PropTypes.func,
   droppedPhoto: PropTypes.func,
-  didNotDropPhoto: PropTypes.func
+  didNotDropPhoto: PropTypes.func,
+  infoURL: PropTypes.string,
+  chooserID: PropTypes.string,
 };
 
-export default dragSource( TYPE, sourceSpec, sourceCollect )( ExternalPhoto );
+export default dragSource(
+  PHOTO_CHOOSER_DRAGGABLE_TYPE,
+  sourceSpec,
+  sourceCollect
+)( ExternalPhoto );

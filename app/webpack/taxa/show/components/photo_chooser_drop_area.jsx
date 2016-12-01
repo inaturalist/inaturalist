@@ -1,14 +1,11 @@
 import React, { PropTypes } from "react";
-// import { findDOMNode } from "react-dom";
 import { DropTarget as dropTarget } from "react-dnd";
 import _ from "lodash";
-
-const TYPE = "DraggablePhoto";
+import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
 
 const targetSpec = {
   drop( props, monitor ) {
-    console.log( "[DEBUG] dropped into drop area, monitor.getItem( ): ", monitor.getItem( ) );
-    props.droppedPhoto( monitor.getItem( ).id );
+    props.droppedPhoto( monitor.getItem( ).chooserID );
   }
 };
 
@@ -19,14 +16,12 @@ const targetCollect = ( connect, monitor ) => ( {
 
 class PhotoChooserDropArea extends React.Component {
   render( ) {
-    const { connectDropTarget, isHovering } = this.props;
+    const { connectDropTarget, isHovering, children } = this.props;
     return connectDropTarget(
       <div
-        style={{
-          border: isHovering ? "1px dashed blue" : "1px solid blue"
-        }}
+        className={`PhotoChooserDropArea ${isHovering ? "hovering" : ""}`}
       >
-        PhotoChooserDropArea
+        { children }
       </div>
     );
   }
@@ -36,9 +31,10 @@ PhotoChooserDropArea.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   photos: PropTypes.array,
   isHovering: PropTypes.bool,
-  droppedPhoto: PropTypes.func
+  droppedPhoto: PropTypes.func,
+  children: PropTypes.array
 };
 
 export default _.flow(
-  dropTarget( TYPE, targetSpec, targetCollect )
+  dropTarget( PHOTO_CHOOSER_DRAGGABLE_TYPE, targetSpec, targetCollect )
 )( PhotoChooserDropArea );

@@ -54,8 +54,7 @@ class TaxonPageTabs extends React.Component {
                   window.location = `/taxa/${this.props.taxon.id}/flags/new`;
                   break;
                 case "2":
-                  // window.location = `/taxa/${this.props.taxon.id}/edit_photos`;
-                  alert( "TODO" );
+                  this.props.showPhotoChooserModal( );
                   break;
                 default:
                   window.location = `/taxa/${this.props.taxon.id}/edit`;

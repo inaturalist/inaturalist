@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import PhotoPreview from "../components/photo_preview";
 import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
-import { showPhotoChooser } from "../../shared/ducks/taxon";
+import { showPhotoChooserIfSignedIn } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
-  if ( !state.taxon.taxonPhotos ) {
+  if ( !state.taxon.taxonPhotos || state.taxon.taxonPhotos.length === 0 ) {
     return { taxonPhotos: [] };
   }
   let layout = "gallery";
@@ -25,7 +25,7 @@ function mapDispatchToProps( dispatch ) {
       dispatch( setPhotoModal( photo, taxon, observation ) );
       dispatch( showPhotoModal( ) );
     },
-    showPhotoChooserModal: ( ) => dispatch( showPhotoChooser( ) )
+    showPhotoChooserModal: ( ) => dispatch( showPhotoChooserIfSignedIn( ) )
   };
 }
 

@@ -45,7 +45,7 @@ class Carousel extends React.Component {
       );
     } else if ( this.props.items.length > 1 ) {
       nav = (
-        <div className="carousel-controls pull-right">
+        <div className="carousel-controls pull-right nav-buttons">
           <Button
             className="nav-btn prev-btn"
             disabled={this.state.currentIndex === 0}

@@ -18,13 +18,14 @@ class TaxaController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms]
-  before_filter :authenticate_user!, :only => [:edit_photos, :update_photos, 
+  before_filter :authenticate_user!, :only => [:edit_photos, :update_photos,
+    :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
-    :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
+    :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos]
   before_filter :taxon_curator_required, :only => [:edit, :update,
@@ -35,7 +36,7 @@ class TaxaController < ApplicationController
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
   before_filter :load_form_variables, :only => [:edit, :new]
-  cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
+  cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
   
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
@@ -735,7 +736,7 @@ class TaxaController < ApplicationController
   end
   
   def observation_photos
-    @taxon = Taxon.includes(:taxon_names).where(id: params[:id].to_i).first
+    @taxon = Taxon.includes(:taxon_names).where( id: params[:id].to_i ).first
     licensed = %w(t any true).include?(params[:licensed].to_s)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
@@ -768,10 +769,15 @@ class TaxaController < ApplicationController
     @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if licensed
     partial = params[:partial].to_s
     partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    
-    render :partial => "photos/#{partial}", :locals => {
-      :photos => @photos, 
-      :index => params[:index],
-      :local_photos => false }
+    respond_to do |format|
+      format.html do
+        render partial: "photos/#{partial}", locals: {
+          photos: @photos, 
+          index: params[:index],
+          local_photos: false }
+      end
+      format.json { render json: @photos }
+    end
   end
   
   def edit_photos
@@ -864,25 +870,112 @@ class TaxaController < ApplicationController
       p.valid? ? nil : p.errors.full_messages
     end.flatten.compact
     @taxon.photos = photos
-    unless @taxon.save
+    if @taxon.save
+      @taxon.reload
+      @taxon.elastic_index!
+      Taxon.refresh_es_index
+    else
       errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
     end
     unless photos.count == 0
-      Taxon.delay(:priority => INTEGRITY_PRIORITY).update_ancestor_photos(@taxon.id, photos.first.id)
+      Taxon.delay( priority: INTEGRITY_PRIORITY ).update_ancestor_photos( @taxon.id, photos.first.id )
     end
-    if errors.blank?
-      flash[:notice] = t(:taxon_photos_updated)
-    else
-      flash[:error] = t(:some_of_those_photos_couldnt_be_saved, :error => errors.to_sentence.downcase)
+    respond_to do |format|
+      format.json { render json: @taxon.to_json }
+      format.any do
+        if errors.blank?
+          flash[:notice] = t(:taxon_photos_updated)
+        else
+          flash[:error] = t(:some_of_those_photos_couldnt_be_saved, :error => errors.to_sentence.downcase)
+        end
+        redirect_to taxon_path( @taxon )
+      end
     end
-    redirect_to taxon_path(@taxon)
   rescue Errno::ETIMEDOUT
-    flash[:error] = t(:request_timed_out)
-    redirect_back_or_default(taxon_path(@taxon))
+    respond_to do |format|
+      format.json { render json: { error: t(:request_timed_out) }, status: :request_timeout }
+      format.any do
+        flash[:error] = t(:request_timed_out)
+        redirect_back_or_default( taxon_path( @taxon ) )
+      end
+    end
   rescue Koala::Facebook::APIError => e
     raise e unless e.message =~ /OAuthException/
-    flash[:error] = t(:facebook_needs_the_owner_of_that_photo_to, :site_name_short => CONFIG.site_name_short)
-    redirect_back_or_default(taxon_path(@taxon))
+    msg = t(
+      :facebook_needs_the_owner_of_that_photo_to,
+      site_name_short: CONFIG.site_name_short
+    )
+    respond_to do |format|
+      format.json { render json: { error: msg }, status: :unprocessable_entity }
+      format.any do
+        flash[:error] = msg 
+        redirect_back_or_default( taxon_path( @taxon ) )
+      end
+    end
+  end
+
+  def set_photos
+    photos = params[:photos].map { |photo|
+      subclass = LocalPhoto
+      if photo[:type]
+        subclass = Object.const_get( photo[:type].camelize )
+      end
+      record = Photo.find_by_id( photo[:id] )
+      Rails.logger.debug "[DEBUG] found photo by id: #{record}"
+      record ||= subclass.where( native_photo_id: photo[:native_photo_id] ).first
+      Rails.logger.debug "[DEBUG] found photo by native_photo_id: #{record}"
+      unless record
+        if api_response = subclass.get_api_response( photo[:native_photo_id] )
+          Rails.logger.debug "[DEBUG] api_response: #{api_response}"
+          record = subclass.new_from_api_response( api_response )
+          Rails.logger.debug "[DEBUG] record from api_response: #{record}"
+        end
+      end
+      unless record
+        Rails.logger.debug "[DEBUG] failed to find record for #{photo}"
+      end
+      record
+    }.compact
+    @taxon.taxon_photos = photos.map do |photo|
+      taxon_photo = @taxon.taxon_photos.detect{ |tp| tp.photo_id == photo.id }
+      taxon_photo ||= TaxonPhoto.new( taxon: @taxon, photo: photo )
+      taxon_photo.position = photos.index( photo )
+      taxon_photo
+    end
+    if @taxon.save
+      @taxon.reload
+      @taxon.elastic_index!
+      Taxon.refresh_es_index
+    else
+      errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+    end
+    unless photos.count == 0
+      Taxon.delay( priority: INTEGRITY_PRIORITY ).update_ancestor_photos( @taxon.id, photos.first.id )
+    end
+    respond_to do |format|
+      format.json { render json: @taxon }
+    end
+  rescue Errno::ETIMEDOUT
+    respond_to do |format|
+      format.json { render json: { error: t(:request_timed_out) }, status: :request_timeout }
+      format.any do
+        flash[:error] = t(:request_timed_out)
+        redirect_back_or_default( taxon_path( @taxon ) )
+      end
+    end
+  rescue Koala::Facebook::APIError => e
+    raise e unless e.message =~ /OAuthException/
+    msg = t(
+      :facebook_needs_the_owner_of_that_photo_to,
+      site_name_short: CONFIG.site_name_short
+    )
+    respond_to do |format|
+      format.json { render json: { error: msg }, status: :unprocessable_entity }
+      format.any do
+        flash[:error] = msg 
+        redirect_back_or_default( taxon_path( @taxon ) )
+      end
+    end
   end
   
   def describe

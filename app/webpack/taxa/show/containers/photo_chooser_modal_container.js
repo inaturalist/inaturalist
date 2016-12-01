@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 import PhotoChooserModal from "../components/photo_chooser_modal";
 import HTML5Backend from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
+import { DragDropContext as dragDropContext } from "react-dnd";
+import { updatePhotos, hidePhotoChooser } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
   return {
-    chosen: state.taxon.taxon.photos,
+    chosen: state.taxon.taxonPhotos.map( tp => Object.assign( { }, tp.photo, {
+      thumb_url: tp.photo.photoUrl( "thumb" )
+    } ) ),
     initialQuery: state.taxon.taxon.name,
     visible: state.taxon.photoChooserVisible
   };
@@ -14,7 +17,10 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     onSubmit: chosen => {
-      console.log( "[DEBUG] chosen: ", chosen );
+      dispatch( updatePhotos( chosen ) );
+    },
+    onClose: ( ) => {
+      dispatch( hidePhotoChooser( ) );
     }
   };
 }
@@ -22,6 +28,6 @@ function mapDispatchToProps( dispatch ) {
 const PhotoChooserModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( DragDropContext( HTML5Backend )( PhotoChooserModal ) );
+)( dragDropContext( HTML5Backend )( PhotoChooserModal ) );
 
 export default PhotoChooserModalContainer;

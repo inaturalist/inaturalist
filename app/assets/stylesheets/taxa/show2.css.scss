@@ -657,19 +657,19 @@ $endangeredColor: #D12F19;
 }
 
 $nav-btn-dim: 40px;
-.HighlightsTab .nav-btn {
+.nav-buttons .nav-btn {
   width: $nav-btn-dim;
   height: $nav-btn-dim;
-  padding: 0;
-  border: 0 transparent;
+  padding: 0 !important;
+  border: 0 transparent !important;
   margin: 0 0 10px 10px;
 }
-.HighlightsTab .nav-btn:hover,
-.HighlightsTab .nav-btn:focus,
-.HighlightsTab .nav-btn:active  {
+.nav-buttons .nav-btn:hover,
+.nav-buttons .nav-btn:focus,
+.nav-buttons .nav-btn:active {
   background: none;
 }
-.HighlightsTab .nav-btn:before {
+.nav-buttons .nav-btn:before {
   display: block;
   content: '\276E';
   width: $nav-btn-dim;
@@ -682,10 +682,10 @@ $nav-btn-dim: 40px;
   font-size: $nav-btn-dim / 2;
 }
 ❯
-.HighlightsTab .nav-btn:hover:before {
+.nav-buttons .nav-btn:hover:before {
   background-color: $inat-green-light;
 }
-.HighlightsTab .next-btn:before {
+.nav-buttons .next-btn:before {
   content: '\276F';
 }
 .HighlightsTab .viewall {
@@ -902,20 +902,48 @@ $nav-btn-dim: 40px;
   font-weight: bold;
 }
 
-.ChosenPhoto {
+.DraggablePhoto {
   display: inline-block;
   position: relative;
   border: 2px solid transparent;
 }
-.ChosenPhoto i {
+.DraggablePhoto .control-link {
   position: absolute;
-  top: 2px;
-  right: 2px;
   color: white;
+  display: block;
+  line-height: 0;
+
 }
-.ChosenPhoto.hovering {
+.DraggablePhoto .control-link:hover,
+.DraggablePhoto .control-link:active {
+  color: white;
+  opacity: 0.8;
+}
+.DraggablePhoto .remove-link {
+  top: 5px;
+  right: 5px;
+}
+.DraggablePhoto .info-link {
+  bottom: 5px;
+  right: 5px;
+}
+.DraggablePhoto img {
+  max-height: 75px;
+}
+.DraggablePhoto.hovering {
   border: 2px dashed #ddd;
 }
-.ChosenPhoto.hovering img {
+.DraggablePhoto.hovering img {
   opacity: 0.5;
+}
+.PhotoChooserDropArea {
+  min-height: 50px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.PhotoChooserDropArea.hovering {
+  border: 1px dashed #ddd;
+}
+.PhotoChooserDropArea .photos > .DraggablePhoto:first-child {
+  border-color: $inat-green;
 }

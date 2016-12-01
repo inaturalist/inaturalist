@@ -1673,6 +1673,10 @@ class Taxon < ActiveRecord::Base
     end
   end
 
+  def self.refresh_es_index
+    Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
+  end
+
   # /Static #################################################################
 
 end

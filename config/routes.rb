@@ -332,17 +332,18 @@ Rails.application.routes.draw do
   resources :project_invitations, :except => [:index, :show]
   post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
   get 'taxa/names' => 'taxon_names#index'
-  resources :taxa, :constraints => { :id => id_param_pattern } do
+  resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
-    resources :taxon_names, :controller => :taxon_names, :shallow => true
-    resources :taxon_scheme_taxa, :controller => :taxon_scheme_taxa, :shallow => true
-    get 'description' => 'taxa#describe', :on => :member, :as => :describe
+    resources :taxon_names, controller: :taxon_names, shallow: true
+    resources :taxon_scheme_taxa, controller: :taxon_scheme_taxa, shallow: true
+    get 'description' => 'taxa#describe', on: :member, as: :describe
     member do
-      post 'update_photos', :as => "update_photos_for"
-      post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
-      get 'schemes', :as => "schemes_for", :constraints => {:format => [:html, :mobile]}
+      post 'update_photos', as: "update_photos_for"
+      post 'set_photos', as: "set_photos_for"
+      post 'refresh_wikipedia_summary', as: "refresh_wikipedia_summary_for"
+      get 'schemes', as: "schemes_for", constraints: { format: [:html, :mobile] }
       get 'tip'
-      get 'names', :to => 'taxon_names#taxon'
+      get 'names', to: "taxon_names#taxon"
       get 'links'
       get "map_layers"
       get "browse_photos"

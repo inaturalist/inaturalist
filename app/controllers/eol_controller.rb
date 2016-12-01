@@ -30,10 +30,16 @@ class EolController < ApplicationController
     
     partial = params[:partial].to_s
     partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    
-    render :partial => "photos/#{partial}", :locals => {
-      :photos => @photos, 
-      :index => params[:index],
-      :local_photos => false }
+    respond_to do |format|
+      format.html do
+        render partial: "photos/#{partial}", locals: {
+          photos: @photos, 
+          index: params[:index],
+          local_photos: false
+        }
+      end
+      format.json { render json: @photos }
+    end
   end
     
 end

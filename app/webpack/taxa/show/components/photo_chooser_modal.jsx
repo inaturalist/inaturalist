@@ -4,6 +4,7 @@ import querystring from "querystring";
 import {
   Modal,
   Button,
+  ButtonGroup,
   Grid,
   Row,
   Col
@@ -22,7 +23,8 @@ class PhotoChooserModal extends React.Component {
       photos: [],
       loading: true,
       provider: "flickr",
-      chosen: []
+      chosen: [],
+      page: 1
     };
   }
   componentWillMount( ) {
@@ -34,34 +36,55 @@ class PhotoChooserModal extends React.Component {
     if ( !this.props.visible && newProps.visible ) {
       this.fetchPhotos( newProps );
     }
+    if ( newProps.chosen ) {
+      this.setState( {
+        chosen: newProps.chosen.map( p =>
+          Object.assign( {}, p, { chooserID: this.keyForPhoto( p ) } ) )
+      } );
+    }
   }
   setProvider( provider ) {
     this.setState( { provider } );
-    this.fetchPhotos( );
+    this.fetchPhotos( this.props, { provider } );
   }
-  fetchPhotos( props ) {
+  fetchPhotos( props, options = {} ) {
     this.setState( { loading: true } );
-    const params = {
-      q: ( props || this.props ).initialQuery
-    };
-    const url = `/flickr/photo_fields.json?${querystring.stringify( params )}`;
-    fetch( url, params ).then(
-      response => {
-        response.json( ).then( json => {
-          this.setState( {
-            photos: json.map( p =>
-              Object.assign( {}, p, {
-                id: `${this.state.provider}-${p.native_photo_id}`
-              } )
-            )
-          } );
+    const provider = options.provider || "flickr";
+    const params = Object.assign( { }, options, {
+      q: ( props || this.props ).initialQuery,
+      limit: 18,
+      page: options.page || 1
+    } );
+    this.setState( { page: params.page, photos: [] } );
+    const url = provider === "inat" ?
+      `/taxa/observation_photos.json?${querystring.stringify( params )}`
+      :
+      `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
+    fetch( url, params )
+      .then(
+        response => response.json( ),
+        ( ) => {
+          // TODO handle error better
+          this.setState( { loading: false } );
+        }
+      )
+      .then( json => {
+        this.setState( {
+          photos: json.map( p =>
+            Object.assign( {}, p, {
+              chooserID: this.keyForPhoto( p )
+            } )
+          )
         } );
-        this.setState( { loading: false } );
-      },
-      error => {
-        this.setState( { loading: false } );
-      }
-    );
+      } );
+  }
+  fetchNextPhotos( ) {
+    this.fetchPhotos( this.props, { page: this.state.page + 1 } );
+  }
+  fetchPrevPhotos( ) {
+    this.fetchPhotos( this.props, {
+      page: Math.max( this.state.page - 1, 1 )
+    } );
   }
   movePhoto( dragIndex, hoverIndex ) {
     const { chosen } = this.state;
@@ -81,43 +104,34 @@ class PhotoChooserModal extends React.Component {
       }
     } ) );
   }
-  choosePhoto( id ) {
-    console.log( "[DEBUG] choosePhoto, id: ", id );
+  choosePhoto( chooserID ) {
     const { photos, chosen } = this.state;
-    // const existing = _.find( chosen, p => p.id === id );
-    const existingIndex = chosen.findIndex( p => p.id === id );
+    const existingIndex = chosen.findIndex( p => p.chooserID === chooserID );
     if ( existingIndex >= 0 ) {
-      // chosen[existingIndex].candidate = false;
-      console.log( "[DEBUG] existing photo, setting all chosen photo to be not candidates" );
       this.setState( {
         chosen: chosen.map( p => Object.assign( { }, p, { candidate: false } ) )
       } );
       return;
     }
-    const photo = _.find( photos, p => p.id === id );
+    const photo = _.find( photos, p => p.chooserID === chooserID );
     if ( !photo ) {
-      console.log( "[DEBUG] no photo to choose" );
       return;
     }
     photo.candidate = false;
-    console.log( "[DEBUG] appending photo ", id );
     chosen.push( photo );
     this.setState( { chosen } );
   }
-  newPhotoEnter( id, index ) {
+  newPhotoEnter( chooserID, index ) {
     const { photos, chosen } = this.state;
-    const hovering = _.find( photos, p => p.id === id );
+    const hovering = _.find( photos, p => p.chooserID === chooserID );
     if ( !hovering ) {
-      console.log( "[DEBUG] can't find hovering photo" );
       return;
     }
-    const existing = _.find( chosen, p => p.id === id );
+    const existing = _.find( chosen, p => p.chooserID === chooserID );
     if ( existing ) {
-      console.log( "[DEBUG] hovering photo already added" );
       return;
     }
     const newPhoto = Object.assign( { }, hovering, { candidate: true } );
-    console.log( "[DEBUG] inserting new photo" );
     chosen.splice( index, 0, newPhoto );
     this.setState( { chosen } );
   }
@@ -125,65 +139,101 @@ class PhotoChooserModal extends React.Component {
     const { chosen } = this.state;
     this.setState( { chosen: chosen.filter( p => !p.candidate ) } );
   }
-  removePhoto( id ) {
+  removePhoto( chooserID ) {
     const { chosen } = this.state;
-    this.setState( { chosen: chosen.filter( p => p.id !== id ) } );
+    this.setState( { chosen: chosen.filter( p => p.chooserID !== chooserID ) } );
+  }
+  keyForPhoto( photo ) {
+    return `${photo.type || "Photo"}-${photo.id || photo.native_photo_id}`;
+  }
+  infoURL( photo ) {
+    return photo.id ? `/photos/${photo.id}` : photo.native_page_url;
   }
   render( ) {
-    console.log( "[DEBUG] rendering PhotoChooserModal" );
-    const { visible, onSubmit } = this.props;
+    const { visible, onSubmit, onClose } = this.props;
     return (
       <Modal
         show={visible}
         bsSize="large"
         className="PhotoChooserModal"
+        onHide={onClose}
       >
-        <Modal.Header>
-          { I18n.t( "choose_photos_for_this_taxon" ) }
-          <select
-            onChange={ e => this.setProvider( e.target.value ) }
-            className="pull-right"
-          >
-            <option value="flickr">Flickr</option>
-            <option value="inat">iNat</option>
-            <option value="eol">EOL</option>
-            <option value="wikimedia">Wikimedia Commons</option>
-          </select>
+        <Modal.Header closeButton>
+          <Modal.Title>{ I18n.t( "choose_photos_for_this_taxon" ) }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Grid fluid>
             <Row>
               <Col xs={6}>
-                <h2>Photos</h2>
-                { this.state.photos.map( photo => (
-                  <ExternalPhoto
-                    key={`${this.state.provider}-${photo.native_photo_id}`}
-                    id={photo.id}
-                    src={photo.thumb_url}
-                    movePhoto={this.movePhoto}
-                    didNotDropPhoto={ ( ) => this.newPhotoExit( ) }
-                  />
-                ) ) }
+                <form className="form-inline controls nav-buttons stacked">
+                  <div className="form-group">
+                    <label>
+                      Photos from
+                    </label> <select
+                      className="form-control"
+                      onChange={ e => this.setProvider( e.target.value ) }
+                    >
+                      <option value="flickr">Flickr</option>
+                      <option value="inat">iNat</option>
+                      <option value="eol">EOL</option>
+                      <option value="wikimedia_commons">Wikimedia Commons</option>
+                    </select>
+                  </div>
+                  <ButtonGroup className="pull-right">
+                    <Button
+                      disabled={this.state.page === 1}
+                      onClick={ ( ) => this.fetchPrevPhotos( ) }
+                      title={ I18n.t( "prev" ) }
+                    >
+                      { I18n.t( "prev" ) }
+                    </Button>
+                    <Button
+                      onClick={ ( ) => this.fetchNextPhotos( ) }
+                      title={ I18n.t( "next" ) }
+                    >
+                      { I18n.t( "next" ) }
+                    </Button>
+                  </ButtonGroup>
+                </form>
+                <div className="photos">
+                  { this.state.photos.map( photo => (
+                    <ExternalPhoto
+                      key={this.keyForPhoto( photo )}
+                      chooserID={this.keyForPhoto( photo )}
+                      src={photo.small_url}
+                      movePhoto={this.movePhoto}
+                      didNotDropPhoto={ ( ) => this.newPhotoExit( ) }
+                      infoURL={this.infoURL( photo )}
+                    />
+                  ) ) }
+                </div>
               </Col>
               <Col xs={6}>
-                <h2>Chosen</h2>
-                { _.map( this.state.chosen, ( photo, i ) => (
-                  <ChosenPhoto
-                    key={`${this.state.provider}-${photo.native_photo_id}`}
-                    id={photo.id}
-                    src={photo.thumb_url}
-                    index={i}
-                    movePhoto={this.movePhoto}
-                    newPhotoEnter={ id => this.newPhotoEnter( id ) }
-                    dropNewPhoto={ id => this.choosePhoto( id ) }
-                    removePhoto={ id => this.removePhoto( id ) }
-                    candidate={photo.candidate}
-                  />
-                ) ) }
                 <PhotoChooserDropArea
                   photos={this.state.chosen}
-                  droppedPhoto={ id => this.choosePhoto( id ) }
-                />
+                  droppedPhoto={ chooserID => this.choosePhoto( chooserID ) }
+                >
+                  <h4>Photos chosen for this taxon</h4>
+                  <p>
+                    Drag photos here from the left, or drag them here to re-arrange.
+                  </p>
+                  <div className="photos">
+                    { _.map( this.state.chosen, ( photo, i ) => (
+                      <ChosenPhoto
+                        key={this.keyForPhoto( photo )}
+                        chooserID={this.keyForPhoto( photo )}
+                        src={photo.small_url}
+                        index={i}
+                        movePhoto={this.movePhoto}
+                        newPhotoEnter={ chooserID => this.newPhotoEnter( chooserID ) }
+                        dropNewPhoto={ chooserID => this.choosePhoto( chooserID ) }
+                        removePhoto={ chooserID => this.removePhoto( chooserID ) }
+                        candidate={photo.candidate}
+                        infoURL={this.infoURL( photo )}
+                      />
+                    ) ) }
+                  </div>
+                </PhotoChooserDropArea>
               </Col>
             </Row>
           </Grid>
@@ -203,7 +253,8 @@ PhotoChooserModal.propTypes = {
   photos: PropTypes.array,
   chosen: PropTypes.array,
   visible: PropTypes.bool,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  onClose: PropTypes.func
 };
 
 PhotoChooserModal.defaultProps = {

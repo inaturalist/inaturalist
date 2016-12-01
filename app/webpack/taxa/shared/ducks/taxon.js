@@ -21,6 +21,7 @@ export default function reducer( state = { counts: {} }, action ) {
   switch ( action.type ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
+      console.log( "[DEBUG] reducing SET_TAXON, newState.taxon.taxonPhotos: ", newState.taxon.taxonPhotos );
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
       break;
     case SET_DESCRIPTION:
@@ -138,13 +139,25 @@ export function hidePhotoChooser( ) {
   return { type: HIDE_PHOTO_CHOOSER };
 }
 
-export function fetchTaxon( taxon ) {
+export function showPhotoChooserIfSignedIn( ) {
+  return ( dispatch, getState ) => {
+    const currentUser = getState( ).config.currentUser;
+    const signedIn = currentUser && currentUser.id;
+    if ( signedIn ) {
+      dispatch( showPhotoChooser( ) );
+    } else {
+      window.location = `/login?return_to=${window.location}`;
+    }
+  };
+}
+
+export function fetchTaxon( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const t = taxon || s.taxon.taxon;
-    const params = {
+    const params = Object.assign( { }, options, {
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-    };
+    } );
     return iNaturalistJS.taxa.fetch( t.id, params ).then( response => {
       dispatch( setTaxon( response.results[0] ) );
     } );
@@ -254,5 +267,32 @@ export function fetchSimilar( ) {
       response => dispatch( setSimilar( response.results.map( r => r.taxon ) ) ),
       error => console.log( "[DEBUG] error: ", error )
     );
+  };
+}
+
+export function updatePhotos( photos ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const taxon = s.taxon.taxon;
+    const data = { };
+    data.photos = photos.map( photo => ( {
+      id: photo.id,
+      type: photo.type,
+      native_photo_id: photo.native_photo_id
+    } ) );
+    data.authenticity_token = $( "meta[name=csrf-token]" ).attr( "content" );
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify( data )
+    };
+    fetch( `/taxa/${taxon.id}/set_photos.json`, params )
+      .then( response => response.json( ) )
+      .then( json => {
+        dispatch( fetchTaxon( s.taxon.taxon, { ttl: -1 } ) );
+        dispatch( hidePhotoChooser( ) );
+      } );
   };
 }
