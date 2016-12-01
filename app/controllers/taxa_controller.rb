@@ -921,7 +921,7 @@ class TaxaController < ApplicationController
         subclass = Object.const_get( photo[:type].camelize )
       end
       record = Photo.find_by_id( photo[:id] )
-      record ||= subclass.where( native_photo_id: photo[:native_photo_id] ).first
+      record ||= subclass.find_by_native_photo_id( photo[:native_photo_id] )
       unless record
         if api_response = subclass.get_api_response( photo[:native_photo_id] )
           record = subclass.new_from_api_response( api_response )
