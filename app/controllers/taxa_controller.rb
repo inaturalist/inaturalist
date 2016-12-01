@@ -915,20 +915,16 @@ class TaxaController < ApplicationController
   end
 
   def set_photos
-    photos = params[:photos].map { |photo|
+    photos = ( params[:photos] || [] ).map { |photo|
       subclass = LocalPhoto
       if photo[:type]
         subclass = Object.const_get( photo[:type].camelize )
       end
       record = Photo.find_by_id( photo[:id] )
-      Rails.logger.debug "[DEBUG] found photo by id: #{record}"
       record ||= subclass.where( native_photo_id: photo[:native_photo_id] ).first
-      Rails.logger.debug "[DEBUG] found photo by native_photo_id: #{record}"
       unless record
         if api_response = subclass.get_api_response( photo[:native_photo_id] )
-          Rails.logger.debug "[DEBUG] api_response: #{api_response}"
           record = subclass.new_from_api_response( api_response )
-          Rails.logger.debug "[DEBUG] record from api_response: #{record}"
         end
       end
       unless record

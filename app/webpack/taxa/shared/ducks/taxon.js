@@ -21,7 +21,6 @@ export default function reducer( state = { counts: {} }, action ) {
   switch ( action.type ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
-      console.log( "[DEBUG] reducing SET_TAXON, newState.taxon.taxonPhotos: ", newState.taxon.taxonPhotos );
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
       break;
     case SET_DESCRIPTION:
@@ -289,8 +288,7 @@ export function updatePhotos( photos ) {
       body: JSON.stringify( data )
     };
     fetch( `/taxa/${taxon.id}/set_photos.json`, params )
-      .then( response => response.json( ) )
-      .then( json => {
+      .then( ( ) => {
         dispatch( fetchTaxon( s.taxon.taxon, { ttl: -1 } ) );
         dispatch( hidePhotoChooser( ) );
       } );

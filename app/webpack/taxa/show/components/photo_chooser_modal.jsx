@@ -22,6 +22,7 @@ class PhotoChooserModal extends React.Component {
     this.state = {
       photos: [],
       loading: true,
+      submitting: false,
       provider: "flickr",
       chosen: [],
       page: 1
@@ -34,6 +35,7 @@ class PhotoChooserModal extends React.Component {
   }
   componentWillReceiveProps( newProps ) {
     if ( !this.props.visible && newProps.visible ) {
+      this.setState( { submitting: false } );
       this.fetchPhotos( newProps );
     }
     if ( newProps.chosen ) {
@@ -63,13 +65,15 @@ class PhotoChooserModal extends React.Component {
     fetch( url, params )
       .then(
         response => response.json( ),
-        ( ) => {
+        error => {
           // TODO handle error better
           this.setState( { loading: false } );
+          console.log( "[DEBUG] error: ", error );
         }
       )
       .then( json => {
         this.setState( {
+          loading: false,
           photos: json.map( p =>
             Object.assign( {}, p, {
               chooserID: this.keyForPhoto( p )
@@ -149,8 +153,12 @@ class PhotoChooserModal extends React.Component {
   infoURL( photo ) {
     return photo.id ? `/photos/${photo.id}` : photo.native_page_url;
   }
+  submit( ) {
+    this.setState( { submitting: true } );
+    this.props.onSubmit( this.state.chosen );
+  }
   render( ) {
-    const { visible, onSubmit, onClose } = this.props;
+    const { visible, onClose } = this.props;
     return (
       <Modal
         show={visible}
@@ -206,6 +214,17 @@ class PhotoChooserModal extends React.Component {
                       infoURL={this.infoURL( photo )}
                     />
                   ) ) }
+                  { this.state.loading ? (
+                    <div className="loading text-center">
+                      <i className="fa fa-spin fa-refresh fa-2x text-muted"></i>
+                    </div>
+                  ) : null }
+                  { !this.state.loading && this.state.photos.length === 0 && this.state.page === 1 ? (
+                    <div className="text-muted text-center">{ I18n.t( "no_results_found" ) }</div>
+                  ) : null }
+                  { !this.state.loading && this.state.photos.length === 0 && this.state.page > 1 ? (
+                    <div className="text-muted text-center">{ I18n.t( "no_more_results_found" ) }</div>
+                  ) : null }
                 </div>
               </Col>
               <Col xs={6}>
@@ -239,8 +258,12 @@ class PhotoChooserModal extends React.Component {
           </Grid>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="primary" onClick={ ( ) => onSubmit( this.state.chosen ) } >
-            { I18n.t( "submit" ) }
+          <Button
+            bsStyle="primary"
+            onClick={ ( ) => this.submit( ) }
+            disabled={this.state.submitting}
+          >
+            { this.state.submitting ? I18n.t( "saving" ) : I18n.t( "save_photos" ) }
           </Button>
         </Modal.Footer>
       </Modal>

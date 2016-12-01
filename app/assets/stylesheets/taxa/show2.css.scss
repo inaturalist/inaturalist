@@ -938,12 +938,15 @@ $nav-btn-dim: 40px;
 }
 .PhotoChooserDropArea {
   min-height: 50px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   padding: 10px;
 }
 .PhotoChooserDropArea.hovering {
-  border: 1px dashed #ddd;
+  border: 2px dashed #ddd;
 }
 .PhotoChooserDropArea .photos > .DraggablePhoto:first-child {
   border-color: $inat-green;
+}
+.PhotoChooserDropArea .btn-primary {
+  text-transform: capitalize;
 }

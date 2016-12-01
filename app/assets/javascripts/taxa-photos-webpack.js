@@ -82318,6 +82318,9 @@
 	exports.setTrending = setTrending;
 	exports.setRare = setRare;
 	exports.setSimilar = setSimilar;
+	exports.showPhotoChooser = showPhotoChooser;
+	exports.hidePhotoChooser = hidePhotoChooser;
+	exports.showPhotoChooserIfSignedIn = showPhotoChooserIfSignedIn;
 	exports.fetchTaxon = fetchTaxon;
 	exports.fetchDescription = fetchDescription;
 	exports.fetchLinks = fetchLinks;
@@ -82326,6 +82329,7 @@
 	exports.fetchTrending = fetchTrending;
 	exports.fetchRare = fetchRare;
 	exports.fetchSimilar = fetchSimilar;
+	exports.updatePhotos = updatePhotos;
 
 	var _inaturalistjs = __webpack_require__(586);
 
@@ -82356,6 +82360,8 @@
 	var SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 	var SET_RARE = "taxa-show/taxon/SET_RARE";
 	var SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
+	var SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
+	var HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 
 	function reducer() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? { counts: {} } : arguments[0];
@@ -82397,6 +82403,12 @@
 	      break;
 	    case SET_SIMILAR:
 	      newState.similar = action.taxa;
+	      break;
+	    case SHOW_PHOTO_CHOOSER:
+	      newState.photoChooserVisible = true;
+	      break;
+	    case HIDE_PHOTO_CHOOSER:
+	      newState.photoChooserVisible = false;
 	      break;
 	    default:
 	    // nothing to see here
@@ -82470,13 +82482,35 @@
 	  };
 	}
 
+	function showPhotoChooser() {
+	  return { type: SHOW_PHOTO_CHOOSER };
+	}
+
+	function hidePhotoChooser() {
+	  return { type: HIDE_PHOTO_CHOOSER };
+	}
+
+	function showPhotoChooserIfSignedIn() {
+	  return function (dispatch, getState) {
+	    var currentUser = getState().config.currentUser;
+	    var signedIn = currentUser && currentUser.id;
+	    if (signedIn) {
+	      dispatch(showPhotoChooser());
+	    } else {
+	      window.location = "/login?return_to=" + window.location;
+	    }
+	  };
+	}
+
 	function fetchTaxon(taxon) {
+	  var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
 	  return function (dispatch, getState) {
 	    var s = getState();
 	    var t = taxon || s.taxon.taxon;
-	    var params = {
+	    var params = Object.assign({}, options, {
 	      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
-	    };
+	    });
 	    return _inaturalistjs2.default.taxa.fetch(t.id, params).then(function (response) {
 	      dispatch(setTaxon(response.results[0]));
 	    });
@@ -82582,6 +82616,33 @@
 	      })));
 	    }, function (error) {
 	      return console.log("[DEBUG] error: ", error);
+	    });
+	  };
+	}
+
+	function updatePhotos(photos) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var taxon = s.taxon.taxon;
+	    var data = {};
+	    data.photos = photos.map(function (photo) {
+	      return {
+	        id: photo.id,
+	        type: photo.type,
+	        native_photo_id: photo.native_photo_id
+	      };
+	    });
+	    data.authenticity_token = $("meta[name=csrf-token]").attr("content");
+	    var params = {
+	      method: "POST",
+	      headers: {
+	        "Content-Type": "application/json"
+	      },
+	      body: JSON.stringify(data)
+	    };
+	    (0, _util.fetch)("/taxa/" + taxon.id + "/set_photos.json", params).then(function () {
+	      dispatch(fetchTaxon(s.taxon.taxon, { ttl: -1 }));
+	      dispatch(hidePhotoChooser());
 	    });
 	  };
 	}
