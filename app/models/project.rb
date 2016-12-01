@@ -701,7 +701,7 @@ class Project < ActiveRecord::Base
     fails = 0
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
     params = observations_url_params(extended: true).merge(per_page: 200, not_in_project: id)
-    # making sure we only look observations opdated since the last aggregation
+    # making sure we only look at observations updated since the last aggregation
     unless last_aggregated_at.nil?
       params[:updated_since] = last_aggregated_at.to_s
       params[:aggregation_user_ids] = User.

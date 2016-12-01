@@ -1453,7 +1453,11 @@ class ObservationsController < ApplicationController
     @taxon = Taxon.find_by_id(params[:taxon].to_i)
     @q = params[:q] unless params[:q].blank?
     if @observation
-      @places = @observation.places.try(:reverse)
+      @places = if @observation.coordinates_viewable_by?( current_user )
+        @observation.places.try(:reverse)
+      else
+        @observation.public_places.try(:reverse)
+      end
       if @observation.taxon && @observation.taxon.species_or_lower?
         @taxon ||= @observation.taxon.genus
       else
