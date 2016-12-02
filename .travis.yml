@@ -13,9 +13,12 @@ rvm:
 addons:
   postgresql: "9.3"
 
+# temporary workaround for https://github.com/travis-ci/travis-ci/issues/6928
+group: deprecated
+
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y postgresql-9.3-postgis-2.1 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev wkhtmltopdf
+  - sudo apt-get install -y postgresql-9.3-postgis-2.3 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev wkhtmltopdf
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - psql -U postgres -c "create extension postgis"

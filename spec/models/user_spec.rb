@@ -108,6 +108,14 @@ describe User do
       expect(u.latitude).to_not be_blank
       expect(u.longitude).to_not be_blank
     end
+
+    it "should validate email address domains" do
+      CONFIG.banned_emails = [ "testban.com" ]
+      expect {
+        User.make!(email: "someone@testban.com")
+      }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
   end
 
   describe "update" do

@@ -132,15 +132,6 @@
           <%= o.georeferenced? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
       </tr>
-      
-      <% if o.georeferenced? %>
-        <tr>
-          <td> <%= t(:position_accurate_to_within_5km?) %></td>
-          <td>
-            <%= o.positional_accuracy_lt_5km? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
-          </td>
-        </tr>
-      <% end %>
        
       <tr>
         <td> <%= t(:photos_or_sounds?) %></td>

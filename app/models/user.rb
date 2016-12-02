@@ -183,7 +183,7 @@ class User < ActiveRecord::Base
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
-  
+
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
@@ -206,6 +206,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validate :validate_email_pattern
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -214,6 +215,19 @@ class User < ActiveRecord::Base
   scope :curators, -> { joins(:roles).where("roles.name IN ('curator', 'admin')") }
   scope :admins, -> { joins(:roles).where("roles.name = 'admin'") }
   scope :active, -> { where("suspended_at IS NULL") }
+
+  def validate_email_pattern
+    return if CONFIG.banned_emails.blank?
+    return if self.email.blank?
+    failed = false
+    CONFIG.banned_emails.each do |banned_suffix|
+      next if failed
+      if self.email.match(/#{banned_suffix}$/)
+        errors.add( :email, "domain is not supported" )
+        failed = true
+      end
+    end
+  end
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
