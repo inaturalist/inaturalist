@@ -108,15 +108,17 @@ class TaxonPageTabs extends React.Component {
                     { I18n.t( "highlights" ) }
                   </a>
                 </li>
-                <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
-                  <a
-                    href="#interactions-tab"
-                    role="tab"
-                    data-toggle="tab"
-                  >
-                    { I18n.t( "interactions" ) }
-                  </a>
-                </li>
+                { true ? null : (
+                  <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
+                    <a
+                      href="#interactions-tab"
+                      role="tab"
+                      data-toggle="tab"
+                    >
+                      { I18n.t( "interactions" ) }
+                    </a>
+                  </li>
+                ) }
                 <li role="presentation">
                   <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
                 </li>
@@ -186,7 +188,8 @@ TaxonPageTabs.propTypes = {
   fetchRareTaxa: PropTypes.func,
   fetchTrendingTaxa: PropTypes.func,
   currentUser: PropTypes.object,
-  fetchSimilarTaxa: PropTypes.func
+  fetchSimilarTaxa: PropTypes.func,
+  showPhotoChooserModal: PropTypes.func
 };
 
 export default TaxonPageTabs;
