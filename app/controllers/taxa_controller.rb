@@ -914,6 +914,11 @@ class TaxaController < ApplicationController
     end
   end
 
+  #
+  # Basically the same as update photos except it just takes a JSON array of
+  # photo-like objects congtaining the keys id, type, and native_photo_id, and
+  # sets them as the photos, respecting their position.
+  #
   def set_photos
     photos = ( params[:photos] || [] ).map { |photo|
       subclass = LocalPhoto
