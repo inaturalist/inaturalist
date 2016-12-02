@@ -82180,7 +82180,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var urlForTaxon = function urlForTaxon(t) {
-	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "?test=taxon-page";
+	  return "/taxa/" + t.id + "-" + t.name.split(" ").join("-");
 	};
 	var urlForTaxonPhotos = function urlForTaxonPhotos(t, params) {
 	  var url = "/taxa/" + t.id + "-" + t.name.split(" ").join("-") + "/browse_photos";

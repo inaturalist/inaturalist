@@ -141,6 +141,10 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    member do
+      put :join_test
+      put :leave_test
+    end
   end
   # resource :session
   # resources :passwords

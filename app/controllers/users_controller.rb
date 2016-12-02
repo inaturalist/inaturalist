@@ -641,6 +641,18 @@ class UsersController < ApplicationController
     render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
   end
 
+  def join_test
+    groups = ( current_user.test_groups_array + [params[:test]] ).compact.uniq
+    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    redirect_back_or_default( root_path )
+  end
+
+  def leave_test
+    groups = ( current_user.test_groups_array - [params[:test]] ).compact.uniq
+    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    redirect_back_or_default( root_path )
+  end
+
 protected
 
   def add_friend

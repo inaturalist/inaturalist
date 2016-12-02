@@ -623,7 +623,7 @@ module ApplicationHelper
   end
   
   def loading(content = nil, options = {})
-    content ||= "Loading..."
+    content ||= I18n.t( "loading" )
     options[:class] = "#{options[:class]} loading status"
     content_tag :span, (block_given? ? capture(&block) : content), options
   end

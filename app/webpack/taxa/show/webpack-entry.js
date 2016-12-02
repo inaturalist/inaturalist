@@ -50,10 +50,10 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 if ( TAXON !== undefined && TAXON !== null ) {
   store.dispatch( setTaxon( TAXON ) );
   if ( TAXON.taxon_changes_count ) {
-    store.dispatch( setCount( "taxonChangesCount", TAXON.taxon_changes_count) );
+    store.dispatch( setCount( "taxonChangesCount", TAXON.taxon_changes_count ) );
   }
   if ( TAXON.taxon_schemes_count ) {
-    store.dispatch( setCount( "taxonSchemesCount", TAXON.taxon_schemes_count) );
+    store.dispatch( setCount( "taxonSchemesCount", TAXON.taxon_schemes_count ) );
   }
   store.dispatch( fetchTaxon( TAXON ) );
   store.dispatch( fetchMonthFrequency( TAXON ) );

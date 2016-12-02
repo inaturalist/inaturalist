@@ -11,3 +11,16 @@
   %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
   %meta{ name: "config:inaturalist_write_api_host", content: CONFIG.node_api_host }
 #app
+  #initial-loading.text-center
+    = loading nil, class: "bigloading"
+- if logged_in? 
+  .container
+    .row
+      .col-xs-12
+        .quiet.box.text-center
+          Tired of testing out the new taxon page?
+          = button_to "Take me back",
+            leave_test_user_path( current_user, test: "taxon-page" ),
+            method: "put",
+            class: "btn btn-default",
+            form_class: "inline"

@@ -2,6 +2,14 @@
 @import "show/wikipedia";
 @import "../shared/user_text";
 
+#app {
+  min-height: 600px;
+}
+#initial-loading .loading {
+  display: inline-block;
+  margin: 20px auto;
+}
+
 #TaxonDetail > .container-fluid {
   min-width: 980px;
 }

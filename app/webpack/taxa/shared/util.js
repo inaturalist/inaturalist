@@ -2,7 +2,7 @@ import isomorphicFetch from "isomorphic-fetch";
 import _ from "lodash";
 import React from "react";
 
-const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}?test=taxon-page`;
+const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}`;
 const urlForTaxonPhotos = ( t, params ) => {
   let url = `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}/browse_photos`;
   if ( params ) {

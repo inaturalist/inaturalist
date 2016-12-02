@@ -156,21 +156,21 @@ class TaxaController < ApplicationController
         nil
       end
     end
-
-    if params[:test] == "taxon-page"
-      respond_to do |format|
-        format.html do
-          @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
-          render layout: "bootstrap", action: "show2"
-        end
-      end
-      return
-    end
     
     return render_404 unless @taxon
     
     respond_to do |format|
       format.html do
+        if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
+          respond_to do |format|
+            format.html do
+              @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
+              render layout: "bootstrap", action: "show2"
+            end
+          end
+          return
+        end
+        
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
         end
