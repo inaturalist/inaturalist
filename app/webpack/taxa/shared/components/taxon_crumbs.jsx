@@ -36,7 +36,7 @@ class TaxonCrumbs extends React.Component {
   render( ) {
     const taxon = this.props.taxon;
     const ancestors = this.props.ancestors;
-    const children = taxon.children || [];
+    const children = _.sortBy( taxon.children || [], t => t.name );
     const ancestorTaxa = _.filter( ancestors, t => t.name !== "Life" && t.id !== taxon.id );
     let expandControl;
     let contractControl;
@@ -75,7 +75,7 @@ class TaxonCrumbs extends React.Component {
     }
     const crumbTaxon = targetTaxon => {
       let descendants;
-      if ( taxon.children && taxon.children.length > 0 ) {
+      if ( children.length > 0 ) {
         descendants = (
           <OverlayTrigger
             trigger="click"

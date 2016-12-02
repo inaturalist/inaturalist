@@ -83173,7 +83173,9 @@
 
 	      var taxon = this.props.taxon;
 	      var ancestors = this.props.ancestors;
-	      var children = taxon.children || [];
+	      var children = _lodash2.default.sortBy(taxon.children || [], function (t) {
+	        return t.name;
+	      });
 	      var ancestorTaxa = _lodash2.default.filter(ancestors, function (t) {
 	        return t.name !== "Life" && t.id !== taxon.id;
 	      });
@@ -83222,7 +83224,7 @@
 	      }
 	      var crumbTaxon = function crumbTaxon(targetTaxon) {
 	        var descendants = void 0;
-	        if (taxon.children && taxon.children.length > 0) {
+	        if (children.length > 0) {
 	          descendants = _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
 	            {

@@ -5,10 +5,14 @@ import { DragDropContext as dragDropContext } from "react-dnd";
 import { updatePhotos, hidePhotoChooser } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
-  return {
-    chosen: state.taxon.taxonPhotos.map( tp => Object.assign( { }, tp.photo, {
+  const taxon = state.taxon.taxon;
+  const chosen = state.taxon.taxonPhotos
+    .filter( tp => tp.taxon.id === taxon.id )
+    .map( tp => Object.assign( { }, tp.photo, {
       thumb_url: tp.photo.photoUrl( "thumb" )
-    } ) ),
+    } ) );
+  return {
+    chosen,
     initialQuery: state.taxon.taxon.name,
     visible: state.taxon.photoChooserVisible
   };

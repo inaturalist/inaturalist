@@ -906,6 +906,7 @@ $nav-btn-dim: 40px;
   display: inline-block;
   position: relative;
   border: 2px solid transparent;
+  width: 106px;
 }
 .DraggablePhoto .control-link {
   position: absolute;
@@ -927,8 +928,17 @@ $nav-btn-dim: 40px;
   bottom: 5px;
   right: 5px;
 }
+.DraggablePhoto .default-control {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 10px;
+  line-height: 14px;
+  text-transform: capitalize;
+}
 .DraggablePhoto img {
-  max-height: 75px;
+  width: 100%;
 }
 .DraggablePhoto.hovering {
   border: 2px dashed #ddd;
@@ -944,9 +954,16 @@ $nav-btn-dim: 40px;
 .PhotoChooserDropArea.hovering {
   border: 2px dashed #ddd;
 }
-.PhotoChooserDropArea .photos > .DraggablePhoto:first-child {
-  border-color: $inat-green;
-}
 .PhotoChooserDropArea .btn-primary {
   text-transform: capitalize;
+}
+body > div > [role="dialog"] .PhotoChooserModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
+.PhotoChooserModal .search-control {
+  margin-bottom: 5px;
+}
+.PhotoChooserModal .photos {
+  margin: -2.5px;
 }

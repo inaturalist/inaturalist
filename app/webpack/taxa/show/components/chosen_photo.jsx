@@ -70,21 +70,25 @@ class ChosenPhoto extends React.Component {
       candidate,
       chooserID,
       removePhoto,
-      infoURL
+      infoURL,
+      isDefault
     } = this.props;
     const appearAsDropTarget = isDragging || candidate;
+    let className = `ChosenPhoto ${PHOTO_CHOOSER_DRAGGABLE_TYPE}`;
+    if ( appearAsDropTarget ) {
+      className += " hovering";
+    }
     return connectDragSource( connectDropTarget(
-      <div
-        className={
-          `ChosenPhoto ${PHOTO_CHOOSER_DRAGGABLE_TYPE} ${appearAsDropTarget ? "hovering" : ""}`
-        }
-      >
+      <div className={className}>
         <PhotoChoserPhoto
           removePhoto={removePhoto}
           infoURL={infoURL}
           src={src}
           chooserID={chooserID}
         />
+        { isDefault ? (
+          <span className="default-control">{ I18n.t( "default" ) }</span>
+        ) : null }
       </div>
     ) );
   }
@@ -100,7 +104,8 @@ ChosenPhoto.propTypes = {
   chooserID: PropTypes.string,
   movePhoto: PropTypes.func,
   removePhoto: PropTypes.func,
-  infoURL: PropTypes.string
+  infoURL: PropTypes.string,
+  isDefault: PropTypes.bool
 };
 
 // export default ChosenPhoto;

@@ -44,6 +44,9 @@ class PhotoChooserModal extends React.Component {
           Object.assign( {}, p, { chooserID: this.keyForPhoto( p ) } ) )
       } );
     }
+    if ( newProps.initialQuery ) {
+      this.setState( { query: newProps.initialQuery } );
+    }
   }
   setProvider( provider ) {
     this.setState( { provider } );
@@ -51,10 +54,10 @@ class PhotoChooserModal extends React.Component {
   }
   fetchPhotos( props, options = {} ) {
     this.setState( { loading: true } );
-    const provider = options.provider || "flickr";
+    const provider = options.provider || this.state.provider || "flickr";
     const params = Object.assign( { }, options, {
-      q: ( props || this.props ).initialQuery,
-      limit: 18,
+      q: this.state.query,
+      limit: 12,
       page: options.page || 1
     } );
     this.setState( { page: params.page, photos: [] } );
@@ -173,6 +176,31 @@ class PhotoChooserModal extends React.Component {
           <Grid fluid>
             <Row>
               <Col xs={6}>
+                <form
+                  onSubmit={ e => {
+                    e.preventDefault( );
+                    this.fetchPhotos( );
+                    return false;
+                  } }
+                >
+                  <div className="input-group search-control">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Search for..."
+                      value={this.state.query}
+                      onChange={ e => this.setState( { query: e.target.value } ) }
+                    />
+                    <span className="input-group-btn">
+                      <button
+                        className="btn btn-default"
+                        type="button"
+                      >
+                        { I18n.t( "search" ) }
+                      </button>
+                    </span>
+                  </div>
+                </form>
                 <form className="form-inline controls nav-buttons stacked">
                   <div className="form-group">
                     <label>
@@ -234,9 +262,9 @@ class PhotoChooserModal extends React.Component {
                 >
                   <h4>Photos chosen for this taxon</h4>
                   <p>
-                    Drag photos here from the left, or drag them here to re-arrange.
+                    Drag photos here from the left, or drag photos here to re-arrange.
                   </p>
-                  <div className="photos">
+                  <div className="stacked photos">
                     { _.map( this.state.chosen, ( photo, i ) => (
                       <ChosenPhoto
                         key={this.keyForPhoto( photo )}
@@ -249,9 +277,18 @@ class PhotoChooserModal extends React.Component {
                         removePhoto={ chooserID => this.removePhoto( chooserID ) }
                         candidate={photo.candidate}
                         infoURL={this.infoURL( photo )}
+                        isDefault={i === 0}
                       />
                     ) ) }
                   </div>
+                  <p className="text-muted">
+                    <small>
+                      Note that the taxon page will show photos of this taxon
+                      <em>and</em> its descendants. The photos chosen for this
+                      taxon will show first, though. The first photo will be
+                      the default image used across the site.
+                    </small>
+                  </p>
                 </PhotoChooserDropArea>
               </Col>
             </Row>
