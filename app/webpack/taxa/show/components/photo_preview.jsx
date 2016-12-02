@@ -57,9 +57,10 @@ class PhotoPreview extends React.Component {
     }
     if ( this.state.current && layout === "gallery" ) {
       currentPhoto = (
-        <CoverImage
-          src={this.state.current.photo.photoUrl( "large" )}
-          low={this.state.current.photo.photoUrl( "small" )}
+        <TaxonPhoto
+          taxon={this.props.taxon}
+          photo={this.state.current.photo}
+          showTaxonPhotoModal={showTaxonPhotoModal}
           height={590}
         />
       );

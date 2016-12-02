@@ -4,31 +4,42 @@ import OnScreen from "onscreen";
 import _ from "lodash";
 
 class CoverImage extends React.Component {
+  constructor( ) {
+    super( );
+    this.state = {
+      loaded: false
+    };
+  }
   componentDidMount( ) {
     this.loadOrDelayImages( );
   }
   componentWillReceiveProps( newProps ) {
-    this.loadOrDelayImages( newProps );
+    if ( this.props.src !== newProps.src ) {
+      this.setState( { loaded: false } );
+      this.loadOrDelayImages( newProps, { force: true } );
+    }
   }
-  loadOrDelayImages( props ) {
+  loadOrDelayImages( props, options = {} ) {
     const domNode = ReactDOM.findDOMNode( this );
     const p = props || this.props;
+    const that = this;
     if ( p.lazyLoad ) {
       const os = new OnScreen( );
       const selector = `#${this.idForUrl( p.src )}`;
-      os.on( "enter", selector, element => {
-        if ( !element.classList.contains( "loaded" ) ) {
-          this.loadImages( p, domNode );
+      os.on( "enter", selector, ( ) => {
+        if ( options.force || !that.state.loaded ) {
+          this.loadImages( p, domNode, options );
         }
         os.off( "enter", selector );
       } );
       return;
     }
-    this.loadImages( p, domNode );
+    this.loadImages( p, domNode, options );
   }
-  loadImages( props, domNode ) {
+  loadImages( props, domNode, options = {} ) {
     const p = props || this.props;
-    if ( domNode.classList.contains( "loaded" ) ) {
+    const that = this;
+    if ( this.state.loaded && !options.force ) {
       return;
     }
     if ( p.low ) {
@@ -37,9 +48,12 @@ class CoverImage extends React.Component {
       img.src = p.src;
       img.onload = function ( ) {
         domNode.classList.add( "loaded" );
+        that.setState( { loaded: true } );
         domNode.style.backgroundImage = `url(${this.src})`;
       };
     } else {
+      domNode.classList.add( "loaded" );
+      that.setState( { loaded: true } );
       domNode.style.backgroundImage = `url(${p.src})`;
     }
   }

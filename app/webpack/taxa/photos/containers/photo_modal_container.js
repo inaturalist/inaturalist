@@ -23,7 +23,8 @@ function mapDispatchToProps( dispatch ) {
   const getPhotos = state => state.photos.observationPhotos.map( op => ( {
     photo: op.photo,
     observation: op.observation,
-    taxon: op.observation.taxon
+    taxon: op.observation.taxon,
+    user: op.observation.user
   } ) );
   return {
     showNext: ( ) => {

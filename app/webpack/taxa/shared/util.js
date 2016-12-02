@@ -28,9 +28,15 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
   let userName = options.name || "";
   if ( userName.length === 0 ) userName = photo.native_realname || userName;
   if ( userName.length === 0 ) userName = photo.native_username || userName;
-  const user = photo.user || options.user;
+  const user = photo.user || options.user || ( options.observation ? options.observation.user : null );
   if ( user && userName.length === 0 ) {
     userName = user.name || user.login || userName;
+  }
+  if ( userName.length === 0 && photo.attribution ) {
+    const matches = photo.attribution.match( /\(.+\) (.+?),/ );
+    if ( matches ) {
+      userName = matches[1];
+    }
   }
   userName = userName.length === 0 ? I18n.t( "unknown" ) : userName;
   let s;

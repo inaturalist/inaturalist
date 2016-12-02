@@ -75,13 +75,14 @@ class PhotoChooserModal extends React.Component {
         }
       )
       .then( json => {
+        const photos = json.map( p =>
+          Object.assign( {}, p, {
+            chooserID: this.keyForPhoto( p )
+          } )
+        );
         this.setState( {
           loading: false,
-          photos: json.map( p =>
-            Object.assign( {}, p, {
-              chooserID: this.keyForPhoto( p )
-            } )
-          )
+          photos: _.uniqBy( photos, photo => photo.chooserID )
         } );
       } );
   }

@@ -82216,9 +82216,15 @@
 	  var userName = options.name || "";
 	  if (userName.length === 0) userName = photo.native_realname || userName;
 	  if (userName.length === 0) userName = photo.native_username || userName;
-	  var user = photo.user || options.user;
+	  var user = photo.user || options.user || (options.observation ? options.observation.user : null);
 	  if (user && userName.length === 0) {
 	    userName = user.name || user.login || userName;
+	  }
+	  if (userName.length === 0 && photo.attribution) {
+	    var matches = photo.attribution.match(/\(.+\) (.+?),/);
+	    if (matches) {
+	      userName = matches[1];
+	    }
 	  }
 	  userName = userName.length === 0 ? I18n.t("unknown") : userName;
 	  var s = void 0;
@@ -84384,7 +84390,12 @@
 	  function CoverImage() {
 	    _classCallCheck(this, CoverImage);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CoverImage).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CoverImage).call(this));
+
+	    _this.state = {
+	      loaded: false
+	    };
+	    return _this;
 	  }
 
 	  _createClass(CoverImage, [{
@@ -84395,22 +84406,28 @@
 	  }, {
 	    key: "componentWillReceiveProps",
 	    value: function componentWillReceiveProps(newProps) {
-	      this.loadOrDelayImages(newProps);
+	      if (this.props.src !== newProps.src) {
+	        this.setState({ loaded: false });
+	        this.loadOrDelayImages(newProps, { force: true });
+	      }
 	    }
 	  }, {
 	    key: "loadOrDelayImages",
 	    value: function loadOrDelayImages(props) {
 	      var _this2 = this;
 
+	      var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
 	      var domNode = _reactDom2.default.findDOMNode(this);
 	      var p = props || this.props;
+	      var that = this;
 	      if (p.lazyLoad) {
 	        var _ret = function () {
 	          var os = new _onscreen2.default();
 	          var selector = "#" + _this2.idForUrl(p.src);
-	          os.on("enter", selector, function (element) {
-	            if (!element.classList.contains("loaded")) {
-	              _this2.loadImages(p, domNode);
+	          os.on("enter", selector, function () {
+	            if (options.force || !that.state.loaded) {
+	              _this2.loadImages(p, domNode, options);
 	            }
 	            os.off("enter", selector);
 	          });
@@ -84421,13 +84438,16 @@
 
 	        if ((typeof _ret === "undefined" ? "undefined" : _typeof(_ret)) === "object") return _ret.v;
 	      }
-	      this.loadImages(p, domNode);
+	      this.loadImages(p, domNode, options);
 	    }
 	  }, {
 	    key: "loadImages",
 	    value: function loadImages(props, domNode) {
+	      var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
 	      var p = props || this.props;
-	      if (domNode.classList.contains("loaded")) {
+	      var that = this;
+	      if (this.state.loaded && !options.force) {
 	        return;
 	      }
 	      if (p.low) {
@@ -84436,9 +84456,12 @@
 	        img.src = p.src;
 	        img.onload = function () {
 	          domNode.classList.add("loaded");
+	          that.setState({ loaded: true });
 	          domNode.style.backgroundImage = "url(" + this.src + ")";
 	        };
 	      } else {
+	        domNode.classList.add("loaded");
+	        that.setState({ loaded: true });
 	        domNode.style.backgroundImage = "url(" + p.src + ")";
 	      }
 	    }
@@ -84896,7 +84919,8 @@
 	      return {
 	        photo: op.photo,
 	        observation: op.observation,
-	        taxon: op.observation.taxon
+	        taxon: op.observation.taxon,
+	        user: op.observation.user
 	      };
 	    });
 	  };
