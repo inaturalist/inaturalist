@@ -134,7 +134,7 @@ class Photo < ActiveRecord::Base
       :file_file_size, :file_processing, :file_updated_at, :mobile,
       :original_url]
     options[:methods] ||= []
-    options[:methods] += [:license_name, :license_url, :attribution]
+    options[:methods] += [:license_name, :license_url, :attribution, :type]
     super(options)
   end
 
@@ -276,7 +276,7 @@ class Photo < ActiveRecord::Base
     }
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json( options={ } )
     json = {
       id: id,
       license_code: (license_code.blank? || license.blank? || license == 0) ?
@@ -285,6 +285,8 @@ class Photo < ActiveRecord::Base
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
     json[:native_page_url] = native_page_url if options[:native_page_url]
+    json[:native_photo_id] = native_photo_id if options[:native_photo_id]
+    json[:type] = type if options[:type]
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
       json["#{ size }_url"] = best_url(size)

@@ -127,7 +127,7 @@ namespace :inaturalist do
                  "date_added", "observation_date", "date_picker",
                  "views.observations.export.taking_a_while",
                  "place_geo.geo_planet_place_types",
-                 "ranks", "research", "asc", "desc",
+                 "ranks", "research", "asc", "desc", "maps",
                  "date_format.month", "momentjs", "endemic", "native", 
                  "introduced", "casual", "status_globally", "status_in_place",
                  "number_selected", "you_are_setting_this_project_to_aggregate",
@@ -143,7 +143,7 @@ namespace :inaturalist do
                  "all_taxa.plants", "plants",
                  "all_taxa.fungi", "fungi",
                  "all_taxa.protozoans", "protozoans",
-                 "unknown" ]
+                 "unknown", "date.formats.month_day_year" ]
     all_keys += Date::MONTHNAMES.compact.map{|m| "date_format.month.#{m.downcase}"}
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|

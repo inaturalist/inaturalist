@@ -628,3 +628,15 @@
   </div>
 
 </div><!-- end #rightcol -->
+
+<% if is_admin? %>
+  <div class="last column span-24">
+    <%= form_tag join_test_user_path( current_user, test: "taxon-page" ),
+        method: "put",
+        class: "clear quiet box centered buttonrow smallbuttons" do %>
+      <span class="inter">Want to test out a new version of the taxon page?</span>
+      <%= submit_tag "Try it out", class: "button" %>
+    <% end %>
+  </div>
+<% end %>
+

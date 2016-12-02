@@ -17,25 +17,14 @@
   display: inline-block;
   font-size: 90%;
 }
-.SplitTaxon .taxon .display-name {
+.SplitTaxon.taxon .display-name {
   color: black;
   font-size: 110%;
 }
-.SplitTaxon .taxon .inactive a {
+.SplitTaxon.taxon .inactive a {
   color: black;
 }
 
-.ac-chooser {
-  display: flex;
-  position: relative;
-}
-.ac-select-thumb {
-  line-height: 33px;
-}
-.ui-autocomplete-input {
-  flex: 2;
-  min-width: 100px; // apparently required for IE
-}
 body > div > [role="dialog"] .searchclear.glyphicon,
 .searchclear.glyphicon {
   position: absolute;

@@ -5,7 +5,7 @@ import {
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
-import SplitTaxon from "./split_taxon";
+import SplitTaxon from "../../../shared/components/split_taxon";
 import UserImage from "./user_image";
 
 const ObservationsGridItem = ( {

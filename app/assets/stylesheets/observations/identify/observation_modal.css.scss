@@ -1,5 +1,5 @@
 @import "../../colors";
-@import "user_text";
+@import "../../shared/user_text";
 
 body > div > [role="dialog"] .modal-title {
   line-height: 10px;
@@ -224,4 +224,18 @@ dl.keyboard-shortcuts,
   text-align: center;
   padding: 5px;
   font-size: smaller;
+}
+
+.UserText .content:after {
+  content: " ";
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0), #eee);
+}
+.UserText.truncated .content:after {
+  display: block;
 }

@@ -804,4 +804,12 @@ class User < ActiveRecord::Base
     ObservationField.recently_used_by(self).limit(10)
   end
 
+  def test_groups_array
+    test_groups.to_s.split( "|" )
+  end
+
+  def in_test_group?( group )
+    test_groups_array.include?( group)
+  end
+
 end

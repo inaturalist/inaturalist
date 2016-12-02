@@ -111,6 +111,7 @@ $.fn.genericAutocomplete = function( options ) {
     select: options.select || field.select,
     focus: options.focus || genericAutocomplete.focus,
     appendTo: options.appendTo,
+    position: options.position,
     open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) }
   }).data( "uiAutocomplete" );
   field.on( "autocompleteclose", function( e, ui ) {
@@ -230,6 +231,7 @@ $.fn.genericAutocomplete = function( options ) {
     field.trigger( "resetSelection" );
     field.val( null );
     if( field.searchClear ) { $(field.searchClear).hide( ); }
+    if( options.afterClear ) { options.afterClear( ); }
   });
   if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {

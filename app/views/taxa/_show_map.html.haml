@@ -4,8 +4,8 @@
       min_zoom: 1,
       taxon_layers: [ {
         taxon: @taxon,
-        places: @taxon.listed_taxa.joins(place: :place_geometry).any?,
-        ranges: @taxon.taxon_ranges.any?,
+        places: true,
+        ranges: true,
         observations: true,
         gbif: { disabled: true },
       } ]

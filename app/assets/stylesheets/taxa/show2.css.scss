@@ -1,0 +1,974 @@
+@import "../colors";
+@import "show/wikipedia";
+@import "../shared/user_text";
+
+#app {
+  min-height: 600px;
+}
+#initial-loading .loading {
+  display: inline-block;
+  margin: 20px auto;
+}
+
+#TaxonDetail > .container-fluid {
+  min-width: 980px;
+}
+
+#TaxonHeader .inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+#TaxonHeader h1 {
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 300;
+}
+
+#TaxonHeader .taxon .display-name {
+  color: black;
+}
+
+#TaxonHeader .has-com-name .sciname {
+  font-size: 20px;
+}
+
+#hero {
+  background-color: #eee;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  margin-top: 10px;
+}
+
+#charts {
+  background-color: transparent;
+  border-radius: 4px 4px 0 0;
+}
+
+#charts a {
+  color: #333;
+}
+
+#charts .nav-tabs {
+  margin-bottom: 0;
+  margin-top: -1px;
+}
+#charts .tab-pane {
+  position: relative;
+}
+#charts .no-content {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: 20px;
+}
+#charts .tab-content {
+  background-color: white;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+#charts a[role="tab"]:hover {
+  background-color: white;
+  opacity: 1;
+}
+#charts a,
+#charts a:focus,
+#charts a:active {   
+  border-color: none;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.SeasonalityChart .c3-line {
+  stroke-width: 2px;
+}
+.FrequencyChart {
+  height: 300px;
+}
+.FrequencyChart .c3-axis line,
+.FrequencyChart .c3-axis path {
+  stroke: #aaa;
+}
+.FrequencyChart .c3-axis text {
+  fill: #aaa;
+}
+.FrequencyChart .c3-axis-x .tick line,
+.FrequencyChart .c3-axis-y .tick line {
+   display: none;
+}
+
+.FrequencyChart .c3-region {
+  fill: #999;
+  opacity: 1;
+}
+
+.FrequencyChart .c3-circle._expanded_ {
+  stroke-width: 7px;
+  stroke: transparentize( $inat-green, 0.6 );
+  stroke-location: outside;
+}
+
+.FrequencyChart .c3-target-verifiable .c3-circle._expanded_ {
+  stroke: transparentize( #ddd, 0.6 );
+}
+
+.FrequencyChart line.c3-xgrid-focus {
+  display: none;
+}
+
+.frequency-chart-tooltip {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  box-shadow: 1px 1px 10px #aaa;
+  background-color: white;
+}
+.frequency-chart-tooltip .swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
+}
+.frequency-chart-tooltip .title {
+  margin-bottom: 5px;
+}
+.frequency-chart-tooltip .title,
+.frequency-chart-tooltip .value {
+  font-weight: 600;
+}
+.frequency-chart-tooltip .column-label {
+  text-transform: capitalize;
+}
+.frequency-chart-tooltip .series {
+  line-height: 0;
+  margin-bottom: 10px;
+}
+
+.TaxonMap {
+  height: 600px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+}
+
+.TaxonCrumbs {
+  color: #aaa;
+  padding: 0;
+  margin: 0 7px 0 0;
+  line-height: 28px;
+  display: inline;
+}
+.TaxonCrumbs.contracted .inner {
+  display: none;
+}
+.TaxonCrumbs.expanded .inner {
+  display: inline-block;
+}
+.TaxonCrumbs.contracted .expand-control {
+  display: inline-block;
+}
+.TaxonCrumbs.expanded .expand-control {
+  width: 0;
+}
+.TaxonCrumbs.contracted .contract-control {
+  display: none;
+}
+.TaxonCrumbs.expanded .contract-control {
+  display: inline-block;
+}
+.TaxonCrumbs .inner ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.TaxonCrumbs .taxon a {
+  color: #337ab7;
+}
+.TaxonCrumbs li {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+.TaxonCrumbs li div {
+  display: inline-block;
+}
+.TaxonCrumbs li:after {
+  content: '\203A';
+  margin: 0px 5px;
+}
+.TaxonCrumbs li:last-child:after {
+  display: none;
+}
+
+.TaxonCrumbs .has-com-name .sciname {
+  display: none;
+}
+
+.TaxonCrumbs .contract-control {
+  margin-left: 10px;
+}
+
+.taxon-crumbs-children .taxon a {
+  color: #333;
+}
+.taxon-crumbs-children .taxon.has-com-name .sciname {
+  color: #aaa;
+}
+.taxon-crumbs-children .SplitTaxon:before {
+  content: '\021B3';
+  margin-right: 5px;
+  color: #aaa;
+}
+
+.preheader .ui-autocomplete-input {
+  width: 200px;
+}
+
+.preheader .ac-select-thumb {
+  line-height: 28px;
+}
+.preheader .ac-select-thumb img {
+  height: 30px;
+}
+.preheader .ac-select-thumb i {
+  font-size: 22px;
+}
+.preheader .form-group {
+  margin: 0;
+}
+.preheader .ac-chooser .searchclear.glyphicon {
+  top: 8px;
+}
+
+.LeaderItem {
+  margin: 20px 0 20px;
+}
+$leaderItemImageDim: 56px;
+.LeaderItem .img-wrapper i {
+  font-size: $leaderItemImageDim * 0.7;
+  margin: auto;
+  line-height: $leaderItemImageDim * 0.9;
+  color: #666;
+}
+.LeaderItem .img-wrapper {
+  border: 1px solid transparent;
+  width: $leaderItemImageDim;
+  height: $leaderItemImageDim;
+  line-height: $leaderItemImageDim;
+  text-align: center;
+  overflow: hidden;
+}
+.LeaderItem .img-wrapper.no-photo {
+  border-color: #bbb;
+}
+.LeaderItem .CoverImage {
+  width: $leaderItemImageDim;
+  height: $leaderItemImageDim;
+}
+.LeaderItem.TopIdentifier .CoverImage,
+.LeaderItem.TopObserver .CoverImage,
+.LeaderItem.TopIdentifier .img-wrapper,
+.LeaderItem.TopObserver .img-wrapper {
+  border-radius: 100px;
+}
+
+.LeaderItem .item-label {
+  color: #4a4a4a;
+  font-size: 13px;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+.LeaderItem h4 {
+  text-transform: none;
+  margin: 0px 0px 3px 0px;
+  font-size: 18px;
+}
+.LeaderItem .name {
+  font-weight: bold;
+}
+.LeaderItem.no-content .name {
+  text-transform: capitalize;
+}
+.LeaderItem .name a {
+  color: black;
+}
+.LeaderItem .extra {
+  font-size: 13px;
+}
+.LeaderItem .extra a {
+  white-space: nowrap;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.LeaderItem .value {
+  color: #4a4a4a;
+}
+.LeaderItem .extra i {
+  color: #999;
+  margin-right: 2px;
+}
+.LeaderItem .media-body {
+  vertical-align: middle;
+}
+.LeaderItem .img-wrapper .fa-binoculars {
+  font-size: $leaderItemImageDim * 0.5;
+}
+
+
+$photoPreviewThumbDim: 92px;
+$photoPreviewThumbGutter: 1px;
+$photoPreviewThumbGutterTop: 3px;
+.PhotoPreview {
+  position: relative;
+}
+.PhotoPreview ul.others {
+  width: 100%;
+  background-color: rgba(0,0,0,0.25);
+}
+.PhotoPreview.gallery ul.others{
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+  flex-wrap: nowrap;
+}
+.PhotoPreview ul.others li {
+  overflow: hidden;
+  display: inline-block;
+}
+.PhotoPreview.gallery ul.others li {
+  flex: 1;
+  flex-grow: 1;
+  vertical-align: middle;
+  width: $photoPreviewThumbDim;
+  height: $photoPreviewThumbDim;
+  line-height: $photoPreviewThumbDim;
+  margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
+}
+.PhotoPreview.grid .others {
+  line-height: 0;
+}
+.PhotoPreview.grid li {
+  width: 33.3333333333%;
+}
+.PhotoPreview .others a {
+  color: white;
+}
+.PhotoPreview .viewmore {
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.PhotoPreview .viewmore a {
+  display: block;
+}
+.PhotoPreview.grid .viewmore a {
+  background-color: #333;
+  font-weight: 100;
+  font-size: 20px;
+  display: block;
+  position: relative;
+}
+.PhotoPreview.grid .viewmore a .inner {
+  width: 100%;
+  line-height: 1.6;
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+}
+.PhotoPreview.grid .viewmore a .inner .fa {
+  margin-top: 5px;
+  display: block;
+}
+.PhotoPreview.gallery .viewmore .fa {
+  margin-left: 5px;
+}
+.TaxonPhoto {
+  position: relative;
+  .photo-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: 100;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    text-align: center;
+  }
+  .btn-link {
+    width: 100%;
+    height: 100%;
+    font-size: 80%;
+    color: #ddd;
+    text-transform: uppercase;
+    i {
+      display: inline-block;
+      font-size: 300%;
+      // margin-bottom: 10px;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
+  .btn-link:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+.TaxonPhoto:hover .photo-hover {
+  opacity: 1;
+}
+.PhotoPreview.no-content {
+  display: flex;
+  flex-direction: row;
+  min-height: 533px;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+.PhotoPreview.no-content > div {
+  width: 100%;
+}
+.PhotoPreview.no-content h3 {
+  color: #888;
+  text-transform: none;
+  margin-bottom: 20px;
+}
+
+.CoverImage {
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+.CoverImage.loaded {
+  opacity: 1;
+}
+
+
+.SplitTaxon > *:after {
+  content: '\0020';
+}
+.SplitTaxon > *:first-child {
+  content: '';
+}
+
+.TaxonomyTab .taxonomy {
+  list-style: none;
+}
+.TaxonomyTab .taxonomy li {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.TaxonomyTab .taxonomy li:before,
+.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname {
+  content: '\21B3';
+  color: #999;
+}
+.TaxonomyTab .taxonomy li.root {
+  margin-left: 0;
+}
+.TaxonomyTab .taxonomy li.root:before {
+  content: '';
+}
+.TaxonomyTab .taxonomy .taxon a {
+  color: #333;
+}
+
+.TaxonomyTab .taxonomy li.current > .SplitTaxon {
+  font-weight: 800;
+}
+
+.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname,
+.TaxonomyTab .taxonomy i {
+  font-size: smaller;
+}
+
+.TaxonomyTab .sciname.species,
+.TaxonomyTab .sciname.subspecies,
+.TaxonomyTab .sciname.variety,
+.TaxonomyTab .sciname.hybrid {
+  font-style: italic;
+}
+
+.TaxonomyTab .outdated .sciname {
+  text-decoration: line-through;
+}
+
+.tab-section > [class*="col-"] {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.tab-section:first-child > [class*="col-"] {
+  border-top: 0 transparent;
+  padding-top: 0;
+}
+
+.tab-section h3 {
+  margin-top: 0;
+}
+
+.tab-links a {
+  display: block;
+  color: #333;
+}
+.tab-links .internal a:before {
+  content: '\203A';
+  float: right;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 17px;
+  color: #999;
+  margin-left: 5px;
+}
+.tab-links i {
+  color: #aaa;
+}
+.tab-links .accessory-icon {
+  color: $inat-green;
+  margin-right: 10px;
+}
+
+.StatusTab .media-body {
+  width: auto;
+}
+
+.StatusTab .place-link {
+  color: black;
+}
+.StatusTab th {
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+h2, h3, h4, h5 {
+  text-transform: capitalize;
+  padding-bottom: 3px;
+}
+
+.StatusHeader strong {
+  text-transform: capitalize;
+}
+.StatusHeader a {
+  text-decoration: underline;
+  color: inherit;
+}
+$leastConcernColor: #73AC13;
+$vulnerableColor: #817134;
+$endangeredColor: #D12F19;
+.StatusHeader.iucn-least-concern {
+  background-color: transparentize( $leastConcernColor, 0.90 );
+  border-color: transparentize( $leastConcernColor, 0.80 );
+  color: $leastConcernColor;
+}
+.StatusHeader.iucn-near-threatened,
+.StatusHeader.iucn-vulnerable {
+  background-color: transparentize( $vulnerableColor, 0.90 );
+  border-color: transparentize( $vulnerableColor, 0.80 );
+  color: $vulnerableColor;
+}
+.StatusHeader.iucn-endangered,
+.StatusHeader.iucn-critically-endangered {
+  background-color: transparentize( $endangeredColor, 0.90 );
+  border-color: transparentize( $endangeredColor, 0.80 );
+  color: $endangeredColor;
+}
+.glyphicon-flag.endangered {
+  color: $endangeredColor;
+}
+.glyphicon-flag.vulnerable {
+  color: $vulnerableColor;
+}
+.glyphicon-flag.least-concern {
+  color: $leastConcernColor;
+}
+
+.TaxonPageTabs .tab-content {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.TaxonPageTabs .nav.nav-tabs {
+  border: 0 transparent;
+  margin-bottom: 0px;
+}
+
+.TaxonPageTabs .nav-tabs > li > a {
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px 30px 16px;
+}
+.TaxonPageTabs .nav-tabs > li > a {
+  border: 0 transparent;
+  border-bottom: 2px solid transparent;
+}
+.TaxonPageTabs .nav-tabs > li.active > a,
+.TaxonPageTabs .nav-tabs > li > a:hover,
+.TaxonPageTabs .nav-tabs > li > a:focus,
+.TaxonPageTabs .nav-tabs > li.active > a:hover,
+.TaxonPageTabs .nav-tabs > li.active > a:focus {
+  border: 0 transparent;
+  border-bottom: 2px solid $inat-green;
+  background-color: inherit;
+  color: black;
+  font-weight: 800;
+}
+
+.InteractionsTab {
+  padding-top: 20px;
+}
+
+.ArticlesTab .taxon_description_header {
+  display: none;
+}
+.ArticlesTab h2 .fa-external-link {
+  font-size: 20px;
+}
+
+.HighlightsTab .trending,
+.HighlightsTab .rare {
+  line-height: 0;
+}
+.HighlightsTab .taxon-link {
+  display: inline-block;
+  width: 100px;
+  margin: 0 10px 10px 0;
+  vertical-align: top;
+  text-align: center;
+}
+.HighlightsTab .trending .photo i,
+.HighlightsTab .rare .photo i {
+  font-size: 100px;
+}
+.HighlightsTab .readmore {
+  font-size: 18px;
+  font-weight: 100;
+  margin-left: 10px;
+}
+
+$nav-btn-dim: 40px;
+.nav-buttons .nav-btn {
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  padding: 0 !important;
+  border: 0 transparent !important;
+  margin: 0 0 10px 10px;
+}
+.nav-buttons .nav-btn:hover,
+.nav-buttons .nav-btn:focus,
+.nav-buttons .nav-btn:active {
+  background: none;
+}
+.nav-buttons .nav-btn:before {
+  display: block;
+  content: '\276E';
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  border-radius: 100px;
+  background-color: $inat-green;
+  color: white;
+  line-height: $nav-btn-dim * 1.05;
+  font-weight: bold;
+  font-size: $nav-btn-dim / 2;
+}
+❯
+.nav-buttons .nav-btn:hover:before {
+  background-color: $inat-green-light;
+}
+.nav-buttons .next-btn:before {
+  content: '\276F';
+}
+.HighlightsTab .viewall {
+  width: 100%;
+  height: 193px;
+  background-color: #333;
+  color: white;
+  display: block;
+  line-height: 193px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.HighlightsTab .viewall:hover,
+.HighlightsTab .viewall:focus {
+  color: white;
+}
+
+#main-tabs {
+  display: flex;
+}
+#main-tabs.nav-tabs > li {
+  float: none;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.PhotoModal .btn.nav-button {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 100px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  line-height: 30px;
+  text-align: center;
+  left: -100px;
+}
+.PhotoModal .nav-button.next {
+  left: auto;
+  right: -100px;
+}
+.PhotoModal .modal-dialog {
+  height: 100%;
+}
+.PhotoModal .modal-content {
+  height: 90%;
+  padding: 0px;
+}
+.PhotoModal .SplitTaxon {
+  font-size: 130%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.PhotoModal .SplitTaxon a {
+  color: black;
+}
+.PhotoModal .display-name {
+  font-size: 150%;
+}
+.PhotoModal .photo-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.PhotoModal .photo-modal-content:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px;
+  background-color: black;
+}
+.PhotoModal .photo-modal-content .photo-container {
+  flex-grow: 2;
+  padding: 20px;
+}
+.PhotoModal .photo-modal-content .photo-container:hover {
+  opacity: 1;
+}
+.PhotoModal .photo-modal-content .photo-attribution {
+  padding: 10px;
+  background-color: black;
+  color: #ccc;
+  text-align: center;
+  font-size: smaller;
+}
+.PhotoModal .photo-modal-content .photo-attribution a {
+  color: white;
+}
+.PhotoModal .photo-modal-content .photo-attribution > * {
+  border-left: 1px solid #666;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.PhotoModal .photo-modal-content .photo-attribution > *:first-child {
+  border: 0 transparent;
+  padding: 0;
+  margin: 0;
+}
+.PhotoModal .photo-modal-content .taxon-content {
+  width: 100%;
+  line-height: 1.2;
+  padding: 20px;
+}
+.PhotoModal .taxon-link i {
+  font-size: 200%;
+  color: $inat-green;
+}
+.curation-tab .dropdown {
+  float: right;
+}
+#curation-dropdown {
+  margin-top: 14px;
+}
+
+.TaxonThumbnail.thumbnail {
+  width: 100%;
+  border: 1px solid #ddd;
+  display: inline-block;
+  padding: 0;
+}
+.TaxonThumbnail .photo {
+  height: 130px;
+  font-size: 100px;
+  text-align: center;
+  line-height: 120px;
+}
+
+.TaxonThumbnail .taxon .display-name {
+  color: black;
+  display: block;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.TaxonThumbnail .taxon .sciname {
+  white-space: normal;
+}
+
+
+.SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
+  margin-bottom: 20px;
+}
+.SimilarTab .thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+}
+.SimilarTab .TaxonThumbnail {
+  margin: 5px;
+  width: 13.2%;
+}
+
+.btn-primary.btn-inat {
+  background-color: $inat-green;
+  color: white;
+  border-color: $inat-green;
+  border-radius: 100px;
+}
+.btn-primary.btn-inat:hover,
+.btn-primary.btn-inat:focus {
+  background-color: lighten($inat-green, 1%);
+  border-color: lighten($inat-green, 1%);
+}
+
+.PlaceChooserPopoverTrigger {
+  margin-top: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.PlaceChooserPopoverTrigger:hover {
+  opacity: 0.8;
+}
+.PlaceChooserPopoverTrigger .fa-map-marker {
+  margin-right: 5px;
+}
+.PlaceChooserPopoverTrigger.chosen .fa-map-marker {
+  color: $inat-green;
+}
+.PlaceChooserPopover.popover .popover-content {
+  padding: 10px;
+}
+.PlaceChooserPopover a {
+  color: #333;
+}
+.PlaceChooserPopover.popover .form-group {
+  margin-bottom: 5px;
+}
+.PlaceChooserPopover.popover ul {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.PlaceChooserPopover li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+.PlaceChooserPopover li:last-child {
+  border-bottom: 0 transparent;
+}
+.PlaceChooserPopover li i {
+  color: #999;
+  width: 20px;
+  text-align: center;
+}
+.PlaceChooserPopover li.current {
+  background-color: #eee;
+}
+.PlaceChooserPopover .pinned {
+  border-bottom: 2px solid #ddd;
+  font-weight: bold;
+}
+
+.DraggablePhoto {
+  display: inline-block;
+  position: relative;
+  border: 2px solid transparent;
+  width: 104px;
+}
+.DraggablePhoto .control-link {
+  position: absolute;
+  color: white;
+  display: block;
+  line-height: 0;
+
+}
+.DraggablePhoto .control-link:hover,
+.DraggablePhoto .control-link:active {
+  color: white;
+  opacity: 0.8;
+}
+.DraggablePhoto .remove-link {
+  top: 5px;
+  right: 5px;
+}
+.DraggablePhoto .info-link {
+  bottom: 5px;
+  right: 5px;
+}
+.DraggablePhoto .default-control {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 10px;
+  line-height: 14px;
+  text-transform: capitalize;
+}
+.DraggablePhoto img {
+  width: 100%;
+}
+.DraggablePhoto.hovering {
+  border: 2px dashed #ddd;
+}
+.DraggablePhoto.hovering img {
+  opacity: 0.5;
+}
+.PhotoChooserDropArea {
+  min-height: 50px;
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+.PhotoChooserDropArea.hovering {
+  border: 2px dashed #ddd;
+}
+.PhotoChooserDropArea .btn-primary {
+  text-transform: capitalize;
+}
+body > div > [role="dialog"] .PhotoChooserModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
+.PhotoChooserModal .search-control {
+  margin-bottom: 5px;
+}
+.PhotoChooserModal .photos {
+  margin: -2.5px;
+}

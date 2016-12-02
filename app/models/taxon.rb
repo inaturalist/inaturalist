@@ -540,6 +540,14 @@ class Taxon < ActiveRecord::Base
     taxon_ancestors_as_ancestor.count
   end
 
+  def taxon_changes_count
+    taxon_changes.count
+  end
+
+  def taxon_schemes_count
+    taxon_schemes.count
+  end
+
   #
   # Test whether this taxon's range overlaps a place
   #
@@ -1663,6 +1671,10 @@ class Taxon < ActiveRecord::Base
         Observation.elastic_search(
           where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
     end
+  end
+
+  def self.refresh_es_index
+    Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
   # /Static #################################################################

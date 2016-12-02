@@ -69,7 +69,15 @@ import ReactDOM from "react-dom";
 
 class TaxonMap extends React.Component {
   componentDidMount( ) {
+    this.setMapFromProps( );
+  }
+  componentDidUpdate( ) {
+    this.setMapFromProps( );
+  }
+  setMapFromProps( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    // make sure taxonMap isn't initialized more than once
+    if ( $( domNode ).data( "taxonMap" ) ) { return; }
     $( domNode ).taxonMap( this.props );
   }
   render( ) {

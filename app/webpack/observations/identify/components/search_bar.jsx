@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Input, Button } from "react-bootstrap";
 import FiltersButton from "./filters_button";
-import TaxonAutocomplete from "./taxon_autocomplete";
+import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PlaceAutocomplete from "./place_autocomplete";
 
 const SearchBar = ( {

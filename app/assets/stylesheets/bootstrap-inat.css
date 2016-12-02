@@ -32,8 +32,12 @@ a:hover img { opacity: 1;}
 .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
 input.chooser {width: auto;}
 .thumbnail.borderless { padding: 0; overflow:hidden;}
-.overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
+.overlaycontrol ul { list-style: none; margin: 0 0 5px 0; text-align: left; padding: 0;}
 .overlaycontrol li { line-height: 1; }
+.gmapv3control ul.inat-overlay li { padding-top: 5px; }
+.gmapv3control ul.inat-overlay li.for_taxon {
+  padding: 2px 0;
+}
 .overlaycontrol label { display: inline-block; }
 .overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
 .gmapv3control label {margin-bottom: 0;}
@@ -173,7 +177,7 @@ mark { padding: 0; }
 }
 
 .ac-select-thumb { float: none; display: inline-block; }
-.ac-select-thumb img { width: 33px; height: 33px; }
+/*.ac-select-thumb img { width: 33px; height: 33px; }*/
 
 textarea:focus,
 input[type="text"]:focus,
@@ -223,4 +227,17 @@ input[type="color"]:focus,
 .nav-tabs.user-subnav .fa,
 .nav-tabs.user-subnav .icon {
   margin-right: 0.3em;
+}
+
+.ac-chooser {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+}
+.ac-select-thumb {
+  line-height: 33px;
+}
+.ui-autocomplete-input {
+  flex: 2;
+  min-width: 100px; // apparently required for IE
 }

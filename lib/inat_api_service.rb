@@ -23,7 +23,7 @@ module INatAPIService
     return INatAPIService.get("/observations/species_counts", params)
   end
 
-  def self.get(path, params, retries = 3)
+  def self.get_json( path, params = {}, retries = 3 )
     url = "http://" + INatAPIService::ENDPOINT + path;
     unless params.blank? || !params.is_a?(Hash)
       url += "?" + params.map{|k,v| "#{k}=#{[v].flatten.join(',')}"}.join("&")
@@ -33,14 +33,18 @@ module INatAPIService
       timed_out = Timeout::timeout(INatAPIService::TIMEOUT) do
         response = Net::HTTP.get_response(uri)
         if response.code == "200"
-          return OpenStruct.new_recursive(JSON.parse(response.body) || {})
+          return response.body
         end
       end
     rescue
     end
     if retries.is_a?(Fixnum) && retries > 0
-      return INatAPIService.get(path, params, retries - 1)
+      return INatAPIService.get_json( path, params, retries - 1 )
     end
     false
+  end
+
+  def self.get( path, params = {}, retries = 3 )
+    OpenStruct.new_recursive( JSON.parse( get_json( path, params, retries ) ) || {} )
   end
 end
