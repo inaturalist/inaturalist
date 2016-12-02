@@ -629,7 +629,7 @@
 
 </div><!-- end #rightcol -->
 
-<% if logged_in? %>
+<% if is_admin? %>
   <div class="last column span-24">
     <%= form_tag join_test_user_path( current_user, test: "taxon-page" ),
         method: "put",
