@@ -60,6 +60,7 @@ class PhotoPreview extends React.Component {
         <TaxonPhoto
           taxon={this.props.taxon}
           photo={this.state.current.photo}
+          size="large"
           showTaxonPhotoModal={showTaxonPhotoModal}
           height={590}
         />

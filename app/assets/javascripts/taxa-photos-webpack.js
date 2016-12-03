@@ -82021,11 +82021,12 @@
 	function fetchObservationPhotos() {
 	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
+	  console.log("[DEBUG] fetchObservationPhotos");
 	  return function (dispatch, getState) {
 	    var s = getState();
 	    var params = Object.assign({}, (0, _util.defaultObservationParams)(s), s.photos.observationParams, {
 	      page: options.page,
-	      per_page: options.perPage
+	      per_page: options.perPage || 12
 	    });
 	    return _inaturalistjs2.default.observations.search(params).then(function (response) {
 	      var observationPhotos = observationPhotosFromObservations(response.results);
@@ -82039,6 +82040,7 @@
 	}
 
 	function fetchMorePhotos() {
+	  console.log("[DEBUG] fetchMorePhotos");
 	  return function (dispatch, getState) {
 	    var s = getState();
 	    var page = s.photos.page + 1;
@@ -82099,6 +82101,7 @@
 	}
 
 	function setGrouping(param, values) {
+	  console.log("[DEBUG] setGrouping");
 	  return function (dispatch, getState) {
 	    dispatch(clearGroupedPhotos());
 	    if (param) {
@@ -82117,6 +82120,7 @@
 	}
 
 	function reloadPhotos() {
+	  console.log("[DEBUG] reloadPhotos");
 	  return function (dispatch, getState) {
 	    var state = getState();
 	    if (state.config.grouping) {
@@ -82204,8 +82208,7 @@
 	  return {
 	    verifiable: true,
 	    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
-	    ttl: -1
+	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
 	  };
 	};
 
@@ -83641,7 +83644,6 @@
 	function mapStateToProps(state) {
 	  var terms = [];
 	  var props = {
-	    observationPhotos: [],
 	    hasMorePhotos: false,
 	    layout: state.config.layout,
 	    grouping: state.config.grouping,
@@ -83679,6 +83681,12 @@
 	      observationPhotos: state.photos.observationPhotos,
 	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
 	    });
+	  }
+	  // if ( !state.photos.observationPhotos ) {
+	  //   props.hasMorePhotos = true;
+	  // }
+	  if (!state.taxon.taxon || !state.taxon.taxon.children || state.taxon.taxon.children.length === 0) {
+	    props.showTaxonGrouping = false;
 	  }
 	  return props;
 	}
@@ -83764,6 +83772,7 @@
 	  var setTerm = _ref.setTerm;
 	  var _showTaxonPhotoModal = _ref.showTaxonPhotoModal;
 	  var terms = _ref.terms;
+	  var showTaxonGrouping = _ref.showTaxonGrouping;
 
 	  var sortedGroupedPhotos = void 0;
 	  if (grouping.param === "taxon_id") {
@@ -83774,7 +83783,7 @@
 	    sortedGroupedPhotos = _lodash2.default.sortBy(_lodash2.default.values(groupedPhotos), "groupName");
 	  }
 	  var renderObservationPhotos = function renderObservationPhotos(obsPhotos) {
-	    return obsPhotos.map(function (observationPhoto) {
+	    return (obsPhotos || []).map(function (observationPhoto) {
 	      var itemDim = 183;
 	      var width = itemDim;
 	      if (layout === "fluid") {
@@ -83799,6 +83808,11 @@
 	      });
 	    });
 	  };
+	  var loader = _react2.default.createElement(
+	    "div",
+	    { className: "loading" },
+	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
+	  );
 	  var renderUngroupedPhotos = function renderUngroupedPhotos() {
 	    return _react2.default.createElement(
 	      _reactInfiniteScroller2.default,
@@ -83808,17 +83822,14 @@
 	        },
 	        hasMore: hasMorePhotos,
 	        className: "photos",
-	        loader: _react2.default.createElement(
-	          "div",
-	          { className: "loading" },
-	          _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
-	        )
+	        loader: loader
 	      },
-	      observationPhotos.length === 0 ? _react2.default.createElement(
+	      observationPhotos && observationPhotos.length === 0 ? _react2.default.createElement(
 	        "div",
 	        { className: "nocontent text-muted" },
 	        I18n.t("no_observations_yet")
 	      ) : null,
+	      observationPhotos ? null : loader,
 	      renderObservationPhotos(observationPhotos)
 	    );
 	  };
@@ -83867,6 +83878,40 @@
 	    }
 	    return I18n.t("none");
 	  };
+	  var groupingMenuItems = [];
+	  if (showTaxonGrouping) {
+	    groupingMenuItems.push(_react2.default.createElement(
+	      _reactBootstrap.MenuItem,
+	      {
+	        key: "grouping-menu-item-taxon-id",
+	        eventKey: "taxon_id",
+	        active: grouping.param === "taxon_id"
+	      },
+	      groupingDisplay("taxon_id")
+	    ));
+	  }
+	  groupingMenuItems = groupingMenuItems.concat(terms.map(function (term) {
+	    return _react2.default.createElement(
+	      _reactBootstrap.MenuItem,
+	      {
+	        key: "grouping-chooser-item-" + term.name,
+	        eventKey: term.name,
+	        active: grouping.param === "field:" + term.name
+	      },
+	      term.name
+	    );
+	  }));
+	  if (groupingMenuItems.length > 0) {
+	    groupingMenuItems.unshift(_react2.default.createElement(
+	      _reactBootstrap.MenuItem,
+	      {
+	        key: "grouping-menu-item-none",
+	        eventKey: "none",
+	        active: !grouping.param
+	      },
+	      groupingDisplay(null)
+	    ));
+	  }
 	  return _react2.default.createElement(
 	    _reactBootstrap.Grid,
 	    { className: "PhotoBrowser " + layout },
@@ -83905,7 +83950,7 @@
 	              _react2.default.createElement("i", { className: "icon-photo-grid" })
 	            )
 	          ),
-	          _react2.default.createElement(
+	          groupingMenuItems.length === 0 ? null : _react2.default.createElement(
 	            "span",
 	            { className: "control-group" },
 	            _react2.default.createElement(
@@ -83927,7 +83972,8 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Dropdown.Toggle,
 	                { bsClass: "link" },
-	                "Grouping: ",
+	                I18n.t("grouping"),
+	                ": ",
 	                _react2.default.createElement(
 	                  "strong",
 	                  null,
@@ -83937,33 +83983,7 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Dropdown.Menu,
 	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  {
-	                    eventKey: "none",
-	                    active: !grouping.param
-	                  },
-	                  groupingDisplay(null)
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  {
-	                    eventKey: "taxon_id",
-	                    active: grouping.param === "taxon_id"
-	                  },
-	                  groupingDisplay("taxon_id")
-	                ),
-	                terms.map(function (term) {
-	                  return _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    {
-	                      key: "grouping-chooser-item-" + term.name,
-	                      eventKey: term.name,
-	                      active: grouping.param === "field:" + term.name
-	                    },
-	                    term.name
-	                  );
-	                })
+	                groupingMenuItems
 	              )
 	            )
 	          ),
@@ -84077,7 +84097,7 @@
 	};
 
 	PhotoBrowser.propTypes = {
-	  observationPhotos: _react.PropTypes.array.isRequired,
+	  observationPhotos: _react.PropTypes.array,
 	  groupedPhotos: _react.PropTypes.object,
 	  showTaxonPhotoModal: _react.PropTypes.func.isRequired,
 	  loadMorePhotos: _react.PropTypes.func.isRequired,
@@ -84093,15 +84113,16 @@
 	  grouping: _react.PropTypes.object,
 	  setGrouping: _react.PropTypes.func,
 	  params: _react.PropTypes.object,
-	  setParam: _react.PropTypes.func
+	  setParam: _react.PropTypes.func,
+	  showTaxonGrouping: _react.PropTypes.bool
 	};
 
 	PhotoBrowser.defaultProps = {
-	  observationPhotos: [],
 	  layout: "fluid",
 	  terms: [],
 	  grouping: {},
-	  groupedPhotos: {}
+	  groupedPhotos: {},
+	  showTaxonGrouping: true
 	};
 
 	exports.default = PhotoBrowser;
@@ -84304,6 +84325,7 @@
 	  var height = _ref.height;
 	  var showTaxonPhotoModal = _ref.showTaxonPhotoModal;
 	  var className = _ref.className;
+	  var size = _ref.size;
 	  return _react2.default.createElement(
 	    "div",
 	    {
@@ -84327,7 +84349,7 @@
 	      )
 	    ),
 	    _react2.default.createElement(_cover_image2.default, {
-	      src: photo.photoUrl("medium"),
+	      src: photo.photoUrl(size),
 	      low: photo.photoUrl("small"),
 	      height: height
 	    })
@@ -84341,7 +84363,12 @@
 	  width: _react.PropTypes.number,
 	  height: _react.PropTypes.number.isRequired,
 	  observation: _react.PropTypes.object,
-	  className: _react.PropTypes.string
+	  className: _react.PropTypes.string,
+	  size: _react.PropTypes.string
+	};
+
+	TaxonPhoto.defaultProps = {
+	  size: "medium"
 	};
 
 	exports.default = TaxonPhoto;

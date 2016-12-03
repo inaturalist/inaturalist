@@ -8,7 +8,8 @@ const TaxonPhoto = ( {
   width,
   height,
   showTaxonPhotoModal,
-  className
+  className,
+  size
 } ) => (
   <div
     className={`TaxonPhoto ${className}`}
@@ -27,7 +28,7 @@ const TaxonPhoto = ( {
       </button>
     </div>
     <CoverImage
-      src={ photo.photoUrl( "medium" ) }
+      src={ photo.photoUrl( size ) }
       low={ photo.photoUrl( "small" ) }
       height={height}
     />
@@ -41,7 +42,12 @@ TaxonPhoto.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number.isRequired,
   observation: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  size: PropTypes.string
+};
+
+TaxonPhoto.defaultProps = {
+  size: "medium"
 };
 
 export default TaxonPhoto;

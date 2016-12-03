@@ -27,7 +27,8 @@ const PhotoBrowser = ( {
   setParam,
   setTerm,
   showTaxonPhotoModal,
-  terms
+  terms,
+  showTaxonGrouping
 } ) => {
   let sortedGroupedPhotos;
   if ( grouping.param === "taxon_id" ) {
@@ -36,7 +37,7 @@ const PhotoBrowser = ( {
     sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), "groupName" );
   }
   const renderObservationPhotos = obsPhotos => (
-    obsPhotos.map( observationPhoto => {
+    ( obsPhotos || [] ).map( observationPhoto => {
       let itemDim = 183;
       let width = itemDim;
       if ( layout === "fluid" ) {
@@ -65,21 +66,23 @@ const PhotoBrowser = ( {
       );
     } )
   );
+  const loader = (
+    <div className="loading">
+      <i className="fa fa-refresh fa-spin"></i>
+    </div>
+  );
   const renderUngroupedPhotos = ( ) => (
     <InfiniteScroll
       loadMore={( ) => loadMorePhotos( )}
       hasMore={ hasMorePhotos }
       className="photos"
-      loader={
-        <div className="loading">
-          <i className="fa fa-refresh fa-spin"></i>
-        </div>
-      }
+      loader={loader}
     >
-      { observationPhotos.length === 0 ?
+      { observationPhotos && observationPhotos.length === 0 ?
         <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
         : null
       }
+      { observationPhotos ? null : loader }
       { renderObservationPhotos( observationPhotos ) }
     </InfiniteScroll>
   );
@@ -123,6 +126,40 @@ const PhotoBrowser = ( {
     }
     return I18n.t( "none" );
   };
+  let groupingMenuItems = [];
+  if ( showTaxonGrouping ) {
+    groupingMenuItems.push(
+      <MenuItem
+        key="grouping-menu-item-taxon-id"
+        eventKey={"taxon_id"}
+        active={grouping.param === "taxon_id"}
+      >
+        { groupingDisplay( "taxon_id" ) }
+      </MenuItem>
+    );
+  }
+  groupingMenuItems = groupingMenuItems.concat(
+    terms.map( term => (
+      <MenuItem
+        key={`grouping-chooser-item-${term.name}`}
+        eventKey={term.name}
+        active={grouping.param === `field:${term.name}`}
+      >
+        { term.name }
+      </MenuItem>
+    ) )
+  );
+  if ( groupingMenuItems.length > 0 ) {
+    groupingMenuItems.unshift(
+      <MenuItem
+        key="grouping-menu-item-none"
+        eventKey={"none"}
+        active={!grouping.param}
+      >
+        { groupingDisplay( null ) }
+      </MenuItem>
+    );
+  }
   return (
     <Grid className={`PhotoBrowser ${layout}`}>
       <Row>
@@ -144,50 +181,32 @@ const PhotoBrowser = ( {
                 <i className="icon-photo-grid"></i>
               </Button>
             </ButtonGroup>
-            <span className="control-group">
-              <Dropdown
-                id="grouping-control"
-                onSelect={ ( event, key ) => {
-                  if ( key === "none" ) {
-                    setGrouping( null );
-                  } else if ( key === "taxon_id" ) {
-                    setGrouping( "taxon_id" );
-                  } else {
-                    setGrouping(
-                      `field:${key}`,
-                      _.find( terms, t => t.name === key ).values
-                    );
-                  }
-                } }
-              >
-                <Dropdown.Toggle bsClass="link">
-                  Grouping: <strong>{ groupingDisplay( grouping.param ) }</strong>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <MenuItem
-                    eventKey={"none"}
-                    active={!grouping.param}
-                  >
-                    { groupingDisplay( null ) }
-                  </MenuItem>
-                  <MenuItem
-                    eventKey={"taxon_id"}
-                    active={grouping.param === "taxon_id"}
-                  >
-                    { groupingDisplay( "taxon_id" ) }
-                  </MenuItem>
-                  { terms.map( term => (
-                    <MenuItem
-                      key={`grouping-chooser-item-${term.name}`}
-                      eventKey={term.name}
-                      active={grouping.param === `field:${term.name}`}
-                    >
-                      { term.name }
-                    </MenuItem>
-                  ) ) }
-                </Dropdown.Menu>
-              </Dropdown>
-            </span>
+            { groupingMenuItems.length === 0 ? null : (
+              <span className="control-group">
+                <Dropdown
+                  id="grouping-control"
+                  onSelect={ ( event, key ) => {
+                    if ( key === "none" ) {
+                      setGrouping( null );
+                    } else if ( key === "taxon_id" ) {
+                      setGrouping( "taxon_id" );
+                    } else {
+                      setGrouping(
+                        `field:${key}`,
+                        _.find( terms, t => t.name === key ).values
+                      );
+                    }
+                  } }
+                >
+                  <Dropdown.Toggle bsClass="link">
+                    { I18n.t( "grouping" ) }: <strong>{ groupingDisplay( grouping.param ) }</strong>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    { groupingMenuItems }
+                  </Dropdown.Menu>
+                </Dropdown>
+              </span>
+            ) }
             { terms.map( term => (
               <span key={`term-${term}`} className="control-group">
                 <Dropdown
@@ -258,7 +277,7 @@ const PhotoBrowser = ( {
 };
 
 PhotoBrowser.propTypes = {
-  observationPhotos: PropTypes.array.isRequired,
+  observationPhotos: PropTypes.array,
   groupedPhotos: PropTypes.object,
   showTaxonPhotoModal: PropTypes.func.isRequired,
   loadMorePhotos: PropTypes.func.isRequired,
@@ -276,15 +295,16 @@ PhotoBrowser.propTypes = {
   grouping: PropTypes.object,
   setGrouping: PropTypes.func,
   params: PropTypes.object,
-  setParam: PropTypes.func
+  setParam: PropTypes.func,
+  showTaxonGrouping: PropTypes.bool
 };
 
 PhotoBrowser.defaultProps = {
-  observationPhotos: [],
   layout: "fluid",
   terms: [],
   grouping: {},
-  groupedPhotos: {}
+  groupedPhotos: {},
+  showTaxonGrouping: true
 };
 
 export default PhotoBrowser;

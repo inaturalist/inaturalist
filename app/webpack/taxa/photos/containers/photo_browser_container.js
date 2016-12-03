@@ -13,7 +13,6 @@ import {
 function mapStateToProps( state ) {
   const terms = [];
   const props = {
-    observationPhotos: [],
     hasMorePhotos: false,
     layout: state.config.layout,
     grouping: state.config.grouping,
@@ -64,6 +63,16 @@ function mapStateToProps( state ) {
       observationPhotos: state.photos.observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
+  }
+  // if ( !state.photos.observationPhotos ) {
+  //   props.hasMorePhotos = true;
+  // }
+  if (
+    !state.taxon.taxon ||
+    !state.taxon.taxon.children ||
+    state.taxon.taxon.children.length === 0
+  ) {
+    props.showTaxonGrouping = false;
   }
   return props;
 }

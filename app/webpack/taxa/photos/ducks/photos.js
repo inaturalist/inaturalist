@@ -149,6 +149,7 @@ function observationPhotosFromObservations( observations ) {
 }
 
 export function fetchObservationPhotos( options = {} ) {
+  console.log( "[DEBUG] fetchObservationPhotos" );
   return function ( dispatch, getState ) {
     const s = getState( );
     const params = Object.assign(
@@ -157,7 +158,7 @@ export function fetchObservationPhotos( options = {} ) {
       s.photos.observationParams,
       {
         page: options.page,
-        per_page: options.perPage
+        per_page: options.perPage || 12
       }
     );
     return inatjs.observations.search( params )
@@ -178,6 +179,7 @@ export function fetchObservationPhotos( options = {} ) {
 }
 
 export function fetchMorePhotos( ) {
+  console.log( "[DEBUG] fetchMorePhotos" );
   return function ( dispatch, getState ) {
     const s = getState( );
     const page = s.photos.page + 1;
@@ -242,6 +244,7 @@ export function setConfigAndUrl( params ) {
 }
 
 export function setGrouping( param, values ) {
+  console.log( "[DEBUG] setGrouping" )
   return function ( dispatch, getState ) {
     dispatch( clearGroupedPhotos( ) );
     if ( param ) {
@@ -260,6 +263,7 @@ export function setGrouping( param, values ) {
 }
 
 export function reloadPhotos( ) {
+  console.log( "[DEBUG] reloadPhotos" );
   return function ( dispatch, getState ) {
     const state = getState( );
     if ( state.config.grouping ) {

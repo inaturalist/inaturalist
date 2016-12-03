@@ -97,7 +97,7 @@ class TaxonPageTabs extends React.Component {
                   <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
                 </li>
                 <li role="presentation">
-                  <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "articles" ) }</a>
+                  <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "about" ) }</a>
                 </li>
                 <li role="presentation" className={speciesOrLower ? "hidden" : ""}>
                   <a
