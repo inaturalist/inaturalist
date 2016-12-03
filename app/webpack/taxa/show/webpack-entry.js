@@ -4,6 +4,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import { Taxon } from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon, setCount } from "../shared/ducks/taxon";
@@ -42,21 +43,21 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   // we use this for requesting localized taoxn names
   store.dispatch( setConfig( {
-    preferredPlace: PREFERRED_PLACE,
-    chosenPlace: PREFERRED_PLACE
+    preferredPlace: PREFERRED_PLACE
   } ) );
 }
 
-store.dispatch( setTaxon( TAXON ) );
-if ( TAXON.taxon_changes_count ) {
-  store.dispatch( setCount( "taxonChangesCount", TAXON.taxon_changes_count ) );
+const taxon = new Taxon( TAXON );
+store.dispatch( setTaxon( taxon ) );
+if ( taxon.taxon_changes_count ) {
+  store.dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
 }
-if ( TAXON.taxon_schemes_count ) {
-  store.dispatch( setCount( "taxonSchemesCount", TAXON.taxon_schemes_count ) );
+if ( taxon.taxon_schemes_count ) {
+  store.dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
 }
-store.dispatch( fetchLeaders( TAXON ) ).then( ( ) => {
-  store.dispatch( fetchMonthFrequency( TAXON ) );
-  store.dispatch( fetchMonthOfYearFrequency( TAXON ) );
+store.dispatch( fetchLeaders( taxon ) ).then( ( ) => {
+  store.dispatch( fetchMonthFrequency( taxon ) );
+  store.dispatch( fetchMonthOfYearFrequency( taxon ) );
 } );
 
 window.onpopstate = ( ) => {

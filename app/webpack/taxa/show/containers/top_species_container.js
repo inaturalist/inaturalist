@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import LeaderItem from "../components/leader_item";
 import { urlForTaxon } from "../../shared/util";
-import _ from "lodash";
 
 function mapStateToProps( state ) {
   const leader = Object.assign( {}, state.leaders.topSpecies );

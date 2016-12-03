@@ -11,17 +11,25 @@ class PhotoPreview extends React.Component {
     };
   }
 
+  componentDidMount( ) {
+    this.setStateFromProps( this.props );
+  }
+
   componentWillReceiveProps( newProps ) {
+    this.setStateFromProps( newProps );
+  }
+
+  setStateFromProps( props ) {
     let taxonPhotos;
-    if ( newProps.layout === "gallery" ) {
-      taxonPhotos = newProps.taxonPhotos.slice( 0, 5 );
+    if ( props.layout === "gallery" ) {
+      taxonPhotos = props.taxonPhotos.slice( 0, 5 );
     } else {
-      taxonPhotos = newProps.taxonPhotos.slice( 0, 8 );
+      taxonPhotos = props.taxonPhotos.slice( 0, 8 );
     }
-    this.state = {
-      current: newProps.taxonPhotos[0],
+    this.setState( {
+      current: props.taxonPhotos[0],
       taxonPhotos
-    };
+    } );
   }
 
   showPhoto( photoId ) {

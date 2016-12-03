@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import CoverImage from "../../../shared/components/cover_image";
+import _ from "lodash";
 
 const LeaderItem = ( {
   noContent,
@@ -45,7 +46,14 @@ const LeaderItem = ( {
         </div>
       </div>
       <div className="media-body">
-        <h4 className="name"><a href={url}>{ name }</a></h4>
+        <h4 className="name">
+          <a title={name} href={url}>
+            <span className=".visible-xs-inline visible-sm-inline visible-md-inline">
+              { _.truncate( name, { length: 16 } ) }
+            </span>
+            <span className="visible-lg-inline">{ _.truncate( name, { length: 27 } ) }</span>
+          </a>
+        </h4>
         { noContent ? null : extraContent }
       </div>
     </div>

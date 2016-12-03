@@ -1,6 +1,7 @@
 @import "../colors";
 @import "show/wikipedia";
 @import "../shared/user_text";
+@import "../shared/split_taxon";
 
 #app {
   min-height: 600px;
@@ -10,7 +11,8 @@
   margin: 20px auto;
 }
 
-#TaxonDetail > .container-fluid {
+#TaxonDetail .container-fluid,
+#TaxonDetail .container {
   min-width: 980px;
 }
 
@@ -295,6 +297,7 @@ $leaderItemImageDim: 56px;
 }
 .LeaderItem .name {
   font-weight: bold;
+  white-space: nowrap;
 }
 .LeaderItem.no-content .name {
   text-transform: capitalize;
@@ -455,14 +458,6 @@ $photoPreviewThumbGutterTop: 3px;
 }
 .CoverImage.loaded {
   opacity: 1;
-}
-
-
-.SplitTaxon > *:after {
-  content: '\0020';
-}
-.SplitTaxon > *:first-child {
-  content: '';
 }
 
 .TaxonomyTab .taxonomy {
