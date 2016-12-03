@@ -81885,6 +81885,13 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+	if (window.location.protocol.match(/https/)) {
+	  _inaturalistjs2.default.setConfig({
+	    apiHostSSL: true,
+	    writeHostSSL: true
+	  });
+	}
+
 	var SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
 	var APPEND_OBSERVATION_PHOTOS = "taxa-photos/photos/APPEND_OBSERVATION_PHOTOS";
 	var UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS";
@@ -82021,7 +82028,6 @@
 	function fetchObservationPhotos() {
 	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-	  console.log("[DEBUG] fetchObservationPhotos");
 	  return function (dispatch, getState) {
 	    var s = getState();
 	    var params = Object.assign({}, (0, _util.defaultObservationParams)(s), s.photos.observationParams, {
@@ -82040,7 +82046,6 @@
 	}
 
 	function fetchMorePhotos() {
-	  console.log("[DEBUG] fetchMorePhotos");
 	  return function (dispatch, getState) {
 	    var s = getState();
 	    var page = s.photos.page + 1;
@@ -82101,7 +82106,6 @@
 	}
 
 	function setGrouping(param, values) {
-	  console.log("[DEBUG] setGrouping");
 	  return function (dispatch, getState) {
 	    dispatch(clearGroupedPhotos());
 	    if (param) {
@@ -82120,7 +82124,6 @@
 	}
 
 	function reloadPhotos() {
-	  console.log("[DEBUG] reloadPhotos");
 	  return function (dispatch, getState) {
 	    var state = getState();
 	    if (state.config.grouping) {
@@ -82359,6 +82362,13 @@
 	var _util = __webpack_require__(1418);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	if (window.location.protocol.match(/https/)) {
+	  _inaturalistjs2.default.setConfig({
+	    apiHostSSL: true,
+	    writeHostSSL: true
+	  });
+	}
 
 	var SET_TAXON = "taxa-show/taxon/SET_TAXON";
 	var SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";

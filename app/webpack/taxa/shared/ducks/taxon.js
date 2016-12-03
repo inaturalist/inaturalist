@@ -1,8 +1,15 @@
-import iNaturalistJS from "inaturalistjs";
+import inatjs from "inaturalistjs";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
 import { fetch, defaultObservationParams } from "../../shared/util";
+
+if ( window.location.protocol.match( /https/ ) ) {
+  inatjs.setConfig( {
+    apiHostSSL: true,
+    writeHostSSL: true
+  } );
+}
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
@@ -157,7 +164,7 @@ export function fetchTaxon( taxon, options = { } ) {
     const params = Object.assign( { }, options, {
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
     } );
-    return iNaturalistJS.taxa.fetch( t.id, params ).then( response => {
+    return inatjs.taxa.fetch( t.id, params ).then( response => {
       dispatch( setTaxon( response.results[0] ) );
     } );
   };
@@ -234,7 +241,7 @@ export function fetchTrending( ) {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" )
     } );
-    iNaturalistJS.observations.speciesCounts( params ).then(
+    inatjs.observations.speciesCounts( params ).then(
       response =>
         dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
       error => {
@@ -249,7 +256,7 @@ export function fetchRare( ) {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       order: "asc"
     } );
-    iNaturalistJS.observations.speciesCounts( params ).then(
+    inatjs.observations.speciesCounts( params ).then(
       response =>
         dispatch( setRare( response.results.map( r => r.taxon ) ) ),
       error => {
@@ -262,7 +269,7 @@ export function fetchRare( ) {
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
     const params = { taxon_id: getState( ).taxon.taxon.id };
-    iNaturalistJS.identifications.similar_species( params ).then(
+    inatjs.identifications.similar_species( params ).then(
       response => dispatch( setSimilar( response.results.map( r => r.taxon ) ) ),
       error => console.log( "[DEBUG] error: ", error )
     );

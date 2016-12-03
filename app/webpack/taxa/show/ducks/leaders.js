@@ -5,6 +5,13 @@ import {
 } from "./observations";
 import { defaultObservationParams } from "../../shared/util";
 
+if ( window.location.protocol.match( /https/ ) ) {
+  inatjs.setConfig( {
+    apiHostSSL: true,
+    writeHostSSL: true
+  } );
+}
+
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
 
 export default function reducer(

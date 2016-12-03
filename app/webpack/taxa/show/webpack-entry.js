@@ -56,8 +56,9 @@ if ( taxon.taxon_schemes_count ) {
   store.dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
 }
 store.dispatch( fetchLeaders( taxon ) ).then( ( ) => {
-  store.dispatch( fetchMonthFrequency( taxon ) );
-  store.dispatch( fetchMonthOfYearFrequency( taxon ) );
+  store.dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {
+    store.dispatch( fetchMonthFrequency( taxon ) );
+  } );
 } );
 
 window.onpopstate = ( ) => {

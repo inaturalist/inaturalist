@@ -1,4 +1,4 @@
-import iNaturalistJS from "inaturalistjs";
+import inatjs from "inaturalistjs";
 import { defaultObservationParams } from "../../shared/util";
 
 const SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
@@ -6,6 +6,13 @@ const SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FR
 const SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS";
 const SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
 const SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
+
+if ( window.location.protocol.match( /https/ ) ) {
+  inatjs.setConfig( {
+    apiHostSSL: true,
+    writeHostSSL: true
+  } );
+}
 
 export default function reducer(
   state = { monthOfYearFrequency: {}, monthFrequency: {} },
@@ -60,8 +67,9 @@ export function fetchMonthFrequencyVerifiable( ) {
       date_field: "observed",
       interval: "month"
     } );
-    return iNaturalistJS.observations.histogram( params ).then( response => {
+    return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "verifiable", response.results.month ) );
+      return new Promise( ( resolve ) => resolve( response.results.month ) );
     } );
   };
 }
@@ -73,17 +81,18 @@ export function fetchMonthFrequencyResearchGrade( ) {
       interval: "month",
       quality_grade: "research"
     } );
-    return iNaturalistJS.observations.histogram( params ).then( response => {
+    return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "research", response.results.month ) );
+      return new Promise( ( resolve ) => resolve( response.results.month ) );
     } );
   };
 }
 
 export function fetchMonthFrequency( ) {
-  return ( dispatch ) => {
-    dispatch( fetchMonthFrequencyVerifiable( ) );
-    dispatch( fetchMonthFrequencyResearchGrade( ) );
-  };
+  return ( dispatch ) => Promise.all( [
+    dispatch( fetchMonthFrequencyVerifiable( ) ),
+    dispatch( fetchMonthFrequencyResearchGrade( ) )
+  ] );
 }
 
 export function fetchMonthOfYearFrequencyVerifiable( ) {
@@ -92,8 +101,9 @@ export function fetchMonthOfYearFrequencyVerifiable( ) {
       date_field: "observed",
       interval: "month_of_year"
     } );
-    return iNaturalistJS.observations.histogram( params ).then( response => {
+    return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "verifiable", response.results.month_of_year ) );
+      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
     } );
   };
 }
@@ -105,17 +115,18 @@ export function fetchMonthOfYearFrequencyResearchGrade( ) {
       interval: "month_of_year",
       quality_grade: "research"
     } );
-    return iNaturalistJS.observations.histogram( params ).then( response => {
+    return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "research", response.results.month_of_year ) );
+      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
     } );
   };
 }
 
 export function fetchMonthOfYearFrequency( ) {
-  return ( dispatch ) => {
-    dispatch( fetchMonthOfYearFrequencyVerifiable( ) );
-    dispatch( fetchMonthOfYearFrequencyResearchGrade( ) );
-  };
+  return ( dispatch ) => Promise.all( [
+    dispatch( fetchMonthOfYearFrequencyVerifiable( ) ),
+    dispatch( fetchMonthOfYearFrequencyResearchGrade( ) )
+  ] );
 }
 
 export function setRecentObservations( observations ) {
@@ -134,7 +145,7 @@ export function setObservationsCount( count ) {
 
 export function fetchRecentObservations( ) {
   return ( dispatch, getState ) =>
-    iNaturalistJS.observations.search(
+    inatjs.observations.search(
       defaultObservationParams( getState( ) )
     ).then( response => {
       dispatch( setRecentObservations( response.results ) );
@@ -155,7 +166,7 @@ export function fetchFirstObservation( ) {
       order: "asc",
       per_page: 1
     } );
-    return ( iNaturalistJS.observations.search( params ).then( response => {
+    return ( inatjs.observations.search( params ).then( response => {
       dispatch( setFirstObservation( response.results[0] ) );
     } ) );
   };
