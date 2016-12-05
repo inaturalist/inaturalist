@@ -271,12 +271,15 @@ export function reloadPhotos( ) {
 }
 
 export function hydrateFromUrlParams( params ) {
-  return function ( dispatch ) {
+  return function ( dispatch, getState ) {
     if ( params.grouping ) {
-      dispatch( setGrouping( params.grouping ) );
-    }
-    if ( params.order_by ) {
-      dispatch( updateObservationParams( { order_by: params.order_by } ) );
+      const terms = getState( ).taxon.terms;
+      const groupedTerm = _.find( terms, term => `field:${term.name}` === params.grouping );
+      if ( groupedTerm ) {
+        dispatch( setGrouping( params.grouping, groupedTerm.values ) );
+      } else {
+        dispatch( setGrouping( params.grouping ) );
+      }
     }
     if ( params.layout ) {
       dispatch( setConfig( { layout: params.layout } ) );
@@ -284,18 +287,29 @@ export function hydrateFromUrlParams( params ) {
     if ( params.place_id ) {
       if ( params.place_id === "any" ) {
         dispatch( setConfig( { chosenPlace: null } ) );
-        dispatch( reloadPhotos( ) );
       } else {
         inatjs.places.fetch( params.place_id ).then(
           response => {
             dispatch( setConfig( { chosenPlace: response.results[0] } ) );
-            dispatch( reloadPhotos( ) );
           },
           error => {
             console.log( "[DEBUG] error: ", error );
           }
         );
       }
+    }
+    const newObservationParams = { };
+    if ( params.order_by ) {
+      newObservationParams.order_by = params.order_by;
+    }
+    _.forEach( params, ( value, key ) => {
+      if ( !key.match( /field:/ ) ) {
+        return;
+      }
+      newObservationParams[key] = value;
+    } );
+    if ( !_.isEmpty( newObservationParams ) ) {
+      dispatch( updateObservationParams( newObservationParams ) );
     }
   };
 }

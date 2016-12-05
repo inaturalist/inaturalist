@@ -11,62 +11,28 @@ import {
 } from "../ducks/photos";
 
 function mapStateToProps( state ) {
-  const terms = [];
   const props = {
     hasMorePhotos: false,
     layout: state.config.layout,
     grouping: state.config.grouping,
     groupedPhotos: state.photos.groupedPhotos,
-    terms,
     params: state.photos.observationParams
   };
-  if ( state.taxon.taxon && state.taxon.taxon.iconic_taxon_name === "Insecta" ) {
-    let selectedValue;
-    if ( state.photos.observationParams["field:Insect life stage"] ) {
-      selectedValue = state.photos.observationParams["field:Insect life stage"];
+  props.terms = state.taxon.terms.map( term => {
+    const newTerm = Object.assign( { }, term );
+    const paramName = `field:${term.name}`;
+    const param = _.find( state.photos.observationParams, ( v, k ) => ( k === paramName ) );
+    if ( param ) {
+      newTerm.selectedValue = state.photos.observationParams[paramName];
     }
-    terms.push( {
-      name: "Insect life stage",
-      values: [
-        "adult",
-        "teneral",
-        "pupa",
-        "nymph",
-        "larva",
-        "egg"
-      ],
-      selectedValue
-    } );
-  }
-  if (
-    state.taxon.taxon &&
-    _.find( state.taxon.taxon.ancestors, a => a.name === "Magnoliophyta" )
-  ) {
-    let selectedValue;
-    const fieldName = "Flowering Phenology";
-    if ( state.photos.observationParams[`field:${fieldName}`] ) {
-      selectedValue = state.photos.observationParams[`field:${fieldName}`];
-    }
-    terms.push( {
-      name: fieldName,
-      values: [
-        "bare",
-        "budding",
-        "flower",
-        "fruit"
-      ],
-      selectedValue
-    } );
-  }
+    return newTerm;
+  } );
   if ( state.photos.observationPhotos && state.photos.observationPhotos.length > 0 ) {
     return Object.assign( props, {
       observationPhotos: state.photos.observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
   }
-  // if ( !state.photos.observationPhotos ) {
-  //   props.hasMorePhotos = true;
-  // }
   if (
     !state.taxon.taxon ||
     !state.taxon.taxon.children ||

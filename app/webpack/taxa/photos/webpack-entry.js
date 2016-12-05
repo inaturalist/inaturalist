@@ -4,9 +4,10 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import { Taxon } from "inaturalistjs";
 import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photos";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
+import taxonReducer, { setTaxon } from "../shared/ducks/taxon";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import App from "./components/app";
 
@@ -41,24 +42,19 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
-if ( TAXON !== undefined && TAXON !== null ) {
-  store.dispatch( setTaxon( TAXON ) );
-  store.dispatch( fetchTaxon( TAXON ) );
-  const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
-  store.dispatch( hydrateFromUrlParams( urlParams ) );
-  window.onpopstate = e => {
-    // user returned from BACK
-    store.dispatch( hydrateFromUrlParams( e.state ) );
-  };
-  // without this condition we get a race condition. ugly, i know...
-  if ( !urlParams.place_id ) {
-    store.dispatch( reloadPhotos( ) );
-  }
-}
+const taxon = new Taxon( TAXON );
+store.dispatch( setTaxon( taxon ) );
+const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+store.dispatch( hydrateFromUrlParams( urlParams ) );
+window.onpopstate = e => {
+  // user returned from BACK
+  store.dispatch( hydrateFromUrlParams( e.state ) );
+};
+store.dispatch( reloadPhotos( ) );
 
 render(
   <Provider store={store}>
-    <App taxon={TAXON} />
+    <App taxon={taxon} />
   </Provider>,
   document.getElementById( "app" )
 );

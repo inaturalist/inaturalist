@@ -7,7 +7,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Taxon } from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon, fetchTaxon, setCount } from "../shared/ducks/taxon";
+import taxonReducer, { setTaxon, setCount } from "../shared/ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency

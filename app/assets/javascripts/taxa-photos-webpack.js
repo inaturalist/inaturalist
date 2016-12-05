@@ -62,6 +62,8 @@
 
 	var _redux = __webpack_require__(567);
 
+	var _inaturalistjs = __webpack_require__(586);
+
 	var _photos = __webpack_require__(1417);
 
 	var _photos2 = _interopRequireDefault(_photos);
@@ -108,25 +110,20 @@
 	  }));
 	}
 
-	if (TAXON !== undefined && TAXON !== null) {
-	  store.dispatch((0, _taxon.setTaxon)(TAXON));
-	  store.dispatch((0, _taxon.fetchTaxon)(TAXON));
-	  var urlParams = $.deparam(window.location.search.replace(/^\?/, ""));
-	  store.dispatch((0, _photos.hydrateFromUrlParams)(urlParams));
-	  window.onpopstate = function (e) {
-	    // user returned from BACK
-	    store.dispatch((0, _photos.hydrateFromUrlParams)(e.state));
-	  };
-	  // without this condition we get a race condition. ugly, i know...
-	  if (!urlParams.place_id) {
-	    store.dispatch((0, _photos.reloadPhotos)());
-	  }
-	}
+	var taxon = new _inaturalistjs.Taxon(TAXON);
+	store.dispatch((0, _taxon.setTaxon)(taxon));
+	var urlParams = $.deparam(window.location.search.replace(/^\?/, ""));
+	store.dispatch((0, _photos.hydrateFromUrlParams)(urlParams));
+	window.onpopstate = function (e) {
+	  // user returned from BACK
+	  store.dispatch((0, _photos.hydrateFromUrlParams)(e.state));
+	};
+	store.dispatch((0, _photos.reloadPhotos)());
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: store },
-	  _react2.default.createElement(_app2.default, { taxon: TAXON })
+	  _react2.default.createElement(_app2.default, { taxon: taxon })
 	), document.getElementById("app"));
 
 /***/ },
@@ -81896,13 +81893,6 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	if (window.location.protocol.match(/https/)) {
-	  _inaturalistjs2.default.setConfig({
-	    apiHostSSL: true,
-	    writeHostSSL: true
-	  });
-	}
-
 	var SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
 	var APPEND_OBSERVATION_PHOTOS = "taxa-photos/photos/APPEND_OBSERVATION_PHOTOS";
 	var UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS";
@@ -82146,12 +82136,17 @@
 	}
 
 	function hydrateFromUrlParams(params) {
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
 	    if (params.grouping) {
-	      dispatch(setGrouping(params.grouping));
-	    }
-	    if (params.order_by) {
-	      dispatch(updateObservationParams({ order_by: params.order_by }));
+	      var terms = getState().taxon.terms;
+	      var groupedTerm = _lodash2.default.find(terms, function (term) {
+	        return "field:" + term.name === params.grouping;
+	      });
+	      if (groupedTerm) {
+	        dispatch(setGrouping(params.grouping, groupedTerm.values));
+	      } else {
+	        dispatch(setGrouping(params.grouping));
+	      }
 	    }
 	    if (params.layout) {
 	      dispatch((0, _config.setConfig)({ layout: params.layout }));
@@ -82159,15 +82154,26 @@
 	    if (params.place_id) {
 	      if (params.place_id === "any") {
 	        dispatch((0, _config.setConfig)({ chosenPlace: null }));
-	        dispatch(reloadPhotos());
 	      } else {
 	        _inaturalistjs2.default.places.fetch(params.place_id).then(function (response) {
 	          dispatch((0, _config.setConfig)({ chosenPlace: response.results[0] }));
-	          dispatch(reloadPhotos());
 	        }, function (error) {
 	          console.log("[DEBUG] error: ", error);
 	        });
 	      }
+	    }
+	    var newObservationParams = {};
+	    if (params.order_by) {
+	      newObservationParams.order_by = params.order_by;
+	    }
+	    _lodash2.default.forEach(params, function (value, key) {
+	      if (!key.match(/field:/)) {
+	        return;
+	      }
+	      newObservationParams[key] = value;
+	    });
+	    if (!_lodash2.default.isEmpty(newObservationParams)) {
+	      dispatch(updateObservationParams(newObservationParams));
 	    }
 	  };
 	}
@@ -82374,13 +82380,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	if (window.location.protocol.match(/https/)) {
-	  _inaturalistjs2.default.setConfig({
-	    apiHostSSL: true,
-	    writeHostSSL: true
-	  });
-	}
-
 	var SET_TAXON = "taxa-show/taxon/SET_TAXON";
 	var SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
 	var SET_LINKS = "taxa-show/taxon/SET_LINKS";
@@ -82404,6 +82403,23 @@
 	      newState.taxonPhotos = _lodash2.default.uniqBy(newState.taxon.taxonPhotos, function (tp) {
 	        return tp.photo.id;
 	      });
+	      // HACK until we get controlled terms working.
+	      newState.terms = [];
+	      if (newState.taxon.iconic_taxon_name === "Insecta") {
+	        newState.terms.push({
+	          name: "Insect life stage",
+	          values: ["adult", "teneral", "pupa", "nymph", "larva", "egg"]
+	        });
+	      }
+	      if (newState.taxon && _lodash2.default.find(newState.taxon.ancestors, function (a) {
+	        return a.name === "Magnoliophyta";
+	      })) {
+	        newState.terms.push({
+	          name: "Flowering Phenology",
+	          values: ["bare", "budding", "flower", "fruit"]
+	        });
+	      }
+	      // END HACK
 	      break;
 	    case SET_DESCRIPTION:
 	      newState.description = {
@@ -83669,34 +83685,57 @@
 	    layout: state.config.layout,
 	    grouping: state.config.grouping,
 	    groupedPhotos: state.photos.groupedPhotos,
-	    terms: terms,
 	    params: state.photos.observationParams
 	  };
-	  if (state.taxon.taxon && state.taxon.taxon.iconic_taxon_name === "Insecta") {
-	    var selectedValue = void 0;
-	    if (state.photos.observationParams["field:Insect life stage"]) {
-	      selectedValue = state.photos.observationParams["field:Insect life stage"];
-	    }
-	    terms.push({
-	      name: "Insect life stage",
-	      values: ["adult", "teneral", "pupa", "nymph", "larva", "egg"],
-	      selectedValue: selectedValue
+	  // if ( state.taxon.taxon && state.taxon.taxon.iconic_taxon_name === "Insecta" ) {
+	  //   let selectedValue;
+	  //   if ( state.photos.observationParams["field:Insect life stage"] ) {
+	  //     selectedValue = state.photos.observationParams["field:Insect life stage"];
+	  //   }
+	  //   terms.push( {
+	  //     name: "Insect life stage",
+	  //     values: [
+	  //       "adult",
+	  //       "teneral",
+	  //       "pupa",
+	  //       "nymph",
+	  //       "larva",
+	  //       "egg"
+	  //     ],
+	  //     selectedValue
+	  //   } );
+	  // }
+	  // if (
+	  //   state.taxon.taxon &&
+	  //   _.find( state.taxon.taxon.ancestors, a => a.name === "Magnoliophyta" )
+	  // ) {
+	  //   let selectedValue;
+	  //   const fieldName = "Flowering Phenology";
+	  //   if ( state.photos.observationParams[`field:${fieldName}`] ) {
+	  //     selectedValue = state.photos.observationParams[`field:${fieldName}`];
+	  //   }
+	  //   terms.push( {
+	  //     name: fieldName,
+	  //     values: [
+	  //       "bare",
+	  //       "budding",
+	  //       "flower",
+	  //       "fruit"
+	  //     ],
+	  //     selectedValue
+	  //   } );
+	  // }
+	  props.terms = state.taxon.terms.map(function (term) {
+	    var newTerm = Object.assign({}, term);
+	    var paramName = "field:" + term.name;
+	    var param = _lodash2.default.find(state.photos.observationParams, function (v, k) {
+	      return k === paramName;
 	    });
-	  }
-	  if (state.taxon.taxon && _lodash2.default.find(state.taxon.taxon.ancestors, function (a) {
-	    return a.name === "Magnoliophyta";
-	  })) {
-	    var _selectedValue = void 0;
-	    var fieldName = "Flowering Phenology";
-	    if (state.photos.observationParams["field:" + fieldName]) {
-	      _selectedValue = state.photos.observationParams["field:" + fieldName];
+	    if (param) {
+	      newTerm.selectedValue = state.photos.observationParams[paramName];
 	    }
-	    terms.push({
-	      name: fieldName,
-	      values: ["bare", "budding", "flower", "fruit"],
-	      selectedValue: _selectedValue
-	    });
-	  }
+	    return newTerm;
+	  });
 	  if (state.photos.observationPhotos && state.photos.observationPhotos.length > 0) {
 	    return Object.assign(props, {
 	      observationPhotos: state.photos.observationPhotos,

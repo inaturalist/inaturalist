@@ -22,6 +22,36 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
+      // HACK until we get controlled terms working.
+      newState.terms = [];
+      if ( newState.taxon.iconic_taxon_name === "Insecta" ) {
+        newState.terms.push( {
+          name: "Insect life stage",
+          values: [
+            "adult",
+            "teneral",
+            "pupa",
+            "nymph",
+            "larva",
+            "egg"
+          ]
+        } );
+      }
+      if (
+        newState.taxon &&
+        _.find( newState.taxon.ancestors, a => a.name === "Magnoliophyta" )
+      ) {
+        newState.terms.push( {
+          name: "Flowering Phenology",
+          values: [
+            "bare",
+            "budding",
+            "flower",
+            "fruit"
+          ]
+        } );
+      }
+      // END HACK
       break;
     case SET_DESCRIPTION:
       newState.description = {
