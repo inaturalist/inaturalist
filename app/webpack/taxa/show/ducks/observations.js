@@ -7,13 +7,6 @@ const SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS"
 const SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
 const SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
 
-if ( window.location.protocol.match( /https/ ) ) {
-  inatjs.setConfig( {
-    apiHostSSL: true,
-    writeHostSSL: true
-  } );
-}
-
 export default function reducer(
   state = { monthOfYearFrequency: {}, monthFrequency: {} },
   action

@@ -4,13 +4,6 @@ import querystring from "querystring";
 import _ from "lodash";
 import { fetch, defaultObservationParams } from "../../shared/util";
 
-if ( window.location.protocol.match( /https/ ) ) {
-  inatjs.setConfig( {
-    apiHostSSL: true,
-    writeHostSSL: true
-  } );
-}
-
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
 const SET_LINKS = "taxa-show/taxon/SET_LINKS";

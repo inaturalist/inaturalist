@@ -3,13 +3,6 @@ import _ from "lodash";
 import { defaultObservationParams } from "../../shared/util";
 import { setConfig } from "../../../shared/ducks/config";
 
-if ( window.location.protocol.match( /https/ ) ) {
-  inatjs.setConfig( {
-    apiHostSSL: true,
-    writeHostSSL: true
-  } );
-}
-
 const SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
 const APPEND_OBSERVATION_PHOTOS = "taxa-photos/photos/APPEND_OBSERVATION_PHOTOS";
 const UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS";
