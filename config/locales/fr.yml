@@ -2833,6 +2833,7 @@ fr:
     du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
   popular: populaire
   position: Emplacement
+  position_accurate_to_within_5km?: Position précise à 5km près ?
   positional_accuracy: Exactitude de l’emplacement
   possessive_user: '%{user}'
   post: Note
@@ -5153,9 +5154,9 @@ fr:
             Vous pouvez créer une liste de projet personnalisée de taxons et la
             lier à votre projet. Cela peut être utile pour restreindre les
             observations ajoutées à votre projet à celles qui correspondent aux
-            taxons de votre liste via la règle 'doit être un taxon de la liste
-            du projet'.
-          </p>            
+            taxons de votre liste via la règle « doit être un taxon de la liste
+            du projet ».
+          </p>
         rules:
           captive: être captif/cultivé
           wild: être sauvage/acclimaté
