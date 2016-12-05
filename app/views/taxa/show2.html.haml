@@ -20,8 +20,8 @@
     .row
       .col-xs-12
         .quiet.box.text-center
-          Tired of testing out the new taxon page?
-          = button_to "Take me back",
+          =t :tired_of_testing_this_new_version
+          = button_to t(:take_me_back),
             leave_test_user_path( current_user, test: "taxon-page" ),
             method: "put",
             class: "btn btn-default",
