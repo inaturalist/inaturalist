@@ -9,6 +9,7 @@ import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
 import PlaceChooserContainer from "../containers/place_chooser_container";
+import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
 import TaxonCrumbs from "../../shared/components/taxon_crumbs";
 import StatusHeader from "./status_header";
 import { urlForTaxon } from "../../shared/util";
@@ -16,6 +17,7 @@ import { urlForTaxon } from "../../shared/util";
 const App = ( { taxon } ) => (
   <div id="TaxonDetail">
     <Grid>
+      <TaxonChangeAlertContainer />
       <Row className="preheader">
         <Col xs={8}>
           <TaxonCrumbs

@@ -15,6 +15,7 @@ const SET_RARE = "taxa-show/taxon/SET_RARE";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
+const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -87,6 +88,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case HIDE_PHOTO_CHOOSER:
       newState.photoChooserVisible = false;
+      break;
+    case SET_TAXON_CHANGE:
+      newState.taxonChange = action.taxonChange;
       break;
     default:
       // nothing to see here
@@ -166,6 +170,10 @@ export function showPhotoChooser( ) {
 
 export function hidePhotoChooser( ) {
   return { type: HIDE_PHOTO_CHOOSER };
+}
+
+export function setTaxonChange( taxonChange ) {
+  return { type: SET_TAXON_CHANGE, taxonChange };
 }
 
 export function showPhotoChooserIfSignedIn( ) {
@@ -321,6 +329,22 @@ export function updatePhotos( photos ) {
       .then( ( ) => {
         dispatch( fetchTaxon( s.taxon.taxon, { ttl: -1 } ) );
         dispatch( hidePhotoChooser( ) );
+      } );
+  };
+}
+
+export function fetchTaxonChange( taxon ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
+    const opts = { headers: { "Content-Type": "application/json" } };
+    fetch( `/taxon_changes.json?taxon_id=${t.id}`, opts )
+      .then( response => response.json( ) )
+      .then( json => {
+        if ( !json[0] ) {
+          return;
+        }
+        dispatch( setTaxonChange( json[0] ) );
       } );
   };
 }

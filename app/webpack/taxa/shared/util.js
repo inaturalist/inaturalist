@@ -69,11 +69,20 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
   );
 };
 
+const commasAnd = ( items ) => {
+  if ( items.length <= 2 ) {
+    return items.join( ` ${I18n.t( "and" )} ` );
+  }
+  const last = items.pop( );
+  return `${items.join( ", " )}, ${I18n.t( "and" )} ${last}`;
+};
+
 export {
   urlForTaxon,
   urlForTaxonPhotos,
   urlForUser,
   fetch,
   defaultObservationParams,
-  localizedPhotoAttribution
+  localizedPhotoAttribution,
+  commasAnd
 };

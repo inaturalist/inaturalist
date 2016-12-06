@@ -56,6 +56,8 @@ class Taxon < ActiveRecord::Base
       parent_id: parent_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active,
+      taxon_changes_count: taxon_changes_count,
+      taxon_schemes_count: taxon_schemes_count
     }
     if options[:for_identification]
       if Taxon::LIFE

@@ -82187,7 +82187,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
+	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
 
 	var _isomorphicFetch = __webpack_require__(994);
 
@@ -82286,12 +82286,21 @@
 	  );
 	};
 
+	var commasAnd = function commasAnd(items) {
+	  if (items.length <= 2) {
+	    return items.join(" " + I18n.t("and") + " ");
+	  }
+	  var last = items.pop();
+	  return items.join(", ") + ", " + I18n.t("and") + " " + last;
+	};
+
 	exports.urlForTaxon = urlForTaxon;
 	exports.urlForTaxonPhotos = urlForTaxonPhotos;
 	exports.urlForUser = urlForUser;
 	exports.fetch = fetch;
 	exports.defaultObservationParams = defaultObservationParams;
 	exports.localizedPhotoAttribution = localizedPhotoAttribution;
+	exports.commasAnd = commasAnd;
 
 /***/ },
 /* 1419 */
@@ -82349,6 +82358,7 @@
 	exports.setSimilar = setSimilar;
 	exports.showPhotoChooser = showPhotoChooser;
 	exports.hidePhotoChooser = hidePhotoChooser;
+	exports.setTaxonChange = setTaxonChange;
 	exports.showPhotoChooserIfSignedIn = showPhotoChooserIfSignedIn;
 	exports.fetchTaxon = fetchTaxon;
 	exports.fetchDescription = fetchDescription;
@@ -82359,6 +82369,7 @@
 	exports.fetchRare = fetchRare;
 	exports.fetchSimilar = fetchSimilar;
 	exports.updatePhotos = updatePhotos;
+	exports.fetchTaxonChange = fetchTaxonChange;
 
 	var _inaturalistjs = __webpack_require__(586);
 
@@ -82391,6 +82402,7 @@
 	var SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 	var SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 	var HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
+	var SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
 
 	function reducer() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? { counts: {} } : arguments[0];
@@ -82455,6 +82467,9 @@
 	      break;
 	    case HIDE_PHOTO_CHOOSER:
 	      newState.photoChooserVisible = false;
+	      break;
+	    case SET_TAXON_CHANGE:
+	      newState.taxonChange = action.taxonChange;
 	      break;
 	    default:
 	    // nothing to see here
@@ -82534,6 +82549,10 @@
 
 	function hidePhotoChooser() {
 	  return { type: HIDE_PHOTO_CHOOSER };
+	}
+
+	function setTaxonChange(taxonChange) {
+	  return { type: SET_TAXON_CHANGE, taxonChange: taxonChange };
 	}
 
 	function showPhotoChooserIfSignedIn() {
@@ -82689,6 +82708,22 @@
 	    (0, _util.fetch)("/taxa/" + taxon.id + "/set_photos.json", params).then(function () {
 	      dispatch(fetchTaxon(s.taxon.taxon, { ttl: -1 }));
 	      dispatch(hidePhotoChooser());
+	    });
+	  };
+	}
+
+	function fetchTaxonChange(taxon) {
+	  return function (dispatch, getState) {
+	    var s = getState();
+	    var t = taxon || s.taxon.taxon;
+	    var opts = { headers: { "Content-Type": "application/json" } };
+	    (0, _util.fetch)("/taxon_changes.json?taxon_id=" + t.id, opts).then(function (response) {
+	      return response.json();
+	    }).then(function (json) {
+	      if (!json[0]) {
+	        return;
+	      }
+	      dispatch(setTaxonChange(json[0]));
 	    });
 	  };
 	}
@@ -83679,7 +83714,6 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function mapStateToProps(state) {
-	  var terms = [];
 	  var props = {
 	    hasMorePhotos: false,
 	    layout: state.config.layout,
@@ -83687,44 +83721,6 @@
 	    groupedPhotos: state.photos.groupedPhotos,
 	    params: state.photos.observationParams
 	  };
-	  // if ( state.taxon.taxon && state.taxon.taxon.iconic_taxon_name === "Insecta" ) {
-	  //   let selectedValue;
-	  //   if ( state.photos.observationParams["field:Insect life stage"] ) {
-	  //     selectedValue = state.photos.observationParams["field:Insect life stage"];
-	  //   }
-	  //   terms.push( {
-	  //     name: "Insect life stage",
-	  //     values: [
-	  //       "adult",
-	  //       "teneral",
-	  //       "pupa",
-	  //       "nymph",
-	  //       "larva",
-	  //       "egg"
-	  //     ],
-	  //     selectedValue
-	  //   } );
-	  // }
-	  // if (
-	  //   state.taxon.taxon &&
-	  //   _.find( state.taxon.taxon.ancestors, a => a.name === "Magnoliophyta" )
-	  // ) {
-	  //   let selectedValue;
-	  //   const fieldName = "Flowering Phenology";
-	  //   if ( state.photos.observationParams[`field:${fieldName}`] ) {
-	  //     selectedValue = state.photos.observationParams[`field:${fieldName}`];
-	  //   }
-	  //   terms.push( {
-	  //     name: fieldName,
-	  //     values: [
-	  //       "bare",
-	  //       "budding",
-	  //       "flower",
-	  //       "fruit"
-	  //     ],
-	  //     selectedValue
-	  //   } );
-	  // }
 	  props.terms = state.taxon.terms.map(function (term) {
 	    var newTerm = Object.assign({}, term);
 	    var paramName = "field:" + term.name;
@@ -83742,9 +83738,6 @@
 	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
 	    });
 	  }
-	  // if ( !state.photos.observationPhotos ) {
-	  //   props.hasMorePhotos = true;
-	  // }
 	  if (!state.taxon.taxon || !state.taxon.taxon.children || state.taxon.taxon.children.length === 0) {
 	    props.showTaxonGrouping = false;
 	  }

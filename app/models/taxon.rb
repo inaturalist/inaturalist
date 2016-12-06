@@ -26,7 +26,7 @@ class Taxon < ActiveRecord::Base
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
-  has_many :taxon_change_taxa
+  has_many :taxon_change_taxa, inverse_of: :taxon
   has_many :observations, :dependent => :nullify
   has_many :listed_taxa, :dependent => :destroy
   has_many :listed_taxa_with_establishment_means,
@@ -541,7 +541,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def taxon_changes_count
-    taxon_changes.count
+    TaxonChange.taxon( id ).count
   end
 
   def taxon_schemes_count

@@ -59,6 +59,16 @@ class TaxonChangesController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json do
+        taxon_options = { only: [:id, :name, :rank] }
+        render json: @taxon_changes.as_json(
+          methods: [:type],
+          include: [
+            { input_taxa: taxon_options },
+            { output_taxa: taxon_options }
+          ]
+        )
+      end
     end
   end
   

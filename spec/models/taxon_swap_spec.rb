@@ -56,12 +56,13 @@ describe TaxonSwap, "commit" do
   end
 
   it "should duplicate conservation statuses" do
-    cs = ConservationStatus.make!(:taxon => @input_taxon)
-    expect(@output_taxon.conservation_statuses).to be_blank
+    cs = ConservationStatus.make!( taxon: @input_taxon )
+    expect( @output_taxon.conservation_statuses ).to be_blank
     @swap.commit
     @output_taxon.reload
-    expect(@output_taxon.conservation_statuses.first.status).to eq(cs.status)
-    expect(@output_taxon.conservation_statuses.first.authority).to eq(cs.authority)
+    Delayed::Worker.new.work_off
+    expect( @output_taxon.conservation_statuses.first.status ).to eq( cs.status )
+    expect( @output_taxon.conservation_statuses.first.authority ).to eq( cs.authority )
   end
 
   it "should duplicate taxon names" do
