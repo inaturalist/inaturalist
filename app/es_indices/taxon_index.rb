@@ -55,9 +55,7 @@ class Taxon < ActiveRecord::Base
       iconic_taxon_id: iconic_taxon_id,
       parent_id: parent_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
-      is_active: is_active,
-      taxon_changes_count: taxon_changes_count,
-      taxon_schemes_count: taxon_schemes_count
+      is_active: is_active
     }
     if options[:for_identification]
       if Taxon::LIFE
@@ -80,6 +78,8 @@ class Taxon < ActiveRecord::Base
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
+      json[:taxon_changes_count] = taxon_changes_count
+      json[:taxon_schemes_count] = taxon_schemes_count
     end
     unless options[:for_observation] || options[:no_details]
       json.merge!({
