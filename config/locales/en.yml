@@ -590,8 +590,10 @@ en:
     input_taxon_was_dropped_html: "%{input_taxon} was dropped"
     input_taxon_will_be_dropped_html: "%{input_taxon} will be dropped"
     input_taxon_will_be_activated_soon_html: "%{input_taxon} will be activated soon"
-    input_taxon_was_replaced_by_output_taxon: "%{input_taxon} was replaced by %{output_taxon}"
-    input_taxon_will_be_replaced_by_output_taxon: "%{input_taxon} will be replaced by %{output_taxon}"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} was replaced by %{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} will be replaced by %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} where merged into %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} will be merged into %{output_taxon}"
   change_visibility_of: Change visibility of spatial coordinates?
   change_your_matching: Change your matching
   change_your_password: Change Your Password
@@ -3461,6 +3463,7 @@ en:
   view_real_time_stats_in_a_new_window: View real-time stats in a new window
   view_site_name_observations_html: "View <strong>%{site_name}</strong> observations"
   view_stats: View stats
+  view_taxon_change: View taxon change
   view_taxon_changes: View taxon changes
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
