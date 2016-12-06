@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
-import LeaderItem from "../components/leader_item";
+import { stringify } from "querystring";
 import _ from "lodash";
+import LeaderItem from "../components/leader_item";
+import { defaultObservationParams } from "../../shared/util";
+
 
 function mapStateToProps( state ) {
   const count = state.observations.total;
-  const taxon = state.taxon.taxon;
   const props = {
     iconClassName: "fa fa-binoculars",
     className: "NumObservations",
@@ -18,7 +20,7 @@ function mapStateToProps( state ) {
   }
   return Object.assign( props, {
     name: I18n.toNumber( count, { precision: 0 } ),
-    linkUrl: `/observations?taxon_id=${taxon.id}`,
+    linkUrl: `/observations?${stringify( defaultObservationParams( state ) )}`,
     noContent: false
   } );
 }

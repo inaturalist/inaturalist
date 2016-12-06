@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
+import { stringify } from "querystring";
 import LeaderItem from "../components/leader_item";
-import { urlForTaxon } from "../../shared/util";
+import { urlForTaxon, defaultObservationParams } from "../../shared/util";
 
 function mapStateToProps( state ) {
   const leader = Object.assign( {}, state.leaders.topSpecies );
@@ -22,13 +23,15 @@ function mapStateToProps( state ) {
   } else {
     props.iconClassName = `icon icon-iconic-${leader.taxon.iconicTaxonName( ).toLowerCase( )}`;
   }
+  const urlParams = defaultObservationParams( state );
+  urlParams.taxon_id = leader.taxon.id;
   return Object.assign( props, {
     name: leader.taxon.preferred_common_name || leader.taxon.name,
     imageUrl,
     linkText: I18n.t( "x_observations_", {
       count: leader.count === 1 ? leader.count : I18n.toNumber( leader.count, { precision: 0 } )
     } ),
-    linkUrl: `/observations?taxon_id=${leader.taxon.id}`,
+    linkUrl: `/observations?${stringify( urlParams )}`,
     url: urlForTaxon( leader.taxon )
   } );
 }
