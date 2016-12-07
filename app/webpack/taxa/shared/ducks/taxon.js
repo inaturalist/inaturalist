@@ -299,8 +299,7 @@ export function fetchRare( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
-    const params = { taxon_id: getState( ).taxon.taxon.id };
-    inatjs.identifications.similar_species( params ).then(
+    inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
         const commonlyMisidentified = response.results.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {

@@ -12,12 +12,12 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
     `<a href=${urlForTaxon( t )} class="sciname ${t.rank.toLowerCase( )}">${t.name}</a>`;
   const renderTaxonSwap = ( ) => {
     if ( committedOn ) {
-      return I18n.t( "change_types.input_taxon_was_replaced_by_output_taxon", {
+      return I18n.t( "change_types.input_taxon_was_replaced_by_output_taxon_html", {
         input_taxon: linkToTaxon( taxonChange.input_taxa[0] ),
         output_taxon: linkToTaxon( taxonChange.output_taxa[0] )
       } );
     }
-    return I18n.t( "change_types.input_taxon_will_be_replaced_by_output_taxon", {
+    return I18n.t( "change_types.input_taxon_will_be_replaced_by_output_taxon_html", {
       input_taxon: linkToTaxon( taxonChange.input_taxa[0] ),
       output_taxon: linkToTaxon( taxonChange.output_taxa[0] )
     } );

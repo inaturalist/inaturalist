@@ -82674,10 +82674,7 @@
 
 	function fetchSimilar() {
 	  return function (dispatch, getState) {
-	    var params = { taxon_id: getState().taxon.taxon.id };
-	    console.log("[DEBUG] fetchSimilar");
-	    _inaturalistjs2.default.identifications.similar_species(params).then(function (response) {
-	      console.log("[DEBUG] fetchSimilar response: ", response);
+	    _inaturalistjs2.default.identifications.similar_species((0, _util.defaultObservationParams)(getState())).then(function (response) {
 	      var commonlyMisidentified = response.results.filter(function (r) {
 	        return r.count > 1;
 	      });
