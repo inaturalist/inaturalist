@@ -879,6 +879,9 @@ $nav-btn-dim: 40px;
 .PlaceChooserPopoverTrigger.chosen .fa-map-marker {
   color: $inat-green;
 }
+.PlaceChooserPopover {
+  max-width: 200px;
+}
 .PlaceChooserPopover.popover .popover-content {
   padding: 10px;
 }
@@ -891,6 +894,12 @@ $nav-btn-dim: 40px;
 .PlaceChooserPopover.popover ul {
   margin-bottom: 0;
   cursor: pointer;
+}
+.PlaceChooserPopover.popover .media {
+  margin: 0;
+}
+.PlaceChooserPopover.popover .media-left {
+  padding: 0;
 }
 .PlaceChooserPopover li {
   padding: 5px 0;
@@ -906,6 +915,9 @@ $nav-btn-dim: 40px;
 }
 .PlaceChooserPopover li.current {
   background-color: #eee;
+}
+.PlaceChooserPopover li .place-type {
+  text-transform: capitalize;
 }
 .PlaceChooserPopover .pinned {
   border-bottom: 2px solid #ddd;

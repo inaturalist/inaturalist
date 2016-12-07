@@ -195,13 +195,13 @@ class PlaceChooserPopover extends React.Component {
               { _.map( this.state.places, ( p, i ) => {
                 let placeType;
                 if ( p && PLACE_TYPES[p.place_type] ) {
-                  placeType = I18n.t( `place_geo.geo_planet_place_types.${PLACE_TYPES[p.place_type]}` );
+                  placeType = I18n.t( `place_geo.geo_planet_place_types.${_.snakeCase( PLACE_TYPES[p.place_type] )}` );
                 }
                 return (
                   <li
                     key={`place-chooser-place-${p.id}`}
                     className={
-                      `${this.state.current === i ? "current" : ""}
+                      `media ${this.state.current === i ? "current" : ""}
                       ${this.props.defaultPlace && p.id === this.props.defaultPlace.id ? "pinned" : ""}`
                     }
                     onClick={( ) => this.chooseCurrent( )}
@@ -209,12 +209,16 @@ class PlaceChooserPopover extends React.Component {
                       this.setState( { current: i } );
                     }}
                   >
-                    <i className="fa fa-map-marker"></i>
-                    {
-                      p.display_name
-                    } {
-                      placeType ? <span className="text-muted">({placeType})</span> : null
-                    }
+                    <div className="media-left">
+                      <i className="media-object fa fa-map-marker"></i>
+                    </div>
+                    <div className="media-body">
+                      {
+                        p.display_name
+                      } {
+                        placeType ? <span className="text-muted place-type">({placeType})</span> : null
+                      }
+                    </div>
                   </li>
                 );
               } ) }

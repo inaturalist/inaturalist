@@ -83708,13 +83708,13 @@
 	              _lodash2.default.map(this.state.places, function (p, i) {
 	                var placeType = void 0;
 	                if (p && PLACE_TYPES[p.place_type]) {
-	                  placeType = I18n.t("place_geo.geo_planet_place_types." + PLACE_TYPES[p.place_type]);
+	                  placeType = I18n.t("place_geo.geo_planet_place_types." + _lodash2.default.snakeCase(PLACE_TYPES[p.place_type]));
 	                }
 	                return _react2.default.createElement(
 	                  "li",
 	                  {
 	                    key: "place-chooser-place-" + p.id,
-	                    className: (_this4.state.current === i ? "current" : "") + "\n                      " + (_this4.props.defaultPlace && p.id === _this4.props.defaultPlace.id ? "pinned" : ""),
+	                    className: "media " + (_this4.state.current === i ? "current" : "") + "\n                      " + (_this4.props.defaultPlace && p.id === _this4.props.defaultPlace.id ? "pinned" : ""),
 	                    onClick: function onClick() {
 	                      return _this4.chooseCurrent();
 	                    },
@@ -83722,16 +83722,24 @@
 	                      _this4.setState({ current: i });
 	                    }
 	                  },
-	                  _react2.default.createElement("i", { className: "fa fa-map-marker" }),
-	                  p.display_name,
-	                  " ",
-	                  placeType ? _react2.default.createElement(
-	                    "span",
-	                    { className: "text-muted" },
-	                    "(",
-	                    placeType,
-	                    ")"
-	                  ) : null
+	                  _react2.default.createElement(
+	                    "div",
+	                    { className: "media-left" },
+	                    _react2.default.createElement("i", { className: "fa fa-map-marker" })
+	                  ),
+	                  _react2.default.createElement(
+	                    "div",
+	                    { className: "media-body" },
+	                    p.display_name,
+	                    " ",
+	                    placeType ? _react2.default.createElement(
+	                      "span",
+	                      { className: "text-muted place-type" },
+	                      "(",
+	                      placeType,
+	                      ")"
+	                    ) : null
+	                  )
 	                );
 	              })
 	            )
