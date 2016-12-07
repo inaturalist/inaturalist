@@ -593,12 +593,12 @@ class ListedTaxon < ActiveRecord::Base
       options[:search_params][:where].merge!(options[:range_wheres])
     end
     if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:earliest_sort_field] || "observed_on") => "asc" },
+      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", ignore_unmapped: true } },
               { id: :asc } ] )).results.first
       earliest_id = r.id
     end
     if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:latest_sort_field] || "observed_on") => "desc" },
+      sort: [ { (options[:latest_sort_field] || "observed_on") => { order: "desc", ignore_unmapped: true } },
               { id: :desc } ] )).results.first
       latest_id = r.id
     end
