@@ -83725,7 +83725,7 @@
 	                  _react2.default.createElement(
 	                    "div",
 	                    { className: "media-left" },
-	                    _react2.default.createElement("i", { className: "fa fa-map-marker" })
+	                    _react2.default.createElement("i", { className: "media-object fa fa-map-marker" })
 	                  ),
 	                  _react2.default.createElement(
 	                    "div",

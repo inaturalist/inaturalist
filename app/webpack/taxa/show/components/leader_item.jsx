@@ -14,7 +14,10 @@ const LeaderItem = ( {
   extra,
   linkText,
   linkUrl,
-  url
+  url,
+  extraLinkUrl,
+  extraLinkText,
+  extraLinkTextShort
 } ) => {
   const extraContent = (
     <div className="extra">
@@ -24,6 +27,16 @@ const LeaderItem = ( {
       >
         { linkText }
       </a> {
+        extraLinkUrl ?
+          (
+            <a href={extraLinkUrl} className="btn btn-default btn-inat btn-xs">
+              <span className="hidden-lg">{ extraLinkTextShort || extraLinkText }</span>
+              <span className="hidden-xs hidden-sm hidden-md">{ extraLinkText }</span>
+            </a>
+          )
+          :
+          null
+      } {
         valueIconClassName ? <i className={valueIconClassName} /> : extra
       } {
         value ? <span className="value">{ I18n.toNumber( value, { precision: 0 } ) }</span> : null
@@ -75,7 +88,10 @@ LeaderItem.propTypes = {
   linkText: PropTypes.string,
   linkUrl: PropTypes.string,
   extra: PropTypes.string,
-  url: PropTypes.string
+  url: PropTypes.string,
+  extraLinkUrl: PropTypes.string,
+  extraLinkText: PropTypes.string,
+  extraLinkTextShort: PropTypes.string
 };
 
 LeaderItem.defaultProps = {

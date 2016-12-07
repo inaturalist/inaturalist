@@ -853,11 +853,23 @@ $nav-btn-dim: 40px;
   width: 18.9%;
 }
 
+.btn.btn-inat {
+  border-radius: 100px;
+  background-color: #999;
+  border-color: #999;
+  color: white;
+  text-transform: capitalize;
+}
+.btn.btn-inat:hover,
+.btn.btn-inat:focus {
+  background-color: lighten(#999, 1%);
+  border-color: lighten(#999, 1%);
+  color: white;
+}
 .btn-primary.btn-inat {
   background-color: $inat-green;
   color: white;
   border-color: $inat-green;
-  border-radius: 100px;
 }
 .btn-primary.btn-inat:hover,
 .btn-primary.btn-inat:focus {
@@ -912,6 +924,7 @@ $nav-btn-dim: 40px;
   color: #999;
   width: 20px;
   text-align: center;
+  margin-top: 2px;
 }
 .PlaceChooserPopover li.current {
   background-color: #eee;
