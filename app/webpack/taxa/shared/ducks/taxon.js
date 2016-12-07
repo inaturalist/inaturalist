@@ -81,7 +81,7 @@ export default function reducer( state = { counts: {} }, action ) {
       newState.rare = action.taxa;
       break;
     case SET_SIMILAR:
-      newState.similar = action.taxa;
+      newState.similar = action.results;
       break;
     case SHOW_PHOTO_CHOOSER:
       newState.photoChooserVisible = true;
@@ -157,10 +157,10 @@ export function setRare( taxa ) {
   };
 }
 
-export function setSimilar( taxa ) {
+export function setSimilar( results ) {
   return {
     type: SET_SIMILAR,
-    taxa
+    results
   };
 }
 
@@ -301,7 +301,14 @@ export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
     const params = { taxon_id: getState( ).taxon.taxon.id };
     inatjs.identifications.similar_species( params ).then(
-      response => dispatch( setSimilar( response.results.map( r => r.taxon ) ) ),
+      response => {
+        const commonlyMisidentified = response.results.filter( r => ( r.count > 1 ) );
+        if ( commonlyMisidentified.length === 0 ) {
+          dispatch( setSimilar( response.results ) );
+        } else {
+          dispatch( setSimilar( commonlyMisidentified ) );
+        }
+      },
       error => console.log( "[DEBUG] error: ", error )
     );
   };

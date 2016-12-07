@@ -810,6 +810,7 @@ $nav-btn-dim: 40px;
   border: 1px solid #ddd;
   display: inline-block;
   padding: 0;
+  position: relative;
 }
 .TaxonThumbnail .photo {
   height: 130px;
@@ -829,6 +830,15 @@ $nav-btn-dim: 40px;
   white-space: normal;
 }
 
+.TaxonThumbnail .badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.TaxonThumbnail .badge.with-tip {
+  cursor: pointer;
+}
+
 
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
@@ -840,7 +850,7 @@ $nav-btn-dim: 40px;
 }
 .SimilarTab .TaxonThumbnail {
   margin: 5px;
-  width: 13.2%;
+  width: 18.9%;
 }
 
 .btn-primary.btn-inat {

@@ -82460,7 +82460,7 @@
 	      newState.rare = action.taxa;
 	      break;
 	    case SET_SIMILAR:
-	      newState.similar = action.taxa;
+	      newState.similar = action.results;
 	      break;
 	    case SHOW_PHOTO_CHOOSER:
 	      newState.photoChooserVisible = true;
@@ -82536,10 +82536,10 @@
 	  };
 	}
 
-	function setSimilar(taxa) {
+	function setSimilar(results) {
 	  return {
 	    type: SET_SIMILAR,
-	    taxa: taxa
+	    results: results
 	  };
 	}
 
@@ -82675,10 +82675,17 @@
 	function fetchSimilar() {
 	  return function (dispatch, getState) {
 	    var params = { taxon_id: getState().taxon.taxon.id };
+	    console.log("[DEBUG] fetchSimilar");
 	    _inaturalistjs2.default.identifications.similar_species(params).then(function (response) {
-	      return dispatch(setSimilar(response.results.map(function (r) {
-	        return r.taxon;
-	      })));
+	      console.log("[DEBUG] fetchSimilar response: ", response);
+	      var commonlyMisidentified = response.results.filter(function (r) {
+	        return r.count > 1;
+	      });
+	      if (commonlyMisidentified.length === 0) {
+	        dispatch(setSimilar(response.results));
+	      } else {
+	        dispatch(setSimilar(commonlyMisidentified));
+	      }
 	    }, function (error) {
 	      return console.log("[DEBUG] error: ", error);
 	    });

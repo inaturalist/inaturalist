@@ -3,7 +3,7 @@ import SimilarTab from "../components/similar_tab";
 
 function mapStateToProps( state ) {
   return {
-    taxa: state.taxon.similar
+    results: state.taxon.similar
   };
 }
 

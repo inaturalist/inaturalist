@@ -44,6 +44,9 @@ en:
   x_matching_taxa_html:
     one: '<span class="count">1</span> matching taxon'
     other: '<span class="count">%{count}</span> matching taxa'
+  x_misidentifications_of_this_species:
+      one: "1 misidentification of this species"
+      other: "%{count} misidentifications of this species"
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -2200,7 +2203,7 @@ en:
     other: other animals
   other_annimals: Other Animals
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
-  other_taxa_commonly_misidentified_as_this_species: Other taxa commonly misidentified as this species
+  other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
