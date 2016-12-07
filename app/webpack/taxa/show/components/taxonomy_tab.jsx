@@ -25,7 +25,7 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
   }
   const renderTaxonomy = taxa => (
     <ul className="plain taxonomy">
-      { taxa.map( t => {
+      { _.sortBy( taxa, t => t.name ).map( t => {
         let className = "";
         const isRoot = t.id === tree[0].id;
         const isTaxon = t.id === taxon.id;
