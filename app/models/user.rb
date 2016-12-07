@@ -133,6 +133,7 @@ class User < ActiveRecord::Base
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: "https",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       path: "/attachments/users/icons/:id/:style.:icon_type_extension",
