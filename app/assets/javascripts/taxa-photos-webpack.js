@@ -83484,6 +83484,67 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var PLACE_TYPES = {
+	  0: "Undefined",
+	  1: "Building",
+	  2: "Street Segment",
+	  3: "Nearby Building",
+	  5: "Intersection",
+	  6: "Street",
+	  7: "Town",
+	  8: "State",
+	  9: "County",
+	  10: "Local Administrative Area",
+	  11: "Postal Code",
+	  12: "Country",
+	  13: "Island",
+	  14: "Airport",
+	  15: "Drainage",
+	  16: "Land Feature",
+	  17: "Miscellaneous",
+	  18: "Nationality",
+	  19: "Supername",
+	  20: "Point of Interest",
+	  21: "Region",
+	  22: "Suburb",
+	  23: "Sports Team",
+	  24: "Colloquial",
+	  25: "Zone",
+	  26: "Historical State",
+	  27: "Historical County",
+	  29: "Continent",
+	  31: "Time Zone",
+	  32: "Nearby Intersection",
+	  33: "Estate",
+	  35: "Historical Town",
+	  36: "Aggregate",
+	  100: "Open Space",
+	  101: "Territory",
+	  102: "District",
+	  103: "Province",
+	  1000: "Municipality",
+	  1001: "Parish",
+	  1002: "Department Segment",
+	  1003: "City Building",
+	  1004: "Commune",
+	  1005: "Governorate",
+	  1006: "Prefecture",
+	  1007: "Canton",
+	  1008: "Republic",
+	  1009: "Division",
+	  1010: "Subdivision",
+	  1011: "Village block",
+	  1012: "Sum",
+	  1013: "Unknown",
+	  1014: "Shire",
+	  1015: "Prefecture City",
+	  1016: "Regency",
+	  1017: "Constituency",
+	  1018: "Local Authority",
+	  1019: "Poblacion",
+	  1020: "Delegation"
+	};
+
 	var PlaceChooserPopover = function (_React$Component) {
 	  _inherits(PlaceChooserPopover, _React$Component);
 
@@ -83645,11 +83706,15 @@
 	                _lodash2.default.capitalize(I18n.t("clear"))
 	              ),
 	              _lodash2.default.map(this.state.places, function (p, i) {
+	                var placeType = void 0;
+	                if (p && PLACE_TYPES[p.place_type]) {
+	                  placeType = I18n.t("place_geo.geo_planet_place_types." + PLACE_TYPES[p.place_type]);
+	                }
 	                return _react2.default.createElement(
 	                  "li",
 	                  {
 	                    key: "place-chooser-place-" + p.id,
-	                    className: (_this4.state.current === i ? "current" : "") + "\n                    " + (_this4.props.defaultPlace && p.id === _this4.props.defaultPlace.id ? "pinned" : ""),
+	                    className: (_this4.state.current === i ? "current" : "") + "\n                      " + (_this4.props.defaultPlace && p.id === _this4.props.defaultPlace.id ? "pinned" : ""),
 	                    onClick: function onClick() {
 	                      return _this4.chooseCurrent();
 	                    },
@@ -83658,7 +83723,15 @@
 	                    }
 	                  },
 	                  _react2.default.createElement("i", { className: "fa fa-map-marker" }),
-	                  p.display_name
+	                  p.display_name,
+	                  " ",
+	                  placeType ? _react2.default.createElement(
+	                    "span",
+	                    { className: "text-muted" },
+	                    "(",
+	                    placeType,
+	                    ")"
+	                  ) : null
 	                );
 	              })
 	            )
