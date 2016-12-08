@@ -57,6 +57,7 @@ end
 class String
   def with_fixed_https
     self.gsub(/http:\/\/(www|static)\.inaturalist\.org/, "https://\\1.inaturalist.org").
-      gsub(/http:\/\/(farm[1-9])\.static/, "https://\\1.static")
+      gsub(/http:\/\/(farm[1-9])\.static/, "https://\\1.static").
+      gsub(/http:\/\/upload\.wikimedia/, "https://upload.wikimedia")
   end
 end
