@@ -109,6 +109,7 @@ describe ListedTaxon do
     
     it "should log atlas_alterations if listed_taxa is_atlased? on create" do
       taxon = Taxon.make!
+      AncestryDenormalizer.denormalize
       atlas_place = Place.make!(admin_level: 0)
       atlas = Atlas.make!(user: @user, taxon: taxon)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
@@ -126,6 +127,7 @@ describe ListedTaxon do
   describe "destroy" do
     it "should log atlas_alterations if listed_taxa is_atlased? on destroy" do
       taxon = Taxon.make!
+      AncestryDenormalizer.denormalize
       atlas_place = Place.make!(admin_level: 0)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       @user = User.make!

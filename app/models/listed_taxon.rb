@@ -491,38 +491,36 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def is_atlased?
-    if list.is_a?(CheckList) && list.is_default?
-      if atlas = Atlas.where(taxon_id: taxon_id).first
-        if atlas.places.map(&:id).include? place_id
-          return true
-        end
-      end
-    end
-    return false
+    return false unless list.is_a?(CheckList) && list.is_default?
+    return false unless [0,1,2].include? place.admin_level
+    place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
+    Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).map{|atlas| !(atlas.places.map(&:id) & place_ancestor_place_ids).empty? }.any?
   end
   
   def log_create_in_atlas
     if is_atlased?
-      atlas = Atlas.where(taxon_id: taxon_id).first
-      AtlasAlteration.create(
-        atlas_id: atlas.id,
-        user_id: user_id,
-        place_id: place_id,
-        action: "listed"
-      )
+      Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).each do |atlas|
+        AtlasAlteration.create(
+          atlas_id: atlas.id,
+          user_id: user_id,
+          place_id: place_id,
+          action: "listed"
+        )
+      end
     end
   end
   
   def log_destroy_in_atlas
     if is_atlased?
-      atlas = Atlas.where(taxon_id: taxon_id).first
       updater_id = updater.nil? ? nil : updater.id
-      AtlasAlteration.create(
-        atlas_id: atlas.id,
-        user_id: updater_id,
-        place_id: place_id,
-        action: "unlisted"
-      )
+      Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).each do |atlas|
+        AtlasAlteration.create(
+          atlas_id: atlas.id,
+          user_id: updater_id,
+          place_id: place_id,
+          action: "unlisted"
+        )
+      end
     end
   end
   

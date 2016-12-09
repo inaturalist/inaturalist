@@ -68,22 +68,23 @@ class AtlasesController < ApplicationController
   def alter_atlas_presence
     taxon_id = params[:taxon_id]
     @place_id = params[:place_id]
-    place_name = Place.find(@place_id).name
-    if listed_taxon = ListedTaxon.where(taxon_id: taxon_id, place_id: @place_id).first
-      listed_taxon.updater = current_user
-      listed_taxon.destroy
+    place = Place.find(@place_id)
+    taxon = Taxon.find(taxon_id)
+    lts = taxon.atlas.get_atlas_presence_place_listed_taxa(@place_id)
+    if lts.count > 0
+      lts.each do |lt|
+        lt.updater = current_user
+        lt.destroy
+      end
       @presence = false
     else
-      list_id = Place.find(@place_id).check_list_id
+      list_id = place.check_list_id
       ListedTaxon.create(taxon_id: taxon_id, place_id: @place_id, list_id: list_id, user_id: current_user.id)
       @presence = true
     end
     
     respond_to do |format|
-      atlas = Atlas.where(taxon_id: taxon_id).first
-      atlas_alteration = AtlasAlteration.where(place_id: @place_id, atlas_id: atlas.id, action: @presence ? "listed" : "unlisted").last
-      user_login = atlas_alteration.user_id.nil? ? nil : atlas_alteration.user.login
-      format.json { render json: {user_login: user_login, place_name: place_name, place_id: @place_id, presence: @presence, atlas_alteration: atlas_alteration}, status: :ok}
+      format.json { render json: {place_name: place.name, place_id: @place_id, presence: @presence}, status: :ok}
     end
   end
   

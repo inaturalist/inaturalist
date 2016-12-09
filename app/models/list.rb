@@ -8,6 +8,7 @@ class List < ActiveRecord::Base
                     comment_type: "item-description",
                     automated: false
   belongs_to :user
+  has_one :check_list_place, class_name: "Place", foreign_key: :check_list_id
   has_many :rules, :class_name => 'ListRule', :dependent => :destroy
   has_many :listed_taxa, :dependent => :destroy
   has_many :taxa, :through => :listed_taxa

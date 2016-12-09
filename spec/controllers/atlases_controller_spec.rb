@@ -22,6 +22,7 @@ describe AtlasesController do
     
     it "should destroy a listing if one does exist" do
       taxon = Taxon.make!
+      AncestryDenormalizer.denormalize
       place = Place.make!(admin_level: 0)
       check_list = List.find(place.check_list_id)
       check_listed_taxon = check_list.add_taxon(taxon)
