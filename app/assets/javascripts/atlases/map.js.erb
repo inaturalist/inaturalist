@@ -1,0 +1,292 @@
+
+// globals
+
+var atlasState = {
+  map: null,
+  selectedPlaces: [ ],
+  activePlaceLayer: null,
+  placeLayers: { }
+};
+
+var atlasJS = { };
+
+atlasJS.presenceStyle = {
+  strokeColor: "#73ac13",
+  strokeOpacity: 0.75,
+  strokeWeight: 2,
+  fillColor: "#73ac13",
+  fillOpacity: 0.3
+};
+
+atlasJS.failedStyle = Object.assign( { }, atlasJS.presenceStyle, {
+  strokeColor: "red",
+  fillColor: "red",
+});
+
+atlasJS.pendingStyle = Object.assign( { }, atlasJS.presenceStyle, {
+  strokeColor: "#202020",
+  fillColor: "#202020",
+});
+
+atlasJS.explodedStyle = {
+  strokeColor: "orange",
+  strokeOpacity: 0.75,
+  strokeWeight: 2,
+  fillOpacity: 0
+};
+
+atlasJS.clickCallback = function( e ) {
+  atlasJS.bestPlaceForLatLng( e.latLng.lat( ), e.latLng.lng( ) );
+};
+
+atlasJS.removeActivePlaceLayer = function( ) {
+  if( atlasState.activePlaceLayer ) {
+    var existing = atlasState.placeLayers[ atlasState.activePlaceLayer.place.id ];
+    console.log("removeActivePlaceLayer");
+    console.log(atlasState.activePlaceLayer);
+    console.log(existing);
+    atlasState.activePlaceLayer.layer.setMap( null );
+    atlasState.activePlaceLayer = null;
+    // layers without types are just selections, not in the atlas
+    if( existing ) {
+      if( existing.type && existing.type != "pending" ) {
+        console.log("doing this");
+        atlasJS.addPlaceToMap( existing.place, existing.type );
+      } else {
+        existing.layer.setMap( null );
+        delete atlasState.placeLayers[ existing.place.id ]
+      }
+    }
+  }
+};
+
+atlasJS.addPlaceToMap = function( p, type, options ) {
+  options = options || { };
+  if( !p || !p.geometry_geojson ) { return; }
+  // remove any versions of this place already stored
+  var existingPlaceLayer = atlasState.placeLayers[ p.id ];
+  var isSelection = options.selected;
+  if( existingPlaceLayer && isSelection && !type ) {
+    type = existingPlaceLayer.type;
+  }
+  if( atlasState.placeLayers[ p.id ] ) {
+    atlasState.placeLayers[ p.id ].layer.setMap( null );
+    delete atlasState.placeLayers[ p.id ];
+  }
+
+  var style;
+  if( type == "present" ) {
+    style = atlasJS.presenceStyle;
+  } else if( type == "exploded" ) {
+    style = atlasJS.explodedStyle;
+  } else if( type == "failed" ) {
+    style = atlasJS.failedStyle;
+  } else {
+    style = atlasJS.pendingStyle;
+  }
+
+  if( isSelection ) {
+    style = Object.assign( { }, style, {
+      strokeWeight: 5
+    });
+  }
+
+
+  var layer = new google.maps.Data({ style: style });
+  layer.addGeoJson({
+    type: "Feature",
+    geometry: p.geometry_geojson
+  });
+  // layers need the same click actions as map, because layers are on top
+  layer.addListener( "click", atlasJS.clickCallback );
+  layer.setMap( atlasState.map );
+  // store the layer in atlasState
+  atlasState.placeLayers[ p.id ] = {
+    place: p,
+    layer: layer,
+    type: type
+  };
+  return atlasState.placeLayers[ p.id ];
+};
+
+atlasJS.updateMetadataPanel = function( ) {
+  panel = $( "#right" );
+  panel.html( "" );
+  var parentWasNotExploded;
+  _.each( atlasState.selectedPlaces, function( p ) {
+    atlasJS.appendPlaceMetadata( panel, p );
+  });
+};
+
+atlasJS.appendPlaceMetadata = function( panel, place ) {
+  var existing = atlasState.placeLayers[ place.id ];
+  panel.append( $( "<h2>" ).text( place.name ) );
+  if( !existing || ( existing.type != "present" && existing.type != "exploded" ) ) {
+    var addPlaceLink = $( "<a href='#'>" ).text( "Add this place" );
+    addPlaceLink.on( "click", function( e ) {
+      e.preventDefault( );
+      atlasJS.alterAtlas( place );
+    });
+    panel.append( addPlaceLink );
+    panel.append( "<br>" );
+  }
+  if( existing && existing.type == "present" ) {
+    var addPlaceLink = $( "<a href='#'>" ).text( "Remove this place" );
+    addPlaceLink.on( "click", function( e ) {
+      e.preventDefault( );
+      atlasJS.alterAtlas( place );
+    });
+    panel.append( addPlaceLink );
+    panel.append( "<br>" );
+  }
+  if( !existing || ( existing.type != "exploded" ) ) {
+    var explodeLink = $( "<a href='#'>" ).text( "Explode this place" );
+    explodeLink.on( "click", function( e ) {
+      e.preventDefault( );
+      atlasJS.explodePlace( place );
+    });
+    panel.append( explodeLink );
+    panel.append( "<br>" );
+  }
+  if( existing && existing.type == "exploded" ) {
+    var unexplodeLink = $( "<a href='#'>" ).text( "Unexplode this place" );
+    unexplodeLink.on( "click", function( e ) {
+      e.preventDefault( );
+      atlasJS.unexplodePlace( place );
+    });
+    panel.append( unexplodeLink );
+    panel.append( "<br>" );
+  }
+  panel.append( "<br><br>" );
+}
+
+atlasJS.bestPlaceForLatLng = function( lat, lng, callback ) {
+  console.log( "Searching for " + lat + ", " + lng );
+  atlasJS.removeActivePlaceLayer( );
+  atlasState.selectedPlaces = [ ];
+  $.ajax({
+    dataType: "json",
+    url: "//<%= CONFIG.node_api_host %>/places?lat=" + lat + "&lng=" + lng,
+    success: function( r ) {
+      var selectedPlaces = [ ];
+      var parentWasNotExploded;
+      _.each( r.results, function( p ) {
+        if( !p || !p.geometry_geojson ) { return; }
+        if( parentWasNotExploded ) { return; }
+        selectedPlaces.push( p );
+        var existing = atlasState.placeLayers[ p.id ];
+        parentWasNotExploded = !( existing && existing.type == "exploded" );
+      });
+      if( selectedPlaces.length == 0 ) { return; }
+      atlasState.activePlaceLayer = atlasJS.addPlaceToMap(
+        _.last( selectedPlaces ), null, { selected: true } );
+      atlasState.selectedPlaces = selectedPlaces;
+      atlasJS.updateMetadataPanel( );
+    }
+  });
+};
+
+atlasJS.showInitialPlaces = function( ) {
+  var initialPlaceIDs = $( "#map" ).data( "place-ids" );
+  if( initialPlaceIDs.length > 0 ) {
+    $.ajax({
+      dataType: "json",
+      url: "//<%= CONFIG.node_api_host %>/places/" + initialPlaceIDs.join(",") + "?per_page=100",
+      success: function( r ) {
+        _.each( r.results, function( p ) {
+          atlasJS.addPlaceToMap( p, "present" );
+        });
+      }
+    });
+  }
+
+  var explodedPlaceIDs = _.map( atlasState.explodedPlaces, function( explodedAtlasPlaceID, placeID ) {
+    return placeID;
+  });
+
+  if( explodedPlaceIDs.length == 0 ) { return; }
+  $.ajax({
+    dataType: "json",
+    url: "//<%= CONFIG.node_api_host %>/places/" + explodedPlaceIDs.join(",") + "?per_page=100",
+    success: function( r ) {
+      _.each( r.results, function( p ) {
+        atlasJS.addPlaceToMap( p, "exploded" );
+      });
+    }
+  });
+};
+
+atlasJS.alterAtlas = function( place ) {
+  if( !place ) { return; }
+  var taxonID = $( "#map" ).data( "taxon-id" );
+  $.ajax({
+    type: "post",
+    dataType: "json",
+    url: "/atlases/" + $( "#map" ).data( "atlas-id" ) + "/alter_atlas_presence",
+    data: { taxon_id: $( "#map" ).data( "taxon-id" ), place_id: place.id },
+    success: function( s ) {
+      if( s.presence ) {
+        atlasJS.addPlaceToMap( place,
+          s.presence == "not allowed" ? "failed" : "present",
+          { selected: true } );
+        atlasJS.updateMetadataPanel( );
+      } else {
+        // atlasJS.removeActivePlaceLayer( );
+        atlasJS.addPlaceToMap( place, "pending", { selected: true } );
+        atlasJS.updateMetadataPanel( );
+      }
+    },
+    error: function( e ) {
+      atlasJS.addPlaceToMap( place, "failed", { selected: true } );
+      atlasJS.updateMetadataPanel( );
+    }
+  });
+};
+
+atlasJS.explodePlace = function( place ) {
+  if( !place ) { return; }
+  var taxonID = $( "#map" ).data( "taxon-id" );
+  $.ajax({
+    type: "post",
+    dataType: "json",
+    url: "/exploded_atlas_places",
+    data: { atlas_id: $( "#map" ).data( "atlas-id" ), place_id: place.id },
+    success: function( s ) {
+      atlasJS.addPlaceToMap( place, "exploded", { selected: true } );
+      atlasJS.updateMetadataPanel( );
+    },
+    error: function( e ) {
+      console.log("explode failed");
+    }
+  });
+};
+
+atlasJS.unexplodePlace = function( place ) {
+  if( !place || !atlasState.explodedPlaces[ place.id ]) { return; }
+  var taxonID = $( "#map" ).data( "taxon-id" );
+  $.ajax({
+    type: "delete",
+    dataType: "json",
+    url: "/exploded_atlas_places/" + atlasState.explodedPlaces[place.id],
+    success: function( s ) {
+      atlasJS.removeActivePlaceLayer( );
+      atlasJS.addPlaceToMap( place, "pending", { selected: true } );
+      atlasJS.updateMetadataPanel( );
+    },
+    error: function( e ) {
+      console.log("unexplode failed");
+    }
+  });
+};
+
+$( function( ) {
+  atlasState.explodedPlaces = $( "#map" ).data( "exploded-places" );
+  atlasState.map = new google.maps.Map( document.getElementById( "map" ), {
+    zoom: 2,
+    center: { lat: 28, lng: -34 }
+  });
+  atlasState.map.addListener( "click", atlasJS.clickCallback );
+
+  atlasJS.showInitialPlaces( );
+
+});

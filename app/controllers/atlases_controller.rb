@@ -1,29 +1,28 @@
 class AtlasesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_required
+  before_filter :find_atlas, except: [ :new, :create ]
   layout "bootstrap"
-  
+
   def new
     @atlas = Atlas.new(:taxon_id => params[:taxon_id].to_i)
   end
-  
+
   def edit
-    @atlas = Atlas.find(params[:id])
     @exploded_atlas_places = @atlas.exploded_atlas_places.includes(:place)
     @atlas_places = @atlas.places
   end
-  
+
   def show
-    @atlas = Atlas.find(params[:id])
     @atlas_places = @atlas.places
-    @atlas_presence_places = @atlas.presence_places    
+    @atlas_presence_places = @atlas.presence_places
     respond_to do |format|
       format.html do
         @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse
         @listed_taxon_alterations = @atlas.relevant_listed_taxon_alterations.includes(:place, :user).order("listed_taxon_alterations.created_at DESC").limit(30).reverse
         @atlas_place_json = {
-          type: "FeatureCollection", 
-          features: @atlas_places.select{|p| !(p.name == "Antarctica" && p.admin_level = 0) }.map{|p| 
+          type: "FeatureCollection",
+          features: @atlas_places.select{|p| !(p.name == "Antarctica" && p.admin_level = 0) }.map{|p|
             {presence: (@atlas_presence_places.map(&:id).include? p.id) ? true : false, name: p.name, id: p.id, type: "Feature", geometry: RGeo::GeoJSON.encode(p.place_geometry.geom)}
           }
         }
@@ -31,7 +30,7 @@ class AtlasesController < ApplicationController
       format.json { render :json => @atlas_presence_places.to_json }
     end
   end
-  
+
   def create
     @atlas = Atlas.new(params[:atlas])
     respond_to do |format|
@@ -42,9 +41,8 @@ class AtlasesController < ApplicationController
       end
     end
   end
-  
+
   def update
-    @atlas = Atlas.find(params[:id])
     respond_to do |format|
       if @atlas.update_attributes(params[:atlas])
         @atlas.taxon
@@ -54,18 +52,20 @@ class AtlasesController < ApplicationController
       end
     end
   end
-  
+
   def destroy
-    @atlas = Atlas.find(params[:id])
     @atlas.destroy
-    
     respond_to do |format|
       format.html { redirect_to(@atlas.taxon) }
     end
   end
-  
+
+  def map
+    render layout: "application"
+  end
+
   ## Custom actions ############################################################
-  
+
   def alter_atlas_presence
     taxon_id = params[:taxon_id]
     @place_id = params[:place_id]
@@ -80,21 +80,35 @@ class AtlasesController < ApplicationController
       @presence = false
     else
       list_id = place.check_list_id
-      ListedTaxon.create(taxon_id: taxon_id, place_id: @place_id, list_id: list_id, user_id: current_user.id)
-      @presence = true
+      lt = ListedTaxon.create(taxon_id: taxon_id, place_id: @place_id, list_id: list_id, user_id: current_user.id)
+      if lt.errors.any?
+        @presence = "not allowed"
+      else
+        @presence = true
+      end
     end
-    
+
     respond_to do |format|
       format.json { render json: {place_name: place.name, place_id: @place_id, presence: @presence}, status: :ok}
     end
   end
-  
+
   def destroy_all_alterations
     atlas_id = params[:atlas_id]
     AtlasAlteration.where(atlas_id: atlas_id).destroy_all
-    respond_to do |format| 
+    respond_to do |format|
       format.json { render json: {}, status: :ok}
     end
   end
-  
+
+  private
+
+  def find_atlas
+    begin
+      @atlas = Atlas.find(params[:id])
+    rescue
+      render_404
+    end
+  end
+
 end

@@ -490,9 +490,13 @@ Rails.application.routes.draw do
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
   resources :taxon_ranges, :except => [:show]
   
-  resources :atlases
-  post ':atlases/alter_atlas_presence' => 'atlases#alter_atlas_presence', :as => :alter_atlas_presence
-  post ':atlases/destroy_all_alterations' => 'atlases#destroy_all_alterations', :as => :destroy_all_alterations
+  resources :atlases do
+    member do
+      post :alter_atlas_presence
+      post :destroy_all_alterations
+      get :map
+    end
+  end
   resources :exploded_atlas_places
   
   get '/calendar/:login' => 'calendars#index', :as => :calendar
