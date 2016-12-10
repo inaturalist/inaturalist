@@ -4,6 +4,7 @@ import { fetchMonthFrequency, fetchMonthOfYearFrequency } from "../ducks/observa
 import { fetchLeaders } from "../ducks/leaders";
 import { fetchTaxon, fetchSimilar } from "../../shared/ducks/taxon";
 import PlaceChooserPopover from "../../shared/components/place_chooser_popover";
+import { updateSession } from "../../../shared/util";
 
 function mapStateToProps( state ) {
   return {
@@ -15,6 +16,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   const setPlace = ( place ) => {
     dispatch( setConfig( { chosenPlace: place } ) );
+    updateSession( { prefers_taxon_page_place_id: place ? place.id : null } );
     dispatch( fetchTaxon( ) );
     dispatch( fetchMonthFrequency( ) );
     dispatch( fetchMonthOfYearFrequency( ) );

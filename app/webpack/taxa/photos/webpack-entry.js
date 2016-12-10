@@ -50,6 +50,11 @@ window.onpopstate = e => {
   // user returned from BACK
   store.dispatch( hydrateFromUrlParams( e.state ) );
 };
+if ( PLACE !== undefined && PLACE !== null ) {
+  store.dispatch( setConfig( {
+    chosenPlace: PLACE
+  } ) );
+}
 store.dispatch( reloadPhotos( ) );
 
 render(

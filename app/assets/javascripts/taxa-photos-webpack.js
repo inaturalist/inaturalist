@@ -76,11 +76,11 @@
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _photo_modal = __webpack_require__(1424);
+	var _photo_modal = __webpack_require__(1425);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
-	var _app = __webpack_require__(1425);
+	var _app = __webpack_require__(1426);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -118,6 +118,11 @@
 	  // user returned from BACK
 	  store.dispatch((0, _photos.hydrateFromUrlParams)(e.state));
 	};
+	if (PLACE !== undefined && PLACE !== null) {
+	  store.dispatch((0, _config.setConfig)({
+	    chosenPlace: PLACE
+	  }));
+	}
 	store.dispatch((0, _photos.reloadPhotos)());
 
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -82187,11 +82192,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
-
-	var _isomorphicFetch = __webpack_require__(994);
-
-	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
 
 	var _lodash = __webpack_require__(590);
 
@@ -82217,11 +82218,6 @@
 	};
 	var urlForUser = function urlForUser(u) {
 	  return "/people/" + u.login;
-	};
-
-	// Light wrapper around isomorphic fetch to ensure credentials are always passed through
-	var fetch = function fetch(url, options) {
-	  return (0, _isomorphicFetch2.default)(url, Object.assign({}, options, { credentials: "same-origin" }));
 	};
 
 	var defaultObservationParams = function defaultObservationParams(state) {
@@ -82297,7 +82293,6 @@
 	exports.urlForTaxon = urlForTaxon;
 	exports.urlForTaxonPhotos = urlForTaxonPhotos;
 	exports.urlForUser = urlForUser;
-	exports.fetch = fetch;
 	exports.defaultObservationParams = defaultObservationParams;
 	exports.localizedPhotoAttribution = localizedPhotoAttribution;
 	exports.commasAnd = commasAnd;
@@ -82387,7 +82382,9 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _util = __webpack_require__(1418);
+	var _util = __webpack_require__(1424);
+
+	var _util2 = __webpack_require__(1418);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -82644,7 +82641,7 @@
 
 	function fetchTrending() {
 	  return function (dispatch, getState) {
-	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
+	    var params = Object.assign({}, (0, _util2.defaultObservationParams)(getState()), {
 	      d1: (0, _moment2.default)().subtract(1, "month").format("YYYY-MM-DD")
 	    });
 	    _inaturalistjs2.default.observations.speciesCounts(params).then(function (response) {
@@ -82659,7 +82656,7 @@
 
 	function fetchRare() {
 	  return function (dispatch, getState) {
-	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
+	    var params = Object.assign({}, (0, _util2.defaultObservationParams)(getState()), {
 	      order: "asc"
 	    });
 	    _inaturalistjs2.default.observations.speciesCounts(params).then(function (response) {
@@ -82674,7 +82671,7 @@
 
 	function fetchSimilar() {
 	  return function (dispatch, getState) {
-	    _inaturalistjs2.default.identifications.similar_species((0, _util.defaultObservationParams)(getState())).then(function (response) {
+	    _inaturalistjs2.default.identifications.similar_species((0, _util2.defaultObservationParams)(getState())).then(function (response) {
 	      var commonlyMisidentified = response.results.filter(function (r) {
 	        return r.count > 1;
 	      });
@@ -82907,6 +82904,43 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.updateSession = exports.fetch = undefined;
+
+	var _isomorphicFetch = __webpack_require__(994);
+
+	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// Light wrapper around isomorphic fetch to ensure credentials are always passed through
+	var fetch = function fetch(url, options) {
+	  return (0, _isomorphicFetch2.default)(url, Object.assign({}, options, { credentials: "same-origin" }));
+	};
+
+	function updateSession(params) {
+	  var data = new FormData();
+	  data.append("authenticity_token", $("meta[name=csrf-token]").attr("content"));
+	  for (var key in params) {
+	    data.append(key, params[key]);
+	  }
+	  fetch("/users/update_session", {
+	    method: "PUT",
+	    body: data
+	  });
+	}
+
+	exports.fetch = fetch;
+	exports.updateSession = updateSession;
+
+/***/ },
+/* 1425 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = reducer;
 	exports.setPhotoModal = setPhotoModal;
 	exports.showPhotoModal = showPhotoModal;
@@ -83008,7 +83042,7 @@
 	}
 
 /***/ },
-/* 1425 */
+/* 1426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83027,11 +83061,11 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _taxon_crumbs_container = __webpack_require__(1426);
+	var _taxon_crumbs_container = __webpack_require__(1427);
 
 	var _taxon_crumbs_container2 = _interopRequireDefault(_taxon_crumbs_container);
 
-	var _place_chooser_container = __webpack_require__(1428);
+	var _place_chooser_container = __webpack_require__(1429);
 
 	var _place_chooser_container2 = _interopRequireDefault(_place_chooser_container);
 
@@ -83039,11 +83073,11 @@
 
 	var _taxon_autocomplete2 = _interopRequireDefault(_taxon_autocomplete);
 
-	var _photo_browser_container = __webpack_require__(1430);
+	var _photo_browser_container = __webpack_require__(1431);
 
 	var _photo_browser_container2 = _interopRequireDefault(_photo_browser_container);
 
-	var _photo_modal_container = __webpack_require__(1436);
+	var _photo_modal_container = __webpack_require__(1437);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
@@ -83143,7 +83177,7 @@
 	exports.default = App;
 
 /***/ },
-/* 1426 */
+/* 1427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83156,7 +83190,7 @@
 
 	var _util = __webpack_require__(1418);
 
-	var _taxon_crumbs = __webpack_require__(1427);
+	var _taxon_crumbs = __webpack_require__(1428);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
@@ -83181,7 +83215,7 @@
 	exports.default = TaxonCrumbsContainer;
 
 /***/ },
-/* 1427 */
+/* 1428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83397,7 +83431,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1428 */
+/* 1429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83410,9 +83444,11 @@
 
 	var _photos = __webpack_require__(1417);
 
-	var _place_chooser_popover = __webpack_require__(1429);
+	var _place_chooser_popover = __webpack_require__(1430);
 
 	var _place_chooser_popover2 = _interopRequireDefault(_place_chooser_popover);
+
+	var _util = __webpack_require__(1424);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -83426,6 +83462,7 @@
 	function mapDispatchToProps(dispatch) {
 	  var setPlace = function setPlace(place) {
 	    dispatch((0, _photos.setConfigAndUrl)({ chosenPlace: place }));
+	    (0, _util.updateSession)({ prefers_taxon_page_place_id: place ? place.id : null });
 	    dispatch((0, _photos.reloadPhotos)());
 	  };
 	  return {
@@ -83441,7 +83478,7 @@
 	exports.default = PlaceChooserContainer;
 
 /***/ },
-/* 1429 */
+/* 1430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83771,7 +83808,7 @@
 	exports.default = PlaceChooserPopover;
 
 /***/ },
-/* 1430 */
+/* 1431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83786,11 +83823,11 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _photo_browser = __webpack_require__(1431);
+	var _photo_browser = __webpack_require__(1432);
 
 	var _photo_browser2 = _interopRequireDefault(_photo_browser);
 
-	var _photo_modal = __webpack_require__(1424);
+	var _photo_modal = __webpack_require__(1425);
 
 	var _photos = __webpack_require__(1417);
 
@@ -83861,7 +83898,7 @@
 	exports.default = PhotoBrowserContainer;
 
 /***/ },
-/* 1431 */
+/* 1432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83874,7 +83911,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactInfiniteScroller = __webpack_require__(1432);
+	var _reactInfiniteScroller = __webpack_require__(1433);
 
 	var _reactInfiniteScroller2 = _interopRequireDefault(_reactInfiniteScroller);
 
@@ -83888,7 +83925,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _taxon_photo = __webpack_require__(1433);
+	var _taxon_photo = __webpack_require__(1434);
 
 	var _taxon_photo2 = _interopRequireDefault(_taxon_photo);
 
@@ -84266,7 +84303,7 @@
 	exports.default = PhotoBrowser;
 
 /***/ },
-/* 1432 */
+/* 1433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84436,7 +84473,7 @@
 
 
 /***/ },
-/* 1433 */
+/* 1434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -84449,7 +84486,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1434);
+	var _cover_image = __webpack_require__(1435);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -84512,7 +84549,7 @@
 	exports.default = TaxonPhoto;
 
 /***/ },
-/* 1434 */
+/* 1435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -84533,7 +84570,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _onscreen = __webpack_require__(1435);
+	var _onscreen = __webpack_require__(1436);
 
 	var _onscreen2 = _interopRequireDefault(_onscreen);
 
@@ -84667,7 +84704,7 @@
 	exports.default = CoverImage;
 
 /***/ },
-/* 1435 */
+/* 1436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function (global, factory) {
@@ -85046,7 +85083,7 @@
 
 
 /***/ },
-/* 1436 */
+/* 1437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -85057,11 +85094,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1437);
+	var _photo_modal = __webpack_require__(1438);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
-	var _photo_modal3 = __webpack_require__(1424);
+	var _photo_modal3 = __webpack_require__(1425);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -85107,7 +85144,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1437 */
+/* 1438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

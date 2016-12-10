@@ -47,6 +47,12 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
+if ( PLACE !== undefined && PLACE !== null ) {
+  store.dispatch( setConfig( {
+    chosenPlace: PLACE
+  } ) );
+}
+
 const taxon = new Taxon( TAXON );
 store.dispatch( setTaxon( taxon ) );
 if ( taxon.taxon_changes_count ) {
