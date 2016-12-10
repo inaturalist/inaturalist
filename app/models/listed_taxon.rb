@@ -500,8 +500,8 @@ class ListedTaxon < ActiveRecord::Base
   def log_create_in_atlas
     if is_atlased?
       Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).each do |atlas|
-        AtlasAlteration.create(
-          atlas_id: atlas.id,
+        ListedTaxonAlteration.create(
+          taxon_id: atlas.taxon_id,
           user_id: user_id,
           place_id: place_id,
           action: "listed"
@@ -514,8 +514,8 @@ class ListedTaxon < ActiveRecord::Base
     if is_atlased?
       updater_id = updater.nil? ? nil : updater.id
       Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).each do |atlas|
-        AtlasAlteration.create(
-          atlas_id: atlas.id,
+        ListedTaxonAlteration.create(
+          taxon_id: atlas.taxon_id,
           user_id: updater_id,
           place_id: place_id,
           action: "unlisted"

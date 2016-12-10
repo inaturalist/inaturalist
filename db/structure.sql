@@ -1655,6 +1655,40 @@ ALTER SEQUENCE listed_taxa_id_seq OWNED BY listed_taxa.id;
 
 
 --
+-- Name: listed_taxon_alterations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE listed_taxon_alterations (
+    id integer NOT NULL,
+    taxon_id integer,
+    user_id integer,
+    place_id integer,
+    action character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: listed_taxon_alterations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE listed_taxon_alterations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: listed_taxon_alterations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE listed_taxon_alterations_id_seq OWNED BY listed_taxon_alterations.id;
+
+
+--
 -- Name: lists; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4553,6 +4587,13 @@ ALTER TABLE ONLY listed_taxa ALTER COLUMN id SET DEFAULT nextval('listed_taxa_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY listed_taxon_alterations ALTER COLUMN id SET DEFAULT nextval('listed_taxon_alterations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY lists ALTER COLUMN id SET DEFAULT nextval('lists_id_seq'::regclass);
 
 
@@ -5292,6 +5333,14 @@ ALTER TABLE ONLY list_rules
 
 ALTER TABLE ONLY listed_taxa
     ADD CONSTRAINT listed_taxa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listed_taxon_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY listed_taxon_alterations
+    ADD CONSTRAINT listed_taxon_alterations_pkey PRIMARY KEY (id);
 
 
 --
@@ -6292,7 +6341,7 @@ CREATE INDEX index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i ON 
 -- Name: index_listed_taxa_on_list_id_and_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_listed_taxa_on_list_id_and_taxon_id ON listed_taxa USING btree (list_id, taxon_id);
+CREATE UNIQUE INDEX index_listed_taxa_on_list_id_and_taxon_id ON listed_taxa USING btree (list_id, taxon_id);
 
 
 --
@@ -6349,6 +6398,27 @@ CREATE INDEX index_listed_taxa_on_taxon_range_id ON listed_taxa USING btree (tax
 --
 
 CREATE INDEX index_listed_taxa_on_user_id ON listed_taxa USING btree (user_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_place_id ON listed_taxon_alterations USING btree (place_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_taxon_id ON listed_taxon_alterations USING btree (taxon_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_user_id ON listed_taxon_alterations USING btree (user_id);
 
 
 --
@@ -8339,4 +8409,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161012204604');
 INSERT INTO schema_migrations (version) VALUES ('20161020190217');
 
 INSERT INTO schema_migrations (version) VALUES ('20161110221032');
+
+INSERT INTO schema_migrations (version) VALUES ('20161210081605');
 

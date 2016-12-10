@@ -55,4 +55,14 @@ class Atlas < ActiveRecord::Base
     where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
     where("listed_taxa.place_id IN (?)", place_descendants)
   end
+  
+  def relevant_listed_taxon_alterations
+    exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
+    scope = ListedTaxonAlteration.joins(:place).where( "taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
+    where( "places.admin_level IN (?)", [0,1,2] )
+    unless exploded_place_ids_to_exclude.blank?
+      scope = scope.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
+    end
+    scope
+  end
 end

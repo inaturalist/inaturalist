@@ -21,12 +21,11 @@
     = link_to "alter", alter_atlas_presence_path(@atlas), :id => "alter"
 
   %h3
-    = "Recent Alterations"
+    = "Recent Atlas Alterations"
 
   %table.table.table-striped
     %thead
       %tr
-        %th="#"
         %th="Place"
         %th="Action"
         %th="Login"
@@ -34,8 +33,7 @@
     %tbody#alteration
       - @atlas_alterations.each do |atlas_alteration|
         %tr
-          %th{:scope => "row"}=atlas_alteration.id
-          %td= link_to atlas_alteration.place.name, atlas_alteration.place
+          %th{:scope => "row"}=link_to atlas_alteration.place.name, atlas_alteration.place
           %td= atlas_alteration.action
           %td= atlas_alteration.user.nil? ? "" : (link_to atlas_alteration.user.login, atlas_alteration.user)
           %td= atlas_alteration.created_at
@@ -43,5 +41,25 @@
     .no_alterations="No alterations to this atlas yet"
   - else
     = link_to "Clear Alteration Log", destroy_all_alterations_path(@atlas.id), :data => {:id => @atlas.id}, :id => "destroy_all_alterations", :class => "btn btn-danger"
-  
-      
+
+  %h3
+    = "Recent Listed Taxon Alterations"
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th="Place"
+        %th="Taxon"
+        %th="Action"
+        %th="Login"
+        %th="Date"
+    %tbody#listed_taxon_alteration
+      - @listed_taxon_alterations.each do |listed_taxon_alteration|
+        %tr
+          %th{:scope => "row"}=link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
+          %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
+          %td= listed_taxon_alteration.action
+          %td= listed_taxon_alteration.user.nil? ? "" : (link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user)
+          %td= listed_taxon_alteration.created_at
+  - if @listed_taxon_alterations.count == 0
+    .no_listed_taxon_alterations="No listed taxon alterations relevant to this atlas yet"

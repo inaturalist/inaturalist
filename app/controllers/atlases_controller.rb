@@ -20,6 +20,7 @@ class AtlasesController < ApplicationController
     respond_to do |format|
       format.html do
         @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse
+        @listed_taxon_alterations = @atlas.relevant_listed_taxon_alterations.includes(:place, :user).order("listed_taxon_alterations.created_at DESC").limit(30).reverse
         @atlas_place_json = {
           type: "FeatureCollection", 
           features: @atlas_places.select{|p| !(p.name == "Antarctica" && p.admin_level = 0) }.map{|p| 

@@ -107,7 +107,7 @@ describe ListedTaxon do
       expect(lt.establishment_means).to eq(ListedTaxon::INTRODUCED)
     end
     
-    it "should log atlas_alterations if listed_taxa is_atlased? on create" do
+    it "should log listed_taxon_alterations if listed_taxa is_atlased? on create" do
       taxon = Taxon.make!
       AncestryDenormalizer.denormalize
       atlas_place = Place.make!(admin_level: 0)
@@ -115,8 +115,8 @@ describe ListedTaxon do
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
       expect(check_listed_taxon.is_atlased?).to be true
-      expect(AtlasAlteration.where(
-        atlas_id: atlas.id,
+      expect(ListedTaxonAlteration.where(
+        atlas_id: atlas.taxon_id,
         user_id: @user.id,
         place_id: atlas_place.id,
         action: "listed"
@@ -125,7 +125,7 @@ describe ListedTaxon do
   end
   
   describe "destroy" do
-    it "should log atlas_alterations if listed_taxa is_atlased? on destroy" do
+    it "should log listed_taxon_alterations if listed_taxa is_atlased? on destroy" do
       taxon = Taxon.make!
       AncestryDenormalizer.denormalize
       atlas_place = Place.make!(admin_level: 0)
@@ -139,8 +139,8 @@ describe ListedTaxon do
       @other_user = User.make!
       check_listed_taxon.updater = @other_user
       check_listed_taxon.destroy
-      expect(AtlasAlteration.where(
-        atlas_id: atlas.id,
+      expect(ListedTaxonAlteration.where(
+        atlas_id: atlas.taxon_id,
         user_id: @other_user.id,
         place_id: atlas_place.id,
         action: "unlisted"

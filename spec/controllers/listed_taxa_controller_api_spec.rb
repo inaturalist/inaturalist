@@ -95,7 +95,7 @@ describe ListedTaxaController, "destroy" do
     delete :destroy, :format => :json, :id => check_listed_taxon.id
     expect(ListedTaxon.find_by_id(check_listed_taxon.id)).to be_blank  
   end
-  it "should log atlas_alterations if listed_taxa is_atlased? on destroy" do
+  it "should log listed_taxon_alterations if listed_taxa is_atlased? on destroy" do
     taxon = Taxon.make!
     AncestryDenormalizer.denormalize
     atlas_place = Place.make!(admin_level: 0)
@@ -108,8 +108,8 @@ describe ListedTaxaController, "destroy" do
     http_login(@other_user)
     delete :destroy, :format => :json, :id => check_listed_taxon.id
     expect(ListedTaxon.find_by_id(check_listed_taxon.id)).to be_blank  
-    expect(AtlasAlteration.where(
-      atlas_id: atlas.id,
+    expect(ListedTaxonAlteration.where(
+      atlas_id: atlas.taxon_id,
       user_id: @other_user.id,
       place_id: atlas_place.id,
       action: "unlisted"
