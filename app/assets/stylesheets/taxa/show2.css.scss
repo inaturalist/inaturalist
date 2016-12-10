@@ -108,7 +108,9 @@
   fill: #999;
   opacity: 1;
 }
-
+.FrequencyChart .c3-circle {
+  cursor: pointer;
+}
 .FrequencyChart .c3-circle._expanded_ {
   stroke-width: 7px;
   stroke: transparentize( $inat-green, 0.6 );
@@ -838,7 +840,6 @@ $nav-btn-dim: 40px;
 .TaxonThumbnail .badge.with-tip {
   cursor: pointer;
 }
-
 
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;

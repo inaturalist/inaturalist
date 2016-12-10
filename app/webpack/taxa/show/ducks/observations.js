@@ -1,5 +1,6 @@
 import inatjs from "inaturalistjs";
 import { defaultObservationParams } from "../../shared/util";
+import { stringify } from "querystring";
 
 const SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
 const SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FREQUENCY";
@@ -164,3 +165,11 @@ export function fetchFirstObservation( ) {
     } ) );
   };
 }
+
+export function openObservationsSearch( params ) {
+  return ( dispatch, getState ) => {
+    const searchParams = Object.assign( { }, defaultObservationParams( getState( ) ), params );
+    window.open( `/observations?${stringify( searchParams )}`, "_blank" );
+  };
+}
+

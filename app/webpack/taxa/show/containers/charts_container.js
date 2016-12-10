@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import Charts from "../components/charts";
 import {
   fetchMonthFrequency,
-  fetchMonthOfYearFrequency
+  fetchMonthOfYearFrequency,
+  openObservationsSearch
 } from "../ducks/observations";
 
 function mapStateToProps( state ) {
@@ -15,7 +16,8 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     fetchMonthOfYearFrequency: ( ) => dispatch( fetchMonthOfYearFrequency( ) ),
-    fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) )
+    fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) ),
+    openObservationsSearch: params => dispatch( openObservationsSearch( params ) )
   };
 }
 
