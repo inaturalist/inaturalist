@@ -14,35 +14,19 @@ class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
-      switch ( e.target.hash ) {
-        case "#articles-tab":
-          this.props.fetchArticlesContent( );
-          break;
-        case "#taxonomy-tab":
-          this.props.fetchNames( );
-          break;
-        case "#interactions-tab":
-          this.props.fetchInteractions( );
-          break;
-        case "#highlights-tab":
-          this.props.fetchTrendingTaxa( );
-          this.props.fetchRareTaxa( );
-          break;
-        case "#similar-tab":
-          this.props.fetchSimilarTaxa( );
-          break;
-        default:
-          // it's cool, you probably have what you need
-      }
+      this.props.choseTab( e.target.hash.match( /\#(.+)\-tab/ )[1] );
     } );
+    this.props.loadDataForTab( this.props.chosenTab );
   }
   render( ) {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
+    const chosenTab = this.props.chosenTab;
     let curationTab;
-    if ( this.props.currentUser && this.props.currentUser.id ) {
+    const currentUser = this.props.currentUser;
+    if ( currentUser && currentUser.id ) {
       const isCurator =
-        this.props.currentUser.roles.indexOf( "curator" ) >= 0 ||
-        this.props.currentUser.roles.indexOf( "admin" ) >= 0;
+        currentUser.roles.indexOf( "curator" ) >= 0 ||
+        currentUser.roles.indexOf( "admin" ) >= 0;
       curationTab = (
         <li className="curation-tab">
           <Dropdown
@@ -93,13 +77,16 @@ class TaxonPageTabs extends React.Component {
           <Row>
             <Col xs={12}>
               <ul id="main-tabs" className="nav nav-tabs" role="tablist">
-                <li role="presentation" className="active">
+                <li role="presentation" className={ chosenTab === "map" ? "active" : "" }>
                   <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" className={ chosenTab === "articles" ? "active" : "" }>
                   <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "about" ) }</a>
                 </li>
-                <li role="presentation" className={speciesOrLower ? "hidden" : ""}>
+                <li
+                  role="presentation"
+                  className={ `${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""}`}
+                >
                   <a
                     href="#highlights-tab"
                     role="tab"
@@ -109,7 +96,9 @@ class TaxonPageTabs extends React.Component {
                   </a>
                 </li>
                 { true ? null : (
-                  <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
+                  <li role="presentation"
+                    className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "interactions" ? "active" : ""}`}
+                  >
                     <a
                       href="#interactions-tab"
                       role="tab"
@@ -119,13 +108,19 @@ class TaxonPageTabs extends React.Component {
                     </a>
                   </li>
                 ) }
-                <li role="presentation">
+                <li role="presentation" className={ chosenTab === "taxonomy" ? "active" : "" }>
                   <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
                 </li>
-                <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
+                <li
+                  role="presentation"
+                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "status" ? "active" : ""}`}
+                >
                   <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
                 </li>
-                <li role="presentation" className={speciesOrLower ? "" : "hidden"}>
+                <li
+                  role="presentation"
+                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
+                >
                   <a href="#similar-tab" role="tab" data-toggle="tab">{ I18n.t( "similar_species" ) }</a>
                 </li>
                 { curationTab }
@@ -134,32 +129,43 @@ class TaxonPageTabs extends React.Component {
           </Row>
         </Grid>
         <div id="main-tabs-content" className="tab-content">
-          <div role="tabpanel" className="tab-pane active" id="map-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
+            id="map-tab"
+          >
             <TaxonPageMap taxon={this.props.taxon} />
           </div>
-          <div role="tabpanel" className="tab-pane" id="articles-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${chosenTab === "articles" ? "active" : ""}`}
+            id="articles-tab"
+          >
             <ArticlesTabContainer />
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${speciesOrLower ? "hidden" : ""}`}
+            className={`tab-pane ${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""}`}
             id="highlights-tab"
           >
             <HighlightsTabContainer />
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"} ${chosenTab === "interactions" ? "active" : ""}`}
             id="interactions-tab"
           >
             <InteractionsTabContainer />
           </div>
-          <div role="tabpanel" className="tab-pane" id="taxonomy-tab">
+          <div
+            role="tabpanel"
+            className={`tab-pane ${chosenTab === "taxonomy" ? "active" : ""}`}
+            id="taxonomy-tab">
             <TaxonomyTabContainer />
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"} ${chosenTab === "status" ? "active" : ""}`}
             id="status-tab"
           >
             <StatusTab
@@ -169,7 +175,7 @@ class TaxonPageTabs extends React.Component {
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${speciesOrLower ? "" : "hidden"}`}
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
             id="similar-tab"
           >
             <SimilarTabContainer />
@@ -182,14 +188,15 @@ class TaxonPageTabs extends React.Component {
 
 TaxonPageTabs.propTypes = {
   taxon: PropTypes.object,
-  fetchArticlesContent: PropTypes.func,
-  fetchNames: PropTypes.func,
-  fetchInteractions: PropTypes.func,
-  fetchRareTaxa: PropTypes.func,
-  fetchTrendingTaxa: PropTypes.func,
   currentUser: PropTypes.object,
-  fetchSimilarTaxa: PropTypes.func,
-  showPhotoChooserModal: PropTypes.func
+  showPhotoChooserModal: PropTypes.func,
+  choseTab: PropTypes.func,
+  chosenTab: PropTypes.string,
+  loadDataForTab: PropTypes.func
+};
+
+TaxonPageTabs.defaultProps = {
+  chosenTab: "map"
 };
 
 export default TaxonPageTabs;

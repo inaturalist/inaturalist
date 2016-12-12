@@ -619,7 +619,8 @@ class UsersController < ApplicationController
     allowed_patterns = [
       /^show_quality_metrics$/,
       /^user-seen-ann*/,
-      /^prefers_*/
+      /^prefers_*/,
+      /^preferred_*/
     ]
     updates = params.select {|k,v|
       allowed_patterns.detect{|p| 
@@ -630,7 +631,7 @@ class UsersController < ApplicationController
       v = true if v.yesish?
       v = false if v.noish?
       session[k] = v
-      if k =~ /^prefers_/ && logged_in? && current_user.respond_to?(k)
+      if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
         current_user.update_attributes(k => v)
       end
     end

@@ -53,6 +53,12 @@ if ( PLACE !== undefined && PLACE !== null ) {
   } ) );
 }
 
+if ( CHOSEN_TAB ) {
+  store.dispatch( setConfig( {
+    chosenTab: CHOSEN_TAB
+  } ) );
+}
+
 const taxon = new Taxon( TAXON );
 store.dispatch( setTaxon( taxon ) );
 if ( taxon.taxon_changes_count ) {

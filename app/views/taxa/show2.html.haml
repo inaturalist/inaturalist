@@ -5,6 +5,7 @@
   :javascript
     var TAXON = #{ @node_taxon_json.encode }.results[0];
     var PLACE = #{ @place.to_json( only: [:id, :name, :display_name ] )};
+    var CHOSEN_TAB = #{ @chosen_tab.to_json };
   = javascript_include_tag "taxa-show-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "c3", "taxa/show2"

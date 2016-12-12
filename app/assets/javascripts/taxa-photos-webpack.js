@@ -83462,7 +83462,7 @@
 	function mapDispatchToProps(dispatch) {
 	  var setPlace = function setPlace(place) {
 	    dispatch((0, _photos.setConfigAndUrl)({ chosenPlace: place }));
-	    (0, _util.updateSession)({ prefers_taxon_page_place_id: place ? place.id : null });
+	    (0, _util.updateSession)({ preferred_taxon_page_place_id: place ? place.id : null });
 	    dispatch((0, _photos.reloadPhotos)());
 	  };
 	  return {
