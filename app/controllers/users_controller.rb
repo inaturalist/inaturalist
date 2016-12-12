@@ -167,9 +167,9 @@ class UsersController < ApplicationController
       @user.update_attributes(spammer: params[:spammer])
       if params[:spammer] === "false"
         @user.flags_on_spam_content.each do |flag|
-          flag.resolved = true
-          flag.save!
+          flag.update_attributes(resolved: true)
         end
+        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
         @user.unsuspend!
       else
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
