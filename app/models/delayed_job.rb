@@ -113,7 +113,7 @@ class Delayed::Backend::ActiveRecord::Job
       end
     end
     if paperclip?
-      info[:model] = acts_on_args.first.constantize
+      info[:model] = acts_on_args.first
     elsif acts_on_object.kind_of?(ActiveRecord::Base)
       info[:model] = acts_on_object.class.name
       info[:model_id] = acts_on_object.id
