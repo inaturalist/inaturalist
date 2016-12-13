@@ -125,6 +125,7 @@ class Delayed::Backend::ActiveRecord::Job
     info[:arguments] = info[:arguments].to_s
     info[:method] = paperclip? ? "DelayedPaperclip" : acts_on_method
     info[:model_method] = "#{info[:model]}::#{info[:method]}"
+    info[:model_method_id] = "#{info[:model]}::#{info[:method]}::#{info[:model_id]}"
     info[:unique_hash] = unique_hash
     info[:locked_at] = locked_at.to_s(:long) if locked_at
     info[:created_at] = created_at.to_s(:long) if created_at
