@@ -99,7 +99,11 @@ class Delayed::Backend::ActiveRecord::Job
       host: host,
       pid: pid,
       process: unique_process,
-      attempts: attempts
+      attempts: attempts,
+      unique_hash: unique_hash,
+      queue: queue,
+      run_at: run_at,
+      locked_by: locked_by
     }
     info[:arguments] = unless acts_on_args.blank?
       if acts_on_args.is_a?(Array) && acts_on_args.length == 1
@@ -126,10 +130,9 @@ class Delayed::Backend::ActiveRecord::Job
     info[:method] = paperclip? ? "DelayedPaperclip" : acts_on_method
     info[:model_method] = "#{info[:model]}::#{info[:method]}"
     info[:model_method_id] = "#{info[:model]}::#{info[:method]}::#{info[:model_id]}"
-    info[:unique_hash] = unique_hash
-    info[:locked_at] = locked_at.to_s(:long) if locked_at
-    info[:created_at] = created_at.to_s(:long) if created_at
-    info[:failed_at] = failed_at.to_s(:long) if failed_at
+    info[:locked_at] = locked_at if locked_at
+    info[:created_at] = created_at if created_at
+    info[:failed_at] = failed_at if failed_at
     if last_error
       info[:last_error] = "<br><br>" + last_error[0...1000].gsub("\n", "<br>")
     end

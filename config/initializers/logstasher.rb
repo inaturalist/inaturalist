@@ -123,7 +123,7 @@ module Logstasher
     return if Rails.env.test?
     begin
       Logstasher.write_hash( custom.merge({
-        subtype: custom[:duration] ? "DelayedJobDuration" : "DelayedJob"
+        subtype: custom[:job_duration] ? "DelayedJobDuration" : "DelayedJob"
       }).merge(job.dashboard_info))
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.delayed_job failed: #{e}"

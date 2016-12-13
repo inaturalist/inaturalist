@@ -8,14 +8,15 @@ class DJLogstashPlugin < Delayed::Plugin
 
     lifecycle.around(:invoke_job) do |job, *args, &block|
       begin
-        Logstasher.delayed_job(job)
         start_time = Time.now
+        Logstasher.delayed_job(job, "@timestamp": start_time)
         block.call(job, *args)
         end_time = Time.now
         Logstasher.delayed_job(job,
+          "@timestamp": end_time,
           job_start_time: start_time,
           job_end_time: end_time,
-          duration: (end_time.to_f - start_time.to_f) * 1000)
+          job_duration: (end_time.to_f - start_time.to_f).round(5))
       rescue Exception => error
         Logstasher.write_exception(error)
         raise error
