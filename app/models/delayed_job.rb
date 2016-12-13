@@ -95,7 +95,7 @@ class Delayed::Backend::ActiveRecord::Job
 
   def dashboard_info
     info = {
-      id: id,
+      delayed_job_id: id,
       host: host,
       pid: pid,
       process: unique_process,
