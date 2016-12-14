@@ -96,7 +96,10 @@ class Carousel extends React.Component {
 Carousel.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.oneOfType( [
+    PropTypes.string,
+    PropTypes.object
+  ] ),
   noContent: PropTypes.string,
   items: PropTypes.array.isRequired
 };

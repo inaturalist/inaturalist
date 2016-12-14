@@ -1003,3 +1003,10 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 .PhotoChooserModal .photos {
   margin: -2.5px;
 }
+.comma-separated-list > *:before {
+  content: ', ';
+}
+.comma-separated-list > :first-child:before {
+  content: '';
+}
+.AkaNames .name { color: black; }

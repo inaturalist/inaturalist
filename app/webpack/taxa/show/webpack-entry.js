@@ -7,7 +7,12 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Taxon } from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon, setCount, fetchTaxonChange } from "../shared/ducks/taxon";
+import taxonReducer, {
+  setTaxon,
+  setCount,
+  fetchTaxonChange,
+  fetchNames
+} from "../shared/ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency
@@ -73,6 +78,9 @@ if ( taxon.taxon_changes_count ) {
 }
 if ( taxon.taxon_schemes_count ) {
   store.dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
+}
+if ( PREFERRED_PLACE || serverPayload.place ) {
+  store.dispatch( fetchNames( ) );
 }
 store.dispatch( fetchLeaders( taxon ) ).then( ( ) => {
   store.dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {

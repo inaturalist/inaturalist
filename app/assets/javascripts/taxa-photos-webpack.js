@@ -82238,7 +82238,7 @@
 	  return {
 	    verifiable: true,
 	    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : "any"
+	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
 	  };
 	};
 
