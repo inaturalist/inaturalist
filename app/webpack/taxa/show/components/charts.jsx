@@ -55,15 +55,12 @@ class Charts extends React.Component {
     $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
       switch ( e.target.hash ) {
         case "#charts-seasonality":
-          if ( !this.props.monthOfYearFrequency || !this.props.monthOfYearFrequency.verifiable ) {
-            this.props.fetchMonthOfYearFrequency( );
-          }
           if ( this.seasonalityChart ) {
             this.seasonalityChart.flush( );
           }
           break;
         case "#charts-history":
-          if ( !this.props.monthFrequency || !this.props.monthFrequency.verifiable ) {
+          if ( !_.isEmpty( this.props.monthFrequencyVerifiable ) ) {
             this.props.fetchMonthFrequency( );
           }
           if ( this.historyChart ) {
@@ -75,26 +72,39 @@ class Charts extends React.Component {
       }
     } );
   }
-  shouldComponentUpdate( ) {
-    // You would think the following would work, but it doesn't. For some
-    // reason there's never a point where nextProps and this.props are
-    // different.
-    // if (
-    //   _.isEqual( nextProps.monthOfYearFrequency.verifiable, this.props.monthOfYearFrequency.verifiable )
-    //   &&
-    //   _.isEqual( nextProps.monthFrequency.verifiable, this.props.monthFrequency.verifiable )
-    // ) {
-    //   return false;
-    // }
+  shouldComponentUpdate( nextProps ) {
+    if (
+      _.isEqual(
+        this.objectToComparable( nextProps.monthOfYearFrequencyVerifiable ),
+        this.objectToComparable( this.props.monthOfYearFrequencyVerifiable )
+      )
+      &&
+      _.isEqual(
+        this.objectToComparable( nextProps.monthOfYearFrequencyResearch ),
+        this.objectToComparable( this.props.monthOfYearFrequencyResearch )
+      )
+      &&
+      _.isEqual(
+        this.objectToComparable( nextProps.monthFrequencyVerifiable ),
+        this.objectToComparable( this.props.monthFrequencyVerifiable )
+      )
+      &&
+      _.isEqual(
+        this.objectToComparable( nextProps.monthFrequencyResearch ),
+        this.objectToComparable( this.props.monthFrequencyResearch )
+      )
+    ) {
+      // No change in underlying data series, don't update
+      return false;
+    }
     return true;
   }
   componentDidUpdate( ) {
-    if ( this.props.monthOfYearFrequency.verifiable ) {
-      this.renderSeasonalityChart( );
-    }
-    if ( this.props.monthFrequency.verifiable ) {
-      this.renderHistoryChart( );
-    }
+    this.renderSeasonalityChart( );
+    this.renderHistoryChart( );
+  }
+  objectToComparable( object = {} ) {
+    return _.map( object, ( v, k ) => `(${k}-${v})` ).sort( ).join( "," );
   }
   tooltipContent( d, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
     return `
@@ -111,8 +121,8 @@ class Charts extends React.Component {
     `;
   }
   renderSeasonalityChart( ) {
-    const verifiableFrequency = this.props.monthOfYearFrequency.verifiable || {};
-    const researchFrequency = this.props.monthOfYearFrequency.research || {};
+    const verifiableFrequency = this.props.monthOfYearFrequencyVerifiable || {};
+    const researchFrequency = this.props.monthOfYearFrequencyResearch || {};
     const keys = _.keys(
       verifiableFrequency
     ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
@@ -147,8 +157,8 @@ class Charts extends React.Component {
     this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
   renderHistoryChart( ) {
-    const verifiableFrequency = this.props.monthFrequency.verifiable || {};
-    const researchFrequency = this.props.monthFrequency.research || {};
+    const verifiableFrequency = this.props.monthFrequencyVerifiable || {};
+    const researchFrequency = this.props.monthFrequencyResearch || {};
     const dates = _.keys( verifiableFrequency ).sort( );
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
     const chunks = _.chunk( years, 2 );
@@ -204,6 +214,8 @@ class Charts extends React.Component {
     this.historyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
   render( ) {
+    const uniqueValues = _.uniq( _.values( this.props.monthOfYearFrequencyVerifiable || {} ) );
+    const noMonthData = uniqueValues.length === 1 && uniqueValues[0] === 0;
     return (
       <div id="charts" className="Charts">
         <ul className="nav nav-tabs" role="tablist">
@@ -232,7 +244,7 @@ class Charts extends React.Component {
           <div role="tabpanel" className="tab-pane active" id="charts-seasonality">
             <div
               className={
-                `no-content text-muted text-center ${_.isEmpty( this.props.monthFrequency.verifiable ) ? "" : "hidden"}`
+                `no-content text-muted text-center ${noMonthData ? "" : "hidden"}`
               }
             >
               { I18n.t( "no_observations_yet" ) }
@@ -243,7 +255,7 @@ class Charts extends React.Component {
           <div role="tabpanel" className="tab-pane" id="charts-history">
             <div
               className={
-                `no-content text-muted text-center ${_.isEmpty( this.props.monthFrequency.verifiable ) ? "" : "hidden"}`
+                `no-content text-muted text-center ${_.isEmpty( this.props.monthFrequencyVerifiable ) ? "" : "hidden"}`
               }
             >
               { I18n.t( "no_observations_yet" ) }
@@ -257,11 +269,15 @@ class Charts extends React.Component {
 }
 
 Charts.propTypes = {
-  monthOfYearFrequency: PropTypes.object,
-  monthFrequency: PropTypes.object,
   fetchMonthOfYearFrequency: PropTypes.func,
   fetchMonthFrequency: PropTypes.func,
-  openObservationsSearch: PropTypes.func
+  openObservationsSearch: PropTypes.func,
+  test: PropTypes.string,
+  monthOfYearFrequencyVerifiable: PropTypes.object,
+  monthOfYearFrequencyResearch: PropTypes.object,
+  monthFrequencyVerifiable: PropTypes.object,
+  monthFrequencyResearch: PropTypes.object
 };
+
 
 export default Charts;

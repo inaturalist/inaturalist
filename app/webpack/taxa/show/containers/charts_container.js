@@ -8,8 +8,10 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    monthOfYearFrequency: state.observations.monthOfYearFrequency,
-    monthFrequency: state.observations.monthFrequency
+    monthOfYearFrequencyVerifiable: state.observations.monthOfYearFrequency.verifiable,
+    monthOfYearFrequencyResearch: state.observations.monthOfYearFrequency.research,
+    monthFrequencyVerifiable: state.observations.monthFrequency.verifiable,
+    monthFrequencyResearch: state.observations.monthFrequency.research
   };
 }
 
