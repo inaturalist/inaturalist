@@ -12,17 +12,8 @@ class TaxonCrumbs extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      ancestorsShown: false,
       childrenSHown: false
     };
-  }
-
-  showAncestors( ) {
-    this.setState( { ancestorsShown: true, childrenShown: false } );
-  }
-
-  hideAncestors( ) {
-    this.setState( { ancestorsShown: false, childrenShown: false } );
   }
 
   showChildren( ) {
@@ -34,8 +25,7 @@ class TaxonCrumbs extends React.Component {
   }
 
   render( ) {
-    const taxon = this.props.taxon;
-    const ancestors = this.props.ancestors;
+    const { taxon, ancestors, showAncestors, hideAncestors } = this.props;
     const children = _.sortBy( taxon.children || [], t => t.name );
     const ancestorTaxa = _.filter( ancestors, t => t.name !== "Life" && t.id !== taxon.id );
     let expandControl;
@@ -59,16 +49,16 @@ class TaxonCrumbs extends React.Component {
       }
     }
     if ( ancestorTaxa.length > 0 ) {
-      if ( this.state.ancestorsShown ) {
+      if ( this.props.ancestorsShown ) {
         contractControl = (
-          <a className="contract-control" href="#" onClick={ ( ) => this.hideAncestors( ) }>
+          <a className="contract-control" href="#" onClick={ ( ) => hideAncestors( ) }>
             <i className="glyphicon glyphicon-circle-arrow-left" />
           </a>
         );
       } else {
         expandControl = (
           <li className="expand-control">
-            <a href="#" onClick={ ( ) => this.showAncestors( ) }>...</a>
+            <a href="#" onClick={ ( ) => showAncestors( ) }>...</a>
           </li>
         );
       }
@@ -108,7 +98,7 @@ class TaxonCrumbs extends React.Component {
       );
     };
     return (
-      <ul className={`TaxonCrumbs inline ${this.state.ancestorsShown ? "expanded" : "contracted"}`}>
+      <ul className={`TaxonCrumbs inline ${this.props.ancestorsShown ? "expanded" : "contracted"}`}>
         <li>
           <SplitTaxon taxon={{ name: "Life", is_active: true }} />
         </li>
@@ -144,7 +134,10 @@ class TaxonCrumbs extends React.Component {
 TaxonCrumbs.propTypes = {
   taxon: PropTypes.object,
   ancestors: PropTypes.array,
-  currentText: PropTypes.string
+  currentText: PropTypes.string,
+  ancestorsShown: PropTypes.bool,
+  showAncestors: PropTypes.func,
+  hideAncestors: PropTypes.func
 };
 
 TaxonCrumbs.defaultProps = { ancestors: [] };

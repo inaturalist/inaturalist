@@ -42,7 +42,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
-const taxon = new Taxon( TAXON );
+const serverPayload = SERVER_PAYLOAD;
+if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
+  store.dispatch( setConfig( {
+    chosenPlace: serverPayload.place
+  } ) );
+}
+if ( serverPayload.chosenTab ) {
+  store.dispatch( setConfig( {
+    chosenTab: serverPayload.chosenTab
+  } ) );
+}
+if ( serverPayload.ancestorsShown ) {
+  store.dispatch( setConfig( {
+    ancestorsShown: serverPayload.ancestorsShown
+  } ) );
+}
+const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
 store.dispatch( hydrateFromUrlParams( urlParams ) );
@@ -50,11 +66,6 @@ window.onpopstate = e => {
   // user returned from BACK
   store.dispatch( hydrateFromUrlParams( e.state ) );
 };
-if ( PLACE !== undefined && PLACE !== null ) {
-  store.dispatch( setConfig( {
-    chosenPlace: PLACE
-  } ) );
-}
 store.dispatch( reloadPhotos( ) );
 
 render(

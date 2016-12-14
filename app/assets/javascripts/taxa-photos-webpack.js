@@ -110,7 +110,23 @@
 	  }));
 	}
 
-	var taxon = new _inaturalistjs.Taxon(TAXON);
+	var serverPayload = SERVER_PAYLOAD;
+	if (serverPayload.place !== undefined && serverPayload.place !== null) {
+	  store.dispatch((0, _config.setConfig)({
+	    chosenPlace: serverPayload.place
+	  }));
+	}
+	if (serverPayload.chosenTab) {
+	  store.dispatch((0, _config.setConfig)({
+	    chosenTab: serverPayload.chosenTab
+	  }));
+	}
+	if (serverPayload.ancestorsShown) {
+	  store.dispatch((0, _config.setConfig)({
+	    ancestorsShown: serverPayload.ancestorsShown
+	  }));
+	}
+	var taxon = new _inaturalistjs.Taxon(serverPayload.taxon);
 	store.dispatch((0, _taxon.setTaxon)(taxon));
 	var urlParams = $.deparam(window.location.search.replace(/^\?/, ""));
 	store.dispatch((0, _photos.hydrateFromUrlParams)(urlParams));
@@ -118,11 +134,6 @@
 	  // user returned from BACK
 	  store.dispatch((0, _photos.hydrateFromUrlParams)(e.state));
 	};
-	if (PLACE !== undefined && PLACE !== null) {
-	  store.dispatch((0, _config.setConfig)({
-	    chosenPlace: PLACE
-	  }));
-	}
 	store.dispatch((0, _photos.reloadPhotos)());
 
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -83194,6 +83205,10 @@
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
 
+	var _config = __webpack_require__(1419);
+
+	var _util2 = __webpack_require__(1424);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
@@ -83202,12 +83217,22 @@
 	    taxon: taxon,
 	    ancestors: taxon.ancestors,
 	    url: (0, _util.urlForTaxon)(taxon),
-	    currentText: I18n.t("photo_browser")
+	    currentText: I18n.t("photo_browser"),
+	    ancestorsShown: state.config.ancestorsShown
 	  };
 	}
 
-	function mapDispatchToProps() {
-	  return {};
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    showAncestors: function showAncestors() {
+	      dispatch((0, _config.setConfig)({ ancestorsShown: true }));
+	      (0, _util2.updateSession)({ preferred_taxon_page_ancestors_shown: true });
+	    },
+	    hideAncestors: function hideAncestors() {
+	      dispatch((0, _config.setConfig)({ ancestorsShown: false }));
+	      (0, _util2.updateSession)({ preferred_taxon_page_ancestors_shown: false });
+	    }
+	  };
 	}
 
 	var TaxonCrumbsContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_taxon_crumbs2.default);
@@ -83259,23 +83284,12 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TaxonCrumbs).call(this, props));
 
 	    _this.state = {
-	      ancestorsShown: false,
 	      childrenSHown: false
 	    };
 	    return _this;
 	  }
 
 	  _createClass(TaxonCrumbs, [{
-	    key: "showAncestors",
-	    value: function showAncestors() {
-	      this.setState({ ancestorsShown: true, childrenShown: false });
-	    }
-	  }, {
-	    key: "hideAncestors",
-	    value: function hideAncestors() {
-	      this.setState({ ancestorsShown: false, childrenShown: false });
-	    }
-	  }, {
 	    key: "showChildren",
 	    value: function showChildren() {
 	      this.setState({ childrenShown: true });
@@ -83288,10 +83302,13 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
+	      var _props = this.props;
+	      var taxon = _props.taxon;
+	      var ancestors = _props.ancestors;
+	      var showAncestors = _props.showAncestors;
+	      var hideAncestors = _props.hideAncestors;
 
-	      var taxon = this.props.taxon;
-	      var ancestors = this.props.ancestors;
+	      console.log("[DEBUG] this.props: ", this.props);
 	      var children = _lodash2.default.sortBy(taxon.children || [], function (t) {
 	        return t.name;
 	      });
@@ -83319,11 +83336,11 @@
 	        }
 	      }
 	      if (ancestorTaxa.length > 0) {
-	        if (this.state.ancestorsShown) {
+	        if (this.props.ancestorsShown) {
 	          contractControl = _react2.default.createElement(
 	            "a",
 	            { className: "contract-control", href: "#", onClick: function onClick() {
-	                return _this2.hideAncestors();
+	                return hideAncestors();
 	              } },
 	            _react2.default.createElement("i", { className: "glyphicon glyphicon-circle-arrow-left" })
 	          );
@@ -83334,7 +83351,7 @@
 	            _react2.default.createElement(
 	              "a",
 	              { href: "#", onClick: function onClick() {
-	                  return _this2.showAncestors();
+	                  return showAncestors();
 	                } },
 	              "..."
 	            )
@@ -83381,7 +83398,7 @@
 	      };
 	      return _react2.default.createElement(
 	        "ul",
-	        { className: "TaxonCrumbs inline " + (this.state.ancestorsShown ? "expanded" : "contracted") },
+	        { className: "TaxonCrumbs inline " + (this.props.ancestorsShown ? "expanded" : "contracted") },
 	        _react2.default.createElement(
 	          "li",
 	          null,
@@ -83423,7 +83440,10 @@
 	TaxonCrumbs.propTypes = {
 	  taxon: _react.PropTypes.object,
 	  ancestors: _react.PropTypes.array,
-	  currentText: _react.PropTypes.string
+	  currentText: _react.PropTypes.string,
+	  ancestorsShown: _react.PropTypes.bool,
+	  showAncestors: _react.PropTypes.func,
+	  hideAncestors: _react.PropTypes.func
 	};
 
 	TaxonCrumbs.defaultProps = { ancestors: [] };

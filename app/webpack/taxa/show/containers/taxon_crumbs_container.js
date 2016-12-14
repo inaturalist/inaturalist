@@ -10,7 +10,6 @@ function mapStateToProps( state ) {
     taxon,
     ancestors: taxon.ancestors,
     url: urlForTaxon( taxon ),
-    currentText: I18n.t( "photo_browser" ),
     ancestorsShown: state.config.ancestorsShown
   };
 }

@@ -47,19 +47,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
-if ( PLACE !== undefined && PLACE !== null ) {
+const serverPayload = SERVER_PAYLOAD;
+if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
   store.dispatch( setConfig( {
-    chosenPlace: PLACE
+    chosenPlace: serverPayload.place
   } ) );
 }
-
-if ( CHOSEN_TAB ) {
+if ( serverPayload.chosenTab ) {
   store.dispatch( setConfig( {
-    chosenTab: CHOSEN_TAB
+    chosenTab: serverPayload.chosenTab
   } ) );
 }
-
-const taxon = new Taxon( TAXON );
+if ( serverPayload.ancestorsShown ) {
+  store.dispatch( setConfig( {
+    ancestorsShown: serverPayload.ancestorsShown
+  } ) );
+}
+const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 if ( taxon.taxon_changes_count ) {
   store.dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
