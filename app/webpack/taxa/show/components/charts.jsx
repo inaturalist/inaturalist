@@ -16,6 +16,10 @@ class Charts extends React.Component {
         types: {
           verifiable: "line",
           research: "area"
+        },
+        // For some reason this is necessary to enable the cursor style on the points
+        selection: {
+          enabled: true
         }
       },
       axis: {
@@ -118,7 +122,13 @@ class Charts extends React.Component {
         columns: [
           ["verifiable", ...keys.map( i => verifiableFrequency[i.toString( )] || 0 )],
           ["research", ...keys.map( i => researchFrequency[i.toString( )] || 0 )]
-        ]
+        ],
+        onclick: d => {
+          that.seasonalityChart.unselect( ["verifiable", "research"] );
+          that.props.openObservationsSearch( {
+            month: d.x + 1
+          } );
+        }
       },
       axis: {
         x: {
@@ -156,7 +166,14 @@ class Charts extends React.Component {
           ["x", ...dates],
           ["verifiable", ...dates.map( d => verifiableFrequency[d] || 0 )],
           ["research", ...dates.map( d => researchFrequency[d] || 0 )]
-        ]
+        ],
+        onclick: d => {
+          this.props.openObservationsSearch( {
+            quality_grade: ( d.name === "research" ? "research" : null ),
+            year: d.x.getFullYear( ),
+            month: d.x.getMonth( ) + 1
+          } );
+        }
       },
       axis: {
         x: {
@@ -243,7 +260,8 @@ Charts.propTypes = {
   monthOfYearFrequency: PropTypes.object,
   monthFrequency: PropTypes.object,
   fetchMonthOfYearFrequency: PropTypes.func,
-  fetchMonthFrequency: PropTypes.func
+  fetchMonthFrequency: PropTypes.func,
+  openObservationsSearch: PropTypes.func
 };
 
 export default Charts;

@@ -2,7 +2,8 @@ import inatjs from "inaturalistjs";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
-import { fetch, defaultObservationParams } from "../../shared/util";
+import { fetch } from "../../../shared/util";
+import { defaultObservationParams } from "../../shared/util";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
@@ -299,8 +300,7 @@ export function fetchRare( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
-    const params = { taxon_id: getState( ).taxon.taxon.id };
-    inatjs.identifications.similar_species( params ).then(
+    inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
         const commonlyMisidentified = response.results.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {

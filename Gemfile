@@ -29,7 +29,9 @@ gem 'daemons'
 gem 'daemon-spawn'
 gem 'dbf'
 gem 'delayed_job', '~> 4.0.1'
-gem 'delayed_job_active_record', '~> 4.0.1'
+gem 'delayed_job_active_record',
+  git: 'git://github.com/hugueslamy/delayed_job_active_record.git',
+  ref: '7dcacc2459ad47c948153cc3bab78bc822191718'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'devise-i18n'

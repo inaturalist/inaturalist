@@ -1,4 +1,3 @@
-import isomorphicFetch from "isomorphic-fetch";
 import _ from "lodash";
 import React from "react";
 
@@ -11,10 +10,6 @@ const urlForTaxonPhotos = ( t, params ) => {
   return url;
 };
 const urlForUser = ( u ) => `/people/${u.login}`;
-
-// Light wrapper around isomorphic fetch to ensure credentials are always passed through
-const fetch = ( url, options ) =>
-  isomorphicFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
 
 const defaultObservationParams = ( state ) => ( {
   verifiable: true,
@@ -81,7 +76,6 @@ export {
   urlForTaxon,
   urlForTaxonPhotos,
   urlForUser,
-  fetch,
   defaultObservationParams,
   localizedPhotoAttribution,
   commasAnd

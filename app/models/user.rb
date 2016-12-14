@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   preference :hide_updates_by_you_onboarding, default: false
   preference :hide_comments_onboarding, default: false
   preference :hide_following_onboarding, default: false
+  preference :taxon_page_place_id, :integer
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 

@@ -10,7 +10,7 @@ import {
   Col
 } from "react-bootstrap";
 import _ from "lodash";
-import { fetch } from "../../shared/util";
+import { fetch } from "../../../shared/util";
 import ExternalPhoto from "./external_photo";
 import ChosenPhoto from "./chosen_photo";
 import PhotoChooserDropArea from "./photo_chooser_drop_area";

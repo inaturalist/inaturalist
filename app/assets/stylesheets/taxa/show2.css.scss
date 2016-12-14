@@ -108,7 +108,9 @@
   fill: #999;
   opacity: 1;
 }
-
+.FrequencyChart .c3-circle {
+  cursor: pointer;
+}
 .FrequencyChart .c3-circle._expanded_ {
   stroke-width: 7px;
   stroke: transparentize( $inat-green, 0.6 );
@@ -839,7 +841,6 @@ $nav-btn-dim: 40px;
   cursor: pointer;
 }
 
-
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
 }
@@ -853,11 +854,23 @@ $nav-btn-dim: 40px;
   width: 18.9%;
 }
 
+.btn.btn-inat {
+  border-radius: 100px;
+  background-color: #999;
+  border-color: #999;
+  color: white;
+  text-transform: capitalize;
+}
+.btn.btn-inat:hover,
+.btn.btn-inat:focus {
+  background-color: lighten(#999, 1%);
+  border-color: lighten(#999, 1%);
+  color: white;
+}
 .btn-primary.btn-inat {
   background-color: $inat-green;
   color: white;
   border-color: $inat-green;
-  border-radius: 100px;
 }
 .btn-primary.btn-inat:hover,
 .btn-primary.btn-inat:focus {
@@ -879,6 +892,9 @@ $nav-btn-dim: 40px;
 .PlaceChooserPopoverTrigger.chosen .fa-map-marker {
   color: $inat-green;
 }
+.PlaceChooserPopover {
+  max-width: 200px;
+}
 .PlaceChooserPopover.popover .popover-content {
   padding: 10px;
 }
@@ -892,6 +908,12 @@ $nav-btn-dim: 40px;
   margin-bottom: 0;
   cursor: pointer;
 }
+.PlaceChooserPopover.popover .media {
+  margin: 0;
+}
+.PlaceChooserPopover.popover .media-left {
+  padding: 0;
+}
 .PlaceChooserPopover li {
   padding: 5px 0;
   border-bottom: 1px solid #ddd;
@@ -903,9 +925,13 @@ $nav-btn-dim: 40px;
   color: #999;
   width: 20px;
   text-align: center;
+  margin-top: 2px;
 }
 .PlaceChooserPopover li.current {
   background-color: #eee;
+}
+.PlaceChooserPopover li .place-type {
+  text-transform: capitalize;
 }
 .PlaceChooserPopover .pinned {
   border-bottom: 2px solid #ddd;

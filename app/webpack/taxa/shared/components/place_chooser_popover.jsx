@@ -9,6 +9,67 @@ import inatjs from "inaturalistjs";
 import _ from "lodash";
 import mousetrap from "mousetrap";
 
+const PLACE_TYPES = {
+  0: "Undefined",
+  1: "Building",
+  2: "Street Segment",
+  3: "Nearby Building",
+  5: "Intersection",
+  6: "Street",
+  7: "Town",
+  8: "State",
+  9: "County",
+  10: "Local Administrative Area",
+  11: "Postal Code",
+  12: "Country",
+  13: "Island",
+  14: "Airport",
+  15: "Drainage",
+  16: "Land Feature",
+  17: "Miscellaneous",
+  18: "Nationality",
+  19: "Supername",
+  20: "Point of Interest",
+  21: "Region",
+  22: "Suburb",
+  23: "Sports Team",
+  24: "Colloquial",
+  25: "Zone",
+  26: "Historical State",
+  27: "Historical County",
+  29: "Continent",
+  31: "Time Zone",
+  32: "Nearby Intersection",
+  33: "Estate",
+  35: "Historical Town",
+  36: "Aggregate",
+  100: "Open Space",
+  101: "Territory",
+  102: "District",
+  103: "Province",
+  1000: "Municipality",
+  1001: "Parish",
+  1002: "Department Segment",
+  1003: "City Building",
+  1004: "Commune",
+  1005: "Governorate",
+  1006: "Prefecture",
+  1007: "Canton",
+  1008: "Republic",
+  1009: "Division",
+  1010: "Subdivision",
+  1011: "Village block",
+  1012: "Sum",
+  1013: "Unknown",
+  1014: "Shire",
+  1015: "Prefecture City",
+  1016: "Regency",
+  1017: "Constituency",
+  1018: "Local Authority",
+  1019: "Poblacion",
+  1020: "Delegation"
+};
+
 class PlaceChooserPopover extends React.Component {
 
   constructor( props ) {
@@ -131,22 +192,36 @@ class PlaceChooserPopover extends React.Component {
                 <i className="fa fa-times"></i>
                 { _.capitalize( I18n.t( "clear" ) ) }
               </li>
-              { _.map( this.state.places, ( p, i ) => (
-                <li
-                  key={`place-chooser-place-${p.id}`}
-                  className={
-                    `${this.state.current === i ? "current" : ""}
-                    ${this.props.defaultPlace && p.id === this.props.defaultPlace.id ? "pinned" : ""}`
-                  }
-                  onClick={( ) => this.chooseCurrent( )}
-                  onMouseOver={( ) => {
-                    this.setState( { current: i } );
-                  }}
-                >
-                  <i className="fa fa-map-marker"></i>
-                  { p.display_name }
-                </li>
-              ) ) }
+              { _.map( this.state.places, ( p, i ) => {
+                let placeType;
+                if ( p && PLACE_TYPES[p.place_type] ) {
+                  placeType = I18n.t( `place_geo.geo_planet_place_types.${_.snakeCase( PLACE_TYPES[p.place_type] )}` );
+                }
+                return (
+                  <li
+                    key={`place-chooser-place-${p.id}`}
+                    className={
+                      `media ${this.state.current === i ? "current" : ""}
+                      ${this.props.defaultPlace && p.id === this.props.defaultPlace.id ? "pinned" : ""}`
+                    }
+                    onClick={( ) => this.chooseCurrent( )}
+                    onMouseOver={( ) => {
+                      this.setState( { current: i } );
+                    }}
+                  >
+                    <div className="media-left">
+                      <i className="media-object fa fa-map-marker"></i>
+                    </div>
+                    <div className="media-body">
+                      {
+                        p.display_name
+                      } {
+                        placeType ? <span className="text-muted place-type">({placeType})</span> : null
+                      }
+                    </div>
+                  </li>
+                );
+              } ) }
             </ul>
           </Popover>
         }

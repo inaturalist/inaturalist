@@ -28,8 +28,23 @@ function mapStateToProps( state ) {
     return newTerm;
   } );
   if ( state.photos.observationPhotos && state.photos.observationPhotos.length > 0 ) {
+    let observationPhotos = [];
+    if ( state.taxon.taxon.rank_level <= 10 ) {
+      // For species and lower, show all photos
+      observationPhotos = state.photos.observationPhotos;
+    } else {
+      // For taxa above species, show one photo per observation
+      const obsPhotoHash = {};
+      for ( let i = 0; i < state.photos.observationPhotos.length; i++ ) {
+        const observationPhoto = state.photos.observationPhotos[i];
+        if ( !obsPhotoHash[observationPhoto.observation.id] ) {
+          obsPhotoHash[observationPhoto.observation.id] = true;
+          observationPhotos.push( observationPhoto );
+        }
+      }
+    }
     return Object.assign( props, {
-      observationPhotos: state.photos.observationPhotos,
+      observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
   }

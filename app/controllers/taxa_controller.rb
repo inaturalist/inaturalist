@@ -165,6 +165,11 @@ class TaxaController < ApplicationController
           respond_to do |format|
             format.html do
               @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
+              place_id = current_user.preferred_taxon_page_place_id if logged_in?
+              place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
+              @place = Place.find_by_id( place_id )
+              @chosen_tab = session[:preferred_taxon_page_tab]
+              @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
               render layout: "bootstrap", action: "show2"
             end
           end
@@ -308,6 +313,10 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
+        place_id = current_user.preferred_taxon_page_place_id if logged_in?
+        place_id = session[:prefers_taxon_page_place_id] if place_id.blank?
+        @place = Place.find_by_id( place_id )
+        @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
         render layout: "bootstrap"
       end
     end

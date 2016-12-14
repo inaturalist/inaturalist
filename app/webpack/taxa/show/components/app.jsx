@@ -10,7 +10,7 @@ import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
 import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
-import TaxonCrumbs from "../../shared/components/taxon_crumbs";
+import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import StatusHeader from "./status_header";
 import { urlForTaxon } from "../../shared/util";
 
@@ -20,11 +20,7 @@ const App = ( { taxon } ) => (
       <TaxonChangeAlertContainer />
       <Row className="preheader">
         <Col xs={8}>
-          <TaxonCrumbs
-            taxon={taxon}
-            ancestors={taxon.ancestors}
-            url={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
-          />
+          <TaxonCrumbsContainer />
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="icon-link"></i>
           </a>

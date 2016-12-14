@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const SimilarTab = ( { results } ) => {
+const SimilarTab = ( { results, place } ) => {
   let content;
   if ( results && results.length > 0 ) {
     content = (
@@ -29,7 +29,19 @@ const SimilarTab = ( { results } ) => {
       <Row>
         <Col xs={12}>
           <h2>
-            { I18n.t( "other_species_commonly_misidentified_as_this_species" ) }
+            {
+              place ?
+                <span
+                  dangerouslySetInnerHTML={ { __html:
+                    I18n.t(
+                      "other_species_commonly_misidentified_as_this_species_in_place_html",
+                      { place: place.display_name, url: `/places/${place.id}` }
+                    )
+                  } }
+                ></span>
+                :
+                I18n.t( "other_species_commonly_misidentified_as_this_species" )
+            }
           </h2>
           { content }
         </Col>
@@ -39,7 +51,8 @@ const SimilarTab = ( { results } ) => {
 };
 
 SimilarTab.propTypes = {
-  results: PropTypes.array
+  results: PropTypes.array,
+  place: PropTypes.object
 };
 
 export default SimilarTab;
