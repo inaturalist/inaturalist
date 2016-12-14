@@ -82203,7 +82203,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
+	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.urlForPlace = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
 
 	var _lodash = __webpack_require__(590);
 
@@ -82229,6 +82229,9 @@
 	};
 	var urlForUser = function urlForUser(u) {
 	  return "/people/" + u.login;
+	};
+	var urlForPlace = function urlForPlace(p) {
+	  return "/places/" + (p.slug || p.id);
 	};
 
 	var defaultObservationParams = function defaultObservationParams(state) {
@@ -82304,6 +82307,7 @@
 	exports.urlForTaxon = urlForTaxon;
 	exports.urlForTaxonPhotos = urlForTaxonPhotos;
 	exports.urlForUser = urlForUser;
+	exports.urlForPlace = urlForPlace;
 	exports.defaultObservationParams = defaultObservationParams;
 	exports.localizedPhotoAttribution = localizedPhotoAttribution;
 	exports.commasAnd = commasAnd;
@@ -82668,7 +82672,8 @@
 	function fetchRare() {
 	  return function (dispatch, getState) {
 	    var params = Object.assign({}, (0, _util2.defaultObservationParams)(getState()), {
-	      order: "asc"
+	      order: "asc",
+	      csi: "CR,EN"
 	    });
 	    _inaturalistjs2.default.observations.speciesCounts(params).then(function (response) {
 	      return dispatch(setRare(response.results.map(function (r) {

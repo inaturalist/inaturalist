@@ -10,6 +10,7 @@ const urlForTaxonPhotos = ( t, params ) => {
   return url;
 };
 const urlForUser = ( u ) => `/people/${u.login}`;
+const urlForPlace = ( p ) => `/places/${p.slug || p.id}`;
 
 const defaultObservationParams = ( state ) => ( {
   verifiable: true,
@@ -76,6 +77,7 @@ export {
   urlForTaxon,
   urlForTaxonPhotos,
   urlForUser,
+  urlForPlace,
   defaultObservationParams,
   localizedPhotoAttribution,
   commasAnd

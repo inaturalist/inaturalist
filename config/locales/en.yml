@@ -3266,6 +3266,7 @@ en:
   total_users: "total users,"
   'true': 'True'
   trending: Trending
+  trends: Trends
   trusted_project?: Trusted project?
   try_adding_species_form: Try adding some species using the form on this page.
   try_it_out: Try it out
@@ -4697,7 +4698,9 @@ en:
           activity, while native means it arrived without human assistance.
           Endemic species only occur in a specific place and nowhere else.
         trending_desc: Most-observed taxa in the last month
-        rare_desc: Least-observed taxa for all time
+        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
+        rare_desc: Least-observed threatened taxa
+        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         no_trending_desc: Nothing below this taxon observed in the last month
     taxon_names:
       form:

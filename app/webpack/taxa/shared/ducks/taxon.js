@@ -286,7 +286,8 @@ export function fetchTrending( ) {
 export function fetchRare( ) {
   return ( dispatch, getState ) => {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      order: "asc"
+      order: "asc",
+      csi: "CR,EN"
     } );
     inatjs.observations.speciesCounts( params ).then(
       response =>

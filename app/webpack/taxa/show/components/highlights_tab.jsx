@@ -4,13 +4,16 @@ import _ from "lodash";
 import Carousel from "./carousel";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
+const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, placeName, placeUrl } ) => {
   let trending = (
     <h2 className="text-muted text-center">
       <i className="fa fa-refresh fa-spin"></i>
     </h2>
   );
-  const photosPerSlide = 6;
+  const photosPerSlide = 4;
+  const columnWidth = 3;
+  const thumbnailHeight = 200;
+  const thumbnailTruncation = 50;
   if ( trendingTaxa && trendingTaxa.length > 0 ) {
     const trendingChunks = _.chunk( trendingTaxa, photosPerSlide );
     if ( trendingChunks[trendingChunks.length - 1].length === photosPerSlide ) {
@@ -20,19 +23,33 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
       <Carousel
         title={ I18n.t( "trending" ) }
         url={ trendingUrl }
-        description={ I18n.t( "views.taxa.show.trending_desc" ) }
+        description={
+          placeName ?
+            <span
+              dangerouslySetInnerHTML={{ __html: I18n.t(
+                "views.taxa.show.trending_in_place_desc_html",
+                { place: placeName, url: placeUrl }
+              ) }}
+            ></span>
+            :
+            I18n.t( "views.taxa.show.trending_desc" )
+        }
         noContent={ I18n.t( "views.taxa.show.no_trending_desc" ) }
         items={ _.map( trendingChunks, ( chunk, i ) => (
           <Row key={`trending-${i}`} className={`trending-${i}`}>
             {
               chunk.map( taxon => (
-                <Col xs={2} key={`trending-taxon-${taxon.id}`}>
-                  <TaxonThumbnail taxon={taxon} />
+                <Col xs={columnWidth} key={`trending-taxon-${taxon.id}`}>
+                  <TaxonThumbnail
+                    taxon={taxon}
+                    height={thumbnailHeight}
+                    truncate={thumbnailTruncation}
+                  />
                 </Col>
               ) )
             }
             { i === trendingChunks.length - 1 ?
-              <Col xs={2}>
+              <Col xs={columnWidth}>
                 <a href={trendingUrl} className="viewall">
                   { I18n.t( "view_all" ) } <i className="fa fa-arrow-circle-right"></i>
                 </a>
@@ -55,14 +72,28 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
     rare = (
       <Carousel
         title={ I18n.t( "rare" ) }
-        description={ I18n.t( "views.taxa.show.rare_desc" ) }
+        description={
+          placeName ?
+            <span
+              dangerouslySetInnerHTML={{ __html: I18n.t(
+                "views.taxa.show.rare_in_place_desc_html",
+                { place: placeName, url: placeUrl }
+              ) }}
+            ></span>
+            :
+            I18n.t( "views.taxa.show.rare_desc" )
+        }
         noContent={ I18n.t( "no_observations_yet" ) }
-        items={ _.map( _.chunk( rareTaxa, 6 ), ( chunk, i ) => (
+        items={ _.map( _.chunk( rareTaxa, photosPerSlide ), ( chunk, i ) => (
           <Row key={`rare-${i}`}>
             {
               chunk.map( taxon => (
-                <Col xs={2} key={`rare-taxon-${taxon.id}`}>
-                  <TaxonThumbnail taxon={taxon} />
+                <Col xs={columnWidth} key={`rare-taxon-${taxon.id}`}>
+                  <TaxonThumbnail
+                    taxon={taxon}
+                    height={thumbnailHeight}
+                    truncate={thumbnailTruncation}
+                  />
                 </Col>
               ) )
             }
@@ -88,10 +119,11 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, rareUrl } ) => {
 };
 
 HighlightsTab.propTypes = {
+  placeName: PropTypes.string,
+  placeUrl: PropTypes.string,
   trendingTaxa: PropTypes.array,
   rareTaxa: PropTypes.array,
-  trendingUrl: PropTypes.string,
-  rareUrl: PropTypes.string
+  trendingUrl: PropTypes.string
 };
 
 export default HighlightsTab;
