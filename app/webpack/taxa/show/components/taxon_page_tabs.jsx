@@ -92,7 +92,7 @@ class TaxonPageTabs extends React.Component {
                     role="tab"
                     data-toggle="tab"
                   >
-                    { I18n.t( "highlights" ) }
+                    { I18n.t( "trends" ) }
                   </a>
                 </li>
                 { true ? null : (
