@@ -111,7 +111,7 @@ const InteractionsTab = ( { interactions } ) => {
                   <a
                     href={link.url}
                     style={{
-                      backgroundImage: `url( http://www.google.com/s2/favicons?domain=${link.host} )`,
+                      backgroundImage: `url( https://www.google.com/s2/favicons?domain=${link.host} )`,
                       backgroundRepeat: "no-repeat",
                       padding: "1px 0 1px 25px",
                       backgroundPosition: "0 2px"

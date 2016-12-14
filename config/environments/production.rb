@@ -47,7 +47,8 @@ Inaturalist::Application.configure do
   config.action_controller.asset_host = Proc.new {|*args|
     source, request = args
     host = CONFIG.assets_host || CONFIG.site_url
-    "#{request ? request.protocol : 'http://'}#{host.sub(/^https?:\/\//, '')}"
+    ( host =~ /^https/ ) ? host :
+      "#{request ? request.protocol : 'http://'}#{host.sub(/^https?:\/\//, '')}"
   }
 
   # Disable delivery errors, bad email addresses will be ignored

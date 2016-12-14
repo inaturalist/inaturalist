@@ -69,7 +69,7 @@ describe Photo do
   describe "local_photo_from_remote_photo" do
     it "creates a LocalPhoto with the right attributes" do
       fp = FlickrPhoto.new(
-        original_url: "http://static.inaturalist.org/sites/1-logo.png",
+        original_url: "https://static.inaturalist.org/sites/1-logo.png",
         native_photo_id: "a native_photo_id",
         native_page_url: "a native_page_url",
         native_username: "a native_username",
@@ -94,7 +94,7 @@ describe Photo do
   describe "turn_remote_photo_into_local_photo" do
     it "creates and saves local photos" do
       fp = FlickrPhoto.new(
-        original_url: "http://static.inaturalist.org/sites/1-logo.png")
+        original_url: "https://static.inaturalist.org/sites/1-logo.png")
       expect(fp.type).to eq "FlickrPhoto"
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
@@ -104,16 +104,16 @@ describe Photo do
 
     it "fails if the original and large URLs are inaccessible" do
       fp = FlickrPhoto.new(
-        original_url: "http://static.inaturalist.org/whatever.png",
-        large_url: "http://static.inaturalist.org/whatever.png")
+        original_url: "https://static.inaturalist.org/whatever.png",
+        large_url: "https://static.inaturalist.org/whatever.png")
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "FlickrPhoto"
     end
 
     it "uses the large URL when the original is not available" do
       fp = FlickrPhoto.new(
-        original_url: "http://static.inaturalist.org/whatever.png",
-        large_url: "http://static.inaturalist.org/sites/1-logo.png")
+        original_url: "https://static.inaturalist.org/whatever.png",
+        large_url: "https://static.inaturalist.org/sites/1-logo.png")
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
       expect(fp.native_original_image_url).to eq fp.large_url

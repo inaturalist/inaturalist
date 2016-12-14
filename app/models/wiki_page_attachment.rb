@@ -5,6 +5,7 @@ class WikiPageAttachment < ActiveRecord::Base
     has_attached_file :wiki_page_attachment, :styles => { :medium => "300x300>", :thumb => "100x100>" },
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_protocol => "https",
       :s3_host_alias => CONFIG.s3_bucket,
       :bucket => CONFIG.s3_bucket,
       :path => "wiki_page_attachments/:id-:style.:extension",
