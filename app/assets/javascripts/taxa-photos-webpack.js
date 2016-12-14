@@ -83308,7 +83308,6 @@
 	      var showAncestors = _props.showAncestors;
 	      var hideAncestors = _props.hideAncestors;
 
-	      console.log("[DEBUG] this.props: ", this.props);
 	      var children = _lodash2.default.sortBy(taxon.children || [], function (t) {
 	        return t.name;
 	      });
@@ -83875,8 +83874,23 @@
 	    return newTerm;
 	  });
 	  if (state.photos.observationPhotos && state.photos.observationPhotos.length > 0) {
+	    var observationPhotos = [];
+	    if (state.taxon.taxon.rank_level <= 10) {
+	      // For species and lower, show all photos
+	      observationPhotos = state.photos.observationPhotos;
+	    } else {
+	      // For taxa above species, show one photo per observation
+	      var obsPhotoHash = {};
+	      for (var i = 0; i < state.photos.observationPhotos.length; i++) {
+	        var observationPhoto = state.photos.observationPhotos[i];
+	        if (!obsPhotoHash[observationPhoto.observation.id]) {
+	          obsPhotoHash[observationPhoto.observation.id] = true;
+	          observationPhotos.push(observationPhoto);
+	        }
+	      }
+	    }
 	    return Object.assign(props, {
-	      observationPhotos: state.photos.observationPhotos,
+	      observationPhotos: observationPhotos,
 	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
 	    });
 	  }
