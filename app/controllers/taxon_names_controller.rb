@@ -35,7 +35,7 @@ class TaxonNamesController < ApplicationController
     pagination_headers_for( @taxon_names )
     
     respond_to do |format|
-      format.json { render json: @taxon_names }
+      format.json { render json: @taxon_names.as_json( include: :place_taxon_names ) }
     end
   end
 

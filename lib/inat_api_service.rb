@@ -1,3 +1,4 @@
+#encoding: utf-8
 module INatAPIService
 
   ENDPOINT = CONFIG.node_api_host
@@ -33,10 +34,11 @@ module INatAPIService
       timed_out = Timeout::timeout(INatAPIService::TIMEOUT) do
         response = Net::HTTP.get_response(uri)
         if response.code == "200"
-          return response.body
+          return response.body.force_encoding( 'utf-8' )
         end
       end
-    rescue
+    rescue => e
+      Rails.logger.debug "[DEBUG] INatAPIService.get_json failed: #{e}"
     end
     if retries.is_a?(Fixnum) && retries > 0
       return INatAPIService.get_json( path, params, retries - 1 )

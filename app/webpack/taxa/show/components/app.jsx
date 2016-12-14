@@ -11,6 +11,7 @@ import PhotoChooserModalContainer from "../containers/photo_chooser_modal_contai
 import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
+import AkaNamesContainer from "../containers/aka_names_container";
 import StatusHeader from "./status_header";
 import { urlForTaxon } from "../../shared/util";
 
@@ -53,6 +54,9 @@ const App = ( { taxon } ) => (
               <PlaceChooserContainer />
             </div>
           </div>
+        </Col>
+        <Col xs={12}>
+          <AkaNamesContainer />
         </Col>
       </Row>
     </Grid>
