@@ -167,10 +167,11 @@ class TaxaController < ApplicationController
               site_place = @site && @site.place
               user_place = current_user && current_user.place
               preferred_place = user_place || site_place
-              @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}" )
               place_id = current_user.preferred_taxon_page_place_id if logged_in?
               place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
               @place = Place.find_by_id( place_id )
+              api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}"
+              @node_taxon_json = INatAPIService.get_json( api_url )
               @chosen_tab = session[:preferred_taxon_page_tab]
               @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
               render layout: "bootstrap", action: "show2"
@@ -343,6 +344,7 @@ class TaxaController < ApplicationController
     @taxon.attributes = params[:taxon]
     @taxon.creator = current_user
     if @taxon.save
+      Taxon.refresh_es_index
       flash[:notice] = t(:taxon_was_successfully_created)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 

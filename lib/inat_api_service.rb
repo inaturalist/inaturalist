@@ -37,7 +37,7 @@ module INatAPIService
         # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         response = http.get(uri.request_uri)
         if response.code == "200"
-          return response.body.force_encoding( 'utf-8' )
+          return response.body.force_encoding( "utf-8" )
         end
       end
     rescue => e

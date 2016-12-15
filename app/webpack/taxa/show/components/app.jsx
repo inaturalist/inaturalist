@@ -12,7 +12,7 @@ import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
-import StatusHeader from "./status_header";
+import StatusRow from "./status_row";
 import { urlForTaxon } from "../../shared/util";
 
 const App = ( { taxon } ) => (
@@ -64,11 +64,10 @@ const App = ( { taxon } ) => (
       <Row id="hero">
         <Col xs={12}>
           <Grid>
-            <Row>
-              <Col xs={12}>
-                { taxon.conservationStatus ? <StatusHeader status={taxon.conservationStatus} /> : null }
-              </Col>
-            </Row>
+            <StatusRow
+              conservationStatus={taxon.conservationStatus}
+              establishmentMeans={taxon.establishment_means}
+            />
             <Row>
               <Col xs={6}>
                 <PhotoPreviewContainer />

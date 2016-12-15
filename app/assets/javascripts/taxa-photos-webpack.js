@@ -83898,6 +83898,8 @@
 	      observationPhotos: observationPhotos,
 	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
 	    });
+	  } else if (state.photos.observationPhotos) {
+	    props.observationPhotos = [];
 	  }
 	  if (!state.taxon.taxon || !state.taxon.taxon.children || state.taxon.taxon.children.length === 0) {
 	    props.showTaxonGrouping = false;
@@ -84027,6 +84029,7 @@
 	    { className: "loading" },
 	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
 	  );
+	  console.log("[DEBUG] PhotoBrowser, observationPhotos: ", observationPhotos);
 	  var renderUngroupedPhotos = function renderUngroupedPhotos() {
 	    return _react2.default.createElement(
 	      _reactInfiniteScroller2.default,

@@ -47,6 +47,8 @@ function mapStateToProps( state ) {
       observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
+  } else if ( state.photos.observationPhotos ) {
+    props.observationPhotos = [];
   }
   if (
     !state.taxon.taxon ||
