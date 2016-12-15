@@ -14,7 +14,8 @@ function mapStateToProps( state ) {
   );
   return {
     establishmentMeans: establishment,
-    url: listedTaxon ? `/listed_taxa/${listedTaxon.id}` : null
+    url: listedTaxon ? `/listed_taxa/${listedTaxon.id}` : null,
+    source: listedTaxon ? listedTaxon.list.title : null
   };
 }
 
