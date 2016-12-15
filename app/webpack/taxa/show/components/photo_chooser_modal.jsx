@@ -23,7 +23,7 @@ class PhotoChooserModal extends React.Component {
       photos: [],
       loading: true,
       submitting: false,
-      provider: "flickr",
+      provider: "inat",
       chosen: [],
       page: 1
     };
@@ -54,7 +54,7 @@ class PhotoChooserModal extends React.Component {
   }
   fetchPhotos( props, options = {} ) {
     this.setState( { loading: true } );
-    const provider = options.provider || this.state.provider || "flickr";
+    const provider = options.provider || this.state.provider || "inat";
     const params = Object.assign( { }, options, {
       q: this.state.query,
       limit: 12,
@@ -210,8 +210,8 @@ class PhotoChooserModal extends React.Component {
                       className="form-control"
                       onChange={ e => this.setProvider( e.target.value ) }
                     >
-                      <option value="flickr">Flickr</option>
                       <option value="inat">iNat</option>
+                      <option value="flickr">Flickr</option>
                       <option value="eol">EOL</option>
                       <option value="wikimedia_commons">Wikimedia Commons</option>
                     </select>

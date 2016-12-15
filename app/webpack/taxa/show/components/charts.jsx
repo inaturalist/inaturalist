@@ -5,14 +5,54 @@ import c3 from "c3";
 import moment from "moment";
 
 class Charts extends React.Component {
-  constructor( ) {
-    super( );
-    this.defaultC3Config = {
+  componentDidMount( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    this.renderSeasonalityChart( );
+    $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
+      switch ( e.target.hash ) {
+        case "#charts-seasonality":
+          if ( this.seasonalityChart ) {
+            this.seasonalityChart.flush( );
+          }
+          break;
+        case "#charts-history":
+          if ( !_.isEmpty( this.props.historyColumns ) ) {
+            this.props.fetchMonthFrequency( );
+          }
+          if ( this.historyChart ) {
+            this.historyChart.flush( );
+          }
+          break;
+        default:
+          // it's cool, you probably have what you need
+      }
+    } );
+  }
+  shouldComponentUpdate( nextProps ) {
+    if (
+      _.isEqual(
+        this.objectToComparable( this.props.seasonalityColumns ),
+        this.objectToComparable( nextProps.seasonalityColumns )
+      )
+      &&
+      _.isEqual(
+        this.objectToComparable( this.props.historyColumns ),
+        this.objectToComparable( nextProps.historyColumns )
+      )
+    ) {
+      // No change in underlying data series, don't update
+      return false;
+    }
+    return true;
+  }
+  componentDidUpdate( ) {
+    this.renderSeasonalityChart( );
+    this.renderHistoryChart( );
+  }
+  defaultC3Config( ) {
+    return {
       data: {
-        colors: {
-          verifiable: "#dddddd",
-          research: "#74ac00"
-        },
+        colors: this.props.colors,
         types: {
           verifiable: "line",
           research: "area"
@@ -49,90 +89,54 @@ class Charts extends React.Component {
       }
     };
   }
-  componentDidMount( ) {
-    const domNode = ReactDOM.findDOMNode( this );
-    this.renderSeasonalityChart( );
-    $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
-      switch ( e.target.hash ) {
-        case "#charts-seasonality":
-          if ( this.seasonalityChart ) {
-            this.seasonalityChart.flush( );
-          }
-          break;
-        case "#charts-history":
-          if ( !_.isEmpty( this.props.monthFrequencyVerifiable ) ) {
-            this.props.fetchMonthFrequency( );
-          }
-          if ( this.historyChart ) {
-            this.historyChart.flush( );
-          }
-          break;
-        default:
-          // it's cool, you probably have what you need
-      }
-    } );
-  }
-  shouldComponentUpdate( nextProps ) {
-    if (
-      _.isEqual(
-        this.objectToComparable( nextProps.monthOfYearFrequencyVerifiable ),
-        this.objectToComparable( this.props.monthOfYearFrequencyVerifiable )
-      )
-      &&
-      _.isEqual(
-        this.objectToComparable( nextProps.monthOfYearFrequencyResearch ),
-        this.objectToComparable( this.props.monthOfYearFrequencyResearch )
-      )
-      &&
-      _.isEqual(
-        this.objectToComparable( nextProps.monthFrequencyVerifiable ),
-        this.objectToComparable( this.props.monthFrequencyVerifiable )
-      )
-      &&
-      _.isEqual(
-        this.objectToComparable( nextProps.monthFrequencyResearch ),
-        this.objectToComparable( this.props.monthFrequencyResearch )
-      )
-    ) {
-      // No change in underlying data series, don't update
-      return false;
-    }
-    return true;
-  }
-  componentDidUpdate( ) {
-    this.renderSeasonalityChart( );
-    this.renderHistoryChart( );
-  }
   objectToComparable( object = {} ) {
-    return _.map( object, ( v, k ) => `(${k}-${v})` ).sort( ).join( "," );
+    return _.map( object, ( v, k ) => {
+      if ( _.isArrayLikeObject( v ) ) {
+        return `(${k}-${this.objectToComparable( v )})`;
+      }
+      return `(${k}-${v})`;
+    } ).sort( ).join( "," );
   }
-  tooltipContent( d, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
+  tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
+    const order = [
+      "verifiable",
+      "research",
+      "Flowering Phenology=bare",
+      "Flowering Phenology=budding",
+      "Flowering Phenology=flower",
+      "Flowering Phenology=fruit",
+      "Insect life stage=egg",
+      "Insect life stage=larva",
+      "Insect life stage=teneral",
+      "Insect life stage=nymph",
+      "Insect life stage=pupa",
+      "Insect life stage=adult"
+    ];
+    const tipRows = order.map( seriesName => {
+      const item = _.find( data, series => series.name === seriesName );
+      if ( item ) {
+        return `
+          <div class="series">
+            <span class="swatch" style="background-color: ${color( item )}"></span>
+            <span class="column-label">${I18n.t( `views.taxa.show.frequency.${item.name}` )}:</span>
+            <span class="value">${I18n.toNumber( item.value, { precision: 0 } )}</span>
+          </div>
+        `;
+      }
+      return null;
+    } );
     return `
       <div class="frequency-chart-tooltip">
         <div class="title">${tipTitle}</div>
-        ${d.map( item => `
-          <div class="series">
-            <span class="swatch" style="background-color: ${color( item )}"></span>
-            <span class="column-label">${item.name}:</span>
-            <span class="value">${I18n.toNumber( item.value, { precision: 0 } )}</span>
-          </div>
-        ` ).join( "" )}
+        ${tipRows.join( "" )}
       </div>
     `;
   }
   renderSeasonalityChart( ) {
-    const verifiableFrequency = this.props.monthOfYearFrequencyVerifiable || {};
-    const researchFrequency = this.props.monthOfYearFrequencyResearch || {};
-    const keys = _.keys(
-      verifiableFrequency
-    ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
     const that = this;
-    const config = _.defaultsDeep( { }, this.defaultC3Config, {
+    const config = _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
-        columns: [
-          ["verifiable", ...keys.map( i => verifiableFrequency[i.toString( )] || 0 )],
-          ["research", ...keys.map( i => researchFrequency[i.toString( )] || 0 )]
-        ],
+        columns: this.props.seasonalityColumns,
         onclick: d => {
           that.seasonalityChart.unselect( ["verifiable", "research"] );
           that.props.openObservationsSearch( {
@@ -143,7 +147,7 @@ class Charts extends React.Component {
       axis: {
         x: {
           type: "category",
-          categories: keys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) )
+          categories: this.props.seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) )
         }
       },
       tooltip: {
@@ -157,9 +161,7 @@ class Charts extends React.Component {
     this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
   renderHistoryChart( ) {
-    const verifiableFrequency = this.props.monthFrequencyVerifiable || {};
-    const researchFrequency = this.props.monthFrequencyResearch || {};
-    const dates = _.keys( verifiableFrequency ).sort( );
+    const dates = this.props.historyKeys;
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
     const chunks = _.chunk( years, 2 );
     const that = this;
@@ -169,14 +171,10 @@ class Charts extends React.Component {
         end: `${pair[0] + 1}-01-01`
       }
     ) );
-    const config = _.defaultsDeep( { }, this.defaultC3Config, {
+    const config = _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
         x: "x",
-        columns: [
-          ["x", ...dates],
-          ["verifiable", ...dates.map( d => verifiableFrequency[d] || 0 )],
-          ["research", ...dates.map( d => researchFrequency[d] || 0 )]
-        ],
+        columns: this.props.historyColumns,
         onclick: d => {
           this.props.openObservationsSearch( {
             quality_grade: ( d.name === "research" ? "research" : null ),
@@ -214,8 +212,8 @@ class Charts extends React.Component {
     this.historyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
   render( ) {
-    const uniqueValues = _.uniq( _.values( this.props.monthOfYearFrequencyVerifiable || {} ) );
-    const noMonthData = uniqueValues.length === 1 && uniqueValues[0] === 0;
+    const noHistoryData = _.isEmpty( this.props.historyKeys );
+    const noSeasonalityData = _.isEmpty( this.props.seasonalityKeys );
     return (
       <div id="charts" className="Charts">
         <ul className="nav nav-tabs" role="tablist">
@@ -244,7 +242,7 @@ class Charts extends React.Component {
           <div role="tabpanel" className="tab-pane active" id="charts-seasonality">
             <div
               className={
-                `no-content text-muted text-center ${noMonthData ? "" : "hidden"}`
+                `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
               }
             >
               { I18n.t( "no_observations_yet" ) }
@@ -255,7 +253,7 @@ class Charts extends React.Component {
           <div role="tabpanel" className="tab-pane" id="charts-history">
             <div
               className={
-                `no-content text-muted text-center ${_.isEmpty( this.props.monthFrequencyVerifiable ) ? "" : "hidden"}`
+                `no-content text-muted text-center ${noHistoryData ? "" : "hidden"}`
               }
             >
               { I18n.t( "no_observations_yet" ) }
@@ -273,10 +271,28 @@ Charts.propTypes = {
   fetchMonthFrequency: PropTypes.func,
   openObservationsSearch: PropTypes.func,
   test: PropTypes.string,
-  monthOfYearFrequencyVerifiable: PropTypes.object,
-  monthOfYearFrequencyResearch: PropTypes.object,
-  monthFrequencyVerifiable: PropTypes.object,
-  monthFrequencyResearch: PropTypes.object
+  seasonalityColumns: PropTypes.array,
+  seasonalityKeys: PropTypes.array,
+  historyColumns: PropTypes.array,
+  historyKeys: PropTypes.array,
+  colors: PropTypes.object
+};
+
+Charts.defaultProps = {
+  colors: {
+    research: "#74ac00",
+    verifiable: "#dddddd",
+    "Flowering Phenology=bare": "#fecc5c",
+    "Flowering Phenology=budding": "#f03b20",
+    "Flowering Phenology=flower": "#bd0026",
+    "Flowering Phenology=fruit": "#fd8d3c",
+    "Insect life stage=egg": "#d4b9da",
+    "Insect life stage=larva": "#c994c7",
+    "Insect life stage=teneral": "#df65b0",
+    "Insect life stage=nymph": "#e7298a",
+    "Insect life stage=pupa": "#ce1256",
+    "Insect life stage=adult": "#91003f"
+  }
 };
 
 

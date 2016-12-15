@@ -4704,6 +4704,19 @@ en:
         rare_desc: Least-observed threatened taxa
         rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         no_trending_desc: Nothing below this taxon observed in the last month
+        frequency:
+          research: Research Grade
+          verifiable: Verifiable
+          "Flowering Phenology=bare": No flowers
+          "Flowering Phenology=budding": Budding
+          "Flowering Phenology=flower": Flowering
+          "Flowering Phenology=fruit": Fruiting
+          "Insect life stage=egg": Egg
+          "Insect life stage=larva": Larva
+          "Insect life stage=teneral": Teneral
+          "Insect life stage=nymph": Nymph
+          "Insect life stage=pupa": Pupa
+          "Insect life stage=adult": Adult
     taxon_names:
       form:
         new_name_guidelines_html: |
