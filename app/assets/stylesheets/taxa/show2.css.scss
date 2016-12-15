@@ -599,7 +599,7 @@ $endemicColor: darken( $inat-green, 10% );
   border-color: transparentize( $endemicColor, 0.80 );
   color: $endemicColor;
 }
-$introducedColor: DeepPink;
+$introducedColor: #E4007C;
 .EstablishmentHeader.establishment-introduced {
   background-color: transparentize( $introducedColor, 0.90 );
   border-color: transparentize( $introducedColor, 0.80 );

@@ -84029,7 +84029,6 @@
 	    { className: "loading" },
 	    _react2.default.createElement("i", { className: "fa fa-refresh fa-spin" })
 	  );
-	  console.log("[DEBUG] PhotoBrowser, observationPhotos: ", observationPhotos);
 	  var renderUngroupedPhotos = function renderUngroupedPhotos() {
 	    return _react2.default.createElement(
 	      _reactInfiniteScroller2.default,

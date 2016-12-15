@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import { Row, Col } from "react-bootstrap";
 import StatusHeader from "./status_header";
-import EstablishmentHeader from "./establishment_header";
+import EstablishmentHeaderContainer from "../containers/establishment_header_container";
 
 const StatusRow = ( { conservationStatus, establishmentMeans } ) => {
   if ( conservationStatus && establishmentMeans ) {
@@ -11,7 +11,7 @@ const StatusRow = ( { conservationStatus, establishmentMeans } ) => {
           <StatusHeader status={conservationStatus} />
         </Col>
         <Col xs={6}>
-          <EstablishmentHeader establishmentMeans={establishmentMeans} />
+          <EstablishmentHeaderContainer />
         </Col>
       </Row>
     );
@@ -20,7 +20,7 @@ const StatusRow = ( { conservationStatus, establishmentMeans } ) => {
     return <Row><Col xs={12}><StatusHeader status={conservationStatus} /></Col></Row>;
   }
   if ( establishmentMeans ) {
-    return <Row><Col xs={12}><EstablishmentHeader establishmentMeans={establishmentMeans} /></Col></Row>;
+    return <Row><Col xs={12}><EstablishmentHeaderContainer /></Col></Row>;
   }
   return <Row />;
 };
