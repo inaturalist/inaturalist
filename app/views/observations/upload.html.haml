@@ -8,8 +8,7 @@
   = stylesheet_link_tag "font-awesome"
   = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
   = stylesheet_link_tag "observations/uploader"
-  %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
-  %meta{ name: "config:inaturalist_write_api_host", content: CONFIG.node_api_host }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   = javascript_include_tag "i18n"
 #app
 = google_maps_js libraries: %w(places geometry drawing)

@@ -9,10 +9,12 @@ class MushroomObserverImportFlowTask < FlowTask
       results = get_results_xml( page: page )
       break if results.blank?
       results.each do |result|
-        o = observation_from_result( result )
-        unless o && o.save
-          errors[result[:url]] = o.errors.full_messages.to_sentence
-          clear_warnings_for_url( result[:url] )
+        transaction do
+          o = observation_from_result( result )
+          unless o && o.save
+            errors[result[:url]] = o.errors.full_messages.to_sentence
+            clear_warnings_for_url( result[:url] )
+          end
         end
       end
       page += 1

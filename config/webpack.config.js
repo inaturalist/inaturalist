@@ -9,7 +9,9 @@ var config = {
     // list out the various bundles we need to make for different apps
     'observations-identify': './observations/identify/webpack-entry',
     'observations-uploader': './observations/uploader/webpack-entry',
-    'project-slideshow': './project_slideshow/webpack-entry'
+    'project-slideshow': './project_slideshow/webpack-entry',
+    'taxa-show': './taxa/show/webpack-entry',
+    'taxa-photos': './taxa/photos/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js

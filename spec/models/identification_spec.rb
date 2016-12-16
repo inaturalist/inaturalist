@@ -3,8 +3,8 @@ require "spec_helper"
 describe Identification, "creation" do
 
   before(:all) { User.destroy_all }
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
 
   it "should have a taxon" do 
     @id = Identification.make!
@@ -29,11 +29,23 @@ describe Identification, "creation" do
 
   it "should make older identifications not current" do
     old_ident = Identification.make!
-    new_ident = Identification.make!(:observation => old_ident.observation, :user => old_ident.user)
-    expect(new_ident).to be_valid
-    expect(new_ident).to be_current
+    new_ident = Identification.make!( observation: old_ident.observation, user: old_ident.user )
+    expect( new_ident ).to be_valid
+    expect( new_ident ).to be_current
     old_ident.reload
-    expect(old_ident).not_to be_current
+    expect( old_ident ).not_to be_current
+  end
+
+  it "should make older identifications in elasticsearch" do
+    old_ident = Identification.make!
+    without_delay do
+      Identification.make!( observation: old_ident.observation, user: old_ident.user )
+    end
+    es_response = Identification.elastic_search( where: { id: old_ident.id } ).results.results.first
+    expect( es_response.id.to_s ).to eq old_ident.id.to_s
+    old_ident.reload
+    expect( old_ident ).not_to be_current
+    expect( es_response.current ).to be false
   end
 
   it "should not allow 2 current observations per user" do
@@ -355,9 +367,13 @@ describe Identification, "creation" do
     po.reload
     expect(po.curator_identification_id).to eq i1.id
   end
+
 end
 
 describe Identification, "updating" do
+  before(:each) { enable_elastic_indexing( Identification ) }
+  after(:each) { disable_elastic_indexing( Identification ) }
+
   it "should not change current status of other identifications" do
     i1 = Identification.make!
     i2 = Identification.make!(:observation => i1.observation, :user => i1.user)
@@ -374,6 +390,9 @@ describe Identification, "updating" do
 end
 
 describe Identification, "deletion" do
+  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
+
   before(:all) do
     # some identification deletion callbacks need to happen after the transaction is complete
     DatabaseCleaner.strategy = :truncation
@@ -627,6 +646,9 @@ describe Identification, "deletion" do
 end
 
 describe Identification, "captive" do
+  before(:each) { enable_elastic_indexing( Identification ) }
+  after(:each) { disable_elastic_indexing( Identification ) }
+
   it "should vote yes on the wild quality metric if 1" do
     i = Identification.make!(:captive_flag => "1")
     o = i.observation
@@ -658,6 +680,9 @@ describe Identification, "captive" do
 end
 
 describe Identification do
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+
   describe "mentions" do
     it "knows what users have been mentioned" do
       u = User.make!
@@ -693,6 +718,8 @@ end
 describe Identification, "category" do
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
+  before(:each) { enable_elastic_indexing( Identification ) }
+  after(:each) { disable_elastic_indexing( Identification ) }
   let( :o ) { Observation.make! }
   let(:parent) { Taxon.make!( rank: Taxon::GENUS ) }
   let(:child) { Taxon.make!( rank: Taxon::SPECIES, parent: parent ) }

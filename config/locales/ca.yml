@@ -45,6 +45,7 @@ ca:
   x_journal_posts:
     one: 1 entrada de diari
     other: '%{count} entrades de diari'
+  x_matching_taxa: '{{PLURAL)|=1 tàxon coincident|%{count} tàxons coincidents}}'
   x_matching_taxa_html:
     one: <span class='count'>1</span> tàxon coincident
     other: <span class='count'>%{count}</span> tàxons coincidents
@@ -81,6 +82,8 @@ ca:
   x_species_html:
     one: <span class='count'>1</span> espècie
     other: <span class='count'>%{count}</span> espècies
+  x_species_link_html: '{{PLURAL)|=<a href="%{url}">1 espècie</a>|<a href="%{url}">%{count}
+    espècies</a>}}'
   x_taxa_observed_html:
     one: <span class='count'>1</span> tàxon observat</span>
     other: <span class='count'>%{count}</span> tàxons observats</span>
@@ -92,6 +95,8 @@ ca:
       les espècies, subespècies o varietats</span>
     other: <span class=count>%{count}</span> observacions amb grau de recerca van
       IDentificar les espècies, subespècies o varietats</span>
+  x_taxa_matching_current_filters: '{{PLURAL)|=1 tàxon coincideix amb els filtres
+    actuals|%{count} tàxons coincideixen amb els filtres actuals}}'
   a: una
   a_: una
   a_community_for_naturalist: Una comunitat per a naturalistes
@@ -374,6 +379,7 @@ ca:
     d’aquí vincular-hi el compte. Si ho feu d''una altra manera, %{site_name} no s''adonarà
     que els dos comptes estan connectats i, en lloc d’això, intentarà crear un nou
     compte!'
+  and_x_more_people!: '{{PLURAL)|one=i una persona més!|i %{count} persones més!}}'
   android: Android
   animals: Animals
   announcement_was_successfully_created: L'anunci s'ha creat amb èxit.
@@ -3483,6 +3489,8 @@ ca:
   the_world_is_full_of_interesting_places_short: El món està ple de llocs interessants,
     cadascun amb les seves formes de vida rares i meravelloses. Algunes es troben
     a l'altre costat del món, i d’altres són molt a la vora
+  there_are_x_synonyms_html: '{{PLURAL)|=Hi ha <span class="count">1</span> sinònim</span>|Hi
+    ha <span class="count">%{count}</span> sinònims</span>}}'
   there_is_no_wikipedia_page_matching: No hi ha pàgines a Viquipèdia coincidents
   there_isnt_wiki_article: No hi ha un article de la Viquipèdia o redirecció titulada
     '<i>%{taxon}</i>'. És possible que vulgueu
@@ -3725,6 +3733,8 @@ ca:
       select_all: Seleccioneu totes les observacions
       remove_photo: Elimineu la foto
       remove_observation: Traieu l'observació
+  uploading_num_of_count_photos: '{{PLURAL)|one=Pujant la foto...|Pujant foto %{num}
+    de %{count}...}}'
   url_identifier_of_a_project_derived_from: Adreça web / identificador del projecte
     derivat de fonts externes
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina
@@ -4845,11 +4855,13 @@ ca:
           <li>Els arxius KML i KMZ s'afegiran al mapa a la pàgina del projecte</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Podeu crear una llista personalitzada de tàxons per aquest projecte enllaçar-la. Això pot ser útil per:</p>
-          <ol class="description">
-           <li>Restringir les observacions que s'afegeixen al vostre projecte a aquelles en que hi coincideix el taxó amb la llista a través de la regla 'ha de ser espècie de la llista del projecte".</li>
-           <li>Fer el seguiment de quants tàxons de la llista han estat observats i afegits al projecte</li>
-          </ol>
+          <p class="description">
+            Podeu crear una llista personalitzada de tàxons per aquest projecte i
+            enllaçar-la. Això pot ser útil per restringir les observacions que
+            s'afegeixen al vostre projecte a aquelles en que hi coincideix el
+            taxó amb la llista a través de la regla "ha de ser una espècie de la
+            llista del projecte".
+          </p>
         rules:
           captive: captiva/conreada
           wild: salvatge/naturalitzada

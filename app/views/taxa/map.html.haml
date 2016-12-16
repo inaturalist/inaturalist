@@ -8,7 +8,10 @@
     $(document).ready(function() {
       $("#map").taxonMap({ showLegend: true });
       window.map = $("#map").data("taxonMap");
-      $(window.map._overlayControl.div).find(".overlaycontrol").addClass("open").find("ul").show();
+      setTimeout( function( ) {
+        $(window.map._overlayControl.div).find(".overlaycontrol").
+          addClass("open").find("ul").show();
+      }, 1000 );
     });
 
 #pageheader.last.column.span-24
@@ -22,8 +25,7 @@
     taxon_layers: @taxa.map{ |t|
       {
         taxon: t, 
-        ranges: t.taxon_ranges.any? ?
-          { color: colors[t.id].paint.lighten.to_hex } : false,
+        ranges: { color: colors[t.id].paint.lighten.to_hex },
         places: (@taxa.size == 1 && t.listed_taxa.joins(place: :place_geometry).any?),
         observations: { color: colors[t.id] },
         gbif: { disabled: true }

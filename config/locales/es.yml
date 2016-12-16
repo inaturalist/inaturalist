@@ -1027,7 +1027,7 @@ es:
   description: Descripción
   description_from: Descripción de
   description_slash_tags: Descripción / Etiquetas
-  description_tags_more: Descripción, Etiquetas, &amp; Más
+  description_tags_more: Descripción, etiquetas y más
   desription: Descripción
   destroy: Destruir
   details: Detalles
@@ -1857,7 +1857,7 @@ es:
     ya todos los descendientes. Un curator puede sobre escribir esto modificando los
     taxones e ingresando identificadores padres directamente, pero en lugar de eso
     trate de combinar los taxones nuevos con los ya existentes.
-  log_in: Iniciar sesión
+  log_in: Acceder
   logged_in_as: Inició sesión como
   login_slash_username: Registro / nombre de usuario
   logo:
@@ -2487,7 +2487,7 @@ es:
   other_listings_of_this_taxon_for_this_place: Otras ejemplas de este especies listado
     en este lugar
   our_blog: Nuestro blog
-  out_of_range: Fuera del rango
+  out_of_range: Fuera del intervalo
   output_taxon: Taxón de salida
   owner: Propietario
   parent: Padre
@@ -3358,6 +3358,7 @@ es:
     tags</a>.  They help engineers programmatically make sense of your tags, and are
     required by some Flickr groups like the <a href="http: //www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia
     of Life Images</a> group.'
+  take_me_back: Llévame de vuelta
   take_me_facebook: ¡Sí, lléveme a Facebook!
   take_me_flickr!: ¡Sí, lléveme a Flickr!
   taxa: Taxones
@@ -3626,6 +3627,7 @@ es:
   thu: jue
   time_: vez
   time_ago: hace %{time}
+  tired_of_testing_this_new_version: ¿Cansado de probar esta nueva versión?
   title: título
   title_and_description: Título y Descripción
   titled_favorites_and_the_most_recent_additions: titulados "Favoritos" y las adiciones
@@ -3661,6 +3663,7 @@ es:
   trusted_project?: ¿Es un projecto verificicado?
   try_adding_species_form: Trate de agregar algunas especies usando el formulario
     en esta página.
+  try_it_out: Pruébalo
   try_wikipedia: ¿Probar con Wikipedia?
   tue: mar
   twitter: Twitter
@@ -3741,7 +3744,8 @@ es:
       remove_photo: Quitar foto
       remove_observation: Eliminar observación
   uploading_num_of_count_photos:
-    other: 'uno = subiendo foto... '
+    one: Subiendo foto...
+    other: Subiendo %{num} de %{count} fotos...
   url_identifier_of_a_project_derived_from: Dirección web / identificador del proyecto
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
@@ -3908,6 +3912,7 @@ es:
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar
     algunos minutos para listas grandes.
   want_to_add_one: ¿Desea agregar una?
+  want_to_test_a_new_version_of_this_page: ¿Quieres probar una nueva versión de esta página?
   want_to_show_off_some_of_your_favorite_taxa: ¿Desea mostrar algunos de sus taxones
     favoritos aquí?
   was_it_captive_cultivated?: ¿Fue cautiva / cultivado?
@@ -4946,11 +4951,13 @@ es:
             <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
           </ol>
         project_list_desc_html: |-
-          <p class="description">Puedes crear un lista personalizada de taxones del proyecto y enlazarla al proyecto. Esto puede ser útil para:</p>
-          <ol class="description">
-           <li>Restringir las observaciones que se añaden al proyecto a aquellas que se ajusten a los taxones en la lista a través de una regla 'debe ser un taxón de la lista del proyecto'.</li>
-           <li>Realizar un seguimiento de cuántos taxones en la lista han sido identificados con observaciones añadidas al proyecto</li>
-          </ol>
+          <p class="description">
+            Puedes crear un lista personalizada de taxones del proyecto y
+            enlazarla al proyecto. Esto puede ser útil para restringir las
+            observaciones que se añaden al proyecto a aquellas que se ajusten a
+            los taxones en la lista a través de una regla 'debe ser un taxón de
+            la lista del proyecto'.
+          </p>
         rules:
           captive: ser cautivo/cultivada
           wild: ser salvaje/naturalizó

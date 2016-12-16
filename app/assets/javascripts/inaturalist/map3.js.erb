@@ -752,8 +752,8 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     .attr("name", title)
     .attr("checked", ! options.disabled);
   li.append( checkbox, label );
-  if( options.endpoint === "gbif" && options.taxon && options.taxon.gbif_id ) {
-     li.append("<a href='http://www.gbif.org/species/" + options.taxon.gbif_id +
+  if( options.endpoint === "gbif" && options.gbif_id ) {
+     li.append("<a href='http://www.gbif.org/species/" + options.gbif_id +
        "' target='_blank'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
   }
   if( options.taxon ) {
@@ -961,8 +961,8 @@ var GBIFMapColors = function( ) {
 };
 
 google.maps.Map.prototype.addGBIFLayer = function( options ) {
-  var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
-    options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
+  var layerTileURL = "https://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
+    options.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
   return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
 };
 
@@ -1015,16 +1015,16 @@ function elasticsearchTileservers( ) {
 
 function intereactionsServer( ) {
   var interactionTileURL = "<%= CONFIG.tile_servers.interactions %>";
-  if( interactionTileURL ) { return "//" + interactionTileURL; }
+  if( interactionTileURL ) { return interactionTileURL; }
   return elasticsearchTileservers( )[0];
 }
 
-// node_api_host and tile_servers.elasticsearch refer to two
-// different clusters running the same code. node_api_host will
+// node_api_url and tile_servers.elasticsearch refer to two
+// different clusters running the same code. node_api_url will
 // be faster for DB/postgis queries
 function postgisTileservers( ) {
-  var nodeApiHost = "<%= CONFIG.node_api_host %>";
-  if( nodeApiHost ) { return [ "//" + nodeApiHost ]; }
+  var nodeApiURL = "<%= CONFIG.node_api_url %>";
+  if( nodeApiURL ) { return [ nodeApiURL ]; }
   return elasticsearchTileservers( );
 }
 
@@ -1032,7 +1032,9 @@ google.maps.Map.prototype.removeAllLayers = function( ) {
   for (var i = this.overlayMapTypes.length - 1; i >= 0; i--) {
     var mapType = this.overlayMapTypes.getAt(i),
         title = mapType.title;
-    mapType.interactivity.remove();
+    if ( mapType.interactivity ) {
+      mapType.interactivity.remove();
+    }
     this.overlayMapTypes.removeAt(i);
     if( this._overlayControl ) {
       this._overlayControl.removeOverlayControl(title)
@@ -1266,7 +1268,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
         // no need to keep setting the option while the mouse
         // is outside any interactive point
         if( interactionOn ) {
-          map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+          map.setOptions({ draggableCursor: 'url(https://maps.google.com/mapfiles/openhand.cur), move' });
         }
         interactionOn = false;
       }

@@ -13,7 +13,7 @@ $.fn.projectAutocomplete = function( options ) {
     allowPlaceholders: true,
     source: function( request, response ) {
       $.ajax({
-        url: "//<%= CONFIG.node_api_host %>/projects/autocomplete",
+        url: "<%= CONFIG.node_api_url %>/projects/autocomplete",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "projectAutocompleteCallback",

@@ -1,5 +1,4 @@
 import iNaturalistJS from "inaturalistjs";
-import _ from "lodash";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
 import { setConfig } from "./config_actions";

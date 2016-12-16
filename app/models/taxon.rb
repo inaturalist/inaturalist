@@ -26,7 +26,7 @@ class Taxon < ActiveRecord::Base
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
-  has_many :taxon_change_taxa
+  has_many :taxon_change_taxa, inverse_of: :taxon
   has_many :observations, :dependent => :nullify
   has_many :observations_identifications, through: :observations, source: :identifications
   has_many :observations_comments, through: :observations, source: :comments
@@ -404,6 +404,8 @@ class Taxon < ActiveRecord::Base
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
     end
+    elastic_index!
+    Taxon.refresh_es_index
     true
   end
 
@@ -551,6 +553,14 @@ class Taxon < ActiveRecord::Base
 
   def descendants_count
     taxon_ancestors_as_ancestor.count
+  end
+
+  def taxon_changes_count
+    TaxonChange.taxon( id ).count
+  end
+
+  def taxon_schemes_count
+    taxon_schemes.count
   end
 
   #
@@ -1704,6 +1714,10 @@ class Taxon < ActiveRecord::Base
         Observation.elastic_search(
           where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
     end
+  end
+
+  def self.refresh_es_index
+    Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
   # /Static #################################################################

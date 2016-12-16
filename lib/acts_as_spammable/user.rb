@@ -37,14 +37,12 @@ module ActsAsSpammable::User
     # The FlagsController is apparently the place to check for what
     # models use the acts_as_flaggable module
     Rakismet.spammable_models.map{ |klass|
+      # User model is a "spammable" model, but users are not content
+      next if klass == User
       # classes have different ways of getting to user, so just do
       # a join and enforce the user_id with a where clause
-      if klass == User
-        klass.joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
-      else
-        klass.joins(:user).where(users: { id: self.id }).
-          joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
-      end
+      klass.joins(:user).where(users: { id: self.id }).
+        joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
     }.compact.flatten.uniq
   end
 

@@ -1,0 +1,30 @@
+- @no_footer_gap = true
+- content_for :title do
+  = render "taxa/taxon.txt.erb", taxon: @taxon
+- content_for :extrajs do
+  :javascript
+    var SERVER_PAYLOAD = {
+      taxon: #{ @node_taxon_json.encode }.results[0],
+      place: #{ @place.to_json( only: [:id, :name, :display_name ] )},
+      chosenTab: #{ @chosen_tab.to_json },
+      ancestorsShown: #{ @ancestors_shown.to_json }
+    }
+  = javascript_include_tag "taxa-show-webpack"
+- content_for :extracss do
+  = stylesheet_link_tag "c3", "taxa/show2"
+- content_for :extrahead do
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+#app
+  #initial-loading.text-center
+    = loading nil, class: "bigloading"
+- if logged_in? 
+  .container
+    .row
+      .col-xs-12
+        .quiet.box.text-center
+          =t :tired_of_testing_this_new_version
+          = button_to t(:take_me_back),
+            leave_test_user_path( current_user, test: "taxon-page" ),
+            method: "put",
+            class: "btn btn-default",
+            form_class: "inline"

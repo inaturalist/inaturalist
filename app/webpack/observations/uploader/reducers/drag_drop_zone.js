@@ -63,10 +63,14 @@ const dragDropZone = ( state = defaultState, action ) => {
       }
       // if false, keep it false, or don't override the value if modified is true
       if ( attrs.modified === false ) { delete attrs.modified; }
-      attrs.updatedAt = new Date( ).getTime( );
+
       let newState = update( state, {
-        obsCards: { [action.obsCard.id]: { $merge: attrs } }
+        obsCards: { [action.obsCard.id]: { $merge: Object.assign( { }, attrs, {
+          updatedAt: new Date( ).getTime( ),
+          changedFields: Object.assign( { }, action.obsCard.changedFields, attrs )
+        } ) } }
       } );
+
       if ( state.selectedObsCards[action.obsCard.id] ) {
         newState = update( newState, {
           selectedObsCards: { [action.obsCard.id]: { $set: newState.obsCards[action.obsCard.id] } }
@@ -118,7 +122,10 @@ const dragDropZone = ( state = defaultState, action ) => {
       let modified = Object.assign( { }, state.obsCards );
       _.each( state.selectedObsCards, c => {
         modified = update( modified, {
-          [c.id]: { $merge: Object.assign( action.attrs, { updatedAt: time } ) }
+          [c.id]: { $merge: Object.assign( action.attrs, {
+            updatedAt: time,
+            changedFields: Object.assign( { }, c.changedFields, action.attrs )
+          } ) }
         } );
       } );
       return Object.assign( { }, state, { obsCards: modified,

@@ -79,11 +79,15 @@ class BulkObservationFile
         
         # Look for the species and flag it if it's not found.
         taxon = Taxon.single_taxon_for_name(row[0])
-        errors << BulkObservationException.new("Single taxon not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
+        if taxon.nil?
+          errors << BulkObservationException.new("Single taxon not found: #{row[0]}", row_count + 1, [], 'species_not_found')
+        end
 
         # Check the validity of the observation
         obs = new_observation(row)
-        errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors) unless obs.valid?
+        unless obs.valid?
+          errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors)
+        end
 
         # Increment the row count.
         row_count = row_count + 1

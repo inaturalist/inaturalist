@@ -303,6 +303,7 @@
               <%= text_field_tag 'q', params[:q], :class => 'text' %>
               <input type="hidden" name="all_names" value="true"/>
               <input type="hidden" name="include_external" value="true"/>
+              <input type="hidden" name="force_external" value="true"/>
               <input type="hidden" name="external_src" value="<%= code %>"/>
               <input type="submit" class="button" value="<%=raw t(:search) %>">
             </div>

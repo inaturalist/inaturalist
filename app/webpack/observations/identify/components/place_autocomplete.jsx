@@ -62,6 +62,7 @@ PlaceAutocomplete.propTypes = {
   bootstrapClear: PropTypes.bool,
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
+  afterClear: PropTypes.func,
   initialSelection: PropTypes.object,
   initialPlaceID: PropTypes.number,
   className: PropTypes.string

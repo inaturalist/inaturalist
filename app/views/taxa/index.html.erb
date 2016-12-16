@@ -259,7 +259,7 @@
       <div class="photos clear">
         <% for photo in iconic_taxon.photos[0..5] %>
           <%- photo_tag = image_tag(
-            photo.is_a?(Photo) ? photo.square_url : "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
+            photo.is_a?(Photo) ? photo.square_url : "https://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
             :width => 75, :height => 75, 
             :title => photo.is_a?(Photo) ? "#{t(:photo)}: #{photo.native_username}" : "#{t(:photo)}: #{photo.photo_xml['ownername']}"
           ) -%>

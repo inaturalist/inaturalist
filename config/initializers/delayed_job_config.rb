@@ -1,3 +1,7 @@
+require "dj_logstash_plugin"
+
+Delayed::Worker.plugins << DJLogstashPlugin
+
 Delayed::Worker.default_queue_name = "default"
 Delayed::Worker.max_attempts = 10
 Delayed::Worker.destroy_failed_jobs = false

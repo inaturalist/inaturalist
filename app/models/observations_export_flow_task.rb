@@ -134,6 +134,8 @@ class ObservationsExportFlowTask < FlowTask
             c = "cached_tag_list" if c == "tag_list"
             if c == "last_changed"
               observation.send(c, params) rescue nil
+            elsif c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
+              nil
             else
               observation.send(c) rescue nil
             end

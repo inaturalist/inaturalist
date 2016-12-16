@@ -1,0 +1,11 @@
+.UserText a {
+  cursor: pointer;
+}
+.UserText .content {
+  position: relative;
+  overflow: hidden;
+}
+
+.UserText .content img {
+  max-width: 100%;
+}

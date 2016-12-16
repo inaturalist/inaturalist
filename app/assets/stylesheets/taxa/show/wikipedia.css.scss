@@ -1,0 +1,93 @@
+.wikipedia_description {
+  overflow: hidden;
+  width: 100%;
+  line-height: 1.6em;
+
+  // hide taxobox
+  .infobox.biota {
+    display: none;
+  }
+
+  .infobox, 
+  .infobox_v2,
+  table.infobox, 
+  .infobox_v2,
+  table.infobox_v2,
+  .thumb, 
+  .tright {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+    margin-bottom: 1em;
+    background-color: #eee;
+    padding: 1em;
+  }
+
+  .gallerybox .thumb {
+    float: none;
+    margin: 0;
+    margin-bottom: 0.6em;
+    padding: 0;
+  }
+
+  .sisterproject {
+    width: 200px;
+  }
+
+  .sisterproject .floatleft {
+    width: auto;
+    float: left;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    border-bottom: 1px solid #eee;
+  }
+
+  h3 {
+    line-height: 1.5;
+  }
+
+  .dablink,
+  .rellink {
+    margin: 1em;
+    font-style: italic;
+  }
+
+  .mw-editsection {
+    display: none;
+  }
+
+  .thumbimage {
+    margin-bottom: 0.6em;
+  }
+
+  .thumbcaption {
+    font-style: italic;
+  }
+
+  .thumbcaption,
+  .noprint {
+    color: #888;
+  }
+
+  .magnify {
+    width: auto;
+    float: right;
+    margin-left: 1em;
+  }
+
+  table,
+  tr,
+  td,
+  th {
+    border: 0 none;
+  }
+
+  th {
+    padding: 0.4em;
+  }
+
+}

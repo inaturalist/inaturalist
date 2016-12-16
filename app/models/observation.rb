@@ -1186,7 +1186,7 @@ class Observation < ActiveRecord::Base
     return false unless appropriate?
     true
   end
-
+  
   def human?
     t = community_taxon || taxon
     t && t.name =~ /^Homo /

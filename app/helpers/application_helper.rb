@@ -623,7 +623,7 @@ module ApplicationHelper
   end
   
   def loading(content = nil, options = {})
-    content ||= "Loading..."
+    content ||= I18n.t( "loading" )
     options[:class] = "#{options[:class]} loading status"
     content_tag :span, (block_given? ? capture(&block) : content), options
   end
@@ -682,9 +682,6 @@ module ApplicationHelper
         })
         layer_options[:taxon][:to_styled_s] = layer[:taxon].to_styled_s(skip_common: true)
         layer_options[:taxon][:url] = taxon_url(layer[:taxon])
-        if layer_options[:gbif]
-          layer_options[:taxon][:gbif_id] = layer[:taxon].get_gbif_id
-        end
         taxon_layer_attrs << layer_options
       end
       map_tag_attrs["taxon-layers"] = taxon_layer_attrs.to_json
@@ -1362,7 +1359,7 @@ module ApplicationHelper
 
   def favicon_url_for(url)
     uri = URI.parse(url) rescue nil
-    "http://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
+    "https://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
   end
 
   # http://jfire.io/blog/2012/04/30/how-to-securely-bootstrap-json-in-a-rails-view/

@@ -22,7 +22,6 @@ class Project < ActiveRecord::Base
   has_many :assessments, :dependent => :destroy
   
   before_save :strip_title
-  before_save :unset_show_from_place_if_no_place
   before_save :reset_last_aggregated_at
   before_save :remove_times_from_non_bioblitzes
   after_create :create_the_project_list
@@ -117,6 +116,7 @@ class Project < ActiveRecord::Base
     has_attached_file :cover,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_protocol => "https",
       :s3_host_alias => CONFIG.s3_bucket,
       :bucket => CONFIG.s3_bucket,
       :path => "projects/:id-cover.:extension",
@@ -191,11 +191,6 @@ class Project < ActiveRecord::Base
 
   def strip_title
     self.title = title.strip
-    true
-  end
-
-  def unset_show_from_place_if_no_place
-    self.show_from_place = false if place.blank? || place.check_list.blank?
     true
   end
 
@@ -548,26 +543,8 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def get_observed_listed_taxa_count #numerator on project/show
-    if show_from_place?
-      if p.preferred_count_by == "species"
-      elsif p.preferred_count_by == "leaves"
-      else
-      end
-    else
-      if p.preferred_count_by == "species"
-      elsif p.preferred_count_by == "leaves"
-      else
-      end
-    end
-  end
-
   def list_observed_and_total #denominator and numerator on project/show
-    if show_from_place?
-      find_observed_and_total_for_project_from_place
-    else
-      find_observed_and_total_for_project_not_from_place
-    end
+    find_observed_and_total_for_project
   end
 
   def self.slugs_to_ids(slugs)
@@ -579,36 +556,8 @@ class Project < ActiveRecord::Base
       project_id
     end.compact
   end
-
-  def find_observed_and_total_for_project_from_place
-    list = project_list
-    observable_list = place.check_list
-
-    listed_taxa_with_duplicates = ListedTaxon.from_place_or_list(list.project.place_id, list.id)
-
-    query = listed_taxa_with_duplicates.select([:id, :taxon_id, :place_id, :last_observation_id])
-    results = ActiveRecord::Base.connection.select_all(query)
-
-    listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
-      aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (aggregator["#{listed_taxon['taxon_id']}"].nil? || listed_taxon['place_id'].nil?)
-      aggregator
-    end
-
-    listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
-    unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
-
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
-    if preferred_count_by == "species"
-      unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
-    elsif preferred_count_by == "leaves"
-      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql.sub("AND (taxa.rank_level = 10)", ""))
-    end
-    
-    {numerator: unpaginated_listed_taxa.confirmed_and_not_place_based.count, denominator: unpaginated_listed_taxa.count}
-  end
-
-  def find_observed_and_total_for_project_not_from_place
+  
+  def find_observed_and_total_for_project
     unpaginated_listed_taxa = ListedTaxon.filter_by_list(project_list.id)
     unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
     if preferred_count_by == "species"
@@ -753,7 +702,7 @@ class Project < ActiveRecord::Base
     fails = 0
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
     params = observations_url_params(extended: true).merge(per_page: 200, not_in_project: id)
-    # making sure we only look observations opdated since the last aggregation
+    # making sure we only look at observations updated since the last aggregation
     unless last_aggregated_at.nil?
       params[:updated_since] = last_aggregated_at.to_s
       params[:aggregation_user_ids] = User.

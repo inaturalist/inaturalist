@@ -1,0 +1,6 @@
+.SplitTaxon > *:after {
+  content: '\0020';
+}
+.SplitTaxon > *:first-child {
+  content: '';
+}

@@ -533,7 +533,7 @@
       <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
       <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
     </div>
-  <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+  <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script></div>
   </div>
 
   <%= render partial: "controlled_terms" %>
@@ -639,3 +639,15 @@
   </div>
 
 </div><!-- end #rightcol -->
+
+<% if logged_in? %>
+  <div class="last column span-24">
+    <%= form_tag join_test_user_path( current_user, test: "taxon-page" ),
+        method: "put",
+        class: "clear quiet box centered buttonrow smallbuttons" do %>
+      <span class="inter"><%=t :want_to_test_a_new_version_of_this_page %></span>
+      <%= submit_tag t(:try_it_out), class: "button" %>
+    <% end %>
+  </div>
+<% end %>
+
