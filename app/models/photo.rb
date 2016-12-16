@@ -24,7 +24,31 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
-  
+
+  def original_url
+    self["original_url"] && self["original_url"].with_fixed_https
+  end
+
+  def large_url
+    self["large_url"] && self["large_url"].with_fixed_https
+  end
+
+  def medium_url
+    self["medium_url"] && self["medium_url"].with_fixed_https
+  end
+
+  def small_url
+    self["small_url"] && self["small_url"].with_fixed_https
+  end
+
+  def square_url
+    self["square_url"] && self["square_url"].with_fixed_https
+  end
+
+  def thumb_url
+    self["thumb_url"] && self["thumb_url"].with_fixed_https
+  end
+
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
   end

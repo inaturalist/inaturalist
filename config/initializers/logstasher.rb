@@ -119,6 +119,17 @@ module Logstasher
     end
   end
 
+  def self.delayed_job(job, custom={})
+    return if Rails.env.test?
+    begin
+      Logstasher.write_hash( custom.merge({
+        subtype: custom[:job_duration] ? "DelayedJobDuration" : "DelayedJob"
+      }).merge(job.dashboard_info))
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.delayed_job failed: #{e}"
+    end
+  end
+
   def self.write_action_controller_log(args)
     return if Rails.env.test?
     begin

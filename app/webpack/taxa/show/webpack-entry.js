@@ -7,7 +7,12 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Taxon } from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon, setCount, fetchTaxonChange } from "../shared/ducks/taxon";
+import taxonReducer, {
+  setTaxon,
+  setCount,
+  fetchTaxonChange,
+  fetchNames
+} from "../shared/ducks/taxon";
 import observationsReducer, {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency
@@ -47,7 +52,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
-const taxon = new Taxon( TAXON );
+const serverPayload = SERVER_PAYLOAD;
+if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
+  store.dispatch( setConfig( {
+    chosenPlace: serverPayload.place
+  } ) );
+}
+if ( serverPayload.chosenTab ) {
+  store.dispatch( setConfig( {
+    chosenTab: serverPayload.chosenTab
+  } ) );
+}
+if ( serverPayload.ancestorsShown ) {
+  store.dispatch( setConfig( {
+    ancestorsShown: serverPayload.ancestorsShown
+  } ) );
+}
+const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 if ( taxon.taxon_changes_count ) {
   store.dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
@@ -57,6 +78,9 @@ if ( taxon.taxon_changes_count ) {
 }
 if ( taxon.taxon_schemes_count ) {
   store.dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
+}
+if ( PREFERRED_PLACE || serverPayload.place ) {
+  store.dispatch( fetchNames( ) );
 }
 store.dispatch( fetchLeaders( taxon ) ).then( ( ) => {
   store.dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {

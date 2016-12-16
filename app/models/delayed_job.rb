@@ -95,20 +95,16 @@ class Delayed::Backend::ActiveRecord::Job
 
   def dashboard_info
     info = {
-      id: id,
+      delayed_job_id: id,
       host: host,
       pid: pid,
       process: unique_process,
-      attempts: attempts
+      attempts: attempts,
+      unique_hash: unique_hash,
+      queue: queue,
+      run_at: run_at,
+      locked_by: locked_by
     }
-    info[:object] = if paperclip?
-      acts_on_args.first.constantize
-    elsif acts_on_object.kind_of?(ActiveRecord::Base)
-      "&lt;#{ acts_on_object.class.name } :: #{ acts_on_object.id }&gt;"
-    else
-      acts_on_object
-    end
-    info[:method] = paperclip? ? "DelayedPaperclip" : acts_on_method
     info[:arguments] = unless acts_on_args.blank?
       if acts_on_args.is_a?(Array) && acts_on_args.length == 1
         acts_on_args.first
@@ -116,10 +112,27 @@ class Delayed::Backend::ActiveRecord::Job
         acts_on_args
       end
     end
-    info[:unique_hash] = unique_hash
-    info[:locked_at] = locked_at.to_s(:long) if locked_at
-    info[:created_at] = created_at.to_s(:long) if created_at
-    info[:failed_at] = failed_at.to_s(:long) if failed_at
+    if paperclip?
+      info[:model] = acts_on_args.first
+    elsif acts_on_object.kind_of?(ActiveRecord::Base)
+      info[:model] = acts_on_object.class.name
+      info[:model_id] = acts_on_object.id
+    else
+      info[:model] = acts_on_object.try(:name)
+      if info[:arguments].is_a?(Array) &&
+         info[:arguments][0].is_a?(Fixnum) &&
+         info[:arguments][1].is_a?(Hash)
+        info[:model_id] = info[:arguments][0]
+        info[:arguments] = info[:arguments][1]
+      end
+    end
+    info[:arguments] = info[:arguments].to_s
+    info[:method] = paperclip? ? "DelayedPaperclip" : acts_on_method
+    info[:model_method] = "#{info[:model]}::#{info[:method]}"
+    info[:model_method_id] = "#{info[:model]}::#{info[:method]}::#{info[:model_id]}"
+    info[:locked_at] = locked_at if locked_at
+    info[:created_at] = created_at if created_at
+    info[:failed_at] = failed_at if failed_at
     if last_error
       info[:last_error] = "<br><br>" + last_error[0...1000].gsub("\n", "<br>")
     end

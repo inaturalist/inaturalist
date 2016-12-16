@@ -10,8 +10,9 @@ import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
 import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
-import TaxonCrumbs from "../../shared/components/taxon_crumbs";
-import StatusHeader from "./status_header";
+import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
+import AkaNamesContainer from "../containers/aka_names_container";
+import StatusRow from "./status_row";
 import { urlForTaxon } from "../../shared/util";
 
 const App = ( { taxon } ) => (
@@ -20,11 +21,7 @@ const App = ( { taxon } ) => (
       <TaxonChangeAlertContainer />
       <Row className="preheader">
         <Col xs={8}>
-          <TaxonCrumbs
-            taxon={taxon}
-            ancestors={taxon.ancestors}
-            url={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
-          />
+          <TaxonCrumbsContainer />
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="icon-link"></i>
           </a>
@@ -58,17 +55,19 @@ const App = ( { taxon } ) => (
             </div>
           </div>
         </Col>
+        <Col xs={12}>
+          <AkaNamesContainer />
+        </Col>
       </Row>
     </Grid>
     <Grid fluid>
       <Row id="hero">
         <Col xs={12}>
           <Grid>
-            <Row>
-              <Col xs={12}>
-                { taxon.conservationStatus ? <StatusHeader status={taxon.conservationStatus} /> : null }
-              </Col>
-            </Row>
+            <StatusRow
+              conservationStatus={taxon.conservationStatus}
+              establishmentMeans={taxon.establishment_means}
+            />
             <Row>
               <Col xs={6}>
                 <PhotoPreviewContainer />

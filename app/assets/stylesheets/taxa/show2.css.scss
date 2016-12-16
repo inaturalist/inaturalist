@@ -108,7 +108,9 @@
   fill: #999;
   opacity: 1;
 }
-
+.FrequencyChart .c3-circle {
+  cursor: pointer;
+}
 .FrequencyChart .c3-circle._expanded_ {
   stroke-width: 7px;
   stroke: transparentize( $inat-green, 0.6 );
@@ -591,6 +593,18 @@ $endangeredColor: #D12F19;
 .glyphicon-flag.least-concern {
   color: $leastConcernColor;
 }
+$endemicColor: darken( $inat-green, 10% );
+.EstablishmentHeader.establishment-endemic {
+  background-color: transparentize( $endemicColor, 0.90 );
+  border-color: transparentize( $endemicColor, 0.80 );
+  color: $endemicColor;
+}
+$introducedColor: #E4007C;
+.EstablishmentHeader.establishment-introduced {
+  background-color: transparentize( $introducedColor, 0.90 );
+  border-color: transparentize( $introducedColor, 0.80 );
+  color: $introducedColor;
+}
 
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
@@ -690,11 +704,11 @@ $nav-btn-dim: 40px;
 }
 .HighlightsTab .viewall {
   width: 100%;
-  height: 193px;
+  height: 262px;
   background-color: #333;
   color: white;
   display: block;
-  line-height: 193px;
+  line-height: 262px;
   text-align: center;
   border-radius: 5px;
   font-size: 16px;
@@ -838,7 +852,6 @@ $nav-btn-dim: 40px;
 .TaxonThumbnail .badge.with-tip {
   cursor: pointer;
 }
-
 
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
@@ -1002,3 +1015,10 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 .PhotoChooserModal .photos {
   margin: -2.5px;
 }
+.comma-separated-list > *:before {
+  content: ', ';
+}
+.comma-separated-list > :first-child:before {
+  content: '';
+}
+.AkaNames .name { color: black; }

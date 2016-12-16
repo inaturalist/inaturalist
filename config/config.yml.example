@@ -239,7 +239,7 @@ base: &base
 
     # An instance of https://github.com/inaturalist/iNaturalistAPI, the
     # same code running at CONFIG.tile_servers.elasticsearch
-    node_api_host: localhost:4000
+    node_api_url: http://localhost:4000/v1
 
 development:
     <<: *base

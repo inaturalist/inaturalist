@@ -76,11 +76,11 @@
 
 	var _taxon2 = _interopRequireDefault(_taxon);
 
-	var _photo_modal = __webpack_require__(1424);
+	var _photo_modal = __webpack_require__(1425);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
-	var _app = __webpack_require__(1425);
+	var _app = __webpack_require__(1426);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -110,7 +110,23 @@
 	  }));
 	}
 
-	var taxon = new _inaturalistjs.Taxon(TAXON);
+	var serverPayload = SERVER_PAYLOAD;
+	if (serverPayload.place !== undefined && serverPayload.place !== null) {
+	  store.dispatch((0, _config.setConfig)({
+	    chosenPlace: serverPayload.place
+	  }));
+	}
+	if (serverPayload.chosenTab) {
+	  store.dispatch((0, _config.setConfig)({
+	    chosenTab: serverPayload.chosenTab
+	  }));
+	}
+	if (serverPayload.ancestorsShown) {
+	  store.dispatch((0, _config.setConfig)({
+	    ancestorsShown: serverPayload.ancestorsShown
+	  }));
+	}
+	var taxon = new _inaturalistjs.Taxon(serverPayload.taxon);
 	store.dispatch((0, _taxon.setTaxon)(taxon));
 	var urlParams = $.deparam(window.location.search.replace(/^\?/, ""));
 	store.dispatch((0, _photos.hydrateFromUrlParams)(urlParams));
@@ -82187,11 +82203,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.fetch = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
-
-	var _isomorphicFetch = __webpack_require__(994);
-
-	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+	exports.commasAnd = exports.localizedPhotoAttribution = exports.defaultObservationParams = exports.urlForPlace = exports.urlForUser = exports.urlForTaxonPhotos = exports.urlForTaxon = undefined;
 
 	var _lodash = __webpack_require__(590);
 
@@ -82218,17 +82230,15 @@
 	var urlForUser = function urlForUser(u) {
 	  return "/people/" + u.login;
 	};
-
-	// Light wrapper around isomorphic fetch to ensure credentials are always passed through
-	var fetch = function fetch(url, options) {
-	  return (0, _isomorphicFetch2.default)(url, Object.assign({}, options, { credentials: "same-origin" }));
+	var urlForPlace = function urlForPlace(p) {
+	  return "/places/" + (p.slug || p.id);
 	};
 
 	var defaultObservationParams = function defaultObservationParams(state) {
 	  return {
 	    verifiable: true,
 	    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : "any"
+	    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
 	  };
 	};
 
@@ -82297,7 +82307,7 @@
 	exports.urlForTaxon = urlForTaxon;
 	exports.urlForTaxonPhotos = urlForTaxonPhotos;
 	exports.urlForUser = urlForUser;
-	exports.fetch = fetch;
+	exports.urlForPlace = urlForPlace;
 	exports.defaultObservationParams = defaultObservationParams;
 	exports.localizedPhotoAttribution = localizedPhotoAttribution;
 	exports.commasAnd = commasAnd;
@@ -82387,7 +82397,9 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _util = __webpack_require__(1418);
+	var _util = __webpack_require__(1424);
+
+	var _util2 = __webpack_require__(1418);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -82644,7 +82656,7 @@
 
 	function fetchTrending() {
 	  return function (dispatch, getState) {
-	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
+	    var params = Object.assign({}, (0, _util2.defaultObservationParams)(getState()), {
 	      d1: (0, _moment2.default)().subtract(1, "month").format("YYYY-MM-DD")
 	    });
 	    _inaturalistjs2.default.observations.speciesCounts(params).then(function (response) {
@@ -82659,8 +82671,9 @@
 
 	function fetchRare() {
 	  return function (dispatch, getState) {
-	    var params = Object.assign({}, (0, _util.defaultObservationParams)(getState()), {
-	      order: "asc"
+	    var params = Object.assign({}, (0, _util2.defaultObservationParams)(getState()), {
+	      order: "asc",
+	      csi: "CR,EN"
 	    });
 	    _inaturalistjs2.default.observations.speciesCounts(params).then(function (response) {
 	      return dispatch(setRare(response.results.map(function (r) {
@@ -82674,7 +82687,7 @@
 
 	function fetchSimilar() {
 	  return function (dispatch, getState) {
-	    _inaturalistjs2.default.identifications.similar_species((0, _util.defaultObservationParams)(getState())).then(function (response) {
+	    _inaturalistjs2.default.identifications.similar_species((0, _util2.defaultObservationParams)(getState())).then(function (response) {
 	      var commonlyMisidentified = response.results.filter(function (r) {
 	        return r.count > 1;
 	      });
@@ -82907,6 +82920,43 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.updateSession = exports.fetch = undefined;
+
+	var _isomorphicFetch = __webpack_require__(994);
+
+	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// Light wrapper around isomorphic fetch to ensure credentials are always passed through
+	var fetch = function fetch(url, options) {
+	  return (0, _isomorphicFetch2.default)(url, Object.assign({}, options, { credentials: "same-origin" }));
+	};
+
+	function updateSession(params) {
+	  var data = new FormData();
+	  data.append("authenticity_token", $("meta[name=csrf-token]").attr("content"));
+	  for (var key in params) {
+	    data.append(key, params[key]);
+	  }
+	  fetch("/users/update_session", {
+	    method: "PUT",
+	    body: data
+	  });
+	}
+
+	exports.fetch = fetch;
+	exports.updateSession = updateSession;
+
+/***/ },
+/* 1425 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = reducer;
 	exports.setPhotoModal = setPhotoModal;
 	exports.showPhotoModal = showPhotoModal;
@@ -83008,7 +83058,7 @@
 	}
 
 /***/ },
-/* 1425 */
+/* 1426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83027,11 +83077,11 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _taxon_crumbs_container = __webpack_require__(1426);
+	var _taxon_crumbs_container = __webpack_require__(1427);
 
 	var _taxon_crumbs_container2 = _interopRequireDefault(_taxon_crumbs_container);
 
-	var _place_chooser_container = __webpack_require__(1428);
+	var _place_chooser_container = __webpack_require__(1429);
 
 	var _place_chooser_container2 = _interopRequireDefault(_place_chooser_container);
 
@@ -83039,11 +83089,11 @@
 
 	var _taxon_autocomplete2 = _interopRequireDefault(_taxon_autocomplete);
 
-	var _photo_browser_container = __webpack_require__(1430);
+	var _photo_browser_container = __webpack_require__(1431);
 
 	var _photo_browser_container2 = _interopRequireDefault(_photo_browser_container);
 
-	var _photo_modal_container = __webpack_require__(1436);
+	var _photo_modal_container = __webpack_require__(1437);
 
 	var _photo_modal_container2 = _interopRequireDefault(_photo_modal_container);
 
@@ -83143,7 +83193,7 @@
 	exports.default = App;
 
 /***/ },
-/* 1426 */
+/* 1427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83156,9 +83206,13 @@
 
 	var _util = __webpack_require__(1418);
 
-	var _taxon_crumbs = __webpack_require__(1427);
+	var _taxon_crumbs = __webpack_require__(1428);
 
 	var _taxon_crumbs2 = _interopRequireDefault(_taxon_crumbs);
+
+	var _config = __webpack_require__(1419);
+
+	var _util2 = __webpack_require__(1424);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -83168,12 +83222,22 @@
 	    taxon: taxon,
 	    ancestors: taxon.ancestors,
 	    url: (0, _util.urlForTaxon)(taxon),
-	    currentText: I18n.t("photo_browser")
+	    currentText: I18n.t("photo_browser"),
+	    ancestorsShown: state.config.ancestorsShown
 	  };
 	}
 
-	function mapDispatchToProps() {
-	  return {};
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    showAncestors: function showAncestors() {
+	      dispatch((0, _config.setConfig)({ ancestorsShown: true }));
+	      (0, _util2.updateSession)({ preferred_taxon_page_ancestors_shown: true });
+	    },
+	    hideAncestors: function hideAncestors() {
+	      dispatch((0, _config.setConfig)({ ancestorsShown: false }));
+	      (0, _util2.updateSession)({ preferred_taxon_page_ancestors_shown: false });
+	    }
+	  };
 	}
 
 	var TaxonCrumbsContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_taxon_crumbs2.default);
@@ -83181,7 +83245,7 @@
 	exports.default = TaxonCrumbsContainer;
 
 /***/ },
-/* 1427 */
+/* 1428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83225,23 +83289,12 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TaxonCrumbs).call(this, props));
 
 	    _this.state = {
-	      ancestorsShown: false,
 	      childrenSHown: false
 	    };
 	    return _this;
 	  }
 
 	  _createClass(TaxonCrumbs, [{
-	    key: "showAncestors",
-	    value: function showAncestors() {
-	      this.setState({ ancestorsShown: true, childrenShown: false });
-	    }
-	  }, {
-	    key: "hideAncestors",
-	    value: function hideAncestors() {
-	      this.setState({ ancestorsShown: false, childrenShown: false });
-	    }
-	  }, {
 	    key: "showChildren",
 	    value: function showChildren() {
 	      this.setState({ childrenShown: true });
@@ -83254,10 +83307,12 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
+	      var _props = this.props;
+	      var taxon = _props.taxon;
+	      var ancestors = _props.ancestors;
+	      var showAncestors = _props.showAncestors;
+	      var hideAncestors = _props.hideAncestors;
 
-	      var taxon = this.props.taxon;
-	      var ancestors = this.props.ancestors;
 	      var children = _lodash2.default.sortBy(taxon.children || [], function (t) {
 	        return t.name;
 	      });
@@ -83285,11 +83340,11 @@
 	        }
 	      }
 	      if (ancestorTaxa.length > 0) {
-	        if (this.state.ancestorsShown) {
+	        if (this.props.ancestorsShown) {
 	          contractControl = _react2.default.createElement(
 	            "a",
 	            { className: "contract-control", href: "#", onClick: function onClick() {
-	                return _this2.hideAncestors();
+	                return hideAncestors();
 	              } },
 	            _react2.default.createElement("i", { className: "glyphicon glyphicon-circle-arrow-left" })
 	          );
@@ -83300,7 +83355,7 @@
 	            _react2.default.createElement(
 	              "a",
 	              { href: "#", onClick: function onClick() {
-	                  return _this2.showAncestors();
+	                  return showAncestors();
 	                } },
 	              "..."
 	            )
@@ -83347,7 +83402,7 @@
 	      };
 	      return _react2.default.createElement(
 	        "ul",
-	        { className: "TaxonCrumbs inline " + (this.state.ancestorsShown ? "expanded" : "contracted") },
+	        { className: "TaxonCrumbs inline " + (this.props.ancestorsShown ? "expanded" : "contracted") },
 	        _react2.default.createElement(
 	          "li",
 	          null,
@@ -83389,7 +83444,10 @@
 	TaxonCrumbs.propTypes = {
 	  taxon: _react.PropTypes.object,
 	  ancestors: _react.PropTypes.array,
-	  currentText: _react.PropTypes.string
+	  currentText: _react.PropTypes.string,
+	  ancestorsShown: _react.PropTypes.bool,
+	  showAncestors: _react.PropTypes.func,
+	  hideAncestors: _react.PropTypes.func
 	};
 
 	TaxonCrumbs.defaultProps = { ancestors: [] };
@@ -83397,7 +83455,7 @@
 	exports.default = TaxonCrumbs;
 
 /***/ },
-/* 1428 */
+/* 1429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83410,9 +83468,11 @@
 
 	var _photos = __webpack_require__(1417);
 
-	var _place_chooser_popover = __webpack_require__(1429);
+	var _place_chooser_popover = __webpack_require__(1430);
 
 	var _place_chooser_popover2 = _interopRequireDefault(_place_chooser_popover);
+
+	var _util = __webpack_require__(1424);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -83426,6 +83486,7 @@
 	function mapDispatchToProps(dispatch) {
 	  var setPlace = function setPlace(place) {
 	    dispatch((0, _photos.setConfigAndUrl)({ chosenPlace: place }));
+	    (0, _util.updateSession)({ preferred_taxon_page_place_id: place ? place.id : null });
 	    dispatch((0, _photos.reloadPhotos)());
 	  };
 	  return {
@@ -83441,7 +83502,7 @@
 	exports.default = PlaceChooserContainer;
 
 /***/ },
-/* 1429 */
+/* 1430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83771,7 +83832,7 @@
 	exports.default = PlaceChooserPopover;
 
 /***/ },
-/* 1430 */
+/* 1431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83786,11 +83847,11 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _photo_browser = __webpack_require__(1431);
+	var _photo_browser = __webpack_require__(1432);
 
 	var _photo_browser2 = _interopRequireDefault(_photo_browser);
 
-	var _photo_modal = __webpack_require__(1424);
+	var _photo_modal = __webpack_require__(1425);
 
 	var _photos = __webpack_require__(1417);
 
@@ -83818,10 +83879,27 @@
 	    return newTerm;
 	  });
 	  if (state.photos.observationPhotos && state.photos.observationPhotos.length > 0) {
+	    var observationPhotos = [];
+	    if (state.taxon.taxon.rank_level <= 10) {
+	      // For species and lower, show all photos
+	      observationPhotos = state.photos.observationPhotos;
+	    } else {
+	      // For taxa above species, show one photo per observation
+	      var obsPhotoHash = {};
+	      for (var i = 0; i < state.photos.observationPhotos.length; i++) {
+	        var observationPhoto = state.photos.observationPhotos[i];
+	        if (!obsPhotoHash[observationPhoto.observation.id]) {
+	          obsPhotoHash[observationPhoto.observation.id] = true;
+	          observationPhotos.push(observationPhoto);
+	        }
+	      }
+	    }
 	    return Object.assign(props, {
-	      observationPhotos: state.photos.observationPhotos,
+	      observationPhotos: observationPhotos,
 	      hasMorePhotos: state.photos.totalResults > state.photos.page * state.photos.perPage
 	    });
+	  } else if (state.photos.observationPhotos) {
+	    props.observationPhotos = [];
 	  }
 	  if (!state.taxon.taxon || !state.taxon.taxon.children || state.taxon.taxon.children.length === 0) {
 	    props.showTaxonGrouping = false;
@@ -83861,7 +83939,7 @@
 	exports.default = PhotoBrowserContainer;
 
 /***/ },
-/* 1431 */
+/* 1432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -83874,7 +83952,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactInfiniteScroller = __webpack_require__(1432);
+	var _reactInfiniteScroller = __webpack_require__(1433);
 
 	var _reactInfiniteScroller2 = _interopRequireDefault(_reactInfiniteScroller);
 
@@ -83888,7 +83966,7 @@
 
 	var _split_taxon2 = _interopRequireDefault(_split_taxon);
 
-	var _taxon_photo = __webpack_require__(1433);
+	var _taxon_photo = __webpack_require__(1434);
 
 	var _taxon_photo2 = _interopRequireDefault(_taxon_photo);
 
@@ -84266,7 +84344,7 @@
 	exports.default = PhotoBrowser;
 
 /***/ },
-/* 1432 */
+/* 1433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84436,7 +84514,7 @@
 
 
 /***/ },
-/* 1433 */
+/* 1434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -84449,7 +84527,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cover_image = __webpack_require__(1434);
+	var _cover_image = __webpack_require__(1435);
 
 	var _cover_image2 = _interopRequireDefault(_cover_image);
 
@@ -84512,7 +84590,7 @@
 	exports.default = TaxonPhoto;
 
 /***/ },
-/* 1434 */
+/* 1435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -84533,7 +84611,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _onscreen = __webpack_require__(1435);
+	var _onscreen = __webpack_require__(1436);
 
 	var _onscreen2 = _interopRequireDefault(_onscreen);
 
@@ -84667,7 +84745,7 @@
 	exports.default = CoverImage;
 
 /***/ },
-/* 1435 */
+/* 1436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function (global, factory) {
@@ -85046,7 +85124,7 @@
 
 
 /***/ },
-/* 1436 */
+/* 1437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -85057,11 +85135,11 @@
 
 	var _reactRedux = __webpack_require__(560);
 
-	var _photo_modal = __webpack_require__(1437);
+	var _photo_modal = __webpack_require__(1438);
 
 	var _photo_modal2 = _interopRequireDefault(_photo_modal);
 
-	var _photo_modal3 = __webpack_require__(1424);
+	var _photo_modal3 = __webpack_require__(1425);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -85107,7 +85185,7 @@
 	exports.default = PhotoModalContainer;
 
 /***/ },
-/* 1437 */
+/* 1438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

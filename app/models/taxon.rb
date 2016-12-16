@@ -392,6 +392,8 @@ class Taxon < ActiveRecord::Base
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
     end
+    elastic_index!
+    Taxon.refresh_es_index
     true
   end
 

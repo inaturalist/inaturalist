@@ -44,7 +44,7 @@
                       %p.lead= t( "onboarding.observe_panel_body_p2", site_name: SITE_NAME.gsub(".org",""), new_observation_path: upload_observations_path).html_safe
                       %p= t( "onboarding.observe_panel_body_p3" )
                     .media-right
-                      %img.media-object{ src: "http://static.inaturalist.org/wiki_page_attachments/615-original.jpg", style: "padding: 0 0 0 10px" }
+                      %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/615-original.jpg", style: "padding: 0 0 0 10px" }
                 .panel-footer
                   = link_to observations_path, class: "btn btn-primary btn-md" do
                     = t :browse_observations

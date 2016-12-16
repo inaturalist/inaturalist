@@ -1,4 +1,3 @@
-import isomorphicFetch from "isomorphic-fetch";
 import _ from "lodash";
 import React from "react";
 
@@ -11,15 +10,12 @@ const urlForTaxonPhotos = ( t, params ) => {
   return url;
 };
 const urlForUser = ( u ) => `/people/${u.login}`;
-
-// Light wrapper around isomorphic fetch to ensure credentials are always passed through
-const fetch = ( url, options ) =>
-  isomorphicFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
+const urlForPlace = ( p ) => `/places/${p.slug || p.id}`;
 
 const defaultObservationParams = ( state ) => ( {
   verifiable: true,
   taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-  place_id: state.config.chosenPlace ? state.config.chosenPlace.id : "any"
+  place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
 } );
 
 const localizedPhotoAttribution = ( photo, options = { } ) => {
@@ -81,7 +77,7 @@ export {
   urlForTaxon,
   urlForTaxonPhotos,
   urlForUser,
-  fetch,
+  urlForPlace,
   defaultObservationParams,
   localizedPhotoAttribution,
   commasAnd

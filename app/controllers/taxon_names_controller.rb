@@ -35,7 +35,7 @@ class TaxonNamesController < ApplicationController
     pagination_headers_for( @taxon_names )
     
     respond_to do |format|
-      format.json { render json: @taxon_names }
+      format.json { render json: @taxon_names.as_json( include: :place_taxon_names ) }
     end
   end
 
@@ -72,6 +72,7 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.save
+        Taxon.refresh_es_index
         flash[:notice] = t(:your_name_was_saved)
         format.html { redirect_to taxon_path(@taxon) }
         format.xml  { render :json => @taxon_name, :status => :created, :location => @taxon_name }
@@ -92,6 +93,7 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.update_attributes(params[:taxon_name])
+        Taxon.refresh_es_index
         flash[:notice] = t(:taxon_name_was_successfully_updated)
         format.html { redirect_to(taxon_name_path(@taxon_name)) }
         format.json  { head :ok }
@@ -111,6 +113,7 @@ class TaxonNamesController < ApplicationController
       EOT
       flash[:error] = msg
     elsif @taxon_name.destroy
+      Taxon.refresh_es_index
       flash[:notice] = t(:taxon_name_was_deleted)
     else
       flash[:error] = t(:something_went_wrong_deleting_the_taxon_name, :taxon_name => @taxon_name.name)

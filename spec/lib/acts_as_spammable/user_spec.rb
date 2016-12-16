@@ -64,6 +64,13 @@ describe User, "spam" do
     expect(u.flags_on_spam_content.count).to eq 3
   end
 
+  it "does not consider spam flags on a user a flag on another users content" do
+    u = User.make!
+    u2 = User.make!
+    Flag.make!(flaggable: u2, flag: Flag::SPAM)
+    expect(u.flags_on_spam_content.count).to eq 0
+  end
+
   it "does not check for spam if description is blank" do
     u = User.make(email: 'foo+bar20150301@inaturalist.org')
     expect(u.description).to be_blank
