@@ -106,16 +106,3 @@ h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color
 #comments_and_identifications .withdrawbutton { display: none; }
 #marks { position: absolute; right: 0px; bottom: 8px;}
 #marks .button, #marks .inter {margin: 0 0 0 10px;}
-
-.annotations {
-  display: block;
-  form.button_to, .votes {
-    display: inline-block;
-  }
-  .annotation {
-    padding: 5px;
-    &.downvoted {
-      background: #f2dede;
-    }
-  }
-}

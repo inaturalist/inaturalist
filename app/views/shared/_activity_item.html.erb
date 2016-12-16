@@ -90,24 +90,6 @@
           <%= formatted_user_text(text) %>
         <% end -%>
       </div>
-      <span class="helpful">
-        <%-
-          votes = item.helpfulness_votes
-          user_vote = logged_in? && item.helpfulness_votes.where(voter_id: current_user.id).first
-        %>
-        <%- if votes.any? && !(votes.length === 1 && user_vote) %>
-          <%= I18n.t(:x_people_found_this_helpful, count: item.helpfulness_votes.count ) %>.
-        <% end -%>
-        <%- if user_vote %>
-          You found this helpful.
-          <%= button_to "Undo", unvote_path(item.model_name.to_s.downcase, item.id, scope: "helpful",
-                format: 'json'), remote: true, method: :delete %>
-        <%- elsif logged_in? %>
-          Is this helpful for ID'ing?
-          <%= button_to "Yes", vote_path(item.model_name.to_s.downcase, item.id, scope: "helpful",
-                format: 'json'), remote: true, method: :post %>
-        <% end -%>
-      </span>
     <% end -%>
     
     <% unless no_meta -%>

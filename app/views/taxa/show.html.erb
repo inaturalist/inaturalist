@@ -536,17 +536,6 @@
   <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script></div>
   </div>
 
-  <%= render partial: "controlled_terms" %>
-
-  <%- if @taxon.helpful_ids_and_comments.any? %>
-    <div class="last column span-20">
-      <h3>Helpful IDs and Comments</h3>
-      <%- @taxon.helpful_ids_and_comments.each do |r| %>
-        <%= render :partial => "shared/activity_item", locals: { activity_item: r } %>
-      <% end -%>
-    </div>
-  <% end -%>
-
   <div class="last column span-20">
     <div id="taxon_links" class="right tabs">
       <ul>

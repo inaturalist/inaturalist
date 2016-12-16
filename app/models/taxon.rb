@@ -28,10 +28,6 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon
   has_many :observations, :dependent => :nullify
-  has_many :observations_identifications, through: :observations, source: :identifications
-  has_many :observations_comments, through: :observations, source: :comments
-  has_many :helpful_ids, through: :observations_identifications, source: :votes_for
-  has_many :helpful_comments, through: :observations_comments, source: :votes_for
   has_many :listed_taxa, :dependent => :destroy
   has_many :listed_taxa_with_establishment_means,
     -> { where("establishment_means IS NOT NULL") },
@@ -59,15 +55,6 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, :inverse_of => :taxon
-  has_many :descendant_taxa, :class_name => "Taxon", :through => :taxon_ancestors_as_ancestor
-  has_many :descendant_taxa_identifications, through: :descendant_taxa, source: :observations_identifications
-  has_many :descendant_taxa_comments, through: :descendant_taxa, source: :observations_comments
-  has_many :descendant_helpful_ids, -> {
-    where(vote_scope: "helpful")
-  }, through: :descendant_taxa_identifications, source: :votes_for
-  has_many :descendant_helpful_comments, -> {
-    where(vote_scope: "helpful")
-  }, through: :descendant_taxa_comments, source: :votes_for
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -1386,29 +1373,6 @@ class Taxon < ActiveRecord::Base
     nil
   end
 
-  def popular_terms_and_observations
-    terms = [ ]
-    response = INatAPIService.observations_popular_field_values(taxon_id: id, per_page: 3)
-    if response && response.results && response.results.any?
-      response.results.each do |r|
-        terms << {
-          controlled_attribute: ControlledTerm.find(r["controlled_attribute_id"]),
-          controlled_value: ControlledTerm.find(r["controlled_value_id"]),
-          count: r["count"],
-          observations: Observation.page_of_results(
-            taxon_id: id,
-            term_id: r["controlled_attribute_id"],
-            term_value_id: r["controlled_value_id"],
-            order_by: "votes",
-            per_page: 9
-          )
-        }
-      end
-    end
-    terms.delete_if{ |t| t[:observations].blank? }
-    terms
-  end
-
   def has_ancestor_taxon_id(ancestor_id)
     return true if id == ancestor_id
     !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
@@ -1721,19 +1685,5 @@ class Taxon < ActiveRecord::Base
   end
 
   # /Static #################################################################
-
-  def helpful_ids_and_comments
-    ActsAsVotable::Vote.where(
-      "id IN ((#{descendant_helpful_ids.select(:id).to_sql}) UNION (#{descendant_helpful_comments.select(:id).to_sql}))").
-      select("votable_type || ',' || CAST(votable_id as text) as uniq, count(*) as count").
-      group("uniq").
-      order("count(*) desc").
-      limit(10).map{ |v|
-        parts = v["uniq"].split(",")
-        m = parts[0].constantize.where(id: parts[1]).first
-        # m["total_votes"] = v["count"]
-        m
-      }.compact
-  end
 
 end

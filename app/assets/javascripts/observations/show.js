@@ -262,27 +262,6 @@ $(document).ready(function() {
     });
   }
 
-  $( ".annotations .votes form.button_to" ).on( "submit", function( e ) {
-    e.preventDefault( );
-    var params = { };
-    $( this ).find( "input" ).each( function( index, i ) {
-      var name = $( i ).attr( "name" );
-      var value = $( i ).attr( "value" );
-      if( !name ) { return; }
-      params[ name ] = value;
-    });
-    $.ajax({
-      type: "POST",
-      url: $( this ).attr( "action"),
-      data: params,
-      success: function( ) {
-        // just reload the page for now
-        location.reload( );
-      }
-    });
-
-  });
-
 })
 
 $(document).on('click', '#add_more_photos_link', function() {
