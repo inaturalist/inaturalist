@@ -88,7 +88,7 @@ class AtlasesController < ApplicationController
   end
 
   def destroy_all_alterations
-    atlas_id = params[:atlas_id]
+    atlas_id = @atlas.id
     AtlasAlteration.where(atlas_id: atlas_id).destroy_all
     respond_to do |format|
       format.json { render json: {}, status: :ok}

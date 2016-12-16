@@ -16,7 +16,7 @@ describe AtlasesController do
       user = make_admin
       atlas = Atlas.make!(user: user, taxon: taxon)
       sign_in user
-      post :alter_atlas_presence, :taxon_id => taxon.id, :place_id => place.id
+      post :alter_atlas_presence, :id => atlas.id, :taxon_id => taxon.id, :place_id => place.id
       expect(ListedTaxon.where(taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id).first).not_to be_blank
     end
     
@@ -29,7 +29,7 @@ describe AtlasesController do
       user = make_admin
       atlas = Atlas.make!(user: user, taxon: taxon)
       sign_in user
-      post :alter_atlas_presence, :taxon_id => taxon.id, :place_id => place.id
+      post :alter_atlas_presence, :id => atlas.id, :taxon_id => taxon.id, :place_id => place.id
       expect(ListedTaxon.where(taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id).first).to be_blank
     end
   end
