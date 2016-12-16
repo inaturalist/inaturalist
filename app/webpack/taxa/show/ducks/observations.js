@@ -153,16 +153,16 @@ export function fetchMonthOfYearFrequency( ) {
       dispatch( fetchMonthOfYearFrequencyResearchGrade( ) )
     ];
     // Disabling term frequencies until I get them into their own chart
-    // const terms = getState( ).taxon.terms;
-    // if ( terms && terms.length > 0 ) {
-    //   for ( let i = 0; i < terms.length; i++ ) {
-    //     for ( let j = 0; j < terms[i].values.length; j++ ) {
-    //       promises.push(
-    //         dispatch( fetchMonthOfYearFrequencyForTerm( terms[i].name, terms[i].values[j] ) )
-    //       );
-    //     }
-    //   }
-    // }
+    const terms = getState( ).taxon.terms;
+    if ( terms && terms.length > 0 ) {
+      for ( let i = 0; i < terms.length; i++ ) {
+        for ( let j = 0; j < terms[i].values.length; j++ ) {
+          promises.push(
+            dispatch( fetchMonthOfYearFrequencyForTerm( terms[i].name, terms[i].values[j] ) )
+          );
+        }
+      }
+    }
     return Promise.all( promises );
   };
 }

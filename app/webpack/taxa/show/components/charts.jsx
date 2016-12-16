@@ -23,6 +23,16 @@ class Charts extends React.Component {
             this.historyChart.flush( );
           }
           break;
+        case "#charts-insect-life-stage":
+          if ( this.insectLifeStageChart ) {
+            this.insectLifeStageChart.flush( );
+          }
+          break;
+        case "#charts-flowering-phenology":
+          if ( this.floweringPhenologyChart ) {
+            this.floweringPhenologyChart.flush( );
+          }
+          break;
         default:
           // it's cool, you probably have what you need
       }
@@ -48,6 +58,8 @@ class Charts extends React.Component {
   componentDidUpdate( ) {
     this.renderSeasonalityChart( );
     this.renderHistoryChart( );
+    this.renderFloweringPhenologyChart( );
+    this.renderInsectLifeStageChart( );
   }
   defaultC3Config( ) {
     return {
@@ -132,11 +144,11 @@ class Charts extends React.Component {
       </div>
     `;
   }
-  renderSeasonalityChart( ) {
+  seasonalityConfigForColumns( columns ) {
     const that = this;
-    const config = _.defaultsDeep( { }, this.defaultC3Config( ), {
+    return _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
-        columns: this.props.seasonalityColumns,
+        columns,
         onclick: d => {
           that.seasonalityChart.unselect( ["verifiable", "research"] );
           that.props.openObservationsSearch( {
@@ -157,8 +169,38 @@ class Charts extends React.Component {
         )
       }
     } );
-    const mountNode = $( ".SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
+  }
+  renderSeasonalityChart( ) {
+    const config = this.seasonalityConfigForColumns(
+      _.filter( this.props.seasonalityColumns, column =>
+        column[0] === "verifiable" || column[0] === "research" )
+    );
+    const mountNode = $( "#SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
+  }
+  renderInsectLifeStageChart( ) {
+    const columns = _.filter( this.props.seasonalityColumns, column => column[0].match( /Insect/ ) );
+    const config = this.seasonalityConfigForColumns( columns );
+    config.data.types = {};
+    for ( let i = 0; i < columns.length; i++ ) {
+      config.data.types[columns[i][0]] = "area";
+    }
+    config.data.groups = [columns.map( column => column[0] )];
+    config.data.order = null;
+    const mountNode = $( "#InsectLifeStageChart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    this.insectLifeStageChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
+  }
+  renderFloweringPhenologyChart( ) {
+    const columns = _.filter( this.props.seasonalityColumns, column => column[0].match( /Flowering/ ) );
+    const config = this.seasonalityConfigForColumns( columns );
+    config.data.types = {};
+    for ( let i = 0; i < columns.length; i++ ) {
+      config.data.types[columns[i][0]] = "area";
+    }
+    config.data.groups = [columns.map( column => column[0] )];
+    config.data.order = null;
+    const mountNode = $( "#FloweringPhenologyChart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    this.floweringPhenologyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
   renderHistoryChart( ) {
     const dates = this.props.historyKeys;
@@ -214,6 +256,61 @@ class Charts extends React.Component {
   render( ) {
     const noHistoryData = _.isEmpty( this.props.historyKeys );
     const noSeasonalityData = _.isEmpty( this.props.seasonalityKeys );
+    const showLifeStage = _.find( this.props.seasonalityColumns, column => column[0].match( /Insect/ ) );
+    const insectLifeStageTab = (
+      <li role="presentation">
+        <a
+          href="#charts-insect-life-stage"
+          aria-controls="charts-insect-life-stage"
+          role="tab"
+          data-toggle="tab"
+          style={{ display: showLifeStage ? "block" : "none" }}
+        >
+          { I18n.t( "insect_life_stage" ) }
+        </a>
+      </li>
+    );
+    const insectLifeStagePanel = (
+      <div role="tabpanel" className="tab-pane" id="charts-insect-life-stage">
+        <div
+          className={
+            `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
+          }
+        >
+          { I18n.t( "no_observations_yet" ) }
+        </div>
+        <div id="InsectLifeStageChart" className="SeasonalityChart FrequencyChart">
+        </div>
+      </div>
+    );
+    const showFlowering = _.find( this.props.seasonalityColumns, column => column[0].match( /Flowering/ ) );
+    const floweringPhenologyTab = (
+      <li role="presentation">
+        <a
+          href="#charts-flowering-phenology"
+          aria-controls="charts-flowering-phenology"
+          role="tab"
+          data-toggle="tab"
+          style={{ display: showFlowering ? "block" : "none" }}
+        >
+          { I18n.t( "flowering_phenology" ) }
+        </a>
+      </li>
+    );
+    const floweringPhenologyPanel = (
+      <div role="tabpanel" className="tab-pane" id="charts-flowering-phenology">
+        <div
+          className={
+            `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
+          }
+        >
+          { I18n.t( "no_observations_yet" ) }
+        </div>
+        <div id="FloweringPhenologyChart" className="SeasonalityChart FrequencyChart">
+        </div>
+      </div>
+    );
+    // }
     return (
       <div id="charts" className="Charts">
         <ul className="nav nav-tabs" role="tablist">
@@ -237,6 +334,8 @@ class Charts extends React.Component {
               { I18n.t( "history" ) }
             </a>
           </li>
+          { insectLifeStageTab }
+          { floweringPhenologyTab }
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="charts-seasonality">
@@ -247,7 +346,7 @@ class Charts extends React.Component {
             >
               { I18n.t( "no_observations_yet" ) }
             </div>
-            <div className="SeasonalityChart FrequencyChart">
+            <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart">
             </div>
           </div>
           <div role="tabpanel" className="tab-pane" id="charts-history">
@@ -258,8 +357,10 @@ class Charts extends React.Component {
             >
               { I18n.t( "no_observations_yet" ) }
             </div>
-            <div className="HistoryChart FrequencyChart"></div>
+            <div id="HistoryChart" className="HistoryChart FrequencyChart"></div>
           </div>
+          { insectLifeStagePanel }
+          { floweringPhenologyPanel }
         </div>
       </div>
     );
@@ -281,17 +382,17 @@ Charts.propTypes = {
 Charts.defaultProps = {
   colors: {
     research: "#74ac00",
-    verifiable: "#dddddd",
-    "Flowering Phenology=bare": "#fecc5c",
-    "Flowering Phenology=budding": "#f03b20",
-    "Flowering Phenology=flower": "#bd0026",
-    "Flowering Phenology=fruit": "#fd8d3c",
-    "Insect life stage=egg": "#d4b9da",
-    "Insect life stage=larva": "#c994c7",
-    "Insect life stage=teneral": "#df65b0",
-    "Insect life stage=nymph": "#e7298a",
-    "Insect life stage=pupa": "#ce1256",
-    "Insect life stage=adult": "#91003f"
+    verifiable: "#dddddd"
+    // "Flowering Phenology=bare": "#fecc5c",
+    // "Flowering Phenology=budding": "#f03b20",
+    // "Flowering Phenology=flower": "#bd0026",
+    // "Flowering Phenology=fruit": "#fd8d3c",
+    // "Insect life stage=egg": "#d4b9da",
+    // "Insect life stage=larva": "#c994c7",
+    // "Insect life stage=teneral": "#df65b0",
+    // "Insect life stage=nymph": "#e7298a",
+    // "Insect life stage=pupa": "#ce1256",
+    // "Insect life stage=adult": "#91003f"
   }
 };
 
