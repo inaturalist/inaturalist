@@ -183,9 +183,9 @@ class Charts extends React.Component {
     const config = this.seasonalityConfigForColumns( columns );
     config.data.types = {};
     for ( let i = 0; i < columns.length; i++ ) {
-      config.data.types[columns[i][0]] = "area";
+      config.data.types[columns[i][0]] = "area-spline";
     }
-    config.data.groups = [columns.map( column => column[0] )];
+    // config.data.groups = [columns.map( column => column[0] )];
     config.data.order = null;
     const mountNode = $( "#InsectLifeStageChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.insectLifeStageChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
@@ -195,10 +195,11 @@ class Charts extends React.Component {
     const config = this.seasonalityConfigForColumns( columns );
     config.data.types = {};
     for ( let i = 0; i < columns.length; i++ ) {
-      config.data.types[columns[i][0]] = "area";
+      config.data.types[columns[i][0]] = "area-spline";
     }
-    config.data.groups = [columns.map( column => column[0] )];
+    // config.data.groups = [columns.map( column => column[0] )];
     config.data.order = null;
+    // config.point = { show: false };
     const mountNode = $( "#FloweringPhenologyChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.floweringPhenologyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
