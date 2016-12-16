@@ -116,7 +116,7 @@ describe ListedTaxon do
       check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
       expect(check_listed_taxon.is_atlased?).to be true
       expect(ListedTaxonAlteration.where(
-        atlas_id: atlas.taxon_id,
+        taxon_id: taxon.id,
         user_id: @user.id,
         place_id: atlas_place.id,
         action: "listed"
@@ -140,7 +140,7 @@ describe ListedTaxon do
       check_listed_taxon.updater = @other_user
       check_listed_taxon.destroy
       expect(ListedTaxonAlteration.where(
-        atlas_id: atlas.taxon_id,
+        taxon_id: taxon.id,
         user_id: @other_user.id,
         place_id: atlas_place.id,
         action: "unlisted"

@@ -109,7 +109,7 @@ describe ListedTaxaController, "destroy" do
     delete :destroy, :format => :json, :id => check_listed_taxon.id
     expect(ListedTaxon.find_by_id(check_listed_taxon.id)).to be_blank  
     expect(ListedTaxonAlteration.where(
-      atlas_id: atlas.taxon_id,
+      taxon_id: taxon.id,
       user_id: @other_user.id,
       place_id: atlas_place.id,
       action: "unlisted"
