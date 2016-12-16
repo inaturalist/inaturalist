@@ -99,8 +99,8 @@ class Charts extends React.Component {
   }
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
     const order = [
-      "verifiable",
       "research",
+      "verifiable",
       "Flowering Phenology=bare",
       "Flowering Phenology=budding",
       "Flowering Phenology=flower",

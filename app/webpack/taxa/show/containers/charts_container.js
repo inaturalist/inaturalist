@@ -14,11 +14,29 @@ function mapStateToProps( state ) {
     monthOfYearFrequencyVerifiable
   ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
   const seasonalityColumns = [];
-  _.forEach( state.observations.monthOfYearFrequency, ( frequency, series ) => {
-    seasonalityColumns.push(
-      [series, ...seasonalityKeys.map( i => frequency[i.toString( )] || 0 )]
-    );
-  } );
+  const order = [
+    "Flowering Phenology=bare",
+    "Flowering Phenology=budding",
+    "Flowering Phenology=flower",
+    "Flowering Phenology=fruit",
+    "Insect life stage=egg",
+    "Insect life stage=larva",
+    "Insect life stage=teneral",
+    "Insect life stage=nymph",
+    "Insect life stage=pupa",
+    "Insect life stage=adult",
+    "verifiable",
+    "research"
+  ];
+  for ( let i = 0; i < order.length; i++ ) {
+    const series = order[i];
+    const frequency = state.observations.monthOfYearFrequency[series];
+    if ( frequency ) {
+      seasonalityColumns.push(
+        [series, ...seasonalityKeys.map( key => frequency[key.toString( )] || 0 )]
+      );
+    }
+  }
 
   // process columns for history
   const monthFrequencyVerifiable = state.observations.monthFrequency.verifiable || {};
