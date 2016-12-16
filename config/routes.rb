@@ -499,6 +499,8 @@ Rails.application.routes.draw do
   end
   resources :exploded_atlas_places
   
+  resources :complete_sets
+  
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   get '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date, :constraints => {

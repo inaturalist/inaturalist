@@ -599,6 +599,41 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: complete_sets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE complete_sets (
+    id integer NOT NULL,
+    user_id integer,
+    taxon_id integer,
+    place_id integer,
+    description text,
+    source_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: complete_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE complete_sets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: complete_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE complete_sets_id_seq OWNED BY complete_sets.id;
+
+
+--
 -- Name: conservation_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4384,6 +4419,13 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY complete_sets ALTER COLUMN id SET DEFAULT nextval('complete_sets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
 
 
@@ -5101,6 +5143,14 @@ ALTER TABLE ONLY colors
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: complete_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY complete_sets
+    ADD CONSTRAINT complete_sets_pkey PRIMARY KEY (id);
 
 
 --
@@ -5985,6 +6035,27 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 --
 
 CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
+
+
+--
+-- Name: index_complete_sets_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_place_id ON complete_sets USING btree (place_id);
+
+
+--
+-- Name: index_complete_sets_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_taxon_id ON complete_sets USING btree (taxon_id);
+
+
+--
+-- Name: index_complete_sets_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_user_id ON complete_sets USING btree (user_id);
 
 
 --
@@ -8411,4 +8482,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161020190217');
 INSERT INTO schema_migrations (version) VALUES ('20161110221032');
 
 INSERT INTO schema_migrations (version) VALUES ('20161210081605');
+
+INSERT INTO schema_migrations (version) VALUES ('20161216041939');
 
