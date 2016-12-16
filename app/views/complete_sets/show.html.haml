@@ -18,3 +18,29 @@
       - @taxa.each do |taxon|
         %tr
           %td= render partial: "shared/taxon", locals: { taxon: taxon, named_ancestor: true }
+          
+  
+  #comments
+    = render :partial => "comments/comments", :object => @complete_set
+  
+  %h3
+    = "Recent Listed Taxon Alterations"
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th="Place"
+        %th="Taxon"
+        %th="Action"
+        %th="Login"
+        %th="Date"
+    %tbody#listed_taxon_alteration
+      - @listed_taxon_alterations.each do |listed_taxon_alteration|
+        %tr
+          %th{:scope => "row"}=link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
+          %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
+          %td= listed_taxon_alteration.action
+          %td= listed_taxon_alteration.user.nil? ? "" : (link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user)
+          %td= listed_taxon_alteration.created_at
+  - if @listed_taxon_alterations.count == 0
+    .no_listed_taxon_alterations="No listed taxon alterations relevant to this complete set yet"

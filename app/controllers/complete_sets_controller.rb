@@ -13,6 +13,7 @@ class CompleteSetsController < ApplicationController
 
   def show
     @taxa = @complete_set.get_taxa_for_place_taxon
+    @listed_taxon_alterations = @complete_set.relevant_listed_taxon_alterations.order("listed_taxon_alterations.created_at DESC").limit(30).reverse
   end
 
   def create

@@ -94,7 +94,14 @@ class AtlasesController < ApplicationController
       format.json { render json: {}, status: :ok}
     end
   end
-
+  
+  def get_defaults_for_taxon_place
+    taxon_id = params[:taxon_id]
+    place_id = params[:place_id]
+    lt = ListedTaxon.get_defaults_for_taxon_place(place_id, taxon_id, {limit: 10})
+    render :json => lt, :include => {:taxon => {:only => :name}, :place => {:only => :name}}, :only => :id
+  end
+  
   private
 
   def find_atlas

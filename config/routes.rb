@@ -495,6 +495,7 @@ Rails.application.routes.draw do
       post :alter_atlas_presence
       post :destroy_all_alterations
       get :map
+      get :get_defaults_for_taxon_place
     end
   end
   resources :exploded_atlas_places

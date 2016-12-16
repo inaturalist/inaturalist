@@ -629,6 +629,19 @@ class ListedTaxon < ActiveRecord::Base
     lt.save
   end
 
+  def self.get_defaults_for_taxon_place(place,taxon, options = {})
+    options[:limit] ||= 100
+    options[:limit] = 200 if options[:limit] > 200
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    place = Place.find_by_id(place) unless place.is_a?(Place)
+    return unless place
+    place_descendants = [place, Place.find(place.id).descendants.where('admin_level IN (?)',[0,1,2]).pluck(:id)].compact.flatten
+    lt = ListedTaxon.includes(:place,:taxon).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'").
+    where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
+    where("listed_taxa.place_id IN (?)", place_descendants).limit(options[:limit])
+  end
+
   def observation_month_stats
     return {} if observations_month_counts.blank?
     r_stats = confirmed_observation_month_stats
