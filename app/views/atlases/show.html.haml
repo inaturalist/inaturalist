@@ -23,11 +23,12 @@
     exploded_places: Hash[@atlas.exploded_atlas_places. |
       map{ |e| [ e.place_id, e.id ] }].to_json }        |
 
-  #top
-    #left
+  .row.cf#top
+    .col-sm-3.col-xs-12.pull-right
+      .content-entry#right
+      .content-entry#farright
+    .col-sm-9.col-xs-12.pull-left#left
       #map{ data: atlas_data }
-    #right
-    #farright
   
   #bottom
     #comments

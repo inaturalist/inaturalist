@@ -136,7 +136,7 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
     var addPlaceLink = $( "<a href='#'>" ).text( "Remove this place" );
     addPlaceLink.on( "click", function( e ) {
       e.preventDefault( );
-      var confirmText = "This will destroy all the listed taxa that are of this taxon (or its descendants) for this place or (its descendants). This can be very destructive, are you sure?";
+      var confirmText = "This will destroy all the listed taxa that are of this taxon (or any descendants) for this place (or any standard descendants). This can be very destructive, are you sure?";
       if(confirm(confirmText)) {
         atlasJS.alterAtlas( place );
       }
@@ -144,7 +144,7 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
     panel.append( addPlaceLink );
     panel.append( "<br>" );
     
-    var addPlaceLink = $( "<a href='#'>" ).text( "Show responsible listed taxa" );
+    var addPlaceLink = $( "<a href='#'>" ).text( "Show listed taxa" );
     addPlaceLink.on( "click", function( e ) {
       e.preventDefault( );
       atlasJS.getListings( place );
@@ -170,7 +170,6 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
     panel.append( unexplodeLink );
     panel.append( "<br>" );
   }
-  panel.append( "<br><br>" );
 }
 
 atlasJS.bestPlaceForLatLng = function( lat, lng, callback ) {
@@ -302,9 +301,10 @@ atlasJS.getListings = function( place ) {
     data: { taxon_id: $( "#map" ).data( "taxon-id" ), place_id: place.id },
     success: function( s ) {
       panel = $( "#farright" );
+      panel.html( "" );
+      panel.append( $( "<h4>" ).text( "Listed Taxa" ) );
       $.each(s, function(key,value) {
-        console.log(value);
-        var explodeLink = $( "<a href='/listed_taxa/"+value.id+"'>" ).text( value.taxon.name+" on "+value.place.name+" Check List");
+        var explodeLink = $( "<a href='/listed_taxa/"+value.id+"'>" ).text( value.taxon.name+" in "+value.place.name);
         panel.append( explodeLink );
         panel.append( "<br>" );
       });
