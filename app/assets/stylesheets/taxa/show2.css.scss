@@ -113,12 +113,12 @@
 }
 .FrequencyChart .c3-circle._expanded_ {
   stroke-width: 7px;
-  stroke: transparentize( $inat-green, 0.6 );
+  stroke: transparentize( #ddd, 0.6 );
   stroke-location: outside;
 }
 
-.FrequencyChart .c3-target-verifiable .c3-circle._expanded_ {
-  stroke: transparentize( #ddd, 0.6 );
+.FrequencyChart .c3-target-research .c3-circle._expanded_ {
+  stroke: transparentize( $inat-green, 0.6 );
 }
 
 .FrequencyChart line.c3-xgrid-focus {

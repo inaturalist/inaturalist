@@ -44,10 +44,11 @@ function mapStateToProps( state ) {
   const historyColumns = [];
   if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
+    historyColumns.push( ["verifiable", ...historyKeys.map( d =>
+      state.observations.monthFrequency.verifiable[d] || 0 )] );
+    historyColumns.push( ["research", ...historyKeys.map( d =>
+      state.observations.monthFrequency.research[d] || 0 )] );
   }
-  _.forEach( state.observations.monthFrequency, ( frequency, series ) => {
-    historyColumns.push( [series, ...historyKeys.map( d => frequency[d] || 0 )] );
-  } );
   return {
     seasonalityKeys,
     seasonalityColumns,
