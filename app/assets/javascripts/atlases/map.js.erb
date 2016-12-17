@@ -174,12 +174,12 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
 }
 
 atlasJS.bestPlaceForLatLng = function( lat, lng, callback ) {
-  console.log( "Searching for " + lat + ", " + lng );
+  console.log( "searching for " + lat + ", " + lng );
   atlasJS.removeActivePlaceLayer( );
   atlasState.selectedPlaces = [ ];
   $.ajax({
     dataType: "json",
-    url: "//<%= CONFIG.node_api_host %>/places?lat=" + lat + "&lng=" + lng,
+    url: "<%= CONFIG.node_api_url %>/places?lat=" + lat + "&lng=" + lng,
     success: function( r ) {
       var selectedPlaces = [ ];
       var parentWasNotExploded;
@@ -204,7 +204,7 @@ atlasJS.showInitialPlaces = function( ) {
   if( initialPlaceIDs.length > 0 ) {
     $.ajax({
       dataType: "json",
-      url: "//<%= CONFIG.node_api_host %>/places/" + initialPlaceIDs.join(",") + "?per_page=100",
+      url: "<%= CONFIG.node_api_url %>/places/" + initialPlaceIDs.join(",") + "?per_page=100",
       success: function( r ) {
         _.each( r.results, function( p ) {
           atlasJS.addPlaceToMap( p, "present" );
@@ -220,7 +220,7 @@ atlasJS.showInitialPlaces = function( ) {
   if( explodedPlaceIDs.length == 0 ) { return; }
   $.ajax({
     dataType: "json",
-    url: "//<%= CONFIG.node_api_host %>/places/" + explodedPlaceIDs.join(",") + "?per_page=100",
+    url: "<%= CONFIG.node_api_url %>/places/" + explodedPlaceIDs.join(",") + "?per_page=100",
     success: function( r ) {
       _.each( r.results, function( p ) {
         atlasJS.addPlaceToMap( p, "exploded" );
