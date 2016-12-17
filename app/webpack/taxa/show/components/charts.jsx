@@ -66,8 +66,8 @@ class Charts extends React.Component {
       data: {
         colors: this.props.colors,
         types: {
-          verifiable: "line",
-          research: "area"
+          verifiable: "spline",
+          research: "area-spline"
         },
         // For some reason this is necessary to enable the cursor style on the points
         selection: {
