@@ -1,3 +1,6 @@
+- content_for :extrajs do
+  = javascript_include_tag "complete_sets/show"
+
 .container
   .row
     .col-xs-12
@@ -9,17 +12,38 @@
         = @complete_set.place.name
       .pull-right= link_to t(:edit), edit_complete_set_path(@complete_set)
 
+  - complete_set_data = {                               |
+    complete_set_id: @complete_set.id,                  |
+    taxon_id: @complete_set.taxon_id,                   |
+    place_id: @complete_set.place_id}                   |
+      
+  .row.cf#top
+    .col-sm-3.col-xs-12.pull-right
+      .content-entry#right
+    .col-sm-9.col-xs-12.pull-left#left  
+      %table.table.table-striped#set{ data: complete_set_data }
+        %thead
+          %tr
+            %th="Taxon"
+            %th=""
+            %th=""
+        %tbody#alteration
+          - @taxa.each do |taxon|
+            %tr
+              %td= render partial: "shared/taxon", locals: { taxon: taxon, named_ancestor: true }
+              %td= link_to "destroy", "#", :class => "destroy_element", :data => { taxon_id: taxon.id}
+              %td= link_to "show listings", "#", :class => "show_listings_element", :data => { taxon_id: taxon.id}
 
-  %table.table.table-striped
-    %thead
-      %tr
-        %th="Taxon"
-    %tbody#alteration
-      - @taxa.each do |taxon|
-        %tr
-          %td= render partial: "shared/taxon", locals: { taxon: taxon, named_ancestor: true }
-          
-  
+  - list_id = @complete_set.place.check_list_id
+  - lt = ListedTaxon.new(list_id: list_id)
+  = form_for(lt, :remote => true, :method => :post, :html => { "data-type" => 'json', :class => 'add_to_list' }) do |f|
+    = text_field_tag :species_guess, "species name", :size => '', :class => "text"
+    = f.hidden_field :taxon_id
+    = f.hidden_field :list_id
+    = hidden_field_tag 'success_msg', t(:life_list_updated)
+    = f.submit t(:add), :id => "listed_taxon_submit", :class => 'default inline button inlineblock'
+    = image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none')  
+
   #comments
     = render :partial => "comments/comments", :object => @complete_set
   

@@ -500,7 +500,12 @@ Rails.application.routes.draw do
   end
   resources :exploded_atlas_places
   
-  resources :complete_sets
+  resources :complete_sets do
+    member do
+      post :destroy_relevant_listings
+      get :get_relevant_listings
+    end
+  end
   
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare

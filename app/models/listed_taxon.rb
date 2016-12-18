@@ -42,9 +42,9 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
-  after_create :log_create_in_atlas
+  after_create :log_create
   before_destroy :set_old_list
-  before_destroy :log_destroy_in_atlas
+  before_destroy :log_destroy
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
 
@@ -490,37 +490,35 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
-  def is_atlased?
+  def has_atlas_or_choice_set?
     return false unless list.is_a?(CheckList) && list.is_default?
     return false unless [0,1,2].include? place.admin_level
     place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
-    Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).map{|atlas| !(atlas.places.map(&:id) & place_ancestor_place_ids).empty? }.any?
+    return true if Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).map{|atlas| !(atlas.places.map(&:id) & place_ancestor_place_ids).empty? }.any?
+    return true if CompleteSet.where("taxon_id IN (?) AND place_id IN (?)", taxon.ancestor_taxon_ids, place_ancestor_place_ids).count > 0
+    false
   end
   
-  def log_create_in_atlas
-    if is_atlased?
-      Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).each do |atlas|
-        ListedTaxonAlteration.create(
-          taxon_id: atlas.taxon_id,
-          user_id: user_id,
-          place_id: place_id,
-          action: "listed"
-        )
-      end
+  def log_create
+    if has_atlas_or_choice_set?
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
+        user_id: user_id,
+        place_id: place_id,
+        action: "listed"
+      )
     end
   end
   
-  def log_destroy_in_atlas
-    if is_atlased?
+  def log_destroy
+    if has_atlas_or_choice_set?
       updater_id = updater.nil? ? nil : updater.id
-      Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).each do |atlas|
-        ListedTaxonAlteration.create(
-          taxon_id: atlas.taxon_id,
-          user_id: updater_id,
-          place_id: place_id,
-          action: "unlisted"
-        )
-      end
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
+        user_id: updater_id,
+        place_id: place_id,
+        action: "unlisted"
+      )
     end
   end
   
@@ -731,7 +729,7 @@ class ListedTaxon < ActiveRecord::Base
       !updater_id && 
       comments_count.to_i == 0 &&
       list.is_default? &&
-      !is_atlased?
+      !has_atlas_or_choice_set?
   end
   
   def introduced?
