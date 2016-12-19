@@ -1,4 +1,3 @@
-<%- @user_scalable = "0" if in_mobile_view? -%>
 <%- content_for(:title) do -%>
   <% @pagetitle = if @list
     raw t(:add_obs_from_a_link, :link => "#{link_to @list.title, @list}" )
@@ -15,7 +14,6 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#mobilenav').fixedFollower({
-        <% if in_mobile_view? %>top: 0, <% end %>
         duration: 500
       });
       <% if @list %>
@@ -45,9 +43,6 @@
   <%= render :partial => "observations/new_nav.html.erb" %>
   
   <h2><%= @pagetitle %></h2>
-  <% unless in_mobile_view? -%>
-    <p class="description"><%=t :add_observations_of_taxa_youve_added %></p>
-  <% end -%>
   <%= form_tag url_for, :method => :get, :id => "listform" do %>
     <%= label_tag :id, t(:choose_from_your_lists) %>
     <%= select_tag :id, options_for_select(@user_lists.map{|l| [l.title, l.id]}, @list ? @list.id : nil) %>

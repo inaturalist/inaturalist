@@ -2,7 +2,7 @@
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
   caches_action :show, :expires_in => 1.day,
-    :cache_path => Proc.new{ |c| { locale: I18n.locale, mobile: c.request.format.mobile? } },
+    :cache_path => Proc.new{ |c| { locale: I18n.locale? } },
     :if => Proc.new {|c|
       !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
     }
@@ -43,9 +43,6 @@ class TaxaController < ApplicationController
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
   ALLOWED_SHOW_PARTIALS = %w(chooser)
   ALLOWED_PHOTO_PARTIALS = %w(photo)
-  MOBILIZED = [:show, :index]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   
   #
   # GET /observations
@@ -55,7 +52,7 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_taxa unless request.format.blank? || request.format.html? || request.format.mobile?
+    find_taxa unless request.format.blank? || request.format.html?
     
     begin
       @taxa.try(:total_entries)
@@ -113,13 +110,6 @@ class TaxaController < ApplicationController
           Observation.preload_associations(@recent,{
             taxon: [ { taxon_names: :place_taxon_names }, :photos ] } )
           @recent = @recent.sort_by(&:id).reverse
-        end
-      end
-      format.mobile do
-        if request.query_parameters.blank?
-          @taxa = Taxon.iconic_taxa.page(1).per_page(50)
-        else
-          find_taxa
         end
       end
       format.xml  do
@@ -280,15 +270,6 @@ class TaxaController < ApplicationController
         end
         
         render :action => 'show'
-      end
-      
-      format.mobile do
-        if @taxon.species_or_lower? && @taxon.species
-          @siblings = @taxon.species.siblings.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
-          @siblings.delete_if{|s| s.id == @taxon.id}
-        else
-          @children = @taxon.children.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
-        end
       end
       
       format.xml do

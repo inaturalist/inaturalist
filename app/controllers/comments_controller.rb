@@ -6,11 +6,6 @@ class CommentsController < ApplicationController
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
-  # cache_sweeper :comment_sweeper, :only => [:create, :destroy]
-  
-  MOBILIZED = [:edit]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   
   def index
     find_options = {
@@ -66,9 +61,6 @@ class CommentsController < ApplicationController
   def edit
     respond_to do |format|
       format.html
-      format.mobile do
-        render "edit.html.erb"
-      end
     end
   end
   
@@ -78,7 +70,6 @@ class CommentsController < ApplicationController
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
-      format.mobile { respond_to_create }
       format.json do
         Rails.logger.debug "[DEBUG] @comment: #{@comment}"
         if @comment.valid?

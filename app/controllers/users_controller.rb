@@ -17,10 +17,6 @@ class UsersController < ApplicationController
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
-  
-  MOBILIZED = [:show, :new, :create]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
 
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
@@ -76,7 +72,6 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         format.html { render :action => 'new' }
-        format.mobile { render :action => 'new' }
       end
     end
   end
@@ -327,7 +322,6 @@ class UsersController < ApplicationController
         render layout: "bootstrap"
       end
       format.json { render :json => @selected_user.to_json(User.default_json_options) }
-      format.mobile
     end
   end
   

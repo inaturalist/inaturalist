@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     resource.update_attribute(:last_ip, last_ip)
     Rails.logger.debug "[DEBUG] session[:return_to]: #{session[:return_to]}"
     respond_to do |format|
-      format.any(:html, :mobile) do
+      format.html do
         if session[:return_to]
           redirect_to session[:return_to]
         else

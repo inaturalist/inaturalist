@@ -59,7 +59,6 @@ gem 'jquery-rails'
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
-gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
 gem 'nokogiri'
 gem "non-stupid-digest-assets"
 gem "omniauth"

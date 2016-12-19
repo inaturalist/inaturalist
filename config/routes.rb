@@ -112,7 +112,6 @@ Rails.application.routes.draw do
   end
   
   get '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  get '/toggle_mobile' => 'welcome#toggle_mobile', :as => :toggle_mobile
   get '/help' => 'help#index', :as => :help
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
@@ -345,7 +344,7 @@ Rails.application.routes.draw do
       post 'update_photos', as: "update_photos_for"
       post 'set_photos', as: "set_photos_for"
       post 'refresh_wikipedia_summary', as: "refresh_wikipedia_summary_for"
-      get 'schemes', as: "schemes_for", constraints: { format: [:html, :mobile] }
+      get 'schemes', as: "schemes_for", constraints: { format: [:html] }
       get 'tip'
       get 'names', to: "taxon_names#taxon"
       get 'links'
@@ -515,7 +514,7 @@ Rails.application.routes.draw do
     put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
     put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
   end
-  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html, :mobile]}
+  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
