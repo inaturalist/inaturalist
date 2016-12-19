@@ -163,6 +163,7 @@ ja:
   add_taxonomic_tags_to: 選択されたFlickr写真に分類群タグを付ける &raquo;
   add_to: 次の場所に追加：
   add_to_a_scheme: スキームに追加
+  add_to_a_project: プロジェクトに追加
   add_to_calendar: カレンダーに追加
   add_to_checklist: チェックリストに追加
   add_to_favorites: お気に入りに追加
@@ -487,6 +488,7 @@ ja:
   check_list_source: ソース<span class="meta">（任意）</span>
   check_lists_for: '%{place}のその他のチェックリスト'
   check_out_my_observations_at: よかったら、次の場所で私の観察記録をご覧ください：
+  check_out_our_blog: 公式ブログも読んでみてください
   check_out_your_life_list: 自分のライフリストを見てみましょう。
   checklist: チェックリスト
   checklist_places: チェックリスト場所
@@ -501,6 +503,7 @@ ja:
   chose_columns: 列を選択
   choose_files_from_your_computer: パソコンからファイルを選択
   choose_from_your_lists: 自分のリストから選択
+  choose_photos: 写真を選択
   choose_photos_for_this_taxon: 分類群の写真を選択
   choose_photos_to_tag_from_photostream: フォトストリームの中からタグする写真を選択
   choose_place: 場所を選択
@@ -527,6 +530,7 @@ ja:
   comma_separated_please: カンマ区切りでお願いします
   comment_preview: コメントをプレビュー
   comment: コメント
+  comment_feed: コメントフィード
   comment_deleted: コメント削除されました
   commented: コメントしました
   comments: コメント
@@ -567,6 +571,7 @@ ja:
   conservation_summary: 保全概要
   contain_all_descendants?: リストにはこの場所で生息する当分類群のすべての種が含まれていますか？
   contest: コンテスト
+  continue: 続行
   contributions: 提供コンテンツ
   contributions_from: 提供者：
   contributor_cannot_be_found: 提供者が見つかりません
@@ -765,6 +770,7 @@ ja:
   edit_flagged_observation: フラグ付き観察記録を編集
   edit_license: ライセンスを編集
   edit_multiple_dates: 複数の日付を編集
+  edit_multiple_descriptions: 複数の説明欄を編集
   edit_multiple_locations: 複数の場所を編集
   edit_multiple_species: 複数の種を編集
   edit_notes: メモを編集
@@ -1149,7 +1155,9 @@ ja:
   journal_post_deleted: ジャーナル投稿が削除されました
   jpg_png_or_gif: JPG、PNG、またはGIF
   just_added!: 新しく追加！
+  keep_editing: 編集を続行
   kelp_diatoms_and_allies: 褐藻、珪藻、その他の藻類
+  keyboard_shortcuts: キーボード ショートカット
   kml: KML
   kml_file_size_error: 1MBより少ないKMLでなければなりません
   labels: ラベル
@@ -1599,6 +1607,7 @@ ja:
   observation_rights_html: 観察記録 %{rights}
   observation_rules: 観測記録ルール
   observation_was_deleted: 観察記録が削除されました
+  observation_without_photo: 写真なしの観察記録
   observation_would_like_some_help: '%{user}はID協力を依頼しています'
   observations: 観察記録
   observations_added_by_x_html: '%{x}によって追加された観察記録'
@@ -1655,6 +1664,8 @@ ja:
   offline_access_enabled: オフラインアクセス対応
   ok: OK
   on_your_life_list: 自分のライフリストに
+  onboarding:
+    youve_got_updates_panel_title: 新着情報あります！
   one_by_one: １個ずつ
   one_of_your_lists: 自分のリストに
   only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
@@ -2318,6 +2329,8 @@ ja:
     one: 1件の観察記録を送信
     other: '%{count}件の観察記録を送信'
   submitted: 投稿済
+  subscribe_to_a_taxon: 分類群を購読
+  subscribe_to_a_place: 場所を購読
   subscribe_to_this: こちらを購読
   subscribe_to_this_observation: この観察記録に購読
   subscriptions_arent_available_for: 境界線のない場所の購読はできません
@@ -2373,6 +2386,7 @@ ja:
   taxonomic_changes_raquo_html: 分類学上<nobr>変更 &raquo;</nobr>
   taxonomic_groups: 分類群グループ
   taxonomic_order: 分類学上の順序
+  taxonomic_status: 分類群ステータス
   taxonomic_tags_for_flickr: Flickr用のタクソンタグ付け
   taxonomic_tree_browser: 系統樹ブラウザ
   tell_everyone_a_little_about_you: みんなに自己紹介しましょう
@@ -3145,6 +3159,7 @@ ja:
         name: 名称
         rank: 階級
         parent_id: 親ID
+        locked: ロック済み
         auto_photos: 自動写真
         auto_description: 自動説明
         wikipedia_title: ウィキペディアのタイトル
