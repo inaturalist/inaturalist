@@ -255,7 +255,7 @@ class CheckList < List
       [:taxon, :list, {:place => {:parent => :check_list}}]).each do |listed_taxon|
       next unless listed_taxon.place.parent_id
       parent_check_list = listed_taxon.place.parent.check_list
-      next if Atlas.where("taxon_id IN (?)", listed_taxon.taxon.ancestor_taxon_ids).count > 0 #don't sync parents if its atlased
+      next if listed_taxon.has_atlas_or_complete_set?
       next if parent_check_list.listed_taxa.exists?(:taxon_id => listed_taxon.taxon_id)
       parent_check_list.add_taxon(listed_taxon.taxon)
     end
@@ -298,9 +298,9 @@ class CheckList < List
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
-      if Atlas.where("taxon_id IN (?)", observation.taxon.ancestor_taxon_ids).count > 0
-        new_place_ids = Place.where(id: new_place_ids).where("admin_level NOT IN (?)",[0,1,2]).pluck(:id) #if atlased, don't create listings places.admin_level 0,1,2
-      end
+      if Atlas.where("taxon_id IN (?)", taxon_ids).count > 0 || CompleteSet.where("taxon_id IN (?) AND place_id IN (?)",taxon_ids, current_place_ids).any?
+        new_place_ids = Place.where(id: new_place_ids).where("admin_level NOT IN (?)",[0,1,2]).pluck(:id) #if under atlas or complete set,
+      end                                                                                                 #don't create listings for places of admin_level 0,1,2
       add_new_listed_taxa(observation.taxon, new_place_ids)
     end
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"
