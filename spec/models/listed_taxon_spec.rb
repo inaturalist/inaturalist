@@ -107,14 +107,14 @@ describe ListedTaxon do
       expect(lt.establishment_means).to eq(ListedTaxon::INTRODUCED)
     end
     
-    it "should log listed_taxon_alterations if listed_taxa has_atlas_or_choice_set? on create" do
+    it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on create" do
       taxon = Taxon.make!
       AncestryDenormalizer.denormalize
       atlas_place = Place.make!(admin_level: 0)
       atlas = Atlas.make!(user: @user, taxon: taxon)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
-      expect(check_listed_taxon.has_atlas_or_choice_set?).to be true
+      expect(check_listed_taxon.has_atlas_or_complete_set?).to be true
       expect(ListedTaxonAlteration.where(
         taxon_id: taxon.id,
         user_id: @user.id,
@@ -125,17 +125,17 @@ describe ListedTaxon do
   end
   
   describe "destroy" do
-    it "should log listed_taxon_alterations if listed_taxa has_atlas_or_choice_set? on destroy" do
+    it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on destroy" do
       taxon = Taxon.make!
       AncestryDenormalizer.denormalize
       atlas_place = Place.make!(admin_level: 0)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       @user = User.make!
       check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
-      expect(check_listed_taxon.has_atlas_or_choice_set?).to be false
+      expect(check_listed_taxon.has_atlas_or_complete_set?).to be false
       @other_user = User.make!
       atlas = Atlas.make!(user: @other_user, taxon: taxon)
-      expect(check_listed_taxon.has_atlas_or_choice_set?).to be true
+      expect(check_listed_taxon.has_atlas_or_complete_set?).to be true
       @other_user = User.make!
       check_listed_taxon.updater = @other_user
       check_listed_taxon.destroy

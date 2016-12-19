@@ -490,7 +490,7 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
-  def has_atlas_or_choice_set?
+  def has_atlas_or_complete_set?
     return false unless list.is_a?(CheckList) && list.is_default?
     return false unless [0,1,2].include? place.admin_level
     place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
@@ -500,7 +500,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def log_create
-    if has_atlas_or_choice_set?
+    if has_atlas_or_complete_set?
       ListedTaxonAlteration.create(
         taxon_id: taxon_id,
         user_id: user_id,
@@ -511,7 +511,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def log_destroy
-    if has_atlas_or_choice_set?
+    if has_atlas_or_complete_set?
       updater_id = updater.nil? ? nil : updater.id
       ListedTaxonAlteration.create(
         taxon_id: taxon_id,
@@ -729,7 +729,7 @@ class ListedTaxon < ActiveRecord::Base
       !updater_id && 
       comments_count.to_i == 0 &&
       list.is_default? &&
-      !has_atlas_or_choice_set?
+      !has_atlas_or_complete_set?
   end
   
   def introduced?
