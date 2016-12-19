@@ -494,6 +494,8 @@ Rails.application.routes.draw do
     member do
       post :alter_atlas_presence
       post :destroy_all_alterations
+      post :remove_atlas_alteration
+      post :remove_listed_taxon_alteration
       get :map
       get :get_defaults_for_taxon_place
     end
@@ -503,6 +505,7 @@ Rails.application.routes.draw do
   resources :complete_sets do
     member do
       post :destroy_relevant_listings
+      post :remove_listed_taxon_alteration
       get :get_relevant_listings
     end
   end

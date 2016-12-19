@@ -58,3 +58,21 @@ destroy = function( taxon ) {
     }
   });
 };
+
+$('.remove_listed_taxon_alteration').on('click', function(event){
+  event.preventDefault();    
+  var $this = $(this);    
+  var lta_id = $this.attr("data-listed-taxon-alteration-id");
+  $.ajax({
+    type: "POST",
+    url: "/complete_sets/" + $( "#set" ).data( "complete-set-id" ) + "/remove_listed_taxon_alteration",
+    data: { lta_id: lta_id },
+    success: function(data){
+      console.log("success");
+    },
+    error: function(data){
+      console.log("error");
+    },
+    dataType: 'JSON'
+  });
+});

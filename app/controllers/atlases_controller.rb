@@ -95,6 +95,24 @@ class AtlasesController < ApplicationController
     end
   end
   
+  def remove_atlas_alteration
+    aa_id = params[:aa_id]
+    aa = AtlasAlteration.find(aa_id)
+    aa.destroy
+    respond_to do |format|
+      format.json { render json: {}, status: :ok}
+    end
+  end
+  
+  def remove_listed_taxon_alteration
+    lta_id = params[:lta_id]
+    lta = ListedTaxonAlteration.find(lta_id)
+    lta.destroy
+    respond_to do |format|
+      format.json { render json: {}, status: :ok}
+    end
+  end
+  
   def get_defaults_for_taxon_place
     taxon_id = params[:taxon_id]
     place_id = params[:place_id]

@@ -20,7 +20,42 @@ $(function() {
       dataType: 'JSON'
     });
   });
+  
+  $('.remove_atlas_alteration').on('click', function(event){
+    event.preventDefault();    
+    var $this = $(this);    
+    var aa_id = $this.attr("data-atlas-alteration-id");
+    $.ajax({
+      type: "POST",
+      url: "/atlases/" + $( "#map" ).data( "atlas-id" ) + "/remove_atlas_alteration",
+      data: { aa_id: aa_id },
+      success: function(data){
+        console.log("success");
+      },
+      error: function(data){
+        console.log("error");
+      },
+      dataType: 'JSON'
+    });
+  });
       
+  $('.remove_listed_taxon_alteration').on('click', function(event){
+    event.preventDefault();    
+    var $this = $(this);    
+    var lta_id = $this.attr("data-listed-taxon-alteration-id");
+    $.ajax({
+      type: "POST",
+      url: "/atlases/" + $( "#map" ).data( "atlas-id" ) + "/remove_listed_taxon_alteration",
+      data: { lta_id: lta_id },
+      success: function(data){
+        console.log("success");
+      },
+      error: function(data){
+        console.log("error");
+      },
+      dataType: 'JSON'
+    });
+  });
   
 });
 

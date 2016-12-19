@@ -13,7 +13,8 @@ class CompleteSetsController < ApplicationController
 
   def show
     @taxa = @complete_set.get_taxa_for_place_taxon
-    @listed_taxon_alterations = @complete_set.relevant_listed_taxon_alterations.order("listed_taxon_alterations.created_at DESC").limit(30).reverse
+    @listed_taxon_alterations = @complete_set.relevant_listed_taxon_alterations.order("listed_taxon_alterations.created_at DESC").limit(30).reverse    
+    @obs_url = "http://api.inaturalist.org/v1/observations?hrank=species&lrank=species&verifiable=true&taxon_id=#{@complete_set.taxon_id}&place_id=#{@complete_set.place_id}&without_taxon_id=#{@taxa.pluck(:id).join(",")}"
   end
 
   def create
@@ -59,6 +60,15 @@ class CompleteSetsController < ApplicationController
     place = @complete_set.place
     lt = ListedTaxon.get_defaults_for_taxon_place(place.id, taxon_id, {limit: 10})
     render :json => lt, :include => {:taxon => {:only => :name}, :place => {:only => :name}}, :only => :id
+  end
+  
+  def remove_listed_taxon_alteration
+    lta_id = params[:lta_id]
+    lta = ListedTaxonAlteration.find(lta_id)
+    lta.destroy
+    respond_to do |format|
+      format.json { render json: {}, status: :ok}
+    end
   end
   
   private

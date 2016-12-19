@@ -37,8 +37,9 @@
   - list_id = @complete_set.place.check_list_id
   - lt = ListedTaxon.new(list_id: list_id)
   = form_for(lt, :remote => true, :method => :post, :html => { "data-type" => 'json', :class => 'add_to_list' }) do |f|
-    = text_field_tag :species_guess, "species name", :size => '', :class => "text"
-    = f.hidden_field :taxon_id
+    = f.error_messages
+    = label_tag "Add species to set"
+    = f.text_field :taxon_id, :value => "enter a taxon_id"
     = f.hidden_field :list_id
     = hidden_field_tag 'success_msg', t(:life_list_updated)
     = f.submit t(:add), :id => "listed_taxon_submit", :class => 'default inline button inlineblock'
@@ -58,6 +59,7 @@
         %th="Action"
         %th="Login"
         %th="Date"
+        %th=""
     %tbody#listed_taxon_alteration
       - @listed_taxon_alterations.each do |listed_taxon_alteration|
         %tr
@@ -66,5 +68,7 @@
           %td= listed_taxon_alteration.action
           %td= listed_taxon_alteration.user.nil? ? "" : (link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user)
           %td= listed_taxon_alteration.created_at
+          %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id}
+
   - if @listed_taxon_alterations.count == 0
     .no_listed_taxon_alterations="No listed taxon alterations relevant to this complete set yet"
