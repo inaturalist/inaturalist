@@ -494,8 +494,14 @@ class ListedTaxon < ActiveRecord::Base
     return false unless list.is_a?(CheckList) && list.is_default?
     return false unless [0,1,2].include? place.admin_level
     place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
-    return true if Atlas.where("taxon_id IN (?)", taxon.ancestor_taxon_ids).map{|atlas| !(atlas.places.map(&:id) & place_ancestor_place_ids).empty? }.any?
-    return true if CompleteSet.where("taxon_id IN (?) AND place_id IN (?)", taxon.ancestor_taxon_ids, place_ancestor_place_ids).count > 0
+    atlas_ids = Atlas.where("taxon_id IN (?)", taxon.self_and_ancestor_ids).pluck(:id)
+    # there are atlases for this taxon or ancestors and this place isn't
+    # exploded for all matching atlases, therefore this action is relevant
+    # to some atlas and should be logged
+    return true if atlas_ids.any? &&
+      ExplodedAtlasPlace.where("atlas_id IN (?)", atlas_ids).
+        where(place_id: place.id).count < atlas_ids.length
+    return true if CompleteSet.where("taxon_id IN (?) AND place_id IN (?)", taxon.self_and_ancestor_ids, place_ancestor_place_ids).count > 0
     false
   end
   
