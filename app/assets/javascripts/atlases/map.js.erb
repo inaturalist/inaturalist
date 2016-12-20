@@ -178,7 +178,7 @@ atlasJS.bestPlaceForLatLng = function( lat, lng, callback ) {
   atlasState.selectedPlaces = [ ];
   $.ajax({
     dataType: "json",
-    url: "<%= CONFIG.node_api_url %>/places?lat=" + lat + "&lng=" + lng,
+    url: "<%= CONFIG.node_api_url %>/places/containing?lat=" + lat + "&lng=" + lng,
     success: function( r ) {
       var selectedPlaces = [ ];
       var parentWasNotExploded;
