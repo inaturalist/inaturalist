@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
 
+  resources :controlled_terms
+  resources :controlled_term_labels, only: [ :create, :update, :destroy ]
+  resources :controlled_term_values, only: [ :create, :destroy ]
+  resources :annotations
+
   resources :guide_sections do
     collection do
       get :import

@@ -43,7 +43,10 @@ class Identification < ActiveRecord::Base
   
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
-  
+
+  acts_as_votable
+  SUBSCRIBABLE = false
+
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
