@@ -36,7 +36,10 @@ class ControlledTerm < ActiveRecord::Base
     pupae: :life_stage,
     larva: :life_stage,
     larvae: :life_stage,
-    caterpillar: :life_stage
+    caterpillar: :life_stage,
+    teneral: :life_stage,
+    egg: :life_stage,
+    nymph: :life_stage
   }
 
   attr_accessor :prepared_values
