@@ -11,7 +11,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
+-- SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -287,11 +287,13 @@ SET default_with_oids = false;
 
 CREATE TABLE annotations (
     id integer NOT NULL,
+    uuid uuid DEFAULT uuid_generate_v4(),
     resource_id integer,
     resource_type character varying,
     controlled_attribute_id integer,
     controlled_value_id integer,
     user_id integer,
+    observation_field_value_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -6006,6 +6008,13 @@ ALTER TABLE ONLY wiki_pages
 --
 
 CREATE INDEX fk_flags_user ON flags USING btree (user_id);
+
+
+--
+-- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_annotations_on_resource_id_and_resource_type ON annotations USING btree (resource_id, resource_type);
 
 
 --

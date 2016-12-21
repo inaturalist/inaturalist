@@ -41,6 +41,7 @@ class Comment < ActiveRecord::Base
   end
 
   def as_indexed_json
+    return unless user
     {
       id: id,
       uuid: uuid,

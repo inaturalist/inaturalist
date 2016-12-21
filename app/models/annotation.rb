@@ -11,6 +11,7 @@ class Annotation < ActiveRecord::Base
   belongs_to :controlled_value, class_name: "ControlledTerm"
   belongs_to :resource, polymorphic: true
   belongs_to :user
+  belongs_to :observation_field_value
 
   validates_presence_of :resource
   validates_presence_of :controlled_attribute
@@ -37,13 +38,13 @@ class Annotation < ActiveRecord::Base
   end
 
   def attribute_is_an_attribute
-    if !(controlled_attribute && ControlledTerm.attributes.exists?(controlled_attribute.id))
+    if !(controlled_attribute && !controlled_attribute.is_value?)
       errors.add(:controlled_attribute_id, "must be an attribute")
     end
   end
 
   def value_is_a_value
-    if !(controlled_value && ControlledTerm.values.exists?(controlled_value.id))
+    if !(controlled_value && controlled_value.is_value?)
       errors.add(:controlled_value_id, "must be a value")
     end
   end
@@ -56,15 +57,14 @@ class Annotation < ActiveRecord::Base
   end
 
   def attribute_belongs_to_taxon
-    if taxon_id && !ControlledTerm.for_taxon(taxon_id).include?(controlled_attribute)
+    if taxon && !controlled_attribute.applicable_to_taxon(taxon)
       errors.add(:controlled_attribute, "must belong to taxon")
     end
   end
 
   def value_belongs_to_taxon
     return unless controlled_value
-    if taxon_id &&
-       (controlled_value && !ControlledTerm.for_taxon(taxon_id).include?(controlled_value))
+    if taxon && !controlled_value.applicable_to_taxon(taxon)
       errors.add(:controlled_value, "must belong to taxon")
     end
   end
@@ -83,13 +83,22 @@ class Annotation < ActiveRecord::Base
   end
 
   def taxon_id
+    taxon.try(:id)
+  end
+
+  def taxon
     if resource.is_a?(Observation)
-      resource.taxon_id
+      resource.taxon
     end
   end
 
   def vote_score
-    get_likes.size - get_dislikes.size
+    if votes_for.loaded?
+      votes_for.select{ |v| v.vote_flag? }.size -
+        votes_for.select{ |v| !v.vote_flag? }.size
+    else
+      get_likes.size - get_dislikes.size
+    end
   end
 
   def votable_callback
@@ -98,9 +107,10 @@ class Annotation < ActiveRecord::Base
 
   def as_indexed_json(options={})
     {
+      uuid: uuid,
       controlled_attribute_id: controlled_attribute_id,
       controlled_value_id: controlled_value_id,
-      attribute_value: [controlled_attribute_id, controlled_value_id].join("|"),
+      concatenated_attr_val: [controlled_attribute_id, controlled_value_id].join("|"),
       vote_score: vote_score
     }
   end

@@ -2,6 +2,8 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   attr_accessor :indexed_tag_names, :indexed_project_ids, :indexed_place_ids,
     :indexed_places, :indexed_project_ids_with_curator_id,
     :indexed_project_ids_without_curator_id
@@ -9,13 +11,14 @@ class Observation < ActiveRecord::Base
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
     :model_attribute_changes,
+    { annotations: :votes_for },
     { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: :user },
+    { identifications: [ :user, :taxon ] },
     { comments: :user } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
@@ -40,6 +43,11 @@ class Observation < ActiveRecord::Base
         indexes :uuid, analyzer: "keyword_analyzer"
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
+      end
+      indexes :annotations, type: :nested do
+        indexes :uuid, analyzer: "keyword_analyzer"
+        indexes :resource_type, analyzer: "keyword_analyzer"
+        indexes :concatenated_attr_val, analyzer: "keyword_analyzer"
       end
       indexes :non_owner_ids, type: :nested do
         indexes :uuid, analyzer: "keyword_analyzer"
@@ -132,7 +140,7 @@ class Observation < ActiveRecord::Base
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
-        controlled_terms_test: annotations.map(&:as_indexed_json),
+        annotations: annotations.map(&:as_indexed_json),
         photos: observation_photos.sort_by{ |op| op.position || op.id }.
           reject{ |op| op.photo.blank? }.
           map{ |op| op.photo.as_indexed_json },
@@ -511,17 +519,17 @@ class Observation < ActiveRecord::Base
     if p[:term_id]
       nested_query = {
         nested: {
-          path: "controlled_terms_test",
+          path: "annotations",
           query: { bool: { must: [
-            { term: { "controlled_terms_test.controlled_attribute_id": p[:term_id] } },
-            { range: { "controlled_terms_test.vote_score": { gte: 0 } } }
+            { term: { "annotations.controlled_attribute_id": p[:term_id] } },
+            { range: { "annotations.vote_score": { gte: 0 } } }
           ] }
           }
         }
       }
       if p[:term_value_id]
         nested_query[:nested][:query][:bool][:must] <<
-          { term: { "controlled_terms_test.controlled_value_id": p[:term_value_id] } }
+          { term: { "annotations.controlled_value_id": p[:term_value_id] } }
       end
       complex_wheres << nested_query
     end

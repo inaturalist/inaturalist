@@ -13,8 +13,6 @@ class ControlledTerm < ActiveRecord::Base
   belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
     class_name: "Taxon"
 
-  # TODO: after_delete :reindex obs
-
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }
   scope :values, -> { where(is_value: true) }
@@ -29,7 +27,31 @@ class ControlledTerm < ActiveRecord::Base
     where("controlled_terms.valid_within_clade IS NULL OR ta.taxon_id=?", taxon).distinct
   }
 
+  VALUES_TO_MIGRATE = {
+    male: :sex,
+    female: :sex,
+    juvenile: :life_stage,
+    adult: :life_stage,
+    pupa: :life_stage,
+    pupae: :life_stage,
+    larva: :life_stage,
+    larvae: :life_stage,
+    caterpillar: :life_stage
+  }
+
   attr_accessor :prepared_values
+
+  def self.first_term_by_label(label)
+    return unless label
+    first_label = ControlledTermLabel.
+      where("lower(label) = ?", label.downcase).first
+    return first_label.controlled_term if first_label
+  end
+
+  def self.life_stage
+    @@life_stage ||= ControlledTermLabel.
+      where("lower(label) = 'life stage'").first.controlled_term
+  end
 
   def term_label(options = { })
     options[:locale] = options[:locale].to_s || "en"
@@ -63,6 +85,13 @@ class ControlledTerm < ActiveRecord::Base
 
   def values_for_observation(o)
     values - o.annotations.where(controlled_attribute: self).map{ |ct| ct.controlled_value }
+  end
+
+  def applicable_to_taxon(t)
+    return false if t.blank? || !t.is_a?(Taxon)
+    return true unless valid_within_taxon
+    return true if t.has_ancestor_taxon_id(valid_within_taxon.id)
+    false
   end
 
 end
