@@ -546,7 +546,7 @@ class Project < ActiveRecord::Base
     max_id = Observation.maximum(:id)
     proj.project_observations.joins(:observation).
          where("observations.user_id = ?", usr).
-         where("observations.id < ?", max_id).find_each do |po|
+         where("observations.id <= ?", max_id).find_each do |po|
       po.destroy
     end
   end
