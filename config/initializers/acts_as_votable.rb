@@ -4,9 +4,9 @@ module ActsAsVotable
   class Vote
     include HasSubscribers
 
-    belongs_to :observation, -> { where(votes: { votable_type: "Observation" }) },
+    belongs_to :observation, ->(vote) { where(vote.votable_type == "Observation" ? "true" : "false") },
       foreign_key: "votable_id"
-    belongs_to :identification, -> { where(votes: { votable_type: "Identification" }) },
+    belongs_to :identification, ->(vote) { where(vote.votable_type == "Identification" ? "true" : "false") },
       foreign_key: "votable_id"
 
     notifies_owner_of :votable, notification: "activity",
