@@ -5,6 +5,7 @@ function mapStateToProps( state ) {
   const first = state.observations.first;
   const props = {
     label: I18n.t( "first_observation" ),
+    labelTooltip: I18n.t( "first_observation_by_date_added" ),
     iconClassName: "fa fa-binoculars",
     countIconClassName: "fa fa-binoculars",
     linkText: I18n.t( "leaderboard" ),

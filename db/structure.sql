@@ -11,7 +11,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
--- SET row_security = off;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -251,6 +251,15 @@ CREATE FUNCTION crc32(word text) RETURNS bigint
             return (tmp # 4294967295);
           END
         $$;
+
+
+--
+-- Name: st_aslatlontext(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_aslatlontext(geometry) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT ST_AsLatLonText($1, '') $_$;
 
 
 --
@@ -3281,7 +3290,7 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying NOT NULL
+    version character varying(255) NOT NULL
 );
 
 
@@ -4255,9 +4264,9 @@ CREATE TABLE users (
     spam_count integer DEFAULT 0,
     last_active date,
     subscriptions_suspended_at timestamp without time zone,
+    test_groups character varying,
     latitude double precision,
     longitude double precision,
-    test_groups character varying,
     lat_lon_acc_admin_level integer,
     icon_file_name character varying,
     icon_content_type character varying,
@@ -4528,7 +4537,6 @@ ALTER TABLE ONLY controlled_terms ALTER COLUMN id SET DEFAULT nextval('controlle
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
-
 
 ALTER TABLE ONLY counties_simplified_01 ALTER COLUMN id SET DEFAULT nextval('counties_simplified_01_id_seq'::regclass);
 
@@ -6011,7 +6019,7 @@ CREATE INDEX fk_flags_user ON flags USING btree (user_id);
 
 
 --
--- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_annotations_on_resource_id_and_resource_type ON annotations USING btree (resource_id, resource_type);
