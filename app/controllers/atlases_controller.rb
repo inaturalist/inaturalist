@@ -5,7 +5,7 @@ class AtlasesController < ApplicationController
   layout "bootstrap"
 
   def new
-    @atlas = Atlas.new(:taxon_id => params[:taxon_id].to_i)
+    @atlas = Atlas.new(taxon_id: params[:taxon_id].to_i)
   end
 
   def edit
@@ -16,16 +16,22 @@ class AtlasesController < ApplicationController
   def show
     @atlas_places = @atlas.places
     @atlas_presence_places = @atlas.presence_places
-    
+
     #any obs outside of the complete set
-    @observation_search_url_params = { taxon_id: @atlas.taxon_id, quality_grade: ["research","needs_id"].join(","), not_in_place: @atlas_presence_places.pluck(:id).join(",") }
+    @observation_search_url_params = { 
+      taxon_id: @atlas.taxon_id, 
+      quality_grade: ["research","needs_id"].join(","), 
+      not_in_place: @atlas_presence_places.pluck(:id).join(",")
+    }
     @num_obs = INatAPIService.observations(@observation_search_url_params.merge(per_page: 0)).total_results
     respond_to do |format|
       format.html do
-        @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse
-        @listed_taxon_alterations = @atlas.relevant_listed_taxon_alterations.includes(:place, :user).order("listed_taxon_alterations.created_at DESC").limit(30).reverse
+        @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").
+          limit(30).reverse
+        @listed_taxon_alterations = @atlas.relevant_listed_taxon_alterations.includes(:place, :user).
+          order("listed_taxon_alterations.created_at DESC").limit(30).reverse
       end
-      format.json { render :json => @atlas_presence_places.to_json }
+      format.json { render json: @atlas_presence_places.to_json }
     end
   end
 
@@ -33,9 +39,9 @@ class AtlasesController < ApplicationController
     @atlas = Atlas.new(params[:atlas])
     respond_to do |format|
       if @atlas.save
-        format.html { redirect_to(@atlas, :notice => 'Atlas was successfully created.') }
+        format.html { redirect_to(@atlas, notice: 'Atlas was successfully created.') }
       else
-        format.html { render :action => "new" }
+        format.html { render action: "new" }
       end
     end
   end
@@ -44,9 +50,9 @@ class AtlasesController < ApplicationController
     respond_to do |format|
       if @atlas.update_attributes(params[:atlas])
         @atlas.taxon
-        format.html { redirect_to(@atlas.taxon || taxa_path, :notice => 'Atlas was successfully updated.') }
+        format.html { redirect_to(@atlas.taxon || taxa_path, notice: 'Atlas was successfully updated.') }
       else
-        format.html { render :action => "edit" }
+        format.html { render action: "edit" }
       end
     end
   end
@@ -98,7 +104,7 @@ class AtlasesController < ApplicationController
       format.json { render json: {}, status: :ok}
     end
   end
-  
+
   def remove_atlas_alteration
     aa_id = params[:aa_id]
     aa = AtlasAlteration.find(aa_id)
@@ -107,7 +113,7 @@ class AtlasesController < ApplicationController
       format.json { render json: {}, status: :ok}
     end
   end
-  
+
   def remove_listed_taxon_alteration
     lta_id = params[:lta_id]
     lta = ListedTaxonAlteration.find(lta_id)
@@ -116,14 +122,14 @@ class AtlasesController < ApplicationController
       format.json { render json: {}, status: :ok}
     end
   end
-  
+
   def get_defaults_for_taxon_place
     taxon_id = params[:taxon_id]
     place_id = params[:place_id]
     lt = ListedTaxon.get_defaults_for_taxon_place(place_id, taxon_id, {limit: 10})
-    render :json => lt, :include => {:taxon => {:only => :name}, :place => {:only => :name}}, :only => :id
+    render json: lt, include: {taxon: {only: :name}, place: {only: :name}}, only: :id
   end
-  
+
   private
 
   def find_atlas

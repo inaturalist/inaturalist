@@ -501,7 +501,10 @@ class ListedTaxon < ActiveRecord::Base
     return true if atlas_ids.any? &&
       ExplodedAtlasPlace.where("atlas_id IN (?)", atlas_ids).
         where(place_id: place.id).count < atlas_ids.length
-    return true if CompleteSet.where("taxon_id IN (?) AND place_id IN (?)", taxon.self_and_ancestor_ids, place_ancestor_place_ids).count > 0
+    cs = CompleteSet.
+      where("taxon_id IN (?) AND place_id IN (?)", taxon.self_and_ancestor_ids, place_ancestor_place_ids).
+      count
+    return true if cs > 0
     false
   end
   
@@ -640,7 +643,8 @@ class ListedTaxon < ActiveRecord::Base
     return unless taxon
     place = Place.find_by_id(place) unless place.is_a?(Place)
     return unless place
-    place_descendants = [place, Place.find(place.id).descendants.where('admin_level IN (?)',[0,1,2]).pluck(:id)].compact.flatten
+    place_descendants = [place, Place.find(place.id).descendants.where('admin_level IN (?)',[0,1,2]).
+      pluck(:id)].compact.flatten
     lt = ListedTaxon.includes(:place,:taxon).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'").
     where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
     where("listed_taxa.place_id IN (?)", place_descendants).limit(options[:limit])

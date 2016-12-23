@@ -9,7 +9,7 @@
 .container
   .row
     .col-xs-12
-      - if @num_obs >= 0
+      - if @num_obs > 0
         .alert.alert-warning{:role => "alert"}
           Warning: there are observations not represented by this atlas
           = link_to t(:view), observations_path(@observation_search_url_params)
