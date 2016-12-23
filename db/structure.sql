@@ -6272,6 +6272,13 @@ CREATE INDEX index_complete_sets_on_taxon_id ON complete_sets USING btree (taxon
 
 
 --
+-- Name: index_complete_sets_on_taxon_id_and_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_complete_sets_on_taxon_id_and_place_id ON complete_sets USING btree (taxon_id, place_id);
+
+
+--
 -- Name: index_complete_sets_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6395,6 +6402,13 @@ CREATE INDEX index_deleted_users_on_user_id ON deleted_users USING btree (user_i
 --
 
 CREATE INDEX index_exploded_atlas_places_on_atlas_id ON exploded_atlas_places USING btree (atlas_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_atlas_id_and_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_exploded_atlas_places_on_atlas_id_and_place_id ON exploded_atlas_places USING btree (atlas_id, place_id);
 
 
 --
@@ -8707,3 +8721,4 @@ INSERT INTO schema_migrations (version) VALUES ('20161210081605');
 
 INSERT INTO schema_migrations (version) VALUES ('20161216041939');
 
+INSERT INTO schema_migrations (version) VALUES ('20161220213126');
