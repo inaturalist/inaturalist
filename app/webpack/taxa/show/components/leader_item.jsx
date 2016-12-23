@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import CoverImage from "../../../shared/components/cover_image";
 import _ from "lodash";
 
@@ -6,6 +7,7 @@ const LeaderItem = ( {
   noContent,
   className,
   label,
+  labelTooltip,
   name,
   imageUrl,
   iconClassName,
@@ -43,9 +45,27 @@ const LeaderItem = ( {
       }
     </div>
   );
+  const itemLabelContent = <div className="item-label">{ label }</div>;
+  let itemLabel = itemLabelContent;
+  if ( labelTooltip ) {
+    itemLabel = (
+      <OverlayTrigger
+        placement="top"
+        delayShow={1000}
+        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+        overlay={
+          <Tooltip id={`leader-item-label-${className}`}>
+            { labelTooltip }
+          </Tooltip>
+        }
+      >
+        { itemLabelContent }
+      </OverlayTrigger>
+    );
+  }
   return (
     <div className={`LeaderItem media ${noContent ? "no-content" : ""} ${className}`}>
-      <div className="item-label">{ label }</div>
+      { itemLabel }
       <div className="media-left">
         <div className={`img-wrapper ${imageUrl ? "photo" : "no-photo"}`}>
           <a href={url}>
@@ -77,6 +97,7 @@ LeaderItem.propTypes = {
   noContent: PropTypes.bool,
   className: PropTypes.string,
   label: PropTypes.string,
+  labelTooltip: PropTypes.string,
   name: React.PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number

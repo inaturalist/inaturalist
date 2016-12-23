@@ -6,6 +6,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions,
+    :taxon_change_taxa, :taxon_schemes, :taxon_changes,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
     { taxon_photos: { photo: :user } },

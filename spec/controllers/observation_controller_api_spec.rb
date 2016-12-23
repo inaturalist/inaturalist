@@ -495,7 +495,7 @@ shared_examples_for "an ObservationsController" do
       expect( o ).to be_captive_cultivated
     end
     
-    it "should wild as captive in response to captive_flag" do
+    it "should mark as wild in response to captive_flag" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
       put :update, format: :json, id: o.id, observation: {captive_flag: "0", force_quality_metrics: true}
@@ -569,6 +569,27 @@ shared_examples_for "an ObservationsController" do
         put :update, format: :json, id: o.id, observation: { description: "foo" }
         o.reload
         expect( o.private_place_guess ).to eq original_place_guess
+      end
+    end
+
+    describe "existing photos" do
+      let(:o) { make_research_grade_observation( user: user ) }
+      it "should leave them alone if included" do
+        without_delay do
+          put :update, format: :json, id: o.id, local_photos: { o.id.to_s => [ o.photos.first.id ] }, observation: { description: "foo" }
+        end
+        o.reload
+        expect( o.photos ).not_to be_blank
+      end
+      it "should delete them if omitted" do
+        without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
+        o.reload
+        expect( o.photos ).to be_blank
+      end
+      it "should delete corresponding ObservationPhotos if omitted" do
+        without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
+        o.reload
+        expect( o.observation_photos ).to be_blank
       end
     end
   end

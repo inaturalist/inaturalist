@@ -37,21 +37,21 @@ describe ActsAsElasticModel do
     describe "elastic_search" do
       it "searches for match_all: { } as a wildcard query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { match_all: { } } }, { preference: "_primary_first" }).and_return(true)
+          { query: { match_all: { } } }).and_return(true)
         Observation.elastic_search( )
       end
 
       it "adds matches to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { bool: {
-            must: [ { match: { id: 5 } } ] } } }, { preference: "_primary_first" }).and_return(true)
+            must: [ { match: { id: 5 } } ] } } }).and_return(true)
         Observation.elastic_search(where: { id: 5 })
       end
 
       it "adds terms matches to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { bool: {
-            must: [ { terms: { id: [ 1, 3 ] } } ] } } }, { preference: "_primary_first" }).and_return(true)
+            must: [ { terms: { id: [ 1, 3 ] } } ] } } }).and_return(true)
         Observation.elastic_search(where: { id: [ 1, 3] })
       end
 
@@ -59,22 +59,21 @@ describe ActsAsElasticModel do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { filtered: { query: { match_all: { } },
             filter: { bool: { must: [ { geo_shape: { geojson: { shape: {
-              type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}}},
-          { preference: "_primary_first" }).and_return(true)
+              type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}}}).and_return(true)
         Observation.elastic_search(filters: [ { envelope: { geojson: { nelat: 88 }}}])
       end
 
       it "adds sorts to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { match_all: { } },
-            sort: { score: :desc } }, { preference: "_primary_first" }).and_return(true)
+            sort: { score: :desc } }).and_return(true)
         Observation.elastic_search(sort: { score: :desc })
       end
 
       it "allows certain fields to be specified" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { match_all: { } },
-            fields: [ :id, :description ] }, { preference: "_primary_first" }).and_return(true)
+            fields: [ :id, :description ] }).and_return(true)
         Observation.elastic_search(fields: [ :id, :description ])
       end
 
@@ -82,7 +81,7 @@ describe ActsAsElasticModel do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { match_all: { } },
             aggs: { colors: { terms: {
-              field: :"colors.id", size: 10 } } } }, { preference: "_primary_first" }).and_return(true)
+              field: :"colors.id", size: 10 } } } }).and_return(true)
         Observation.elastic_search(aggregate: { colors: { "colors.id": 10 } } )
       end
     end

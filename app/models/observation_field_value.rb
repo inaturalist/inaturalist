@@ -3,9 +3,11 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation_field
   belongs_to :user
   belongs_to :updater, :class_name => 'User'
+  has_one :annotation, dependent: :destroy
   
   before_validation :strip_value
   before_save :set_user
+  after_create :create_annotation
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   # I'd like to keep this, but since mobile clients could be submitting
   # observations that weren't created on a mobile device now, the check really
@@ -153,6 +155,23 @@ class ObservationFieldValue < ActiveRecord::Base
 
   def update_observation_field_counts
     observation_field.update_counts
+  end
+
+  def create_annotation
+    return unless observation
+    return unless observation_field.datatype == "text"
+    stripped_value = value.strip.downcase
+    return unless ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym]
+    controlled_value = ControlledTerm.first_term_by_label(stripped_value)
+    return unless controlled_value
+    controlled_attribute = ControlledTerm.first_term_by_label(
+      ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym].to_s)
+    return unless controlled_attribute
+    Annotation.create(observation_field_value: self, resource: observation,
+      controlled_attribute: controlled_attribute,
+      controlled_value: controlled_value,
+      user_id: user_id,
+      created_at: created_at)
   end
 
   def as_indexed_json(options={})

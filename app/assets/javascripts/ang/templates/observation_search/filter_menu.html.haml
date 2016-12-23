@@ -155,7 +155,10 @@
           %input{ type: "hidden", name: "changed_since" }
           %input{ type: "hidden", name: "change_project_id" }
           %input{ type: "hidden", name: "geoprivacy" }
+          %input{ type: "hidden", name: "term_id" }
+          %input{ type: "hidden", name: "term_value_id" }
           %input{ type: "hidden", name: "not_in_place" }
+          %input{ type: "hidden", name: "without_taxon_id" }
     .row
       .col-xs-12
         %button#filters-more-btn.btn.btn-link{ type: 'button', "ng-class" => "{ 'collapsed': moreFiltersHidden }", "ng-click" => "toggleMoreFilters( )" }

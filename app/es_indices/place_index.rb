@@ -2,6 +2,8 @@ class Place < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 100
+
   # some places have geometries that are valid according to PostGIS,
   # but are not being indexed by ES, causing the entire document to
   # not get idexed. This is a fallback method that will disable

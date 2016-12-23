@@ -802,6 +802,7 @@ class ObservationsController < ApplicationController
         old_photo_ids = observation.photo_ids
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
+          next if klass_key.blank?
           if params[klass_key] && params[klass_key][fieldset_index]
             updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
               :user => current_user, :photo_class => klass, :sync => true)
@@ -813,12 +814,6 @@ class ObservationsController < ApplicationController
         else
           observation.photos = updated_photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
             Photo.local_photo_from_remote_photo(p) : p }
-        end
-        
-        # Destroy old photos.  ObservationPhotos seem to get removed by magic
-        doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
-        unless doomed_photo_ids.blank?
-          Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
         Photo.subclasses.each do |klass|

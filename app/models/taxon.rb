@@ -544,11 +544,12 @@ class Taxon < ActiveRecord::Base
   end
 
   def taxon_changes_count
-    TaxonChange.taxon( id ).count
+    (taxon_changes.map(&:id) +
+     taxon_change_taxa.map(&:taxon_change_id)).uniq.length
   end
 
   def taxon_schemes_count
-    taxon_schemes.count
+    taxon_schemes.size
   end
 
   #
@@ -1372,6 +1373,12 @@ class Taxon < ActiveRecord::Base
       end
     end
     nil
+  end
+
+  def has_ancestor_taxon_id(ancestor_id)
+    return true if id == ancestor_id
+    return false if ancestry.blank?
+    !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
   end
 
   # Static ##################################################################

@@ -65,6 +65,9 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_people_found_this_helpful:
+    one: 'One person found this helpful'
+    other: '%{count} people found this helpful'
   x_faves:
     one: '1 fave'
     other: '%{count} faves'
@@ -1161,6 +1164,7 @@ en:
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observation: First Observation
+  first_observation_by_date_added: First observation by date added
   first_observer: 1st observer
   first_report: first report
   flag: Flag
