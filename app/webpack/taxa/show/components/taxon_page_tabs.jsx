@@ -34,10 +34,13 @@ class TaxonPageTabs extends React.Component {
             pullRight
             onSelect={ ( e, eventKey ) => {
               switch ( eventKey ) {
-                case "1":
+                case "add-flag":
                   window.location = `/taxa/${this.props.taxon.id}/flags/new`;
                   break;
-                case "2":
+                case "view-flags":
+                  window.location = `/taxa/${this.props.taxon.id}/flags`;
+                  break;
+                case "edit-photos":
                   this.props.showPhotoChooserModal( );
                   break;
                 default:
@@ -51,18 +54,24 @@ class TaxonPageTabs extends React.Component {
             <Dropdown.Menu>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
-                eventKey="1"
+                eventKey="add-flag"
               >
                 <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
-                eventKey="2"
+                className={isCurator ? "" : "hidden"}
+                eventKey="view-flags"
+              >
+                <i className="fa fa-flag-checkered"></i> { I18n.t( "view_flags" ) }
+              </MenuItem>
+              <MenuItem
+                eventKey="edit-photos"
               >
                 <i className="fa fa-picture-o"></i> { I18n.t( "edit_photos" ) }
               </MenuItem>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
-                eventKey="3"
+                eventKey="edit-taxon"
               >
                 <i className="fa fa-pencil"></i> { I18n.t( "edit_taxon" ) }
               </MenuItem>

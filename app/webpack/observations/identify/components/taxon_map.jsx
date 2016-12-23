@@ -77,7 +77,10 @@ class TaxonMap extends React.Component {
   setMapFromProps( ) {
     const domNode = ReactDOM.findDOMNode( this );
     // make sure taxonMap isn't initialized more than once
-    if ( $( domNode ).data( "taxonMap" ) ) { return; }
+    if ( $( domNode ).data( "taxonMap" ) ) {
+      google.maps.event.trigger( $( domNode ).data( "taxonMap" ), "resize" );
+      return;
+    }
     $( domNode ).taxonMap( this.props );
   }
   render( ) {

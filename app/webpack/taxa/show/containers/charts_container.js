@@ -40,14 +40,15 @@ function mapStateToProps( state ) {
 
   // process columns for history
   const monthFrequencyVerifiable = state.observations.monthFrequency.verifiable || {};
+  const monthFrequencyResearch = state.observations.monthFrequency.research || {};
   const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
   if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
     historyColumns.push( ["verifiable", ...historyKeys.map( d =>
-      state.observations.monthFrequency.verifiable[d] || 0 )] );
+      monthFrequencyVerifiable[d] || 0 )] );
     historyColumns.push( ["research", ...historyKeys.map( d =>
-      state.observations.monthFrequency.research[d] || 0 )] );
+      monthFrequencyResearch[d] || 0 )] );
   }
   return {
     seasonalityKeys,
