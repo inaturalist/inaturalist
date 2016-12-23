@@ -14,7 +14,10 @@ class CompleteSetsController < ApplicationController
   def show
     @taxa = @complete_set.get_taxa_for_place_taxon
     @listed_taxon_alterations = @complete_set.relevant_listed_taxon_alterations.order("listed_taxon_alterations.created_at DESC").limit(30).reverse    
-    @obs_url = "http://api.inaturalist.org/v1/observations?hrank=species&lrank=species&verifiable=true&taxon_id=#{@complete_set.taxon_id}&place_id=#{@complete_set.place_id}&without_taxon_id=#{@taxa.pluck(:id).join(",")}"
+    
+    #any obs outside of the complete set
+    @observation_search_url_params = { hrank: "species", lrank: "species", verifiable: true, taxon_id: @complete_set.taxon_id, place_id: @complete_set.place_id, without_taxon_id: @taxa.pluck(:id).join(",") }
+    @num_obs = INatAPIService.observations(@observation_search_url_params.merge(per_page: 0)).total_results
   end
 
   def create

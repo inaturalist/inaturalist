@@ -16,6 +16,10 @@ class AtlasesController < ApplicationController
   def show
     @atlas_places = @atlas.places
     @atlas_presence_places = @atlas.presence_places
+    
+    #any obs outside of the complete set
+    @observation_search_url_params = { taxon_id: @atlas.taxon_id, quality_grade: ["research","needs_id"].join(","), not_in_place: @atlas_presence_places.pluck(:id).join(",") }
+    @num_obs = INatAPIService.observations(@observation_search_url_params.merge(per_page: 0)).total_results
     respond_to do |format|
       format.html do
         @atlas_alterations = @atlas.atlas_alterations.includes(:place, :user).order("created_at DESC").limit(30).reverse
