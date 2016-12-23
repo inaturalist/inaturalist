@@ -3348,11 +3348,12 @@ en:
   uploader:
     tooltips:
       add: Add observation(s)
-      remove: Remove selected observations
       combine: Combine selected observations
-      select_all: Select all observations
-      remove_photo: Remove photo
+      photo_failed: Photo failed to upload
+      remove: Remove selected observations
       remove_observation: Remove observation
+      remove_photo: Remove photo
+      select_all: Select all observations
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
