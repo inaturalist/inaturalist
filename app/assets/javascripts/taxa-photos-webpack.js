@@ -84565,7 +84565,7 @@
 	      )
 	    ),
 	    _react2.default.createElement(_cover_image2.default, {
-	      src: photo.photoUrl(size),
+	      src: photo.photoUrl(size) || photo.photoUrl("small"),
 	      low: photo.photoUrl("small"),
 	      height: height
 	    })

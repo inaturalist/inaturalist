@@ -62,7 +62,7 @@ class Carousel extends React.Component {
       );
     }
     return (
-      <div className="Carousel">
+      <div className={`Carousel ${this.props.className}`}>
         { nav }
         <h2>
           { this.props.title }
@@ -101,7 +101,8 @@ Carousel.propTypes = {
     PropTypes.object
   ] ),
   noContent: PropTypes.string,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  className: PropTypes.string
 };
 
 export default Carousel;

@@ -28,7 +28,7 @@ const TaxonPhoto = ( {
       </button>
     </div>
     <CoverImage
-      src={ photo.photoUrl( size ) }
+      src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
       low={ photo.photoUrl( "small" ) }
       height={height}
     />

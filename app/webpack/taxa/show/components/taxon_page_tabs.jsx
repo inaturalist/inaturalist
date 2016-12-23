@@ -9,6 +9,7 @@ import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
 import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
+import RecentObservationsContainer from "../containers/recent_observations_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -144,6 +145,7 @@ class TaxonPageTabs extends React.Component {
             id="map-tab"
           >
             <TaxonPageMap taxon={this.props.taxon} />
+            <RecentObservationsContainer />
           </div>
           <div
             role="tabpanel"

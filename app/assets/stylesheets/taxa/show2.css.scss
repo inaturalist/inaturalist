@@ -158,7 +158,7 @@
 
 .TaxonMap {
   height: 600px;
-  margin: 20px 0;
+  margin: 20px 0 10px;
   border: 1px solid #ddd;
 }
 
@@ -702,7 +702,7 @@ $nav-btn-dim: 40px;
 .nav-buttons .next-btn:before {
   content: '\276F';
 }
-.HighlightsTab .viewall {
+.Carousel .viewall, {
   width: 100%;
   height: 262px;
   background-color: #333;
@@ -714,8 +714,8 @@ $nav-btn-dim: 40px;
   font-size: 16px;
   text-transform: uppercase;
 }
-.HighlightsTab .viewall:hover,
-.HighlightsTab .viewall:focus {
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
   color: white;
 }
 
@@ -1026,3 +1026,67 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   content: '';
 }
 .AkaNames .name { color: black; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
+}
