@@ -147,25 +147,18 @@ module ObservationSearch
     end
 
     def elastic_taxon_leaf_ids(elastic_params = {})
-      results = Observation.elastic_search(elastic_params.merge(size: 0,
-        aggregate: {
-          ancestors: {
-            terms: {
-              field: "taxon.ancestor_ids", size: 0 } },
-          taxa: {
-            terms: {
-              field: "taxon.id", size: 0 } }
-        })).response.aggregations
-      # make a hash of all ancestors and how many times they
-      # are used. This will include the observations' direct taxa
-      ancestors = Hash[ results.ancestors.buckets.map{ |b| [ b["key"], b["doc_count"] ] } ]
-      # remove the number of times they were direct taxa for an observation
-      results.taxa.buckets.each do |b|
-        ancestors[ b["key"] ] -= b["doc_count"]
+      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+      @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] }).
+        select(:id, :ancestry)
+      ancestors = { }
+      @taxa.each do |t|
+        t.ancestor_ids.each do |aid|
+          ancestors[aid] ||= 0
+          ancestors[aid] += 1
+        end
       end
-      # any 'ancestor' now with a count of 0 has only ever been used directly,
-      # not as an ancestor of another observation, i.e. leaf node
-      leaf_ids = ancestors.select{ |k,v| v == 0 }.keys
+      @taxa.select{ |t| !ancestors[t.id] }.map(&:id)
     end
 
     # Takes a hash of query params like you'd get from an ActionController and
