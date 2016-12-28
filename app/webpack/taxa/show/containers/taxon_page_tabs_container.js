@@ -6,12 +6,12 @@ import {
   fetchDescription,
   fetchLinks,
   fetchNames,
-  fetchInteractions,
   fetchTrending,
   fetchRare,
   fetchSimilar,
   showPhotoChooser
 } from "../../shared/ducks/taxon";
+import { fetchInatInteractions, fetchGlobiInteractions } from "../ducks/interactions";
 
 function mapStateToProps( state ) {
   const speciesTabs = ["map", "articles", "taxonomy", "status", "similar"];
@@ -41,8 +41,8 @@ function mapDispatchToProps( dispatch ) {
         dispatch( fetchNames( ) );
         break;
       case "interactions":
-        dispatch( fetchInatInteractions( ) );
-        dispatch( fetchInteractions( ) );
+        dispatch( fetchGlobiInteractions( ) );
+        // dispatch( fetchInatInteractions( ) );
         break;
       case "highlights":
         dispatch( fetchTrending( ) );

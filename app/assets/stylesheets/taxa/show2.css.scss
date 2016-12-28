@@ -642,6 +642,17 @@ $introducedColor: #E4007C;
   padding-top: 20px;
 }
 
+.InteractionsTab ul {
+  list-style: none;
+  padding: 0;
+}
+
+.InteractionsTab ul ul {
+  list-style: none;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
 .ArticlesTab .taxon_description_header {
   display: none;
 }

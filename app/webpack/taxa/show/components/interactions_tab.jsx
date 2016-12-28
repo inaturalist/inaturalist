@@ -2,37 +2,28 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import InteractionsForceDirectedGraph from "./interactions_force_directed_graph";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../shared/util";
 
-const InteractionsTab = ( { interactions, nodes, links, taxon } ) => {
-  const interactionsByType = _.groupBy( interactions || [], "interaction_type" );
-  const iconicTaxonNames = [
-    "Protozoa",
-    "Plantae",
-    "Fungi",
-    "Animalia",
-    "Mollusca",
-    "Arachnida",
-    "Insecta",
-    "Amphibia",
-    "Reptilia",
-    "Aves",
-    "Mammalia",
-    "Actinopterygii",
-    "Chromista"
-  ];
+const InteractionsTab = ( { nodes, links, taxon } ) => {
+  const interactionsByType = _.groupBy( links || [], "type" );
   let status;
-  if ( !interactions ) {
+  if ( !nodes ) {
     status = (
       <h2 className="text-center">
         <i className="fa fa-refresh fa-spin"></i>
       </h2>
     );
-  } else if ( interactions && interactions.length === 0 ) {
+  } else if ( nodes && nodes.length === 0 ) {
     status = (
       <h3 className="text-muted text-center">
         { I18n.t( "no_interaction_data_available" ) }
       </h3>
     );
+  }
+  let nodesById = { };
+  if ( nodes ) {
+    nodesById = _.keyBy( nodes, n => n.id );
   }
   return (
     <Grid className="InteractionsTab">
@@ -44,36 +35,19 @@ const InteractionsTab = ( { interactions, nodes, links, taxon } ) => {
             { _.map( interactionsByType, ( typedInteractions, type ) => (
               <li key={`interactions-${type}`}>
                 <strong>
-                  { _.startCase( type ) }:
-                  { I18n.t( "x_species", { count: typedInteractions.length } ) }
+                  { _.startCase( type ) }: { I18n.t( "x_species", { count: typedInteractions.length } ) }
                 </strong>
                 <ul>
-                  { typedInteractions.map( interaction => {
-                    let iconicTaxonName;
-                    if ( interaction.target.path ) {
-                      iconicTaxonName = _.last( _.intersection(
-                        iconicTaxonNames,
-                        interaction.target.path.split( " | " )
-                      ) );
-                    }
-                    iconicTaxonName = iconicTaxonName || "unknown";
-                    let rank;
-                    if ( interaction.target.name.split( " " ).length > 1 ) {
-                      rank = "species";
-                    }
+                  { _.filter( typedInteractions, i => (
+                    i.sourceId === taxon.id
+                  ) ).map( interaction => {
+                    const targetTaxon = nodesById[interaction.targetId];
                     return (
-                      <li key={interaction.target_taxon_external_id}>
-                        <a
-                          href={
-                            `/taxa/${interaction.target.name}?test=taxon-page#interactions-tab`
-                          }
-                          className={`taxon ${iconicTaxonName} ${rank}`}
-                        >
-                          <i className={`icon-iconic-${iconicTaxonName.toLowerCase( )}`}>
-                          </i> <span
-                            className="display-name sciname"
-                          >{ interaction.target.name }</span>
-                        </a>
+                      <li key={`interaction-table-target-${targetTaxon.id}`}>
+                        <SplitTaxon taxon={targetTaxon} showIcon url={urlForTaxon( targetTaxon ) } />
+                        { interaction.url ? (
+                          <a href={interaction.url} target="_blank">View Interactions</a>
+                        ) : null }
                       </li>
                     );
                   } ) }
@@ -133,7 +107,6 @@ const InteractionsTab = ( { interactions, nodes, links, taxon } ) => {
 };
 
 InteractionsTab.propTypes = {
-  interactions: PropTypes.array,
   nodes: PropTypes.array,
   links: PropTypes.array,
   taxon: PropTypes.object

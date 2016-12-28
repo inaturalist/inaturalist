@@ -1,16 +1,22 @@
 import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
-import querystring from "querystring";
+import { stringify } from "querystring";
 
 const SET_INTERACTIONS = "taxa-show/interactions/SET_INTERACTIONS";
 
-export default function reducer( state = { nodes: [], links: [] }, action ) {
+export default function reducer( state = { }, action ) {
   const newState = Object.assign( { }, state );
   switch ( action.type ) {
-    case SET_INTERACTIONS:
+    case SET_INTERACTIONS: {
+      // d3 goes into fits if you feed it links that reference nodes that don't
+      // exist, so we need to make sure every link references nodes we know
+      // about
+      const nodeHash = _.groupBy( action.nodes, n => n.id );
+      const filteredLinks = _.filter( action.links, l => ( nodeHash[l.sourceId] && nodeHash[l.targetId] ) );
       newState.nodes = action.nodes;
-      newState.links = action.links;
+      newState.links = filteredLinks;
       break;
+    }
     default:
       // all good
   }
@@ -26,40 +32,56 @@ export function setInteractions( nodes, links ) {
 }
 
 export function fetchInatInteractions( taxon ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    console.log( "[DEBUG] fetchInatInteractions" );
+    const t = taxon || getState( ).taxon.taxon;
     const eatingParams = {
-      taxon_id: taxon.id,
+      taxon_id: t.id,
       "field:eating": "",
       quality: "research"
     };
     const eatenByParams = {
-      "field:eating": taxon.id,
+      "field:eating": t.id,
       quality: "research"
     };
     iNaturalistJS.observations.search( eatingParams ).then(
       eatingResponse => {
-        console.log( "[DEBUG] eatingResponse.results.length: ", eatingResponse.results.length );
-        const links = eatingResponse.results.map( observation => ( {
-          sourceId: taxon.id,
-          targetId: _.find( observation.ofvs, ofv => ofv.name === "Eating" ).value
-        } ) );
+        // console.log( "[DEBUG] eatingResponse.results.length: ", eatingResponse.results.length );
+        const links = eatingResponse.results.map( observation => {
+          const targetId = parseInt( _.find( observation.ofvs, ofv => ofv.name === "Eating" ).value, 0 );
+          const urlParams = Object.assign( {}, eatingParams, {
+            "field:eating": targetId
+          } );
+          return {
+            sourceId: parseInt( t.id, 0 ),
+            targetId,
+            type: "eats",
+            url: `/observations?${stringify( urlParams )}`
+          };
+        } );
         iNaturalistJS.observations.search( eatenByParams ).then(
           eatenByResponse => {
-            console.log( "[DEBUG] eatenByResponse.results.length: ", eatenByResponse.results.length );
+            // console.log( "[DEBUG] eatenByResponse.results.length: ", eatenByResponse.results.length );
             eatenByResponse.results.forEach( observation => {
+              const urlParams = Object.assign( { }, eatenByParams, {
+                taxon_id: observation.taxon.id
+              } );
               links.push( {
-                sourceId: observation.taxon.id,
-                targetId: taxon.id
+                sourceId: parseInt( observation.taxon.id, 0 ),
+                targetId: parseInt( t.id, 0 ),
+                type: "eats",
+                url: `/observations?${stringify( urlParams )}`
               } );
             } );
-            console.log( "[DEBUG] links: ", links );
+            const filteredLinks = _.filter( links, l => ( l.sourceId && l.targetId ) );
+            // console.log( "[DEBUG] links: ", links );
             const taxonIds = _.uniq(
-              _.flatten( links.map( link => [link.sourceId, link.targetId] ) )
+              _.flatten( filteredLinks.map( link => [link.sourceId, link.targetId] ) )
             );
             console.log( "[DEBUG] taxonIds: ", taxonIds );
             iNaturalistJS.taxa.fetch( taxonIds ).then(
               taxaResponse => {
-                dispatch( setInteractions( taxaResponse.results, links ) );
+                dispatch( setInteractions( taxaResponse.results, filteredLinks ) );
               }
             );
           }
@@ -73,30 +95,36 @@ export function fetchInatInteractions( taxon ) {
 }
 
 export function fetchGlobiInteractions( taxon ) {
-  return ( dispatch ) => {
+  return ( dispatch, getState ) => {
+    const t = taxon || getState( ).taxon.taxon;
     const params = {
-      sourceTaxon: taxon.name,
+      sourceTaxon: t.name,
       type: "json.v2",
       accordingTo: "iNaturalist"
     };
-    const url = `http://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
-    console.log( "[DEBUG] globi url: ", url );
+    const url = `http://api.globalbioticinteractions.org/interaction?${stringify( params )}`;
+    // console.log( "[DEBUG] globi url: ", url );
     fetch( url ).then(
       response => {
         response.json( ).then( interactions => {
           const inatTaxonIds = _.uniq( interactions.map( interaction =>
             interaction.target_taxon_external_id.split( ":" )[1] ) );
+          inatTaxonIds.push( t.id );
+          // console.log( "[DEBUG] inatTaxonIds: ", inatTaxonIds );
           iNaturalistJS.taxa.fetch( inatTaxonIds ).then( taxaResponse => {
             const nodes = taxaResponse.results;
             const links = interactions.map( interaction => {
-              // console.log( "[DEBUG] taxon.id: ", taxon.id );
-              // console.log( "[DEBUG] target: ", parseInt( interaction.target_taxon_external_id.split( ":" )[1], 0 ) );
+              const targetId = parseInt( interaction.target_taxon_external_id.split( ":" )[1], 0 );
+              const urlParams = Object.assign( { }, params, {
+                targetTaxon: interaction.target.name
+              } );
               return {
-                sourceId: taxon.id,
-                targetId: parseInt( interaction.target_taxon_external_id.split( ":" )[1], 0 )
+                sourceId: parseInt( t.id, 0 ),
+                targetId,
+                type: interaction.interaction_type,
+                url: `http://api.globalbioticinteractions.org/interaction?${stringify( urlParams )}`
               };
             } );
-            // console.log( "[DEBUG] links[0]: ", links[0] );
             dispatch( setInteractions( nodes, links ) );
           } );
         } );

@@ -105,19 +105,17 @@ class TaxonPageTabs extends React.Component {
                     { I18n.t( "trends" ) }
                   </a>
                 </li>
-                { true ? null : (
-                  <li role="presentation"
-                    className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "interactions" ? "active" : ""}`}
+                <li role="presentation"
+                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "interactions" ? "active" : ""}`}
+                >
+                  <a
+                    href="#interactions-tab"
+                    role="tab"
+                    data-toggle="tab"
                   >
-                    <a
-                      href="#interactions-tab"
-                      role="tab"
-                      data-toggle="tab"
-                    >
-                      { I18n.t( "interactions" ) }
-                    </a>
-                  </li>
-                ) }
+                    { I18n.t( "interactions" ) }
+                  </a>
+                </li>
                 <li role="presentation" className={ chosenTab === "taxonomy" ? "active" : "" }>
                   <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
                 </li>
@@ -171,7 +169,8 @@ class TaxonPageTabs extends React.Component {
           <div
             role="tabpanel"
             className={`tab-pane ${chosenTab === "taxonomy" ? "active" : ""}`}
-            id="taxonomy-tab">
+            id="taxonomy-tab"
+          >
             <TaxonomyTabContainer />
           </div>
           <div
