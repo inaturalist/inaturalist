@@ -2879,7 +2879,7 @@ class ObservationsController < ApplicationController
     @species_counts = species_counts.species.buckets.
       map{ |b| { "taxon_id" => b["key"], "count_all" => b["doc_count"].to_s } }
     if showing_leaves
-      leaf_ids = Observation.elastic_taxon_leaf_ids(elastic_params)
+      leaf_ids = Observation.elastic_taxon_leaf_ids(prepare_counts_elastic_query(search_params))
       @rank_counts[:leaves] = leaf_ids.count
       # we fetch extra taxa above so we can safely filter
       # out the non-leaf taxa from the result
