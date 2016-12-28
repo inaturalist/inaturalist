@@ -643,11 +643,11 @@ class ListedTaxon < ActiveRecord::Base
     return unless taxon
     place = Place.find_by_id(place) unless place.is_a?(Place)
     return unless place
-    place_descendants = [place, Place.find(place.id).descendants.where('admin_level IN (?)',[0,1,2]).
-      pluck(:id)].compact.flatten
+    place_descendant_ids = place.descendants.where('admin_level IN (?)',[0,1,2]).pluck(:id)
+    place_with_descendant_ids = [place.id, place_descendant_ids].compact.flatten
     lt = ListedTaxon.includes(:place,:taxon).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'").
     where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
-    where("listed_taxa.place_id IN (?)", place_descendants).limit(options[:limit])
+    where("listed_taxa.place_id IN (?)", place_with_descendant_ids).limit(options[:limit])
   end
 
   def observation_month_stats
