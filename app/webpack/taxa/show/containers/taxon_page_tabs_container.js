@@ -4,11 +4,12 @@ import {
   fetchDescription,
   fetchLinks,
   fetchNames,
-  fetchInteractions,
   fetchTrending,
   fetchRare,
-  fetchSimilar
+  fetchSimilar,
+  fetchInteractions
 } from "../ducks/taxon";
+import { fetchGlobiInteractions, fetchInatInteractions } from "../ducks/interactions";
 
 function mapStateToProps( state ) {
   return {
@@ -24,7 +25,10 @@ function mapDispatchToProps( dispatch ) {
       dispatch( fetchLinks( ) );
     },
     fetchNames: ( ) => dispatch( fetchNames( ) ),
-    fetchInteractions: ( ) => dispatch( fetchInteractions( ) ),
+    fetchInteractions: taxon => {
+      dispatch( fetchInatInteractions( taxon ) );
+      dispatch( fetchInteractions( ) );
+    },
     fetchTrendingTaxa: ( ) => dispatch( fetchTrending( ) ),
     fetchRareTaxa: ( ) => dispatch( fetchRare( ) ),
     fetchSimilarTaxa: ( ) => dispatch( fetchSimilar( ) )

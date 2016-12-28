@@ -1,8 +1,9 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
+import InteractionsForceDirectedGraph from "./interactions_force_directed_graph";
 
-const InteractionsTab = ( { interactions } ) => {
+const InteractionsTab = ( { interactions, nodes, links, taxon } ) => {
   const interactionsByType = _.groupBy( interactions || [], "interaction_type" );
   const iconicTaxonNames = [
     "Protozoa",
@@ -38,6 +39,7 @@ const InteractionsTab = ( { interactions } ) => {
       <Row>
         <Col xs={8}>
           { status }
+          <InteractionsForceDirectedGraph nodes={nodes} links={links} taxon={taxon} />
           <ul>
             { _.map( interactionsByType, ( typedInteractions, type ) => (
               <li key={`interactions-${type}`}>
@@ -131,7 +133,10 @@ const InteractionsTab = ( { interactions } ) => {
 };
 
 InteractionsTab.propTypes = {
-  interactions: PropTypes.array
+  interactions: PropTypes.array,
+  nodes: PropTypes.array,
+  links: PropTypes.array,
+  taxon: PropTypes.object
 };
 
 export default InteractionsTab;

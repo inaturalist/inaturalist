@@ -22,7 +22,7 @@ class TaxonPageTabs extends React.Component {
           this.props.fetchNames( );
           break;
         case "#interactions-tab":
-          this.props.fetchInteractions( );
+          this.props.fetchInteractions( this.props.taxon );
           break;
         case "#highlights-tab":
           this.props.fetchTrendingTaxa( );
