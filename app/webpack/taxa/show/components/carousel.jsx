@@ -4,13 +4,21 @@ import { Button } from "react-bootstrap";
 import _ from "lodash";
 
 class Carousel extends React.Component {
+  constructor( ) {
+    super( );
+    this.state = {
+      currentIndex: 0
+    };
+  }
   showNext( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".carousel", domNode ).carousel( "next" );
+    this.setState( { currentIndex: this.state.currentIndex + 1 } );
   }
   showPrev( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".carousel", domNode ).carousel( "prev" );
+    this.setState( { currentIndex: this.state.currentIndex - 1 } );
   }
   render( ) {
     let link;
@@ -35,16 +43,18 @@ class Carousel extends React.Component {
           { this.props.noContent }
         </p>
       );
-    } else {
+    } else if ( this.props.items.length > 1 ) {
       nav = (
-        <div className="carousel-controls pull-right">
+        <div className="carousel-controls pull-right nav-buttons">
           <Button
             className="nav-btn prev-btn"
+            disabled={this.state.currentIndex === 0}
             onClick={ ( ) => this.showPrev( ) }
             title={ I18n.t( "prev" ) }
           />
           <Button
             className="nav-btn next-btn"
+            disabled={this.state.currentIndex >= this.props.items.length - 1}
             onClick={ ( ) => this.showNext( ) }
             title={ I18n.t( "next" ) }
           />
@@ -52,7 +62,7 @@ class Carousel extends React.Component {
       );
     }
     return (
-      <div className="Carousel">
+      <div className={`Carousel ${this.props.className}`}>
         { nav }
         <h2>
           { this.props.title }
@@ -70,8 +80,8 @@ class Carousel extends React.Component {
           <div className="carousel-inner">
             { _.map( this.props.items, ( item, index ) => (
               <div
-                key={`carousel-item-${index}`}
-                className={`item ${index === 0 ? "active" : ""}`}
+                key={`${_.kebabCase( this.props.title )}-carousel-item-${index}`}
+                className={`carousel-item-${index} item ${index === 0 ? "active" : ""}`}
               >
                 { item }
               </div>
@@ -86,9 +96,13 @@ class Carousel extends React.Component {
 Carousel.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.oneOfType( [
+    PropTypes.string,
+    PropTypes.object
+  ] ),
   noContent: PropTypes.string,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  className: PropTypes.string
 };
 
 export default Carousel;

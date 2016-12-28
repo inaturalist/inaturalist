@@ -140,7 +140,7 @@ class TaxonName < ActiveRecord::Base
 
   def as_indexed_json(options={})
     json = {
-      name: name.slice(0,1).capitalize + name.slice(1..-1),
+      name: name.blank? ? nil : name.slice(0,1).capitalize + name.slice(1..-1),
       locale: locale_for_lexicon,
       position: position,
       place_taxon_names: place_taxon_names.map(&:as_indexed_json)
@@ -167,7 +167,6 @@ class TaxonName < ActiveRecord::Base
     return nil if taxon_names.blank?
     common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
-    TaxonName.preload_associations(common_names, [:place_taxon_names])
     place_id = options[:place_id] unless options[:place_id].blank?
     place_id ||= (options[:place].is_a?(Place) ? options[:place].id : options[:place]) unless options[:place].blank?
     place_id ||= options[:user].place_id unless options[:user].blank?
@@ -206,10 +205,10 @@ class TaxonName < ActiveRecord::Base
     end
   end
 
-  def serializable_hash(options = nil)
+  def serializable_hash(opts = nil)
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
-    options ||= { }
+    options = opts ? opts.clone : { }
     options[:except] ||= []
     options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :creator_id, :updater_id]
     if options[:only]

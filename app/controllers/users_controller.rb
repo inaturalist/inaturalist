@@ -167,9 +167,9 @@ class UsersController < ApplicationController
       @user.update_attributes(spammer: params[:spammer])
       if params[:spammer] === "false"
         @user.flags_on_spam_content.each do |flag|
-          flag.resolved = true
-          flag.save!
+          flag.update_attributes(resolved: true)
         end
+        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
         @user.unsuspend!
       else
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
@@ -189,7 +189,7 @@ class UsersController < ApplicationController
           @updates += Observation.page_of_results( d1: 1.week.ago.to_s )
         else
           scope = klass.limit(30).
-            order("#{klass.table_name}.id DESC").
+            order("#{klass.table_name}.created_at DESC").
             where("#{klass.table_name}.created_at > ?", 1.week.ago).
             joins(:user).
             where("users.id IS NOT NULL")
@@ -258,19 +258,28 @@ class UsersController < ApplicationController
     escaped_q = @q.gsub(/(%|_)/){ |m| "\\" + m }
     unless @q.blank?
       wildcard_q = (@q.size == 1 ? "#{escaped_q}%" : "%#{escaped_q.downcase}%")
-      conditions = if logged_in? && @q =~ Devise.email_regexp
-        ["email = ?", @q]
+      if logged_in? && @q =~ Devise.email_regexp
+        conditions = ["email = ?", @q]
+        exact_conditions = conditions
       elsif @q =~ /\w+\s+\w+/
-        ["lower(name) LIKE ?", wildcard_q]
+        conditions = ["lower(name) LIKE ?", wildcard_q]
+        exact_conditions = ["lower(name) = ?", @q]
       else
-        ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+        conditions = ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+        exact_conditions = ["lower(login) = ? OR lower(name) = ?", @q, @q]
       end
+      exact_ids = User.active.where(exact_conditions).pluck(:id)
       scope = scope.where(conditions)
     end
     if params[:order] == "activity"
       scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
     else
-      scope = scope.order("login")
+      if exact_ids.blank?
+        scope = scope.order("login")
+      else
+        scope = scope.select("*, (id IN (#{exact_ids.join(',')})) as is_exact")
+        scope = scope.order("is_exact DESC, login ASC")
+      end
     end
     params[:per_page] = params[:per_page] || 30
     params[:per_page] = 30 if params[:per_page].to_i > 30
@@ -438,7 +447,8 @@ class UsersController < ApplicationController
   
   def dashboard
     @has_updates = (current_user.recent_notifications.count > 0)
-    @local_onboarding_content = get_local_onboarding_content
+    # onboarding content not shown in the dashboard if a user has updates
+    @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
     respond_to do |format|
       format.html do
         scope = Announcement.
@@ -609,7 +619,8 @@ class UsersController < ApplicationController
     allowed_patterns = [
       /^show_quality_metrics$/,
       /^user-seen-ann*/,
-      /^prefers_*/
+      /^prefers_*/,
+      /^preferred_*/
     ]
     updates = params.select {|k,v|
       allowed_patterns.detect{|p| 
@@ -620,7 +631,7 @@ class UsersController < ApplicationController
       v = true if v.yesish?
       v = false if v.noish?
       session[k] = v
-      if k =~ /^prefers_/ && logged_in? && current_user.respond_to?(k)
+      if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
         current_user.update_attributes(k => v)
       end
     end
@@ -629,6 +640,18 @@ class UsersController < ApplicationController
 
   def api_token
     render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
+  end
+
+  def join_test
+    groups = ( current_user.test_groups_array + [params[:test]] ).compact.uniq
+    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    redirect_back_or_default( root_path )
+  end
+
+  def leave_test
+    groups = ( current_user.test_groups_array - [params[:test]] ).compact.uniq
+    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    redirect_back_or_default( root_path )
   end
 
 protected
@@ -705,10 +728,10 @@ protected
   end
   
   def counts_for_users
-    @observation_counts = Observation.where(user_id: @users).group(:user_id).count
-    @listed_taxa_counts = ListedTaxon.where(list_id: @users.map{|u| u.life_list_id}).
+    @observation_counts = Observation.where(user_id: @users.to_a).group(:user_id).count
+    @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
       group(:user_id).count
-    @post_counts = Post.where(user_id: @users).group(:user_id).count
+    @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count
   end
   
   def activity_object_image_url(activity_stream)
@@ -749,7 +772,7 @@ protected
     end
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
     elastic_query = Observation.params_to_elastic_query(elastic_params)
-    counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5)
+    counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5, batch: false)
     user_counts = Hash[ counts.map{ |c| [ c["user_id"], c["count_all"] ] } ]
     users = User.where(id: user_counts.keys).group_by(&:id)
     Hash[ user_counts.map{ |id,c| [ users[id].first, c ] } ]
@@ -759,27 +782,44 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    scope = Identification.group("identifications.user_id").
-      joins(:observation, :user).
-      where("identifications.user_id != observations.user_id").
-      order('count_all desc').
-      limit(5)
+    site_filter = @site && @site.prefers_site_only_users?
+    filters = [ { term: { own_observation: false } } ]
     if per == 'month'
       date = Date.parse("#{ year }-#{ month }-1")
-      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
-        date, date + 1.month)
+      filters << { range: { created_at: {
+        gte: date,
+        lte: date + 1.month
+      }}}
     else
       date = Date.parse("#{ year }-1-1")
-      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
-        date, date + 1.year)
+      filters << { range: { created_at: {
+        gte: date,
+        lte: date + 1.year
+      }}}
     end
-    scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-    counts = scope.count.to_a
-    users = User.where("id IN (?)", counts.map(&:first))
-    counts.inject({}) do |memo, item|
-      memo[users.detect{|u| u.id == item.first}] = item.last
-      memo
+
+    result = Identification.elastic_search(
+      filters: filters,
+      size: 0,
+      aggregate: {
+        obs: {
+          terms: { field: "user.id", size: site_filter ? 200 : 20 }
+        }
+      }
+    )
+
+    user_counts = result.response.aggregations.obs.
+      buckets.map{ |b| { user_id: b["key"], count: b["doc_count"] } }
+    users_scope = User.where(id: user_counts.map{ |uc| uc[:user_id] })
+    if @site && @site.prefers_site_only_users?
+      # only return users associated with the site
+      users_scope = users_scope.where(site_id: @site.id)
     end
+    users = Hash[users_scope.map{ |u| [ u.id, u ] }]
+    # assign user instances into their user_counts
+    user_counts.each{ |uc| uc[:user] = users[uc[:user_id]] if users[uc[:user_id]] }
+    # return the top 5 user_counts with users
+    Hash[user_counts.select{ |uc| uc[:user] }[0...5].map{ |uc| [ uc[:user], uc[:count] ]}]
   end
 
   def whitelist_params

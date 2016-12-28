@@ -1,6 +1,6 @@
 class TaxonChange < ActiveRecord::Base
-  belongs_to :taxon
-  has_many :taxon_change_taxa, :dependent => :destroy
+  belongs_to :taxon, inverse_of: :taxon_changes
+  has_many :taxon_change_taxa, inverse_of: :taxon_change, dependent: :destroy
   has_many :taxa, :through => :taxon_change_taxa
   belongs_to :source
   has_many :comments, :as => :parent, :dependent => :destroy
@@ -9,6 +9,8 @@ class TaxonChange < ActiveRecord::Base
   belongs_to :committer, :class_name => 'User'
 
   has_subscribers
+  after_create :index_taxon
+  after_destroy :index_taxon
   after_update :commit_records_later
   
   validates_presence_of :taxon_id
@@ -276,6 +278,12 @@ class TaxonChange < ActiveRecord::Base
     else
       target_input_taxon.children.active.each { |child| child.move_to_child_of( output_taxon ) }
     end
+  end
+
+  def index_taxon
+    t = taxon || Taxon.find_by_id( taxon_id )
+    t.delay( priority: USER_INTEGRITY_PRIORITY ).elastic_index! if t
+    true
   end
 
 end

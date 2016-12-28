@@ -9,6 +9,7 @@
     asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
+
 }
 
 [data-icon]:before {
@@ -135,4 +136,16 @@
 }
 .icon-layers:before {
   content: "\e021";
+}
+.icon-link:before {
+  content: "\e016";
+}
+.icon-photo-grid:before {
+  content: "\e022";
+}
+.icon-photo-quilt:before {
+  content: "\e023";
+}
+.icon-link-external:before {
+  content: "\e024";
 }

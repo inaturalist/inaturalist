@@ -24,7 +24,31 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
-  
+
+  def original_url
+    self["original_url"] && self["original_url"].with_fixed_https
+  end
+
+  def large_url
+    self["large_url"] && self["large_url"].with_fixed_https
+  end
+
+  def medium_url
+    self["medium_url"] && self["medium_url"].with_fixed_https
+  end
+
+  def small_url
+    self["small_url"] && self["small_url"].with_fixed_https
+  end
+
+  def square_url
+    self["square_url"] && self["square_url"].with_fixed_https
+  end
+
+  def thumb_url
+    self["thumb_url"] && self["thumb_url"].with_fixed_https
+  end
+
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
   end
@@ -127,14 +151,14 @@ class Photo < ActiveRecord::Base
     try_methods(*methods)
   end
 
-  def serializable_hash( options = nil )
-    options ||= {}
+  def serializable_hash( opts = nil )
+    options = opts ? opts.clone : { }
     options[:except] ||= []
     options[:except] += [:metadata, :file_content_type, :file_file_name,
       :file_file_size, :file_processing, :file_updated_at, :mobile,
       :original_url]
     options[:methods] ||= []
-    options[:methods] += [:license_name, :license_url, :attribution]
+    options[:methods] += [:license_name, :license_url, :attribution, :type]
     super(options)
   end
 
@@ -276,7 +300,7 @@ class Photo < ActiveRecord::Base
     }
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json( options={ } )
     json = {
       id: id,
       license_code: (license_code.blank? || license.blank? || license == 0) ?
@@ -285,6 +309,8 @@ class Photo < ActiveRecord::Base
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
     json[:native_page_url] = native_page_url if options[:native_page_url]
+    json[:native_photo_id] = native_photo_id if options[:native_photo_id]
+    json[:type] = type if options[:type]
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
       json["#{ size }_url"] = best_url(size)

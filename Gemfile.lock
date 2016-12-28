@@ -44,6 +44,15 @@ GIT
       tilt
 
 GIT
+  remote: git://github.com/hugueslamy/delayed_job_active_record.git
+  revision: 7dcacc2459ad47c948153cc3bab78bc822191718
+  ref: 7dcacc2459ad47c948153cc3bab78bc822191718
+  specs:
+    delayed_job_active_record (4.1.1)
+      activerecord (>= 3.0, < 5.1)
+      delayed_job (>= 3.0, < 5)
+
+GIT
   remote: git://github.com/inaturalist/riparian.git
   revision: 083846b15272cb8f4979d2bd331140fe868735cb
   specs:
@@ -300,9 +309,6 @@ GEM
     debugger-linecache (1.2.0)
     delayed_job (4.0.6)
       activesupport (>= 3.0, < 5.0)
-    delayed_job_active_record (4.0.3)
-      activerecord (>= 3.0, < 5.0)
-      delayed_job (>= 3.0, < 4.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -436,8 +442,8 @@ GEM
     metaclass (0.0.4)
     mime-types (2.99.1)
     mimemagic (0.2.1)
-    mini_portile2 (2.0.0)
-    minitest (5.9.0)
+    mini_portile2 (2.1.0)
+    minitest (5.9.1)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.12.1)
@@ -450,8 +456,8 @@ GEM
     net-ssh (3.1.1)
     netrc (0.10.2)
     newrelic_rpm (3.15.0.314)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     non-stupid-digest-assets (1.0.4)
     nori (2.4.0)
     oauth (0.4.7)
@@ -724,7 +730,7 @@ DEPENDENCIES
   database_cleaner
   dbf
   delayed_job (~> 4.0.1)
-  delayed_job_active_record (~> 4.0.1)
+  delayed_job_active_record!
   delayed_paperclip!
   devise
   devise-encryptable
@@ -810,4 +816,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

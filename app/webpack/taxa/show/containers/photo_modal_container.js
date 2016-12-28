@@ -1,26 +1,28 @@
 import { connect } from "react-redux";
-import PhotoModal from "../components/photo_modal";
+import PhotoModal from "../../shared/components/photo_modal";
 import {
   hidePhotoModal,
   showNext as showNextPhoto,
   showPrev as showPrevPhoto
-} from "../ducks/photo_modal";
+} from "../../shared/ducks/photo_modal";
 
 function mapStateToProps( state ) {
   return {
     photo: state.photoModal.photo,
     taxon: state.photoModal.taxon,
+    observation: state.photoModal.observation,
     visible: state.photoModal.visible
   };
 }
 
 function mapDispatchToProps( dispatch ) {
+  const getPhotos = state => state.taxon.taxonPhotos;
   return {
     showNext: ( ) => {
-      dispatch( showNextPhoto( ) );
+      dispatch( showNextPhoto( getPhotos ) );
     },
     showPrev: ( ) => {
-      dispatch( showPrevPhoto( ) );
+      dispatch( showPrevPhoto( getPhotos ) );
     },
     onClose: ( ) => dispatch( hidePhotoModal( ) )
   };

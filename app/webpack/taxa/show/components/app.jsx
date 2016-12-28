@@ -7,24 +7,26 @@ import ChartsContainer from "../containers/charts_container";
 import Leaders from "../components/leaders";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
-import PlaceChooser from "./place_chooser";
-import TaxonCrumbs from "./taxon_crumbs";
-import StatusHeader from "./status_header";
-import { urlForTaxon } from "../util";
+import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
+import PlaceChooserContainer from "../containers/place_chooser_container";
+import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
+import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
+import AkaNamesContainer from "../containers/aka_names_container";
+import StatusRow from "./status_row";
+import { urlForTaxon } from "../../shared/util";
 
-const App = ( { taxon, place, setPlace } ) => (
+const App = ( { taxon } ) => (
   <div id="TaxonDetail">
     <Grid>
+      <TaxonChangeAlertContainer />
       <Row className="preheader">
-        <Col xs={12}>
-          <TaxonCrumbs
-            taxon={taxon}
-            ancestors={taxon.ancestors}
-            url={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
-          />
+        <Col xs={8}>
+          <TaxonCrumbsContainer />
           <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
-            <i className="glyphicon glyphicon-link"></i>
+            <i className="icon-link"></i>
           </a>
+        </Col>
+        <Col xs={4}>
           <div className="pull-right">
             <TaxonAutocomplete
               inputClassName="input-sm"
@@ -41,15 +43,20 @@ const App = ( { taxon, place, setPlace } ) => (
       </Row>
       <Row id="TaxonHeader">
         <Col xs={12}>
-          <h1 className="pull-left">
-            <SplitTaxon taxon={taxon} />
-          </h1>
-          <PlaceChooser
-            place={place}
-            className="pull-right"
-            setPlace={setPlace}
-            clearPlace={ ( ) => setPlace( null ) }
-          />
+          <div className="inner">
+            <h1>
+              <SplitTaxon
+                taxon={taxon}
+                forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
+              />
+            </h1>
+            <div>
+              <PlaceChooserContainer />
+            </div>
+          </div>
+        </Col>
+        <Col xs={12}>
+          <AkaNamesContainer />
         </Col>
       </Row>
     </Grid>
@@ -57,11 +64,10 @@ const App = ( { taxon, place, setPlace } ) => (
       <Row id="hero">
         <Col xs={12}>
           <Grid>
-            <Row>
-              <Col xs={12}>
-                { taxon.conservationStatus ? <StatusHeader status={taxon.conservationStatus} /> : null }
-              </Col>
-            </Row>
+            <StatusRow
+              conservationStatus={taxon.conservationStatus}
+              establishmentMeans={taxon.establishment_means}
+            />
             <Row>
               <Col xs={6}>
                 <PhotoPreviewContainer />
@@ -81,13 +87,12 @@ const App = ( { taxon, place, setPlace } ) => (
     </Grid>
     <TaxonPageTabsContainer />
     <PhotoModalContainer />
+    <PhotoChooserModalContainer />
   </div>
 );
 
 App.propTypes = {
-  taxon: PropTypes.object,
-  place: PropTypes.object,
-  setPlace: PropTypes.func
+  taxon: PropTypes.object
 };
 
 export default App;

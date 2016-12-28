@@ -6,6 +6,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions,
+    :taxon_change_taxa, :taxon_schemes, :taxon_changes,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
     { taxon_photos: { photo: :user } },
@@ -55,8 +56,9 @@ class Taxon < ActiveRecord::Base
       iconic_taxon_id: iconic_taxon_id,
       parent_id: parent_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
-      is_active: is_active,
+      is_active: is_active
     }
+    # indexing originating from Identifications
     if options[:for_identification]
       if Taxon::LIFE
         json[:ancestor_ids].delete(Taxon::LIFE.id)
@@ -73,12 +75,14 @@ class Taxon < ActiveRecord::Base
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
         json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
+    # indexing originating Observations, not via another model
     unless options[:no_details]
       json[:names] = taxon_names.
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
     end
+    # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
       json.merge!({
         created_at: created_at,
@@ -86,13 +90,15 @@ class Taxon < ActiveRecord::Base
           default_photo.as_indexed_json(sizes: [ :square, :medium ]) : nil,
         colors: colors.map(&:as_indexed_json),
         ancestry: ancestry,
+        taxon_changes_count: taxon_changes_count,
+        taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
         # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
-          map(&:as_indexed_json)
+          select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json)
       })
     end
     json

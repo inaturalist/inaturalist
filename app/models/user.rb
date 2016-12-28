@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   preference :hide_updates_by_you_onboarding, default: false
   preference :hide_comments_onboarding, default: false
   preference :hide_following_onboarding, default: false
+  preference :taxon_page_place_id, :integer
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -116,6 +117,7 @@ class User < ActiveRecord::Base
   has_many :editing_guides, :through => :guide_users, :source => :guide
   has_many :created_guide_sections, :class_name => "GuideSection", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
   has_many :updated_guide_sections, :class_name => "GuideSection", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
+  has_many :atlases, :inverse_of => :user, :dependent => :nullify
   
   file_options = {
     processors: [:deanimator],
@@ -132,6 +134,7 @@ class User < ActiveRecord::Base
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: "https",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       path: "/attachments/users/icons/:id/:style.:icon_type_extension",
@@ -182,7 +185,7 @@ class User < ActiveRecord::Base
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
-  
+
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
@@ -205,6 +208,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validate :validate_email_pattern
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -213,6 +217,19 @@ class User < ActiveRecord::Base
   scope :curators, -> { joins(:roles).where("roles.name IN ('curator', 'admin')") }
   scope :admins, -> { joins(:roles).where("roles.name = 'admin'") }
   scope :active, -> { where("suspended_at IS NULL") }
+
+  def validate_email_pattern
+    return if CONFIG.banned_emails.blank?
+    return if self.email.blank?
+    failed = false
+    CONFIG.banned_emails.each do |banned_suffix|
+      next if failed
+      if self.email.match(/#{banned_suffix}$/)
+        errors.add( :email, "domain is not supported" )
+        failed = true
+      end
+    end
+  end
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
@@ -787,6 +804,14 @@ class User < ActiveRecord::Base
 
   def recent_observation_fields
     ObservationField.recently_used_by(self).limit(10)
+  end
+
+  def test_groups_array
+    test_groups.to_s.split( "|" )
+  end
+
+  def in_test_group?( group )
+    test_groups_array.include?( group)
   end
 
 end

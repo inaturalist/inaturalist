@@ -19,7 +19,7 @@ Inaturalist::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :test
 
-  # # Uncomment to test mail delivery
+  # Uncomment to test mail delivery
   smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
   ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
   config.action_mailer.delivery_method = :smtp  

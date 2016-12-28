@@ -26,7 +26,7 @@ class Taxon < ActiveRecord::Base
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
-  has_many :taxon_change_taxa
+  has_many :taxon_change_taxa, inverse_of: :taxon
   has_many :observations, :dependent => :nullify
   has_many :listed_taxa, :dependent => :destroy
   has_many :listed_taxa_with_establishment_means,
@@ -54,6 +54,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors, :dependent => :delete_all
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
+  has_one :atlas, :inverse_of => :taxon
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -390,6 +391,8 @@ class Taxon < ActiveRecord::Base
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
     end
+    elastic_index!
+    Taxon.refresh_es_index
     true
   end
 
@@ -540,11 +543,12 @@ class Taxon < ActiveRecord::Base
   end
 
   def taxon_changes_count
-    taxon_changes.count
+    (taxon_changes.map(&:id) +
+     taxon_change_taxa.map(&:taxon_change_id)).uniq.length
   end
 
   def taxon_schemes_count
-    taxon_schemes.count
+    taxon_schemes.size
   end
 
   #
@@ -1370,6 +1374,12 @@ class Taxon < ActiveRecord::Base
     nil
   end
 
+  def has_ancestor_taxon_id(ancestor_id)
+    return true if id == ancestor_id
+    return false if ancestry.blank?
+    !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)
@@ -1670,6 +1680,10 @@ class Taxon < ActiveRecord::Base
         Observation.elastic_search(
           where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
     end
+  end
+
+  def self.refresh_es_index
+    Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
   # /Static #################################################################

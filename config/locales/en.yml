@@ -44,6 +44,9 @@ en:
   x_matching_taxa_html:
     one: '<span class="count">1</span> matching taxon'
     other: '<span class="count">%{count}</span> matching taxa'
+  x_misidentifications_of_this_species:
+      one: "1 misidentification of this species"
+      other: "%{count} misidentifications of this species"
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -62,6 +65,9 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_people_found_this_helpful:
+    one: 'One person found this helpful'
+    other: '%{count} people found this helpful'
   x_faves:
     one: '1 fave'
     other: '%{count} faves'
@@ -196,6 +202,7 @@ en:
   add_observations_of_taxa_youve_added: "Add observations of taxa you've added to a list.  Under development, still working out the bugs..."
   add_observations_project: Add observations to this project
   add_one: Add one!
+  add_one_now: Add One Now
   add_photos: Add photos
   add_photos_to_this_observation: Add photos to this observation
   add_place: Add place
@@ -584,6 +591,15 @@ en:
     replace_with: replace with
     dropped: dropped
     staged: staged
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon} was split into %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} will be split into %{output_taxa}"
+    input_taxon_was_dropped_html: "%{input_taxon} was dropped"
+    input_taxon_will_be_dropped_html: "%{input_taxon} will be dropped"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} will be activated soon"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} was replaced by %{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} will be replaced by %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} where merged into %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} will be merged into %{output_taxon}"
   change_visibility_of: Change visibility of spatial coordinates?
   change_your_matching: Change your matching
   change_your_password: Change Your Password
@@ -1029,7 +1045,7 @@ en:
   end: End
   endangered: endangered
   endemic: endemic
-  endemic_to_x: "endemic to %{x}"
+  endemic_to_x: "Endemic to %{x}"
   eol: EOL
   eol_collection_url: "EOL collection URL"
   error_updating_photo: "Error updating photo: %{photo_errors}"
@@ -1092,6 +1108,7 @@ en:
   'false': 'False'
   faq: Frequently Asked Questions
   fave: fave
+  faves: Faves
   Family: Family
   favorite_taxa: favorite taxa
   favorites: "Favorites"
@@ -1146,6 +1163,8 @@ en:
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
+  first_observation: First Observation
+  first_observation_by_date_added: First observation by date added
   first_observer: 1st observer
   first_report: first report
   flag: Flag
@@ -1181,6 +1200,8 @@ en:
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
   flickr_youre_all_set: "You're all set to start exploring %{site_name}"
+  flowering_phenology: Flowering Phenology
+  fluid_layout: Fluid Layout
   fluid: fluid
   follow_us: Follow us on
   follow_us_on: Follow us on
@@ -1252,8 +1273,10 @@ en:
   green: green
   grey: grey
   grid: Grid
+  grid_layout: Grid Layout
   grid_tooltip: Show grid view
   group: Group
+  grouping: Grouping
   guess_description: Guess / Description
   guides: Guides
   guide_colors: Guide Colors
@@ -1393,10 +1416,12 @@ en:
   info: Info
   input_taxon: Input taxon
   insects: insects
+  insect_life_stage: Insect Life Stage
   inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http://flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
   interactions: Interactions
   internal_server_error: Internal Server Error
   introduced: introduced
+  introduced_in_place: "Introduced in %{place}"
   invasive: invasive
   invitation: Invitation
   invitations: Invitations
@@ -1801,6 +1826,7 @@ en:
   naturalised: naturalized
   naturalized: naturalized
   native: native
+  native_to_place: "Native to %{place}"
   nav: Nav
   nav_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: NE Lat.
@@ -1893,6 +1919,7 @@ en:
   no_mobilized_version_of_that_view: No mobilized version of that view.
   no_more_mail_from_site: "Don't want to receive any email from %{site_name}?  Edit your email settings at"
   no_more_taxa_to_load: No more taxa to load!
+  no_more_results_found: No more results found
   no_more_updates: No more updates!
   no_nearby_observations: "No nearby observations."
   no_new_messages: No new messages
@@ -2055,6 +2082,7 @@ en:
     you want to find observation of a particular species, use the taxon
     filter.
   observations_title: Observations by Everyone
+  observations_total: Observations Total
   observations_w: Observations w/
   observations_w_field: Observations w/ field
   observations_was_successfully_updated: Observation(s) was successfully updated.
@@ -2183,7 +2211,9 @@ en:
     other: other animals
   other_annimals: Other Animals
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
-  other_taxa_commonly_misidentified_as_this_species: Other taxa commonly misidentified as this species
+  other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
+  other_species_commonly_misidentified_as_this_species_in_place_html: |
+    Other species commonly misidentified as this species in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
@@ -2219,6 +2249,7 @@ en:
   photo: Photo
   photo?: Photo?
   photo_attribution: "Photo %{attribution}"
+  photo_browser: Photo Browser
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
@@ -2228,7 +2259,8 @@ en:
   photo_s: Photo(s)
   photo_type: Photo type
   photo_urls_repaired: Photo URLs repaired
-  photos: Photos
+  photos_of: Photos of
+  photos_of_taxon_html: "Photos of %{taxon}"
   photos_or_sounds?: Photos or sounds?
   photos_size:
       small: small
@@ -2984,6 +3016,7 @@ en:
   tags_like_taxonomy_binomial: Tags like <code>taxonomy:binomial=Pseudacris crucifer</code> are <a href="http://www.flickr.com/help/tags#613430">machine tags</a>.  They help engineers programmatically make sense of your tags, and are required by some Flickr groups like the <a href="http://www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia of Life Images</a> group.
   take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
+  take_me_back: Take me back
   taxa: Taxa
   taxa_all_species_html: "All Species"
   taxa_needing_curation: Taxa Needing Curation
@@ -3010,6 +3043,7 @@ en:
   taxon_change_settings: Taxon change settings
   taxon_merge: taxon merge
   taxon_name: Taxon name
+  taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
   taxon_observed_by_user: "%{taxon} observed by %{user}"
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
@@ -3208,6 +3242,7 @@ en:
   thu: Thu
   time_: time
   time_ago: "%{time} ago"
+  tired_of_testing_this_new_version: Tired of testing this new version?
   title: title
   title_and_description: "Title & Description"
   titled_favorites_and_the_most_recent_additions: titled "Favorites" and the most recent additions will appear in this space.
@@ -3239,8 +3274,10 @@ en:
   total_users: "total users,"
   'true': 'True'
   trending: Trending
+  trends: Trends
   trusted_project?: Trusted project?
   try_adding_species_form: Try adding some species using the form on this page.
+  try_it_out: Try it out
   try_wikipedia: Try Wikipedia?
   tue: Tue
   twitter: Twitter
@@ -3311,11 +3348,12 @@ en:
   uploader:
     tooltips:
       add: Add observation(s)
-      remove: Remove selected observations
       combine: Combine selected observations
-      select_all: Select all observations
-      remove_photo: Remove photo
+      photo_failed: Photo failed to upload
+      remove: Remove selected observations
       remove_observation: Remove observation
+      remove_photo: Remove photo
+      select_all: Select all observations
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
@@ -3441,6 +3479,7 @@ en:
   view_real_time_stats_in_a_new_window: View real-time stats in a new window
   view_site_name_observations_html: "View <strong>%{site_name}</strong> observations"
   view_stats: View stats
+  view_taxon_change: View taxon change
   view_taxon_changes: View taxon changes
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
@@ -3460,6 +3499,7 @@ en:
   view_your_life_list: View your life list
   view_your_calendar: View your calendar
   view_your_observations: View your observations
+  view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: w00t!  No ungrafted taxa!
@@ -3468,6 +3508,7 @@ en:
   wait_file_generation:  Please hold on while the file is generated.  It can take a couple minutes for large lists.
   want_to_add_one: Want to add one?
   want_to_show_off_some_of_your_favorite_taxa: Want to show off some of your favorite taxa here?
+  want_to_test_a_new_version_of_this_page: Want to test a new version of this page?
   was_it_captive_cultivated?: "Was it captive / cultivated?"
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_care_privacy: We Care About Your Privacy!
@@ -3712,6 +3753,7 @@ en:
   your_sure_delete_list?: Are you sure you want to delete this list?
   your_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from this list?"
   your_world!: Your World!
+  yours: Yours
   youre_following: you're following
   youre_not_following_anyone: |-
     You're not following anyone. Following other naturalists will allow you to
@@ -4489,11 +4531,12 @@ en:
             <li>KML and KMZ files will be added to the map on the project page</li>
           </ol>
         project_list_desc_html: |
-          <p class="description">You can create a custom project list of taxa and link it to your project. This can be useful to:</p>
-          <ol class="description">
-            <li>Restrict observations added to your project to those matching taxa on your list via the 'must be taxon on the project list' rule.</li>
-            <li>Keep track of how many taxa on your list have been checked off with observations added to the project</li>
-          </ol>
+          <p class="description">
+            You can create a custom project list of taxa and link it to your
+            project. This can be useful to restrict observations added to your
+            project to those matching taxa on your list via the "must be taxon
+            on the project list" rule.
+          </p>
         rules:
           captive: be captive/cultivated
           wild: be wild/naturalized
@@ -4664,8 +4707,23 @@ en:
           activity, while native means it arrived without human assistance.
           Endemic species only occur in a specific place and nowhere else.
         trending_desc: Most-observed taxa in the last month
-        rare_desc: Least-observed taxa for all time
+        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
+        rare_desc: Least-observed threatened taxa
+        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         no_trending_desc: Nothing below this taxon observed in the last month
+        frequency:
+          research: Research Grade
+          verifiable: Verifiable
+          "Flowering Phenology=bare": No flowers
+          "Flowering Phenology=budding": Budding
+          "Flowering Phenology=flower": Flowering
+          "Flowering Phenology=fruit": Fruiting
+          "Insect life stage=egg": Egg
+          "Insect life stage=larva": Larva
+          "Insect life stage=teneral": Teneral
+          "Insect life stage=nymph": Nymph
+          "Insect life stage=pupa": Pupa
+          "Insect life stage=adult": Adult
     taxon_names:
       form:
         new_name_guidelines_html: |

@@ -7,7 +7,8 @@ function mapStateToProps( state ) {
     description: state.taxon.description ? state.taxon.description.body : null,
     descriptionSource: state.taxon.description ? state.taxon.description.source : null,
     descriptionSourceUrl: state.taxon.description ? state.taxon.description.url : null,
-    links: state.taxon.links
+    links: state.taxon.links,
+    currentUser: state.config.currentUser
   };
 }
 

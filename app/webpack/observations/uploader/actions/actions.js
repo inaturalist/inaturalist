@@ -207,13 +207,17 @@ const actions = class actions {
 
   static confirmRemoveFile( file ) {
     return function ( dispatch ) {
-      dispatch( actions.setState( { confirmModal: {
-        show: true,
-        confirmClass: "danger",
-        confirmText: I18n.t( "remove" ),
-        message: I18n.t( "are_you_sure_remove_photo" ),
-        onConfirm: () => dispatch( actions.removeFile( file ) )
-      } } ) );
+      if ( file.uploadState === "failed" ) {
+        dispatch( actions.removeFile( file ) );
+      } else {
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          confirmClass: "danger",
+          confirmText: I18n.t( "remove" ),
+          message: I18n.t( "are_you_sure_remove_photo" ),
+          onConfirm: () => dispatch( actions.removeFile( file ) )
+        } } ) );
+      }
     };
   }
 

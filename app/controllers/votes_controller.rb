@@ -56,7 +56,9 @@ class VotesController < ApplicationController
   end
 
   def by_login
-    @votes = @selected_user.votes.where(vote_scope: nil).order("votes.id DESC").page(params[:page]).per_page(100)
+    @votes = @selected_user.votes.where(vote_scope: nil).
+      where(votable_type: "Observation").
+      order("votes.id DESC").page(params[:page]).per_page(100)
     ActsAsVotable::Vote.preload_associations(@votes, votable: [ 
         :sounds,
         :stored_preferences,

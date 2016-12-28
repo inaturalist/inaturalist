@@ -1,27 +1,30 @@
 import { connect } from "react-redux";
+import { stringify } from "querystring";
 import LeaderItem from "../components/leader_item";
-import { urlForUser } from "../util";
+import { urlForUser, defaultObservationParams } from "../../shared/util";
 
 function mapStateToProps( state ) {
   const leader = state.leaders.topObserver;
-  const taxon = state.taxon.taxon;
   const props = {
     label: I18n.t( "top_observer" ),
     noContent: true,
     iconClassName: "icon-person",
     valueIconClassName: "fa fa-binoculars",
     linkText: I18n.t( "leaderboard" ),
-    name: I18n.t( "no_observations" )
+    name: I18n.t( "no_observations" ),
+    className: "TopObserver"
   };
   if ( !leader || !leader.user ) {
     return props;
   }
+  const urlParams = defaultObservationParams( state );
+  urlParams.view = "observers";
   return Object.assign( props, {
     name: leader.user.login,
     noContent: false,
     imageUrl: leader.user.icon_url,
     value: leader.observation_count,
-    linkUrl: `/observations?taxon_id=${taxon.id}&view=observers`,
+    linkUrl: `/observations?${stringify( urlParams )}`,
     url: urlForUser( leader.user )
   } );
 }

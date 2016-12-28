@@ -172,70 +172,78 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
   }
   return (
     <Grid className="StatusTab">
-      <Row className="conservation-status">
-        <Col xs={8}>
-          <h2>{ I18n.t( "conservation_status" ) }</h2>
-          { statusSection || I18n.t( "we_have_no_conservation_status_for_this_taxon" ) }
-        </Col>
-        <Col xs={4}>
-          <h3>{ I18n.t( "about_conservation_status" ) }</h3>
-          <p>
-            {
-              I18n.t( "views.taxa.show.about_conservation_status_desc" )
-            } <a
-              href="https://en.wikipedia.org/wiki/Conservation_status"
-            >{ I18n.t( "more" ) } <i className="glyphicon glyphicon-new-window"></i></a>
-          </p>
-          <h3>{ I18n.t( "examples_of_ranking_organizations" ) }</h3>
-          <ul className="tab-links list-group">
-            {
-              [
+      <Row className="conservation-status tab-section">
+        <Col xs={12}>
+          <Row>
+            <Col xs={8}>
+              <h3>{ I18n.t( "conservation_status" ) }</h3>
+              { statusSection || I18n.t( "we_have_no_conservation_status_for_this_taxon" ) }
+            </Col>
+            <Col xs={4}>
+              <h4>{ I18n.t( "about_conservation_status" ) }</h4>
+              <p>
                 {
-                  id: 1,
-                  url: "http://www.iucnredlist.org",
-                  host: "iucnredlist.org",
-                  text: "International Union for the Conservation of Nature (IUCN)"
-                },
+                  I18n.t( "views.taxa.show.about_conservation_status_desc" )
+                } <a
+                  href="https://en.wikipedia.org/wiki/Conservation_status"
+                >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
+              </p>
+              <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
+              <ul className="tab-links list-group">
                 {
-                  id: 2,
-                  url: "http://explorer.natureserve.org/ranking.htm",
-                  host: "explorer.natureserve.org",
-                  text: "NatureServe"
+                  [
+                    {
+                      id: 1,
+                      url: "http://www.iucnredlist.org",
+                      host: "iucnredlist.org",
+                      text: "International Union for the Conservation of Nature (IUCN)"
+                    },
+                    {
+                      id: 2,
+                      url: "http://explorer.natureserve.org/ranking.htm",
+                      host: "explorer.natureserve.org",
+                      text: "NatureServe"
+                    }
+                  ].map( link => (
+                    <li className="list-group-item" key={`status-link-${link.id}`}>
+                      <a
+                        href={link.url}
+                        style={{
+                          backgroundImage: `url( https://www.google.com/s2/favicons?domain=${link.host} )`,
+                          backgroundRepeat: "no-repeat",
+                          padding: "1px 0 1px 25px",
+                          backgroundPosition: "0 2px"
+                        }}
+                      >
+                        <i className="icon-link-external pull-right"></i>
+                        { link.text }
+                      </a>
+                    </li>
+                  ) )
                 }
-              ].map( link => (
-                <li className="list-group-item" key={`status-link-${link.id}`}>
-                  <a
-                    href={link.url}
-                    style={{
-                      backgroundImage: `url( http://www.google.com/s2/favicons?domain=${link.host} )`,
-                      backgroundRepeat: "no-repeat",
-                      padding: "1px 0 1px 25px",
-                      backgroundPosition: "0 2px"
-                    }}
-                  >
-                    <i className="glyphicon glyphicon-new-window pull-right"></i>
-                    { link.text }
-                  </a>
-                </li>
-              ) )
-            }
-          </ul>
+              </ul>
+            </Col>
+          </Row>
         </Col>
       </Row>
-      <Row className="establishment-means">
-        <Col xs={8}>
-          <h2>{ I18n.t( "establishment_means" ) }</h2>
-          { establishmentSection || I18n.t( "we_have_no_establishment_data_for_this_taxon" ) }
-        </Col>
-        <Col xs={4}>
-          <h3>{ I18n.t( "about_establishment_means" ) }</h3>
-          <p>
-            {
-              I18n.t( "views.taxa.show.about_establishment_desc" )
-            } <a
-              href="https://en.wikipedia.org/wiki/Conservation_status"
-            >{ I18n.t( "more" ) } <i className="glyphicon glyphicon-new-window"></i></a>
-          </p>
+      <Row className="establishment-means tab-section">
+        <Col xs={12}>
+          <Row>
+            <Col xs={8}>
+              <h3>{ I18n.t( "establishment_means" ) }</h3>
+              { establishmentSection || I18n.t( "we_have_no_establishment_data_for_this_taxon" ) }
+            </Col>
+            <Col xs={4}>
+              <h4>{ I18n.t( "about_establishment_means" ) }</h4>
+              <p>
+                {
+                  I18n.t( "views.taxa.show.about_establishment_desc" )
+                } <a
+                  href="https://en.wikipedia.org/wiki/Conservation_status"
+                >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
+              </p>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Grid>

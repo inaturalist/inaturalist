@@ -18,7 +18,7 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
     return "<i class='fa fa-search'></i>";
   }
-  return result.photoTag( );
+  return result.photoTag ? result.photoTag( ) : null;
 };
 
 // return the best name in the locale, or defaulting to EN
@@ -124,7 +124,7 @@ $.fn.taxonAutocomplete = function( options ) {
   field.template = autocompleter.taxonTemplate;
   var source = function( request, response ) {
     $.ajax({
-      url: "//<%= CONFIG.node_api_host %>/taxa/autocomplete",
+      url: "<%= CONFIG.node_api_url %>/taxa/autocomplete",
       dataType: "jsonp",
       cache: true,
       data: {

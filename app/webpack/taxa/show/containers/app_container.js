@@ -1,27 +1,14 @@
 import { connect } from "react-redux";
 import App from "../components/app";
-import { setConfig } from "../ducks/config";
-import { fetchMonthFrequency, fetchMonthOfYearFrequency } from "../ducks/observations";
-import { fetchLeaders } from "../ducks/leaders";
-import { fetchTaxon } from "../ducks/taxon";
 
 function mapStateToProps( state ) {
   return {
-    taxon: state.taxon.taxon,
-    place: state.config.preferredPlace
+    taxon: state.taxon.taxon
   };
 }
 
-function mapDispatchToProps( dispatch ) {
-  return {
-    setPlace: ( place ) => {
-      dispatch( setConfig( { preferredPlace: place } ) );
-      dispatch( fetchTaxon( ) );
-      dispatch( fetchMonthFrequency( ) );
-      dispatch( fetchMonthOfYearFrequency( ) );
-      dispatch( fetchLeaders( ) );
-    }
-  };
+function mapDispatchToProps( ) {
+  return { };
 }
 
 const AppContainer = connect(

@@ -42,7 +42,9 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
+  after_create :log_create_in_atlas
   before_destroy :set_old_list
+  before_destroy :log_destroy_in_atlas
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
 
@@ -488,6 +490,42 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
+  def is_atlased?
+    if list.is_a?(CheckList) && list.is_default?
+      if atlas = Atlas.where(taxon_id: taxon_id).first
+        if atlas.places.map(&:id).include? place_id
+          return true
+        end
+      end
+    end
+    return false
+  end
+  
+  def log_create_in_atlas
+    if is_atlased?
+      atlas = Atlas.where(taxon_id: taxon_id).first
+      AtlasAlteration.create(
+        atlas_id: atlas.id,
+        user_id: user_id,
+        place_id: place_id,
+        action: "listed"
+      )
+    end
+  end
+  
+  def log_destroy_in_atlas
+    if is_atlased?
+      atlas = Atlas.where(taxon_id: taxon_id).first
+      updater_id = updater.nil? ? nil : updater.id
+      AtlasAlteration.create(
+        atlas_id: atlas.id,
+        user_id: updater_id,
+        place_id: place_id,
+        action: "unlisted"
+      )
+    end
+  end
+  
   # Retrievest the first and last observations and the month counts. Note that
   # at present first_observation has a different meaning depending on the
   # list: for check lists it means the first observation added to iNat (i.e.
@@ -555,12 +593,12 @@ class ListedTaxon < ActiveRecord::Base
       options[:search_params][:where].merge!(options[:range_wheres])
     end
     if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:earliest_sort_field] || "observed_on") => "asc" },
+      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", ignore_unmapped: true } },
               { id: :asc } ] )).results.first
       earliest_id = r.id
     end
     if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:latest_sort_field] || "observed_on") => "desc" },
+      sort: [ { (options[:latest_sort_field] || "observed_on") => { order: "desc", ignore_unmapped: true } },
               { id: :desc } ] )).results.first
       latest_id = r.id
     end
@@ -681,7 +719,8 @@ class ListedTaxon < ActiveRecord::Base
       !user_id && 
       !updater_id && 
       comments_count.to_i == 0 &&
-      list.is_default?
+      list.is_default? &&
+      !is_atlased?
   end
   
   def introduced?

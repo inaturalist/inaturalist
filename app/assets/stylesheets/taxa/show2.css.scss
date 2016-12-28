@@ -1,34 +1,38 @@
 @import "../colors";
 @import "show/wikipedia";
 @import "../shared/user_text";
+@import "../shared/split_taxon";
 
-#TaxonDetail > .container-fluid {
+#app {
+  min-height: 600px;
+}
+#initial-loading .loading {
+  display: inline-block;
+  margin: 20px auto;
+}
+
+#TaxonDetail .container-fluid,
+#TaxonDetail .container {
   min-width: 980px;
+}
+
+#TaxonHeader .inner {
+  display: flex;
+  justify-content: space-between;
 }
 
 #TaxonHeader h1 {
   margin-top: 10px;
+  font-size: 32px;
+  font-weight: 300;
 }
 
 #TaxonHeader .taxon .display-name {
   color: black;
-  font-weight: bold;
 }
 
 #TaxonHeader .has-com-name .sciname {
-  font-size: 80%;
-}
-
-#TaxonHeader .PlaceChooser {
-  margin-top: 20px;
-}
-
-#TaxonHeader .PlaceChooser .fa-map-marker, {
-  color: #aaa;
-}
-
-#TaxonHeader .PlaceChooser a, {
-  color: #333;
+  font-size: 20px;
 }
 
 #hero {
@@ -40,9 +44,8 @@
 }
 
 #charts {
-  background-color: #e6e6e6;
+  background-color: transparent;
   border-radius: 4px 4px 0 0;
-  border: 1px solid #ddd;
 }
 
 #charts a {
@@ -52,9 +55,6 @@
 #charts .nav-tabs {
   margin-bottom: 0;
   margin-top: -1px;
-}
-#charts .nav-tabs > li {
-  margin-left: -1px;
 }
 #charts .tab-pane {
   position: relative;
@@ -69,8 +69,16 @@
 #charts .tab-content {
   background-color: white;
   padding: 20px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
+#charts a[role="tab"]:hover {
+  background-color: white;
+  opacity: 1;
+}
+#charts a,
 #charts a:focus,
 #charts a:active {   
   border-color: none;
@@ -79,7 +87,10 @@
 }
 
 .SeasonalityChart .c3-line {
-  stroke-width: 3px;
+  stroke-width: 2px;
+}
+.FrequencyChart {
+  height: 300px;
 }
 .FrequencyChart .c3-axis line,
 .FrequencyChart .c3-axis path {
@@ -93,49 +104,82 @@
    display: none;
 }
 
-.SeasonalityChart .c3-target-verifiable path {
-  stroke-dasharray: 5, 5;
-}
-.HistoryChart .c3-target-verifiable path {
-  stroke-dasharray: 1, 1;
-}
-
 .FrequencyChart .c3-region {
   fill: #999;
   opacity: 1;
 }
+.FrequencyChart .c3-circle {
+  cursor: pointer;
+}
+.FrequencyChart .c3-circle._expanded_ {
+  stroke-width: 7px;
+  stroke: transparentize( #ddd, 0.6 );
+  stroke-location: outside;
+}
+
+.FrequencyChart .c3-target-research .c3-circle._expanded_ {
+  stroke: transparentize( $inat-green, 0.6 );
+}
+
+.FrequencyChart line.c3-xgrid-focus {
+  display: none;
+}
+
+.frequency-chart-tooltip {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  box-shadow: 1px 1px 10px #aaa;
+  background-color: white;
+}
+.frequency-chart-tooltip .swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
+}
+.frequency-chart-tooltip .title {
+  margin-bottom: 5px;
+}
+.frequency-chart-tooltip .title,
+.frequency-chart-tooltip .value {
+  font-weight: 600;
+}
+.frequency-chart-tooltip .column-label {
+  text-transform: capitalize;
+}
+.frequency-chart-tooltip .series {
+  line-height: 0;
+  margin-bottom: 10px;
+}
 
 .TaxonMap {
   height: 600px;
+  margin: 20px 0 10px;
+  border: 1px solid #ddd;
 }
 
 .TaxonCrumbs {
   color: #aaa;
   padding: 0;
-  margin: 0 10px 0 0;
+  margin: 0 7px 0 0;
   line-height: 28px;
-  display: inline-block;
-}
-.TaxonCrumbs .inner {
-  overflow: hidden;
-  white-space: nowrap;
-  vertical-align: top;
+  display: inline;
 }
 .TaxonCrumbs.contracted .inner {
-  max-width: 0;
-  -webkit-transition: max-width 0.5s;
-  transition: max-width 0.5s;
+  display: none;
 }
 .TaxonCrumbs.expanded .inner {
-  max-width: 2048px;
-  -webkit-transition: max-width 1s;
-  transition: max-width 1s;
+  display: inline-block;
 }
 .TaxonCrumbs.contracted .expand-control {
   display: inline-block;
 }
 .TaxonCrumbs.expanded .expand-control {
-  display: none;
+  width: 0;
 }
 .TaxonCrumbs.contracted .contract-control {
   display: none;
@@ -190,9 +234,6 @@
 .preheader .ui-autocomplete-input {
   width: 200px;
 }
-.preheader .glyphicon-link {
-  transform: rotate(45deg);
-}
 
 .preheader .ac-select-thumb {
   line-height: 28px;
@@ -213,38 +254,52 @@
 .LeaderItem {
   margin: 20px 0 20px;
 }
+$leaderItemImageDim: 56px;
 .LeaderItem .img-wrapper i {
-  font-size: 32px;
+  font-size: $leaderItemImageDim * 0.7;
   margin: auto;
-  line-height: 40px;
+  line-height: $leaderItemImageDim * 0.9;
   color: #666;
 }
 .LeaderItem .img-wrapper {
-  border-radius: 100px;
-  border: 1px solid #bbb;
-  width: 45px;
-  height: 45px;
+  border: 1px solid transparent;
+  width: $leaderItemImageDim;
+  height: $leaderItemImageDim;
+  line-height: $leaderItemImageDim;
   text-align: center;
   overflow: hidden;
 }
-.LeaderItem .CoverImage {
-  border-radius: 100px;
-  width: 45px;
-  height: 45px;
+.LeaderItem .img-wrapper.no-photo {
+  border-color: #bbb;
 }
+.LeaderItem .CoverImage {
+  width: $leaderItemImageDim;
+  height: $leaderItemImageDim;
+}
+.LeaderItem.TopIdentifier .CoverImage,
+.LeaderItem.TopObserver .CoverImage,
+.LeaderItem.TopIdentifier .img-wrapper,
+.LeaderItem.TopObserver .img-wrapper {
+  border-radius: 100px;
+}
+
 .LeaderItem .item-label {
-  font-size: 10px;
+  color: #4a4a4a;
+  font-size: 13px;
   text-transform: uppercase;
   line-height: 1;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
 }
 .LeaderItem h4 {
   text-transform: none;
   margin: 0px 0px 3px 0px;
+  font-size: 18px;
 }
-.LeaderItem .name,
-.LeaderItem .extra a {
+.LeaderItem .name {
   font-weight: bold;
+  white-space: nowrap;
 }
 .LeaderItem.no-content .name {
   text-transform: capitalize;
@@ -252,30 +307,35 @@
 .LeaderItem .name a {
   color: black;
 }
+.LeaderItem .extra {
+  font-size: 13px;
+}
 .LeaderItem .extra a {
   white-space: nowrap;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .LeaderItem .value {
-  margin-right: 3px;
-}
-.LeaderItem .extra a:after {
-  content: '\0020 \00BB';
+  color: #4a4a4a;
 }
 .LeaderItem .extra i {
-  color: #666;
+  color: #999;
+  margin-right: 2px;
 }
-.NumObservations .img-wrapper i {
-  font-size: 24px;
+.LeaderItem .media-body {
+  vertical-align: middle;
+}
+.LeaderItem .img-wrapper .fa-binoculars {
+  font-size: $leaderItemImageDim * 0.5;
 }
 
 
 $photoPreviewThumbDim: 92px;
 $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
-$photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview {
   position: relative;
-  margin-bottom: $photoPreviewGridViewMoreHeight;
 }
 .PhotoPreview ul.others {
   width: 100%;
@@ -317,88 +377,81 @@ $photoPreviewGridViewMoreHeight: 50px;
 .PhotoPreview .viewmore {
   text-align: center;
   font-weight: bold;
+  text-transform: capitalize;
 }
-.PhotoPreview.grid .viewmore {
+.PhotoPreview .viewmore a {
   display: block;
-  height: $photoPreviewGridViewMoreHeight;
-  line-height: $photoPreviewGridViewMoreHeight;
-  background-color: #333;
-  position: absolute;
-  bottom: -1 * $photoPreviewGridViewMoreHeight;
-  left: 0;
-  width: 100%;
 }
-.PhotoPreview li {
+.PhotoPreview.grid .viewmore a {
+  background-color: #333;
+  font-weight: 100;
+  font-size: 20px;
+  display: block;
   position: relative;
 }
-.PhotoPreview li .photo-hover {
-  display: none;
-  position: absolute;
+.PhotoPreview.grid .viewmore a .inner {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  color: white;
-  line-height: 1.2;
-  font-weight: 100;
-}
-.PhotoPreview.grid li:hover .photo-hover {
+  line-height: 1.6;
   display: block;
-}
-.PhotoPreview .actions {
   position: absolute;
   top: 50%;
-  margin-top: -70px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  margin-top: -25px;
 }
-.PhotoPreview .btn-link {
-  color: #ddd;
-}
-.PhotoPreview .actions .btn-link {
-  font-size: 80%;
-}
-.PhotoPreview .actions .btn-link i {
-  display: block;
-  font-size: 300%;
-  margin-bottom: 10px;
-}
-.PhotoPreview .actions .btn-link:first-child {
-  border-right: 2px solid rgba(255,255,255,0.2);
-}
-.PhotoPreview .btn-link:hover {
-  text-decoration: none;
-  color: white;
-}
-.PhotoPreview .btn-link {
-  text-transform: uppercase;
-}
-.PhotoPreview .photo-taxon {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: rgba(0,0,0,0.4);
-  font-weight: 100;
-  font-size: 90%;
-}
-.PhotoPreview .photo-taxon .display-name {
-  font-size: 120%;
+.PhotoPreview.grid .viewmore a .inner .fa {
+  margin-top: 5px;
   display: block;
 }
-.PhotoPreview .photo-taxon i {
-  font-size: 150%;
+.PhotoPreview.gallery .viewmore .fa {
+  margin-left: 5px;
+}
+.TaxonPhoto {
+  position: relative;
+  .photo-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: 100;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    text-align: center;
+  }
+  .btn-link {
+    width: 100%;
+    height: 100%;
+    font-size: 80%;
+    color: #ddd;
+    text-transform: uppercase;
+    i {
+      display: inline-block;
+      font-size: 300%;
+      // margin-bottom: 10px;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
+  .btn-link:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+.TaxonPhoto:hover .photo-hover {
+  opacity: 1;
 }
 .PhotoPreview.no-content {
   display: flex;
   flex-direction: row;
   min-height: 533px;
   align-items: center;
+  border: 1px solid #ddd;
 }
 .PhotoPreview.no-content > div {
   width: 100%;
+}
+.PhotoPreview.no-content h3 {
+  color: #888;
+  text-transform: none;
+  margin-bottom: 20px;
 }
 
 .CoverImage {
@@ -407,14 +460,6 @@ $photoPreviewGridViewMoreHeight: 50px;
 }
 .CoverImage.loaded {
   opacity: 1;
-}
-
-
-.SplitTaxon > *:after {
-  content: '\0020';
-}
-.SplitTaxon > *:first-child {
-  content: '';
 }
 
 .TaxonomyTab .taxonomy {
@@ -459,6 +504,20 @@ $photoPreviewGridViewMoreHeight: 50px;
   text-decoration: line-through;
 }
 
+.tab-section > [class*="col-"] {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.tab-section:first-child > [class*="col-"] {
+  border-top: 0 transparent;
+  padding-top: 0;
+}
+
+.tab-section h3 {
+  margin-top: 0;
+}
+
 .tab-links a {
   display: block;
   color: #333;
@@ -487,9 +546,15 @@ $photoPreviewGridViewMoreHeight: 50px;
 .StatusTab .place-link {
   color: black;
 }
+.StatusTab th {
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
 
 h2, h3, h4, h5 {
   text-transform: capitalize;
+  padding-bottom: 3px;
 }
 
 .StatusHeader strong {
@@ -528,9 +593,22 @@ $endangeredColor: #D12F19;
 .glyphicon-flag.least-concern {
   color: $leastConcernColor;
 }
+$endemicColor: darken( $inat-green, 10% );
+.EstablishmentHeader.establishment-endemic {
+  background-color: transparentize( $endemicColor, 0.90 );
+  border-color: transparentize( $endemicColor, 0.80 );
+  color: $endemicColor;
+}
+$introducedColor: #E4007C;
+.EstablishmentHeader.establishment-introduced {
+  background-color: transparentize( $introducedColor, 0.90 );
+  border-color: transparentize( $introducedColor, 0.80 );
+  color: $introducedColor;
+}
 
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
+  padding-top: 10px;
 }
 
 .TaxonPageTabs .nav.nav-tabs {
@@ -567,6 +645,9 @@ $endangeredColor: #D12F19;
 .ArticlesTab .taxon_description_header {
   display: none;
 }
+.ArticlesTab h2 .fa-external-link {
+  font-size: 20px;
+}
 
 .HighlightsTab .trending,
 .HighlightsTab .rare {
@@ -579,8 +660,8 @@ $endangeredColor: #D12F19;
   vertical-align: top;
   text-align: center;
 }
-.HighlightsTab .trending i,
-.HighlightsTab .rare i {
+.HighlightsTab .trending .photo i,
+.HighlightsTab .rare .photo i {
   font-size: 100px;
 }
 .HighlightsTab .readmore {
@@ -590,19 +671,19 @@ $endangeredColor: #D12F19;
 }
 
 $nav-btn-dim: 40px;
-.HighlightsTab .nav-btn {
+.nav-buttons .nav-btn {
   width: $nav-btn-dim;
   height: $nav-btn-dim;
-  padding: 0;
-  border: 0 transparent;
+  padding: 0 !important;
+  border: 0 transparent !important;
   margin: 0 0 10px 10px;
 }
-.HighlightsTab .nav-btn:hover,
-.HighlightsTab .nav-btn:focus,
-.HighlightsTab .nav-btn:active  {
+.nav-buttons .nav-btn:hover,
+.nav-buttons .nav-btn:focus,
+.nav-buttons .nav-btn:active {
   background: none;
 }
-.HighlightsTab .nav-btn:before {
+.nav-buttons .nav-btn:before {
   display: block;
   content: '\276E';
   width: $nav-btn-dim;
@@ -615,11 +696,27 @@ $nav-btn-dim: 40px;
   font-size: $nav-btn-dim / 2;
 }
 ❯
-.HighlightsTab .nav-btn:hover:before {
+.nav-buttons .nav-btn:hover:before {
   background-color: $inat-green-light;
 }
-.HighlightsTab .next-btn:before {
+.nav-buttons .next-btn:before {
   content: '\276F';
+}
+.Carousel .viewall, {
+  width: 100%;
+  height: 262px;
+  background-color: #333;
+  color: white;
+  display: block;
+  line-height: 262px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
+  color: white;
 }
 
 #main-tabs {
@@ -683,6 +780,9 @@ $nav-btn-dim: 40px;
   flex-grow: 2;
   padding: 20px;
 }
+.PhotoModal .photo-modal-content .photo-container:hover {
+  opacity: 1;
+}
 .PhotoModal .photo-modal-content .photo-attribution {
   padding: 10px;
   background-color: black;
@@ -715,6 +815,10 @@ $nav-btn-dim: 40px;
 .curation-tab .dropdown {
   float: right;
 }
+.curation-tab .dropdown i {
+  width: 20px;
+  text-align: center;
+}
 #curation-dropdown {
   margin-top: 14px;
 }
@@ -724,6 +828,7 @@ $nav-btn-dim: 40px;
   border: 1px solid #ddd;
   display: inline-block;
   padding: 0;
+  position: relative;
 }
 .TaxonThumbnail .photo {
   height: 130px;
@@ -743,6 +848,14 @@ $nav-btn-dim: 40px;
   white-space: normal;
 }
 
+.TaxonThumbnail .badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.TaxonThumbnail .badge.with-tip {
+  cursor: pointer;
+}
 
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
@@ -754,5 +867,226 @@ $nav-btn-dim: 40px;
 }
 .SimilarTab .TaxonThumbnail {
   margin: 5px;
-  width: 13.2%;
+  width: 18.9%;
+}
+
+.btn.btn-inat {
+  border-radius: 100px;
+  background-color: #999;
+  border-color: #999;
+  color: white;
+  text-transform: capitalize;
+}
+.btn.btn-inat:hover,
+.btn.btn-inat:focus {
+  background-color: lighten(#999, 1%);
+  border-color: lighten(#999, 1%);
+  color: white;
+}
+.btn-primary.btn-inat {
+  background-color: $inat-green;
+  color: white;
+  border-color: $inat-green;
+}
+.btn-primary.btn-inat:hover,
+.btn-primary.btn-inat:focus {
+  background-color: lighten($inat-green, 1%);
+  border-color: lighten($inat-green, 1%);
+}
+
+.PlaceChooserPopoverTrigger {
+  margin-top: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.PlaceChooserPopoverTrigger:hover {
+  opacity: 0.8;
+}
+.PlaceChooserPopoverTrigger .fa-map-marker {
+  margin-right: 5px;
+}
+.PlaceChooserPopoverTrigger.chosen .fa-map-marker {
+  color: $inat-green;
+}
+.PlaceChooserPopover {
+  max-width: 200px;
+}
+.PlaceChooserPopover.popover .popover-content {
+  padding: 10px;
+}
+.PlaceChooserPopover a {
+  color: #333;
+}
+.PlaceChooserPopover.popover .form-group {
+  margin-bottom: 5px;
+}
+.PlaceChooserPopover.popover ul {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.PlaceChooserPopover.popover .media {
+  margin: 0;
+}
+.PlaceChooserPopover.popover .media-left {
+  padding: 0;
+}
+.PlaceChooserPopover li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+.PlaceChooserPopover li:last-child {
+  border-bottom: 0 transparent;
+}
+.PlaceChooserPopover li i {
+  color: #999;
+  width: 20px;
+  text-align: center;
+  margin-top: 2px;
+}
+.PlaceChooserPopover li.current {
+  background-color: #eee;
+}
+.PlaceChooserPopover li .place-type {
+  text-transform: capitalize;
+}
+.PlaceChooserPopover .pinned {
+  border-bottom: 2px solid #ddd;
+  font-weight: bold;
+}
+
+.DraggablePhoto {
+  display: inline-block;
+  position: relative;
+  border: 2px solid transparent;
+  width: 104px;
+}
+.DraggablePhoto .control-link {
+  position: absolute;
+  color: white;
+  display: block;
+  line-height: 0;
+  text-shadow: 0px 0px 10px black;
+}
+.DraggablePhoto .control-link:hover,
+.DraggablePhoto .control-link:active {
+  color: white;
+  opacity: 0.8;
+}
+.DraggablePhoto .remove-link {
+  top: 5px;
+  right: 5px;
+}
+.DraggablePhoto .info-link {
+  bottom: 5px;
+  right: 5px;
+}
+.DraggablePhoto .default-control {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 10px;
+  line-height: 14px;
+  text-transform: capitalize;
+}
+.DraggablePhoto img {
+  width: 100%;
+}
+.DraggablePhoto.hovering {
+  border: 2px dashed #ddd;
+}
+.DraggablePhoto.hovering img {
+  opacity: 0.5;
+}
+.PhotoChooserDropArea {
+  min-height: 50px;
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+.PhotoChooserDropArea.hovering {
+  border: 2px dashed #ddd;
+}
+.PhotoChooserDropArea .btn-primary {
+  text-transform: capitalize;
+}
+body > div > [role="dialog"] .PhotoChooserModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
+.PhotoChooserModal .search-control {
+  margin-bottom: 5px;
+}
+.PhotoChooserModal .photos {
+  margin: -2.5px;
+}
+.comma-separated-list > *:before {
+  content: ', ';
+}
+.comma-separated-list > :first-child:before {
+  content: '';
+}
+.AkaNames .name { color: black; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
 }

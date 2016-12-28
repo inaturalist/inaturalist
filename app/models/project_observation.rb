@@ -192,7 +192,7 @@ class ProjectObservation < ActiveRecord::Base
     return true if observation.blank? || observation.taxon_id.blank? || observation.bulk_import
     Project.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
       run_at: 1.hour.from_now, unique_hash: { "Project::refresh_project_list": project_id }).
-      refresh_project_list(project_id, :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
+      refresh_project_list(project_id, :taxa => [observation.taxon_id])
     true
   end
   

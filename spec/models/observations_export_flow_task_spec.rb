@@ -144,7 +144,7 @@ describe ObservationsExportFlowTask do
       ft.run
       csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
       expect(csv.size).to eq 2
-      expect(csv[1]).to include o.private_latitude.to_s
+      expect(csv[1]).not_to include o.private_latitude.to_s
     end
   end
 

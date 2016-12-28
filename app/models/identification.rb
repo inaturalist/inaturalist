@@ -43,7 +43,10 @@ class Identification < ActiveRecord::Base
   
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
-  
+
+  acts_as_votable
+  SUBSCRIBABLE = false
+
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
@@ -121,10 +124,10 @@ class Identification < ActiveRecord::Base
     return true unless ( current_changed? || new_record? ) && current?
     if id
       Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
-        update_all(current: false)
+        each {|ident| ident.update_attributes( current: false ) }
     else
       Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id).
-        update_all(current: false)
+        each {|ident| ident.update_attributes( current: false ) }
     end
     true
   end
@@ -221,7 +224,8 @@ class Identification < ActiveRecord::Base
     last_outdated = observation.identifications.outdated.by( user_id ).order( "id ASC" ).last
     if last_outdated
       begin
-        Identification.where(id: last_outdated).update_all(current: true)
+        Identification.where( id: last_outdated ).update_all( current: true )
+        Identification.elastic_index!( ids: [last_outdated] )
       rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e.message =~ /index_identifications_on_current/
         # assume that if the unique key constraint complained, then there's already a current ident

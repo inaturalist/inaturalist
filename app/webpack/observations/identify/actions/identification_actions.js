@@ -63,8 +63,14 @@ function stopAgreeingWithObservation( ) {
 
 function agreeWithCurrentObservation( ) {
   return function ( dispatch, getState ) {
+    const currentObservation = getState( ).currentObservation.observation;
+    if ( !currentObservation || !currentObservation.id || !currentObservation.taxon ) {
+      return null;
+    }
     dispatch( agreeingWithObservation( ) );
-    return dispatch( agreeWithObservaiton( getState( ).currentObservation.observation ) ).then( ( ) => {
+    return dispatch(
+      agreeWithObservaiton( currentObservation )
+    ).then( ( ) => {
       dispatch( stopAgreeingWithObservation( ) );
     } );
   };

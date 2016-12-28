@@ -12,6 +12,13 @@ Rails.application.routes.draw do
   root :to => 'welcome#index'
 
   get "/set_locale", to: "application#set_locale", as: :set_locale
+  get "/terms", to: redirect( "/pages/terms" )
+  get "/privacy", to: redirect( "/pages/privacy" )
+
+  resources :controlled_terms
+  resources :controlled_term_labels, only: [ :create, :update, :destroy ]
+  resources :controlled_term_values, only: [ :create, :destroy ]
+  resources :annotations
 
   resources :guide_sections do
     collection do
@@ -139,6 +146,10 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    member do
+      put :join_test
+      put :leave_test
+    end
   end
   # resource :session
   # resources :passwords
@@ -330,19 +341,21 @@ Rails.application.routes.draw do
   resources :project_invitations, :except => [:index, :show]
   post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
   get 'taxa/names' => 'taxon_names#index'
-  resources :taxa, :constraints => { :id => id_param_pattern } do
+  resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
-    resources :taxon_names, :controller => :taxon_names, :shallow => true
-    resources :taxon_scheme_taxa, :controller => :taxon_scheme_taxa, :shallow => true
-    get 'description' => 'taxa#describe', :on => :member, :as => :describe
+    resources :taxon_names, controller: :taxon_names, shallow: true
+    resources :taxon_scheme_taxa, controller: :taxon_scheme_taxa, shallow: true
+    get 'description' => 'taxa#describe', on: :member, as: :describe
     member do
-      post 'update_photos', :as => "update_photos_for"
-      post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
-      get 'schemes', :as => "schemes_for", :constraints => {:format => [:html, :mobile]}
+      post 'update_photos', as: "update_photos_for"
+      post 'set_photos', as: "set_photos_for"
+      post 'refresh_wikipedia_summary', as: "refresh_wikipedia_summary_for"
+      get 'schemes', as: "schemes_for", constraints: { format: [:html, :mobile] }
       get 'tip'
-      get 'names', :to => 'taxon_names#taxon'
+      get 'names', to: "taxon_names#taxon"
       get 'links'
       get "map_layers"
+      get "browse_photos"
     end
     collection do
       get 'synonyms'
@@ -481,6 +494,12 @@ Rails.application.routes.draw do
   delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
   resources :taxon_ranges, :except => [:show]
+  
+  resources :atlases
+  post ':atlases/alter_atlas_presence' => 'atlases#alter_atlas_presence', :as => :alter_atlas_presence
+  post ':atlases/destroy_all_alterations' => 'atlases#destroy_all_alterations', :as => :destroy_all_alterations
+  resources :exploded_atlas_places
+  
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   get '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date, :constraints => {

@@ -5,8 +5,6 @@ describe LifeList do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  before(:each) { enable_elastic_indexing( Observation, Place ) }
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
   describe "reload_from_observations" do
     before(:each) do
       @taxon = Taxon.make!
@@ -14,7 +12,9 @@ describe LifeList do
       @list = make_life_list_for_taxon(@taxon)
       expect(@list).to be_valid
     end
-  
+    before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
+
     it "should destroy listed taxa where the taxon doesn't match the observation taxon" do
       user = @list.user
       listed_taxon = make_listed_taxon_of_taxon(@child)
@@ -53,6 +53,8 @@ describe LifeList do
   end
 
   describe "refresh" do
+    before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
     it "should destroy unobserved taxa if you ask nicely" do
       list = LifeList.make!
       list.taxa << Taxon.make!
@@ -69,9 +71,10 @@ describe LifeList do
       @list = LifeList.make!
       @list.build_taxon_rule(@parent)
       @list.save!
-      enable_elastic_indexing( Observation )
     end
-  
+    before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
+
     it "should add new taxa to the list" do
       t = Taxon.make!(:parent => @parent)
       o = Observation.make!(:user => @list.user, :taxon => t)
@@ -150,6 +153,8 @@ describe LifeList do
   end
 
   describe "update_life_lists_for_taxon" do
+    before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
     it "should not queue jobs if they already exist" do
       t = Taxon.make!
       l = make_life_list_for_taxon(t)
@@ -163,6 +168,8 @@ describe LifeList do
   end
 
   describe "places" do
+    before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
     let(:place) { make_place_with_geom }
     it "should create a rule when set" do
       l = LifeList.make!(:place => place)
@@ -202,6 +209,8 @@ describe LifeList do
   end
 
   describe "defaults" do
+    before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
     let(:user) { User.make! }
     it "should set a default title" do
       expect( LifeList.make!(user: user, title: nil).title ).to eq "#{ user.login }'s Life List"

@@ -15,6 +15,7 @@ class Guide < ActiveRecord::Base
     :default_url => "/attachment_defaults/:class/icons/:style.png",
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
+    :s3_protocol => "https",
     :s3_host_alias => CONFIG.s3_bucket,
     :bucket => CONFIG.s3_bucket,
     :path => "guides/:id-:style.:extension",
@@ -425,8 +426,8 @@ class Guide < ActiveRecord::Base
     icon.file? ? icon.url(:span2) : nil
   end
 
-  def serializable_hash(options = nil)
-    options ||= { }
+  def serializable_hash(opts = nil)
+    options = opts ? opts.clone : { }
     options[:include] = if options[:include].is_a?(Hash)
       options[:include].map{|k,v| {k => v}}
     else

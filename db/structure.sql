@@ -291,6 +291,43 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: annotations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE annotations (
+    id integer NOT NULL,
+    uuid uuid DEFAULT uuid_generate_v4(),
+    resource_id integer,
+    resource_type character varying,
+    controlled_attribute_id integer,
+    controlled_value_id integer,
+    user_id integer,
+    observation_field_value_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: annotations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE annotations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: annotations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE annotations_id_seq OWNED BY annotations.id;
+
+
+--
 -- Name: announcements; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -645,6 +682,113 @@ CREATE SEQUENCE conservation_statuses_id_seq
 --
 
 ALTER SEQUENCE conservation_statuses_id_seq OWNED BY conservation_statuses.id;
+
+
+--
+-- Name: controlled_term_labels; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_term_labels (
+    id integer NOT NULL,
+    controlled_term_id integer,
+    locale character varying,
+    valid_within_clade integer,
+    label character varying,
+    definition character varying,
+    icon_file_name character varying,
+    icon_content_type character varying,
+    icon_file_size character varying,
+    icon_updated_at character varying,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: controlled_term_labels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_term_labels_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_term_labels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_term_labels_id_seq OWNED BY controlled_term_labels.id;
+
+
+--
+-- Name: controlled_term_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_term_values (
+    id integer NOT NULL,
+    controlled_attribute_id integer,
+    controlled_value_id integer
+);
+
+
+--
+-- Name: controlled_term_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_term_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_term_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_term_values_id_seq OWNED BY controlled_term_values.id;
+
+
+--
+-- Name: controlled_terms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_terms (
+    id integer NOT NULL,
+    ontology_uri text,
+    uri text,
+    valid_within_clade integer,
+    is_value boolean DEFAULT false,
+    active boolean DEFAULT false,
+    multivalued boolean DEFAULT false,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: controlled_terms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_terms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_terms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_terms_id_seq OWNED BY controlled_terms.id;
 
 
 --
@@ -2972,7 +3116,6 @@ CREATE TABLE projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    show_from_place boolean,
     last_aggregated_at timestamp without time zone
 );
 
@@ -4297,6 +4440,13 @@ ALTER SEQUENCE wiki_pages_id_seq OWNED BY wiki_pages.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY annotations ALTER COLUMN id SET DEFAULT nextval('annotations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcements_id_seq'::regclass);
 
 
@@ -4361,6 +4511,27 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 --
 
 ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_labels ALTER COLUMN id SET DEFAULT nextval('controlled_term_labels_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_values ALTER COLUMN id SET DEFAULT nextval('controlled_term_values_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms ALTER COLUMN id SET DEFAULT nextval('controlled_terms_id_seq'::regclass);
 
 
 --
@@ -5001,6 +5172,14 @@ ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_s
 
 
 --
+-- Name: annotations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY annotations
+    ADD CONSTRAINT annotations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: announcements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5078,6 +5257,30 @@ ALTER TABLE ONLY comments
 
 ALTER TABLE ONLY conservation_statuses
     ADD CONSTRAINT conservation_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_term_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_labels
+    ADD CONSTRAINT controlled_term_labels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_term_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_values
+    ADD CONSTRAINT controlled_term_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms
+    ADD CONSTRAINT controlled_terms_pkey PRIMARY KEY (id);
 
 
 --
@@ -5813,6 +6016,13 @@ ALTER TABLE ONLY wiki_pages
 --
 
 CREATE INDEX fk_flags_user ON flags USING btree (user_id);
+
+
+--
+-- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_annotations_on_resource_id_and_resource_type ON annotations USING btree (resource_id, resource_type);
 
 
 --
@@ -8332,6 +8542,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160809221731');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809221754');
 
+INSERT INTO schema_migrations (version) VALUES ('20160815154039');
+
 INSERT INTO schema_migrations (version) VALUES ('20160818234437');
 
 INSERT INTO schema_migrations (version) VALUES ('20160913224325');
@@ -8347,4 +8559,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161012202803');
 INSERT INTO schema_migrations (version) VALUES ('20161012204604');
 
 INSERT INTO schema_migrations (version) VALUES ('20161020190217');
+
+INSERT INTO schema_migrations (version) VALUES ('20161110221032');
 

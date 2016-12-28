@@ -3,7 +3,7 @@ import {
   fetchRecentObservations,
   fetchFirstObservation
 } from "./observations";
-import { defaultObservationParams } from "../util";
+import { defaultObservationParams } from "../../shared/util";
 
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
 
@@ -68,14 +68,17 @@ export function fetchTopSpecies( ) {
 export function fetchLeaders( selectedTaxon ) {
   return ( dispatch, getState ) => {
     const taxon = selectedTaxon || getState( ).taxon.taxon;
-    dispatch( fetchTopObserver( ) );
-    dispatch( fetchTopIdentifier( ) );
+    const promises = [
+      dispatch( fetchTopObserver( ) ),
+      dispatch( fetchTopIdentifier( ) ),
+      dispatch( fetchRecentObservations( taxon ) ),
+      dispatch( fetchFirstObservation( taxon ) )
+    ];
     if ( taxon.rank_level <= 10 ) {
-      dispatch( fetchFirstObserver( taxon ) );
+      promises.push( dispatch( fetchFirstObserver( taxon ) ) );
     } else {
-      dispatch( fetchTopSpecies( taxon ) );
+      promises.push( dispatch( fetchTopSpecies( taxon ) ) );
     }
-    dispatch( fetchRecentObservations( taxon ) );
-    dispatch( fetchFirstObservation( taxon ) );
+    return Promise.all( promises );
   };
 }

@@ -1,21 +1,68 @@
 import { connect } from "react-redux";
+import _ from "lodash";
 import Charts from "../components/charts";
 import {
   fetchMonthFrequency,
-  fetchMonthOfYearFrequency
+  fetchMonthOfYearFrequency,
+  openObservationsSearch
 } from "../ducks/observations";
 
 function mapStateToProps( state ) {
+  // process columns for seasonality
+  const monthOfYearFrequencyVerifiable = state.observations.monthOfYearFrequency.verifiable || {};
+  const seasonalityKeys = _.keys(
+    monthOfYearFrequencyVerifiable
+  ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
+  const seasonalityColumns = [];
+  const order = [
+    "Flowering Phenology=bare",
+    "Flowering Phenology=budding",
+    "Flowering Phenology=flower",
+    "Flowering Phenology=fruit",
+    "Insect life stage=egg",
+    "Insect life stage=larva",
+    "Insect life stage=teneral",
+    "Insect life stage=nymph",
+    "Insect life stage=pupa",
+    "Insect life stage=adult",
+    "verifiable",
+    "research"
+  ];
+  for ( let i = 0; i < order.length; i++ ) {
+    const series = order[i];
+    const frequency = state.observations.monthOfYearFrequency[series];
+    if ( frequency ) {
+      seasonalityColumns.push(
+        [series, ...seasonalityKeys.map( key => frequency[key.toString( )] || 0 )]
+      );
+    }
+  }
+
+  // process columns for history
+  const monthFrequencyVerifiable = state.observations.monthFrequency.verifiable || {};
+  const monthFrequencyResearch = state.observations.monthFrequency.research || {};
+  const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
+  const historyColumns = [];
+  if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
+    historyColumns.push( ["x", ...historyKeys] );
+    historyColumns.push( ["verifiable", ...historyKeys.map( d =>
+      monthFrequencyVerifiable[d] || 0 )] );
+    historyColumns.push( ["research", ...historyKeys.map( d =>
+      monthFrequencyResearch[d] || 0 )] );
+  }
   return {
-    monthOfYearFrequency: state.observations.monthOfYearFrequency,
-    monthFrequency: state.observations.monthFrequency
+    seasonalityKeys,
+    seasonalityColumns,
+    historyColumns,
+    historyKeys
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
     fetchMonthOfYearFrequency: ( ) => dispatch( fetchMonthOfYearFrequency( ) ),
-    fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) )
+    fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) ),
+    openObservationsSearch: params => dispatch( openObservationsSearch( params ) )
   };
 }
 

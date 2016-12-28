@@ -6,7 +6,8 @@ const ArticlesTab = ( {
   description,
   descriptionSource,
   descriptionSourceUrl,
-  links
+  links,
+  currentUser
 } ) => (
   <Grid className="ArticlesTab">
     <Row>
@@ -19,7 +20,7 @@ const ArticlesTab = ( {
         <div className={description ? "" : "hidden"}>
           <h2>
             { I18n.t( "source_" ) } { descriptionSource } <a href={descriptionSourceUrl}>
-              <i className="fa fa-external-link"></i>
+              <i className="icon-link-external"></i>
             </a>
           </h2>
           <div dangerouslySetInnerHTML={{ __html: description }}></div>
@@ -38,13 +39,18 @@ const ArticlesTab = ( {
                 <a
                   href={link.url}
                   style={{
-                    backgroundImage: `url( http://www.google.com/s2/favicons?domain=${host} )`,
+                    backgroundImage: `url( https://www.google.com/s2/favicons?domain=${host} )`,
                     backgroundRepeat: "no-repeat",
                     padding: "1px 0 1px 25px"
                   }}
                 >
                   { link.taxon_link.site_title }
                 </a>
+                { currentUser ? (
+                  <a className="pull-right" href={`/taxon_links/${link.taxon_link.id}/edit`}>
+                    <i className="fa fa-pencil"></i>
+                  </a>
+                ) : null }
               </li>
             );
           } ) }
@@ -53,8 +59,7 @@ const ArticlesTab = ( {
           href={`/taxon_links/new?taxon_id=${taxonId}`}
           className="btn btn-primary btn-block"
         >
-          <i className="glyphicon glyphicon-link"></i>
-          { I18n.t( "add_link" ) }
+          <i className="icon-link"></i> { I18n.t( "add_link" ) }
         </a>
       </Col>
     </Row>
@@ -66,7 +71,8 @@ ArticlesTab.propTypes = {
   description: PropTypes.string,
   descriptionSource: PropTypes.string,
   descriptionSourceUrl: PropTypes.string,
-  links: PropTypes.array
+  links: PropTypes.array,
+  currentUser: PropTypes.object
 };
 
 ArticlesTab.defaultProps = { links: [] };

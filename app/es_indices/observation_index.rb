@@ -2,6 +2,8 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   attr_accessor :indexed_tag_names, :indexed_project_ids, :indexed_place_ids,
     :indexed_places, :indexed_project_ids_with_curator_id,
     :indexed_project_ids_without_curator_id
@@ -9,13 +11,14 @@ class Observation < ActiveRecord::Base
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
     :model_attribute_changes,
+    { annotations: :votes_for },
     { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: :user },
+    { identifications: [ :user, :taxon ] },
     { comments: :user } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
@@ -40,6 +43,11 @@ class Observation < ActiveRecord::Base
         indexes :uuid, analyzer: "keyword_analyzer"
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
+      end
+      indexes :annotations, type: :nested do
+        indexes :uuid, analyzer: "keyword_analyzer"
+        indexes :resource_type, analyzer: "keyword_analyzer"
+        indexes :concatenated_attr_val, analyzer: "keyword_analyzer"
       end
       indexes :non_owner_ids, type: :nested do
         indexes :uuid, analyzer: "keyword_analyzer"
@@ -132,6 +140,7 @@ class Observation < ActiveRecord::Base
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
+        annotations: annotations.map(&:as_indexed_json),
         photos: observation_photos.sort_by{ |op| op.position || op.id }.
           reject{ |op| op.photo.blank? }.
           map{ |op| op.photo.as_indexed_json },
@@ -176,7 +185,7 @@ class Observation < ActiveRecord::Base
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
-    if !options || options[:tags]
+    if options.blank? || options[:tags]
       # fetch all tag names store them in `indexed_tag_names`
       connection.execute("
         SELECT ts.taggable_id, t.name
@@ -190,7 +199,7 @@ class Observation < ActiveRecord::Base
       end
     end
     # fetch all project_ids store them in `indexed_project_ids`
-    if !options || options[:projects]
+    if options.blank? || options[:projects]
       connection.execute("
         SELECT observation_id, project_id, curator_identification_id, uuid
         FROM project_observations
@@ -207,7 +216,7 @@ class Observation < ActiveRecord::Base
       end
     end
     # fetch all place_ids store them in `indexed_place_ids`
-    if !options || options[:places]
+    if options.blank? || options[:places]
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
@@ -506,6 +515,25 @@ class Observation < ActiveRecord::Base
         ] } }
       end
     end
+
+    if p[:term_id]
+      nested_query = {
+        nested: {
+          path: "annotations",
+          query: { bool: { must: [
+            { term: { "annotations.controlled_attribute_id": p[:term_id] } },
+            { range: { "annotations.vote_score": { gte: 0 } } }
+          ] }
+          }
+        }
+      }
+      if p[:term_value_id]
+        nested_query[:nested][:query][:bool][:must] <<
+          { term: { "annotations.controlled_value_id": p[:term_value_id] } }
+      end
+      complex_wheres << nested_query
+    end
+
     if p[:ofv_params]
       p[:ofv_params].each do |k,v|
         # use a nested query to search within a single nested
@@ -547,7 +575,7 @@ class Observation < ActiveRecord::Base
     sort_order = (p[:order] || "desc").downcase.to_sym
     sort = case p[:order_by]
     when "observed_on"
-      { observed_on: sort_order }
+      { observed_on: sort_order, time_observed_at: sort_order }
     when "species_guess"
       { species_guess: sort_order }
     when "votes"

@@ -29,7 +29,7 @@ module ActsAsElasticModel
     class << self
       def elastic_search(options = {})
         begin
-          __elasticsearch__.search(ElasticModel.search_hash(options), preference: "_primary_first")
+          __elasticsearch__.search(ElasticModel.search_hash(options))
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_search failed: #{ e }"
@@ -53,15 +53,17 @@ module ActsAsElasticModel
       #   Place.elastic_index!(batch_size: 20)
       #   Place.elastic_index!(scope: Place.where(id: [1,2,3,...]), batch_size: 20)
       def elastic_index!(options = { })
+        options[:batch_size] ||=
+          defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
         filter_scope = options.delete(:scope)
         # this method will accept an existing scope
         scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
-          if filter_ids.length > 1000
+          if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
-            filter_ids.each_slice(1000) do |slice|
+            filter_ids.each_slice(options[:batch_size]) do |slice|
               elastic_index!(options.merge(ids: slice))
             end
             return
@@ -101,7 +103,7 @@ module ActsAsElasticModel
       end
 
       def elastic_sync(options = {})
-        batch_size = options[:batch_size] || 1000
+        batch_size = options[:batch_size] || self::DEFAULT_ES_BATCH_SIZE || 1000
         load_for_index.find_in_batches(batch_size: batch_size) do |batch|
           prepare_for_index(batch)
           Rails.logger.debug "[DEBUG] Processing from #{ batch.first.id }"

@@ -2,17 +2,24 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const SimilarTab = ( { taxa } ) => {
+const SimilarTab = ( { results, place } ) => {
   let content;
-  if ( taxa && taxa.length > 0 ) {
+  if ( results && results.length > 0 ) {
     content = (
       <div className="thumbnails">
-        { taxa.map( similarTaxon =>
-          <TaxonThumbnail taxon={similarTaxon} key={`similar-taxon-${similarTaxon.id}`} />
+        { results.map( result =>
+          <TaxonThumbnail
+            taxon={result.taxon}
+            key={`similar-taxon-${result.taxon.id}`}
+            badgeText={result.count}
+            badgeTip={I18n.t( "x_misidentifications_of_this_species", { count: result.count } )}
+            height={190}
+            truncate={20}
+          />
         ) }
       </div>
     );
-  } else if ( taxa ) {
+  } else if ( results ) {
     content = <p>{ I18n.t( "no_misidentifications_yet" ) }</p>;
   } else {
     content = <div className="loading status">{ I18n.t( "loading" ) }</div>;
@@ -22,7 +29,19 @@ const SimilarTab = ( { taxa } ) => {
       <Row>
         <Col xs={12}>
           <h2>
-            { I18n.t( "other_taxa_commonly_misidentified_as_this_species" ) }
+            {
+              place ?
+                <span
+                  dangerouslySetInnerHTML={ { __html:
+                    I18n.t(
+                      "other_species_commonly_misidentified_as_this_species_in_place_html",
+                      { place: place.display_name, url: `/places/${place.id}` }
+                    )
+                  } }
+                ></span>
+                :
+                I18n.t( "other_species_commonly_misidentified_as_this_species" )
+            }
           </h2>
           { content }
         </Col>
@@ -32,7 +51,8 @@ const SimilarTab = ( { taxa } ) => {
 };
 
 SimilarTab.propTypes = {
-  taxa: PropTypes.array
+  results: PropTypes.array,
+  place: PropTypes.object
 };
 
 export default SimilarTab;

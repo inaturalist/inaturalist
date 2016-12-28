@@ -132,6 +132,9 @@ class FlickrController < ApplicationController
                  :local_photos => false
                }
       end
+      format.json do
+        render json: @photos
+      end
     end
   end
 

@@ -65,6 +65,22 @@ describe Place, "updating" do
     expect(@place).to_not be_valid
     expect(@place.errors[:parent_id]).to_not be_blank
   end
+
+  it "should update the projects index for projects associated with descendant places when ancestry changes" do
+    3.times { Project.make! }
+    old_parent = Place.make!
+    new_parent = Place.make!
+    place = Place.make!( parent: old_parent )
+    project = Project.make!( place: place )
+    expect(
+      Project.elastic_paginate( where: { place_ids: [ old_parent.id ] } )
+    ).to include project
+    place.update_attributes( parent: new_parent )
+    Delayed::Worker.new.work_off
+    expect(
+      Project.elastic_paginate( where: { place_ids: [ new_parent.id ] } )
+    ).to include project
+  end
 end
 
 describe Place, "import by WOEID", disabled: ENV["TRAVIS_CI"] do
