@@ -1028,8 +1028,8 @@ class TaxaController < ApplicationController
   end
 
   def links
-    places_exist = ListedTaxon.where("place_id IS NOT NULL AND taxon_id = ?", @taxon).exists?
-    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: places_exist )
+    places_exist = ListedTaxon.where( "place_id IS NOT NULL AND taxon_id = ?", @taxon ).exists?
+    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: !places_exist )
     respond_to do |format|
       format.json { render json: taxon_links.map{ |tl| {
         taxon_link: tl,

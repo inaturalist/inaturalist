@@ -110,6 +110,31 @@ const SplitTaxon = ( {
     if ( !taxon.preferred_common_name ) {
       sciNameClass += ` display-name ${displayClassName || ""}`;
     }
+    let name = taxon.name;
+    if ( taxon.rank_level < 10 ) {
+      const namePieces = name.split( " " );
+      let rankPiece;
+      if ( taxon.rank === "variety" ) {
+        rankPiece = "var.";
+      } else if ( taxon.rank === "subspecies" ) {
+        rankPiece = "ssp.";
+      } else if ( taxon.rank === "form" ) {
+        rankPiece = "f.";
+      }
+      if ( rankPiece ) {
+        name = (
+          <span>
+            {
+              namePieces.slice( 0, namePieces.length - 1 ).join( " " )
+            } <span className="rank">
+              { rankPiece }
+            </span> {
+              namePieces[namePieces.length - 1]
+            }
+          </span>
+        );
+      }
+    }
     return (
       <LinkElement
         className={sciNameClass}
@@ -117,7 +142,7 @@ const SplitTaxon = ( {
         target={ target }
       >
         { taxonRank( ) }
-        { truncateText( taxon.name ) }
+        { truncateText( name ) }
       </LinkElement>
     );
   };

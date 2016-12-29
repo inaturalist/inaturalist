@@ -16,7 +16,8 @@ function mapStateToProps( state ) {
     layout: state.config.layout,
     grouping: state.config.grouping,
     groupedPhotos: state.photos.groupedPhotos,
-    params: state.photos.observationParams
+    params: state.photos.observationParams,
+    place: state.config.chosenPlace
   };
   props.terms = state.taxon.terms.map( term => {
     const newTerm = Object.assign( { }, term );

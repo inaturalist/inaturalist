@@ -80,7 +80,7 @@ class TaxonLink < ActiveRecord::Base
       TaxonLink.for_taxon(taxon).where(:species_only => false).includes(:taxon).to_a
     end
     tl_place_ids = taxon_links.map(&:place_id).compact
-    if !tl_place_ids.blank? # && !@places.blank?
+    if !tl_place_ids.blank?
       if options[:reject_places]
         taxon_links.reject! {|tl| tl.place_id}
       else
