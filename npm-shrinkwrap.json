@@ -713,6 +713,11 @@
       "from": "d3-timer@1.0.3",
       "resolved": "https://registry.npmjs.org/d3-timer/-/d3-timer-1.0.3.tgz"
     },
+    "d3-tip": {
+      "version": "0.7.1",
+      "from": "d3-tip@>=0.7.1 <0.8.0",
+      "resolved": "https://registry.npmjs.org/d3-tip/-/d3-tip-0.7.1.tgz"
+    },
     "d3-transition": {
       "version": "1.0.3",
       "from": "d3-transition@1.0.3",
@@ -2827,24 +2832,7 @@
     "react-images": {
       "version": "0.3.2",
       "from": "react-images@0.3.2",
-      "resolved": "https://registry.npmjs.org/react-images/-/react-images-0.3.2.tgz",
-      "dependencies": {
-        "core-js": {
-          "version": "1.2.7",
-          "from": "core-js@^1.0.0",
-          "resolved": "https://registry.npmjs.org/core-js/-/core-js-1.2.7.tgz"
-        },
-        "fbjs": {
-          "version": "0.6.1",
-          "from": "fbjs@>=0.6.1 <0.7.0",
-          "resolved": "https://registry.npmjs.org/fbjs/-/fbjs-0.6.1.tgz"
-        },
-        "whatwg-fetch": {
-          "version": "0.9.0",
-          "from": "whatwg-fetch@>=0.9.0 <0.10.0",
-          "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-0.9.0.tgz"
-        }
-      }
+      "resolved": "https://registry.npmjs.org/react-images/-/react-images-0.3.2.tgz"
     },
     "react-infinite-scroller": {
       "version": "1.0.1",
