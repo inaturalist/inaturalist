@@ -12,6 +12,7 @@
 # Author: Siebrand
 # Author: Sudachi
 # Author: Walter Klosse
+# Author: Woytecr
 # Author: 아라
 ---
 qqq:
@@ -120,8 +121,6 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
-  an: an doesnt exist in czech language
-  an_: an doesnt exist in czech language
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -627,7 +626,10 @@ qqq:
   open: '{{Identical|Open}}'
   optional: '{{Identical|Optional}}'
   or: '{{Identical|Or}}'
-  orange: '{{Identical|Orange}}'
+  orange: |-
+    The orange color, not a planet/fruit.
+
+    {{Identical|Orange}}
   order: '{{Identical|Order}}'
   order_by: '{{Identical|Order by}}'
   original: '{{Identical|Original}}'
@@ -916,6 +918,7 @@ qqq:
   tue: Abbreviation for Tuesday, a day of the week.
   twitter: '{{Identical|Twitter}}'
   type: '{{Identical|Type}}'
+  type_authority: Authority as in literature
   unknown: '{{Identical|Unknown}}'
   updates_notification_email_subject: where prefix is the name of the site and date
     is a date
