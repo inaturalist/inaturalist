@@ -14,9 +14,13 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, placeName, placeU
   const columnWidth = 3;
   const thumbnailHeight = 200;
   const thumbnailTruncation = 50;
-  if ( trendingTaxa && trendingTaxa.length > 0 ) {
+  if ( trendingTaxa ) {
     const trendingChunks = _.chunk( trendingTaxa, photosPerSlide );
-    if ( trendingChunks[trendingChunks.length - 1].length === photosPerSlide ) {
+    if (
+      trendingChunks &&
+      trendingChunks[trendingChunks.length - 1] &&
+      trendingChunks[trendingChunks.length - 1].length === photosPerSlide
+    ) {
       trendingChunks[trendingChunks.length - 1].pop( );
     }
     trending = (
