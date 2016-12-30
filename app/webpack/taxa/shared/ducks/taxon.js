@@ -354,7 +354,7 @@ export function fetchTaxonChange( taxon ) {
         }
         let taxonChange = json[0];
         if ( taxon.is_active ) {
-          taxonChange = _.find( json, tc => !tc.committed_at );
+          taxonChange = _.find( json, tc => !tc.committed_on );
         }
         dispatch( setTaxonChange( taxonChange ) );
       } );
