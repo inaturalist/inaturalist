@@ -63,6 +63,7 @@ const PhotoBrowser = ( {
             observationPhoto.observation.taxon,
             observationPhoto.observation
           ) }
+          showTaxon
         />
       );
     } )

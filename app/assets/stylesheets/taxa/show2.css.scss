@@ -415,8 +415,15 @@ $photoPreviewThumbGutterTop: 3px;
     opacity: 0;
     transition: opacity 0.2s linear;
     text-align: center;
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+      opacity: 0.8;
+    }
   }
-  .btn-link {
+  .modal-link {
     width: 100%;
     height: 100%;
     font-size: 80%;
@@ -425,14 +432,42 @@ $photoPreviewThumbGutterTop: 3px;
     i {
       display: inline-block;
       font-size: 300%;
-      // margin-bottom: 10px;
       padding: 10px;
       background-color: rgba(0,0,0,0.5);
     }
   }
-  .btn-link:hover {
+  .modal-link:hover {
     text-decoration: none;
     color: white;
+  }
+  .photo-taxon {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.4);
+    font-weight: 100;
+    font-size: 90%;
+    line-height: 20px;
+    text-align: left;
+
+    .display-name {
+      font-size: 120%;
+      display: block;
+    }
+    i {
+      font-size: 150%;
+    }
+    .SplitTaxon a {
+      color: white;
+    }
+    .info-link {
+      padding: 0;
+      position: relative;
+      top: -2px;
+    }
   }
 }
 .TaxonPhoto:hover .photo-hover {

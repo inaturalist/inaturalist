@@ -1,5 +1,7 @@
 import React, { PropTypes } from "react";
 import CoverImage from "../../../shared/components/cover_image";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../shared/util";
 
 const TaxonPhoto = ( {
   photo,
@@ -9,7 +11,8 @@ const TaxonPhoto = ( {
   height,
   showTaxonPhotoModal,
   className,
-  size
+  size,
+  showTaxon
 } ) => (
   <div
     className={`TaxonPhoto ${className}`}
@@ -17,7 +20,7 @@ const TaxonPhoto = ( {
   >
     <div className="photo-hover">
       <button
-        className="btn btn-link"
+        className="btn btn-link modal-link"
         onClick={ e => {
           e.preventDefault( );
           showTaxonPhotoModal( photo, taxon, observation );
@@ -26,6 +29,14 @@ const TaxonPhoto = ( {
       >
         <i className="fa fa-search-plus"></i>
       </button>
+      { showTaxon ? (
+        <div className="photo-taxon">
+          <SplitTaxon taxon={taxon} noParens url={urlForTaxon( taxon )} />
+          <a href={urlForTaxon( taxon )} className="btn btn-link info-link">
+            <i className="fa fa-info-circle"></i>
+          </a>
+        </div>
+      ) : null }
     </div>
     <CoverImage
       src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
@@ -43,7 +54,8 @@ TaxonPhoto.propTypes = {
   height: PropTypes.number.isRequired,
   observation: PropTypes.object,
   className: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  showTaxon: PropTypes.bool
 };
 
 TaxonPhoto.defaultProps = {

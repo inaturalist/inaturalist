@@ -92,6 +92,7 @@ class PhotoPreview extends React.Component {
                   taxon={tp.taxon}
                   showTaxonPhotoModal={showTaxonPhotoModal}
                   className="photoItem"
+                  showTaxon
                 />
               );
             } else {
