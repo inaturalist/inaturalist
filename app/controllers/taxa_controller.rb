@@ -4,7 +4,9 @@ class TaxaController < ApplicationController
   caches_action :show, :expires_in => 1.day,
     :cache_path => Proc.new{ |c| { locale: I18n.locale, mobile: c.request.format.mobile? } },
     :if => Proc.new {|c|
-      !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
+      !request.format.json? &&
+      (c.session.blank? || c.session['warden.user.user.key'].blank?) &&
+      c.params[:test].blank?
     }
   caches_action :describe, :expires_in => 1.day,
     :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
