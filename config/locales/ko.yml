@@ -1114,6 +1114,7 @@ ko:
   hide_details: 자세한 내용 숨기기
   high: 높음
   highest_rank: 가장 높은 랭크
+  history: 역사
   home: 처음으로
   home_faq: FAQ
   however_there_were_some_issues: '하지만, 몇 가지 문제가 있었습니다: %{issues}'
@@ -1244,6 +1245,7 @@ ko:
   kml: KML
   kml_file_size_error: KML은 1MB보다 크기가 작아야 합니다.
   labels: 라벨
+  language_slash_type: 언어 / 유형
   large: 크게
   last_confirmed_observation: 마지막으로 확인된 관찰
   last_observation: 마지막 관찰
@@ -1452,6 +1454,7 @@ ko:
   more_info: 자세한 정보
   more_info_title: 자세한 정보
   more_observations: 더 많은 관찰
+  more_photos: 더 많은 사진들
   most_observations: 가장 많은 관찰
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
   n_ago: '%{n}전'
@@ -1683,8 +1686,8 @@ ko:
     identification:
       without_observation: <strong>ID</strong> 추가됨
   photo: 사진
+  photo_browser: 사진 탐색기
   photo_deleted: 사진 삭제됨
-  photos: 사진
   photos_size:
     small: 작게
     medium: 보통
@@ -1766,7 +1769,6 @@ ko:
     있는 분류군의 경우 부탁드립니다.
   please_hold_on_while_the_file: 파일이 생성될 때까지 잠시 기다려 주세요. 관찰이 많을 경우 몇 분 걸릴 수 있습니다.
   position: 위치
-  position_accurate_to_within_5km?: 위치가 5km 이내로 정확합니까?
   previous: 이전
   prev: 이전
   previous_page: 이전 문서
@@ -1853,6 +1855,7 @@ ko:
   search_places: 장소 검색
   search_projects: 프로젝트 검색
   search_species: 종 검색
+  search_species_: 종 검색...
   search_the_map: 지도 검색
   searching: 검색 중...
   select_all: 모두 선택
@@ -1938,8 +1941,8 @@ ko:
   uploader:
     tooltips:
       remove: 선택된 관찰 제거
-      select_all: 모든 관찰 선택
       remove_photo: 사진 제거
+      select_all: 모든 관찰 선택
   uploading_num_of_count_photos:
     one: 사진을 올리는 중...
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
@@ -2082,6 +2085,10 @@ ko:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
       project_user_curator_coordinate_access_labels:
         none: 아무도 없음
+    taxa:
+      show:
+        frequency:
+          Insect life stage=egg: 알
     users:
       edit:
         project_addition_preferences:

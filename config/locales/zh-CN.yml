@@ -66,6 +66,9 @@ zh-CN:
   x_people:
     one: 1个人
     other: '%{count} 个人'
+  x_people_found_this_helpful:
+    one: 一个人看到了这个有帮助的
+    other: '%{count}个人看到了这个有帮助的'
   x_faves:
     one: 1次喜爱
     other: '%{count} 次喜爱'
@@ -105,14 +108,16 @@ zh-CN:
   a_member_of_taxon_html: '%{taxon} 的成员'
   able_to_connect_flickr: 很棒！我们能够链接至您的Flickr账户。
   about: 关于
-  about_taxon_changes: 关于分类单元变动
   about_bioblitz_results: 关于生物限时搜索
   about_community_taxa: 关于社区分类群
+  about_conservation_status: 保护状态
   about_external_links: 关于外部链接
   about_licenses: 关于许可协议
   about_licensing: 关于许可协议
   about_life!: 关于生命！
+  about_names: 关于名称
   about_places: 关于地点
+  about_taxon_changes: 关于分类单元变动
   about_the_cc_licenses: 关于知识共享许可协议
   about_the_taxobox_raquo: 关于分类框 &raquo;
   about_these_licenses: 关于这些许可协议
@@ -128,6 +133,7 @@ zh-CN:
   accuracy_meters: 精确度（米）
   accuracy_of_the_coordinates: 坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使你能保证自己在圈内的某个位置。
   acquaintances: 熟人
+  action: 操作
   actions: 操作
   activate_user: 激活用户
   active: 激活
@@ -172,6 +178,7 @@ zh-CN:
   add_edit_more_fields: 添加/编辑更多字段
   add_description: 添加 %{description_name}
   add_from_your_observations: 从您的观察中添加
+  add_link: 添加链接
   add_listed_taxa_from_observations: 从观察中添加列出的分类群
   add_higher_level_taxon: 加入一个更高级分类（例如：“鸟类”）
   add_id: 添加ID
@@ -194,6 +201,7 @@ zh-CN:
   add_observations_of_taxa_youve_added: 对已经加入列表的分类单元添加观察记录。正在开发中，还在捉bug……
   add_observations_project: 在该项目中添加观察
   add_one: 添加一个！
+  add_one_now: 现在添加一个
   add_photos: 添加照片
   add_photos_to_this_observation: 添加照片至此观察
   add_place: 添加地点
@@ -410,6 +418,7 @@ zh-CN:
   are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
   are_you_sure_you_want_to_remove_this_taxon: 您确定要移除此分类单元么？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: 您确定要从%{place}的名录中移除这个分类单元吗？
+  articles: 条目
   associated_observations: 相关观察
   associated_taxa: 相关分类群
   attention: 关注
@@ -571,6 +580,15 @@ zh-CN:
     replace_with: 替代为
     dropped: 已放弃
     staged: 已上演
+    input_taxon_was_split_into_output_taxa_html: '%{input_taxon}已拆分至%{output_taxa}'
+    input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon}将被拆分至%{output_taxa}'
+    input_taxon_was_dropped_html: '%{input_taxon}已抛弃'
+    input_taxon_will_be_dropped_html: '%{input_taxon}将被抛弃'
+    input_taxon_will_be_activated_soon_html: '%{input_taxon}将很快被激活'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon}已替换为%{output_taxon}'
+    input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon}将被替换为%{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}，而它已合并至%{output_taxon}'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa}将被合并至%{output_taxon}'
   change_visibility_of: 要改变空间坐标的可见与否吗？
   change_your_matching: 更改您的匹配
   change_your_password: 更改您的密码
@@ -914,6 +932,7 @@ zh-CN:
   edit_selected: 编辑选定的
   edit_source: 编辑来源
   edit_taxa: 编辑分类群
+  edit_taxon: 编辑分类群
   edit_taxon_change: 编辑分类单元更改
   edit_taxon_link: 编辑分类单元链接
   edit_taxon_range: 编辑分类单元范围
@@ -960,6 +979,7 @@ zh-CN:
   embed_widget_project: 在您的网站嵌入到此项目的小部件
   enable_offline_access: 启用离线访问
   enable_offline_access_for_mobile: 为移动设备启用离线访问
+  enlarge: 放大
   end: 结束
   endangered: 濒临灭绝
   endemic: 地方性
@@ -1021,6 +1041,7 @@ zh-CN:
   "false": 假
   faq: 常见问题
   fave: 喜欢
+  faves: 喜爱
   Family: 家庭
   favorite_taxa: 已收藏的分类单元
   favorites: 喜爱
@@ -1069,6 +1090,7 @@ zh-CN:
   first_confirmed_inat_observation: 第一条被确认的%{site_name}观察记录
   first_connect_your_provider_account_to_your_site: 首先，将您的%{provider}账户连接到%{site_name}：
   first_inat_observation: 第一个%{site_name}观察
+  first_observation: 第一个观察
   first_observer: 第一个观察者
   first_report: 第一份报告
   flag: 标记
@@ -1102,6 +1124,8 @@ zh-CN:
   flickr_style: Flickr样式
   flickr_tagger: Flickr 贴标签者
   flickr_tags: Flickr 标签
+  flowering_phenology: 开花物候学
+  fluid_layout: 流动布局
   fluid: 液体
   follow_us: 关注我们在
   follow_us_on: 关注我们在
@@ -1171,8 +1195,10 @@ zh-CN:
   green: 绿色
   grey: 灰色
   grid: 网格
+  grid_layout: 网格布局
   grid_tooltip: 显示网格预览
   group: 组
+  grouping: 正在分组
   guess_description: 猜 / 描述
   guides: 指南
   guide_colors: 指导颜色
@@ -1215,6 +1241,8 @@ zh-CN:
   hide_details: 隐藏详情
   high: 高
   highest_rank: 最高等级
+  highlights: 高亮
+  history: 历史
   home: 首页
   home_faq: 常见问题
   however_there_were_some_issues: 然而，这里有一些问题：%{issues}
@@ -1302,8 +1330,10 @@ zh-CN:
   insects: 昆虫
   inspired_by_the_flickr_group: 这里是受到Flickr群组<a href='http://flickr.com/groups/idplease/'>“请进行鉴定”（ID
     Please）</a>的启发，您如果有不认识的物种，可在此发布其观察记录，给其他人一个鉴定这些神秘生物的机会！
+  interactions: 互动
   internal_server_error: 内部服务器错误
   introduced: 引进
+  introduced_in_place: 在%{place}中引进
   invasive: 侵入
   invitation: 引诱
   invitations: 引诱
@@ -1362,6 +1392,7 @@ zh-CN:
   kml: KML
   kml_file_size_error: KML 大小必须小于 1 MB
   labels: 标签
+  language_slash_type: 语言/种类
   large: 大
   last_confirmed_observation: 最近确认的观察
   last_inat_observation: 最近 %{site_name} 观察
@@ -1372,6 +1403,7 @@ zh-CN:
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
   layers: 图层
   layout: 布局
+  leaderboard: 排行榜
   leaderboard_for_x: 用于 %{x} 的排行榜
   leaderboards: 排行榜
   leaderboard_most:
@@ -1612,6 +1644,7 @@ zh-CN:
   more_info_title: 更多信息
   more_journal_posts: 更多日志发布
   more_observations: 更多观察
+  more_photos: 更多照片
   most: 多数
   most_agree: 多数同意
   most_disagree: 多数不同意
@@ -1643,6 +1676,7 @@ zh-CN:
   naturalised: 已归化
   naturalized: 已归化
   native: 本地
+  native_to_place: 原产于%{place}
   nav: 导航
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -1696,6 +1730,7 @@ zh-CN:
   no_creative_commons_flickr_photos_tagged_x: 没有知识共享Flickr照片标记为“%{x}”
   no_flags: 目前没有标记
   no_header_row: 没有标题行
+  no_identifications: 没有鉴定
   no_favorites_added:
     current_user: 您尚未添加收藏夹。
   no_license_all_rights_reserved: 无许可协议（保留所有权利）
@@ -1703,8 +1738,10 @@ zh-CN:
   no_matching_article_from_x: 没有来自%{x}的匹配的条目
   no_matching_species: 没有匹配的物种。
   no_messages_yet: 尚无消息
+  no_misidentifications_yet: 尚无错误标识过的
   no_more_mail_from_site: 不希望接受任何来自 %{site_name} 的邮件么？请在此编辑您的邮件设置
   no_more_taxa_to_load: 没有更多要加载的分类！
+  no_more_results_found: 找不到更多结果
   no_more_updates: 没有更多更新！
   no_new_messages: 没有新消息
   no_observations: 没有观察
@@ -1719,6 +1756,7 @@ zh-CN:
   no_reply_yet: 尚无恢复
   no_results_found: 没有找到结果
   no_results_for: 没有结果用于
+  no_species_observed: 没有观察的物种
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: （无主题）
@@ -1767,6 +1805,7 @@ zh-CN:
   observations_per_month: 观察 / 月
   observations_saved: 观察报告已保存！
   observations_text_search_warning: 当与其他过滤器结合使用时，文本搜索可能产生怪异结果。如果您希望查找特定物种的观察，请使用分类过滤器。
+  observations_total: 观察总计
   observations_w: 观察 w/
   observations_w_field: 观察报告 w/ 字段
   observations_week: 观察 / 周
@@ -1864,6 +1903,7 @@ zh-CN:
   photo: 照片
   photo?: 图片？
   photo_attribution: 照片 %{attribution}
+  photo_browser: 照片浏览者
   photo_by_id_attribution: 照片 %{id}，%{attribution}
   photo_deleted: 照片已删除
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
@@ -1871,7 +1911,8 @@ zh-CN:
   photo_licensing: 照片许可协议
   photo_s: 照片
   photo_type: 照片类型
-  photos: 照片
+  photos_of: 照片属于
+  photos_of_taxon_html: '%{taxon}的照片'
   photos_size:
     small: 小
     medium: 中
@@ -2044,7 +2085,6 @@ zh-CN:
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
   popular: 热门
   position: 位置
-  position_accurate_to_within_5km?: 位置精确到5千米了么？
   possessive_user: '%{user}的'
   post: 帖子
   post_published: 贴子已发布！
@@ -2146,6 +2186,7 @@ zh-CN:
     variety: 变种
     form: 型
     leaves: 叶片
+  rare: 罕见
   re_apply_list_rules: 重新应用列表规则
   read_the_full_wikipedia: 阅读全部维基百科描述
   real_time_stats: 实时统计
@@ -2170,6 +2211,7 @@ zh-CN:
   redo_search_in_map: 在地图中重新搜索
   refresh: 刷新
   refreshing: 正在刷新
+  related_species: 相关物种
   reload_and_refresh: 重新加载和刷新列表
   remarks_optional: 摘要<span class="small description">（可选）</span>
   remember_its_a_lot_easier_to_id: 请记住，it's a lot easier to ID something if you provide
@@ -2272,6 +2314,7 @@ zh-CN:
   search_results_for: 搜索结果用于
   search_remote: 搜索远程
   search_species: 搜索物种
+  search_species_: 搜索物种...
   search_taxa: 搜索分类群...
   search_the_map: 搜索地图
   search_this_taxon: 搜索此分类单元
@@ -2279,6 +2322,7 @@ zh-CN:
   search_ubio_raquo: 搜索uBio &raquo;
   search_your_photos: 搜索您的照片
   searching: 正在搜索……
+  seasonality: 季节性
   second_person_possessive_singular: 您的 %{noun}
   second_person_possessive_singular_: 您的%{noun}
   see_something_wrong_with_taxon: 在此分类单元看到一些问题了么？请让馆长知道。
@@ -2357,6 +2401,7 @@ zh-CN:
     view_all_soundcount_sounds: 查看所有 %{sound_count} 声音
   source: 来源
   source_: 来源：
+  source_list_: 来源列表
   source_list:
     ubio: uBio
     catalogue_of_life: 生命目录（Catalogue of Life）
@@ -2448,9 +2493,11 @@ zh-CN:
     of Life Images</a> group.
   take_me_facebook: 是的，带我前往Facebook！
   take_me_flickr!: 是的，带我去Flickr！
+  take_me_back: 让我返回
   taxa: 分类单元
   taxa_all_species_html: 所有物种
   taxon: 类群
+  taxonomy: 分类学
   taxon_: 分类单元
   taxon_id: 分类单元ID
   taxon_ids: 分类单元ID
@@ -2459,9 +2506,11 @@ zh-CN:
     it_may_take_google_a_while_to: 这可能使Google需要一些时间来加载这些数据，取决于GBIF是否有相关数据。
     data_url: 数据URL
     overlays: 覆盖图
+  taxon_changes: 分类单元更改
   taxon_change_settings: 分类单元更改设置
   taxon_name: 分类单元名称
   taxon_observed_by_user: '%{taxon}，由 %{user} 观察到'
+  taxon_schemes: 分类方案
   taxon_search: 分类单元搜索
   taxon_search_results_for: 类群搜索结果：
   taxon_swap_only_has_one_input: 只允许一次输入为一次交换
@@ -2554,7 +2603,10 @@ zh-CN:
   tools: 工具
   top_5_identifiers: 前5个标识符
   top_contributors: 顶尖贡献者
+  top_identifier: 最多标识符
   top_identifiers: 顶端标识符
+  top_observer: 最多观察者
+  top_species: 最多物种
   total: 总计
   totals: 总计
   total_members: 成员总数
@@ -2562,8 +2614,11 @@ zh-CN:
   total_unique_observers: 总计独立观察者
   total_users: 总用户，
   "true": 真
+  trending: 趋向
+  trends: 趋势
   trusted_project?: 可信任的项目？
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
+  try_it_out: 试试看
   try_wikipedia: 尝试维基百科？
   tue: 二
   twitter: 推特
@@ -2619,10 +2674,11 @@ zh-CN:
   uploader:
     tooltips:
       add: 添加观察
+      photo_failed: 照片上传失败
       remove: 移除选择的观察
-      select_all: 选择所有观察
-      remove_photo: 移除照片
       remove_observation: 移除观察
+      remove_photo: 移除照片
+      select_all: 选择所有观察
   uploading_num_of_count_photos:
     one: 正在上传照片...
     other: 正在上传 %{num} 张照片，共 %{count} 张...
@@ -2714,6 +2770,7 @@ zh-CN:
   view_projects_from_place: 查看来自%{place}的项目
   view_real_time_stats_in_a_new_window: 在新窗口中查看实时统计
   view_stats: 查看状态
+  view_taxon_change: 查看分类学更改
   view_taxon_page_for: 查看用于此事物的分类单元页面
   view_taxonomic_changes: 查看分类学更改
   view_terms: 查看条款
@@ -2724,6 +2781,7 @@ zh-CN:
   view_your_dashboard: 查看您的仪表板
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>查看您的控制面板</a>以获取更多更新
   view_your_calendar: 查看您的日历
+  view_yours: 查看您的
   view_all_of_your_observations_from_x: 从 %{x} 查看您所有的观察
   vulnerable: 易受攻击的
   w00t_no_ungrafted_taxa: 耶！没有未被嫁接的分类群！
@@ -2731,6 +2789,7 @@ zh-CN:
   w_sounds: w/ 声音
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
   want_to_add_one: 想加入一个？
+  want_to_test_a_new_version_of_this_page: 想要测试此页面的新版本么？
   we_care_privacy: 我们关心您的隐私！
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_currently_support_flickr_for_image_hosting: 我们目前支持Flickr用于图片存储。
@@ -2899,6 +2958,7 @@ zh-CN:
   your_sure_delete_list?: 您确定要删除这个列表么？
   your_sure_delete_taxon_from_list?: 您确定要从此列表中移除 %{taxon} 吗？
   your_world!: 您的世界！
+  yours: 您的
   youre_following: 您正在关注
   youre_not_following_anyone: 您没有关注任何人。关注其他自然法学派将允许您更容易的追踪他们的最新观察。去看看哪些人<a href="%{observations_path}">正在观察</a>并结交一些<a
     href="%{people_path}">新人</a>吧。
@@ -3250,6 +3310,21 @@ zh-CN:
       not_found:
         sorry_that_doesnt_exist: 抱歉，它不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
+    taxa:
+      show:
+        frequency:
+          research: 研究指导
+          verifiable: 可证实
+          Flowering Phenology=bare: 没有花
+          Flowering Phenology=budding: 发芽
+          Flowering Phenology=flower: 开花
+          Flowering Phenology=fruit: 医学结果
+          Insect life stage=egg: 蛋
+          Insect life stage=larva: 幼虫
+          Insect life stage=teneral: 幼体
+          Insect life stage=nymph: 仙女
+          Insect life stage=pupa: 蛹
+          Insect life stage=adult: 成人
     taxon_names:
       form:
         new_name_guidelines_html: |-

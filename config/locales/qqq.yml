@@ -4,6 +4,7 @@
 # Author: Andreas Plank
 # Author: Danieleseglie
 # Author: Exonie
+# Author: Fortega
 # Author: Frog7301
 # Author: Liuxinyu970226
 # Author: Macofe
@@ -83,6 +84,7 @@ qqq:
   accuracy: '{{Identical|Accuracy}}'
   accuracy_meters: '{{Identical|Accuracy}}'
   acquaintances: '{{Identical|Acquaintance}}'
+  action: '{{Identical|Action}}'
   actions: '{{Identical|Action}}'
   active: '{{Identical|Active}}'
   adapted_by_name_from_a_work_by_original: where name is the adaptor's name and original
@@ -143,6 +145,7 @@ qqq:
   are_you_sure_you_want_to_remove_these_x_taxa?: where x is a number
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: where place is the name
     of a place
+  articles: '{{Identical|Article}}'
   attention: '{{Identical|Attention}}'
   you_sure_delete_taxon_from_list?: where taxon is the name of a taxon
   asc: Abbreviation of "Ascending".
@@ -325,6 +328,7 @@ qqq:
   editing_x_in_y: where x and y are resources being edited
   email: '{{Identical|E-mail}}'
   embed: '{{Identical|Embed}}'
+  enlarge: '{{Identical|Enlarge}}'
   end: '{{Identical|End}}'
   endemic_to_x: where x is a place
   error_updating_photo: where photo_errors are a description of the error
@@ -387,6 +391,7 @@ qqq:
   grant_role: where grant is removed/added and role is a role like admin
   grid: '{{Identical|Grid}}'
   group: '{{Identical|Group}}'
+  grouping: '{{Identical|Grouping}}'
   guidelines: '{{Identical|Guideline}}'
   hate_me_facebook: where site_name is the name of the site
   hate_me_flickr: where site_name is the name of the site
@@ -395,6 +400,7 @@ qqq:
   hi_user: '{{Identical|Hi}}'
   hide: '{{Identical|Hide}}'
   high: '{{Identical|High}}'
+  history: '{{Identical|History}}'
   home_faq: '{{Identical|FAQ}}'
   however_there_were_some_issues: where issues describes the issues
   identify: |-
@@ -447,6 +453,7 @@ qqq:
   lat: Abbreviation of Latitude.
   latitude: '{{Identical|Latitude}}'
   layout: '{{Identical|Layout}}'
+  leaderboard: '{{Identical|Leaderboard}}'
   leaderboard_for_x: Where x is a resource like a project name or user name
   learn!: '{{Identical|Learn}}'
   learn_more: '{{Identical|Learn more}}'
@@ -653,8 +660,7 @@ qqq:
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
   photo_s: '{{Identical|Photo}}'
-  photos: '{{Identical|Photo}}'
-  Photos of: intended to precede subject, e.g. Photos of Pigeons
+  photos_of: intended to precede subject, e.g. Photos of Pigeons
   photos_size:
     small: '{{Identical|Small}}'
     medium: '{{Identical|Medium}}'
@@ -874,6 +880,7 @@ qqq:
   tagging: '{{Identical|Tagging}}'
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
+  taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
@@ -916,6 +923,8 @@ qqq:
   total: '{{Identical|Total}}'
   totals: '{{Identical|Total}}'
   "true": '{{Identical|True}}'
+  trending: '{{Identical|Trending}}'
+  trends: '{{Identical|Trend}}'
   tue: Abbreviation for Tuesday, a day of the week.
   twitter: '{{Identical|Twitter}}'
   type: '{{Identical|Type}}'
@@ -1087,6 +1096,7 @@ qqq:
     where site_name is the name of the site and provider is the name of an
     external provider like Flickr
   your_sure_delete_taxon_from_list?: where taxon is the name of a taxon
+  yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
   youve_linked_your_inaturalist_picasa_account: where site_name is the name of the
     site
@@ -1145,6 +1155,19 @@ qqq:
       show:
         no_journal_blurb_html: Notice shown to project owners when they do not have
           any journal posts.
+    taxa:
+      show:
+        frequency:
+          Insect life stage=egg: '{{Identical|Egg}}'
+          Insect life stage=teneral: |-
+            No es una errata, no debería ser «General». Es una fase en la metamorfosis de los insectos.
+
+            https://en.wiktionary.org/wiki/teneral
+
+            (of an arthropod, etc.) Callow. In the pale, soft-bodied state that follows moulting, before the hardening and darkening of the cuticle, during which the creature is able to expand.
+
+            En Wikipedia, «Teneral» redirige a «Ecdysis», y en la versión en castellano «Muda».
+          Insect life stage=adult: '{{Identical|Adult}}'
     users:
       dashboard:
         taxon_change_desc: where site_name is the site name
