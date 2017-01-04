@@ -356,6 +356,7 @@ Rails.application.routes.draw do
       get 'links'
       get "map_layers"
       get "browse_photos"
+      get "show_google"
     end
     collection do
       get 'synonyms'
