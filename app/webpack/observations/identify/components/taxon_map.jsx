@@ -66,10 +66,17 @@
 */
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
+import { objectToComparable } from "../../../shared/util";
 
 class TaxonMap extends React.Component {
   componentDidMount( ) {
     this.setMapFromProps( );
+  }
+  shouldComponentUpdate( nextProps ) {
+    if ( objectToComparable( this.props ) === objectToComparable( nextProps ) ) {
+      return false;
+    }
+    return true;
   }
   componentDidUpdate( ) {
     this.setMapFromProps( );
