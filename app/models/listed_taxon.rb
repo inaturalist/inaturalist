@@ -42,9 +42,9 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
-  after_create :log_create_in_atlas
+  after_create :log_create
   before_destroy :set_old_list
-  before_destroy :log_destroy_in_atlas
+  before_destroy :log_destroy
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
 
@@ -490,22 +490,28 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
-  def is_atlased?
-    if list.is_a?(CheckList) && list.is_default?
-      if atlas = Atlas.where(taxon_id: taxon_id).first
-        if atlas.places.map(&:id).include? place_id
-          return true
-        end
-      end
-    end
-    return false
+  def has_atlas_or_complete_set?
+    return false unless list.is_a?( CheckList ) && list.is_default?
+    return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
+    place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
+    atlas_ids = Atlas.where( "taxon_id IN (?)", taxon.self_and_ancestor_ids ).pluck( :id )
+    # there are atlases for this taxon or ancestors and this place isn't
+    # exploded for all matching atlases, therefore this action is relevant
+    # to some atlas and should be logged
+    return true if atlas_ids.any? &&
+      ExplodedAtlasPlace.where( "atlas_id IN ( ? )", atlas_ids ).
+        where( place_id: place.id ).count < atlas_ids.length
+    cs = CompleteSet.
+      where( "taxon_id IN ( ? ) AND place_id IN ( ? )", taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
+      count
+    return true if cs > 0
+    false
   end
   
-  def log_create_in_atlas
-    if is_atlased?
-      atlas = Atlas.where(taxon_id: taxon_id).first
-      AtlasAlteration.create(
-        atlas_id: atlas.id,
+  def log_create
+    if has_atlas_or_complete_set?
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
         user_id: user_id,
         place_id: place_id,
         action: "listed"
@@ -513,12 +519,11 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
   
-  def log_destroy_in_atlas
-    if is_atlased?
-      atlas = Atlas.where(taxon_id: taxon_id).first
+  def log_destroy
+    if has_atlas_or_complete_set?
       updater_id = updater.nil? ? nil : updater.id
-      AtlasAlteration.create(
-        atlas_id: atlas.id,
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
         user_id: updater_id,
         place_id: place_id,
         action: "unlisted"
@@ -631,6 +636,21 @@ class ListedTaxon < ActiveRecord::Base
     lt.save
   end
 
+  def self.get_defaults_for_taxon_place( place,taxon, options = { } )
+    options[:limit] ||= 100
+    options[:limit] = 200 if options[:limit] > 200
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    return unless taxon
+    place = Place.find_by_id( place ) unless place.is_a?( Place )
+    return unless place
+    place_descendant_ids = place.descendants.
+      where( "admin_level IN ( ? )", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
+    place_with_descendant_ids = [ place.id, place_descendant_ids ].compact.flatten
+    lt = ListedTaxon.includes( :place, :taxon ).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
+    where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
+    where( "listed_taxa.place_id IN ( ? )", place_with_descendant_ids ).limit( options[:limit] )
+  end
+
   def observation_month_stats
     return {} if observations_month_counts.blank?
     r_stats = confirmed_observation_month_stats
@@ -720,7 +740,7 @@ class ListedTaxon < ActiveRecord::Base
       !updater_id && 
       comments_count.to_i == 0 &&
       list.is_default? &&
-      !is_atlased?
+      !has_atlas_or_complete_set?
   end
   
   def introduced?
