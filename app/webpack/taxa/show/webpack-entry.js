@@ -66,19 +66,19 @@ const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 store.dispatch( fetchTaxonAssociates( taxon ) );
 
+// Replace state to contain taxon details, so when a user uses the back button
+// to get back from future page states we will be able to retrieve the original
+// taxon
+const s = windowStateForTaxon( taxon );
+history.replaceState( s.state, s.title, s.path );
+
 window.onpopstate = e => {
-  // User returned from BACK. If the popped state doesn't have a taxon, assume
-  // we're back to the intiial page load and use the taxon from the server
-  // payload.
-  let t = e.state ? e.state.taxon : null;
-  t = t || taxon;
-  if ( !history.state || !history.state.taxon ) {
-    const s = windowStateForTaxon( taxon );
-    history.replaceState( s.state, s.title, s.path );
+  // User returned from BACK
+  if ( e.state && e.state.taxon ) {
+    store.dispatch( setTaxon( e.state.taxon ) );
+    store.dispatch( fetchTaxon( e.state.taxon ) );
+    store.dispatch( fetchTaxonAssociates( e.state.taxon ) );
   }
-  store.dispatch( setTaxon( t ) );
-  store.dispatch( fetchTaxon( t ) );
-  store.dispatch( fetchTaxonAssociates( t ) );
 };
 
 render(

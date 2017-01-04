@@ -205,7 +205,7 @@ class PhotoChooserModal extends React.Component {
                 <form className="form-inline controls nav-buttons stacked">
                   <div className="form-group">
                     <label>
-                      Photos from
+                      { I18n.t( "photos_from" ) }
                     </label> <select
                       className="form-control"
                       onChange={ e => this.setProvider( e.target.value ) }
