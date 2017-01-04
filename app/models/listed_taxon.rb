@@ -491,18 +491,18 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def has_atlas_or_complete_set?
-    return false unless list.is_a?(CheckList) && list.is_default?
-    return false unless [0,1,2].include? place.admin_level
+    return false unless list.is_a?( CheckList ) && list.is_default?
+    return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
     place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
-    atlas_ids = Atlas.where("taxon_id IN (?)", taxon.self_and_ancestor_ids).pluck(:id)
+    atlas_ids = Atlas.where( "taxon_id IN (?)", taxon.self_and_ancestor_ids ).pluck( :id )
     # there are atlases for this taxon or ancestors and this place isn't
     # exploded for all matching atlases, therefore this action is relevant
     # to some atlas and should be logged
     return true if atlas_ids.any? &&
-      ExplodedAtlasPlace.where("atlas_id IN (?)", atlas_ids).
-        where(place_id: place.id).count < atlas_ids.length
+      ExplodedAtlasPlace.where( "atlas_id IN ( ? )", atlas_ids ).
+        where( place_id: place.id ).count < atlas_ids.length
     cs = CompleteSet.
-      where("taxon_id IN (?) AND place_id IN (?)", taxon.self_and_ancestor_ids, place_ancestor_place_ids).
+      where( "taxon_id IN ( ? ) AND place_id IN ( ? )", taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
       count
     return true if cs > 0
     false
@@ -636,18 +636,19 @@ class ListedTaxon < ActiveRecord::Base
     lt.save
   end
 
-  def self.get_defaults_for_taxon_place(place,taxon, options = {})
+  def self.get_defaults_for_taxon_place( place,taxon, options = { } )
     options[:limit] ||= 100
     options[:limit] = 200 if options[:limit] > 200
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
     return unless taxon
-    place = Place.find_by_id(place) unless place.is_a?(Place)
+    place = Place.find_by_id( place ) unless place.is_a?( Place )
     return unless place
-    place_descendant_ids = place.descendants.where('admin_level IN (?)',[0,1,2]).pluck(:id)
-    place_with_descendant_ids = [place.id, place_descendant_ids].compact.flatten
-    lt = ListedTaxon.includes(:place,:taxon).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'").
-    where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
-    where("listed_taxa.place_id IN (?)", place_with_descendant_ids).limit(options[:limit])
+    place_descendant_ids = place.descendants.
+      where( "admin_level IN ( ? )", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
+    place_with_descendant_ids = [ place.id, place_descendant_ids ].compact.flatten
+    lt = ListedTaxon.includes( :place, :taxon ).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
+    where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
+    where( "listed_taxa.place_id IN ( ? )", place_with_descendant_ids ).limit( options[:limit] )
   end
 
   def observation_month_stats

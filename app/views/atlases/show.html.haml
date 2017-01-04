@@ -10,21 +10,20 @@
   .row
     .col-xs-12
       - if @num_obs > 0
-        .alert.alert-warning{:role => "alert"}
+        .alert.alert-warning{ role: :alert }
           Warning: there are observations not represented by this atlas
-          = link_to t(:view), observations_path(@observation_search_url_params)
+          = link_to t( :view ), observations_path( @observation_search_url_params )
       %h2.pull-left
         = "Atlas"
         = t :for
         = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true }
-      .pull-right= link_to t(:edit), edit_atlas_path(@atlas)
+      .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
 
   - atlas_data = {                                      |
     atlas_id: @atlas.id,                                |
     taxon_id: @atlas.taxon_id,                          |
     place_ids: @atlas.presence_places.pluck(:id),       |
-    exploded_places: Hash[@atlas.exploded_atlas_places. |
-      map{ |e| [ e.place_id, e.id ] }].to_json }        |
+    exploded_places: @exploded_places }                 |
 
   .row.cf#top
     .col-sm-3.col-xs-12.pull-right
@@ -35,7 +34,7 @@
   
   #bottom
     #comments
-      = render :partial => "comments/comments", :object => @atlas
+      = render partial: "comments/comments", object: @atlas
     
     %h3
       = "Recent Atlas Alterations"
@@ -43,22 +42,22 @@
     %table.table.table-striped
       %thead
         %tr
-          %th="Place"
-          %th="Action"
-          %th="Login"
-          %th="Date"
-          %th=""
+          %th= "Place"
+          %th= "Action"
+          %th= "Login"
+          %th= "Date"
+          %th= ""
       %tbody#alteration
         - @atlas_alterations.each do |atlas_alteration|
           %tr
-            %th{:scope => "row"}=link_to atlas_alteration.place.name, atlas_alteration.place
+            %th{:scope => "row" }= link_to atlas_alteration.place.name, atlas_alteration.place
             %td= atlas_alteration.action
-            %td= atlas_alteration.user.nil? ? "" : (link_to atlas_alteration.user.login, atlas_alteration.user)
+            %td= atlas_alteration.user.nil? ? "" : ( link_to atlas_alteration.user.login, atlas_alteration.user )
             %td= atlas_alteration.created_at
-            %td= link_to "remove", "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id}
+            %td= link_to "remove", "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id }
 
     - if @atlas_alterations.count == 0
-      .no_alterations="No alterations to this atlas yet"
+      .no_alterations= "No alterations to this atlas yet"
 
     %h3
       = "Recent Listed Taxon Alterations"
@@ -66,21 +65,21 @@
     %table.table.table-striped
       %thead
         %tr
-          %th="Place"
-          %th="Taxon"
-          %th="Action"
-          %th="Login"
-          %th="Date"
+          %th= "Place"
+          %th= "Taxon"
+          %th= "Action"
+          %th= "Login"
+          %th= "Date"
           %th=""
       %tbody#listed_taxon_alteration
         - @listed_taxon_alterations.each do |listed_taxon_alteration|
           %tr
-            %th{:scope => "row"}=link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
+            %th{ :scope => "row" }= link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
             %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
             %td= listed_taxon_alteration.action
-            %td= listed_taxon_alteration.user.nil? ? "" : (link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user)
+            %td= listed_taxon_alteration.user.nil? ? "" : ( link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user )
             %td= listed_taxon_alteration.created_at
-            %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id}
+            %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
 
     - if @listed_taxon_alterations.count == 0
-      .no_listed_taxon_alterations="No listed taxon alterations relevant to this atlas yet"
+      .no_listed_taxon_alterations= "No listed taxon alterations relevant to this atlas yet"

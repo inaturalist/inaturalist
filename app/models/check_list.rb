@@ -3,7 +3,6 @@ class CheckList < List
   belongs_to :place
   belongs_to :taxon
   belongs_to :source
-  has_one :check_list_place, class_name: "Place", foreign_key: :check_list_id
   
   accepts_nested_attributes_for :source
   
@@ -169,9 +168,9 @@ class CheckList < List
     end
     
     finder.includes({
-      taxon: [ :taxon_names ],
-      list: [ :rules ],
-      last_observation: [ :taxon ] }).find_in_batches do |batch|
+      taxon: [:taxon_names],
+      list: [:rules],
+      last_observation: [:taxon] }).find_in_batches do |batch|
       batch.each do |listed_taxon|
         listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
         listed_taxon.skip_index_taxon = true
@@ -285,7 +284,7 @@ class CheckList < List
     
     old_listed_taxa = ListedTaxon.where(place_id: (old_place_ids - current_place_ids), taxon_id: taxon_ids)
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
-    ListedTaxon.preload_associations(listed_taxa, [ { list: :rules }, :taxon, :place, :first_observation ])
+    ListedTaxon.preload_associations(listed_taxa, [{ list: :rules }, :taxon, :place, :first_observation])
     unless listed_taxa.blank?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
@@ -298,10 +297,14 @@ class CheckList < List
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
-      if Atlas.where("taxon_id IN (?)", taxon_ids).count > 0 || CompleteSet.where("taxon_id IN (?) AND place_id IN (?)",taxon_ids, current_place_ids).any?
-        new_place_ids = Place.where(id: new_place_ids).where("admin_level NOT IN (?)",[0,1,2]).pluck(:id) #if under atlas or complete set,
-      end                                                                                                 #don't create listings for places of admin_level 0,1,2
-      add_new_listed_taxa(observation.taxon, new_place_ids)
+      if Atlas.where( "taxon_id IN ( ? )", taxon_ids ).count > 0 ||
+        CompleteSet.where( "taxon_id IN ( ? ) AND place_id IN ( ? )", taxon_ids, current_place_ids ).any?
+        #if under atlas or complete set,
+        #don't create listings for places of admin_level 0,1,2
+        new_place_ids = Place.where( id: new_place_ids ).
+          where( "admin_level NOT IN (?)", [Place::COUNTRY_LEVEL ,Place::STATE_LEVEL ,Place::COUNTY_LEVEL] ).pluck( :id )
+      end
+      add_new_listed_taxa( observation.taxon, new_place_ids )
     end
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"
   end

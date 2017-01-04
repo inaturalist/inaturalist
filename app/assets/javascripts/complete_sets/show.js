@@ -4,11 +4,12 @@ $('.show_listings_element').on( "click", function( e ) {
   getListings( taxonID );
 });
 
-$('.destroy_element').on( "click", function( e ) {
+$(".destroy_element").on( "click", function( e ) {
   e.preventDefault( );
   var taxonID = $(this).attr("data-taxon-id");
-  var confirmText = "This will destroy all the listed taxa that are of this taxon (or any descendants) for this place (or any standard descendants). This can be very destructive, are you sure?";
-  if(confirm(confirmText)) {
+  var confirmText = "This will destroy all the listed taxa that are of this taxon (or any descendants)" +
+      " for this place (or any standard descendants). This can be very destructive, are you sure?";
+  if( confirm( confirmText ) ) {
     destroy( taxonID );
   }
 });
@@ -30,7 +31,7 @@ getListings = function( taxon ) {
       panel.html( "" );
       panel.append( $( "<h4>" ).text( "Listed Taxa" ) );
       $.each(s, function(key,value) {
-        var explodeLink = $( "<a href='/listed_taxa/"+value.id+"'>" ).text( value.taxon.name+" in "+value.place.name);
+        var explodeLink = $( "<a href='/listed_taxa/" + value.id + "'>" ).text( value.taxon.name + " in " + value.place.name );
         panel.append( explodeLink );
         panel.append( "<br>" );
       });
@@ -51,10 +52,10 @@ destroy = function( taxon ) {
     url: "/complete_sets/" + complete_setID + "/destroy_relevant_listings",
     data: { taxon_id: taxon, place_id: placeID },
     success: function( s ) {
-      console.log("sucess");
+      console.log( "sucess" );
     },
     error: function( e ) {
-      console.log("error");
+      console.log( "error" );
     }
   });
 };
@@ -62,16 +63,15 @@ destroy = function( taxon ) {
 $('.remove_listed_taxon_alteration').on('click', function(event){
   event.preventDefault();    
   var $this = $(this);    
-  var lta_id = $this.attr("data-listed-taxon-alteration-id");
+  var lta_id = $this.attr( "data-listed-taxon-alteration-id" );
   $.ajax({
     type: "POST",
     url: "/complete_sets/" + $( "#set" ).data( "complete-set-id" ) + "/remove_listed_taxon_alteration",
     data: { lta_id: lta_id },
     success: function(data){
-      console.log("success");
     },
-    error: function(data){
-      console.log("error");
+    error: function( data ){
+      console.log( "error" );
     },
     dataType: 'JSON'
   });
