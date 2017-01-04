@@ -28,7 +28,8 @@ const PhotoBrowser = ( {
   setTerm,
   showTaxonPhotoModal,
   terms,
-  showTaxonGrouping
+  showTaxonGrouping,
+  place
 } ) => {
   let sortedGroupedPhotos;
   if ( grouping.param === "taxon_id" ) {
@@ -62,6 +63,7 @@ const PhotoBrowser = ( {
             observationPhoto.observation.taxon,
             observationPhoto.observation
           ) }
+          showTaxon
         />
       );
     } )
@@ -71,6 +73,11 @@ const PhotoBrowser = ( {
       <i className="fa fa-refresh fa-spin"></i>
     </div>
   );
+  const noObsNotice = (
+    <div className="nocontent text-muted">
+      { I18n.t( place ? "no_observations_from_this_place_yet" : "no_observations_yet" ) }
+    </div>
+  );
   const renderUngroupedPhotos = ( ) => (
     <InfiniteScroll
       loadMore={( ) => loadMorePhotos( )}
@@ -78,10 +85,7 @@ const PhotoBrowser = ( {
       className="photos"
       loader={loader}
     >
-      { observationPhotos && observationPhotos.length === 0 ?
-        <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
-        : null
-      }
+      { observationPhotos && observationPhotos.length === 0 ? noObsNotice : null }
       { observationPhotos ? null : loader }
       { renderObservationPhotos( observationPhotos ) }
     </InfiniteScroll>
@@ -296,7 +300,8 @@ PhotoBrowser.propTypes = {
   setGrouping: PropTypes.func,
   params: PropTypes.object,
   setParam: PropTypes.func,
-  showTaxonGrouping: PropTypes.bool
+  showTaxonGrouping: PropTypes.bool,
+  place: PropTypes.object
 };
 
 PhotoBrowser.defaultProps = {

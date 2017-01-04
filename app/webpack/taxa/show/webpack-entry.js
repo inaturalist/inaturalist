@@ -7,18 +7,12 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Taxon } from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, {
-  setTaxon,
-  setCount,
-  fetchTaxonChange,
-  fetchNames
-} from "../shared/ducks/taxon";
-import observationsReducer, {
-  fetchMonthFrequency,
-  fetchMonthOfYearFrequency
-} from "./ducks/observations";
-import leadersReducer, { fetchLeaders } from "./ducks/leaders";
+import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
+import observationsReducer from "./ducks/observations";
+import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
+import { fetchTaxonAssociates } from "./actions/taxon";
+import { windowStateForTaxon } from "../shared/util";
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -70,26 +64,21 @@ if ( serverPayload.ancestorsShown ) {
 }
 const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
-if ( taxon.taxon_changes_count ) {
-  store.dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
-  if ( taxon.taxon_changes_count > 0 ) {
-    store.dispatch( fetchTaxonChange( taxon ) );
-  }
-}
-if ( taxon.taxon_schemes_count ) {
-  store.dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
-}
-if ( PREFERRED_PLACE || serverPayload.place ) {
-  store.dispatch( fetchNames( ) );
-}
-store.dispatch( fetchLeaders( taxon ) ).then( ( ) => {
-  store.dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {
-    store.dispatch( fetchMonthFrequency( taxon ) );
-  } );
-} );
+store.dispatch( fetchTaxonAssociates( taxon ) );
 
-window.onpopstate = ( ) => {
-  // user returned from BACK
+window.onpopstate = e => {
+  // User returned from BACK. If the popped state doesn't have a taxon, assume
+  // we're back to the intiial page load and use the taxon from the server
+  // payload.
+  let t = e.state ? e.state.taxon : null;
+  t = t || taxon;
+  if ( !history.state || !history.state.taxon ) {
+    const s = windowStateForTaxon( taxon );
+    history.replaceState( s.state, s.title, s.path );
+  }
+  store.dispatch( setTaxon( t ) );
+  store.dispatch( fetchTaxon( t ) );
+  store.dispatch( fetchTaxonAssociates( t ) );
 };
 
 render(

@@ -47,27 +47,32 @@ class FileGalleryItem extends Component {
   }
 
   render( ) {
-    let close;
     let item;
     let zoom;
-    if ( this.props.file.preview && !this.props.file.photo ) {
+    if ( !( this.props.file.uploadState === "failed" ) &&
+                ( ( this.props.file.preview && !this.props.file.photo ) ||
+                ( this.props.file.photo && this.props.file.uploadState !== "failed" ) ) ) {
       // preview photo
       item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );
-      close = this.closeButton( );
-    } else if ( this.props.file.photo ) {
-      // uploaded photo
-      item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
-      zoom = this.zoomButton( );
-      close = this.closeButton( );
     } else {
-      // fallback state that is pretty much never seen
-      item = ( <Glyphicon glyph="exclamation-sign" /> );
-      close = this.closeButton( );
+      item = (
+        <div className="failed" >
+          <OverlayTrigger
+            placement="top"
+            delayShow={ 1000 }
+            overlay={ (
+              <Tooltip id="merge-tip">{ I18n.t( "uploader.tooltips.photo_failed" ) }</Tooltip>
+            ) }
+          >
+            <Glyphicon glyph="exclamation-sign" />
+          </OverlayTrigger>
+        </div>
+      );
     }
     return (
       <div className="gallery-item">
-        { close }
+        { this.closeButton( ) }
         { item }
         { zoom }
       </div>

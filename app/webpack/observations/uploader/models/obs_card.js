@@ -114,7 +114,7 @@ const ObsCard = class ObsCard {
       params.observation.observed_on_string = this.date;
     }
     const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
-      f => f.photo.id ) );
+      f => ( f.photo ? f.photo.id : null ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
     inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
       dispatch( actions.updateObsCard( this, {

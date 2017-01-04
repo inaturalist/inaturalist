@@ -352,7 +352,11 @@ export function fetchTaxonChange( taxon ) {
         if ( !json[0] ) {
           return;
         }
-        dispatch( setTaxonChange( json[0] ) );
+        let taxonChange = json[0];
+        if ( taxon.is_active ) {
+          taxonChange = _.find( json, tc => !tc.committed_on );
+        }
+        dispatch( setTaxonChange( taxonChange ) );
       } );
   };
 }

@@ -9,6 +9,7 @@ import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
 import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
+import RecentObservationsContainer from "../containers/recent_observations_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -17,6 +18,13 @@ class TaxonPageTabs extends React.Component {
       this.props.choseTab( e.target.hash.match( /\#(.+)\-tab/ )[1] );
     } );
     this.props.loadDataForTab( this.props.chosenTab );
+  }
+  componentDidUpdate( prevProps ) {
+    const prevTaxonId = prevProps.taxon ? prevProps.taxon.id : null;
+    const currTaxonId = this.props.taxon ? this.props.taxon.id : null;
+    if ( prevTaxonId !== currTaxonId ) {
+      this.props.loadDataForTab( this.props.chosenTab );
+    }
   }
   render( ) {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
@@ -34,10 +42,13 @@ class TaxonPageTabs extends React.Component {
             pullRight
             onSelect={ ( e, eventKey ) => {
               switch ( eventKey ) {
-                case "1":
+                case "add-flag":
                   window.location = `/taxa/${this.props.taxon.id}/flags/new`;
                   break;
-                case "2":
+                case "view-flags":
+                  window.location = `/taxa/${this.props.taxon.id}/flags`;
+                  break;
+                case "edit-photos":
                   this.props.showPhotoChooserModal( );
                   break;
                 default:
@@ -51,18 +62,24 @@ class TaxonPageTabs extends React.Component {
             <Dropdown.Menu>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
-                eventKey="1"
+                eventKey="add-flag"
               >
                 <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
-                eventKey="2"
+                className={isCurator ? "" : "hidden"}
+                eventKey="view-flags"
+              >
+                <i className="fa fa-flag-checkered"></i> { I18n.t( "view_flags" ) }
+              </MenuItem>
+              <MenuItem
+                eventKey="edit-photos"
               >
                 <i className="fa fa-picture-o"></i> { I18n.t( "edit_photos" ) }
               </MenuItem>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
-                eventKey="3"
+                eventKey="edit-taxon"
               >
                 <i className="fa fa-pencil"></i> { I18n.t( "edit_taxon" ) }
               </MenuItem>
@@ -135,6 +152,7 @@ class TaxonPageTabs extends React.Component {
             id="map-tab"
           >
             <TaxonPageMap taxon={this.props.taxon} />
+            <RecentObservationsContainer />
           </div>
           <div
             role="tabpanel"

@@ -4,7 +4,9 @@ class TaxaController < ApplicationController
   caches_action :show, :expires_in => 1.day,
     :cache_path => Proc.new{ |c| { locale: I18n.locale, mobile: c.request.format.mobile? } },
     :if => Proc.new {|c|
-      !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
+      !request.format.json? &&
+      (c.session.blank? || c.session['warden.user.user.key'].blank?) &&
+      c.params[:test].blank?
     }
   caches_action :describe, :expires_in => 1.day,
     :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
@@ -1028,8 +1030,8 @@ class TaxaController < ApplicationController
   end
 
   def links
-    places_exist = ListedTaxon.where("place_id IS NOT NULL AND taxon_id = ?", @taxon).exists?
-    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: places_exist )
+    places_exist = ListedTaxon.where( "place_id IS NOT NULL AND taxon_id = ?", @taxon ).exists?
+    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: !places_exist )
     respond_to do |format|
       format.json { render json: taxon_links.map{ |tl| {
         taxon_link: tl,

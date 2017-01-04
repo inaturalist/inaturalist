@@ -6,7 +6,8 @@ const ArticlesTab = ( {
   description,
   descriptionSource,
   descriptionSourceUrl,
-  links
+  links,
+  currentUser
 } ) => (
   <Grid className="ArticlesTab">
     <Row>
@@ -45,6 +46,11 @@ const ArticlesTab = ( {
                 >
                   { link.taxon_link.site_title }
                 </a>
+                { currentUser ? (
+                  <a className="pull-right" href={`/taxon_links/${link.taxon_link.id}/edit`}>
+                    <i className="fa fa-pencil"></i>
+                  </a>
+                ) : null }
               </li>
             );
           } ) }
@@ -65,7 +71,8 @@ ArticlesTab.propTypes = {
   description: PropTypes.string,
   descriptionSource: PropTypes.string,
   descriptionSourceUrl: PropTypes.string,
-  links: PropTypes.array
+  links: PropTypes.array,
+  currentUser: PropTypes.object
 };
 
 ArticlesTab.defaultProps = { links: [] };

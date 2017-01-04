@@ -211,6 +211,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
 };
 
 inatTaxonMap.addTaxonLayers = function( map, options ) {
+  map.removeAllLayers( );
   if( !options.taxonLayers ) { return; }
   _.each( options.taxonLayers, function( layer ) {
     if( !( layer.taxon && layer.taxon.id ) ) { return; }
