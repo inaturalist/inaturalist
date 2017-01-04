@@ -12,7 +12,8 @@ const TaxonPhoto = ( {
   showTaxonPhotoModal,
   className,
   size,
-  showTaxon
+  showTaxon,
+  onClickTaxon
 } ) => (
   <div
     className={`TaxonPhoto ${className}`}
@@ -31,7 +32,17 @@ const TaxonPhoto = ( {
       </button>
       { showTaxon ? (
         <div className="photo-taxon">
-          <SplitTaxon taxon={taxon} noParens url={urlForTaxon( taxon )} />
+          <SplitTaxon
+            taxon={taxon}
+            noParens
+            url={urlForTaxon( taxon )}
+            onClick={ e => {
+              if ( !onClickTaxon ) return true;
+              e.preventDefault( );
+              onClickTaxon( taxon );
+              return false;
+            } }
+          />
           <a href={urlForTaxon( taxon )} className="btn btn-link info-link">
             <i className="fa fa-info-circle"></i>
           </a>
@@ -55,7 +66,8 @@ TaxonPhoto.propTypes = {
   observation: PropTypes.object,
   className: PropTypes.string,
   size: PropTypes.string,
-  showTaxon: PropTypes.bool
+  showTaxon: PropTypes.bool,
+  onClickTaxon: PropTypes.func
 };
 
 TaxonPhoto.defaultProps = {

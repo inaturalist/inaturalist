@@ -93,6 +93,7 @@ class PhotoPreview extends React.Component {
                   showTaxonPhotoModal={showTaxonPhotoModal}
                   className="photoItem"
                   showTaxon
+                  onClickTaxon={ taxon => this.props.showNewTaxon( taxon ) }
                 />
               );
             } else {
@@ -141,7 +142,8 @@ PhotoPreview.propTypes = {
   taxonPhotos: PropTypes.array,
   layout: PropTypes.string,
   showTaxonPhotoModal: PropTypes.func,
-  showPhotoChooserModal: PropTypes.func
+  showPhotoChooserModal: PropTypes.func,
+  showNewTaxon: PropTypes.func
 };
 
 PhotoPreview.defaultProps = { layout: "gallery" };

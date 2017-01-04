@@ -10,7 +10,8 @@ const SplitTaxon = ( {
   displayClassName,
   forceRank,
   showIcon,
-  truncate
+  truncate,
+  onClick
 } ) => {
   const LinkElement = url ? "a" : "span";
   let title = "";
@@ -60,6 +61,7 @@ const SplitTaxon = ( {
           className={`comname display-name ${displayClassName || ""}`}
           href={ url }
           target={ target }
+          onClick={ onClick }
         >
           { truncateText( taxon.preferred_common_name ) }
         </LinkElement>
@@ -71,6 +73,7 @@ const SplitTaxon = ( {
             <LinkElement
               className={`noname display-name ${displayClassName || ""}`}
               href={ url }
+              onClick={ onClick }
               target={ target }
             >
               { I18n.t( "unknown" ) }
@@ -84,6 +87,7 @@ const SplitTaxon = ( {
         <LinkElement
           className={`noname display-name ${displayClassName || ""}`}
           href={ url }
+          onClick={ onClick }
           target={ target }
         >
           { I18n.t( "unknown" ) }
@@ -139,6 +143,7 @@ const SplitTaxon = ( {
       <LinkElement
         className={sciNameClass}
         href={ url }
+        onClick={ onClick }
         target={ target }
       >
         { taxonRank( ) }
@@ -179,7 +184,8 @@ SplitTaxon.propTypes = {
   displayClassName: PropTypes.string,
   forceRank: PropTypes.bool,
   showIcon: PropTypes.bool,
-  truncate: PropTypes.number
+  truncate: PropTypes.number,
+  onClick: PropTypes.func
 };
 SplitTaxon.defaultProps = {
   target: "_self"

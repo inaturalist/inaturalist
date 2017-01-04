@@ -3,6 +3,7 @@ import { urlForTaxon } from "../../shared/util";
 import TaxonCrumbs from "../../shared/components/taxon_crumbs";
 import { setConfig } from "../../../shared/ducks/config";
 import { updateSession } from "../../../shared/util";
+import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   const taxon = state.taxon.taxon;
@@ -23,7 +24,8 @@ function mapDispatchToProps( dispatch ) {
     hideAncestors: ( ) => {
       dispatch( setConfig( { ancestorsShown: false } ) );
       updateSession( { preferred_taxon_page_ancestors_shown: false } );
-    }
+    },
+    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
   };
 }
 
