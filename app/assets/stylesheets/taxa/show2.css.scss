@@ -336,6 +336,21 @@ $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
+  overflow: hidden;
+  height: 590px;
+}
+.PhotoPreview .photo-bg {
+  position: absolute;
+  left: -50px;
+  top: -50px;
+  background-size: cover;
+  width: 120%;
+  height: 120%;
+  -webkit-filter: blur(50px);
+  -moz-filter: blur(50px);
+  -o-filter: blur(50px);
+  -ms-filter: blur(50px);
+  filter: blur(20px) brightness(0.5);
 }
 .PhotoPreview ul.others {
   width: 100%;

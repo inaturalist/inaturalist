@@ -12,6 +12,7 @@ const TaxonPhoto = ( {
   showTaxonPhotoModal,
   className,
   size,
+  backgroundSize,
   showTaxon,
   onClickTaxon
 } ) => (
@@ -53,6 +54,7 @@ const TaxonPhoto = ( {
       src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
       low={ photo.photoUrl( "small" ) }
       height={height}
+      backgroundSize={backgroundSize}
     />
   </div>
 );
@@ -66,6 +68,7 @@ TaxonPhoto.propTypes = {
   observation: PropTypes.object,
   className: PropTypes.string,
   size: PropTypes.string,
+  backgroundSize: PropTypes.string,
   showTaxon: PropTypes.bool,
   onClickTaxon: PropTypes.func
 };
