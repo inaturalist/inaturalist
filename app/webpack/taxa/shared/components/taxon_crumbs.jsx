@@ -15,6 +15,9 @@ class TaxonCrumbs extends React.Component {
   }
 
   clickedTaxonLink( e, taxon ) {
+    if ( !this.props.showNewTaxon ) {
+      return true;
+    }
     e.preventDefault( );
     this.hideChildren( );
     this.props.showNewTaxon( taxon );
