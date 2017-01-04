@@ -66,7 +66,6 @@ ja:
   a_member_of_taxon_html: '%{taxon}の一つ'
   able_to_connect_flickr: Flickrアカウントとの連携ができました。
   about: 詳細
-  about_taxon_changes: 分類群変更について
   about_bioblitz_results: バイオブリッツの結果について
   about_community_taxa: コミュニティー分類群について
   about_external_links: 外部リンクについて
@@ -74,6 +73,7 @@ ja:
   about_licensing: ライセンスについて
   about_life!: 生き物について学ぼう！
   about_places: 場所について
+  about_taxon_changes: 分類群変更について
   about_the_cc_licenses: クリエイティブ・コモンズ・ライセンスについて
   about_these_licenses: ライセンスについて
   about_this_map: この地図について
@@ -1780,7 +1780,6 @@ ja:
   photo_s: 写真
   photo_type: 写真の種類
   photo_urls_repaired: 写真のURLは復元できました
-  photos: 写真
   photos_or_sounds?: 写真もしくは音声？
   photos_size:
     small: 小
@@ -1970,7 +1969,6 @@ ja:
   please_hold_on_while_the_file_is_generated: ファイルが生成されるまでしばらくお待ちください。長いリストの場合、数分かかることがあります。
   popular: 人気
   position: 位置
-  position_accurate_to_within_5km?: 5km以下の位置情報正確さ？
   positional_accuracy: 位置精密さ
   possessive_user: '%{user}の'
   post: 投稿
@@ -2610,9 +2608,9 @@ ja:
   uploader:
     tooltips:
       add: 観察記録を追加
-      select_all: すべての観察記録を選択
-      remove_photo: 写真を除去
       remove_observation: 観察記録を取り除く
+      remove_photo: 写真を除去
+      select_all: すべての観察記録を選択
   uploading_num_of_count_photos:
     one: 写真をアップロード中...
     other: '%{num}/%{count}枚の写真をアップロード中...'

@@ -1,10 +1,12 @@
 # Messages for Spanish (español)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Asierog
 # Author: Cgalindo
 # Author: Csbotero
 # Author: Eduardo Martinez
 # Author: Fitoschido
+# Author: Fortega
 # Author: Loarie
 # Author: Macofe
 # Author: Ncontinanza
@@ -39,8 +41,8 @@ es:
     one: 1 identificación
     other: '%{count} identificaciones'
   x_ids:
-    one: 1 ID
-    other: '%{count} IDs'
+    one: 1 id.
+    other: '%{count} ids.'
   x_lists:
     one: 1 lista
     other: '%{count} listas'
@@ -52,6 +54,9 @@ es:
     other: '%{count} taxones que coinciden'
   x_matching_taxa_html:
     other: =<span class="count">1</span> coincidencia de taxón
+  x_misidentifications_of_this_species:
+    one: 1 error de identificación de esta especie
+    other: '%{count} errores de identificación de esta especie'
   x_observations:
     one: 1 observación
     other: '%{count} observaciones'
@@ -70,6 +75,9 @@ es:
   x_people:
     one: 1 persona
     other: '%{count} personas'
+  x_people_found_this_helpful:
+    one: A Una persona le ha resultado util
+    other: A %{count} personas les ha resultado util
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
@@ -111,14 +119,17 @@ es:
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
   about: Acerca de
-  about_taxon_changes: Acerca de cambias taxonomias
   about_bioblitz_results: sobre los resultados del "bioblitz" (evaluación rápida)
   about_community_taxa: Sobre los taxones comunitarios
+  about_conservation_status: Sobre el estado de conservación
+  about_establishment_means: Acerca de los medios de establecimiento
   about_external_links: Acerca de los enlaces externos
   about_licenses: Sobre las licencias
   about_licensing: Sobre las licencias
   about_life!: '!Sobre la vida!'
+  about_names: Acerca de los nombres
   about_places: Sobre Lugares
+  about_taxon_changes: Acerca de cambias taxonomias
   about_the_cc_licenses: Sobre las licencias de Creative Commons
   about_the_taxobox_raquo: Sobre la ficha de taxón &raquo;
   about_these_licenses: Sobre estas licencias
@@ -137,6 +148,7 @@ es:
     en el mapa. Trata de hacer el círculo lo suficientemente grande para asegurar
     que estabas en algún lugar del área marcada.
   acquaintances: conocidos
+  action: Acción
   actions: Acciones
   activate_user: Activar usuario
   active: activo
@@ -183,6 +195,7 @@ es:
   add_edit_more_fields: Añade/edita más campos
   add_description: Añade %{description_name}
   add_from_your_observations: Añade de tus observaciones
+  add_link: Añadir enlace
   add_listed_taxa_from_observations: Añade taxones listados de las observaciones
   add_higher_level_taxon: Añade un taxón de más alto nivel (por ejemplo "aves")
   add_id: Añade identificación
@@ -210,6 +223,7 @@ es:
     a una lista.  En desarrollo, todavía trabajamos en algunos detalles...
   add_observations_project: Añade observaciones a este proyecto
   add_one: ¡Añade una!
+  add_one_now: Añadir uno
   add_photos: Añade fotos
   add_photos_to_this_observation: Añade fotos a esta observación
   add_place: Añadir lugar
@@ -473,6 +487,7 @@ es:
     este taxón?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: ¿Estás seguro que deseas
     quitar a esta especie o grupo de la lista de comprobación de %{place}?
+  articles: Artículos
   associated_observations: Observaciones asociadas
   associated_taxa: Taxones asociados
   attention: Atención
@@ -674,6 +689,20 @@ es:
     replace_with: reemplazado con
     dropped: eliminado
     staged: cambio de etapa
+    input_taxon_was_split_into_output_taxa_html: '%{input_taxon} se separó en %{output_taxa}'
+    input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} será separado
+      en %{output_taxa}'
+    input_taxon_was_dropped_html: '%{input_taxon} ha sido eliminado'
+    input_taxon_will_be_dropped_html: '%{input_taxon} será eliminado'
+    input_taxon_will_be_activated_soon_html: '%{input_taxon} se activará pronto'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} fue sustituido
+      por %{output_taxon}'
+    input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} será sustituido
+      por %{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} ha sido incluido
+      en %{output_taxon}'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} será incluido
+      en %{output_taxon}'
   change_visibility_of: ¿Camibar la visibilidad de las coordenadas espaciales?
   change_your_matching: Cambia tu coincidencia
   change_your_password: Cambiar su contraseña
@@ -1106,6 +1135,7 @@ es:
   edit_selected: Modificar seleccionados
   edit_source: Modificar fuente
   edit_taxa: Edita los taxones
+  edit_taxon: Editar taxón
   edit_taxon_change: Modifica los cambios a la especie o grupo
   edit_taxon_link: Modificar vínculo del Taxón
   edit_taxon_range: Modificar rango del taxón
@@ -1159,10 +1189,11 @@ es:
   embed_widget_project: Insertar un widget para este proyecto en su página web
   enable_offline_access: Habilitar el acceso sin conexión
   enable_offline_access_for_mobile: Habilitar el acceso sin conexión para móviles
+  enlarge: Aumentar
   end: Final
   endangered: en peligro
   endemic: endémica
-  endemic_to_x: endémica de %{x}
+  endemic_to_x: Endémica de %{x}
   eol: EOL
   eol_collection_url: URL de colección EOL
   error_updating_photo: 'Error al subir la foto: %{photo_errors}'
@@ -1197,6 +1228,7 @@ es:
   exact_rank: Rango exacto
   existing_flags: Marcas existentes
   exit_full_screen: Salir de la pantalla completa
+  examples_of_ranking_organizations: Ejemplos de organizaciones clasificatorias
   expand_days: expandir días
   expand_updates: expandir actualizaciones
   explore!: ¡Explora!
@@ -1228,6 +1260,7 @@ es:
   "false": "No"
   faq: Preguntas frecuentes
   fave: favorito
+  faves: Preferidos
   Family: Familia
   favorite_taxa: taxones favoritos
   favorites: Favoritos
@@ -1286,6 +1319,8 @@ es:
   first_connect_your_provider_account_to_your_site: 'Primero, connectar su cuenta
     %{provider} a %{site_name}:'
   first_inat_observation: Primera observación %{site_name}
+  first_observation: Primera observación
+  first_observation_by_date_added: Primera observación por fecha de agregación
   first_observer: Primer observador
   first_report: primer informe
   flag: Marcar
@@ -1327,6 +1362,8 @@ es:
   flickr_tagger: Etiquetador de Flickr
   flickr_tags: Etiquetas de Flickr
   flickr_youre_all_set: Ya está listo para comenzar a explorar %{site_name}
+  flowering_phenology: Fenología de la floración
+  fluid_layout: Diseño fluido
   fluid: fluida
   follow_us: Síganos en
   follow_us_on: Síganos en
@@ -1404,8 +1441,10 @@ es:
   green: verde
   grey: gris
   grid: Cuadrícula
+  grid_layout: Diseño de cuadrícula
   grid_tooltip: Mostrar la vista de rejilla
   group: Grupo
+  grouping: Agrupamiento
   guess_description: Estimación / Descripción
   guides: Guías
   guide_colors: Guía de colores
@@ -1458,6 +1497,8 @@ es:
   hide_details: Ocultar detalles
   high: alta
   highest_rank: Rango más alto
+  highlights: Destacado
+  history: Historial
   home: Inicio
   home_faq: PP. FF.
   however_there_were_some_issues: 'Sin embargo, hubo algunos problemas: %{issues}'
@@ -1572,11 +1613,14 @@ es:
   info: Información
   input_taxon: Taxón de entrada
   insects: insectos
+  insect_life_stage: Etapa vital del insecto
   inspired_by_the_flickr_group: Inspirado por el grupo Flickr <a href='http://flickr.com/groups/idplease/'>ID
     por favor</a>, este es un lugar para colocar observaciones de cosas que usted
     no sabe ¡y ayudar a que otras personas identifiquen criaturas misteriosas!
+  interactions: Interacciones
   internal_server_error: Error interno del servidor
   introduced: introducida
+  introduced_in_place: Introducción en %{place}
   invasive: invasoras
   invitation: Invitación
   invitations: Invitaciones
@@ -1643,6 +1687,7 @@ es:
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nombre de la etiqueta para agrupar los
     cambios de especie o grupo
+  language_slash_type: Idioma / Tipo
   large: gran
   last_confirmed_observation: Última observación confirmada
   last_inat_observation: Última observación %{site_name}
@@ -1654,6 +1699,7 @@ es:
   latitude_slash_y_coord_slash_northing: Latitud / y coord / norte
   layers: Capas
   layout: Disposición
+  leaderboard: Marcador
   leaderboard_for_x: Los más activos de %{x}
   leaderboards: Los más activos
   leaderboard_most:
@@ -1992,6 +2038,7 @@ es:
   more_info_title: Más información
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
+  more_photos: Más fotos
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
@@ -2033,6 +2080,7 @@ es:
   naturalised: naturalizado
   naturalized: naturalizado
   native: nativa
+  native_to_place: Nativo de %{place}
   nav: Nav
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -2061,7 +2109,7 @@ es:
     %{parent} de %{user_link}
   new_custom_field_for: Nuevo campo personalizado para
   new_flag_for: Marca nueva para
-  new_guide: Nueva Guía
+  new_guide: Guía nueva
   new_journal_posts: Nuevo artículo en el diario
   new_list: Lista nueva
   new_members: Miembros nuevos
@@ -2113,9 +2161,11 @@ es:
   no_flags: Sin marcas esta vez
   no_flickr_photos_tagged: ¡No hay fotos etiquetadas con Flickr!
   no_header_row: No hay encabezado de fila
+  no_identifications: Sin identificaciones
   no_identifications_added:
     current_user: No has añadido identificaciones a ninguna observación.
     user: '%{user} no ha añadido identificaciones a ninguna observación.'
+  no_interaction_data_available: Datos de interacción no disponibles
   no_favorites_added:
     current_user: No has añadido favoritos aún.
     user: '%{user} no ha añadido favoritos.'
@@ -2132,10 +2182,12 @@ es:
   no_matching_users: No hay usuarios que concuerden
   no_members_yet: No hay miembros todavía
   no_messages_yet: Ningún mensaje aún
+  no_misidentifications_yet: Ninguna identificación errónea
   no_mobilized_version_of_that_view: No existe una versión móvil de esta vista.
   no_more_mail_from_site: ¿No desea recibir más correos del sitio de %{site_name}?
     Edita tu configuración de Correo en
   no_more_taxa_to_load: No hay más taxones que cargar.
+  no_more_results_found: No hay más resultados
   no_more_updates: ¡No hay más actualizaciones!
   no_nearby_observations: No hay observaciones cercanas.
   no_new_messages: No hay nuevos mensajes
@@ -2173,6 +2225,7 @@ es:
   no_sections_have_been_added_to_this_assessments_yet: No se han agregado secciones
     a esta evaluacion todavia.
   no_species_have_been_listed: ¡No se han enlistado especies para este lugar todavía!
+  no_species_observed: Ninguna especie observada
   no_species_on_this_list: ¡No hay especies en esta lista todavía!
   no_species_on_this_list_for_owner_html: |-
     Usted puede empezar a añadir especies a la lista directamente, o si se
@@ -2317,6 +2370,7 @@ es:
     con otros filtros. si usted quiere encontrar la observación de una especie
     en particular, utiliza el taxón filtrar.
   observations_title: Observaciones de todos
+  observations_total: Observaciones totales
   observations_w: Búsqueda de observaciones con
   observations_w_field: Búsqueda de observaciones con campo
   observations_was_successfully_updated: La observación(es) fue actualizada exitosamente.
@@ -2486,6 +2540,9 @@ es:
   other_annimals: Otros animales
   other_listings_of_this_taxon_for_this_place: Otras ejemplas de este especies listado
     en este lugar
+  other_species_commonly_misidentified_as_this_species: Especies confundidas con esta
+  other_species_commonly_misidentified_as_this_species_in_place_html: Especies confundidas
+    con esta en <a href="%{url}">%{place}</a>
   our_blog: Nuestro blog
   out_of_range: Fuera del intervalo
   output_taxon: Taxón de salida
@@ -2523,6 +2580,7 @@ es:
   photo: Foto
   photo?: ¿Foto?
   photo_attribution: Foto %{attribution}
+  photo_browser: Navegador de fotos
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Foto borrada
   photo_destroyed_because_it_was_deleted_from: La foto fue destruida porque fue borrada
@@ -2533,7 +2591,8 @@ es:
   photo_s: Foto(s)
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
-  photos: Fotos
+  photos_of: Fotos de
+  photos_of_taxon_html: Fotos de %{taxon}
   photos_or_sounds?: ¿Fotos o sonidos?
   photos_size:
     small: pequeño
@@ -2737,7 +2796,6 @@ es:
     el archivo. Puede tomar algunos minutos para listas grandes.
   popular: popular
   position: Posición
-  position_accurate_to_within_5km?: ¿La posición es exacta dentro de 5 km?
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
   post: Ingresar
@@ -2873,6 +2931,7 @@ es:
     variety: Variedad
     form: Forma
     leaves: hojas
+  rare: Escaso
   ray_finned_fishes: peces con aletas radiadas
   re_apply_list_rules: Re-aplicar las reglas de la lista
   re_order_photos: Reordenar fotos &raquo;
@@ -2916,6 +2975,7 @@ es:
   refreshing: refrescando
   regenerate_url: Regenerar URL
   register_for_this_event_at_x_html: Registro para este evento en %{x}
+  related_species: Especies relacionadas
   reload_and_refresh: Volver a cargar y refrescar lista
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: El tiempo de carga expiró.  Por favor trate de nuevo en un momento.
@@ -3060,6 +3120,7 @@ es:
   search_results_for: Buscar resultados para
   search_remote: Búsqueda remota
   search_species: Busca especies
+  search_species_: Buscar especie…
   search_taxa: Búsqueda de taxones
   search_the_map: Busca en el mapa
   search_this_taxon: buscar este taxón
@@ -3067,6 +3128,7 @@ es:
   search_ubio_raquo: Búsqueda en uBio &raquo;
   search_your_photos: Buscar sus fotos
   searching: Buscando...
+  seasonality: Estacionalidad
   second_person_possessive_singular: Tus %{noun}
   second_person_possessive_singular_: Tu %{noun}
   see_something_wrong_with_taxon: ¿Vé algo malo con este taxón? Infórmelo a los curadores.
@@ -3229,6 +3291,7 @@ es:
     your_soundcloud_account: tu cuenta de SoundCloud
   source: Fuente
   source_: 'Fuente:'
+  source_list_: Lista de origen
   source_list:
     ubio: uBio
     catalogue_of_life: Catálogo de la vida
@@ -3361,15 +3424,16 @@ es:
     tags</a>.  They help engineers programmatically make sense of your tags, and are
     required by some Flickr groups like the <a href="http: //www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia
     of Life Images</a> group.'
-  take_me_back: Llévame de vuelta
   take_me_facebook: ¡Sí, lléveme a Facebook!
   take_me_flickr!: ¡Sí, lléveme a Flickr!
+  take_me_back: Llévame de vuelta
   taxa: Taxones
   taxa_all_species_html: Todas las especies
   taxa_needing_curation: Taxones que necesitan curación
   taxa_observed: especies o grupos observados
   taxa_to_include: Especies o grupos a incluir
   taxon: Taxón
+  taxonomy: Taxonomía
   taxon_: Taxón
   taxon_assessments_are: Las evaluaciones del taxón son documentos que evalúan el
     estado actual de una especie, generalmente su estado de conservación. Por ejemplo,
@@ -3388,14 +3452,18 @@ es:
       datos, si existen en GBIF.
     data_url: Enlace de datos
     overlays: Capas
+  taxon_changes: Cambios de taxón
   taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_merge: fusión de taxón
   taxon_name: Nombre del taxón
+  taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
+    coincidir con un taxón existente en la base de datos.
   taxon_observed_by_user: '%{taxon} observado por %{user}'
   taxon_photos_updated: ¡Las fotos del taxón fueron actualizadas!
   taxon_range: Rango de taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonómia
+  taxon_schemes: Esquema de taxón
   taxon_schemes_raquo_html: Esquemas <nobr>taxonómicos &raquo;</nobr>
   taxon_search: Búsqueda de Taxón
   taxon_search_results_for: Resultados de búsqueda de Taxón para
@@ -3655,7 +3723,10 @@ es:
   tools: Herramientas
   top_5_identifiers: Los 5 identificadores más altos
   top_contributors: Mayores contribuyentes
+  top_identifier: Identificador superior
   top_identifiers: Top identificadores
+  top_observer: Mayor observador
+  top_species: Especie superior
   total: total
   totals: totales
   total_members: Total de miembros
@@ -3663,6 +3734,8 @@ es:
   total_unique_observers: Total de observadores únicos
   total_users: Total de usuarios
   "true": Verdadero
+  trending: Tendencias
+  trends: Tendencias
   trusted_project?: ¿Es un projecto verificicado?
   try_adding_species_form: Trate de agregar algunas especies usando el formulario
     en esta página.
@@ -3741,11 +3814,12 @@ es:
   uploader:
     tooltips:
       add: Añadir observaciones
-      remove: Eliminar las observaciones seleccionadas
       combine: Combinar observaciones seleccionadas
-      select_all: Seleccionar todas las observaciones
-      remove_photo: Quitar foto
+      photo_failed: La foto no se ha subido
+      remove: Eliminar las observaciones seleccionadas
       remove_observation: Eliminar observación
+      remove_photo: Quitar foto
+      select_all: Seleccionar todas las observaciones
   uploading_num_of_count_photos:
     one: Subiendo foto...
     other: Subiendo %{num} de %{count} fotos...
@@ -3887,6 +3961,7 @@ es:
     ventana
   view_site_name_observations_html: Ver observaciones de <strong>%{site_name}</strong>
   view_stats: Ver contribuciones
+  view_taxon_change: Ver cambio de taxón
   view_taxon_changes: Vier los cambios del taxon
   view_taxon_page: Ver página del taxón
   view_taxon_page_for: Ver página del taxón para este lugar
@@ -3907,6 +3982,7 @@ es:
   view_your_life_list: Ve tu lista de vida
   view_your_calendar: Observa tu calendario
   view_your_observations: Ver sus observaciones
+  view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: Ver todas tus observaciones de %{x}
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: ¡No se aceptan taxones sin relaciones taxonómicas!
@@ -3915,9 +3991,10 @@ es:
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar
     algunos minutos para listas grandes.
   want_to_add_one: ¿Desea agregar una?
-  want_to_test_a_new_version_of_this_page: ¿Quieres probar una nueva versión de esta página?
   want_to_show_off_some_of_your_favorite_taxa: ¿Desea mostrar algunos de sus taxones
     favoritos aquí?
+  want_to_test_a_new_version_of_this_page: ¿Quieres probar una nueva versión de esta
+    página?
   was_it_captive_cultivated?: ¿Fue cautiva / cultivado?
   we_can_only_understand_csv_in: Sólo podemos entender CSV en el siguiente formato
   we_care_privacy: ¡Nos importa su privacidad!
@@ -3930,6 +4007,10 @@ es:
   we_didnt_find_any_photos: No encontramos fotos usando los términos de búsqueda brindados
   we_had_a_problem_flagging_that_item: 'Hubo problemas al marcar ese elemento: %{flag_error}'
   we_had_trouble_saving_comment: 'Tuvimos problemas guardando el comentario:'
+  we_have_no_conservation_status_for_this_taxon: Desconocemos el estado de conservación
+    de este taxón
+  we_have_no_establishment_data_for_this_taxon: Carecemos de datos de establecimiento
+    sobre este taxón.
   we_import_our_taxonomic_data: Importamos nuestros datos taxonómicos de algunas bases
     de datos taxonómicos externas, incluyendo el Catálogo de Vida y uBio. Algunos
     de nuestros taxones también han sido ingresados manualmente y cualquier usuario
@@ -4206,6 +4287,7 @@ es:
   your_sure_delete_taxon_from_list?: ¿Está seguro que desea eliminar %{taxon} de esta
     lista?
   your_world!: ¡Tu mundo!
+  yours: Tuyos
   youre_following: usted está siguiendo
   youre_not_following_anyone: No sigues a nadie. Seguir a otros naturalistas te permitirá
     llevar un control de sus observaciones más recientes. Averigua lo que la gente
@@ -4366,8 +4448,8 @@ es:
         grid: Rejilla de imágenes individuales, no hay descripciones
         journal: Página de Split, info especies a la izquierda, espacio para notas
           a la derecha. Info Especies se truncará para que quepa en la página.
-        book: Guía completa incluyendo todas las fotos y descripciones, que abarcan
-          varias páginas.
+        book: Guía completa que incluye todas las fotos y descripciones y abarca varias
+          páginas.
       pdf_generation_notice: Por favor sea paciente, lo que genera grandes archivos
         PDF puede tomar un minuto o dos.
       tags_help_html: "Las etiquetas son como las categorías para la especie en su
@@ -5069,6 +5151,37 @@ es:
         sorry_that_doesnt_exist: ¡Eso no existe!
         even_our_dedicated_search_mole_couldnt: ¡Incluso nuestro dedicado topo buscador
           no pudo encontrar nada!
+    taxa:
+      show:
+        about_names_desc: |-
+          <p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>
+          <p>Como resume el antiguo dicho: «Los nombre comunes cambian de sitio en sitio, los científicos de cuando en cuando».</p>
+          <p>Afrontamos esta cuestión citando los nombres comunes y científicos si es posible, y eligiendo los nombres comunes de acuedo con el idioma y las preferencias geográficas del lector.</p>
+        about_conservation_status_desc: El estado de conservación sintetiza el riesgo
+          de extinción de un grupo de organismos.
+        about_establishment_desc: «Medios de establecimiento» describe cómo llegó
+          una especie adonde se encuentra. <i>Introducida</i> significa que llegó
+          por la actividad humana, <i>nativa</i> que ocurrió sin intervención humana.
+          Las especies endémicas se encuentran solo en un lugar concreto.
+        trending_desc: Taxones más observados en el último mes
+        trending_in_place_desc_html: Taxones más observados en el último mes en <a
+          href="%{url}">%{place}</a>
+        rare_desc: Taxones amenazados menos observados
+        rare_in_place_desc_html: Taxones amenazados menos observados en <a href="%{url}">%{place}</a>
+        no_trending_desc: Ninguna observación bajo este taxón en el último mes
+        frequency:
+          research: Grado de investigación
+          verifiable: Verificable
+          Flowering Phenology=bare: Sin flores
+          Flowering Phenology=budding: Incipiente
+          Flowering Phenology=flower: Floración
+          Flowering Phenology=fruit: Fructificacón
+          Insect life stage=egg: Huevo
+          Insect life stage=larva: Larva
+          Insect life stage=teneral: Muda
+          Insect life stage=nymph: Ninfa
+          Insect life stage=pupa: Pupa
+          Insect life stage=adult: Adulto
     taxon_names:
       form:
         new_name_guidelines_html: |-
