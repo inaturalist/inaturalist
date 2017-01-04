@@ -9,7 +9,8 @@ const TaxonPhoto = ( {
   height,
   showTaxonPhotoModal,
   className,
-  size
+  size,
+  backgroundSize
 } ) => (
   <div
     className={`TaxonPhoto ${className}`}
@@ -31,6 +32,7 @@ const TaxonPhoto = ( {
       src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
       low={ photo.photoUrl( "small" ) }
       height={height}
+      backgroundSize={backgroundSize}
     />
   </div>
 );
@@ -43,7 +45,8 @@ TaxonPhoto.propTypes = {
   height: PropTypes.number.isRequired,
   observation: PropTypes.object,
   className: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  backgroundSize: PropTypes.string
 };
 
 TaxonPhoto.defaultProps = {

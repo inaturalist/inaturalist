@@ -35,6 +35,24 @@ shared_examples_for "a QualityMetricsController" do
       o.reload
       expect( o.quality_metrics ).to be_blank
     end
+
+    describe "elastic index" do
+      before(:each) { enable_elastic_indexing( Observation ) }
+      after(:each) { disable_elastic_indexing( Observation ) }
+
+      it "should get the updated quality_grade" do
+        o = without_delay { make_research_grade_observation }
+        o.elastic_index!
+        eo = Observation.elastic_search( id: o.id ).results[0]
+        expect( eo.id.to_i ).to eq o.id
+        expect( eo.quality_grade ).to eq Observation::RESEARCH_GRADE
+        without_delay do
+          post :vote, format: :json, id: o.id, metric: QualityMetric::WILD, agree: "false"
+        end
+        eo = Observation.elastic_search( id: o.id ).results[0]
+        expect( eo.quality_grade ).to eq Observation::CASUAL
+      end
+    end
   end
 
 end
