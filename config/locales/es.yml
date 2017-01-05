@@ -2453,15 +2453,13 @@ es:
     youve_got_updates_panel_title: Tienes actualizaciones!
     youve_got_updates_panel_body_p1: Se actualiza cuando hay actividad en sus observaciones
       y cuando las personas a las que siguen las observaciones posteriores.
-    youve_got_updates_panel_body_p2: "<ul>\n  <li>\n    La actividad en sus observaciones
-      podría incluir comentarios , identificaciones , o favoritos de la comunidad
-      de iNaturalist.org . O tal vez alguien añade su observación a un proyecto o
-      anotado con campos adicionales.      \n  </li>\n  <li>\n    Cuando sigue la
-      gente , se le informado cuando publican observaciones o publicar los mensajes
-      de diario.\n  </li>\n  <li>\n    También puede recibir información actualizada
-      sobre las observaciones de los organismos o lugares específicos mediante la
-      suscripción de ellos. O puede unirse a proyectos que actualizarse cuando publican
-      mensajes de diario de proyectos.\n  </li>\n</ul>"
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+       <li><strong>Su Contenido:</strong> Actividad en sus observaciones, tales como comentarios, identificaciones, o favoritos de %{site_name} de la comunidad. Recibirás actualizaciones cuando alguien agregue sus observaciones a un proyecto o anotado con campos adicionales.</li>
+       <li><strong>Gente:</strong> Nuevas observaciones o diario de publicaciones de las personas a las que sigues.</li>
+       <li><strong>Organismos, Proyectos y Lugares:</strong> Nuevas observaciones de organismos específicos o lugares a los que estás suscrito. Puede unirse a proyectos para recibir actualizaciones cuando se publican diarios en ellos.</li>
+       <li><strong>Debates en los que has participado:</strong> Al comentar o añadir identificaciones al contenido de otros te subscribes automáticamente a su contenido y recibirás informaciós sobre cualquier actividad nueva en este contenido. El uso de 'Gestionar mis suscripciones" permite dejar de recibir actualizaciones.</li>
+      </ul>
   one_by_one: Uno por uno
   one_of_your_lists: una de sus listas...
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación
@@ -4129,6 +4127,9 @@ es:
     <a href="/guides/new">Agrega una</a>
   you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
   you_are_no_longer_following_x: Ya no estas siguiendo a %{friend}.
+  you_are_setting_this_project_to_aggregate: 'Estás estableciendo que en este proyecto
+    se puedan agregar todas las  observaciones que cumplan con las reglas siguientes:
+    %{rules} Quieres continuar?'
   you_are_submitting_obs_without_photos_and_names: |-
     Estás añadiendo observaciones sin foto ni un nombre de especie.
     OJO, estas observaciones serán dificiles de identificar.

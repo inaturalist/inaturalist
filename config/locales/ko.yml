@@ -44,6 +44,7 @@ ko:
   about_licenses: 라이선스 정보
   about_licensing: 라이선스에 대해
   about_life!: Life!에 대해
+  about_names: 명칭 정보
   about_places: 장소에 대해
   about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대해
   about_the_taxobox_raquo: 분류군 상자에 대해 &raquo;
@@ -105,6 +106,7 @@ ko:
   add_edit_more_fields: 더 많은 필드 추가/편집
   add_description: '%{description_name} 추가하기'
   add_from_your_observations: 관찰에서 추가하기
+  add_link: 링크 추가
   add_listed_taxa_from_observations: 관찰에서 기재된 분류군을 추가하기
   add_higher_level_taxon: '상위 계층 분류군 추가하기 (예: "새")'
   add_id: ID 추가하기
@@ -1196,6 +1198,7 @@ ko:
     곳입니다.
   internal_server_error: 내부 서버 오류
   introduced: 도입종
+  introduced_in_place: '%{place}에서 유입됨'
   invasive: 외래종
   invitation: 초대장
   invitations: 초대장들
@@ -1550,6 +1553,7 @@ ko:
   no_mobilized_version_of_that_view: 이 뷰의 모바일 버전이 없습니다.
   no_more_mail_from_site: '%{site_name}에서 이메일을 받고 싶지 않으시다면 이메일 설정을 여기서 변경하세요:'
   no_more_taxa_to_load: 더 이상 불러올 분류군이 없습니다.
+  no_more_results_found: 더 이상 결과가 없습니다
   no_more_updates: 더 이상 업데이트가 없습니다.
   no_nearby_observations: 근처 관찰이 없습니다.
   no_new_messages: 새 메시지가 없습니다
@@ -1940,6 +1944,7 @@ ko:
   upload_photos: 사진 올리기
   uploader:
     tooltips:
+      photo_failed: 사진 업로드를 실패했습니다
       remove: 선택된 관찰 제거
       remove_photo: 사진 제거
       select_all: 모든 관찰 선택
@@ -2088,6 +2093,7 @@ ko:
     taxa:
       show:
         frequency:
+          Flowering Phenology=bare: 꽃 없음
           Insect life stage=egg: 알
     users:
       edit:
