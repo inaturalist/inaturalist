@@ -477,9 +477,7 @@ class User < ActiveRecord::Base
     longitude = nil
     lat_lon_acc_admin_level = nil
     begin
-      resp = http.start() {|http|
-        http.get("/?ip=#{last_ip}")
-      }
+      resp = http.start() {|http| http.get("/?ip=#{last_ip}") }
       data = resp.body
       begin
         result = JSON.parse(data)
@@ -507,6 +505,11 @@ class User < ActiveRecord::Base
         lat_lon_acc_admin_level = nil
         Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
+    rescue SocketError
+      latitude = nil
+      longitude = nil
+      lat_lon_acc_admin_level = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip unrecognized due to dropped connection"
     rescue Timeout::Error => e
       latitude = nil
       longitude = nil

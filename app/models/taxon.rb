@@ -898,6 +898,61 @@ class Taxon < ActiveRecord::Base
     end
     summary
   end
+
+  def auto_summary
+    name_part = name
+    other_names = taxon_names.select { |tn| tn.name != name }
+    unless other_names.blank?
+      name_part += " (also known as #{FakeView.commas_and( other_names.map(&:name) )})"
+    end
+    summary = if kingdom?
+      "#{name} is a kingdom of life with #{observations_count} observations"
+    elsif iconic_taxon_id
+      iconic_name = if iconic_taxon_id == id
+        parent.iconic_taxon_name
+      else
+        iconic_taxon_name
+      end
+      iconic_part = if ICONIC_TAXON_NAMES[iconic_name]
+        iconic_common_name = I18n.t( ICONIC_TAXON_NAMES[iconic_name].downcase )
+        if rank_level <= 10
+          iconic_common_name = iconic_common_name.singularize
+        end
+        "of #{iconic_common_name.downcase}"
+      else
+        "in #{iconic_name}"
+      end
+      "#{name_part} is a #{rank} #{iconic_part} with #{observations_count} observations"
+    else
+      "#{name} is a #{rank}"
+    end
+    # This stuff is all so slow that we'd need to cache it.
+    # endemic_listed_taxon = listed_taxa.
+    #   where( establishment_means: ListedTaxon::ENDEMIC ).
+    #   joins( :place ).
+    #   order( "places.admin_level DESC" ).first
+    # if endemic_listed_taxon
+    #   summary += " that only occurs in #{endemic_listed_taxon.place.display_name}"
+    # else
+    #   place_listed_taxa = listed_taxa.joins( :place ).where( "places.admin_level = ?", Place::COUNTRY_LEVEL ).limit( 6 )
+    #   unless place_listed_taxa.blank?
+    #     summary += " that occurs in #{FakeView.commas_and( place_listed_taxa[0..5].map{ |lt| lt.place.display_name } )}"
+    #     if place_listed_taxa.size > 5
+    #       summary += ", and elsewhere"
+    #     end
+    #   end
+    # end
+    # status_scope = conservation_statuses.where( "iucn > ?", IUCN_NEAR_THREATENED )
+    # conservation_status = status_scope.where( "place_id IS NULL" ).first
+    # conservation_status ||= status_scope.joins( :place ).order( "places.admin_level ASC" ).first
+    # if conservation_status
+    #   status_desc = "It is considered #{conservation_status.status_name}"
+    #   status_desc += " in #{conservation_status.place.display_name}" if conservation_status.place
+    #   status_desc += " by #{conservation_status.authority}"
+    #   summary += ". #{status_desc}"
+    # end
+    summary
+  end
   
   def merge(reject)
     raise "Can't merge a taxon with itself" if reject.id == self.id
