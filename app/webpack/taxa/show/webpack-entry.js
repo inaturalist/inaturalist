@@ -11,6 +11,7 @@ import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
 import observationsReducer from "./ducks/observations";
 import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
+import { setDescription } from "../shared/ducks/taxon";
 import { fetchTaxonAssociates } from "./actions/taxon";
 import { windowStateForTaxon } from "../shared/util";
 
@@ -64,6 +65,19 @@ if ( serverPayload.ancestorsShown ) {
 }
 const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
+if ( taxon.wikipedia_summary ) {
+  store.dispatch( setDescription(
+    "Wikipedia",
+    `https://en.wikipedia.org/wiki/${taxon.wikipedia_title || taxon.name}`,
+    taxon.wikipedia_summary
+  ) );
+} else if ( taxon.auto_summary ) {
+  store.dispatch( setDescription(
+    $( "meta[property='og:site_name']" ).attr( "content" ),
+    null,
+    taxon.auto_summary
+  ) );
+}
 store.dispatch( fetchTaxonAssociates( taxon ) );
 
 // Replace state to contain taxon details, so when a user uses the back button

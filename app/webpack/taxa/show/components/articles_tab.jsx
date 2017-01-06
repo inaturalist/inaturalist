@@ -19,9 +19,11 @@ const ArticlesTab = ( {
         </h2>
         <div className={description ? "" : "hidden"}>
           <h2>
-            { I18n.t( "source_" ) } { descriptionSource } <a href={descriptionSourceUrl}>
-              <i className="icon-link-external"></i>
-            </a>
+            { I18n.t( "source_" ) } { descriptionSource } { descriptionSourceUrl ? (
+              <a href={descriptionSourceUrl}>
+                <i className="icon-link-external"></i>
+              </a>
+            ) : null }
           </h2>
           <div dangerouslySetInnerHTML={{ __html: description }}></div>
         </div>
