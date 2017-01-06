@@ -55,8 +55,11 @@ class CompleteSetsController < ApplicationController
   def destroy_relevant_listings
     taxon_id = params[:taxon_id]
     place = @complete_set.place
-    lt = ListedTaxon.get_defaults_for_taxon_place( place.id, taxon_id )
-    lt.destroy_all
+    lts = ListedTaxon.get_defaults_for_taxon_place( place.id, taxon_id )
+    if lts.count > 0
+      lts.map{|lt| lt.updater = current_user}
+      lts.destroy_all
+    end
     respond_to do |format|
       format.json { render json: {}, status: :ok }
     end

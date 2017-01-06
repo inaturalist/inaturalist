@@ -132,7 +132,8 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
     var addPlaceLink = $( "<a href='#'>" ).text( "Remove this place" );
     addPlaceLink.on( "click", function( e ) {
       e.preventDefault( );
-      var confirmText = "This will destroy all the listed taxa that are of this taxon (or any descendants) for this place (or any standard descendants). This can be very destructive, are you sure?";
+      var confirmText = "This will destroy all the listed taxa that are of this taxon (or any descendants)" + 
+          " for this place (or any standard descendants). This can be very destructive, are you sure?";
       if(confirm(confirmText)) {
         atlasJS.alterAtlas( place );
       }
