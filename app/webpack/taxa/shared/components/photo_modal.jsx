@@ -49,7 +49,7 @@ const PhotoModal = ( {
         style={{
           backgroundSize: "contain",
           backgroundPosition: "center",
-          backgroundImage: `url(${photo.photoUrl( "large" )})`,
+          backgroundImage: `url('${photo.photoUrl( "large" )}')`,
           backgroundRepeat: "no-repeat",
           position: "relative",
           backgroundColor: "black"

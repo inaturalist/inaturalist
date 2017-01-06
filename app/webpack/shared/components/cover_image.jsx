@@ -72,7 +72,7 @@ class CoverImage extends React.Component {
           backgroundSize: this.props.backgroundSize,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundImage: `url(${lowResUrl})`
+          backgroundImage: `url('${lowResUrl}')`
         }}
       >
       </div>
