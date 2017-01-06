@@ -11,7 +11,7 @@ class CompleteSet < ActiveRecord::Base
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
     place_with_descendant_ids = [place.id, place_descendant_ids].compact.flatten
     taxon_descendant_ids = taxon.taxon_ancestors_as_ancestor.joins( :taxon ).
-      where( "taxa.is_active = true AND taxa.rank_level <= ?",Taxon::RANK_LEVELS["species"] ).
+      where( "taxa.is_active = true AND taxa.rank != 'hybrid' AND taxa.rank_level <= ?",Taxon::RANK_LEVELS["species"] ).
       pluck( :taxon_id )
     taxon_ids = ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.taxon_id IN ( ? )", taxon_descendant_ids ).
