@@ -303,11 +303,13 @@ export function fetchRare( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
+    const taxon = getState( ).taxon.taxon;
     inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
-        const commonlyMisidentified = response.results.filter( r => ( r.count > 1 ) );
+        const withoutAncestors = response.results.filter( r => !taxon.ancestor_ids.indexOf( r.id ) );
+        const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
-          dispatch( setSimilar( response.results ) );
+          dispatch( setSimilar( withoutAncestors ) );
         } else {
           dispatch( setSimilar( commonlyMisidentified ) );
         }
