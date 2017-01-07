@@ -47,6 +47,7 @@ const TaxonomyTab = ( {
             <SplitTaxon
               taxon={t}
               url={shouldLinkToTaxon ? urlForTaxon( t ) : null}
+              forceRank
               onClick={ e => {
                 if ( !shouldLinkToTaxon ) return true;
                 e.preventDefault( );

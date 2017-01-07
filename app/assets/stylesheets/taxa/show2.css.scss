@@ -346,11 +346,12 @@ $photoPreviewThumbGutterTop: 3px;
   background-size: cover;
   width: 120%;
   height: 120%;
-  -webkit-filter: blur(50px);
-  -moz-filter: blur(50px);
-  -o-filter: blur(50px);
-  -ms-filter: blur(50px);
+  background-color: black;
   filter: blur(20px) brightness(0.5);
+  -webkit-filter: blur(20px) brightness(0.5);
+  -moz-filter: blur(20px) brightness(0.5);
+  -o-filter: blur(20px) brightness(0.5);
+  -ms-filter: "blur(20px)";
 }
 .PhotoPreview ul.others {
   width: 100%;
