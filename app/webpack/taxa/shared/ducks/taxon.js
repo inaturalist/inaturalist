@@ -306,7 +306,8 @@ export function fetchSimilar( ) {
     const taxon = getState( ).taxon.taxon;
     inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
-        const withoutAncestors = response.results.filter( r => !taxon.ancestor_ids.indexOf( r.id ) );
+        const withoutAncestors = response.results.filter( r =>
+          taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
         const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
           dispatch( setSimilar( withoutAncestors ) );
