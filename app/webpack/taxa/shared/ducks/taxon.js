@@ -209,9 +209,11 @@ export function fetchDescription( ) {
       response => {
         const source = response.headers.get( "X-Describer-Name" );
         const url = response.headers.get( "X-Describer-URL" );
-        response.text( ).then(
-          body => dispatch( setDescription( source, url, body )
-        ) );
+        response.text( ).then( body => {
+          if ( body && body.length > 0 ) {
+            dispatch( setDescription( source, url, body ) );
+          }
+        } );
       },
       error => {
         console.log( "[DEBUG] error: ", error );
