@@ -914,8 +914,13 @@ class Taxon < ActiveRecord::Base
       else
         iconic_taxon_name
       end
-      iconic_part = if ICONIC_TAXON_NAMES[iconic_name]
-        iconic_common_name = I18n.t( ICONIC_TAXON_NAMES[iconic_name].downcase )
+      iconic_part = if iconic_name == "Chromista"
+        "in Chromista (brown algae and allies)"
+      elsif ICONIC_TAXON_NAMES[iconic_name]
+        iconic_common_name = I18n.t(
+          ICONIC_TAXON_NAMES[iconic_name].downcase.parameterize.underscore,
+          count: 1
+        )
         if rank_level && rank_level <= 10
           iconic_common_name = iconic_common_name.singularize
         end
