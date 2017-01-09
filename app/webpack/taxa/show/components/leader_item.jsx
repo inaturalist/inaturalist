@@ -19,7 +19,9 @@ const LeaderItem = ( {
   url,
   extraLinkUrl,
   extraLinkText,
-  extraLinkTextShort
+  extraLinkTextShort,
+  onClickUrl,
+  onClickUrlPayload
 } ) => {
   const extraContent = (
     <div className="extra">
@@ -68,7 +70,15 @@ const LeaderItem = ( {
       { itemLabel }
       <div className="media-left">
         <div className={`img-wrapper ${imageUrl ? "photo" : "no-photo"}`}>
-          <a href={url}>
+          <a
+            href={url}
+            onClick={ e => {
+              if ( !onClickUrl ) return true;
+              e.preventDefault( );
+              onClickUrl( onClickUrlPayload );
+              return false;
+            } }
+          >
             {
               imageUrl ?
               <CoverImage src={imageUrl} height={56} />
@@ -80,7 +90,16 @@ const LeaderItem = ( {
       </div>
       <div className="media-body">
         <h4 className="name">
-          <a title={name} href={url}>
+          <a
+            title={name}
+            href={url}
+            onClick={ e => {
+              if ( !onClickUrl ) return true;
+              e.preventDefault( );
+              onClickUrl( onClickUrlPayload );
+              return false;
+            } }
+          >
             <span className=".visible-xs-inline visible-sm-inline visible-md-inline">
               { _.truncate( name, { length: 16 } ) }
             </span>
@@ -112,7 +131,9 @@ LeaderItem.propTypes = {
   url: PropTypes.string,
   extraLinkUrl: PropTypes.string,
   extraLinkText: PropTypes.string,
-  extraLinkTextShort: PropTypes.string
+  extraLinkTextShort: PropTypes.string,
+  onClickUrl: PropTypes.func,
+  onClickUrlPayload: PropTypes.object
 };
 
 LeaderItem.defaultProps = {

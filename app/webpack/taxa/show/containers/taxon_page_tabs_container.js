@@ -16,7 +16,7 @@ import {
 function mapStateToProps( state ) {
   const speciesTabs = ["map", "articles", "taxonomy", "status", "similar"];
   const aboveSpeciesTabs = ["map", "articles", "highlights", "taxonomy"];
-  let chosenTab = "map";
+  let chosenTab;
   if (
     ( state.taxon.taxon.rank_level <= 10 && speciesTabs.indexOf( state.config.chosenTab ) >= 0 ) ||
     ( state.taxon.taxon.rank_level > 10 && aboveSpeciesTabs.indexOf( state.config.chosenTab ) >= 0 )

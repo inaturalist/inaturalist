@@ -9,7 +9,15 @@ class Identification < ActiveRecord::Base
     mappings(dynamic: true) do
       indexes :uuid, analyzer: "keyword_analyzer"
       indexes :body, analyzer: "ascii_snowball_analyzer"
-      indexes :category, analyzer: "keyword_analyzer"
+      indexes :category, index: "not_analyzed"
+      indexes :observation do
+        indexes :taxon do
+          indexes :min_species_ancestry, index: "not_analyzed"
+        end
+      end
+      indexes :taxon do
+        indexes :min_species_ancestry, index: "not_analyzed"
+      end
     end
   end
 

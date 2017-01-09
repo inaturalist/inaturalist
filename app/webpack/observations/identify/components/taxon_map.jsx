@@ -66,22 +66,20 @@
 */
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
+import { objectToComparable } from "../../../shared/util";
 
 class TaxonMap extends React.Component {
   componentDidMount( ) {
     this.setMapFromProps( );
   }
-  componentDidUpdate( ) {
-    this.setMapFromProps( );
+  componentDidUpdate( prevProps ) {
+    if ( objectToComparable( this.props ) !== objectToComparable( prevProps ) ) {
+      this.setMapFromProps( );
+    }
+    google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
   }
   setMapFromProps( ) {
-    const domNode = ReactDOM.findDOMNode( this );
-    // make sure taxonMap isn't initialized more than once
-    if ( $( domNode ).data( "taxonMap" ) ) {
-      google.maps.event.trigger( $( domNode ).data( "taxonMap" ), "resize" );
-      return;
-    }
-    $( domNode ).taxonMap( this.props );
+    $( ReactDOM.findDOMNode( this ) ).taxonMap( this.props );
   }
   render( ) {
     return (

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import _ from "lodash";
 import c3 from "c3";
 import moment from "moment";
+import { objectToComparable } from "../../../shared/util";
 
 class Charts extends React.Component {
   componentDidMount( ) {
@@ -41,13 +42,13 @@ class Charts extends React.Component {
   shouldComponentUpdate( nextProps ) {
     if (
       _.isEqual(
-        this.objectToComparable( this.props.seasonalityColumns ),
-        this.objectToComparable( nextProps.seasonalityColumns )
+        objectToComparable( this.props.seasonalityColumns ),
+        objectToComparable( nextProps.seasonalityColumns )
       )
       &&
       _.isEqual(
-        this.objectToComparable( this.props.historyColumns ),
-        this.objectToComparable( nextProps.historyColumns )
+        objectToComparable( this.props.historyColumns ),
+        objectToComparable( nextProps.historyColumns )
       )
     ) {
       // No change in underlying data series, don't update
@@ -101,14 +102,6 @@ class Charts extends React.Component {
       }
     };
   }
-  objectToComparable( object = {} ) {
-    return _.map( object, ( v, k ) => {
-      if ( _.isArrayLikeObject( v ) ) {
-        return `(${k}-${this.objectToComparable( v )})`;
-      }
-      return `(${k}-${v})`;
-    } ).sort( ).join( "," );
-  }
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
     const order = [
       "research",
@@ -159,7 +152,10 @@ class Charts extends React.Component {
       axis: {
         x: {
           type: "category",
-          categories: this.props.seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) )
+          categories: this.props.seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) ),
+          tick: {
+            multiline: false
+          }
         }
       },
       tooltip: {

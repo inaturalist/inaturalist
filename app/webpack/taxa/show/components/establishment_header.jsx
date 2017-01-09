@@ -2,6 +2,9 @@ import React, { PropTypes } from "react";
 
 const EstablishmentHeader = ( { establishmentMeans, source, url } ) => {
   let sourceElement;
+  if ( !establishmentMeans ) {
+    return <div className="alert establishment-endemic StatusHeader EstablishmentHeader"></div>;
+  }
   if ( url ) {
     sourceElement = (
       <span>({ I18n.t( "source_list_" ) }: <a href={url}>{ source }</a>)</span>

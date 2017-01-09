@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import SimilarTab from "../components/similar_tab";
+import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   return {
@@ -8,8 +9,10 @@ function mapStateToProps( state ) {
   };
 }
 
-function mapDispatchToProps( ) {
-  return { };
+function mapDispatchToProps( dispatch ) {
+  return {
+    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
+  };
 }
 
 const SimilarTabContainer = connect(

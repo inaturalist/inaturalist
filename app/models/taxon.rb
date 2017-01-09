@@ -55,6 +55,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, :inverse_of => :taxon
+  has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -97,31 +98,32 @@ class Taxon < ActiveRecord::Base
   }
   
   RANK_LEVELS = {
-    'root'         => 100,
-    'kingdom'      => 70,
-    'phylum'       => 60,
-    'subphylum'    => 57,
-    'superclass'   => 53,
-    'class'        => 50,
-    'subclass'     => 47,
-    'superorder'   => 43,
-    'order'        => 40,
-    'suborder'     => 37,
-    'infraorder'   => 35,
-    'superfamily'  => 33,
-    'epifamily'    => 32,
-    'family'       => 30,
-    'subfamily'    => 27,
-    'supertribe'   => 26,
-    'tribe'        => 25,
-    'subtribe'     => 24,
-    'genus'        => 20,
-    'genushybrid'  => 20,
-    'species'      => 10,
-    'hybrid'       => 10,
-    'subspecies'   => 5,
-    'variety'      => 5,
-    'form'         => 5
+    "root"         => 100,
+    "kingdom"      => 70,
+    "phylum"       => 60,
+    "subphylum"    => 57,
+    "superclass"   => 53,
+    "class"        => 50,
+    "subclass"     => 47,
+    "superorder"   => 43,
+    "order"        => 40,
+    "suborder"     => 37,
+    "infraorder"   => 35,
+    "superfamily"  => 33,
+    "epifamily"    => 32,
+    "family"       => 30,
+    "subfamily"    => 27,
+    "supertribe"   => 26,
+    "tribe"        => 25,
+    "subtribe"     => 24,
+    "genus"        => 20,
+    "genushybrid"  => 20,
+    "subgenus"     => 15,
+    "species"      => 10,
+    "hybrid"       => 10,
+    "subspecies"   => 5,
+    "variety"      => 5,
+    "form"         => 5
   }
   RANK_LEVELS.each do |rank, level|
     const_set rank.upcase, rank
@@ -895,6 +897,66 @@ class Taxon < ActiveRecord::Base
         td.update_attributes(:body => summary)
       end
     end
+    summary
+  end
+
+  def auto_summary
+    name_part = name
+    other_names = taxon_names.select { |tn| tn.name != name }
+    unless other_names.blank?
+      name_part += " (also known as #{FakeView.commas_and( other_names.map(&:name) )})"
+    end
+    summary = if kingdom?
+      "#{name} is a kingdom of life with #{observations_count} observations"
+    elsif iconic_taxon_id
+      iconic_name = if iconic_taxon_id == id
+        parent.iconic_taxon_name
+      else
+        iconic_taxon_name
+      end
+      iconic_part = if iconic_name == "Chromista"
+        "in Chromista (brown algae and allies)"
+      elsif ICONIC_TAXON_NAMES[iconic_name]
+        iconic_common_name = I18n.t(
+          ICONIC_TAXON_NAMES[iconic_name].downcase.parameterize.underscore,
+          count: 1
+        )
+        if rank_level && rank_level <= 10
+          iconic_common_name = iconic_common_name.singularize
+        end
+        "of #{iconic_common_name.downcase}"
+      else
+        "in #{iconic_name}"
+      end
+      "#{name_part} is a #{rank} #{iconic_part} with #{observations_count} observations"
+    else
+      "#{name} is a #{rank}"
+    end
+    # This stuff is all so slow that we'd need to cache it.
+    # endemic_listed_taxon = listed_taxa.
+    #   where( establishment_means: ListedTaxon::ENDEMIC ).
+    #   joins( :place ).
+    #   order( "places.admin_level DESC" ).first
+    # if endemic_listed_taxon
+    #   summary += " that only occurs in #{endemic_listed_taxon.place.display_name}"
+    # else
+    #   place_listed_taxa = listed_taxa.joins( :place ).where( "places.admin_level = ?", Place::COUNTRY_LEVEL ).limit( 6 )
+    #   unless place_listed_taxa.blank?
+    #     summary += " that occurs in #{FakeView.commas_and( place_listed_taxa[0..5].map{ |lt| lt.place.display_name } )}"
+    #     if place_listed_taxa.size > 5
+    #       summary += ", and elsewhere"
+    #     end
+    #   end
+    # end
+    # status_scope = conservation_statuses.where( "iucn > ?", IUCN_NEAR_THREATENED )
+    # conservation_status = status_scope.where( "place_id IS NULL" ).first
+    # conservation_status ||= status_scope.joins( :place ).order( "places.admin_level ASC" ).first
+    # if conservation_status
+    #   status_desc = "It is considered #{conservation_status.status_name}"
+    #   status_desc += " in #{conservation_status.place.display_name}" if conservation_status.place
+    #   status_desc += " by #{conservation_status.authority}"
+    #   summary += ". #{status_desc}"
+    # end
     summary
   end
   

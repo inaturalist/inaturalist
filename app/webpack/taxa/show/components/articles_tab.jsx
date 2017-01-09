@@ -19,9 +19,11 @@ const ArticlesTab = ( {
         </h2>
         <div className={description ? "" : "hidden"}>
           <h2>
-            { I18n.t( "source_" ) } { descriptionSource } <a href={descriptionSourceUrl}>
-              <i className="icon-link-external"></i>
-            </a>
+            { I18n.t( "source_" ) } { descriptionSource } { descriptionSourceUrl ? (
+              <a href={descriptionSourceUrl}>
+                <i className="icon-link-external"></i>
+              </a>
+            ) : null }
           </h2>
           <div dangerouslySetInnerHTML={{ __html: description }}></div>
         </div>
@@ -39,7 +41,7 @@ const ArticlesTab = ( {
                 <a
                   href={link.url}
                   style={{
-                    backgroundImage: `url( https://www.google.com/s2/favicons?domain=${host} )`,
+                    backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${host}' )`,
                     backgroundRepeat: "no-repeat",
                     padding: "1px 0 1px 25px"
                   }}

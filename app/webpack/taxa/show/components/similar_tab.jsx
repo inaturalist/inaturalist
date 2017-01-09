@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const SimilarTab = ( { results, place } ) => {
+const SimilarTab = ( { results, place, showNewTaxon } ) => {
   let content;
   if ( results && results.length > 0 ) {
     content = (
@@ -15,6 +15,12 @@ const SimilarTab = ( { results, place } ) => {
             badgeTip={I18n.t( "x_misidentifications_of_this_species", { count: result.count } )}
             height={190}
             truncate={20}
+            onClick={ e => {
+              if ( !showNewTaxon ) return true;
+              e.preventDefault( );
+              showNewTaxon( result.taxon );
+              return false;
+            } }
           />
         ) }
       </div>
@@ -52,7 +58,8 @@ const SimilarTab = ( { results, place } ) => {
 
 SimilarTab.propTypes = {
   results: PropTypes.array,
-  place: PropTypes.object
+  place: PropTypes.object,
+  showNewTaxon: PropTypes.func
 };
 
 export default SimilarTab;

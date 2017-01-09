@@ -5,7 +5,13 @@ import { urlForTaxon } from "../../shared/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 
-const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) => {
+const TaxonomyTab = ( {
+  taxon,
+  taxonChangesCount,
+  taxonSchemesCount,
+  names,
+  showNewTaxon
+} ) => {
   const currentTaxon = Object.assign( { }, taxon );
   const tree = [];
   if ( taxon ) {
@@ -38,12 +44,17 @@ const TaxonomyTab = ( { taxon, taxonChangesCount, taxonSchemesCount, names } ) =
         }
         return (
           <li key={`taxonomy-${t.id}`} className={ className }>
-            <SplitTaxon taxon={t} url={shouldLinkToTaxon ? urlForTaxon( t ) : null} /> {
-              shouldLinkToTaxon ?
-                ( <a href={urlForTaxon( t )}><i className="icon-link-external"></i></a> )
-                :
-                null
-            }
+            <SplitTaxon
+              taxon={t}
+              url={shouldLinkToTaxon ? urlForTaxon( t ) : null}
+              forceRank
+              onClick={ e => {
+                if ( !shouldLinkToTaxon ) return true;
+                e.preventDefault( );
+                showNewTaxon( t );
+                return false;
+              } }
+            />
             { t.children && t.children.length > 0 ? renderTaxonomy( t.children ) : null }
           </li>
         );
@@ -153,7 +164,8 @@ TaxonomyTab.propTypes = {
   taxon: PropTypes.object,
   taxonChangesCount: PropTypes.number,
   taxonSchemesCount: PropTypes.number,
-  names: PropTypes.array
+  names: PropTypes.array,
+  showNewTaxon: PropTypes.func
 };
 
 TaxonomyTab.defaultProps = {

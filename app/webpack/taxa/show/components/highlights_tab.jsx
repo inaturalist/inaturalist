@@ -4,7 +4,14 @@ import _ from "lodash";
 import Carousel from "./carousel";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, placeName, placeUrl } ) => {
+const HighlightsTab = ( {
+  trendingTaxa,
+  rareTaxa,
+  trendingUrl,
+  placeName,
+  placeUrl,
+  showNewTaxon
+} ) => {
   let trending = (
     <h2 className="text-muted text-center">
       <i className="fa fa-refresh fa-spin"></i>
@@ -14,9 +21,13 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, placeName, placeU
   const columnWidth = 3;
   const thumbnailHeight = 200;
   const thumbnailTruncation = 50;
-  if ( trendingTaxa && trendingTaxa.length > 0 ) {
+  if ( trendingTaxa ) {
     const trendingChunks = _.chunk( trendingTaxa, photosPerSlide );
-    if ( trendingChunks[trendingChunks.length - 1].length === photosPerSlide ) {
+    if (
+      trendingChunks &&
+      trendingChunks[trendingChunks.length - 1] &&
+      trendingChunks[trendingChunks.length - 1].length === photosPerSlide
+    ) {
       trendingChunks[trendingChunks.length - 1].pop( );
     }
     trending = (
@@ -44,6 +55,12 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, placeName, placeU
                     taxon={taxon}
                     height={thumbnailHeight}
                     truncate={thumbnailTruncation}
+                    onClick={ e => {
+                      if ( !showNewTaxon ) return true;
+                      e.preventDefault( );
+                      showNewTaxon( taxon );
+                      return false;
+                    } }
                   />
                 </Col>
               ) )
@@ -93,6 +110,12 @@ const HighlightsTab = ( { trendingTaxa, rareTaxa, trendingUrl, placeName, placeU
                     taxon={taxon}
                     height={thumbnailHeight}
                     truncate={thumbnailTruncation}
+                    onClick={ e => {
+                      if ( !showNewTaxon ) return true;
+                      e.preventDefault( );
+                      showNewTaxon( taxon );
+                      return false;
+                    } }
                   />
                 </Col>
               ) )
@@ -123,7 +146,8 @@ HighlightsTab.propTypes = {
   placeUrl: PropTypes.string,
   trendingTaxa: PropTypes.array,
   rareTaxa: PropTypes.array,
-  trendingUrl: PropTypes.string
+  trendingUrl: PropTypes.string,
+  showNewTaxon: PropTypes.func
 };
 
 export default HighlightsTab;

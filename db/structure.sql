@@ -645,6 +645,41 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: complete_sets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE complete_sets (
+    id integer NOT NULL,
+    user_id integer,
+    taxon_id integer,
+    place_id integer,
+    description text,
+    source_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: complete_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE complete_sets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: complete_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE complete_sets_id_seq OWNED BY complete_sets.id;
+
+
+--
 -- Name: conservation_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1805,6 +1840,40 @@ CREATE SEQUENCE listed_taxa_id_seq
 --
 
 ALTER SEQUENCE listed_taxa_id_seq OWNED BY listed_taxa.id;
+
+
+--
+-- Name: listed_taxon_alterations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE listed_taxon_alterations (
+    id integer NOT NULL,
+    taxon_id integer,
+    user_id integer,
+    place_id integer,
+    action character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: listed_taxon_alterations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE listed_taxon_alterations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: listed_taxon_alterations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE listed_taxon_alterations_id_seq OWNED BY listed_taxon_alterations.id;
 
 
 --
@@ -4510,6 +4579,13 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY complete_sets ALTER COLUMN id SET DEFAULT nextval('complete_sets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
 
 
@@ -4728,6 +4804,13 @@ ALTER TABLE ONLY list_rules ALTER COLUMN id SET DEFAULT nextval('list_rules_id_s
 --
 
 ALTER TABLE ONLY listed_taxa ALTER COLUMN id SET DEFAULT nextval('listed_taxa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY listed_taxon_alterations ALTER COLUMN id SET DEFAULT nextval('listed_taxon_alterations_id_seq'::regclass);
 
 
 --
@@ -5252,6 +5335,14 @@ ALTER TABLE ONLY comments
 
 
 --
+-- Name: complete_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY complete_sets
+    ADD CONSTRAINT complete_sets_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: conservation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5505,6 +5596,14 @@ ALTER TABLE ONLY list_rules
 
 ALTER TABLE ONLY listed_taxa
     ADD CONSTRAINT listed_taxa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listed_taxon_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY listed_taxon_alterations
+    ADD CONSTRAINT listed_taxon_alterations_pkey PRIMARY KEY (id);
 
 
 --
@@ -6159,6 +6258,34 @@ CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
 
 
 --
+-- Name: index_complete_sets_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_place_id ON complete_sets USING btree (place_id);
+
+
+--
+-- Name: index_complete_sets_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_taxon_id ON complete_sets USING btree (taxon_id);
+
+
+--
+-- Name: index_complete_sets_on_taxon_id_and_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_taxon_id_and_place_id ON complete_sets USING btree (taxon_id, place_id);
+
+
+--
+-- Name: index_complete_sets_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_user_id ON complete_sets USING btree (user_id);
+
+
+--
 -- Name: index_conservation_statuses_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6275,6 +6402,13 @@ CREATE INDEX index_deleted_users_on_user_id ON deleted_users USING btree (user_i
 --
 
 CREATE INDEX index_exploded_atlas_places_on_atlas_id ON exploded_atlas_places USING btree (atlas_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_atlas_id_and_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exploded_atlas_places_on_atlas_id_and_place_id ON exploded_atlas_places USING btree (atlas_id, place_id);
 
 
 --
@@ -6569,6 +6703,27 @@ CREATE INDEX index_listed_taxa_on_taxon_range_id ON listed_taxa USING btree (tax
 --
 
 CREATE INDEX index_listed_taxa_on_user_id ON listed_taxa USING btree (user_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_place_id ON listed_taxon_alterations USING btree (place_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_taxon_id ON listed_taxon_alterations USING btree (taxon_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_user_id ON listed_taxon_alterations USING btree (user_id);
 
 
 --
@@ -8561,4 +8716,10 @@ INSERT INTO schema_migrations (version) VALUES ('20161012204604');
 INSERT INTO schema_migrations (version) VALUES ('20161020190217');
 
 INSERT INTO schema_migrations (version) VALUES ('20161110221032');
+
+INSERT INTO schema_migrations (version) VALUES ('20161210081605');
+
+INSERT INTO schema_migrations (version) VALUES ('20161216041939');
+
+INSERT INTO schema_migrations (version) VALUES ('20161220213126');
 

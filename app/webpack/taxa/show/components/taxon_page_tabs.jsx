@@ -19,6 +19,13 @@ class TaxonPageTabs extends React.Component {
     } );
     this.props.loadDataForTab( this.props.chosenTab );
   }
+  componentDidUpdate( prevProps ) {
+    const prevTaxonId = prevProps.taxon ? prevProps.taxon.id : null;
+    const currTaxonId = this.props.taxon ? this.props.taxon.id : null;
+    if ( prevTaxonId !== currTaxonId ) {
+      this.props.loadDataForTab( this.props.chosenTab );
+    }
+  }
   render( ) {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
     const chosenTab = this.props.chosenTab;
@@ -207,7 +214,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "map"
+  chosenTab: "articles"
 };
 
 export default TaxonPageTabs;

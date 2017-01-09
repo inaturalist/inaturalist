@@ -4,7 +4,11 @@ const PhotoChooserPhoto = ( { removePhoto, infoURL, src, chooserID } ) => (
   <div>
     { typeof( removePhoto ) !== "function" ? null : (
       <a
-        onClick={ ( ) => removePhoto( chooserID ) }
+        onClick={ e => {
+          e.preventDefault( );
+          removePhoto( chooserID );
+          return false;
+        } }
         href="#"
         className="control-link remove-link"
       >
