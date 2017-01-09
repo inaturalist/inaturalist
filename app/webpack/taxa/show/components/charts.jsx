@@ -152,7 +152,10 @@ class Charts extends React.Component {
       axis: {
         x: {
           type: "category",
-          categories: this.props.seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) )
+          categories: this.props.seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) ),
+          tick: {
+            multiline: false
+          }
         }
       },
       tooltip: {
