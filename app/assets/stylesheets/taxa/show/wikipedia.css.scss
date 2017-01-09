@@ -87,7 +87,11 @@
   }
 
   th {
-    padding: 0.4em;
+    background-color: #e3e3e3 !important;
+  }
+
+  th, td {
+    padding: 10px;
   }
 
 }
