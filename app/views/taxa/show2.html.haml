@@ -25,6 +25,7 @@
   - else
     %meta{ property: "og:image", content: @taxon.photos.first.medium_url }
     %meta{ property: "twitter:image", content: @taxon.photos.first.medium_url }
+    %meta{ property: "twitter:card", content: "summary_large_image" }
   %meta{ property: "og:url", content: taxon_url( @taxon ) }
   - if @taxon.wikipedia_summary.blank?
     - description = @taxon.auto_summary
@@ -47,5 +48,10 @@
           = button_to t(:take_me_back),
             leave_test_user_path( current_user, test: "taxon-page" ),
             method: "put",
-            class: "btn btn-default",
+            class: "btn btn-primary",
+            style: "margin-left: 10px",
             form_class: "inline"
+          = link_to t(:feedback),
+            "https://groups.google.com/d/topic/inaturalist/Do32Bof2hiY/discussion",
+            class: "btn btn-default",
+            style: "margin-left: 10px"
