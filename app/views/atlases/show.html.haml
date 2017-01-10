@@ -7,6 +7,9 @@
 .container
   .row
     .col-xs-12
+      - unless @atlas.is_active
+        .alert.alert-info{ role: :alert }
+          This atlas is currently not active
       - if @num_obs > 0
         .alert.alert-warning{ role: :alert }
           Warning: there are observations not represented by this atlas

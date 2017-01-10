@@ -494,7 +494,7 @@ class ListedTaxon < ActiveRecord::Base
     return false unless list.is_a?( CheckList ) && list.is_default?
     return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
     place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
-    atlas_ids = Atlas.where( "taxon_id IN (?)", taxon.self_and_ancestor_ids ).pluck( :id )
+    atlas_ids = Atlas.where( "is_active = true AND taxon_id IN (?)", taxon.self_and_ancestor_ids ).pluck( :id )
     # there are atlases for this taxon or ancestors and this place isn't
     # exploded for all matching atlases, therefore this action is relevant
     # to some atlas and should be logged
@@ -502,7 +502,8 @@ class ListedTaxon < ActiveRecord::Base
       ExplodedAtlasPlace.where( "atlas_id IN ( ? )", atlas_ids ).
         where( place_id: place.id ).count < atlas_ids.length
     cs = CompleteSet.
-      where( "taxon_id IN ( ? ) AND place_id IN ( ? )", taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
+      where( "is_active = true").
+      where("taxon_id IN ( ? ) AND place_id IN ( ? )", taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
       count
     return true if cs > 0
     false
