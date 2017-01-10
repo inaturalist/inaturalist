@@ -18,7 +18,7 @@ class CompleteSetsController < ApplicationController
     
     #any obs outside of the complete set
     @observation_search_url_params = { 
-      hrank: "species", lrank: "species", verifiable: true, taxon_id: @complete_set.taxon_id, 
+      rank: ["species","subspecies","variety","form"], verifiable: true, taxon_id: @complete_set.taxon_id, 
       place_id: @complete_set.place_id, without_taxon_id: @taxa.pluck(:id).join( "," )
     }
     @num_obs = INatAPIService.observations( @observation_search_url_params.merge( per_page: 0 ) ).total_results
