@@ -17,6 +17,7 @@ class Place < ActiveRecord::Base
       indexes :id, type: "integer"
       indexes :place_type, type: "integer"
       indexes :geometry_geojson, type: "geo_shape"
+      indexes :bounding_box_geojson, type: "geo_shape"
       indexes :location, type: "geo_point", lat_lon: true
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
