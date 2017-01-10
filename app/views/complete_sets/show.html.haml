@@ -4,6 +4,9 @@
 .container
   .row
     .col-xs-12
+      - unless @complete_set.is_active
+        .alert.alert-info{ role: :alert }
+          This complete set is currently not active
       - if @num_obs > 0
         .alert.alert-warning{ role: "alert" }
           Warning: there are observations not represented in this complete set
