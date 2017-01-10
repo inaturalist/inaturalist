@@ -1,6 +1,7 @@
 import inatjs from "inaturalistjs";
 import { defaultObservationParams } from "../../shared/util";
 import { stringify } from "querystring";
+import { setConfig } from "../../../shared/ducks/config";
 
 const SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
 const SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FREQUENCY";
@@ -184,10 +185,11 @@ export function setObservationsCount( count ) {
 export function fetchRecentObservations( ) {
   return ( dispatch, getState ) =>
     inatjs.observations.search(
-      defaultObservationParams( getState( ) )
+      Object.assign( { return_bounds: true }, defaultObservationParams( getState( ) ) )
     ).then( response => {
       dispatch( setRecentObservations( response.results ) );
       dispatch( setObservationsCount( response.total_results ) );
+      dispatch( setConfig( { mapBounds: response.total_bounds } ) );
     } );
 }
 

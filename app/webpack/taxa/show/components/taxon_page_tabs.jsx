@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col, Dropdown, MenuItem } from "react-bootstrap";
 import _ from "lodash";
-import TaxonPageMap from "./taxon_page_map";
+import TaxonPageMapContainer from "../containers/taxon_page_map_container";
 import StatusTab from "./status_tab";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
@@ -151,7 +151,7 @@ class TaxonPageTabs extends React.Component {
             className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
             id="map-tab"
           >
-            <TaxonPageMap taxon={this.props.taxon} />
+            <TaxonPageMapContainer />
             <RecentObservationsContainer />
           </div>
           <div

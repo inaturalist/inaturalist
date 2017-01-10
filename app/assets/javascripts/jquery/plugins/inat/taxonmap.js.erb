@@ -118,10 +118,11 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         new google.maps.LatLng(options.maxY, options.maxX)
       )
     )
-    preserveViewport = true
+    preserveViewport = true;
   } else {
     if (options.latitude || options.longitude) {
       map.setCenter(new google.maps.LatLng(options.latitude || 0, options.longitude || 0))
+      preserveViewport = true;
     }
     if (options.zoomLevel) {
       map.setZoom(options.zoomLevel)
