@@ -103,7 +103,7 @@ describe ListedTaxaController, "destroy" do
     @user = User.make!
     check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
     @other_user = make_admin
-    atlas = Atlas.make!(user: @other_user, taxon: taxon)
+    atlas = Atlas.make!(user: @other_user, taxon: taxon, is_active: true)
     expect(check_listed_taxon.has_atlas_or_complete_set?).to be true  
     http_login(@other_user)
     delete :destroy, :format => :json, :id => check_listed_taxon.id
