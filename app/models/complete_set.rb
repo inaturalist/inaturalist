@@ -6,6 +6,8 @@ class CompleteSet < ActiveRecord::Base
   belongs_to :source
   has_many :comments, as: :parent, dependent: :destroy
   validates_uniqueness_of :taxon_id, scope: :place_id, :message => "already has complete set for this place"
+  validates_presence_of :taxon
+  validates_presence_of :place
   
   def get_taxa_for_place_taxon
     place_descendant_ids = place.descendants.

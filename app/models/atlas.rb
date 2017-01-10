@@ -6,7 +6,7 @@ class Atlas < ActiveRecord::Base
   has_many :atlas_alterations, inverse_of: :atlas, dependent: :delete_all
   has_many :comments, as: :parent, dependent: :destroy
   validates_uniqueness_of :taxon_id, :message => "already atlased"
-  
+  validates_presence_of :taxon
 
   def places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
