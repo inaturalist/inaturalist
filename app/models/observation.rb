@@ -251,6 +251,7 @@ class Observation < ActiveRecord::Base
   has_many :first_check_listed_taxa, -> { where("listed_taxa.place_id IS NOT NULL") }, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
   
   has_many :comments, :as => :parent, :dependent => :destroy
+  has_many :annotations, as: :resource, dependent: :destroy
   has_many :identifications, :dependent => :destroy
   has_many :project_observations, :dependent => :destroy
   has_many :project_observations_with_changes, -> {
@@ -2222,6 +2223,7 @@ class Observation < ActiveRecord::Base
       next unless np && value
       namespace, predicate = np.split(':')
       predicate = namespace if predicate.blank?
+      next if predicate.blank?
       of = ObservationField.where("lower(name) = ?", predicate.downcase).first
       next unless of
       next if self.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}

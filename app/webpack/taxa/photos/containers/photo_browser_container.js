@@ -16,7 +16,8 @@ function mapStateToProps( state ) {
     layout: state.config.layout,
     grouping: state.config.grouping,
     groupedPhotos: state.photos.groupedPhotos,
-    params: state.photos.observationParams
+    params: state.photos.observationParams,
+    place: state.config.chosenPlace
   };
   props.terms = state.taxon.terms.map( term => {
     const newTerm = Object.assign( { }, term );
@@ -47,6 +48,8 @@ function mapStateToProps( state ) {
       observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
+  } else if ( state.photos.observationPhotos ) {
+    props.observationPhotos = [];
   }
   if (
     !state.taxon.taxon ||

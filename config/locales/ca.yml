@@ -4,6 +4,7 @@
 # Author: Cgalindo
 # Author: Eduardo Martinez
 # Author: Fitoschido
+# Author: Gambollar
 # Author: Jaumeortola
 # Author: Lib2know
 # Author: Macofe
@@ -106,7 +107,6 @@ ca:
   a_member_of_taxon_html: un tipus de %{taxon}
   able_to_connect_flickr: Molt bé! L'hem pogut vincular al compte de Flickr.
   about: Sobre
-  about_taxon_changes: Sobre els canvis de taxons
   about_bioblitz_results: Sobre els resultats del bioblitz
   about_community_taxa: Sobre la comunitat de tàxons
   about_external_links: Sobre els enllaços externs
@@ -114,6 +114,7 @@ ca:
   about_licensing: Sobre les llicències
   about_life!: Sobre la vida!
   about_places: Sobre els Llocs
+  about_taxon_changes: Sobre els canvis de taxons
   about_the_cc_licenses: Sobre les llicències de Creative Commons
   about_the_taxobox_raquo: Sobre la fitxa de tàxon »
   about_these_licenses: Sobre aquestes llicències
@@ -2526,7 +2527,6 @@ ca:
   photo_s: Foto(s)
   photo_type: Tipus de foto
   photo_urls_repaired: L’URL de la foto s'ha reparat.
-  photos: Fotos
   photos_or_sounds?: Fotos o sons?
   photos_size:
     small: petit
@@ -3728,11 +3728,11 @@ ca:
   uploader:
     tooltips:
       add: Afegiu observació(ns)
-      remove: Elimineu les observacions seleccionades
       combine: Combineu les observacions seleccionades
-      select_all: Seleccioneu totes les observacions
-      remove_photo: Elimineu la foto
+      remove: Elimineu les observacions seleccionades
       remove_observation: Traieu l'observació
+      remove_photo: Elimineu la foto
+      select_all: Seleccioneu totes les observacions
   uploading_num_of_count_photos: '{{PLURAL)|one=Pujant la foto...|Pujant foto %{num}
     de %{count}...}}'
   url_identifier_of_a_project_derived_from: Adreça web / identificador del projecte

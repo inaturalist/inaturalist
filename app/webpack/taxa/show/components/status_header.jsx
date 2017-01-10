@@ -5,9 +5,6 @@ const StatusHeader = ( { status } ) => {
   let text = status.statusText( );
   text = I18n.t( text, { defaultValue: text } );
   text = _.capitalize( text );
-  // if ( !text.match( /\(${status.status}\)/ ) ) {
-  //   text += ` (${status.status})`;
-  // }
   let alertClass;
   switch ( status.iucnStatusCode( ) ) {
     case "LC":

@@ -88,10 +88,11 @@ module HasSubscribers
       end
       
       after_destroy do |record|
-        UpdateAction.transaction do
-          UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+        unless record.try(:unsubscribable?)
+          UpdateAction.transaction do
+            UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+          end
         end
-        true
       end
     end
 
@@ -111,7 +112,9 @@ module HasSubscribers
 
       create_callback(subscribable_association, options)
       after_destroy do |record|
-        UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        unless record.try(:unsubscribable?)
+          UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        end
       end
     end
 
@@ -130,7 +133,9 @@ module HasSubscribers
 
       create_callback(method, options)
       after_destroy do |record|
-        UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        unless record.try(:unsubscribable?)
+          UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        end
       end
     end
 
@@ -151,7 +156,7 @@ module HasSubscribers
       
       send(callback_method) do |record|
         resource = options[:to] ? record.send(options[:to]) : record
-        if options[:if].blank? || options[:if].call(record, resource)
+        if (options[:if].blank? || options[:if].call(record, resource)) && !record.try(:unsubscribable?)
           Subscription.create(:user => record.send(subscriber), :resource => resource)
         end
       end
@@ -159,8 +164,9 @@ module HasSubscribers
       attr_accessor :auto_subscriber
 
       before_destroy do |record|
-        record.auto_subscriber = record.send(subscriber)
-        true
+        unless record.try(:unsubscribable?)
+          record.auto_subscriber = record.send(subscriber)
+        end
       end
       
       # this is potentially weird b/c there might be other reasons you're
@@ -168,15 +174,16 @@ module HasSubscribers
       # alts would be to remove uniqueness constraint so every
       # auto_subscribing object generates a subscription...
       after_destroy do |record|
-        resource = options[:to] ? record.send(options[:to]) : record
-        user = record.auto_subscriber || record.send(subscriber)
-        if user && resource
-          Subscription.delete_all(:user_id => user.id, 
-            :resource_type => resource.class.name, :resource_id => resource.id)
-        else
-          Rails.logger.error "[ERROR #{Time.now}] Couldn't delete auto subscription for #{record}"
+        unless record.try(:unsubscribable?)
+          resource = options[:to] ? record.send(options[:to]) : record
+          user = record.auto_subscriber || record.send(subscriber)
+          if user && resource
+            Subscription.delete_all(:user_id => user.id,
+              :resource_type => resource.class.name, :resource_id => resource.id)
+          else
+            Rails.logger.error "[ERROR #{Time.now}] Couldn't delete auto subscription for #{record}"
+          end
         end
-        true
       end
     end
     
@@ -262,7 +269,7 @@ module HasSubscribers
       attr_accessor :skip_updates
       callback_types.each do |callback_type|
         send callback_type do |record|
-          unless record.skip_updates
+          unless record.skip_updates || record.try(:unsubscribable?)
             if options[:queue_if].blank? || options[:queue_if].call(record)
               record.delay(priority: options[:priority]).
                 send(callback_method, subscribable_association)

@@ -7,6 +7,7 @@
 # Author: Devid Farinelli
 # Author: Einreiher
 # Author: Federico Mugnaini
+# Author: Fitoschido
 # Author: Fringio
 # Author: Gianfranco
 # Author: JackLantern
@@ -67,6 +68,8 @@ it:
   x_matching_taxa_html:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
+  x_misidentifications_of_this_species:
+    other: =1 identificazione errata di questa specie
   x_observations:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -127,7 +130,6 @@ it:
   able_to_connect_flickr: Grande! Siamo stati in grado di collegare il tuo account
     di Flickr.
   about: Informazioni
-  about_taxon_changes: A proposito delle modifiche dei taxa
   about_bioblitz_results: A proposito dei risultati bioblitz
   about_community_taxa: A proposito dei taxa della community
   about_external_links: A proposito dei Collegamenti Esterni
@@ -135,6 +137,7 @@ it:
   about_licensing: A proposito delle licenze
   about_life!: a proposito della vita!
   about_places: A proposito dei luoghi
+  about_taxon_changes: A proposito delle modifiche dei taxa
   about_the_cc_licenses: A proposito delle licenze Creative Commons
   about_the_taxobox_raquo: A proposito del taxobox &raquo;
   about_these_licenses: A proposito di queste licenze
@@ -153,6 +156,7 @@ it:
     di mappa e trascinando gli agganci. Prova a fare un cerchio grande abbastanza
     per assicurarti che sei stato da qualche parte al suo interno.
   acquaintances: conoscenti
+  action: Azione
   actions: Azioni
   activate_user: Attiva utente
   active: attivo
@@ -199,6 +203,7 @@ it:
   add_edit_more_fields: Aggiungi più campi/modifica
   add_description: Aggiungi %{description_name}
   add_from_your_observations: Aggiungi le tue osservazioni
+  add_link: Aggiungi collegamento
   add_listed_taxa_from_observations: Aggiungi i taxa elencati dalle osservazioni
   add_higher_level_taxon: Aggiungi un livello tassonomico più alto (ad esempio, "uccelli")
   add_id: Aggiungi ID
@@ -489,6 +494,7 @@ it:
     taxon?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Sei sicuro di voler rimuovere
     questo taxon dalla checklist di %{place}?
+  articles: Voci
   associated_observations: Osservazioni associate
   associated_taxa: Taxa associati
   attention: Attenzione
@@ -761,7 +767,7 @@ it:
   choose_your_username: Scegli il tuo nome utente
   citation: Citazione
   classification: Classificazione
-  clear: cancella
+  clear: pulisci
   clear_color_filters: Rimuovi i filtri dei colori
   clear_search: Cancella la ricerca
   clear_shapes: Rimuovi le forme
@@ -1180,7 +1186,7 @@ it:
   end: Fine
   endangered: In Pericolo
   endemic: endemiche
-  endemic_to_x: endemica in %{x}
+  endemic_to_x: Endemico in %{x}
   eol: EOL
   eol_collection_url: URL della raccolta EOL
   error_updating_photo: 'Errore nell''aggiornamento della foto: %{photo_errors}'
@@ -1307,6 +1313,7 @@ it:
   first_connect_your_provider_account_to_your_site: 'Per prima cosa, connetti il tuo
     %{provider} account a %{site_name}:'
   first_inat_observation: Prima osservazione di %{site_name}
+  first_observation: Prima osservazione
   first_observer: 1° osservatore
   first_report: primo rapporto
   flag: Contrassegna
@@ -1596,8 +1603,10 @@ it:
   inspired_by_the_flickr_group: Ispirata dal gruppo Flickr <a href='http://flickr.com/groups/idplease/'>ID
     Per favore</a>, questa è la pagina dove postare le osservazioni di organismi che
     non conoscete ed aiutare le persone ad identificare le creature misteriose!
+  interactions: Interazioni
   internal_server_error: Errore interno del server
   introduced: introdotta
+  introduced_in_place: Introdotto in %{place}
   invasive: invasiva
   invitation: Invito
   invitations: Inviti
@@ -1664,6 +1673,7 @@ it:
   labels: Etichette
   label_to_group_a_batch_of_taxon_changes: Etichetta per raggruppare una serie di
     modifiche dei taxa
+  language_slash_type: Lingua / Tipo
   large: grande
   last_confirmed_observation: Ultima osservazione confermata
   last_inat_observation: Ultima osservazione %{site_name}
@@ -2054,6 +2064,7 @@ it:
   naturalised: naturalizzato
   naturalized: naturalizzato
   native: nativo
+  native_to_place: Nativo di %{place}
   nav: Nav
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -2083,7 +2094,7 @@ it:
     di %{user_link}
   new_custom_field_for: Nuovo campo personalizzato per
   new_flag_for: Nuovo Contrassegno per
-  new_guide: Nuova Guida
+  new_guide: Nuova guida
   new_journal_posts: Nuovo Post del Diario
   new_list: Nuova Lista
   new_members: Nuovi membri
@@ -2548,7 +2559,8 @@ it:
   photo_s: Foto
   photo_type: Tipo di foto
   photo_urls_repaired: URL della foto riparati
-  photos: Foto
+  photos_of: Foto di
+  photos_of_taxon_html: Foto di %{taxon}
   photos_or_sounds?: Foto o suoni?
   photos_size:
     small: piccola
@@ -2753,7 +2765,6 @@ it:
     file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
   popular: popolare
   position: Posizione
-  position_accurate_to_within_5km?: Posizione precisa entro 5 km?
   positional_accuracy: Precisione della posizione
   possessive_user: di %{user}
   post: Post
@@ -2892,6 +2903,7 @@ it:
     variety: varietà
     form: forma
     leaves: foglie
+  rare: Raro
   ray_finned_fishes: Attinopterigi
   re_apply_list_rules: Ri-applica le regole della lista
   re_order_photos: Riordina le foto &raquo;
@@ -3023,7 +3035,7 @@ it:
   rules_for_becoming_a_member: Regole per diventare un Membro
   rules_for_becoming_memner: Regole per diventare un Membro
   rules_types:
-    must_be_georeferenced: devoe essere georeferenziata
+    must_be_georeferenced: deve essere georeferenziata
     must_be_identified: deva essere identificata
     must_be_on_list: deve essere sulla lista
     must_be_observed_in_place: deve essere osservata nel Luogo
@@ -3087,6 +3099,7 @@ it:
   search_ubio_raquo: Cerca in uBio &raquo;
   search_your_photos: Cerca tra le tue foto
   searching: Ricerca in corso...
+  seasonality: Stagionalità
   second_person_possessive_singular: Le tue/I tuoi %{noun}
   second_person_possessive_singular_: Il tuo %{noun}
   see_something_wrong_with_taxon: Vedi qualcosa di sbagliato riguardo questo taxon?
@@ -3385,6 +3398,7 @@ it:
   taxa_observed: taxa osservati
   taxa_to_include: Taxa da includere
   taxon: Taxon
+  taxonomy: Tassonomia
   taxon_: taxon
   taxon_assessments_are: |-
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
@@ -3751,11 +3765,11 @@ it:
   uploader:
     tooltips:
       add: Aggiungi osservazione(i)
-      remove: Rimuovi le osservazioni selezionate
       combine: Combina le osservazioni selezionate
-      select_all: Seleziona tutte le osservazioni
-      remove_photo: Rimuovi foto
+      remove: Rimuovi le osservazioni selezionate
       remove_observation: Rimuovi osservazione
+      remove_photo: Rimuovi foto
+      select_all: Seleziona tutte le osservazioni
   uploading_num_of_count_photos:
     one: Caricamento foto...
     other: Caricamento foto %{num} di %{count}...
@@ -3927,6 +3941,8 @@ it:
   want_to_add_one: Vuoi aggiungerne una?
   want_to_show_off_some_of_your_favorite_taxa: Vuoi mostrare qui alcuni dei tuoi taxa
     preferiti?
+  want_to_test_a_new_version_of_this_page: Vuoi provare una nuova versione di questa
+    pagina?
   was_it_captive_cultivated?: Era in cattività / coltivato?
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente
     formattazione
@@ -5049,6 +5065,12 @@ it:
         sorry_that_doesnt_exist: Spiacente! Non esiste!
         even_our_dedicated_search_mole_couldnt: Anche la nostra talpa da ricerca non
           è riuscita a trovare niente!
+    taxa:
+      show:
+        frequency:
+          verifiable: Verificabile
+          Insect life stage=egg: Uovo
+          Insect life stage=adult: Adulto
     taxon_names:
       form:
         new_name_guidelines_html: |-

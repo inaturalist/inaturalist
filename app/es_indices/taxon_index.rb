@@ -6,6 +6,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions,
+    :taxon_change_taxa, :taxon_schemes, :taxon_changes,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
     { taxon_photos: { photo: :user } },
@@ -97,7 +98,7 @@ class Taxon < ActiveRecord::Base
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
-          map(&:as_indexed_json)
+          select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json)
       })
     end
     json

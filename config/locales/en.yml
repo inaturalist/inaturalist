@@ -65,6 +65,9 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_people_found_this_helpful:
+    one: 'One person found this helpful'
+    other: '%{count} people found this helpful'
   x_faves:
     one: '1 fave'
     other: '%{count} faves'
@@ -1042,7 +1045,7 @@ en:
   end: End
   endangered: endangered
   endemic: endemic
-  endemic_to_x: "endemic to %{x}"
+  endemic_to_x: "Endemic to %{x}"
   eol: EOL
   eol_collection_url: "EOL collection URL"
   error_updating_photo: "Error updating photo: %{photo_errors}"
@@ -1161,6 +1164,7 @@ en:
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observation: First Observation
+  first_observation_by_date_added: First observation by date added
   first_observer: 1st observer
   first_report: first report
   flag: Flag
@@ -1196,6 +1200,7 @@ en:
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
   flickr_youre_all_set: "You're all set to start exploring %{site_name}"
+  flowering_phenology: Flowering Phenology
   fluid_layout: Fluid Layout
   fluid: fluid
   follow_us: Follow us on
@@ -1411,10 +1416,12 @@ en:
   info: Info
   input_taxon: Input taxon
   insects: insects
+  insect_life_stage: Insect Life Stage
   inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http://flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
   interactions: Interactions
   internal_server_error: Internal Server Error
   introduced: introduced
+  introduced_in_place: "Introduced in %{place}"
   invasive: invasive
   invitation: Invitation
   invitations: Invitations
@@ -1819,6 +1826,7 @@ en:
   naturalised: naturalized
   naturalized: naturalized
   native: native
+  native_to_place: "Native to %{place}"
   nav: Nav
   nav_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: NE Lat.
@@ -2251,6 +2259,7 @@ en:
   photo_s: Photo(s)
   photo_type: Photo type
   photo_urls_repaired: Photo URLs repaired
+  photos_from: Photos from
   photos_of: Photos of
   photos_of_taxon_html: "Photos of %{taxon}"
   photos_or_sounds?: Photos or sounds?
@@ -2731,6 +2740,8 @@ en:
   search: Search
   search_all_fields: search all fields
   search_by_name_or_email: Search by name or email
+  search_by_taxon_name_or_observation_id: Search by taxon name or observation ID
+  search_by_taxon_name_or_flickr_photo_id: Search by taxon name or Flickr photo ID
   search_catalogue_of_life: 'Search <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Search Catalogue of Life &raquo;"
   search_creative_commons_photos_on_flickr: "Search Creative Commons photos on Flickr. If you select one, be nice and leave them a thank you comment!"
@@ -3340,11 +3351,12 @@ en:
   uploader:
     tooltips:
       add: Add observation(s)
-      remove: Remove selected observations
       combine: Combine selected observations
-      select_all: Select all observations
-      remove_photo: Remove photo
+      photo_failed: Photo failed to upload
+      remove: Remove selected observations
       remove_observation: Remove observation
+      remove_photo: Remove photo
+      select_all: Select all observations
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
@@ -4702,6 +4714,19 @@ en:
         rare_desc: Least-observed threatened taxa
         rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         no_trending_desc: Nothing below this taxon observed in the last month
+        frequency:
+          research: Research Grade
+          verifiable: Verifiable
+          "Flowering Phenology=bare": No flowers
+          "Flowering Phenology=budding": Budding
+          "Flowering Phenology=flower": Flowering
+          "Flowering Phenology=fruit": Fruiting
+          "Insect life stage=egg": Egg
+          "Insect life stage=larva": Larva
+          "Insect life stage=teneral": Teneral
+          "Insect life stage=nymph": Nymph
+          "Insect life stage=pupa": Pupa
+          "Insect life stage=adult": Adult
     taxon_names:
       form:
         new_name_guidelines_html: |

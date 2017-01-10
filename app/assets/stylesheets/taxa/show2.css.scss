@@ -103,7 +103,6 @@
 .FrequencyChart .c3-axis-y .tick line {
    display: none;
 }
-
 .FrequencyChart .c3-region {
   fill: #999;
   opacity: 1;
@@ -113,12 +112,12 @@
 }
 .FrequencyChart .c3-circle._expanded_ {
   stroke-width: 7px;
-  stroke: transparentize( $inat-green, 0.6 );
+  stroke: transparentize( #ddd, 0.6 );
   stroke-location: outside;
 }
 
-.FrequencyChart .c3-target-verifiable .c3-circle._expanded_ {
-  stroke: transparentize( #ddd, 0.6 );
+.FrequencyChart .c3-target-research .c3-circle._expanded_ {
+  stroke: transparentize( $inat-green, 0.6 );
 }
 
 .FrequencyChart line.c3-xgrid-focus {
@@ -158,7 +157,7 @@
 
 .TaxonMap {
   height: 600px;
-  margin: 20px 0;
+  margin: 20px 0 10px;
   border: 1px solid #ddd;
 }
 
@@ -336,6 +335,22 @@ $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
+  overflow: hidden;
+  height: 590px;
+}
+.PhotoPreview .photo-bg {
+  position: absolute;
+  left: -50px;
+  top: -50px;
+  background-size: cover;
+  width: 120%;
+  height: 120%;
+  background-color: black;
+  filter: blur(20px) brightness(0.5);
+  -webkit-filter: blur(20px) brightness(0.5);
+  -moz-filter: blur(20px) brightness(0.5);
+  -o-filter: blur(20px) brightness(0.5);
+  -ms-filter: "blur(20px)";
 }
 .PhotoPreview ul.others {
   width: 100%;
@@ -415,8 +430,15 @@ $photoPreviewThumbGutterTop: 3px;
     opacity: 0;
     transition: opacity 0.2s linear;
     text-align: center;
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+      opacity: 0.8;
+    }
   }
-  .btn-link {
+  .modal-link {
     width: 100%;
     height: 100%;
     font-size: 80%;
@@ -425,14 +447,42 @@ $photoPreviewThumbGutterTop: 3px;
     i {
       display: inline-block;
       font-size: 300%;
-      // margin-bottom: 10px;
       padding: 10px;
       background-color: rgba(0,0,0,0.5);
     }
   }
-  .btn-link:hover {
+  .modal-link:hover {
     text-decoration: none;
     color: white;
+  }
+  .photo-taxon {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.4);
+    font-weight: 100;
+    font-size: 90%;
+    line-height: 20px;
+    text-align: left;
+
+    .display-name {
+      font-size: 120%;
+      display: block;
+    }
+    i {
+      font-size: 150%;
+    }
+    .SplitTaxon a {
+      color: white;
+    }
+    .info-link {
+      padding: 0;
+      position: relative;
+      top: -2px;
+    }
   }
 }
 .TaxonPhoto:hover .photo-hover {
@@ -593,6 +643,18 @@ $endangeredColor: #D12F19;
 .glyphicon-flag.least-concern {
   color: $leastConcernColor;
 }
+$endemicColor: darken( $inat-green, 10% );
+.EstablishmentHeader.establishment-endemic {
+  background-color: transparentize( $endemicColor, 0.90 );
+  border-color: transparentize( $endemicColor, 0.80 );
+  color: $endemicColor;
+}
+$introducedColor: #E4007C;
+.EstablishmentHeader.establishment-introduced {
+  background-color: transparentize( $introducedColor, 0.90 );
+  border-color: transparentize( $introducedColor, 0.80 );
+  color: $introducedColor;
+}
 
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
@@ -609,6 +671,7 @@ $endangeredColor: #D12F19;
   font-weight: bold;
   font-size: 18px;
   padding: 20px 30px 16px;
+  text-transform: capitalize;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;
@@ -690,7 +753,7 @@ $nav-btn-dim: 40px;
 .nav-buttons .next-btn:before {
   content: '\276F';
 }
-.HighlightsTab .viewall {
+.Carousel .viewall, {
   width: 100%;
   height: 262px;
   background-color: #333;
@@ -702,8 +765,8 @@ $nav-btn-dim: 40px;
   font-size: 16px;
   text-transform: uppercase;
 }
-.HighlightsTab .viewall:hover,
-.HighlightsTab .viewall:focus {
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
   color: white;
 }
 
@@ -802,6 +865,10 @@ $nav-btn-dim: 40px;
 }
 .curation-tab .dropdown {
   float: right;
+}
+.curation-tab .dropdown i {
+  width: 20px;
+  text-align: center;
 }
 #curation-dropdown {
   margin-top: 14px;
@@ -949,7 +1016,7 @@ $nav-btn-dim: 40px;
   color: white;
   display: block;
   line-height: 0;
-
+  text-shadow: 0px 0px 10px black;
 }
 .DraggablePhoto .control-link:hover,
 .DraggablePhoto .control-link:active {
@@ -1010,3 +1077,67 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   content: '';
 }
 .AkaNames .name { color: black; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
+}

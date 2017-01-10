@@ -8,15 +8,34 @@
       place: #{ @place.to_json( only: [:id, :name, :display_name ] )},
       chosenTab: #{ @chosen_tab.to_json },
       ancestorsShown: #{ @ancestors_shown.to_json }
-    }
+    };
+    SERVER_PAYLOAD.taxon.wikipedia_summary = #{ @taxon.wikipedia_summary.to_json };
+    SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json : "null" };
   = javascript_include_tag "taxa-show-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "c3", "taxa/show2"
 - content_for :extrahead do
-  %meta{ name: "config:inaturalist_api_host", content: CONFIG.node_api_host }
-  %meta{ name: "config:inaturalist_write_api_host", content: CONFIG.node_api_host }
-  %meta{ name: "config:inaturalist_api_host_ssl", content: request.ssl?.to_s }
-  %meta{ name: "config:inaturalist_write_host_ssl", content: request.ssl?.to_s }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  - if CONFIG.facebook
+    %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}
+  %meta{ property: "og:title", content: @taxon.to_plain_s( verb: true, no_time: true ) }
+  - if @taxon.photos.blank?
+    %meta{ property: "og:image", content: iconic_taxon_image_url( @taxon ) }
+    %meta{ property: "twitter:image", content: iconic_taxon_image_url( @taxon ) }
+  - else
+    %meta{ property: "og:image", content: @taxon.photos.first.medium_url }
+    %meta{ property: "twitter:image", content: @taxon.photos.first.medium_url }
+    %meta{ property: "twitter:card", content: "summary_large_image" }
+  %meta{ property: "og:url", content: taxon_url( @taxon ) }
+  - if @taxon.wikipedia_summary.blank?
+    - description = @taxon.auto_summary
+  - else
+    - description = @taxon.wikipedia_summary
+    - attribution = "Source: Wikipedia"
+    - attribution += ". Photo: #{@taxon.photos.first.attribution}" unless @taxon.photos.blank?
+    - description = "#{description} (#{attribution})"
+  %meta{ name: "description", content: html_attributize( description ) }
+  %meta{ property: "og:description", content: html_attributize( description ) }
 #app
   #initial-loading.text-center
     = loading nil, class: "bigloading"
@@ -24,10 +43,15 @@
   .container
     .row
       .col-xs-12
-        .quiet.box.text-center
+        .quiet.box.text-center.upstacked
           =t :tired_of_testing_this_new_version
           = button_to t(:take_me_back),
             leave_test_user_path( current_user, test: "taxon-page" ),
             method: "put",
-            class: "btn btn-default",
+            class: "btn btn-primary",
+            style: "margin-left: 10px",
             form_class: "inline"
+          = link_to t(:feedback),
+            "https://groups.google.com/d/topic/inaturalist/Do32Bof2hiY/discussion",
+            class: "btn btn-default",
+            style: "margin-left: 10px"

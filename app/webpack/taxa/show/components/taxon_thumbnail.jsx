@@ -5,7 +5,7 @@ import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../shared/util";
 
-const TaxonThumbnail = ( { taxon, key, badgeText, badgeTip, height, truncate } ) => {
+const TaxonThumbnail = ( { taxon, key, badgeText, badgeTip, height, truncate, onClick } ) => {
   const img = taxon.defaultPhoto ? (
     <CoverImage
       src={taxon.defaultPhoto.photoUrl( "medium" )}
@@ -46,9 +46,15 @@ const TaxonThumbnail = ( { taxon, key, badgeText, badgeTip, height, truncate } )
   return (
     <div key={key} className="TaxonThumbnail thumbnail">
       { badge }
-      <a href={urlForTaxon( taxon )}>{ img }</a>
+      <a href={urlForTaxon( taxon )} onClick={onClick}>{ img }</a>
       <div className="caption">
-        <SplitTaxon taxon={taxon} url={urlForTaxon( taxon )} noParens truncate={truncate} />
+        <SplitTaxon
+          taxon={taxon}
+          url={urlForTaxon( taxon )}
+          noParens
+          truncate={truncate}
+          onClick={onClick}
+        />
       </div>
     </div>
   );
@@ -63,7 +69,8 @@ TaxonThumbnail.propTypes = {
   ] ),
   badgeTip: PropTypes.string,
   height: PropTypes.number,
-  truncate: PropTypes.number
+  truncate: PropTypes.number,
+  onClick: PropTypes.func
 };
 
 TaxonThumbnail.defaultProps = {

@@ -13,6 +13,9 @@ class ConservationStatus < ActiveRecord::Base
   after_destroy :update_observation_geoprivacies
   after_destroy :update_taxon_conservation_status
 
+  after_save :index_taxon
+  after_update :index_taxon
+
   attr_accessor :skip_update_observation_geoprivacies
   validates_presence_of :status, :iucn
   validates_uniqueness_of :authority, :scope => [:taxon_id, :place_id], :message => "already set for this taxon in that place"
@@ -123,5 +126,9 @@ class ConservationStatus < ActiveRecord::Base
       geoprivacy: geoprivacy,
       iucn: iucn
     }
+  end
+
+  def index_taxon
+    taxon.elastic_index!
   end
 end

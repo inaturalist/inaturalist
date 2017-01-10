@@ -1156,6 +1156,7 @@ es-MX:
   failed_to_repair_photo: 'No se pudo reparar la foto: %{errors}'
   "false": "No"
   faq: Preguntas frecuentes
+  faves: favoritos
   Family: Familia
   favorite_taxa: Grupos de especies (taxa) favoritos
   favorites: Favoritos
@@ -2344,7 +2345,6 @@ es-MX:
   photo_s: Foto(s)
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
-  photos: Fotos
   photos_or_sounds?: ¿Fotos o sonidos?
   photos_size:
     small: chica
@@ -3122,6 +3122,7 @@ es-MX:
       datos, si existen en GBIF.
     data_url: Enlace de datos
     overlays: Capas
+  taxon_changes: Cambios a especies o grupos
   taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
@@ -3462,11 +3463,11 @@ es-MX:
   uploader:
     tooltips:
       add: Añadir observación(es)
-      remove: Quitar la observación seleccionada
       combine: Combinar observaciones seleccionadas
-      select_all: Seleccionar todas las observaciones
-      remove_photo: Quitar la foto
+      remove: Quitar la observación seleccionada
       remove_observation: Quitar la observación
+      remove_photo: Quitar la foto
+      select_all: Seleccionar todas las observaciones
   url_identifier_of_a_project_derived_from: Dirección web / identificador del proyecto
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio

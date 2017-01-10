@@ -134,6 +134,7 @@ class User < ActiveRecord::Base
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: "https",
       s3_host_alias: CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       path: "/attachments/users/icons/:id/:style.:icon_type_extension",
@@ -476,9 +477,7 @@ class User < ActiveRecord::Base
     longitude = nil
     lat_lon_acc_admin_level = nil
     begin
-      resp = http.start() {|http|
-        http.get("/?ip=#{last_ip}")
-      }
+      resp = http.start() {|http| http.get("/?ip=#{last_ip}") }
       data = resp.body
       begin
         result = JSON.parse(data)
@@ -506,6 +505,11 @@ class User < ActiveRecord::Base
         lat_lon_acc_admin_level = nil
         Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
+    rescue SocketError
+      latitude = nil
+      longitude = nil
+      lat_lon_acc_admin_level = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip unrecognized due to dropped connection"
     rescue Timeout::Error => e
       latitude = nil
       longitude = nil

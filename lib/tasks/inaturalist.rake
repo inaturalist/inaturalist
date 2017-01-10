@@ -143,7 +143,8 @@ namespace :inaturalist do
                  "all_taxa.plants", "plants",
                  "all_taxa.fungi", "fungi",
                  "all_taxa.protozoans", "protozoans",
-                 "unknown", "date.formats.month_day_year" ]
+                 "unknown", "date.formats.month_day_year",
+                 "views.taxa.show.frequency" ]
     all_keys += Date::MONTHNAMES.compact.map{|m| "date_format.month.#{m.downcase}"}
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|

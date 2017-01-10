@@ -116,6 +116,7 @@ class Project < ActiveRecord::Base
     has_attached_file :cover,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_protocol => "https",
       :s3_host_alias => CONFIG.s3_bucket,
       :bucket => CONFIG.s3_bucket,
       :path => "projects/:id-cover.:extension",
@@ -537,7 +538,15 @@ class Project < ActiveRecord::Base
   def self.delete_project_observations_on_leave_project(project_id, user_id)
     return unless proj = Project.find_by_id(project_id)
     return unless usr = User.find_by_id(user_id)
-    proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
+    # max_id prevents a problem with aggregated projects (see issue #1227)
+    # Aggregated projects will add back whatever is currently relevant to the
+    # project, but may as well remove all existing obs in case some don't match
+    # the current rules. The max_id prevents this from deleting the re-aggregated
+    # obs and creating an endless loop of deletes and re-agg
+    max_id = Observation.maximum(:id)
+    proj.project_observations.joins(:observation).
+         where("observations.user_id = ?", usr).
+         where("observations.id <= ?", max_id).find_each do |po|
       po.destroy
     end
   end

@@ -47,7 +47,7 @@ class TaxonPhoto < ActiveRecord::Base
   end
 
   def index_taxon
-    taxon.elastic_index!
+    taxon.self_and_ancestors.reverse.each(&:elastic_index!)
   end
 
 end

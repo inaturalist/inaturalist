@@ -12,10 +12,9 @@ import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
-import StatusHeader from "./status_header";
-import { urlForTaxon } from "../../shared/util";
+import StatusRow from "./status_row";
 
-const App = ( { taxon } ) => (
+const App = ( { taxon, showNewTaxon } ) => (
   <div id="TaxonDetail">
     <Grid>
       <TaxonChangeAlertContainer />
@@ -34,7 +33,7 @@ const App = ( { taxon } ) => (
               placeholder={I18n.t( "search_species_" )}
               searchExternal={false}
               afterSelect={ function ( result ) {
-                window.location = urlForTaxon( result.item );
+                showNewTaxon( result.item );
               } }
               position={{ my: "right top", at: "right bottom", collision: "none" }}
             />
@@ -64,11 +63,10 @@ const App = ( { taxon } ) => (
       <Row id="hero">
         <Col xs={12}>
           <Grid>
-            <Row>
-              <Col xs={12}>
-                { taxon.conservationStatus ? <StatusHeader status={taxon.conservationStatus} /> : null }
-              </Col>
-            </Row>
+            <StatusRow
+              conservationStatus={taxon.conservationStatus}
+              establishmentMeans={taxon.establishment_means}
+            />
             <Row>
               <Col xs={6}>
                 <PhotoPreviewContainer />
@@ -93,7 +91,8 @@ const App = ( { taxon } ) => (
 );
 
 App.propTypes = {
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  showNewTaxon: PropTypes.func
 };
 
 export default App;

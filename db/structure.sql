@@ -254,6 +254,15 @@ CREATE FUNCTION crc32(word text) RETURNS bigint
 
 
 --
+-- Name: st_aslatlontext(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_aslatlontext(geometry) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT ST_AsLatLonText($1, '') $_$;
+
+
+--
 -- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
 --
 
@@ -280,6 +289,43 @@ CREATE AGGREGATE median(numeric) (
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: annotations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE annotations (
+    id integer NOT NULL,
+    uuid uuid DEFAULT uuid_generate_v4(),
+    resource_id integer,
+    resource_type character varying,
+    controlled_attribute_id integer,
+    controlled_value_id integer,
+    user_id integer,
+    observation_field_value_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: annotations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE annotations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: annotations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE annotations_id_seq OWNED BY annotations.id;
+
 
 --
 -- Name: announcements; Type: TABLE; Schema: public; Owner: -
@@ -599,6 +645,41 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: complete_sets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE complete_sets (
+    id integer NOT NULL,
+    user_id integer,
+    taxon_id integer,
+    place_id integer,
+    description text,
+    source_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: complete_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE complete_sets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: complete_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE complete_sets_id_seq OWNED BY complete_sets.id;
+
+
+--
 -- Name: conservation_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -636,6 +717,113 @@ CREATE SEQUENCE conservation_statuses_id_seq
 --
 
 ALTER SEQUENCE conservation_statuses_id_seq OWNED BY conservation_statuses.id;
+
+
+--
+-- Name: controlled_term_labels; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_term_labels (
+    id integer NOT NULL,
+    controlled_term_id integer,
+    locale character varying,
+    valid_within_clade integer,
+    label character varying,
+    definition character varying,
+    icon_file_name character varying,
+    icon_content_type character varying,
+    icon_file_size character varying,
+    icon_updated_at character varying,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: controlled_term_labels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_term_labels_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_term_labels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_term_labels_id_seq OWNED BY controlled_term_labels.id;
+
+
+--
+-- Name: controlled_term_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_term_values (
+    id integer NOT NULL,
+    controlled_attribute_id integer,
+    controlled_value_id integer
+);
+
+
+--
+-- Name: controlled_term_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_term_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_term_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_term_values_id_seq OWNED BY controlled_term_values.id;
+
+
+--
+-- Name: controlled_terms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_terms (
+    id integer NOT NULL,
+    ontology_uri text,
+    uri text,
+    valid_within_clade integer,
+    is_value boolean DEFAULT false,
+    active boolean DEFAULT false,
+    multivalued boolean DEFAULT false,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: controlled_terms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_terms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_terms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_terms_id_seq OWNED BY controlled_terms.id;
 
 
 --
@@ -1652,6 +1840,40 @@ CREATE SEQUENCE listed_taxa_id_seq
 --
 
 ALTER SEQUENCE listed_taxa_id_seq OWNED BY listed_taxa.id;
+
+
+--
+-- Name: listed_taxon_alterations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE listed_taxon_alterations (
+    id integer NOT NULL,
+    taxon_id integer,
+    user_id integer,
+    place_id integer,
+    action character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: listed_taxon_alterations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE listed_taxon_alterations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: listed_taxon_alterations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE listed_taxon_alterations_id_seq OWNED BY listed_taxon_alterations.id;
 
 
 --
@@ -3137,7 +3359,7 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying NOT NULL
+    version character varying(255) NOT NULL
 );
 
 
@@ -4111,9 +4333,9 @@ CREATE TABLE users (
     spam_count integer DEFAULT 0,
     last_active date,
     subscriptions_suspended_at timestamp without time zone,
+    test_groups character varying,
     latitude double precision,
     longitude double precision,
-    test_groups character varying,
     lat_lon_acc_admin_level integer,
     icon_file_name character varying,
     icon_content_type character varying,
@@ -4287,6 +4509,13 @@ ALTER SEQUENCE wiki_pages_id_seq OWNED BY wiki_pages.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY annotations ALTER COLUMN id SET DEFAULT nextval('annotations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcements_id_seq'::regclass);
 
 
@@ -4350,7 +4579,35 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY complete_sets ALTER COLUMN id SET DEFAULT nextval('complete_sets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_labels ALTER COLUMN id SET DEFAULT nextval('controlled_term_labels_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_values ALTER COLUMN id SET DEFAULT nextval('controlled_term_values_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms ALTER COLUMN id SET DEFAULT nextval('controlled_terms_id_seq'::regclass);
 
 
 --
@@ -4547,6 +4804,13 @@ ALTER TABLE ONLY list_rules ALTER COLUMN id SET DEFAULT nextval('list_rules_id_s
 --
 
 ALTER TABLE ONLY listed_taxa ALTER COLUMN id SET DEFAULT nextval('listed_taxa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY listed_taxon_alterations ALTER COLUMN id SET DEFAULT nextval('listed_taxon_alterations_id_seq'::regclass);
 
 
 --
@@ -4991,6 +5255,14 @@ ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_s
 
 
 --
+-- Name: annotations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY annotations
+    ADD CONSTRAINT annotations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: announcements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5063,11 +5335,43 @@ ALTER TABLE ONLY comments
 
 
 --
+-- Name: complete_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY complete_sets
+    ADD CONSTRAINT complete_sets_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: conservation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conservation_statuses
     ADD CONSTRAINT conservation_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_term_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_labels
+    ADD CONSTRAINT controlled_term_labels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_term_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_values
+    ADD CONSTRAINT controlled_term_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_terms
+    ADD CONSTRAINT controlled_terms_pkey PRIMARY KEY (id);
 
 
 --
@@ -5292,6 +5596,14 @@ ALTER TABLE ONLY list_rules
 
 ALTER TABLE ONLY listed_taxa
     ADD CONSTRAINT listed_taxa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listed_taxon_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY listed_taxon_alterations
+    ADD CONSTRAINT listed_taxon_alterations_pkey PRIMARY KEY (id);
 
 
 --
@@ -5806,6 +6118,13 @@ CREATE INDEX fk_flags_user ON flags USING btree (user_id);
 
 
 --
+-- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_annotations_on_resource_id_and_resource_type ON annotations USING btree (resource_id, resource_type);
+
+
+--
 -- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5939,6 +6258,34 @@ CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
 
 
 --
+-- Name: index_complete_sets_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_place_id ON complete_sets USING btree (place_id);
+
+
+--
+-- Name: index_complete_sets_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_taxon_id ON complete_sets USING btree (taxon_id);
+
+
+--
+-- Name: index_complete_sets_on_taxon_id_and_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_taxon_id_and_place_id ON complete_sets USING btree (taxon_id, place_id);
+
+
+--
+-- Name: index_complete_sets_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_complete_sets_on_user_id ON complete_sets USING btree (user_id);
+
+
+--
 -- Name: index_conservation_statuses_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6055,6 +6402,13 @@ CREATE INDEX index_deleted_users_on_user_id ON deleted_users USING btree (user_i
 --
 
 CREATE INDEX index_exploded_atlas_places_on_atlas_id ON exploded_atlas_places USING btree (atlas_id);
+
+
+--
+-- Name: index_exploded_atlas_places_on_atlas_id_and_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exploded_atlas_places_on_atlas_id_and_place_id ON exploded_atlas_places USING btree (atlas_id, place_id);
 
 
 --
@@ -6349,6 +6703,27 @@ CREATE INDEX index_listed_taxa_on_taxon_range_id ON listed_taxa USING btree (tax
 --
 
 CREATE INDEX index_listed_taxa_on_user_id ON listed_taxa USING btree (user_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_place_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_place_id ON listed_taxon_alterations USING btree (place_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_taxon_id ON listed_taxon_alterations USING btree (taxon_id);
+
+
+--
+-- Name: index_listed_taxon_alterations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_listed_taxon_alterations_on_user_id ON listed_taxon_alterations USING btree (user_id);
 
 
 --
@@ -8322,6 +8697,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160809221731');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809221754');
 
+INSERT INTO schema_migrations (version) VALUES ('20160815154039');
+
 INSERT INTO schema_migrations (version) VALUES ('20160818234437');
 
 INSERT INTO schema_migrations (version) VALUES ('20160913224325');
@@ -8339,4 +8716,10 @@ INSERT INTO schema_migrations (version) VALUES ('20161012204604');
 INSERT INTO schema_migrations (version) VALUES ('20161020190217');
 
 INSERT INTO schema_migrations (version) VALUES ('20161110221032');
+
+INSERT INTO schema_migrations (version) VALUES ('20161210081605');
+
+INSERT INTO schema_migrations (version) VALUES ('20161216041939');
+
+INSERT INTO schema_migrations (version) VALUES ('20161220213126');
 

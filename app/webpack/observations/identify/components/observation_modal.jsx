@@ -48,9 +48,19 @@ const ObservationModal = ( {
   // skipping map until we can work out the memory issues
   let taxonMap;
   if ( observation.latitude ) {
-    const obsForMap = Object.assign( {}, observation, {
-      coordinates_obscured: observation.obscured
-    } );
+    // Select a small set of attributes that won't change wildy as the
+    // observation changes.
+    const obsForMap = _.pick( observation, [
+      "id",
+      "species_guess",
+      "latitude",
+      "longitude",
+      "positional_accuracy",
+      "geoprivacy",
+      "taxon",
+      "user"
+    ] );
+    obsForMap.coordinates_obscured = observation.obscured;
     taxonMap = (
       <TaxonMap
         key={`map-for-${obsForMap.id}`}
@@ -61,7 +71,7 @@ const ObservationModal = ( {
           gbif: { disabled: true }
         }] }
         observations={[obsForMap]}
-        zoomLevel={ obsForMap.map_scale || 8 }
+        zoomLevel={ observation.map_scale || 8 }
         mapTypeControl={false}
         showAccuracy
         showAllLayer={false}

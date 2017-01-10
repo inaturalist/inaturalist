@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import PhotoPreview from "../components/photo_preview";
 import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
 import { showPhotoChooserIfSignedIn } from "../../shared/ducks/taxon";
+import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   if ( !state.taxon.taxonPhotos || state.taxon.taxonPhotos.length === 0 ) {
@@ -25,7 +26,8 @@ function mapDispatchToProps( dispatch ) {
       dispatch( setPhotoModal( photo, taxon, observation ) );
       dispatch( showPhotoModal( ) );
     },
-    showPhotoChooserModal: ( ) => dispatch( showPhotoChooserIfSignedIn( ) )
+    showPhotoChooserModal: ( ) => dispatch( showPhotoChooserIfSignedIn( ) ),
+    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
   };
 }
 

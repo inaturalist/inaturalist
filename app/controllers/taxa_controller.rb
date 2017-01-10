@@ -4,7 +4,9 @@ class TaxaController < ApplicationController
   caches_action :show, :expires_in => 1.day,
     :cache_path => Proc.new{ |c| { locale: I18n.locale, mobile: c.request.format.mobile? } },
     :if => Proc.new {|c|
-      !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
+      !request.format.json? &&
+      (c.session.blank? || c.session['warden.user.user.key'].blank?) &&
+      c.params[:test].blank?
     }
   caches_action :describe, :expires_in => 1.day,
     :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
@@ -27,7 +29,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :show_google]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -144,6 +146,24 @@ class TaxaController < ApplicationController
     end
   end
 
+  def show_google
+    site_place = @site && @site.place
+    user_place = current_user && current_user.place
+    preferred_place = user_place || site_place
+    place_id = current_user.preferred_taxon_page_place_id if logged_in?
+    place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
+    @place = Place.find_by_id( place_id )
+    api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}"
+    @node_taxon_json = INatAPIService.get_json( api_url )
+    @chosen_tab = session[:preferred_taxon_page_tab]
+    @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap", action: "show2"
+      end
+    end
+  end
+
   def show
     if params[:entry] == 'widget'
       flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
@@ -162,20 +182,17 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
-          respond_to do |format|
-            format.html do
-              site_place = @site && @site.place
-              user_place = current_user && current_user.place
-              preferred_place = user_place || site_place
-              @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}" )
-              place_id = current_user.preferred_taxon_page_place_id if logged_in?
-              place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
-              @place = Place.find_by_id( place_id )
-              @chosen_tab = session[:preferred_taxon_page_tab]
-              @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-              render layout: "bootstrap", action: "show2"
-            end
-          end
+          site_place = @site && @site.place
+          user_place = current_user && current_user.place
+          preferred_place = user_place || site_place
+          place_id = current_user.preferred_taxon_page_place_id if logged_in?
+          place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
+          @place = Place.find_by_id( place_id )
+          api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}"
+          @node_taxon_json = INatAPIService.get_json( api_url )
+          @chosen_tab = session[:preferred_taxon_page_tab]
+          @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+          render layout: "bootstrap", action: "show2"
           return
         end
         
@@ -343,6 +360,7 @@ class TaxaController < ApplicationController
     @taxon.attributes = params[:taxon]
     @taxon.creator = current_user
     if @taxon.save
+      Taxon.refresh_es_index
       flash[:notice] = t(:taxon_was_successfully_created)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
@@ -762,6 +780,9 @@ class TaxaController < ApplicationController
         obs = obs.where("photos.license IS NOT NULL AND photos.license > ? OR photos.user_id = ?", Photo::COPYRIGHT, current_user)
       end
       obs.to_a
+    elsif params[:q].to_i > 0
+      # Look up photos associated with a specific observation
+      Observation.where( id: params[:q] )
     else
       search_wheres = params[:q].blank? ? nil : {
         multi_match: {
@@ -1026,8 +1047,8 @@ class TaxaController < ApplicationController
   end
 
   def links
-    places_exist = ListedTaxon.where("place_id IS NOT NULL AND taxon_id = ?", @taxon).exists?
-    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: places_exist )
+    places_exist = ListedTaxon.where( "place_id IS NOT NULL AND taxon_id = ?", @taxon ).exists?
+    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: !places_exist )
     respond_to do |format|
       format.json { render json: taxon_links.map{ |tl| {
         taxon_link: tl,

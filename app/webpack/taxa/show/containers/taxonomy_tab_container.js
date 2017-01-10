@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import TaxonomyTab from "../components/taxonomy_tab";
+import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   return {
@@ -10,8 +11,15 @@ function mapStateToProps( state ) {
   };
 }
 
+function mapDispatchToProps( dispatch ) {
+  return {
+    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
+  };
+}
+
 const TaxonomyTabContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( TaxonomyTab );
 
 export default TaxonomyTabContainer;

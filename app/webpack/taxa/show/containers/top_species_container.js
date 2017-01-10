@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { stringify } from "querystring";
 import LeaderItem from "../components/leader_item";
 import { urlForTaxon, defaultObservationParams } from "../../shared/util";
+import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   const leader = Object.assign( {}, state.leaders.topSpecies );
@@ -32,12 +33,20 @@ function mapStateToProps( state ) {
       count: leader.count === 1 ? leader.count : I18n.toNumber( leader.count, { precision: 0 } )
     } ),
     linkUrl: `/observations?${stringify( urlParams )}`,
-    url: urlForTaxon( leader.taxon )
+    url: urlForTaxon( leader.taxon ),
+    onClickUrlPayload: { taxon: leader.taxon }
   } );
 }
 
+function mapDispatchToProps( dispatch ) {
+  return {
+    onClickUrl: payload => dispatch( showNewTaxon( payload.taxon ) )
+  };
+}
+
 const TopSpeciesContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( LeaderItem );
 
 export default TopSpeciesContainer;

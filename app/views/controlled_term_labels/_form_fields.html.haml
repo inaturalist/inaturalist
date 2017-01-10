@@ -1,0 +1,30 @@
+- label = label || nil
+- f = f || nil
+- if f
+  .row.labels
+    .col-md-6
+      .form-group
+        %label.col-sm-4.control-label Label
+        .col-sm-8
+          = f.text_field :label, class: "form-control"
+      .form-group
+        %label.col-sm-4.control-label Label Locale
+        .col-sm-8
+          = f.text_field :locale, class: "form-control",
+            value: label && label.locale ? label.locale : (current_user.locale || "en")
+      .form-group
+        %label.col-sm-4.control-label Label Valid Within Clade
+        .col-sm-8
+          = f.hidden_field :valid_within_clade, "data-ac-taxon-id": true
+          %input.form-control{ type: "text", name: "valid_within_clade_q", "data-initial-taxon": label && label.valid_within_taxon ? label.valid_within_taxon.to_json : nil }
+    .col-md-6
+      .form-group
+        %label.col-sm-2.control-label Definition
+        .col-sm-10
+          = f.text_area :definition, class: "form-control"
+      .form-group
+        %label.col-sm-2.control-label Icon
+        .col-sm-10
+          = f.file_field :icon, accept: "image/jpg,image/jpeg,image/png,image/gif"
+          - if label && label.icon.exists?
+            = image_tag label.icon.url, style: "max-width: 250px; max-height: 250px;"

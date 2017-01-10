@@ -73,6 +73,48 @@ const commasAnd = ( items ) => {
   return `${items.join( ", " )}, ${I18n.t( "and" )} ${last}`;
 };
 
+const windowStateForTaxon = taxon => {
+  let scinameWithRank = taxon.name;
+  if ( taxon.rank_level > 10 ) {
+    scinameWithRank = `${_.capitalize( taxon.rank )} ${taxon.name}`;
+  } else if ( taxon.rank_level < 10 ) {
+    let rankPiece;
+    if ( taxon.rank === "variety" ) {
+      rankPiece = "var.";
+    } else if ( taxon.rank === "subspecies" ) {
+      rankPiece = "ssp.";
+    } else if ( taxon.rank === "form" ) {
+      rankPiece = "f.";
+    }
+    if ( rankPiece ) {
+      const namePieces = taxon.name.split( " " );
+      scinameWithRank = [
+        namePieces.slice( 0, namePieces.length - 1 ).join( " " ),
+        rankPiece,
+        namePieces[namePieces.length - 1]
+      ].join( " " );
+    }
+  }
+  let title = scinameWithRank;
+  if ( taxon.preferred_common_name ) {
+    title = `${taxon.preferred_common_name} (${scinameWithRank})`;
+  }
+  const state = { taxon: {
+    id: taxon.id,
+    name: taxon.name,
+    preferred_common_name: taxon.preferred_common_name,
+    iconic_taxon_name: taxon.iconic_taxon_name,
+    rank_level: taxon.rank_level,
+    rank: taxon.rank,
+    is_active: taxon.is_active
+  } };
+  return {
+    state,
+    title,
+    url: urlForTaxon( taxon )
+  };
+};
+
 export {
   urlForTaxon,
   urlForTaxonPhotos,
@@ -80,5 +122,6 @@ export {
   urlForPlace,
   defaultObservationParams,
   localizedPhotoAttribution,
-  commasAnd
+  commasAnd,
+  windowStateForTaxon
 };

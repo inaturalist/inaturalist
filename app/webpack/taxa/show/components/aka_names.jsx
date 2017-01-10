@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 
 const AkakNames = ( { names } ) => (
   <div className="AkaNames text-muted">
-    { names.length > 0 ? "AKA " : "" }
+    { names.length > 0 ? `${I18n.t( "aka" ).toUpperCase( )} ` : "" }
     <span className="comma-separated-list">
       { names.map( taxonName => (
         <span key={`aka-names-${taxonName.id}`}>
