@@ -25,6 +25,13 @@ class TaxonPageTabs extends React.Component {
     if ( prevTaxonId !== currTaxonId ) {
       this.props.loadDataForTab( this.props.chosenTab );
     }
+    // very lame hack to make sure the map resizes correctly if it rendered when
+    // not visible
+    if ( this.props.chosenTab === "map" && prevProps.chosenTab !== "map" ) {
+      const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
+      google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
+      taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+    }
   }
   render( ) {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;

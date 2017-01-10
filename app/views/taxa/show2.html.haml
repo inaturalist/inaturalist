@@ -5,7 +5,7 @@
   :javascript
     var SERVER_PAYLOAD = {
       taxon: #{ @node_taxon_json.encode }.results[0],
-      place: #{ @place.to_json( only: [:id, :name, :display_name ] )},
+      place: #{ @node_place_json.encode }.results[0],
       chosenTab: #{ @chosen_tab.to_json },
       ancestorsShown: #{ @ancestors_shown.to_json }
     };
