@@ -199,7 +199,7 @@ atlasJS.showInitialPlaces = function( ) {
   if( initialPlaceIDs.length > 0 ) {
     $.ajax({
       dataType: "json",
-      url: "<%= CONFIG.node_api_url %>/places/" + initialPlaceIDs.join(",") + "?per_page=100",
+      url: "<%= CONFIG.node_api_url %>/places/" + initialPlaceIDs.join(",") + "?per_page=500",
       success: function( r ) {
         _.each( r.results, function( p ) {
           atlasJS.addPlaceToMap( p, "present" );
@@ -215,7 +215,7 @@ atlasJS.showInitialPlaces = function( ) {
   if( explodedPlaceIDs.length == 0 ) { return; }
   $.ajax({
     dataType: "json",
-    url: "<%= CONFIG.node_api_url %>/places/" + explodedPlaceIDs.join(",") + "?per_page=100",
+    url: "<%= CONFIG.node_api_url %>/places/" + explodedPlaceIDs.join(",") + "?per_page=500",
     success: function( r ) {
       _.each( r.results, function( p ) {
         atlasJS.addPlaceToMap( p, "exploded" );
