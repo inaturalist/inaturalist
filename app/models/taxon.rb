@@ -98,31 +98,32 @@ class Taxon < ActiveRecord::Base
   }
   
   RANK_LEVELS = {
-    'root'         => 100,
-    'kingdom'      => 70,
-    'phylum'       => 60,
-    'subphylum'    => 57,
-    'superclass'   => 53,
-    'class'        => 50,
-    'subclass'     => 47,
-    'superorder'   => 43,
-    'order'        => 40,
-    'suborder'     => 37,
-    'infraorder'   => 35,
-    'superfamily'  => 33,
-    'epifamily'    => 32,
-    'family'       => 30,
-    'subfamily'    => 27,
-    'supertribe'   => 26,
-    'tribe'        => 25,
-    'subtribe'     => 24,
-    'genus'        => 20,
-    'genushybrid'  => 20,
-    'species'      => 10,
-    'hybrid'       => 10,
-    'subspecies'   => 5,
-    'variety'      => 5,
-    'form'         => 5
+    "root"         => 100,
+    "kingdom"      => 70,
+    "phylum"       => 60,
+    "subphylum"    => 57,
+    "superclass"   => 53,
+    "class"        => 50,
+    "subclass"     => 47,
+    "superorder"   => 43,
+    "order"        => 40,
+    "suborder"     => 37,
+    "infraorder"   => 35,
+    "superfamily"  => 33,
+    "epifamily"    => 32,
+    "family"       => 30,
+    "subfamily"    => 27,
+    "supertribe"   => 26,
+    "tribe"        => 25,
+    "subtribe"     => 24,
+    "genus"        => 20,
+    "genushybrid"  => 20,
+    "subgenus"     => 15,
+    "species"      => 10,
+    "hybrid"       => 10,
+    "subspecies"   => 5,
+    "variety"      => 5,
+    "form"         => 5
   }
   RANK_LEVELS.each do |rank, level|
     const_set rank.upcase, rank
@@ -913,9 +914,14 @@ class Taxon < ActiveRecord::Base
       else
         iconic_taxon_name
       end
-      iconic_part = if ICONIC_TAXON_NAMES[iconic_name]
-        iconic_common_name = I18n.t( ICONIC_TAXON_NAMES[iconic_name].downcase )
-        if rank_level <= 10
+      iconic_part = if iconic_name == "Chromista"
+        "in Chromista (brown algae and allies)"
+      elsif ICONIC_TAXON_NAMES[iconic_name]
+        iconic_common_name = I18n.t(
+          ICONIC_TAXON_NAMES[iconic_name].downcase.parameterize.underscore,
+          count: 1
+        )
+        if rank_level && rank_level <= 10
           iconic_common_name = iconic_common_name.singularize
         end
         "of #{iconic_common_name.downcase}"

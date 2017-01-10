@@ -103,7 +103,6 @@
 .FrequencyChart .c3-axis-y .tick line {
    display: none;
 }
-
 .FrequencyChart .c3-region {
   fill: #999;
   opacity: 1;
@@ -346,11 +345,12 @@ $photoPreviewThumbGutterTop: 3px;
   background-size: cover;
   width: 120%;
   height: 120%;
-  -webkit-filter: blur(50px);
-  -moz-filter: blur(50px);
-  -o-filter: blur(50px);
-  -ms-filter: blur(50px);
+  background-color: black;
   filter: blur(20px) brightness(0.5);
+  -webkit-filter: blur(20px) brightness(0.5);
+  -moz-filter: blur(20px) brightness(0.5);
+  -o-filter: blur(20px) brightness(0.5);
+  -ms-filter: "blur(20px)";
 }
 .PhotoPreview ul.others {
   width: 100%;
@@ -671,6 +671,7 @@ $introducedColor: #E4007C;
   font-weight: bold;
   font-size: 18px;
   padding: 20px 30px 16px;
+  text-transform: capitalize;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;

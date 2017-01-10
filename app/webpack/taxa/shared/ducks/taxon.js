@@ -209,9 +209,11 @@ export function fetchDescription( ) {
       response => {
         const source = response.headers.get( "X-Describer-Name" );
         const url = response.headers.get( "X-Describer-URL" );
-        response.text( ).then(
-          body => dispatch( setDescription( source, url, body )
-        ) );
+        response.text( ).then( body => {
+          if ( body && body.length > 0 ) {
+            dispatch( setDescription( source, url, body ) );
+          }
+        } );
       },
       error => {
         console.log( "[DEBUG] error: ", error );
@@ -301,11 +303,14 @@ export function fetchRare( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
+    const taxon = getState( ).taxon.taxon;
     inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
-        const commonlyMisidentified = response.results.filter( r => ( r.count > 1 ) );
+        const withoutAncestors = response.results.filter( r =>
+          taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
+        const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
-          dispatch( setSimilar( response.results ) );
+          dispatch( setSimilar( withoutAncestors ) );
         } else {
           dispatch( setSimilar( commonlyMisidentified ) );
         }

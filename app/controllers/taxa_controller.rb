@@ -780,6 +780,9 @@ class TaxaController < ApplicationController
         obs = obs.where("photos.license IS NOT NULL AND photos.license > ? OR photos.user_id = ?", Photo::COPYRIGHT, current_user)
       end
       obs.to_a
+    elsif params[:q].to_i > 0
+      # Look up photos associated with a specific observation
+      Observation.where( id: params[:q] )
     else
       search_wheres = params[:q].blank? ? nil : {
         multi_match: {
