@@ -125,6 +125,12 @@ class PlaceGeometry < ActiveRecord::Base
       select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
   end
 
+  def bounding_box_geom
+    return if !geom
+    PlaceGeometry.where( id: id ).
+      select( "id, ST_Envelope( geom ) AS bounding_box" ).first.bounding_box
+  end
+
   def self.update_observations_places(place_geometry_id)
     if pg = PlaceGeometry.where(id: place_geometry_id).first
       Place.update_observations_places(pg.place_id)

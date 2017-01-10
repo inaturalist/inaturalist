@@ -17,6 +17,7 @@ class Place < ActiveRecord::Base
       indexes :id, type: "integer"
       indexes :place_type, type: "integer"
       indexes :geometry_geojson, type: "geo_shape"
+      indexes :bounding_box_geojson, type: "geo_shape"
       indexes :location, type: "geo_point", lat_lon: true
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
@@ -40,6 +41,8 @@ class Place < ActiveRecord::Base
       user: user ? user.as_indexed_json(no_details: true) : nil,
       geometry_geojson: (place_geometry && !index_without_geometry) ?
         ElasticModel.geom_geojson(place_geometry.simplified_geom) : nil,
+      bounding_box_geojson: ( place_geometry && !index_without_geometry ) ?
+        ElasticModel.geom_geojson( place_geometry.bounding_box_geom ) : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
       point_geojson: ElasticModel.point_geojson(latitude, longitude)
     }
