@@ -81,7 +81,7 @@ class Atlas < ActiveRecord::Base
       where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
 
-    exploded_place_ids_to_include, exploded_place_ids_to_exclude = atlas.get_exploded_place_ids_to_include_and_exclude
+    exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
 
     native_place_ids = scope.select( "listed_taxa.place_id" ).
       where( "listed_taxa.establishment_means IS NULL OR listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS ).
@@ -103,8 +103,8 @@ class Atlas < ActiveRecord::Base
       scope = scope.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
     end
 
-    places = scope.map{|p| {place: p, establishment_means: "native"}}
-    native_place_ids = places.map{|p| p[:place].id}
+    places = scope.map{|p| {id: p.id, establishment_means: "native"}}
+    native_place_ids = places.map{|p| p[:id]}
     to_exclude = [exploded_place_ids_to_exclude, native_place_ids].flatten.uniq
 
     descendants_places = Place.where( id: introduced_place_ids).
@@ -121,7 +121,7 @@ class Atlas < ActiveRecord::Base
       scope = scope.where( "places.id NOT IN (?)", to_exclude )
     end
 
-    places << scope.map{|p| {place: p, establishment_means: "introduced"}}
+    places << scope.map{|p| {id: p.id, establishment_means: "introduced"}}
     places = places.flatten
   end
 end
