@@ -14,24 +14,14 @@ const TaxonPhoto = ( {
   size,
   backgroundSize,
   showTaxon,
+  linkTaxon,
   onClickTaxon
-} ) => (
-  <div
-    className={`TaxonPhoto ${className}`}
-    style={{ width, maxWidth: 2 * width }}
-  >
-    <div className="photo-hover">
-      <button
-        className="btn btn-link modal-link"
-        onClick={ e => {
-          e.preventDefault( );
-          showTaxonPhotoModal( photo, taxon, observation );
-          return false;
-        } }
-      >
-        <i className="fa fa-search-plus"></i>
-      </button>
-      { showTaxon ? (
+} ) => {
+  let photoTaxon;
+  if ( showTaxon ) {
+    photoTaxon = <div className="photo-taxon"><SplitTaxon taxon={taxon} noParens /></div>;
+    if ( linkTaxon ) {
+      photoTaxon = (
         <div className="photo-taxon">
           <SplitTaxon
             taxon={taxon}
@@ -48,16 +38,36 @@ const TaxonPhoto = ( {
             <i className="fa fa-info-circle"></i>
           </a>
         </div>
-      ) : null }
+      );
+    }
+  }
+  return (
+    <div
+      className={`TaxonPhoto ${className}`}
+      style={{ width, maxWidth: 2 * width }}
+    >
+      <div className="photo-hover">
+        <button
+          className="btn btn-link modal-link"
+          onClick={ e => {
+            e.preventDefault( );
+            showTaxonPhotoModal( photo, taxon, observation );
+            return false;
+          } }
+        >
+          <i className="fa fa-search-plus"></i>
+        </button>
+        { photoTaxon }
+      </div>
+      <CoverImage
+        src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
+        low={ photo.photoUrl( "small" ) }
+        height={height}
+        backgroundSize={backgroundSize}
+      />
     </div>
-    <CoverImage
-      src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
-      low={ photo.photoUrl( "small" ) }
-      height={height}
-      backgroundSize={backgroundSize}
-    />
-  </div>
-);
+  );
+};
 
 TaxonPhoto.propTypes = {
   photo: PropTypes.object.isRequired,
@@ -70,6 +80,7 @@ TaxonPhoto.propTypes = {
   size: PropTypes.string,
   backgroundSize: PropTypes.string,
   showTaxon: PropTypes.bool,
+  linkTaxon: PropTypes.bool,
   onClickTaxon: PropTypes.func
 };
 

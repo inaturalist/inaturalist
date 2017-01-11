@@ -119,6 +119,7 @@ class PhotoPreview extends React.Component {
                   showTaxonPhotoModal={showTaxonPhotoModal}
                   className="photoItem"
                   showTaxon
+                  linkTaxon={ tp.taxon.id !== this.props.taxon.id }
                   onClickTaxon={ taxon => this.props.showNewTaxon( taxon ) }
                 />
               );
