@@ -75,4 +75,53 @@ class Atlas < ActiveRecord::Base
     end
     scope
   end
+  
+  def presence_places_with_establishment_means
+    scope = ListedTaxon.joins( { list: :check_list_place } ).
+      where( "lists.type = 'CheckList'" ).
+      where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
+
+    exploded_place_ids_to_include, exploded_place_ids_to_exclude = atlas.get_exploded_place_ids_to_include_and_exclude
+
+    native_place_ids = scope.select( "listed_taxa.place_id" ).
+      where( "listed_taxa.establishment_means IS NULL OR listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS ).
+      distinct.pluck( :place_id ) 
+    introduced_place_ids = scope.select( "listed_taxa.place_id" ).
+      where( "listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS ).distinct.pluck( :place_id ) 
+
+    descendants_places = Place.where( id: native_place_ids).
+      where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+    place_ancestors = descendants_places.map{ |p| p.ancestor_place_ids.nil? ? [p.id] : p.ancestor_place_ids }.
+      flatten.compact.uniq
+    scope = Place.where( id: place_ancestors )
+    if exploded_place_ids_to_include.blank?
+      scope = scope.where( "places.admin_level = ?", Place::COUNTRY_LEVEL )
+    else
+      scope = scope.where( "( places.admin_level = ? OR places.id IN ( ? ) )", Place::COUNTRY_LEVEL, exploded_place_ids_to_include )
+    end
+    unless exploded_place_ids_to_exclude.blank?
+      scope = scope.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
+    end
+
+    places = scope.map{|p| {place: p, establishment_means: "native"}}
+    native_place_ids = places.map{|p| p[:place].id}
+    to_exclude = [exploded_place_ids_to_exclude, native_place_ids].flatten.uniq
+
+    descendants_places = Place.where( id: introduced_place_ids).
+      where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+    place_ancestors = descendants_places.map{ |p| p.ancestor_place_ids.nil? ? [p.id] : p.ancestor_place_ids }.
+      flatten.compact.uniq
+    scope = Place.where( id: place_ancestors )
+    if exploded_place_ids_to_include.blank?
+      scope = scope.where( "places.admin_level = ?", Place::COUNTRY_LEVEL )
+    else
+      scope = scope.where( "( places.admin_level = ? OR places.id IN ( ? ) )", Place::COUNTRY_LEVEL, exploded_place_ids_to_include )
+    end
+    unless to_exclude.blank?
+      scope = scope.where( "places.id NOT IN (?)", to_exclude )
+    end
+
+    places << scope.map{|p| {place: p, establishment_means: "introduced"}}
+    places = places.flatten
+  end
 end

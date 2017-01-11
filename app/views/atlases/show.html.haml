@@ -23,7 +23,7 @@
   - atlas_data = {                                      |
     atlas_id: @atlas.id,                                |
     taxon_id: @atlas.taxon_id,                          |
-    place_ids: @atlas.presence_places.pluck(:id),       |
+    place_ids: @atlas_presence_places.pluck(:id),       |
     exploded_places: @exploded_places }                 |
 
   .row.cf#top
