@@ -48,6 +48,7 @@ export default function reducer( state = {
   }
 }, action ) {
   const newState = Object.assign( { }, state );
+
   switch ( action.type ) {
     case SET_OBSERVATION_PHOTOS:
       newState.observationPhotos = action.observationPhotos;
@@ -148,6 +149,19 @@ function observationPhotosFromObservations( observations ) {
   ) );
 }
 
+function onePhotoPerObservation( observationPhotos ) {
+  const singleObservationPhotos = [];
+  const obsPhotoHash = {};
+  for ( let i = 0; i < observationPhotos.length; i++ ) {
+    const observationPhoto = observationPhotos[i];
+    if ( !obsPhotoHash[observationPhoto.observation.id] ) {
+      obsPhotoHash[observationPhoto.observation.id] = true;
+      singleObservationPhotos.push( observationPhoto );
+    }
+  }
+  return singleObservationPhotos;
+}
+
 export function fetchObservationPhotos( options = {} ) {
   return function ( dispatch, getState ) {
     const s = getState( );
@@ -162,7 +176,11 @@ export function fetchObservationPhotos( options = {} ) {
     );
     return inatjs.observations.search( params )
       .then( response => {
-        const observationPhotos = observationPhotosFromObservations( response.results );
+        let observationPhotos = observationPhotosFromObservations( response.results );
+        // For taxa above species, show one photo per observation
+        if ( s.taxon.taxon && s.taxon.taxon.rank_level > 10 ) {
+          observationPhotos = onePhotoPerObservation( observationPhotos );
+        }
         let action = appendObservationPhotos;
         if ( options.reload ) {
           action = setObservationPhotos;
