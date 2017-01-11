@@ -189,7 +189,7 @@ class TaxaController < ApplicationController
           place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
           api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}"
           @node_taxon_json = INatAPIService.get_json( api_url )
-          @node_place_json = INatAPIService.get_json( "/places/#{place_id}" );
+          @node_place_json = INatAPIService.get_json( "/places/#{place_id.to_i}" )
           @chosen_tab = session[:preferred_taxon_page_tab]
           @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
           render layout: "bootstrap", action: "show2"
