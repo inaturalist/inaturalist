@@ -15,14 +15,15 @@ class AtlasesController < ApplicationController
 
   def show
     @atlas_places = @atlas.places
-    @atlas_presence_places = @atlas.presence_places
+    @atlas_presence_places_with_establishment_means = @atlas.presence_places_with_establishment_means
+    @atlas_presence_places_with_establishment_means_hash = Hash[@atlas_presence_places_with_establishment_means.map{ |e| [ e[:id], e[:establishment_means] ] }].to_json
     @exploded_places = Hash[@atlas.exploded_atlas_places.map{ |e| [ e.place_id, e.id ] }].to_json
 
     #any obs outside of the complete set
     @observation_search_url_params = { 
       taxon_id: @atlas.taxon_id, 
       quality_grade: ["research","needs_id"].join( "," ), 
-      not_in_place: @atlas_presence_places.pluck( :id ).join( "," )
+      not_in_place: @atlas_presence_places_with_establishment_means.map{|p| p[:id] }.join( "," )
     }
     @num_obs = INatAPIService.observations( @observation_search_url_params.merge( per_page: 0 ) ).total_results
     respond_to do |format|
