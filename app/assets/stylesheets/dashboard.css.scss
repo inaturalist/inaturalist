@@ -252,6 +252,9 @@ h2.timeline-title { /* fix - added h2 */
 .timeline-body > table.table {
   margin-bottom: 0
 }
+.timeline-body img {
+  max-width: 100%;
+}
 .scientific_name {
   font-size: .8em;
   font-weight: normal;
