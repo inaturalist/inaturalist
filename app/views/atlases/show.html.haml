@@ -17,7 +17,7 @@
       - if @num_obs_not_in_atlas_places > 0
         .alert.alert-warning{ role: :alert }
           Warning: there are observations not represented by this atlas
-          = link_to t( :view ), observations_path( @observation_search_url_params )
+          = link_to t( :view ), observations_path( @observations_not_in_atlas_places_params )
       %h2.pull-left
         = "Atlas"
         = t :for

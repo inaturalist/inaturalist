@@ -1,0 +1,28 @@
+- content_for :extrahead do
+  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
+  = javascript_include_tag "atlases/index"
+
+.container
+  .row
+    .col-xs-12
+      %h2.pull-left
+        = "Atlases"
+      .pull-right= link_to "Create an atlas", new_atlas_path, class: "btn btn-default"
+  = "All active atlases are checked daily and marked if relevant observatons fall out of range."
+  = "Any marked atlases are listed below."
+  = "Once you've resolved any issues, manually refresh the atlas to unmark it."
+  %table.table.table-striped
+    %thead
+      %tr
+        %th="Marked atlas"
+        %th=""
+      %tbody.exploded
+        - @marked_atlases.each do |atlas|
+          %tr
+            %td 
+              = "Atlas for"
+              = render partial: "shared/taxon", locals: { taxon: atlas.taxon, named_ancestor: true, link_url: atlas }
+            %td= link_to "refresh atlas", "#", :class => "refresh_button", :data => { atlas_id: atlas.id }
+  = will_paginate @marked_atlases
+  - if @marked_atlases.empty?
+    = "No marked atlases"

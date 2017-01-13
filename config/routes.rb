@@ -502,6 +502,7 @@ Rails.application.routes.draw do
       post :destroy_all_alterations
       post :remove_atlas_alteration
       post :remove_listed_taxon_alteration
+      post :refresh_atlas
       get :get_defaults_for_taxon_place
     end
   end

@@ -124,4 +124,18 @@ class Atlas < ActiveRecord::Base
     places << scope.map{|p| {id: p.id, establishment_means: "introduced"}}
     places = places.flatten
   end
+  
+  def self.still_is_marked( atlas )
+    return false if atlas.is_marked = false
+    observation_search_url_params = { 
+      verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas.presence_places.pluck(:id).join( "," )
+    }
+    total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
+    if total_res > 0
+      return true
+    end
+    atlas.is_marked = false
+    atlas.save
+    return false
+  end
 end

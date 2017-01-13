@@ -539,7 +539,8 @@ CREATE TABLE atlases (
     taxon_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    is_active boolean DEFAULT false
+    is_active boolean DEFAULT false,
+    is_marked boolean DEFAULT false
 );
 
 
@@ -8721,4 +8722,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170110025430');
 INSERT INTO schema_migrations (version) VALUES ('20170110025450');
 
 INSERT INTO schema_migrations (version) VALUES ('20170110185648');
+
+INSERT INTO schema_migrations (version) VALUES ('20170113211950');
 

@@ -1,7 +1,7 @@
 class AtlasesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_required
-  before_filter :find_atlas, except: [ :new, :create ]
+  before_filter :find_atlas, except: [ :new, :create, :index ]
   layout "bootstrap"
 
   def new
@@ -41,6 +41,10 @@ class AtlasesController < ApplicationController
         }
       }
     end
+  end
+  
+  def index
+    @marked_atlases = Atlas.where(is_active: true, is_marked: true).page(params[:page]).per_page(10)
   end
 
   def create
@@ -132,6 +136,13 @@ class AtlasesController < ApplicationController
     place_id = params[:place_id]
     lt = ListedTaxon.get_defaults_for_taxon_place( place_id, taxon_id, { limit: 10 } )
     render json: lt, include: { taxon: { only: :name }, place: { only: :name } }, only: :id
+  end
+  
+  def refresh_atlas
+    is_marked = Atlas.still_is_marked(@atlas)
+    respond_to do |format|
+      format.json { render json: is_marked, status: :ok }
+    end
   end
 
   private
