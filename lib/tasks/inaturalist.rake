@@ -78,13 +78,23 @@ namespace :inaturalist do
       secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
     bucket = AWS::S3.new.buckets[CONFIG.s3_bucket]
 
+    fails = 0
     DeletedPhoto.still_in_s3.
-      where("(orphan=false AND created_at >= ?) OR (orphan=true AND created_at >= ?)",
+      joins("LEFT JOIN photos ON (deleted_photos.photo_id = photos.id)").
+      where("photos.id IS NULL").
+      where("(orphan=false AND deleted_photos.created_at <= ?)
+        OR (orphan=true AND deleted_photos.created_at <= ?)",
         6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
       images = bucket.objects.with_prefix("photos/#{ p.photo_id }/").to_a
       if images.any?
-        bucket.objects.delete(images)
-        p.update_attributes(removed_from_s3: true)
+        pp images
+        begin
+          bucket.objects.delete(images)
+          p.update_attributes(removed_from_s3: true)
+        rescue
+          fails += 1
+          break if fails >= 5
+        end
       end
     end
   end
@@ -112,6 +122,12 @@ namespace :inaturalist do
     end
   end
 
+
+  desc "Delete orphaned and expired photos"
+  task :delete_orphaned_and_expired_photos => :environment do
+    Rake::Task["inaturalist:delete_orphaned_photos"].invoke
+    Rake::Task["inaturalist:delete_expired_photos"].invoke
+  end
 
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
