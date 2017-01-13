@@ -324,10 +324,12 @@ atlasJS.getListings = function( place ) {
 
 $( function( ) {
   atlasState.explodedPlaces = $( "#map" ).data( "exploded-places" );
-  atlasState.map = new google.maps.Map( document.getElementById( "map" ), {
-    zoom: 2,
-    center: { lat: 28, lng: -34 }
-  });
+  $( "#map" ).taxonMap( {
+    zoomLevel: 2,
+    latitude: 28,
+    longitude: -34
+  } );
+  atlasState.map =  $( "#map" ).data( "taxonMap" );
   atlasState.map.addListener( "click", atlasJS.clickCallback );
 
   atlasJS.showInitialPlaces( );

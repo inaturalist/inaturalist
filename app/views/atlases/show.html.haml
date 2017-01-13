@@ -1,3 +1,7 @@
+- content_for :title do
+  Atlas for
+  = render "taxa/taxon.txt.erb", taxon: @atlas.taxon
+
 - content_for :extrajs do
   = javascript_include_tag "atlases/show"
 
@@ -10,28 +14,41 @@
       - unless @atlas.is_active
         .alert.alert-info{ role: :alert }
           This atlas is currently not active
-      - if @num_obs > 0
+      - if @num_obs_not_in_atlas_places > 0
         .alert.alert-warning{ role: :alert }
           Warning: there are observations not represented by this atlas
           = link_to t( :view ), observations_path( @observation_search_url_params )
       %h2.pull-left
         = "Atlas"
         = t :for
-        = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true }
+        = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon }
       .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
-
-  - atlas_data = {                                                    |
-    atlas_id: @atlas.id,                                              |
-    taxon_id: @atlas.taxon_id,                                        |
-    place_ids: @atlas_presence_places_with_establishment_means_hash,  |
-    exploded_places: @exploded_places }                               |
-
   .row.cf#top
     .col-sm-3.col-xs-12.pull-right
       .content-entry#right
       .content-entry#farright
     .col-sm-9.col-xs-12.pull-left#left
-      #map{ data: atlas_data }
+      :ruby
+        map_attributes = setup_map_tag_attrs(
+          min_zoom: 1,
+          show_all_layer: false,
+          taxon_layers: [ {
+            taxon: @atlas.taxon,
+            places: false,
+            ranges: true,
+            observations: true,
+            gbif: { disabled: true },
+          } ]
+        )
+        atlas_data = {
+          atlas_id: @atlas.id,
+          taxon_id: @atlas.taxon_id,
+          place_ids: @atlas_presence_places_with_establishment_means_hash,
+          exploded_places: @exploded_places
+        }
+        Rails.logger.debug( "map_attributes: #{map_attributes}")
+        map_attributes["data"] = map_attributes["data"].merge( atlas_data )
+      #map{ map_attributes }
   
   #bottom
     #comments

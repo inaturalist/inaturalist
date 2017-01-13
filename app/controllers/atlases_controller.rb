@@ -20,12 +20,12 @@ class AtlasesController < ApplicationController
     @exploded_places = Hash[@atlas.exploded_atlas_places.map{ |e| [ e.place_id, e.id ] }].to_json
 
     #any obs outside of the complete set
-    @observation_search_url_params = { 
+    @observations_not_in_atlas_places_params = { 
       taxon_id: @atlas.taxon_id, 
       quality_grade: ["research","needs_id"].join( "," ), 
       not_in_place: @atlas_presence_places_with_establishment_means.map{|p| p[:id] }.join( "," )
     }
-    @num_obs = INatAPIService.observations( @observation_search_url_params.merge( per_page: 0 ) ).total_results
+    @num_obs_not_in_atlas_places = INatAPIService.observations( @observations_not_in_atlas_places_params.merge( per_page: 0 ) ).total_results
     respond_to do |format|
       format.html do
         @atlas_alterations = @atlas.atlas_alterations.includes( :place, :user ).order( "created_at DESC" ).
