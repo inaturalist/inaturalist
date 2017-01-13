@@ -160,10 +160,7 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
     panel.append( addPlaceLink );
     panel.append( "<br>" );
   }
-  if( 
-      ( !existing || ( existing.type != "exploded" ) ) && 
-      existing.place.admin_level < 2 
-    ) {
+  if( !existing || ( existing.type != "exploded"  && existing.place.admin_level < 2 ) ) {
     var explodeLink = $( "<a href='#'>" ).text( "Explode this place" );
     explodeLink.on( "click", function( e ) {
       e.preventDefault( );
