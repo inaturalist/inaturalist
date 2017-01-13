@@ -208,7 +208,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern
+  validate :validate_email_pattern, on: :create
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
