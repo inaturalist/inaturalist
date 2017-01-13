@@ -43,8 +43,8 @@
         atlas_data = {
           atlas_id: @atlas.id,
           taxon_id: @atlas.taxon_id,
-          place_ids: @atlas_presence_places_with_establishment_means_hash,
-          exploded_places: @exploded_places
+          place_ids: @atlas_presence_places_with_establishment_means_hash_json,
+          exploded_places: @exploded_places_json
         }
         Rails.logger.debug( "map_attributes: #{map_attributes}")
         map_attributes["data"] = map_attributes["data"].merge( atlas_data )

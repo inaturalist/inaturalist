@@ -160,7 +160,10 @@ atlasJS.appendPlaceMetadata = function( panel, place ) {
     panel.append( addPlaceLink );
     panel.append( "<br>" );
   }
-  if( !existing || ( existing.type != "exploded" ) ) {
+  if( 
+      ( !existing || ( existing.type != "exploded" ) ) && 
+      existing.place.admin_level < 2 
+    ) {
     var explodeLink = $( "<a href='#'>" ).text( "Explode this place" );
     explodeLink.on( "click", function( e ) {
       e.preventDefault( );
@@ -201,6 +204,44 @@ atlasJS.bestPlaceForLatLng = function( lat, lng, callback ) {
         _.last( selectedPlaces ), null, { selected: true } );
       atlasState.selectedPlaces = selectedPlaces;
       atlasJS.updateMetadataPanel( );
+    }
+  });
+};
+
+atlasJS.addrefreshedPlaces = function( place_hash ) {
+  var refreshedPlaceIDs = $.map( place_hash, function(v, i){
+    if( !Object.keys(atlasState.placeLayers).includes(i) || 
+      ( atlasState.placeLayers[i]["type"] != "native" && 
+      atlasState.placeLayers[i]["type"] != "introduced" ) ) { return i; }
+  });
+  if( refreshedPlaceIDs.length > 0 ) {
+    $.ajax({
+      dataType: "json",
+      url: "<%= CONFIG.node_api_url %>/places/" + refreshedPlaceIDs.join(",") + "?per_page=500",
+      success: function( r ) {
+        _.each( r.results, function( p ) {
+          atlasJS.addPlaceToMap( p, place_hash[p.id] );
+        });
+      }
+    });
+  }
+  $.map( atlasState.placeLayers, function(v, i){
+    if( !Object.keys(place_hash).includes(i) && 
+      ( atlasState.placeLayers[i]["type"] == "native" || 
+      atlasState.placeLayers[i]["type"] == "introduced" ) ) {
+        atlasState.placeLayers[i].layer.setMap( null );
+        delete atlasState.placeLayers[i]; 
+    }
+  });  
+};
+
+atlasJS.refreshPlaces = function( ) {
+  $.ajax({
+    dataType: "json",
+    url: "/atlases/" + $( "#map" ).data( "atlas-id" ) + ".json",
+    success: function( r ) {
+      atlasJS.addrefreshedPlaces( r.presence_places );
+      atlasState.explodedPlaces = r.exploded_places;
     }
   });
 };
@@ -274,6 +315,7 @@ atlasJS.explodePlace = function( place ) {
     success: function( s ) {
       atlasJS.addPlaceToMap( place, "exploded", { selected: true } );
       atlasJS.updateMetadataPanel( );
+      atlasJS.refreshPlaces( );
     },
     error: function( e ) {
       console.log("explode failed");
@@ -292,6 +334,7 @@ atlasJS.unexplodePlace = function( place ) {
       atlasJS.removeActivePlaceLayer( );
       atlasJS.addPlaceToMap( place, "pending", { selected: true } );
       atlasJS.updateMetadataPanel( );
+      atlasJS.refreshPlaces( );
     },
     error: function( e ) {
       console.log("unexplode failed");

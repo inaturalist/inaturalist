@@ -16,9 +16,11 @@ class AtlasesController < ApplicationController
   def show
     @atlas_places = @atlas.places
     @atlas_presence_places_with_establishment_means = @atlas.presence_places_with_establishment_means
-    @atlas_presence_places_with_establishment_means_hash = Hash[@atlas_presence_places_with_establishment_means.map{ |e| [ e[:id], e[:establishment_means] ] }].to_json
-    @exploded_places = Hash[@atlas.exploded_atlas_places.map{ |e| [ e.place_id, e.id ] }].to_json
-
+    @atlas_presence_places_with_establishment_means_hash = Hash[@atlas_presence_places_with_establishment_means.map{ |e| [ e[:id], e[:establishment_means] ] }]
+    @exploded_places = Hash[@atlas.exploded_atlas_places.map{ |e| [ e.place_id, e.id ] }]
+    @atlas_presence_places_with_establishment_means_hash_json = @atlas_presence_places_with_establishment_means_hash.to_json
+    @exploded_places_json = @exploded_places.to_json
+    
     #any obs outside of the complete set
     @observations_not_in_atlas_places_params = { 
       taxon_id: @atlas.taxon_id, 
@@ -33,7 +35,11 @@ class AtlasesController < ApplicationController
         @listed_taxon_alterations = @atlas.relevant_listed_taxon_alterations.includes( :place, :user ).
           order( "listed_taxon_alterations.created_at DESC" ).limit( 30 ).reverse
       end
-      format.json { render json: @atlas_presence_places.to_json }
+      format.json { render json: {
+          presence_places: @atlas_presence_places_with_establishment_means_hash,
+          exploded_places: @exploded_places
+        }
+      }
     end
   end
 
