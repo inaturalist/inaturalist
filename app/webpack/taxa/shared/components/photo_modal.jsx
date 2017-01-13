@@ -15,7 +15,8 @@ const PhotoModal = ( {
   onClose,
   showNext,
   showPrev,
-  photoLinkUrl
+  photoLinkUrl,
+  linkToTaxon
 } ) => {
   let photoContent = (
     <div className="text-center text-muted">
@@ -70,10 +71,15 @@ const PhotoModal = ( {
               >
                 { I18n.t( "more_photos" ) }
               </a>
-              <SplitTaxon taxon={taxon} url={urlForTaxon( taxon )} />
-              <a href={urlForTaxon( taxon )} className="taxon-link">
-                <i className="fa fa-arrow-circle-right"></i>
-              </a>
+              <SplitTaxon
+                taxon={ taxon }
+                url={ linkToTaxon ? urlForTaxon( taxon ) : null }
+              />
+              { linkToTaxon ? (
+                <a href={urlForTaxon( taxon )} className="taxon-link">
+                  <i className="fa fa-arrow-circle-right"></i>
+                </a>
+              ) : null }
             </Col>
           </Row>
         </Grid>
@@ -87,6 +93,7 @@ const PhotoModal = ( {
       bsSize="large"
       className="PhotoModal"
     >
+      <button className="close" onClick={onClose}>×</button>
       <Button className="nav-button" onClick={ function ( ) { showPrev( ); } }>
         &lsaquo;
       </Button>
@@ -110,7 +117,12 @@ PhotoModal.propTypes = {
   onClose: PropTypes.func,
   showNext: PropTypes.func,
   showPrev: PropTypes.func,
-  photoLinkUrl: PropTypes.string
+  photoLinkUrl: PropTypes.string,
+  linkToTaxon: PropTypes.bool
+};
+
+PhotoModal.defaultProps = {
+  linkToTaxon: true
 };
 
 export default PhotoModal;
