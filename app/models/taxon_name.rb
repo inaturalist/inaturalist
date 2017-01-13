@@ -13,13 +13,14 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
-  validates_uniqueness_of :source_identifier,
-                          :scope => [:taxon_id, :source_id],
-                          :message => "already exists",
-                          :allow_blank => true,
-                          :unless => Proc.new {|taxon_name|
-                            taxon_name.source && taxon_name.source.title =~ /Catalogue of Life/
-                          }
+  # There are so many names that violate
+  # validates_uniqueness_of :source_identifier,
+  #                         :scope => [:taxon_id, :source_id],
+  #                         :message => "already exists",
+  #                         :allow_blank => true,
+  #                         :unless => Proc.new {|taxon_name|
+  #                           taxon_name.source && taxon_name.source.title =~ /Catalogue of Life/
+  #                         }
 
   #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
   #source_url but different taxon_ids
