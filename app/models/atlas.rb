@@ -172,7 +172,7 @@ class Atlas < ActiveRecord::Base
       if total_res == 0
         change = true if atlas.is_marked == true
       else
-        changed = true if atlas.is_marked == false
+        change = true if atlas.is_marked == false
       end
       if change
         if atlas.is_marked
