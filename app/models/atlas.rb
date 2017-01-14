@@ -151,19 +151,54 @@ class Atlas < ActiveRecord::Base
   end
   
   def self.mark_active_atlases_with_out_of_range_observations
+    start_time = Time.now
+    checked_count = 0
+    failed_count = 0
+    marked_count = 0
+    unmarked_count = 0
+
+    msg = "[INFO #{Time.now}] start daily check of #{ Atlas.where(is_active: true).count } active atlases"
+    Rails.logger.info msg
+    puts msg
+
     Atlas.where(is_active: true).each do |atlas|
-     atlas_presence_places = atlas.presence_places
-     observation_search_url_params = { 
-       verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," )
-     }
-     total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
-     if total_res == 0
-       atlas.is_marked = false
-     else
-       atlas.is_marked = true
-     end
-     atlas.save
+      checked_count += 1
+      change = false
+      atlas_presence_places = atlas.presence_places
+      observation_search_url_params = { 
+        verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," )
+      }
+      total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
+      if total_res == 0
+        change = true if atlas.is_marked == true
+      else
+        changed = true if atlas.is_marked == false
+      end
+      if change
+        if atlas.is_marked
+          atlas.is_marked = false
+          msg = "[INFO #{Time.now}] atlas #{atlas.id} unmarked"
+          unmarked_count += 1
+        else
+          atlas.is_marked = true
+          msg = "[INFO #{Time.now}] atlas #{atlas.id} marked"
+          marked_count += 1
+        end
+        Rails.logger.info msg
+        puts msg    
+
+        unless atlas.save
+          failed_count += 1
+          msg =  "[ERROR #{Time.now}] #{atlas.id} failed to save"
+          Rails.logger.error msg
+          puts msg
+        end
+      end
     end
+
+    msg = "[INFO #{checked_count} atlases checked: #{marked_count} marked, #{unmarked_count} unmarked, #{failed_count} failed in #{Time.now - start_time} s"
+    Rails.logger.info msg
+    puts msg
   end
-  
+
 end
