@@ -505,7 +505,9 @@ class Observation < ActiveRecord::Base
       # This inanity brought to by the fact that all +'s in URLs get interpreted
       # as spaces, so if you want a plus, we either have to handle it like this
       # or you use %2B
-      p[:updated_since] = p[:updated_since].gsub( /\s+/, "+" )
+      if p[:updated_since].is_a?( String )
+        p[:updated_since] = p[:updated_since].gsub( /\s(\d+\:\d+)$/, "+\\1" )
+      end
       timestamp = Chronic.parse(p[:updated_since])
       # there is an expectation in a spec that when updated_since is
       # invalid, the search will fail to return any results

@@ -533,7 +533,9 @@ module ObservationSearch
       end
 
       unless params[:updated_since].blank?
-        params[:updated_since] = params[:updated_since].gsub( /\s+/, "+" )
+        if params[:updated_since].is_a?( String )
+          params[:updated_since] = params[:updated_since].gsub( /\s(\d+\:\d+)$/, "+\\1" )
+        end
         if timestamp = Chronic.parse(params[:updated_since])
           if params[:aggregation_user_ids].blank?
             scope = scope.where("observations.updated_at > ?", timestamp)
