@@ -1,7 +1,7 @@
 import inatjs from "inaturalistjs";
 import {
   fetchRecentObservations,
-  fetchFirstObservation
+  fetchLastObservation
 } from "./observations";
 import { defaultObservationParams } from "../../shared/util";
 
@@ -72,7 +72,7 @@ export function fetchLeaders( selectedTaxon ) {
       dispatch( fetchTopObserver( ) ),
       dispatch( fetchTopIdentifier( ) ),
       dispatch( fetchRecentObservations( taxon ) ),
-      dispatch( fetchFirstObservation( taxon ) )
+      dispatch( fetchLastObservation( taxon ) )
     ];
     if ( taxon.rank_level <= 10 ) {
       promises.push( dispatch( fetchFirstObserver( taxon ) ) );
