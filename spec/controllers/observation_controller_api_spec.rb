@@ -615,6 +615,20 @@ shared_examples_for "an ObservationsController" do
       expect(json.detect{|o| o['id'] == oldo.id}).to be_blank
     end
 
+    it "should allow filtering by updated_since with positive offsets" do
+      time_zone_was = Time.zone
+      Time.zone = ActiveSupport::TimeZone["Berlin"]
+      oldo = Observation.make!( created_at: 10.days.ago, updated_at: 5.days.ago, user: user )
+      newo = Observation.make!( user: user )
+      updated_stamp = ( newo.updated_at - 4.days ).iso8601
+      expect( updated_stamp ).to match /\+\d\d:\d\d$/
+      get :by_login, format: :json, login: user.login, updated_since: updated_stamp
+      json = JSON.parse( response.body )
+      expect( json.detect{ |o| o['id'] == newo.id } ).not_to be_blank
+      expect( json.detect{ |o| o['id'] == oldo.id } ).to be_blank
+      Time.zone = time_zone_was
+    end
+
     it "should return no results if updated_since is specified but incorrectly formatted" do
       oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
       expect(oldo.updated_at).to be < 1.minute.ago
