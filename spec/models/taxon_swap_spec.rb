@@ -17,6 +17,14 @@ describe TaxonSwap, "creation" do
     swap.add_input_taxon(input_taxon)
     expect(swap).not_to be_valid
   end
+
+  it "should generate mentions" do
+    u = User.make!
+    tc = without_delay { make_taxon_swap( description: "hey @#{ u.login }" ) }
+    expect( UpdateAction.where( notifier: tc, notification: "mention" ).count ).to eq 1
+    expect( UpdateAction.where( notifier: tc, notification: "mention" ).first.
+      update_subscribers.first.subscriber ).to eq u
+  end
 end
 
 describe TaxonSwap, "destruction" do

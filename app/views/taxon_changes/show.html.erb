@@ -4,10 +4,25 @@
 <% end %>
 
 <%- content_for(:extracss) do %>
-<%= stylesheet_link_tag 'taxon_changes' %>
-<style type="text/css" media="screen">
-  .change_taxon {margin-bottom: 10px; width: 440px;}
-</style>
+  <%= stylesheet_link_tag 'taxon_changes' %>
+  <style type="text/css" media="screen">
+    .change_taxon {margin-bottom: 10px; width: 440px;}
+  </style>
+<% end %>
+
+<% content_for :extrajs do %>
+  <script type="text/javascript">
+    $( document ).ready( function( ) {
+      $( "#mapwrapper" ).shades( "open", {
+        css: { "background-color": "white" },
+        content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock"><%= t :loading_map %></span></center>'
+      } );
+      $( "iframe" ).load( function( ) {
+        $( "#mapwrapper" ).shades( "close" );
+      } );
+      $( "#comment_body" ).textcompleteUsers( );
+    } );
+  </script>
 <% end %>
 
 <% unless @existing.blank? -%>
@@ -54,16 +69,6 @@
   <iframe width="100%" height="600" class="stacked" src="<%= taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id})%>">
   </iframe>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-  $('#mapwrapper').shades('open', {
-    css: {'background-color': 'white'}, 
-    content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock"><%= t :loading_map %></span></center>'
-  })
-  $('iframe').load(function() {
-    $('#mapwrapper').shades('close')
-  })
-</script>
 
 <div id="comments" class="column span-18">
   <%= render :partial => "comments/comments", :object => @taxon_change %>
