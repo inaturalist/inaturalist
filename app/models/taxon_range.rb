@@ -50,9 +50,9 @@ class TaxonRange < ActiveRecord::Base
   
   def derive_missing_values
     if (geom && !range.path )
-      create_kml_attachment
+      delay( priority: USER_INTEGRITY_PRIORITY ).create_kml_attachment
     elsif (!geom && range.path)
-      create_geom_from_kml_attachment
+      delay( priority: USER_INTEGRITY_PRIORITY ).create_geom_from_kml_attachment
     end
   end
       
