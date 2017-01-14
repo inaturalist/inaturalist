@@ -778,6 +778,19 @@ $nav-btn-dim: 40px;
   text-align: center;
 }
 
+[role="dialog"] .PhotoModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  opacity: 0.8;
+  z-index: 1;
+}
+[role="dialog"] .PhotoModal .close:hover {
+  color: white;
+  opacity: 0.5;
+}
 .PhotoModal .btn.nav-button {
   position: absolute;
   top: 50%;
@@ -823,7 +836,7 @@ $nav-btn-dim: 40px;
   content: "";
   display: block;
   width: 100%;
-  height: 20px;
+  height: 40px;
   background-color: black;
 }
 .PhotoModal .photo-modal-content .photo-container {

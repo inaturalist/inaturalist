@@ -8,6 +8,7 @@ const SET_MONTH_OF_YEAR_FREQUENCY = "taxa-show/observations/SET_MONTH_OF_YEAR_FR
 const SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS";
 const SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
 const SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
+const SET_LAST_OBSERVATION = "taxa-show/observations/SET_LAST_OBSERVATION";
 
 export default function reducer(
   state = { monthOfYearFrequency: {}, monthFrequency: {} },
@@ -33,6 +34,9 @@ export default function reducer(
       break;
     case SET_FIRST_OBSERVATION:
       newState.first = action.observation;
+      break;
+    case SET_LAST_OBSERVATION:
+      newState.last = action.observation;
       break;
     default:
       // leave it alone
@@ -208,6 +212,26 @@ export function fetchFirstObservation( ) {
     } );
     return ( inatjs.observations.search( params ).then( response => {
       dispatch( setFirstObservation( response.results[0] ) );
+    } ) );
+  };
+}
+
+export function setLastObservation( observation ) {
+  return {
+    type: SET_LAST_OBSERVATION,
+    observation
+  };
+}
+
+export function fetchLastObservation( ) {
+  return ( dispatch, getState ) => {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      order_by: "observed_on",
+      order: "desc",
+      per_page: 1
+    } );
+    return ( inatjs.observations.search( params ).then( response => {
+      dispatch( setLastObservation( response.results[0] ) );
     } ) );
   };
 }

@@ -8,51 +8,62 @@ class Atlas < ActiveRecord::Base
   validates_uniqueness_of :taxon_id, :message => "already atlased"
   validates_presence_of :taxon
 
+  # All of the atlased places, i.e. all the places where the atlas author has
+  # declared this taxon to exist
   def places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
+    # If no places have been exploded, we assume the taxon exists in all countries
     if exploded_place_ids_to_include.blank?
       places = Place.where( admin_level: Place::COUNTRY_LEVEL )
+    # Otherwise we assume it exists in all countries *and* all exploded places...
     else
       places = Place.where( "( admin_level = ? OR places.id IN ( ? ) )", Place::COUNTRY_LEVEL, exploded_place_ids_to_include )
     end
+    # ...then we exclude places that we're explicitly ignoring
     unless exploded_place_ids_to_exclude.blank?
       places = places.where( "places.id NOT IN ( ? )", exploded_place_ids_to_exclude )
     end
     places
   end
 
+  # All of the atlas places where there is a ListedTaxon demonstraging presence
   def presence_places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
-    scope = ListedTaxon.joins( { list: :check_list_place } ).
+    descendant_listed_taxa = ListedTaxon.joins( list: :check_list_place ).
       where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
-
-    descendants_places = Place.where( id: scope.select( "listed_taxa.place_id" ).distinct.pluck( :place_id ) ).
+    descendant_place_ids = descendant_listed_taxa.select( "listed_taxa.place_id" ).distinct.pluck( :place_id )
+    descendants_places = Place.where( id: descendant_place_ids ).
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
-    place_ancestors = descendants_places.map{ |p| p.ancestor_place_ids.nil? ? [p.id] : p.ancestor_place_ids }.
+    place_ancestor_ids = descendants_places.map{ |p| p.ancestor_place_ids || p.id }.
       flatten.compact.uniq
 
-    scope = Place.where( id: place_ancestors )
+    places = Place.where( id: place_ancestor_ids )
+    # If nothing is exploded, assume taxon is present in all countries with listed taxa for this taxon
     if exploded_place_ids_to_include.blank?
-      scope = scope.where( "places.admin_level = ?", Place::COUNTRY_LEVEL )
+      places = places.where( "places.admin_level = ?", Place::COUNTRY_LEVEL )
+    # Otherwise assume all countries AND explicitly included places
     else
-      scope = scope.where( "( places.admin_level = ? OR places.id IN ( ? ) )", Place::COUNTRY_LEVEL, exploded_place_ids_to_include )
+      places = places.where( "( places.admin_level = ? OR places.id IN ( ? ) )", Place::COUNTRY_LEVEL, exploded_place_ids_to_include )
     end
+    # Exclude places if necessary
     unless exploded_place_ids_to_exclude.blank?
-      scope = scope.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
+      places = places.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
     end
-    scope
+    places
   end
 
   def get_exploded_place_ids_to_include_and_exclude
     exploded_place_ids_to_include = []
     exploded_place_ids_to_exclude = []
     exploded_atlas_places.each do |exploded_atlas_place|
+      # Exclude the exploded place itself
       exploded_place_ids_to_exclude << exploded_atlas_place.place_id
+      # Include all admin level descendants of the exploded place
       exploded_place_ids_to_include += exploded_atlas_place.place.children.
         where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).map( &:id )
     end
-    return exploded_place_ids_to_include, exploded_place_ids_to_exclude
+    [exploded_place_ids_to_include, exploded_place_ids_to_exclude]
   end
 
   def get_atlas_presence_place_listed_taxa(place_id)

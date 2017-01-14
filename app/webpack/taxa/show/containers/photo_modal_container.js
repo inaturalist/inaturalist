@@ -7,12 +7,23 @@ import {
 } from "../../shared/ducks/photo_modal";
 
 function mapStateToProps( state ) {
-  return {
+  const newState = {
     photo: state.photoModal.photo,
     taxon: state.photoModal.taxon,
     observation: state.photoModal.observation,
     visible: state.photoModal.visible
   };
+  if ( state.taxon.taxon && state.photoModal.taxon &&
+    state.taxon.taxon.id === state.photoModal.taxon.id
+  ) {
+    newState.linkToTaxon = false;
+  }
+  if ( state.photoModal.observation ) {
+    newState.photoLinkUrl = `/observations/${state.photoModal.observation.id}`;
+  } else if ( state.photoModal.photo ) {
+    newState.photoLinkUrl = `/photos/${state.photoModal.photo.id}`;
+  }
+  return newState;
 }
 
 function mapDispatchToProps( dispatch ) {
