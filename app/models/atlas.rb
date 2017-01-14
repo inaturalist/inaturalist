@@ -138,4 +138,21 @@ class Atlas < ActiveRecord::Base
     atlas.save
     return false
   end
+  
+  def self.mark_active_atlases_with_out_of_range_observations
+    Atlas.where(is_active: true).each do |atlas|
+     atlas_presence_places = atlas.presence_places
+     observation_search_url_params = { 
+       verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," )
+     }
+     total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
+     if total_res == 0
+       atlas.is_marked = false
+     else
+       atlas.is_marked = true
+     end
+     atlas.save
+    end
+  end
+  
 end
