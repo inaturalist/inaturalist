@@ -1329,6 +1329,7 @@ zh-CN:
   info: 信息
   input_taxon: 输入分类单元
   insects: 昆虫
+  insect_life_stage: 昆虫生命阶段
   inspired_by_the_flickr_group: 这里是受到Flickr群组<a href='http://flickr.com/groups/idplease/'>“请进行鉴定”（ID
     Please）</a>的启发，您如果有不认识的物种，可在此发布其观察记录，给其他人一个鉴定这些神秘生物的机会！
   interactions: 互动
@@ -1913,6 +1914,7 @@ zh-CN:
   photo_licensing: 照片许可协议
   photo_s: 照片
   photo_type: 照片类型
+  photos_from: 照片来自
   photos_of: 照片属于
   photos_of_taxon_html: '%{taxon}的照片'
   photos_size:
@@ -2301,6 +2303,8 @@ zh-CN:
   search: 搜索
   search_all_fields: 搜索所有字段
   search_by_name_or_email: 按名称或电子邮件搜索
+  search_by_taxon_name_or_observation_id: 按分类单元名称或观察ID搜索
+  search_by_taxon_name_or_flickr_photo_id: 按分类单元名称或Flickr照片ID搜索
   search_catalogue_of_life: 搜索<a href="http://www.catalogueoflife.org">Catalogue of
     Life</a>
   search_creative_commons_photos_on_flickr: 在 Flickr 上搜索知识共享照片。如果您选择了一个，请友善地留下一条感谢评论！
@@ -2592,6 +2596,7 @@ zh-CN:
   thu: 四
   time_: 时间
   time_ago: '%{time}前'
+  tired_of_testing_this_new_version: 对测试该新版本感到疲倦？
   title: 标题
   title_and_description: 标题和描述
   to: 到

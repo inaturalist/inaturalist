@@ -740,8 +740,8 @@ fr:
       par %{output_taxon}'
     input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} sera remplacé
       par %{output_taxon}'
-    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} a été fusionné dans
-      %{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} ont été fusionnés
+      dans %{output_taxon}'
     input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} sera fusionné
       dans %{output_taxon}'
   change_visibility_of: Modifier la visibilité des coordonnées géographiques?
@@ -2272,7 +2272,7 @@ fr:
   no_matching_users: Aucun utilisateur correspondant
   no_members_yet: Aucun membre jusqu’à présent.
   no_messages_yet: Aucun message jusqu’à présent
-  no_misidentifications_yet: Encore aucune mauvaise identification
+  no_misidentifications_yet: Pas encore de mauvaise identification
   no_mobilized_version_of_that_view: Aucune version mobile de cette vue.
   no_more_mail_from_site: Vous ne voulez pas recevoir de courriel  d’%{site_name}?  Modifiez
     vos paramètres de courriel à
@@ -2685,6 +2685,7 @@ fr:
   photo_s: Photo(s)
   photo_type: Type de Photo
   photo_urls_repaired: URL de photo réparées
+  photos_from: Photos de
   photos_of: Photos de
   photos_of_taxon_html: Photos de %{taxon}
   photos_or_sounds?: Photos ou sons?
@@ -3198,6 +3199,9 @@ fr:
   search: Rechercher
   search_all_fields: chercher tous les champs
   search_by_name_or_email: Rechercher par nom ou par adresse électronique
+  search_by_taxon_name_or_observation_id: Recherche par nom de taxon ou ID d'observation
+  search_by_taxon_name_or_flickr_photo_id: Recherche par nom de taxon ou d'identité
+    photo Flickr
   search_catalogue_of_life: Rechercher dans le <a href="http://www.catalogueoflife.org">Catalogue
     of Life</a>
   search_catalogue_of_life_raquo: Rechercher dans le Catalogue of Life &raquo;
@@ -5380,8 +5384,8 @@ fr:
             et stables dans le temps, mais de nombreux organismes ont plusieurs noms
             différents selon les endroits, même dans la même langue, ce qui peut rendre
             difficile la communication sans confusion à propos de ces organismes.
-            Les scientifiques résolvent ce problème en utilsiant un « nom scientifique »
-            pour chaque catégorie d’organisme, qui se conforme aux règles de
+            Les scientifiques résolvent ce problème en utilisant un « nom scientifique »
+            unique pour chaque catégorie d’organisme, qui se conforme aux règles de
             <a href="https://fr.wikipedia.org/wiki/Nom_binominal">la nomenclature biologique</a>,
             mais ces noms sont en général basés sur le latin, une langue que personne
             ne parle, et ne sont donc pas mémorisables comme des noms communs pour beaucoup
@@ -5397,7 +5401,7 @@ fr:
           </p>
           <p>
             Nous essayons de corriger ces lacunes en affichant à la fois les noms
-            commun et scientifique quand c’est possible, et en choisissant les noms communs
+            communs et scientifiques quand c’est possible, et en choisissant les noms communs
             basés sur la langue et les préférences géographiques du lecteur.
           </p>
         about_conservation_status_desc: L’état de conservation synthétise le risque
