@@ -2,6 +2,7 @@ taxon_id = ARGV[0]
 taxon = Taxon.find_by_id(taxon_id)
 table_names = []
 resurrection_cmds = []
+dbname = ActiveRecord::Base.connection.current_database
 
 puts
 puts <<-EOT
@@ -15,10 +16,10 @@ system "rm resurrect_#{taxon_id}*"
 
 puts "Exporting from taxa..."
 fname = "resurrect_#{taxon_id}-taxa.csv"
-cmd = "psql inaturalist_production -c \"COPY (SELECT * FROM taxa WHERE id = #{taxon_id}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{dbname} -c \"COPY (SELECT * FROM taxa WHERE id = #{taxon_id}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy taxa FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{dbname} -c \"\\copy taxa FROM '#{fname}' WITH CSV\""
 
 has_many_reflections = Taxon.reflections.select{|k,v| v.macro == :has_many}
 has_many_reflections.each do |k, reflection|
@@ -31,7 +32,7 @@ has_many_reflections.each do |k, reflection|
       open(fname, 'w') do |f|
         f << "UPDATE #{reflection.table_name} SET #{reflection.foreign_key} = #{taxon_id} WHERE id IN (#{associate_ids})"
       end
-      resurrection_cmds << "psql inaturalist_production < #{fname}"
+      resurrection_cmds << "psql #{dbname} < #{fname}"
     end
   end
   next unless reflection.options[:dependent] == :destroy
@@ -42,10 +43,10 @@ has_many_reflections.each do |k, reflection|
   unless table_names.include?(reflection.table_name)
     system "test #{fname} || rm #{fname}"
   end
-  cmd = "psql inaturalist_production -c \"COPY (SELECT * FROM #{reflection.table_name} WHERE #{reflection.foreign_key} = #{taxon_id}) TO STDOUT WITH CSV\" >> #{fname}"
+  cmd = "psql #{dbname} -c \"COPY (SELECT * FROM #{reflection.table_name} WHERE #{reflection.foreign_key} = #{taxon_id}) TO STDOUT WITH CSV\" >> #{fname}"
   system cmd
   puts "\t#{cmd}"
-  resurrection_cmds << "psql inaturalist_production -c \"\\copy #{reflection.table_name} FROM '#{fname}' WITH CSV\""
+  resurrection_cmds << "psql #{dbname} -c \"\\copy #{reflection.table_name} FROM '#{fname}' WITH CSV\""
 end
 
 puts "Exporting from taxon_photos..."
@@ -60,10 +61,10 @@ WHERE
   taxa.id = #{taxon_id} 
   AND photos.type != 'LocalPhoto'
 SQL
-cmd = "psql inaturalist_production -c \"COPY (#{sql.gsub("\n", ' ')}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{dbname} -c \"COPY (#{sql.gsub("\n", ' ')}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy taxon_photos FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{dbname} -c \"\\copy taxon_photos FROM '#{fname}' WITH CSV\""
 
 puts "Exporting from photos..."
 fname = "resurrect_#{taxon_id}-photos.csv"
@@ -77,10 +78,15 @@ WHERE
   taxa.id = #{taxon_id} 
   AND photos.type != 'LocalPhoto'
 SQL
-cmd = "psql inaturalist_production -c \"COPY (#{sql.gsub("\n", ' ')}) TO STDOUT WITH CSV\" > #{fname}"
+cmd = "psql #{dbname} -c \"COPY (#{sql.gsub("\n", ' ')}) TO STDOUT WITH CSV\" > #{fname}"
 puts "\t#{cmd}"
 system cmd
-resurrection_cmds << "psql inaturalist_production -c \"\\copy photos FROM '#{fname}' WITH CSV\""
+resurrection_cmds << "psql #{dbname} -c \"\\copy photos FROM '#{fname}' WITH CSV\""
+
+# Note that we don't have to deal with guide taxon associates b/c the guide taxa
+# weren't deleted, just nulified, so their associates should still be there.
+
+resurrection_cmds << "bundle exec rails r 'Taxon.find( #{taxon_id} ).elastic_index!; Observation.elastic_index!( scope: Observation.of( #{taxon_id} ) )'"
 
 cmd = "tar cvzf resurrect_#{taxon_id}.tgz resurrect_#{taxon_id}-*"
 puts "Zipping it all up..."
