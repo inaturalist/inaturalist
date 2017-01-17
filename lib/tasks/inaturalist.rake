@@ -164,11 +164,16 @@ namespace :inaturalist do
     all_keys += Date::MONTHNAMES.compact.map{|m| "date_format.month.#{m.downcase}"}
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
+      # Ignore non-files
       next unless File.file?( f )
+      # Ignore images and php scripts
       next if f =~ /\.(gif|png|php)$/
+      # Ignore generated webpack outputs
+      next if f =~ /\-webpack.js$/
+      # Ignore an existing translations file
       next if f == output_path
       contents = IO.read( f )
-      results = contents.scan(/(I18n|shared).t\( ?(.)(.*?)\2/i)
+      results = contents.scan(/(I18n|shared).t\(\s*(.)(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }
       end
