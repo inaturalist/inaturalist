@@ -163,6 +163,10 @@ namespace :inaturalist do
                  "views.taxa.show.frequency", "flowering_phenology", "insect_life_stage" ]
     all_keys += Date::MONTHNAMES.compact.map{ |m| "date_format.month.#{m.downcase}" }
     all_keys += TaxonName::LEXICONS.keys.compact.map{ |lexicon| "lexicons.#{lexicon.downcase}" }
+    all_keys += Place.
+      where( "admin_level <= ?", Place::COUNTRY_LEVEL ).
+      pluck(:name).
+      map{ |n| "places_name.#{n.parameterize.underscore}" }
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
       # Ignore non-files
@@ -174,9 +178,12 @@ namespace :inaturalist do
       # Ignore an existing translations file
       next if f == output_path
       contents = IO.read( f )
-      results = contents.scan(/(I18n|shared).t\(\s*(.)(.*?)\2/i)
+      results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
-        all_keys += results.map{ |r| r[2].chomp(".") }
+        all_keys += results.map{ |r|
+          puts "r: #{r}"
+          r[2].chomp(".")
+        }
       end
     end
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each(&scanner_proc)

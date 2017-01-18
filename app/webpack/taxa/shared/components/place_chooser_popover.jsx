@@ -214,7 +214,7 @@ class PlaceChooserPopover extends React.Component {
                     </div>
                     <div className="media-body">
                       {
-                        p.display_name
+                        I18n.t( `places_name.${_.snakeCase( p.name )}`, { defaultValue: p.display_name } )
                       } {
                         placeType ? <span className="text-muted place-type">({placeType})</span> : null
                       }
@@ -230,7 +230,11 @@ class PlaceChooserPopover extends React.Component {
           className={`PlaceChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
         >
           <i className="fa fa-map-marker"></i>
-          { place ? place.display_name : _.startCase( I18n.t( "filter_by_place" ) ) }
+          {
+            place ?
+              I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
+              :
+              _.startCase( I18n.t( "filter_by_place" ) ) }
         </div>
       </OverlayTrigger>
     );

@@ -1,7 +1,5 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["ar"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -24,41 +22,17 @@ I18n.translations["ar"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -75,17 +49,11 @@ I18n.translations["ar"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["az"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -108,41 +76,17 @@ I18n.translations["az"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -159,17 +103,11 @@ I18n.translations["az"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["bg"] = {
-  "_": {
-  },
   "about": "Относно",
   "about_community_taxa": "За таксоните от общността",
   "account": "Сметка",
@@ -413,12 +351,8 @@ I18n.translations["bg"] = {
   "has_one_or_more_faves": "Има едно или повече харесвания",
   "has_photos": "има снимки",
   "has_sounds": "има звуци",
-  "his": {
-  },
   "identifications": "Разпознавания",
   "identify_title": "Разпознай",
-  "ield": {
-  },
   "insects": "насекоми",
   "introduced": "интродуциран",
   "join_project": "Включи се в проекта",
@@ -429,10 +363,6 @@ I18n.translations["bg"] = {
   "least_concern": "незастрашен",
   "less": "По-малко",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "африканс",
     "bengali": "бенгалски",
     "catalan": "каталонски",
@@ -528,8 +458,6 @@ I18n.translations["bg"] = {
   "no_results_found": "Не бяха открити резултати",
   "none": "Нищо",
   "not_evaluated": "неоценен",
-  "o": {
-  },
   "observation_date": "Дата",
   "observation_fields": "Полета за наблюдения",
   "observation_without_photo": "Наблюдение без снимка",
@@ -620,15 +548,41 @@ I18n.translations["bg"] = {
       "Unknown": "Неизвестен",
       "unknown": "неизвестен",
       "Zone": "Зона",
-      "zone": "зона",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "зона"
     }
   },
   "places_added_by_members_of_the_community": "Места добавени от потребителите на общността",
   "places_maintained_by_site_admins": "Места поддържани от администраторите на сайта",
+  "places_name": {
+    "afghanistan": "Афганистан",
+    "belgium": "Белгия",
+    "brazil": "Бразилия",
+    "egypt": "Египет",
+    "france": "Франция",
+    "germany": "Германия",
+    "greece": "Гърция",
+    "hungary": "Унгария",
+    "iraq": "Ирак",
+    "italy": "Италия",
+    "japan": "Япония",
+    "mexico": "Мексико",
+    "new_zealand": "Нова Зеландия",
+    "palestine": "Палестина",
+    "panama": "Панама",
+    "peru": "Перу",
+    "poland": "Полша",
+    "russia": "Русия",
+    "sao_tome_and_principe": "Сао Томе и Принсипи",
+    "saudi_arabia": "Саудитска Арабия",
+    "spain": "Испания",
+    "sweden": "Швеция",
+    "syria": "Сирия",
+    "thailand": "Тайланд",
+    "trinidad_and_tobago": "Тринидад и Тобаго",
+    "turkey": "Турция",
+    "united_kingdom": "Обединено Кралство",
+    "united_states": "САЩ"
+  },
   "places_of_interest": "Места представляващи интерес",
   "plants": "растения",
   "popular": "Популярно",
@@ -669,13 +623,7 @@ I18n.translations["bg"] = {
     "hybrid": "хибрид",
     "subspecies": "подвид",
     "variety": "вариетет",
-    "form": "форма",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "form": "форма"
   },
   "ray_finned_fishes": "лъчеперки",
   "recent_observations": "Последни наблюдения",
@@ -724,8 +672,6 @@ I18n.translations["bg"] = {
     "one": "Публикувай 1 наблюдение",
     "other": "Публикувай %{count} наблюдения"
   },
-  "t": {
-  },
   "taxon_map": {
   },
   "taxonomic_groups": "Таксономични групи",
@@ -765,10 +711,6 @@ I18n.translations["bg"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -825,8 +767,6 @@ I18n.translations["bg"] = {
   "zoom_out": "Отдалечи"
 };
 I18n.translations["br"] = {
-  "_": {
-  },
   "about": "Diwar-benn",
   "about_community_taxa": "Diwar-benn taksonioù ar gumuniezh",
   "account": "Kont",
@@ -1052,10 +992,6 @@ I18n.translations["br"] = {
   "grid": "Kael",
   "grid_tooltip": "Diskwel ar gwel er mod kael",
   "high": "uhel",
-  "his": {
-  },
-  "ield": {
-  },
   "import": "Enporzhiañ",
   "inactive_taxon": "takson dizoberiant",
   "including": "en ur gontañ e-barzh",
@@ -1068,10 +1004,6 @@ I18n.translations["br"] = {
   "layers": "Gwiskadoù",
   "less": "Nebeutoc'h",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "Bengali",
     "catalan": "Katalaneg",
@@ -1133,8 +1065,6 @@ I18n.translations["br"] = {
   "no": "Ket",
   "none": "Hini ebet",
   "number_selected": "niv. dibabet",
-  "o": {
-  },
   "obscured": "Kuzhet",
   "observation_date": "Deiziad",
   "of": "eus",
@@ -1226,28 +1156,44 @@ I18n.translations["br"] = {
       "Undefined": "Andermenet",
       "undefined": "andermenet",
       "Zone": "Takad",
-      "zone": "takad",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "takad"
     }
+  },
+  "places_name": {
+    "afghanistan": "Afghanistan",
+    "belgium": "Belgia",
+    "brazil": "Brazil",
+    "egypt": "Egipt",
+    "france": "Frañs",
+    "germany": "Alamagn",
+    "greece": "Gres",
+    "hungary": "Hungaria",
+    "iraq": "Iraq",
+    "italy": "Italia",
+    "japan": "Japan",
+    "mexico": "Mec'hiko",
+    "new_zealand": "Zeland-Nevez",
+    "palestine": "Palestina",
+    "panama": "Panamá",
+    "peru": "Perou",
+    "poland": "Polonia",
+    "russia": "Rusia",
+    "sao_tome_and_principe": "São Tomé ha Príncipe",
+    "saudi_arabia": "Arabia Saoudat",
+    "spain": "Spagn",
+    "sweden": "Sveden",
+    "syria": "Siria",
+    "thailand": "Thailand",
+    "trinidad_and_tobago": "Trinidad ha Tobago",
+    "turkey": "Turkia",
+    "united_kingdom": "Rouantelezh Unanet",
+    "united_states": "Stadoù-Unanet"
   },
   "plants": "plant",
   "prev": "kent",
   "previous": "Kent",
   "project": "Raktres",
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
-  },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -1264,10 +1210,6 @@ I18n.translations["br"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -1309,8 +1251,6 @@ I18n.translations["br"] = {
   }
 };
 I18n.translations["bs"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -1333,41 +1273,17 @@ I18n.translations["bs"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -1384,17 +1300,11 @@ I18n.translations["bs"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["ca"] = {
-  "_": {
-  },
   "about": "Sobre",
   "about_community_taxa": "Sobre la comunitat de tàxons",
   "about_conservation_status": "Sobre l'estat de conservació",
@@ -1717,13 +1627,9 @@ I18n.translations["ca"] = {
   "has_sounds": "té sons",
   "heads_up": "Avís",
   "high": "alta",
-  "his": {
-  },
   "history": "Historial",
   "identifications": "Identificacions",
   "identify_title": "Identificar",
-  "ield": {
-  },
   "import": "Importa",
   "inactive_taxon": "Tàxon inactiu",
   "including": "inclou",
@@ -1749,10 +1655,6 @@ I18n.translations["ca"] = {
   "least_concern": "preocupació menor",
   "less": "Menys",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "Bengalí",
     "catalan": "Català",
@@ -1885,8 +1787,6 @@ I18n.translations["ca"] = {
   "none": "Cap",
   "not_evaluated": "no avaluat",
   "number_selected": "# seleccionat",
-  "o": {
-  },
   "obscured": "Enfosquida",
   "observation_date": "Data",
   "observation_fields": "Camps d'observació",
@@ -2013,16 +1913,42 @@ I18n.translations["ca"] = {
       "Unknown": "Desconegut",
       "unknown": "desconegut",
       "Zone": "Zona",
-      "zone": "zona",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zona"
     }
   },
   "placeholder": "Posició",
   "places_added_by_members_of_the_community": "Llocs afegits per membres de la comunitat",
   "places_maintained_by_site_admins": "Llocs mantinguts per administradors del lloc",
+  "places_name": {
+    "afghanistan": "Afganistan",
+    "belgium": "Bèlgica",
+    "brazil": "Brasil",
+    "egypt": "Egipte",
+    "france": "França",
+    "germany": "Alemanya",
+    "greece": "Grècia",
+    "hungary": "Hongria",
+    "iraq": "Iraq",
+    "italy": "Itàlia",
+    "japan": "Japó",
+    "mexico": "Mèxic",
+    "new_zealand": "Nova Zelanda",
+    "palestine": "Palestina",
+    "panama": "Panamà",
+    "peru": "Perú",
+    "poland": "Polònia",
+    "russia": "Rússia",
+    "sao_tome_and_principe": "São Tomé i Principe",
+    "saudi_arabia": "Aràbia Saudita",
+    "spain": "Espanya",
+    "sweden": "Suècia",
+    "syria": "Síria",
+    "thailand": "Tailàndia",
+    "trinidad_and_tobago": "Trinidad i Tobago",
+    "turkey": "Turquia",
+    "united_kingdom": "Regne Unit",
+    "united_states": "Estats Units"
+  },
   "places_of_interest": "Llocs d'interès",
   "plants": "Plantes",
   "popular": "popular",
@@ -2066,13 +1992,7 @@ I18n.translations["ca"] = {
     "subspecies": "subespècies",
     "variety": "varietat",
     "form": "forma",
-    "leaves": "fulles",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "fulles"
   },
   "rare": "Rar",
   "ray_finned_fishes": "peixos ossis",
@@ -2146,8 +2066,6 @@ I18n.translations["ca"] = {
   "submit_observations": {
     "one": "Enviar 1 observació",
     "other": "Enviar %{count} observacions"
-  },
-  "t": {
   },
   "table": "Taula",
   "tagging": "Etiquetant...",
@@ -2239,9 +2157,7 @@ I18n.translations["ca"] = {
           "Insect life stage=teneral": "Muda",
           "Insect life stage=nymph": "Nimfa",
           "Insect life stage=pupa": "Pupa",
-          "Insect life stage=adult": "Adult",
-          "${item": {
-          }
+          "Insect life stage=adult": "Adult"
         },
         "no_trending_desc": "No s'ha observat aquest tàxon el darrer mes",
         "rare_desc": "Tàxon amenaçat menys observat",
@@ -2320,8 +2236,6 @@ I18n.translations["ca"] = {
   "zoom_out": "Allunyar Zoom"
 };
 I18n.translations["cs"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2344,41 +2258,17 @@ I18n.translations["cs"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -2395,17 +2285,11 @@ I18n.translations["cs"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["da"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2428,41 +2312,17 @@ I18n.translations["da"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -2479,17 +2339,11 @@ I18n.translations["da"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["de"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2512,41 +2366,17 @@ I18n.translations["de"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -2563,17 +2393,11 @@ I18n.translations["de"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["el"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2596,41 +2420,17 @@ I18n.translations["el"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -2647,17 +2447,11 @@ I18n.translations["el"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["en"] = {
-  "_": {
-  },
   "about": "About",
   "about_community_taxa": "About community taxa",
   "about_conservation_status": "About Conservation Status",
@@ -2830,6 +2624,7 @@ I18n.translations["en"] = {
   "critically_endangered": "critically endangered",
   "csv": "CSV",
   "curation": "Curation",
+  "customize_location": "Customize Location",
   "dashboard": "Dashboard",
   "data_deficient": "data deficient",
   "date": {
@@ -2982,13 +2777,9 @@ I18n.translations["en"] = {
   "has_sounds": "has sounds",
   "heads_up": "Heads up",
   "high": "high",
-  "his": {
-  },
   "history": "History",
   "identifications": "Identifications",
   "identify_title": "Identify",
-  "ield": {
-  },
   "import": "Import",
   "inactive_taxon": "inactive taxon",
   "including": "including",
@@ -3014,10 +2805,6 @@ I18n.translations["en"] = {
   "least_concern": "least concern",
   "less": "Less",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "Bengali",
     "catalan": "Catalan",
@@ -3152,8 +2939,6 @@ I18n.translations["en"] = {
   "none": "None",
   "not_evaluated": "not evaluated",
   "number_selected": "# selected",
-  "o": {
-  },
   "obscured": "Obscured",
   "observation_date": "Date",
   "observation_fields": "Observation Fields",
@@ -3282,16 +3067,42 @@ I18n.translations["en"] = {
       "Unknown": "Unknown",
       "unknown": "unknown",
       "Zone": "Zone",
-      "zone": "zone",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zone"
     }
   },
   "placeholder": "Placeholder",
   "places_added_by_members_of_the_community": "Places added by members of the community",
   "places_maintained_by_site_admins": "Places maintained by site admins",
+  "places_name": {
+    "afghanistan": "Afghanistan",
+    "belgium": "Belgium",
+    "brazil": "Brazil",
+    "egypt": "Egypt",
+    "france": "France",
+    "germany": "Germany",
+    "greece": "Greece",
+    "hungary": "Hungary",
+    "iraq": "Iraq",
+    "italy": "Italy",
+    "japan": "Japan",
+    "mexico": "México",
+    "new_zealand": "New Zealand",
+    "palestine": "Palestine",
+    "panama": "Panama",
+    "peru": "Peru",
+    "poland": "Poland",
+    "russia": "Russia",
+    "sao_tome_and_principe": "Sao Tome and Principe",
+    "saudi_arabia": "Saudi Arabia",
+    "spain": "Spain",
+    "sweden": "Sweden",
+    "syria": "Syria",
+    "thailand": "Thailand",
+    "trinidad_and_tobago": "Trinidad and Tobago",
+    "turkey": "Turkey",
+    "united_kingdom": "United Kingdom",
+    "united_states": "United States"
+  },
   "places_of_interest": "Places of Interest",
   "plants": "plants",
   "popular": "popular",
@@ -3335,13 +3146,7 @@ I18n.translations["en"] = {
     "subspecies": "subspecies",
     "variety": "variety",
     "form": "form",
-    "leaves": "leaves",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "leaves"
   },
   "rare": "Rare",
   "ray_finned_fishes": "ray-finned fishes",
@@ -3417,8 +3222,6 @@ I18n.translations["en"] = {
   "submit_observations": {
     "one": "Submit 1 observation",
     "other": "Submit %{count} observations"
-  },
-  "t": {
   },
   "table": "Table",
   "tagging": "Tagging...",
@@ -3515,9 +3318,7 @@ I18n.translations["en"] = {
           "Insect life stage=teneral": "Teneral",
           "Insect life stage=nymph": "Nymph",
           "Insect life stage=pupa": "Pupa",
-          "Insect life stage=adult": "Adult",
-          "${item": {
-          }
+          "Insect life stage=adult": "Adult"
         },
         "no_trending_desc": "Nothing below this taxon observed in the last month",
         "photo_chooser_modal_desc": "Drag photos here from the left, or drag photos here to re-arrange.\n",
@@ -3604,8 +3405,6 @@ I18n.translations["en"] = {
   "zoom_out": "Zoom Out"
 };
 I18n.translations["en-GB"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -3628,41 +3427,17 @@ I18n.translations["en-GB"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -3679,17 +3454,11 @@ I18n.translations["en-GB"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["en-US"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -3742,41 +3511,17 @@ I18n.translations["en-US"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -3793,17 +3538,11 @@ I18n.translations["en-US"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["es"] = {
-  "_": {
-  },
   "about": "Acerca de",
   "about_community_taxa": "Sobre los taxones comunitarios",
   "about_conservation_status": "Sobre el estado de conservación",
@@ -4142,13 +3881,9 @@ I18n.translations["es"] = {
   "has_sounds": "tiene sonidos",
   "heads_up": "Aviso",
   "high": "alta",
-  "his": {
-  },
   "history": "Historial",
   "identifications": "Identificaciones",
   "identify_title": "Identificar",
-  "ield": {
-  },
   "import": "Importar",
   "inactive_taxon": "Especie o grupo inactivo",
   "including": "incluyendo",
@@ -4174,10 +3909,6 @@ I18n.translations["es"] = {
   "least_concern": "preocupación menor",
   "less": "Menos",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikáans",
     "bengali": "Bengalí",
     "catalan": "Catalán",
@@ -4311,8 +4042,6 @@ I18n.translations["es"] = {
   "none": "Ninguno",
   "not_evaluated": "no evaluado",
   "number_selected": "# seleccionado",
-  "o": {
-  },
   "obscured": "Difusa",
   "observation_date": "Fecha",
   "observation_fields": "Campos de observación",
@@ -4440,16 +4169,42 @@ I18n.translations["es"] = {
       "Subdivision": "Subdivisión",
       "subdivision": "Subdivisión",
       "Unknown": "Desconocido",
-      "unknown": "Desconocido",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "unknown": "Desconocido"
     }
   },
   "placeholder": "Posición",
   "places_added_by_members_of_the_community": "Lugares añadidos por miembros de la comunidad",
   "places_maintained_by_site_admins": "Lugares mantenidos por administradores del sitio",
+  "places_name": {
+    "afghanistan": "Afganistán",
+    "belgium": "Bélgica",
+    "brazil": "Brasil",
+    "egypt": "Egipto",
+    "france": "Francia",
+    "germany": "Alemania",
+    "greece": "Grecia",
+    "hungary": "Hungría",
+    "iraq": "Irak",
+    "italy": "Italia",
+    "japan": "Japón",
+    "mexico": "México",
+    "new_zealand": "Nueva Zelanda",
+    "palestine": "Palestina",
+    "panama": "Panamá",
+    "peru": "Perú",
+    "poland": "Polonia",
+    "russia": "Rusia",
+    "sao_tome_and_principe": "Santo Tomé y Príncipe",
+    "saudi_arabia": "Arabia Saudita",
+    "spain": "España",
+    "sweden": "Suecia",
+    "syria": "Siria",
+    "thailand": "Tailandia",
+    "trinidad_and_tobago": "Trinidad y Tobago",
+    "turkey": "Turquía",
+    "united_kingdom": "Reino Unido",
+    "united_states": "Estados Unidos"
+  },
   "places_of_interest": "Lugares de Interés",
   "plants": "plantas",
   "popular": "popular",
@@ -4493,13 +4248,7 @@ I18n.translations["es"] = {
     "variety": "Variedad",
     "infraorder": "infraorden",
     "epifamily": "epifamilia",
-    "leaves": "hojas",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "hojas"
   },
   "rare": "Escaso",
   "ray_finned_fishes": "peces con aletas radiadas",
@@ -4574,8 +4323,6 @@ I18n.translations["es"] = {
   "submit_observations": {
     "one": "Enviar 1 observación",
     "other": "Enviar %{count} observaciones"
-  },
-  "t": {
   },
   "table": "Tabla",
   "tagging": "Etiquetando…",
@@ -4672,9 +4419,7 @@ I18n.translations["es"] = {
           "Insect life stage=teneral": "Muda",
           "Insect life stage=nymph": "Ninfa",
           "Insect life stage=pupa": "Pupa",
-          "Insect life stage=adult": "Adulto",
-          "${item": {
-          }
+          "Insect life stage=adult": "Adulto"
         },
         "no_trending_desc": "Ninguna observación bajo este taxón en el último mes",
         "rare_desc": "Taxones amenazados menos observados",
@@ -4758,8 +4503,6 @@ I18n.translations["es"] = {
   "zoom_out": "Alejar Zoom"
 };
 I18n.translations["es-MX"] = {
-  "_": {
-  },
   "about": "Acerca",
   "about_community_taxa": "Acerca de los taxa de la comunidad",
   "account": "Cuenta",
@@ -5048,12 +4791,8 @@ I18n.translations["es-MX"] = {
   "has_sounds": "tiene sonidos",
   "heads_up": "Atención",
   "high": "alta",
-  "his": {
-  },
   "identifications": "Identificaciones",
   "identify_title": "Identificar",
-  "ield": {
-  },
   "import": "Importa",
   "inactive_taxon": "Especie o grupo inactivo",
   "including": "incluyendo",
@@ -5072,10 +4811,6 @@ I18n.translations["es-MX"] = {
   "least_concern": "Baja preocupación",
   "less": "Menos",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikáans",
     "bengali": "Bengalí",
     "cebuano": "Cebuano",
@@ -5177,8 +4912,6 @@ I18n.translations["es-MX"] = {
   "no_sections_available": "No hay secciones disponibles",
   "none": "Ninguno",
   "not_evaluated": "No se ha evaluado",
-  "o": {
-  },
   "obscured": "Oscurecida",
   "observation_date": "Fecha",
   "observation_fields": "Campos de observación",
@@ -5271,12 +5004,38 @@ I18n.translations["es-MX"] = {
       "Undefined": "Indefinido",
       "undefined": "indefinido",
       "Zone": "Zona",
-      "zone": "zona",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zona"
     }
+  },
+  "places_name": {
+    "afghanistan": "Afganistán",
+    "belgium": "Bélgica",
+    "brazil": "Brasil",
+    "egypt": "Egipto",
+    "france": "Francia",
+    "germany": "Alemania",
+    "greece": "Grecia",
+    "hungary": "Hungaría",
+    "iraq": "Irak",
+    "italy": "Italia",
+    "japan": "Japón",
+    "mexico": "México",
+    "new_zealand": "Nueva Zealand",
+    "palestine": "Palestina",
+    "panama": "Panamá",
+    "peru": "Perú",
+    "poland": "Polonia",
+    "russia": "Rusia",
+    "sao_tome_and_principe": "Santo Tomé and Príncipe",
+    "saudi_arabia": "Arabia Saudita",
+    "spain": "España",
+    "sweden": "Suecia",
+    "syria": "Siria",
+    "thailand": "Tailandia",
+    "trinidad_and_tobago": "Trinidad y Tobago",
+    "turkey": "Turquía",
+    "united_kingdom": "Reino Unido",
+    "united_states": "Estados Unidos"
   },
   "places_of_interest": "Lugares de Interés",
   "plants": "Plantas",
@@ -5317,13 +5076,7 @@ I18n.translations["es-MX"] = {
     "subspecies": "Subespecies",
     "variety": "Variedad",
     "form": "Forma",
-    "leaves": "últimos",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "últimos"
   },
   "ray_finned_fishes": "Peces con aletas radiadas",
   "recent_observations": "Observaciones recientes",
@@ -5388,8 +5141,6 @@ I18n.translations["es-MX"] = {
     "one": "Enviar 1 observación",
     "other": "Enviar %{count} observaciones"
   },
-  "t": {
-  },
   "table": "Cuadro",
   "tagging": "Etiquetando…",
   "tags": "Etiquetas",
@@ -5453,10 +5204,6 @@ I18n.translations["es-MX"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -5509,8 +5256,6 @@ I18n.translations["es-MX"] = {
   "your_observations": "Tus observaciones"
 };
 I18n.translations["et"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -5533,41 +5278,17 @@ I18n.translations["et"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -5584,17 +5305,11 @@ I18n.translations["et"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["eu"] = {
-  "_": {
-  },
   "about": "Honi buruz:",
   "about_community_taxa": "Komunitate taxoien inguruan",
   "account": "Kontua",
@@ -5846,11 +5561,7 @@ I18n.translations["eu"] = {
   "grey": "grisa",
   "grid": "Sareta",
   "heads_up": "Abisua",
-  "his": {
-  },
   "identifications": "Identifikazioak",
-  "ield": {
-  },
   "import": "Inportatu",
   "inactive_taxon": "Espeziea edo taldea inaktibo",
   "insects": "intsektuak",
@@ -5864,10 +5575,6 @@ I18n.translations["eu"] = {
   "least_concern": "kezka txikia",
   "less": "Gutxiago",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "Bengalera",
     "catalan": "Katalana",
@@ -5941,8 +5648,6 @@ I18n.translations["eu"] = {
   "no_results_found": "Ez da emaitzarik topatu.",
   "none": "Bat ere ez",
   "not_evaluated": "ebaluatu gabe",
-  "o": {
-  },
   "obscured": "Lausoa",
   "observation_date": "Data",
   "observation_fields": "Behaketa-eremuak",
@@ -6034,12 +5739,38 @@ I18n.translations["eu"] = {
       "Undefined": "Zehaztugabea",
       "undefined": "zehaztugabea",
       "Zone": "Eremua",
-      "zone": "eremua",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "eremua"
     }
+  },
+  "places_name": {
+    "afghanistan": "Afganistan",
+    "belgium": "Belgika",
+    "brazil": "Brasil",
+    "egypt": "Egipto",
+    "france": "Frantzia",
+    "germany": "Alemania",
+    "greece": "Grezia",
+    "hungary": "Hungaria",
+    "iraq": "Irak",
+    "italy": "Italia",
+    "japan": "Japonia",
+    "mexico": "Mexiko",
+    "new_zealand": "Zeelanda Berria",
+    "palestine": "Palestina",
+    "panama": "Panama",
+    "peru": "Peru",
+    "poland": "Polonia",
+    "russia": "Errusia",
+    "sao_tome_and_principe": "Sao Tome eta Principe",
+    "saudi_arabia": "Saudi Arabia",
+    "spain": "Espainia",
+    "sweden": "Suedia",
+    "syria": "Siria",
+    "thailand": "Tailandia",
+    "trinidad_and_tobago": "Trinidad eta Tobago",
+    "turkey": "Turkia",
+    "united_kingdom": "Erresuma Batua",
+    "united_states": "Estatu Batuak"
   },
   "plants": "landareak",
   "prev": "Aurrekoa",
@@ -6076,13 +5807,7 @@ I18n.translations["eu"] = {
     "hybrid": "Hibridoa",
     "subspecies": "Azpiespezieak",
     "variety": "Aldaera",
-    "form": "Forma",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "form": "Forma"
   },
   "ray_finned_fishes": "arrainak hegal erradiatuekin",
   "recent_observations": "Duela gutxiko behaketak",
@@ -6120,8 +5845,6 @@ I18n.translations["eu"] = {
   "species_unknown": "Espezie ezezagunak",
   "start": "Hasiera",
   "status": "Estatua",
-  "t": {
-  },
   "table": "Taula",
   "tagging": "Etiketatzen...",
   "tags": "Etiketak",
@@ -6160,10 +5883,6 @@ I18n.translations["eu"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -6188,8 +5907,6 @@ I18n.translations["eu"] = {
   "your_observations": "Zure behaketak"
 };
 I18n.translations["fa"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -6212,41 +5929,17 @@ I18n.translations["fa"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -6263,17 +5956,11 @@ I18n.translations["fa"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["fi"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -6296,41 +5983,17 @@ I18n.translations["fi"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -6347,17 +6010,11 @@ I18n.translations["fi"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["fr"] = {
-  "_": {
-  },
   "about": "À propos",
   "about_community_taxa": "À propos des taxons de la communauté",
   "about_conservation_status": "À propos de l’état de conservation",
@@ -6680,13 +6337,9 @@ I18n.translations["fr"] = {
   "has_sounds": "a des sons",
   "heads_up": "Avertissement",
   "high": "haut",
-  "his": {
-  },
   "history": "Historique",
   "identifications": "Identifications",
   "identify_title": "Identifier",
-  "ield": {
-  },
   "import": "Importer",
   "inactive_taxon": "taxon inactif",
   "including": "y compris",
@@ -6712,10 +6365,6 @@ I18n.translations["fr"] = {
   "least_concern": "préoccupation mineure",
   "less": "Moins",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "Bengali",
     "catalan": "Catalan",
@@ -6848,8 +6497,6 @@ I18n.translations["fr"] = {
   "none": "Aucun",
   "not_evaluated": "non évalué",
   "number_selected": "n° sélectionné",
-  "o": {
-  },
   "obscured": "Masqué",
   "observation_date": "Date",
   "observation_fields": "Champs de l’observation",
@@ -6977,16 +6624,42 @@ I18n.translations["fr"] = {
       "Unknown": "Inconnu",
       "unknown": "inconnu",
       "Zone": "Zone",
-      "zone": "zone",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zone"
     }
   },
   "placeholder": "Signet (élément de substitution)",
   "places_added_by_members_of_the_community": "Lieux ajoutés par des membres de la communauté",
   "places_maintained_by_site_admins": "Lieux entretenus par les administrateurs du site",
+  "places_name": {
+    "afghanistan": "Afghanistan",
+    "belgium": "Belgique",
+    "brazil": "Brésil",
+    "egypt": "Égypte",
+    "france": "France",
+    "germany": "Allemagne",
+    "greece": "Grèce",
+    "hungary": "Hongrie",
+    "iraq": "Iraq",
+    "italy": "Italie",
+    "japan": "Japon",
+    "mexico": "Mexique",
+    "new_zealand": "Nouvelle-Zélande",
+    "palestine": "Palestine",
+    "panama": "Panama",
+    "peru": "Pérou",
+    "poland": "Pologne",
+    "russia": "Russie",
+    "sao_tome_and_principe": "Sao Tomé-et-Principe",
+    "saudi_arabia": "Arabie saoudite",
+    "spain": "Espagne",
+    "sweden": "Suède",
+    "syria": "Syrie",
+    "thailand": "Thaïlande",
+    "trinidad_and_tobago": "Trinité-et-Tobago",
+    "turkey": "Turquie",
+    "united_kingdom": "Royaume-Uni",
+    "united_states": "États-Unis"
+  },
   "places_of_interest": "Endroits intéressants",
   "plants": "plantes",
   "popular": "populaire",
@@ -7030,13 +6703,7 @@ I18n.translations["fr"] = {
     "subspecies": "sous-espèce",
     "variety": "variété",
     "form": "forme",
-    "leaves": "feuilles",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "feuilles"
   },
   "rare": "Rare",
   "ray_finned_fishes": "poissons à nageoires rayonnées",
@@ -7112,8 +6779,6 @@ I18n.translations["fr"] = {
   "submit_observations": {
     "one": "Soumettre 1 observation",
     "other": "Soumettre %{count} observations"
-  },
-  "t": {
   },
   "table": "Tableau",
   "tagging": "Étiquetage en cours…",
@@ -7210,9 +6875,7 @@ I18n.translations["fr"] = {
           "Insect life stage=teneral": "Ténéral",
           "Insect life stage=nymph": "Nymphe",
           "Insect life stage=pupa": "Chrysalide",
-          "Insect life stage=adult": "Adulte",
-          "${item": {
-          }
+          "Insect life stage=adult": "Adulte"
         },
         "no_trending_desc": "Rien d’observé dans le dernier mois concernant ce taxon",
         "rare_desc": "Taxons menacés les moins observés",
@@ -7297,8 +6960,6 @@ I18n.translations["fr"] = {
   "zoom_out": "Zoom arrière"
 };
 I18n.translations["gl"] = {
-  "_": {
-  },
   "about": "Acerca de",
   "account": "Conta",
   "accuracy_meters": "Exactitude (metros)",
@@ -7545,11 +7206,7 @@ I18n.translations["gl"] = {
   "grey": "Gris",
   "grid": "Cuadrícula",
   "heads_up": "Aviso",
-  "his": {
-  },
   "identifications": "Identificacións",
-  "ield": {
-  },
   "import": "Importar",
   "inactive_taxon": "Especie ou grupo inactivo",
   "insects": "Insectos",
@@ -7563,10 +7220,6 @@ I18n.translations["gl"] = {
   "least_concern": "Preocupación menor",
   "less": "Menos",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikáans",
     "bengali": "Bengalí",
     "cebuano": "Cebuano",
@@ -7637,8 +7290,6 @@ I18n.translations["gl"] = {
   "no_results_found": "Non se atoparon resultados.",
   "none": "Ningún",
   "not_evaluated": "non avaliado",
-  "o": {
-  },
   "obscured": "Difusa",
   "observation_date": "Data",
   "observation_fields": "Campos de observación",
@@ -7727,12 +7378,38 @@ I18n.translations["gl"] = {
       "Undefined": "Indefinido",
       "undefined": "Indefinido",
       "Zone": "Zona",
-      "zone": "Zona",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "Zona"
     }
+  },
+  "places_name": {
+    "afghanistan": "Afganistán",
+    "belgium": "Bélxica",
+    "brazil": "Brasil",
+    "egypt": "Exipto",
+    "france": "Francia",
+    "germany": "Alemaña",
+    "greece": "Grecia",
+    "hungary": "Hungría",
+    "iraq": "Iraq",
+    "italy": "Italia",
+    "japan": "Xapón",
+    "mexico": "México",
+    "new_zealand": "Nova Zelandia",
+    "palestine": "Palestina",
+    "panama": "Panamá",
+    "peru": "Perú",
+    "poland": "Polonia",
+    "russia": "Rusia",
+    "sao_tome_and_principe": "Santo Tomé e Príncipe",
+    "saudi_arabia": "Arabia Saudita",
+    "spain": "España",
+    "sweden": "Suecia",
+    "syria": "Siria",
+    "thailand": "Tailandia",
+    "trinidad_and_tobago": "Trinidade e Tobago",
+    "turkey": "Turquía",
+    "united_kingdom": "Reino Unido",
+    "united_states": "Estados Unidos"
   },
   "plants": "Plantas",
   "prev": "Anterior",
@@ -7769,13 +7446,7 @@ I18n.translations["gl"] = {
     "hybrid": "Híbrido",
     "subspecies": "Subespecies",
     "variety": "Variedade",
-    "form": "Forma",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "form": "Forma"
   },
   "ray_finned_fishes": "peixes con aletas radiadas",
   "recent_observations": "Observacións recentes",
@@ -7812,8 +7483,6 @@ I18n.translations["gl"] = {
   "species_unknown": "Especies descoñecidas",
   "start": "Inicio",
   "status": "Estado",
-  "t": {
-  },
   "table": "Táboa",
   "tags": "Etiquetas",
   "taxon_map": {
@@ -7849,10 +7518,6 @@ I18n.translations["gl"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -7876,8 +7541,6 @@ I18n.translations["gl"] = {
   "your_observations": "As túas observacións"
 };
 I18n.translations["he"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -7900,41 +7563,17 @@ I18n.translations["he"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -7951,17 +7590,11 @@ I18n.translations["he"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["hr"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -7984,41 +7617,17 @@ I18n.translations["hr"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -8035,17 +7644,11 @@ I18n.translations["hr"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["hu"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -8068,41 +7671,17 @@ I18n.translations["hu"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -8119,17 +7698,11 @@ I18n.translations["hu"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["id"] = {
-  "_": {
-  },
   "about": "Tentang",
   "about_community_taxa": "Tentang komunitas taxa",
   "account": "Akun",
@@ -8396,11 +7969,7 @@ I18n.translations["id"] = {
   "has_sounds": "Suara",
   "heads_up": "PENTING:",
   "high": "tinggi",
-  "his": {
-  },
   "identifications": "Mengidentifikasi",
-  "ield": {
-  },
   "import": "Masukkan",
   "inactive_taxon": "takson yang tidak aktif",
   "including": "termasuk",
@@ -8419,10 +7988,6 @@ I18n.translations["id"] = {
   "least_concern": "kekhawatiran paling kecil",
   "less": "Kurang",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Bahasa Afrika",
     "bengali": "Bahasa Benggala",
     "catalan": "Bahasa Catalan",
@@ -8528,8 +8093,6 @@ I18n.translations["id"] = {
   "none": "Tak satupun",
   "not_evaluated": "tidak dievaluasi",
   "number_selected": "# dipilih",
-  "o": {
-  },
   "obscured": "Dikaburkan",
   "observation_date": "Tanggal",
   "observation_fields": "Bidang Pengamatan",
@@ -8625,15 +8188,41 @@ I18n.translations["id"] = {
       "Undefined": "Tak terdefinisi",
       "undefined": "tak terdefinisi",
       "Zone": "Zona",
-      "zone": "zona",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zona"
     }
   },
   "places_added_by_members_of_the_community": "Tempat ditambahkan oleh anggota dari komunitas",
   "places_maintained_by_site_admins": "Tempat diatur oleh situs admin",
+  "places_name": {
+    "afghanistan": "Afganistan",
+    "belgium": "Belgia",
+    "brazil": "Brazil",
+    "egypt": "Mesir",
+    "france": "Perancis",
+    "germany": "Jerman",
+    "greece": "Yunani",
+    "hungary": "Hungaria",
+    "iraq": "Irak",
+    "italy": "Italia",
+    "japan": "Jepang",
+    "mexico": "Meksiko",
+    "new_zealand": "Selandia Baru",
+    "palestine": "Palestina",
+    "panama": "Panama",
+    "peru": "Peru",
+    "poland": "Polandia",
+    "russia": "Russia",
+    "sao_tome_and_principe": "Sao Tome dan Principe",
+    "saudi_arabia": "Arab Saudi",
+    "spain": "Spanyol",
+    "sweden": "Swedia",
+    "syria": "Suriah",
+    "thailand": "Thailand",
+    "trinidad_and_tobago": "Trinidad dan Tobago",
+    "turkey": "Turki",
+    "united_kingdom": "Inggris",
+    "united_states": "Amerika"
+  },
   "places_of_interest": "tempat-tempat menarik",
   "plants": "tanaman",
   "popular": "Populer",
@@ -8676,13 +8265,7 @@ I18n.translations["id"] = {
     "subspecies": "sub spesies",
     "variety": "varietas",
     "form": "bentuk",
-    "leaves": "meninggalkan",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "meninggalkan"
   },
   "ray_finned_fishes": "ikan bersirip cahaya",
   "recent_observations": "Pengamatan yang baru",
@@ -8733,8 +8316,6 @@ I18n.translations["id"] = {
   "status": "Status",
   "status_globally": "%{status} secara global",
   "status_in_place": "%{status} dalam %{place}",
-  "t": {
-  },
   "table": "Tabel",
   "tagging": "Menandai...",
   "tags": "Tanda",
@@ -8777,10 +8358,6 @@ I18n.translations["id"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -8829,8 +8406,6 @@ I18n.translations["id"] = {
   "zoom_out": "Perjauh"
 };
 I18n.translations["is"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -8853,41 +8428,17 @@ I18n.translations["is"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -8904,17 +8455,11 @@ I18n.translations["is"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["it"] = {
-  "_": {
-  },
   "about": "Informazioni",
   "about_community_taxa": "A proposito dei taxa della community",
   "about_conservation_status": "A proposito dello stato di conservazione",
@@ -9237,13 +8782,9 @@ I18n.translations["it"] = {
   "has_sounds": "ha suoni",
   "heads_up": "Avviso",
   "high": "superiore",
-  "his": {
-  },
   "history": "Cronologia",
   "identifications": "Identificazioni",
   "identify_title": "Identifica",
-  "ield": {
-  },
   "import": "Importa",
   "inactive_taxon": "taxon inattivo",
   "including": "incluso",
@@ -9269,10 +8810,6 @@ I18n.translations["it"] = {
   "least_concern": "Minor Preoccupazione",
   "less": "Meno",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "Bengalese",
     "catalan": "Catalano",
@@ -9405,8 +8942,6 @@ I18n.translations["it"] = {
   "none": "Nessuno",
   "not_evaluated": "Non Valutata",
   "number_selected": "# selezionati",
-  "o": {
-  },
   "obscured": "Oscurata",
   "observation_date": "Data",
   "observation_fields": "Campi dell'osservazione",
@@ -9534,16 +9069,42 @@ I18n.translations["it"] = {
       "Unknown": "Sconosciuto",
       "unknown": "sconosciuto",
       "Zone": "Zona",
-      "zone": "zona",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zona"
     }
   },
   "placeholder": "Segnaposto",
   "places_added_by_members_of_the_community": "Luogo aggiunto dai membri della community",
   "places_maintained_by_site_admins": "Luoghi mantenuti dagli amministratori",
+  "places_name": {
+    "afghanistan": "Afghanistan",
+    "belgium": "Belgio",
+    "brazil": "Brasile",
+    "egypt": "Egitto",
+    "france": "Francia",
+    "germany": "Germania",
+    "greece": "Grecia",
+    "hungary": "Ungheria",
+    "iraq": "Iraq",
+    "italy": "Italia",
+    "japan": "Giappone",
+    "mexico": "México",
+    "new_zealand": "Nuova Zelanda",
+    "palestine": "Palestina",
+    "panama": "Panama",
+    "peru": "Perù",
+    "poland": "Polonia",
+    "russia": "Russia",
+    "sao_tome_and_principe": "Sao Tome e Principe",
+    "saudi_arabia": "Arabia Saudita",
+    "spain": "Spagna",
+    "sweden": "Svezia",
+    "syria": "Siria",
+    "thailand": "Thailandia",
+    "trinidad_and_tobago": "Trinidad e Tobago",
+    "turkey": "Turchia",
+    "united_kingdom": "Regno Unito",
+    "united_states": "Stati Uniti"
+  },
   "places_of_interest": "Luoghi di interesse",
   "plants": "piante",
   "popular": "popolare",
@@ -9587,13 +9148,7 @@ I18n.translations["it"] = {
     "subspecies": "sottospecie",
     "variety": "varietà",
     "form": "forma",
-    "leaves": "foglie",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "foglie"
   },
   "rare": "Raro",
   "ray_finned_fishes": "Attinopterigi",
@@ -9669,8 +9224,6 @@ I18n.translations["it"] = {
   "submit_observations": {
     "one": "Invia 1 osservazione",
     "other": "Invia %{count} osservazioni"
-  },
-  "t": {
   },
   "table": "Tabella",
   "tagging": "Sto etichettando...",
@@ -9766,9 +9319,7 @@ I18n.translations["it"] = {
           "Insect life stage=teneral": "Muta",
           "Insect life stage=nymph": "Ninfa",
           "Insect life stage=pupa": "Pupa",
-          "Insect life stage=adult": "Adulto",
-          "${item": {
-          }
+          "Insect life stage=adult": "Adulto"
         },
         "no_trending_desc": "Nulla al di sotto di questo taxon è stato osservato nell'ultimo mese",
         "rare_desc": "Taxa minacciati osservati meno frequentemente",
@@ -9852,8 +9403,6 @@ I18n.translations["it"] = {
   "zoom_out": "Zoom indietro"
 };
 I18n.translations["iw"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -9876,15 +9425,7 @@ I18n.translations["iw"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "english": "אנגלית",
     "scientific_names": "שמות מדעיים"
   },
@@ -9892,27 +9433,11 @@ I18n.translations["iw"] = {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -9929,17 +9454,11 @@ I18n.translations["iw"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["ja"] = {
-  "_": {
-  },
   "about": "詳細",
   "about_community_taxa": "コミュニティー分類群について",
   "about_conservation_status": "保全状況について",
@@ -10233,13 +9752,9 @@ I18n.translations["ja"] = {
   "has_sounds": "音声あり",
   "heads_up": "お知らせ",
   "high": "高",
-  "his": {
-  },
   "history": "履歴",
   "identifications": "同定",
   "identify_title": "ID判定",
-  "ield": {
-  },
   "import": "インポート",
   "inactive_taxon": "無効な分類群",
   "including": "次を含む：",
@@ -10264,10 +9779,6 @@ I18n.translations["ja"] = {
   "least_concern": "軽度懸念",
   "less": "より少なく",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "アフリカーンス語",
     "bengali": "ベンガル語",
     "catalan": "カタロニア語",
@@ -10394,8 +9905,6 @@ I18n.translations["ja"] = {
   "none": "該当する項目ありません",
   "not_evaluated": "未評価",
   "number_selected": "# 選択済み",
-  "o": {
-  },
   "obscured": "不明瞭",
   "observation_date": "日付",
   "observation_fields": "観測記録フィールド",
@@ -10520,16 +10029,42 @@ I18n.translations["ja"] = {
       "Unknown": "不明",
       "unknown": "不明",
       "Zone": "ゾーン",
-      "zone": "ゾーン",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "ゾーン"
     }
   },
   "placeholder": "プレースホルダー",
   "places_added_by_members_of_the_community": "コミュニティーメンバーによって追加された場所",
   "places_maintained_by_site_admins": "サイト管理者によって管理されている場所",
+  "places_name": {
+    "afghanistan": "アフガニスタン",
+    "belgium": "ベルギー",
+    "brazil": "ブラジル",
+    "egypt": "エジプト",
+    "france": "フランス",
+    "germany": "ドイツ",
+    "greece": "ギリシア",
+    "hungary": "ハンガリー",
+    "iraq": "イラク",
+    "italy": "イタリア",
+    "japan": "日本",
+    "mexico": "メキシコ",
+    "new_zealand": "ニュージーランド",
+    "palestine": "パレスチナ",
+    "panama": "パナマ",
+    "peru": "ペルー",
+    "poland": "ポランド",
+    "russia": "ロシア",
+    "sao_tome_and_principe": "サントメプリンシペ",
+    "saudi_arabia": "サウジアラビア",
+    "spain": "スペイン",
+    "sweden": "スェーデン",
+    "syria": "シリア",
+    "thailand": "タイ",
+    "trinidad_and_tobago": "トリニダードトバゴ",
+    "turkey": "トルコ",
+    "united_kingdom": "イギリス",
+    "united_states": "アメリカ"
+  },
   "places_of_interest": "注目の場所",
   "plants": "植物",
   "popular": "人気",
@@ -10572,13 +10107,7 @@ I18n.translations["ja"] = {
     "subspecies": "亜種",
     "variety": "変種",
     "form": "品種",
-    "leaves": "末端ノード",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "末端ノード"
   },
   "rare": "珍しい",
   "ray_finned_fishes": "条鰭綱",
@@ -10650,8 +10179,6 @@ I18n.translations["ja"] = {
   "submit_observations": {
     "one": "1件の観察記録を送信",
     "other": "%{count}件の観察記録を送信"
-  },
-  "t": {
   },
   "table": "表",
   "tagging": "タグを付けています...",
@@ -10728,9 +10255,7 @@ I18n.translations["ja"] = {
           "Insect life stage=teneral": "脱皮直後",
           "Insect life stage=nymph": "若虫",
           "Insect life stage=pupa": "蛹",
-          "Insect life stage=adult": "成虫",
-          "${item": {
-          }
+          "Insect life stage=adult": "成虫"
         }
       }
     }
@@ -10784,8 +10309,6 @@ I18n.translations["ja"] = {
   "zoom_out": "縮小"
 };
 I18n.translations["ko"] = {
-  "_": {
-  },
   "about": "소개",
   "about_community_taxa": "공동체 분류군에 대해",
   "about_names": "명칭 정보",
@@ -11017,13 +10540,9 @@ I18n.translations["ko"] = {
   "has_sounds": "소리가 있다",
   "heads_up": "주의",
   "high": "높음",
-  "his": {
-  },
   "history": "역사",
   "identifications": "동정",
   "identify_title": "동정함",
-  "ield": {
-  },
   "import": "가져오기",
   "inactive_taxon": "비활성 분류군",
   "input_taxon": "분류군 입력",
@@ -11042,10 +10561,6 @@ I18n.translations["ko"] = {
   "last_observation": "마지막 관찰",
   "latitude": "위도",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Afrikaans",
     "bengali": "বাঙালি",
     "cebuano": "Cebuano",
@@ -11140,8 +10655,6 @@ I18n.translations["ko"] = {
   "none": "없음",
   "not_evaluated": "평가되지 않음",
   "number_selected": "# 선택됨",
-  "o": {
-  },
   "obscured": "숨김",
   "observation_date": "날짜",
   "observation_fields": "관찰 필드",
@@ -11181,12 +10694,35 @@ I18n.translations["ko"] = {
       "Town": "마을",
       "town": "마을",
       "Unknown": "알 수 없음",
-      "unknown": "알 수 없음",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "unknown": "알 수 없음"
     }
+  },
+  "places_name": {
+    "afghanistan": "아프가니스탄",
+    "belgium": "벨기에",
+    "brazil": "브라질",
+    "egypt": "이집트",
+    "france": "프랑스",
+    "germany": "독일",
+    "greece": "그리스",
+    "hungary": "헝가리",
+    "iraq": "이라크",
+    "italy": "이탈리아",
+    "japan": "일본",
+    "mexico": "멕시코",
+    "new_zealand": "뉴질랜드",
+    "panama": "파나마",
+    "peru": "페루",
+    "poland": "폴란드",
+    "russia": "러시아",
+    "saudi_arabia": "사우디아라비아",
+    "spain": "스페인",
+    "sweden": "스웨덴",
+    "syria": "시리아",
+    "thailand": "태국",
+    "turkey": "터키",
+    "united_kingdom": "영국",
+    "united_states": "미국"
   },
   "plants": "식물",
   "prev": "이전",
@@ -11201,13 +10737,7 @@ I18n.translations["ko"] = {
   "rank": "순위",
   "rank_position": "순위",
   "ranks": {
-    "species": "종",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "species": "종"
   },
   "recent_observations": "최근 관찰",
   "remove": "제거",
@@ -11237,8 +10767,6 @@ I18n.translations["ko"] = {
   "sounds": {
   },
   "status": "상태",
-  "t": {
-  },
   "tags": "태그",
   "taxon_map": {
   },
@@ -11275,9 +10803,7 @@ I18n.translations["ko"] = {
       "show": {
         "frequency": {
           "Flowering Phenology=bare": "꽃 없음",
-          "Insect life stage=egg": "알",
-          "${item": {
-          }
+          "Insect life stage=egg": "알"
         }
       }
     }
@@ -11288,8 +10814,6 @@ I18n.translations["ko"] = {
   "you_are_submitting_obs_without_photos_and_names": "사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우 정확하게 동정하기 매우 어렵습니다."
 };
 I18n.translations["lexicons"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -11312,41 +10836,17 @@ I18n.translations["lexicons"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -11363,17 +10863,11 @@ I18n.translations["lexicons"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["lt"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -11396,41 +10890,17 @@ I18n.translations["lt"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -11447,17 +10917,11 @@ I18n.translations["lt"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["lv"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -11480,41 +10944,17 @@ I18n.translations["lv"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -11531,17 +10971,11 @@ I18n.translations["lv"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["mk"] = {
-  "_": {
-  },
   "about": "За",
   "about_community_taxa": "За таксоните од заедницата",
   "accuracy_meters": "Уточнетост (метри)",
@@ -11775,11 +11209,7 @@ I18n.translations["mk"] = {
   "grey": "сива",
   "grid": "Решетка",
   "grid_tooltip": "Дај решетест поглед",
-  "his": {
-  },
   "identifications": "Препознавања",
-  "ield": {
-  },
   "import": "Увези",
   "input_taxon": "Влезен таксон",
   "insects": "Инсекти",
@@ -11792,10 +11222,6 @@ I18n.translations["mk"] = {
   "least_concern": "со најмала загриженост",
   "less": "Помалку",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "африканс",
     "bengali": "бенгалски",
     "cebuano": "себуански",
@@ -11863,8 +11289,6 @@ I18n.translations["mk"] = {
   "no_observations_yet": "Засега нема ниедно набљудување",
   "no_range_data_available": "Нема податоци за распространетоста.",
   "none": "Ништо",
-  "o": {
-  },
   "obscured": "затскриено",
   "observation_date": "Датум",
   "observations": "Набљудувања",
@@ -11950,12 +11374,38 @@ I18n.translations["mk"] = {
       "Undefined": "Неодредено",
       "undefined": "неодредено",
       "Zone": "Подрачје",
-      "zone": "подрачје",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "подрачје"
     }
+  },
+  "places_name": {
+    "afghanistan": "Авганистан",
+    "belgium": "Белгија",
+    "brazil": "Бразил",
+    "egypt": "Египет",
+    "france": "Франција",
+    "germany": "Германија",
+    "greece": "Грција",
+    "hungary": "Унгарија",
+    "iraq": "Ирак",
+    "italy": "Италија",
+    "japan": "Јапонија",
+    "mexico": "Мексико",
+    "new_zealand": "Нов Зеланд",
+    "palestine": "Палестина",
+    "panama": "Панама",
+    "peru": "Перу",
+    "poland": "Полска",
+    "russia": "Русија",
+    "sao_tome_and_principe": "Сао Томе и Принсипе",
+    "saudi_arabia": "Саудиска Арабија",
+    "spain": "Шпанија",
+    "sweden": "Шведска",
+    "syria": "Сирија",
+    "thailand": "Тајланд",
+    "trinidad_and_tobago": "Тринидад и Тобаго",
+    "turkey": "Турција",
+    "united_kingdom": "Обединето Кралство",
+    "united_states": "САД"
   },
   "plants": "растенија",
   "prev": "Прет",
@@ -11990,13 +11440,7 @@ I18n.translations["mk"] = {
     "hybrid": "хибрид",
     "subspecies": "подвид",
     "variety": "разновидност",
-    "form": "облик",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "form": "облик"
   },
   "ray_finned_fishes": "зракоперки",
   "recent_observations": "Скорешни набљудувања",
@@ -12027,8 +11471,6 @@ I18n.translations["mk"] = {
   "species_unknown": "Непознат вид",
   "start": "Почни",
   "start_typing_taxon_name": "Почнете да пишувате име на таксонот...",
-  "t": {
-  },
   "table": "Табела",
   "tagging": "Означувам...",
   "tags": "Ознаки",
@@ -12059,10 +11501,6 @@ I18n.translations["mk"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -12097,8 +11535,6 @@ I18n.translations["mk"] = {
   "your_observations": "Ваши набљудувања"
 };
 I18n.translations["my"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12121,41 +11557,17 @@ I18n.translations["my"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -12172,17 +11584,11 @@ I18n.translations["my"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["nb"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12205,41 +11611,17 @@ I18n.translations["nb"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -12256,17 +11638,11 @@ I18n.translations["nb"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["nl"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12289,41 +11665,17 @@ I18n.translations["nl"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -12340,17 +11692,11 @@ I18n.translations["nl"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["no"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12373,41 +11719,17 @@ I18n.translations["no"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -12424,17 +11746,11 @@ I18n.translations["no"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["pl"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12457,41 +11773,17 @@ I18n.translations["pl"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -12508,17 +11800,11 @@ I18n.translations["pl"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["pt"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12541,41 +11827,17 @@ I18n.translations["pt"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -12592,17 +11854,11 @@ I18n.translations["pt"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["pt-BR"] = {
-  "_": {
-  },
   "about": "Sobre",
   "about_community_taxa": "Sobre os táxons da comunidade",
   "account": "Conta",
@@ -12870,12 +12126,8 @@ I18n.translations["pt-BR"] = {
   "grid": "Grade",
   "grid_tooltip": "Exibir grade",
   "heads_up": "Aviso",
-  "his": {
-  },
   "identifications": "Identificações",
   "identify_title": "Identificar",
-  "ield": {
-  },
   "import": "Importar",
   "inactive_taxon": "espécie ou grupo inativo",
   "including": "incluindo",
@@ -12893,10 +12145,6 @@ I18n.translations["pt-BR"] = {
   "least_concern": "Pouco preocupante",
   "less": "Menos",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "Africâner",
     "bengali": "Bengalês",
     "cebuano": "Cebuano",
@@ -12978,8 +12226,6 @@ I18n.translations["pt-BR"] = {
   "no_sections_available": "Nenhuma seção disponível.",
   "none": "Nenhum",
   "not_evaluated": "Não avaliado",
-  "o": {
-  },
   "obscured": "Oculto",
   "observation_date": "Data",
   "observation_fields": "Campos de Observação",
@@ -13070,12 +12316,38 @@ I18n.translations["pt-BR"] = {
       "undefined": "indefinido",
       "Unknown": "Desconhecido",
       "Zone": "Zona",
-      "zone": "zona",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "zona"
     }
+  },
+  "places_name": {
+    "afghanistan": "Afeganistão",
+    "belgium": "Bélgica",
+    "brazil": "Brasil",
+    "egypt": "Egito",
+    "france": "França",
+    "germany": "Alemanha",
+    "greece": "Grécia",
+    "hungary": "Hungria",
+    "iraq": "Iraque",
+    "italy": "Itália",
+    "japan": "Japão",
+    "mexico": "México",
+    "new_zealand": "Nova Zelândia",
+    "palestine": "Palestina",
+    "panama": "Panamá",
+    "peru": "Peru",
+    "poland": "Polônia",
+    "russia": "Russia",
+    "sao_tome_and_principe": "São Tomé e Príncipe",
+    "saudi_arabia": "Arabia Saudita",
+    "spain": "Espanha",
+    "sweden": "Suécia",
+    "syria": "Siria",
+    "thailand": "Tailândia",
+    "trinidad_and_tobago": "Trindade e Tobago",
+    "turkey": "Turquía",
+    "united_kingdom": "Reino Unido",
+    "united_states": "Estados Unidos"
   },
   "plants": "plantas",
   "prev": "Anterior",
@@ -13113,13 +12385,7 @@ I18n.translations["pt-BR"] = {
     "hybrid": "Híbrido",
     "subspecies": "subespécies",
     "variety": "variedade",
-    "form": "Formulário",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "form": "Formulário"
   },
   "ray_finned_fishes": "Actinopterygii, grupo de peixes de barbatanas com raios.",
   "recent_observations": "Observações recentes",
@@ -13168,8 +12434,6 @@ I18n.translations["pt-BR"] = {
   "start": "Iniciar",
   "start_typing_taxon_name": "Comece a digitar o nome do táxon",
   "status": "Status",
-  "t": {
-  },
   "table": "Tabela",
   "tagging": "Marcando...",
   "tags": "Marcações",
@@ -13215,10 +12479,6 @@ I18n.translations["pt-BR"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   },
@@ -13260,8 +12520,6 @@ I18n.translations["pt-BR"] = {
   "your_observations": "Suas observações"
 };
 I18n.translations["ro"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13284,41 +12542,17 @@ I18n.translations["ro"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13335,17 +12569,11 @@ I18n.translations["ro"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["ru"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13368,41 +12596,17 @@ I18n.translations["ru"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13419,17 +12623,11 @@ I18n.translations["ru"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["sk"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13452,41 +12650,17 @@ I18n.translations["sk"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13503,17 +12677,11 @@ I18n.translations["sk"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["sl"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13536,41 +12704,17 @@ I18n.translations["sl"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13587,17 +12731,11 @@ I18n.translations["sl"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["sr"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13620,41 +12758,17 @@ I18n.translations["sr"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13671,17 +12785,11 @@ I18n.translations["sr"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["sr-RS"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13704,41 +12812,17 @@ I18n.translations["sr-RS"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13755,17 +12839,11 @@ I18n.translations["sr-RS"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["sv"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13788,41 +12866,17 @@ I18n.translations["sv"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13839,17 +12893,11 @@ I18n.translations["sv"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["th"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13872,41 +12920,17 @@ I18n.translations["th"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -13923,17 +12947,11 @@ I18n.translations["th"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["tr"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -13956,41 +12974,17 @@ I18n.translations["tr"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -14007,17 +13001,11 @@ I18n.translations["tr"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["uk"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -14040,41 +13028,17 @@ I18n.translations["uk"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -14091,17 +13055,11 @@ I18n.translations["uk"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["vi"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -14124,41 +13082,17 @@ I18n.translations["vi"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -14175,17 +13109,11 @@ I18n.translations["vi"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["zh-CN"] = {
-  "_": {
-  },
   "about": "关于",
   "about_community_taxa": "关于社区分类群",
   "about_conservation_status": "保护状态",
@@ -14502,13 +13430,9 @@ I18n.translations["zh-CN"] = {
   "has_sounds": "有声音",
   "heads_up": "小心",
   "high": "高",
-  "his": {
-  },
   "history": "历史",
   "identifications": "身份证明",
   "identify_title": "鉴定",
-  "ield": {
-  },
   "import": "导入",
   "inactive_taxon": "不活跃的分类单元",
   "including": "包括",
@@ -14533,10 +13457,6 @@ I18n.translations["zh-CN"] = {
   "leaderboard": "排行榜",
   "less": "更少",
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    },
     "afrikaans": "南非语",
     "bengali": "孟加拉语",
     "catalan": "加泰罗尼亚语",
@@ -14661,8 +13581,6 @@ I18n.translations["zh-CN"] = {
   "no_species_observed": "没有观察的物种",
   "none": "无",
   "number_selected": "# 已选择",
-  "o": {
-  },
   "obscured": "已遮盖",
   "observation_date": "日期",
   "observation_fields": "观察字段",
@@ -14778,16 +13696,42 @@ I18n.translations["zh-CN"] = {
       "Unknown": "未知",
       "unknown": "未知",
       "Zone": "地区",
-      "zone": "地带",
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
+      "zone": "地带"
     }
   },
   "placeholder": "占位符",
   "places_added_by_members_of_the_community": "由社群成员添加的地点",
   "places_maintained_by_site_admins": "由网站管理员维护的地点",
+  "places_name": {
+    "afghanistan": "阿富汗",
+    "belgium": "比利时",
+    "brazil": "巴西",
+    "egypt": "埃及",
+    "france": "法国",
+    "germany": "德国",
+    "greece": "希腊",
+    "hungary": "匈牙利",
+    "iraq": "伊拉克",
+    "italy": "意大利",
+    "japan": "日本",
+    "mexico": "墨西哥",
+    "new_zealand": "新西兰",
+    "palestine": "巴勒斯坦",
+    "panama": "巴拿马",
+    "peru": "秘鲁",
+    "poland": "波兰",
+    "russia": "俄罗斯",
+    "sao_tome_and_principe": "圣多美和普林西比",
+    "saudi_arabia": "沙特阿拉伯",
+    "spain": "西班牙",
+    "sweden": "瑞典",
+    "syria": "叙利亚",
+    "thailand": "泰国",
+    "trinidad_and_tobago": "特立尼达和多巴哥",
+    "turkey": "土耳其",
+    "united_kingdom": "英国",
+    "united_states": "美国"
+  },
   "places_of_interest": "名胜古迹",
   "plants": "植物",
   "popular": "热门",
@@ -14830,13 +13774,7 @@ I18n.translations["zh-CN"] = {
     "subspecies": "亚种",
     "variety": "变种",
     "form": "型",
-    "leaves": "叶片",
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+    "leaves": "叶片"
   },
   "rare": "罕见",
   "recent_observations": "最新观察",
@@ -14902,8 +13840,6 @@ I18n.translations["zh-CN"] = {
   "submit_observations": {
     "one": "提交1次观察",
     "other": "提交 %{count} 次观察"
-  },
-  "t": {
   },
   "table": "表格",
   "tagging": "正在添加标签……",
@@ -14985,9 +13921,7 @@ I18n.translations["zh-CN"] = {
           "Insect life stage=teneral": "幼体",
           "Insect life stage=nymph": "仙女",
           "Insect life stage=pupa": "蛹",
-          "Insect life stage=adult": "成人",
-          "${item": {
-          }
+          "Insect life stage=adult": "成人"
         }
       }
     }
@@ -15057,8 +13991,6 @@ I18n.translations["zh-CN"] = {
   "zoom_out": "缩小"
 };
 I18n.translations["zh-HK"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -15081,41 +14013,17 @@ I18n.translations["zh-HK"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -15132,17 +14040,11 @@ I18n.translations["zh-HK"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
 };
 I18n.translations["zh-TW"] = {
-  "_": {
-  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -15165,41 +14067,17 @@ I18n.translations["zh-TW"] = {
   },
   "date_picker": {
   },
-  "his": {
-  },
-  "ield": {
-  },
   "lexicons": {
-    "${_": {
-      "snakeCase( n": {
-      }
-    }
   },
   "maps": {
     "overlays": {
     }
   },
-  "o": {
-  },
   "place_geo": {
-    "geo_planet_place_types": {
-      "${_": {
-        "snakeCase( PLACE_TYPES[p": {
-        }
-      }
-    }
   },
-  "ranks": {
-    "${result": {
-    },
-    "${taxon": {
-      "rank": {
-      }
-    }
+  "places_name": {
   },
   "sounds": {
-  },
-  "t": {
   },
   "taxon_map": {
   },
@@ -15216,10 +14094,6 @@ I18n.translations["zh-TW"] = {
     },
     "taxa": {
       "show": {
-        "frequency": {
-          "${item": {
-          }
-        }
       }
     }
   }
