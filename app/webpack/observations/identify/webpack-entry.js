@@ -19,8 +19,9 @@ import {
 import App from "./components/app";
 
 // Use custom relative times for moment
+const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 moment.locale( I18n.locale, {
-  relativeTime: I18n.translations[I18n.locale].momentjs.shortRelativeTime
+  relativeTime: shortRelativeTime
 } );
 
 const store = createStore(

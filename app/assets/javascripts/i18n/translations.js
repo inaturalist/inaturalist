@@ -22,15 +22,11 @@ I18n.translations["ar"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -76,15 +72,11 @@ I18n.translations["az"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -363,6 +355,7 @@ I18n.translations["bg"] = {
   "least_concern": "незастрашен",
   "less": "По-малко",
   "lexicons": {
+    "scientific_names": "Научни имена",
     "afrikaans": "африканс",
     "bengali": "бенгалски",
     "catalan": "каталонски",
@@ -389,8 +382,8 @@ I18n.translations["bg"] = {
     "norwegian": "норвежки",
     "pangasinan": "пангасинан",
     "portuguese": "португалски",
+    "romanian": "румънски",
     "russian": "руски",
-    "scientific_names": "Научни имена",
     "spanish": "испански",
     "swedish": "шведски",
     "tagalog": "тагалог",
@@ -555,25 +548,37 @@ I18n.translations["bg"] = {
   "places_maintained_by_site_admins": "Места поддържани от администраторите на сайта",
   "places_name": {
     "afghanistan": "Афганистан",
+    "africa": "Африка",
+    "antigua_and_barbuda": "Антигуа и Барбуда",
     "belgium": "Белгия",
+    "bosnia_and_herzegovina": "Босна и Херцеговина",
     "brazil": "Бразилия",
+    "central_america": "Централна Америка",
     "egypt": "Египет",
+    "equatorial_guinea": "Екваториална Гвинея",
+    "europe": "Европа",
     "france": "Франция",
     "germany": "Германия",
     "greece": "Гърция",
     "hungary": "Унгария",
-    "iraq": "Ирак",
     "italy": "Италия",
+    "iraq": "Ирак",
     "japan": "Япония",
+    "martinique": "Мартиника",
     "mexico": "Мексико",
+    "new_guinea": "Нова Гвинея",
     "new_zealand": "Нова Зеландия",
+    "north_africa": "Северна Африка",
+    "north_america": "Северна Америка",
     "palestine": "Палестина",
     "panama": "Панама",
     "peru": "Перу",
     "poland": "Полша",
+    "republic_of_congo": "Република Конго",
     "russia": "Русия",
-    "sao_tome_and_principe": "Сао Томе и Принсипи",
     "saudi_arabia": "Саудитска Арабия",
+    "sao_tome_and_principe": "Сао Томе и Принсипи",
+    "south_america": "Южна Америка",
     "spain": "Испания",
     "sweden": "Швеция",
     "syria": "Сирия",
@@ -581,7 +586,9 @@ I18n.translations["bg"] = {
     "trinidad_and_tobago": "Тринидад и Тобаго",
     "turkey": "Турция",
     "united_kingdom": "Обединено Кралство",
-    "united_states": "САЩ"
+    "united_states": "САЩ",
+    "virgin_islands": "Вирджински острови",
+    "west_africa": "Западна Африка"
   },
   "places_of_interest": "Места представляващи интерес",
   "plants": "растения",
@@ -1004,6 +1011,7 @@ I18n.translations["br"] = {
   "layers": "Gwiskadoù",
   "less": "Nebeutoc'h",
   "lexicons": {
+    "scientific_names": "Anvioù skiantel",
     "afrikaans": "Afrikaans",
     "bengali": "Bengali",
     "catalan": "Katalaneg",
@@ -1019,7 +1027,6 @@ I18n.translations["br"] = {
     "norwegian": "Norvegeg",
     "portuguese": "Portugaleg",
     "russian": "Rusianeg",
-    "scientific_names": "Anvioù skiantel",
     "spanish": "Spagnoleg",
     "tokelauan": "Tahitianeg",
     "turkish": "Turkeg"
@@ -1161,25 +1168,37 @@ I18n.translations["br"] = {
   },
   "places_name": {
     "afghanistan": "Afghanistan",
+    "africa": "Afrika",
+    "antigua_and_barbuda": "Antigua ha Barbuda",
     "belgium": "Belgia",
+    "bosnia_and_herzegovina": "Bosnia ha Herzegovina",
     "brazil": "Brazil",
+    "central_america": "Amerika Greiz",
     "egypt": "Egipt",
+    "equatorial_guinea": "Ginea ar C'heheder",
+    "europe": "Europa",
     "france": "Frañs",
     "germany": "Alamagn",
     "greece": "Gres",
     "hungary": "Hungaria",
-    "iraq": "Iraq",
     "italy": "Italia",
+    "iraq": "Iraq",
     "japan": "Japan",
+    "martinique": "Martinik",
     "mexico": "Mec'hiko",
+    "new_guinea": "Ginea-Nevez",
     "new_zealand": "Zeland-Nevez",
+    "north_africa": "Norzh Afrika",
+    "north_america": "Norzh Amerika",
     "palestine": "Palestina",
     "panama": "Panamá",
     "peru": "Perou",
     "poland": "Polonia",
+    "republic_of_congo": "Republik Kongo",
     "russia": "Rusia",
-    "sao_tome_and_principe": "São Tomé ha Príncipe",
     "saudi_arabia": "Arabia Saoudat",
+    "sao_tome_and_principe": "São Tomé ha Príncipe",
+    "south_america": "Su Amerika",
     "spain": "Spagn",
     "sweden": "Sveden",
     "syria": "Siria",
@@ -1187,7 +1206,9 @@ I18n.translations["br"] = {
     "trinidad_and_tobago": "Trinidad ha Tobago",
     "turkey": "Turkia",
     "united_kingdom": "Rouantelezh Unanet",
-    "united_states": "Stadoù-Unanet"
+    "united_states": "Stadoù-Unanet",
+    "virgin_islands": "Inizi Gwerc'h",
+    "west_africa": "Afrika ar C'hornôg"
   },
   "plants": "plant",
   "prev": "kent",
@@ -1273,15 +1294,11 @@ I18n.translations["bs"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -1655,6 +1672,7 @@ I18n.translations["ca"] = {
   "least_concern": "preocupació menor",
   "less": "Menys",
   "lexicons": {
+    "scientific_names": "Noms científics",
     "afrikaans": "Afrikaans",
     "bengali": "Bengalí",
     "catalan": "Català",
@@ -1681,8 +1699,8 @@ I18n.translations["ca"] = {
     "norwegian": "Noruec",
     "pangasinan": "Pangasinan",
     "portuguese": "Portuguès",
+    "romanian": "Romanès",
     "russian": "Rus",
-    "scientific_names": "Noms científics",
     "spanish": "Espanyol",
     "swedish": "Suec",
     "tagalog": "Tagal",
@@ -1921,25 +1939,37 @@ I18n.translations["ca"] = {
   "places_maintained_by_site_admins": "Llocs mantinguts per administradors del lloc",
   "places_name": {
     "afghanistan": "Afganistan",
+    "africa": "Àfrica",
+    "antigua_and_barbuda": "Antigua i Barbuda",
     "belgium": "Bèlgica",
+    "bosnia_and_herzegovina": "Bòsnia i Hercegovina",
     "brazil": "Brasil",
+    "central_america": "Amèrica Central",
     "egypt": "Egipte",
+    "equatorial_guinea": "Guinea Equatorial",
+    "europe": "Europa",
     "france": "França",
     "germany": "Alemanya",
     "greece": "Grècia",
     "hungary": "Hongria",
-    "iraq": "Iraq",
     "italy": "Itàlia",
+    "iraq": "Iraq",
     "japan": "Japó",
+    "martinique": "Martinica",
     "mexico": "Mèxic",
+    "new_guinea": "Nova Guinea",
     "new_zealand": "Nova Zelanda",
+    "north_africa": "Àfrica del Nord",
+    "north_america": "Amèrica del Nord",
     "palestine": "Palestina",
     "panama": "Panamà",
     "peru": "Perú",
     "poland": "Polònia",
+    "republic_of_congo": "República del Congo",
     "russia": "Rússia",
-    "sao_tome_and_principe": "São Tomé i Principe",
     "saudi_arabia": "Aràbia Saudita",
+    "sao_tome_and_principe": "São Tomé i Principe",
+    "south_america": "Amèrica del Sud",
     "spain": "Espanya",
     "sweden": "Suècia",
     "syria": "Síria",
@@ -1947,7 +1977,9 @@ I18n.translations["ca"] = {
     "trinidad_and_tobago": "Trinidad i Tobago",
     "turkey": "Turquia",
     "united_kingdom": "Regne Unit",
-    "united_states": "Estats Units"
+    "united_states": "Estats Units",
+    "virgin_islands": "Illes Verges",
+    "west_africa": "Àfrica occidental"
   },
   "places_of_interest": "Llocs d'interès",
   "plants": "Plantes",
@@ -2258,15 +2290,11 @@ I18n.translations["cs"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -2312,15 +2340,11 @@ I18n.translations["da"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -2366,15 +2390,11 @@ I18n.translations["de"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -2420,15 +2440,11 @@ I18n.translations["el"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -2805,6 +2821,7 @@ I18n.translations["en"] = {
   "least_concern": "least concern",
   "less": "Less",
   "lexicons": {
+    "scientific_names": "Scientific Names",
     "afrikaans": "Afrikaans",
     "bengali": "Bengali",
     "catalan": "Catalan",
@@ -2831,8 +2848,8 @@ I18n.translations["en"] = {
     "norwegian": "Norwegian",
     "pangasinan": "Pangasinan",
     "portuguese": "Portuguese",
+    "romanian": "Romanian",
     "russian": "Russian",
-    "scientific_names": "Scientific Names",
     "spanish": "Spanish",
     "swedish": "Swedish",
     "tagalog": "Tagalog",
@@ -3075,25 +3092,37 @@ I18n.translations["en"] = {
   "places_maintained_by_site_admins": "Places maintained by site admins",
   "places_name": {
     "afghanistan": "Afghanistan",
+    "africa": "Africa",
+    "antigua_and_barbuda": "Antigua and Barbuda",
     "belgium": "Belgium",
+    "bosnia_and_herzegovina": "Bosnia and Herzegovina",
     "brazil": "Brazil",
+    "central_america": "Central America",
     "egypt": "Egypt",
+    "equatorial_guinea": "Equatorial Guinea",
+    "europe": "Europe",
     "france": "France",
     "germany": "Germany",
     "greece": "Greece",
     "hungary": "Hungary",
-    "iraq": "Iraq",
     "italy": "Italy",
+    "iraq": "Iraq",
     "japan": "Japan",
+    "martinique": "Martinique",
     "mexico": "México",
+    "new_guinea": "New Guinea",
     "new_zealand": "New Zealand",
+    "north_africa": "North Africa",
+    "north_america": "North America",
     "palestine": "Palestine",
     "panama": "Panama",
     "peru": "Peru",
     "poland": "Poland",
+    "republic_of_congo": "Republic of Congo",
     "russia": "Russia",
-    "sao_tome_and_principe": "Sao Tome and Principe",
     "saudi_arabia": "Saudi Arabia",
+    "sao_tome_and_principe": "Sao Tome and Principe",
+    "south_america": "South America",
     "spain": "Spain",
     "sweden": "Sweden",
     "syria": "Syria",
@@ -3101,7 +3130,9 @@ I18n.translations["en"] = {
     "trinidad_and_tobago": "Trinidad and Tobago",
     "turkey": "Turkey",
     "united_kingdom": "United Kingdom",
-    "united_states": "United States"
+    "united_states": "United States",
+    "virgin_islands": "Virgin Islands",
+    "west_africa": "West Africa"
   },
   "places_of_interest": "Places of Interest",
   "plants": "plants",
@@ -3427,15 +3458,11 @@ I18n.translations["en-GB"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -3511,15 +3538,11 @@ I18n.translations["en-US"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -3911,7 +3934,6 @@ I18n.translations["es"] = {
   "lexicons": {
     "afrikaans": "Afrikáans",
     "bengali": "Bengalí",
-    "catalan": "Catalán",
     "cebuano": "Cebuano",
     "creole_french": "Criollo (Francés)",
     "creole_portuguese": "Criollo (Portugués)",
@@ -3935,6 +3957,7 @@ I18n.translations["es"] = {
     "norwegian": "Noruego",
     "pangasinan": "Pangasinán",
     "portuguese": "Portugués",
+    "romanian": "Rumano",
     "russian": "Ruso",
     "scientific_names": "Nombres científicos",
     "spanish": "Español",
@@ -3943,7 +3966,8 @@ I18n.translations["es"] = {
     "tahitian": "Tahitiano",
     "tokelauan": "Tokelauano",
     "turkish": "Turco",
-    "waray_waray": "Samareño"
+    "waray_waray": "Samareño",
+    "catalan": "Catalán"
   },
   "life": "Vida",
   "list": "Lista",
@@ -4177,9 +4201,15 @@ I18n.translations["es"] = {
   "places_maintained_by_site_admins": "Lugares mantenidos por administradores del sitio",
   "places_name": {
     "afghanistan": "Afganistán",
+    "africa": "África",
+    "antigua_and_barbuda": "Antigua y Barbuda",
     "belgium": "Bélgica",
+    "bosnia_and_herzegovina": "Bosnia y Herzegovina",
     "brazil": "Brasil",
+    "central_america": "América central",
     "egypt": "Egipto",
+    "equatorial_guinea": "Guinea Ecuatorial",
+    "europe": "Europa",
     "france": "Francia",
     "germany": "Alemania",
     "greece": "Grecia",
@@ -4187,15 +4217,21 @@ I18n.translations["es"] = {
     "iraq": "Irak",
     "italy": "Italia",
     "japan": "Japón",
+    "martinique": "Martinica",
     "mexico": "México",
+    "new_guinea": "Nueva Guinea",
     "new_zealand": "Nueva Zelanda",
+    "north_africa": "África del norte",
+    "north_america": "América del norte",
     "palestine": "Palestina",
     "panama": "Panamá",
     "peru": "Perú",
     "poland": "Polonia",
+    "republic_of_congo": "República del Congo",
     "russia": "Rusia",
     "sao_tome_and_principe": "Santo Tomé y Príncipe",
     "saudi_arabia": "Arabia Saudita",
+    "south_america": "América del sur",
     "spain": "España",
     "sweden": "Suecia",
     "syria": "Siria",
@@ -4203,7 +4239,9 @@ I18n.translations["es"] = {
     "trinidad_and_tobago": "Trinidad y Tobago",
     "turkey": "Turquía",
     "united_kingdom": "Reino Unido",
-    "united_states": "Estados Unidos"
+    "united_states": "Estados Unidos",
+    "virgin_islands": "Islas Vírgenes",
+    "west_africa": "África occidental"
   },
   "places_of_interest": "Lugares de Interés",
   "plants": "plantas",
@@ -4811,6 +4849,7 @@ I18n.translations["es-MX"] = {
   "least_concern": "Baja preocupación",
   "less": "Menos",
   "lexicons": {
+    "scientific_names": "Nombres científicos",
     "afrikaans": "Afrikáans",
     "bengali": "Bengalí",
     "cebuano": "Cebuano",
@@ -4836,8 +4875,8 @@ I18n.translations["es-MX"] = {
     "norwegian": "Noruego",
     "pangasinan": "Pangasinán",
     "portuguese": "Portugués",
+    "romanian": "Rumano",
     "russian": "Ruso",
-    "scientific_names": "Nombres científicos",
     "spanish": "Español",
     "swedish": "Sueco",
     "tagalog": "Tagalo",
@@ -5009,25 +5048,37 @@ I18n.translations["es-MX"] = {
   },
   "places_name": {
     "afghanistan": "Afganistán",
+    "africa": "África",
+    "antigua_and_barbuda": "Antigua y Barbuda",
     "belgium": "Bélgica",
+    "bosnia_and_herzegovina": "Bosnia y Herzegovina",
     "brazil": "Brasil",
+    "central_america": "América central",
     "egypt": "Egipto",
+    "equatorial_guinea": "Guinea Ecuatorial",
+    "europe": "Europa",
     "france": "Francia",
     "germany": "Alemania",
     "greece": "Grecia",
     "hungary": "Hungaría",
-    "iraq": "Irak",
     "italy": "Italia",
+    "iraq": "Irak",
     "japan": "Japón",
+    "martinique": "Martinica",
     "mexico": "México",
+    "new_guinea": "Nueva Guinea",
     "new_zealand": "Nueva Zealand",
+    "north_africa": "África del norte",
+    "north_america": "América del norte",
     "palestine": "Palestina",
     "panama": "Panamá",
     "peru": "Perú",
     "poland": "Polonia",
+    "republic_of_congo": "República del Congo",
     "russia": "Rusia",
-    "sao_tome_and_principe": "Santo Tomé and Príncipe",
     "saudi_arabia": "Arabia Saudita",
+    "sao_tome_and_principe": "Santo Tomé and Príncipe",
+    "south_america": "América del sur",
     "spain": "España",
     "sweden": "Suecia",
     "syria": "Siria",
@@ -5035,7 +5086,9 @@ I18n.translations["es-MX"] = {
     "trinidad_and_tobago": "Trinidad y Tobago",
     "turkey": "Turquía",
     "united_kingdom": "Reino Unido",
-    "united_states": "Estados Unidos"
+    "united_states": "Estados Unidos",
+    "virgin_islands": "Islas Vírgenes",
+    "west_africa": "África occidental"
   },
   "places_of_interest": "Lugares de Interés",
   "plants": "Plantas",
@@ -5278,15 +5331,11 @@ I18n.translations["et"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -5575,6 +5624,7 @@ I18n.translations["eu"] = {
   "least_concern": "kezka txikia",
   "less": "Gutxiago",
   "lexicons": {
+    "scientific_names": "Izen zientifikoak",
     "afrikaans": "Afrikaans",
     "bengali": "Bengalera",
     "catalan": "Katalana",
@@ -5601,8 +5651,8 @@ I18n.translations["eu"] = {
     "norwegian": "Norvegiera",
     "pangasinan": "Pangasinanoa",
     "portuguese": "Portugesa",
+    "romanian": "Errumaniera",
     "russian": "Errusiera",
-    "scientific_names": "Izen zientifikoak",
     "spanish": "Espainola",
     "swedish": "Suediera",
     "tagalog": "Tagaloa",
@@ -5744,25 +5794,37 @@ I18n.translations["eu"] = {
   },
   "places_name": {
     "afghanistan": "Afganistan",
+    "africa": "Afrika",
+    "antigua_and_barbuda": "Antigua eta Barbuda",
     "belgium": "Belgika",
+    "bosnia_and_herzegovina": "Bosnia-Herzegovina",
     "brazil": "Brasil",
+    "central_america": "Erdialdeko Amerika",
     "egypt": "Egipto",
+    "equatorial_guinea": "Ekuatore Ginea",
+    "europe": "Europa",
     "france": "Frantzia",
     "germany": "Alemania",
     "greece": "Grezia",
     "hungary": "Hungaria",
-    "iraq": "Irak",
     "italy": "Italia",
+    "iraq": "Irak",
     "japan": "Japonia",
+    "martinique": "Martinika",
     "mexico": "Mexiko",
+    "new_guinea": "Ginea Berria",
     "new_zealand": "Zeelanda Berria",
+    "north_africa": "Iparraldeko Afrika",
+    "north_america": "Ipar Amerika",
     "palestine": "Palestina",
     "panama": "Panama",
     "peru": "Peru",
     "poland": "Polonia",
+    "republic_of_congo": "Kongo",
     "russia": "Errusia",
-    "sao_tome_and_principe": "Sao Tome eta Principe",
     "saudi_arabia": "Saudi Arabia",
+    "sao_tome_and_principe": "Sao Tome eta Principe",
+    "south_america": "Hego Amerika",
     "spain": "Espainia",
     "sweden": "Suedia",
     "syria": "Siria",
@@ -5770,7 +5832,9 @@ I18n.translations["eu"] = {
     "trinidad_and_tobago": "Trinidad eta Tobago",
     "turkey": "Turkia",
     "united_kingdom": "Erresuma Batua",
-    "united_states": "Estatu Batuak"
+    "united_states": "Estatu Batuak",
+    "virgin_islands": "Birjina Uharteak",
+    "west_africa": "Mendebaldeko Afrika"
   },
   "plants": "landareak",
   "prev": "Aurrekoa",
@@ -5929,15 +5993,11 @@ I18n.translations["fa"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -5983,15 +6043,11 @@ I18n.translations["fi"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -6365,6 +6421,7 @@ I18n.translations["fr"] = {
   "least_concern": "préoccupation mineure",
   "less": "Moins",
   "lexicons": {
+    "scientific_names": "Noms scientifiques",
     "afrikaans": "Afrikaans",
     "bengali": "Bengali",
     "catalan": "Catalan",
@@ -6391,8 +6448,8 @@ I18n.translations["fr"] = {
     "norwegian": "Norvégien",
     "pangasinan": "Pangasinan",
     "portuguese": "Portugais",
+    "romanian": "Roumain",
     "russian": "Russe",
-    "scientific_names": "Noms scientifiques",
     "spanish": "Espagnol",
     "swedish": "Suédois",
     "tagalog": "Tagalog",
@@ -6632,25 +6689,37 @@ I18n.translations["fr"] = {
   "places_maintained_by_site_admins": "Lieux entretenus par les administrateurs du site",
   "places_name": {
     "afghanistan": "Afghanistan",
+    "africa": "Afrique",
+    "antigua_and_barbuda": "Antigua-et-Barbuda",
     "belgium": "Belgique",
+    "bosnia_and_herzegovina": "Bosnie-Herzégovine",
     "brazil": "Brésil",
+    "central_america": "Amérique centrale",
     "egypt": "Égypte",
+    "equatorial_guinea": "Guinée équatoriale",
+    "europe": "Europe",
     "france": "France",
     "germany": "Allemagne",
     "greece": "Grèce",
     "hungary": "Hongrie",
-    "iraq": "Iraq",
     "italy": "Italie",
+    "iraq": "Iraq",
     "japan": "Japon",
+    "martinique": "Martinique",
     "mexico": "Mexique",
+    "new_guinea": "Nouvelle-Guinée",
     "new_zealand": "Nouvelle-Zélande",
+    "north_africa": "Afrique du Nord",
+    "north_america": "Amérique du Nord",
     "palestine": "Palestine",
     "panama": "Panama",
     "peru": "Pérou",
     "poland": "Pologne",
+    "republic_of_congo": "Congo",
     "russia": "Russie",
-    "sao_tome_and_principe": "Sao Tomé-et-Principe",
     "saudi_arabia": "Arabie saoudite",
+    "sao_tome_and_principe": "Sao Tomé-et-Principe",
+    "south_america": "Amérique du Sud",
     "spain": "Espagne",
     "sweden": "Suède",
     "syria": "Syrie",
@@ -6658,7 +6727,9 @@ I18n.translations["fr"] = {
     "trinidad_and_tobago": "Trinité-et-Tobago",
     "turkey": "Turquie",
     "united_kingdom": "Royaume-Uni",
-    "united_states": "États-Unis"
+    "united_states": "États-Unis",
+    "virgin_islands": "Îles Vierges",
+    "west_africa": "Afrique occidentale"
   },
   "places_of_interest": "Endroits intéressants",
   "plants": "plantes",
@@ -7220,6 +7291,7 @@ I18n.translations["gl"] = {
   "least_concern": "Preocupación menor",
   "less": "Menos",
   "lexicons": {
+    "scientific_names": "Nomes científicos",
     "afrikaans": "Afrikáans",
     "bengali": "Bengalí",
     "cebuano": "Cebuano",
@@ -7245,8 +7317,8 @@ I18n.translations["gl"] = {
     "norwegian": "Noruegués",
     "pangasinan": "Pangasinán",
     "portuguese": "Portugués",
+    "romanian": "Romanés",
     "russian": "Ruso",
-    "scientific_names": "Nomes científicos",
     "spanish": "Español",
     "swedish": "Sueco",
     "tagalog": "Tagalo",
@@ -7383,25 +7455,37 @@ I18n.translations["gl"] = {
   },
   "places_name": {
     "afghanistan": "Afganistán",
+    "africa": "África",
+    "antigua_and_barbuda": "Antiga e Barbuda",
     "belgium": "Bélxica",
+    "bosnia_and_herzegovina": "Bosnia e Herzegovina",
     "brazil": "Brasil",
+    "central_america": "América Central",
     "egypt": "Exipto",
+    "equatorial_guinea": "Guinea Ecuatorial",
+    "europe": "Europa",
     "france": "Francia",
     "germany": "Alemaña",
     "greece": "Grecia",
     "hungary": "Hungría",
-    "iraq": "Iraq",
     "italy": "Italia",
+    "iraq": "Iraq",
     "japan": "Xapón",
+    "martinique": "Martinica",
     "mexico": "México",
+    "new_guinea": "Nova Guinea",
     "new_zealand": "Nova Zelandia",
+    "north_africa": "África do Norte",
+    "north_america": "América do Norte",
     "palestine": "Palestina",
     "panama": "Panamá",
     "peru": "Perú",
     "poland": "Polonia",
+    "republic_of_congo": "República do Congo",
     "russia": "Rusia",
-    "sao_tome_and_principe": "Santo Tomé e Príncipe",
     "saudi_arabia": "Arabia Saudita",
+    "sao_tome_and_principe": "Santo Tomé e Príncipe",
+    "south_america": "América do Sur",
     "spain": "España",
     "sweden": "Suecia",
     "syria": "Siria",
@@ -7409,7 +7493,9 @@ I18n.translations["gl"] = {
     "trinidad_and_tobago": "Trinidade e Tobago",
     "turkey": "Turquía",
     "united_kingdom": "Reino Unido",
-    "united_states": "Estados Unidos"
+    "united_states": "Estados Unidos",
+    "virgin_islands": "Illas Virxes",
+    "west_africa": "África occidental"
   },
   "plants": "Plantas",
   "prev": "Anterior",
@@ -7563,15 +7649,11 @@ I18n.translations["he"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -7617,15 +7699,11 @@ I18n.translations["hr"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -7671,15 +7749,11 @@ I18n.translations["hu"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -7988,6 +8062,7 @@ I18n.translations["id"] = {
   "least_concern": "kekhawatiran paling kecil",
   "less": "Kurang",
   "lexicons": {
+    "scientific_names": "Nama Peneliti",
     "afrikaans": "Bahasa Afrika",
     "bengali": "Bahasa Benggala",
     "catalan": "Bahasa Catalan",
@@ -8014,8 +8089,8 @@ I18n.translations["id"] = {
     "norwegian": "Bahasa Norwegia",
     "pangasinan": "Bahasa Pangasinan",
     "portuguese": "Bahasa Portugis",
+    "romanian": "Bahasa Romania",
     "russian": "Bahasa Rusia",
-    "scientific_names": "Nama Peneliti",
     "spanish": "Bahasa Spanyol",
     "swedish": "Bahasa Swedia",
     "tagalog": "Bahasa Tagalog",
@@ -8195,25 +8270,37 @@ I18n.translations["id"] = {
   "places_maintained_by_site_admins": "Tempat diatur oleh situs admin",
   "places_name": {
     "afghanistan": "Afganistan",
+    "africa": "Afrika",
+    "antigua_and_barbuda": "Antigua dan Barbuda",
     "belgium": "Belgia",
+    "bosnia_and_herzegovina": "Bosnia dan Herzegovina",
     "brazil": "Brazil",
+    "central_america": "Amerika Tengah",
     "egypt": "Mesir",
+    "equatorial_guinea": "Guinea ekuator",
+    "europe": "Eropa",
     "france": "Perancis",
     "germany": "Jerman",
     "greece": "Yunani",
     "hungary": "Hungaria",
-    "iraq": "Irak",
     "italy": "Italia",
+    "iraq": "Irak",
     "japan": "Jepang",
+    "martinique": "Martinique",
     "mexico": "Meksiko",
+    "new_guinea": "Papua Nugini",
     "new_zealand": "Selandia Baru",
+    "north_africa": "Afrika Utara",
+    "north_america": "Amerika Utara",
     "palestine": "Palestina",
     "panama": "Panama",
     "peru": "Peru",
     "poland": "Polandia",
+    "republic_of_congo": "Kongo Republik",
     "russia": "Russia",
-    "sao_tome_and_principe": "Sao Tome dan Principe",
     "saudi_arabia": "Arab Saudi",
+    "sao_tome_and_principe": "Sao Tome dan Principe",
+    "south_america": "Amerika Selatan",
     "spain": "Spanyol",
     "sweden": "Swedia",
     "syria": "Suriah",
@@ -8221,7 +8308,9 @@ I18n.translations["id"] = {
     "trinidad_and_tobago": "Trinidad dan Tobago",
     "turkey": "Turki",
     "united_kingdom": "Inggris",
-    "united_states": "Amerika"
+    "united_states": "Amerika",
+    "virgin_islands": "Virgin Islands",
+    "west_africa": "Afrika Barat"
   },
   "places_of_interest": "tempat-tempat menarik",
   "plants": "tanaman",
@@ -8428,15 +8517,11 @@ I18n.translations["is"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -8810,6 +8895,7 @@ I18n.translations["it"] = {
   "least_concern": "Minor Preoccupazione",
   "less": "Meno",
   "lexicons": {
+    "scientific_names": "Nomi Scientifici",
     "afrikaans": "Afrikaans",
     "bengali": "Bengalese",
     "catalan": "Catalano",
@@ -8836,8 +8922,8 @@ I18n.translations["it"] = {
     "norwegian": "Norvegese",
     "pangasinan": "Pangasinan",
     "portuguese": "Portoghese",
+    "romanian": "Rumeno",
     "russian": "Russo",
-    "scientific_names": "Nomi Scientifici",
     "spanish": "Spagnolo",
     "swedish": "Svedese",
     "tagalog": "Tagalog",
@@ -9077,25 +9163,37 @@ I18n.translations["it"] = {
   "places_maintained_by_site_admins": "Luoghi mantenuti dagli amministratori",
   "places_name": {
     "afghanistan": "Afghanistan",
+    "africa": "Africa",
+    "antigua_and_barbuda": "Antigua e Barbuda",
     "belgium": "Belgio",
+    "bosnia_and_herzegovina": "Bosnia-Erzegovina",
     "brazil": "Brasile",
+    "central_america": "America Centrale",
     "egypt": "Egitto",
+    "equatorial_guinea": "Guinea Equatoriale",
+    "europe": "Europa",
     "france": "Francia",
     "germany": "Germania",
     "greece": "Grecia",
     "hungary": "Ungheria",
-    "iraq": "Iraq",
     "italy": "Italia",
+    "iraq": "Iraq",
     "japan": "Giappone",
+    "martinique": "Martinica",
     "mexico": "México",
+    "new_guinea": "Nuova Guinea",
     "new_zealand": "Nuova Zelanda",
+    "north_africa": "Nord Africa",
+    "north_america": "Nord America",
     "palestine": "Palestina",
     "panama": "Panama",
     "peru": "Perù",
     "poland": "Polonia",
+    "republic_of_congo": "Repubblica del Congo",
     "russia": "Russia",
-    "sao_tome_and_principe": "Sao Tome e Principe",
     "saudi_arabia": "Arabia Saudita",
+    "sao_tome_and_principe": "Sao Tome e Principe",
+    "south_america": "Sud America",
     "spain": "Spagna",
     "sweden": "Svezia",
     "syria": "Siria",
@@ -9103,7 +9201,9 @@ I18n.translations["it"] = {
     "trinidad_and_tobago": "Trinidad e Tobago",
     "turkey": "Turchia",
     "united_kingdom": "Regno Unito",
-    "united_states": "Stati Uniti"
+    "united_states": "Stati Uniti",
+    "virgin_islands": "Isole Vergini",
+    "west_africa": "Africa Occidentale"
   },
   "places_of_interest": "Luoghi di interesse",
   "plants": "piante",
@@ -9426,16 +9526,14 @@ I18n.translations["iw"] = {
   "date_picker": {
   },
   "lexicons": {
-    "english": "אנגלית",
-    "scientific_names": "שמות מדעיים"
+    "scientific_names": "שמות מדעיים",
+    "english": "אנגלית"
   },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -9779,6 +9877,7 @@ I18n.translations["ja"] = {
   "least_concern": "軽度懸念",
   "less": "より少なく",
   "lexicons": {
+    "scientific_names": "学名",
     "afrikaans": "アフリカーンス語",
     "bengali": "ベンガル語",
     "catalan": "カタロニア語",
@@ -9805,8 +9904,8 @@ I18n.translations["ja"] = {
     "norwegian": "ノルウェー語",
     "pangasinan": "パンガシナン語",
     "portuguese": "ポルトガル語",
+    "romanian": "ルーマニア語",
     "russian": "ロシア語",
-    "scientific_names": "学名",
     "spanish": "スペイン語",
     "swedish": "スェーデン語",
     "tagalog": "タガログ語",
@@ -10037,25 +10136,37 @@ I18n.translations["ja"] = {
   "places_maintained_by_site_admins": "サイト管理者によって管理されている場所",
   "places_name": {
     "afghanistan": "アフガニスタン",
+    "africa": "アフリカ",
+    "antigua_and_barbuda": "アンティグアバーブーダ",
     "belgium": "ベルギー",
+    "bosnia_and_herzegovina": "ボスニアヘルツェゴビナ",
     "brazil": "ブラジル",
+    "central_america": "中米",
     "egypt": "エジプト",
+    "equatorial_guinea": "赤道ギニア",
+    "europe": "ヨーロッパ",
     "france": "フランス",
     "germany": "ドイツ",
     "greece": "ギリシア",
     "hungary": "ハンガリー",
-    "iraq": "イラク",
     "italy": "イタリア",
+    "iraq": "イラク",
     "japan": "日本",
+    "martinique": "マルティニーク",
     "mexico": "メキシコ",
+    "new_guinea": "ニューギニア",
     "new_zealand": "ニュージーランド",
+    "north_africa": "北アフリカ",
+    "north_america": "北米",
     "palestine": "パレスチナ",
     "panama": "パナマ",
     "peru": "ペルー",
     "poland": "ポランド",
+    "republic_of_congo": "コンゴ共和国",
     "russia": "ロシア",
-    "sao_tome_and_principe": "サントメプリンシペ",
     "saudi_arabia": "サウジアラビア",
+    "sao_tome_and_principe": "サントメプリンシペ",
+    "south_america": "南米",
     "spain": "スペイン",
     "sweden": "スェーデン",
     "syria": "シリア",
@@ -10063,7 +10174,9 @@ I18n.translations["ja"] = {
     "trinidad_and_tobago": "トリニダードトバゴ",
     "turkey": "トルコ",
     "united_kingdom": "イギリス",
-    "united_states": "アメリカ"
+    "united_states": "アメリカ",
+    "virgin_islands": "ヴァージン諸島",
+    "west_africa": "西アフリカ"
   },
   "places_of_interest": "注目の場所",
   "plants": "植物",
@@ -10561,6 +10674,7 @@ I18n.translations["ko"] = {
   "last_observation": "마지막 관찰",
   "latitude": "위도",
   "lexicons": {
+    "scientific_names": "학명",
     "afrikaans": "Afrikaans",
     "bengali": "বাঙালি",
     "cebuano": "Cebuano",
@@ -10580,8 +10694,8 @@ I18n.translations["ko"] = {
     "maltese": "maltese",
     "norwegian": "norsk",
     "portuguese": "포르투갈어",
+    "romanian": "român",
     "russian": "русский",
-    "scientific_names": "학명",
     "spanish": "español",
     "swedish": "svenska",
     "tagalog": "tagalog",
@@ -10699,30 +10813,40 @@ I18n.translations["ko"] = {
   },
   "places_name": {
     "afghanistan": "아프가니스탄",
+    "africa": "아프리카",
     "belgium": "벨기에",
     "brazil": "브라질",
+    "central_america": "중앙 아메리카",
     "egypt": "이집트",
+    "equatorial_guinea": "적도 기니",
+    "europe": "유럽",
     "france": "프랑스",
     "germany": "독일",
     "greece": "그리스",
     "hungary": "헝가리",
-    "iraq": "이라크",
     "italy": "이탈리아",
+    "iraq": "이라크",
     "japan": "일본",
     "mexico": "멕시코",
+    "new_guinea": "뉴 기니",
     "new_zealand": "뉴질랜드",
+    "north_africa": "북아프리카",
+    "north_america": "북아메리카",
     "panama": "파나마",
     "peru": "페루",
     "poland": "폴란드",
+    "republic_of_congo": "콩고 민주 공화국",
     "russia": "러시아",
     "saudi_arabia": "사우디아라비아",
+    "south_america": "남아메리카",
     "spain": "스페인",
     "sweden": "스웨덴",
     "syria": "시리아",
     "thailand": "태국",
     "turkey": "터키",
     "united_kingdom": "영국",
-    "united_states": "미국"
+    "united_states": "미국",
+    "west_africa": "서아프리카"
   },
   "plants": "식물",
   "prev": "이전",
@@ -10836,15 +10960,11 @@ I18n.translations["lexicons"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -10890,15 +11010,11 @@ I18n.translations["lt"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -10944,15 +11060,11 @@ I18n.translations["lv"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -11222,6 +11334,7 @@ I18n.translations["mk"] = {
   "least_concern": "со најмала загриженост",
   "less": "Помалку",
   "lexicons": {
+    "scientific_names": "Научни имиња",
     "afrikaans": "африканс",
     "bengali": "бенгалски",
     "cebuano": "себуански",
@@ -11247,8 +11360,8 @@ I18n.translations["mk"] = {
     "norwegian": "норвешки",
     "pangasinan": "пангасинански",
     "portuguese": "португалски",
+    "romanian": "романски",
     "russian": "руски",
-    "scientific_names": "Научни имиња",
     "spanish": "шпански",
     "swedish": "шведски",
     "tagalog": "тагалошки",
@@ -11379,25 +11492,37 @@ I18n.translations["mk"] = {
   },
   "places_name": {
     "afghanistan": "Авганистан",
+    "africa": "Африка",
+    "antigua_and_barbuda": "Антигва и Барбуда",
     "belgium": "Белгија",
+    "bosnia_and_herzegovina": "Босна и Херцеговина",
     "brazil": "Бразил",
+    "central_america": "Средна Америка",
     "egypt": "Египет",
+    "equatorial_guinea": "Екваторска Гвинеја",
+    "europe": "Европа",
     "france": "Франција",
     "germany": "Германија",
     "greece": "Грција",
     "hungary": "Унгарија",
-    "iraq": "Ирак",
     "italy": "Италија",
+    "iraq": "Ирак",
     "japan": "Јапонија",
+    "martinique": "Мартиник",
     "mexico": "Мексико",
+    "new_guinea": "Нова Гвинеја",
     "new_zealand": "Нов Зеланд",
+    "north_africa": "Северна Африка",
+    "north_america": "Северна Америка",
     "palestine": "Палестина",
     "panama": "Панама",
     "peru": "Перу",
     "poland": "Полска",
+    "republic_of_congo": "Република Конго",
     "russia": "Русија",
-    "sao_tome_and_principe": "Сао Томе и Принсипе",
     "saudi_arabia": "Саудиска Арабија",
+    "sao_tome_and_principe": "Сао Томе и Принсипе",
+    "south_america": "Јужна Америка",
     "spain": "Шпанија",
     "sweden": "Шведска",
     "syria": "Сирија",
@@ -11405,7 +11530,9 @@ I18n.translations["mk"] = {
     "trinidad_and_tobago": "Тринидад и Тобаго",
     "turkey": "Турција",
     "united_kingdom": "Обединето Кралство",
-    "united_states": "САД"
+    "united_states": "САД",
+    "virgin_islands": "Девствени Острови",
+    "west_africa": "Западна Африка"
   },
   "plants": "растенија",
   "prev": "Прет",
@@ -11557,15 +11684,11 @@ I18n.translations["my"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -11611,15 +11734,11 @@ I18n.translations["nb"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -11665,15 +11784,11 @@ I18n.translations["nl"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -11719,15 +11834,11 @@ I18n.translations["no"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -11773,15 +11884,11 @@ I18n.translations["pl"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -11827,15 +11934,11 @@ I18n.translations["pt"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12145,6 +12248,7 @@ I18n.translations["pt-BR"] = {
   "least_concern": "Pouco preocupante",
   "less": "Menos",
   "lexicons": {
+    "scientific_names": "Nomes Científicos",
     "afrikaans": "Africâner",
     "bengali": "Bengalês",
     "cebuano": "Cebuano",
@@ -12170,8 +12274,8 @@ I18n.translations["pt-BR"] = {
     "norwegian": "Norueguês",
     "pangasinan": "Pangasinán",
     "portuguese": "Português",
+    "romanian": "Romano",
     "russian": "Ruso",
-    "scientific_names": "Nomes Científicos",
     "spanish": "Espanhol",
     "swedish": "Sueco",
     "tagalog": "Análogo",
@@ -12321,25 +12425,37 @@ I18n.translations["pt-BR"] = {
   },
   "places_name": {
     "afghanistan": "Afeganistão",
+    "africa": "África",
+    "antigua_and_barbuda": "Antígua e Barbuda",
     "belgium": "Bélgica",
+    "bosnia_and_herzegovina": "Bosnia e Herzegovina",
     "brazil": "Brasil",
+    "central_america": "América Central",
     "egypt": "Egito",
+    "equatorial_guinea": "Guiné Equatorial",
+    "europe": "Europa",
     "france": "França",
     "germany": "Alemanha",
     "greece": "Grécia",
     "hungary": "Hungria",
-    "iraq": "Iraque",
     "italy": "Itália",
+    "iraq": "Iraque",
     "japan": "Japão",
+    "martinique": "Martinica",
     "mexico": "México",
+    "new_guinea": "Nova Guiné",
     "new_zealand": "Nova Zelândia",
+    "north_africa": "África do Norte",
+    "north_america": "América do Norte",
     "palestine": "Palestina",
     "panama": "Panamá",
     "peru": "Peru",
     "poland": "Polônia",
+    "republic_of_congo": "República do Congo",
     "russia": "Russia",
-    "sao_tome_and_principe": "São Tomé e Príncipe",
     "saudi_arabia": "Arabia Saudita",
+    "sao_tome_and_principe": "São Tomé e Príncipe",
+    "south_america": "América do Sul",
     "spain": "Espanha",
     "sweden": "Suécia",
     "syria": "Siria",
@@ -12347,7 +12463,9 @@ I18n.translations["pt-BR"] = {
     "trinidad_and_tobago": "Trindade e Tobago",
     "turkey": "Turquía",
     "united_kingdom": "Reino Unido",
-    "united_states": "Estados Unidos"
+    "united_states": "Estados Unidos",
+    "virgin_islands": "Ilhas Virgens",
+    "west_africa": "África Ocidental"
   },
   "plants": "plantas",
   "prev": "Anterior",
@@ -12542,15 +12660,11 @@ I18n.translations["ro"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12596,15 +12710,11 @@ I18n.translations["ru"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12650,15 +12760,11 @@ I18n.translations["sk"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12704,15 +12810,11 @@ I18n.translations["sl"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12758,15 +12860,11 @@ I18n.translations["sr"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12812,15 +12910,11 @@ I18n.translations["sr-RS"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12866,15 +12960,11 @@ I18n.translations["sv"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12920,15 +13010,11 @@ I18n.translations["th"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -12974,15 +13060,11 @@ I18n.translations["tr"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -13028,15 +13110,11 @@ I18n.translations["uk"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -13082,15 +13160,11 @@ I18n.translations["vi"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -13457,6 +13531,7 @@ I18n.translations["zh-CN"] = {
   "leaderboard": "排行榜",
   "less": "更少",
   "lexicons": {
+    "scientific_names": "学名",
     "afrikaans": "南非语",
     "bengali": "孟加拉语",
     "catalan": "加泰罗尼亚语",
@@ -13483,8 +13558,8 @@ I18n.translations["zh-CN"] = {
     "norwegian": "挪威语",
     "pangasinan": "邦阿西楠语",
     "portuguese": "葡萄牙语",
+    "romanian": "罗马尼亚语",
     "russian": "俄语",
-    "scientific_names": "学名",
     "spanish": "西班牙语",
     "swedish": "瑞典语",
     "tagalog": "他加禄语",
@@ -13704,25 +13779,37 @@ I18n.translations["zh-CN"] = {
   "places_maintained_by_site_admins": "由网站管理员维护的地点",
   "places_name": {
     "afghanistan": "阿富汗",
+    "africa": "非洲",
+    "antigua_and_barbuda": "安提瓜和巴布达",
     "belgium": "比利时",
+    "bosnia_and_herzegovina": "波斯尼亚和黑塞哥维那",
     "brazil": "巴西",
+    "central_america": "中美洲",
     "egypt": "埃及",
+    "equatorial_guinea": "赤道几内亚",
+    "europe": "欧洲",
     "france": "法国",
     "germany": "德国",
     "greece": "希腊",
     "hungary": "匈牙利",
-    "iraq": "伊拉克",
     "italy": "意大利",
+    "iraq": "伊拉克",
     "japan": "日本",
+    "martinique": "马提尼克",
     "mexico": "墨西哥",
+    "new_guinea": "新几内亚",
     "new_zealand": "新西兰",
+    "north_africa": "北非",
+    "north_america": "北美洲",
     "palestine": "巴勒斯坦",
     "panama": "巴拿马",
     "peru": "秘鲁",
     "poland": "波兰",
+    "republic_of_congo": "刚果共和国",
     "russia": "俄罗斯",
-    "sao_tome_and_principe": "圣多美和普林西比",
     "saudi_arabia": "沙特阿拉伯",
+    "sao_tome_and_principe": "圣多美和普林西比",
+    "south_america": "南美洲",
     "spain": "西班牙",
     "sweden": "瑞典",
     "syria": "叙利亚",
@@ -13730,7 +13817,9 @@ I18n.translations["zh-CN"] = {
     "trinidad_and_tobago": "特立尼达和多巴哥",
     "turkey": "土耳其",
     "united_kingdom": "英国",
-    "united_states": "美国"
+    "united_states": "美国",
+    "virgin_islands": "维尔京群岛",
+    "west_africa": "西非"
   },
   "places_of_interest": "名胜古迹",
   "plants": "植物",
@@ -14013,15 +14102,11 @@ I18n.translations["zh-HK"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
@@ -14067,15 +14152,11 @@ I18n.translations["zh-TW"] = {
   },
   "date_picker": {
   },
-  "lexicons": {
-  },
   "maps": {
     "overlays": {
     }
   },
   "place_geo": {
-  },
-  "places_name": {
   },
   "sounds": {
   },
