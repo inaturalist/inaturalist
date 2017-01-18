@@ -16,6 +16,15 @@ function mapStateToProps( state ) {
       nelng: chosenPlaceBounds[2][0],
       nelat: chosenPlaceBounds[2][1]
     };
+    // Deal with bounds that cross the date line
+    if ( props.bounds.swlng < 0 && props.bounds.nelng > 0 ) {
+      props.bounds = {
+        swlng: chosenPlaceBounds[3][0],
+        swlat: chosenPlaceBounds[3][1],
+        nelng: chosenPlaceBounds[1][0],
+        nelat: chosenPlaceBounds[1][1]
+      };
+    }
   } else if (
     bounds &&
     bounds.swlng &&
