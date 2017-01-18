@@ -7,7 +7,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Taxon } from "inaturalistjs";
 import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photos";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon } from "../shared/ducks/taxon";
+import taxonReducer, { setTaxon, fetchTerms } from "../shared/ducks/taxon";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import App from "./components/app";
 
@@ -42,6 +42,7 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
+/* global SERVER_PAYLOAD */
 const serverPayload = SERVER_PAYLOAD;
 if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
   store.dispatch( setConfig( {
@@ -60,17 +61,21 @@ if ( serverPayload.ancestorsShown ) {
 }
 const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
-const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
-store.dispatch( hydrateFromUrlParams( urlParams ) );
-window.onpopstate = e => {
-  // user returned from BACK
-  store.dispatch( hydrateFromUrlParams( e.state ) );
-};
-store.dispatch( reloadPhotos( ) );
+// fetch taxon terms before rendering the photo browser, in case
+// we need to verify a term grouping by termID
+store.dispatch( fetchTerms( ( ) => {
+  const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+  store.dispatch( hydrateFromUrlParams( urlParams ) );
+  window.onpopstate = e => {
+    // user returned from BACK
+    store.dispatch( hydrateFromUrlParams( e.state ) );
+  };
+  store.dispatch( reloadPhotos( ) );
 
-render(
-  <Provider store={store}>
-    <App taxon={taxon} />
-  </Provider>,
-  document.getElementById( "app" )
-);
+  render(
+    <Provider store={store}>
+      <App taxon={taxon} />
+    </Provider>,
+    document.getElementById( "app" )
+  );
+} ) );

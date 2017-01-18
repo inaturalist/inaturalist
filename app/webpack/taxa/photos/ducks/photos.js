@@ -208,22 +208,25 @@ function fetchPhotosGroupedByParam( param, values ) {
   return function ( dispatch, getState ) {
     const s = getState( );
     const limit = 12;
+    const baseParams = Object.assign(
+      { },
+      defaultObservationParams( s ),
+      s.photos.observationParams,
+      { per_page: limit }
+    );
     _.forEach( values, value => {
       let groupName = value;
       let groupObject;
-      if ( typeof( value ) === "object" ) {
+      const params = Object.assign( { }, baseParams );
+      if ( param === "taxon_id" ) {
         groupName = value.id;
         groupObject = value;
+        params[param] = groupName;
+      } else {
+        groupName = value.controlled_value.label;
+        params.term_id = value.controlled_attribute.id;
+        params.term_value_id = value.controlled_value.id;
       }
-      const params = Object.assign(
-        { },
-        defaultObservationParams( s ),
-        s.photos.observationParams,
-        {
-          per_page: limit,
-          [param]: groupName
-        }
-      );
       dispatch( setPhotosGroup( groupName, [], groupObject ) );
       inatjs.observations.search( params ).then( response => {
         let observationPhotos = observationPhotosFromObservations( response.results );
@@ -263,12 +266,21 @@ export function setGrouping( param, values ) {
   return function ( dispatch, getState ) {
     dispatch( clearGroupedPhotos( ) );
     if ( param ) {
-      dispatch( setConfigAndUrl( { grouping: { param, values } } ) );
       if ( param === "taxon_id" ) {
         const taxon = getState( ).taxon.taxon;
+        dispatch( setConfigAndUrl( { grouping: { param, values } } ) );
         dispatch( fetchPhotosGroupedByParam( "taxon_id", taxon.children ) );
       } else {
-        dispatch( fetchPhotosGroupedByParam( param, values ) );
+        const fieldValues = getState( ).taxon.fieldValues;
+        if ( fieldValues && fieldValues[values] ) {
+          // when grouping by a term, remove existing term filters
+          dispatch( updateObservationParamsAndUrl( { term_id: null, term_value_id: null } ) );
+          dispatch( setConfigAndUrl( { grouping: { param, values } } ) );
+          dispatch( fetchPhotosGroupedByParam( param, fieldValues[values] ) );
+        } else {
+          dispatch( setConfigAndUrl( { grouping: { } } ) );
+          dispatch( fetchObservationPhotos( { reload: true } ) );
+        }
       }
     } else {
       dispatch( setConfigAndUrl( { grouping: { } } ) );
@@ -289,12 +301,11 @@ export function reloadPhotos( ) {
 }
 
 export function hydrateFromUrlParams( params ) {
-  return function ( dispatch, getState ) {
+  return function ( dispatch ) {
     if ( params.grouping ) {
-      const terms = getState( ).taxon.terms;
-      const groupedTerm = _.find( terms, term => `field:${term.name}` === params.grouping );
-      if ( groupedTerm ) {
-        dispatch( setGrouping( params.grouping, groupedTerm.values ) );
+      const match = params.grouping.match( /terms:([0-9])/ );
+      if ( match ) {
+        dispatch( setGrouping( params.grouping, Number( match[1] ) ) );
       } else {
         dispatch( setGrouping( params.grouping ) );
       }
@@ -321,7 +332,7 @@ export function hydrateFromUrlParams( params ) {
       newObservationParams.order_by = params.order_by;
     }
     _.forEach( params, ( value, key ) => {
-      if ( !key.match( /field:/ ) ) {
+      if ( !key.match( /^term(_value)?_id$/ ) ) {
         return;
       }
       newObservationParams[key] = value;

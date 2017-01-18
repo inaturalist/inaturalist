@@ -27,6 +27,8 @@ const PhotoBrowser = ( {
   setParam,
   setTerm,
   showTaxonPhotoModal,
+  selectedTerm,
+  selectedTermValue,
   terms,
   showTaxonGrouping,
   place
@@ -124,8 +126,8 @@ const PhotoBrowser = ( {
   const groupingDisplay = param => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
-    } else if ( param ) {
-      const displayText = param.replace( "field:", "" );
+    } else if ( param && terms[grouping.values] ) {
+      const displayText = terms[grouping.values][0].controlled_attribute.label;
       return I18n.t( displayText, { defaultValue: displayText } );
     }
     return I18n.t( "none" );
@@ -143,13 +145,13 @@ const PhotoBrowser = ( {
     );
   }
   groupingMenuItems = groupingMenuItems.concat(
-    terms.map( term => (
+    _.map( terms, values => (
       <MenuItem
-        key={`grouping-chooser-item-${term.name}`}
-        eventKey={term.name}
-        active={grouping.param === `field:${term.name}`}
+        key={`grouping-chooser-item-${values[0].controlled_attribute.label}`}
+        eventKey={values[0].controlled_attribute}
+        active={grouping.param === `field:${values[0].controlled_attribute.label}`}
       >
-        { term.name }
+        { values[0].controlled_attribute.label }
       </MenuItem>
     ) )
   );
@@ -195,10 +197,7 @@ const PhotoBrowser = ( {
                     } else if ( key === "taxon_id" ) {
                       setGrouping( "taxon_id" );
                     } else {
-                      setGrouping(
-                        `field:${key}`,
-                        _.find( terms, t => t.name === key ).values
-                      );
+                      setGrouping( `terms:${key.id}`, key.id );
                     }
                   } }
                 >
@@ -211,40 +210,49 @@ const PhotoBrowser = ( {
                 </Dropdown>
               </span>
             ) }
-            { terms.map( term => (
-              <span key={`term-${term}`} className="control-group">
-                <Dropdown
-                  id={`term-chooser-${term.name}`}
-                  onSelect={ ( event, key ) => setTerm( term.name, key ) }
-                >
-                  <Dropdown.Toggle bsClass="link">
-                    {
-                      I18n.t( _.snakeCase( term.name ) )
-                    }: <strong>{
-                      I18n.t( _.snakeCase( term.selectedValue || "any" ), { defaultValue: term.selectedValue } )
-                    }</strong>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <MenuItem
-                      key={`term-chooser-item-${term.name}-any`}
-                      eventKey={"any"}
-                      active={term.selectedValue === "any" || !term.selectedValue}
-                    >
-                      { I18n.t( "any" ) }
-                    </MenuItem>
-                    { term.values.map( value => (
+            { _.map( terms, values => {
+              const attr = values[0].controlled_attribute;
+              return (
+                <span key={`term-${attr.label}`} className="control-group">
+                  <Dropdown
+                    id={`term-chooser-${attr.label}`}
+                    onSelect={ ( event, key ) => setTerm( attr.id, key ) }
+                  >
+                    <Dropdown.Toggle bsClass="link">
+                      { attr.label }:&nbsp;
+                      <strong>{
+                        ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
+                          I18n.t( _.snakeCase( selectedTermValue.label ),
+                            { defaultValue: selectedTermValue.label } ) :
+                          I18n.t( "any" )
+                        ) }
+                      </strong>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
                       <MenuItem
-                        key={`term-chooser-item-${term.name}-${value}`}
-                        eventKey={value}
-                        active={term.selectedValue === value}
+                        key={`term-chooser-item-${attr.label}-any`}
+                        eventKey={"any"}
+                        active={ !selectedTermValue }
                       >
-                        { I18n.t( _.snakeCase( value ), { defaultValue: value } ) }
+                        { I18n.t( "any" ) }
                       </MenuItem>
-                    ) ) }
-                  </Dropdown.Menu>
-                </Dropdown>
-              </span>
-            ) ) }
+                      { values.map( v => {
+                        const value = v.controlled_value;
+                        return (
+                          <MenuItem
+                            key={`term-chooser-item-${attr.label}-${value.label}`}
+                            eventKey={value.id}
+                            active={ selectedTermValue && selectedTermValue.id === value.id }
+                          >
+                            { I18n.t( _.snakeCase( value.label ), { defaultValue: value.label } ) }
+                          </MenuItem>
+                        );
+                      } ) }
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </span>
+              );
+            } ) }
             <span className="control-group">
               <Dropdown
                 id="sort-control"
@@ -292,13 +300,9 @@ PhotoBrowser.propTypes = {
   hasMorePhotos: PropTypes.bool,
   layout: PropTypes.string,
   setLayout: PropTypes.func.isRequired,
-  terms: PropTypes.arrayOf(
-    PropTypes.shape( {
-      name: PropTypes.string,
-      values: PropTypes.array,
-      selectedValue: PropTypes.string
-    } )
-  ),
+  selectedTerm: PropTypes.object,
+  selectedTermValue: PropTypes.object,
+  terms: PropTypes.object,
   setTerm: PropTypes.func,
   grouping: PropTypes.object,
   setGrouping: PropTypes.func,
@@ -310,7 +314,7 @@ PhotoBrowser.propTypes = {
 
 PhotoBrowser.defaultProps = {
   layout: "fluid",
-  terms: [],
+  terms: {},
   grouping: {},
   groupedPhotos: {},
   showTaxonGrouping: true

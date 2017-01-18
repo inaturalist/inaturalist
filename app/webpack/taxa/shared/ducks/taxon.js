@@ -17,6 +17,7 @@ const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
+const SET_FIELD_VALUES = "taxa-show/taxon/SET_FIELD_VALUES";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -24,36 +25,6 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
-      // HACK until we get controlled terms working.
-      newState.terms = [];
-      if ( newState.taxon.iconic_taxon_name === "Insecta" ) {
-        newState.terms.push( {
-          name: "Insect life stage",
-          values: [
-            "adult",
-            "teneral",
-            "pupa",
-            "nymph",
-            "larva",
-            "egg"
-          ]
-        } );
-      }
-      if (
-        newState.taxon &&
-        _.find( newState.taxon.ancestors, a => a.name === "Magnoliophyta" )
-      ) {
-        newState.terms.push( {
-          name: "Flowering Phenology",
-          values: [
-            "bare",
-            "budding",
-            "flower",
-            "fruit"
-          ]
-        } );
-      }
-      // END HACK
       break;
     case SET_DESCRIPTION:
       newState.description = {
@@ -93,10 +64,28 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_TAXON_CHANGE:
       newState.taxonChange = action.taxonChange;
       break;
+    case SET_FIELD_VALUES:
+      newState.fieldValues = action.fieldValues;
+      break;
     default:
       // nothing to see here
   }
   return newState;
+}
+
+export function fetchTerms( callback ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
+    if ( s.config.chosenPlace ) {
+      params.place_id = s.config.chosenPlace.id;
+    }
+    inatjs.observations.popularFieldValues( params ).then( r => {
+      dispatch( { type: SET_FIELD_VALUES, fieldValues:
+        _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
+      if ( callback ) { callback( ); }
+    } ).catch( e => { console.log( e ); } );
+  };
 }
 
 export function setTaxon( taxon ) {
@@ -199,6 +188,7 @@ export function fetchTaxon( taxon, options = { } ) {
     } );
     return inatjs.taxa.fetch( t.id, params ).then( response => {
       dispatch( setTaxon( response.results[0] ) );
+      dispatch( fetchTerms( ) );
     } );
   };
 }

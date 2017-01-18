@@ -1,6 +1,8 @@
 #encoding: utf-8
 class ControlledTerm < ActiveRecord::Base
 
+  include ActsAsElasticModel
+
   has_many :controlled_term_values, foreign_key: :controlled_attribute_id,
     class_name: "ControlledTermValue", dependent: :destroy
   has_many :controlled_term_value_attrs, foreign_key: :controlled_value_id,
