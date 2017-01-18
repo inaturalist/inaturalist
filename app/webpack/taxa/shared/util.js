@@ -15,7 +15,9 @@ const urlForPlace = ( p ) => `/places/${p.slug || p.id}`;
 const defaultObservationParams = ( state ) => ( {
   verifiable: true,
   taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-  place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null
+  place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
+  preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
+  locale: I18n.locale
 } );
 
 const localizedPhotoAttribution = ( photo, options = { } ) => {

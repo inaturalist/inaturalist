@@ -113,7 +113,7 @@ class TaxonCrumbs extends React.Component {
     return (
       <ul className={`TaxonCrumbs inline ${this.props.ancestorsShown ? "expanded" : "contracted"}`}>
         <li>
-          <SplitTaxon taxon={{ name: "Life", is_active: true }} />
+          <SplitTaxon taxon={{ name: I18n.t( "life" ), is_active: true }} />
         </li>
         { firstVisibleAncestor }
         { expandControl }

@@ -667,7 +667,7 @@ $introducedColor: #E4007C;
 }
 
 .TaxonPageTabs .nav-tabs > li > a {
-  color: black;
+  color: #555;
   font-weight: bold;
   font-size: 18px;
   padding: 20px 30px 16px;
@@ -686,6 +686,7 @@ $introducedColor: #E4007C;
   border-bottom: 3px solid $inat-green;
   background-color: inherit;
   color: black;
+  opacity: 1;
 }
 
 .InteractionsTab {

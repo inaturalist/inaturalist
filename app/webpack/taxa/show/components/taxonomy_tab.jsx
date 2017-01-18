@@ -116,10 +116,10 @@ const TaxonomyTab = ( {
                       className={!n.is_valid && n.lexicon === "Scientific Names" ? "outdated" : ""}
                     >
                       <td>
-                        { n.lexicon }
+                        { I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ) }
                       </td>
                       <td
-                        className={ n.lexicon && n.lexicon.toLowerCase( ).match( /scientific/ ) ? "sciname" : null }
+                        className={ n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : null }
                       >
                         { n.name }
                       </td>

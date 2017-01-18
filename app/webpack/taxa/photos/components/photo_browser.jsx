@@ -218,7 +218,11 @@ const PhotoBrowser = ( {
                   onSelect={ ( event, key ) => setTerm( term.name, key ) }
                 >
                   <Dropdown.Toggle bsClass="link">
-                    { term.name }: <strong>{ term.selectedValue || I18n.t( "any" ) }</strong>
+                    {
+                      I18n.t( _.snakeCase( term.name ) )
+                    }: <strong>{
+                      I18n.t( _.snakeCase( term.selectedValue || "any" ), { defaultValue: term.selectedValue } )
+                    }</strong>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <MenuItem
@@ -234,7 +238,7 @@ const PhotoBrowser = ( {
                         eventKey={value}
                         active={term.selectedValue === value}
                       >
-                        { value }
+                        { I18n.t( _.snakeCase( value ), { defaultValue: value } ) }
                       </MenuItem>
                     ) ) }
                   </Dropdown.Menu>

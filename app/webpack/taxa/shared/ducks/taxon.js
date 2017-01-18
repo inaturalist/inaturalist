@@ -194,7 +194,8 @@ export function fetchTaxon( taxon, options = { } ) {
     const s = getState( );
     const t = taxon || s.taxon.taxon;
     const params = Object.assign( { }, options, {
-      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale
     } );
     return inatjs.taxa.fetch( t.id, params ).then( response => {
       dispatch( setTaxon( response.results[0] ) );

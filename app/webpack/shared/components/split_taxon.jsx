@@ -16,8 +16,10 @@ const SplitTaxon = ( {
   const LinkElement = url ? "a" : "span";
   let title = "";
   if ( taxon ) {
-    if ( taxon.rank_level > 10 ) {
-      title += _.capitalize( taxon.rank );
+    if ( taxon.rank && taxon.rank_level > 10 ) {
+      title += _.capitalize(
+        I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } )
+      );
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
@@ -101,10 +103,10 @@ const SplitTaxon = ( {
       return null;
     }
     const taxonRank = ( ) => {
-      if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank_level > 10 ) {
+      if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
         return (
           <span className="rank">
-            { _.capitalize( taxon.rank ) }
+            { _.capitalize( I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) ) }
           </span>
         );
       }

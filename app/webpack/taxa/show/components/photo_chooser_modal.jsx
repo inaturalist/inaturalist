@@ -216,7 +216,7 @@ class PhotoChooserModal extends React.Component {
                       className="form-control"
                       onChange={ e => this.setProvider( e.target.value ) }
                     >
-                      <option value="inat">iNat</option>
+                      <option value="inat">{ $( "meta[property='og:site_name']" ).attr( "content" ) }</option>
                       <option value="flickr">Flickr</option>
                       <option value="eol">EOL</option>
                       <option value="wikimedia_commons">Wikimedia Commons</option>
@@ -267,9 +267,9 @@ class PhotoChooserModal extends React.Component {
                   photos={this.state.chosen}
                   droppedPhoto={ chooserID => this.choosePhoto( chooserID ) }
                 >
-                  <h4>Photos chosen for this taxon</h4>
+                  <h4>{ I18n.t( "photos_chosen_for_this_taxon" ) }</h4>
                   <p>
-                    Drag photos here from the left, or drag photos here to re-arrange.
+                    { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
                   </p>
                   <div className="stacked photos">
                     { _.map( this.state.chosen, ( photo, i ) => (
@@ -290,10 +290,7 @@ class PhotoChooserModal extends React.Component {
                   </div>
                   <p className="text-muted">
                     <small>
-                      Note that the taxon page will show photos of this taxon
-                      <em>and</em> its descendants. The photos chosen for this
-                      taxon will show first, though. The first photo will be
-                      the default image used across the site.
+                      { I18n.t( "views.taxa.show.photo_chooser_modal_explanation" ) }
                     </small>
                   </p>
                 </PhotoChooserDropArea>

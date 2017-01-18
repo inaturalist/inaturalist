@@ -75,9 +75,9 @@
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' %>
     <script type="text/javascript">
       I18n = { }
-      I18n.defaultLocale = "en"
-      I18n.locale = "<%= I18n.locale %>"
-      I18n.fallbacks = true
+      I18n.defaultLocale = "<%= CONFIG.default_locale || "en" %>";
+      I18n.locale = "<%= I18n.locale %>";
+      I18n.fallbacks = true;
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place -%>
       <% if site_place -%>

@@ -160,8 +160,9 @@ namespace :inaturalist do
                  "all_taxa.fungi", "fungi",
                  "all_taxa.protozoans", "protozoans",
                  "unknown", "date.formats.month_day_year",
-                 "views.taxa.show.frequency" ]
-    all_keys += Date::MONTHNAMES.compact.map{|m| "date_format.month.#{m.downcase}"}
+                 "views.taxa.show.frequency", "flowering_phenology", "insect_life_stage" ]
+    all_keys += Date::MONTHNAMES.compact.map{ |m| "date_format.month.#{m.downcase}" }
+    all_keys += TaxonName::LEXICONS.keys.compact.map{ |lexicon| "lexicons.#{lexicon.downcase}" }
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
       # Ignore non-files
@@ -206,9 +207,7 @@ namespace :inaturalist do
         split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
         var = split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
-            # fallback to English if there is no translation in the specified locale
             value = split_keys.inject(I18n.backend.send(:translations)[locale], :[]) rescue nil
-            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[]) rescue nil
             if value
               h[key] ||= value
             elsif Rails.env.development?
@@ -226,7 +225,7 @@ namespace :inaturalist do
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
       all_translations.sort.each do |locale, translastions|
-        file.puts "I18n.translations[\"#{ locale }\"] = #{ translastions.to_json };"
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translastions ) };"
       end
     end
   end

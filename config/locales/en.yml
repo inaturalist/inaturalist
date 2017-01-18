@@ -2260,6 +2260,7 @@ en:
   photo_s: Photo(s)
   photo_type: Photo type
   photo_urls_repaired: Photo URLs repaired
+  photos_chosen_for_this_taxon: Photos chosen for this taxon
   photos_from: Photos from
   photos_of: Photos of
   photos_of_taxon_html: "Photos of %{taxon}"
@@ -4730,6 +4731,13 @@ en:
           "Insect life stage=nymph": Nymph
           "Insect life stage=pupa": Pupa
           "Insect life stage=adult": Adult
+        photo_chooser_modal_desc: |
+          Drag photos here from the left, or drag photos here to re-arrange.
+        photo_chooser_modal_explanation: |
+          Note that the taxon page will show photos of this taxon
+          and its descendants. The photos chosen for this
+          taxon will show first, though. The first photo will be
+          the default image used across the site.
     taxon_names:
       form:
         new_name_guidelines_html: |
