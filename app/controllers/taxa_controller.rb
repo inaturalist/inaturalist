@@ -29,7 +29,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :show_google]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -146,28 +146,10 @@ class TaxaController < ApplicationController
     end
   end
 
-  def show_google
-    site_place = @site && @site.place
-    user_place = current_user && current_user.place
-    preferred_place = user_place || site_place
-    place_id = current_user.preferred_taxon_page_place_id if logged_in?
-    place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
-    @place = Place.find_by_id( place_id )
-    api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}"
-    @node_taxon_json = INatAPIService.get_json( api_url )
-    @chosen_tab = session[:preferred_taxon_page_tab]
-    @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-    respond_to do |format|
-      format.html do
-        render layout: "bootstrap", action: "show2"
-      end
-    end
-  end
-
   def show
-    if params[:entry] == 'widget'
-      flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
-    end
+    # if params[:entry] == 'widget'
+    #   flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
+    # end
     if params[:id]
       begin
         @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
@@ -181,7 +163,7 @@ class TaxaController < ApplicationController
     
     respond_to do |format|
       format.html do
-        if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
+        # if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
           site_place = @site && @site.place
           user_place = current_user && current_user.place
           preferred_place = user_place || site_place
@@ -194,7 +176,7 @@ class TaxaController < ApplicationController
           @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
           render layout: "bootstrap", action: "show2"
           return
-        end
+        # end
         
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
