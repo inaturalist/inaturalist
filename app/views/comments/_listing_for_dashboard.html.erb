@@ -33,17 +33,16 @@
         <span class="comment_time">
           <i class="glyphicon glyphicon-time"></i> <%=t :time_ago, :time => time_ago_in_words(comment.created_at) %>
         </span>
-        <%- case parent.class.to_s -%>
-        <%- when "Observation" -%>         
-            <%= raw t( "new_comment_on_a_parent_by_user_link" ),
+        <%- if parent.class.to_s == "Observation" -%>
+            <%= raw t( "new_comment_on_a_parent_by_user_link",
               parent: parent.class.to_s.downcase,
               user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase %>
+              vow_or_con: parent.class.to_s.first.downcase ) %>
         <%- elsif parent.user %>
-            <%= raw t( "new_comment_on_a_parent_by_user_link" ),
+            <%= raw t( "new_comment_on_a_parent_by_user_link",
               parent: parent.class.to_s.downcase,
               user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase %>        
+              vow_or_con: parent.class.to_s.first.downcase ) %>
         <%- end -%>
       </h2>
     </div>
