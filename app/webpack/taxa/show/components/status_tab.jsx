@@ -158,7 +158,8 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                 </div>
               </td>
               <td>
-                { I18n.t( lt.establishment_means, { defaultValue: lt.establishment_means } ) }
+                { _.capitalize( I18n.t( lt.establishment_means,
+                  { defaultValue: lt.establishment_means } ) ) }
               </td>
               <td>
                 <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
