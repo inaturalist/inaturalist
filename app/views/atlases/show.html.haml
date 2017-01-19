@@ -118,6 +118,7 @@
 
     - if @listed_taxon_alterations.count == 0
       .no_listed_taxon_alterations= "No listed taxon alterations relevant to this atlas yet"
-    .pull-right
-      = link_to @atlas.user.login, @atlas.user
-      = "created this atlas on #{l(@atlas.created_at.to_date, :format => :long)}"
+    - if @atlas.user
+      .pull-right
+        = link_to @atlas.user.login, @atlas.user
+        = "created this atlas on #{l(@atlas.created_at.to_date, :format => :long)}"
