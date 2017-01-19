@@ -48,7 +48,7 @@ class AtlasesController < ApplicationController
   end
 
   def create
-    @atlas = Atlas.new( params[:atlas] )
+    @atlas = Atlas.new( params[:atlas].merge(:user_id => current_user.id) )
     respond_to do |format|
       if @atlas.save
         format.html { redirect_to( @atlas, notice: "Atlas was successfully created." ) }
