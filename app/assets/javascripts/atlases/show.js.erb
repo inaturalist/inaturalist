@@ -104,8 +104,10 @@ atlasJS.addPlaceToMap = function( p, type, options ) {
     type: "Feature",
     geometry: p.geometry_geojson
   });
-  // layers need the same click actions as map, because layers are on top
-  layer.addListener( "click", atlasJS.clickCallback );
+  if( $( "#map" ).data( "is-curator" ) ){
+    // layers need the same click actions as map, because layers are on top
+    layer.addListener( "click", atlasJS.clickCallback );
+  }
   layer.setMap( atlasState.map );
   // store the layer in atlasState
   atlasState.placeLayers[p.id] = {
@@ -117,9 +119,10 @@ atlasJS.addPlaceToMap = function( p, type, options ) {
 };
 
 atlasJS.updateMetadataPanel = function( ) {
+  $( ".panel" ).remove();
   panel = $( "#right" );
   panel.html( "" );
-  listings_panel = $( "#farright" );
+  listings_panel = $( "#bottomright" );
   listings_panel.html( "" );
   var parentWasNotExploded;
   _.each( atlasState.selectedPlaces, function( p ) {
@@ -130,7 +133,7 @@ atlasJS.updateMetadataPanel = function( ) {
 atlasJS.appendPlaceMetadata = function( panel, place ) {
   var existing = atlasState.placeLayers[place.id];
   panel.append( $( "<h2>" ).text( place.name ) );
-  if( !existing || ( ( existing.type != "native" || existing.type != "introduced") && existing.type != "exploded" ) ) {
+  if( !existing || ( ( existing.type != "native" && existing.type != "introduced") && existing.type != "exploded" ) ) {
     var addPlaceLink = $( "<a href='#'>" ).text( "Add this place" );
     addPlaceLink.on( "click", function( e ) {
       e.preventDefault( );
@@ -348,7 +351,7 @@ atlasJS.getListings = function( place ) {
     url: "/atlases/" + $( "#map" ).data( "atlas-id" ) + "/get_defaults_for_taxon_place",
     data: { taxon_id: $( "#map" ).data( "taxon-id" ), place_id: place.id },
     success: function( s ) {
-      panel = $( "#farright" );
+      panel = $( "#bottomright" );
       panel.html( "" );
       panel.append( $( "<h4>" ).text( "Listed Taxa" ) );
       $.each(s, function(key,value) {
@@ -370,7 +373,9 @@ $( function( ) {
     longitude: -34
   } );
   atlasState.map =  $( "#map" ).data( "taxonMap" );
-  atlasState.map.addListener( "click", atlasJS.clickCallback );
+  if( $( "#map" ).data( "is-curator" ) ){
+    atlasState.map.addListener( "click", atlasJS.clickCallback );
+  }
 
   atlasJS.showInitialPlaces( );
   

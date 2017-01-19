@@ -22,11 +22,25 @@
         = "Atlas"
         = t :for
         = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon }
-      .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
+      -if current_user.is_curator?
+        .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
   .row.cf#top
     .col-sm-3.col-xs-12.pull-right
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            = "About Atlases"
+        .panel-body
+          %p
+            = "Atlases convey the global distribution of a taxon. Curators make atlases by defining a global set"
+            = "of non-overlapping standard places (e.g. contries). If default checklist listed taxa (or their"
+            = "descendants) exist for these places (or their standard descendants) these places will be"
+            = "lit up as 'presence places' indicating that these places contain all or part of the taxon's range."
+          %p
+            = "Once active, any changes to the structure of the atlas or relevant listed taxa are logged. Active atlases"
+            = "are checked daily to determine any verifiable observations fall outside of the atlas presence places."
       .content-entry#right
-      .content-entry#farright
+      .content-entry#bottomright
     .col-sm-9.col-xs-12.pull-left#left
       :ruby
         map_attributes = setup_map_tag_attrs(
@@ -44,7 +58,8 @@
           atlas_id: @atlas.id,
           taxon_id: @atlas.taxon_id,
           place_ids: @atlas_presence_places_with_establishment_means_hash_json,
-          exploded_places: @exploded_places_json
+          exploded_places: @exploded_places_json,
+          is_curator: @is_curator
         }
         Rails.logger.debug( "map_attributes: #{map_attributes}")
         map_attributes["data"] = map_attributes["data"].merge( atlas_data )
@@ -72,7 +87,8 @@
             %td= atlas_alteration.action
             %td= atlas_alteration.user.nil? ? "" : ( link_to atlas_alteration.user.login, atlas_alteration.user )
             %td= atlas_alteration.created_at
-            %td= link_to "remove", "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id }
+            -if current_user.is_curator?
+              %td= link_to "remove", "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id }
 
     - if @atlas_alterations.count == 0
       .no_alterations= "No alterations to this atlas yet"
@@ -97,7 +113,11 @@
             %td= listed_taxon_alteration.action
             %td= listed_taxon_alteration.user.nil? ? "" : ( link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user )
             %td= listed_taxon_alteration.created_at
-            %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
+            -if current_user.is_curator?
+              %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
 
     - if @listed_taxon_alterations.count == 0
       .no_listed_taxon_alterations= "No listed taxon alterations relevant to this atlas yet"
+    .pull-right
+      = link_to @atlas.user.login, @atlas.user
+      = "created this atlas on #{l(@atlas.created_at.to_date, :format => :long)}"
