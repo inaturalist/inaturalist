@@ -7,7 +7,7 @@ import {
   openObservationsSearch
 } from "../ducks/observations";
 
-const TermsToChart = ["Life Stage"];
+const TERMS_TO_CHART = ["Life Stage"];
 
 function mapStateToProps( state ) {
   // process columns for seasonality
@@ -22,7 +22,7 @@ function mapStateToProps( state ) {
   ];
   const chartedFieldValues = { };
   _.each( state.taxon.fieldValues, ( values, termID ) => {
-    if ( !_.includes( TermsToChart, values[0].controlled_attribute.label ) ) {
+    if ( !_.includes( TERMS_TO_CHART, values[0].controlled_attribute.label ) ) {
       return;
     }
     chartedFieldValues[termID] = values;

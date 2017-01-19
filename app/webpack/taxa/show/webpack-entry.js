@@ -9,9 +9,7 @@ import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
 import observationsReducer from "./ducks/observations";
-import { resetObservationsState } from "./ducks/observations";
 import leadersReducer from "./ducks/leaders";
-import { resetLeadersState } from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import { setDescription } from "../shared/ducks/taxon";
 import { fetchTaxonAssociates } from "./actions/taxon";
@@ -92,10 +90,7 @@ window.onpopstate = e => {
   // User returned from BACK
   if ( e.state && e.state.taxon ) {
     store.dispatch( setTaxon( e.state.taxon ) );
-    $( "a[href=#charts-seasonality]" ).tab( "show" );
     store.dispatch( fetchTaxon( e.state.taxon ) );
-    store.dispatch( resetLeadersState( ) );
-    store.dispatch( resetObservationsState( ) );
     store.dispatch( fetchTaxonAssociates( e.state.taxon ) );
   }
 };

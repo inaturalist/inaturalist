@@ -151,7 +151,8 @@ const PhotoBrowser = ( {
         eventKey={values[0].controlled_attribute}
         active={grouping.param === `field:${values[0].controlled_attribute.label}`}
       >
-        { values[0].controlled_attribute.label }
+        { I18n.t( _.snakeCase( values[0].controlled_attribute.label ),
+          { defaultValue: values[0].controlled_attribute.label } ) }
       </MenuItem>
     ) )
   );

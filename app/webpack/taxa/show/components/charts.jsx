@@ -248,7 +248,8 @@ class Charts extends React.Component {
               role="tab"
               data-toggle="tab"
             >
-              { values[0].controlled_attribute.label }
+              { I18n.t( _.snakeCase( values[0].controlled_attribute.label ),
+                { defaultValue: values[0].controlled_attribute.label } ) }
             </a>
           </li>
         ) );
