@@ -20,7 +20,7 @@ function mapStateToProps( state ) {
     place: state.config.chosenPlace
   };
   props.terms = Object.assign( { }, state.taxon.fieldValues || { } );
-  // group terms by attribute for easier rendering of term filters
+  // set props for selected term/value
   if ( props.params.term_id && props.params.term_value_id ) {
     const match = props.terms[props.params.term_id];
     if ( match && match.length > 0 ) {

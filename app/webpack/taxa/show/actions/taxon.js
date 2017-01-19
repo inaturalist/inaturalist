@@ -2,7 +2,8 @@ import {
   fetchTaxon,
   setCount,
   fetchTaxonChange,
-  fetchNames
+  fetchNames,
+  fetchTerms
 } from "../../shared/ducks/taxon";
 import {
   fetchMonthFrequency,
@@ -25,9 +26,11 @@ export function fetchTaxonAssociates( t ) {
     }
     dispatch( fetchNames( ) );
     dispatch( fetchLeaders( taxon ) ).then( ( ) => {
-      dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {
-        dispatch( fetchMonthFrequency( taxon ) );
-      } );
+      dispatch( fetchTerms( ( ) => {
+        dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {
+          dispatch( fetchMonthFrequency( taxon ) );
+        } );
+      } ) );
     } );
   };
 }

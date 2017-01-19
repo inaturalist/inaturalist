@@ -73,21 +73,6 @@ export default function reducer( state = { counts: {} }, action ) {
   return newState;
 }
 
-export function fetchTerms( callback ) {
-  return ( dispatch, getState ) => {
-    const s = getState( );
-    const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
-    if ( s.config.chosenPlace ) {
-      params.place_id = s.config.chosenPlace.id;
-    }
-    inatjs.observations.popularFieldValues( params ).then( r => {
-      dispatch( { type: SET_FIELD_VALUES, fieldValues:
-        _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
-      if ( callback ) { callback( ); }
-    } ).catch( e => { console.log( e ); } );
-  };
-}
-
 export function setTaxon( taxon ) {
   return {
     type: SET_TAXON,
@@ -175,6 +160,21 @@ export function showPhotoChooserIfSignedIn( ) {
     } else {
       window.location = `/login?return_to=${window.location}`;
     }
+  };
+}
+
+export function fetchTerms( callback ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
+    if ( s.config.chosenPlace ) {
+      params.place_id = s.config.chosenPlace.id;
+    }
+    inatjs.observations.popularFieldValues( params ).then( r => {
+      dispatch( { type: SET_FIELD_VALUES, fieldValues:
+        _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
+      if ( callback ) { callback( ); }
+    } ).catch( e => { console.log( e ); } );
   };
 }
 
