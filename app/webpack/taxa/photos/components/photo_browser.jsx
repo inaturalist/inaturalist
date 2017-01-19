@@ -64,6 +64,7 @@ const PhotoBrowser = ( {
             observationPhoto.observation
           ) }
           showTaxon
+          linkTaxon
         />
       );
     } )

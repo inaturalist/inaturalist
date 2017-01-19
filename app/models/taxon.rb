@@ -713,10 +713,11 @@ class Taxon < ActiveRecord::Base
     end
     if chosen_taxon_photos.size < options[:limit]
       descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes(:photo).
-        order("taxon_photos.id ASC").
-        limit(options[:limit] - chosen_taxon_photos.size).
-        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'").
-        where("taxon_photos.id NOT IN (?)", chosen_taxon_photos.map(&:id))
+        order( "taxon_photos.id ASC" ).
+        limit( options[:limit] - chosen_taxon_photos.size ).
+        where( "taxa.ancestry LIKE '#{ancestry}/#{id}%'" ).
+        where( "taxa.is_active = ?", true ).
+        where( "taxon_photos.id NOT IN (?)", chosen_taxon_photos.map(&:id) )
       chosen_taxon_photos += descendant_taxon_photos.to_a
     end
     chosen_taxon_photos
