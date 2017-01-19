@@ -51,7 +51,7 @@ const TaxonomyTab = ( {
               onClick={ e => {
                 if ( !shouldLinkToTaxon ) return true;
                 e.preventDefault( );
-                showNewTaxon( t );
+                showNewTaxon( t, { skipScrollTop: true } );
                 return false;
               } }
             />

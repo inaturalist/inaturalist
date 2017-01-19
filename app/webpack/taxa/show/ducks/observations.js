@@ -1,3 +1,4 @@
+import _ from "lodash";
 import inatjs from "inaturalistjs";
 import { defaultObservationParams } from "../../shared/util";
 import { stringify } from "querystring";
@@ -9,13 +10,21 @@ const SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS"
 const SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
 const SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
 const SET_LAST_OBSERVATION = "taxa-show/observations/SET_LAST_OBSERVATION";
+const RESET_STATE = "taxa-show/observations/RESET_STATE";
+
+const INITIAL_STATE = { monthOfYearFrequency: {}, monthFrequency: {} };
 
 export default function reducer(
-  state = { monthOfYearFrequency: {}, monthFrequency: {} },
+  state = INITIAL_STATE,
   action
 ) {
-  const newState = Object.assign( {}, state );
+  let newState = Object.assign( {}, state );
   switch ( action.type ) {
+    case RESET_STATE:
+      newState = INITIAL_STATE;
+      newState.monthOfYearFrequency = {};
+      newState.monthFrequency = {};
+      break;
     case SET_MONTH_FREQUENCY:
       newState.monthFrequency = Object.assign( newState.monthFrequency, {
         [action.key]: action.frequency
@@ -42,6 +51,10 @@ export default function reducer(
       // leave it alone
   }
   return newState;
+}
+
+export function resetObservationsState( ) {
+  return { type: RESET_STATE };
 }
 
 export function setMonthFrequecy( key, frequency ) {
@@ -87,21 +100,6 @@ export function fetchMonthFrequencyResearchGrade( ) {
   };
 }
 
-export function fetchMonthFrequencyForTerm( name, value ) {
-  return ( dispatch, getState ) => {
-    const termName = `field:${name}`;
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      date_field: "observed",
-      interval: "month",
-      [termName]: value
-    } );
-    return inatjs.observations.histogram( params ).then( response => {
-      dispatch( setMonthFrequecy( `${name}=${value}`, response.results.month ) );
-      return new Promise( ( resolve ) => resolve( response.results.month ) );
-    } );
-  };
-}
-
 export function fetchMonthFrequency( ) {
   return dispatch => Promise.all( [
     dispatch( fetchMonthFrequencyVerifiable( ) ),
@@ -136,37 +134,21 @@ export function fetchMonthOfYearFrequencyResearchGrade( ) {
   };
 }
 
-export function fetchMonthOfYearFrequencyForTerm( name, value ) {
-  const termName = `field:${name}`;
-  return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      date_field: "observed",
-      interval: "month_of_year",
-      [termName]: value
-    } );
-    return inatjs.observations.histogram( params ).then( response => {
-      dispatch( setMonthOfYearFrequecy( `${name}=${value}`, response.results.month_of_year ) );
-      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
-    } );
-  };
-}
-
 export function fetchMonthOfYearFrequency( ) {
   return ( dispatch, getState ) => {
     const promises = [
       dispatch( fetchMonthOfYearFrequencyVerifiable( ) ),
       dispatch( fetchMonthOfYearFrequencyResearchGrade( ) )
     ];
-    // Disabling term frequencies until I get them into their own chart
-    const terms = getState( ).taxon.terms;
-    if ( terms && terms.length > 0 ) {
-      for ( let i = 0; i < terms.length; i++ ) {
-        for ( let j = 0; j < terms[i].values.length; j++ ) {
-          promises.push(
-            dispatch( fetchMonthOfYearFrequencyForTerm( terms[i].name, terms[i].values[j] ) )
-          );
-        }
-      }
+    const fieldValues = getState( ).taxon.fieldValues;
+    if ( fieldValues && _.size( fieldValues ) > 0 ) {
+      _.each( fieldValues, values => {
+        _.each( values, value => {
+          dispatch( setMonthOfYearFrequecy(
+            `${value.controlled_attribute.label}=${value.controlled_value.label}`,
+            value.month_of_year ) );
+        } );
+      } );
     }
     return Promise.all( promises );
   };
