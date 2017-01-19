@@ -7,9 +7,10 @@ import {
 } from "../../shared/ducks/taxon";
 import {
   fetchMonthFrequency,
-  fetchMonthOfYearFrequency
+  fetchMonthOfYearFrequency,
+  resetObservationsState
 } from "../ducks/observations";
-import { fetchLeaders } from "../ducks/leaders";
+import { fetchLeaders, resetLeadersState } from "../ducks/leaders";
 import { windowStateForTaxon } from "../../shared/util";
 
 export function fetchTaxonAssociates( t ) {
@@ -41,6 +42,9 @@ export function showNewTaxon( taxon ) {
       const s = windowStateForTaxon( taxon );
       history.pushState( s.state, s.title, s.url );
       document.title = s.title;
+      $( "a[href=#charts-seasonality]" ).tab( "show" );
+      dispatch( resetLeadersState( ) );
+      dispatch( resetObservationsState( ) );
       dispatch( fetchTaxonAssociates( taxon ) );
     } );
 }

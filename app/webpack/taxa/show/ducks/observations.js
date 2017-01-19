@@ -10,13 +10,21 @@ const SET_RECENT_OBSERVATIONS = "taxa-show/observations/SET_RECENT_OBSERVATIONS"
 const SET_OBSERVATIONS_COUNT = "taxa-show/observations/SET_OBSERVATIONS_COUNT";
 const SET_FIRST_OBSERVATION = "taxa-show/observations/SET_FIRST_OBSERVATION";
 const SET_LAST_OBSERVATION = "taxa-show/observations/SET_LAST_OBSERVATION";
+const RESET_STATE = "taxa-show/observations/RESET_STATE";
+
+const INITIAL_STATE = { monthOfYearFrequency: {}, monthFrequency: {} };
 
 export default function reducer(
-  state = { monthOfYearFrequency: {}, monthFrequency: {} },
+  state = INITIAL_STATE,
   action
 ) {
-  const newState = Object.assign( {}, state );
+  let newState = Object.assign( {}, state );
   switch ( action.type ) {
+    case RESET_STATE:
+      newState = INITIAL_STATE;
+      newState.monthOfYearFrequency = {};
+      newState.monthFrequency = {};
+      break;
     case SET_MONTH_FREQUENCY:
       newState.monthFrequency = Object.assign( newState.monthFrequency, {
         [action.key]: action.frequency
@@ -43,6 +51,10 @@ export default function reducer(
       // leave it alone
   }
   return newState;
+}
+
+export function resetObservationsState( ) {
+  return { type: RESET_STATE };
 }
 
 export function setMonthFrequecy( key, frequency ) {
