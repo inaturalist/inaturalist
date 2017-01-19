@@ -12,7 +12,7 @@
 <%- location_row = capture do -%>
   <% if observation.coordinates_viewable_by?(current_user) -%>
     <label><%=t :location %>:</label>
-    <%= observation_place_guess(observation, place_guess_truncation: observation.observation_photos.size > 0 ? 30 : nil).html_safe %>
+    <%= observation_place_guess( observation ).html_safe %>
     <% if observation.out_of_range? -%>
       <strong class="out_of_range nobr">
         <span class="ui-icon ui-icon-alert inlineblock"></span>
