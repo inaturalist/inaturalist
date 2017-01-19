@@ -65,7 +65,7 @@ class AtlasesController < ApplicationController
     respond_to do |format|
       if @atlas.update_attributes( params[:atlas] )
         @atlas.taxon
-        format.html { redirect_to( @atlas.taxon || taxa_path, notice: "Atlas was successfully updated." ) }
+        format.html { redirect_to( @atlas, notice: "Atlas was successfully updated." ) }
       else
         format.html { render action: "edit" }
       end
