@@ -42,6 +42,18 @@ class TaxonPageTabs extends React.Component {
       const isCurator =
         currentUser.roles.indexOf( "curator" ) >= 0 ||
         currentUser.roles.indexOf( "admin" ) >= 0;
+      let atlasItem;
+      if ( isCurator && this.props.taxon.rank_level <= 10 ) {
+        atlasItem = this.props.taxon.atlas_id ? (
+          <MenuItem eventKey="edit-atlas" >
+            <i className="fa fa-globe"></i> { I18n.t( "edit_atlas" ) }
+          </MenuItem>
+        ) : (
+          <MenuItem eventKey="new-atlas" >
+            <i className="fa fa-globe"></i> { I18n.t( "create_an_atlas" ) }
+          </MenuItem>
+        );
+      }
       curationTab = (
         <li className="curation-tab">
           <Dropdown
@@ -57,6 +69,12 @@ class TaxonPageTabs extends React.Component {
                   break;
                 case "edit-photos":
                   this.props.showPhotoChooserModal( );
+                  break;
+                case "edit-atlas":
+                  window.location = `/atlases/${this.props.taxon.atlas_id}`;
+                  break;
+                case "new-atlas":
+                  window.location = `/atlases/new?taxon_id=${this.props.taxon.id}`;
                   break;
                 default:
                   window.location = `/taxa/${this.props.taxon.id}/edit`;
@@ -90,6 +108,7 @@ class TaxonPageTabs extends React.Component {
               >
                 <i className="fa fa-pencil"></i> { I18n.t( "edit_taxon" ) }
               </MenuItem>
+              { atlasItem }
             </Dropdown.Menu>
           </Dropdown>
         </li>

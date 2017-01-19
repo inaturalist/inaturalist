@@ -98,7 +98,8 @@ class Taxon < ActiveRecord::Base
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
-          select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json)
+          select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
+        atlas_id: atlas.try( :id )
       })
     end
     json

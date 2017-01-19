@@ -2636,6 +2636,7 @@ I18n.translations["en"] = {
     "no_known_copyright_restrictions": "%{name}, no known copyright restrictions (%{license_name})",
     "no_rights_reserved": "no rights reserved"
   },
+  "create_an_atlas": "Create an Atlas",
   "created_on": "Created on",
   "critically_endangered": "critically endangered",
   "csv": "CSV",
@@ -2723,6 +2724,7 @@ I18n.translations["en"] = {
   "drag_and_drop_some_photos": "Drag & drop some photos",
   "drop_it": "Drop it",
   "edit": "Edit",
+  "edit_atlas": "Edit Atlas",
   "edit_license": "Edit license",
   "edit_multiple_dates": "Edit multiple dates",
   "edit_multiple_descriptions": "Edit multiple descriptions",

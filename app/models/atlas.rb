@@ -7,6 +7,8 @@ class Atlas < ActiveRecord::Base
   has_many :comments, as: :parent, dependent: :destroy
   validates_uniqueness_of :taxon_id, :message => "already atlased"
   validates_presence_of :taxon
+  after_save :index_taxon
+  after_destroy :index_taxon
 
   # All of the atlased places, i.e. all the places where the atlas author has
   # declared this taxon to exist
@@ -134,6 +136,10 @@ class Atlas < ActiveRecord::Base
 
     places << scope.map{|p| {id: p.id, establishment_means: "introduced"}}
     places = places.flatten
+  end
+
+  def index_taxon
+    taxon.elastic_index!
   end
   
   def self.still_is_marked( atlas )
