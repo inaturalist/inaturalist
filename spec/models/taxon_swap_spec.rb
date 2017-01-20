@@ -96,6 +96,14 @@ describe TaxonSwap, "commit" do
     @output_taxon.reload
     expect(@output_taxon.taxon_ranges).not_to be_blank
   end
+  
+  it "should duplicate atlas if one isn't already set" do
+    @user = User.make!
+    a = Atlas.make!(user: @user, taxon: @input_taxon, is_active: true)
+    @swap.commit
+    @output_taxon.reload
+    expect(@output_taxon.atlas).not_to be_blank
+  end
 
   it "should not duplicate taxon range if one is already set" do
     tr1 = TaxonRange.make!(:taxon => @input_taxon)
@@ -103,6 +111,14 @@ describe TaxonSwap, "commit" do
     @swap.commit
     @output_taxon.reload
     expect(@output_taxon.taxon_ranges.count).to eq(1)
+  end
+
+  it "should not duplicate atlas if one is already set" do
+    a1 = Atlas.make!(user: @user, taxon: @input_taxon, is_active: true)
+    a2 = Atlas.make!(user: @user, taxon: @output_taxon, is_active: true)
+    @swap.commit
+    @output_taxon.reload
+    expect(@output_taxon.atlas).not_to be_blank
   end
 
   it "should duplicate colors" do
@@ -244,6 +260,23 @@ describe TaxonSwap, "commit_records" do
     # Delayed::Worker.new.work_off
     lt.reload
     expect(lt.taxon).to eq(@output_taxon)
+  end
+
+  it "should log listed taxa if taxon changed" do
+    AncestryDenormalizer.denormalize
+    @user = User.make!
+    atlas_place = Place.make!(admin_level: 0)
+    atlas = Atlas.make!(user: @user, taxon: @input_taxon, is_active: false)
+    atlas_place_check_list = List.find(atlas_place.check_list_id)
+    check_listed_taxon = atlas_place_check_list.add_taxon(@input_taxon, options = {user_id: @user.id})
+    expect(ListedTaxonAlteration.where(place_id: atlas_place.id, taxon_id: @input_taxon.id).count).to eq(0)
+    expect(ListedTaxonAlteration.where(place_id: atlas_place.id, taxon_id: @output_taxon.id).count).to eq(0)
+    atlas.is_active = true
+    atlas.save!
+    without_delay{ @swap.commit_records }
+    # Delayed::Worker.new.work_off
+    check_listed_taxon.reload
+    expect(ListedTaxonAlteration.where(place_id: atlas_place.id, taxon_id: @output_taxon.id).count).not_to eq(0)
   end
 
   it "should add new identifications" do

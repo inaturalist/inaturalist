@@ -111,9 +111,20 @@ class TaxonSwap < TaxonChange
       end
     end
     
+    # duplicate atlas
+    unless output_taxon.atlas
+      atlas = input_taxon.atlas
+      new_atlas = atlas.dup
+      new_atlas.taxon_id = output_taxon.id
+      unless new_atlas.save
+        Rails.logger.error "[ERROR #{Time.now}] Atlas #{id} failed to duplicate #{atlas}: " +
+          new_atlas.errors.full_messages.to_sentence
+      end
+    end
+    
     # duplicate colors
     output_taxon.colors << input_taxon.colors if output_taxon.colors.blank?
-
+    
     # Move input child taxa to the output taxon
     delay( priority: USER_PRIORITY ).move_input_children_to_output( input_taxon.id )
     

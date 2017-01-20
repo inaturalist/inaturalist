@@ -38,6 +38,7 @@ class ListedTaxon < ActiveRecord::Base
   after_save :remove_other_primary_listings
   after_save :update_attributes_on_related_listed_taxa
   after_save :index_taxon
+  after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -490,11 +491,16 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
-  def has_atlas_or_complete_set?
+  def has_atlas_or_complete_set?(options = {})
     return false unless list.is_a?( CheckList ) && list.is_default?
     return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
+    relevant_taxon = taxon
+    if options[:taxon_was]
+      relevant_taxon = Taxon.where(id: options[:taxon_was]).first
+    end
+    return false unless relevant_taxon
     place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
-    atlas_ids = Atlas.where( "is_active = true AND taxon_id IN (?)", taxon.self_and_ancestor_ids ).pluck( :id )
+    atlas_ids = Atlas.where( "is_active = true AND taxon_id IN (?)", relevant_taxon.self_and_ancestor_ids ).pluck( :id )
     # there are atlases for this taxon or ancestors and this place isn't
     # exploded for all matching atlases, therefore this action is relevant
     # to some atlas and should be logged
@@ -503,7 +509,7 @@ class ListedTaxon < ActiveRecord::Base
         where( place_id: place.id ).count < atlas_ids.length
     cs = CompleteSet.
       where( "is_active = true").
-      where("taxon_id IN ( ? ) AND place_id IN ( ? )", taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
+      where("taxon_id IN ( ? ) AND place_id IN ( ? )", relevant_taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
       count
     return true if cs > 0
     false
@@ -528,6 +534,19 @@ class ListedTaxon < ActiveRecord::Base
         user_id: updater_id,
         place_id: place_id,
         action: "unlisted"
+      )
+    end
+  end
+  
+  def log_create_if_taxon_id_changed
+    return true unless taxon_id_changed?
+    return true if taxon_id_was.nil?
+    if has_atlas_or_complete_set?(taxon_was: taxon_id_was)
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
+        user_id: nil,
+        place_id: place_id,
+        action: "listed"
       )
     end
   end
