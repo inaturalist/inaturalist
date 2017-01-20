@@ -113,12 +113,13 @@ class TaxonSwap < TaxonChange
     
     # duplicate atlas
     unless output_taxon.atlas
-      atlas = input_taxon.atlas
-      new_atlas = atlas.dup
-      new_atlas.taxon_id = output_taxon.id
-      unless new_atlas.save
-        Rails.logger.error "[ERROR #{Time.now}] Atlas #{id} failed to duplicate #{atlas}: " +
-          new_atlas.errors.full_messages.to_sentence
+      if atlas = input_taxon.atlas
+        new_atlas = atlas.dup
+        new_atlas.taxon_id = output_taxon.id
+        unless new_atlas.save
+          Rails.logger.error "[ERROR #{Time.now}] Atlas #{id} failed to duplicate #{atlas}: " +
+            new_atlas.errors.full_messages.to_sentence
+        end
       end
     end
     
